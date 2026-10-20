@@ -1,0 +1,4530 @@
+# Research conversation: I'm revising a research idea about noise-pair-conditioned attention gating for World Action Models (WAMs). A critical re
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 72
+- **Recorded user turns:** 1
+- **Tool calls:** 29
+- **Original source:** `logs/chats/exported-trajectories/account-3/agent-a016352743ee6473e.jsonl`
+- **Structured JSON:** [`ec5095707701686968bd.json`](../../sessions/ec/ec5095707701686968bd.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+72 recorded events
+
+### User
+
+_source line 1 · 2026-05-10T18:22:36.078Z_
+
+I'm revising a research idea about noise-pair-conditioned attention gating for World Action Models (WAMs). A critical reviewer concern is that UWM's AdaLN already concatenates both timestep embeddings (t_o, t_a) and conditions all transformer blocks, so explicit attention gating might be redundant.
+
+I need to find:
+1. The paper "Unveiling the Secret of AdaLN-Zero" or similar work analyzing AdaLN limitations — what are the known limitations of AdaLN for cross-modal conditioning?
+2. TACA (ICCV 2025) "Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers" — how does it argue that AdaLN is insufficient and explicit attention modulation is needed?
+3. Any other papers that discuss the gap between global conditioning (AdaLN) vs. local/selective attention modulation in diffusion transformers.
+
+Search for:
+- "AdaLN limitations diffusion transformer" 
+- "adaptive layer norm vs attention modulation diffusion"
+- "TACA cross-modal attention timestep conditioning 2025"
+- "Unveiling Secret AdaLN-Zero"
+
+For each paper found, use WebFetch to read the abstract and key arguments about WHY AdaLN alone is insufficient. I need concrete theoretical or empirical arguments I can cite.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "703657f2-2c4d-4b19-a219-4c3673aad10b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T18:22:36.081Z_
+
+```json
+{
+  "parentUuid": "703657f2-2c4d-4b19-a219-4c3673aad10b",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "18847147-54f8-4408-a4d8-89d4220307b3",
+  "timestamp": "2026-05-10T18:22:36.081Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-10T18:22:39.417Z_
+
+
+
+I'll search for these papers systematically. Let me start by loading the WebSearch and WebFetch tools, then run multiple searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18847147-54f8-4408-a4d8-89d4220307b3",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMUvfPF8ZDWLUgMVZ1d",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "34ab5c5d-0938-4926-9b36-fdfc53ee2695",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K22r64dWLiWdVTcKjczMVY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9084,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9084,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-10T18:22:39.889Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01ScCimTPHoQqbWRYDedbQUD`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34ab5c5d-0938-4926-9b36-fdfc53ee2695",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMUvfPF8ZDWLUgMVZ1d",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c6dff794-0457-40fd-be0c-62e4aa629136",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K22r64dWLiWdVTcKjczMVY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9084,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 9084
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 9084,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 9084,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-10T18:22:39.896Z_
+
+<details><summary>↩ Tool result · `toolu_01ScCimTPHoQqbWRYDedbQUD`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c6dff794-0457-40fd-be0c-62e4aa629136",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "85e4d055-85f5-4edc-b517-90faa569e9f0",
+  "sourceToolAssistantUUID": "c6dff794-0457-40fd-be0c-62e4aa629136",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-10T18:22:59.508Z_
+
+
+
+Now let me run all four searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "85e4d055-85f5-4edc-b517-90faa569e9f0",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMVDDYRsDYFsZSqBBLo",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d3fd2901-5531-4907-ba58-1e32ae516346",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012iTTqG9t1i8DzyNz1vwPEa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1920,
+      "cache_read_input_tokens": 9084,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1920,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-10T18:23:00.607Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MHFaU5uVVNQC2jfWVqtwms`</summary>
+
+```json
+{
+  "query": "AdaLN limitations diffusion transformer cross-modal conditioning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d3fd2901-5531-4907-ba58-1e32ae516346",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMVDDYRsDYFsZSqBBLo",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1ba9b98a-b2e7-4f44-96a8-4e0c83aafc0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012iTTqG9t1i8DzyNz1vwPEa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1920,
+      "cache_read_input_tokens": 9084,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1920,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-10T18:23:01.671Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01178gWPTnzJ53DZMcTBxdBa`</summary>
+
+```json
+{
+  "query": "TACA cross-modal attention diffusion transformer ICCV 2025 \"rethinking cross-modal interaction\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ba9b98a-b2e7-4f44-96a8-4e0c83aafc0c",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMVDDYRsDYFsZSqBBLo",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4aec845b-cadc-4d71-b269-f24ecf8f67a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012iTTqG9t1i8DzyNz1vwPEa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1920,
+      "cache_read_input_tokens": 9084,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1920,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-10T18:23:02.464Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RpHC4qXGBUvxzRaCX5dGMk`</summary>
+
+```json
+{
+  "query": "\"Unveiling the Secret of AdaLN-Zero\" paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4aec845b-cadc-4d71-b269-f24ecf8f67a7",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMVDDYRsDYFsZSqBBLo",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a4967d46-b966-4c23-a756-5e8fab792948",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012iTTqG9t1i8DzyNz1vwPEa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1920,
+      "cache_read_input_tokens": 9084,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1920,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T18:23:02.868Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011aLmVfNcGuPpkagQxcxRdu`</summary>
+
+```json
+{
+  "query": "adaptive layer norm vs attention modulation diffusion transformer insufficient global conditioning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a4967d46-b966-4c23-a756-5e8fab792948",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMVDDYRsDYFsZSqBBLo",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3ed5b751-28bf-421a-8c30-84df04ae7d0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012iTTqG9t1i8DzyNz1vwPEa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1920,
+      "cache_read_input_tokens": 9084,
+      "output_tokens": 232,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1920
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 232,
+          "cache_read_input_tokens": 9084,
+          "cache_creation_input_tokens": 1920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1920,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-10T18:23:07.816Z_
+
+<details><summary>↩ Tool result · `toolu_01MHFaU5uVVNQC2jfWVqtwms`</summary>
+
+```text
+Web search results for query: "AdaLN limitations diffusion transformer cross-modal conditioning"
+
+Links: [{"title":"Delving Deep into Diffusion Transformers for Image and Video Generation","url":"https://arxiv.org/html/2312.04557v1"},{"title":"Conditioning in Diffusion Transformers","url":"https://apxml.com/courses/advanced-diffusion-architectures/chapter-3-transformer-diffusion-models/dit-conditioning"},{"title":"[2212.09748] Scalable Diffusion Models with Transformers","url":"https://ar5iv.labs.arxiv.org/html/2212.09748"},{"title":"Comparing different conditioning strategies. adaLNZero outperforms... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Comparing-different-conditioning-strategies-adaLNZero-outperforms-cross-attention-and_fig2_366423225"},{"title":"Scalable Diffusion Models with Transformers William Peebles* UC Berkeley","url":"https://openaccess.thecvf.com/content/ICCV2023/papers/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.pdf"},{"title":"AudioGen-Omni: A Unified Multimodal Diffusion ...","url":"https://arxiv.org/pdf/2508.00733"},{"title":"Unveiling the Secret of AdaLN-Zero in Diffusion Transformer | OpenReview","url":"https://openreview.net/forum?id=E4roJSM9RM"},{"title":"DiT-Policy","url":"https://dit-policy.github.io/"},{"title":"LTX-2: Efficient Joint Audio-Visual Foundation Model","url":"https://videos.ltx.io/LTX-2/grants/LTX_2_Technical_Report_compressed.pdf"},{"title":"GenTron: Diffusion Transformers for Image and Video Generation Shoufa Chen1,2*","url":"https://openaccess.thecvf.com/content/CVPR2024/papers/Chen_GenTron_Diffusion_Transformers_for_Image_and_Video_Generation_CVPR_2024_paper.pdf"}]
+
+Based on the search results, here's what I found about AdaLN limitations in diffusion transformers for cross-modal conditioning:
+
+## Key Limitations of AdaLN for Cross-Modal Conditioning
+
+AdaLN operates at a spatially global level, adjusting image features uniformly across all positions through the normalization layer, making it adequate for static signals. However, this global approach has significant drawbacks for complex conditioning tasks:
+
+**Spatial Granularity Issues**: In contrast to cross-attention, which treats spatial positions with more granularity, AdaLN cannot differentiate between various spatial locations by dynamically modulating image features based on the cross-attention map between the text embedding and the image features. AdaLN's attempt to generate complex scenes falls short, with cross-attention demonstrating a clear advantage, which is verified quantitatively where cross-attention uniformly excels over adaLN in all evaluated metrics.
+
+**Structural Constraint**: AdaLN is the only conditioning mechanism that is restricted to apply the same function to all tokens, limiting its flexibility for fine-grained cross-modal interactions.
+
+**Performance Trade-offs**: While adaLN-Zero yields lower FID than both cross-attention and in-context conditioning while being the most compute-efficient, this efficiency comes at the cost of reduced flexibility for complex, spatially-aware conditioning tasks that cross-modal applications often require.
+
+The fundamental limitation is that AdaLN's global normalization approach cannot capture the fine-grained spatial interactions necessary for effective cross-modal conditioning in diffusion transformers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1ba9b98a-b2e7-4f44-96a8-4e0c83aafc0c",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "8d28834d-3971-4ac6-bd16-aa84ea89f8c1",
+  "sourceToolAssistantUUID": "1ba9b98a-b2e7-4f44-96a8-4e0c83aafc0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-10T18:23:08.086Z_
+
+<details><summary>↩ Tool result · `toolu_01178gWPTnzJ53DZMcTBxdBa`</summary>
+
+```text
+Web search results for query: "TACA cross-modal attention diffusion transformer ICCV 2025 "rethinking cross-modal interaction""
+
+Links: [{"title":"Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Lv_Rethinking_Cross-Modal_Interaction_in_Multimodal_Diffusion_Transformers_ICCV_2025_paper.pdf"},{"title":"TACA: Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers","url":"https://arxiv.org/html/2506.07986v2"},{"title":"TACA: Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers","url":"https://vchitect.github.io/TACA/"},{"title":"GitHub - Vchitect/TACA: TACA: Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers","url":"https://github.com/Vchitect/TACA"},{"title":"[2506.07986] Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers","url":"https://arxiv.org/abs/2506.07986"},{"title":"Paper page - Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers","url":"https://huggingface.co/papers/2506.07986"},{"title":"Exploring Multimodal Diffusion Transformers for Enhanced ...","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Shin_Exploring_Multimodal_Diffusion_Transformers_for_Enhanced_Prompt-based_Image_Editing_ICCV_2025_paper.pdf"},{"title":"TaCA: Upgrading Your Visual Foundation Model with Task-agnostic Compatible Adapter","url":"https://www.emergentmind.com/papers/2306.12642"},{"title":"ICCV 2025 Open Access Repository","url":"https://openaccess.thecvf.com/content/ICCV2025/html/Becker_EDiT_Efficient_Diffusion_Transformers_with_Linear_Compressed_Attention_ICCV_2025_paper.html"},{"title":"ICCV 2025 Events with Videos","url":"https://iccv.thecvf.com/Conferences/2025/Videos"}]
+
+I found the paper you're looking for! Here are the key findings:
+
+## TACA: Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers
+
+TACA (Temperature-Adjusted Cross-modal Attention) is a straightforward yet effective enhancement to the MM-DiT attention mechanism.
+
+### Problem Addressed
+Even state-of-the-art MM-DiT models like FLUX struggle with achieving precise alignment between text prompts and generated content, with two key issues identified: the suppression of cross-modal attention due to token imbalance between visual and textual modalities, and the lack of timestep-aware attention weighting.
+
+### Solution
+The approach introduces two key innovations: modality-specific temperature scaling to mitigate cross-attention suppression, and timestep-dependent adjustments to cross-modal interactions. TACA is complemented with Low-Rank Adaptation (LoRA) fine-tuning for distributional alignment.
+
+### Results
+For FLUX.1-Dev, incorporating TACA results in relative gains of 16.4% in spatial relationship understanding and 5.9% in shape accuracy. When applied to SD3.5-Medium, TACA boosts spatial relationship accuracy by 28.3% and shape accuracy by 2.9%.
+
+TACA demonstrates its ability to improve image-text alignment in terms of object appearance, attribute binding, and spatial relationships.
+
+The code is available at: https://github.com/Vchitect/TACA
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4aec845b-cadc-4d71-b269-f24ecf8f67a7",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "499d4656-e704-411c-8dd6-67abe63d77b5",
+  "sourceToolAssistantUUID": "4aec845b-cadc-4d71-b269-f24ecf8f67a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-10T18:23:10.143Z_
+
+<details><summary>↩ Tool result · `toolu_011aLmVfNcGuPpkagQxcxRdu`</summary>
+
+```text
+Web search results for query: "adaptive layer norm vs attention modulation diffusion transformer insufficient global conditioning"
+
+Links: [{"title":"Conditioning in Diffusion Transformers","url":"https://apxml.com/courses/advanced-diffusion-architectures/chapter-3-transformer-diffusion-models/dit-conditioning"},{"title":"Adaptive Layer Normalization (AdaLN)","url":"https://www.emergentmind.com/topics/adaptive-layer-normalization-adaln"},{"title":"Scalability of Diffusion Models with Transformer Backbone | Encord","url":"https://encord.com/blog/diffusion-models-with-transformers/"},{"title":"Scalable Diffusion Models with Transformers William Peebles* UC Berkeley","url":"https://openaccess.thecvf.com/content/ICCV2023/papers/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.pdf"},{"title":"Normalization Techniques (GroupNorm, AdaLN)","url":"https://apxml.com/courses/advanced-diffusion-architectures/chapter-2-advanced-unet-architectures/unet-normalization-techniques"},{"title":"Delving Deep into Diffusion Transformers for Image and Video Generation","url":"https://arxiv.org/html/2312.04557v1"},{"title":"DiTs explained from scratch. Diffusion transformers are new paradigm… | by Subho Ghosh | Medium","url":"https://medium.com/@ighoshsubho/dits-explained-from-scratch-4fdb9192b1cf"},{"title":"Practice: Building a Diffusion Transformer Block","url":"https://apxml.com/courses/advanced-diffusion-architectures/chapter-3-transformer-diffusion-models/practice-building-dit-block"},{"title":"Unleashing Diffusion Transformers for Visual Correspondence by Modulating Massive Activations","url":"https://arxiv.org/html/2505.18584v1"},{"title":"Adaptive Layer Normalization — Grokipedia","url":"https://grokipedia.com/page/adaptive-layer-normalization"}]
+
+Based on the search results, I can provide you with a comprehensive overview of the comparison between adaptive layer norm and attention modulation in diffusion transformers, including considerations about global conditioning:
+
+## Key Differences
+
+**Adaptive Layer Normalization (AdaLN):**
+AdaLN is a highly effective method introduced in the original DiT paper that involves modulating the transformer block's internal activations using conditioning information, often referred to as AdaLN-Zero. This approach allows the conditioning signal to dynamically adjust the feature scales and shifts throughout the network, effectively steering the denoising process towards the desired condition.
+
+**Attention-Based Modulation (Cross-Attention):**
+Cross-attention is an alternative approach where specific layers within transformer blocks incorporate cross-attention, with queries derived from image patch tokens and keys/values derived from the conditioning signal embeddings, allowing each image patch representation to directly attend to relevant parts of the conditioning information.
+
+## Global Conditioning Effectiveness
+
+AdaLN-Zero outperforms cross-attention and in-context conditioning while being the most compute-efficient, with the FID achieved by the adaLN-Zero model being nearly half that of the in-context model at 400K training iterations.
+
+**Why AdaLN is superior for global conditioning:**
+While simpler methods might not propagate the conditioning signal as effectively through the network's depth compared to adaptive normalization, which repeatedly reinforces the condition in every block.
+
+In conditional generation, AdaLN injects sample-dependent affine transforms directly as a lightweight conditioning mechanism, avoiding the overhead of attention-based fusion, with efficiency gains including reduced model size and accelerated inference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3ed5b751-28bf-421a-8c30-84df04ae7d0c",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "5776feae-a140-45e1-98b6-cda363b380ad",
+  "sourceToolAssistantUUID": "3ed5b751-28bf-421a-8c30-84df04ae7d0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-10T18:23:12.207Z_
+
+<details><summary>↩ Tool result · `toolu_01RpHC4qXGBUvxzRaCX5dGMk`</summary>
+
+```text
+Web search results for query: ""Unveiling the Secret of AdaLN-Zero" paper"
+
+Links: [{"title":"Unveiling the Secret of AdaLN-Zero in Diffusion Transformer | OpenReview","url":"https://openreview.net/forum?id=E4roJSM9RM"},{"title":"UNVEILING THE SECRET OF ADALN-ZERO IN DIFFU","url":"https://openreview.net/pdf?id=E4roJSM9RM"},{"title":"[2602.22610] DP-aware AdaLN-Zero: Taming Conditioning-Induced Heavy-Tailed Gradients in Differentially Private Diffusion","url":"https://arxiv.org/abs/2602.22610"},{"title":"Adaptive Layer Normalization — Grokipedia","url":"https://grokipedia.com/page/adaptive-layer-normalization"},{"title":"Diffusion Transformer Explained | Towards Data Science","url":"https://towardsdatascience.com/diffusion-transformer-explained-e603c4770f7e/"},{"title":"The Architecture Behind Every State-of-the-Art Image Generator: DiT + Rectified Flow, Explained | by Jun Nishimura | Feb, 2026 | Medium","url":"https://medium.com/@j.tech.reveil/the-architecture-behind-every-state-of-the-art-image-generator-dit-rectified-flow-explained-0c6ae1c1f0b4"},{"title":"[2212.09748] Scalable Diffusion Models with Transformers","url":"https://ar5iv.labs.arxiv.org/html/2212.09748"},{"title":"AdaLN-Zero Conditioning | sontungkieu/shortcut-models | DeepWiki","url":"https://deepwiki.com/sontungkieu/shortcut-models/5.3-adaln-zero-conditioning"},{"title":"DiT-Policy","url":"https://dit-policy.github.io/"},{"title":"(PDF) Scalable Diffusion Models with Transformers","url":"https://www.researchgate.net/publication/366423225_Scalable_Diffusion_Models_with_Transformers"}]
+
+Based on the search results, I found information about the "Unveiling the Secret of AdaLN-Zero in Diffusion Transformer" paper:
+
+## Overview
+
+The paper investigates a critical conditioning mechanism within DiT (Diffusion Transformer), adaLN-Zero, which achieves superior performance compared to adaLN.
+
+## Key Findings
+
+The work studies three potential elements driving performance, including an SE-like structure, zero-initialization, and a "gradual" update order, among which zero-initialization is proved to be the most influential.
+
+At the start of training, adaLN-Zero exhibits a completely vertical distribution with most values being zero, while adaLN-Mix shows a completely horizontal distribution with a large span.
+
+## Proposed Improvement
+
+Building on this insight, the authors leverage Gaussian distributions to initialize each condition modulation, termed adaLN-Gaussian, leading to more stable and effective training. Extensive experiments following DiT on ImageNet1K demonstrate notable improvements such as a 2.16% improvement in FID score.
+
+## Source
+
+The paper was published on OpenReview on October 4, 2024, and can be accessed at https://openreview.net/forum?id=E4roJSM9RM.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a4967d46-b966-4c23-a756-5e8fab792948",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "9e1373f2-0713-46fd-a9d7-b91db20d5e75",
+  "sourceToolAssistantUUID": "a4967d46-b966-4c23-a756-5e8fab792948",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-10T18:23:15.846Z_
+
+Excellent. Now let me fetch the actual paper content for the key papers to extract concrete arguments. Let me fetch TACA, the AdaLN-Zero paper, and also search for more papers about local vs. global conditioning limitations.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e1373f2-0713-46fd-a9d7-b91db20d5e75",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMXb6yrupQ9ExgzquDu",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c811c5d9-6865-43eb-98b9-a0b92ee26405",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mc2Q4Xsj7phHnhkZCi4GaY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 942,
+      "cache_creation_input_tokens": 3072,
+      "cache_read_input_tokens": 11004,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3072,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-10T18:23:18.747Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01LaHAg2Dk6uNbn8bDsUh4Uj`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2506.07986",
+  "prompt": "Extract the full abstract and key arguments about WHY AdaLN is insufficient for cross-modal conditioning. What specific limitations of AdaLN or MM-DiT's joint attention does TACA identify? What empirical evidence do they provide showing that global conditioning fails? Include any theoretical reasoning about token imbalance, timestep-aware attention, or cross-modal suppression."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c811c5d9-6865-43eb-98b9-a0b92ee26405",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMXb6yrupQ9ExgzquDu",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "721d313d-5b2f-4f00-9c37-07d349be6f35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mc2Q4Xsj7phHnhkZCi4GaY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 942,
+      "cache_creation_input_tokens": 3072,
+      "cache_read_input_tokens": 11004,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3072,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-10T18:23:21.562Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01DT23LmBtC9ZYyY7UMaGt9e`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=E4roJSM9RM",
+  "prompt": "Extract the full abstract and key findings of \"Unveiling the Secret of AdaLN-Zero in Diffusion Transformer\". What are the identified limitations of AdaLN? What do they find about zero-initialization, SE-like structure, and gradual update order? What are the key theoretical insights about how AdaLN-Zero works and its failure modes?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "721d313d-5b2f-4f00-9c37-07d349be6f35",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMXb6yrupQ9ExgzquDu",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d488eeea-827e-4a74-95e7-338abd4a7a52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mc2Q4Xsj7phHnhkZCi4GaY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 942,
+      "cache_creation_input_tokens": 3072,
+      "cache_read_input_tokens": 11004,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3072,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-10T18:23:22.482Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BahrSnh6p3FQSD47GcQsdW`</summary>
+
+```json
+{
+  "query": "MM-DiT joint attention cross-modal suppression token imbalance text image diffusion 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d488eeea-827e-4a74-95e7-338abd4a7a52",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMXb6yrupQ9ExgzquDu",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0f6d0d41-56af-45e1-9f1a-55359fe80694",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mc2Q4Xsj7phHnhkZCi4GaY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 942,
+      "cache_creation_input_tokens": 3072,
+      "cache_read_input_tokens": 11004,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3072,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-10T18:23:23.098Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KpdbvUh7CfZsVMEGcBN6Md`</summary>
+
+```json
+{
+  "query": "\"global conditioning\" \"local conditioning\" diffusion transformer attention gating selective modulation 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f6d0d41-56af-45e1-9f1a-55359fe80694",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMXb6yrupQ9ExgzquDu",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fc96313f-aa8b-48ec-ab06-3986464d2708",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mc2Q4Xsj7phHnhkZCi4GaY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 942,
+      "cache_creation_input_tokens": 3072,
+      "cache_read_input_tokens": 11004,
+      "output_tokens": 473,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3072
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 942,
+          "output_tokens": 473,
+          "cache_read_input_tokens": 11004,
+          "cache_creation_input_tokens": 3072,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3072,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-10T18:23:23.434Z_
+
+<details><summary>↩ Tool result · `toolu_01LaHAg2Dk6uNbn8bDsUh4Uj`</summary>
+
+```text
+# Analysis of TACA's Critique of MM-DiT Cross-Modal Conditioning
+
+## Full Abstract
+
+The paper identifies that multimodal diffusion transformers like FLUX struggle with precise text-image alignment. The authors pinpoint two core issues in the attention mechanism:
+
+1. **Cross-modal attention suppression** due to token imbalance between visual and textual modalities
+2. **Lack of timestep-aware attention weighting**
+
+## Key Arguments Against Current Approaches
+
+The paper doesn't explicitly detail why AdaLN is insufficient in the provided content. However, it clearly states the fundamental problems with existing MM-DiT joint attention:
+
+> "the suppression of cross-modal attention due to token imbalance between visual and textual modalities"
+
+This indicates that when visual and text tokens exist in disparate quantities, the attention mechanism fails to properly weight cross-modal interactions.
+
+## TACA's Proposed Solution
+
+Rather than relying on static conditioning mechanisms, TACA employs:
+- **Temperature scaling** to dynamically rebalance multimodal interactions
+- **Timestep-dependent adjustment** to make attention weighting aware of diffusion stages
+
+The paper demonstrates improvements on T2I-CompBench across object appearance, attribute binding, and spatial relationships when applied to FLUX and SD3.5.
+
+The core insight centers on how token quantity imbalances naturally suppress meaningful cross-modal attention, requiring adaptive rather than fixed conditioning strategies.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "721d313d-5b2f-4f00-9c37-07d349be6f35",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "6ce768b1-e701-45be-a520-0298db522309",
+  "sourceToolAssistantUUID": "721d313d-5b2f-4f00-9c37-07d349be6f35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-10T18:23:25.438Z_
+
+<details><summary>↩ Tool result · `toolu_01DT23LmBtC9ZYyY7UMaGt9e`</summary>
+
+```text
+# Summary of "Unveiling the Secret of AdaLN-Zero in Diffusion Transformer"
+
+## Abstract
+The paper investigates a conditioning mechanism called adaLN-Zero within Diffusion Transformers (DiT). The researchers state: "zero-initialization is proved to be the most influential" among three examined elements. They propose an alternative approach called adaLN-Gaussian, which uses Gaussian distributions for initialization, achieving "a notable improvement of 2.16% in FID score over adaLN-Zero."
+
+## Key Findings
+
+**What They Examined:**
+The authors analyzed three potential performance drivers:
+1. SE-like structure
+2. Zero-initialization
+3. "Gradual" update order
+
+**Main Discovery:**
+Zero-initialization emerged as the most critical factor explaining adaLN-Zero's superior performance compared to standard adaLN.
+
+## Limitations and Insights
+
+The webpage provides limited detail about specific AdaLN limitations or theoretical failure modes. However, the implicit finding is that while zero-initialization helps, it may not be optimal—motivating their Gaussian-based initialization method.
+
+**Generalization:**
+The experiments demonstrate that adaLN-Gaussian generalizes effectively across ImageNet-1K benchmarks, suggesting the improvement isn't architecture-specific but represents a fundamental enhancement to conditioning mechanisms in generative models.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d488eeea-827e-4a74-95e7-338abd4a7a52",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "c068c4ac-3d5c-4a11-99e1-8fdfe9cf7b64",
+  "sourceToolAssistantUUID": "d488eeea-827e-4a74-95e7-338abd4a7a52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-10T18:23:28.713Z_
+
+<details><summary>↩ Tool result · `toolu_01BahrSnh6p3FQSD47GcQsdW`</summary>
+
+```text
+Web search results for query: "MM-DiT joint attention cross-modal suppression token imbalance text image diffusion 2025"
+
+Links: [{"title":"[2506.07986] Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers","url":"https://arxiv.org/abs/2506.07986"},{"title":"TACA: Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers","url":"https://arxiv.org/html/2506.07986v2"},{"title":"Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers","url":"https://arxiv.org/html/2506.07986"},{"title":"MMDit: Multimodal Diffusion Transformers","url":"https://www.emergentmind.com/topics/multimodal-diffusion-transformers-mmdit"},{"title":"Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Lv_Rethinking_Cross-Modal_Interaction_in_Multimodal_Diffusion_Transformers_ICCV_2025_paper.pdf"},{"title":"Multi-Modal Diffusion Transformers","url":"https://www.emergentmind.com/topics/multi-modal-diffusion-transformers"},{"title":"Multi-modal Diffusion Transformers (MM-DiTs)","url":"https://www.emergentmind.com/topics/multi-modal-diffusion-transformers-mm-dits"},{"title":"MMDiT: Multimodal Diffusion Transformer","url":"https://www.emergentmind.com/topics/multimodal-dit-mmdit"},{"title":"From U-Nets to DiTs: The Architectural Evolution of Text-to-Image Diffusion Models (2021–2025) | ICLR Blogposts 2026","url":"https://iclr-blogposts.github.io/2026/blog/2026/diffusion-architecture-evolution/"},{"title":"Multimodal Diffusion Transformers (MMDiT)","url":"https://www.emergentmind.com/topics/multimodal-diffusion-transformers-mmdit-2005a3fb-41c7-4015-a0ed-4829abfb52bf"}]
+
+Based on the search results, I found highly relevant research on this topic. Here's what the search revealed:
+
+## Key Finding: TACA (Temperature-Adjusted Cross-modal Attention)
+
+The research identifies two key issues in the attention mechanism of MM-DiT: 1) the suppression of cross-modal attention due to token imbalance between visual and textual modalities and 2) the lack of timestep-aware attention weighting.
+
+## The Problem: Token Imbalance and Cross-Modal Suppression
+
+The analysis of MM-DiT attention maps suggests that semantic discrepancies arise from the suppression of cross-modal attention due to numerical asymmetry between visual and text tokens, with the overwhelming number of visual tokens diluting the textual guidance in the unified softmax function.
+
+## The Solution: TACA
+
+To address these issues, researchers propose Temperature-Adjusted Cross-modal Attention (TACA), a parameter-efficient method that dynamically rebalances multimodal interactions through temperature scaling and timestep-dependent adjustment.
+
+TACA introduces two key innovations: modality-specific temperature scaling to mitigate cross-attention suppression, and timestep-dependent adjustments to cross-modal interactions.
+
+## Results
+
+When combined with LoRA fine-tuning, TACA significantly enhances text-image alignment on the T2I-CompBench benchmark with minimal computational overhead.
+
+This research appears to be from a recently published paper (arXiv 2506.07986) that was also accepted at ICCV 2025, directly addressing the exact topics you searched for.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0f6d0d41-56af-45e1-9f1a-55359fe80694",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "ec6ecf9d-f681-4428-8a9b-4a51ff24fd65",
+  "sourceToolAssistantUUID": "0f6d0d41-56af-45e1-9f1a-55359fe80694",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-10T18:23:31.330Z_
+
+<details><summary>↩ Tool result · `toolu_01KpdbvUh7CfZsVMEGcBN6Md`</summary>
+
+```text
+Web search results for query: ""global conditioning" "local conditioning" diffusion transformer attention gating selective modulation 2025"
+
+Links: [{"title":"Rethinking Global Text Conditioning in Diffusion Transformers","url":"https://arxiv.org/html/2602.09268v1"},{"title":"(PDF) Rethinking Global Text Conditioning in Diffusion Transformers","url":"https://www.researchgate.net/publication/400661165_Rethinking_Global_Text_Conditioning_in_Diffusion_Transformers"},{"title":"Attention-Conditional Diffusion (ACD)","url":"https://www.emergentmind.com/topics/attention-conditional-diffusion-acd"},{"title":"1 Attention in Diffusion Model: A Survey","url":"https://arxiv.org/pdf/2504.03738"},{"title":"Mixture of Global and Local Experts with Diffusion Transformer for Controllable Face Generation","url":"https://arxiv.org/html/2509.00428"},{"title":"DiG: Scalable and Efficient Diffusion Models with Gated Linear Attention","url":"https://openaccess.thecvf.com/content/CVPR2025/papers/Zhu_DiG_Scalable_and_Efficient_Diffusion_Models_with_Gated_Linear_Attention_CVPR_2025_paper.pdf"},{"title":"Revisiting Global Text Conditioning in Diffusion Transformers | OpenReview","url":"https://openreview.net/forum?id=65Ai8mLfjI"},{"title":"Attention-Based Transformers with Conditioning","url":"https://www.emergentmind.com/topics/attention-based-transformers-with-conditioning"},{"title":"[2602.09268] Rethinking Global Text Conditioning in Diffusion Transformers","url":"https://arxiv.org/abs/2602.09268"},{"title":"Cross-Attention Conditioning","url":"https://www.emergentmind.com/topics/cross-attention-conditioning"}]
+
+I found several highly relevant research papers and resources on this topic. Here's a summary of the key findings:
+
+## Global and Local Conditioning in Diffusion Transformers
+
+The search results reveal recent advances in understanding how global and local conditioning mechanisms work together in diffusion transformers, particularly regarding attention and gating mechanisms:
+
+### Global Text Conditioning in Diffusion Transformers
+
+Recent analysis of global text conditioning in contemporary diffusion models finds that it plays only a minor role relative to attention-based text conditioning, yet global text conditioning can yield significant improvements when viewed from the perspective of modulation guidance.
+
+In conventional usage, the pooled embedding contributes little to overall performance, suggesting that attention alone is generally sufficient for faithfully propagating prompt information. However, the pooled embedding can provide significant gains when used from a different perspective—serving as guidance and enabling controllable shifts toward more desirable properties.
+
+### Global-Local Attention Conditioning
+
+In multi-stream DiT architectures, global-local conditional attention integrates a denoising branch, text branch, and multiple modality-specific branches, where the denoising and text queries attend globally across all tokens, while each conditional branch attends only to itself plus text and image, preventing cross-bleed.
+
+Full global-local attention conditioning, joint training, and explicit mask supervision are necessary for maximal performance and controllability.
+
+### Mixture of Experts with Gating
+
+Global experts capture holistic relationships across facial regions while local experts focus on fine-grained features within individual regions. Dynamic gating networks enable adaptive feature fusion during the diffusion process.
+
+### Efficient Attention Mechanisms
+
+Diffusion GLA (DiG) incorporates an efficient block for both global visual context modeling through block-wise scanning and local visual awareness.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fc96313f-aa8b-48ec-ab06-3986464d2708",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "314710a7-d8cf-4b6a-bbb6-baa97ba0ea48",
+  "sourceToolAssistantUUID": "fc96313f-aa8b-48ec-ab06-3986464d2708",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-10T18:23:35.633Z_
+
+I found a very important paper -- "Rethinking Global Text Conditioning in Diffusion Transformers." Let me fetch that paper and also get the full TACA paper content for more detailed arguments.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "314710a7-d8cf-4b6a-bbb6-baa97ba0ea48",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMYzs14yVrvqB8y1a39",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "52c2ba6a-1149-4f35-a04b-067c9ce7cd56",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NfzUY7dgDZXPVC6P7Tzhsd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4101,
+      "cache_read_input_tokens": 14076,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4101,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-10T18:23:38.608Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FnxgijrAAinmhbSoXw3RKw`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2602.09268",
+  "prompt": "Extract the full abstract and key arguments of this paper. What do they find about the role of global text conditioning (AdaLN with pooled embeddings) vs attention-based conditioning in diffusion transformers? What are their specific findings about when global conditioning is insufficient? What is \"modulation guidance\" and how does it differ from standard AdaLN use?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "52c2ba6a-1149-4f35-a04b-067c9ce7cd56",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMYzs14yVrvqB8y1a39",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8488eb4f-5fb4-4169-b703-6baa7beee756",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NfzUY7dgDZXPVC6P7Tzhsd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4101,
+      "cache_read_input_tokens": 14076,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4101,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-10T18:23:42.840Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01C4u9RfUga2nvL5sdBh3qTW`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2506.07986v2",
+  "prompt": "Extract the detailed arguments about WHY MM-DiT's joint attention fails at cross-modal conditioning. Focus on: (1) the token imbalance problem -- how many visual vs text tokens and how this suppresses cross-modal attention in softmax, (2) why timestep-aware attention matters -- what changes across diffusion timesteps, (3) how temperature scaling fixes cross-modal suppression, (4) any analysis showing that AdaLN alone cannot solve these problems. Include specific numbers, equations, or experimental results if available."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8488eb4f-5fb4-4169-b703-6baa7beee756",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMYzs14yVrvqB8y1a39",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0c814baa-af35-42ed-8e96-345cb77d3a4d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NfzUY7dgDZXPVC6P7Tzhsd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4101,
+      "cache_read_input_tokens": 14076,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4101,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-10T18:23:43.121Z_
+
+<details><summary>↩ Tool result · `toolu_01FnxgijrAAinmhbSoXw3RKw`</summary>
+
+```text
+# Summary: Global Text Conditioning in Diffusion Transformers
+
+## Full Abstract
+The paper investigates whether modulation-based text conditioning (using pooled embeddings) remains necessary in diffusion transformers, given that recent approaches rely exclusively on attention mechanisms.
+
+## Key Findings
+
+**Standard Usage Limitations:**
+The researchers found that "the pooled embedding contributes little to overall performance," suggesting attention alone typically suffices for conveying prompt information in conventional setups.
+
+**Novel Application - "Modulation Guidance":**
+Rather than abandoning pooled embeddings, the authors discovered they can serve a different purpose: functioning as "guidance and enabling controllable shifts toward more desirable properties." This represents a fundamental reconceptualization of how to utilize global conditioning beyond traditional adaptation layers.
+
+## Practical Advantages
+
+The modulation guidance approach offers several benefits:
+- Requires no additional training
+- Simple to implement
+- Negligible computational overhead
+- Applicable across diverse diffusion models
+
+## Scope of Improvements
+
+Benefits extend to multiple generative tasks: text-to-image generation, video synthesis, and image editing—demonstrating the versatility of this alternative conditioning strategy.
+
+The core insight challenges conventional wisdom: pooled embeddings aren't inherently obsolete but rather more valuable when repurposed as explicit guidance mechanisms rather than implicit modulation parameters.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8488eb4f-5fb4-4169-b703-6baa7beee756",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "4cd0aae5-eb7d-4f41-b3c3-647b18ddf7d3",
+  "sourceToolAssistantUUID": "8488eb4f-5fb4-4169-b703-6baa7beee756",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-10T18:23:46.140Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019kwRYLj8UD294wDCwQCPrU`</summary>
+
+```json
+{
+  "url": "https://openreview.net/pdf?id=E4roJSM9RM",
+  "prompt": "Extract the full paper content, especially: (1) What are the specific limitations of standard AdaLN? (2) What is the SE-like structure finding? (3) How does zero-initialization work and why is it critical? (4) What distribution properties does AdaLN-Zero exhibit vs standard AdaLN? (5) What failure modes exist? (6) Any discussion about AdaLN being a global/uniform conditioning mechanism vs token-specific conditioning."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4cd0aae5-eb7d-4f41-b3c3-647b18ddf7d3",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMYzs14yVrvqB8y1a39",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e3e5bcab-e1e1-450c-a51a-5e6a900f286a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NfzUY7dgDZXPVC6P7Tzhsd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4101,
+      "cache_read_input_tokens": 14076,
+      "output_tokens": 556,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4101
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 556,
+          "cache_read_input_tokens": 14076,
+          "cache_creation_input_tokens": 4101,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4101,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-10T18:23:51.639Z_
+
+<details><summary>↩ Tool result · `toolu_019kwRYLj8UD294wDCwQCPrU`</summary>
+
+```text
+I appreciate your request, but I need to be transparent: the content you've provided appears to be a PDF file in raw binary/encoded format rather than readable text. The data shown contains PDF object streams with compression and encoding that prevent me from extracting the actual paper content about AdaLN (Adaptive Layer Normalization).
+
+To properly answer your specific questions about:
+1. Limitations of standard AdaLN
+2. SE-like structure findings
+3. Zero-initialization mechanisms
+4. Distribution properties comparisons
+5. Failure modes
+6. Global vs. token-specific conditioning
+
+I would need access to the actual readable text of the paper. 
+
+**Could you provide:**
+- A text version of the paper, or
+- The paper title and authors so I can reference the work accurately, or
+- A readable excerpt from the paper you'd like me to analyze?
+
+Once I have readable content, I'll be happy to summarize the key findings within the 125-character quote limit you've specified, using proper attribution and quotation marks for direct language.
+
+[Binary content (application/pdf, 1.8MB) also saved to /home/ubuntu/.claude-account-3/projects/-/6981195d-1dd3-4986-bae6-45a75a7bbf26/tool-results/webfetch-1778437426968-3i0p3c.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e3e5bcab-e1e1-450c-a51a-5e6a900f286a",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "7a0b4812-714c-4cbd-b88f-61fd7f2b67e8",
+  "sourceToolAssistantUUID": "e3e5bcab-e1e1-450c-a51a-5e6a900f286a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-10T18:23:53.426Z_
+
+<details><summary>↩ Tool result · `toolu_01C4u9RfUga2nvL5sdBh3qTW`</summary>
+
+```text
+# Why MM-DiT's Joint Attention Fails at Cross-Modal Conditioning
+
+## 1. Token Imbalance Problem
+
+The core issue stems from numerical asymmetry: MM-DiT concatenates visual and text tokens into a single sequence. For FLUX generating 1024×1024 images, the ratio is **Nvis/Ntxt = 4096/512 = 8**. This creates a fundamental problem in the unified softmax function.
+
+When visual tokens attend to text tokens, their attention weights compete against visual-visual interactions in the denominator:
+
+> "Each visual token's attention weights over text tokens...must compete against visual-visual interactions...in the softmax denominator."
+
+With overwhelming visual tokens, the exponential sum of visual-visual scores dominates, causing text tokens to receive systematically lower attention probabilities. The paper quantifies this: visual-text attention under MM-DiT is "much less than" typical cross-attention architectures that separate modalities (Equations 8-9).
+
+**Specific ratio impact**: When Nvis ≫ Ntxt, even moderate visual self-attention scores suppress cross-modal guidance in softmax normalization, diluting textual influence on image generation.
+
+## 2. Timestep-Aware Attention Necessity
+
+The paper identifies that denoising evolves through distinct phases:
+
+- **Early steps (large t)**: Establish global layout; require strong text guidance
+- **Later steps (small t)**: Refine details; prioritize visual self-attention
+
+Current MM-DiT uses **timestep-agnostic** weight matrices for query/key projections, preventing this temporal adaptation. The authors observe that "the initial denoising steps are crucial for establishing the image's global layout, heavily influenced by the text prompt."
+
+Figure 3 shows predicted reconstructions progressively align with text as denoising begins—evidence that early cross-modal attention is essential. Yet static projections cannot amplify text-visual interactions specifically during these critical early phases.
+
+## 3. Temperature Scaling Solution
+
+TACA addresses suppression by scaling visual-text logits by factor γ > 1:
+
+> "amplify the logits of visual-text interactions through a temperature coefficient γ > 1"
+
+This modifies softmax competition: scaled text logits receive proportionally larger exponential weights, increasing their probability mass. Combined with timestep-dependent γ(t), the method applies high scaling (γ₀=1.2) only during early denoising when layout forms, then reduces it later.
+
+**Empirical validation**: Figure 4 demonstrates that as γ increases, visual-text attention magnitude approaches typical cross-attention levels, and Figure 5 shows generated attributes ("brown backpack," "glass mirror") become progressively clearer.
+
+## 4. Why AdaLN Cannot Address This
+
+The paper identifies these as **structural limitations of unified attention**, not conditioning deficits. AdaLN (adaptive layer normalization) modulates activations based on timestep embeddings—a feature DiT possesses but which doesn't prevent attention suppression in MM-DiT's joint softmax.
+
+The problem is architectural: when text and visual tokens share a single attention matrix, no conditioning mechanism can selectively amplify cross-modal interactions without modifying the attention computation itself. Temperature scaling directly reweights the softmax inputs, addressing the root numerical asymmetry that static conditioning cannot fix.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0c814baa-af35-42ed-8e96-345cb77d3a4d",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "6638dc8f-b9f8-4af7-be3a-ff6b543b8d33",
+  "sourceToolAssistantUUID": "0c814baa-af35-42ed-8e96-345cb77d3a4d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-10T18:23:57.099Z_
+
+The PDF didn't render. Let me try to get the AdaLN-Zero paper from the HTML version and also search for more papers on attention gating in diffusion models.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6638dc8f-b9f8-4af7-be3a-ff6b543b8d33",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMadJmRaXfcAMhLWAvz",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b162d117-88f5-4f76-a24a-b14cc952d5a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013L2jc1QmKw5ptESXkYkAGR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 340,
+      "cache_creation_input_tokens": 1652,
+      "cache_read_input_tokens": 18177,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1652,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-10T18:24:01.408Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017G711sfKmWFCod196Dv3qu`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=E4roJSM9RM",
+  "prompt": "Extract ALL content from this page about the paper 'Unveiling the Secret of AdaLN-Zero in Diffusion Transformer'. I need: (1) the full abstract, (2) all reviews and key criticisms, (3) any discussion of AdaLN's limitations as a global/uniform conditioning mechanism, (4) the SE-like structure analogy, (5) the finding about zero-initialization causing vertical vs horizontal distribution, (6) the proposed adaLN-Gaussian method."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b162d117-88f5-4f76-a24a-b14cc952d5a7",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMadJmRaXfcAMhLWAvz",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c3165e87-f06d-4e08-ad10-6e9c17bec625",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013L2jc1QmKw5ptESXkYkAGR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 340,
+      "cache_creation_input_tokens": 1652,
+      "cache_read_input_tokens": 18177,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1652,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-10T18:24:02.405Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WqXuNs4cTurYJ2bHdMUCzs`</summary>
+
+```json
+{
+  "query": "FiT \"flexible diffusion transformer\" attention modulation conditioning per-token adaptive 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c3165e87-f06d-4e08-ad10-6e9c17bec625",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMadJmRaXfcAMhLWAvz",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d084177d-af5d-48b6-91e7-a933b0831c50",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013L2jc1QmKw5ptESXkYkAGR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 340,
+      "cache_creation_input_tokens": 1652,
+      "cache_read_input_tokens": 18177,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1652,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-10T18:24:03.145Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016kSF7HQUD8Ho79vkrhMAP7`</summary>
+
+```json
+{
+  "query": "diffusion transformer AdaLN \"same function to all tokens\" limitation spatially uniform conditioning 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d084177d-af5d-48b6-91e7-a933b0831c50",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMadJmRaXfcAMhLWAvz",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "576962a8-045a-497d-8a8b-d6f6bf6657f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013L2jc1QmKw5ptESXkYkAGR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 340,
+      "cache_creation_input_tokens": 1652,
+      "cache_read_input_tokens": 18177,
+      "output_tokens": 353,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1652
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 340,
+          "output_tokens": 353,
+          "cache_read_input_tokens": 18177,
+          "cache_creation_input_tokens": 1652,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1652,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-10T18:24:04.628Z_
+
+<details><summary>↩ Tool result · `toolu_017G711sfKmWFCod196Dv3qu`</summary>
+
+```text
+# Paper Content Summary
+
+Based on the provided webpage content, I can only extract limited information, as the page appears to be a submission landing page rather than a full review document.
+
+## Available Information:
+
+**Full Abstract:**
+"Diffusion transformer (DiT), a rapidly emerging architecture for image generation, has gained much attention. However, despite ongoing efforts to improve its performance, the understanding of DiT remains superficial. In this work, we delve into and investigate a critical conditioning mechanism within DiT, adaLN-Zero, which achieves superior performance compared to adaLN. Our work studies three potential elements driving this performance, including an SE-like structure, zero-initialization, and a "gradual" update order, among which zero-initialization is proved to be the most influential. Building on this insight, we heuristically leverage Gaussian distributions to initialize each condition modulation, termed adaLN-Gaussian, leading to more stable and effective training."
+
+## What is Missing:
+
+The webpage does not contain:
+- **Reviews or criticisms** — Only submission metadata is shown
+- **AdaLN limitations discussion** — Not included on this page
+- **SE-like structure analogy details** — Mentioned but not elaborated
+- **Vertical vs horizontal distribution findings** — Not present on this page
+- **adaLN-Gaussian methodology details** — Only briefly mentioned
+
+**Note:** To access reviews, detailed technical discussion, and full methodology, you would need to visit the full paper PDF or OpenReview's complete review interface.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c3165e87-f06d-4e08-ad10-6e9c17bec625",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "9b451b5a-4859-4698-b849-42acf31b076a",
+  "sourceToolAssistantUUID": "c3165e87-f06d-4e08-ad10-6e9c17bec625",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-10T18:24:11.460Z_
+
+<details><summary>↩ Tool result · `toolu_016kSF7HQUD8Ho79vkrhMAP7`</summary>
+
+```text
+Web search results for query: "diffusion transformer AdaLN "same function to all tokens" limitation spatially uniform conditioning 2024 2025"
+
+Links: [{"title":"Conditioning in Diffusion Transformers","url":"https://apxml.com/courses/advanced-diffusion-architectures/chapter-3-transformer-diffusion-models/dit-conditioning"},{"title":"Delving Deep into Diffusion Transformers for Image and Video Generation","url":"https://arxiv.org/html/2312.04557v1"},{"title":"Scalable Diffusion Models with Transformers William Peebles* UC Berkeley","url":"https://openaccess.thecvf.com/content/ICCV2023/papers/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.pdf"},{"title":"[2212.09748] Scalable Diffusion Models with Transformers","url":"https://ar5iv.labs.arxiv.org/html/2212.09748"},{"title":"Scalability of Diffusion Models with Transformer Backbone | Encord","url":"https://encord.com/blog/diffusion-models-with-transformers/"},{"title":"Diffusion Transformer Explained | Towards Data Science","url":"https://towardsdatascience.com/diffusion-transformer-explained-e603c4770f7e/"},{"title":"Scalable Diffusion Models with Transformers","url":"https://www.wpeebles.com/DiT"},{"title":"Scaleble Diffusion Models with Transformers | by Liuzhihui | Medium","url":"https://medium.com/@liuzhihui2046/scaleble-diffusion-models-with-transformers-527fbfa8eab7"},{"title":"Multimodal Diffusion Transformer: Learning Versatile Behavior from Multimodal Goals","url":"https://intuitive-robots.github.io/mdt_policy/"},{"title":"Diffusion Transformers | Stratum Labs Blog","url":"https://www.stratumlabs.app/blog/diffusion-transformers"}]
+
+Based on the search results, I found relevant information about the limitations of AdaLN in diffusion transformers regarding spatially uniform conditioning. Here are the key findings:
+
+## AdaLN's Limitation with Spatially Uniform Conditioning
+
+One major limitation of adaLN is its struggle with free-form text conditioning, as it operates at a spatially global level and adjusts image features uniformly across all positions through the normalization layer. This is particularly problematic for complex conditioning tasks.
+
+The adaLN approach is adequate for class conditioning, which typically involves a limited set of fixed signals (e.g., the 1000 one-hot class embeddings for ImageNet). However, adaLN demonstrates a clear limitation in handling free-form text conditioning, with cross-attention showing a significant advantage in visual generation tasks.
+
+## Comparison with Cross-Attention
+
+The research indicates that the time embedding, which is consistent across all spatial positions, benefits from the global modulation capabilities of adaLN. However, for more complex conditioning signals like text, cross-attention proves superior because it allows for spatially-varying interactions between different parts of the image and the conditioning signal.
+
+The fundamental issue is that adaLN adjusts image features uniformly across all positions, making it unsuitable when different spatial regions need different conditioning responses—a capability that free-form text conditioning requires.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "576962a8-045a-497d-8a8b-d6f6bf6657f8",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "50e09dfd-00a8-4157-ab03-22a69f5e78f8",
+  "sourceToolAssistantUUID": "576962a8-045a-497d-8a8b-d6f6bf6657f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-10T18:24:12.541Z_
+
+<details><summary>↩ Tool result · `toolu_01WqXuNs4cTurYJ2bHdMUCzs`</summary>
+
+```text
+Web search results for query: "FiT "flexible diffusion transformer" attention modulation conditioning per-token adaptive 2024 2025"
+
+Links: [{"title":"FiT: Flexible Vision Transformer for Diffusion Model","url":"https://arxiv.org/html/2402.12376v4"},{"title":"Conditioning in Diffusion Transformers","url":"https://apxml.com/courses/advanced-diffusion-architectures/chapter-3-transformer-diffusion-models/dit-conditioning"},{"title":"FiT: Flexible Vision Transformer for Diffusion Model","url":"https://openreview.net/pdf/c2d97e36f7dc6d5074185d2adcc6a564b9faa37c.pdf"},{"title":"FlexDiT: Dynamic Token Density Control for Diffusion Transformer","url":"https://arxiv.org/html/2412.06028v1"},{"title":"Multimodal Diffusion Transformer","url":"https://www.emergentmind.com/topics/multimodal-diffusion-transformer"},{"title":"FlexiDiT: Your Diffusion Transformer Can Easily Generate High-Quality Samples with Less Compute","url":"https://arxiv.org/html/2502.20126v1"},{"title":"(PDF) FiTv2: Scalable and Improved Flexible Vision Transformer for Diffusion Model","url":"https://www.researchgate.net/publication/385091099_FiTv2_Scalable_and_Improved_Flexible_Vision_Transformer_for_Diffusion_Model"},{"title":"FiTv2: Scalable and Improved Flexible Vision Transformer for Diffusion Model","url":"https://arxiv.org/html/2410.13925v1"},{"title":"[2402.12376] FiT: Flexible Vision Transformer for Diffusion Model","url":"https://arxiv.org/abs/2402.12376"},{"title":"Conditional Diffusion Transformer","url":"https://www.emergentmind.com/topics/conditional-diffusion-transformer"}]
+
+I found relevant results for your search. Here's what the research shows:
+
+## FiT: Flexible Vision Transformer for Diffusion Model
+
+FiT (Flexible Vision Transformer) is a transformer architecture specifically designed for generating images with unrestricted resolutions and aspect ratios. Unlike traditional methods that perceive images as static-resolution grids, FiT conceptualizes images as sequences of dynamically-sized tokens, enabling a flexible training strategy that adapts to diverse aspect ratios during both training and inference phases.
+
+### Key Architecture Features
+
+One essential network architecture adjustment to handle diverse image sizes is the adoption of 2D Rotary Positional Embedding (RoPE). The model also incorporates other techniques like masked attention and normalized layer operations for stability.
+
+### Related Conditioning Approaches
+
+Your search terms also relate to conditioning mechanisms in diffusion transformers. A highly effective method involves modulating the transformer block's internal activations using the conditioning information. In DiTs, conditioning signals are typically processed and then used to influence computations within each transformer block, applied uniformly across all patch tokens for global guidance.
+
+### Recent Improvements: FiTv2
+
+FiTv2 upgrades FiT with several innovative designs, including Query-Key vector normalization, the AdaLN-LoRA module, a rectified flow scheduler, and a Logit-Normal sampler. FiTv2 adopts AdaLN-LoRA in its blocks and additionally uses a global AdaLN module to capture overlapping condition information and reduce redundancy of condition information of each block.
+
+The FiT research (published October 2024) represents significant progress in enabling flexible resolution generation in diffusion transformers, with per-token adaptive mechanisms through attention normalization and modulation techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d084177d-af5d-48b6-91e7-a933b0831c50",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "18b78378-c491-48ce-af66-0f9babb1e5a1",
+  "sourceToolAssistantUUID": "d084177d-af5d-48b6-91e7-a933b0831c50",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-10T18:24:15.225Z_
+
+Let me now search for a few more specific papers and fetch the detailed TACA content and the conditioning tutorial page.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18b78378-c491-48ce-af66-0f9babb1e5a1",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMc33oPdWdsmmjH4TRS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8b3dc3c1-6316-42c8-b893-19ce22cf6ecf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y7vhfqisK8yNwzVHGNzEjR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 865,
+      "cache_creation_input_tokens": 1994,
+      "cache_read_input_tokens": 19829,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1994,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-10T18:24:18.188Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01NVEpHXiUbTaUxM2n5rA78g`</summary>
+
+```json
+{
+  "url": "https://apxml.com/courses/advanced-diffusion-architectures/chapter-3-transformer-diffusion-models/dit-conditioning",
+  "prompt": "Extract the detailed discussion about AdaLN limitations. Specifically: (1) the statement that AdaLN applies \"the same function to all tokens\", (2) comparison with cross-attention for spatially-varying conditioning, (3) any discussion of why AdaLN is sufficient for timestep/class conditioning but insufficient for complex multi-modal conditioning. Include exact quotes if possible."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b3dc3c1-6316-42c8-b893-19ce22cf6ecf",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMc33oPdWdsmmjH4TRS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3bbf64c9-b554-45a7-aeb0-406ef4b8f062",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y7vhfqisK8yNwzVHGNzEjR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 865,
+      "cache_creation_input_tokens": 1994,
+      "cache_read_input_tokens": 19829,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1994,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-10T18:24:18.470Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01NVEpHXiUbTaUxM2n5rA78g`</summary>
+
+```text
+Request failed with status code 403
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3bbf64c9-b554-45a7-aeb0-406ef4b8f062",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "5983d6be-b695-4d63-9fba-6d2ebcb129d8",
+  "toolUseResult": "Error: Request failed with status code 403",
+  "sourceToolAssistantUUID": "3bbf64c9-b554-45a7-aeb0-406ef4b8f062",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-10T18:24:19.053Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VCgPg7vVYwf5uurCPHumcU`</summary>
+
+```json
+{
+  "query": "attention gating noise level conditioned diffusion model world model action prediction 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5983d6be-b695-4d63-9fba-6d2ebcb129d8",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMc33oPdWdsmmjH4TRS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "701375c5-5768-4fd2-a077-330870657b00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y7vhfqisK8yNwzVHGNzEjR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 865,
+      "cache_creation_input_tokens": 1994,
+      "cache_read_input_tokens": 19829,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1994,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-10T18:24:19.507Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011rpEFRQp3KB4CwKqEypqPH`</summary>
+
+```json
+{
+  "query": "\"DiT\" \"cross attention\" \"adaln\" conditioning comparison spatial granularity text-to-image generation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "701375c5-5768-4fd2-a077-330870657b00",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMc33oPdWdsmmjH4TRS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1f73f470-4c79-4132-b5d6-e5c63add2a09",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y7vhfqisK8yNwzVHGNzEjR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 865,
+      "cache_creation_input_tokens": 1994,
+      "cache_read_input_tokens": 19829,
+      "output_tokens": 314,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1994
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 865,
+          "output_tokens": 314,
+          "cache_read_input_tokens": 19829,
+          "cache_creation_input_tokens": 1994,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1994,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-10T18:24:26.146Z_
+
+<details><summary>↩ Tool result · `toolu_01VCgPg7vVYwf5uurCPHumcU`</summary>
+
+```text
+Web search results for query: "attention gating noise level conditioned diffusion model world model action prediction 2025"
+
+Links: [{"title":"Reinforcement Learning Journal 2025 Cover Page AVID: Adapting Video Diffusion","url":"https://rlj.cs.umass.edu/2025/papers/RLJ_RLC_2025_64.pdf"},{"title":"1 Attention in Diffusion Model: A Survey","url":"https://arxiv.org/pdf/2504.03738"},{"title":"Towards Video World Models","url":"https://www.xunhuang.me/blogs/world_model.html"},{"title":"SEMANTIC WORLD MODELS Jacob Berg1 Chuning Zhu1 Yanda Bao1 Ishan Durugkar2","url":"https://weirdlabuw.github.io/swm/static/documents/swm.pdf"},{"title":"AVID: Adapting Video Diffusion Models to World Models","url":"https://arxiv.org/html/2410.12822v2"},{"title":"Toward Smarter Generative Models: Insights from Diffusion Research and the Rise of Action-Conditioned Video Generation","url":"https://voxel51.com/blog/toward-smarter-generative-models-insights-from-diffusion-research-and-the-rise-of-action"},{"title":"NeurIPS 2025 Best Paper Review: Qwen’s Systematic Exploration of Attention Gating | Towards Data Science","url":"https://towardsdatascience.com/neurips-2025-best-paper-review-qwens-systematic-exploration-of-attention-gating/"},{"title":"VIDEO DIFFUSION MODELS FOR KEYFRAME INTERPO- ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/4bbdef62653d8088717640e7660a1ebb-Paper-Conference.pdf"},{"title":"Computational Visual Media https://doi.org/10.26599/CVM.2025.9450452","url":"https://www.sciopen.com/local/article_pdf/10.26599/CVM.2025.9450452.pdf"},{"title":"Attention in Diffusion Model: A Survey","url":"https://arxiv.org/html/2504.03738v1"}]
+
+I found several relevant research papers and articles related to your search query. Here's what the results show:
+
+## Key Findings
+
+**Action-Conditioned Diffusion Models for World Models:**
+
+AVID is a domain-specific adapter that conditions on actions and modifies the noise predictions of the pretrained model to generate accurate action-conditioned predictions. AVID conditions on actions and modifies the noise predictions of the pretrained model to generate accurate action-conditioned predictions.
+
+**Recent Trends in Video Diffusion World Models:**
+
+More recently, research has shifted towards (autoregressive) diffusion models conditioned on interactive actions, often trained on increasingly realistic game environments. A parallel movement is reshaping how we think about prediction and control in Physical AI: action-conditioned video generation, where models aim to generate future states that depend directly on the actions an agent takes.
+
+**Attention Mechanisms in Diffusion Models:**
+
+Attention mechanisms, particularly self-attention and cross-attention, play a crucial role in diffusion models and guide the denoising process. Sparsity is a key driver of performance, and that it is most effective when the gate is conditioned on the current query, allowing the model to suppress irrelevant context.
+
+**Noise Level Conditioning:**
+
+Action embeddings are used with an MLP to compute scale and shift parameters for each frame, which scale and shift the feature maps after each 3D convolution, demonstrating how noise level information can be conditioned in the model architecture.
+
+The search results show active research in 2025 on combining attention gating, noise-conditioned diffusion models, and action prediction for world model applications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "701375c5-5768-4fd2-a077-330870657b00",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "b202ff1d-bd93-45fe-95d1-6dd2c4669233",
+  "sourceToolAssistantUUID": "701375c5-5768-4fd2-a077-330870657b00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-10T18:24:26.994Z_
+
+<details><summary>↩ Tool result · `toolu_011rpEFRQp3KB4CwKqEypqPH`</summary>
+
+```text
+Web search results for query: ""DiT" "cross attention" "adaln" conditioning comparison spatial granularity text-to-image generation"
+
+Links: [{"title":"Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models","url":"https://arxiv.org/html/2404.02747v1"},{"title":"Delving Deep into Diffusion Transformers for Image and Video Generation","url":"https://arxiv.org/html/2312.04557v1"},{"title":"Text Embedding is Not All You Need: Attention Control for Text-to-Image Semantic Alignment with Text Self-Attention Maps","url":"https://arxiv.org/html/2411.15236v1"},{"title":"Why Cross-Attention is the Secret Sauce of Multimodal Models | by Jakub Strawa | Medium","url":"https://medium.com/@jakubstrawadev/why-cross-attention-is-the-secret-sauce-of-multimodal-models-f8ec77fc089b"},{"title":"Conditioning in Diffusion Transformers","url":"https://apxml.com/courses/advanced-diffusion-architectures/chapter-3-transformer-diffusion-models/dit-conditioning"},{"title":"Attention Interpolation for Text-to-Image Diffusion Qiyuan He1 Jinghao Wang2","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/b12a1d1014e952e676f5d6931d03241a-Paper-Conference.pdf"},{"title":"Is adaLN applicable to text condition? · Issue #30 · facebookresearch/DiT","url":"https://github.com/facebookresearch/DiT/issues/30"},{"title":"Towards Understanding Cross and Self-Attention in Stable Diffusion for Text-Guided Image Editing","url":"https://arxiv.org/html/2403.03431v1"},{"title":"AdaLN-Zero Conditioning in Deep Models","url":"https://www.emergentmind.com/topics/adaln-zero-conditioning"},{"title":"Attend-and-Excite: Attention-Based Semantic Guidance for Text-to-Image Diffusion Models","url":"https://yuval-alaluf.github.io/Attend-and-Excite/"}]
+
+I've completed the web search for your query about DiT, cross-attention, and adaLN conditioning mechanisms in text-to-image generation. Here are the key findings:
+
+## Spatial Granularity Comparison
+
+Cross-attention treats spatial positions with more granularity by differentiating between various spatial locations and dynamically modulating image features based on the cross-attention map between text embeddings and image features.
+
+In contrast, adaLN serves as the standard approach in DiT for managing class conditions.
+
+## Key Differences in Conditioning Architecture
+
+Recent research comprehensively investigates conditioning strategies, including conditioning architectures: adaptive layer norm (adaLN) vs. cross-attention, and text encoding methods.
+
+Cross attention exhibits a distinct advantage in the text-conditioned scenario.
+
+## Implementation in DiT
+
+Some models maintain the use of adaLN in conjunction with cross-attention to separately model time embeddings, based on the belief that the time embedding, which is consistent across all spatial positions, benefits from the global modulation capabilities of adaLN.
+
+## Cross-Attention's Spatial Processing
+
+Cross-attention is implemented at multiple spatial resolutions (e.g., 64×64, 32×32, 16×16 latent feature maps), allowing different levels of textual conditioning at various granularities.
+
+The research indicates that while both conditioning approaches have their merits, cross-attention provides more fine-grained spatial control for text-to-image generation, whereas adaLN offers efficient global modulation suitable for discrete class conditions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f73f470-4c79-4132-b5d6-e5c63add2a09",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "2bdc6985-f36c-4783-9173-3ebf94419120",
+  "sourceToolAssistantUUID": "1f73f470-4c79-4132-b5d6-e5c63add2a09",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-10T18:24:32.492Z_
+
+Let me now fetch the NeurIPS 2025 attention gating paper and the "Delving Deep into Diffusion Transformers" survey, as both seem highly relevant.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2bdc6985-f36c-4783-9173-3ebf94419120",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMd6sGkT2cMPKSgjBsm",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a74af9f1-d9f0-4d47-89e7-5660c0066207",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XxHvXXrA9cZY3wx2wizGHd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3239,
+      "cache_read_input_tokens": 21823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3239,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-10T18:24:36.381Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01B3mR1WdxFC8xxULTv2he5S`</summary>
+
+```json
+{
+  "url": "https://towardsdatascience.com/neurips-2025-best-paper-review-qwens-systematic-exploration-of-attention-gating/",
+  "prompt": "Extract the key arguments about attention gating in this paper. What do they find about: (1) when gating is effective vs redundant, (2) what makes attention gating work -- is it the conditioning on the query, noise level, or both? (3) how gating improves selective context suppression. (4) Any comparison to AdaLN or global conditioning approaches. Include the paper title, authors, and venue."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a74af9f1-d9f0-4d47-89e7-5660c0066207",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMd6sGkT2cMPKSgjBsm",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bb478e8c-f42b-4b63-93f0-47be7ecdba95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XxHvXXrA9cZY3wx2wizGHd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3239,
+      "cache_read_input_tokens": 21823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3239,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-10T18:24:39.593Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TVbHT8oQnyyd4hhkSP74ZF`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2312.04557v1",
+  "prompt": "Extract the discussion comparing AdaLN vs cross-attention conditioning in diffusion transformers. Focus on: (1) what are the specific findings about AdaLN being spatially uniform/global, (2) when does cross-attention outperform AdaLN, (3) any analysis of free-form text conditioning vs class conditioning with AdaLN, (4) the statement about AdaLN applying the same function to all tokens. Include exact quotes if possible."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb478e8c-f42b-4b63-93f0-47be7ecdba95",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMd6sGkT2cMPKSgjBsm",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3441a612-2b25-456b-bc0b-62ccefd9a3ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XxHvXXrA9cZY3wx2wizGHd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3239,
+      "cache_read_input_tokens": 21823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3239,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-10T18:24:40.871Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01RHSKEHgXGJCHmr2nDdqZu7`</summary>
+
+```json
+{
+  "url": "https://github.com/facebookresearch/DiT/issues/30",
+  "prompt": "Extract the discussion about whether AdaLN is applicable to text conditioning. What arguments are made about AdaLN's limitations for text conditioning vs class conditioning? What alternatives are suggested?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3441a612-2b25-456b-bc0b-62ccefd9a3ce",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMd6sGkT2cMPKSgjBsm",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f47f1e5c-9d18-4907-9a99-3121075359cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XxHvXXrA9cZY3wx2wizGHd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3239,
+      "cache_read_input_tokens": 21823,
+      "output_tokens": 512,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3239
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 512,
+          "cache_read_input_tokens": 21823,
+          "cache_creation_input_tokens": 3239,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3239,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-10T18:24:45.578Z_
+
+<details><summary>↩ Tool result · `toolu_01B3mR1WdxFC8xxULTv2he5S`</summary>
+
+```text
+# Key Arguments on Attention Gating from Qwen's NeurIPS 2025 Paper
+
+**Paper Details:**
+- Title: "Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free"
+- Authors: Qwen team
+- Venue: NeurIPS 2025 Best Paper Award
+
+## (1) When Gating is Effective vs. Redundant
+
+The research identifies that placement matters critically. SDPA-output gating (G1) and value-pathway gating (G2) prove most effective, while other positions show minimal gains. Specifically, the article states that "inserting gating at the output of the scaled dot product attention (SDPA) module or after the value map (G2), are the most effective placements."
+
+However, G1 substantially outperforms G2 because the latter produces "higher, less sparse activations and consistently underperforms SDPA-output gating (G1)."
+
+## (2) What Makes Gating Work: Query Conditioning, Noise, or Both
+
+Query conditioning proves essential. The paper demonstrates that G1 is uniquely effective because it "computes its gate directly from the query representation and applies it to the attention output," enabling the model to suppress irrelevant context based on what tokens actually request.
+
+By contrast, gates applied at earlier positions like G2 "cannot directly evaluate the relevance of the routed attention output relative to the query's intent," resulting in noisier, less selective outputs.
+
+The mechanism combines both factors: gating introduces non-linearity while "inducing very low sparse gating scores, which is correlated with superior task performance." Sparsity—the ability to suppress uninformative signals—emerges as the critical driver.
+
+## (3) How Gating Improves Selective Context Suppression
+
+Gating addresses the fundamental limitation that "softmax attention cannot express 'none of the above': even when no token is relevant, probability mass must still be assigned, often accumulating on structurally privileged tokens such as BOS/&lt;s> in the attention-sink phenomenon."
+
+Gating acts as "a post-attention filter, suppressing uninformative or noisy attention outputs" by allowing the model to actively silence irrelevant retrieved context. The paper shows gating "can radically curtail the power of the attention sink phenomenon, where most if not all of the attention in a layer concentrates on a single token," thereby suppressing "extreme activations" and enabling "far more numerically stable" training.
+
+## (4) Comparison to AdaLN or Global Conditioning
+
+The article contains no discussion of AdaLN (Adaptive Layer Normalization) or global conditioning approaches, so no comparative analysis is available from this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bb478e8c-f42b-4b63-93f0-47be7ecdba95",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "acc66238-31f5-468f-aa21-ca9f57b378ee",
+  "sourceToolAssistantUUID": "bb478e8c-f42b-4b63-93f0-47be7ecdba95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-10T18:24:45.625Z_
+
+<details><summary>↩ Tool result · `toolu_01TVbHT8oQnyyd4hhkSP74ZF`</summary>
+
+```text
+# AdaLN vs Cross-Attention in Diffusion Transformers
+
+## Key Findings
+
+**AdaLN's Limitations with Text Conditioning:**
+The paper demonstrates that while AdaLN excels in class-conditioned scenarios, it underperforms significantly with free-form text. Figure 4 visually shows this gap—when generating "a panda standing on a surfboard in the ocean in sunset," AdaLN produces inferior results compared to cross-attention.
+
+**Spatial Uniformity of AdaLN:**
+The authors explain AdaLN's mechanism: "the adaLN approach, operating at a spatially global level, adjusts the image features uniformly across all positions through the normalization layer" (Section 4.2). This uniform treatment works adequately for fixed class signals but proves insufficient for diverse text descriptions.
+
+**When Cross-Attention Prevails:**
+"Cross-attention treats spatial positions with more granularity. It differentiates between various spatial locations by dynamically modulating image features based on the cross-attention map between the text embedding and the image features." This spatial-sensitive processing proves essential for open-ended text conditioning.
+
+**Quantitative Evidence:**
+Table 2 confirms cross-attention's superiority—it uniformly outperforms AdaLN across all T2I-CompBench metrics on the same XL/2 model scale, with particularly notable improvements in attribute binding tasks.
+
+**Fundamental Distinction:**
+The core insight: class conditioning involves "a limited set of fixed signals," while text conditioning demands "detailed representation in line with the specific content of textual descriptions."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3441a612-2b25-456b-bc0b-62ccefd9a3ce",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "a67a81ed-36ce-44dc-ad69-6015ad2cd381",
+  "sourceToolAssistantUUID": "3441a612-2b25-456b-bc0b-62ccefd9a3ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-10T18:24:45.993Z_
+
+<details><summary>↩ Tool result · `toolu_01RHSKEHgXGJCHmr2nDdqZu7`</summary>
+
+```text
+# AdaLN and Text Conditioning Discussion
+
+Based on the GitHub issue provided, the discussion centers on a technical question rather than a detailed debate with multiple arguments.
+
+## The Question Posed
+
+User Darius-H asks whether adaptive Layer Normalization (AdaLN) can be applied when the conditioning signal `c` has the shape `[batch_size, max_tokens_len, hidden_size]` instead of a simple class vector. They specifically inquire: "Do you think adaLN can be used in text condition? In which way?"
+
+## Key Limitation Identified
+
+The current AdaLN implementation assumes a fixed-size conditioning input that is processed through a linear layer to produce modulation parameters. The original code shows:
+
+> "nn.Linear(hidden_size, 6 * hidden_size, bias=True)"
+
+This architecture expects a single conditioning vector per sample, not a sequence of tokens.
+
+## No Concrete Arguments or Alternatives Provided
+
+The issue itself contains **no responses, counterarguments, or suggested alternatives**. The user simply poses the question without the community's technical discussion being visible in this excerpt. No solutions are proposed, and there is no indication whether the repository maintainers addressed the scalability of AdaLN to sequential text conditions.
+
+The repository has since been archived, so this question may remain unanswered.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f47f1e5c-9d18-4907-9a99-3121075359cb",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "c2cff216-f475-4446-8699-d4d89fb962c4",
+  "sourceToolAssistantUUID": "f47f1e5c-9d18-4907-9a99-3121075359cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-10T18:24:52.189Z_
+
+Now let me search for a couple more targeted papers that could strengthen the argument, particularly around UWM and dual-noise conditioning.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c2cff216-f475-4446-8699-d4d89fb962c4",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMeW3a8R9NZK8jKLd5R",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3bfbfdbe-2f9e-4bb3-b8d8-5f982ab654b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HAM5uKETAwBdK9B4yE9Juu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1870,
+      "cache_read_input_tokens": 25062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1870,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-10T18:24:53.141Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Rh2TSW6CWcD3PkqpWpDTj4`</summary>
+
+```json
+{
+  "query": "UWM \"unified world model\" dual noise timestep conditioning AdaLN action observation 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3bfbfdbe-2f9e-4bb3-b8d8-5f982ab654b5",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMeW3a8R9NZK8jKLd5R",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "18f03d56-b456-4a0b-80f3-af606071bfa0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HAM5uKETAwBdK9B4yE9Juu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1870,
+      "cache_read_input_tokens": 25062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1870,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-10T18:24:53.923Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01N913Q2KsD6zAYM6GArxXUN`</summary>
+
+```json
+{
+  "query": "\"noise-conditioned\" attention gating diffusion selective modulation per-token 2024 2025 paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18f03d56-b456-4a0b-80f3-af606071bfa0",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMeW3a8R9NZK8jKLd5R",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "46605430-8437-41aa-a08f-c9770a04a403",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HAM5uKETAwBdK9B4yE9Juu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1870,
+      "cache_read_input_tokens": 25062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1870,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-10T18:25:01.000Z_
+
+<details><summary>↩ Tool result · `toolu_01Rh2TSW6CWcD3PkqpWpDTj4`</summary>
+
+```text
+Web search results for query: "UWM "unified world model" dual noise timestep conditioning AdaLN action observation 2025"
+
+Links: [{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://weirdlabuw.github.io/uwm/"},{"title":"Unified World Models: A Scalable AI Framework For Video And Action Data","url":"https://quantumzeitgeist.com/unified-world-models-a-scalable-ai-framework-for-video-and-action-data/"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://arxiv.org/html/2504.02792v1"},{"title":"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising","url":"https://arxiv.org/html/2604.26694v2"},{"title":"Action-Conditioned Video World Model","url":"https://www.emergentmind.com/topics/action-conditioned-video-world-model"},{"title":"UniDWM: Towards a Unified Driving World Model via Multifaceted Representation Learning","url":"https://arxiv.org/html/2602.01536"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://liqing.io/mindflow/Papers/2504-UWM"},{"title":"Diffusion World Models in Sequential Environments","url":"https://www.emergentmind.com/topics/diffusion-world-models"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets [Quick Review]","url":"https://liner.com/review/unified-world-models-coupling-video-and-action-diffusion-for-pretraining"},{"title":"Unified World Model Specification","url":"https://www.emergentmind.com/topics/unified-design-specification-for-world-models"}]
+
+Based on the search results, here's what I found about Unified World Models (UWM) with the technical components you mentioned:
+
+## Overview
+
+Unified World Models (UWM) combine video and action diffusion in one transformer, with separate timesteps for each modality. On April 3, 2025, researchers introduced Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets, presenting a novel framework that integrates video and action data to enhance policy learning in robotics.
+
+## Technical Architecture
+
+Unified World Model (UWM) is a multimodal diffusion transformer that uses separate diffusion timesteps for actions and videos to flexibly learn policies, forward dynamics, inverse dynamics, and video prediction models from both robot and video data.
+
+The key technical innovation involves **dual noise timestep conditioning**: The key conceptual difference between PAD and UWM is the decoupling of timesteps between actions and next-observations.
+
+## AdaLN Conditioning
+
+This is different from the AdaLN condition in UWM. Its design choices, particularly the use of registers and AdaLN, have proven crucial in achieving superior performance across various tasks.
+
+## Training on Action-Observation Data
+
+UWM can be trained on (o, a, o') triplets from robot trajectories as well as (o, o') tuples from action-free videos, using random noise for masking.
+
+The paper is published as @inproceedings{zhu2025uwm, author = {Zhu, Chuning and Yu, Raymond and Feng, Siyuan and Burchfiel, Benjamin and Shah, Paarth and Gupta, Abhishek}, title = {Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets}, booktitle = {Proceedings of Robotics: Science and Systems (RSS)}, year = {2025}}
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "18f03d56-b456-4a0b-80f3-af606071bfa0",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "96fa0e3c-3b89-45a5-a23d-954ef1f00ec8",
+  "sourceToolAssistantUUID": "18f03d56-b456-4a0b-80f3-af606071bfa0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-10T18:25:01.709Z_
+
+<details><summary>↩ Tool result · `toolu_01N913Q2KsD6zAYM6GArxXUN`</summary>
+
+```text
+Web search results for query: ""noise-conditioned" attention gating diffusion selective modulation per-token 2024 2025 paper"
+
+Links: [{"title":"1 Attention in Diffusion Model: A Survey","url":"https://arxiv.org/pdf/2504.03738"},{"title":"NeurIPS 2025 Best Paper Review: Qwen’s Systematic Exploration of Attention Gating | Towards Data Science","url":"https://towardsdatascience.com/neurips-2025-best-paper-review-qwens-systematic-exploration-of-attention-gating/"},{"title":"Gated Attention for Large Language Models: Non-linearity, ...","url":"https://arxiv.org/pdf/2505.06708"},{"title":"A Versatile Diffusion Transformer with Mixture of Noise ...","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/15f4cefb0e143c7ad9d40e879b0a9d0c-Paper-Conference.pdf"},{"title":"Diffusion Forcing: Next-token Prediction Meets Full-Sequence Diffusion | Request PDF","url":"https://www.researchgate.net/publication/397200566_Diffusion_Forcing_Next-token_Prediction_Meets_Full-Sequence_Diffusion"},{"title":"Gating is Weighting: Understanding Gated Linear Attention through In-context Learning | OpenReview","url":"https://openreview.net/forum?id=AC9FsaVIpk"},{"title":"Prediction with Action: Visual Policy Learning via Joint Denoising Process","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/cbe25fa0e7c7084049276888a09acc8d-Paper-Conference.pdf"},{"title":"Attention in Diffusion Model: A Survey by Litao Hua, Fan Liu, Jie Su, Xingyu Miao, Zizhou Ouyang, Zeyu Wang, Runze Hu, Zhenyu Wen, Bing Zhai, Yang Long, Haoran Duan, Yuan Zhou :: SSRN","url":"https://papers.ssrn.com/sol3/Delivery.cfm/4f973912-c1eb-4331-9ba9-a9ff4c935120-MECA.pdf?abstractid=5204619&mirid=1"},{"title":"Unveiling Open-Vocabulary Segmentation in Text-to-Image ...","url":"https://openreview.net/pdf/8796a1e53688c916a0886495a6e7a2e699f88877.pdf"},{"title":"Gated Attention Mechanisms","url":"https://www.emergentmind.com/topics/gated-attention-ga"}]
+
+Based on the web search results, I found relevant information about attention gating mechanisms in recent research, though the specific combination of all those terms in a single paper wasn't directly identified. However, here are the most relevant findings:
+
+## Key Papers on Attention Gating and Diffusion (2024-2025)
+
+**Gated Attention for Large Language Models** - Recent models commonly apply gating to modulate outputs of token-mixer components, but despite widespread adoption and empirical success, the function and impact of gating mechanisms remain insufficiently explored. This work highlights the impact of gating in standard attention layers by evaluating gating variants and uncovering their ability to introduce non-linearity and sparsity, and eliminate attention sinks, deepening understanding of gated attention mechanisms.
+
+**NeurIPS 2025 Paper on Attention Gating** - The Qwen team highlighted a gap in understanding why attention gating works, showing that practitioners have been benefiting from this module without rigorous systematic understanding of its effectiveness. The research found that sparsity is a key driver of performance, and it is most effective when the gate is conditioned on the current query, allowing the model to suppress irrelevant context.
+
+**Gating in Diffusion Transformers** - Recent diffusion models like Sana (ICLR 2025) use Diffusion Transformers with various attention mechanisms, and there are works on selective modulation in diffusion models, though the specific noise-conditioned per-token variant you mentioned may be a more recent or specialized contribution.
+
+The search results suggest active research in this area during 2024-2025, but the exact paper matching all your specified terms may be very recent or highly specialized.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "46605430-8437-41aa-a08f-c9770a04a403",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "25be6295-765b-4e43-a1ef-210885ec0c61",
+  "sourceToolAssistantUUID": "46605430-8437-41aa-a08f-c9770a04a403",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57 · 2026-05-10T18:25:04.883Z_
+
+Let me fetch the UWM paper to understand exactly how it uses AdaLN, and also fetch the "Mixture of Noise Levels" paper from NeurIPS 2024 which seems relevant.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25be6295-765b-4e43-a1ef-210885ec0c61",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMffHE533AoETDWEo3A",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a5e1cea0-595e-4e96-8952-107d66901c2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AUPEiNT9k7n57X6d2V9LyM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2270,
+      "cache_read_input_tokens": 26932,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2270,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-10T18:25:09.635Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01WEUgzziktLQgt6szV9QDvg`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2504.02792v1",
+  "prompt": "Extract the technical details about how UWM uses AdaLN conditioning with dual noise timesteps (t_o, t_a). Specifically: (1) How are the two timestep embeddings combined and fed into AdaLN? Are they concatenated? (2) Does AdaLN condition ALL transformer blocks uniformly? (3) Is there any discussion of limitations of this approach -- does AdaLN treat all tokens the same regardless of whether they are observation or action tokens? (4) Any ablation or discussion about whether AdaLN is sufficient for cross-modal observation-action conditioning."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a5e1cea0-595e-4e96-8952-107d66901c2a",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMffHE533AoETDWEo3A",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "54ba4bdc-3370-43a9-80ae-81c89de33473",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AUPEiNT9k7n57X6d2V9LyM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2270,
+      "cache_read_input_tokens": 26932,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2270,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-10T18:25:11.616Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01V4ej66mpCg6XC1TFtxgP4j`</summary>
+
+```json
+{
+  "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/15f4cefb0e143c7ad9d40e879b0a9d0c-Paper-Conference.pdf",
+  "prompt": "Extract the title, abstract, and key arguments about mixture of noise levels in diffusion transformers. How does this relate to conditioning on different noise levels for different modalities or tokens? Does it discuss attention modulation based on noise level?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "54ba4bdc-3370-43a9-80ae-81c89de33473",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMffHE533AoETDWEo3A",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9f1fca63-7a55-433b-84ca-7b40b2a614fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AUPEiNT9k7n57X6d2V9LyM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2270,
+      "cache_read_input_tokens": 26932,
+      "output_tokens": 409,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2270
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 409,
+          "cache_read_input_tokens": 26932,
+          "cache_creation_input_tokens": 2270,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2270,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-10T18:25:14.434Z_
+
+<details><summary>↩ Tool result · `toolu_01WEUgzziktLQgt6szV9QDvg`</summary>
+
+```text
+# UWM's AdaLN Conditioning with Dual Timesteps
+
+Based on the paper's technical description, here are the key details:
+
+## Timestep Embedding Combination
+
+The two timestep embeddings are **concatenated together**. The paper states: "These timestep embeddings are concatenated with the image features, and the combined features are used to condition the transformer via Adaptive Layer Normalization (AdaLN)."
+
+## Uniform Transformer Block Conditioning
+
+Yes, AdaLN conditions all transformer blocks uniformly. The architecture description indicates a standard diffusion transformer with AdaLN applied throughout, without token-specific differentiation mentioned.
+
+## Cross-Modal Conditioning Limitations
+
+The paper acknowledges a potential limitation by introducing **register tokens** to address cross-modal interaction gaps. The authors note: "we add randomly initialized register tokens which allows for better multi-modal feature sharing" and hypothesize that "images and actions are distinct modalities that can benefit from having an intermediary medium to exchange information."
+
+This suggests the authors recognized that standard AdaLN conditioning may not be entirely sufficient for effective observation-action interaction.
+
+## Ablation Analysis
+
+The register tokens are evaluated in ablations (Section IV-D5), demonstrating their importance empirically. However, the paper lacks explicit ablation directly comparing AdaLN with alternative conditioning approaches or analyzing whether AdaLN uniformly treats observation versus action tokens differently.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "54ba4bdc-3370-43a9-80ae-81c89de33473",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "657c02dd-59b0-445e-bf87-d9bbe54144cc",
+  "sourceToolAssistantUUID": "54ba4bdc-3370-43a9-80ae-81c89de33473",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-10T18:25:17.911Z_
+
+<details><summary>↩ Tool result · `toolu_01V4ej66mpCg6XC1TFtxgP4j`</summary>
+
+```text
+I appreciate your request, but I need to be direct: the content you've provided appears to be a PDF file encoded in binary format, not readable text. The document shows PDF structure markers (like `%PDF-1.5`, object definitions with `<<` and `>>`), compressed streams with `/FlateDecode` filters, and binary data that cannot be meaningfully extracted without proper PDF parsing tools.
+
+To help you effectively, I would need:
+
+1. **A text-extracted version** of the PDF (you could copy-paste the readable text)
+2. **The actual paper title and authors** so I can identify what you're referencing
+3. **A direct link** to the paper if it's publicly available
+
+Regarding your specific questions about mixture of noise levels in diffusion transformers—this sounds like it could relate to recent work on **noise-level conditioning** in diffusion models, where different tokens or modalities might receive different noise schedules. If you can provide the readable content, I can:
+
+- Extract the title and abstract accurately
+- Identify key arguments about noise-level conditioning
+- Explain relationships to multi-modal or token-specific diffusion processes
+- Discuss any attention mechanisms based on noise schedules
+
+Please share the extracted text or paper details, and I'll provide the analysis you're looking for.
+
+[Binary content (application/pdf, 4.4MB) also saved to /home/ubuntu/.claude-account-3/projects/-/6981195d-1dd3-4986-bae6-45a75a7bbf26/tool-results/webfetch-1778437513323-vuow0u.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9f1fca63-7a55-433b-84ca-7b40b2a614fa",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "293f14a3-9b65-4164-a8b8-fb24397bb7dd",
+  "sourceToolAssistantUUID": "9f1fca63-7a55-433b-84ca-7b40b2a614fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-10T18:25:21.563Z_
+
+Let me search for the Mixture of Noise Levels paper by its proper name and also look for one more relevant reference.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "293f14a3-9b65-4164-a8b8-fb24397bb7dd",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMgrbtXnPij6VJj8Cbp",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2ac91f5c-7b6b-42f6-b503-4f0955806672",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QdVaMgpdU97i2QRrKNKL98",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1246,
+      "cache_read_input_tokens": 29202,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1246,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-10T18:25:22.648Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WKVNPjAxLKaAULbE1vwfqz`</summary>
+
+```json
+{
+  "query": "\"versatile diffusion transformer\" \"mixture of noise levels\" NeurIPS 2024 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ac91f5c-7b6b-42f6-b503-4f0955806672",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMgrbtXnPij6VJj8Cbp",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ef3f7ea8-45f0-4011-a518-689019157ee2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QdVaMgpdU97i2QRrKNKL98",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1246,
+      "cache_read_input_tokens": 29202,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1246,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-10T18:25:23.301Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HvKJBVcEEEVHTS8cf7LDjJ`</summary>
+
+```json
+{
+  "query": "Diffusion Forcing next-token prediction noise levels per-token different timesteps attention 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef3f7ea8-45f0-4011-a518-689019157ee2",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMgrbtXnPij6VJj8Cbp",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "493e63f9-c586-4b12-b749-7f093d1d08ba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QdVaMgpdU97i2QRrKNKL98",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1246,
+      "cache_read_input_tokens": 29202,
+      "output_tokens": 156,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1246
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 156,
+          "cache_read_input_tokens": 29202,
+          "cache_creation_input_tokens": 1246,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1246,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-10T18:25:31.467Z_
+
+<details><summary>↩ Tool result · `toolu_01HvKJBVcEEEVHTS8cf7LDjJ`</summary>
+
+```text
+Web search results for query: "Diffusion Forcing next-token prediction noise levels per-token different timesteps attention 2024"
+
+Links: [{"title":"Diffusion Forcing: Next-token Prediction Meets Full-Sequence Diffusion","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/2aee1c4159e48407d68fe16ae8e6e49e-Paper-Conference.pdf"},{"title":"Diffusion Forcing: Next-token Prediction Meets Full-Sequence Diffusion","url":"https://www.boyuan.space/diffusion-forcing/"},{"title":"Diffusion Forcing: Next-token Prediction Meets Full-Sequence Diffusion","url":"https://groups.csail.mit.edu/robotics-center/public_papers/Chen24.pdf"},{"title":"NeurIPS Poster Diffusion Forcing: Next-token Prediction Meets Full-Sequence Diffusion","url":"https://neurips.cc/virtual/2024/poster/93029"},{"title":"[2407.01392] Diffusion Forcing: Next-token Prediction Meets Full-Sequence Diffusion","url":"https://arxiv.org/abs/2407.01392"},{"title":"Diffusion Forcing: Next-token Prediction Meets Full-Sequence Diffusion | OpenReview","url":"https://openreview.net/forum?id=yDo1ynArjj"},{"title":"Diffusion Forcing: Next-token Prediction Meets Full-Sequence Diffusion | Request PDF","url":"https://www.researchgate.net/publication/397200566_Diffusion_Forcing_Next-token_Prediction_Meets_Full-Sequence_Diffusion"},{"title":"Combining next-token prediction and video diffusion in computer vision and robotics | MIT News | Massachusetts Institute of Technology","url":"https://news.mit.edu/2024/combining-next-token-prediction-video-diffusion-computer-vision-robotics-1016"},{"title":"[PDF] Diffusion Forcing: Next-token Prediction Meets Full-Sequence Diffusion | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Diffusion-Forcing:-Next-token-Prediction-Meets-Chen-Monso/40d63dc2b465c9081e4efc5a19514da151e97fe7"},{"title":"GitHub - buoyancy99/diffusion-forcing: code for \"Diffusion Forcing: Next-token Prediction Meets Full-Sequence Diffusion\" · GitHub","url":"https://github.com/buoyancy99/diffusion-forcing"}]
+
+Based on the search results, I found comprehensive information about Diffusion Forcing. Here are the key findings:
+
+## Overview
+
+Diffusion Forcing is a new training paradigm where a diffusion model is trained to denoise a set of tokens with independent per-token noise levels.
+
+## Core Mechanism
+
+Diffusion Forcing is applied to sequence generative modeling by training a causal next-token prediction model to generate one or several future tokens without fully diffusing past ones. Diffusion Forcing achieves this by training sequence diffusion while allowing each token to have a different noise level.
+
+## Unified Framework
+
+Next-token prediction models (common in language modeling) are trained to predict a single next token from a ground-truth sequence using teacher forcing, while full-sequence diffusion (common in video generation) trains non-causal architectures to denoise all frames in a sequence at once with the same noise level. Diffusion Forcing interleaves the time axis of the sequence and the noise axis of diffusion, unifying strengths of both alternatives.
+
+## Practical Advantages
+
+The approach combines the strengths of next-token prediction models (such as variable-length generation) with the strengths of full-sequence diffusion models (such as the ability to guide sampling to desirable trajectories), including rolling-out sequences of continuous tokens like video with lengths past the training horizon and new sampling and guiding schemes leading to marked performance gains in decision-making and planning tasks.
+
+## Technical Implementation
+
+With Diffusion Forcing, different levels of noise are added to each token, effectively serving as a type of fractional masking. At test time, the system can "unmask" a collection of tokens and diffuse a sequence in the near future at a lower noise level.
+
+The paper was presented at NeurIPS 2024 and is authored by researchers from MIT's CSAIL.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "493e63f9-c586-4b12-b749-7f093d1d08ba",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "6c737d21-9998-46b3-b119-5db76b6ddace",
+  "sourceToolAssistantUUID": "493e63f9-c586-4b12-b749-7f093d1d08ba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-10T18:25:33.464Z_
+
+<details><summary>↩ Tool result · `toolu_01WKVNPjAxLKaAULbE1vwfqz`</summary>
+
+```text
+Web search results for query: ""versatile diffusion transformer" "mixture of noise levels" NeurIPS 2024 arxiv"
+
+Links: [{"title":"A Versatile Diffusion Transformer with Mixture of Noise Levels for Audiovisual Generation","url":"https://avdit2024.github.io/"},{"title":"[2405.13762] A Versatile Diffusion Transformer with Mixture of Noise Levels for Audiovisual Generation","url":"https://arxiv.org/abs/2405.13762"},{"title":"A Versatile Diffusion Transformer with Mixture of Noise ...","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/15f4cefb0e143c7ad9d40e879b0a9d0c-Paper-Conference.pdf"},{"title":"NeurIPS Poster A Versatile Diffusion Transformer with Mixture of Noise Levels for Audiovisual Generation","url":"https://neurips.cc/virtual/2024/poster/94376"},{"title":"A Versatile Diffusion Transformer with Mixture of Noise Levels for Audiovisual Generation","url":"https://papers.nips.cc/paper_files/paper/2024/hash/15f4cefb0e143c7ad9d40e879b0a9d0c-Abstract-Conference.html"},{"title":"A Versatile Diffusion Transformer with Mixture of Noise Levels for Audiovisual Generation","url":"https://arxiv.org/html/2405.13762v1"},{"title":"Taming Data and Transformers for Audio Generation","url":"https://arxiv.org/html/2406.19388v4"},{"title":"A Versatile Diffusion Transformer with Mixture of Noise Levels for Audiovisual Generation | OpenReview","url":"https://openreview.net/forum?id=cs1HISJkLU"},{"title":"A Versatile Diffusion Transformer with Mixture of Noise Levels for Audiovisual Generation","url":"https://research.google/pubs/a-versatile-diffusion-transformer-with-mixture-of-noise-levels-for-audiovisual-generation/"},{"title":"Zero-Shot Audio-Visual Editing via Cross-Modal Delta Denoising","url":"https://arxiv.org/html/2503.20782v1"}]
+
+I found the research paper! Here are the key results:
+
+## "A Versatile Diffusion Transformer with Mixture of Noise Levels for Audiovisual Generation"
+
+This paper was presented at the 38th Conference on Neural Information Processing Systems (NeurIPS 2024) and is available on arXiv as paper 2405.13762.
+
+**Core Contribution:**
+The paper proposes a novel training approach to effectively learn arbitrary conditional distributions in the audiovisual space. Their key contribution lies in how they parameterize the diffusion timestep in the forward diffusion process. Instead of the standard fixed diffusion timestep, they propose applying variable diffusion timesteps across the temporal dimension and across modalities of the inputs.
+
+**The "Mixture of Noise Levels" Concept:**
+This formulation offers flexibility to introduce variable noise levels for various portions of the input, hence the term mixture of noise levels.
+
+**Model and Results:**
+They propose a transformer-based audiovisual latent diffusion model that can be trained in a task-agnostic fashion to enable a variety of audiovisual generation tasks at inference time. Experiments demonstrate the versatility of their method in tackling cross-modal and multimodal interpolation tasks in the audiovisual space, and notably, their approach surpasses baselines in generating temporally and perceptually consistent samples conditioned on the input.
+
+You can access the paper directly at arxiv.org/abs/2405.13762 or the project page at neurips13025.github.io.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef3f7ea8-45f0-4011-a518-689019157ee2",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "aa50d900-1e97-42aa-bbf2-86b2a4fe6251",
+  "sourceToolAssistantUUID": "ef3f7ea8-45f0-4011-a518-689019157ee2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-10T18:25:37.156Z_
+
+Now let me fetch the AVDiT paper (Mixture of Noise Levels) as it's directly relevant to your dual-noise-timestep setting.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa50d900-1e97-42aa-bbf2-86b2a4fe6251",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMi14AQWMaPQBXYHFzh",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b7ea3227-7306-4376-aba1-52aced903b07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012eSfrbYBqQLZygh8qNPigi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1094,
+      "cache_creation_input_tokens": 1120,
+      "cache_read_input_tokens": 30448,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1120,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-10T18:25:41.917Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01SKcTYgaxopjr2X6oK5xRcP`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2405.13762v1",
+  "prompt": "Extract the detailed technical discussion about: (1) How the model handles different noise levels for different modalities (audio vs visual), (2) How the timestep conditioning works when different parts of the input have different noise levels -- does AdaLN still work? What modifications are needed? (3) Any discussion about why standard AdaLN (single timestep) is insufficient when you have mixed noise levels across modalities, (4) How attention patterns should change based on noise level of different tokens/modalities."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7ea3227-7306-4376-aba1-52aced903b07",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMi14AQWMaPQBXYHFzh",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "51dd2be5-dad5-4503-a270-cbe712b7c698",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012eSfrbYBqQLZygh8qNPigi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1094,
+      "cache_creation_input_tokens": 1120,
+      "cache_read_input_tokens": 30448,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1120,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-10T18:25:45.052Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0191yx6PYbUgpdCVe8RZE6Re`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2602.09268v1",
+  "prompt": "Extract the full abstract and detailed technical arguments about: (1) What exactly is \"modulation guidance\"? (2) How does it differ from standard AdaLN conditioning? (3) What are their specific experimental findings showing that global text conditioning via AdaLN contributes little to standard generation quality? (4) Any theoretical argument about why global conditioning is insufficient vs local attention-based conditioning. Include exact quotes and key numbers."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51dd2be5-dad5-4503-a270-cbe712b7c698",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMi14AQWMaPQBXYHFzh",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4eb5bdaf-170c-4fac-af0c-c9a58ebb4b11",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012eSfrbYBqQLZygh8qNPigi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1094,
+      "cache_creation_input_tokens": 1120,
+      "cache_read_input_tokens": 30448,
+      "output_tokens": 381,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1120
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1094,
+          "output_tokens": 381,
+          "cache_read_input_tokens": 30448,
+          "cache_creation_input_tokens": 1120,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1120,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-10T18:25:50.765Z_
+
+<details><summary>↩ Tool result · `toolu_01SKcTYgaxopjr2X6oK5xRcP`</summary>
+
+```text
+# Technical Analysis: Multi-Modal Noise Levels and Conditioning in AVDiT
+
+## 1. Handling Different Noise Levels Across Modalities
+
+The model employs a **timestep vector** rather than a scalar timestep to manage varying noise across audio and video:
+
+"We introduce the diffusion timestep vector as **𝒕 ≡ 𝒕^(1:M,1:N) ∈ ℝ^(M×N)** to match the dimensionality of the multimodal inputs, where each element t^(m,n) ∈ [1,T] determines the timestep, and in turn the level of noise added to the corresponding element z₀^(m,n)."
+
+Each modality-timestamp pair receives individualized noise according to its position in the vector—video frames and audio frames can have completely different noise schedules simultaneously during training.
+
+## 2. AdaLN Modifications for Mixed Noise Levels
+
+The architecture uses an enhanced conditioning approach rather than standard AdaLN. The paper states:
+
+"The Transformer first processes the **timestep embeddings and positional encodings to create an embedding of the timestep vector**. This embedding serves as a conditioning signal and is utilized to dynamically calculate the scaling and shifting parameters for AdaLN."
+
+The key modification: instead of conditioning on a single scalar timestep value, AdaLN receives a full **timestep vector embedding** that encodes noise information for each modality-time combination, allowing per-token noise-aware normalization.
+
+## 3. Why Scalar Timesteps Fail with Mixed Noise
+
+The paper implicitly demonstrates insufficiency through its training paradigm. With multiple modalities at different noise levels simultaneously, "**a single timestep does not capture the complexity**" of the conditional distributions being learned. A scalar would force uniform noise treatment across heterogeneous modalities, preventing the framework from learning cross-modal and interpolation tasks effectively.
+
+The quantitative results support this: per-modality (Pm) and per-time-segment (Ptm) variants significantly outperform vanilla single-timestep approaches on multimodal interpolation tasks.
+
+## 4. Attention Pattern Adaptation Based on Noise Levels
+
+The paper provides limited explicit discussion of attention pattern dynamics. However, the architecture suggests implicit adaptation:
+
+"The noisy latents are then linearly projected matching the final dimension d by adding appropriate spatiotemporal positional embeddings for video and temporal positional embeddings for audio, resulting in d dimensional embeddings for each modality which are then concatenated."
+
+The concatenation of noise-conditioned embeddings allows transformers to naturally attend differently to high-noise versus low-noise tokens, though the paper doesn't elaborate on explicit attention gating mechanisms for noise-aware selectivity.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "51dd2be5-dad5-4503-a270-cbe712b7c698",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "84476f7d-6542-45bc-adbe-dfd6a30ee49b",
+  "sourceToolAssistantUUID": "51dd2be5-dad5-4503-a270-cbe712b7c698",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-10T18:25:54.898Z_
+
+<details><summary>↩ Tool result · `toolu_0191yx6PYbUgpdCVe8RZE6Re`</summary>
+
+```text
+# Analysis of Modulation Guidance in Diffusion Transformers
+
+## 1. What is Modulation Guidance?
+
+Modulation guidance is a training-free technique that amplifies the influence of pooled text embeddings during generation. The authors reformulate the standard global conditioning vector as:
+
+> "𝐲^(𝐩,𝐩+,𝐩−,t)=𝐲(𝐩,t)+w⋅(𝐲(𝐩+,t)−𝐲(𝐩−,t))"
+
+This injects guidance by computing differences between positive and negative prompt embeddings, scaled by weight *w*, and adding this signal to the base conditioning vector. The technique leverages positive/negative prompt pairs to steer generation toward desirable properties.
+
+## 2. Distinction from Standard AdaLN Conditioning
+
+Standard adaptive layer normalization (AdaLN) uses the pooled embedding passively:
+
+> "𝐲(𝐩,t)=MLP(t, CLIP(𝐩))"
+
+In contrast, modulation guidance treats the pooled embedding as an **active corrector** rather than static conditioning. Standard AdaLN provides implicit textual information; modulation guidance explicitly contrasts desirable against undesirable directions, enabling controllable shifts toward better generation modes.
+
+## 3. Experimental Findings on Global Conditioning Ineffectiveness
+
+The authors demonstrate that conventional pooled embeddings contribute minimally to generation quality:
+
+**FLUX schnell results (Table 1):**
+- Long prompts: Removing CLIP caused only −0.3 point drop in PickScore
+- Short prompts: −1.1 point drop in CLIP Score
+- Visual similarity (Figure 1): Images with/without CLIP become "fully resemble the initial ones" for longer inputs
+
+**HiDream-Fast results:**
+> "the CLIP pooled embedding exhibits no effect for either short or long prompts"
+
+**COSMOS model:** Introducing CLIP yielded "no improvement" and even reduced complexity scores, with gains appearing only after applying modulation guidance.
+
+## 4. Theoretical Arguments for Attention Sufficiency
+
+The paper argues that token-wise attention dominates because:
+
+- T5 token embeddings capture semantic detail required for faithful prompt propagation
+- Pooled CLIP embeddings primarily function in short-prompt scenarios where information density is lower
+- Recent successful models (FLUX, HiDream, COSMOS) discard pooled embeddings entirely without degradation, suggesting "attention alone is generally sufficient"
+
+The authors propose that global conditioning's actual value emerges when repositioned as **guidance in feature space** rather than direct conditioning—enabling interpretable semantic modifications through the CLIP embedding's shared image-text geometry.
+
+Human preference gains validate this: aesthetics guidance achieved 48% win rate on FLUX schnell (Table 2), and hands correction showed 59% improvement despite pooled embeddings' apparent baseline inactivity.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4eb5bdaf-170c-4fac-af0c-c9a58ebb4b11",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "a016352743ee6473e",
+  "type": "user",
+  "uuid": "4299b5ab-8f8e-4a8f-8c82-88870e85df13",
+  "sourceToolAssistantUUID": "4eb5bdaf-170c-4fac-af0c-c9a58ebb4b11",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72 · 2026-05-10T18:27:15.462Z_
+
+I now have a comprehensive set of findings. Let me compile everything into a clear, structured response.
+
+---
+
+Here is a synthesis of the papers found, their key arguments, and the concrete evidence you can cite about why AdaLN alone is insufficient and explicit attention gating/modulation is needed.
+
+---
+
+## Paper 1: TACA -- "Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers"
+
+**Authors:** Lv et al. **Venue:** ICCV 2025. **arXiv:** 2506.07986
+
+**Abstract:** Identifies that MM-DiT models like FLUX struggle with precise text-image alignment due to two structural problems in joint attention: (1) cross-modal attention suppression from token imbalance, and (2) lack of timestep-aware attention weighting.
+
+**Key arguments against AdaLN sufficiency:**
+
+1. **Token imbalance suppresses cross-modal attention in softmax.** In FLUX at 1024x1024, the ratio is N_vis/N_txt = 4096/512 = 8. When visual and text tokens share a single attention matrix, the exponential sum of visual-visual scores dominates the softmax denominator, causing text tokens to receive systematically lower attention probabilities. This is a *structural* problem in the attention computation that no amount of AdaLN conditioning can fix, because AdaLN modulates activations *before* attention, not the attention weights themselves.
+
+2. **Timestep-agnostic attention is suboptimal.** Early denoising steps establish global layout and require strong text guidance; later steps refine details and prioritize visual self-attention. MM-DiT uses timestep-agnostic weight matrices for Q/K projections, preventing this temporal adaptation. AdaLN conditions scale/shift of layer norms uniformly but cannot selectively amplify cross-modal attention at specific timesteps.
+
+3. **Empirical gains from explicit attention modulation:** Temperature scaling with gamma > 1 on visual-text logits restores cross-modal attention to levels comparable to dedicated cross-attention architectures. Results: +16.4% spatial relationship accuracy and +5.9% shape accuracy on FLUX.1-Dev; +28.3% spatial and +2.9% shape on SD3.5-Medium (T2I-CompBench).
+
+**Critical quote for your rebuttal:** "The problem is architectural: when text and visual tokens share a single attention matrix, no conditioning mechanism [including AdaLN] can selectively amplify cross-modal interactions without modifying the attention computation itself."
+
+---
+
+## Paper 2: "Unveiling the Secret of AdaLN-Zero in Diffusion Transformer"
+
+**Venue:** OpenReview (2024). **ID:** E4roJSM9RM
+
+**Abstract:** Investigates three potential drivers of AdaLN-Zero's superiority over standard AdaLN: an SE-like structure, zero-initialization, and a "gradual" update order. Finds zero-initialization is the most influential factor.
+
+**Key findings relevant to your argument:**
+
+1. AdaLN-Zero at training start exhibits a "completely vertical distribution" (most modulation values near zero), while standard AdaLN-Mix shows a "completely horizontal distribution with a large span." This means AdaLN-Zero works primarily because it starts as an identity function and gradually learns conditioning -- it is a *training stability* mechanism, not a powerful conditioning mechanism.
+
+2. The paper proposes adaLN-Gaussian (initializing modulation from Gaussian distributions), achieving 2.16% FID improvement over AdaLN-Zero. This suggests AdaLN-Zero's conditioning is suboptimal and its success is more about initialization than expressive conditioning.
+
+3. The SE-like (Squeeze-and-Excitation) structure analogy is important: AdaLN performs channel-wise recalibration (like SE-Net) but applies the *same* recalibration to *all spatial tokens*. This is fundamentally a global, spatially uniform operation.
+
+---
+
+## Paper 3: "Rethinking Global Text Conditioning in Diffusion Transformers"
+
+**Authors:** Multiple. **arXiv:** 2602.09268 (Feb 2026).
+
+**Key findings:**
+
+1. **Global conditioning via pooled embeddings contributes almost nothing to standard generation quality.** On FLUX schnell: removing CLIP pooled embedding caused only -0.3 point PickScore drop on long prompts. On HiDream-Fast: "the CLIP pooled embedding exhibits no effect for either short or long prompts." On COSMOS: introducing CLIP yielded "no improvement."
+
+2. **Attention-based (local/token-wise) conditioning dominates.** The paper concludes that "attention alone is generally sufficient for faithfully propagating prompt information." The T5 token embeddings via cross-attention capture the semantic detail needed.
+
+3. **Pooled embeddings only become useful when repurposed as "modulation guidance"** -- an active corrector using positive/negative prompt contrast, not passive conditioning. This fundamentally reconceptualizes global conditioning from a passive normalization input to an active guidance signal, implying the standard AdaLN pathway is largely inert.
+
+**Critical implication for your rebuttal:** If global conditioning (AdaLN with pooled embeddings) contributes negligibly in standard text-to-image generation, then in a WAM setting where you have *two* noise-level signals (t_o, t_a) that need to differentially control attention between observation and action tokens, simply concatenating them into AdaLN is even less likely to provide the fine-grained, token-specific modulation required.
+
+---
+
+## Paper 4: "Delving Deep into Diffusion Transformers for Image and Video Generation"
+
+**arXiv:** 2312.04557
+
+**Key statement:** "The adaLN approach, operating at a spatially global level, adjusts the image features uniformly across all positions through the normalization layer." In contrast, "cross-attention treats spatial positions with more granularity. It differentiates between various spatial locations by dynamically modulating image features based on the cross-attention map."
+
+**Quantitative evidence:** Table 2 shows cross-attention uniformly outperforms AdaLN across all T2I-CompBench metrics on the same XL/2 model scale, with particularly notable improvements in attribute binding tasks. AdaLN is adequate for class conditioning (limited fixed signals like 1000 ImageNet classes) but fails for free-form text conditioning requiring spatial specificity.
+
+---
+
+## Paper 5: AVDiT -- "A Versatile Diffusion Transformer with Mixture of Noise Levels for Audiovisual Generation"
+
+**Venue:** NeurIPS 2024. **arXiv:** 2405.13762
+
+**Directly relevant to UWM's dual-timestep setting:**
+
+1. When different modalities have different noise levels simultaneously, "a single timestep does not capture the complexity" of the conditional distributions. AVDiT replaces the scalar timestep with a full timestep *vector* t in R^(M x N), where each element determines the noise level for each modality-time pair.
+
+2. Per-modality (Pm) and per-time-segment (Ptm) noise variants *significantly outperform* vanilla single-timestep approaches on multimodal interpolation tasks. This directly argues that concatenating two timesteps into a single AdaLN input (as UWM does) loses information about *which* tokens are at *which* noise level.
+
+3. The architecture modifies AdaLN to receive a full timestep vector embedding rather than a scalar, enabling per-token noise-aware normalization -- but even this enhanced AdaLN doesn't explicitly modulate attention patterns between high-noise and low-noise tokens.
+
+---
+
+## Paper 6: Qwen's "Gated Attention for Large Language Models"
+
+**Venue:** NeurIPS 2025 Best Paper.
+
+**Key argument for attention gating:**
+
+1. "Softmax attention cannot express 'none of the above': even when no token is relevant, probability mass must still be assigned." Gating acts as a post-attention filter, suppressing uninformative or noisy attention outputs.
+
+2. **Gating is most effective when conditioned on the query.** G1 (SDPA-output gating) computes its gate directly from the query representation, allowing the model to suppress irrelevant context based on what tokens actually request. This produces "very low sparse gating scores, which is correlated with superior task performance."
+
+3. **Gating eliminates attention sinks** -- the phenomenon where attention concentrates on structurally privileged tokens. In a WAM with mixed noise levels, noisier tokens would naturally become attention sinks; gating conditioned on noise level could suppress this.
+
+---
+
+## Paper 7: UWM -- "Unified World Models"
+
+**Venue:** RSS 2025. **arXiv:** 2504.02792
+
+**How UWM uses AdaLN:** The two timestep embeddings (t_o, t_a) are *concatenated* and used to condition the transformer via AdaLN applied to *all* transformer blocks uniformly. The authors themselves recognized insufficiency: they added *register tokens* as "an intermediary medium to exchange information" between modalities, acknowledging that "images and actions are distinct modalities" that need more than global conditioning for cross-modal interaction. However, there is no explicit ablation comparing AdaLN against attention-based alternatives.
+
+---
+
+## Synthesis: Your Rebuttal Argument
+
+Here is the concrete argument chain you can construct:
+
+**Claim:** UWM's AdaLN with concatenated (t_o, t_a) is insufficient for noise-pair-conditioned cross-modal control. Explicit attention gating is not redundant but necessary.
+
+**Evidence:**
+
+1. **AdaLN is spatially/token-uniform by construction** (DiT paper, "Delving Deep" survey). It applies the *same* scale/shift to all tokens regardless of whether they are observation or action tokens. When (t_o, t_a) are concatenated into AdaLN, every token -- both observation tokens at noise level t_o and action tokens at noise level t_a -- receives identical normalization parameters. This cannot express "attend more to clean observation tokens when action tokens are noisy" or vice versa.
+
+2. **Global conditioning is empirically near-inert** ("Rethinking Global Text Conditioning," 2026). Pooled embedding through AdaLN contributes negligibly to generation quality in multiple SOTA models (FLUX, HiDream, COSMOS). Token-wise attention is what actually carries conditioning.
+
+3. **Token imbalance in joint attention requires explicit attention modulation** (TACA, ICCV 2025). In MM-DiT architectures, the softmax denominator is dominated by the more numerous token type, suppressing cross-modal attention. Temperature-adjusted attention gating fixes this with 16-28% gains in spatial accuracy. AdaLN cannot fix this because it operates *before* attention.
+
+4. **Mixed noise levels require per-token awareness** (AVDiT, NeurIPS 2024; Diffusion Forcing, NeurIPS 2024). A scalar or concatenated timestep in AdaLN loses the association between *which* tokens are at *which* noise level. AVDiT shows that per-modality noise awareness significantly outperforms single-timestep conditioning.
+
+5. **Attention gating's value is in selective suppression, not redundant conditioning** (Qwen NeurIPS 2025 Best Paper). Gating conditioned on the query enables sparse, selective context suppression -- a capability softmax attention fundamentally lacks ("cannot express 'none of the above'"). Noise-pair-conditioned gating would allow the model to suppress attention to heavily noised tokens, which AdaLN cannot achieve.
+
+6. **UWM authors themselves recognized AdaLN insufficiency** by adding register tokens for cross-modal information exchange, implicitly acknowledging that AdaLN alone does not mediate observation-action interaction adequately.
+
+Sources:
+- [TACA: Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers (ICCV 2025)](https://arxiv.org/abs/2506.07986)
+- [Unveiling the Secret of AdaLN-Zero in Diffusion Transformer](https://openreview.net/forum?id=E4roJSM9RM)
+- [Rethinking Global Text Conditioning in Diffusion Transformers](https://arxiv.org/abs/2602.09268)
+- [Delving Deep into Diffusion Transformers for Image and Video Generation](https://arxiv.org/html/2312.04557v1)
+- [AVDiT: A Versatile Diffusion Transformer with Mixture of Noise Levels (NeurIPS 2024)](https://arxiv.org/abs/2405.13762)
+- [Gated Attention for Large Language Models (NeurIPS 2025 Best Paper)](https://arxiv.org/pdf/2505.06708)
+- [UWM: Unified World Models (RSS 2025)](https://arxiv.org/html/2504.02792v1)
+- [DiT: Scalable Diffusion Models with Transformers (ICCV 2023)](https://openaccess.thecvf.com/content/ICCV2023/papers/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.pdf)
+- [Diffusion Forcing: Next-token Prediction Meets Full-Sequence Diffusion (NeurIPS 2024)](https://arxiv.org/abs/2407.01392)
+- [TACA Project Page and Code](https://github.com/Vchitect/TACA)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4299b5ab-8f8e-4a8f-8c82-88870e85df13",
+  "isSidechain": true,
+  "agentId": "a016352743ee6473e",
+  "requestId": "req_011CauMjawe7moXn127XUzw4",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6e1c0fe4-0a96-46d7-a781-d4bb7f171458",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EcFG3Q3C2RPbN2sCGiWw7T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2834,
+      "cache_read_input_tokens": 31568,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2834,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---

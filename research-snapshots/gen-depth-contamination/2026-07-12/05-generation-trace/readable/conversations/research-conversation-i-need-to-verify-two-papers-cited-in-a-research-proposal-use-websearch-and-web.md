@@ -1,0 +1,1696 @@
+# Research conversation: I need to verify two papers cited in a research proposal. Use WebSearch and WebFetch: 1. **FFDC-WAM** (arXiv 2605.06222,
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 27
+- **Recorded user turns:** 1
+- **Tool calls:** 10
+- **Original source:** `logs/chats/exported-trajectories/account-3/agent-ac8c0cf5050439dbb.jsonl`
+- **Structured JSON:** [`eb3db940c09bc40a5e11.json`](../../sessions/eb/eb3db940c09bc40a5e11.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+27 recorded events
+
+### User
+
+_source line 1 · 2026-05-10T19:36:57.229Z_
+
+I need to verify two papers cited in a research proposal. Use WebSearch and WebFetch:
+
+1. **FFDC-WAM** (arXiv 2605.06222, May 2026) - "When to Trust Imagination: Adaptive Action Execution for World Action Models". Claims: lightweight Transformer verifier checks predicted video vs real observations BETWEEN WAM calls, 69% fewer calls, 35% real-world success improvement. Claims action quality degradation directly causes task failure (45% vs 80% success without/with verification). Verify if this paper exists and check these claims.
+
+2. **D3P** (arXiv 2508.06804, Aug 2025) - "Dynamic Denoising Diffusion Policy via Reinforcement Learning". Claims: PPO-trained lightweight adaptor (<1/15 base policy params) for per-action adaptive denoising step allocation, 2.2x speedup. Claims the adaptor takes visual observations (o_t) and partially denoised actions as input. Verify existence and claims.
+
+Also search for **DA-SIP** (arXiv 2511.20906, NeurIPS 2025) - "Difficulty-Aware Stochastic Interpolant Policy" and verify it exists.
+
+Search arxiv.org for each paper and try to fetch the abstracts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+  "agentId": "ac8c0cf5050439dbb",
+  "type": "user",
+  "uuid": "c4cb0376-913e-4c1a-9098-2aae0f435947",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T19:36:57.231Z_
+
+```json
+{
+  "parentUuid": "c4cb0376-913e-4c1a-9098-2aae0f435947",
+  "isSidechain": true,
+  "agentId": "ac8c0cf5050439dbb",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "ba277882-8218-4262-ac01-9d6159b7d5be",
+  "timestamp": "2026-05-10T19:36:57.231Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-10T19:36:59.666Z_
+
+
+
+I'll search for all three papers in parallel to verify their existence and claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ba277882-8218-4262-ac01-9d6159b7d5be",
+  "isSidechain": true,
+  "agentId": "ac8c0cf5050439dbb",
+  "requestId": "req_011CauT9mvSfLn5X69W5s7Tc",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1d6c9bd1-2cb2-46a1-bc5f-05d20baa3bda",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TqTr4LCbmWk8SXdk15i4Xj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 851,
+      "cache_read_input_tokens": 8223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 851,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-10T19:36:59.841Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01DWZGTBrVbGoY5Y3T5uMdaj`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d6c9bd1-2cb2-46a1-bc5f-05d20baa3bda",
+  "isSidechain": true,
+  "agentId": "ac8c0cf5050439dbb",
+  "requestId": "req_011CauT9mvSfLn5X69W5s7Tc",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9b62db18-ce80-40ff-99c9-12eb17d1d429",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TqTr4LCbmWk8SXdk15i4Xj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 851,
+      "cache_read_input_tokens": 8223,
+      "output_tokens": 97,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 851
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 97,
+          "cache_read_input_tokens": 8223,
+          "cache_creation_input_tokens": 851,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 851,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-10T19:36:59.845Z_
+
+<details><summary>↩ Tool result · `toolu_01DWZGTBrVbGoY5Y3T5uMdaj`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9b62db18-ce80-40ff-99c9-12eb17d1d429",
+  "isSidechain": true,
+  "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+  "agentId": "ac8c0cf5050439dbb",
+  "type": "user",
+  "uuid": "0111c459-a029-4c9d-982c-d275a7daec21",
+  "sourceToolAssistantUUID": "9b62db18-ce80-40ff-99c9-12eb17d1d429",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-10T19:37:02.083Z_
+
+
+
+Now let me search for all three papers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0111c459-a029-4c9d-982c-d275a7daec21",
+  "isSidechain": true,
+  "agentId": "ac8c0cf5050439dbb",
+  "requestId": "req_011CauT9yNGaucnKmh3UXz3p",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5ba6b644-28f8-45a2-a3e9-e8c54d32a28f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015McXDgf62p2yCKTRcsodfN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1906,
+      "cache_read_input_tokens": 9074,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1906,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-10T19:37:03.648Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KCDbndJkc8bQQ1DNPgHsjR`</summary>
+
+```json
+{
+  "query": "arXiv 2605.06222 \"When to Trust Imagination\" FFDC-WAM world action models",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ba6b644-28f8-45a2-a3e9-e8c54d32a28f",
+  "isSidechain": true,
+  "agentId": "ac8c0cf5050439dbb",
+  "requestId": "req_011CauT9yNGaucnKmh3UXz3p",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "99e476b5-b1ee-463e-9652-22e40140203c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015McXDgf62p2yCKTRcsodfN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1906,
+      "cache_read_input_tokens": 9074,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1906,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-10T19:37:05.030Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LLz6q8o4Ue31YohT5xSPJo`</summary>
+
+```json
+{
+  "query": "arXiv 2508.06804 \"Dynamic Denoising Diffusion Policy\" D3P reinforcement learning",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99e476b5-b1ee-463e-9652-22e40140203c",
+  "isSidechain": true,
+  "agentId": "ac8c0cf5050439dbb",
+  "requestId": "req_011CauT9yNGaucnKmh3UXz3p",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "efb85c5c-8a4a-4687-9122-56cbf66ec670",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015McXDgf62p2yCKTRcsodfN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1906,
+      "cache_read_input_tokens": 9074,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1906,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-10T19:37:05.993Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WgZdWXY1jHjedLUNLVNXnN`</summary>
+
+```json
+{
+  "query": "arXiv 2511.20906 \"Difficulty-Aware Stochastic Interpolant Policy\" DA-SIP NeurIPS 2025",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "efb85c5c-8a4a-4687-9122-56cbf66ec670",
+  "isSidechain": true,
+  "agentId": "ac8c0cf5050439dbb",
+  "requestId": "req_011CauT9yNGaucnKmh3UXz3p",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2901317d-e9f9-4e85-b1d9-383eafc687b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015McXDgf62p2yCKTRcsodfN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1906,
+      "cache_read_input_tokens": 9074,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1906
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 9074,
+          "cache_creation_input_tokens": 1906,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1906,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-10T19:37:10.499Z_
+
+<details><summary>↩ Tool result · `toolu_01KCDbndJkc8bQQ1DNPgHsjR`</summary>
+
+```text
+Web search results for query: "arXiv 2605.06222 "When to Trust Imagination" FFDC-WAM world action models"
+
+Links: [{"title":"[2605.06222] When to Trust Imagination: Adaptive Action Execution for World Action Models","url":"https://arxiv.org/abs/2605.06222"},{"title":"When to Trust Imagination: Adaptive Action Execution for World Action Models","url":"https://arxiv.org/html/2605.06222"},{"title":"CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models","url":"https://arxiv.org/html/2605.06247v1"},{"title":"Knowing when to trust machine-learned interatomic potentials","url":"https://arxiv.org/html/2605.00640"},{"title":"Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://arxiv.org/html/2603.16666v1"},{"title":"[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://arxiv.org/abs/2603.16666"},{"title":"[2105.05716v2] Acting upon Imagination: when to trust imagined trajectories in model based reinforcement learning","url":"https://arxiv.org/abs/2105.05716v2"},{"title":"[2605.00640] Knowing when to trust machine-learned interatomic potentials","url":"https://arxiv.org/abs/2605.00640"},{"title":"[2605.01428] Hallucinations Undermine Trust; Metacognition is a Way Forward","url":"https://arxiv.org/abs/2605.01428"},{"title":"Acting upon Imagination: When to Trust Imagined Trajectories in Model Based Reinforcement Learning","url":"https://arxiv.org/html/2105.05716.pdf"}]
+
+I found the paper you're looking for! Here's information about arXiv 2605.06222:
+
+## "When to Trust Imagination: Adaptive Action Execution for World Action Models"
+
+World Action Models (WAMs) have recently emerged as a promising paradigm for robotic manipulation by jointly predicting future visual observations and future actions. However, current WAMs typically execute a fixed number of predicted actions after each model inference, leaving the robot blind to whether the imagined future remains consistent with the actual physical rollout.
+
+### Main Contribution
+
+The work formulates adaptive WAM execution as a future-reality verification problem: the robot should execute longer when the WAM-predicted future remains reliable, and replan earlier when reality deviates from imagination. To this end, the authors propose Future Forward Dynamics Causal Attention (FFDC), a lightweight verifier that jointly reasons over predicted future actions, predicted visual dynamics, real observations, and language instructions to estimate whether the remaining action rollout can still be trusted.
+
+### Key Results
+
+Experiments on the RoboTwin benchmark and in the real world demonstrate that the method achieves a strong robustness-efficiency trade-off: on RoboTwin, it reduces WAM forward passes by 69.10% and execution time by 34.02%, while improving success rate by 2.54% over the short-chunk baseline; in real-world experiments, it improves success rate by 35%.
+
+The paper was uploaded to arXiv on May 7, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "99e476b5-b1ee-463e-9652-22e40140203c",
+  "isSidechain": true,
+  "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+  "agentId": "ac8c0cf5050439dbb",
+  "type": "user",
+  "uuid": "63ae2f55-a4c3-466b-aba4-474e7ef1cb00",
+  "sourceToolAssistantUUID": "99e476b5-b1ee-463e-9652-22e40140203c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-10T19:37:11.685Z_
+
+<details><summary>↩ Tool result · `toolu_01LLz6q8o4Ue31YohT5xSPJo`</summary>
+
+```text
+Web search results for query: "arXiv 2508.06804 "Dynamic Denoising Diffusion Policy" D3P reinforcement learning"
+
+Links: [{"title":"[2508.06804] D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning","url":"https://arxiv.org/abs/2508.06804"},{"title":"D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning","url":"https://arxiv.org/html/2508.06804v1"},{"title":"D3P: Dynamic Denoising Difusion Policy via Reinforcement Learning Shu’ang Yu","url":"https://arxiv.org/pdf/2508.06804"},{"title":"Structured Denoising Diffusion Models in Discrete State-Spaces","url":"https://arxiv.org/pdf/2107.03006"},{"title":"[2006.11239] Denoising Diffusion Probabilistic Models","url":"https://arxiv.org/abs/2006.11239"},{"title":"Denoising Diffusion Probabilistic Models Jonathan Ho UC Berkeley","url":"https://arxiv.org/pdf/2006.11239"},{"title":"Reinforced Diffusion: Learning to Push the Limits of Anisotropic Diffusion for Image Denoising","url":"https://arxiv.org/html/2512.24035"},{"title":"D²PPO: Diffusion Policy Policy Optimization with Dispersive Loss","url":"https://arxiv.org/html/2508.02644"},{"title":"Denoising Diffusion Planner: Learning Complex Paths from Low-Quality Demonstrations","url":"https://arxiv.org/html/2410.21497"},{"title":"Diffusion Policy Policy Optimization","url":"https://arxiv.org/html/2409.00588v3"}]
+
+I found detailed information about the paper arXiv 2508.06804. Here's a summary:
+
+## D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning
+
+D3P (Dynamic Denoising Diffusion Policy) is a diffusion-based policy that adaptively allocates denoising steps across actions at test time.
+
+### Key Motivation
+
+Diffusion policies excel at learning complex action distributions for robotic visuomotor tasks, yet their iterative denoising process poses a major bottleneck for real-time deployment. Robotic tasks often contain a mix of crucial and routine actions, which differ in their impact on task success.
+
+### Technical Approach
+
+D3P uses a lightweight, state-aware adaptor to allocate the optimal number of denoising steps for each action, and jointly optimizes the adaptor and base diffusion policy via reinforcement learning to balance task performance and inference efficiency.
+
+### Results
+
+On simulated tasks, D3P achieves an averaged 2.2× inference speed-up over baselines without degrading success. Furthermore, D3P demonstrates effectiveness on a physical robot, achieving a 1.9× acceleration over the baseline.
+
+The paper was submitted on August 9, 2025, by authors Shu-Ang Yu, Feng Gao, Yi Wu, Chao Yu, and Yu Wang.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "efb85c5c-8a4a-4687-9122-56cbf66ec670",
+  "isSidechain": true,
+  "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+  "agentId": "ac8c0cf5050439dbb",
+  "type": "user",
+  "uuid": "698ccf82-cb23-4587-987e-e6ebbf4e0aa9",
+  "sourceToolAssistantUUID": "efb85c5c-8a4a-4687-9122-56cbf66ec670",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-10T19:37:12.338Z_
+
+<details><summary>↩ Tool result · `toolu_01WgZdWXY1jHjedLUNLVNXnN`</summary>
+
+```text
+Web search results for query: "arXiv 2511.20906 "Difficulty-Aware Stochastic Interpolant Policy" DA-SIP NeurIPS 2025"
+
+Links: [{"title":"[2511.20906] Dynamic Test-Time Compute Scaling in Control Policy: Difficulty-Aware Stochastic Interpolant Policy","url":"https://arxiv.org/abs/2511.20906"},{"title":"Dynamic Test-Time Compute Scaling in Control Policy: Difficulty-Aware Stochastic Interpolant Policy","url":"https://arxiv.org/html/2511.20906v1"},{"title":"Don’t Start from Scratch: Behavioral Refinement via Interpolant-based Policy Diffusion","url":"https://arxiv.org/html/2402.16075v4"},{"title":"Latent Stochastic Interpolants","url":"https://arxiv.org/html/2506.02276v1"},{"title":"Stochastic Interpolants: A Unifying Framework for Flows and Diffusions","url":"https://arxiv.org/html/2303.08797v4"},{"title":"Stochastic Interpolants with Data-Dependent Couplings","url":"https://arxiv.org/html/2310.03725"},{"title":"Multitask Learning with Stochastic Interpolants Hugo Negrel∗","url":"https://arxiv.org/pdf/2508.04605"},{"title":"[2506.02276] Latent Stochastic Interpolants","url":"https://arxiv.org/abs/2506.02276"},{"title":"[2303.08797] Stochastic Interpolants: A Unifying Framework for Flows and Diffusions","url":"https://arxiv.org/abs/2303.08797"},{"title":"Multitask Learning with Stochastic Interpolants","url":"https://arxiv.org/html/2508.04605v1"}]
+
+I found information about the paper arXiv 2511.20906. Here are the key details:
+
+**Paper Title:** Dynamic Test-Time Compute Scaling in Control Policy: Difficulty-Aware Stochastic Interpolant Policy
+
+**Overview:** Difficulty-Aware Stochastic Interpolant Policy (DA-SIP) is a framework that enables robotic controllers to adaptively adjust their integration horizon in real time based on task difficulty.
+
+**Key Features:** The approach employs a difficulty classifier that analyzes observations to dynamically select the step budget, the optimal solver variant, and ODE/SDE integration at each control cycle.
+
+**Performance Results:** DA-SIP achieves 2.6-4.4x reduction in total computation time while maintaining task success rates comparable to fixed maximum-computation baselines. More specifically, the framework achieved an average 3.3-fold reduction with adaptive CNN, 2.7-fold with few-shot VLM, and 2.3-fold with fine-tuned VLM, with performance remaining robust across most methods with average performance differences of only 1.3%, 4.7%, and 1.8% from maximum computation, respectively.
+
+**Publication Date:** The paper was posted on arXiv on November 25, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2901317d-e9f9-4e85-b1d9-383eafc687b2",
+  "isSidechain": true,
+  "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+  "agentId": "ac8c0cf5050439dbb",
+  "type": "user",
+  "uuid": "cd45fd96-019a-4312-b053-837ea7ba1e22",
+  "sourceToolAssistantUUID": "2901317d-e9f9-4e85-b1d9-383eafc687b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-10T19:37:15.163Z_
+
+All three papers were found on arXiv. Now let me fetch the actual abstract pages to verify the specific claims in detail.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd45fd96-019a-4312-b053-837ea7ba1e22",
+  "isSidechain": true,
+  "agentId": "ac8c0cf5050439dbb",
+  "requestId": "req_011CauTAtZKj81Rqz8e3UseC",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b389ab8e-0892-4736-9628-55e1dcb92875",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VT8dvsxGTMseuT6Tqv2V62",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2736,
+      "cache_read_input_tokens": 10980,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2736,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T19:37:18.141Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_012rbQqAdKNDgLmwpUEkdnRB`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.06222",
+  "prompt": "Extract the full abstract, title, authors, submission date, and any specific numerical claims about: (1) percentage reduction in WAM calls, (2) real-world success improvement percentage, (3) any claims about action quality degradation causing task failure with specific success rate numbers like 45% vs 80%."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b389ab8e-0892-4736-9628-55e1dcb92875",
+  "isSidechain": true,
+  "agentId": "ac8c0cf5050439dbb",
+  "requestId": "req_011CauTAtZKj81Rqz8e3UseC",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "78a1ad33-6bc5-4d96-8d05-ecdf4422f94a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VT8dvsxGTMseuT6Tqv2V62",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2736,
+      "cache_read_input_tokens": 10980,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2736,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-10T19:37:20.917Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Vdd9xbcD7wH4AVAeSitV4X`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2508.06804",
+  "prompt": "Extract the full abstract, title, authors, submission date. Specifically check: (1) Does it use PPO to train the adaptor? (2) Is the adaptor less than 1/15 of base policy parameters? (3) Does it achieve 2.2x speedup? (4) Does the adaptor take visual observations (o_t) and partially denoised actions as input? Extract all specific numerical claims."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78a1ad33-6bc5-4d96-8d05-ecdf4422f94a",
+  "isSidechain": true,
+  "agentId": "ac8c0cf5050439dbb",
+  "requestId": "req_011CauTAtZKj81Rqz8e3UseC",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e761cf57-c959-4926-9deb-9c82d59f0ff4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VT8dvsxGTMseuT6Tqv2V62",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2736,
+      "cache_read_input_tokens": 10980,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2736,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-10T19:37:21.990Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XkNSijKA2drFEQ7GnHXrcW`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2511.20906",
+  "prompt": "Extract the full title, authors, abstract, submission date, and whether this paper was accepted at NeurIPS 2025. Check for any venue/conference information."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e761cf57-c959-4926-9deb-9c82d59f0ff4",
+  "isSidechain": true,
+  "agentId": "ac8c0cf5050439dbb",
+  "requestId": "req_011CauTAtZKj81Rqz8e3UseC",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6da95562-4042-459e-aa44-636d4795489b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VT8dvsxGTMseuT6Tqv2V62",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2736,
+      "cache_read_input_tokens": 10980,
+      "output_tokens": 430,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2736
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 430,
+          "cache_read_input_tokens": 10980,
+          "cache_creation_input_tokens": 2736,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2736,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T19:37:23.085Z_
+
+<details><summary>↩ Tool result · `toolu_012rbQqAdKNDgLmwpUEkdnRB`</summary>
+
+```text
+# Research Paper Summary
+
+**Title:** "When to Trust Imagination: Adaptive Action Execution for World Action Models"
+
+**Authors:** Rui Wang, Yue Zhang, Jiehong Lin, Kuncheng Luo, Jianan Wang, Zhongrui Wang, Xiaojuan Qi
+
+**Submission Date:** May 7, 2026
+
+**Abstract:** The paper addresses how robots should determine when to trust predicted futures from World Action Models. The team proposes FFDC (Future Forward Dynamics Causal Attention), a lightweight verification system that monitors whether predicted outcomes align with actual observations, enabling dynamic adjustment of action execution lengths.
+
+## Key Numerical Claims:
+
+1. **WAM Forward Pass Reduction:** "reduces WAM forward passes by 69.10%" on the RoboTwin benchmark
+
+2. **Execution Time Improvement:** "execution time by 34.02%" reduction on RoboTwin
+
+3. **Real-World Success Rate:** "it improves success rate by 35%" in real-world experiments
+
+4. **Benchmark Performance:** Achieves "2.54% over the short-chunk baseline" success rate improvement on RoboTwin
+
+The paper does not contain specific comparative success rate percentages (such as 45% vs 80%) regarding action quality degradation causing task failure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "78a1ad33-6bc5-4d96-8d05-ecdf4422f94a",
+  "isSidechain": true,
+  "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+  "agentId": "ac8c0cf5050439dbb",
+  "type": "user",
+  "uuid": "4350a671-7e69-4d5c-9842-e45e127d8cc4",
+  "sourceToolAssistantUUID": "78a1ad33-6bc5-4d96-8d05-ecdf4422f94a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-10T19:37:25.970Z_
+
+<details><summary>↩ Tool result · `toolu_01XkNSijKA2drFEQ7GnHXrcW`</summary>
+
+```text
+# Paper Summary
+
+**Full Title:** Dynamic Test-Time Compute Scaling in Control Policy: Difficulty-Aware Stochastic Interpolant Policy
+
+**Authors:** Inkook Chun, Seungjae Lee, Michael S. Albergo, Saining Xie, Eric Vanden-Eijnden
+
+**Submission Date:** November 25, 2025
+
+**Abstract:** The paper presents a framework enabling robotic controllers to dynamically adjust computational budgets based on task difficulty. The approach employs "a difficulty classifier that analyzes observations to dynamically select the step budget" and achieves "2.6-4.4x reduction in total computation time while maintaining task success rates comparable to fixed maximum-computation baselines."
+
+**Venue/Conference Status:** No acceptance information is provided on this arXiv page. The paper is classified under Computer Science > Robotics (cs.RO) and Artificial Intelligence (cs.AI) but contains no mention of NeurIPS 2025 or any other conference acceptance. This appears to be a recent preprint submission only.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6da95562-4042-459e-aa44-636d4795489b",
+  "isSidechain": true,
+  "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+  "agentId": "ac8c0cf5050439dbb",
+  "type": "user",
+  "uuid": "c64c52fc-dd58-46e3-b078-bf82d4c7fcab",
+  "sourceToolAssistantUUID": "6da95562-4042-459e-aa44-636d4795489b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-10T19:37:26.113Z_
+
+<details><summary>↩ Tool result · `toolu_01Vdd9xbcD7wH4AVAeSitV4X`</summary>
+
+```text
+# D3P Paper Extraction
+
+**Title:** D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning
+
+**Authors:** Shu-Ang Yu, Feng Gao, Yi Wu, Chao Yu, Yu Wang
+
+**Submission Date:** August 9, 2025
+
+**Abstract:** "Diffusion policies excel at learning complex action distributions for robotic visuomotor tasks, yet their iterative denoising process poses a major bottleneck" for deployment. The paper proposes D3P, which "adaptively allocates denoising steps across actions at test time" using "a lightweight, state-aware adaptor."
+
+---
+
+## Answers to Specific Questions:
+
+**(1) PPO training for adaptor?** 
+Not stated in the provided content. The abstract mentions "jointly optimize the adaptor and base diffusion policy via reinforcement learning" but does not specify the algorithm.
+
+**(2) Adaptor <1/15 of base policy parameters?**
+Not stated in the provided content.
+
+**(3) 2.2x speedup achieved?**
+Yes. The abstract states: "D3P achieves an averaged 2.2× inference speed-up over baselines without degrading success."
+
+**(4) Adaptor takes visual observations (o_t) and partially denoised actions as input?**
+Not specified in the provided content.
+
+---
+
+## Numerical Claims:
+- 2.2× simulated inference speed-up
+- 1.9× physical robot acceleration
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e761cf57-c959-4926-9deb-9c82d59f0ff4",
+  "isSidechain": true,
+  "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+  "agentId": "ac8c0cf5050439dbb",
+  "type": "user",
+  "uuid": "27df80cb-0ae7-4066-9822-c140139b6664",
+  "sourceToolAssistantUUID": "e761cf57-c959-4926-9deb-9c82d59f0ff4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-10T19:37:29.643Z_
+
+Let me fetch the full HTML version of the D3P paper to check the specific claims about PPO, parameter count, and input format.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "27df80cb-0ae7-4066-9822-c140139b6664",
+  "isSidechain": true,
+  "agentId": "ac8c0cf5050439dbb",
+  "requestId": "req_011CauTBuSBprQdCqcSTeFSd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "26739aa1-6f41-4509-8103-00d6e61ff253",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QgBA8F7RBXyFjCLisqQdyP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 270,
+      "cache_creation_input_tokens": 1229,
+      "cache_read_input_tokens": 13716,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1229,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-10T19:37:32.581Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015z4Rx89DLdrYw5oxfcrY64`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2508.06804v1",
+  "prompt": "Search for these specific details: (1) Is the reinforcement learning algorithm PPO? Look for mentions of PPO, Proximal Policy Optimization, or other RL algorithm names. (2) What is the parameter count of the adaptor relative to the base policy? Look for fractions like 1/15, percentages, or parameter counts. (3) What inputs does the adaptor take? Does it take visual observations (o_t) and partially denoised actions? Look for descriptions of the adaptor's input. (4) Any claims about action quality degradation or 45% vs 80% success rates."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26739aa1-6f41-4509-8103-00d6e61ff253",
+  "isSidechain": true,
+  "agentId": "ac8c0cf5050439dbb",
+  "requestId": "req_011CauTBuSBprQdCqcSTeFSd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ce83eb1e-bdfa-4384-9a82-053aeb634656",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QgBA8F7RBXyFjCLisqQdyP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 270,
+      "cache_creation_input_tokens": 1229,
+      "cache_read_input_tokens": 13716,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1229,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-10T19:37:35.166Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01DZh2EKPrU7gUgxLBBPer1Z`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2605.06222",
+  "prompt": "Search for specific claims about: (1) action quality degradation causing task failure with numbers like 45% vs 80% success rates, (2) the verifier being described as a Transformer, (3) verification happening BETWEEN WAM calls, (4) the term 'lightweight Transformer verifier'. Look through the full paper for these specific numerical comparisons."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ce83eb1e-bdfa-4384-9a82-053aeb634656",
+  "isSidechain": true,
+  "agentId": "ac8c0cf5050439dbb",
+  "requestId": "req_011CauTBuSBprQdCqcSTeFSd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "94d03998-9785-4742-8d54-a2cf712acd67",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QgBA8F7RBXyFjCLisqQdyP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 270,
+      "cache_creation_input_tokens": 1229,
+      "cache_read_input_tokens": 13716,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1229,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-10T19:37:37.228Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01QQz5k3U9oaD1JL6GD1uks8`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2511.20906v1",
+  "prompt": "Check if this paper mentions NeurIPS 2025 acceptance anywhere, including in headers, footers, acknowledgments, or any conference mention. Also check if the abbreviation DA-SIP is used in the paper."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "94d03998-9785-4742-8d54-a2cf712acd67",
+  "isSidechain": true,
+  "agentId": "ac8c0cf5050439dbb",
+  "requestId": "req_011CauTBuSBprQdCqcSTeFSd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "cd465567-d053-48f3-bb91-7688eb725fad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QgBA8F7RBXyFjCLisqQdyP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 270,
+      "cache_creation_input_tokens": 1229,
+      "cache_read_input_tokens": 13716,
+      "output_tokens": 501,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1229
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 270,
+          "output_tokens": 501,
+          "cache_read_input_tokens": 13716,
+          "cache_creation_input_tokens": 1229,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1229,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-10T19:37:38.521Z_
+
+<details><summary>↩ Tool result · `toolu_015z4Rx89DLdrYw5oxfcrY64`</summary>
+
+```text
+# D3P: Dynamic Denoising Diffusion Policy Analysis
+
+## 1. Reinforcement Learning Algorithm
+
+Yes, the method uses PPO. The document states: **"we update Kω with PPO (Schulman et al. [2017])"** and describes using both PPO for the adaptor and DPPO (Diffusion Policy Policy Optimization) for the base policy. The adaptor training employs **"clipped PPO loss"** with standard policy gradient optimization.
+
+## 2. Adaptor Parameter Count
+
+The adaptor is significantly smaller than the base policy. The paper specifies: **"our lightweight adaptor has fewer than 1/15 the parameters of the base policy."** This lightweight design enables efficient deployment without substantial computational overhead during inference.
+
+## 3. Adaptor Inputs
+
+The adaptor takes two key inputs: the current observation and intermediate denoising state. Specifically, it **"observes (ot, Xti) and outputs a stride"** where ot is the environment observation and Xti represents the partially denoised action at noise level i. Based on these inputs, the adaptor predicts noise-level strides to control denoising steps dynamically.
+
+## 4. Performance Claims
+
+The paper demonstrates maintained performance with acceleration. D3P achieves **"an averaged 2.2× inference speed-up over baselines without degrading success"** and **"matches or surpasses the peak performance of the 10-step DPPO baseline"** across evaluated tasks. Real-world deployment showed **"1.9× acceleration"** while maintaining task success rates above 90%.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ce83eb1e-bdfa-4384-9a82-053aeb634656",
+  "isSidechain": true,
+  "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+  "agentId": "ac8c0cf5050439dbb",
+  "type": "user",
+  "uuid": "e359d38a-2538-4f0d-86d4-5ad604cd67af",
+  "sourceToolAssistantUUID": "ce83eb1e-bdfa-4384-9a82-053aeb634656",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-10T19:37:40.740Z_
+
+<details><summary>↩ Tool result · `toolu_01QQz5k3U9oaD1JL6GD1uks8`</summary>
+
+```text
+# Analysis of Paper Content
+
+## NeurIPS 2025 Acceptance
+
+**No mention of NeurIPS 2025 acceptance** is found anywhere in this document. The paper does not reference acceptance to any 2025 conference in headers, footers, acknowledgments, or elsewhere. The most recent conference citations are from 2024 (ECCV, ICLR, NeurIPS).
+
+## DA-SIP Abbreviation Usage
+
+**Yes, the abbreviation DA-SIP is extensively used throughout the paper.** It appears in:
+
+- The title: "Difficulty-Aware Stochastic Interpolant Policy"
+- Abstract: "we introduce _Difficulty-Aware Stochastic Interpolant Policy (DA-SIP)_"
+- Multiple section headings and the conclusion
+- Figure captions and table references
+- The framework description: "DA-SIP achieves 2.6–4.4× reduction in total computation"
+
+The term functions as the paper's central contribution identifier.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cd465567-d053-48f3-bb91-7688eb725fad",
+  "isSidechain": true,
+  "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+  "agentId": "ac8c0cf5050439dbb",
+  "type": "user",
+  "uuid": "2367d5f6-cdea-4da1-92e2-ec35967b22a1",
+  "sourceToolAssistantUUID": "cd465567-d053-48f3-bb91-7688eb725fad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-10T19:37:41.115Z_
+
+<details><summary>↩ Tool result · `toolu_01DZh2EKPrU7gUgxLBBPer1Z`</summary>
+
+```text
+# Summary of Key Claims in "When to Trust Imagination"
+
+## (1) Action Quality Degradation & Success Rates
+
+The paper demonstrates dramatic improvements through adaptive execution:
+
+**Real-world results (Table 2):** LC-16 baseline achieves 45% average success rate, while FFDC-WAM reaches 80% on the same tasks—a 35 percentage point improvement. The authors specifically note: "Compared with LC-16, FFDC-WAM improves the average success rate from 45% to 80% on both tasks."
+
+**Simulation results (Table 1):** On hard tasks under random conditions, success rate improves from 54.20% (Base-Motus) to 76.40% (FFDC-WAM).
+
+## (2) Verifier Architecture
+
+The verifier is explicitly described as transformer-based: "FFDC is implemented as an NN-layer Transformer with a structured Boolean visibility matrix M, where M(i,j)=1 means token xi can attend to token xj."
+
+## (3) Verification Timing
+
+Verification occurs *during* action execution between WAM inference calls. The paper states: "After executing part of the current chunk, the verifier takes the latest observation, predicted future actions, predicted future visual tokens, and instruction as input" to decide whether to continue or replan.
+
+## (4) "Lightweight Transformer Verifier"
+
+The term appears directly in the abstract and methodology: "we propose Future Forward Dynamics Causal Attention (FFDC), a lightweight verifier" that enables adaptive execution without expensive full WAM reruns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "94d03998-9785-4742-8d54-a2cf712acd67",
+  "isSidechain": true,
+  "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+  "agentId": "ac8c0cf5050439dbb",
+  "type": "user",
+  "uuid": "574bef39-f218-485c-a93e-3a2301d09395",
+  "sourceToolAssistantUUID": "94d03998-9785-4742-8d54-a2cf712acd67",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-10T19:38:08.984Z_
+
+Excellent. I now have thorough verification data for all three papers. Here is the full report.
+
+---
+
+## Verification Results
+
+### 1. FFDC-WAM (arXiv 2605.06222, May 2026)
+
+**Existence: CONFIRMED.** The paper exists at [arxiv.org/abs/2605.06222](https://arxiv.org/abs/2605.06222), submitted May 7, 2026.
+
+**Title:** "When to Trust Imagination: Adaptive Action Execution for World Action Models"
+**Authors:** Rui Wang, Yue Zhang, Jiehong Lin, Kuncheng Luo, Jianan Wang, Zhongrui Wang, Xiaojuan Qi
+
+**Claim-by-claim verification:**
+
+| Claim in proposal | Verified? | Notes |
+|---|---|---|
+| Lightweight Transformer verifier | **CONFIRMED** | Paper describes FFDC as a Transformer with structured Boolean visibility matrix |
+| Checks predicted video vs real observations BETWEEN WAM calls | **CONFIRMED** | Verification occurs during action execution between WAM inference calls |
+| 69% fewer WAM calls | **CONFIRMED** | Paper states "reduces WAM forward passes by 69.10%" on RoboTwin |
+| 35% real-world success improvement | **CONFIRMED** | Real-world success rate improves by 35 percentage points |
+| 45% vs 80% success without/with verification | **CONFIRMED** | Table 2 shows LC-16 baseline at 45% average success, FFDC-WAM at 80% |
+| "Action quality degradation directly causes task failure" framing | **PARTIALLY CONFIRMED** | The 45% vs 80% numbers are real, but they compare a fixed-chunk baseline (LC-16) against FFDC-WAM, not strictly "without/with verification" in the way the proposal implies. The paper frames this as adaptive vs. fixed execution, not purely a verification ablation. |
+
+---
+
+### 2. D3P (arXiv 2508.06804, Aug 2025)
+
+**Existence: CONFIRMED.** The paper exists at [arxiv.org/abs/2508.06804](https://arxiv.org/abs/2508.06804), submitted August 9, 2025.
+
+**Title:** "D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning"
+**Authors:** Shu-Ang Yu, Feng Gao, Yi Wu, Chao Yu, Yu Wang
+
+**Claim-by-claim verification:**
+
+| Claim in proposal | Verified? | Notes |
+|---|---|---|
+| PPO-trained adaptor | **CONFIRMED** | Paper states "we update K_omega with PPO" using clipped PPO loss |
+| Adaptor <1/15 base policy params | **CONFIRMED** | Paper explicitly states "our lightweight adaptor has fewer than 1/15 the parameters of the base policy" |
+| 2.2x speedup | **CONFIRMED** | Paper states "an averaged 2.2x inference speed-up over baselines without degrading success" |
+| Adaptor takes visual observations (o_t) and partially denoised actions | **CONFIRMED** | Paper states it "observes (o_t, X_t^i)" where o_t is the environment observation and X_t^i is the partially denoised action at noise level i |
+
+All claims about D3P check out accurately.
+
+---
+
+### 3. DA-SIP (arXiv 2511.20906, NeurIPS 2025)
+
+**Existence: CONFIRMED.** The paper exists at [arxiv.org/abs/2511.20906](https://arxiv.org/abs/2511.20906), submitted November 25, 2025.
+
+**Title:** "Dynamic Test-Time Compute Scaling in Control Policy: Difficulty-Aware Stochastic Interpolant Policy"
+**Authors:** Inkook Chun, Seungjae Lee, Michael S. Albergo, Saining Xie, Eric Vanden-Eijnden
+
+**NeurIPS 2025 acceptance: NOT CONFIRMED.** The arXiv page and HTML version contain no mention of NeurIPS 2025 acceptance. It appears to be an arXiv preprint only as of the information available. The proposal's claim that this was published at NeurIPS 2025 cannot be verified from the paper itself.
+
+The abbreviation "DA-SIP" is used extensively throughout the paper, confirming the naming.
+
+---
+
+## Summary
+
+- **FFDC-WAM**: Exists, all major numerical claims verified. Minor caveat: the 45% vs 80% comparison is between a fixed-chunk baseline and FFDC-WAM, not a pure ablation of verification on/off.
+- **D3P**: Exists, all four specific claims (PPO, <1/15 params, 2.2x speedup, input format) are accurate.
+- **DA-SIP**: Exists on arXiv, but NeurIPS 2025 acceptance is **not confirmed** from the paper itself.
+
+Sources:
+- [FFDC-WAM (arXiv 2605.06222)](https://arxiv.org/abs/2605.06222)
+- [D3P (arXiv 2508.06804)](https://arxiv.org/abs/2508.06804)
+- [DA-SIP (arXiv 2511.20906)](https://arxiv.org/abs/2511.20906)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "574bef39-f218-485c-a93e-3a2301d09395",
+  "isSidechain": true,
+  "agentId": "ac8c0cf5050439dbb",
+  "requestId": "req_011CauTD1c3HeCnjnLp8FLLx",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7bedd56a-7902-44c6-98e2-2265b6b7cdda",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J2aWVbi89GKGRQpHfu6Jsi",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 258,
+      "cache_creation_input_tokens": 1550,
+      "cache_read_input_tokens": 14945,
+      "output_tokens": 1315,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1550
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 258,
+          "output_tokens": 1315,
+          "cache_read_input_tokens": 14945,
+          "cache_creation_input_tokens": 1550,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1550,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---

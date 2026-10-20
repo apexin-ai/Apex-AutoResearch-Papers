@@ -1,0 +1,7682 @@
+# Research conversation: Complete the research direction below with implementation details. **Today's date: 2026-05-11 (UTC).** Only recommend ve
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 125
+- **Recorded user turns:** 1
+- **Tool calls:** 29
+- **Original source:** `logs/chats/exported-trajectories/account-3/461ad37f-ce07-4a00-a32b-b8a7506190ed.jsonl`
+- **Structured JSON:** [`59b7ebef66a1cd28e131.json`](../../sessions/59/59b7ebef66a1cd28e131.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-11T22:55:18.036Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-11T22:55:18.036Z",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "content": "Complete the research direction below with implementation details.\n\n**Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.\n\n{\n  \"title\": \"Learned Simulation Gating for Cost-Aware Agent Planning\",\n  \"core_problem\": \"Agents with access to lookahead simulation invoke it in fewer than 1% of opportunities and misuse it ~15% of the time, sometimes degrading performance by 5%. How to train agents to decide when simulation is cost-beneficial, at the per-step level within agent trajectories?\",\n  \"opportunity\": \"'Current Agents Fail to Leverage World Model as Tool for Foresight' (January 2026) identifies three bottlenecks: agents can't decide WHEN to simulate, can't interpret predictions, and can't integrate foresight — but proposes no training solution. Imagine-then-Plan (ITP) introduces adaptive lookahead but uses heuristic rules (estimated progress + goal distance), not a learned invocation policy. Adaptive Thinking (ICLR 2026) allocates thinking budgets per query via a lightweight adapter, but operates at query level, not at step level within multi-turn agent trajectories. The gap: a learned, step-level gating mechanism that predicts whether simulation will improve action quality enough to justify its compute cost, trained with RL from environment feedback.\",\n  \"landscape\": \"Imagine-then-Plan (2026) adapts lookahead depth via rule-based heuristics — estimated task progress and goal distance determine simulation horizon — achieving gains on embodied tasks but without learning the invocation decision itself. WebWorld (2026) provides a trained world model for web agents but applies simulation unconditionally. The Agentic World Modeling survey (April 2026) defines three capability levels (Predictor→Simulator→Evolver) but all assume the agent always uses the world model when available. Adaptive Thinking (ICLR 2026) uses a Sonata adapter with <1‰ overhead for per-query compute allocation but doesn't operate at the step level within trajectories. The analysis finding that forced simulation sometimes hurts performance by 5% confirms that the gating decision is critical — not just when to use simulation, but when NOT to.\"\n}\n\nADD these fields (keep all existing fields):\n{\n  \"approach\": \"Proposed method or research direction — what you would actually do (3-5 sentences)\",\n  \"resource_estimate\": {\n      \"manual\": {\n          \"gpu_hours\": \"e.g. ~200h A100\",\n          \"gpu_utilization\": \"describe GPU idle rate (human waits cause high idle)\",\n          \"timeline\": \"e.g. 3-6 months\",\n          \"team\": \"e.g. 1-2 researchers\",\n          \"estimated_gpu_cost\": \"GPU rental cost only (do NOT include salary)\"\n      },\n      \"human_in_loop\": {\n          \"gpu_hours\": \"e.g. ~300h A100\",\n          \"gpu_utilization\": \"describe GPU utilization improvement vs manual\",\n          \"timeline\": \"e.g. 1-2 months\",\n          \"team\": \"e.g. 1 researcher, ~30min/day check-in (do NOT include salary)\",\n          \"claude_api_cost\": \"e.g. $100-300\",\n          \"estimated_gpu_cost\": \"GPU rental cost\",\n          \"risk_note\": \"Key bottleneck or risk\"\n      },\n      \"auto_research\": {\n          \"gpu_hours\": \"e.g. ~500h A100 (more exploration, but near-zero idle)\",\n          \"gpu_utilization\": \"describe why GPU idle rate is minimal\",\n          \"timeline\": \"e.g. days to 2 weeks if resources are sufficient\",\n          \"team\": \"0 (only initial setup)\",\n          \"claude_api_cost\": \"e.g. $200-500\",\n          \"estimated_gpu_cost\": \"GPU rental cost\",\n          \"speed_bottleneck\": \"what limits speed (GPU count, API key quota, etc.)\",\n          \"risk_note\": \"Key risk factor\"\n      }\n  },\n  \"target_venues\": [\"Only list venues with deadlines after 2026-05-11, e.g. NeurIPS 2026\"],\n  \"level\": \"top-tier | solid | incremental\",\n  \"key_references\": [\"Paper title (VENUE YEAR)\", ...],\n  \"description\": \"Executive summary combining all above into 150-200 words\",\n  \"project_name\": \"snake_case_identifier (valid Python id, max 30 chars)\",\n  \"source\": \"web_research\"\n}\n\nFor key_references, verify with WebSearch that cited paper titles and venues are real. Drop any reference you cannot verify.\n\n**Model freshness rule**: When the approach involves pretrained models (LLM, vision model, etc.), use WebSearch to find the current top-performing open-source models for the task (e.g., search \"best open source LLM 2026\", \"SOTA open source language model\"). Use models that represent the current frontier — do NOT default to models from your training data. Entire model families may be outdated (e.g., LLaMA), not just version numbers. Exception: skip this if the idea specifically requires older models (reproduction, model evolution analysis, backward compatibility) or the user explicitly specified a model in the seed topic.\n\n## 竞争论文 & Concurrent Work 搜索\n\n在设计 approach 之前，必须确认没有人正在做同样的事情：\n- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`\n- 在 arXiv 上搜索过去 3 个月的相关提交\n- 在 OpenReview 上搜索即将举行的会议（ICML, NeurIPS, ICLR）的提交\n- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及，并在 approach 中说明与之的差异化\n\n## 非常仔细地思考和验证\n\n在设计具体 approach 时，你必须深入思考并充分调研：\n\n1. **可行性验证**（不是猜测，而是基于证据）：\n   - 搜索类似方法的已有实现（检查 GitHub）\n   - 查找需要打败的具体 baseline 数字\n   - 了解类似实验的硬件/数据需求\n   - 查找相关工作中已识别的潜在失败模式\n\n2. **成本估算必须基于真实数据**：\n   - 找到类似实验的实际成本（不是拍脑袋）\n   - 考虑不同研究模式下的成本差异\n\n3. **内部一致性自查**：\n   - approach 是否直接解决 Round 1 识别的 core_problem？\n   - resource estimate 与 approach 复杂度是否匹配？\n   - target venues 与贡献级别是否相称？\n\nFor feasibility grounding:\n- Search \"github.com {method_name} {task}\" to check if building blocks or reference implementations exist.\n  If nothing similar exists, your timeline estimate should be longer.\n- Search \"huggingface.co/datasets {dataset_name}\" or \"paperswithcode.com {task} datasets\" to verify\n  that required datasets are actually accessible. If the dataset is proprietary or hard to obtain, flag it.\n\nWhen estimating costs for the three research modes (ordered from most to least human involvement):\n\n1. **Manual (纯人工)**: Human writes code, designs experiments, analyzes results. GPU idle rate is HIGH because GPU waits for humans. Do NOT include salary — only estimate GPU cost.\n\n2. **Human-in-Loop (人机协作)**: Agent executes, human approves key decisions. GPU utilization is moderate. Do NOT include salary — only estimate GPU cost + API cost. Team field describes required check-in frequency.\n\n3. **Auto Research (全自动)**: Agent runs 24/7, explores more experiments but GPU idle rate is near ZERO. Speed bottleneck is GPU count and API key quota — with sufficient resources, a paper can be completed in DAYS. Only estimate GPU cost + API cost. Do NOT factor in agent operational overhead.\n\nKey principles:\n- Auto Research uses MORE total GPU hours but has MUCH LOWER GPU idle rate\n- Claude API cost: ~$0.05-0.15 per conversation turn (Opus), estimate total turns needed\n- Auto mode typically runs 3-5x more experiments than manual (exploration + failed attempts)\n- Human-in-Loop reduces auto mode waste by ~40-60% through approval gates\n\nOutput ONLY a single JSON object with ALL fields merged. No markdown fences."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-11T22:55:18.040Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-11T22:55:18.040Z",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+## Round 1
+
+123 recorded events
+
+### User
+
+_source line 3 · 2026-05-11T22:55:18.063Z_
+
+Complete the research direction below with implementation details.
+
+**Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.
+
+{
+  "title": "Learned Simulation Gating for Cost-Aware Agent Planning",
+  "core_problem": "Agents with access to lookahead simulation invoke it in fewer than 1% of opportunities and misuse it ~15% of the time, sometimes degrading performance by 5%. How to train agents to decide when simulation is cost-beneficial, at the per-step level within agent trajectories?",
+  "opportunity": "'Current Agents Fail to Leverage World Model as Tool for Foresight' (January 2026) identifies three bottlenecks: agents can't decide WHEN to simulate, can't interpret predictions, and can't integrate foresight — but proposes no training solution. Imagine-then-Plan (ITP) introduces adaptive lookahead but uses heuristic rules (estimated progress + goal distance), not a learned invocation policy. Adaptive Thinking (ICLR 2026) allocates thinking budgets per query via a lightweight adapter, but operates at query level, not at step level within multi-turn agent trajectories. The gap: a learned, step-level gating mechanism that predicts whether simulation will improve action quality enough to justify its compute cost, trained with RL from environment feedback.",
+  "landscape": "Imagine-then-Plan (2026) adapts lookahead depth via rule-based heuristics — estimated task progress and goal distance determine simulation horizon — achieving gains on embodied tasks but without learning the invocation decision itself. WebWorld (2026) provides a trained world model for web agents but applies simulation unconditionally. The Agentic World Modeling survey (April 2026) defines three capability levels (Predictor→Simulator→Evolver) but all assume the agent always uses the world model when available. Adaptive Thinking (ICLR 2026) uses a Sonata adapter with <1‰ overhead for per-query compute allocation but doesn't operate at the step level within trajectories. The analysis finding that forced simulation sometimes hurts performance by 5% confirms that the gating decision is critical — not just when to use simulation, but when NOT to."
+}
+
+ADD these fields (keep all existing fields):
+{
+  "approach": "Proposed method or research direction — what you would actually do (3-5 sentences)",
+  "resource_estimate": {
+      "manual": {
+          "gpu_hours": "e.g. ~200h A100",
+          "gpu_utilization": "describe GPU idle rate (human waits cause high idle)",
+          "timeline": "e.g. 3-6 months",
+          "team": "e.g. 1-2 researchers",
+          "estimated_gpu_cost": "GPU rental cost only (do NOT include salary)"
+      },
+      "human_in_loop": {
+          "gpu_hours": "e.g. ~300h A100",
+          "gpu_utilization": "describe GPU utilization improvement vs manual",
+          "timeline": "e.g. 1-2 months",
+          "team": "e.g. 1 researcher, ~30min/day check-in (do NOT include salary)",
+          "claude_api_cost": "e.g. $100-300",
+          "estimated_gpu_cost": "GPU rental cost",
+          "risk_note": "Key bottleneck or risk"
+      },
+      "auto_research": {
+          "gpu_hours": "e.g. ~500h A100 (more exploration, but near-zero idle)",
+          "gpu_utilization": "describe why GPU idle rate is minimal",
+          "timeline": "e.g. days to 2 weeks if resources are sufficient",
+          "team": "0 (only initial setup)",
+          "claude_api_cost": "e.g. $200-500",
+          "estimated_gpu_cost": "GPU rental cost",
+          "speed_bottleneck": "what limits speed (GPU count, API key quota, etc.)",
+          "risk_note": "Key risk factor"
+      }
+  },
+  "target_venues": ["Only list venues with deadlines after 2026-05-11, e.g. NeurIPS 2026"],
+  "level": "top-tier | solid | incremental",
+  "key_references": ["Paper title (VENUE YEAR)", ...],
+  "description": "Executive summary combining all above into 150-200 words",
+  "project_name": "snake_case_identifier (valid Python id, max 30 chars)",
+  "source": "web_research"
+}
+
+For key_references, verify with WebSearch that cited paper titles and venues are real. Drop any reference you cannot verify.
+
+**Model freshness rule**: When the approach involves pretrained models (LLM, vision model, etc.), use WebSearch to find the current top-performing open-source models for the task (e.g., search "best open source LLM 2026", "SOTA open source language model"). Use models that represent the current frontier — do NOT default to models from your training data. Entire model families may be outdated (e.g., LLaMA), not just version numbers. Exception: skip this if the idea specifically requires older models (reproduction, model evolution analysis, backward compatibility) or the user explicitly specified a model in the seed topic.
+
+## 竞争论文 & Concurrent Work 搜索
+
+在设计 approach 之前，必须确认没有人正在做同样的事情：
+- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`
+- 在 arXiv 上搜索过去 3 个月的相关提交
+- 在 OpenReview 上搜索即将举行的会议（ICML, NeurIPS, ICLR）的提交
+- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及，并在 approach 中说明与之的差异化
+
+## 非常仔细地思考和验证
+
+在设计具体 approach 时，你必须深入思考并充分调研：
+
+1. **可行性验证**（不是猜测，而是基于证据）：
+   - 搜索类似方法的已有实现（检查 GitHub）
+   - 查找需要打败的具体 baseline 数字
+   - 了解类似实验的硬件/数据需求
+   - 查找相关工作中已识别的潜在失败模式
+
+2. **成本估算必须基于真实数据**：
+   - 找到类似实验的实际成本（不是拍脑袋）
+   - 考虑不同研究模式下的成本差异
+
+3. **内部一致性自查**：
+   - approach 是否直接解决 Round 1 识别的 core_problem？
+   - resource estimate 与 approach 复杂度是否匹配？
+   - target venues 与贡献级别是否相称？
+
+For feasibility grounding:
+- Search "github.com {method_name} {task}" to check if building blocks or reference implementations exist.
+  If nothing similar exists, your timeline estimate should be longer.
+- Search "huggingface.co/datasets {dataset_name}" or "paperswithcode.com {task} datasets" to verify
+  that required datasets are actually accessible. If the dataset is proprietary or hard to obtain, flag it.
+
+When estimating costs for the three research modes (ordered from most to least human involvement):
+
+1. **Manual (纯人工)**: Human writes code, designs experiments, analyzes results. GPU idle rate is HIGH because GPU waits for humans. Do NOT include salary — only estimate GPU cost.
+
+2. **Human-in-Loop (人机协作)**: Agent executes, human approves key decisions. GPU utilization is moderate. Do NOT include salary — only estimate GPU cost + API cost. Team field describes required check-in frequency.
+
+3. **Auto Research (全自动)**: Agent runs 24/7, explores more experiments but GPU idle rate is near ZERO. Speed bottleneck is GPU count and API key quota — with sufficient resources, a paper can be completed in DAYS. Only estimate GPU cost + API cost. Do NOT factor in agent operational overhead.
+
+Key principles:
+- Auto Research uses MORE total GPU hours but has MUCH LOWER GPU idle rate
+- Claude API cost: ~$0.05-0.15 per conversation turn (Opus), estimate total turns needed
+- Auto mode typically runs 3-5x more experiments than manual (exploration + failed attempts)
+- Human-in-Loop reduces auto mode waste by ~40-60% through approval gates
+
+Output ONLY a single JSON object with ALL fields merged. No markdown fences.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "856e7eb1-237b-476e-b9e9-4f67fccd388e",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-11T22:55:18.062Z_
+
+```json
+{
+  "parentUuid": "856e7eb1-237b-476e-b9e9-4f67fccd388e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "779b4f9f-fc95-4555-b3a2-6155197a4c84",
+  "timestamp": "2026-05-11T22:55:18.062Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-11T22:55:18.062Z_
+
+```json
+{
+  "parentUuid": "779b4f9f-fc95-4555-b3a2-6155197a4c84",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "b0e84d57-dd03-4d3b-a996-90e75fbfbed5",
+  "timestamp": "2026-05-11T22:55:18.062Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learn step-level simulation gating for agents",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-11T22:55:23.408Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to complete a research direction with implementation details. I need to:
+
+1. Search for concurrent work on learned simulation gating for agent planning
+2. Verify references and find real paper titles/venues
+3. Check for current top-performing open-source models
+4. Search for existing implementations and datasets
+5. Find venue deadlines
+6. Compile everything into a single JSON object
+
+Let me start by launching several parallel searches to gather the information I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0e84d57-dd03-4d3b-a996-90e75fbfbed5",
+  "isSidechain": false,
+  "requestId": "req_011Cawc5xeZESQRWFgxgntLf",
+  "type": "assistant",
+  "uuid": "3a6cadb8-e386-4df3-aeb0-04233c9899e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0187y6BsFXJpjHnitZUMaX6M",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7229,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 506,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7229,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 506,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 7229,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7229
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-11T22:55:24.309Z_
+
+I'll research concurrent work, verify references, check venue deadlines, and find current SOTA models before designing the approach. Let me launch several parallel searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a6cadb8-e386-4df3-aeb0-04233c9899e1",
+  "isSidechain": false,
+  "requestId": "req_011Cawc5xeZESQRWFgxgntLf",
+  "type": "assistant",
+  "uuid": "8f29f05a-4886-4253-983b-76e52e47bef9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0187y6BsFXJpjHnitZUMaX6M",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7229,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 506,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7229,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 506,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 7229,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7229
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-11T22:55:31.548Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_014CpLJ649zJypNgUAzjTYLN`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search concurrent work on learned simulation gating",
+  "prompt": "I'm researching whether anyone has published or is working on \"learned simulation gating for agent planning\" — the idea of training a model to decide at each step whether to invoke a world model/simulator before acting, based on predicted cost-benefit.\n\nUse WebSearch to find:\n1. Search \"learned simulation gating agent planning 2026\" \n2. Search \"when to simulate agent world model learned policy 2026\"\n3. Search \"adaptive simulation invocation reinforcement learning agent 2026\"\n4. Search arxiv for \"simulation gating agent\" recent papers\n5. Search \"selective world model usage agent planning\"\n6. Search OpenReview for ICML 2026 or NeurIPS 2026 submissions related to \"world model gating\" or \"adaptive simulation\"\n\nFor each result, note: title, authors, venue, date, and how similar it is to the idea of a LEARNED per-step gating mechanism that decides when simulation is cost-beneficial.\n\nReport all findings, even if only tangentially related. I need to know if this exact idea has been done.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f29f05a-4886-4253-983b-76e52e47bef9",
+  "isSidechain": false,
+  "requestId": "req_011Cawc5xeZESQRWFgxgntLf",
+  "type": "assistant",
+  "uuid": "27ef16fb-9956-43bd-b3a5-4da5e2ce3b98",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0187y6BsFXJpjHnitZUMaX6M",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7229,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 506,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7229,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 506,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 7229,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7229
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-11T22:55:31.558Z_
+
+<details><summary>↩ Tool result · `toolu_014CpLJ649zJypNgUAzjTYLN`</summary>
+
+```text
+Async agent launched successfully.
+agentId: ad830bba72692fbd4 (internal ID - do not mention to user. Use SendMessage with to: 'ad830bba72692fbd4' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-/461ad37f-ce07-4a00-a32b-b8a7506190ed/tasks/ad830bba72692fbd4.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "27ef16fb-9956-43bd-b3a5-4da5e2ce3b98",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "1a9576d5-2b93-4913-945e-41d49c40a9f4",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "ad830bba72692fbd4",
+    "description": "Search concurrent work on learned simulation gating",
+    "prompt": "I'm researching whether anyone has published or is working on \"learned simulation gating for agent planning\" — the idea of training a model to decide at each step whether to invoke a world model/simulator before acting, based on predicted cost-benefit.\n\nUse WebSearch to find:\n1. Search \"learned simulation gating agent planning 2026\" \n2. Search \"when to simulate agent world model learned policy 2026\"\n3. Search \"adaptive simulation invocation reinforcement learning agent 2026\"\n4. Search arxiv for \"simulation gating agent\" recent papers\n5. Search \"selective world model usage agent planning\"\n6. Search OpenReview for ICML 2026 or NeurIPS 2026 submissions related to \"world model gating\" or \"adaptive simulation\"\n\nFor each result, note: title, authors, venue, date, and how similar it is to the idea of a LEARNED per-step gating mechanism that decides when simulation is cost-beneficial.\n\nReport all findings, even if only tangentially related. I need to know if this exact idea has been done.",
+    "outputFile": "/tmp/claude-1000/-/461ad37f-ce07-4a00-a32b-b8a7506190ed/tasks/ad830bba72692fbd4.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "27ef16fb-9956-43bd-b3a5-4da5e2ce3b98",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-11T22:55:42.468Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_015TQdutJYVs5QtQH6pBX45v`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify paper references and venues",
+  "prompt": "I need to verify that the following papers are real and find their correct venue/year. Use WebSearch for each:\n\n1. \"Imagine-then-Plan\" (2026) — about adaptive lookahead for embodied agents using rule-based heuristics (estimated progress + goal distance)\n2. \"WebWorld\" (2026) — trained world model for web agents\n3. \"Agentic World Modeling\" survey (April 2026) — defines Predictor→Simulator→Evolver capability levels\n4. \"Adaptive Thinking\" (ICLR 2026) — uses a Sonata adapter for per-query compute allocation\n5. \"Current Agents Fail to Leverage World Model as Tool for Foresight\" (January 2026)\n\nFor each paper:\n- Search the exact title or close variants\n- Confirm venue (arxiv, conference, workshop)\n- Note the actual date of publication\n- Note if the title/venue/year is incorrect\n\nAlso search for any other highly relevant papers on:\n- \"world model for agent planning\" 2025-2026\n- \"when to think agent\" 2025-2026\n- \"compute allocation agent trajectories\" 2025-2026\n\nReport findings with exact titles, authors (first author at minimum), arxiv IDs if available, and confirmed venues.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1a9576d5-2b93-4913-945e-41d49c40a9f4",
+  "isSidechain": false,
+  "requestId": "req_011Cawc6wze7LdMYj8BWkaP6",
+  "type": "assistant",
+  "uuid": "4945f071-dcc5-4dfc-afb4-bbb0af5b5e4b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JnbH3vTNruB9XyGvZdym2P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 738,
+      "cache_read_input_tokens": 19033,
+      "output_tokens": 415,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 738,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 415,
+          "cache_read_input_tokens": 19033,
+          "cache_creation_input_tokens": 738,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 738
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-11T22:55:42.479Z_
+
+<details><summary>↩ Tool result · `toolu_015TQdutJYVs5QtQH6pBX45v`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a985b1c240b8bea32 (internal ID - do not mention to user. Use SendMessage with to: 'a985b1c240b8bea32' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-/461ad37f-ce07-4a00-a32b-b8a7506190ed/tasks/a985b1c240b8bea32.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4945f071-dcc5-4dfc-afb4-bbb0af5b5e4b",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "5b2411f3-e9b7-4b8b-86c4-b678798d02b5",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a985b1c240b8bea32",
+    "description": "Verify paper references and venues",
+    "prompt": "I need to verify that the following papers are real and find their correct venue/year. Use WebSearch for each:\n\n1. \"Imagine-then-Plan\" (2026) — about adaptive lookahead for embodied agents using rule-based heuristics (estimated progress + goal distance)\n2. \"WebWorld\" (2026) — trained world model for web agents\n3. \"Agentic World Modeling\" survey (April 2026) — defines Predictor→Simulator→Evolver capability levels\n4. \"Adaptive Thinking\" (ICLR 2026) — uses a Sonata adapter for per-query compute allocation\n5. \"Current Agents Fail to Leverage World Model as Tool for Foresight\" (January 2026)\n\nFor each paper:\n- Search the exact title or close variants\n- Confirm venue (arxiv, conference, workshop)\n- Note the actual date of publication\n- Note if the title/venue/year is incorrect\n\nAlso search for any other highly relevant papers on:\n- \"world model for agent planning\" 2025-2026\n- \"when to think agent\" 2025-2026\n- \"compute allocation agent trajectories\" 2025-2026\n\nReport findings with exact titles, authors (first author at minimum), arxiv IDs if available, and confirmed venues.",
+    "outputFile": "/tmp/claude-1000/-/461ad37f-ce07-4a00-a32b-b8a7506190ed/tasks/a985b1c240b8bea32.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "4945f071-dcc5-4dfc-afb4-bbb0af5b5e4b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Learned Simul…",
+  "leafUuid": "5b2411f3-e9b7-4b8b-86c4-b678798d02b5",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learn step-level simulation gating for agents",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-11T22:56:00.426Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_013F2T4wrvz2SkaEuxT52ibY`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Check venue deadlines and SOTA models",
+  "prompt": "I need two things:\n\n**Part 1: Conference Deadlines**\nUse WebSearch to find submission deadlines for these ML/AI venues. Today is 2026-05-11. I need venues whose deadlines have NOT yet passed.\n\nSearch for each:\n1. \"NeurIPS 2026 submission deadline\"\n2. \"ICML 2026 submission deadline\" \n3. \"ICLR 2027 submission deadline\"\n4. \"AAAI 2027 submission deadline\"\n5. \"AAMAS 2027 submission deadline\"\n6. \"CoRL 2026 submission deadline\"\n7. \"EMNLP 2026 submission deadline\"\n8. \"NeurIPS 2026 workshop submission deadline\"\n9. \"COLM 2026 submission deadline\"\n\nFor each, report the exact deadline date and whether it's before or after 2026-05-11.\n\n**Part 2: Current SOTA Open-Source Models**\nSearch for:\n1. \"best open source LLM 2026\" or \"SOTA open source language model 2026\"\n2. \"best open source small language model 2026\" (for the gating module — needs to be lightweight)\n3. \"top open source reasoning model 2026\"\n\nI need to know what the current frontier open-source models are as of May 2026, so the research approach can reference appropriate models. Report model names, sizes, and who released them.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b2411f3-e9b7-4b8b-86c4-b678798d02b5",
+  "isSidechain": false,
+  "requestId": "req_011Cawc7kiGFin3myryL94hE",
+  "type": "assistant",
+  "uuid": "61f3e0b6-67c2-4559-9834-54996b1f8ff0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ujjbqEDfBj9Yh7YvELeZn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 652,
+      "cache_read_input_tokens": 19771,
+      "output_tokens": 456,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 652,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 456,
+          "cache_read_input_tokens": 19771,
+          "cache_creation_input_tokens": 652,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 652
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-11T22:56:00.441Z_
+
+<details><summary>↩ Tool result · `toolu_013F2T4wrvz2SkaEuxT52ibY`</summary>
+
+```text
+Async agent launched successfully.
+agentId: abed907ee37d30984 (internal ID - do not mention to user. Use SendMessage with to: 'abed907ee37d30984' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-/461ad37f-ce07-4a00-a32b-b8a7506190ed/tasks/abed907ee37d30984.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "61f3e0b6-67c2-4559-9834-54996b1f8ff0",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "c536a466-f45e-43e0-92a3-df6c626ece14",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "abed907ee37d30984",
+    "description": "Check venue deadlines and SOTA models",
+    "prompt": "I need two things:\n\n**Part 1: Conference Deadlines**\nUse WebSearch to find submission deadlines for these ML/AI venues. Today is 2026-05-11. I need venues whose deadlines have NOT yet passed.\n\nSearch for each:\n1. \"NeurIPS 2026 submission deadline\"\n2. \"ICML 2026 submission deadline\" \n3. \"ICLR 2027 submission deadline\"\n4. \"AAAI 2027 submission deadline\"\n5. \"AAMAS 2027 submission deadline\"\n6. \"CoRL 2026 submission deadline\"\n7. \"EMNLP 2026 submission deadline\"\n8. \"NeurIPS 2026 workshop submission deadline\"\n9. \"COLM 2026 submission deadline\"\n\nFor each, report the exact deadline date and whether it's before or after 2026-05-11.\n\n**Part 2: Current SOTA Open-Source Models**\nSearch for:\n1. \"best open source LLM 2026\" or \"SOTA open source language model 2026\"\n2. \"best open source small language model 2026\" (for the gating module — needs to be lightweight)\n3. \"top open source reasoning model 2026\"\n\nI need to know what the current frontier open-source models are as of May 2026, so the research approach can reference appropriate models. Report model names, sizes, and who released them.",
+    "outputFile": "/tmp/claude-1000/-/461ad37f-ce07-4a00-a32b-b8a7506190ed/tasks/abed907ee37d30984.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "61f3e0b6-67c2-4559-9834-54996b1f8ff0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-11T22:56:15.192Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01Ap4jT4QasJ8S8tbZ6y75Rz`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search implementations and datasets",
+  "prompt": "I'm researching feasibility for a project on \"learned simulation gating for agent planning\" — training a small model to decide per-step whether an agent should invoke its world model/simulator before acting.\n\nUse WebSearch to find:\n\n**Existing Implementations:**\n1. Search \"github.com world model agent planning\" for reference implementations\n2. Search \"github.com adaptive simulation agent reinforcement learning\"\n3. Search \"github.com imagine-then-plan agent\" \n4. Search \"github.com WebWorld web agent world model\"\n5. Search \"github.com agent world model gating\"\n\n**Datasets and Benchmarks:**\n1. Search \"ALFWorld benchmark agent planning\" — is it accessible?\n2. Search \"WebArena benchmark\" — is it accessible?\n3. Search \"ScienceWorld benchmark agent\" — is it accessible?\n4. Search \"huggingface.co/datasets agent trajectories world model\"\n5. Search \"paperswithcode.com agent planning benchmarks 2026\"\n6. Search \"AgentBench benchmark 2025 2026\"\n\n**Cost References:**\n1. Search \"training cost reinforcement learning agent LLM 2026\" or \"RL fine-tuning LLM GPU hours\"\n2. Search \"world model training cost GPU hours\"\n3. Search \"A100 rental cost per hour 2026\"\n\nReport what you find for each, noting which implementations/datasets are publicly available and any cost figures you find.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c536a466-f45e-43e0-92a3-df6c626ece14",
+  "isSidechain": false,
+  "requestId": "req_011Cawc95bM5n57ZwYvYSBWt",
+  "type": "assistant",
+  "uuid": "49332a67-b0e9-456f-a8ad-897937f7ac94",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HCukc3zCQ3n36sYccKbKXT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 684,
+      "cache_read_input_tokens": 20423,
+      "output_tokens": 446,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 684,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 446,
+          "cache_read_input_tokens": 20423,
+          "cache_creation_input_tokens": 684,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 684
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-11T22:56:15.207Z_
+
+<details><summary>↩ Tool result · `toolu_01Ap4jT4QasJ8S8tbZ6y75Rz`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a8491b8b116e4202f (internal ID - do not mention to user. Use SendMessage with to: 'a8491b8b116e4202f' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-/461ad37f-ce07-4a00-a32b-b8a7506190ed/tasks/a8491b8b116e4202f.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "49332a67-b0e9-456f-a8ad-897937f7ac94",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "00a8224a-255c-48a0-a800-f9699ac82a0b",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a8491b8b116e4202f",
+    "description": "Search implementations and datasets",
+    "prompt": "I'm researching feasibility for a project on \"learned simulation gating for agent planning\" — training a small model to decide per-step whether an agent should invoke its world model/simulator before acting.\n\nUse WebSearch to find:\n\n**Existing Implementations:**\n1. Search \"github.com world model agent planning\" for reference implementations\n2. Search \"github.com adaptive simulation agent reinforcement learning\"\n3. Search \"github.com imagine-then-plan agent\" \n4. Search \"github.com WebWorld web agent world model\"\n5. Search \"github.com agent world model gating\"\n\n**Datasets and Benchmarks:**\n1. Search \"ALFWorld benchmark agent planning\" — is it accessible?\n2. Search \"WebArena benchmark\" — is it accessible?\n3. Search \"ScienceWorld benchmark agent\" — is it accessible?\n4. Search \"huggingface.co/datasets agent trajectories world model\"\n5. Search \"paperswithcode.com agent planning benchmarks 2026\"\n6. Search \"AgentBench benchmark 2025 2026\"\n\n**Cost References:**\n1. Search \"training cost reinforcement learning agent LLM 2026\" or \"RL fine-tuning LLM GPU hours\"\n2. Search \"world model training cost GPU hours\"\n3. Search \"A100 rental cost per hour 2026\"\n\nReport what you find for each, noting which implementations/datasets are publicly available and any cost figures you find.",
+    "outputFile": "/tmp/claude-1000/-/461ad37f-ce07-4a00-a32b-b8a7506190ed/tasks/a8491b8b116e4202f.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "49332a67-b0e9-456f-a8ad-897937f7ac94",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-11T22:56:20.141Z_
+
+I've launched 4 parallel research agents to:
+1. Search for concurrent/competing work on learned simulation gating
+2. Verify all cited paper references
+3. Check venue deadlines and current SOTA models
+4. Find existing implementations, datasets, and cost references
+
+I'll compile the results once all agents complete.
+
+Now let me wait for results to come back. I'll also do a direct search for a key piece of information.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "00a8224a-255c-48a0-a800-f9699ac82a0b",
+  "isSidechain": false,
+  "requestId": "req_011CawcAAeyofv2XFsCecmdh",
+  "type": "assistant",
+  "uuid": "9b0e0404-05d2-4986-935c-a142306167ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012wB3bi9HYHs4NHd6m2sucG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 682,
+      "cache_read_input_tokens": 21107,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 682,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 21107,
+          "cache_creation_input_tokens": 682,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 682
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-11T22:56:20.277Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016ZTxErpbEr6tDMqiA8qdRE`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b0e0404-05d2-4986-935c-a142306167ce",
+  "isSidechain": false,
+  "requestId": "req_011CawcAAeyofv2XFsCecmdh",
+  "type": "assistant",
+  "uuid": "6b2f5232-7401-464e-94b1-46cf05025912",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012wB3bi9HYHs4NHd6m2sucG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 682,
+      "cache_read_input_tokens": 21107,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 682,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 21107,
+          "cache_creation_input_tokens": 682,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 682
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-11T22:56:20.280Z_
+
+<details><summary>↩ Tool result · `toolu_016ZTxErpbEr6tDMqiA8qdRE`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6b2f5232-7401-464e-94b1-46cf05025912",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "512bce51-f007-4c9b-83fb-631897fcfa45",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "6b2f5232-7401-464e-94b1-46cf05025912",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-11T22:56:22.862Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me wait for the agents to complete. They're running in the background and I'll be notified when they finish.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "512bce51-f007-4c9b-83fb-631897fcfa45",
+  "isSidechain": false,
+  "requestId": "req_011CawcAYWP1srbai7dhBZ1S",
+  "type": "assistant",
+  "uuid": "2329f582-65da-451d-9dbd-7982e00b0375",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGh1ed1w93brz1vuPTe9M9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 697,
+      "cache_read_input_tokens": 21789,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 697,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 21789,
+          "cache_creation_input_tokens": 697,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 697
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-11T22:56:23.806Z_
+
+Good, the WebSearch tool is loaded. Let me do a couple of additional targeted searches while waiting for the agents.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2329f582-65da-451d-9dbd-7982e00b0375",
+  "isSidechain": false,
+  "requestId": "req_011CawcAYWP1srbai7dhBZ1S",
+  "type": "assistant",
+  "uuid": "fcd21741-7344-4620-826f-7f4311804ba3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGh1ed1w93brz1vuPTe9M9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 697,
+      "cache_read_input_tokens": 21789,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 697,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 21789,
+          "cache_creation_input_tokens": 697,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 697
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-11T22:56:24.808Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UnB1JvzQzt5Sn8Bc5gLWVb`</summary>
+
+```json
+{
+  "query": "learned gating mechanism when to simulate world model agent 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fcd21741-7344-4620-826f-7f4311804ba3",
+  "isSidechain": false,
+  "requestId": "req_011CawcAYWP1srbai7dhBZ1S",
+  "type": "assistant",
+  "uuid": "7bdc41d7-ce8a-4ead-a58d-81573ef9d42f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGh1ed1w93brz1vuPTe9M9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 697,
+      "cache_read_input_tokens": 21789,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 697,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 21789,
+          "cache_creation_input_tokens": 697,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 697
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-11T22:56:24.955Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011XVjnUoj4USUuhbvpDc27g`</summary>
+
+```json
+{
+  "query": "NeurIPS 2026 paper submission deadline date"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7bdc41d7-ce8a-4ead-a58d-81573ef9d42f",
+  "isSidechain": false,
+  "requestId": "req_011CawcAYWP1srbai7dhBZ1S",
+  "type": "assistant",
+  "uuid": "452ca1ac-7a3b-49e1-a0a8-df079de032c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGh1ed1w93brz1vuPTe9M9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 697,
+      "cache_read_input_tokens": 21789,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 697,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 21789,
+          "cache_creation_input_tokens": 697,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 697
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-11T22:56:27.989Z_
+
+<details><summary>↩ Tool result · `toolu_011XVjnUoj4USUuhbvpDc27g`</summary>
+
+```text
+Web search results for query: "NeurIPS 2026 paper submission deadline date"
+
+Links: [{"title":"Call for Papers 2026","url":"https://neurips.cc/Conferences/2026/CallForPapers"},{"title":"2026 Dates and Deadlines","url":"https://neurips.cc/Conferences/2026/Dates"},{"title":"2026 Conference","url":"https://neurips.cc/Conferences/2026"},{"title":"NeurIPS 2026 Evaluations & Datasets Track Call for Papers","url":"https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"},{"title":"NeurIPS 2026","url":"https://neurips.cc/"},{"title":"2026 Conference – NeurIPS Blog","url":"https://blog.neurips.cc/category/2026-conference/"},{"title":"Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"},{"title":"NeurIPS 2026 Call For Competitions","url":"https://neurips.cc/Conferences/2026/CallForCompetitions"},{"title":"NeurIPS Conference on X: \"The NeurIPS 2026 submission site opening has been moved to April 15th. Note that all tracks (Main Submission, Evaluations &amp; Datasets, and Position Papers) share the same dates. The final submission deadlines remain unchanged: • Paper Abstracts: May 4th (AOE) • Full Papers:\" / X","url":"https://x.com/NeurIPSConf/status/2041303457554940336"},{"title":"NeurIPS/ICLR/ICML Journal-to-Conference Track","url":"https://neurips.cc/public/JournalToConference"}]
+
+Based on the search results, here are the NeurIPS 2026 paper submission deadline dates:
+
+The abstract submission deadline is May 4, 2026 (AOE), and the full paper submission deadline, including all supplementary materials, is May 6, 2026 AOE.
+
+These deadlines apply to all submission tracks, including the main track, evaluations and datasets track, and position papers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "452ca1ac-7a3b-49e1-a0a8-df079de032c5",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "2a4849ce-3cd3-4767-b692-9548a53be846",
+  "toolUseResult": {
+    "query": "NeurIPS 2026 paper submission deadline date",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HFjAGY8piqjywMQKjYXqu4",
+        "content": [
+          {
+            "title": "Call for Papers 2026",
+            "url": "https://neurips.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://neurips.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "2026 Conference",
+            "url": "https://neurips.cc/Conferences/2026"
+          },
+          {
+            "title": "NeurIPS 2026 Evaluations & Datasets Track Call for Papers",
+            "url": "https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"
+          },
+          {
+            "title": "NeurIPS 2026",
+            "url": "https://neurips.cc/"
+          },
+          {
+            "title": "2026 Conference – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/category/2026-conference/"
+          },
+          {
+            "title": "Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"
+          },
+          {
+            "title": "NeurIPS 2026 Call For Competitions",
+            "url": "https://neurips.cc/Conferences/2026/CallForCompetitions"
+          },
+          {
+            "title": "NeurIPS Conference on X: \"The NeurIPS 2026 submission site opening has been moved to April 15th. Note that all tracks (Main Submission, Evaluations &amp; Datasets, and Position Papers) share the same dates. The final submission deadlines remain unchanged: • Paper Abstracts: May 4th (AOE) • Full Papers:\" / X",
+            "url": "https://x.com/NeurIPSConf/status/2041303457554940336"
+          },
+          {
+            "title": "NeurIPS/ICLR/ICML Journal-to-Conference Track",
+            "url": "https://neurips.cc/public/JournalToConference"
+          }
+        ]
+      },
+      "Based on the search results, here are the NeurIPS 2026 paper submission deadline dates:\n\nThe abstract submission deadline is May 4, 2026 (AOE), and the full paper submission deadline, including all supplementary materials, is May 6, 2026 AOE.\n\nThese deadlines apply to all submission tracks, including the main track, evaluations and datasets track, and position papers."
+    ],
+    "durationSeconds": 3.0321145299999914
+  },
+  "sourceToolAssistantUUID": "452ca1ac-7a3b-49e1-a0a8-df079de032c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-11T22:56:30.995Z_
+
+<details><summary>↩ Tool result · `toolu_01UnB1JvzQzt5Sn8Bc5gLWVb`</summary>
+
+```text
+Web search results for query: "learned gating mechanism when to simulate world model agent 2026 arxiv"
+
+Links: [{"title":"Current Agents Fail to Leverage World Model as Tool for Foresight","url":"https://arxiv.org/html/2601.03905"},{"title":"Awesome-World-Models/README.md at main · leofan90/Awesome-World-Models","url":"https://github.com/leofan90/Awesome-World-Models/blob/main/README.md"},{"title":"[2604.22748] Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond","url":"https://arxiv.org/abs/2604.22748"},{"title":"General agents contain world models","url":"https://arxiv.org/pdf/2506.01622"},{"title":"Aligning Agentic World Models via Knowledgeable Experience Learning","url":"https://arxiv.org/pdf/2601.13247"},{"title":"Understanding World or Predicting Future? A Comprehensive Survey of World Models","url":"https://arxiv.org/html/2411.14499v3"},{"title":"Multiagent Systems Apr 2026","url":"https://arxiv.org/list/cs.MA/current"},{"title":"Multiagent Systems","url":"https://arxiv.org/list/cs.MA/recent"},{"title":"Uncovering Untapped Potential in Sample-Efficient World Model Agents","url":"https://arxiv.org/html/2502.11537v3"},{"title":"GitHub - leofan90/Awesome-World-Models: A comprehensive list of papers for the definition of World Models and using World Models for General Video Generation, Embodied AI, and Autonomous Driving, including papers, codes, and related websites. · GitHub","url":"https://github.com/leofan90/Awesome-World-Models"}]
+
+Based on the search results, I found relevant recent papers from 2026 on world models and agents. The most directly relevant paper appears to be "Current Agents Fail to Leverage World Model as Tool for Foresight" which explores whether agents can explicitly invoke a learned world model as a tool for planning, allowing agents to optionally simulate candidate actions in a predictive model before committing to them.
+
+However, I did not find a specific paper with "learned gating mechanism when to simulate world model agent" in the exact phrasing of your query. The search results show several relevant 2026 arxiv papers on world models and agents, including:
+
+1. "Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond" which discusses how agents that manipulate objects, navigate software, or design experiments require predictive environment models
+
+2. "Uncovering Untapped Potential in Sample-Efficient World Model Agents" which introduces Simulus, a modular token-based world model agent that integrates multiple components and achieves state-of-the-art sample efficiency for planning-free world models
+
+If you're looking for a specific paper with a learned gating mechanism for deciding when to simulate, you may want to try a more specific search with the paper title or authors, or check if the paper uses different terminology for this mechanism.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7bdc41d7-ce8a-4ead-a58d-81573ef9d42f",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "e07c8aae-3de8-40eb-8183-cc8fc84e194b",
+  "toolUseResult": {
+    "query": "learned gating mechanism when to simulate world model agent 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NustfqSD5iAszbJfiiRShg",
+        "content": [
+          {
+            "title": "Current Agents Fail to Leverage World Model as Tool for Foresight",
+            "url": "https://arxiv.org/html/2601.03905"
+          },
+          {
+            "title": "Awesome-World-Models/README.md at main · leofan90/Awesome-World-Models",
+            "url": "https://github.com/leofan90/Awesome-World-Models/blob/main/README.md"
+          },
+          {
+            "title": "[2604.22748] Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond",
+            "url": "https://arxiv.org/abs/2604.22748"
+          },
+          {
+            "title": "General agents contain world models",
+            "url": "https://arxiv.org/pdf/2506.01622"
+          },
+          {
+            "title": "Aligning Agentic World Models via Knowledgeable Experience Learning",
+            "url": "https://arxiv.org/pdf/2601.13247"
+          },
+          {
+            "title": "Understanding World or Predicting Future? A Comprehensive Survey of World Models",
+            "url": "https://arxiv.org/html/2411.14499v3"
+          },
+          {
+            "title": "Multiagent Systems Apr 2026",
+            "url": "https://arxiv.org/list/cs.MA/current"
+          },
+          {
+            "title": "Multiagent Systems",
+            "url": "https://arxiv.org/list/cs.MA/recent"
+          },
+          {
+            "title": "Uncovering Untapped Potential in Sample-Efficient World Model Agents",
+            "url": "https://arxiv.org/html/2502.11537v3"
+          },
+          {
+            "title": "GitHub - leofan90/Awesome-World-Models: A comprehensive list of papers for the definition of World Models and using World Models for General Video Generation, Embodied AI, and Autonomous Driving, including papers, codes, and related websites. · GitHub",
+            "url": "https://github.com/leofan90/Awesome-World-Models"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant recent papers from 2026 on world models and agents. The most directly relevant paper appears to be \"Current Agents Fail to Leverage World Model as Tool for Foresight\" which explores whether agents can explicitly invoke a learned world model as a tool for planning, allowing agents to optionally simulate candidate actions in a predictive model before committing to them.\n\nHowever, I did not find a specific paper with \"learned gating mechanism when to simulate world model agent\" in the exact phrasing of your query. The search results show several relevant 2026 arxiv papers on world models and agents, including:\n\n1. \"Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond\" which discusses how agents that manipulate objects, navigate software, or design experiments require predictive environment models\n\n2. \"Uncovering Untapped Potential in Sample-Efficient World Model Agents\" which introduces Simulus, a modular token-based world model agent that integrates multiple components and achieves state-of-the-art sample efficiency for planning-free world models\n\nIf you're looking for a specific paper with a learned gating mechanism for deciding when to simulate, you may want to try a more specific search with the paper title or authors, or check if the paper uses different terminology for this mechanism."
+    ],
+    "durationSeconds": 6.184944867999992
+  },
+  "sourceToolAssistantUUID": "7bdc41d7-ce8a-4ead-a58d-81573ef9d42f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28 · 2026-05-11T22:56:31.001Z_
+
+```json
+{
+  "parentUuid": "e07c8aae-3de8-40eb-8183-cc8fc84e194b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2a1eed1f-06dc-48a7-8f24-1afbbdfac797",
+  "timestamp": "2026-05-11T22:56:31.001Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-11T22:56:33.930Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+NeurIPS 2026 deadline was May 4/May 6, 2026 — that's already passed (today is May 11). Let me search for other venues.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a1eed1f-06dc-48a7-8f24-1afbbdfac797",
+  "isSidechain": false,
+  "requestId": "req_011CawcBL7mvBwCT5kYSPArM",
+  "type": "assistant",
+  "uuid": "dad8f8ff-d407-48bf-8a9c-32c911f50cdf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y8et67pa4ME99L91NiZ12t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 629,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 22486,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1077,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 629,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 22486,
+          "cache_creation_input_tokens": 1077,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1077
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-11T22:56:34.949Z_
+
+NeurIPS 2026 deadline already passed (May 6). Let me search for more venue deadlines and do additional concurrent work searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dad8f8ff-d407-48bf-8a9c-32c911f50cdf",
+  "isSidechain": false,
+  "requestId": "req_011CawcBL7mvBwCT5kYSPArM",
+  "type": "assistant",
+  "uuid": "99f51a31-782c-41ad-860e-18288c321799",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y8et67pa4ME99L91NiZ12t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 629,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 22486,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1077,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 629,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 22486,
+          "cache_creation_input_tokens": 1077,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1077
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-11T22:56:35.438Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Y4EV3aws76PjN37nqUKrSw`</summary>
+
+```json
+{
+  "query": "ICML 2026 paper submission deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99f51a31-782c-41ad-860e-18288c321799",
+  "isSidechain": false,
+  "requestId": "req_011CawcBL7mvBwCT5kYSPArM",
+  "type": "assistant",
+  "uuid": "54e17b18-e4c5-4704-8a32-2db3aa0564c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y8et67pa4ME99L91NiZ12t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 629,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 22486,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1077,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 629,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 22486,
+          "cache_creation_input_tokens": 1077,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1077
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-11T22:56:35.923Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RGxaAAP22WKLmHs1ddmNiZ`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 submission deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "54e17b18-e4c5-4704-8a32-2db3aa0564c1",
+  "isSidechain": false,
+  "requestId": "req_011CawcBL7mvBwCT5kYSPArM",
+  "type": "assistant",
+  "uuid": "5cdc6012-5371-4c9d-b241-1bac703304b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y8et67pa4ME99L91NiZ12t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 629,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 22486,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1077,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 629,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 22486,
+          "cache_creation_input_tokens": 1077,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1077
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-11T22:56:35.926Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PfrvZSKZPECP13kcmC1aLe`</summary>
+
+```json
+{
+  "query": "ICLR 2027 submission deadline date"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5cdc6012-5371-4c9d-b241-1bac703304b5",
+  "isSidechain": false,
+  "requestId": "req_011CawcBL7mvBwCT5kYSPArM",
+  "type": "assistant",
+  "uuid": "65fc6117-8d02-4c54-a20b-34787690d735",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y8et67pa4ME99L91NiZ12t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 629,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 22486,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1077,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 629,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 22486,
+          "cache_creation_input_tokens": 1077,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1077
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-11T22:56:36.348Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BixRSw8GBR4MUtVuAhKRur`</summary>
+
+```json
+{
+  "query": "AAAI 2027 submission deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65fc6117-8d02-4c54-a20b-34787690d735",
+  "isSidechain": false,
+  "requestId": "req_011CawcBL7mvBwCT5kYSPArM",
+  "type": "assistant",
+  "uuid": "d623b3e7-6893-46a7-aa58-588c886e7fe3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y8et67pa4ME99L91NiZ12t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 629,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 22486,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1077,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 629,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 22486,
+          "cache_creation_input_tokens": 1077,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1077
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Learned Simul…",
+  "leafUuid": "d623b3e7-6893-46a7-aa58-588c886e7fe3",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learn step-level simulation gating for agents",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-11T22:56:39.625Z_
+
+<details><summary>↩ Tool result · `toolu_01RGxaAAP22WKLmHs1ddmNiZ`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 submission deadline"
+
+Links: [{"title":"The 2026 Conference on Empirical Methods in Natural Language Processing - EMNLP 2026","url":"https://2026.emnlp.org/"},{"title":"EMNLP 2026 Conference | OpenReview","url":"https://openreview.net/group?id=EMNLP%2F2026%2FConference"},{"title":"2026 *ACL Conference Dates | Computational Linguistics","url":"https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting"},{"title":"Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"Joint Call for Tutorial Proposals (EMNLP/AACL-IJCNLP 2026) | ACL Member Portal","url":"https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-emnlpaacl-ijcnlp-2026"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"}]
+
+Based on the search results, here's the EMNLP 2026 submission deadline information:
+
+The ARR (ACL Rolling Review) submission deadline for long and short papers is May 25, 2026. Additionally, the reviewer registration deadline for all authors is May 27, 2026.
+
+The 2026 Conference on Empirical Methods in Natural Language Processing (EMNLP 2026) will be held in Budapest, Hungary from October 24th to October 29th, 2026.
+
+Other important dates for EMNLP 2026 include:
+- Author response period: July 7-13, 2026
+- Meta review released: July 30, 2026
+- EMNLP commitment deadline: August 2, 2026
+- Notification of acceptance: August 20, 2026
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5cdc6012-5371-4c9d-b241-1bac703304b5",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "2067ba06-a2c6-4ac7-8943-501a5085cbde",
+  "toolUseResult": {
+    "query": "EMNLP 2026 submission deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RYqDn84H693gu9ppRapTKf",
+        "content": [
+          {
+            "title": "The 2026 Conference on Empirical Methods in Natural Language Processing - EMNLP 2026",
+            "url": "https://2026.emnlp.org/"
+          },
+          {
+            "title": "EMNLP 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=EMNLP%2F2026%2FConference"
+          },
+          {
+            "title": "2026 *ACL Conference Dates | Computational Linguistics",
+            "url": "https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "EMNLP 2026 (@emnlpmeeting) / Posts / X",
+            "url": "https://x.com/emnlpmeeting"
+          },
+          {
+            "title": "Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "Joint Call for Tutorial Proposals (EMNLP/AACL-IJCNLP 2026) | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-emnlpaacl-ijcnlp-2026"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          }
+        ]
+      },
+      "Based on the search results, here's the EMNLP 2026 submission deadline information:\n\nThe ARR (ACL Rolling Review) submission deadline for long and short papers is May 25, 2026. Additionally, the reviewer registration deadline for all authors is May 27, 2026.\n\nThe 2026 Conference on Empirical Methods in Natural Language Processing (EMNLP 2026) will be held in Budapest, Hungary from October 24th to October 29th, 2026.\n\nOther important dates for EMNLP 2026 include:\n- Author response period: July 7-13, 2026\n- Meta review released: July 30, 2026\n- EMNLP commitment deadline: August 2, 2026\n- Notification of acceptance: August 20, 2026"
+    ],
+    "durationSeconds": 3.699068895000004
+  },
+  "sourceToolAssistantUUID": "5cdc6012-5371-4c9d-b241-1bac703304b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-11T22:56:39.780Z_
+
+<details><summary>↩ Tool result · `toolu_01BixRSw8GBR4MUtVuAhKRur`</summary>
+
+```text
+Web search results for query: "AAAI 2027 submission deadline"
+
+Links: [{"title":"AAAI Conference on Artificial Intelligence - AAAI","url":"https://aaai.org/conference/aaai/"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AAAI 2027 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf","url":"https://www.underleaf.ai/templates/aaai"},{"title":"Key deadlines in AI and ML conferences","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...","url":"https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"},{"title":"AAAI Conference on Artificial Intelligence","url":"http://aideadlines.org/conference/?id=aaai27"}]
+
+Based on the search results, here's what I found about the AAAI 2027 submission deadline:
+
+The Forty-first Conference on Artificial Intelligence will be held in Montréal, Québec, Canada from February 16-23, 2027. However, the AAAI 2027 paper submission deadline is TBD (To Be Determined).
+
+That said, submission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns. For the official and most up-to-date information, you can check the official AAAI 2027 call for papers at https://aaai.org/conference/aaai/aaai-27/.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d623b3e7-6893-46a7-aa58-588c886e7fe3",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "ec115648-3776-471d-aa78-96c20509d3fd",
+  "toolUseResult": {
+    "query": "AAAI 2027 submission deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RZrWnWzsbMAsxBriRBZwZe",
+        "content": [
+          {
+            "title": "AAAI Conference on Artificial Intelligence - AAAI",
+            "url": "https://aaai.org/conference/aaai/"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AAAI 2027 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf",
+            "url": "https://www.underleaf.ai/templates/aaai"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...",
+            "url": "https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"
+          },
+          {
+            "title": "AAAI Conference on Artificial Intelligence",
+            "url": "http://aideadlines.org/conference/?id=aaai27"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the AAAI 2027 submission deadline:\n\nThe Forty-first Conference on Artificial Intelligence will be held in Montréal, Québec, Canada from February 16-23, 2027. However, the AAAI 2027 paper submission deadline is TBD (To Be Determined).\n\nThat said, submission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns. For the official and most up-to-date information, you can check the official AAAI 2027 call for papers at https://aaai.org/conference/aaai/aaai-27/."
+    ],
+    "durationSeconds": 3.43035717399999
+  },
+  "sourceToolAssistantUUID": "d623b3e7-6893-46a7-aa58-588c886e7fe3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-11T22:56:40.023Z_
+
+<details><summary>↩ Tool result · `toolu_01Y4EV3aws76PjN37nqUKrSw`</summary>
+
+```text
+Web search results for query: "ICML 2026 paper submission deadline"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://icml.cc/Conferences/2026/Dates"},{"title":"ICML 2026 Call for Papers","url":"https://icml.cc/Conferences/2026/CallForPapers"},{"title":"ICML 2026","url":"https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26"},{"title":"ICML 2026 Author Instructions","url":"https://icml.cc/Conferences/2026/AuthorInstructions"},{"title":"ICML 2026","url":"https://icml.cc/"},{"title":"ICML 2026 Call For Position Papers","url":"https://icml.cc/Conferences/2026/CallForPositionPapers"},{"title":"ICML 2026: Strictest New Rules Ever - LLMs Banned as Authors, Papers with AI Abuse Rejected","url":"https://eu.36kr.com/en/p/3540848514510723"},{"title":"ICML 2026 Conference | OpenReview","url":"https://openreview.net/group?id=ICML.cc%2F2026%2FConference"},{"title":"ICML 2026 in Hamburg – Dates, Submissions & Tips! - Conference Inc.","url":"https://conferenceinc.net/post/icml-2026/"},{"title":"ICML 2026 Peer Review FAQ","url":"https://icml.cc/Conferences/2026/PeerReviewFAQ"}]
+
+Based on the search results, here's the ICML 2026 paper submission deadline information:
+
+The deadline for ICML 2026 paper submissions is January 28, 2026.
+
+Additional submission details:
+
+- The submission site opened on January 8, 2026.
+- Papers must be prepared and submitted as a single file: 8 pages for the main paper, with unlimited pages for references, the impact statement, and appendices.
+- Abstract and paper submission deadlines are strict with no extensions granted.
+
+The conference itself will be held from July 6-11, 2026 at the Coex Convention & Exhibition Center.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "54e17b18-e4c5-4704-8a32-2db3aa0564c1",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "21e86bce-44de-482e-a7d2-437ee23cb8b5",
+  "toolUseResult": {
+    "query": "ICML 2026 paper submission deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01954jZNNramqLHAky9xF2pc",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://icml.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICML 2026 Call for Papers",
+            "url": "https://icml.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26"
+          },
+          {
+            "title": "ICML 2026 Author Instructions",
+            "url": "https://icml.cc/Conferences/2026/AuthorInstructions"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://icml.cc/"
+          },
+          {
+            "title": "ICML 2026 Call For Position Papers",
+            "url": "https://icml.cc/Conferences/2026/CallForPositionPapers"
+          },
+          {
+            "title": "ICML 2026: Strictest New Rules Ever - LLMs Banned as Authors, Papers with AI Abuse Rejected",
+            "url": "https://eu.36kr.com/en/p/3540848514510723"
+          },
+          {
+            "title": "ICML 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=ICML.cc%2F2026%2FConference"
+          },
+          {
+            "title": "ICML 2026 in Hamburg – Dates, Submissions & Tips! - Conference Inc.",
+            "url": "https://conferenceinc.net/post/icml-2026/"
+          },
+          {
+            "title": "ICML 2026 Peer Review FAQ",
+            "url": "https://icml.cc/Conferences/2026/PeerReviewFAQ"
+          }
+        ]
+      },
+      "Based on the search results, here's the ICML 2026 paper submission deadline information:\n\nThe deadline for ICML 2026 paper submissions is January 28, 2026.\n\nAdditional submission details:\n\n- The submission site opened on January 8, 2026.\n- Papers must be prepared and submitted as a single file: 8 pages for the main paper, with unlimited pages for references, the impact statement, and appendices.\n- Abstract and paper submission deadlines are strict with no extensions granted.\n\nThe conference itself will be held from July 6-11, 2026 at the Coex Convention & Exhibition Center."
+    ],
+    "durationSeconds": 4.582529203999991
+  },
+  "sourceToolAssistantUUID": "54e17b18-e4c5-4704-8a32-2db3aa0564c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-11T22:56:45.075Z_
+
+<details><summary>↩ Tool result · `toolu_01PfrvZSKZPECP13kcmC1aLe`</summary>
+
+```text
+Web search results for query: "ICLR 2027 submission deadline date"
+
+Links: [{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Key deadlines in AI and ML conferences","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"International Conference on Learning Representations - Wikipedia","url":"https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"International Conference on Learning and Reinforcement ICLR in August 2027 in Barcelona","url":"https://waset.org/learning-and-reinforcement-conference-in-august-2027-in-barcelona"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"Call for Papers","url":"https://iclr.cc/Conferences/2025/CallForPapers"}]
+
+Based on the search results, I found information about ICLR 2027. However, the results show submission deadlines for various ICLR-affiliated conferences and events hosted on WASET (World Academy of Science, Engineering and Technology) rather than the main official ICLR 2027 conference.
+
+For the main International Conference on Learning Representations (ICLR) 2027, the official deadline information does not appear to have been published yet in these search results. The search returned:
+
+1. Information about ICLR 2026 (the Fourteenth International Conference on Learning Representations)
+2. Various WASET-hosted ICLR conferences with different submission deadlines throughout 2026 and 2027
+
+Since ICLR typically follows a regular schedule and is typically held in late April or early May each year, the 2027 conference announcement and submission deadline may not yet be available. 
+
+I recommend checking the official ICLR website (iclr.cc) directly for the most up-to-date announcement of ICLR 2027's submission deadline, as it will likely be posted in the coming months.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "65fc6117-8d02-4c54-a20b-34787690d735",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "1d84fe12-69ed-4ff3-8f75-fea29e70956c",
+  "toolUseResult": {
+    "query": "ICLR 2027 submission deadline date",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ea82DvmYo5u7uTdGJKi1wE",
+        "content": [
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "International Conference on Learning Representations - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "International Conference on Learning and Reinforcement ICLR in August 2027 in Barcelona",
+            "url": "https://waset.org/learning-and-reinforcement-conference-in-august-2027-in-barcelona"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "Call for Papers",
+            "url": "https://iclr.cc/Conferences/2025/CallForPapers"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR 2027. However, the results show submission deadlines for various ICLR-affiliated conferences and events hosted on WASET (World Academy of Science, Engineering and Technology) rather than the main official ICLR 2027 conference.\n\nFor the main International Conference on Learning Representations (ICLR) 2027, the official deadline information does not appear to have been published yet in these search results. The search returned:\n\n1. Information about ICLR 2026 (the Fourteenth International Conference on Learning Representations)\n2. Various WASET-hosted ICLR conferences with different submission deadlines throughout 2026 and 2027\n\nSince ICLR typically follows a regular schedule and is typically held in late April or early May each year, the 2027 conference announcement and submission deadline may not yet be available. \n\nI recommend checking the official ICLR website (iclr.cc) directly for the most up-to-date announcement of ICLR 2027's submission deadline, as it will likely be posted in the coming months."
+    ],
+    "durationSeconds": 9.143793315999996
+  },
+  "sourceToolAssistantUUID": "65fc6117-8d02-4c54-a20b-34787690d735",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-11T22:56:50.241Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good findings so far:
+- NeurIPS 2026: Deadline passed (May 4-6, 2026)
+- ICML 2026: Deadline passed (January 28, 2026)
+- EMNLP 2026: ARR deadline May 25, 2026 — still open!
+- ICLR 2027: Not announced yet, expected ~October 2026
+- AAAI 2027: Not announced yet, expected ~August 2026
+
+Let me search for more venues.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d84fe12-69ed-4ff3-8f75-fea29e70956c",
+  "isSidechain": false,
+  "requestId": "req_011CawcCNPyRHh1LQhpbCLMD",
+  "type": "assistant",
+  "uuid": "770b1f50-5315-4cc2-9f85-2c4dc713f93f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ywwa9ynqUDmsisa5JJqSW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 735,
+      "cache_creation_input_tokens": 2933,
+      "cache_read_input_tokens": 23563,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 735,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 23563,
+          "cache_creation_input_tokens": 2933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-11T22:56:51.318Z_
+
+Good — EMNLP 2026 (May 25 ARR deadline) is still open. Let me search for more venues.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "770b1f50-5315-4cc2-9f85-2c4dc713f93f",
+  "isSidechain": false,
+  "requestId": "req_011CawcCNPyRHh1LQhpbCLMD",
+  "type": "assistant",
+  "uuid": "b503eba1-7467-4a71-bf53-a9495a376ca1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ywwa9ynqUDmsisa5JJqSW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 735,
+      "cache_creation_input_tokens": 2933,
+      "cache_read_input_tokens": 23563,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 735,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 23563,
+          "cache_creation_input_tokens": 2933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-11T22:56:51.799Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RicGHnprUwsQ6qfbz7BWMf`</summary>
+
+```json
+{
+  "query": "CoRL 2026 submission deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b503eba1-7467-4a71-bf53-a9495a376ca1",
+  "isSidechain": false,
+  "requestId": "req_011CawcCNPyRHh1LQhpbCLMD",
+  "type": "assistant",
+  "uuid": "c8dd5e19-d313-4388-a379-1a1841d29e2c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ywwa9ynqUDmsisa5JJqSW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 735,
+      "cache_creation_input_tokens": 2933,
+      "cache_read_input_tokens": 23563,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 735,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 23563,
+          "cache_creation_input_tokens": 2933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-11T22:56:52.282Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YLYmsu3uenxUFXkfgJepUZ`</summary>
+
+```json
+{
+  "query": "COLM 2026 submission deadline conference on language modeling"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8dd5e19-d313-4388-a379-1a1841d29e2c",
+  "isSidechain": false,
+  "requestId": "req_011CawcCNPyRHh1LQhpbCLMD",
+  "type": "assistant",
+  "uuid": "091b0e8d-b6d8-4dc6-a534-9fc12f991d95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ywwa9ynqUDmsisa5JJqSW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 735,
+      "cache_creation_input_tokens": 2933,
+      "cache_read_input_tokens": 23563,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 735,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 23563,
+          "cache_creation_input_tokens": 2933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-11T22:56:52.895Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QwyciW1TnaTz7Y6jBzeZPC`</summary>
+
+```json
+{
+  "query": "NeurIPS 2026 workshop proposal deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "091b0e8d-b6d8-4dc6-a534-9fc12f991d95",
+  "isSidechain": false,
+  "requestId": "req_011CawcCNPyRHh1LQhpbCLMD",
+  "type": "assistant",
+  "uuid": "1d92ba21-efba-432a-a442-7e5619438ed4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ywwa9ynqUDmsisa5JJqSW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 735,
+      "cache_creation_input_tokens": 2933,
+      "cache_read_input_tokens": 23563,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 735,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 23563,
+          "cache_creation_input_tokens": 2933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-11T22:56:52.980Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A8gyATsW2Yxa3th6rh5bWV`</summary>
+
+```json
+{
+  "query": "AAMAS 2027 submission deadline autonomous agents"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d92ba21-efba-432a-a442-7e5619438ed4",
+  "isSidechain": false,
+  "requestId": "req_011CawcCNPyRHh1LQhpbCLMD",
+  "type": "assistant",
+  "uuid": "9844fdf6-6ffc-4d00-9727-33a03d03c12c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ywwa9ynqUDmsisa5JJqSW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 735,
+      "cache_creation_input_tokens": 2933,
+      "cache_read_input_tokens": 23563,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 735,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 23563,
+          "cache_creation_input_tokens": 2933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-11T22:56:55.075Z_
+
+<details><summary>↩ Tool result · `toolu_01RicGHnprUwsQ6qfbz7BWMf`</summary>
+
+```text
+Web search results for query: "CoRL 2026 submission deadline"
+
+Links: [{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf?lang=en"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"},{"title":"Vincent Vanhoucke's Post","url":"https://www.linkedin.com/posts/vanhoucke_corl-2026-website-is-officially-live-at-http-activity-7432112475480817664-gBos"},{"title":"CoRL 2026 - Registration","url":"https://www.corl.org/attending/registration"}]
+
+Based on the search results, here are the CoRL 2026 submission deadlines:
+
+The abstract submission deadline is May 26, 2026 at 11:59 UTC, and the paper submission deadline is May 29, 2026 at 11:59 UTC. However, the paper submission deadline is Thursday (5/28) EOD rather than Friday, so there appears to be a discrepancy between sources with the actual deadline being May 28.
+
+CoRL 2026 will be held in Austin, Texas, US, with conference dates of November 9-12, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c8dd5e19-d313-4388-a379-1a1841d29e2c",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "4f2c8e2a-113f-42d0-9a26-2823f0749094",
+  "toolUseResult": {
+    "query": "CoRL 2026 submission deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HwcdFzufRGEuasCTw7LVBJ",
+        "content": [
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "CoRL 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"
+          },
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf?lang=en"
+          },
+          {
+            "title": "Robot Learning Foundation",
+            "url": "https://www.robot-learning.org/"
+          },
+          {
+            "title": "Vincent Vanhoucke's Post",
+            "url": "https://www.linkedin.com/posts/vanhoucke_corl-2026-website-is-officially-live-at-http-activity-7432112475480817664-gBos"
+          },
+          {
+            "title": "CoRL 2026 - Registration",
+            "url": "https://www.corl.org/attending/registration"
+          }
+        ]
+      },
+      "Based on the search results, here are the CoRL 2026 submission deadlines:\n\nThe abstract submission deadline is May 26, 2026 at 11:59 UTC, and the paper submission deadline is May 29, 2026 at 11:59 UTC. However, the paper submission deadline is Thursday (5/28) EOD rather than Friday, so there appears to be a discrepancy between sources with the actual deadline being May 28.\n\nCoRL 2026 will be held in Austin, Texas, US, with conference dates of November 9-12, 2026."
+    ],
+    "durationSeconds": 3.2737925990000076
+  },
+  "sourceToolAssistantUUID": "c8dd5e19-d313-4388-a379-1a1841d29e2c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-11T22:56:55.982Z_
+
+<details><summary>↩ Tool result · `toolu_01YLYmsu3uenxUFXkfgJepUZ`</summary>
+
+```text
+Web search results for query: "COLM 2026 submission deadline conference on language modeling"
+
+Links: [{"title":"COLM 2026: Key Dates","url":"https://colmweb.org/dates.html"},{"title":"COLM 2026: Call for Papers","url":"https://colmweb.org/cfp.html"},{"title":"Conference on Language Modeling on X: \"COLM 2026 is just around the corner! Mark your calendars for: 💡Abstract deadline: Thursday, March 26, 2026 📄Full paper submission deadline: Tuesday, March 31, 2026 Call for papers in thread (website coming soon). https://t.co/YfjLxzCqxO\" / X","url":"https://x.com/COLM_conf/status/2000952051212415394"},{"title":"COLM 2026","url":"https://colmweb.org/"},{"title":"Conference on Language Modeling (COLM), 2026 | ServiceNow AI Research","url":"https://www.servicenow.com/research/event/2026-colm.html"},{"title":"COLM 2026: Submission Instructions","url":"https://colmweb.org/submission-instructions.html"},{"title":"COLM 2026: Author Guide","url":"https://colmweb.org/AuthorGuide.html"},{"title":"When is COLM 2026? Dates, Deadline & Location | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/conference/colm"},{"title":"COLM 2026 Conference | OpenReview","url":"https://openreview.net/group?id=colmweb.org%2FCOLM%2F2026%2FConference"},{"title":"COLM 2026: Call for Workshops","url":"https://colmweb.org/cfw.html"}]
+
+Based on the search results, here are the key submission deadlines for COLM 2026:
+
+**Main Conference Deadlines:**
+- Abstract deadline: Thursday, March 26, 2026
+- Full paper submission deadline: Tuesday, March 31, 2026
+
+**Additional Important Dates:**
+- Review release date: May 22, 2026
+- Rebuttal deadline: June 8, 2026
+- Final decision date: July 8, 2026
+
+**Workshop Deadlines:**
+- Suggested submission deadline for workshop contributions: June 23, 2026
+
+**Conference Details:**
+COLM 2026 will take place at the Hilton Union Square in San Francisco, USA from October 6-9, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "091b0e8d-b6d8-4dc6-a534-9fc12f991d95",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "8fc246e6-e513-47fc-b14a-dae2e148ef5a",
+  "toolUseResult": {
+    "query": "COLM 2026 submission deadline conference on language modeling",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VTCC541PD9PCgH8xSffURB",
+        "content": [
+          {
+            "title": "COLM 2026: Key Dates",
+            "url": "https://colmweb.org/dates.html"
+          },
+          {
+            "title": "COLM 2026: Call for Papers",
+            "url": "https://colmweb.org/cfp.html"
+          },
+          {
+            "title": "Conference on Language Modeling on X: \"COLM 2026 is just around the corner! Mark your calendars for: 💡Abstract deadline: Thursday, March 26, 2026 📄Full paper submission deadline: Tuesday, March 31, 2026 Call for papers in thread (website coming soon). https://t.co/YfjLxzCqxO\" / X",
+            "url": "https://x.com/COLM_conf/status/2000952051212415394"
+          },
+          {
+            "title": "COLM 2026",
+            "url": "https://colmweb.org/"
+          },
+          {
+            "title": "Conference on Language Modeling (COLM), 2026 | ServiceNow AI Research",
+            "url": "https://www.servicenow.com/research/event/2026-colm.html"
+          },
+          {
+            "title": "COLM 2026: Submission Instructions",
+            "url": "https://colmweb.org/submission-instructions.html"
+          },
+          {
+            "title": "COLM 2026: Author Guide",
+            "url": "https://colmweb.org/AuthorGuide.html"
+          },
+          {
+            "title": "When is COLM 2026? Dates, Deadline & Location | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/conference/colm"
+          },
+          {
+            "title": "COLM 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=colmweb.org%2FCOLM%2F2026%2FConference"
+          },
+          {
+            "title": "COLM 2026: Call for Workshops",
+            "url": "https://colmweb.org/cfw.html"
+          }
+        ]
+      },
+      "Based on the search results, here are the key submission deadlines for COLM 2026:\n\n**Main Conference Deadlines:**\n- Abstract deadline: Thursday, March 26, 2026\n- Full paper submission deadline: Tuesday, March 31, 2026\n\n**Additional Important Dates:**\n- Review release date: May 22, 2026\n- Rebuttal deadline: June 8, 2026\n- Final decision date: July 8, 2026\n\n**Workshop Deadlines:**\n- Suggested submission deadline for workshop contributions: June 23, 2026\n\n**Conference Details:**\nCOLM 2026 will take place at the Hilton Union Square in San Francisco, USA from October 6-9, 2026."
+    ],
+    "durationSeconds": 3.698583805000002
+  },
+  "sourceToolAssistantUUID": "091b0e8d-b6d8-4dc6-a534-9fc12f991d95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Learned Simul…",
+  "leafUuid": "8fc246e6-e513-47fc-b14a-dae2e148ef5a",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learn step-level simulation gating for agents",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-11T22:56:56.960Z_
+
+<details><summary>↩ Tool result · `toolu_01QwyciW1TnaTz7Y6jBzeZPC`</summary>
+
+```text
+Web search results for query: "NeurIPS 2026 workshop proposal deadline"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://neurips.cc/Conferences/2026/Dates"},{"title":"NeurIPS 2026","url":"https://neurips.cc/"},{"title":"Call for Papers 2026","url":"https://neurips.cc/Conferences/2026/CallForPapers"},{"title":"Guidance for NeurIPS Workshop Proposals 2026","url":"https://neurips.cc/Conferences/2026/WorkshopsGuidance"},{"title":"NeurIPS 2026 Call for Workshops","url":"https://neurips.cc/Conferences/2026/CallForWorkshops"},{"title":"NeurIPS Newsletter – April 2026 – NeurIPS Blog","url":"https://blog.neurips.cc/2026/04/22/neurips-newsletter-april-2026/"},{"title":"NeurIPS 2026 Call For Competitions","url":"https://neurips.cc/Conferences/2026/CallForCompetitions"},{"title":"2026 Conference – NeurIPS Blog","url":"https://blog.neurips.cc/category/2026-conference/"},{"title":"2026 Conference","url":"https://neurips.cc/Conferences/2026"},{"title":"Call for Bridging the Future Grants","url":"https://neurips.cc/Conferences/2025/CallForBTFGrants"}]
+
+Based on the search results, here's the information about the NeurIPS 2026 workshop proposal deadline:
+
+The workshop proposal deadline for NeurIPS 2026 is June 6, 2026 (Anywhere on Earth).
+
+Proposals should be submitted through an application using the OpenReview system at https://openreview.net/group?id=NeurIPS.cc/2026/Workshop_Proposals.
+
+For additional guidance on preparing your proposal, NeurIPS provides guidance for workshop proposals that describes the philosophy behind hosting workshops, formatting requirements, details of the selection criteria and process, and other frequently asked questions. Each group is highly recommended to use the provided template in the guidance to draft their proposal.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1d92ba21-efba-432a-a442-7e5619438ed4",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "49f2a08a-77e9-4402-95a8-880ed8f3dd29",
+  "toolUseResult": {
+    "query": "NeurIPS 2026 workshop proposal deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01B7zqhHoZ9UoKY1NM9zC5Jy",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://neurips.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "NeurIPS 2026",
+            "url": "https://neurips.cc/"
+          },
+          {
+            "title": "Call for Papers 2026",
+            "url": "https://neurips.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "Guidance for NeurIPS Workshop Proposals 2026",
+            "url": "https://neurips.cc/Conferences/2026/WorkshopsGuidance"
+          },
+          {
+            "title": "NeurIPS 2026 Call for Workshops",
+            "url": "https://neurips.cc/Conferences/2026/CallForWorkshops"
+          },
+          {
+            "title": "NeurIPS Newsletter – April 2026 – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/2026/04/22/neurips-newsletter-april-2026/"
+          },
+          {
+            "title": "NeurIPS 2026 Call For Competitions",
+            "url": "https://neurips.cc/Conferences/2026/CallForCompetitions"
+          },
+          {
+            "title": "2026 Conference – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/category/2026-conference/"
+          },
+          {
+            "title": "2026 Conference",
+            "url": "https://neurips.cc/Conferences/2026"
+          },
+          {
+            "title": "Call for Bridging the Future Grants",
+            "url": "https://neurips.cc/Conferences/2025/CallForBTFGrants"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about the NeurIPS 2026 workshop proposal deadline:\n\nThe workshop proposal deadline for NeurIPS 2026 is June 6, 2026 (Anywhere on Earth).\n\nProposals should be submitted through an application using the OpenReview system at https://openreview.net/group?id=NeurIPS.cc/2026/Workshop_Proposals.\n\nFor additional guidance on preparing your proposal, NeurIPS provides guidance for workshop proposals that describes the philosophy behind hosting workshops, formatting requirements, details of the selection criteria and process, and other frequently asked questions. Each group is highly recommended to use the provided template in the guidance to draft their proposal."
+    ],
+    "durationSeconds": 4.0629464469999945
+  },
+  "sourceToolAssistantUUID": "1d92ba21-efba-432a-a442-7e5619438ed4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-11T22:56:57.815Z_
+
+<details><summary>↩ Tool result · `toolu_01A8gyATsW2Yxa3th6rh5bWV`</summary>
+
+```text
+Web search results for query: "AAMAS 2027 submission deadline autonomous agents"
+
+Links: [{"title":"AAMAS: Adaptive Agents and Multi-Agents Systems 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=10"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"FAQ: Submitting – AAMAS 2025 Detroit","url":"https://aamas2025.org/index.php/conference/frequently-asked-questions/faq-submitting/"},{"title":"AAMAS 2025 Detroit","url":"https://aamas2025.org/"},{"title":"Submission Instructions (Main Technical Track) | AAMAS","url":"https://cyprusconferences.org/aamas2026/submission-instructions/"},{"title":"Apply to Medical School with the AMCAS® Program | Students & Residents","url":"https://students-residents.aamc.org/applying-medical-school-amcas/apply-medical-school-amcas-program"},{"title":"Call for Competitions | AAMAS","url":"https://cyprusconferences.org/aamas2026/call-for-competitions/"},{"title":"Submission Instructions (Main Technical Track) – AAMAS 2025 Detroit","url":"https://aamas2025.org/index.php/conference/calls/submission-instructions-main-technical-track/"},{"title":"ALA: Adaptive and Learning Agents 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=133"},{"title":"The 25th International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2026): Last Call for Workshop and Competition Proposals - Hcitaly - ISTI","url":"https://mailman.isti.cnr.it/hyperkitty/list/hcitaly@isti.cnr.it/thread/R4IIRSTHDPUE7Z7WMDS7Z4GDTPM4HLU5/"}]
+
+Based on my search results, I found information about AAMAS 2026 but not specific submission deadlines for AAMAS 2027 yet. Here's what I found:
+
+**AAMAS 2026** submission information is available, showing that abstracts must be registered one week before the paper submission deadline.
+
+However, the search results do not contain detailed submission deadline information for **AAMAS 2027**. The search results reference AAMAS 2027 in the context of competitions from AAMAS 2026, where proposers will be encouraged to submit a Demonstration paper at AAMAS 2027 summarizing the design, development, and outcomes of their competition at the 2026 conference, but specific submission deadlines for AAMAS 2027 have not yet been announced in the available sources.
+
+Typically, AAMAS conferences announce their Call for Papers (which includes submission deadlines) approximately 6-7 months before the conference. Since AAMAS conferences are usually held in May, the 2027 deadlines will likely be announced later in 2026. You may want to check the official AAMAS conference website or IFAAMAS (International Foundation for Autonomous Agents and Multiagent Systems) website for the most up-to-date information on AAMAS 2027.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9844fdf6-6ffc-4d00-9727-33a03d03c12c",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "d197195d-f6d1-40b6-95a4-a26f2095672f",
+  "toolUseResult": {
+    "query": "AAMAS 2027 submission deadline autonomous agents",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Htom5ief4EGRpqWGX3yhDN",
+        "content": [
+          {
+            "title": "AAMAS: Adaptive Agents and Multi-Agents Systems 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=10"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "FAQ: Submitting – AAMAS 2025 Detroit",
+            "url": "https://aamas2025.org/index.php/conference/frequently-asked-questions/faq-submitting/"
+          },
+          {
+            "title": "AAMAS 2025 Detroit",
+            "url": "https://aamas2025.org/"
+          },
+          {
+            "title": "Submission Instructions (Main Technical Track) | AAMAS",
+            "url": "https://cyprusconferences.org/aamas2026/submission-instructions/"
+          },
+          {
+            "title": "Apply to Medical School with the AMCAS® Program | Students & Residents",
+            "url": "https://students-residents.aamc.org/applying-medical-school-amcas/apply-medical-school-amcas-program"
+          },
+          {
+            "title": "Call for Competitions | AAMAS",
+            "url": "https://cyprusconferences.org/aamas2026/call-for-competitions/"
+          },
+          {
+            "title": "Submission Instructions (Main Technical Track) – AAMAS 2025 Detroit",
+            "url": "https://aamas2025.org/index.php/conference/calls/submission-instructions-main-technical-track/"
+          },
+          {
+            "title": "ALA: Adaptive and Learning Agents 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=133"
+          },
+          {
+            "title": "The 25th International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2026): Last Call for Workshop and Competition Proposals - Hcitaly - ISTI",
+            "url": "https://mailman.isti.cnr.it/hyperkitty/list/hcitaly@isti.cnr.it/thread/R4IIRSTHDPUE7Z7WMDS7Z4GDTPM4HLU5/"
+          }
+        ]
+      },
+      "Based on my search results, I found information about AAMAS 2026 but not specific submission deadlines for AAMAS 2027 yet. Here's what I found:\n\n**AAMAS 2026** submission information is available, showing that abstracts must be registered one week before the paper submission deadline.\n\nHowever, the search results do not contain detailed submission deadline information for **AAMAS 2027**. The search results reference AAMAS 2027 in the context of competitions from AAMAS 2026, where proposers will be encouraged to submit a Demonstration paper at AAMAS 2027 summarizing the design, development, and outcomes of their competition at the 2026 conference, but specific submission deadlines for AAMAS 2027 have not yet been announced in the available sources.\n\nTypically, AAMAS conferences announce their Call for Papers (which includes submission deadlines) approximately 6-7 months before the conference. Since AAMAS conferences are usually held in May, the 2027 deadlines will likely be announced later in 2026. You may want to check the official AAMAS conference website or IFAAMAS (International Foundation for Autonomous Agents and Multiagent Systems) website for the most up-to-date information on AAMAS 2027."
+    ],
+    "durationSeconds": 4.831597519999995
+  },
+  "sourceToolAssistantUUID": "9844fdf6-6ffc-4d00-9727-33a03d03c12c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 53 · 2026-05-11T22:56:57.820Z_
+
+```json
+{
+  "parentUuid": "d197195d-f6d1-40b6-95a4-a26f2095672f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f5387991-f85f-4765-8e3d-3c3c1a108c9f",
+  "timestamp": "2026-05-11T22:56:57.820Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-11T22:57:06.102Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me compile venue deadlines:
+- NeurIPS 2026: PASSED (May 4-6, 2026)
+- ICML 2026: PASSED (January 28, 2026)
+- COLM 2026: PASSED (March 31, 2026)
+- EMNLP 2026: May 25, 2026 (ARR deadline) — OPEN
+- CoRL 2026: May 26-29, 2026 — OPEN
+- NeurIPS 2026 Workshops: Workshop PROPOSAL deadline June 6 (but workshop papers would be later)
+
+
+- ICLR 2027: Expected around October 2026, not yet announced
+- AAAI 2027: Expected around August 2026, not yet announced
+- AAMAS 2027: Not yet announced
+
+I should also check for ACL 2026 and other relevant venues.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f5387991-f85f-4765-8e3d-3c3c1a108c9f",
+  "isSidechain": false,
+  "requestId": "req_011CawcDJmidtEP92GQfSbZw",
+  "type": "assistant",
+  "uuid": "dc333977-9782-4495-8785-4278512026c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vo7Nk5L4GZdVKzPcQ1f9qa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3912,
+      "cache_read_input_tokens": 26496,
+      "output_tokens": 397,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3912,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 397,
+          "cache_read_input_tokens": 26496,
+          "cache_creation_input_tokens": 3912,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3912
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-11T22:57:06.103Z_
+
+Let me search for a few more venues and SOTA models.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dc333977-9782-4495-8785-4278512026c5",
+  "isSidechain": false,
+  "requestId": "req_011CawcDJmidtEP92GQfSbZw",
+  "type": "assistant",
+  "uuid": "a9ba8e6e-6b87-4034-8b55-283076f7a9b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vo7Nk5L4GZdVKzPcQ1f9qa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3912,
+      "cache_read_input_tokens": 26496,
+      "output_tokens": 397,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3912,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 397,
+          "cache_read_input_tokens": 26496,
+          "cache_creation_input_tokens": 3912,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3912
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-11T22:57:06.109Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PVALzhcGRwZoie7UT8Ai6S`</summary>
+
+```json
+{
+  "query": "ACL 2026 ARR submission deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9ba8e6e-6b87-4034-8b55-283076f7a9b2",
+  "isSidechain": false,
+  "requestId": "req_011CawcDJmidtEP92GQfSbZw",
+  "type": "assistant",
+  "uuid": "25c62552-8ab5-4a0f-88fb-7c36ea07a420",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vo7Nk5L4GZdVKzPcQ1f9qa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3912,
+      "cache_read_input_tokens": 26496,
+      "output_tokens": 397,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3912,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 397,
+          "cache_read_input_tokens": 26496,
+          "cache_creation_input_tokens": 3912,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3912
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-11T22:57:06.595Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Cp8ufgMff3swYCHEmjniYt`</summary>
+
+```json
+{
+  "query": "best open source LLM model May 2026 frontier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25c62552-8ab5-4a0f-88fb-7c36ea07a420",
+  "isSidechain": false,
+  "requestId": "req_011CawcDJmidtEP92GQfSbZw",
+  "type": "assistant",
+  "uuid": "dc1790ef-d0a9-4432-b0b2-06559147392f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vo7Nk5L4GZdVKzPcQ1f9qa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3912,
+      "cache_read_input_tokens": 26496,
+      "output_tokens": 397,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3912,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 397,
+          "cache_read_input_tokens": 26496,
+          "cache_creation_input_tokens": 3912,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3912
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-11T22:57:06.826Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MCA4wCzdLZRb6HeMMJ6J6E`</summary>
+
+```json
+{
+  "query": "A100 GPU rental cost per hour 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dc1790ef-d0a9-4432-b0b2-06559147392f",
+  "isSidechain": false,
+  "requestId": "req_011CawcDJmidtEP92GQfSbZw",
+  "type": "assistant",
+  "uuid": "65a27868-52b0-42d5-8892-23094e8268e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vo7Nk5L4GZdVKzPcQ1f9qa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3912,
+      "cache_read_input_tokens": 26496,
+      "output_tokens": 397,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3912,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 397,
+          "cache_read_input_tokens": 26496,
+          "cache_creation_input_tokens": 3912,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3912
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-11T22:57:11.767Z_
+
+<details><summary>↩ Tool result · `toolu_01PVALzhcGRwZoie7UT8Ai6S`</summary>
+
+```text
+Web search results for query: "ACL 2026 ARR submission deadline"
+
+Links: [{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"LINGUIST List 37.181 Confs: 64th Annual Meeting of the Association for Computational Linguistics: Industry Track (USA)","url":"https://linguistlist.org/issues/37/181/"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"https://aclrollingreview.org/"},{"title":"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/incentives2026"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"ACL ARR 2026 January | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FJanuary"},{"title":"Call for Student Research Workshop Papers -","url":"https://2026.eacl.org/calls/srw/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"}]
+
+Based on the search results, here's what I found about ACL 2026 ARR submission deadlines:
+
+Papers can be submitted to the ARR 2025 October cycle and ARR 2026 January cycle for consideration at ACL 2026.
+
+For the ARR submission deadlines specifically, the ACL Peer Review Committee recommended switching to 10-week cycles, with the new schedule taking effect starting in May 2025. Previously, from October 2022 to February 2025, ARR ran 8-week review cycles with submission deadlines on the 15th of every second month.
+
+For papers being considered for ACL 2026 specifically, ARR reviews are available on March 9, 2026, and the commitment deadline is March 14, 2026.
+
+All deadlines are at 11:59PM UTC-12:00 ("anywhere on Earth").
+
+If you need more details about specific ARR cycle submission deadlines, you may want to check the official ARR dates page at aclrollingreview.org/dates for the complete schedule.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "25c62552-8ab5-4a0f-88fb-7c36ea07a420",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "1e1fe73b-831e-4209-9f28-53587ab3269f",
+  "toolUseResult": {
+    "query": "ACL 2026 ARR submission deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JbNX4WTQUL4PWivuXjciFF",
+        "content": [
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "Main Conference - ACL 2026",
+            "url": "https://2026.aclweb.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "LINGUIST List 37.181 Confs: 64th Annual Meeting of the Association for Computational Linguistics: Industry Track (USA)",
+            "url": "https://linguistlist.org/issues/37/181/"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "https://aclrollingreview.org/"
+          },
+          {
+            "title": "Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/incentives2026"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "ACL ARR 2026 January | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FJanuary"
+          },
+          {
+            "title": "Call for Student Research Workshop Papers -",
+            "url": "https://2026.eacl.org/calls/srw/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about ACL 2026 ARR submission deadlines:\n\nPapers can be submitted to the ARR 2025 October cycle and ARR 2026 January cycle for consideration at ACL 2026.\n\nFor the ARR submission deadlines specifically, the ACL Peer Review Committee recommended switching to 10-week cycles, with the new schedule taking effect starting in May 2025. Previously, from October 2022 to February 2025, ARR ran 8-week review cycles with submission deadlines on the 15th of every second month.\n\nFor papers being considered for ACL 2026 specifically, ARR reviews are available on March 9, 2026, and the commitment deadline is March 14, 2026.\n\nAll deadlines are at 11:59PM UTC-12:00 (\"anywhere on Earth\").\n\nIf you need more details about specific ARR cycle submission deadlines, you may want to check the official ARR dates page at aclrollingreview.org/dates for the complete schedule."
+    ],
+    "durationSeconds": 5.6553613860000045
+  },
+  "sourceToolAssistantUUID": "25c62552-8ab5-4a0f-88fb-7c36ea07a420",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-11T22:57:17.779Z_
+
+<details><summary>↩ Tool result · `toolu_01MCA4wCzdLZRb6HeMMJ6J6E`</summary>
+
+```text
+Web search results for query: "A100 GPU rental cost per hour 2026"
+
+Links: [{"title":"A100 Cloud Pricing: Compare 38+ Providers (2026)","url":"https://getdeploying.com/gpus/nvidia-a100"},{"title":"NVIDIA A100 GPU Price in 2026: Cost Per Hour, Cloud ...","url":"https://jarvislabs.ai/blog/a100-price"},{"title":"Rent A100 PCIE GPUs on Vast.ai for $0.56/hr","url":"https://vast.ai/pricing/gpu/A100-PCIE"},{"title":"NVIDIA A100 Pricing (May 2026): Cheapest On-demand GPU Instances","url":"https://www.thundercompute.com/blog/nvidia-a100-pricing"},{"title":"Rent NVIDIA A100 80GB GPU | On-Demand Pricing & Specs","url":"https://www.hyperstack.cloud/a100"},{"title":"H100 Rental Prices Compared: $1.49-$6.98/hr Across 15+ Cloud Providers (2026) | IntuitionLabs","url":"https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison"},{"title":"Cheap A100 Rentals: Find the Best Deals in 2026 | by Alexa V. | Medium","url":"https://medium.com/@velinxs/cheap-a100-rentals-find-the-best-deals-in-2026-ddeae320a324"},{"title":"NVIDIA A100: Pricing, Availability, and Best Cloud Options (2026) - Fluence","url":"https://www.fluence.network/blog/nvidia-a100/"},{"title":"Rent A100 GPU vs Buy Hardware: 2026 Cost Comparison","url":"https://cyfuture.ai/blog/rent-a100-gpu-vs-buying-hardware-cost-speed-flexibility-compared-2026-guide"},{"title":"AI GPU Rental Market Trends (May 2026): Complete Industry Analysis","url":"https://www.thundercompute.com/blog/ai-gpu-rental-market-trends"}]
+
+Based on the search results, here's the current A100 GPU rental pricing for 2026:
+
+## A100 GPU Rental Costs in 2026
+
+A100 pricing currently ranges from $0.13/hr to $5.04/hr per GPU, depending on the provider, instance type, and billing model.
+
+### Typical Pricing by Provider Type:
+
+**Specialized/Boutique Cloud Providers (Most Affordable):**
+- Hyperstack offers on-demand pricing at $1.35/hr
+- Jarvislabs offers on-demand A100 80GB access at $1.49/hr with per-minute billing
+- RunPod offers $1.49/hr
+- A100s start at $0.78/hr (Thunder Compute)
+
+**Marketplace Platforms:**
+- The average marketplace price for an A100 80GB in early 2026 is approximately $0.72/hr on platforms like vast.ai
+
+**Major Cloud Providers (AWS, Google Cloud, Azure):**
+- AWS and Azure offer A100s only in 8-GPU instances ($3.40-$3.43/GPU/hr)
+
+### Key Note:
+On-demand pricing has decreased by about 17% since May 2025, dropping from $2.39 to $1.98/hr per GPU.
+
+The wide price range depends on factors like whether you use spot instances, the GPU memory configuration (40GB vs 80GB), and whether you commit to longer rental periods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "65a27868-52b0-42d5-8892-23094e8268e7",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "e096195c-74e3-4cf9-8bff-c345c714a1d5",
+  "toolUseResult": {
+    "query": "A100 GPU rental cost per hour 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VzyJf9UvEwq9oKkoTvwjWb",
+        "content": [
+          {
+            "title": "A100 Cloud Pricing: Compare 38+ Providers (2026)",
+            "url": "https://getdeploying.com/gpus/nvidia-a100"
+          },
+          {
+            "title": "NVIDIA A100 GPU Price in 2026: Cost Per Hour, Cloud ...",
+            "url": "https://jarvislabs.ai/blog/a100-price"
+          },
+          {
+            "title": "Rent A100 PCIE GPUs on Vast.ai for $0.56/hr",
+            "url": "https://vast.ai/pricing/gpu/A100-PCIE"
+          },
+          {
+            "title": "NVIDIA A100 Pricing (May 2026): Cheapest On-demand GPU Instances",
+            "url": "https://www.thundercompute.com/blog/nvidia-a100-pricing"
+          },
+          {
+            "title": "Rent NVIDIA A100 80GB GPU | On-Demand Pricing & Specs",
+            "url": "https://www.hyperstack.cloud/a100"
+          },
+          {
+            "title": "H100 Rental Prices Compared: $1.49-$6.98/hr Across 15+ Cloud Providers (2026) | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison"
+          },
+          {
+            "title": "Cheap A100 Rentals: Find the Best Deals in 2026 | by Alexa V. | Medium",
+            "url": "https://medium.com/@velinxs/cheap-a100-rentals-find-the-best-deals-in-2026-ddeae320a324"
+          },
+          {
+            "title": "NVIDIA A100: Pricing, Availability, and Best Cloud Options (2026) - Fluence",
+            "url": "https://www.fluence.network/blog/nvidia-a100/"
+          },
+          {
+            "title": "Rent A100 GPU vs Buy Hardware: 2026 Cost Comparison",
+            "url": "https://cyfuture.ai/blog/rent-a100-gpu-vs-buying-hardware-cost-speed-flexibility-compared-2026-guide"
+          },
+          {
+            "title": "AI GPU Rental Market Trends (May 2026): Complete Industry Analysis",
+            "url": "https://www.thundercompute.com/blog/ai-gpu-rental-market-trends"
+          }
+        ]
+      },
+      "Based on the search results, here's the current A100 GPU rental pricing for 2026:\n\n## A100 GPU Rental Costs in 2026\n\nA100 pricing currently ranges from $0.13/hr to $5.04/hr per GPU, depending on the provider, instance type, and billing model.\n\n### Typical Pricing by Provider Type:\n\n**Specialized/Boutique Cloud Providers (Most Affordable):**\n- Hyperstack offers on-demand pricing at $1.35/hr\n- Jarvislabs offers on-demand A100 80GB access at $1.49/hr with per-minute billing\n- RunPod offers $1.49/hr\n- A100s start at $0.78/hr (Thunder Compute)\n\n**Marketplace Platforms:**\n- The average marketplace price for an A100 80GB in early 2026 is approximately $0.72/hr on platforms like vast.ai\n\n**Major Cloud Providers (AWS, Google Cloud, Azure):**\n- AWS and Azure offer A100s only in 8-GPU instances ($3.40-$3.43/GPU/hr)\n\n### Key Note:\nOn-demand pricing has decreased by about 17% since May 2025, dropping from $2.39 to $1.98/hr per GPU.\n\nThe wide price range depends on factors like whether you use spot instances, the GPU memory configuration (40GB vs 80GB), and whether you commit to longer rental periods."
+    ],
+    "durationSeconds": 10.951310958000002
+  },
+  "sourceToolAssistantUUID": "65a27868-52b0-42d5-8892-23094e8268e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 61 · 2026-05-11T22:57:21.754Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-11T22:57:21.754Z",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "content": "&lt;task-notification>\n&lt;task-id>abed907ee37d30984&lt;/task-id>\n&lt;tool-use-id>toolu_013F2T4wrvz2SkaEuxT52ibY&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/461ad37f-ce07-4a00-a32b-b8a7506190ed/tasks/abed907ee37d30984.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Check venue deadlines and SOTA models\" completed&lt;/summary>\n&lt;result>Here are the complete findings:\n\n---\n\n## Part 1: Conference Deadlines (relative to today, 2026-05-11)\n\n| Venue | Deadline | Status |\n|-------|----------|--------|\n| **NeurIPS 2026** (main track) | Abstract: May 4, 2026; Full paper: May 6, 2026 (AOE) | **PASSED** |\n| **ICML 2026** (main track) | January 28, 2026 | **PASSED** |\n| **ICLR 2027** | Not yet announced | **TBD** (likely ~October 2026 based on historical pattern) |\n| **AAAI 2027** | Abstract: July 25, 2026; Full paper: August 1, 2026 | **NOT YET PASSED** -- conference Feb 16-23, 2027 in Montreal |\n| **AAMAS 2027** | Not yet announced | **TBD** (likely ~October 2026 based on historical pattern) |\n| **CoRL 2026** | Abstract: May 26, 2026; Full paper: May 29, 2026 (UTC) | **NOT YET PASSED** -- conference Nov 9-12, 2026 in Austin, TX |\n| **EMNLP 2026** | ARR submission: May 25, 2026; Commitment deadline: August 2, 2026 | **NOT YET PASSED** -- conference Oct 24-29, 2026 in Budapest |\n| **NeurIPS 2026 Workshops** | Workshop proposal deadline: June 6, 2026; Suggested contributed paper deadline: August 29, 2026 | **NOT YET PASSED** |\n| **COLM 2026** | Abstract: March 26, 2026; Full paper: March 31, 2026 | **PASSED** |\n\n**Venues still open for submission (as of 2026-05-11):**\n- CoRL 2026 (paper due May 29)\n- EMNLP 2026 (ARR submission due May 25)\n- NeurIPS 2026 Workshops (proposal due June 6; contributed papers ~Aug 29)\n- AAAI 2027 (paper due August 1)\n- ICLR 2027 and AAMAS 2027 are expected to open later in 2026\n\n---\n\n## Part 2: Current SOTA Open-Source Models (as of May 2026)\n\n### Frontier Open-Source LLMs\n\n| Model | Total Params | Active Params | Architecture | Released By | Release Date | Notes |\n|-------|-------------|---------------|-------------|-------------|-------------|-------|\n| **DeepSeek V4 Pro** | 1.6T | 49B | MoE | DeepSeek | Apr 24, 2026 | MIT license, 1M context, leads BenchLM aggregate at 87; unified thinking mode toggle |\n| **DeepSeek V4 Flash** | 284B | 13B | MoE | DeepSeek | Apr 24, 2026 | MIT license, 1M context, most economical frontier model |\n| **GLM-5.1** | 744B | 44B (~40B active) | MoE (256 experts, 8 active) | Zhipu AI (ZAI) | Feb 11, 2026 (GLM-5); 5.1 update later | MIT license, 200K context, #1 on Artificial Analysis Intelligence Index |\n| **Kimi K2.6** | 1T | 32B | MoE | Moonshot AI | Apr 20, 2026 | Modified MIT, 262K context, multimodal, agent swarm (300 sub-agents), top open-source coding model |\n| **MiMo-V2.5-Pro** | 1.02T | 42B | MoE + hybrid attention + MTP | Xiaomi | Apr 27, 2026 | MIT license, 1M context, competitive with Claude Opus 4.6 while using 40-60% fewer tokens |\n| **Meta Llama 4** | Various sizes | Various | Dense/MoE | Meta | 2026 | Strong general reasoning |\n| **DeepSeek-R1** | 671B | ~37B | MoE | DeepSeek | Jan 2025 | Reasoning-focused, distilled variants from 1.5B to 70B |\n\n### Best Small / Lightweight Models (for a gating module)\n\n| Model | Parameters | Released By | Notes |\n|-------|-----------|-------------|-------|\n| **Phi-4-mini-instruct** | 3.8B | Microsoft | Reasoning quality comparable to 7-9B models; excellent quality-to-size ratio |\n| **Qwen3.5-0.8B** | 0.8B | Alibaba (Qwen) | Multimodal, extremely lightweight |\n| **MobileLLaMA 1.4B** | 1.4B | Community | Optimized for mobile/edge deployment |\n| **TinyLlama 1.1B** | 1.1B | Community | Compact conversational model |\n| **MiniCPM** | 1B-4B | Tsinghua/OpenBMB | Flexible size range, good for general tasks |\n| **Mistral 7B Instruct v0.2** | 7B | Mistral AI | Best quality in the 7B class; runs on single GPU |\n\n**Recommendation for a lightweight gating module:** Phi-4-mini (3.8B) offers the best reasoning-per-parameter in the small model class. If even smaller is needed, Qwen3.5-0.8B or TinyLlama 1.1B are viable.\n\n### Top Reasoning Models\n\n| Model | Notes |\n|-------|-------|\n| **DeepSeek V4 Pro** | Strongest open-weight for general reasoning; BenchLM score 87 |\n| **DeepSeek-R1 (671B)** | Dedicated reasoning model; matches/exceeds OpenAI o1 on AIME, GPQA Diamond |\n| **Kimi K2.6** | Quality Index 53.9 (top of live open-source ranking), competitive with GPT-5.4 and Claude Opus 4.6 on complex coding |\n| **MiMo-V2.5-Pro** | Comparable to Claude Opus 4.6, exceptional token efficiency |\n| **MiniMax-M1-80k** | Strong logical/reasoning abilities |\n| **Kimi-Dev-72B** | Dedicated reasoning variant |\n| **GLM-5 / GLM-5.1** | Agentic coding leader at 55.00 on SWE-bench-style tasks |\n\n**Key trend:** Open-weight models now trail proprietary SOTA by only ~3 months on average (per Epoch AI). The MoE architecture dominates the frontier, with active parameter counts of 32-49B being the sweet spot for inference efficiency.\n\n---\n\nSources:\n- [NeurIPS 2026 Dates and Deadlines](https://neurips.cc/Conferences/2026/Dates)\n- [ICML 2026 Dates and Deadlines](https://icml.cc/Conferences/2026/Dates)\n- [ICLR 2026](https://iclr.cc/)\n- [AAAI Conference on AI](https://aaai.org/conference/aaai/)\n- [AI &amp; ML Conference Deadlines 2026-2027 (TryBibby)](https://trybibby.com/conference-deadlines)\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [EMNLP 2026](https://2026.emnlp.org/)\n- [NeurIPS 2026 Call for Workshops](https://neurips.cc/Conferences/2026/CallForWorkshops)\n- [COLM 2026 Key Dates](https://colmweb.org/dates.html)\n- [COLM 2026 Call for Papers](https://colmweb.org/cfp.html)\n- [Best Open-Source LLMs in 2026 (BentoML)](https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models)\n- [Open LLM Leaderboard (Onyx)](https://onyx.app/open-llm-leaderboard)\n- [Best Open-Source SLMs 2026 (BentoML)](https://www.bentoml.com/blog/the-best-open-source-small-language-models)\n- [Top 10 Open-Source Reasoning Models 2026 (Clarifai)](https://www.clarifai.com/blog/top-10-open-source-reasoning-models-in-2026)\n- [DeepSeek V4 Pro on HuggingFace](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro)\n- [GLM-5 on HuggingFace](https://huggingface.co/zai-org/GLM-5)\n- [Kimi K2.6 on OpenRouter](https://openrouter.ai/moonshotai/kimi-k2.6)\n- [MiMo-V2.5-Pro on HuggingFace](https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro)\n- [Moonshot AI Releases Kimi K2.6 (MarkTechPost)](https://www.marktechpost.com/2026/04/20/moonshot-ai-releases-kimi-k2-6-with-long-horizon-coding-agent-swarm-scaling-to-300-sub-agents-and-4000-coordinated-steps/)\n- [Best Open Source LLMs for Reasoning (SiliconFlow)](https://www.siliconflow.com/articles/en/best-open-source-LLMs-for-reasoning)&lt;/result>\n&lt;usage>&lt;total_tokens>24637&lt;/total_tokens>&lt;tool_uses>19&lt;/tool_uses>&lt;duration_ms>81324&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Learned Simul…",
+  "leafUuid": "e096195c-74e3-4cf9-8bff-c345c714a1d5",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learn step-level simulation gating for agents",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-11T22:57:21.942Z_
+
+<details><summary>↩ Tool result · `toolu_01Cp8ufgMff3swYCHEmjniYt`</summary>
+
+```text
+Web search results for query: "best open source LLM model May 2026 frontier"
+
+Links: [{"title":"The Best Open-Source LLMs in 2026","url":"https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models"},{"title":"Open-Source LLMs Compared 2026 – 25+ Models… – Till Freitag","url":"https://till-freitag.com/en/blog/open-source-llm-comparison"},{"title":"11 Top Open-Source LLMs for 2026 and Their Uses | DataCamp","url":"https://www.datacamp.com/blog/top-open-source-llms"},{"title":"Best Open-Source LLM in May 2026: Llama 4 vs Qwen 3.5 vs DeepSeek V4 vs Gemma 4 vs Mistral Medium 3.5","url":"https://codersera.com/blog/best-open-source-llm-2026-llama-4-qwen-3-5-deepseek-v4-gemma-4-mistral/"},{"title":"Open-Source LLMs in 2026: Best AI Models | Medium","url":"https://medium.com/@servifyspheresolutions/the-free-models-running-the-world-af6a3d2e8758"},{"title":"Open LLM Leaderboard 2026 - Compare Open Source LLM Rankings","url":"https://llm-stats.com/leaderboards/open-llm-leaderboard"},{"title":"The Best Open-Source LLMs for Agentic Coding in 2026 | MindStudio","url":"https://www.mindstudio.ai/blog/best-open-source-llms-agentic-coding-2026"},{"title":"The Top Open-Source LLMs in 2026 🚀🤖 | by Hemanth Raju | Jan, 2026 | Python in Plain English","url":"https://python.plainenglish.io/the-top-open-source-llms-in-2026-ab144d1c7679"},{"title":"Best Open Source LLM 2026 Ranking + Ollama Guide","url":"https://whatllm.org/best-open-source-llm"},{"title":"Best Open-Source LLMs in 2026: A Practical Guide by Use Case - ML Journey","url":"https://mljourney.com/best-open-source-llms-in-2026-a-practical-guide-by-use-case/"}]
+
+Based on the search results, here's what the frontier open-source LLM landscape looks like in May 2026:
+
+## Top Frontier Open-Source LLMs
+
+The best open-weight LLM in May 2026 depends on the workload, though DeepSeek V4 Pro leads raw capability with 80.6 SWE-Bench Verified, 90.1 GPQA Diamond, and a 1M context.
+
+### Leading Models by Category:
+
+**Overall Performance:**
+- GLM 5.1 is a 744B-parameter MoE (40B active) with 200K token context, positioned as a flagship release for coding, reasoning, and agentic workflows — currently the leading open-weights model on Artificial Analysis's Intelligence Index.
+
+**Agentic Coding:**
+- Qwen 3.6 Plus is the top open-weight choice for demanding agentic coding, with 1M token context and frontier-competitive benchmark scores, while DeepSeek V4 offers the best performance-to-inference-cost ratio for self-hosted deployments.
+
+**Coding-Specific:**
+- Kimi K2.6 is the strongest coding-oriented open source model.
+
+**Cost-Effective Options:**
+- DeepSeek V4 Flash is the most economical current pick for cheap API access.
+
+**Notable Frontier Models:**
+- Kimi-K2-Instruct-0905 is a 1T-parameter MoE with 256K context that excels in long-term agentic and coding workflows.
+
+The search results indicate that by May 2026, developers worldwide can download frontier-grade models, run them on their own hardware, and deploy them without paying per token.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dc1790ef-d0a9-4432-b0b2-06559147392f",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "9c437c91-006c-477a-be4e-6fe73e395ed1",
+  "toolUseResult": {
+    "query": "best open source LLM model May 2026 frontier",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015JdjNdiyFtsQvdMfARpKyk",
+        "content": [
+          {
+            "title": "The Best Open-Source LLMs in 2026",
+            "url": "https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models"
+          },
+          {
+            "title": "Open-Source LLMs Compared 2026 – 25+ Models… – Till Freitag",
+            "url": "https://till-freitag.com/en/blog/open-source-llm-comparison"
+          },
+          {
+            "title": "11 Top Open-Source LLMs for 2026 and Their Uses | DataCamp",
+            "url": "https://www.datacamp.com/blog/top-open-source-llms"
+          },
+          {
+            "title": "Best Open-Source LLM in May 2026: Llama 4 vs Qwen 3.5 vs DeepSeek V4 vs Gemma 4 vs Mistral Medium 3.5",
+            "url": "https://codersera.com/blog/best-open-source-llm-2026-llama-4-qwen-3-5-deepseek-v4-gemma-4-mistral/"
+          },
+          {
+            "title": "Open-Source LLMs in 2026: Best AI Models | Medium",
+            "url": "https://medium.com/@servifyspheresolutions/the-free-models-running-the-world-af6a3d2e8758"
+          },
+          {
+            "title": "Open LLM Leaderboard 2026 - Compare Open Source LLM Rankings",
+            "url": "https://llm-stats.com/leaderboards/open-llm-leaderboard"
+          },
+          {
+            "title": "The Best Open-Source LLMs for Agentic Coding in 2026 | MindStudio",
+            "url": "https://www.mindstudio.ai/blog/best-open-source-llms-agentic-coding-2026"
+          },
+          {
+            "title": "The Top Open-Source LLMs in 2026 🚀🤖 | by Hemanth Raju | Jan, 2026 | Python in Plain English",
+            "url": "https://python.plainenglish.io/the-top-open-source-llms-in-2026-ab144d1c7679"
+          },
+          {
+            "title": "Best Open Source LLM 2026 Ranking + Ollama Guide",
+            "url": "https://whatllm.org/best-open-source-llm"
+          },
+          {
+            "title": "Best Open-Source LLMs in 2026: A Practical Guide by Use Case - ML Journey",
+            "url": "https://mljourney.com/best-open-source-llms-in-2026-a-practical-guide-by-use-case/"
+          }
+        ]
+      },
+      "Based on the search results, here's what the frontier open-source LLM landscape looks like in May 2026:\n\n## Top Frontier Open-Source LLMs\n\nThe best open-weight LLM in May 2026 depends on the workload, though DeepSeek V4 Pro leads raw capability with 80.6 SWE-Bench Verified, 90.1 GPQA Diamond, and a 1M context.\n\n### Leading Models by Category:\n\n**Overall Performance:**\n- GLM 5.1 is a 744B-parameter MoE (40B active) with 200K token context, positioned as a flagship release for coding, reasoning, and agentic workflows — currently the leading open-weights model on Artificial Analysis's Intelligence Index.\n\n**Agentic Coding:**\n- Qwen 3.6 Plus is the top open-weight choice for demanding agentic coding, with 1M token context and frontier-competitive benchmark scores, while DeepSeek V4 offers the best performance-to-inference-cost ratio for self-hosted deployments.\n\n**Coding-Specific:**\n- Kimi K2.6 is the strongest coding-oriented open source model.\n\n**Cost-Effective Options:**\n- DeepSeek V4 Flash is the most economical current pick for cheap API access.\n\n**Notable Frontier Models:**\n- Kimi-K2-Instruct-0905 is a 1T-parameter MoE with 256K context that excels in long-term agentic and coding workflows.\n\nThe search results indicate that by May 2026, developers worldwide can download frontier-grade models, run them on their own hardware, and deploy them without paying per token."
+    ],
+    "durationSeconds": 15.343929873
+  },
+  "sourceToolAssistantUUID": "dc1790ef-d0a9-4432-b0b2-06559147392f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65 · 2026-05-11T22:57:21.947Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-11T22:57:21.947Z",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66 · 2026-05-11T22:57:21.946Z_
+
+```json
+{
+  "parentUuid": "9c437c91-006c-477a-be4e-6fe73e395ed1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>abed907ee37d30984&lt;/task-id>\n&lt;tool-use-id>toolu_013F2T4wrvz2SkaEuxT52ibY&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/461ad37f-ce07-4a00-a32b-b8a7506190ed/tasks/abed907ee37d30984.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Check venue deadlines and SOTA models\" completed&lt;/summary>\n&lt;result>Here are the complete findings:\n\n---\n\n## Part 1: Conference Deadlines (relative to today, 2026-05-11)\n\n| Venue | Deadline | Status |\n|-------|----------|--------|\n| **NeurIPS 2026** (main track) | Abstract: May 4, 2026; Full paper: May 6, 2026 (AOE) | **PASSED** |\n| **ICML 2026** (main track) | January 28, 2026 | **PASSED** |\n| **ICLR 2027** | Not yet announced | **TBD** (likely ~October 2026 based on historical pattern) |\n| **AAAI 2027** | Abstract: July 25, 2026; Full paper: August 1, 2026 | **NOT YET PASSED** -- conference Feb 16-23, 2027 in Montreal |\n| **AAMAS 2027** | Not yet announced | **TBD** (likely ~October 2026 based on historical pattern) |\n| **CoRL 2026** | Abstract: May 26, 2026; Full paper: May 29, 2026 (UTC) | **NOT YET PASSED** -- conference Nov 9-12, 2026 in Austin, TX |\n| **EMNLP 2026** | ARR submission: May 25, 2026; Commitment deadline: August 2, 2026 | **NOT YET PASSED** -- conference Oct 24-29, 2026 in Budapest |\n| **NeurIPS 2026 Workshops** | Workshop proposal deadline: June 6, 2026; Suggested contributed paper deadline: August 29, 2026 | **NOT YET PASSED** |\n| **COLM 2026** | Abstract: March 26, 2026; Full paper: March 31, 2026 | **PASSED** |\n\n**Venues still open for submission (as of 2026-05-11):**\n- CoRL 2026 (paper due May 29)\n- EMNLP 2026 (ARR submission due May 25)\n- NeurIPS 2026 Workshops (proposal due June 6; contributed papers ~Aug 29)\n- AAAI 2027 (paper due August 1)\n- ICLR 2027 and AAMAS 2027 are expected to open later in 2026\n\n---\n\n## Part 2: Current SOTA Open-Source Models (as of May 2026)\n\n### Frontier Open-Source LLMs\n\n| Model | Total Params | Active Params | Architecture | Released By | Release Date | Notes |\n|-------|-------------|---------------|-------------|-------------|-------------|-------|\n| **DeepSeek V4 Pro** | 1.6T | 49B | MoE | DeepSeek | Apr 24, 2026 | MIT license, 1M context, leads BenchLM aggregate at 87; unified thinking mode toggle |\n| **DeepSeek V4 Flash** | 284B | 13B | MoE | DeepSeek | Apr 24, 2026 | MIT license, 1M context, most economical frontier model |\n| **GLM-5.1** | 744B | 44B (~40B active) | MoE (256 experts, 8 active) | Zhipu AI (ZAI) | Feb 11, 2026 (GLM-5); 5.1 update later | MIT license, 200K context, #1 on Artificial Analysis Intelligence Index |\n| **Kimi K2.6** | 1T | 32B | MoE | Moonshot AI | Apr 20, 2026 | Modified MIT, 262K context, multimodal, agent swarm (300 sub-agents), top open-source coding model |\n| **MiMo-V2.5-Pro** | 1.02T | 42B | MoE + hybrid attention + MTP | Xiaomi | Apr 27, 2026 | MIT license, 1M context, competitive with Claude Opus 4.6 while using 40-60% fewer tokens |\n| **Meta Llama 4** | Various sizes | Various | Dense/MoE | Meta | 2026 | Strong general reasoning |\n| **DeepSeek-R1** | 671B | ~37B | MoE | DeepSeek | Jan 2025 | Reasoning-focused, distilled variants from 1.5B to 70B |\n\n### Best Small / Lightweight Models (for a gating module)\n\n| Model | Parameters | Released By | Notes |\n|-------|-----------|-------------|-------|\n| **Phi-4-mini-instruct** | 3.8B | Microsoft | Reasoning quality comparable to 7-9B models; excellent quality-to-size ratio |\n| **Qwen3.5-0.8B** | 0.8B | Alibaba (Qwen) | Multimodal, extremely lightweight |\n| **MobileLLaMA 1.4B** | 1.4B | Community | Optimized for mobile/edge deployment |\n| **TinyLlama 1.1B** | 1.1B | Community | Compact conversational model |\n| **MiniCPM** | 1B-4B | Tsinghua/OpenBMB | Flexible size range, good for general tasks |\n| **Mistral 7B Instruct v0.2** | 7B | Mistral AI | Best quality in the 7B class; runs on single GPU |\n\n**Recommendation for a lightweight gating module:** Phi-4-mini (3.8B) offers the best reasoning-per-parameter in the small model class. If even smaller is needed, Qwen3.5-0.8B or TinyLlama 1.1B are viable.\n\n### Top Reasoning Models\n\n| Model | Notes |\n|-------|-------|\n| **DeepSeek V4 Pro** | Strongest open-weight for general reasoning; BenchLM score 87 |\n| **DeepSeek-R1 (671B)** | Dedicated reasoning model; matches/exceeds OpenAI o1 on AIME, GPQA Diamond |\n| **Kimi K2.6** | Quality Index 53.9 (top of live open-source ranking), competitive with GPT-5.4 and Claude Opus 4.6 on complex coding |\n| **MiMo-V2.5-Pro** | Comparable to Claude Opus 4.6, exceptional token efficiency |\n| **MiniMax-M1-80k** | Strong logical/reasoning abilities |\n| **Kimi-Dev-72B** | Dedicated reasoning variant |\n| **GLM-5 / GLM-5.1** | Agentic coding leader at 55.00 on SWE-bench-style tasks |\n\n**Key trend:** Open-weight models now trail proprietary SOTA by only ~3 months on average (per Epoch AI). The MoE architecture dominates the frontier, with active parameter counts of 32-49B being the sweet spot for inference efficiency.\n\n---\n\nSources:\n- [NeurIPS 2026 Dates and Deadlines](https://neurips.cc/Conferences/2026/Dates)\n- [ICML 2026 Dates and Deadlines](https://icml.cc/Conferences/2026/Dates)\n- [ICLR 2026](https://iclr.cc/)\n- [AAAI Conference on AI](https://aaai.org/conference/aaai/)\n- [AI &amp; ML Conference Deadlines 2026-2027 (TryBibby)](https://trybibby.com/conference-deadlines)\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [EMNLP 2026](https://2026.emnlp.org/)\n- [NeurIPS 2026 Call for Workshops](https://neurips.cc/Conferences/2026/CallForWorkshops)\n- [COLM 2026 Key Dates](https://colmweb.org/dates.html)\n- [COLM 2026 Call for Papers](https://colmweb.org/cfp.html)\n- [Best Open-Source LLMs in 2026 (BentoML)](https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models)\n- [Open LLM Leaderboard (Onyx)](https://onyx.app/open-llm-leaderboard)\n- [Best Open-Source SLMs 2026 (BentoML)](https://www.bentoml.com/blog/the-best-open-source-small-language-models)\n- [Top 10 Open-Source Reasoning Models 2026 (Clarifai)](https://www.clarifai.com/blog/top-10-open-source-reasoning-models-in-2026)\n- [DeepSeek V4 Pro on HuggingFace](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro)\n- [GLM-5 on HuggingFace](https://huggingface.co/zai-org/GLM-5)\n- [Kimi K2.6 on OpenRouter](https://openrouter.ai/moonshotai/kimi-k2.6)\n- [MiMo-V2.5-Pro on HuggingFace](https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro)\n- [Moonshot AI Releases Kimi K2.6 (MarkTechPost)](https://www.marktechpost.com/2026/04/20/moonshot-ai-releases-kimi-k2-6-with-long-horizon-coding-agent-swarm-scaling-to-300-sub-agents-and-4000-coordinated-steps/)\n- [Best Open Source LLMs for Reasoning (SiliconFlow)](https://www.siliconflow.com/articles/en/best-open-source-LLMs-for-reasoning)&lt;/result>\n&lt;usage>&lt;total_tokens>24637&lt;/total_tokens>&lt;tool_uses>19&lt;/tool_uses>&lt;duration_ms>81324&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "7eacfa09-3873-4306-bdb4-0ea7df8cdda8",
+  "timestamp": "2026-05-11T22:57:21.946Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-11T22:57:34.806Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I'm getting a lot of data. Let me now wait for the remaining agents to complete. Let me check what the current status is:
+
+Agent 1 (concurrent work search) - still running
+Agent 2 (verify references) - still running
+Agent 3 (venue deadlines/SOTA) - COMPLETED
+Agent 4 (implementations/datasets) - still running
+
+Let me compile what I know so far while waiting:
+
+**Venue deadlines (after 2026-05-11):**
+- EMNLP 2026: ARR May 25, 2026
+- CoRL 2026: Abstract May 26, Paper May 29, 2026
+
+
+- NeurIPS 2026 Workshops: Paper ~Aug 29, 2026
+- AAAI 2027: Abstract Jul 25, Paper Aug 1, 2026
+- ICLR 2027: ~October 2026 (TBD)
+
+**SOTA models:**
+- Frontier: DeepSeek V4 Pro (1.6T MoE, 49B active), GLM-5.1 (744B MoE, 40B active), Kimi K2.6 (1T MoE, 32B active)
+- Small/gating module: Phi 4-mini (3.8B), Qwen 3.5-0.8B
+
+For GPU costs, A100s run around $0.72-1.50 per hour. I should wait to hear back from the other agents before moving forward.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7eacfa09-3873-4306-bdb4-0ea7df8cdda8",
+  "isSidechain": false,
+  "requestId": "req_011CawcF64nhB2KzXa23GRHD",
+  "type": "assistant",
+  "uuid": "96a02682-07df-4310-bc4f-5824df6b8d82",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VYLhg2TUmD6AmKHHb8XcRF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 911,
+      "cache_creation_input_tokens": 4940,
+      "cache_read_input_tokens": 30408,
+      "output_tokens": 500,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4940,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 911,
+          "output_tokens": 500,
+          "cache_read_input_tokens": 30408,
+          "cache_creation_input_tokens": 4940,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4940
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68 · 2026-05-11T22:57:34.811Z_
+
+Good data coming in. Let me wait for the remaining agents to complete before assembling the final output.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "96a02682-07df-4310-bc4f-5824df6b8d82",
+  "isSidechain": false,
+  "requestId": "req_011CawcF64nhB2KzXa23GRHD",
+  "type": "assistant",
+  "uuid": "6ccd8e50-f2bf-4214-ab01-a69fa38ced99",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VYLhg2TUmD6AmKHHb8XcRF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 911,
+      "cache_creation_input_tokens": 4940,
+      "cache_read_input_tokens": 30408,
+      "output_tokens": 500,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4940,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 911,
+          "output_tokens": 500,
+          "cache_read_input_tokens": 30408,
+          "cache_creation_input_tokens": 4940,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4940
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-11T22:57:35.338Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013HHFG6M4VRrSBPFnnBeQvX`</summary>
+
+```json
+{
+  "query": "ALFWorld ScienceWorld agent benchmark dataset available github 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ccd8e50-f2bf-4214-ab01-a69fa38ced99",
+  "isSidechain": false,
+  "requestId": "req_011CawcF64nhB2KzXa23GRHD",
+  "type": "assistant",
+  "uuid": "0ea87e89-9207-4c76-87af-9c42e5b9277b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VYLhg2TUmD6AmKHHb8XcRF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 911,
+      "cache_creation_input_tokens": 4940,
+      "cache_read_input_tokens": 30408,
+      "output_tokens": 500,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4940,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 911,
+          "output_tokens": 500,
+          "cache_read_input_tokens": 30408,
+          "cache_creation_input_tokens": 4940,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4940
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-11T22:57:35.904Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JSzQRWLRCmtWqjd9kzpyuU`</summary>
+
+```json
+{
+  "query": "RL training gating mechanism small model GPU hours cost estimate"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ea87e89-9207-4c76-87af-9c42e5b9277b",
+  "isSidechain": false,
+  "requestId": "req_011CawcF64nhB2KzXa23GRHD",
+  "type": "assistant",
+  "uuid": "af178137-10ec-40ce-8e5a-0419bde9417a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VYLhg2TUmD6AmKHHb8XcRF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 911,
+      "cache_creation_input_tokens": 4940,
+      "cache_read_input_tokens": 30408,
+      "output_tokens": 500,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4940,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 911,
+          "output_tokens": 500,
+          "cache_read_input_tokens": 30408,
+          "cache_creation_input_tokens": 4940,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4940
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-11T22:57:41.867Z_
+
+<details><summary>↩ Tool result · `toolu_013HHFG6M4VRrSBPFnnBeQvX`</summary>
+
+```text
+Web search results for query: "ALFWorld ScienceWorld agent benchmark dataset available github 2026"
+
+Links: [{"title":"GitHub - stevenyangyj/Emma-Alfworld: Official code for the paper: Embodied Multi-Modal Agent trained by an LLM from a Parallel TextWorld · GitHub","url":"https://github.com/stevenyangyj/Emma-Alfworld"},{"title":"agentquest/agentquest/benchmarks/alfworld/README.md at main · nec-research/agentquest","url":"https://github.com/nec-research/agentquest/blob/main/agentquest/benchmarks/alfworld/README.md"},{"title":"ALFWorld","url":"https://alfworld.github.io/"},{"title":"GitHub - alfworld/alfworld: ALFWorld: Aligning Text and Embodied Environments for Interactive Learning · GitHub","url":"https://github.com/alfworld/alfworld"},{"title":"GitHub - jiajingyyyyyy/AutoTool: [AAAI 2026] AutoTool: Efficient Tool Selection for Large Language Model Agents · GitHub","url":"https://github.com/jiajingyyyyyy/AutoTool"},{"title":"GitHub - yijunshens/StateFactory: Official implementation of \"Reward Prediction with Factorized World States\" · GitHub","url":"https://github.com/yijunshens/StateFactory"},{"title":"Explore | alphaXiv","url":"https://www.alphaxiv.org/"},{"title":"Agent Planning with World Knowledge Model","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/d032263772946dd5026e7f3cd22bce5b-Paper-Conference.pdf"},{"title":"hkust-nlp/agentboard · Datasets at Hugging Face","url":"https://huggingface.co/datasets/hkust-nlp/agentboard"},{"title":"Agent Planning with World Knowledge Model - GitHub Pages","url":"https://knowledge-nlp.github.io/acl2024/papers/20_agent_planning_with_world_know.pdf"}]
+
+Based on the web search results, I found information about ALFWorld and ScienceWorld agent benchmark datasets available on GitHub:
+
+## ALFWorld Dataset
+
+ALFWorld contains interactive TextWorld environments that parallel embodied worlds in the ALFRED dataset. The aligned environments allow agents to reason and learn high-level policies in an abstract space before solving embodied tasks through low-level actuation.
+
+The official ALFWorld repository is available on GitHub under "ALFWorld: Aligning Text and Embodied Environments for Interactive Learning", which can be found at https://github.com/alfworld/alfworld.
+
+## ScienceWorld Dataset
+
+The RewardPrediction benchmark is designed to evaluate fine-grained, step-wise reward prediction across five diverse text-based environments including AlfWorld and ScienceWorld.
+
+## AgentBoard Benchmark
+
+The AgentBoard dataset on Hugging Face includes data for alfworld, scienceworld, and other agent benchmarks, with additional data files for each environment. The AgentBoard repository with both ALFWorld and ScienceWorld datasets is available at https://github.com/hkust-nlp/AgentBoard.
+
+These datasets are actively being used in 2026 for agent benchmark research, as evidenced by recent research papers utilizing them for evaluating agent planning and tool selection capabilities.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0ea87e89-9207-4c76-87af-9c42e5b9277b",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "ef116bf9-00d9-48b9-b3ed-5e67a50d9651",
+  "toolUseResult": {
+    "query": "ALFWorld ScienceWorld agent benchmark dataset available github 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012K1kSQ2We26QBm2XQWANQL",
+        "content": [
+          {
+            "title": "GitHub - stevenyangyj/Emma-Alfworld: Official code for the paper: Embodied Multi-Modal Agent trained by an LLM from a Parallel TextWorld · GitHub",
+            "url": "https://github.com/stevenyangyj/Emma-Alfworld"
+          },
+          {
+            "title": "agentquest/agentquest/benchmarks/alfworld/README.md at main · nec-research/agentquest",
+            "url": "https://github.com/nec-research/agentquest/blob/main/agentquest/benchmarks/alfworld/README.md"
+          },
+          {
+            "title": "ALFWorld",
+            "url": "https://alfworld.github.io/"
+          },
+          {
+            "title": "GitHub - alfworld/alfworld: ALFWorld: Aligning Text and Embodied Environments for Interactive Learning · GitHub",
+            "url": "https://github.com/alfworld/alfworld"
+          },
+          {
+            "title": "GitHub - jiajingyyyyyy/AutoTool: [AAAI 2026] AutoTool: Efficient Tool Selection for Large Language Model Agents · GitHub",
+            "url": "https://github.com/jiajingyyyyyy/AutoTool"
+          },
+          {
+            "title": "GitHub - yijunshens/StateFactory: Official implementation of \"Reward Prediction with Factorized World States\" · GitHub",
+            "url": "https://github.com/yijunshens/StateFactory"
+          },
+          {
+            "title": "Explore | alphaXiv",
+            "url": "https://www.alphaxiv.org/"
+          },
+          {
+            "title": "Agent Planning with World Knowledge Model",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/d032263772946dd5026e7f3cd22bce5b-Paper-Conference.pdf"
+          },
+          {
+            "title": "hkust-nlp/agentboard · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/hkust-nlp/agentboard"
+          },
+          {
+            "title": "Agent Planning with World Knowledge Model - GitHub Pages",
+            "url": "https://knowledge-nlp.github.io/acl2024/papers/20_agent_planning_with_world_know.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, I found information about ALFWorld and ScienceWorld agent benchmark datasets available on GitHub:\n\n## ALFWorld Dataset\n\nALFWorld contains interactive TextWorld environments that parallel embodied worlds in the ALFRED dataset. The aligned environments allow agents to reason and learn high-level policies in an abstract space before solving embodied tasks through low-level actuation.\n\nThe official ALFWorld repository is available on GitHub under \"ALFWorld: Aligning Text and Embodied Environments for Interactive Learning\", which can be found at https://github.com/alfworld/alfworld.\n\n## ScienceWorld Dataset\n\nThe RewardPrediction benchmark is designed to evaluate fine-grained, step-wise reward prediction across five diverse text-based environments including AlfWorld and ScienceWorld.\n\n## AgentBoard Benchmark\n\nThe AgentBoard dataset on Hugging Face includes data for alfworld, scienceworld, and other agent benchmarks, with additional data files for each environment. The AgentBoard repository with both ALFWorld and ScienceWorld datasets is available at https://github.com/hkust-nlp/AgentBoard.\n\nThese datasets are actively being used in 2026 for agent benchmark research, as evidenced by recent research papers utilizing them for evaluating agent planning and tool selection capabilities."
+    ],
+    "durationSeconds": 6.524229801999987
+  },
+  "sourceToolAssistantUUID": "0ea87e89-9207-4c76-87af-9c42e5b9277b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-11T22:57:44.305Z_
+
+<details><summary>↩ Tool result · `toolu_01JSzQRWLRCmtWqjd9kzpyuU`</summary>
+
+```text
+Web search results for query: "RL training gating mechanism small model GPU hours cost estimate"
+
+Links: [{"title":"What is the cost of training large language models?","url":"https://www.cudocompute.com/blog/what-is-the-cost-of-training-large-language-models"},{"title":"The Complete Guide to GPU Requirements for LLM Fine-Tuning | Runpod Blog","url":"https://www.runpod.io/blog/llm-fine-tuning-gpu-guide"},{"title":"Understanding the Performance and Estimating the Cost of LLM Fine-Tuning","url":"https://arxiv.org/html/2408.04693v1"},{"title":"How can I fine-tune large language models on a budget using LoRA and QLoRA on cloud GPUs?","url":"https://www.runpod.io/articles/guides/how-to-fine-tune-large-language-models-on-a-budget"},{"title":"GPU Options for Finetuning Large Models: Choose the Right Setup | DigitalOcean","url":"https://www.digitalocean.com/resources/articles/gpu-options-finetuning"},{"title":"Estimate runtime and memory required for LLM Training.","url":"https://medium.com/@kailaspsudheer/the-transformers-arithmetic-527111099527"},{"title":"How Much Does LLM Training Cost? | Galileo","url":"https://galileo.ai/blog/llm-model-training-cost"},{"title":"Reinforcement Learning Revolution – Accelerate Your Agent’s Training with GPUs","url":"https://www.runpod.io/articles/guides/reinforcement-learning-revolution-accelerate-your-agents-training-with-gpus"},{"title":"LLM Implementation and Maintenance Costs for Businesses: A Detailed Breakdown - Inero Software - Software Consulting","url":"https://inero-software.com/llm-implementation-and-maintenance-costs-for-businesses-a-detailed-breakdown/"},{"title":"Dynamic Data Selection for Reinforcement Learning","url":"https://aclanthology.org/2025.findings-emnlp.412.pdf"}]
+
+I found several relevant results about GPU training costs and RL/gating mechanisms. Here's what the search revealed:
+
+## Key Findings:
+
+**Gating Mechanisms in Small Models:**
+
+Mixture-of-Experts (MoE) models have a gating mechanism that activates only some of them for each input, meaning that at any given time, only a portion of the model's parameters are used. MoE models can significantly cut down compute needed—for instance, Google's Switch Transformer achieved comparable results to a dense model but with far less computation by sparsely activating experts, getting a model with 1.6 trillion parameters to train with the computational cost of only a 100+ billion parameter dense model.
+
+**RL Training Cost Estimates:**
+
+GPU acceleration can cut training time from weeks to hours for reinforcement learning applications. More specifically, GPU-accelerated simulators yield two to three orders of magnitude faster performance compared with conventional CPU-based RL pipelines.
+
+**GPU Hourly Costs:**
+
+For current pricing (May 2026), spot pricing delivers H100 access at $2.85/hour (61% savings), while renting a pod of 8 A100 GPUs on a cloud platform can cost tens of dollars per hour. For smaller-scale work, renting an instance with an A100 GPU typically costs $1–2 per hour.
+
+**Fine-tuning with MoE Layers:**
+
+Research has developed an analytical model to estimate the cost of LLM fine-tuning on the cloud, with specific focus on MoE architectures and their gating mechanisms for cost prediction.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "af178137-10ec-40ce-8e5a-0419bde9417a",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "d575b1fe-d825-4d96-a4c3-cb0891238a1a",
+  "toolUseResult": {
+    "query": "RL training gating mechanism small model GPU hours cost estimate",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HDpk4z81d1N7fLDJKHvkDo",
+        "content": [
+          {
+            "title": "What is the cost of training large language models?",
+            "url": "https://www.cudocompute.com/blog/what-is-the-cost-of-training-large-language-models"
+          },
+          {
+            "title": "The Complete Guide to GPU Requirements for LLM Fine-Tuning | Runpod Blog",
+            "url": "https://www.runpod.io/blog/llm-fine-tuning-gpu-guide"
+          },
+          {
+            "title": "Understanding the Performance and Estimating the Cost of LLM Fine-Tuning",
+            "url": "https://arxiv.org/html/2408.04693v1"
+          },
+          {
+            "title": "How can I fine-tune large language models on a budget using LoRA and QLoRA on cloud GPUs?",
+            "url": "https://www.runpod.io/articles/guides/how-to-fine-tune-large-language-models-on-a-budget"
+          },
+          {
+            "title": "GPU Options for Finetuning Large Models: Choose the Right Setup | DigitalOcean",
+            "url": "https://www.digitalocean.com/resources/articles/gpu-options-finetuning"
+          },
+          {
+            "title": "Estimate runtime and memory required for LLM Training.",
+            "url": "https://medium.com/@kailaspsudheer/the-transformers-arithmetic-527111099527"
+          },
+          {
+            "title": "How Much Does LLM Training Cost? | Galileo",
+            "url": "https://galileo.ai/blog/llm-model-training-cost"
+          },
+          {
+            "title": "Reinforcement Learning Revolution – Accelerate Your Agent’s Training with GPUs",
+            "url": "https://www.runpod.io/articles/guides/reinforcement-learning-revolution-accelerate-your-agents-training-with-gpus"
+          },
+          {
+            "title": "LLM Implementation and Maintenance Costs for Businesses: A Detailed Breakdown - Inero Software - Software Consulting",
+            "url": "https://inero-software.com/llm-implementation-and-maintenance-costs-for-businesses-a-detailed-breakdown/"
+          },
+          {
+            "title": "Dynamic Data Selection for Reinforcement Learning",
+            "url": "https://aclanthology.org/2025.findings-emnlp.412.pdf"
+          }
+        ]
+      },
+      "I found several relevant results about GPU training costs and RL/gating mechanisms. Here's what the search revealed:\n\n## Key Findings:\n\n**Gating Mechanisms in Small Models:**\n\nMixture-of-Experts (MoE) models have a gating mechanism that activates only some of them for each input, meaning that at any given time, only a portion of the model's parameters are used. MoE models can significantly cut down compute needed—for instance, Google's Switch Transformer achieved comparable results to a dense model but with far less computation by sparsely activating experts, getting a model with 1.6 trillion parameters to train with the computational cost of only a 100+ billion parameter dense model.\n\n**RL Training Cost Estimates:**\n\nGPU acceleration can cut training time from weeks to hours for reinforcement learning applications. More specifically, GPU-accelerated simulators yield two to three orders of magnitude faster performance compared with conventional CPU-based RL pipelines.\n\n**GPU Hourly Costs:**\n\nFor current pricing (May 2026), spot pricing delivers H100 access at $2.85/hour (61% savings), while renting a pod of 8 A100 GPUs on a cloud platform can cost tens of dollars per hour. For smaller-scale work, renting an instance with an A100 GPU typically costs $1–2 per hour.\n\n**Fine-tuning with MoE Layers:**\n\nResearch has developed an analytical model to estimate the cost of LLM fine-tuning on the cloud, with specific focus on MoE architectures and their gating mechanisms for cost prediction."
+    ],
+    "durationSeconds": 8.39737315
+  },
+  "sourceToolAssistantUUID": "af178137-10ec-40ce-8e5a-0419bde9417a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Learned Simul…",
+  "leafUuid": "d575b1fe-d825-4d96-a4c3-cb0891238a1a",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 74_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learn step-level simulation gating for agents",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-11T22:57:49.051Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now wait for the remaining agents. I have agents 1 (concurrent work), 2 (verify references), and 4 (implementations/datasets) still running.
+
+Let me check if there are any more important searches I should do while waiting.
+
+Actually, let me now search specifically for the approach feasibility - training a small gating model with RL on agent trajectories.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d575b1fe-d825-4d96-a4c3-cb0891238a1a",
+  "isSidechain": false,
+  "requestId": "req_011CawcGjg1X9xxpQn5KqWKh",
+  "type": "assistant",
+  "uuid": "7a1df7d9-29c7-4200-a8a1-147c34acee58",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015LiZaS2qM7rYvSAoVv38K8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3186,
+      "cache_read_input_tokens": 35348,
+      "output_tokens": 228,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3186,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 228,
+          "cache_read_input_tokens": 35348,
+          "cache_creation_input_tokens": 3186,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3186
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-11T22:57:50.235Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016J55QDprZaZpHbbrbLM6nL`</summary>
+
+```json
+{
+  "query": "\"selective computation\" \"when to think\" agent step-level reinforcement learning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a1df7d9-29c7-4200-a8a1-147c34acee58",
+  "isSidechain": false,
+  "requestId": "req_011CawcGjg1X9xxpQn5KqWKh",
+  "type": "assistant",
+  "uuid": "856c66a8-d9cb-4f27-aeb6-260f218cfa0b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015LiZaS2qM7rYvSAoVv38K8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3186,
+      "cache_read_input_tokens": 35348,
+      "output_tokens": 228,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3186,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 228,
+          "cache_read_input_tokens": 35348,
+          "cache_creation_input_tokens": 3186,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3186
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-11T22:57:50.484Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012ZUXuzpHjHfQstVJmW7MdK`</summary>
+
+```json
+{
+  "query": "arxiv \"simulation gating\" OR \"when to simulate\" agent world model learned 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "856c66a8-d9cb-4f27-aeb6-260f218cfa0b",
+  "isSidechain": false,
+  "requestId": "req_011CawcGjg1X9xxpQn5KqWKh",
+  "type": "assistant",
+  "uuid": "a7b715c0-de87-4dbf-a16d-b130a8fab5cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015LiZaS2qM7rYvSAoVv38K8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3186,
+      "cache_read_input_tokens": 35348,
+      "output_tokens": 228,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3186,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 228,
+          "cache_read_input_tokens": 35348,
+          "cache_creation_input_tokens": 3186,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3186
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-11T22:57:54.239Z_
+
+<details><summary>↩ Tool result · `toolu_016J55QDprZaZpHbbrbLM6nL`</summary>
+
+```text
+Web search results for query: ""selective computation" "when to think" agent step-level reinforcement learning 2025 2026"
+
+No links found.
+
+Let me share the search results I found:
+
+The search yielded results related to research on selective computation and decision-making in reinforcement learning agents, particularly focusing on how agents learn when to engage in computation or thinking steps. The results appear to connect to recent work in the field around 2025-2026 on training agents that can selectively decide when to perform additional reasoning or computation steps, as opposed to always computing at every step.
+
+This research area seems to address an important problem: enabling agents to learn efficient computation strategies by determining when extended thinking or additional processing is necessary versus when they can proceed directly to action selection. This is relevant for improving the efficiency and performance of AI agents in decision-making tasks.
+
+If you're looking for specific papers, authors, or more detailed information about particular developments in this area, please let me know and I can perform additional searches to find that information.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "856c66a8-d9cb-4f27-aeb6-260f218cfa0b",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "2d0bc07e-8941-43e0-9d7f-cf7febb13305",
+  "toolUseResult": {
+    "query": "\"selective computation\" \"when to think\" agent step-level reinforcement learning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CixgPBhrBbEdpoPbMkEF46",
+        "content": []
+      },
+      "Let me share the search results I found:\n\nThe search yielded results related to research on selective computation and decision-making in reinforcement learning agents, particularly focusing on how agents learn when to engage in computation or thinking steps. The results appear to connect to recent work in the field around 2025-2026 on training agents that can selectively decide when to perform additional reasoning or computation steps, as opposed to always computing at every step.\n\nThis research area seems to address an important problem: enabling agents to learn efficient computation strategies by determining when extended thinking or additional processing is necessary versus when they can proceed directly to action selection. This is relevant for improving the efficiency and performance of AI agents in decision-making tasks.\n\nIf you're looking for specific papers, authors, or more detailed information about particular developments in this area, please let me know and I can perform additional searches to find that information."
+    ],
+    "durationSeconds": 4.002461189000023
+  },
+  "sourceToolAssistantUUID": "856c66a8-d9cb-4f27-aeb6-260f218cfa0b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-11T22:57:58.972Z_
+
+<details><summary>↩ Tool result · `toolu_012ZUXuzpHjHfQstVJmW7MdK`</summary>
+
+```text
+Web search results for query: "arxiv "simulation gating" OR "when to simulate" agent world model learned 2025 2026"
+
+Links: [{"title":"[2604.22748] Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond","url":"https://arxiv.org/abs/2604.22748"},{"title":"Understanding World or Predicting Future? A Comprehensive Survey of World Models","url":"https://arxiv.org/html/2411.14499v3"},{"title":"Benchmarking World-Model Learning","url":"https://arxiv.org/html/2510.19788v1"},{"title":"(PDF) WebWorld: A Large-Scale World Model for Web Agent Training","url":"https://www.researchgate.net/publication/400856175_WebWorld_A_Large-Scale_World_Model_for_Web_Agent_Training"},{"title":"GitHub - zezhishao/DailyArXiv: Daily ArXiv Papers. · GitHub","url":"https://github.com/zezhishao/DailyArXiv"},{"title":"Multiagent Systems Apr 2026","url":"https://arxiv.org/list/cs.MA/current"},{"title":"Multiagent Systems","url":"https://arxiv.org/list/cs.MA/recent"},{"title":"We Need Strong Preconditions For Using Simulations In Policy","url":"https://arxiv.org/html/2604.07838v1"},{"title":"AgentSociety: Large-Scale Simulation of LLM-Driven Generative Agents Advances Understanding of Human Behaviors and Society","url":"https://arxiv.org/html/2502.08691v1"},{"title":"GTM: Simulating the World of Tools for AI Agents","url":"https://arxiv.org/html/2512.04535v1"}]
+
+The search results contain several relevant papers on agent world models and simulations from 2025-2026. Here are the key findings:
+
+## Main Results:
+
+**1. Agentic World Modeling Survey (April 2026)**
+The paper introduces a taxonomy with three capability levels: L1 Predictor (learns one-step local transition operators), L2 Simulator (composes them into multi-step, action-conditioned rollouts), and L3 Evolver (autonomously revises its own model when predictions fail). The survey synthesizes over 400 works and summarizes more than 100 representative systems spanning model-based reinforcement learning, video generation, web and GUI agents, multi-agent social simulation, and AI-driven scientific discovery.
+
+**2. Simulation Gating / When to Simulate**
+One paper discusses how advanced MCTS or hybrid search (which only triggers look-ahead when actions are uncertain) offer marginal improvement, suggesting that world models are more valuable for synthesizing training data. This touches on the concept of conditional simulation triggering.
+
+**3. World Model Learning Benchmarks (October 2025)**
+A paper proposes WorldTest, described as the first theoretical world-model learning assessment framework, with an instantiation called AutumnBench containing 43 interactive environments and three challenge families, resulting in 129 tasks.
+
+**4. Other Relevant Work**
+AgentSociety proposes a large-scale social simulator integrating LLM-driven agents and a realistic societal environment, generating social lives for over 10k agents and simulating 5 million interactions.
+
+The search results don't contain papers specifically titled with "simulation gating" or "when to simulate," but the conditional/selective simulation concept appears in multiple recent works on agent world models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a7b715c0-de87-4dbf-a16d-b130a8fab5cd",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "c064d1a2-a8cf-4b2b-afea-eccb0b4055db",
+  "toolUseResult": {
+    "query": "arxiv \"simulation gating\" OR \"when to simulate\" agent world model learned 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PkLoUhVH5ZQpN5WNeXGUfN",
+        "content": [
+          {
+            "title": "[2604.22748] Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond",
+            "url": "https://arxiv.org/abs/2604.22748"
+          },
+          {
+            "title": "Understanding World or Predicting Future? A Comprehensive Survey of World Models",
+            "url": "https://arxiv.org/html/2411.14499v3"
+          },
+          {
+            "title": "Benchmarking World-Model Learning",
+            "url": "https://arxiv.org/html/2510.19788v1"
+          },
+          {
+            "title": "(PDF) WebWorld: A Large-Scale World Model for Web Agent Training",
+            "url": "https://www.researchgate.net/publication/400856175_WebWorld_A_Large-Scale_World_Model_for_Web_Agent_Training"
+          },
+          {
+            "title": "GitHub - zezhishao/DailyArXiv: Daily ArXiv Papers. · GitHub",
+            "url": "https://github.com/zezhishao/DailyArXiv"
+          },
+          {
+            "title": "Multiagent Systems Apr 2026",
+            "url": "https://arxiv.org/list/cs.MA/current"
+          },
+          {
+            "title": "Multiagent Systems",
+            "url": "https://arxiv.org/list/cs.MA/recent"
+          },
+          {
+            "title": "We Need Strong Preconditions For Using Simulations In Policy",
+            "url": "https://arxiv.org/html/2604.07838v1"
+          },
+          {
+            "title": "AgentSociety: Large-Scale Simulation of LLM-Driven Generative Agents Advances Understanding of Human Behaviors and Society",
+            "url": "https://arxiv.org/html/2502.08691v1"
+          },
+          {
+            "title": "GTM: Simulating the World of Tools for AI Agents",
+            "url": "https://arxiv.org/html/2512.04535v1"
+          }
+        ]
+      },
+      "The search results contain several relevant papers on agent world models and simulations from 2025-2026. Here are the key findings:\n\n## Main Results:\n\n**1. Agentic World Modeling Survey (April 2026)**\nThe paper introduces a taxonomy with three capability levels: L1 Predictor (learns one-step local transition operators), L2 Simulator (composes them into multi-step, action-conditioned rollouts), and L3 Evolver (autonomously revises its own model when predictions fail). The survey synthesizes over 400 works and summarizes more than 100 representative systems spanning model-based reinforcement learning, video generation, web and GUI agents, multi-agent social simulation, and AI-driven scientific discovery.\n\n**2. Simulation Gating / When to Simulate**\nOne paper discusses how advanced MCTS or hybrid search (which only triggers look-ahead when actions are uncertain) offer marginal improvement, suggesting that world models are more valuable for synthesizing training data. This touches on the concept of conditional simulation triggering.\n\n**3. World Model Learning Benchmarks (October 2025)**\nA paper proposes WorldTest, described as the first theoretical world-model learning assessment framework, with an instantiation called AutumnBench containing 43 interactive environments and three challenge families, resulting in 129 tasks.\n\n**4. Other Relevant Work**\nAgentSociety proposes a large-scale social simulator integrating LLM-driven agents and a realistic societal environment, generating social lives for over 10k agents and simulating 5 million interactions.\n\nThe search results don't contain papers specifically titled with \"simulation gating\" or \"when to simulate,\" but the conditional/selective simulation concept appears in multiple recent works on agent world models."
+    ],
+    "durationSeconds": 8.485184213999979
+  },
+  "sourceToolAssistantUUID": "a7b715c0-de87-4dbf-a16d-b130a8fab5cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80 · 2026-05-11T22:58:03.707Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I'm getting a clearer picture. The gap of a "learned simulation gating mechanism" seems genuinely unfilled. The agents should be completing soon. Let me wait for the remaining agent completions.
+
+Actually, let me also search for the specific "Adaptive Thinking" paper to verify it, and "Imagine-then-Plan".
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c064d1a2-a8cf-4b2b-afea-eccb0b4055db",
+  "isSidechain": false,
+  "requestId": "req_011CawcHpFNFFNHqkqZfw1Uf",
+  "type": "assistant",
+  "uuid": "5ed8d2b7-420d-44e9-b6cb-f394a9e5eed9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SMiQxoe67EmhfaVo1WoYUr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1384,
+      "cache_read_input_tokens": 38534,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1384,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 38534,
+          "cache_creation_input_tokens": 1384,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1384
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-11T22:58:04.772Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012UqeZ61Qge6aWowhnFJZZU`</summary>
+
+```json
+{
+  "query": "\"Adaptive Thinking\" ICLR 2026 Sonata adapter compute allocation per-query"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ed8d2b7-420d-44e9-b6cb-f394a9e5eed9",
+  "isSidechain": false,
+  "requestId": "req_011CawcHpFNFFNHqkqZfw1Uf",
+  "type": "assistant",
+  "uuid": "fcfac3f3-578b-46d1-a892-151de75e35a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SMiQxoe67EmhfaVo1WoYUr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1384,
+      "cache_read_input_tokens": 38534,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1384,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 38534,
+          "cache_creation_input_tokens": 1384,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1384
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-11T22:58:05.076Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XfxXQy3JWFdwUHLZXvhxLw`</summary>
+
+```json
+{
+  "query": "\"Imagine-then-Plan\" adaptive lookahead embodied agent 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fcfac3f3-578b-46d1-a892-151de75e35a5",
+  "isSidechain": false,
+  "requestId": "req_011CawcHpFNFFNHqkqZfw1Uf",
+  "type": "assistant",
+  "uuid": "25dbf12e-c58e-42db-96f7-4b260bbd48bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SMiQxoe67EmhfaVo1WoYUr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1384,
+      "cache_read_input_tokens": 38534,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1384,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 38534,
+          "cache_creation_input_tokens": 1384,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1384
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-11T22:58:12.221Z_
+
+<details><summary>↩ Tool result · `toolu_012UqeZ61Qge6aWowhnFJZZU`</summary>
+
+```text
+Web search results for query: ""Adaptive Thinking" ICLR 2026 Sonata adapter compute allocation per-query"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf?id=2i6Rp0gCq6"},{"title":"Adaptive Thinking: Large Language Models Know When to Think in Latent Space | OpenReview","url":"https://openreview.net/forum?id=2i6Rp0gCq6"},{"title":"INPUT-ADAPTIVE ALLOCATION OF LM COMPUTATION","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/ff414825df833edb8b1839e3d5d495e9-Paper-Conference.pdf"},{"title":"Learning How Hard to Think: Input-Adaptive Allocation of LM Computation | OpenReview","url":"https://openreview.net/forum?id=6qUUgw9bAZ"},{"title":"ADAPTIVE THINKING USING DYNAMIC COMPUTATION","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/955499a8e2860ed746717c1374224c43-Paper-Conference.pdf"},{"title":"Track: Oral Session 1A","url":"https://iclr.cc/virtual/2025/session/31935"},{"title":"ICLR 2026 Schedule","url":"https://iclr.cc/virtual/2026/calendar"},{"title":"ICLR 2026 Orals","url":"https://iclr.cc/virtual/2026/events/oral"},{"title":"ICLR 2026 Papers","url":"https://iclr.cc/virtual/2026/papers.html"},{"title":"ICLR 2026: 12 papers on making AI systems reliable, efficient, and secure","url":"https://lambda.ai/blog/iclr-2026-12-papers"}]
+
+Based on the web search results, I found information about the "Adaptive Thinking" paper with the Sonata adapter presented at ICLR 2026.
+
+## Sonata Adaptive Thinking Framework
+
+Sonata (Self-Consistency-Guided Adapter for Thinking Allocation) is a lightweight approach that adaptively allocates thinking budgets to optimize the performance-efficiency tradeoff.
+
+### How Per-Query Compute Allocation Works
+
+At inference time, Sonata employs the trained adapter to predict self-consistency from query hidden states during prefilling and adaptively allocates lower thinking budgets to higher self-consistency queries, reducing overall token cost while maintaining accuracy.
+
+### Adapter Architecture and Overhead
+
+A two-layer MLP adapter is trained to map query representations (the last token's hidden representation from the final transformer layer) to self-consistency scores, followed by a sigmoid mapping function. This adapter, trained offline on a calibration dataset, introduces < 1‰ (less than one per mille) computational overhead and is generalizable across tasks without task-specific fine-tuning.
+
+### Performance Results
+
+Extensive experiments on multiple models (Qwen3-8B, Qwen3-32B, GPT-OSS-120B, Qwen3-235B-A22B) and benchmarks (AIME25, GSM8K, MATH500, GPQA, LiveCodeBench) demonstrate that Sonata achieves 20% to 60% reduction in thinking tokens while maintaining the same accuracy, or up to 2% improvement in accuracy with the same token cost.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fcfac3f3-578b-46d1-a892-151de75e35a5",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "877f24e8-d80d-4e5f-8c57-0ce71e8ca03f",
+  "toolUseResult": {
+    "query": "\"Adaptive Thinking\" ICLR 2026 Sonata adapter compute allocation per-query",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PT4rp8ULNvsTQGUFe2iCeJ",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://openreview.net/pdf?id=2i6Rp0gCq6"
+          },
+          {
+            "title": "Adaptive Thinking: Large Language Models Know When to Think in Latent Space | OpenReview",
+            "url": "https://openreview.net/forum?id=2i6Rp0gCq6"
+          },
+          {
+            "title": "INPUT-ADAPTIVE ALLOCATION OF LM COMPUTATION",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/ff414825df833edb8b1839e3d5d495e9-Paper-Conference.pdf"
+          },
+          {
+            "title": "Learning How Hard to Think: Input-Adaptive Allocation of LM Computation | OpenReview",
+            "url": "https://openreview.net/forum?id=6qUUgw9bAZ"
+          },
+          {
+            "title": "ADAPTIVE THINKING USING DYNAMIC COMPUTATION",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/955499a8e2860ed746717c1374224c43-Paper-Conference.pdf"
+          },
+          {
+            "title": "Track: Oral Session 1A",
+            "url": "https://iclr.cc/virtual/2025/session/31935"
+          },
+          {
+            "title": "ICLR 2026 Schedule",
+            "url": "https://iclr.cc/virtual/2026/calendar"
+          },
+          {
+            "title": "ICLR 2026 Orals",
+            "url": "https://iclr.cc/virtual/2026/events/oral"
+          },
+          {
+            "title": "ICLR 2026 Papers",
+            "url": "https://iclr.cc/virtual/2026/papers.html"
+          },
+          {
+            "title": "ICLR 2026: 12 papers on making AI systems reliable, efficient, and secure",
+            "url": "https://lambda.ai/blog/iclr-2026-12-papers"
+          }
+        ]
+      },
+      "Based on the web search results, I found information about the \"Adaptive Thinking\" paper with the Sonata adapter presented at ICLR 2026.\n\n## Sonata Adaptive Thinking Framework\n\nSonata (Self-Consistency-Guided Adapter for Thinking Allocation) is a lightweight approach that adaptively allocates thinking budgets to optimize the performance-efficiency tradeoff.\n\n### How Per-Query Compute Allocation Works\n\nAt inference time, Sonata employs the trained adapter to predict self-consistency from query hidden states during prefilling and adaptively allocates lower thinking budgets to higher self-consistency queries, reducing overall token cost while maintaining accuracy.\n\n### Adapter Architecture and Overhead\n\nA two-layer MLP adapter is trained to map query representations (the last token's hidden representation from the final transformer layer) to self-consistency scores, followed by a sigmoid mapping function. This adapter, trained offline on a calibration dataset, introduces < 1‰ (less than one per mille) computational overhead and is generalizable across tasks without task-specific fine-tuning.\n\n### Performance Results\n\nExtensive experiments on multiple models (Qwen3-8B, Qwen3-32B, GPT-OSS-120B, Qwen3-235B-A22B) and benchmarks (AIME25, GSM8K, MATH500, GPQA, LiveCodeBench) demonstrate that Sonata achieves 20% to 60% reduction in thinking tokens while maintaining the same accuracy, or up to 2% improvement in accuracy with the same token cost."
+    ],
+    "durationSeconds": 7.443765684000013
+  },
+  "sourceToolAssistantUUID": "fcfac3f3-578b-46d1-a892-151de75e35a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-11T22:58:12.572Z_
+
+<details><summary>↩ Tool result · `toolu_01XfxXQy3JWFdwUHLZXvhxLw`</summary>
+
+```text
+Web search results for query: ""Imagine-then-Plan" adaptive lookahead embodied agent 2026"
+
+Links: [{"title":"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models","url":"https://arxiv.org/html/2601.08955v2"},{"title":"[2601.08955] Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models","url":"https://arxiv.org/abs/2601.08955"},{"title":"Paper page - Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models","url":"https://huggingface.co/papers/2601.08955"},{"title":"GitHub - loyiv/ITP: Code of Paper: Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models · GitHub","url":"https://github.com/loyiv/ITP"},{"title":"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models | Takara TLDR","url":"https://tldr.takara.ai/p/2601.08955"},{"title":"Agent Learning from Adaptive Lookahead with World Models","url":"https://www.semanticscholar.org/paper/Imagine-then-Plan:-Agent-Learning-from-Adaptive-Liu-Wang/f53634fdcc0a42d6e7e7ff7581494347d8cce6a8"},{"title":"ai-agent-papers/capability-papers/environment.md at main · masamasa59/ai-agent-papers","url":"https://github.com/masamasa59/ai-agent-papers/blob/main/capability-papers/environment.md"},{"title":"Embodied AI Agents: Modeling the World","url":"https://arxiv.org/html/2506.22355v1"},{"title":"Agent Planning with World Knowledge Model | Request PDF","url":"https://www.researchgate.net/publication/397201478_Agent_Planning_with_World_Knowledge_Model"},{"title":"ICLR Poster ALFWorld: Aligning Text and Embodied Environments for Interactive Learning","url":"https://iclr.cc/virtual/2021/poster/2973"}]
+
+Based on the search results, here's what I found about "Imagine-then-Plan" (ITP):
+
+## Overview
+
+Imagine-then-Plan (ITP) is a framework that empowers agents to perform task planning with world model-based foresight. ITP is a unified framework for agent learning via lookahead imagination, where an agent's policy model interacts with the learned world model, yielding multi-step "imagined" trajectories.
+
+## Key Innovation
+
+The core contribution is a novel adaptive lookahead mechanism by trading off the ultimate goal and task progress. Unlike existing methods constrained by rigid, fixed-horizon planning, this work introduces an adaptive lookahead mechanism that dynamically adjusts the imagination horizon, enabling the agent to optimally navigate the trade-off between foresight reliability and computational overhead.
+
+## How It Works
+
+The resulting imagined trajectories provide rich signals about future consequences, such as achieved progress and potential conflicts, which are fused with current observations, formulating a partially observable and imaginable Markov decision process to guide policy learning.
+
+## Results
+
+Extensive experiments across representative agent benchmarks demonstrate that ITP significantly outperforms competitive baselines, and analyses validate that the adaptive lookahead largely enhances agents' reasoning capability.
+
+The paper was published in 2026 and includes both training-free and reinforcement-trained variants of the framework, with code and data publicly available on GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "25dbf12e-c58e-42db-96f7-4b260bbd48bc",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "ace3fa40-8834-4a39-bfad-f5c27d836318",
+  "toolUseResult": {
+    "query": "\"Imagine-then-Plan\" adaptive lookahead embodied agent 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JzaQ9q7VU2U5xcHdadhXWj",
+        "content": [
+          {
+            "title": "Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models",
+            "url": "https://arxiv.org/html/2601.08955v2"
+          },
+          {
+            "title": "[2601.08955] Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models",
+            "url": "https://arxiv.org/abs/2601.08955"
+          },
+          {
+            "title": "Paper page - Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models",
+            "url": "https://huggingface.co/papers/2601.08955"
+          },
+          {
+            "title": "GitHub - loyiv/ITP: Code of Paper: Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models · GitHub",
+            "url": "https://github.com/loyiv/ITP"
+          },
+          {
+            "title": "Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models | Takara TLDR",
+            "url": "https://tldr.takara.ai/p/2601.08955"
+          },
+          {
+            "title": "Agent Learning from Adaptive Lookahead with World Models",
+            "url": "https://www.semanticscholar.org/paper/Imagine-then-Plan:-Agent-Learning-from-Adaptive-Liu-Wang/f53634fdcc0a42d6e7e7ff7581494347d8cce6a8"
+          },
+          {
+            "title": "ai-agent-papers/capability-papers/environment.md at main · masamasa59/ai-agent-papers",
+            "url": "https://github.com/masamasa59/ai-agent-papers/blob/main/capability-papers/environment.md"
+          },
+          {
+            "title": "Embodied AI Agents: Modeling the World",
+            "url": "https://arxiv.org/html/2506.22355v1"
+          },
+          {
+            "title": "Agent Planning with World Knowledge Model | Request PDF",
+            "url": "https://www.researchgate.net/publication/397201478_Agent_Planning_with_World_Knowledge_Model"
+          },
+          {
+            "title": "ICLR Poster ALFWorld: Aligning Text and Embodied Environments for Interactive Learning",
+            "url": "https://iclr.cc/virtual/2021/poster/2973"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about \"Imagine-then-Plan\" (ITP):\n\n## Overview\n\nImagine-then-Plan (ITP) is a framework that empowers agents to perform task planning with world model-based foresight. ITP is a unified framework for agent learning via lookahead imagination, where an agent's policy model interacts with the learned world model, yielding multi-step \"imagined\" trajectories.\n\n## Key Innovation\n\nThe core contribution is a novel adaptive lookahead mechanism by trading off the ultimate goal and task progress. Unlike existing methods constrained by rigid, fixed-horizon planning, this work introduces an adaptive lookahead mechanism that dynamically adjusts the imagination horizon, enabling the agent to optimally navigate the trade-off between foresight reliability and computational overhead.\n\n## How It Works\n\nThe resulting imagined trajectories provide rich signals about future consequences, such as achieved progress and potential conflicts, which are fused with current observations, formulating a partially observable and imaginable Markov decision process to guide policy learning.\n\n## Results\n\nExtensive experiments across representative agent benchmarks demonstrate that ITP significantly outperforms competitive baselines, and analyses validate that the adaptive lookahead largely enhances agents' reasoning capability.\n\nThe paper was published in 2026 and includes both training-free and reinforcement-trained variants of the framework, with code and data publicly available on GitHub."
+    ],
+    "durationSeconds": 7.493086714000005
+  },
+  "sourceToolAssistantUUID": "25dbf12e-c58e-42db-96f7-4b260bbd48bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 85 · 2026-05-11T22:58:12.577Z_
+
+```json
+{
+  "parentUuid": "ace3fa40-8834-4a39-bfad-f5c27d836318",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f73b90e0-5208-4afd-8a6e-6e47f7b29a3e",
+  "timestamp": "2026-05-11T22:58:12.577Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Learned Simul…",
+  "leafUuid": "f73b90e0-5208-4afd-8a6e-6e47f7b29a3e",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learn step-level simulation gating for agents",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 88 · 2026-05-11T22:58:15.928Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-11T22:58:15.928Z",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "content": "&lt;task-notification>\n&lt;task-id>a985b1c240b8bea32&lt;/task-id>\n&lt;tool-use-id>toolu_015TQdutJYVs5QtQH6pBX45v&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/461ad37f-ce07-4a00-a32b-b8a7506190ed/tasks/a985b1c240b8bea32.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Verify paper references and venues\" completed&lt;/summary>\n&lt;result>I now have all the information needed. Here is the complete report.\n\n---\n\n## Verification of Five Specified Papers\n\n### 1. \"Imagine-then-Plan\" (2026)\n\n**Status: REAL -- minor description inaccuracy**\n\n- **Full title:** \"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models\"\n- **ArXiv ID:** 2601.08955\n- **First author:** Youwei Liu (Central South University / Hong Kong Polytechnic University)\n- **Other authors:** Jian Wang, Hanlin Wang, Beichen Guo, Wenjie Li\n- **Date:** Submitted January 13, 2026 (v1); revised March 16, 2026 (v2)\n- **Venue:** arXiv preprint (no confirmed conference publication)\n- **Correction:** The user's description says \"rule-based heuristics (estimated progress + goal distance).\" This is partially accurate -- the adaptive lookahead mechanism does trade off \"ultimate goal and task progress\" to dynamically adjust the imagination horizon. However, calling it \"rule-based heuristics\" is misleading; the paper presents both training-free and reinforcement-trained variants within a learned framework (POIIP-MDP), not simple hand-coded rules.\n\n### 2. \"WebWorld\" (2026)\n\n**Status: REAL -- confirmed**\n\n- **Full title:** \"WebWorld: A Large-Scale World Model for Web Agent Training\"\n- **ArXiv ID:** 2602.14721\n- **First author:** Zikai Xiao\n- **Other authors:** Jianhong Tu, Chuhang Zou, Yuxin Zuo, Zhi Li, Peng Wang, Bowen Yu, Fei Huang, Junyang Lin, Zuozhu Liu\n- **Date:** Submitted February 17, 2026\n- **Venue:** arXiv preprint (from the Qwen/Alibaba team)\n- **Affiliation:** Qwen Team, Alibaba Group\n- **Note:** This is distinct from \"Web World Models\" (arXiv:2512.23676, December 2025, by Jichen Feng et al. from Princeton), which is a different paper with a similar name.\n\n### 3. \"Agentic World Modeling\" Survey (April 2026)\n\n**Status: REAL -- confirmed**\n\n- **Full title:** \"Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond\"\n- **ArXiv ID:** 2604.22748\n- **First author:** Meng Chu\n- **Date:** Submitted April 24, 2026\n- **Venue:** arXiv preprint (survey paper)\n- **Taxonomy confirmed:** L1 Predictor, L2 Simulator, L3 Evolver capability levels, crossed with four governing-law regimes (physical, digital, social, scientific). Synthesizes 400+ works.\n- **Website:** https://agentic-world-modeling.xyz/\n- **GitHub:** https://github.com/matrix-agent/awesome-agentic-world-modeling\n\n### 4. \"Adaptive Thinking\" (ICLR 2026)\n\n**Status: REAL -- but the description of \"Sonata\" needs clarification**\n\n- **Full title:** \"Adaptive Thinking: Large Language Models Know When to Think in Latent Space\"\n- **OpenReview ID:** 2i6Rp0gCq6\n- **First author:** Pingzhi Li (UNC Chapel Hill / Apple research intern)\n- **Other authors:** Bairu Hou, Yun Zhu, Yihao Feng, Ke Ye, Tao Lei, Zhifeng Chen, Tianlong Chen, Xianzhi Du\n- **Venue:** ICLR 2026 (confirmed as published conference paper)\n- **Correction:** The user says Sonata is for \"per-query compute allocation.\" This is correct in spirit: Sonata (Self-Consistency-Guided Adapter for Thinking Allocation) predicts self-consistency from last-layer hidden states during prefilling and allocates lower thinking budgets to higher self-consistency (easier) queries. It achieves 20-60% reduction in thinking tokens while maintaining accuracy. The description is essentially accurate.\n\n### 5. \"Current Agents Fail to Leverage World Model as Tool for Foresight\" (January 2026)\n\n**Status: REAL -- confirmed**\n\n- **Full title:** \"Current Agents Fail to Leverage World Model as Tool for Foresight\"\n- **ArXiv ID:** 2601.03905\n- **First author:** Cheng Qian\n- **Other authors:** Emre Can Acikgoz, Bingxuan Li, Xiusi Chen, Yuji Zhang, Bingxiang He, Qinyu Luo, Dilek Hakkani-Tür, Gokhan Tur, Yunzhu Li, Heng Ji\n- **Date:** Submitted January 7, 2026 (v1); revised January 8, 2026 (v2)\n- **Venue:** arXiv preprint\n- **Affiliations:** UIUC, Tsinghua, Johns Hopkins, Columbia\n\n---\n\n## Additional Relevant Papers Found\n\n### World Models for Agent Planning (2025-2026)\n\n1. **\"Web World Models\"**\n   - ArXiv: 2512.23676 | First author: Jichen Feng | December 29, 2025\n   - From Princeton; introduces a Web World Model (WWM) framework where world state/physics are implemented in web code for logical consistency, with LLMs generating context on top\n\n2. **\"Aligning Agentic World Models via Knowledgeable Experience Learning\"**\n   - ArXiv: 2601.13247 | First author: Baochang Ren | January 2026\n   - From Zhejiang University (zjunlp); explores whether agents can autonomously align world knowledge via experience learning in a training-free manner. Code: https://github.com/zjunlp/WorldMind\n\n3. **\"When and How Much to Imagine: Adaptive Test-Time Scaling with World Models for Visual Spatial Reasoning\"**\n   - ArXiv: 2602.08236 | First author: Shoubin Yu | February 9, 2026\n   - Authors: Shoubin Yu, Yue Zhang, Zun Wang, Jaehong Yoon, Huaxiu Yao, Mingyu Ding, Mohit Bansal\n   - Introduces AVIC, an adaptive framework that reasons about sufficiency of current visual evidence before selectively invoking world-model imagination\n\n### \"When to Think\" / Compute Allocation for Agents (2025-2026)\n\n4. **\"Learning How Hard to Think: Input-Adaptive Allocation of LM Computation\"**\n   - ArXiv: 2410.04707 | ICLR 2025 (published conference paper)\n   - First author: Mehul Damani | Other authors: Idan Shenfeld, Andi Peng, Andreea Bobu, Jacob Andreas\n   - Foundational work on predicting marginal benefit of additional computation per input and allocating accordingly\n\n5. **\"Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization\"**\n   - ArXiv: 2604.14853 | First author: Zhiyuan Zhai (Fudan University) | April 16, 2026\n   - Formalizes compute allocation as constrained optimization; Lagrangian relaxation decomposes into per-instance sub-problems with closed-form oracle actions. Up to 12.8% relative accuracy improvement on MATH under matched budget.\n\n6. **\"Agentic Test-Time Scaling for WebAgents\"**\n   - ArXiv: 2602.12276 | First author: Nicholas Lee | February 2026\n   - Authors: Nicholas Lee, Lutfi Eren Erdogan, Chris Joseph John, Surya Krishnapillai, Michael W. Mahoney, Kurt Keutzer, Amir Gholami\n   - Finds that simply extending raw interaction histories rarely leads to meaningful gains in agentic settings, unlike non-agentic scenarios\n\n7. **\"Scaling Test-Time Compute for Agentic Coding\"**\n   - ArXiv: 2604.16529 | April 2026\n   - Converts rollouts into structured summaries preserving salient hypotheses, progress, and failure modes while discarding low-signal trace details\n\n---\n\n## Summary of Corrections\n\nAll five papers are **real and verified**. Specific corrections:\n\n| Paper | Claimed | Actual |\n|-------|---------|--------|\n| Imagine-then-Plan | \"rule-based heuristics\" | Learned framework (POIIP-MDP) with both training-free and RL-trained variants; not purely rule-based |\n| WebWorld | 2026 | Confirmed: Feb 2026, arXiv preprint |\n| Agentic World Modeling | April 2026 survey | Confirmed: April 24, 2026, arXiv preprint |\n| Adaptive Thinking | ICLR 2026, Sonata adapter | Confirmed: ICLR 2026 published paper, Sonata confirmed |\n| Current Agents Fail... | January 2026 | Confirmed: January 7, 2026, arXiv preprint |\n\nNo title, venue, or year errors were found in the user's list. The only nuance is the characterization of Imagine-then-Plan as using \"rule-based heuristics,\" which understates the learned/RL components of the method.\n\nSources:\n- [Imagine-then-Plan (arXiv:2601.08955)](https://arxiv.org/abs/2601.08955)\n- [WebWorld (arXiv:2602.14721)](https://arxiv.org/abs/2602.14721)\n- [Agentic World Modeling (arXiv:2604.22748)](https://arxiv.org/abs/2604.22748)\n- [Adaptive Thinking (OpenReview)](https://openreview.net/forum?id=2i6Rp0gCq6)\n- [Current Agents Fail to Leverage World Model (arXiv:2601.03905)](https://arxiv.org/abs/2601.03905)\n- [Web World Models (arXiv:2512.23676)](https://arxiv.org/abs/2512.23676)\n- [Aligning Agentic World Models (arXiv:2601.13247)](https://arxiv.org/abs/2601.13247)\n- [When and How Much to Imagine (arXiv:2602.08236)](https://arxiv.org/abs/2602.08236)\n- [Learning How Hard to Think (arXiv:2410.04707)](https://arxiv.org/abs/2410.04707)\n- [Adaptive Test-Time Compute Allocation (arXiv:2604.14853)](https://arxiv.org/abs/2604.14853)\n- [Agentic Test-Time Scaling for WebAgents (arXiv:2602.12276)](https://arxiv.org/abs/2602.12276)\n- [Scaling Test-Time Compute for Agentic Coding (arXiv:2604.16529)](https://arxiv.org/abs/2604.16529)\n- [Apple at ICLR 2026](https://machinelearning.apple.com/updates/apple-at-iclr-2026)\n- [Pingzhi Li Homepage](https://pingzhili.github.io/)&lt;/result>\n&lt;usage>&lt;total_tokens>30359&lt;/total_tokens>&lt;tool_uses>25&lt;/tool_uses>&lt;duration_ms>153458&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Assistant
+
+_source line 89 · 2026-05-11T22:58:24.067Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have confirmed the key papers. Let me check on the remaining agents and also verify the exact paper titles for the references.
+
+Key papers verified:
+1. "Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models" - arxiv 2601.08955 (2026) - has GitHub code
+2. "Adaptive Thinking: Large Language Models Know When to Think in Latent Space" - ICLR 2026 (OpenReview) - Sonata adapter
+3. "Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond" - arxiv 2604.22748 (April 2026)
+
+
+4. "Current Agents Fail to Leverage World Model as Tool for Foresight" - arxiv 2601.03905 (January 2026)
+
+I'm still waiting on a couple of agents to finish their work, but in the meantime I should track down the "WebWorld: A Large-Scale World Model for Web Agent Training" paper and also look for "Learning How Hard to Think" from ICLR 2025 since both relate to this topic.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f73b90e0-5208-4afd-8a6e-6e47f7b29a3e",
+  "isSidechain": false,
+  "requestId": "req_011CawcJpQ5J239wZnH779Py",
+  "type": "assistant",
+  "uuid": "0a1d2063-386a-4e59-91b4-dc1cbb32ba0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WFxisYsCJ4hPELR1JAQKNW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2088,
+      "cache_read_input_tokens": 39918,
+      "output_tokens": 442,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2088,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 442,
+          "cache_read_input_tokens": 39918,
+          "cache_creation_input_tokens": 2088,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2088
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-11T22:58:24.073Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015hvqKQcjLMk8ZPq1tsWjmD`</summary>
+
+```json
+{
+  "query": "arxiv 2601.03905 \"Current Agents Fail to Leverage World Model\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a1d2063-386a-4e59-91b4-dc1cbb32ba0e",
+  "isSidechain": false,
+  "requestId": "req_011CawcJpQ5J239wZnH779Py",
+  "type": "assistant",
+  "uuid": "34ff7d4a-ca77-4945-8558-c8653378c5b7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WFxisYsCJ4hPELR1JAQKNW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2088,
+      "cache_read_input_tokens": 39918,
+      "output_tokens": 442,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2088,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 442,
+          "cache_read_input_tokens": 39918,
+          "cache_creation_input_tokens": 2088,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2088
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-11T22:58:24.151Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Lv1T45RVN355tZxmPouCzz`</summary>
+
+```json
+{
+  "query": "WebWorld web agent world model training 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34ff7d4a-ca77-4945-8558-c8653378c5b7",
+  "isSidechain": false,
+  "requestId": "req_011CawcJpQ5J239wZnH779Py",
+  "type": "assistant",
+  "uuid": "0df30e83-b25f-4bc4-b5f0-4e5b66f4a35d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WFxisYsCJ4hPELR1JAQKNW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2088,
+      "cache_read_input_tokens": 39918,
+      "output_tokens": 442,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2088,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 442,
+          "cache_read_input_tokens": 39918,
+          "cache_creation_input_tokens": 2088,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2088
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-11T22:58:31.308Z_
+
+<details><summary>↩ Tool result · `toolu_01Lv1T45RVN355tZxmPouCzz`</summary>
+
+```text
+Web search results for query: "WebWorld web agent world model training 2026 arxiv"
+
+Links: [{"title":"WebWorld: A Large-Scale World Model for Web Agent Training","url":"https://arxiv.org/html/2602.14721v1"},{"title":"[2602.14721] WebWorld: A Large-Scale World Model for Web Agent Training","url":"https://arxiv.org/abs/2602.14721"},{"title":"Qwen/WebWorld-8B · Hugging Face","url":"https://huggingface.co/Qwen/WebWorld-8B"},{"title":"2026-02-17 WebWorld: A Large-Scale World Model for Web Agent Training","url":"https://arxiv.org/pdf/2602.14721"},{"title":"(PDF) WebWorld: A Large-Scale World Model for Web Agent Training","url":"https://www.researchgate.net/publication/400856175_WebWorld_A_Large-Scale_World_Model_for_Web_Agent_Training"},{"title":"GitHub - QwenLM/WebWorld: WebWorld is a large-scale web world model that helps train web agents in a simulated browser, avoiding the latency and safety issues of the real web. · GitHub","url":"https://github.com/QwenLM/WebWorld"},{"title":"Qwen/WebWorld-14B · Hugging Face","url":"https://huggingface.co/Qwen/WebWorld-14B"},{"title":"[2410.13232] Web Agents with World Models: Learning and Leveraging Environment Dynamics in Web Navigation","url":"https://arxiv.org/abs/2410.13232"},{"title":"GitHub - leofan90/Awesome-World-Models: A comprehensive list of papers for the definition of World Models and using World Models for General Video Generation, Embodied AI, and Autonomous Driving, including papers, codes, and related websites. · GitHub","url":"https://github.com/leofan90/awesome-world-models"},{"title":"Qwen/WebWorld-32B · Hugging Face","url":"https://huggingface.co/Qwen/WebWorld-32B"}]
+
+I found the paper you're looking for! Here's what I found about WebWorld:
+
+## Overview
+
+WebWorld is the first open-web simulator trained at scale, leveraging a scalable data pipeline to train on 1M+ open-web interactions, supporting reasoning, multi-format data, and long-horizon simulations of 30+ steps.
+
+## Key Motivation and Problem
+
+Web agents require massive trajectories to generalize, yet real-world training is constrained by network latency, rate limits, and safety risks.
+
+## Training Details
+
+WebWorld is a large-scale open-web world model series for training and evaluating web agents. It is trained on 1M+ real-world web interaction trajectories via a scalable hierarchical data pipeline.
+
+## Performance Results
+
+For intrinsic evaluation, WebWorld introduces WebWorld-Bench with dual metrics spanning nine dimensions, where WebWorld achieves simulation performance comparable to Gemini-3-Pro.
+
+For extrinsic evaluation, Qwen3-14B trained on WebWorld-synthesized trajectories improves by +9.2% on WebArena, reaching performance comparable to GPT-4o.
+
+WebWorld enables effective inference-time search, outperforming GPT-5 as a world model.
+
+## Generalization
+
+Beyond web simulation, WebWorld exhibits cross-domain generalization to code, GUI, and game environments, providing a replicable recipe for world model construction.
+
+The paper was published on arXiv on February 16, 2026 (arXiv:2602.14721) and is authored by Zikai Xiao and colleagues from Alibaba's Qwen team.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0df30e83-b25f-4bc4-b5f0-4e5b66f4a35d",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "132e0a99-b5b5-4f60-ac04-8b7aa4bbbc5a",
+  "toolUseResult": {
+    "query": "WebWorld web agent world model training 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013F9v1aZdzuxWSqfz9Pn2si",
+        "content": [
+          {
+            "title": "WebWorld: A Large-Scale World Model for Web Agent Training",
+            "url": "https://arxiv.org/html/2602.14721v1"
+          },
+          {
+            "title": "[2602.14721] WebWorld: A Large-Scale World Model for Web Agent Training",
+            "url": "https://arxiv.org/abs/2602.14721"
+          },
+          {
+            "title": "Qwen/WebWorld-8B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/WebWorld-8B"
+          },
+          {
+            "title": "2026-02-17 WebWorld: A Large-Scale World Model for Web Agent Training",
+            "url": "https://arxiv.org/pdf/2602.14721"
+          },
+          {
+            "title": "(PDF) WebWorld: A Large-Scale World Model for Web Agent Training",
+            "url": "https://www.researchgate.net/publication/400856175_WebWorld_A_Large-Scale_World_Model_for_Web_Agent_Training"
+          },
+          {
+            "title": "GitHub - QwenLM/WebWorld: WebWorld is a large-scale web world model that helps train web agents in a simulated browser, avoiding the latency and safety issues of the real web. · GitHub",
+            "url": "https://github.com/QwenLM/WebWorld"
+          },
+          {
+            "title": "Qwen/WebWorld-14B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/WebWorld-14B"
+          },
+          {
+            "title": "[2410.13232] Web Agents with World Models: Learning and Leveraging Environment Dynamics in Web Navigation",
+            "url": "https://arxiv.org/abs/2410.13232"
+          },
+          {
+            "title": "GitHub - leofan90/Awesome-World-Models: A comprehensive list of papers for the definition of World Models and using World Models for General Video Generation, Embodied AI, and Autonomous Driving, including papers, codes, and related websites. · GitHub",
+            "url": "https://github.com/leofan90/awesome-world-models"
+          },
+          {
+            "title": "Qwen/WebWorld-32B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/WebWorld-32B"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I found about WebWorld:\n\n## Overview\n\nWebWorld is the first open-web simulator trained at scale, leveraging a scalable data pipeline to train on 1M+ open-web interactions, supporting reasoning, multi-format data, and long-horizon simulations of 30+ steps.\n\n## Key Motivation and Problem\n\nWeb agents require massive trajectories to generalize, yet real-world training is constrained by network latency, rate limits, and safety risks.\n\n## Training Details\n\nWebWorld is a large-scale open-web world model series for training and evaluating web agents. It is trained on 1M+ real-world web interaction trajectories via a scalable hierarchical data pipeline.\n\n## Performance Results\n\nFor intrinsic evaluation, WebWorld introduces WebWorld-Bench with dual metrics spanning nine dimensions, where WebWorld achieves simulation performance comparable to Gemini-3-Pro.\n\nFor extrinsic evaluation, Qwen3-14B trained on WebWorld-synthesized trajectories improves by +9.2% on WebArena, reaching performance comparable to GPT-4o.\n\nWebWorld enables effective inference-time search, outperforming GPT-5 as a world model.\n\n## Generalization\n\nBeyond web simulation, WebWorld exhibits cross-domain generalization to code, GUI, and game environments, providing a replicable recipe for world model construction.\n\nThe paper was published on arXiv on February 16, 2026 (arXiv:2602.14721) and is authored by Zikai Xiao and colleagues from Alibaba's Qwen team."
+    ],
+    "durationSeconds": 7.153542969999981
+  },
+  "sourceToolAssistantUUID": "0df30e83-b25f-4bc4-b5f0-4e5b66f4a35d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-11T22:58:31.417Z_
+
+<details><summary>↩ Tool result · `toolu_015hvqKQcjLMk8ZPq1tsWjmD`</summary>
+
+```text
+Web search results for query: "arxiv 2601.03905 "Current Agents Fail to Leverage World Model""
+
+Links: [{"title":"[2601.03905] Current Agents Fail to Leverage World Model as Tool for Foresight","url":"https://arxiv.org/abs/2601.03905"},{"title":"Current Agents Fail to Leverage World Model as Tool for Foresight","url":"https://arxiv.org/html/2601.03905"},{"title":"Aligning Agentic World Models via Knowledgeable Experience Learning","url":"https://arxiv.org/html/2601.13247"},{"title":"Awesome-World-Models/README.md at main · leofan90/Awesome-World-Models","url":"https://github.com/leofan90/Awesome-World-Models/blob/main/README.md"}]
+
+Based on the search results, I found the paper arxiv 2601.03905. Here's what it's about:
+
+## Overview
+
+The paper is titled "Current Agents Fail to Leverage World Model as Tool for Foresight" and was submitted on January 7, 2026.
+
+## Main Research Question
+
+Agents built on vision-language models increasingly face tasks that demand anticipating future states rather than relying on short-horizon reasoning. Generative world models offer a promising remedy: agents could use them as external simulators to foresee outcomes before acting.
+
+## Key Findings
+
+Across diverse agentic and visual question answering tasks, agents rarely invoke simulation (fewer than 1%), frequently misuse predicted rollouts (approximately 15%), and often exhibit inconsistent or even degraded performance (up to 5%) when simulation is available or enforced.
+
+## Primary Bottleneck
+
+Attribution analysis further indicates that the primary bottleneck lies in the agents' capacity to decide when to simulate, how to interpret predicted outcomes, and how to integrate foresight into downstream reasoning.
+
+The paper was authored by Cheng Qian, Emre Can Acikgoz, Bingxuan Li, Xiusi Chen, Yuji Zhang, Bingxiang He, Qinyu Luo, Dilek Hakkani-Tür, Gokhan Tur, Yunzhu Li, and Heng Ji.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "34ff7d4a-ca77-4945-8558-c8653378c5b7",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "b99f7e19-58a9-4c3c-8616-fbd4acaa603b",
+  "toolUseResult": {
+    "query": "arxiv 2601.03905 \"Current Agents Fail to Leverage World Model\"",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GgR1EzQDcwZTKEWxxyeW2Z",
+        "content": [
+          {
+            "title": "[2601.03905] Current Agents Fail to Leverage World Model as Tool for Foresight",
+            "url": "https://arxiv.org/abs/2601.03905"
+          },
+          {
+            "title": "Current Agents Fail to Leverage World Model as Tool for Foresight",
+            "url": "https://arxiv.org/html/2601.03905"
+          },
+          {
+            "title": "Aligning Agentic World Models via Knowledgeable Experience Learning",
+            "url": "https://arxiv.org/html/2601.13247"
+          },
+          {
+            "title": "Awesome-World-Models/README.md at main · leofan90/Awesome-World-Models",
+            "url": "https://github.com/leofan90/Awesome-World-Models/blob/main/README.md"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper arxiv 2601.03905. Here's what it's about:\n\n## Overview\n\nThe paper is titled \"Current Agents Fail to Leverage World Model as Tool for Foresight\" and was submitted on January 7, 2026.\n\n## Main Research Question\n\nAgents built on vision-language models increasingly face tasks that demand anticipating future states rather than relying on short-horizon reasoning. Generative world models offer a promising remedy: agents could use them as external simulators to foresee outcomes before acting.\n\n## Key Findings\n\nAcross diverse agentic and visual question answering tasks, agents rarely invoke simulation (fewer than 1%), frequently misuse predicted rollouts (approximately 15%), and often exhibit inconsistent or even degraded performance (up to 5%) when simulation is available or enforced.\n\n## Primary Bottleneck\n\nAttribution analysis further indicates that the primary bottleneck lies in the agents' capacity to decide when to simulate, how to interpret predicted outcomes, and how to integrate foresight into downstream reasoning.\n\nThe paper was authored by Cheng Qian, Emre Can Acikgoz, Bingxuan Li, Xiusi Chen, Yuji Zhang, Bingxiang He, Qinyu Luo, Dilek Hakkani-Tür, Gokhan Tur, Yunzhu Li, and Heng Ji."
+    ],
+    "durationSeconds": 7.339079655999988
+  },
+  "sourceToolAssistantUUID": "34ff7d4a-ca77-4945-8558-c8653378c5b7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 94 · 2026-05-11T22:58:31.429Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-11T22:58:31.429Z",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 95 · 2026-05-11T22:58:31.428Z_
+
+```json
+{
+  "parentUuid": "b99f7e19-58a9-4c3c-8616-fbd4acaa603b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>a985b1c240b8bea32&lt;/task-id>\n&lt;tool-use-id>toolu_015TQdutJYVs5QtQH6pBX45v&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/461ad37f-ce07-4a00-a32b-b8a7506190ed/tasks/a985b1c240b8bea32.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Verify paper references and venues\" completed&lt;/summary>\n&lt;result>I now have all the information needed. Here is the complete report.\n\n---\n\n## Verification of Five Specified Papers\n\n### 1. \"Imagine-then-Plan\" (2026)\n\n**Status: REAL -- minor description inaccuracy**\n\n- **Full title:** \"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models\"\n- **ArXiv ID:** 2601.08955\n- **First author:** Youwei Liu (Central South University / Hong Kong Polytechnic University)\n- **Other authors:** Jian Wang, Hanlin Wang, Beichen Guo, Wenjie Li\n- **Date:** Submitted January 13, 2026 (v1); revised March 16, 2026 (v2)\n- **Venue:** arXiv preprint (no confirmed conference publication)\n- **Correction:** The user's description says \"rule-based heuristics (estimated progress + goal distance).\" This is partially accurate -- the adaptive lookahead mechanism does trade off \"ultimate goal and task progress\" to dynamically adjust the imagination horizon. However, calling it \"rule-based heuristics\" is misleading; the paper presents both training-free and reinforcement-trained variants within a learned framework (POIIP-MDP), not simple hand-coded rules.\n\n### 2. \"WebWorld\" (2026)\n\n**Status: REAL -- confirmed**\n\n- **Full title:** \"WebWorld: A Large-Scale World Model for Web Agent Training\"\n- **ArXiv ID:** 2602.14721\n- **First author:** Zikai Xiao\n- **Other authors:** Jianhong Tu, Chuhang Zou, Yuxin Zuo, Zhi Li, Peng Wang, Bowen Yu, Fei Huang, Junyang Lin, Zuozhu Liu\n- **Date:** Submitted February 17, 2026\n- **Venue:** arXiv preprint (from the Qwen/Alibaba team)\n- **Affiliation:** Qwen Team, Alibaba Group\n- **Note:** This is distinct from \"Web World Models\" (arXiv:2512.23676, December 2025, by Jichen Feng et al. from Princeton), which is a different paper with a similar name.\n\n### 3. \"Agentic World Modeling\" Survey (April 2026)\n\n**Status: REAL -- confirmed**\n\n- **Full title:** \"Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond\"\n- **ArXiv ID:** 2604.22748\n- **First author:** Meng Chu\n- **Date:** Submitted April 24, 2026\n- **Venue:** arXiv preprint (survey paper)\n- **Taxonomy confirmed:** L1 Predictor, L2 Simulator, L3 Evolver capability levels, crossed with four governing-law regimes (physical, digital, social, scientific). Synthesizes 400+ works.\n- **Website:** https://agentic-world-modeling.xyz/\n- **GitHub:** https://github.com/matrix-agent/awesome-agentic-world-modeling\n\n### 4. \"Adaptive Thinking\" (ICLR 2026)\n\n**Status: REAL -- but the description of \"Sonata\" needs clarification**\n\n- **Full title:** \"Adaptive Thinking: Large Language Models Know When to Think in Latent Space\"\n- **OpenReview ID:** 2i6Rp0gCq6\n- **First author:** Pingzhi Li (UNC Chapel Hill / Apple research intern)\n- **Other authors:** Bairu Hou, Yun Zhu, Yihao Feng, Ke Ye, Tao Lei, Zhifeng Chen, Tianlong Chen, Xianzhi Du\n- **Venue:** ICLR 2026 (confirmed as published conference paper)\n- **Correction:** The user says Sonata is for \"per-query compute allocation.\" This is correct in spirit: Sonata (Self-Consistency-Guided Adapter for Thinking Allocation) predicts self-consistency from last-layer hidden states during prefilling and allocates lower thinking budgets to higher self-consistency (easier) queries. It achieves 20-60% reduction in thinking tokens while maintaining accuracy. The description is essentially accurate.\n\n### 5. \"Current Agents Fail to Leverage World Model as Tool for Foresight\" (January 2026)\n\n**Status: REAL -- confirmed**\n\n- **Full title:** \"Current Agents Fail to Leverage World Model as Tool for Foresight\"\n- **ArXiv ID:** 2601.03905\n- **First author:** Cheng Qian\n- **Other authors:** Emre Can Acikgoz, Bingxuan Li, Xiusi Chen, Yuji Zhang, Bingxiang He, Qinyu Luo, Dilek Hakkani-Tür, Gokhan Tur, Yunzhu Li, Heng Ji\n- **Date:** Submitted January 7, 2026 (v1); revised January 8, 2026 (v2)\n- **Venue:** arXiv preprint\n- **Affiliations:** UIUC, Tsinghua, Johns Hopkins, Columbia\n\n---\n\n## Additional Relevant Papers Found\n\n### World Models for Agent Planning (2025-2026)\n\n1. **\"Web World Models\"**\n   - ArXiv: 2512.23676 | First author: Jichen Feng | December 29, 2025\n   - From Princeton; introduces a Web World Model (WWM) framework where world state/physics are implemented in web code for logical consistency, with LLMs generating context on top\n\n2. **\"Aligning Agentic World Models via Knowledgeable Experience Learning\"**\n   - ArXiv: 2601.13247 | First author: Baochang Ren | January 2026\n   - From Zhejiang University (zjunlp); explores whether agents can autonomously align world knowledge via experience learning in a training-free manner. Code: https://github.com/zjunlp/WorldMind\n\n3. **\"When and How Much to Imagine: Adaptive Test-Time Scaling with World Models for Visual Spatial Reasoning\"**\n   - ArXiv: 2602.08236 | First author: Shoubin Yu | February 9, 2026\n   - Authors: Shoubin Yu, Yue Zhang, Zun Wang, Jaehong Yoon, Huaxiu Yao, Mingyu Ding, Mohit Bansal\n   - Introduces AVIC, an adaptive framework that reasons about sufficiency of current visual evidence before selectively invoking world-model imagination\n\n### \"When to Think\" / Compute Allocation for Agents (2025-2026)\n\n4. **\"Learning How Hard to Think: Input-Adaptive Allocation of LM Computation\"**\n   - ArXiv: 2410.04707 | ICLR 2025 (published conference paper)\n   - First author: Mehul Damani | Other authors: Idan Shenfeld, Andi Peng, Andreea Bobu, Jacob Andreas\n   - Foundational work on predicting marginal benefit of additional computation per input and allocating accordingly\n\n5. **\"Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization\"**\n   - ArXiv: 2604.14853 | First author: Zhiyuan Zhai (Fudan University) | April 16, 2026\n   - Formalizes compute allocation as constrained optimization; Lagrangian relaxation decomposes into per-instance sub-problems with closed-form oracle actions. Up to 12.8% relative accuracy improvement on MATH under matched budget.\n\n6. **\"Agentic Test-Time Scaling for WebAgents\"**\n   - ArXiv: 2602.12276 | First author: Nicholas Lee | February 2026\n   - Authors: Nicholas Lee, Lutfi Eren Erdogan, Chris Joseph John, Surya Krishnapillai, Michael W. Mahoney, Kurt Keutzer, Amir Gholami\n   - Finds that simply extending raw interaction histories rarely leads to meaningful gains in agentic settings, unlike non-agentic scenarios\n\n7. **\"Scaling Test-Time Compute for Agentic Coding\"**\n   - ArXiv: 2604.16529 | April 2026\n   - Converts rollouts into structured summaries preserving salient hypotheses, progress, and failure modes while discarding low-signal trace details\n\n---\n\n## Summary of Corrections\n\nAll five papers are **real and verified**. Specific corrections:\n\n| Paper | Claimed | Actual |\n|-------|---------|--------|\n| Imagine-then-Plan | \"rule-based heuristics\" | Learned framework (POIIP-MDP) with both training-free and RL-trained variants; not purely rule-based |\n| WebWorld | 2026 | Confirmed: Feb 2026, arXiv preprint |\n| Agentic World Modeling | April 2026 survey | Confirmed: April 24, 2026, arXiv preprint |\n| Adaptive Thinking | ICLR 2026, Sonata adapter | Confirmed: ICLR 2026 published paper, Sonata confirmed |\n| Current Agents Fail... | January 2026 | Confirmed: January 7, 2026, arXiv preprint |\n\nNo title, venue, or year errors were found in the user's list. The only nuance is the characterization of Imagine-then-Plan as using \"rule-based heuristics,\" which understates the learned/RL components of the method.\n\nSources:\n- [Imagine-then-Plan (arXiv:2601.08955)](https://arxiv.org/abs/2601.08955)\n- [WebWorld (arXiv:2602.14721)](https://arxiv.org/abs/2602.14721)\n- [Agentic World Modeling (arXiv:2604.22748)](https://arxiv.org/abs/2604.22748)\n- [Adaptive Thinking (OpenReview)](https://openreview.net/forum?id=2i6Rp0gCq6)\n- [Current Agents Fail to Leverage World Model (arXiv:2601.03905)](https://arxiv.org/abs/2601.03905)\n- [Web World Models (arXiv:2512.23676)](https://arxiv.org/abs/2512.23676)\n- [Aligning Agentic World Models (arXiv:2601.13247)](https://arxiv.org/abs/2601.13247)\n- [When and How Much to Imagine (arXiv:2602.08236)](https://arxiv.org/abs/2602.08236)\n- [Learning How Hard to Think (arXiv:2410.04707)](https://arxiv.org/abs/2410.04707)\n- [Adaptive Test-Time Compute Allocation (arXiv:2604.14853)](https://arxiv.org/abs/2604.14853)\n- [Agentic Test-Time Scaling for WebAgents (arXiv:2602.12276)](https://arxiv.org/abs/2602.12276)\n- [Scaling Test-Time Compute for Agentic Coding (arXiv:2604.16529)](https://arxiv.org/abs/2604.16529)\n- [Apple at ICLR 2026](https://machinelearning.apple.com/updates/apple-at-iclr-2026)\n- [Pingzhi Li Homepage](https://pingzhili.github.io/)&lt;/result>\n&lt;usage>&lt;total_tokens>30359&lt;/total_tokens>&lt;tool_uses>25&lt;/tool_uses>&lt;duration_ms>153458&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "4b277054-d8e3-4d21-a3bb-003b85666d86",
+  "timestamp": "2026-05-11T22:58:31.428Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 96_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Learned Simul…",
+  "leafUuid": "4b277054-d8e3-4d21-a3bb-003b85666d86",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 97_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learn step-level simulation gating for agents",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 98 · 2026-05-11T22:58:35.652Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-11T22:58:35.652Z",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "content": "&lt;task-notification>\n&lt;task-id>ad830bba72692fbd4&lt;/task-id>\n&lt;tool-use-id>toolu_014CpLJ649zJypNgUAzjTYLN&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/461ad37f-ce07-4a00-a32b-b8a7506190ed/tasks/ad830bba72692fbd4.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search concurrent work on learned simulation gating\" completed&lt;/summary>\n&lt;result>Now I have a comprehensive picture. Here is my full report.\n\n---\n\n## Research Report: \"Learned Simulation Gating for Agent Planning\"\n\nI conducted extensive searches across academic databases, arXiv, OpenReview, and the broader web. The core idea -- a **learned per-step gating mechanism that decides whether invoking a world model/simulator is cost-beneficial before each action** -- does not appear to have been published as a single, unified paper under that exact framing. However, several closely related lines of work exist, some of which overlap significantly with subsets of the idea. I have organized findings by relevance, from most to least similar.\n\n---\n\n### TIER 1: Highly Related (overlap with multiple core components)\n\n**1. \"Adaptive Rollout Length for Model-Based RL Using Model-Free Deep RL\"**\n- Authors: Abhinav Bhatia, Philip S. Thomas, Shlomo Zilberstein\n- Venue: arXiv:2206.02380 (June 2022)\n- Relevance: **Very high.** A meta-level RL controller *learns* to dynamically tune the rollout length (how many simulation steps to use) in model-based RL. This is essentially a learned decision about how much to simulate. The key difference from your idea: this adjusts rollout *length*, not a binary gate on whether to simulate at all. But the architecture (a learned meta-controller making per-step simulation decisions based on cost-benefit) is structurally very close.\n- URL: [https://arxiv.org/abs/2206.02380](https://arxiv.org/abs/2206.02380)\n\n**2. \"Rational Metareasoning for Large Language Models\"**\n- Authors: C. Nicolo De Sabbata et al.\n- Venue: arXiv:2410.05563 (October 2024); presented at OpenReview venues\n- Relevance: **Very high.** Directly trains LLMs to decide per-step whether to engage in reasoning (analogous to simulation) using a formal **Value of Computation (VoC)** framework from cognitive science. A reward function penalizes unnecessary reasoning, and the model learns when thinking is cost-beneficial. The difference: it gates *chain-of-thought reasoning steps*, not a separate world-model simulator. But the meta-level learned gating based on cost-benefit is the same core idea applied to a different computational substrate.\n- URL: [https://arxiv.org/abs/2410.05563](https://arxiv.org/abs/2410.05563)\n\n**3. \"Neural Computations Underlying Arbitration Between Model-Based and Model-Free Learning\"**\n- Authors: Sang Wan Lee, Shinsuke Shimojo, John P. O'Doherty\n- Venue: *Neuron* (February 2014)\n- Relevance: **Very high (foundational).** This is the neuroscience origin of learned model-based/model-free arbitration. The brain dynamically gates between a model-based system (world-model simulation) and a model-free system (cached values) based on the *reliability* of each system's predictions. The inferior lateral prefrontal cortex computes this arbitration signal. This is exactly the idea of learned simulation gating, demonstrated in human brains. A follow-up (Nature Communications 2019) showed task complexity interacts with this arbitration.\n- URL: [https://pmc.ncbi.nlm.nih.gov/articles/PMC3968946/](https://pmc.ncbi.nlm.nih.gov/articles/PMC3968946/)\n\n**4. \"When Can Model-Free Reinforcement Learning be Enough for Thinking?\"**\n- Authors: Josiah P. Hanna, Nicholas E. Corrado (U. Wisconsin-Madison)\n- Venue: arXiv:2506.17124 (June 2025); accepted at NeurIPS 2025\n- Relevance: **High.** Introduces a \"thought MDP\" where thinking/simulation is itself modeled as an action the agent can choose. Model-free learning in this thought-MDP *directly ties the decision of when to stop thinking to return maximization*. This addresses \"when to think vs. act\" but approaches it by letting it emerge from model-free RL rather than training an explicit gating module.\n- URL: [https://arxiv.org/abs/2506.17124](https://arxiv.org/abs/2506.17124)\n\n**5. \"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models\"**\n- Authors: Youwei Liu, Jian Wang, Hanlin Wang, Beichen Guo, Wenjie Li\n- Venue: arXiv:2601.08955 (January 2026)\n- Relevance: **High.** An adaptive lookahead mechanism dynamically adjusts the imagination horizon (how far ahead to simulate) by trading off foresight reliability vs. computational overhead. This is per-step adaptive simulation depth, learned within the agent framework. The difference: it always simulates but adjusts *how much*, rather than deciding whether to simulate at all.\n- URL: [https://arxiv.org/abs/2601.08955](https://arxiv.org/abs/2601.08955)\n\n---\n\n### TIER 2: Moderately Related (overlap with some components)\n\n**6. \"MemCtrl: Using MLLMs as Active Memory Controllers on Embodied Agents\"**\n- Authors: (multiple, see paper)\n- Venue: arXiv:2601.20831 (January 2026)\n- Relevance: **Moderate.** A trainable gating head (3-layer MLP) learns to decide which observations to retain/discard during embodied agent exploration. Trained via offline expert or online RL. This is a learned per-step gate, but it gates *memory/observation storage*, not world-model simulation. The architectural pattern (a lightweight learned binary gate attached to the agent's processing pipeline) is relevant.\n- URL: [https://arxiv.org/abs/2601.20831](https://arxiv.org/abs/2601.20831)\n\n**7. \"Act Only When It Pays: Efficient RL for LLM Reasoning via Selective Rollouts\" (GRESO)**\n- Authors: Haizhong Zheng et al.\n- Venue: arXiv:2506.02177 (June 2025)\n- Relevance: **Moderate.** Learns to predict which prompts are \"uninformative\" and skips rollouts for them during RL training. This is a learned cost-benefit gating of simulation rollouts, but at the *training prompt selection* level rather than per-step within an episode. The core insight (predicting when simulation is worth the cost) is shared.\n- URL: [https://arxiv.org/abs/2506.02177](https://arxiv.org/abs/2506.02177)\n\n**8. \"CraniMem: Cranial Inspired Gated and Bounded Memory for Agentic Systems\"**\n- Authors: Pearl Mody, Mihir Panchal, Rishit Kar, Kiran Bhowmick, Ruhina Karani\n- Venue: arXiv:2603.15642 (March 2026); presented at ICLR 2026\n- Relevance: **Moderate.** Goal-conditioned gating with utility tagging for agent memory. Uses a gated multi-stage memory architecture. Related in that it uses learned gating to decide what to process/retain, but applied to memory rather than simulation invocation.\n- URL: [https://arxiv.org/abs/2603.15642](https://arxiv.org/abs/2603.15642)\n\n**9. \"Adaptive Integration of Model-Based and Model-Free Strategies in Human RL of Reachable Space\"**\n- Authors: Tianyao Zhu, Rohaan Syan, Shrika Vejandla, Jason P. Gallivan, Daniel M. Wolpert, J. Randall Flanagan\n- Venue: bioRxiv (March 2026)\n- Relevance: **Moderate.** Human behavioral study showing adaptive integration of model-based (simulation) and model-free strategies. Demonstrates that model-free weight increases over time. Neuroscience evidence that humans do perform adaptive gating of simulation, but this is empirical/behavioral, not a proposed AI algorithm.\n- URL: [https://www.biorxiv.org/content/10.64898/2026.03.02.709046v1](https://www.biorxiv.org/content/10.64898/2026.03.02.709046v1)\n\n---\n\n### TIER 3: Tangentially Related (shares some themes)\n\n**10. \"Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond\"**\n- Authors: Meng Chu et al. (42 authors)\n- Venue: arXiv:2604.22748 (April 2026)\n- Relevance: **Tangential but useful.** A comprehensive survey (400+ papers) on world models for agents. Defines capability levels (L1 Predictor, L2 Simulator, L3 Evolver). This is the best place to check whether any surveyed paper implements learned simulation gating. The survey itself does not appear to propose gating, but it catalogs the full landscape of agent world-model research.\n- URL: [https://arxiv.org/abs/2604.22748](https://arxiv.org/abs/2604.22748)\n\n**11. \"Agent Planning with World Knowledge Model\" (WKM)**\n- Authors: (zjunlp group)\n- Venue: NeurIPS 2024\n- Relevance: **Tangential.** Learns a World Knowledge Model to guide agent planning, but uses it uniformly (always provides guidance), not selectively via a gate.\n- URL: [https://arxiv.org/abs/2405.14205](https://arxiv.org/abs/2405.14205)\n\n**12. Metareasoning for Planning Under Uncertainty (Classical)**\n- Authors: Christopher Lin et al.\n- Venue: IJCAI 2015\n- Relevance: **Tangential (foundational).** Formalizes cost-benefit metareasoning for planning: should the agent plan more or act now? This is the theoretical ancestor of learned simulation gating, but uses hand-designed VOC estimators rather than learned ones.\n- URL: [https://www.ijcai.org/Proceedings/15/Papers/229.pdf](https://www.ijcai.org/Proceedings/15/Papers/229.pdf)\n\n**13. \"Learning When to Quit: Meta-Reasoning for Motion Planning\"**\n- Authors: Yoonchang Sung et al.\n- Venue: IROS 2021\n- Relevance: **Tangential.** Learns when to stop a motion planner (an anytime algorithm) and act. This is a learned gate for simulation/planning termination in robotics, but narrowly scoped to motion planning rather than general agent planning.\n- URL: [https://yoonchangsung.com/pub/meta-iros-2021.pdf](https://yoonchangsung.com/pub/meta-iros-2021.pdf)\n\n---\n\n### ICML 2026 / NeurIPS 2026 / OpenReview\n\n- **ICML 2026** accepted 6,352 papers (26.6% acceptance rate). The full paper list is available at [Paper Copilot](https://papercopilot.com/paper-list/icml-paper-list/icml-2026-paper-list/) but I could not find a specific paper on \"learned simulation gating\" among the results surfaced by search. Papers are not yet fully indexed for keyword search.\n- **NeurIPS 2026** submissions are not yet available (conference is later in 2026).\n- No OpenReview submission with the exact title or abstract matching \"simulation gating\" or \"learned gating for world model invocation\" was found.\n\n---\n\n### Assessment: Has This Exact Idea Been Done?\n\n**No single paper combines all elements of your idea into one unified system.** Specifically, the idea of:\n\n1. A **learned** (not hand-designed) gating mechanism\n2. Operating **per-step** during agent execution\n3. Making a **binary or continuous decision** about whether to invoke a world model/simulator\n4. Based on **predicted cost-benefit** (value of computation)\n5. Applied to **general agent planning** (not just motion planning, not just chain-of-thought)\n\nThe closest works are:\n- **Bhatia et al. (2022)** -- hits (1), (2), (4) but adjusts rollout length rather than a binary invoke/skip gate, and is in traditional RL\n- **De Sabbata et al. (2024)** -- hits (1), (2), (3), (4) but gates *reasoning steps* rather than an external simulator\n- **Lee et al. (2014)** -- demonstrates the concept in the human brain but is neuroscience, not an AI system\n- **Hanna &amp; Corrado (2025)** -- formalizes thinking as an action the agent learns to take, close in spirit but approaches it as emergent behavior rather than an explicit gating module\n\nThe **gap** that appears unfilled: an explicit, lightweight learned gating module (e.g., a small network) that sits between an agent policy and a world-model simulator, trained end-to-end or via RL to predict at each decision step whether the expected value improvement from running the simulator exceeds the computational cost, and gates simulator access accordingly in a general agent planning setting. This specific formulation does not appear to have been published.\n\nI would recommend closely reading the Bhatia/Thomas/Zilberstein (2022) paper and the De Sabbata (2024) rational metareasoning paper, as these are the nearest neighbors. Also check the survey by Meng Chu et al. (2604.22748) for any papers I may have missed in their catalog of 400+ works.\n\nSources:\n- [Adaptive Rollout Length for Model-Based RL Using Model-Free Deep RL](https://arxiv.org/abs/2206.02380)\n- [Rational Metareasoning for Large Language Models](https://arxiv.org/abs/2410.05563)\n- [Neural Computations Underlying Arbitration Between Model-Based and Model-Free Learning](https://pmc.ncbi.nlm.nih.gov/articles/PMC3968946/)\n- [When Can Model-Free RL be Enough for Thinking?](https://arxiv.org/abs/2506.17124)\n- [Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models](https://arxiv.org/abs/2601.08955)\n- [MemCtrl: Using MLLMs as Active Memory Controllers on Embodied Agents](https://arxiv.org/abs/2601.20831)\n- [Act Only When It Pays: Efficient RL for LLM Reasoning via Selective Rollouts](https://arxiv.org/abs/2506.02177)\n- [CraniMem: Cranial Inspired Gated and Bounded Memory for Agentic Systems](https://arxiv.org/abs/2603.15642)\n- [Adaptive Integration of Model-Based and Model-Free Strategies in Human RL](https://www.biorxiv.org/content/10.64898/2026.03.02.709046v1)\n- [Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond](https://arxiv.org/abs/2604.22748)\n- [Agent Planning with World Knowledge Model](https://arxiv.org/abs/2405.14205)\n- [Metareasoning for Planning Under Uncertainty (IJCAI 2015)](https://www.ijcai.org/Proceedings/15/Papers/229.pdf)\n- [Learning When to Quit: Meta-Reasoning for Motion Planning (IROS 2021)](https://yoonchangsung.com/pub/meta-iros-2021.pdf)\n- [Task Complexity and Model-Based/Model-Free Arbitration](https://www.nature.com/articles/s41467-019-13632-1)\n- [ICML 2026 Paper List](https://papercopilot.com/paper-list/icml-paper-list/icml-2026-paper-list/)&lt;/result>\n&lt;usage>&lt;total_tokens>34301&lt;/total_tokens>&lt;tool_uses>27&lt;/tool_uses>&lt;duration_ms>184100&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Assistant
+
+_source line 99 · 2026-05-11T22:58:38.406Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! I now have all references verified. Let me also check one more highly relevant paper that was found - "When and How Much to Imagine" (AVIC) which is very close to what we're proposing. I need to understand this paper better to differentiate our approach.
+
+Let me also check if the remaining agents have completed. Agent 1 (concurrent work) and Agent 4 (implementations/datasets) are still running.
+
+Let me search for the AVIC paper since it's the closest concurrent work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b277054-d8e3-4d21-a3bb-003b85666d86",
+  "isSidechain": false,
+  "requestId": "req_011CawcLCzepWe4CkULs53Jx",
+  "type": "assistant",
+  "uuid": "4cf9c044-adc7-4a0f-b757-da099c936c1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YEGUD4rJ5fiUfP82MDS5RV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 930,
+      "cache_creation_input_tokens": 4104,
+      "cache_read_input_tokens": 42006,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4104,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 930,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 42006,
+          "cache_creation_input_tokens": 4104,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4104
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 100 · 2026-05-11T22:58:39.371Z_
+
+Found a very relevant concurrent work: "When and How Much to Imagine" (Feb 2026). Let me investigate this closely since it could overlap with the proposed approach.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4cf9c044-adc7-4a0f-b757-da099c936c1d",
+  "isSidechain": false,
+  "requestId": "req_011CawcLCzepWe4CkULs53Jx",
+  "type": "assistant",
+  "uuid": "39c50ecc-c6e1-4621-b9d6-c8fbabe2f7e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YEGUD4rJ5fiUfP82MDS5RV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 930,
+      "cache_creation_input_tokens": 4104,
+      "cache_read_input_tokens": 42006,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4104,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 930,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 42006,
+          "cache_creation_input_tokens": 4104,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4104
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-11T22:58:40.545Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NKKiWxd7yo1UsU7z7hY3gW`</summary>
+
+```json
+{
+  "query": "arxiv 2602.08236 \"When and How Much to Imagine\" AVIC adaptive world model visual reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "39c50ecc-c6e1-4621-b9d6-c8fbabe2f7e8",
+  "isSidechain": false,
+  "requestId": "req_011CawcLCzepWe4CkULs53Jx",
+  "type": "assistant",
+  "uuid": "2e41cc7d-c34d-493b-abbd-ea5f446faed5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YEGUD4rJ5fiUfP82MDS5RV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 930,
+      "cache_creation_input_tokens": 4104,
+      "cache_read_input_tokens": 42006,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4104,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 930,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 42006,
+          "cache_creation_input_tokens": 4104,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4104
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102 · 2026-05-11T22:58:41.079Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SHRffcLLeGJa8h2r3wG6zY`</summary>
+
+```json
+{
+  "query": "\"adaptive test-time compute\" agent trajectory step-level gating 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e41cc7d-c34d-493b-abbd-ea5f446faed5",
+  "isSidechain": false,
+  "requestId": "req_011CawcLCzepWe4CkULs53Jx",
+  "type": "assistant",
+  "uuid": "fd40ebe4-c7db-4f6d-80d4-e319f8b4b2d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YEGUD4rJ5fiUfP82MDS5RV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 930,
+      "cache_creation_input_tokens": 4104,
+      "cache_read_input_tokens": 42006,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4104,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 930,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 42006,
+          "cache_creation_input_tokens": 4104,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4104
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 103 · 2026-05-11T22:58:47.312Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-11T22:58:47.312Z",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "content": "&lt;task-notification>\n&lt;task-id>a8491b8b116e4202f&lt;/task-id>\n&lt;tool-use-id>toolu_01Ap4jT4QasJ8S8tbZ6y75Rz&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/461ad37f-ce07-4a00-a32b-b8a7506190ed/tasks/a8491b8b116e4202f.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search implementations and datasets\" completed&lt;/summary>\n&lt;result>Now I have all the information needed. Here is the comprehensive research report.\n\n---\n\n## Feasibility Research: Learned Simulation Gating for Agent Planning\n\n---\n\n### EXISTING IMPLEMENTATIONS\n\n#### 1. Imagine-then-Plan (ITP) -- Most Directly Relevant\n- **Repo**: [github.com/loyiv/ITP](https://github.com/loyiv/ITP)\n- **Status**: Publicly available (2026 paper)\n- **Why it matters**: This is the closest existing work to your \"learned simulation gating\" concept. ITP has two variants:\n  - **ITP-I (Inference-time)**: Uses a 3-stage Imagine-then-Plan procedure -- adaptive horizon selection (decides how many steps to look ahead), world-model imagination (rolls out K steps), and reflect-then-act.\n  - **ITP-R (RL-based)**: Adds a lightweight **K-head predictor** on top of a backbone LLM to **learn when and how long to imagine**, trained with pseudo-labeling horizons + online A2C optimization. This is essentially a learned gating mechanism for simulation depth.\n\n#### 2. WKM (World Knowledge Model) -- NeurIPS 2024\n- **Repo**: [github.com/zjunlp/WKM](https://github.com/zjunlp/WKM)\n- **Status**: Publicly available, code + data\n- **Details**: A parametric world knowledge model that provides global prior knowledge before a task and maintains local dynamic knowledge during execution. Tested with Mistral-7B, Gemma-7B, Llama-3-8B on three simulated datasets. Key finding: a weak WKM can guide a strong agent model, and instance-level knowledge generalizes to unseen tasks.\n\n#### 3. WebDreamer -- TMLR 2025\n- **Repo**: [github.com/OSU-NLP-Group/WebDreamer](https://github.com/OSU-NLP-Group/WebDreamer)\n- **Status**: Publicly available -- code, models, and data all open\n- **Details**: Uses LLMs as a world model of the internet to simulate \"what would happen if I click this button?\" for each candidate action, then selects optimally. Includes **Dreamer-7B**, a trained world model that performs comparably to GPT-4o. Improvements of 23-42% over reactive baselines on VisualWebArena, Mind2Web-live.\n- **HuggingFace assets**: [osunlp/Dreamer-7B](https://huggingface.co/osunlp/Dreamer-7B) (model), [osunlp/Dreamer-V1-Data](https://huggingface.co/datasets/osunlp/Dreamer-V1-Data) (training data)\n\n#### 4. WebWorld (QwenLM)\n- **Repo**: [github.com/QwenLM/WebWorld](https://github.com/QwenLM/WebWorld)\n- **Status**: Publicly available, Apache 2.0\n- **Details**: Large-scale web world model for training web agents in simulated browsers. Trained on **1M+ real-world web interaction trajectories** (100x more than prior work). Supports multi-turn simulation up to 30+ steps. Models available on HuggingFace in 8B, 14B, and 32B variants ([Qwen/WebWorld-8B](https://huggingface.co/Qwen/WebWorld-8B), etc.). Dataset at Qwen/WebWorldData.\n\n#### 5. WMA-Agents (Web Agents with World Models) -- ICLR 2025\n- **Repo**: [github.com/kyle8581/WMA-Agents](https://github.com/kyle8581/WMA-Agents)\n- **Status**: Publicly available\n\n#### 6. Web World Models (Princeton AI2 Lab)\n- **Repo**: [github.com/Princeton-AI2-Lab/Web-World-Models](https://github.com/Princeton-AI2-Lab/Web-World-Models)\n- **Status**: Publicly available\n\n#### 7. Agent World Model (Snowflake Labs)\n- **Repo**: [github.com/Snowflake-Labs/agent-world-model](https://github.com/Snowflake-Labs/agent-world-model)\n- **Status**: Publicly available\n- **Details**: Fully synthetic environment generation pipeline producing 1,000 executable SQL database-backed tool-use environments via MCP interface for large-scale multi-turn agentic RL.\n\n#### 8. Other Notable Repos\n- **MARTI** ([github.com/TsinghuaC3I/MARTI](https://github.com/TsinghuaC3I/MARTI)): Multi-agent RL training framework for LLMs\n- **AdaReMo** ([github.com/tsinghua-fib-lab/AdaReMo](https://github.com/tsinghua-fib-lab/AdaReMo), ICML 2025): Adaptive reward modeling -- approximates simulations with neural networks so RL agents interact in real-time without simulator delays. Relevant to the cost/benefit tradeoff of simulation.\n- **Imagination-Augmented Agents** ([github.com/higgsfield/Imagination-Augmented-Agents](https://github.com/higgsfield/Imagination-Augmented-Agents)): PyTorch implementation of the classic I2A paper\n\n#### No direct \"simulation gating\" implementation found\nNone of the repos implement exactly your concept of a binary per-step gate (\"simulate or not?\"). **ITP-R is the closest**, learning *when* and *how long* to imagine via its K-head predictor. This confirms your project would be novel, while having strong related work to build on.\n\n---\n\n### DATASETS AND BENCHMARKS\n\n#### 1. ALFWorld\n- **Website**: [alfworld.github.io](https://alfworld.github.io/)\n- **Repo**: [github.com/alfworld/alfworld](https://github.com/alfworld/alfworld)\n- **Status**: Publicly accessible, installable via pip\n- **Details**: Interactive TextWorld environments paralleling embodied ALFRED environments. Household tasks (navigate, manipulate objects). Includes seen and unseen task splits. Good for testing agent planning with world models in a controlled setting.\n\n#### 2. WebArena\n- **Website**: [webarena.dev](https://webarena.dev/)\n- **Repo**: [github.com/web-arena-x/webarena](https://github.com/web-arena-x/webarena)\n- **Status**: Publicly accessible\n- **Details**: 812 tasks across simulated web environments (e-commerce, forums). Current SOTA around 60-69% (human performance ~78%). Also available: **WebArena Verified** ([github.com/ServiceNow/webarena-verified](https://github.com/ServiceNow/webarena-verified)) with improved evaluation reliability.\n\n#### 3. ScienceWorld\n- **Website**: [scienceworld.github.io](https://arxiv.org/abs/2203.07540)\n- **Repo**: [github.com/allenai/ScienceWorld](https://github.com/allenai/ScienceWorld)\n- **Status**: Publicly accessible\n- **Details**: 30 core experimental categories with up to 1,400 parametric variations each. Text-based environment with 200 object types across 10 locations. Frontier models score in the low 80s as of early 2025.\n\n#### 4. HuggingFace Agent Trajectory Datasets\nSeveral publicly available datasets:\n- **[Agent-Eval-Refine/Agent-Trajectories](https://huggingface.co/datasets/Agent-Eval-Refine/Agent-Trajectories)**: Trajectories across WebArena, Android, iOS\n- **[Agent-Ark/Toucan-1.5M](https://huggingface.co/datasets/Agent-Ark/Toucan-1.5M)**: 1.5M+ fully synthetic tool-agent trajectories from 495 real-world MCPs / 2,000+ tools\n- **[lambda/hermes-agent-reasoning-traces](https://huggingface.co/datasets/lambda/hermes-agent-reasoning-traces)**: Multi-turn tool-calling trajectories with step-by-step reasoning\n- **[osunlp/Dreamer-V1-Data](https://huggingface.co/datasets/osunlp/Dreamer-V1-Data)**: WebDreamer's world model training data\n- **[open-world-agents/D2E-Original](https://huggingface.co/datasets/open-world-agents/D2E-Original)**: Recommended for training world models with vision-action trajectories\n\n#### 5. Papers With Code\n- **Note**: Papers With Code was shut down by Meta in July 2025 and the domain now redirects to HuggingFace Trending Papers. Leaderboards are gone.\n- Alternatives: [github.com/philschmid/ai-agent-benchmark-compendium](https://github.com/philschmid/ai-agent-benchmark-compendium) (50+ agent benchmarks catalogued), and the [Rapid Claw AI Agent Framework Scorecard 2026](https://rapidclaw.dev/blog/ai-agent-benchmarks-2026).\n\n#### 6. AgentBench\n- **Repo**: [github.com/THUDM/AgentBench](https://github.com/THUDM/AgentBench) (ICLR 2024)\n- **Status**: Publicly accessible, actively maintained as of 2026\n- **Details**: 8 distinct environments evaluating LLM-as-Agent reasoning and decision-making in multi-turn open-ended settings. Last revised October 2025.\n\n---\n\n### COST REFERENCES\n\n#### GPU Rental Rates (May 2026)\n\n| GPU | Low-end | Typical | High-end (Hyperscaler) |\n|-----|---------|---------|----------------------|\n| **A100** | $0.13/hr (spot) | $1.49-$2.00/hr | $3.43-$5.04/hr |\n| **H100** | $1.23/hr (spot) | $2.35-$2.80/hr | $6.98-$14.90/hr |\n\nH100 1-year contract pricing rose ~40% from $1.70/hr (Oct 2025) to $2.35/hr (Mar 2026). A100 on-demand dropped ~17% YoY to ~$1.98/hr.\n\n#### Fine-Tuning Costs (Your Likely Range)\n\nFor a **learned gating model** (small classifier/predictor on top of an LLM backbone):\n\n- **7B model with LoRA**: $1,000-$3,000 total, ~8 hours on a single A100\n- **7B model full fine-tune**: up to $12,000\n- **Small model (2-3B) with LoRA**: $300-$700\n- **Training 1M tokens on 70B with LoRA**: ~2-3 hours on an A100\n- **RL fine-tuning (GRPO)**: Now possible on as little as 5GB VRAM with Unsloth\n\n#### World Model Training Costs\n\n- **Small world model (1B params)**: $2K-$15K, 1-7 days on 8x RTX 4090\n- **Medium world model (7B params)**: $50K-$500K, 2-4 weeks on 64x A100\n- **Large world model (70B params)**: $1.2M-$6M, 3-8 weeks on 256x H200\n\nFor reference, DeepSeek V3 trained for $5.6M on 2.79M GPU hours.\n\n#### Projected Cost for Your Project\n\nGiven that \"learned simulation gating\" is a lightweight predictor (small model deciding simulate-or-not), the training cost for the gating module itself would likely be very modest:\n- If it is a small head on a frozen backbone: a few hundred dollars in GPU time\n- If it requires RL training loops with environment interaction (like ITP-R's A2C training): likely $1K-$5K for a 7B backbone, scaling with number of RL rollout steps\n- The world model itself (if you train one rather than using an existing one like Dreamer-7B or WebWorld) would be the expensive component\n\n---\n\n### KEY TAKEAWAYS FOR FEASIBILITY\n\n1. **Your concept is novel but has close neighbors.** ITP-R's K-head predictor (learns when/how-long to imagine) is the nearest existing work. No one has published a dedicated binary gate trained end-to-end to decide \"simulate vs. act directly.\"\n\n2. **Strong open-source infrastructure exists.** WebDreamer (Dreamer-7B), WebWorld (8B/14B/32B), and WKM all provide ready-made world models you could use as the simulation component, avoiding the need to train one from scratch.\n\n3. **Benchmarks are available and active.** ALFWorld, WebArena, ScienceWorld, and AgentBench are all publicly accessible and would serve well as evaluation environments. WebArena + WebDreamer is a particularly natural pairing.\n\n4. **Training costs are manageable.** A gating model (small classifier or RL-trained head) on top of an existing backbone should cost $300-$5,000 depending on approach. Using a pre-trained world model (Dreamer-7B) eliminates the most expensive component.\n\n5. **Papers With Code is defunct** -- use HuggingFace, the ai-agent-benchmark-compendium repo, or Rapid Claw for tracking benchmarks instead.\n\nSources:\n- [ITP: Imagine-then-Plan (GitHub)](https://github.com/loyiv/ITP)\n- [WKM: World Knowledge Model (GitHub)](https://github.com/zjunlp/WKM)\n- [WebDreamer (GitHub)](https://github.com/OSU-NLP-Group/WebDreamer)\n- [Dreamer-7B (HuggingFace)](https://huggingface.co/osunlp/Dreamer-7B)\n- [Dreamer-V1-Data (HuggingFace)](https://huggingface.co/datasets/osunlp/Dreamer-V1-Data)\n- [WebWorld (GitHub)](https://github.com/QwenLM/WebWorld)\n- [WebWorld-8B (HuggingFace)](https://huggingface.co/Qwen/WebWorld-8B)\n- [WMA-Agents (GitHub)](https://github.com/kyle8581/WMA-Agents)\n- [Web World Models - Princeton (GitHub)](https://github.com/Princeton-AI2-Lab/Web-World-Models)\n- [Agent World Model - Snowflake (GitHub)](https://github.com/Snowflake-Labs/agent-world-model)\n- [MARTI (GitHub)](https://github.com/TsinghuaC3I/MARTI)\n- [AdaReMo (GitHub)](https://github.com/tsinghua-fib-lab/AdaReMo)\n- [Imagination-Augmented Agents (GitHub)](https://github.com/higgsfield/Imagination-Augmented-Agents)\n- [ALFWorld (Website)](https://alfworld.github.io/)\n- [ALFWorld (GitHub)](https://github.com/alfworld/alfworld)\n- [WebArena (Website)](https://webarena.dev/)\n- [WebArena (GitHub)](https://github.com/web-arena-x/webarena)\n- [WebArena Verified (GitHub)](https://github.com/ServiceNow/webarena-verified)\n- [ScienceWorld (GitHub)](https://github.com/allenai/ScienceWorld)\n- [Agent-Eval-Refine/Agent-Trajectories (HuggingFace)](https://huggingface.co/datasets/Agent-Eval-Refine/Agent-Trajectories)\n- [Toucan-1.5M (HuggingFace)](https://huggingface.co/datasets/Agent-Ark/Toucan-1.5M)\n- [Hermes Agent Reasoning Traces (HuggingFace)](https://huggingface.co/datasets/lambda/hermes-agent-reasoning-traces)\n- [D2E-Original (HuggingFace)](https://huggingface.co/datasets/open-world-agents/D2E-Original)\n- [AgentBench (GitHub)](https://github.com/THUDM/AgentBench)\n- [AI Agent Benchmark Compendium (GitHub)](https://github.com/philschmid/ai-agent-benchmark-compendium)\n- [Rapid Claw AI Agent Framework Scorecard 2026](https://rapidclaw.dev/blog/ai-agent-benchmarks-2026)\n- [Awesome Agentic World Modeling (GitHub)](https://github.com/matrix-agent/awesome-agentic-world-modeling)\n- [How to Fine-Tune LLMs in 2026 (Spheron)](https://www.spheron.network/blog/how-to-fine-tune-llm-2026/)\n- [LLM Fine-Tuning Cost 2026 (AISuperior)](https://aisuperior.com/llm-fine-tuning-cost/)\n- [AI Costs 2026 Breakdown (Nerd Level Tech)](https://nerdleveltech.com/ai-costs-a-complete-breakdown)\n- [H100 Cloud Pricing 2026 (GetDeploying)](https://getdeploying.com/gpus/nvidia-h100)\n- [A100 Cloud Pricing 2026 (GetDeploying)](https://getdeploying.com/gpus/nvidia-a100)\n- [H100 Rental Prices Compared (IntuitionLabs)](https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison)\n- [A100 Pricing May 2026 (ThunderCompute)](https://www.thundercompute.com/blog/nvidia-a100-pricing)\n- [H100 Rental Price Over Time (SiliconData)](https://www.silicondata.com/blog/h100-rental-price-over-time)\n- [2026 Cost of H100 GPUs (GMICloud)](https://www.gmicloud.ai/en/blog/2026-cost-of-renting-or-uying-nvidia-h100-gpus-for-data-centers)&lt;/result>\n&lt;usage>&lt;total_tokens>26611&lt;/total_tokens>&lt;tool_uses>18&lt;/tool_uses>&lt;duration_ms>152114&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 104_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Learned Simul…",
+  "leafUuid": "fd40ebe4-c7db-4f6d-80d4-e319f8b4b2d2",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 105_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learn step-level simulation gating for agents",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-11T22:58:49.118Z_
+
+<details><summary>↩ Tool result · `toolu_01SHRffcLLeGJa8h2r3wG6zY`</summary>
+
+```text
+Web search results for query: ""adaptive test-time compute" agent trajectory step-level gating 2026"
+
+Links: [{"title":"Agentic Test-Time Scaling for WebAgents","url":"https://arxiv.org/pdf/2602.12276"},{"title":"Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure","url":"https://arxiv.org/html/2602.03975v1"},{"title":"Scaling Test-Time Compute for Agentic Coding","url":"https://www.emergentmind.com/papers/2604.16529"},{"title":"Adaptive Test-Time Compute Allocation via Learned Heuristics over","url":"https://arxiv.org/pdf/2602.03975"},{"title":"Adaptive Test-Time Compute Allocation","url":"https://www.emergentmind.com/topics/adaptive-test-time-compute-allocation"},{"title":"[Paper Note] Scaling Test-Time Compute for Agentic Coding, Joongwon Kim+, arXiv'26, 2026.04 · Issue #5307 · AkihikoWatanabe/paper_notes","url":"https://github.com/AkihikoWatanabe/paper_notes/issues/5307"},{"title":"Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization","url":"https://arxiv.org/html/2604.14853v1"},{"title":"[2604.16529] Scaling Test-Time Compute for Agentic Coding","url":"https://arxiv.org/abs/2604.16529"},{"title":"What If We Allocate Test-Time Compute Adaptively?","url":"https://arxiv.org/html/2602.01070"},{"title":"Elevating long-horizon agentic tasks with orchestrated Test-Time Compute | AI21","url":"https://www.ai21.com/blog/test-time-compute-swe-bench/"}]
+
+I found several highly relevant papers and resources on adaptive test-time compute for agents from 2026. Here are the key findings:
+
+## Recent Work on Adaptive Test-Time Compute for Agents (2026)
+
+### 1. **Agentic Test-Time Scaling for WebAgents**
+A preprint from February 13, 2026 on agentic test-time scaling for web agents introduces methods that address the challenges of long-horizon sequential agent tasks. The research shows that failed tasks consistently exhibit higher entropy and lower margins throughout trajectories, with the gap widening at later steps, while successful tasks maintain high margins and low entropy early on.
+
+### 2. **Adaptive Test-Time Compute Allocation via Learned Heuristics**
+This approach exploits deterministic feasibility structure at the move interface using cheap gates that reject invalid moves, and allocates verification according to state-local uncertainty rather than uniform rules. The method applies deterministic gating, ranks surviving candidates with a hybrid pre-verification score, and chooses state-conditional verification budgets.
+
+### 3. **Step-Level Gating and Verification**
+In chain-of-thought settings, LATTS (Locally Adaptive Test-Time Scaling) employs step-level verifier scores to decide whether to accept, resample, backtrack, or terminate each reasoning step, allowing per-step compute adaptivity.
+
+### 4. **Test-Time Compute for Agentic Coding**
+A framework for agentic coding based on compact representations of rollout trajectories converts each rollout into a structured summary that preserves salient hypotheses, progress, and failure modes while discarding low-signal trace details.
+
+These works collectively demonstrate that 2026 research is focused on making agent trajectories more efficient through step-level gating mechanisms and adaptive allocation strategies based on uncertainty and feasibility constraints.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fd40ebe4-c7db-4f6d-80d4-e319f8b4b2d2",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "2357f802-3a0e-47f4-9b0d-8c8022c647d2",
+  "toolUseResult": {
+    "query": "\"adaptive test-time compute\" agent trajectory step-level gating 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013TaT8ibUXN9FUBwbVYvrqa",
+        "content": [
+          {
+            "title": "Agentic Test-Time Scaling for WebAgents",
+            "url": "https://arxiv.org/pdf/2602.12276"
+          },
+          {
+            "title": "Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure",
+            "url": "https://arxiv.org/html/2602.03975v1"
+          },
+          {
+            "title": "Scaling Test-Time Compute for Agentic Coding",
+            "url": "https://www.emergentmind.com/papers/2604.16529"
+          },
+          {
+            "title": "Adaptive Test-Time Compute Allocation via Learned Heuristics over",
+            "url": "https://arxiv.org/pdf/2602.03975"
+          },
+          {
+            "title": "Adaptive Test-Time Compute Allocation",
+            "url": "https://www.emergentmind.com/topics/adaptive-test-time-compute-allocation"
+          },
+          {
+            "title": "[Paper Note] Scaling Test-Time Compute for Agentic Coding, Joongwon Kim+, arXiv'26, 2026.04 · Issue #5307 · AkihikoWatanabe/paper_notes",
+            "url": "https://github.com/AkihikoWatanabe/paper_notes/issues/5307"
+          },
+          {
+            "title": "Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization",
+            "url": "https://arxiv.org/html/2604.14853v1"
+          },
+          {
+            "title": "[2604.16529] Scaling Test-Time Compute for Agentic Coding",
+            "url": "https://arxiv.org/abs/2604.16529"
+          },
+          {
+            "title": "What If We Allocate Test-Time Compute Adaptively?",
+            "url": "https://arxiv.org/html/2602.01070"
+          },
+          {
+            "title": "Elevating long-horizon agentic tasks with orchestrated Test-Time Compute | AI21",
+            "url": "https://www.ai21.com/blog/test-time-compute-swe-bench/"
+          }
+        ]
+      },
+      "I found several highly relevant papers and resources on adaptive test-time compute for agents from 2026. Here are the key findings:\n\n## Recent Work on Adaptive Test-Time Compute for Agents (2026)\n\n### 1. **Agentic Test-Time Scaling for WebAgents**\nA preprint from February 13, 2026 on agentic test-time scaling for web agents introduces methods that address the challenges of long-horizon sequential agent tasks. The research shows that failed tasks consistently exhibit higher entropy and lower margins throughout trajectories, with the gap widening at later steps, while successful tasks maintain high margins and low entropy early on.\n\n### 2. **Adaptive Test-Time Compute Allocation via Learned Heuristics**\nThis approach exploits deterministic feasibility structure at the move interface using cheap gates that reject invalid moves, and allocates verification according to state-local uncertainty rather than uniform rules. The method applies deterministic gating, ranks surviving candidates with a hybrid pre-verification score, and chooses state-conditional verification budgets.\n\n### 3. **Step-Level Gating and Verification**\nIn chain-of-thought settings, LATTS (Locally Adaptive Test-Time Scaling) employs step-level verifier scores to decide whether to accept, resample, backtrack, or terminate each reasoning step, allowing per-step compute adaptivity.\n\n### 4. **Test-Time Compute for Agentic Coding**\nA framework for agentic coding based on compact representations of rollout trajectories converts each rollout into a structured summary that preserves salient hypotheses, progress, and failure modes while discarding low-signal trace details.\n\nThese works collectively demonstrate that 2026 research is focused on making agent trajectories more efficient through step-level gating mechanisms and adaptive allocation strategies based on uncertainty and feasibility constraints."
+    ],
+    "durationSeconds": 8.035385859000002
+  },
+  "sourceToolAssistantUUID": "fd40ebe4-c7db-4f6d-80d4-e319f8b4b2d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-11T22:58:49.189Z_
+
+<details><summary>↩ Tool result · `toolu_01NKKiWxd7yo1UsU7z7hY3gW`</summary>
+
+```text
+Web search results for query: "arxiv 2602.08236 "When and How Much to Imagine" AVIC adaptive world model visual reasoning"
+
+Links: [{"title":"[2602.08236] When and How Much to Imagine: Adaptive Test-Time Scaling with World Models for Visual Spatial Reasoning","url":"https://arxiv.org/abs/2602.08236"},{"title":"When and How Much to Imagine: Adaptive Test-Time Scaling with World Models for Visual Spatial Reasoning","url":"https://arxiv.org/html/2602.08236"},{"title":"Explore | alphaXiv","url":"https://www.alphaxiv.org/"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/pastweek?skip=885&show=1000"},{"title":"[2604.08236] Improved Convergence for Decentralized Stochastic Optimization with Biased Gradients","url":"https://arxiv.org/abs/2604.08236"},{"title":"[2602.02388v1] Personalized Image Generation via Human-in-the-loop Bayesian Optimization","url":"https://arxiv.org/abs/2602.02388v1"},{"title":"IMAGINE: Intelligent Multi-Agent Godot-based Indoor Networked Exploration","url":"https://arxiv.org/html/2602.02858"},{"title":"On A Generalization of Motohashi’s Formula","url":"https://arxiv.org/html/2310.08236"},{"title":"[2602.10177] Towards Autonomous Mathematics Research","url":"https://arxiv.org/abs/2602.10177"},{"title":"arXiv.org e-Print archive","url":"https://arxiv.org/"}]
+
+I found the paper! Here are the details about arxiv 2602.08236:
+
+**Title:** "When and How Much to Imagine: Adaptive Test-Time Scaling with World Models for Visual Spatial Reasoning"
+
+**Overview:** Despite rapid progress in Multimodal Large Language Models (MLLMs), visual spatial reasoning remains unreliable when correct answers depend on how a scene would appear under unseen or alternative viewpoints. Recent work addresses this by augmenting reasoning with world models for visual imagination, but questions such as when imagination is actually necessary, how much of it is beneficial, and when it becomes harmful, remain poorly understood.
+
+**Key Contribution - AVIC Framework:** The paper introduces AVIC, an adaptive test-time framework with world models that explicitly reasons about the sufficiency of current visual evidence before selectively invoking and scaling visual imagination.
+
+**Research Questions:** The paper studies when static visual evidence is sufficient, when imagination improves reasoning, and how excessive or unnecessary imagination affects accuracy and efficiency.
+
+**Evaluation & Results:** Across spatial reasoning benchmarks (SAT, MMSI) and an embodied navigation benchmark (R2R), the results reveal clear scenarios where imagination is critical, marginal, or detrimental, and show that selective control can match or outperform fixed imagination strategies with substantially fewer world-model calls and language tokens.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2e41cc7d-c34d-493b-abbd-ea5f446faed5",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "15203f93-4943-4c1e-9ca6-13e66cfd8602",
+  "toolUseResult": {
+    "query": "arxiv 2602.08236 \"When and How Much to Imagine\" AVIC adaptive world model visual reasoning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018prNr3RZtWFtpRnrnKruyC",
+        "content": [
+          {
+            "title": "[2602.08236] When and How Much to Imagine: Adaptive Test-Time Scaling with World Models for Visual Spatial Reasoning",
+            "url": "https://arxiv.org/abs/2602.08236"
+          },
+          {
+            "title": "When and How Much to Imagine: Adaptive Test-Time Scaling with World Models for Visual Spatial Reasoning",
+            "url": "https://arxiv.org/html/2602.08236"
+          },
+          {
+            "title": "Explore | alphaXiv",
+            "url": "https://www.alphaxiv.org/"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/pastweek?skip=885&show=1000"
+          },
+          {
+            "title": "[2604.08236] Improved Convergence for Decentralized Stochastic Optimization with Biased Gradients",
+            "url": "https://arxiv.org/abs/2604.08236"
+          },
+          {
+            "title": "[2602.02388v1] Personalized Image Generation via Human-in-the-loop Bayesian Optimization",
+            "url": "https://arxiv.org/abs/2602.02388v1"
+          },
+          {
+            "title": "IMAGINE: Intelligent Multi-Agent Godot-based Indoor Networked Exploration",
+            "url": "https://arxiv.org/html/2602.02858"
+          },
+          {
+            "title": "On A Generalization of Motohashi’s Formula",
+            "url": "https://arxiv.org/html/2310.08236"
+          },
+          {
+            "title": "[2602.10177] Towards Autonomous Mathematics Research",
+            "url": "https://arxiv.org/abs/2602.10177"
+          },
+          {
+            "title": "arXiv.org e-Print archive",
+            "url": "https://arxiv.org/"
+          }
+        ]
+      },
+      "I found the paper! Here are the details about arxiv 2602.08236:\n\n**Title:** \"When and How Much to Imagine: Adaptive Test-Time Scaling with World Models for Visual Spatial Reasoning\"\n\n**Overview:** Despite rapid progress in Multimodal Large Language Models (MLLMs), visual spatial reasoning remains unreliable when correct answers depend on how a scene would appear under unseen or alternative viewpoints. Recent work addresses this by augmenting reasoning with world models for visual imagination, but questions such as when imagination is actually necessary, how much of it is beneficial, and when it becomes harmful, remain poorly understood.\n\n**Key Contribution - AVIC Framework:** The paper introduces AVIC, an adaptive test-time framework with world models that explicitly reasons about the sufficiency of current visual evidence before selectively invoking and scaling visual imagination.\n\n**Research Questions:** The paper studies when static visual evidence is sufficient, when imagination improves reasoning, and how excessive or unnecessary imagination affects accuracy and efficiency.\n\n**Evaluation & Results:** Across spatial reasoning benchmarks (SAT, MMSI) and an embodied navigation benchmark (R2R), the results reveal clear scenarios where imagination is critical, marginal, or detrimental, and show that selective control can match or outperform fixed imagination strategies with substantially fewer world-model calls and language tokens."
+    ],
+    "durationSeconds": 8.639908254000009
+  },
+  "sourceToolAssistantUUID": "2e41cc7d-c34d-493b-abbd-ea5f446faed5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 108 · 2026-05-11T22:58:49.194Z_
+
+```json
+{
+  "parentUuid": "15203f93-4943-4c1e-9ca6-13e66cfd8602",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>ad830bba72692fbd4&lt;/task-id>\n&lt;tool-use-id>toolu_014CpLJ649zJypNgUAzjTYLN&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/461ad37f-ce07-4a00-a32b-b8a7506190ed/tasks/ad830bba72692fbd4.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search concurrent work on learned simulation gating\" completed&lt;/summary>\n&lt;result>Now I have a comprehensive picture. Here is my full report.\n\n---\n\n## Research Report: \"Learned Simulation Gating for Agent Planning\"\n\nI conducted extensive searches across academic databases, arXiv, OpenReview, and the broader web. The core idea -- a **learned per-step gating mechanism that decides whether invoking a world model/simulator is cost-beneficial before each action** -- does not appear to have been published as a single, unified paper under that exact framing. However, several closely related lines of work exist, some of which overlap significantly with subsets of the idea. I have organized findings by relevance, from most to least similar.\n\n---\n\n### TIER 1: Highly Related (overlap with multiple core components)\n\n**1. \"Adaptive Rollout Length for Model-Based RL Using Model-Free Deep RL\"**\n- Authors: Abhinav Bhatia, Philip S. Thomas, Shlomo Zilberstein\n- Venue: arXiv:2206.02380 (June 2022)\n- Relevance: **Very high.** A meta-level RL controller *learns* to dynamically tune the rollout length (how many simulation steps to use) in model-based RL. This is essentially a learned decision about how much to simulate. The key difference from your idea: this adjusts rollout *length*, not a binary gate on whether to simulate at all. But the architecture (a learned meta-controller making per-step simulation decisions based on cost-benefit) is structurally very close.\n- URL: [https://arxiv.org/abs/2206.02380](https://arxiv.org/abs/2206.02380)\n\n**2. \"Rational Metareasoning for Large Language Models\"**\n- Authors: C. Nicolo De Sabbata et al.\n- Venue: arXiv:2410.05563 (October 2024); presented at OpenReview venues\n- Relevance: **Very high.** Directly trains LLMs to decide per-step whether to engage in reasoning (analogous to simulation) using a formal **Value of Computation (VoC)** framework from cognitive science. A reward function penalizes unnecessary reasoning, and the model learns when thinking is cost-beneficial. The difference: it gates *chain-of-thought reasoning steps*, not a separate world-model simulator. But the meta-level learned gating based on cost-benefit is the same core idea applied to a different computational substrate.\n- URL: [https://arxiv.org/abs/2410.05563](https://arxiv.org/abs/2410.05563)\n\n**3. \"Neural Computations Underlying Arbitration Between Model-Based and Model-Free Learning\"**\n- Authors: Sang Wan Lee, Shinsuke Shimojo, John P. O'Doherty\n- Venue: *Neuron* (February 2014)\n- Relevance: **Very high (foundational).** This is the neuroscience origin of learned model-based/model-free arbitration. The brain dynamically gates between a model-based system (world-model simulation) and a model-free system (cached values) based on the *reliability* of each system's predictions. The inferior lateral prefrontal cortex computes this arbitration signal. This is exactly the idea of learned simulation gating, demonstrated in human brains. A follow-up (Nature Communications 2019) showed task complexity interacts with this arbitration.\n- URL: [https://pmc.ncbi.nlm.nih.gov/articles/PMC3968946/](https://pmc.ncbi.nlm.nih.gov/articles/PMC3968946/)\n\n**4. \"When Can Model-Free Reinforcement Learning be Enough for Thinking?\"**\n- Authors: Josiah P. Hanna, Nicholas E. Corrado (U. Wisconsin-Madison)\n- Venue: arXiv:2506.17124 (June 2025); accepted at NeurIPS 2025\n- Relevance: **High.** Introduces a \"thought MDP\" where thinking/simulation is itself modeled as an action the agent can choose. Model-free learning in this thought-MDP *directly ties the decision of when to stop thinking to return maximization*. This addresses \"when to think vs. act\" but approaches it by letting it emerge from model-free RL rather than training an explicit gating module.\n- URL: [https://arxiv.org/abs/2506.17124](https://arxiv.org/abs/2506.17124)\n\n**5. \"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models\"**\n- Authors: Youwei Liu, Jian Wang, Hanlin Wang, Beichen Guo, Wenjie Li\n- Venue: arXiv:2601.08955 (January 2026)\n- Relevance: **High.** An adaptive lookahead mechanism dynamically adjusts the imagination horizon (how far ahead to simulate) by trading off foresight reliability vs. computational overhead. This is per-step adaptive simulation depth, learned within the agent framework. The difference: it always simulates but adjusts *how much*, rather than deciding whether to simulate at all.\n- URL: [https://arxiv.org/abs/2601.08955](https://arxiv.org/abs/2601.08955)\n\n---\n\n### TIER 2: Moderately Related (overlap with some components)\n\n**6. \"MemCtrl: Using MLLMs as Active Memory Controllers on Embodied Agents\"**\n- Authors: (multiple, see paper)\n- Venue: arXiv:2601.20831 (January 2026)\n- Relevance: **Moderate.** A trainable gating head (3-layer MLP) learns to decide which observations to retain/discard during embodied agent exploration. Trained via offline expert or online RL. This is a learned per-step gate, but it gates *memory/observation storage*, not world-model simulation. The architectural pattern (a lightweight learned binary gate attached to the agent's processing pipeline) is relevant.\n- URL: [https://arxiv.org/abs/2601.20831](https://arxiv.org/abs/2601.20831)\n\n**7. \"Act Only When It Pays: Efficient RL for LLM Reasoning via Selective Rollouts\" (GRESO)**\n- Authors: Haizhong Zheng et al.\n- Venue: arXiv:2506.02177 (June 2025)\n- Relevance: **Moderate.** Learns to predict which prompts are \"uninformative\" and skips rollouts for them during RL training. This is a learned cost-benefit gating of simulation rollouts, but at the *training prompt selection* level rather than per-step within an episode. The core insight (predicting when simulation is worth the cost) is shared.\n- URL: [https://arxiv.org/abs/2506.02177](https://arxiv.org/abs/2506.02177)\n\n**8. \"CraniMem: Cranial Inspired Gated and Bounded Memory for Agentic Systems\"**\n- Authors: Pearl Mody, Mihir Panchal, Rishit Kar, Kiran Bhowmick, Ruhina Karani\n- Venue: arXiv:2603.15642 (March 2026); presented at ICLR 2026\n- Relevance: **Moderate.** Goal-conditioned gating with utility tagging for agent memory. Uses a gated multi-stage memory architecture. Related in that it uses learned gating to decide what to process/retain, but applied to memory rather than simulation invocation.\n- URL: [https://arxiv.org/abs/2603.15642](https://arxiv.org/abs/2603.15642)\n\n**9. \"Adaptive Integration of Model-Based and Model-Free Strategies in Human RL of Reachable Space\"**\n- Authors: Tianyao Zhu, Rohaan Syan, Shrika Vejandla, Jason P. Gallivan, Daniel M. Wolpert, J. Randall Flanagan\n- Venue: bioRxiv (March 2026)\n- Relevance: **Moderate.** Human behavioral study showing adaptive integration of model-based (simulation) and model-free strategies. Demonstrates that model-free weight increases over time. Neuroscience evidence that humans do perform adaptive gating of simulation, but this is empirical/behavioral, not a proposed AI algorithm.\n- URL: [https://www.biorxiv.org/content/10.64898/2026.03.02.709046v1](https://www.biorxiv.org/content/10.64898/2026.03.02.709046v1)\n\n---\n\n### TIER 3: Tangentially Related (shares some themes)\n\n**10. \"Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond\"**\n- Authors: Meng Chu et al. (42 authors)\n- Venue: arXiv:2604.22748 (April 2026)\n- Relevance: **Tangential but useful.** A comprehensive survey (400+ papers) on world models for agents. Defines capability levels (L1 Predictor, L2 Simulator, L3 Evolver). This is the best place to check whether any surveyed paper implements learned simulation gating. The survey itself does not appear to propose gating, but it catalogs the full landscape of agent world-model research.\n- URL: [https://arxiv.org/abs/2604.22748](https://arxiv.org/abs/2604.22748)\n\n**11. \"Agent Planning with World Knowledge Model\" (WKM)**\n- Authors: (zjunlp group)\n- Venue: NeurIPS 2024\n- Relevance: **Tangential.** Learns a World Knowledge Model to guide agent planning, but uses it uniformly (always provides guidance), not selectively via a gate.\n- URL: [https://arxiv.org/abs/2405.14205](https://arxiv.org/abs/2405.14205)\n\n**12. Metareasoning for Planning Under Uncertainty (Classical)**\n- Authors: Christopher Lin et al.\n- Venue: IJCAI 2015\n- Relevance: **Tangential (foundational).** Formalizes cost-benefit metareasoning for planning: should the agent plan more or act now? This is the theoretical ancestor of learned simulation gating, but uses hand-designed VOC estimators rather than learned ones.\n- URL: [https://www.ijcai.org/Proceedings/15/Papers/229.pdf](https://www.ijcai.org/Proceedings/15/Papers/229.pdf)\n\n**13. \"Learning When to Quit: Meta-Reasoning for Motion Planning\"**\n- Authors: Yoonchang Sung et al.\n- Venue: IROS 2021\n- Relevance: **Tangential.** Learns when to stop a motion planner (an anytime algorithm) and act. This is a learned gate for simulation/planning termination in robotics, but narrowly scoped to motion planning rather than general agent planning.\n- URL: [https://yoonchangsung.com/pub/meta-iros-2021.pdf](https://yoonchangsung.com/pub/meta-iros-2021.pdf)\n\n---\n\n### ICML 2026 / NeurIPS 2026 / OpenReview\n\n- **ICML 2026** accepted 6,352 papers (26.6% acceptance rate). The full paper list is available at [Paper Copilot](https://papercopilot.com/paper-list/icml-paper-list/icml-2026-paper-list/) but I could not find a specific paper on \"learned simulation gating\" among the results surfaced by search. Papers are not yet fully indexed for keyword search.\n- **NeurIPS 2026** submissions are not yet available (conference is later in 2026).\n- No OpenReview submission with the exact title or abstract matching \"simulation gating\" or \"learned gating for world model invocation\" was found.\n\n---\n\n### Assessment: Has This Exact Idea Been Done?\n\n**No single paper combines all elements of your idea into one unified system.** Specifically, the idea of:\n\n1. A **learned** (not hand-designed) gating mechanism\n2. Operating **per-step** during agent execution\n3. Making a **binary or continuous decision** about whether to invoke a world model/simulator\n4. Based on **predicted cost-benefit** (value of computation)\n5. Applied to **general agent planning** (not just motion planning, not just chain-of-thought)\n\nThe closest works are:\n- **Bhatia et al. (2022)** -- hits (1), (2), (4) but adjusts rollout length rather than a binary invoke/skip gate, and is in traditional RL\n- **De Sabbata et al. (2024)** -- hits (1), (2), (3), (4) but gates *reasoning steps* rather than an external simulator\n- **Lee et al. (2014)** -- demonstrates the concept in the human brain but is neuroscience, not an AI system\n- **Hanna &amp; Corrado (2025)** -- formalizes thinking as an action the agent learns to take, close in spirit but approaches it as emergent behavior rather than an explicit gating module\n\nThe **gap** that appears unfilled: an explicit, lightweight learned gating module (e.g., a small network) that sits between an agent policy and a world-model simulator, trained end-to-end or via RL to predict at each decision step whether the expected value improvement from running the simulator exceeds the computational cost, and gates simulator access accordingly in a general agent planning setting. This specific formulation does not appear to have been published.\n\nI would recommend closely reading the Bhatia/Thomas/Zilberstein (2022) paper and the De Sabbata (2024) rational metareasoning paper, as these are the nearest neighbors. Also check the survey by Meng Chu et al. (2604.22748) for any papers I may have missed in their catalog of 400+ works.\n\nSources:\n- [Adaptive Rollout Length for Model-Based RL Using Model-Free Deep RL](https://arxiv.org/abs/2206.02380)\n- [Rational Metareasoning for Large Language Models](https://arxiv.org/abs/2410.05563)\n- [Neural Computations Underlying Arbitration Between Model-Based and Model-Free Learning](https://pmc.ncbi.nlm.nih.gov/articles/PMC3968946/)\n- [When Can Model-Free RL be Enough for Thinking?](https://arxiv.org/abs/2506.17124)\n- [Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models](https://arxiv.org/abs/2601.08955)\n- [MemCtrl: Using MLLMs as Active Memory Controllers on Embodied Agents](https://arxiv.org/abs/2601.20831)\n- [Act Only When It Pays: Efficient RL for LLM Reasoning via Selective Rollouts](https://arxiv.org/abs/2506.02177)\n- [CraniMem: Cranial Inspired Gated and Bounded Memory for Agentic Systems](https://arxiv.org/abs/2603.15642)\n- [Adaptive Integration of Model-Based and Model-Free Strategies in Human RL](https://www.biorxiv.org/content/10.64898/2026.03.02.709046v1)\n- [Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond](https://arxiv.org/abs/2604.22748)\n- [Agent Planning with World Knowledge Model](https://arxiv.org/abs/2405.14205)\n- [Metareasoning for Planning Under Uncertainty (IJCAI 2015)](https://www.ijcai.org/Proceedings/15/Papers/229.pdf)\n- [Learning When to Quit: Meta-Reasoning for Motion Planning (IROS 2021)](https://yoonchangsung.com/pub/meta-iros-2021.pdf)\n- [Task Complexity and Model-Based/Model-Free Arbitration](https://www.nature.com/articles/s41467-019-13632-1)\n- [ICML 2026 Paper List](https://papercopilot.com/paper-list/icml-paper-list/icml-2026-paper-list/)&lt;/result>\n&lt;usage>&lt;total_tokens>34301&lt;/total_tokens>&lt;tool_uses>27&lt;/tool_uses>&lt;duration_ms>184100&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "d422a4e7-d0ba-44e3-9183-5b60b0b18b18",
+  "timestamp": "2026-05-11T22:58:49.194Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 109 · 2026-05-11T22:58:49.194Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-11T22:58:49.194Z",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 110 · 2026-05-11T22:58:49.194Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-11T22:58:49.194Z",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 111 · 2026-05-11T22:58:49.194Z_
+
+```json
+{
+  "parentUuid": "d422a4e7-d0ba-44e3-9183-5b60b0b18b18",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>a8491b8b116e4202f&lt;/task-id>\n&lt;tool-use-id>toolu_01Ap4jT4QasJ8S8tbZ6y75Rz&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/461ad37f-ce07-4a00-a32b-b8a7506190ed/tasks/a8491b8b116e4202f.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search implementations and datasets\" completed&lt;/summary>\n&lt;result>Now I have all the information needed. Here is the comprehensive research report.\n\n---\n\n## Feasibility Research: Learned Simulation Gating for Agent Planning\n\n---\n\n### EXISTING IMPLEMENTATIONS\n\n#### 1. Imagine-then-Plan (ITP) -- Most Directly Relevant\n- **Repo**: [github.com/loyiv/ITP](https://github.com/loyiv/ITP)\n- **Status**: Publicly available (2026 paper)\n- **Why it matters**: This is the closest existing work to your \"learned simulation gating\" concept. ITP has two variants:\n  - **ITP-I (Inference-time)**: Uses a 3-stage Imagine-then-Plan procedure -- adaptive horizon selection (decides how many steps to look ahead), world-model imagination (rolls out K steps), and reflect-then-act.\n  - **ITP-R (RL-based)**: Adds a lightweight **K-head predictor** on top of a backbone LLM to **learn when and how long to imagine**, trained with pseudo-labeling horizons + online A2C optimization. This is essentially a learned gating mechanism for simulation depth.\n\n#### 2. WKM (World Knowledge Model) -- NeurIPS 2024\n- **Repo**: [github.com/zjunlp/WKM](https://github.com/zjunlp/WKM)\n- **Status**: Publicly available, code + data\n- **Details**: A parametric world knowledge model that provides global prior knowledge before a task and maintains local dynamic knowledge during execution. Tested with Mistral-7B, Gemma-7B, Llama-3-8B on three simulated datasets. Key finding: a weak WKM can guide a strong agent model, and instance-level knowledge generalizes to unseen tasks.\n\n#### 3. WebDreamer -- TMLR 2025\n- **Repo**: [github.com/OSU-NLP-Group/WebDreamer](https://github.com/OSU-NLP-Group/WebDreamer)\n- **Status**: Publicly available -- code, models, and data all open\n- **Details**: Uses LLMs as a world model of the internet to simulate \"what would happen if I click this button?\" for each candidate action, then selects optimally. Includes **Dreamer-7B**, a trained world model that performs comparably to GPT-4o. Improvements of 23-42% over reactive baselines on VisualWebArena, Mind2Web-live.\n- **HuggingFace assets**: [osunlp/Dreamer-7B](https://huggingface.co/osunlp/Dreamer-7B) (model), [osunlp/Dreamer-V1-Data](https://huggingface.co/datasets/osunlp/Dreamer-V1-Data) (training data)\n\n#### 4. WebWorld (QwenLM)\n- **Repo**: [github.com/QwenLM/WebWorld](https://github.com/QwenLM/WebWorld)\n- **Status**: Publicly available, Apache 2.0\n- **Details**: Large-scale web world model for training web agents in simulated browsers. Trained on **1M+ real-world web interaction trajectories** (100x more than prior work). Supports multi-turn simulation up to 30+ steps. Models available on HuggingFace in 8B, 14B, and 32B variants ([Qwen/WebWorld-8B](https://huggingface.co/Qwen/WebWorld-8B), etc.). Dataset at Qwen/WebWorldData.\n\n#### 5. WMA-Agents (Web Agents with World Models) -- ICLR 2025\n- **Repo**: [github.com/kyle8581/WMA-Agents](https://github.com/kyle8581/WMA-Agents)\n- **Status**: Publicly available\n\n#### 6. Web World Models (Princeton AI2 Lab)\n- **Repo**: [github.com/Princeton-AI2-Lab/Web-World-Models](https://github.com/Princeton-AI2-Lab/Web-World-Models)\n- **Status**: Publicly available\n\n#### 7. Agent World Model (Snowflake Labs)\n- **Repo**: [github.com/Snowflake-Labs/agent-world-model](https://github.com/Snowflake-Labs/agent-world-model)\n- **Status**: Publicly available\n- **Details**: Fully synthetic environment generation pipeline producing 1,000 executable SQL database-backed tool-use environments via MCP interface for large-scale multi-turn agentic RL.\n\n#### 8. Other Notable Repos\n- **MARTI** ([github.com/TsinghuaC3I/MARTI](https://github.com/TsinghuaC3I/MARTI)): Multi-agent RL training framework for LLMs\n- **AdaReMo** ([github.com/tsinghua-fib-lab/AdaReMo](https://github.com/tsinghua-fib-lab/AdaReMo), ICML 2025): Adaptive reward modeling -- approximates simulations with neural networks so RL agents interact in real-time without simulator delays. Relevant to the cost/benefit tradeoff of simulation.\n- **Imagination-Augmented Agents** ([github.com/higgsfield/Imagination-Augmented-Agents](https://github.com/higgsfield/Imagination-Augmented-Agents)): PyTorch implementation of the classic I2A paper\n\n#### No direct \"simulation gating\" implementation found\nNone of the repos implement exactly your concept of a binary per-step gate (\"simulate or not?\"). **ITP-R is the closest**, learning *when* and *how long* to imagine via its K-head predictor. This confirms your project would be novel, while having strong related work to build on.\n\n---\n\n### DATASETS AND BENCHMARKS\n\n#### 1. ALFWorld\n- **Website**: [alfworld.github.io](https://alfworld.github.io/)\n- **Repo**: [github.com/alfworld/alfworld](https://github.com/alfworld/alfworld)\n- **Status**: Publicly accessible, installable via pip\n- **Details**: Interactive TextWorld environments paralleling embodied ALFRED environments. Household tasks (navigate, manipulate objects). Includes seen and unseen task splits. Good for testing agent planning with world models in a controlled setting.\n\n#### 2. WebArena\n- **Website**: [webarena.dev](https://webarena.dev/)\n- **Repo**: [github.com/web-arena-x/webarena](https://github.com/web-arena-x/webarena)\n- **Status**: Publicly accessible\n- **Details**: 812 tasks across simulated web environments (e-commerce, forums). Current SOTA around 60-69% (human performance ~78%). Also available: **WebArena Verified** ([github.com/ServiceNow/webarena-verified](https://github.com/ServiceNow/webarena-verified)) with improved evaluation reliability.\n\n#### 3. ScienceWorld\n- **Website**: [scienceworld.github.io](https://arxiv.org/abs/2203.07540)\n- **Repo**: [github.com/allenai/ScienceWorld](https://github.com/allenai/ScienceWorld)\n- **Status**: Publicly accessible\n- **Details**: 30 core experimental categories with up to 1,400 parametric variations each. Text-based environment with 200 object types across 10 locations. Frontier models score in the low 80s as of early 2025.\n\n#### 4. HuggingFace Agent Trajectory Datasets\nSeveral publicly available datasets:\n- **[Agent-Eval-Refine/Agent-Trajectories](https://huggingface.co/datasets/Agent-Eval-Refine/Agent-Trajectories)**: Trajectories across WebArena, Android, iOS\n- **[Agent-Ark/Toucan-1.5M](https://huggingface.co/datasets/Agent-Ark/Toucan-1.5M)**: 1.5M+ fully synthetic tool-agent trajectories from 495 real-world MCPs / 2,000+ tools\n- **[lambda/hermes-agent-reasoning-traces](https://huggingface.co/datasets/lambda/hermes-agent-reasoning-traces)**: Multi-turn tool-calling trajectories with step-by-step reasoning\n- **[osunlp/Dreamer-V1-Data](https://huggingface.co/datasets/osunlp/Dreamer-V1-Data)**: WebDreamer's world model training data\n- **[open-world-agents/D2E-Original](https://huggingface.co/datasets/open-world-agents/D2E-Original)**: Recommended for training world models with vision-action trajectories\n\n#### 5. Papers With Code\n- **Note**: Papers With Code was shut down by Meta in July 2025 and the domain now redirects to HuggingFace Trending Papers. Leaderboards are gone.\n- Alternatives: [github.com/philschmid/ai-agent-benchmark-compendium](https://github.com/philschmid/ai-agent-benchmark-compendium) (50+ agent benchmarks catalogued), and the [Rapid Claw AI Agent Framework Scorecard 2026](https://rapidclaw.dev/blog/ai-agent-benchmarks-2026).\n\n#### 6. AgentBench\n- **Repo**: [github.com/THUDM/AgentBench](https://github.com/THUDM/AgentBench) (ICLR 2024)\n- **Status**: Publicly accessible, actively maintained as of 2026\n- **Details**: 8 distinct environments evaluating LLM-as-Agent reasoning and decision-making in multi-turn open-ended settings. Last revised October 2025.\n\n---\n\n### COST REFERENCES\n\n#### GPU Rental Rates (May 2026)\n\n| GPU | Low-end | Typical | High-end (Hyperscaler) |\n|-----|---------|---------|----------------------|\n| **A100** | $0.13/hr (spot) | $1.49-$2.00/hr | $3.43-$5.04/hr |\n| **H100** | $1.23/hr (spot) | $2.35-$2.80/hr | $6.98-$14.90/hr |\n\nH100 1-year contract pricing rose ~40% from $1.70/hr (Oct 2025) to $2.35/hr (Mar 2026). A100 on-demand dropped ~17% YoY to ~$1.98/hr.\n\n#### Fine-Tuning Costs (Your Likely Range)\n\nFor a **learned gating model** (small classifier/predictor on top of an LLM backbone):\n\n- **7B model with LoRA**: $1,000-$3,000 total, ~8 hours on a single A100\n- **7B model full fine-tune**: up to $12,000\n- **Small model (2-3B) with LoRA**: $300-$700\n- **Training 1M tokens on 70B with LoRA**: ~2-3 hours on an A100\n- **RL fine-tuning (GRPO)**: Now possible on as little as 5GB VRAM with Unsloth\n\n#### World Model Training Costs\n\n- **Small world model (1B params)**: $2K-$15K, 1-7 days on 8x RTX 4090\n- **Medium world model (7B params)**: $50K-$500K, 2-4 weeks on 64x A100\n- **Large world model (70B params)**: $1.2M-$6M, 3-8 weeks on 256x H200\n\nFor reference, DeepSeek V3 trained for $5.6M on 2.79M GPU hours.\n\n#### Projected Cost for Your Project\n\nGiven that \"learned simulation gating\" is a lightweight predictor (small model deciding simulate-or-not), the training cost for the gating module itself would likely be very modest:\n- If it is a small head on a frozen backbone: a few hundred dollars in GPU time\n- If it requires RL training loops with environment interaction (like ITP-R's A2C training): likely $1K-$5K for a 7B backbone, scaling with number of RL rollout steps\n- The world model itself (if you train one rather than using an existing one like Dreamer-7B or WebWorld) would be the expensive component\n\n---\n\n### KEY TAKEAWAYS FOR FEASIBILITY\n\n1. **Your concept is novel but has close neighbors.** ITP-R's K-head predictor (learns when/how-long to imagine) is the nearest existing work. No one has published a dedicated binary gate trained end-to-end to decide \"simulate vs. act directly.\"\n\n2. **Strong open-source infrastructure exists.** WebDreamer (Dreamer-7B), WebWorld (8B/14B/32B), and WKM all provide ready-made world models you could use as the simulation component, avoiding the need to train one from scratch.\n\n3. **Benchmarks are available and active.** ALFWorld, WebArena, ScienceWorld, and AgentBench are all publicly accessible and would serve well as evaluation environments. WebArena + WebDreamer is a particularly natural pairing.\n\n4. **Training costs are manageable.** A gating model (small classifier or RL-trained head) on top of an existing backbone should cost $300-$5,000 depending on approach. Using a pre-trained world model (Dreamer-7B) eliminates the most expensive component.\n\n5. **Papers With Code is defunct** -- use HuggingFace, the ai-agent-benchmark-compendium repo, or Rapid Claw for tracking benchmarks instead.\n\nSources:\n- [ITP: Imagine-then-Plan (GitHub)](https://github.com/loyiv/ITP)\n- [WKM: World Knowledge Model (GitHub)](https://github.com/zjunlp/WKM)\n- [WebDreamer (GitHub)](https://github.com/OSU-NLP-Group/WebDreamer)\n- [Dreamer-7B (HuggingFace)](https://huggingface.co/osunlp/Dreamer-7B)\n- [Dreamer-V1-Data (HuggingFace)](https://huggingface.co/datasets/osunlp/Dreamer-V1-Data)\n- [WebWorld (GitHub)](https://github.com/QwenLM/WebWorld)\n- [WebWorld-8B (HuggingFace)](https://huggingface.co/Qwen/WebWorld-8B)\n- [WMA-Agents (GitHub)](https://github.com/kyle8581/WMA-Agents)\n- [Web World Models - Princeton (GitHub)](https://github.com/Princeton-AI2-Lab/Web-World-Models)\n- [Agent World Model - Snowflake (GitHub)](https://github.com/Snowflake-Labs/agent-world-model)\n- [MARTI (GitHub)](https://github.com/TsinghuaC3I/MARTI)\n- [AdaReMo (GitHub)](https://github.com/tsinghua-fib-lab/AdaReMo)\n- [Imagination-Augmented Agents (GitHub)](https://github.com/higgsfield/Imagination-Augmented-Agents)\n- [ALFWorld (Website)](https://alfworld.github.io/)\n- [ALFWorld (GitHub)](https://github.com/alfworld/alfworld)\n- [WebArena (Website)](https://webarena.dev/)\n- [WebArena (GitHub)](https://github.com/web-arena-x/webarena)\n- [WebArena Verified (GitHub)](https://github.com/ServiceNow/webarena-verified)\n- [ScienceWorld (GitHub)](https://github.com/allenai/ScienceWorld)\n- [Agent-Eval-Refine/Agent-Trajectories (HuggingFace)](https://huggingface.co/datasets/Agent-Eval-Refine/Agent-Trajectories)\n- [Toucan-1.5M (HuggingFace)](https://huggingface.co/datasets/Agent-Ark/Toucan-1.5M)\n- [Hermes Agent Reasoning Traces (HuggingFace)](https://huggingface.co/datasets/lambda/hermes-agent-reasoning-traces)\n- [D2E-Original (HuggingFace)](https://huggingface.co/datasets/open-world-agents/D2E-Original)\n- [AgentBench (GitHub)](https://github.com/THUDM/AgentBench)\n- [AI Agent Benchmark Compendium (GitHub)](https://github.com/philschmid/ai-agent-benchmark-compendium)\n- [Rapid Claw AI Agent Framework Scorecard 2026](https://rapidclaw.dev/blog/ai-agent-benchmarks-2026)\n- [Awesome Agentic World Modeling (GitHub)](https://github.com/matrix-agent/awesome-agentic-world-modeling)\n- [How to Fine-Tune LLMs in 2026 (Spheron)](https://www.spheron.network/blog/how-to-fine-tune-llm-2026/)\n- [LLM Fine-Tuning Cost 2026 (AISuperior)](https://aisuperior.com/llm-fine-tuning-cost/)\n- [AI Costs 2026 Breakdown (Nerd Level Tech)](https://nerdleveltech.com/ai-costs-a-complete-breakdown)\n- [H100 Cloud Pricing 2026 (GetDeploying)](https://getdeploying.com/gpus/nvidia-h100)\n- [A100 Cloud Pricing 2026 (GetDeploying)](https://getdeploying.com/gpus/nvidia-a100)\n- [H100 Rental Prices Compared (IntuitionLabs)](https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison)\n- [A100 Pricing May 2026 (ThunderCompute)](https://www.thundercompute.com/blog/nvidia-a100-pricing)\n- [H100 Rental Price Over Time (SiliconData)](https://www.silicondata.com/blog/h100-rental-price-over-time)\n- [2026 Cost of H100 GPUs (GMICloud)](https://www.gmicloud.ai/en/blog/2026-cost-of-renting-or-uying-nvidia-h100-gpus-for-data-centers)&lt;/result>\n&lt;usage>&lt;total_tokens>26611&lt;/total_tokens>&lt;tool_uses>18&lt;/tool_uses>&lt;duration_ms>152114&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "72142681-714b-4bdc-a920-0caab2755a28",
+  "timestamp": "2026-05-11T22:58:49.194Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 112_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Learned Simul…",
+  "leafUuid": "72142681-714b-4bdc-a920-0caab2755a28",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 113_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learn step-level simulation gating for agents",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Assistant
+
+_source line 114 · 2026-05-11T23:01:36.239Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! All four agents have completed. Let me now compile all the information into the final JSON output.
+
+Let me summarize what I know:
+
+**Concurrent Work Assessment:**
+- No exact match found for "learned simulation gating" as a unified system
+- Closest works:
+  - ITP-R (learned K-head predictor for how long to imagine) - adjusts depth, not binary gate
+  - AVIC (adaptive visual imagination control) - decides when to imagine, but for visual spatial reasoning only
+  - Rational Metareasoning for LLMs - gates chain-of-thought, not external simulator
+  - Adaptive Rollout Length (2022) - meta-RL for rollout length in MBRL
+  - Thought MDP (NeurIPS 2025) - models thinking as action in RL
+
+**Paper References (all verified):**
+1. "Current Agents Fail to Leverage World Model as Tool for Foresight" (arXiv 2601.03905, Jan 2026)
+2. "Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models" (arXiv 2601.08955, Jan 2026)
+3. "WebWorld: A Large-Scale World Model for Web Agent Training" (arXiv 2602.14...)
+4. "Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond" (arXiv 2604.22748, Apr 2026)
+5. "Adaptive Thinking: Large Language Models Know When to Think in Latent Space" (ICLR 2026)
+6. "When and How Much to Imagine: Adaptive Test-Time Scaling with World Models for Visual Spatial Reasoning" (arXiv 2602.08236, Feb 2026)
+7. "Learning How Hard to Think: Input-Adaptive Allocation of LM Computation" (ICLR 2025)
+8. "Rational Metareasoning for Large Language Models" (arXiv 2410.05563, 2024)
+9. "Neural Computations Underlying Arbitration Between Model-..."
+
+Now I'm looking at some additional papers on model-based versus model-free learning approaches, including work on when model-free methods suffice for reasoning tasks and how to adaptively allocate computation in reinforcement learning settings. I'm also noting the upcoming conference deadlines — EMNLP and CoRL submissions are coming up in late May, with NeurIPS workshops in August and AAAI/ICLR deadlines extending into late 2026.
+
+For the technical setup, I'm considering the frontier models available by May 2026 like DeepSeek V4 Pro and GLM-5.1, though for the agent backbone something like Qwen3-8B or 14B would be more practical. I have several public datasets to work with — ALFWorld, WebArena, ScienceWorld, and AgentBench — plus existing codebases like ITP and WebDreamer that I can build on.
+
+Looking at the costs, A100 GPUs run about $1.50 per hour, with small model LoRA training in the $300-700 range and RL fine-tuning with environment interaction running $1K-5K for a 7B backbone.
+
+My core idea is to train a lightweight gating module — a simple 2-layer MLP that sits on top of the agent's hidden states — to decide at each step whether calling a world model like Dreamer-7B would improve action quality enough to justify the compute overhead. I'd train this gate using RL with a reward signal that balances task success against the simulation cost.
+
+This approach differs from prior work in meaningful ways: unlike ITP which adjusts simulation depth but always simulates, I'm learning a binary invoke-or-skip decision; unlike AVIC which handles only visual spatial reasoning, this works across general agent planning domains like web and embodied tasks; and unlike Sonata's per-query approach, I'm making per-step decisions within trajectories using end-to-end RL training rather than heuristic sufficiency checks. The empirical finding that forced simulation sometimes hurts performance by 5% gives me natural negative signal for training the gate.
+
+Now I'm estimating the computational requirements: data collection involves running the agent and world model across ~1000 episodes on ALFWorld and WebArena, which at roughly 20 steps per episode and 5-10 seconds per simulated step on an A100 comes to around 56 GPU hours, then I'd need multiple rounds of iteration to refine the approach.
+
+Adding in the RL training for the gating module, ablations, and evaluation pushes the total to roughly 350-500 A100 GPU hours. In manual mode where there's significant idle time between experiments, the actual reserved GPU time could be 2-3x higher, translating to around $1,200 in costs, whereas a human-in-the-loop approach with more continuous experimentation would be closer to $750 plus Claude API calls for code generation and analysis.
+
+For the fully automated approach, I'm looking at 3-5x more experiments with minimal idle time, bringing GPU costs to around $1,200 but with substantially higher API costs from thousands of turns. Let me reconsider the manual mode numbers though—humans would actually run fewer experiments with more targeted analysis, so the active GPU hours should be lower around 300 hours with higher idle rates, bringing reserved time to roughly 750 hours and costs to about $1,125 over 3-4 months with a small team.
+
+The human-in-loop setup seems to strike a balance: the agent handles most scheduling while a researcher provides oversight at about 30 minutes daily, resulting in 400 active hours, minimal idle time, and total costs around $855 for GPU plus $80-120 in API calls over 1-2 months. The fully automated version would push to 600 active hours with near-continuous utilization and costs around $945, though the real bottleneck becomes GPU availability and API quotas rather than time. These estimates make sense for a paper involving a gating module and other components.
+
+For submission targets, AAAI 2027 with its August 2026 deadline looks most realistic, with ICLR 2027 as a fallback and NeurIPS 2026 workshops as a quicker option. EMNLP and CoRL deadlines are too soon to be practical.
+
+The contribution level is solid—it identifies a genuine gap in how agents use world models for planning, builds on established research, though it's more of a technical advancement than a fundamental shift. Now I'm reviewing the key papers that ground this work, spanning recent research on world models, agent planning, and adaptive reasoning strategies.
+
+I'm also considering which models would work best for the implementation—leaning toward Qwen3 variants for the agent backbone since they offer good performance at a trainable scale, with a simple gating mechanism built on top to decide when the agent should engage in extended reasoning.
+
+For the world model component, I'd use existing pre-trained options like WebWorld or Dreamer for web-based tasks, though embodied environments like ALFWorld might require their native simulators instead.
+
+I need to establish solid baselines for comparison—ranging from no simulation at all, to always simulating, to random gating decisions, plus ITP's heuristic approach and fixed confidence thresholds—which will help validate whether the adaptive approach actually improves efficiency.
+
+Now I'm drafting the full project specification in JSON format, starting with a 150-200 word executive summary that positions SimGate as a learned per-step gating mechanism trained on the agent's hidden states to decide when invoking a world model justifies the computational cost, addressing the gap between unconditional simulation usage and heuristic-based approaches like Imagine-then-Plan. I'm verifying the publication status of these key papers—AVIC appears to be an arXiv preprint from February 2026, while "Learning How Hard to Think" is confirmed as ICLR 2025. Now I'm compiling the final reference list with all the papers I've verified so far. I'm deciding whether to include that older adaptive rollout paper as a foundational reference, but I'll stick with the most impactful recent work and cap the list around 8-10 papers. Now I need to compile everything into JSON format while making sure to preserve the existing landscape field but incorporate the concurrent work I've identified—AVIC, Rational Metareasoning, and the Thought MDP paper should be mentioned alongside the user's original references. I need to update the landscape field to include the concurrent work I found—AVIC for deciding when to invoke visual imagination, the rational metareasoning work on learned value-of-computation, and the Thought MDP paper on thinking as RL actions—then clarify how my approach differs from each. Now I'm constructing the final JSON with all the required fields. I'm laying out the full approach now. The core idea is training a lightweight gating head that learns when to invoke expensive simulation at each step, balancing task performance against compute costs through supervised pretraining followed by reinforcement learning. We'll evaluate this across multiple environments to measure both task success and how efficiently the gate decides when simulation actually helps. agent should invoke its world model before each action in multi-turn trajectories. Motivated by the finding that current agents invoke simulation in <1% of opportunities and degrade performance by up to 5% when simulation is forced (Qian et al., 2026), SimGate trains a 2-layer MLP head on the agent LLM's hidden states via supervised warm-start followed by GRPO reinforcement learning with a composite reward balancing task success against simulation compute cost. Unlike Imagine-then-Plan (adjusts simulation depth but always simulates), AVIC (visual spatial reasoning only), and Adaptive Thinking/Sonata (per-query allocation, not per-step within trajectories), SimGate provides a general-purpose binary invoke/skip gate trained end-to-end from trajectory-level returns. Using Qwen3-14B as agent backbone with WebWorld-8B and Dreamer-7B as world models, we evaluate on ALFWorld, WebArena, and ScienceWorld. The gating module adds <1‰ parameter overhead with estimated total cost of 300-800 A100 GPU hours. I'm targeting AAAI 2027 with an August 2026 deadline. Now I need to update the related work section to include the concurrent approaches I've found—Imagine-then-Plan uses rule-based heuristics to adapt lookahead depth based on task progress and goal distance, WebWorld provides a trained world model for web agents but applies simulation unconditionally, and the Agentic World Modeling survey defines capability levels for world models. Simulator→Evolver) but all assume the agent always uses the world model when available. Adaptive Thinking (ICLR 2026) uses a Sonata adapter with minimal overhead for per-query compute allocation but doesn't operate at the step level within trajectories. AVIC (Yu et al., February 2026) introduces adaptive test-time scaling with world models for visual spatial reasoning, selectively invoking imagination based on evidence sufficiency — the closest concurrent work, but limited to visual domains and using heuristic sufficiency checks rather than a learned RL-trained gate. Rational Metareasoning (De Sabbata et al., 2024) trains LLMs to decide per-step whether to engage in reasoning using Value of Computation, but gates internal chain-of-thought rather than an external world-model simulator. The Thought MDP framework (Hanna & Corrado, NeurIPS 2025) models thinking as an action within RL, allowing when-to-think to emerge from reward maximization, but doesn't separate gating into an explicit lightweight module. The key finding that forced simulation sometimes hurts performance by 5% really drives home how critical the gating decision is — it's not just about knowing when to simulate, but equally important to know when to skip it.
+
+Now I'm working through the resource estimates more carefully. Looking at the manual mode breakdown: data collection will take around 100 hours on A100s for running the agent and world model across benchmarks, RL training for the gating head should be quick at about 20 hours, then I need roughly 50 hours each for baseline comparisons and ablation studies, plus 30 hours for final evaluation. That puts active compute at around 250 hours total, though with about 60% idle time factored in for analysis and debugging between runs. runs)
+- Idle rate: <5% (near-continuous)
+- Claude API: ~2000-4000 turns * $0.10 = $200-400
+- Timeline: 1-3 weeks with 4+ GPUs
+- Speed bottleneck: GPU count for parallel RL runs
+- Risk: May explore suboptimal directions without human judgment
+
+Now let me refine these estimates with actual numbers. Running Qwen3-14B and WebWorld-8B on WebArena means the agent inference takes about 1-2 seconds per step on an A100, while the world model runs in 3-5 seconds per step. Each episode spans roughly 20 steps with some simulation overhead, so that's 2-5 minutes per episode. For 1000 episodes, I'm looking at 50-80 hours on a single A100 to collect the data I need.
+
+ALFWorld is simpler and faster since it's text-based—500 episodes would take around 15-20 hours. The real challenge is the RL training phase, where I'm doing online rollout collection with a tiny MLP head. That becomes the bottleneck, requiring 50-100 hours per iteration across 3-5 iterations, so 150-500 hours total. Adding in baselines and evaluation, I'm estimating around 400-600 A100 hours overall, which means I need to revise my manual approach estimate down to roughly 400 GPU hours.
+
+Now I'm comparing three different approaches: the manual baseline would cost around $600 in GPU compute with significant idle time while waiting for human input, stretching across 3-5 months with 1-2 researchers. A human-in-loop setup cuts idle time down to 25% and compresses the timeline to 6-10 weeks with lighter human involvement, costing around $750 in GPU plus $80-150 for Claude API calls. The fully automated approach uses the most GPU hours (800-1200) but keeps utilization above 95%, completes in 1-3 weeks with multiple GPUs running in parallel, and costs $200-400 in API calls on top of the GPU expenses. I'm verifying the cost estimates make sense for a paper that leverages existing pretrained models and only trains a small gating head across three benchmarks with baselines and ablations. Now I need to finalize the JSON structure, making sure to preserve all existing fields while updating the landscape section to include the new concurrent work, and carefully formatting the key references as "Paper title (VENUE YEAR)". Finishing up the verification on that last paper — the concurrent work agent confirmed it's from NeurIPS 2025, so I'm good there. Now I have the complete list and I'm ready to construct the final JSON output. Let me do a quick sanity check on the project name format — "sim_gate_cost_aware_plan" is 24 characters, valid Python identifier, and proper snake_case, so that's all set. Time to compile everything.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "72142681-714b-4bdc-a920-0caab2755a28",
+  "isSidechain": false,
+  "requestId": "req_011CawcMXUfvTLHDYn9QpBVr",
+  "type": "assistant",
+  "uuid": "b162bcc2-5c77-4c69-b7fe-f520f9051b88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013EqcgYJ8SEkbK4FpS9djTf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 946,
+      "cache_creation_input_tokens": 11019,
+      "cache_read_input_tokens": 46110,
+      "output_tokens": 7659,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11019,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 946,
+          "output_tokens": 7659,
+          "cache_read_input_tokens": 46110,
+          "cache_creation_input_tokens": 11019,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11019
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 115 · 2026-05-11T23:01:36.242Z_
+
+All four research agents have completed. I have comprehensive data on concurrent work, verified references, venue deadlines, SOTA models, implementations, datasets, and costs. Let me now compile the final JSON.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b162bcc2-5c77-4c69-b7fe-f520f9051b88",
+  "isSidechain": false,
+  "requestId": "req_011CawcMXUfvTLHDYn9QpBVr",
+  "type": "assistant",
+  "uuid": "441a5401-c230-4547-9be5-0a8651cc97d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013EqcgYJ8SEkbK4FpS9djTf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 946,
+      "cache_creation_input_tokens": 11019,
+      "cache_read_input_tokens": 46110,
+      "output_tokens": 7659,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11019,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 946,
+          "output_tokens": 7659,
+          "cache_read_input_tokens": 46110,
+          "cache_creation_input_tokens": 11019,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11019
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116 · 2026-05-11T23:01:36.244Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GP4xTWZ2EodNSVo5ZfQLgL`</summary>
+
+```json
+{
+  "query": "\"When Can Model-Free Reinforcement Learning be Enough for Thinking\" NeurIPS 2025 Hanna Corrado"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "441a5401-c230-4547-9be5-0a8651cc97d3",
+  "isSidechain": false,
+  "requestId": "req_011CawcMXUfvTLHDYn9QpBVr",
+  "type": "assistant",
+  "uuid": "ea7e2b36-6b9e-4404-8b5e-527d5d69c1cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013EqcgYJ8SEkbK4FpS9djTf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 946,
+      "cache_creation_input_tokens": 11019,
+      "cache_read_input_tokens": 46110,
+      "output_tokens": 7659,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11019,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 946,
+          "output_tokens": 7659,
+          "cache_read_input_tokens": 46110,
+          "cache_creation_input_tokens": 11019,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11019
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 117_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Learned Simul…",
+  "leafUuid": "ea7e2b36-6b9e-4404-8b5e-527d5d69c1cc",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 118_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learn step-level simulation gating for agents",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-11T23:01:43.895Z_
+
+<details><summary>↩ Tool result · `toolu_01GP4xTWZ2EodNSVo5ZfQLgL`</summary>
+
+```text
+Web search results for query: ""When Can Model-Free Reinforcement Learning be Enough for Thinking" NeurIPS 2025 Hanna Corrado"
+
+Links: [{"title":"NeurIPS Poster When Can Model-Free Reinforcement Learning be Enough for Thinking?","url":"https://neurips.cc/virtual/2025/loc/san-diego/poster/116888"},{"title":"[2506.17124] When Can Model-Free Reinforcement Learning be Enough for Thinking?","url":"https://arxiv.org/abs/2506.17124"},{"title":"When Can Model-Free Reinforcement Learning be Enough for Thinking?","url":"https://arxiv.org/html/2506.17124v2"},{"title":"When Can Model-Free Reinforcement Learning be Enough for Thinking?","url":"https://openreview.net/pdf/3f77bd583c6c1f39dc7bea01c24c975bde06ee3c.pdf"},{"title":"(PDF) When Can Model-Free Reinforcement Learning be Enough for Thinking?","url":"https://www.researchgate.net/publication/392917162_When_Can_Model-Free_Reinforcement_Learning_be_Enough_for_Thinking"},{"title":"Accepted papers | FoRLM @ NeurIPS'25","url":"https://reasoning-workshop.github.io/accepted/"},{"title":"[NeurIPS 2025] Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?","url":"https://arxiviq.substack.com/p/neurips-2025-does-reinforcement-learning"},{"title":"NeurIPS 2025 Recap | Amplify Partners","url":"https://www.amplifypartners.com/blog-posts/neurips-2025-recap"},{"title":"Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? | OpenReview","url":"https://openreview.net/forum?id=4OsgYD7em5"},{"title":"NeurIPS 2025 Orals","url":"https://neurips.cc/virtual/2025/loc/mexico-city/events/oral"}]
+
+I found the paper! Here's what I learned about it:
+
+## "When Can Model-Free Reinforcement Learning be Enough for Thinking?"
+
+This is a NeurIPS 2025 poster presentation by Josiah Hanna and Nicholas Corrado that explores how model-free reinforcement learning can be used to train reasoning-like capabilities in large language models.
+
+### Key Research Questions and Contributions
+
+The paper addresses an interesting puzzle: thinking actions neither produce reward nor change the external world state to make the agent more likely to get reward, yet the authors seek to build a domain-independent understanding of when model-free RL will lead to "thinking" as a strategy for reward maximization.
+
+### Theoretical Framework
+
+To build this understanding, the authors introduce a theoretical model called a thought Markov decision process (MDP), which minimally extends the classical MDP model to include an abstract notion of thought state and thought action.
+
+### Main Findings
+
+Using the thought MDP model, the authors prove the importance of policy initialization in determining whether or not thinking emerges. Additionally, they show that open-source LLMs satisfy the conditions their theory predicts are necessary for model-free RL to produce thinking-like behavior.
+
+Finally, they hypothesize sufficient conditions for thinking to be learned outside of language generation and introduce a toy domain where multi-task pre-training and designated thought actions enable more data-efficient RL compared to non-thinking agents.
+
+The paper is available on both the NeurIPS conference website and on arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ea7e2b36-6b9e-4404-8b5e-527d5d69c1cc",
+  "isSidechain": false,
+  "promptId": "eccc8a1f-9017-4ab5-acee-6a5e11b0296c",
+  "type": "user",
+  "uuid": "611eb95c-aa31-4903-89b2-a8e5cc748852",
+  "toolUseResult": {
+    "query": "\"When Can Model-Free Reinforcement Learning be Enough for Thinking\" NeurIPS 2025 Hanna Corrado",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0133ieumPDuRSVzpP8oYBxWz",
+        "content": [
+          {
+            "title": "NeurIPS Poster When Can Model-Free Reinforcement Learning be Enough for Thinking?",
+            "url": "https://neurips.cc/virtual/2025/loc/san-diego/poster/116888"
+          },
+          {
+            "title": "[2506.17124] When Can Model-Free Reinforcement Learning be Enough for Thinking?",
+            "url": "https://arxiv.org/abs/2506.17124"
+          },
+          {
+            "title": "When Can Model-Free Reinforcement Learning be Enough for Thinking?",
+            "url": "https://arxiv.org/html/2506.17124v2"
+          },
+          {
+            "title": "When Can Model-Free Reinforcement Learning be Enough for Thinking?",
+            "url": "https://openreview.net/pdf/3f77bd583c6c1f39dc7bea01c24c975bde06ee3c.pdf"
+          },
+          {
+            "title": "(PDF) When Can Model-Free Reinforcement Learning be Enough for Thinking?",
+            "url": "https://www.researchgate.net/publication/392917162_When_Can_Model-Free_Reinforcement_Learning_be_Enough_for_Thinking"
+          },
+          {
+            "title": "Accepted papers | FoRLM @ NeurIPS'25",
+            "url": "https://reasoning-workshop.github.io/accepted/"
+          },
+          {
+            "title": "[NeurIPS 2025] Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?",
+            "url": "https://arxiviq.substack.com/p/neurips-2025-does-reinforcement-learning"
+          },
+          {
+            "title": "NeurIPS 2025 Recap | Amplify Partners",
+            "url": "https://www.amplifypartners.com/blog-posts/neurips-2025-recap"
+          },
+          {
+            "title": "Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? | OpenReview",
+            "url": "https://openreview.net/forum?id=4OsgYD7em5"
+          },
+          {
+            "title": "NeurIPS 2025 Orals",
+            "url": "https://neurips.cc/virtual/2025/loc/mexico-city/events/oral"
+          }
+        ]
+      },
+      "I found the paper! Here's what I learned about it:\n\n## \"When Can Model-Free Reinforcement Learning be Enough for Thinking?\"\n\nThis is a NeurIPS 2025 poster presentation by Josiah Hanna and Nicholas Corrado that explores how model-free reinforcement learning can be used to train reasoning-like capabilities in large language models.\n\n### Key Research Questions and Contributions\n\nThe paper addresses an interesting puzzle: thinking actions neither produce reward nor change the external world state to make the agent more likely to get reward, yet the authors seek to build a domain-independent understanding of when model-free RL will lead to \"thinking\" as a strategy for reward maximization.\n\n### Theoretical Framework\n\nTo build this understanding, the authors introduce a theoretical model called a thought Markov decision process (MDP), which minimally extends the classical MDP model to include an abstract notion of thought state and thought action.\n\n### Main Findings\n\nUsing the thought MDP model, the authors prove the importance of policy initialization in determining whether or not thinking emerges. Additionally, they show that open-source LLMs satisfy the conditions their theory predicts are necessary for model-free RL to produce thinking-like behavior.\n\nFinally, they hypothesize sufficient conditions for thinking to be learned outside of language generation and introduce a toy domain where multi-task pre-training and designated thought actions enable more data-efficient RL compared to non-thinking agents.\n\nThe paper is available on both the NeurIPS conference website and on arXiv."
+    ],
+    "durationSeconds": 7.645285616000009
+  },
+  "sourceToolAssistantUUID": "ea7e2b36-6b9e-4404-8b5e-527d5d69c1cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 120 · 2026-05-11T23:03:12.388Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All references are now verified. Let me compile the final JSON output.
+
+Let me also do one final check — I should make sure I have the venue dates correct for target_venues:
+- AAAI 2027: Paper deadline August 1, 2026 — CONFIRMED (from the agent's report)
+- ICLR 2027: ~October 2026 — TBD but expected
+- NeurIPS 2026 Workshops: Workshop paper deadline ~August 29, 2026 — from the agent's report
+
+Let me now write the final JSON. I'll be very careful to produce valid JSON.
+ 
+I need to refine my understanding of ITP's architecture. The verification agent clarified that ITP has both training-free (ITP-I) and RL-trained (ITP-R) variants — the latter uses a K-head predictor trained with A2C to learn the simulation horizon, not whether to simulate at all. So while ITP does have a learned component, it's fundamentally different from a binary gating mechanism, which is a key distinction for comparing these approaches.
+
+Now I'm updating the related work section to incorporate the concurrent findings about AVIC, Rational Metareasoning, and Thought MDP alongside the existing landscape, then finalizing the JSON output with the core problem statement and other key sections. the per-step level within agent trajectories? Current work like Imagine-then-Plan adapts simulation depth but doesn't learn when to invoke simulation at all—it always simulates, just at varying horizons. WebWorld provides trained world models for web agents but applies them unconditionally. The real gap is a learned binary gate trained with RL that decides step-by-step whether simulation will improve action quality enough to justify its computational cost, rather than heuristic triggers or always-on approaches. The Thought MDP framework models thinking as an RL action, but doesn't isolate gating into a lightweight module for external simulators—and the empirical finding that forced simulation can degrade performance by 5% underscores how critical the gating decision really is. My approach trains a lightweight gating head on frozen representations from the agent backbone to predict at each step whether invoking the world model will improve action quality enough to justify the compute cost, outputting a binary decision based on the agent's hidden states.
+
+I'm training this in two phases: first, a supervised warm-start using trajectory labels derived from comparing action quality with and without simulation (leveraging that 5% degradation signal as natural negative examples), then online RL fine-tuning with GRPO using a composite reward that balances task success against a calibrated simulation cost penalty tied to the world model's inference FLOPs. This differs from prior work like ITP-R, which learns simulation depth but always simulates, AVIC's visual-only heuristics, and Sonata's per-query budgeting. I'm evaluating on ALFWorld, WebArena, and ScienceWorld to measure both task performance and simulation efficiency in terms of net reward gain per simulation call.
+
+For resource requirements, the manual approach needs roughly 400 GPU hours on A100 80GB with about 40% effective utilization over 3-5 months with 1-2 researchers, costing $400-600 on marketplace rates. With human-in-the-loop assistance, I can compress that to 500 GPU hours with 70% utilization over 6-10 weeks using just one researcher, since the agent handles experiment scheduling and hyperparameter sweeps while I focus on approving the RL reward design and evaluation criteria.
+
+The human-in-loop approach also involves Claude API costs around $80-150 for code generation and analysis, with GPU costs of $500-750, though there's a risk that miscalibrating the RL reward penalty weight could cause the gate to behave incorrectly. Moving to fully autonomous research would require about 1000 GPU hours with over 95% utilization, running 3-4x more experiments through continuous pipelining across benchmarks.
+
+With 4+ concurrent A100s, the autonomous approach could complete in 1-3 weeks, needing only initial setup time and $250-400 in API costs for end-to-end code and paper generation. The main constraint is GPU parallelization—WebArena evaluation alone takes roughly 2 days per configuration with 4 GPUs—and without human oversight on reward calibration, the agent risks converging on trivial gate policies, though automated early-stopping on gating ratio outliers helps mitigate this. The target is publication at AAAI 2027 with an August 1, 2026 deadline. I'm looking at more relevant papers on adaptive computation and world model usage, then describing SimGate—a learned gating mechanism that decides when agents should actually use their world models, since they currently underutilize simulation and sometimes perform worse when forced to use it constantly.
+
+The approach trains a small MLP head on frozen LLM hidden states using supervised learning followed by reinforcement learning to balance task success against simulation costs. It differs from prior work by operating at the per-step level within trajectories rather than per-query, and it's evaluated across multiple agent domains using Qwen3-14B with different world models on benchmarks like ALFWorld and WebArena, with minimal parameter overhead and an estimated training cost of 400-1000 A100 hours. I'm setting up the experimental framework with Qwen3-14B as the core agent and WebWorld-8B and Dreamer-7B as the world models, then evaluating across ALFWorld, WebArena, and ScienceWorld. The gating module itself adds minimal overhead, and I'm estimating the computational cost at around 400-1000 A100 hours, targeting submission to AAAI 2027 and ICLR 2027.
+
+Let me verify the internal consistency: the approach directly addresses the core problem of optimizing simulation costs, the resource estimate aligns with the technical scope of adding a small gating head and running RL training on existing benchmarks, and the venue targets match the contribution level—it's a solid technical advance rather than a fundamental paradigm shift. I'm confident this is the right framing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "611eb95c-aa31-4903-89b2-a8e5cc748852",
+  "isSidechain": false,
+  "requestId": "req_011CawcaPxM2MYYVqWPuRx2u",
+  "type": "assistant",
+  "uuid": "9e94e09e-ad33-40f2-bcc6-077ba80a4636",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011RE5iujYGdLdRN1fpVpggH",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9498,
+      "cache_read_input_tokens": 57129,
+      "output_tokens": 6309,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6309,
+          "cache_read_input_tokens": 57129,
+          "cache_creation_input_tokens": 9498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 121 · 2026-05-11T23:03:41.842Z_
+
+All references verified, concurrent work mapped, and costs grounded. Here is the completed research direction:
+
+{
+  "title": "Learned Simulation Gating for Cost-Aware Agent Planning",
+  "core_problem": "Agents with access to lookahead simulation invoke it in fewer than 1% of opportunities and misuse it ~15% of the time, sometimes degrading performance by 5%. How to train agents to decide when simulation is cost-beneficial, at the per-step level within agent trajectories?",
+  "opportunity": "'Current Agents Fail to Leverage World Model as Tool for Foresight' (January 2026) identifies three bottlenecks: agents can't decide WHEN to simulate, can't interpret predictions, and can't integrate foresight — but proposes no training solution. Imagine-then-Plan (ITP) introduces adaptive lookahead: its ITP-I variant uses heuristic rules (estimated progress + goal distance) while ITP-R trains a K-head predictor with A2C to learn simulation depth — but neither learns a binary invoke/skip gate; the agent always simulates. Adaptive Thinking (ICLR 2026) allocates thinking budgets per query via a lightweight Sonata adapter, but operates at query level, not at step level within multi-turn agent trajectories. AVIC (Yu et al., February 2026) selectively invokes visual imagination based on evidence sufficiency checks, but is limited to visual spatial reasoning and uses heuristic triggers rather than a learned RL-trained gate. The gap: a learned, step-level binary gating mechanism that predicts whether simulation will improve action quality enough to justify its compute cost, trained with RL from environment feedback.",
+  "landscape": "Imagine-then-Plan (2026) adapts lookahead depth via its ITP-I variant using estimated task progress and goal distance, while ITP-R trains a K-head predictor with A2C to learn simulation horizon — but neither variant learns a binary invoke/skip decision; the agent always simulates, only the depth varies. Code is publicly available (github.com/loyiv/ITP). WebWorld (2026) provides a trained world model for web agents (8B/14B/32B variants from Qwen, Apache 2.0) but applies simulation unconditionally; Dreamer-7B (WebDreamer, TMLR 2025) similarly provides an open-weight web world model without selective invocation. The Agentic World Modeling survey (April 2026) defines three capability levels (Predictor→Simulator→Evolver) but all assume the agent always uses the world model when available. Adaptive Thinking (ICLR 2026) uses a Sonata adapter — a 2-layer MLP mapping last-layer hidden states to self-consistency scores — with <1‰ overhead for per-query compute allocation, achieving 20-60% thinking token reduction, but doesn't operate at the step level within trajectories. AVIC — 'When and How Much to Imagine' (Yu et al., February 2026) — introduces adaptive test-time scaling with world models for visual spatial reasoning, selectively invoking imagination based on evidence sufficiency; this is the closest concurrent work but is limited to visual domains and uses heuristic sufficiency checks rather than a learned RL-trained gate over general agent planning. Rational Metareasoning (De Sabbata et al., 2024) trains LLMs to decide per-step whether to engage in reasoning using Value of Computation, but gates internal chain-of-thought rather than an external world-model simulator. The Thought MDP framework (Hanna & Corrado, NeurIPS 2025) models thinking as an action within RL, allowing when-to-think to emerge from reward maximization, but does not separate gating into an explicit lightweight module applicable to external simulators. Adaptive Rollout Length (Bhatia et al., 2022) uses a meta-level RL controller to tune rollout length in model-based RL — structurally close but adjusts rollout depth, not a binary invoke/skip gate, and operates in traditional RL rather than LLM agent settings. The analysis finding that forced simulation sometimes hurts performance by 5% confirms that the gating decision is critical — not just when to use simulation, but when NOT to.",
+  "approach": "Train a lightweight 2-layer MLP gating head on the frozen hidden states of an agent backbone (Qwen3-14B) to predict, at each decision step within a multi-turn trajectory, whether invoking an external world model (WebWorld-8B for web tasks, ALFWorld's TextWorld simulator for embodied tasks) will improve action quality enough to justify its compute cost. The gate outputs a binary simulate/skip decision conditioned on the agent's last-layer hidden representation, implicitly encoding task progress and state uncertainty. Training proceeds in two phases: (1) supervised warm-start from trajectory data labeled by comparing action quality with vs. without simulation — using the empirical 5% degradation signal from forced simulation as natural negative labels — then (2) online RL fine-tuning via GRPO with a composite reward combining task success rate and a calibrated simulation cost penalty proportional to the world model's inference FLOPs. This differs from ITP-R (learns simulation depth K but always simulates), AVIC (visual-only with heuristic sufficiency checks), and Sonata (per-query budget allocation, not per-step within trajectories). We evaluate on ALFWorld, WebArena, and ScienceWorld, measuring both task performance and simulation efficiency (net reward gain per simulation call), against baselines of no-simulation, always-simulate, random gating, confidence-threshold gating, and ITP-R.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~400h A100 80GB (100h trajectory collection across 3 benchmarks, 200h iterative RL training with rollout collection over 3-5 rounds, 50h baselines, 50h evaluation and ablations)",
+      "gpu_utilization": "~40% effective utilization; ~60% idle from human analysis, debugging, code iteration, and experiment design between runs",
+      "timeline": "3-5 months",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$400-600 at marketplace rates ($1.00-1.50/hr A100 80GB)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~500h A100 80GB (agent runs more hyperparameter variants and additional ablations autonomously)",
+      "gpu_utilization": "~70% effective utilization (vs ~40% manual); agent automates experiment scheduling, hyperparameter sweeps, and result parsing; human only intervenes for reward calibration and qualitative gating analysis",
+      "timeline": "6-10 weeks",
+      "team": "1 researcher, ~30min/day check-in for approving RL reward weights and reviewing gating behavior patterns",
+      "claude_api_cost": "$80-150 (~800-1500 Opus turns for code generation, experiment orchestration, result analysis)",
+      "estimated_gpu_cost": "$500-750 at $1.00-1.50/hr",
+      "risk_note": "RL reward calibration (simulation cost penalty weight) requires human judgment; miscalibrated penalty leads to degenerate gate (always-on or always-off)"
+    },
+    "auto_research": {
+      "gpu_hours": "~1000h A100 80GB (3-4x more experiment configurations than manual: broader penalty weight sweeps, cross-benchmark transfer experiments, additional baseline comparisons)",
+      "gpu_utilization": ">95% utilization; agent pipelines experiments continuously with zero human wait time, parallelizing trajectory collection across benchmarks",
+      "timeline": "1-3 weeks with 4+ A100 GPUs concurrently",
+      "team": "0 (initial setup only, ~2 hours for environment configuration and API keys)",
+      "claude_api_cost": "$250-400 (~2500-4000 Opus turns for end-to-end implementation, experimentation, analysis, and paper drafting)",
+      "estimated_gpu_cost": "$1,000-1,500 at $1.00-1.50/hr",
+      "speed_bottleneck": "GPU count limits parallel RL rollout collection; with 4 GPUs, a single WebArena evaluation pass (~800 episodes with Qwen3-14B + WebWorld-8B) takes ~18 hours",
+      "risk_note": "Without human judgment on reward calibration, agent may waste compute on degenerate gate policies or over-explore penalty weight space; mitigated by automated early-stopping when gating ratio falls outside 5-95% band"
+    }
+  },
+  "target_venues": ["AAAI 2027 (paper deadline: August 1, 2026)", "ICLR 2027 (expected deadline: ~October 2026)", "NeurIPS 2026 Workshops (contributed paper deadline: ~August 29, 2026)"],
+  "level": "solid",
+  "key_references": [
+    "Current Agents Fail to Leverage World Model as Tool for Foresight (arXiv 2026)",
+    "Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models (arXiv 2026)",
+    "Adaptive Thinking: Large Language Models Know When to Think in Latent Space (ICLR 2026)",
+    "WebWorld: A Large-Scale World Model for Web Agent Training (arXiv 2026)",
+    "Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond (arXiv 2026)",
+    "When and How Much to Imagine: Adaptive Test-Time Scaling with World Models for Visual Spatial Reasoning (arXiv 2026)",
+    "Learning How Hard to Think: Input-Adaptive Allocation of LM Computation (ICLR 2025)",
+    "Rational Metareasoning for Large Language Models (arXiv 2024)",
+    "When Can Model-Free Reinforcement Learning be Enough for Thinking? (NeurIPS 2025)"
+  ],
+  "description": "We propose SimGate, a learned per-step binary gating mechanism that decides whether an agent should invoke its world model before each action in multi-turn trajectories. Motivated by the finding that current agents invoke simulation in <1% of opportunities and degrade performance by up to 5% when forced (Qian et al., 2026), SimGate trains a 2-layer MLP head on the agent LLM's frozen hidden states via supervised warm-start followed by GRPO reinforcement learning with a composite reward balancing task success against simulation compute cost. Unlike ITP-R (learns simulation depth but always simulates), AVIC (visual spatial reasoning only with heuristic sufficiency checks), and Sonata/Adaptive Thinking (per-query allocation, not per-step within trajectories), SimGate provides a general-purpose binary invoke/skip gate trained end-to-end from trajectory-level returns across diverse agent domains. Using Qwen3-14B as agent backbone with WebWorld-8B and Dreamer-7B as world models, we evaluate on ALFWorld, WebArena, and ScienceWorld against five baselines including ITP-R. The gating module adds <1‰ parameter overhead. Estimated cost: 400-1000 A100 GPU hours ($400-$1,500 rental). Targeting AAAI 2027 and ICLR 2027.",
+  "project_name": "sim_gate_cost_aware_plan",
+  "source": "web_research"
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e94e09e-ad33-40f2-bcc6-077ba80a4636",
+  "isSidechain": false,
+  "requestId": "req_011CawcaPxM2MYYVqWPuRx2u",
+  "type": "assistant",
+  "uuid": "4e583c02-6ec1-40a6-83db-c1b8b9c7c396",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011RE5iujYGdLdRN1fpVpggH",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9498,
+      "cache_read_input_tokens": 57129,
+      "output_tokens": 6309,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6309,
+          "cache_read_input_tokens": 57129,
+          "cache_creation_input_tokens": 9498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 122_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Learned Simul…",
+  "leafUuid": "4e583c02-6ec1-40a6-83db-c1b8b9c7c396",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 123_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learn step-level simulation gating for agents",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 124_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Learned Simul…",
+  "leafUuid": "4e583c02-6ec1-40a6-83db-c1b8b9c7c396",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 125_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learn step-level simulation gating for agents",
+  "sessionId": "461ad37f-ce07-4a00-a32b-b8a7506190ed"
+}
+```
+
+---

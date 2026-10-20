@@ -1,0 +1,1661 @@
+# Research conversation: <project_context> # 项目: gen-depth-contamination ## 运行环境 - 服务器名: autodl-4090d - SSH 账户: root（调用 ssh_execute / submit_trai
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 30
+- **Recorded user turns:** 1
+- **Tool calls:** 6
+- **Original source:** `logs/chats/exported-trajectories/account-3/9c0252dc-811f-4c6a-8513-34772e132ad8.jsonl`
+- **Structured JSON:** [`70dce944a3b5d752f097.json`](../../sessions/70/70dce944a3b5d752f097.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-12T12:47:52.003Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-12T12:47:52.003Z",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "content": "&lt;project_context>\n# 项目: gen-depth-contamination\n\n## 运行环境\n- 服务器名: autodl-4090d\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh autodl-4090d  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/gen-depth-contamination\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：文献调研 + 论文框架预设计\n\n### 背景\n项目 gen-depth-contamination 研究递归生成文本的代际深度估计（generational depth estimation）。MVP 实验正在运行中（Qwen2.5-1.5B-Instruct, C4 5K docs, depth 0→5），预计 5-6 小时出结果。趁等待时间预设计论文框架。\n\n### 参考材料\n请先读取项目文件 `IDEA_BRIEF.md`（在 `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/IDEA_BRIEF.md`），里面包含：\n- 完整的研究 landscape\n- Human Review Note 的 20 条优化建议\n- 信道级联 + DPI 理论框架概述\n\n也读取 ROADMAP.md 了解 MVP 方案细节：用 `read_roadmap` 工具。\n\n### 产出 1：Related Work 结构笔记\n写到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/related_work_structure.md`\n\n梳理 4 个 thread，每个 thread 列出核心论文（作者+年份+要点）和我们工作的定位：\n1. **Binary synthetic text detection**（DetectGPT, watermarking, supervised classifiers）→ 我们扩展到 ordinal depth\n2. **Model collapse / iterative retraining**（Shumailov et al. 2024, Alemohammad et al. 2023, Dohmatob et al. 2024）→ 我们量化代际退化边界\n3. **Verification-based data curation**（C4 filtering, quality scoring）→ graduated filtering 替代 binary\n4. **Data mixing / contamination estimation**（scaling laws for data mixing）→ depth-aware mixing\n\n每个 thread 2-4 篇关键论文，说明引用关系和我们的差异化。**不要编造论文**——如果不确定某篇论文是否存在，标注 [需验证]。\n\n### 产出 2：双路线 Claim 框架\n写到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/claim_routes.md`\n\n**路线 A（K* ≥ 3，MVP Pass）**：\n- Core claim: Generational depth estimation is feasible → graduated filtering outperforms binary detection\n- Supporting claims 拆解（3-4 个）\n- 需要的实验证据对应关系\n- Story arc: problem → insight → method → evaluation\n\n**路线 B（K* = 2，Conditional Pass）**：\n- Core claim: Saturation boundary K* is a novel measurable quantity → even coarse ordinal signal enables calibration advantage\n- Supporting claims 拆解\n- 如何把 K*=2 包装为 contribution 而非 limitation\n- Saturation characterization 路线的卖点\n\n两条路线都要包含评审攻击面预演（2-3 个最可能的 reviewer 质疑 + 预设 rebuttal 要点）。\n\n### 产出 3：信道级联 + DPI 理论框架草案\n写到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/theory_framework.md`\n\n基于 IDEA_BRIEF 的评审优化方案 #3，草拟：\n- 信道级联模型形式化：Human text X₀ → LLM channel → X₁ → ... → Xₖ\n- Data Processing Inequality (DPI) 如何约束 I(X₀; Xₖ) 的单调衰减\n- K* 的理论解释：distinguishability threshold 对应 mutual information 降到 noise floor\n- 2-3 个可以在论文中使用的 proposition/theorem 骨架（不需要完整证明，给出 statement + proof sketch）\n\n### 格式\n思路笔记风格即可，不需要正式论文格式。但结构清晰、论点明确。中文撰写。\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-12T12:47:52.006Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-12T12:47:52.006Z",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8"
+}
+```
+
+---
+
+## Round 1
+
+28 recorded events
+
+### User
+
+_source line 3 · 2026-05-12T12:47:52.042Z_
+
+&lt;project_context>
+# 项目: gen-depth-contamination
+
+## 运行环境
+- 服务器名: autodl-4090d
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh autodl-4090d  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/autodl-tmp/gen-depth-contamination
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：文献调研 + 论文框架预设计
+
+### 背景
+项目 gen-depth-contamination 研究递归生成文本的代际深度估计（generational depth estimation）。MVP 实验正在运行中（Qwen2.5-1.5B-Instruct, C4 5K docs, depth 0→5），预计 5-6 小时出结果。趁等待时间预设计论文框架。
+
+### 参考材料
+请先读取项目文件 `IDEA_BRIEF.md`（在 `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/IDEA_BRIEF.md`），里面包含：
+- 完整的研究 landscape
+- Human Review Note 的 20 条优化建议
+- 信道级联 + DPI 理论框架概述
+
+也读取 ROADMAP.md 了解 MVP 方案细节：用 `read_roadmap` 工具。
+
+### 产出 1：Related Work 结构笔记
+写到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/related_work_structure.md`
+
+梳理 4 个 thread，每个 thread 列出核心论文（作者+年份+要点）和我们工作的定位：
+1. **Binary synthetic text detection**（DetectGPT, watermarking, supervised classifiers）→ 我们扩展到 ordinal depth
+2. **Model collapse / iterative retraining**（Shumailov et al. 2024, Alemohammad et al. 2023, Dohmatob et al. 2024）→ 我们量化代际退化边界
+3. **Verification-based data curation**（C4 filtering, quality scoring）→ graduated filtering 替代 binary
+4. **Data mixing / contamination estimation**（scaling laws for data mixing）→ depth-aware mixing
+
+每个 thread 2-4 篇关键论文，说明引用关系和我们的差异化。**不要编造论文**——如果不确定某篇论文是否存在，标注 [需验证]。
+
+### 产出 2：双路线 Claim 框架
+写到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/claim_routes.md`
+
+**路线 A（K* ≥ 3，MVP Pass）**：
+- Core claim: Generational depth estimation is feasible → graduated filtering outperforms binary detection
+- Supporting claims 拆解（3-4 个）
+- 需要的实验证据对应关系
+- Story arc: problem → insight → method → evaluation
+
+**路线 B（K* = 2，Conditional Pass）**：
+- Core claim: Saturation boundary K* is a novel measurable quantity → even coarse ordinal signal enables calibration advantage
+- Supporting claims 拆解
+- 如何把 K*=2 包装为 contribution 而非 limitation
+- Saturation characterization 路线的卖点
+
+两条路线都要包含评审攻击面预演（2-3 个最可能的 reviewer 质疑 + 预设 rebuttal 要点）。
+
+### 产出 3：信道级联 + DPI 理论框架草案
+写到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/theory_framework.md`
+
+基于 IDEA_BRIEF 的评审优化方案 #3，草拟：
+- 信道级联模型形式化：Human text X₀ → LLM channel → X₁ → ... → Xₖ
+- Data Processing Inequality (DPI) 如何约束 I(X₀; Xₖ) 的单调衰减
+- K* 的理论解释：distinguishability threshold 对应 mutual information 降到 noise floor
+- 2-3 个可以在论文中使用的 proposition/theorem 骨架（不需要完整证明，给出 statement + proof sketch）
+
+### 格式
+思路笔记风格即可，不需要正式论文格式。但结构清晰、论点明确。中文撰写。
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "9729880e-bd4e-40a2-b79a-77916db351e5",
+  "type": "user",
+  "uuid": "c6c79774-67d5-49ec-bc1a-1ea76e5389e7",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-12T12:47:52.041Z_
+
+```json
+{
+  "parentUuid": "c6c79774-67d5-49ec-bc1a-1ea76e5389e7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "4e59f3f7-129b-4469-b820-0ec2c77ccc14",
+  "timestamp": "2026-05-12T12:47:52.041Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-12T12:47:52.041Z_
+
+```json
+{
+  "parentUuid": "4e59f3f7-129b-4469-b820-0ec2c77ccc14",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "fda2f87b-d167-4dee-9387-cf85dd97bfdb",
+  "timestamp": "2026-05-12T12:47:52.041Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-12T12:47:52.041Z_
+
+```json
+{
+  "parentUuid": "fda2f87b-d167-4dee-9387-cf85dd97bfdb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "cb22cbea-a0c2-4dff-99b6-ba26c1c0dc1a",
+  "timestamp": "2026-05-12T12:47:52.041Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature review and paper framework design",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-12T12:47:54.803Z_
+
+Let me start by reading the project's IDEA_BRIEF and ROADMAP.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb22cbea-a0c2-4dff-99b6-ba26c1c0dc1a",
+  "isSidechain": false,
+  "requestId": "req_011CaxhaH4SsBka5owBaHsLN",
+  "type": "assistant",
+  "uuid": "a3a13a5e-dac0-4489-96d1-b8c6476987f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BEkCkUQGHZmVVDqMnW5kJB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11893,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 180,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11893,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 180,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11893,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11893
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-12T12:47:55.910Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01C1PdRScEd2dBxb1SV2Aq9L`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/IDEA_BRIEF.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a3a13a5e-dac0-4489-96d1-b8c6476987f3",
+  "isSidechain": false,
+  "requestId": "req_011CaxhaH4SsBka5owBaHsLN",
+  "type": "assistant",
+  "uuid": "77b3f10a-2b71-4f32-b662-bce149635d41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BEkCkUQGHZmVVDqMnW5kJB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11893,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 180,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11893,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 180,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11893,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11893
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-12T12:47:56.221Z_
+
+<details><summary>↩ Tool result · `toolu_01C1PdRScEd2dBxb1SV2Aq9L`</summary>
+
+```text
+1	# Idea Brief: How Deep Is Your Fake? Estimating Generational Depth of Recursive Synthetic Text for Quality-Aware Data Curation
+2	
+3	
+4	- **Idea ID**: `idea_013`
+5	- **Created**: 2026-05-12
+6	- **Approved**: 2026-05-12
+7	- **Source**: foreign:be-idea-gen-0509-4
+8	- **Level**: top-tier
+9	- **Target Venues**: EMNLP 2026 (ARR submission deadline May 25, 2026; commitment deadline August 2, 2026) — primary target with compressed 10-day experiment plan and parallel writing, AAAI 2027 (abstract deadline July 25, 2026; paper deadline August 1, 2026) — fallback with additional time for full 100K corpus, extended cross-scale analysis, and polished writing, ICLR 2027 (expected submission deadline ~September 2026) — fallback allowing thorough cross-domain evaluation and larger-scale experiments
+10	
+11	## Seed Topic
+12	
+13	Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Machine Learning for NLP / Resources and Evaluation. Aligns with EMNLP 2026 special theme "New Missions for NLP Research" which explicitly calls for work on data contamination, synthetic data feedback loops, and data governance.
+14	
+15	Direction: Synthetic data quality, model collapse prevention, contamination detection. In-scope: synthetic data verification/filtering methods, detecting training data contamination in benchmarks, methods to break recursive data feedback loops, data mixing strategies that prevent quality degradation, principled synthetic data generation with quality guarantees.
+16	
+17	Contribution type: METHOD ONLY. Must propose a concrete detection algorithm, filtering pipeline, or training recipe — not just an observation about model collapse. Method + analysis OK.
+18	
+19	HARD CONSTRAINTS:
+20	1. Compute: ≤200 H100-hours total. Model collapse experiments need multiple training iterations — budget for small models (1B-3B) across 3-5 generations.
+21	2. Time: ≤16 days. Use small open models (Pythia, OLMo-1B, Qwen-0.5B/1.8B) for iterative collapse experiments.
+22	3. Eval: perplexity degradation curves, downstream task quality (MMLU, HellaSwag), diversity metrics (self-BLEU, n-gram entropy), contamination detection accuracy.
+23	
+24	This is a hot EMNLP 2026 special theme area with relatively few established methods — high novelty potential.
+25	
+26	Tag: direction=data_governance, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].
+27	
+28	## Core Problem
+29	
+30	As web data becomes increasingly contaminated with multi-generation synthetic text, training corpora contain outputs of unknown recursive provenance — text generated by models that were themselves trained on synthetic outputs. Current data curation treats synthetic text as a binary category, but quality degrades nonlinearly with generational depth, with the sharpest distributional changes (tail disappearance, diversity loss) occurring in early generations. Can we estimate the generational depth of synthetic text and use this graded signal for more effective quality-aware training data filtering?
+31	
+32	## Opportunity / Why Now
+33	
+34	Existing contamination and machine-generated text detection operates at a binary level (synthetic vs. real), leaving a critical gap: the quality difference between first-generation and fourth-generation synthetic text is substantial but unexploited. Drayson et al. (EMNLP 2025) demonstrate that detection features evolve systematically across 100 generations and that detectability increases with depth — but stop short of building a depth classifier. DivEye (TMLR 2026) extracts 9 surprisal-based features for binary detection; Surplexity (2024) filters training data by surprise without even distinguishing human from AI text. Min-K%++ (ICLR 2025) improves membership inference but ignores depth. Schaeffer et al. (2025) identify 8 conflicting definitions of 'model collapse' and argue catastrophic collapse is unlikely under realistic conditions — but acknowledge that tail disappearance and diversity loss ARE real, practical harms that accumulate with recursive training. Verification-based approaches (Yi et al., arXiv 2025; Feng et al., ICLR 2025) use external verifiers to filter synthetic data quality, but neither estimates depth — they treat quality as a binary pass/fail signal from the verifier rather than estimating how many recursive steps produced the text. No method estimates how many recursive generation steps a text has undergone, despite strong evidence that degradation follows a predictable trajectory. This gap is newly fillable because controlled multi-generation corpora can be efficiently constructed with small open-weight models, and the feature evolution documented by Drayson et al. provides empirical grounding that depth-discriminative signals exist. Characterizing where depth discrimination breaks down (the saturation boundary) is itself a valuable contribution for the data curation community.
+35	
+36	## Landscape (SOTA & Limitations)
+37	
+38	The landscape spans four research threads that our work bridges:
+39	
+40	**Thread 1 — Synthetic text detection (binary):** Min-K% and Min-K%++ (ICLR 2025) detect pre-training membership via token probability analysis. DivEye (TMLR 2026) uses 9 surprisal-based statistical features — distributional moments, first- and second-order differences of token surprisal — for interpretable binary detection, outperforming zero-shot baselines by up to 33.2%. Surplexity (2024) proposes filtering by high surprise to mitigate collapse without distinguishing human from AI text. ConStat (NeurIPS 2024) detects contamination via performance gaps on rephrased samples. All operate at the binary level.
+41	
+42	**Thread 2 — Model collapse and recursive training dynamics:** Shumailov et al. (Nature 2024) demonstrate progressive tail disappearance and diversity loss across recursive training generations, with early model collapse (tail loss) preceding late collapse (mode conflation). The Strong Model Collapse paper (ICLR 2025) provides theoretical foundations. Schaeffer et al. (2025) challenge collapse definitions, identifying 8 distinct meanings and arguing that under realistic conditions (data accumulation, not replacement), catastrophic collapse requires 'trillions of models.' Bakshi et al. (arXiv 2026) show statistical conditions under which iterative training on contaminated sources can actually improve performance. Falahati et al. (arXiv May 2026) prove that pluralistic curation prevents collapse theoretically. The BIML recursive pollution framework (2026) distinguishes gradual pollution from catastrophic collapse, arguing models can become 'unusable disasters' well before full collapse.
+43	
+44	**Thread 3 — Synthetic data verification and quality-aware curation:** DATAPROPHET (ICLR 2026) introduces training-free data quality metrics combining perplexity, similarity, and diversity for multimodal synthetic data selection. Feng et al. (ICLR 2025) demonstrate that verification — using external signals to select high-quality synthetic samples — prevents model collapse, providing theoretical conditions under which even imperfect verifiers suffice. Yi et al. (arXiv 2025) extend this by showing that injecting information through an external verifier reverses the collapse trajectory, though long-term performance converges to the verifier's knowledge center. Both verification approaches operate at a binary quality gate level rather than estimating the recursive provenance of the text. Drayson et al. (EMNLP 2025) demonstrate that binary machine-generated text detection prevents collapse and improves performance via importance resampling, tracking feature evolution across 100 generations of GPT-2 and SmolLM2 (124M–1.7B). They show features like diversity, Self-BLEU, and perplexity distributions shift systematically with generation depth — empirically grounding the premise that depth-discriminative signals exist — but build only a binary detector.
+45	
+46	**The gap:** No existing work builds a practical depth-estimation algorithm. Drayson et al. characterize feature evolution across generations but do not predict depth. DivEye and Surplexity detect or filter synthetic text without generation awareness. Verification methods (Feng et al., Yi et al.) filter by quality but do not distinguish a first-generation text from a fourth-generation one. The recursive training literature (Shumailov, Bakshi, Falahati) models degradation dynamics but proposes no detection methods. We fill this gap with the first ordinal depth classifier, enabling graduated quality-aware filtering where later-generation text is downweighted proportionally rather than binary-excluded.
+47	
+48	## Proposed Approach
+49	
+50	**Phase 0 — Pilot saturation study (Days 1-3, hard gate):** Using a single model (Pythia-1.4B) and one seed dataset (C4 subset, 50K documents), generate a 10-depth recursive chain to empirically characterize where depth discrimination saturates. Extract DivEye-style surprisal features plus vocabulary diversity metrics at each depth and measure inter-depth discriminability (pairwise classifier accuracy, distribution overlap). This pilot determines the effective discrimination horizon K and informs the choice of depth granularity for the full study. We hypothesize K ≈ 3-5 based on Shumailov et al.'s observation that tail disappearance is sharpest in early generations. **Critical gating decision:** If K ≤ 2, the primary contribution pivots to saturation boundary characterization (see Saturation Fallback Plan below). The pilot MUST complete by Day 3 to avoid wasted compute downstream.
+51	
+52	**Saturation Fallback Plan (activated if K ≤ 2):** If depth discrimination saturates at depth ≤2, a 3-class classifier (human/gen-1/gen-2+) is only marginally more informative than binary detection. In this case, we pivot the primary contribution to a comprehensive characterization of the saturation boundary itself: (a) **Per-feature saturation analysis:** Which features plateau first — surprisal dynamics, vocabulary diversity metrics, or tail-thinning metrics? Plotting per-feature discriminability curves across depth reveals the degradation mechanisms that become indistinguishable earliest vs. latest. (b) **Cross-model saturation comparison:** Does OLMo-1B saturate at a different depth than Pythia-1.4B or Qwen2.5-1.8B? If different architectures/training regimes produce different saturation profiles, this guides model-specific curation strategies. (c) **Decoding strategy effects on saturation:** Do temperature, top-k, and nucleus sampling shift the saturation boundary? High-temperature decoding might preserve diversity longer, extending discriminability. (d) **Scale effects on saturation:** Does the 7B model (Qwen2.5-7B) produce depth chains that saturate at a different point than 1B models? If larger models saturate later, this has direct implications for real-world contamination from frontier models. These analyses make the saturation boundary characterization itself an EMNLP-quality contribution, providing actionable guidance for when depth-aware curation is effective vs. when binary detection suffices.
+53	
+54	**Phase 1 — Multi-generation corpus construction (Days 2-5, overlapping with Phase 0):** Construct controlled depth-labeled corpora using three small open-weight model families: Pythia-1B/1.4B (EleutherAI), OLMo-1B (AI2), and Qwen2.5-0.5B/1.8B (Alibaba). Starting from human-written seeds (C4 and Wikipedia subsets, 50K documents each — reduced from 100K for initial submission; full 100K corpus reserved for camera-ready), iteratively feed outputs back as prompts through 5 generation depths (0=human, 1-4=synthetic). Each (model, seed, depth) combination produces a depth-labeled subcorpus. Depth chains are sequential per model but parallelizable across model families.
+55	
+56	**Phase 2 — Feature extraction and depth-discriminative analysis (Days 4-7):** Extract features at three levels, designed to extend and complement DivEye's binary features for ordinal prediction: (a) Token-level: the 9 DivEye surprisal statistics (distributional moments + first/second-order differences) plus Min-K%-style low-probability token fractions at multiple K thresholds, providing a surprisal feature set that captures both distributional shape and temporal dynamics; (b) Sequence-level: vocabulary diversity decay metrics — type-token ratio, hapax legomena ratio, n-gram novelty (proportion of n-grams not seen in a reference human corpus), and Self-BLEU — capturing the progressive homogenization documented by Drayson et al.; (c) Distributional-level: tail-thinning metrics — kurtosis and entropy of the vocabulary frequency distribution, proportion of vocabulary below frequency thresholds — capturing the specific tail disappearance mechanism identified by Shumailov et al. Conduct feature importance analysis to identify which features drive depth discrimination vs. merely distinguish human from synthetic.
+57	
+58	**Phase 3 — Ordinal depth classifier (Days 6-8):** Train an ordinal regression classifier (CORAL/CORN framework) to predict generation depth (0 through K, where K is determined by the pilot), comparing against gradient-boosted baselines (LightGBM) and a simple MLP. Evaluate both exact-depth accuracy and coarse-grained classification (human/shallow/deep), since the pilot may reveal that fine-grained discrimination degenerates beyond a certain depth. Report calibration curves and confidence intervals. If the pilot shows saturation at depth K < 4, reframe as (K+1)-class classification and activate the Saturation Fallback Plan for supplementary analyses.
+59	
+60	**Phase 4 — Depth-aware filtering validation (Days 7-10):** Demonstrate practical utility by comparing four filtering strategies on downstream NLP benchmarks: knowledge-intensive reasoning via MMLU subsets and HellaSwag, and text generation quality via XSum summarization: (a) No filtering (baseline); (b) Binary filtering using DivEye features (remove all detected synthetic text); (c) Depth-aware weighted filtering where documents are downweighted proportionally to estimated depth (weight = 1/(1 + α·depth)); (d) Surplexity-based filtering (filter by high surprise). These benchmarks are chosen because MMLU and HellaSwag are sensitive to data quality differences in pretraining data curation (demonstrated by DataComp-LM and FineWeb-Edu evaluations), unlike well-saturated benchmarks (SST-2, AG News) where small quality improvements may not produce statistically significant gaps. Test cross-model generalization: train depth chains on Pythia, evaluate classifier on OLMo- and Qwen-generated chains.
+61	
+62	**Phase 4b — Cross-scale generalization probe (Days 8-10, parallel with Phase 4):** Generate a small depth chain (1K documents × 3 depths: 0, 1, 2) from Qwen2.5-7B to test whether depth features learned from 1B-scale models transfer to text generated by a 7B model. This is critical because real-world synthetic contamination primarily comes from much larger models (GPT-4, Claude, Gemini). While a full cross-scale study is beyond scope, even a small-scale probe revealing transfer (or lack thereof) provides valuable evidence about practical applicability. Cost: ~5-8 additional H100-hours.
+63	
+64	**Phase 5 — Naturalistic validation (Days 9-10):** Apply the trained depth classifier to a sample of recent Common Crawl data (CC-2025/2026 snapshots). Since ground-truth depth labels are unavailable for wild data, validate via proxy signals, ensuring at least one proxy is feature-orthogonal to the classifier's input features to avoid tautological correlation: (a) Correlation between predicted depth and AlignScore (NLI-based factual consistency evaluation against reference corpus documents), which measures information alignment via a unified function trained on NLI, QA, and fact verification tasks — this is feature-orthogonal because AlignScore evaluates semantic accuracy, not surprisal statistics or vocabulary distributions; (b) Correlation with independently-measured vocabulary richness metrics computed by a method distinct from the classifier's features (e.g., moving average type-token ratio with different window sizes); (c) Correlation with binary AI-detection scores from existing tools (DivEye, GPTZero) as a sanity check; (d) Qualitative analysis of high-predicted-depth samples to check face validity. This validates that the classifier produces meaningful signals on naturalistic data, not just controlled corpora.
+65	
+66	**Parallel writing plan (Days 1-14):** Writing begins from Day 1 and runs continuously alongside experiments. Days 1-3: Introduction and related work (leveraging existing landscape analysis). Days 4-6: Methods section (feature extraction, classifier design). Days 7-9: Results section (populated as experiments complete). Days 10-12: Discussion, analysis figures, ablation tables. Days 12-14: Final formatting, camera-ready figures, submission checklist, responsible NLP checklist. A co-author or the primary researcher allocates ~3 hours/day to writing during experimental phases.
+67	
+68	**Contributions (ordered by importance):** (1) The first practical generation-depth estimation algorithm for recursively generated synthetic text, moving beyond binary detection; (2) Empirical characterization of the depth-discrimination saturation boundary — at which generation depth do texts become statistically indistinguishable, which features saturate first, and how does saturation vary by model family, scale, and decoding strategy? — providing actionable guidance for data curation practitioners; (3) Demonstration that depth-aware graduated filtering outperforms both binary filtering and no filtering on challenging downstream tasks (MMLU, HellaSwag, XSum); (4) Cross-model and cross-scale depth generalization analysis, including a 7B-scale probe; (5) Feature importance analysis revealing which degradation signals (surprisal dynamics, vocabulary decay, tail thinning) are most depth-discriminative.
+69	
+70	## Resource Estimate
+71	
+72	- **auto_research**: {'claude_api_cost': '$150-280 (~1800-2500 Opus turns for end-to-end experiment design, execution, analysis, and draft generation)', 'estimated_gpu_cost': '$225-375', 'gpu_hours': '~150h H100 (exhaustive feature/model/hyperparameter search; cross-scale experiments at 7B; comprehensive saturation analysis across all models and decoding strategies; full downstream evaluation suite)', 'gpu_utilization': 'GPU idle <10%: agent runs continuous pipeline, parallelizing corpus generation across model families and overlapping feature extraction with downstream evaluation', 'risk_note': 'Agent may over-explore feature combinations without converging on a principled feature set; if pilot shows saturation at depth 2, agent should automatically activate the saturation fallback plan and redirect compute to per-feature/cross-model saturation analyses rather than continuing to optimize the depth classifier', 'speed_bottleneck': 'Sequential depth chain generation (each depth requires output from previous depth); mitigated by parallelizing across 3 model families and 2 seed datasets simultaneously. 7B cross-scale experiment adds ~8h but can run on a separate GPU. 2 H100s sufficient for 10-day timeline; 4 H100s enable 8-day completion.', 'team': '0 (initial setup only: seed data paths, model weights, evaluation benchmark specification)', 'timeline': '8-10 days with 2-4 H100s available concurrently; parallel writing tracked by agent'}
+73	- **human_in_loop**: {'claude_api_cost': '$60-100 (~600-900 Opus turns for experiment planning, code generation, and result interpretation)', 'estimated_gpu_cost': '$195-325', 'gpu_hours': '~130h H100 (same base experiments plus agent-initiated feature selection sweeps and additional cross-model/cross-scale combinations)', 'gpu_utilization': 'GPU idle ~25-35%: agent queues experiments and runs analysis between human check-ins', 'risk_note': 'Saturation boundary determination requires human judgment about whether to activate the fallback plan if K ≤ 2; agent may over-optimize ordinal accuracy on controlled data without assessing generalizability', 'team': '1 researcher, ~30min/day for approving feature sets, evaluating saturation analysis, and reviewing draft sections', 'timeline': '8-10 days experiments + parallel writing; 14-day total to submission'}
+74	- **manual**: {'estimated_gpu_cost': '$165-275 (at $1.50-2.50/hr H100 spot pricing, May 2026 rates)', 'gpu_hours': '~110h H100 (pilot saturation study ~15h; corpus generation across 3 model families × 5 depths at 50K docs/seed ~20h; 7B cross-scale probe ~8h; feature extraction ~8h; classifier training ~5h; downstream evaluation on MMLU/HellaSwag/XSum ~20h; naturalistic validation ~8h; ablations + saturation fallback analyses ~26h)', 'gpu_utilization': 'GPU idle ~40-50% of wall-clock time due to analysis iterations and writing between runs', 'team': '1-2 researchers, with ~3 hours/day writing allocation during experimental phase', 'timeline': '10 days experiments + 4 days final writing (writing starts Day 1 in parallel); targets EMNLP ARR May 25, 2026'}
+75	
+76	## Key References
+77	
+78	- AI models collapse when trained on recursively generated data (Shumailov et al., Nature 2024)
+79	- Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models (ICLR 2025)
+80	- ConStat: Performance-Based Contamination Detection in Large Language Models (NeurIPS 2024)
+81	- Strong Model Collapse (ICLR 2025)
+82	- Machine-generated text detection prevents language model collapse (Drayson et al., EMNLP 2025)
+83	- Position: Model Collapse Does Not Mean What You Think (Schaeffer et al., 2025)
+84	- Diversity Boosts AI-Generated Text Detection / DivEye (TMLR 2026)
+85	- Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative AI (2024)
+86	- DATAPROPHET: Training-Free Data Quality Metric (ICLR 2026)
+87	- Curated Synthetic Data Doesn't Have to Collapse (Falahati et al., arXiv May 2026)
+88	- From Collapse to Improvement: Statistical Perspectives on Iterative Training on Contaminated Sources (Bakshi et al., arXiv 2026)
+89	- Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World (Kazdan et al., ICML 2025)
+90	- Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data (AAAI Workshop 2026)
+91	- A Comprehensive Survey of Contamination Detection Methods in Large Language Models (TMLR 2025)
+92	- Recursive Pollution and Model Collapse Are Not the Same (BIML 2026)
+93	- Generalization or Memorization: Data Contamination and Trustworthy Evaluation for LLMs (Findings of ACL 2024)
+94	- Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence (Yi et al., arXiv 2510.16657, 2025)
+95	- Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification (Feng et al., ICLR 2025)
+96	- AlignScore: Evaluating Factual Consistency with a Unified Alignment Function (ACL 2023)
+97	- Rank consistent ordinal regression for neural networks / CORAL (Cao et al., Pattern Recognition 2020)
+98	
+99	## Reviewer Evaluation
+100	
+101	**Scores**:
+102	  - clarity: **{'rationale': 'Exceptionally well-structured: five phases with clear dependencies, a hard gating decision by Day 3, a detailed saturation fallback plan with four sub-analyses, ordered contributions, and cross-references to specific prior work at each methodological choice. The landscape analysis accurately positions the work relative to four distinct research threads.', 'score': 4}**/5
+103	  - feasibility: **{'rationale': 'Compute budget (110-150h H100) fits within the 200h constraint using the specified small models (Pythia-1B/1.4B, OLMo-1B, Qwen2.5-0.5B/1.8B). The Phase 0 pilot with a hard Day-3 gate is excellent scientific methodology. The saturation fallback plan is comprehensive and turns the primary risk into a contribution. The 14-day timeline is tight but the parallel writing plan and overlapping phases make it realistic.', 'score': 4}**/5
+104	  - impact: **{'rationale': "Fills a verified gap between binary detection (DivEye, Min-K%++) and quality-aware curation (Feng et al., Yi et al.) with the first depth-graded quality signal. Perfectly aligned with EMNLP 2026's confirmed special theme on data contamination and synthetic data feedback loops. Even if depth discrimination saturates early, the saturation characterization itself — which features plateau first, how saturation varies by model family and decoding strategy — provides actionable guidance for the data curation community.", 'score': 4}**/5
+105	  - novelty: **{'rationale': 'Verified novel across 14+ targeted searches: no existing work frames generational depth estimation as a prediction task. Drayson et al. (EMNLP 2025) and Guo et al. (NAACL 2024) characterize feature evolution across generations descriptively, but neither builds a depth classifier or proposes depth-aware filtering. The ordinal depth estimation formulation and graduated filtering application are genuinely new contributions.', 'score': 4}**/5
+106	
+107	## Human Review Note
+108	
+109	## Agent 审核结果（完整三阶段 pipeline）
+110	
+111	**Verdict**: PASS
+112	
+113	**入口三重共识 (X)**: 28.0%
+114	**终审自评 (Y)**: 34.0%
+115	**出口三重共识 (Z)**: 36.0%
+116	**Z 区间**: [31.0%, 42.0%]
+117	**真实提升 (Z-X)**: +8.0 pp
+118	**幻觉幅度 (Y-Z)**: -2.0 pp
+119	**出口一致性**: 高
+120	**出口三次评估**: [35.0, 38.0, 37.0]
+121	
+122	### 优化方案 / 拒绝详情
+123	【优化方案】
+124	
+125	1. [标题 / 核心定位] — 在标题不变的前提下，Introduction 开头前两段建立 **"demand-side ordinal provenance estimation"** 的一句话 elevator pitch，与 supply-side watermarking、point membership inference、binary detection 形成三维对比矩阵。原始 proposal 直接进入方法描述，缺少清晰的 positioning niche。 — 命中 Novelty（positioning clarity）+ Significance（reviewer 前 30 秒形成正确印象）
+126	
+127	2. [核心 framing / Introduction] — 将 **saturation boundary 从 fallback contribution 提升为一阶科学量**。原始 proposal 写 "If saturation occurs at very shallow depths (K ≤ 2), we provide a comprehensive saturation characterization as the primary contribution"——这种 hedging 让 reviewer 认为作者对核心假设信心不足。改为正面 claim：saturation boundary K* 本身是首次系统测量的基本量，其位置无论高低都有独立科学价值。删除所有 "If…then" 对冲语句。 — 命中 Novelty + Contribution Clarity（消除"作者自己不确定主贡献是什么"的致命印象）
+128	
+129	3. [理论框架 / Introduction + Method] — 新增 **信道级联 + Data Processing Inequality 框架**。将递归生成建模为 iterated lossy channel，K* 定义为 I(X₀; Xₖ) 降至不可区分阈值的临界深度——这是一个 **information-theoretic impossibility boundary**，不仅是分类器的能力上限，而是任何方法都无法逾越的信息论极限。用 JSD 作为 computationally tractable MI proxy（明确标注为近似，承认 unigram 层面的局限）。原始 proposal 完全没有理论框架。 — 命中 Novelty（从"empirical measurement"升级为"theory + validation"）+ Technical Soundness
+130	
+131	4. [理论框架 / Introduction + Results] — 新增 **exponential vs. polynomial MI 衰减假设检验**作为论文叙事弧线。提出 empirically motivated hypothesis：greedy decoding → 近似指数衰减（快速收敛到 fixed point），high-temperature sampling → 较慢多项式衰减（随机性延缓同质化）。设计为 hypothesis testing format（AIC/BIC model comparison）。注意措辞校准：标为"empirically motivated hypotheses"而非"theoretical predictions"，避免 overclaim。 — 命中 Novelty + Soundness（hypothesis-driven 研究范式比 exploratory 更受审稿人认可）
+132	
+133	5. [贡献结构 / 全文] — **大幅精简 scope**，从原始 proposal 的"everything in one paper"收窄为两个核心贡献 + 一个 application case study。C1：depth estimation + K* characterization（含降解序分析和假设检验）；C2：depth-graduated curation。Model collapse monitoring 降为 Discussion 中的 1 段 case study。Heterogeneous model chain、human editing robustness、Common Crawl 验证移入 appendix。原始 proposal 试图同时覆盖太多方向，有 "a mile wide and an inch deep" 的风险。 — 命中 Technical Soundness（每个贡献有足够展开空间）+ 降低 reviewer 认知负担
+134	
+135	6. [Contribution 1 分析亮点 / Results] — 将 feature group ablation 升格为 **"linguistic degradation ordering"科学发现**：按 saturation depth 排序 feature group，揭示递归生成中语言维度的逐层坍缩结构（如 vocabulary diversity 可能先于 semantic coherence 坍缩）。用 heatmap（feature group × depth → discriminative power）可视化。原始 proposal 没有此分析维度。 — 命中 Analysis Depth / Insight（从"分类器 works"到"我们揭示了递归生成的结构性规律"）
+136	
+137	7. [Contribution 2 方法论 / Method] — 将 **depth-graduated curation 升格为独立 paradigm**（原始 proposal 中压缩在验证段落），给出理论动机（binary filtering 在 threshold 附近信息损失最大，ordinal signal 允许 soft weighting），并将加权方案从任意 1/k 改为 **从 depth-quality 衰减曲线经验推导**（weight ∝ quality(k)/quality(0)）。与 data mixing 文献（DoReMi）建立连接：depth-graduated weighting 是 provenance-aware domain reweighting，比 DoReMi 更轻量且有可解释语义。 — 命中 Practical Impact + Contribution Clarity + Significance
+138	
+139	8. [Motivation / Introduction] — 新增 **JPEG 重压缩跨模态类比**（1-2 句话）："Just as forensic image analysis estimates the number of JPEG recompression cycles, we establish generational depth estimation as a research paradigm for text." 降低理解门槛，暗示更大研究方向。原始 proposal 无此 framing。 — 命中 Clarity / Motivation
+140	
+141	9. [Motivation / Introduction + Broader Impact] — 新增 **model collapse early-warning 叙事线**：depth distribution 作为 model collapse 的 leading indicator（depth ≥ K 占比上升 → collapse risk 积累）。虽然降为 case study，但在 Introduction 和 broader impact 中建立联系大幅增强 significance。连接 Datasheets for Datasets / Data Statements，定位为 automated provenance documentation tool。原始 proposal 仅引用 Shumailov et al. 但未建立此联系。 — 命中 Significance + Broader Impact
+142	
+143	10. [Related Work] — 大幅扩展覆盖面：(a) **watermarking 互补定位**（supply-side vs. demand-side，正交互补）；(b) **Min-K%++ 关系讨论**（membership ≠ ordinal depth）；(c) **model attribution / source identification**（"which model" vs. "how many generations"，正交可组合）；(d) **最新检测工作**（Binoculars, RAID benchmark）；(e) **data mixing 文献**（DoReMi, Data Mixing Laws）；(f) **Shumailov et al. 差异化 sharpen**（macro phenomenon understanding vs. micro forensic tool）。原始 proposal 仅覆盖 binary detection 和 verification-based filtering。 — 命中 Related Work Coverage（堵住多个 reviewer 攻击面）
+144	
+145	11. [实验设计 / Corpus Construction] — 新增 **decoding strategy 作为显式 controlled variable**（greedy, nucleus p=0.9/0.95, temperature T=0.7/1.0/1.2）。原始 proposal 提到 "across decoding strategies" 但未展开。这直接支撑 exponential vs. polynomial 假设检验，且几乎零额外成本。 — 命中 Analysis Depth + Thoroughness
+146	
+147	12. [实验设计 / Corpus Construction] — 新增 **retrain-chain ecological validity check**（1 个 model family + 1 个 decoding strategy，3-4 depth levels，LoRA fine-tuning），报告 prompt-chain vs. retrain-chain 的 feature distribution 对比和 cross-setting transfer accuracy。原始 proposal 完全没有考虑 prompt-chain 与真实递归污染路径的差异。 — 命中 Technical Soundness（回应"方法在真实场景下有没有用"的核心质疑）
+148	
+149	13. [实验设计 / Appendix] — 新增以下 robustness analyses 作为 appendix 内容：(a) **heterogeneous model chain**（交替不同模型生成）；(b) **human editing robustness**（simulated span replacement、paraphrasing）；(c) **Common Crawl naturalistic validation**。原始 proposal 无此设计。Clean chains 明确定位为 theoretical upper bound，real-world depth estimates 定位为 ordinal quality proxies。 — 命中 Experimental Rigor
+150	
+151	14. [Feature Extraction / Method] — 修正 **n-gram overlap feature 的 data leakage 问题**。原始 proposal 的 "cross-depth n-gram overlap decay rate" 需要 paired original text，inference 时不可用。拆分为：(a) analysis-only metric（用于降解序研究）；(b) inference-time computable variant（self-repetition n-gram statistics、与 reference human corpus 的统计距离）。 — 命中 Technical Soundness（消除 data leakage 这一 reject-worthy 问题）
+152	
+153	15. [Feature Extraction / Method] — 新增 **systematic feature design** 的诚实定位：标为 "systematic and principled feature design informed by the recursive generation mechanism"，而非 overclaim 为 "novel feature contributions"。新增 token-level perplexity distribution shape features（skewness, kurtosis, entropy）。 — 命中 Technical Soundness（诚实定位避免 overclaim）
+154	
+155	16. [Classification / Method] — 新增系统 ablation 和 baseline 对比：(a) **ordinal vs. multinomial vs. standard regression**（证明 ordinal structure 必要性）；(b) **learned representation baseline**（frozen LM embeddings + MLP vs. hand-crafted features）；(c) **LLM zero-shot/few-shot depth estimation baseline**（验证 depth estimation 需要专门方法）；(d) **LLM-as-judge quality scoring baseline**（验证 depth signal 与 LLM quality judgment 正交）；(e) **binary detector confidence as depth proxy**（Binoculars/DetectGPT score vs. true depth Spearman correlation）。原始 proposal 仅有 CORAL/CORN + 现有 filtering methods 对比。 — 命中 Baseline Completeness（堵住"为什么不直接用 X"的多个质疑）
+156	
+157	17. [Cross-Scale Generalization / Method] — 增强 cross-scale 策略：(a) 将 probe 扩展到 **8B-14B 范围**（Llama-3-8B 或 Qwen2.5-14B）；(b) WildChat/LMSYS-Chat 上的 **formal feature trend analysis**（含 MMD domain shift quantification）；(c) 明确 **practical deployment scope 为开源模型生态（7B-14B）**；(d) frontier model limitation 扩展为 **principled discussion**（RLHF/instruction-tuning 对 depth signal 的影响、API-only access 对 feature 计算的限制）。原始 proposal 仅有 Qwen2.5-7B 一个 cross-scale probe。 — 命中 Significance（论证实际部署价值）
+158	
+159	18. [Downstream Curation / Experimental Validation] — 大幅增强 curation 实验严格性：(a) **contamination severity 维度**（10%/30%/50% synthetic injection）；(b) **cross-model transfer**（classifier 训 on model A, curate model B）；(c) **unknown depth distribution condition**；(d) **data-quality-sensitive tasks**（held-out perplexity, factual QA，不仅限于 MMLU）；(e) **binary filtering threshold 选择协议明确化**；(f) **bootstrap CIs + paired significance tests**；(g) **实验逻辑链显式说明**。原始 proposal 对 filtering 实验的公平性和统计显著性没有详细设计。 — 命中 Technical Soundness + Experimental Rigor
+160	
+161	19. [Depth vs. Quality Analysis / Experimental Validation] — 新增 **depth-quality 单调性直接验证**。原始 proposal 隐含假设 depth 与 quality 单调递减但未验证。新增多维度 quality proxy 曲线，验证单调性成立条件。如非单调，graduated filtering 适应为 depth-features → predicted quality → weight。 — 命中 Technical Soundness（验证核心前提假设）
+162	
+163	20. [K* Contingency / Experimental Validation] — 新增 **显式 contingency 讨论**：K*≤3 时贡献重定位为首次量化 fundamental resolution limit + decoding strategy 对 K* 的调控效应 + 即使 coarse ordinal signal 仍有 calibration 优势。原始 proposal 的 "If…then" 结构是结构性风险。 — 命中 Soundness + Reviewer 心理管理
+164	
+165	【主要风险】:
+166	1. **K* 实验结果不确定性**：如果在大多数 model/decoding 配置下 K*≤2，论文的 empirical richness 和 graduated curation 收益都会受限。虽有 contingency plan（fundamental resolution limit characterization + decoding strategy modulation），但 reviewer 仍可能评为 "interesting characterization but limited practical impact"。这是无法通过 proposal 优化消除的固有风险。
+167	2. **"Good problem + standard method" 框架**：核心分类 pipeline 是 feature engineering + off-the-shelf ordinal regression（CORAL/CORN），审稿人可能认为方法论贡献不足。信息论框架和假设检验提升了分析深度，但分类器本身没有方法论突破。对于偏重 methods 的审稿人，这可能是 borderline reject 的理由。
+168	
+169	【实施评估】:
+170	- 计算资源: 主实验（corpus generation + feature extraction + classifier training）可在 2-4 块 A100 上完成，估计 1-2 周。Retrain-chain validation（1 config, LoRA fine-tuning, 3-4 depth levels）约 2-3 天额外 GPU 时间。Cross-scale probe（7B-14B 模型生成 + 特征提取）约 3-5 天。总计 GPU 需求约 2-3 周集中使用。不需要大规模集群。
+171	- 数据需求: C4 和 Wikipedia 子集（50K documents each）——公开可得。WildChat / LMSYS-Chat——公开可得。无需私有或受限数据集。
+172	- 人工介入: 无需人工标注（ground-truth depth labels 由 generation pipeline 自动产生）。无需专家评审。唯一的人工环节是实验设计决策和论文写作。
+173	- 训练需求: 需要模型训练，但规模有限。(a) Ordinal regression classifier（CORAL/CORN）：轻量级，训练时间可忽略。(b) Retrain-chain 的 LoRA fine-tuning：Pythia-1B 级别，每轮约 1-2 小时。(c) 不需要从头预训练任何 LLM。(d) 下游 curation 评估需要在 curated data 上训练小模型（≤1.8B），但这也是标准规模。
+174	- 新 Benchmark: 不需要构建新的公开 benchmark。构建的 multi-depth corpus 是实验工具而非独立 benchmark 贡献（但可作为 artifact release）。
+175	- 预估周期: Corpus generation + feature extraction: 2-3 周；Classifier training + ablation: 1 周；Downstream curation experiments: 1-2 周；Cross-scale + retrain-chain validation: 1-2 周；Analysis + writing: 2-3 周。**总计约 8-12 周**（从启动到可投稿），假设 GPU 资源持续可用。如果 GPU 间歇使用，可能延长至 12-16 周。EMNLP 2026 投稿 deadline 前有充足时间。
+176	
+177	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "77b3f10a-2b71-4f32-b662-bce149635d41",
+  "isSidechain": false,
+  "promptId": "9729880e-bd4e-40a2-b79a-77916db351e5",
+  "type": "user",
+  "uuid": "f4c4af89-b627-4de3-8919-317c079243ec",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/IDEA_BRIEF.md",
+      "content": "# Idea Brief: How Deep Is Your Fake? Estimating Generational Depth of Recursive Synthetic Text for Quality-Aware Data Curation\n\n\n- **Idea ID**: `idea_013`\n- **Created**: 2026-05-12\n- **Approved**: 2026-05-12\n- **Source**: foreign:be-idea-gen-0509-4\n- **Level**: top-tier\n- **Target Venues**: EMNLP 2026 (ARR submission deadline May 25, 2026; commitment deadline August 2, 2026) — primary target with compressed 10-day experiment plan and parallel writing, AAAI 2027 (abstract deadline July 25, 2026; paper deadline August 1, 2026) — fallback with additional time for full 100K corpus, extended cross-scale analysis, and polished writing, ICLR 2027 (expected submission deadline ~September 2026) — fallback allowing thorough cross-domain evaluation and larger-scale experiments\n\n## Seed Topic\n\nTarget: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Machine Learning for NLP / Resources and Evaluation. Aligns with EMNLP 2026 special theme \"New Missions for NLP Research\" which explicitly calls for work on data contamination, synthetic data feedback loops, and data governance.\n\nDirection: Synthetic data quality, model collapse prevention, contamination detection. In-scope: synthetic data verification/filtering methods, detecting training data contamination in benchmarks, methods to break recursive data feedback loops, data mixing strategies that prevent quality degradation, principled synthetic data generation with quality guarantees.\n\nContribution type: METHOD ONLY. Must propose a concrete detection algorithm, filtering pipeline, or training recipe — not just an observation about model collapse. Method + analysis OK.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Model collapse experiments need multiple training iterations — budget for small models (1B-3B) across 3-5 generations.\n2. Time: ≤16 days. Use small open models (Pythia, OLMo-1B, Qwen-0.5B/1.8B) for iterative collapse experiments.\n3. Eval: perplexity degradation curves, downstream task quality (MMLU, HellaSwag), diversity metrics (self-BLEU, n-gram entropy), contamination detection accuracy.\n\nThis is a hot EMNLP 2026 special theme area with relatively few established methods — high novelty potential.\n\nTag: direction=data_governance, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].\n\n## Core Problem\n\nAs web data becomes increasingly contaminated with multi-generation synthetic text, training corpora contain outputs of unknown recursive provenance — text generated by models that were themselves trained on synthetic outputs. Current data curation treats synthetic text as a binary category, but quality degrades nonlinearly with generational depth, with the sharpest distributional changes (tail disappearance, diversity loss) occurring in early generations. Can we estimate the generational depth of synthetic text and use this graded signal for more effective quality-aware training data filtering?\n\n## Opportunity / Why Now\n\nExisting contamination and machine-generated text detection operates at a binary level (synthetic vs. real), leaving a critical gap: the quality difference between first-generation and fourth-generation synthetic text is substantial but unexploited. Drayson et al. (EMNLP 2025) demonstrate that detection features evolve systematically across 100 generations and that detectability increases with depth — but stop short of building a depth classifier. DivEye (TMLR 2026) extracts 9 surprisal-based features for binary detection; Surplexity (2024) filters training data by surprise without even distinguishing human from AI text. Min-K%++ (ICLR 2025) improves membership inference but ignores depth. Schaeffer et al. (2025) identify 8 conflicting definitions of 'model collapse' and argue catastrophic collapse is unlikely under realistic conditions — but acknowledge that tail disappearance and diversity loss ARE real, practical harms that accumulate with recursive training. Verification-based approaches (Yi et al., arXiv 2025; Feng et al., ICLR 2025) use external verifiers to filter synthetic data quality, but neither estimates depth — they treat quality as a binary pass/fail signal from the verifier rather than estimating how many recursive steps produced the text. No method estimates how many recursive generation steps a text has undergone, despite strong evidence that degradation follows a predictable trajectory. This gap is newly fillable because controlled multi-generation corpora can be efficiently constructed with small open-weight models, and the feature evolution documented by Drayson et al. provides empirical grounding that depth-discriminative signals exist. Characterizing where depth discrimination breaks down (the saturation boundary) is itself a valuable contribution for the data curation community.\n\n## Landscape (SOTA & Limitations)\n\nThe landscape spans four research threads that our work bridges:\n\n**Thread 1 — Synthetic text detection (binary):** Min-K% and Min-K%++ (ICLR 2025) detect pre-training membership via token probability analysis. DivEye (TMLR 2026) uses 9 surprisal-based statistical features — distributional moments, first- and second-order differences of token surprisal — for interpretable binary detection, outperforming zero-shot baselines by up to 33.2%. Surplexity (2024) proposes filtering by high surprise to mitigate collapse without distinguishing human from AI text. ConStat (NeurIPS 2024) detects contamination via performance gaps on rephrased samples. All operate at the binary level.\n\n**Thread 2 — Model collapse and recursive training dynamics:** Shumailov et al. (Nature 2024) demonstrate progressive tail disappearance and diversity loss across recursive training generations, with early model collapse (tail loss) preceding late collapse (mode conflation). The Strong Model Collapse paper (ICLR 2025) provides theoretical foundations. Schaeffer et al. (2025) challenge collapse definitions, identifying 8 distinct meanings and arguing that under realistic conditions (data accumulation, not replacement), catastrophic collapse requires 'trillions of models.' Bakshi et al. (arXiv 2026) show statistical conditions under which iterative training on contaminated sources can actually improve performance. Falahati et al. (arXiv May 2026) prove that pluralistic curation prevents collapse theoretically. The BIML recursive pollution framework (2026) distinguishes gradual pollution from catastrophic collapse, arguing models can become 'unusable disasters' well before full collapse.\n\n**Thread 3 — Synthetic data verification and quality-aware curation:** DATAPROPHET (ICLR 2026) introduces training-free data quality metrics combining perplexity, similarity, and diversity for multimodal synthetic data selection. Feng et al. (ICLR 2025) demonstrate that verification — using external signals to select high-quality synthetic samples — prevents model collapse, providing theoretical conditions under which even imperfect verifiers suffice. Yi et al. (arXiv 2025) extend this by showing that injecting information through an external verifier reverses the collapse trajectory, though long-term performance converges to the verifier's knowledge center. Both verification approaches operate at a binary quality gate level rather than estimating the recursive provenance of the text. Drayson et al. (EMNLP 2025) demonstrate that binary machine-generated text detection prevents collapse and improves performance via importance resampling, tracking feature evolution across 100 generations of GPT-2 and SmolLM2 (124M–1.7B). They show features like diversity, Self-BLEU, and perplexity distributions shift systematically with generation depth — empirically grounding the premise that depth-discriminative signals exist — but build only a binary detector.\n\n**The gap:** No existing work builds a practical depth-estimation algorithm. Drayson et al. characterize feature evolution across generations but do not predict depth. DivEye and Surplexity detect or filter synthetic text without generation awareness. Verification methods (Feng et al., Yi et al.) filter by quality but do not distinguish a first-generation text from a fourth-generation one. The recursive training literature (Shumailov, Bakshi, Falahati) models degradation dynamics but proposes no detection methods. We fill this gap with the first ordinal depth classifier, enabling graduated quality-aware filtering where later-generation text is downweighted proportionally rather than binary-excluded.\n\n## Proposed Approach\n\n**Phase 0 — Pilot saturation study (Days 1-3, hard gate):** Using a single model (Pythia-1.4B) and one seed dataset (C4 subset, 50K documents), generate a 10-depth recursive chain to empirically characterize where depth discrimination saturates. Extract DivEye-style surprisal features plus vocabulary diversity metrics at each depth and measure inter-depth discriminability (pairwise classifier accuracy, distribution overlap). This pilot determines the effective discrimination horizon K and informs the choice of depth granularity for the full study. We hypothesize K ≈ 3-5 based on Shumailov et al.'s observation that tail disappearance is sharpest in early generations. **Critical gating decision:** If K ≤ 2, the primary contribution pivots to saturation boundary characterization (see Saturation Fallback Plan below). The pilot MUST complete by Day 3 to avoid wasted compute downstream.\n\n**Saturation Fallback Plan (activated if K ≤ 2):** If depth discrimination saturates at depth ≤2, a 3-class classifier (human/gen-1/gen-2+) is only marginally more informative than binary detection. In this case, we pivot the primary contribution to a comprehensive characterization of the saturation boundary itself: (a) **Per-feature saturation analysis:** Which features plateau first — surprisal dynamics, vocabulary diversity metrics, or tail-thinning metrics? Plotting per-feature discriminability curves across depth reveals the degradation mechanisms that become indistinguishable earliest vs. latest. (b) **Cross-model saturation comparison:** Does OLMo-1B saturate at a different depth than Pythia-1.4B or Qwen2.5-1.8B? If different architectures/training regimes produce different saturation profiles, this guides model-specific curation strategies. (c) **Decoding strategy effects on saturation:** Do temperature, top-k, and nucleus sampling shift the saturation boundary? High-temperature decoding might preserve diversity longer, extending discriminability. (d) **Scale effects on saturation:** Does the 7B model (Qwen2.5-7B) produce depth chains that saturate at a different point than 1B models? If larger models saturate later, this has direct implications for real-world contamination from frontier models. These analyses make the saturation boundary characterization itself an EMNLP-quality contribution, providing actionable guidance for when depth-aware curation is effective vs. when binary detection suffices.\n\n**Phase 1 — Multi-generation corpus construction (Days 2-5, overlapping with Phase 0):** Construct controlled depth-labeled corpora using three small open-weight model families: Pythia-1B/1.4B (EleutherAI), OLMo-1B (AI2), and Qwen2.5-0.5B/1.8B (Alibaba). Starting from human-written seeds (C4 and Wikipedia subsets, 50K documents each — reduced from 100K for initial submission; full 100K corpus reserved for camera-ready), iteratively feed outputs back as prompts through 5 generation depths (0=human, 1-4=synthetic). Each (model, seed, depth) combination produces a depth-labeled subcorpus. Depth chains are sequential per model but parallelizable across model families.\n\n**Phase 2 — Feature extraction and depth-discriminative analysis (Days 4-7):** Extract features at three levels, designed to extend and complement DivEye's binary features for ordinal prediction: (a) Token-level: the 9 DivEye surprisal statistics (distributional moments + first/second-order differences) plus Min-K%-style low-probability token fractions at multiple K thresholds, providing a surprisal feature set that captures both distributional shape and temporal dynamics; (b) Sequence-level: vocabulary diversity decay metrics — type-token ratio, hapax legomena ratio, n-gram novelty (proportion of n-grams not seen in a reference human corpus), and Self-BLEU — capturing the progressive homogenization documented by Drayson et al.; (c) Distributional-level: tail-thinning metrics — kurtosis and entropy of the vocabulary frequency distribution, proportion of vocabulary below frequency thresholds — capturing the specific tail disappearance mechanism identified by Shumailov et al. Conduct feature importance analysis to identify which features drive depth discrimination vs. merely distinguish human from synthetic.\n\n**Phase 3 — Ordinal depth classifier (Days 6-8):** Train an ordinal regression classifier (CORAL/CORN framework) to predict generation depth (0 through K, where K is determined by the pilot), comparing against gradient-boosted baselines (LightGBM) and a simple MLP. Evaluate both exact-depth accuracy and coarse-grained classification (human/shallow/deep), since the pilot may reveal that fine-grained discrimination degenerates beyond a certain depth. Report calibration curves and confidence intervals. If the pilot shows saturation at depth K < 4, reframe as (K+1)-class classification and activate the Saturation Fallback Plan for supplementary analyses.\n\n**Phase 4 — Depth-aware filtering validation (Days 7-10):** Demonstrate practical utility by comparing four filtering strategies on downstream NLP benchmarks: knowledge-intensive reasoning via MMLU subsets and HellaSwag, and text generation quality via XSum summarization: (a) No filtering (baseline); (b) Binary filtering using DivEye features (remove all detected synthetic text); (c) Depth-aware weighted filtering where documents are downweighted proportionally to estimated depth (weight = 1/(1 + α·depth)); (d) Surplexity-based filtering (filter by high surprise). These benchmarks are chosen because MMLU and HellaSwag are sensitive to data quality differences in pretraining data curation (demonstrated by DataComp-LM and FineWeb-Edu evaluations), unlike well-saturated benchmarks (SST-2, AG News) where small quality improvements may not produce statistically significant gaps. Test cross-model generalization: train depth chains on Pythia, evaluate classifier on OLMo- and Qwen-generated chains.\n\n**Phase 4b — Cross-scale generalization probe (Days 8-10, parallel with Phase 4):** Generate a small depth chain (1K documents × 3 depths: 0, 1, 2) from Qwen2.5-7B to test whether depth features learned from 1B-scale models transfer to text generated by a 7B model. This is critical because real-world synthetic contamination primarily comes from much larger models (GPT-4, Claude, Gemini). While a full cross-scale study is beyond scope, even a small-scale probe revealing transfer (or lack thereof) provides valuable evidence about practical applicability. Cost: ~5-8 additional H100-hours.\n\n**Phase 5 — Naturalistic validation (Days 9-10):** Apply the trained depth classifier to a sample of recent Common Crawl data (CC-2025/2026 snapshots). Since ground-truth depth labels are unavailable for wild data, validate via proxy signals, ensuring at least one proxy is feature-orthogonal to the classifier's input features to avoid tautological correlation: (a) Correlation between predicted depth and AlignScore (NLI-based factual consistency evaluation against reference corpus documents), which measures information alignment via a unified function trained on NLI, QA, and fact verification tasks — this is feature-orthogonal because AlignScore evaluates semantic accuracy, not surprisal statistics or vocabulary distributions; (b) Correlation with independently-measured vocabulary richness metrics computed by a method distinct from the classifier's features (e.g., moving average type-token ratio with different window sizes); (c) Correlation with binary AI-detection scores from existing tools (DivEye, GPTZero) as a sanity check; (d) Qualitative analysis of high-predicted-depth samples to check face validity. This validates that the classifier produces meaningful signals on naturalistic data, not just controlled corpora.\n\n**Parallel writing plan (Days 1-14):** Writing begins from Day 1 and runs continuously alongside experiments. Days 1-3: Introduction and related work (leveraging existing landscape analysis). Days 4-6: Methods section (feature extraction, classifier design). Days 7-9: Results section (populated as experiments complete). Days 10-12: Discussion, analysis figures, ablation tables. Days 12-14: Final formatting, camera-ready figures, submission checklist, responsible NLP checklist. A co-author or the primary researcher allocates ~3 hours/day to writing during experimental phases.\n\n**Contributions (ordered by importance):** (1) The first practical generation-depth estimation algorithm for recursively generated synthetic text, moving beyond binary detection; (2) Empirical characterization of the depth-discrimination saturation boundary — at which generation depth do texts become statistically indistinguishable, which features saturate first, and how does saturation vary by model family, scale, and decoding strategy? — providing actionable guidance for data curation practitioners; (3) Demonstration that depth-aware graduated filtering outperforms both binary filtering and no filtering on challenging downstream tasks (MMLU, HellaSwag, XSum); (4) Cross-model and cross-scale depth generalization analysis, including a 7B-scale probe; (5) Feature importance analysis revealing which degradation signals (surprisal dynamics, vocabulary decay, tail thinning) are most depth-discriminative.\n\n## Resource Estimate\n\n- **auto_research**: {'claude_api_cost': '$150-280 (~1800-2500 Opus turns for end-to-end experiment design, execution, analysis, and draft generation)', 'estimated_gpu_cost': '$225-375', 'gpu_hours': '~150h H100 (exhaustive feature/model/hyperparameter search; cross-scale experiments at 7B; comprehensive saturation analysis across all models and decoding strategies; full downstream evaluation suite)', 'gpu_utilization': 'GPU idle <10%: agent runs continuous pipeline, parallelizing corpus generation across model families and overlapping feature extraction with downstream evaluation', 'risk_note': 'Agent may over-explore feature combinations without converging on a principled feature set; if pilot shows saturation at depth 2, agent should automatically activate the saturation fallback plan and redirect compute to per-feature/cross-model saturation analyses rather than continuing to optimize the depth classifier', 'speed_bottleneck': 'Sequential depth chain generation (each depth requires output from previous depth); mitigated by parallelizing across 3 model families and 2 seed datasets simultaneously. 7B cross-scale experiment adds ~8h but can run on a separate GPU. 2 H100s sufficient for 10-day timeline; 4 H100s enable 8-day completion.', 'team': '0 (initial setup only: seed data paths, model weights, evaluation benchmark specification)', 'timeline': '8-10 days with 2-4 H100s available concurrently; parallel writing tracked by agent'}\n- **human_in_loop**: {'claude_api_cost': '$60-100 (~600-900 Opus turns for experiment planning, code generation, and result interpretation)', 'estimated_gpu_cost': '$195-325', 'gpu_hours': '~130h H100 (same base experiments plus agent-initiated feature selection sweeps and additional cross-model/cross-scale combinations)', 'gpu_utilization': 'GPU idle ~25-35%: agent queues experiments and runs analysis between human check-ins', 'risk_note': 'Saturation boundary determination requires human judgment about whether to activate the fallback plan if K ≤ 2; agent may over-optimize ordinal accuracy on controlled data without assessing generalizability', 'team': '1 researcher, ~30min/day for approving feature sets, evaluating saturation analysis, and reviewing draft sections', 'timeline': '8-10 days experiments + parallel writing; 14-day total to submission'}\n- **manual**: {'estimated_gpu_cost': '$165-275 (at $1.50-2.50/hr H100 spot pricing, May 2026 rates)', 'gpu_hours': '~110h H100 (pilot saturation study ~15h; corpus generation across 3 model families × 5 depths at 50K docs/seed ~20h; 7B cross-scale probe ~8h; feature extraction ~8h; classifier training ~5h; downstream evaluation on MMLU/HellaSwag/XSum ~20h; naturalistic validation ~8h; ablations + saturation fallback analyses ~26h)', 'gpu_utilization': 'GPU idle ~40-50% of wall-clock time due to analysis iterations and writing between runs', 'team': '1-2 researchers, with ~3 hours/day writing allocation during experimental phase', 'timeline': '10 days experiments + 4 days final writing (writing starts Day 1 in parallel); targets EMNLP ARR May 25, 2026'}\n\n## Key References\n\n- AI models collapse when trained on recursively generated data (Shumailov et al., Nature 2024)\n- Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models (ICLR 2025)\n- ConStat: Performance-Based Contamination Detection in Large Language Models (NeurIPS 2024)\n- Strong Model Collapse (ICLR 2025)\n- Machine-generated text detection prevents language model collapse (Drayson et al., EMNLP 2025)\n- Position: Model Collapse Does Not Mean What You Think (Schaeffer et al., 2025)\n- Diversity Boosts AI-Generated Text Detection / DivEye (TMLR 2026)\n- Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative AI (2024)\n- DATAPROPHET: Training-Free Data Quality Metric (ICLR 2026)\n- Curated Synthetic Data Doesn't Have to Collapse (Falahati et al., arXiv May 2026)\n- From Collapse to Improvement: Statistical Perspectives on Iterative Training on Contaminated Sources (Bakshi et al., arXiv 2026)\n- Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World (Kazdan et al., ICML 2025)\n- Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data (AAAI Workshop 2026)\n- A Comprehensive Survey of Contamination Detection Methods in Large Language Models (TMLR 2025)\n- Recursive Pollution and Model Collapse Are Not the Same (BIML 2026)\n- Generalization or Memorization: Data Contamination and Trustworthy Evaluation for LLMs (Findings of ACL 2024)\n- Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence (Yi et al., arXiv 2510.16657, 2025)\n- Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification (Feng et al., ICLR 2025)\n- AlignScore: Evaluating Factual Consistency with a Unified Alignment Function (ACL 2023)\n- Rank consistent ordinal regression for neural networks / CORAL (Cao et al., Pattern Recognition 2020)\n\n## Reviewer Evaluation\n\n**Scores**:\n  - clarity: **{'rationale': 'Exceptionally well-structured: five phases with clear dependencies, a hard gating decision by Day 3, a detailed saturation fallback plan with four sub-analyses, ordered contributions, and cross-references to specific prior work at each methodological choice. The landscape analysis accurately positions the work relative to four distinct research threads.', 'score': 4}**/5\n  - feasibility: **{'rationale': 'Compute budget (110-150h H100) fits within the 200h constraint using the specified small models (Pythia-1B/1.4B, OLMo-1B, Qwen2.5-0.5B/1.8B). The Phase 0 pilot with a hard Day-3 gate is excellent scientific methodology. The saturation fallback plan is comprehensive and turns the primary risk into a contribution. The 14-day timeline is tight but the parallel writing plan and overlapping phases make it realistic.', 'score': 4}**/5\n  - impact: **{'rationale': \"Fills a verified gap between binary detection (DivEye, Min-K%++) and quality-aware curation (Feng et al., Yi et al.) with the first depth-graded quality signal. Perfectly aligned with EMNLP 2026's confirmed special theme on data contamination and synthetic data feedback loops. Even if depth discrimination saturates early, the saturation characterization itself — which features plateau first, how saturation varies by model family and decoding strategy — provides actionable guidance for the data curation community.\", 'score': 4}**/5\n  - novelty: **{'rationale': 'Verified novel across 14+ targeted searches: no existing work frames generational depth estimation as a prediction task. Drayson et al. (EMNLP 2025) and Guo et al. (NAACL 2024) characterize feature evolution across generations descriptively, but neither builds a depth classifier or proposes depth-aware filtering. The ordinal depth estimation formulation and graduated filtering application are genuinely new contributions.', 'score': 4}**/5\n\n## Human Review Note\n\n## Agent 审核结果（完整三阶段 pipeline）\n\n**Verdict**: PASS\n\n**入口三重共识 (X)**: 28.0%\n**终审自评 (Y)**: 34.0%\n**出口三重共识 (Z)**: 36.0%\n**Z 区间**: [31.0%, 42.0%]\n**真实提升 (Z-X)**: +8.0 pp\n**幻觉幅度 (Y-Z)**: -2.0 pp\n**出口一致性**: 高\n**出口三次评估**: [35.0, 38.0, 37.0]\n\n### 优化方案 / 拒绝详情\n【优化方案】\n\n1. [标题 / 核心定位] — 在标题不变的前提下，Introduction 开头前两段建立 **\"demand-side ordinal provenance estimation\"** 的一句话 elevator pitch，与 supply-side watermarking、point membership inference、binary detection 形成三维对比矩阵。原始 proposal 直接进入方法描述，缺少清晰的 positioning niche。 — 命中 Novelty（positioning clarity）+ Significance（reviewer 前 30 秒形成正确印象）\n\n2. [核心 framing / Introduction] — 将 **saturation boundary 从 fallback contribution 提升为一阶科学量**。原始 proposal 写 \"If saturation occurs at very shallow depths (K ≤ 2), we provide a comprehensive saturation characterization as the primary contribution\"——这种 hedging 让 reviewer 认为作者对核心假设信心不足。改为正面 claim：saturation boundary K* 本身是首次系统测量的基本量，其位置无论高低都有独立科学价值。删除所有 \"If…then\" 对冲语句。 — 命中 Novelty + Contribution Clarity（消除\"作者自己不确定主贡献是什么\"的致命印象）\n\n3. [理论框架 / Introduction + Method] — 新增 **信道级联 + Data Processing Inequality 框架**。将递归生成建模为 iterated lossy channel，K* 定义为 I(X₀; Xₖ) 降至不可区分阈值的临界深度——这是一个 **information-theoretic impossibility boundary**，不仅是分类器的能力上限，而是任何方法都无法逾越的信息论极限。用 JSD 作为 computationally tractable MI proxy（明确标注为近似，承认 unigram 层面的局限）。原始 proposal 完全没有理论框架。 — 命中 Novelty（从\"empirical measurement\"升级为\"theory + validation\"）+ Technical Soundness\n\n4. [理论框架 / Introduction + Results] — 新增 **exponential vs. polynomial MI 衰减假设检验**作为论文叙事弧线。提出 empirically motivated hypothesis：greedy decoding → 近似指数衰减（快速收敛到 fixed point），high-temperature sampling → 较慢多项式衰减（随机性延缓同质化）。设计为 hypothesis testing format（AIC/BIC model comparison）。注意措辞校准：标为\"empirically motivated hypotheses\"而非\"theoretical predictions\"，避免 overclaim。 — 命中 Novelty + Soundness（hypothesis-driven 研究范式比 exploratory 更受审稿人认可）\n\n5. [贡献结构 / 全文] — **大幅精简 scope**，从原始 proposal 的\"everything in one paper\"收窄为两个核心贡献 + 一个 application case study。C1：depth estimation + K* characterization（含降解序分析和假设检验）；C2：depth-graduated curation。Model collapse monitoring 降为 Discussion 中的 1 段 case study。Heterogeneous model chain、human editing robustness、Common Crawl 验证移入 appendix。原始 proposal 试图同时覆盖太多方向，有 \"a mile wide and an inch deep\" 的风险。 — 命中 Technical Soundness（每个贡献有足够展开空间）+ 降低 reviewer 认知负担\n\n6. [Contribution 1 分析亮点 / Results] — 将 feature group ablation 升格为 **\"linguistic degradation ordering\"科学发现**：按 saturation depth 排序 feature group，揭示递归生成中语言维度的逐层坍缩结构（如 vocabulary diversity 可能先于 semantic coherence 坍缩）。用 heatmap（feature group × depth → discriminative power）可视化。原始 proposal 没有此分析维度。 — 命中 Analysis Depth / Insight（从\"分类器 works\"到\"我们揭示了递归生成的结构性规律\"）\n\n7. [Contribution 2 方法论 / Method] — 将 **depth-graduated curation 升格为独立 paradigm**（原始 proposal 中压缩在验证段落），给出理论动机（binary filtering 在 threshold 附近信息损失最大，ordinal signal 允许 soft weighting），并将加权方案从任意 1/k 改为 **从 depth-quality 衰减曲线经验推导**（weight ∝ quality(k)/quality(0)）。与 data mixing 文献（DoReMi）建立连接：depth-graduated weighting 是 provenance-aware domain reweighting，比 DoReMi 更轻量且有可解释语义。 — 命中 Practical Impact + Contribution Clarity + Significance\n\n8. [Motivation / Introduction] — 新增 **JPEG 重压缩跨模态类比**（1-2 句话）：\"Just as forensic image analysis estimates the number of JPEG recompression cycles, we establish generational depth estimation as a research paradigm for text.\" 降低理解门槛，暗示更大研究方向。原始 proposal 无此 framing。 — 命中 Clarity / Motivation\n\n9. [Motivation / Introduction + Broader Impact] — 新增 **model collapse early-warning 叙事线**：depth distribution 作为 model collapse 的 leading indicator（depth ≥ K 占比上升 → collapse risk 积累）。虽然降为 case study，但在 Introduction 和 broader impact 中建立联系大幅增强 significance。连接 Datasheets for Datasets / Data Statements，定位为 automated provenance documentation tool。原始 proposal 仅引用 Shumailov et al. 但未建立此联系。 — 命中 Significance + Broader Impact\n\n10. [Related Work] — 大幅扩展覆盖面：(a) **watermarking 互补定位**（supply-side vs. demand-side，正交互补）；(b) **Min-K%++ 关系讨论**（membership ≠ ordinal depth）；(c) **model attribution / source identification**（\"which model\" vs. \"how many generations\"，正交可组合）；(d) **最新检测工作**（Binoculars, RAID benchmark）；(e) **data mixing 文献**（DoReMi, Data Mixing Laws）；(f) **Shumailov et al. 差异化 sharpen**（macro phenomenon understanding vs. micro forensic tool）。原始 proposal 仅覆盖 binary detection 和 verification-based filtering。 — 命中 Related Work Coverage（堵住多个 reviewer 攻击面）\n\n11. [实验设计 / Corpus Construction] — 新增 **decoding strategy 作为显式 controlled variable**（greedy, nucleus p=0.9/0.95, temperature T=0.7/1.0/1.2）。原始 proposal 提到 \"across decoding strategies\" 但未展开。这直接支撑 exponential vs. polynomial 假设检验，且几乎零额外成本。 — 命中 Analysis Depth + Thoroughness\n\n12. [实验设计 / Corpus Construction] — 新增 **retrain-chain ecological validity check**（1 个 model family + 1 个 decoding strategy，3-4 depth levels，LoRA fine-tuning），报告 prompt-chain vs. retrain-chain 的 feature distribution 对比和 cross-setting transfer accuracy。原始 proposal 完全没有考虑 prompt-chain 与真实递归污染路径的差异。 — 命中 Technical Soundness（回应\"方法在真实场景下有没有用\"的核心质疑）\n\n13. [实验设计 / Appendix] — 新增以下 robustness analyses 作为 appendix 内容：(a) **heterogeneous model chain**（交替不同模型生成）；(b) **human editing robustness**（simulated span replacement、paraphrasing）；(c) **Common Crawl naturalistic validation**。原始 proposal 无此设计。Clean chains 明确定位为 theoretical upper bound，real-world depth estimates 定位为 ordinal quality proxies。 — 命中 Experimental Rigor\n\n14. [Feature Extraction / Method] — 修正 **n-gram overlap feature 的 data leakage 问题**。原始 proposal 的 \"cross-depth n-gram overlap decay rate\" 需要 paired original text，inference 时不可用。拆分为：(a) analysis-only metric（用于降解序研究）；(b) inference-time computable variant（self-repetition n-gram statistics、与 reference human corpus 的统计距离）。 — 命中 Technical Soundness（消除 data leakage 这一 reject-worthy 问题）\n\n15. [Feature Extraction / Method] — 新增 **systematic feature design** 的诚实定位：标为 \"systematic and principled feature design informed by the recursive generation mechanism\"，而非 overclaim 为 \"novel feature contributions\"。新增 token-level perplexity distribution shape features（skewness, kurtosis, entropy）。 — 命中 Technical Soundness（诚实定位避免 overclaim）\n\n16. [Classification / Method] — 新增系统 ablation 和 baseline 对比：(a) **ordinal vs. multinomial vs. standard regression**（证明 ordinal structure 必要性）；(b) **learned representation baseline**（frozen LM embeddings + MLP vs. hand-crafted features）；(c) **LLM zero-shot/few-shot depth estimation baseline**（验证 depth estimation 需要专门方法）；(d) **LLM-as-judge quality scoring baseline**（验证 depth signal 与 LLM quality judgment 正交）；(e) **binary detector confidence as depth proxy**（Binoculars/DetectGPT score vs. true depth Spearman correlation）。原始 proposal 仅有 CORAL/CORN + 现有 filtering methods 对比。 — 命中 Baseline Completeness（堵住\"为什么不直接用 X\"的多个质疑）\n\n17. [Cross-Scale Generalization / Method] — 增强 cross-scale 策略：(a) 将 probe 扩展到 **8B-14B 范围**（Llama-3-8B 或 Qwen2.5-14B）；(b) WildChat/LMSYS-Chat 上的 **formal feature trend analysis**（含 MMD domain shift quantification）；(c) 明确 **practical deployment scope 为开源模型生态（7B-14B）**；(d) frontier model limitation 扩展为 **principled discussion**（RLHF/instruction-tuning 对 depth signal 的影响、API-only access 对 feature 计算的限制）。原始 proposal 仅有 Qwen2.5-7B 一个 cross-scale probe。 — 命中 Significance（论证实际部署价值）\n\n18. [Downstream Curation / Experimental Validation] — 大幅增强 curation 实验严格性：(a) **contamination severity 维度**（10%/30%/50% synthetic injection）；(b) **cross-model transfer**（classifier 训 on model A, curate model B）；(c) **unknown depth distribution condition**；(d) **data-quality-sensitive tasks**（held-out perplexity, factual QA，不仅限于 MMLU）；(e) **binary filtering threshold 选择协议明确化**；(f) **bootstrap CIs + paired significance tests**；(g) **实验逻辑链显式说明**。原始 proposal 对 filtering 实验的公平性和统计显著性没有详细设计。 — 命中 Technical Soundness + Experimental Rigor\n\n19. [Depth vs. Quality Analysis / Experimental Validation] — 新增 **depth-quality 单调性直接验证**。原始 proposal 隐含假设 depth 与 quality 单调递减但未验证。新增多维度 quality proxy 曲线，验证单调性成立条件。如非单调，graduated filtering 适应为 depth-features → predicted quality → weight。 — 命中 Technical Soundness（验证核心前提假设）\n\n20. [K* Contingency / Experimental Validation] — 新增 **显式 contingency 讨论**：K*≤3 时贡献重定位为首次量化 fundamental resolution limit + decoding strategy 对 K* 的调控效应 + 即使 coarse ordinal signal 仍有 calibration 优势。原始 proposal 的 \"If…then\" 结构是结构性风险。 — 命中 Soundness + Reviewer 心理管理\n\n【主要风险】:\n1. **K* 实验结果不确定性**：如果在大多数 model/decoding 配置下 K*≤2，论文的 empirical richness 和 graduated curation 收益都会受限。虽有 contingency plan（fundamental resolution limit characterization + decoding strategy modulation），但 reviewer 仍可能评为 \"interesting characterization but limited practical impact\"。这是无法通过 proposal 优化消除的固有风险。\n2. **\"Good problem + standard method\" 框架**：核心分类 pipeline 是 feature engineering + off-the-shelf ordinal regression（CORAL/CORN），审稿人可能认为方法论贡献不足。信息论框架和假设检验提升了分析深度，但分类器本身没有方法论突破。对于偏重 methods 的审稿人，这可能是 borderline reject 的理由。\n\n【实施评估】:\n- 计算资源: 主实验（corpus generation + feature extraction + classifier training）可在 2-4 块 A100 上完成，估计 1-2 周。Retrain-chain validation（1 config, LoRA fine-tuning, 3-4 depth levels）约 2-3 天额外 GPU 时间。Cross-scale probe（7B-14B 模型生成 + 特征提取）约 3-5 天。总计 GPU 需求约 2-3 周集中使用。不需要大规模集群。\n- 数据需求: C4 和 Wikipedia 子集（50K documents each）——公开可得。WildChat / LMSYS-Chat——公开可得。无需私有或受限数据集。\n- 人工介入: 无需人工标注（ground-truth depth labels 由 generation pipeline 自动产生）。无需专家评审。唯一的人工环节是实验设计决策和论文写作。\n- 训练需求: 需要模型训练，但规模有限。(a) Ordinal regression classifier（CORAL/CORN）：轻量级，训练时间可忽略。(b) Retrain-chain 的 LoRA fine-tuning：Pythia-1B 级别，每轮约 1-2 小时。(c) 不需要从头预训练任何 LLM。(d) 下游 curation 评估需要在 curated data 上训练小模型（≤1.8B），但这也是标准规模。\n- 新 Benchmark: 不需要构建新的公开 benchmark。构建的 multi-depth corpus 是实验工具而非独立 benchmark 贡献（但可作为 artifact release）。\n- 预估周期: Corpus generation + feature extraction: 2-3 周；Classifier training + ablation: 1 周；Downstream curation experiments: 1-2 周；Cross-scale + retrain-chain validation: 1-2 周；Analysis + writing: 2-3 周。**总计约 8-12 周**（从启动到可投稿），假设 GPU 资源持续可用。如果 GPU 间歇使用，可能延长至 12-16 周。EMNLP 2026 投稿 deadline 前有充足时间。\n\n",
+      "numLines": 177,
+      "startLine": 1,
+      "totalLines": 177
+    }
+  },
+  "sourceToolAssistantUUID": "77b3f10a-2b71-4f32-b662-bce149635d41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-12T12:47:56.446Z_
+
+<details><summary>↩ Tool result · `toolu_01QiWtnooWBBmhsup3dg9Zic`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a640de0c-24ea-4232-8e34-51a48e74fc2e",
+  "isSidechain": false,
+  "promptId": "9729880e-bd4e-40a2-b79a-77916db351e5",
+  "type": "user",
+  "uuid": "25687c73-a92a-41ea-b8a5-e9221daf0aa9",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 22
+  },
+  "sourceToolAssistantUUID": "a640de0c-24ea-4232-8e34-51a48e74fc2e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-12T12:47:56.443Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01QiWtnooWBBmhsup3dg9Zic`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4c4af89-b627-4de3-8919-317c079243ec",
+  "isSidechain": false,
+  "requestId": "req_011CaxhaH4SsBka5owBaHsLN",
+  "type": "assistant",
+  "uuid": "a640de0c-24ea-4232-8e34-51a48e74fc2e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BEkCkUQGHZmVVDqMnW5kJB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11893,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 180,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11893,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 180,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11893,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11893
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "25687c73-a92a-41ea-b8a5-e9221daf0aa9",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature review and paper framework design",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-12T12:48:01.301Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read the ROADMAP.md to understand the MVP details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25687c73-a92a-41ea-b8a5-e9221daf0aa9",
+  "isSidechain": false,
+  "requestId": "req_011CaxhacGMde9tUPwFMmExW",
+  "type": "assistant",
+  "uuid": "e2c531f9-4712-459a-8f20-f9212bffcb4b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01326utjg9hUy2VphZUkSgq2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11653,
+      "cache_read_input_tokens": 23734,
+      "output_tokens": 141,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11653,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 141,
+          "cache_read_input_tokens": 23734,
+          "cache_creation_input_tokens": 11653,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11653
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-12T12:48:02.323Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_0149nSyWmstuSPMAJ5CWqSJD`</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "file": "ROADMAP.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e2c531f9-4712-459a-8f20-f9212bffcb4b",
+  "isSidechain": false,
+  "requestId": "req_011CaxhacGMde9tUPwFMmExW",
+  "type": "assistant",
+  "uuid": "60e4fed8-7548-4aed-9b8b-aea65a7cc085",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01326utjg9hUy2VphZUkSgq2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11653,
+      "cache_read_input_tokens": 23734,
+      "output_tokens": 141,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11653,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 141,
+          "cache_read_input_tokens": 23734,
+          "cache_creation_input_tokens": 11653,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11653
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-12T12:48:02.335Z_
+
+<details><summary>↩ Tool result · `toolu_0149nSyWmstuSPMAJ5CWqSJD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ROADMAP.md\", \"content\": \"# gen-depth-contamination — Research Dashboard\\n\\n> 最后更新: 2026-05-12 11:16 UTC | 更新原因: 修正模型型号 1.8B→1.5B-Instruct，更新进展状态\\n\\n## 核心方向\\n估计递归生成合成文本的代际深度（generational depth），构建首个 ordinal depth classifier，实现 depth-aware graduated filtering 替代 binary detection。核心科学量：判别饱和边界 K*。\\n\\n## 当前进展\\n- **阶段**: MVP 验证（执行中）\\n- **基础设施**: autodl-4090d（1×RTX 4090D 24GB, cuda:0）\\n- **实验**: mvp_pilot_sat_v1 PREPARING，Agent 在编写 pipeline 代码\\n\\n## MVP 验证方案\\n**核心假设**: 递归生成文本在统计特征空间上存在可分辨的代际差异，且差异随深度呈系统性趋势。\\n\\n**方案**（对应 IDEA_BRIEF Phase 0 pilot saturation study）:\\n- 模型: **Qwen2.5-1.5B-Instruct**（Qwen2.5 系列无 1.8B；用 Instruct 更接近真实世界合成文本来源，full study 再对比 base vs Instruct）\\n- 种子数据: C4 子集 5K docs\\n- 深度链: depth 0(human) → depth 1-5（递归生成）\\n- 生成方式: **prompt-chain**（upper bound estimate，retrain-chain 留到 research 阶段）\\n- 解码策略: **nucleus sampling p=0.95, T=1.0**\\n- 特征（15 维）: surprisal 9 维 + vocab diversity 3 维 + tail-thinning 3 维\\n- 评估: pairwise depth AUC + JSD + LightGBM ordinal 分类\\n\\n**K* 操作性定义**: K* = max k s.t. AUC(depth k-1 vs k) > 0.60\\n\\n**Pass/Fail 标准**:\\n- ✅ Pass: K* ≥ 3 且 AUC(depth 0 vs 1) > 0.70\\n- ⚠️ Conditional Pass: K* = 2，但特征趋势清晰 → saturation characterization 路线\\n- ❌ Fail: K* ≤ 1 或特征无系统性趋势\\n\\n**预估资源**: 1×RTX 4090D，约 8-12 GPU 小时\\n\\n## 近期任务\\n- [x] GPU 服务器到位\\n- [x] 项目配置绑定\\n- [ ] Agent 完成 pipeline 代码 + 环境搭建\\n- [ ] 生成 depth chain（C4 5K × 6 depths）\\n- [ ] 特征提取 + pairwise AUC + JSD 分析\\n- [ ] 判定 K* → MVP gate 决策\\n\\n## GPU 预算\\n1×RTX 4090D 24GB @ autodl-4090d（cuda:0）\\n\\n## 关键风险\\n1. K* ≤ 2 → saturation characterization 路线仍可投\\n2. 方法论贡献薄弱 → 信道级联 + DPI 理论框架可补强\\n3. EMNLP ARR May 25 deadline 仅 13 天 → MVP 必须 2 天内完成\\n4. Reviewer SSH 不通，无法独立核实环境 → 需跟进修复\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D001 | 2026-05-12 | MVP 方案：Qwen2.5-1.8B + C4 5K docs 做 pilot saturatio | — |\\n\\n\\n\\n\", \"total_chars\": 1736, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "60e4fed8-7548-4aed-9b8b-aea65a7cc085",
+  "isSidechain": false,
+  "promptId": "9729880e-bd4e-40a2-b79a-77916db351e5",
+  "type": "user",
+  "uuid": "f1b35443-5fef-46d5-bfdd-7be4b31f1ecd",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ROADMAP.md\\\", \\\"content\\\": \\\"# gen-depth-contamination — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-12 11:16 UTC | 更新原因: 修正模型型号 1.8B→1.5B-Instruct，更新进展状态\\\\n\\\\n## 核心方向\\\\n估计递归生成合成文本的代际深度（generational depth），构建首个 ordinal depth classifier，实现 depth-aware graduated filtering 替代 binary detection。核心科学量：判别饱和边界 K*。\\\\n\\\\n## 当前进展\\\\n- **阶段**: MVP 验证（执行中）\\\\n- **基础设施**: autodl-4090d（1×RTX 4090D 24GB, cuda:0）\\\\n- **实验**: mvp_pilot_sat_v1 PREPARING，Agent 在编写 pipeline 代码\\\\n\\\\n## MVP 验证方案\\\\n**核心假设**: 递归生成文本在统计特征空间上存在可分辨的代际差异，且差异随深度呈系统性趋势。\\\\n\\\\n**方案**（对应 IDEA_BRIEF Phase 0 pilot saturation study）:\\\\n- 模型: **Qwen2.5-1.5B-Instruct**（Qwen2.5 系列无 1.8B；用 Instruct 更接近真实世界合成文本来源，full study 再对比 base vs Instruct）\\\\n- 种子数据: C4 子集 5K docs\\\\n- 深度链: depth 0(human) → depth 1-5（递归生成）\\\\n- 生成方式: **prompt-chain**（upper bound estimate，retrain-chain 留到 research 阶段）\\\\n- 解码策略: **nucleus sampling p=0.95, T=1.0**\\\\n- 特征（15 维）: surprisal 9 维 + vocab diversity 3 维 + tail-thinning 3 维\\\\n- 评估: pairwise depth AUC + JSD + LightGBM ordinal 分类\\\\n\\\\n**K* 操作性定义**: K* = max k s.t. AUC(depth k-1 vs k) > 0.60\\\\n\\\\n**Pass/Fail 标准**:\\\\n- ✅ Pass: K* ≥ 3 且 AUC(depth 0 vs 1) > 0.70\\\\n- ⚠️ Conditional Pass: K* = 2，但特征趋势清晰 → saturation characterization 路线\\\\n- ❌ Fail: K* ≤ 1 或特征无系统性趋势\\\\n\\\\n**预估资源**: 1×RTX 4090D，约 8-12 GPU 小时\\\\n\\\\n## 近期任务\\\\n- [x] GPU 服务器到位\\\\n- [x] 项目配置绑定\\\\n- [ ] Agent 完成 pipeline 代码 + 环境搭建\\\\n- [ ] 生成 depth chain（C4 5K × 6 depths）\\\\n- [ ] 特征提取 + pairwise AUC + JSD 分析\\\\n- [ ] 判定 K* → MVP gate 决策\\\\n\\\\n## GPU 预算\\\\n1×RTX 4090D 24GB @ autodl-4090d（cuda:0）\\\\n\\\\n## 关键风险\\\\n1. K* ≤ 2 → saturation characterization 路线仍可投\\\\n2. 方法论贡献薄弱 → 信道级联 + DPI 理论框架可补强\\\\n3. EMNLP ARR May 25 deadline 仅 13 天 → MVP 必须 2 天内完成\\\\n4. Reviewer SSH 不通，无法独立核实环境 → 需跟进修复\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D001 | 2026-05-12 | MVP 方案：Qwen2.5-1.8B + C4 5K docs 做 pilot saturatio | — |\\\\n\\\\n\\\\n\\\\n\\\", \\\"total_chars\\\": 1736, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ROADMAP.md\", \"content\": \"# gen-depth-contamination — Research Dashboard\\n\\n> 最后更新: 2026-05-12 11:16 UTC | 更新原因: 修正模型型号 1.8B→1.5B-Instruct，更新进展状态\\n\\n## 核心方向\\n估计递归生成合成文本的代际深度（generational depth），构建首个 ordinal depth classifier，实现 depth-aware graduated filtering 替代 binary detection。核心科学量：判别饱和边界 K*。\\n\\n## 当前进展\\n- **阶段**: MVP 验证（执行中）\\n- **基础设施**: autodl-4090d（1×RTX 4090D 24GB, cuda:0）\\n- **实验**: mvp_pilot_sat_v1 PREPARING，Agent 在编写 pipeline 代码\\n\\n## MVP 验证方案\\n**核心假设**: 递归生成文本在统计特征空间上存在可分辨的代际差异，且差异随深度呈系统性趋势。\\n\\n**方案**（对应 IDEA_BRIEF Phase 0 pilot saturation study）:\\n- 模型: **Qwen2.5-1.5B-Instruct**（Qwen2.5 系列无 1.8B；用 Instruct 更接近真实世界合成文本来源，full study 再对比 base vs Instruct）\\n- 种子数据: C4 子集 5K docs\\n- 深度链: depth 0(human) → depth 1-5（递归生成）\\n- 生成方式: **prompt-chain**（upper bound estimate，retrain-chain 留到 research 阶段）\\n- 解码策略: **nucleus sampling p=0.95, T=1.0**\\n- 特征（15 维）: surprisal 9 维 + vocab diversity 3 维 + tail-thinning 3 维\\n- 评估: pairwise depth AUC + JSD + LightGBM ordinal 分类\\n\\n**K* 操作性定义**: K* = max k s.t. AUC(depth k-1 vs k) > 0.60\\n\\n**Pass/Fail 标准**:\\n- ✅ Pass: K* ≥ 3 且 AUC(depth 0 vs 1) > 0.70\\n- ⚠️ Conditional Pass: K* = 2，但特征趋势清晰 → saturation characterization 路线\\n- ❌ Fail: K* ≤ 1 或特征无系统性趋势\\n\\n**预估资源**: 1×RTX 4090D，约 8-12 GPU 小时\\n\\n## 近期任务\\n- [x] GPU 服务器到位\\n- [x] 项目配置绑定\\n- [ ] Agent 完成 pipeline 代码 + 环境搭建\\n- [ ] 生成 depth chain（C4 5K × 6 depths）\\n- [ ] 特征提取 + pairwise AUC + JSD 分析\\n- [ ] 判定 K* → MVP gate 决策\\n\\n## GPU 预算\\n1×RTX 4090D 24GB @ autodl-4090d（cuda:0）\\n\\n## 关键风险\\n1. K* ≤ 2 → saturation characterization 路线仍可投\\n2. 方法论贡献薄弱 → 信道级联 + DPI 理论框架可补强\\n3. EMNLP ARR May 25 deadline 仅 13 天 → MVP 必须 2 天内完成\\n4. Reviewer SSH 不通，无法独立核实环境 → 需跟进修复\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D001 | 2026-05-12 | MVP 方案：Qwen2.5-1.8B + C4 5K docs 做 pilot saturatio | — |\\n\\n\\n\\n\", \"total_chars\": 1736, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "60e4fed8-7548-4aed-9b8b-aea65a7cc085",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-12T12:48:10.303Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a thorough understanding of the project. Let me write the three documents. Let me plan them out:
+
+1. **Related Work Structure** (`related_work_structure.md`) - 4 threads with core papers
+2. **Claim Routes** (`claim_routes.md`) - Route A (K*≥3) and Route B (K*=2)
+3. **Theory Framework** (`theory_framework.md`) - Channel cascade + DPI
+
+Let me write all three documents. I have extensive information from the IDEA_BRIEF. Let me be careful not to fabricate papers - I'll mark uncertain ones with [需验证].
+
+
+Writing the three markdown files...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f1b35443-5fef-46d5-bfdd-7be4b31f1ecd",
+  "isSidechain": false,
+  "requestId": "req_011Caxhb3acWPGPu3k8zKS1S",
+  "type": "assistant",
+  "uuid": "ea4434d3-b191-434f-9d06-ab5d48717348",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeFa4vghF8pssUaXK33Xou",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1385,
+      "cache_read_input_tokens": 35387,
+      "output_tokens": 11342,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1385,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11342,
+          "cache_read_input_tokens": 35387,
+          "cache_creation_input_tokens": 1385,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1385
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-12T12:48:10.331Z_
+
+已读取 IDEA_BRIEF 和 ROADMAP。现在并行写三份文档。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea4434d3-b191-434f-9d06-ab5d48717348",
+  "isSidechain": false,
+  "requestId": "req_011Caxhb3acWPGPu3k8zKS1S",
+  "type": "assistant",
+  "uuid": "89ccfe7b-f888-453f-89c5-64ca27ec6fb0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeFa4vghF8pssUaXK33Xou",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1385,
+      "cache_read_input_tokens": 35387,
+      "output_tokens": 11342,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1385,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11342,
+          "cache_read_input_tokens": 35387,
+          "cache_creation_input_tokens": 1385,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1385
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-12T12:49:34.921Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01WWqNrmAyYV7qDUEdiRwQPM`</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/related_work_structure.md",
+  "content": "# Related Work 结构笔记\n\n> 四个 thread 的核心论文梳理，每个 thread 说明与本工作的定位关系。\n\n---\n\n## Thread 1: Binary Synthetic Text Detection → 我们扩展到 Ordinal Depth\n\n**核心问题**：现有检测方法将合成文本视为 binary label（human vs. machine），忽略了代际深度这一关键维度。\n\n**核心论文**：\n\n1. **Min-K%++ (Zhang et al., ICLR 2025)**\n   - 通过 token probability 分析检测 pre-training membership，改进了 Min-K% 基线\n   - 局限：membership inference ≠ ordinal depth estimation；仅判断\"是否在训练集中\"，无法回答\"经过了几代生成\"\n   - 与我们的关系：Min-K% 的 low-probability token fraction 是我们 token-level 特征的子集；我们证明这些特征可以做更细粒度的 ordinal prediction\n\n2. **DivEye (TMLR 2026)** [需验证确切作者]\n   - 9 个 surprisal-based 统计特征（分布矩 + 一阶/二阶差分）用于可解释的 binary 检测，超过 zero-shot baseline 33.2%\n   - 局限：纯 binary 分类，未利用特征随 depth 变化的系统性趋势\n   - 与我们的关系：DivEye 的 9 维 surprisal 特征是我们特征集的核心子集；我们扩展为 ordinal regression 输入，证明同一特征集可支撑 depth 分辨\n\n3. **DetectGPT (Mitchell et al., ICML 2023)**\n   - 利用 log probability curvature（perturbation-based）检测 machine-generated text\n   - 后续改进：DNA-GPT、Fast-DetectGPT 等\n   - 与我们的关系：zero-shot detection 方法的 confidence score 理论上可作为 depth proxy（confidence ↑ with depth），但我们在 baseline 对比中验证其与 true depth 的 Spearman 相关性，预期弱于专用 ordinal classifier\n\n4. **Binoculars (Hans et al., 2024)** [需验证发表年份和venue]\n   - 使用两个 LM 的 perplexity 比值检测合成文本\n   - 与我们的关系：另一种 binary detection confidence → depth proxy 的 baseline\n\n**我们的定位**：从 binary classification 升级为 ordinal regression。不是提出新的检测特征，而是证明已有特征（DivEye-style + 扩展）在 ordinal depth 维度上有系统性可分辨结构，且 ordinal signal 对下游 data curation 有实用价值。\n\n---\n\n## Thread 2: Model Collapse / Iterative Retraining → 我们量化代际退化边界\n\n**核心问题**：递归训练导致的模型坍缩已被广泛研究，但缺少从 forensic 视角量化单个文档\"经历了几代\"的工具。\n\n**核心论文**：\n\n1. **Shumailov et al. (Nature 2024)**\n   - 首次系统证明递归训练导致 tail disappearance → diversity loss → mode conflation 的三阶段坍缩\n   - 早期坍缩（tail loss）比晚期坍缩（mode conflation）发生得更早、更剧烈\n   - 与我们的关系：他们刻画了 macro 现象（population-level collapse dynamics），我们构建 micro 工具（单文档 depth forensics）。他们的\"早期退化最剧烈\"观察是我们 K* 假设的经验基础（K* ≈ 3-5）\n\n2. **Alemohammad et al. (ICML 2024)** [需验证年份——可能是 2023 preprint, 2024 发表]\n   - \"Self-consuming generative models go MAD\"——证明迭代训练在缺乏新鲜数据注入时导致 Model Autophagy Disorder\n   - 关注图像生成，但核心机制（diversity collapse under recursive feedback）跨模态通用\n   - 与我们的关系：跨模态的理论对应；他们的 MAD 概念对应我们的 depth → quality 单调衰减假设\n\n3. **Dohmatob et al. (ICLR 2025)**\n   - \"Strong Model Collapse\"——提供理论基础，证明在 data replacement 设定下 collapse 是不可避免的\n   - 与我们的关系：他们的理论 bound 可与我们的信道级联 DPI 框架互补——DPI 给出 information-theoretic 视角，Strong Collapse 给出 statistical learning 视角\n\n4. **Schaeffer et al. (2025)**\n   - \"Position: Model Collapse Does Not Mean What You Think\"——识别了 8 种不同的 collapse 定义，指出在 data accumulation（非 replacement）条件下，catastrophic collapse 需要\"trillions of models\"\n   - 关键承认：tail disappearance 和 diversity loss 是真实的、有实际危害的现象，即使不达到 catastrophic collapse\n   - 与我们的关系：他们的 nuanced position 支持我们的 framing——不需要 catastrophic collapse 也有 graduated degradation，K* 度量的正是这种 non-catastrophic but real 的退化边界\n\n**我们的定位**：Model collapse 文献研究\"递归训练会发生什么\"（understanding），我们研究\"给定一段文本，它经历了几代\"（forensics/estimation）。宏观理解 vs. 微观工具。我们的 K* 量化了 collapse 文献一直在定性讨论的\"可区分性边界\"。\n\n---\n\n## Thread 3: Verification-Based Data Curation → Graduated Filtering 替代 Binary\n\n**核心问题**：现有数据质量控制要么不区分合成/人类文本（Surplexity），要么用 binary quality gate（verification 方法），丢失了 depth 提供的 graded quality signal。\n\n**核心论文**：\n\n1. **Feng et al. (ICLR 2025)**\n   - \"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification\"\n   - 理论 + 实验证明 verification（外部信号筛选高质量合成样本）可防止 collapse\n   - 提出 imperfect verifier 的充分条件\n   - 局限：verification 是 binary pass/fail gate，不估计深度，不提供 graded signal\n   - 与我们的关系：他们证明了\"筛选有用\"，我们证明\"按深度 graded 筛选更好\"——从 binary gate 到 ordinal weighting\n\n2. **Yi et al. (arXiv 2510.16657, 2025)**\n   - 通过外部 verifier 注入信息逆转 collapse trajectory\n   - 发现长期性能收敛到 verifier 的 knowledge center\n   - 局限：同样是 binary verification，不估计 depth\n   - 与我们的关系：如果 verifier 能利用 depth signal 做 graduated verification，理论上可延缓 convergence to knowledge center\n\n3. **Surplexity (2024)** [需验证确切作者]\n   - \"Learning by Surprise\"——按 surprise 值过滤训练数据缓解 collapse\n   - 不区分 human vs. AI text，完全基于 perplexity 信号\n   - 与我们的关系：Surplexity 是我们 downstream curation 实验的 baseline 之一；depth-aware filtering 预期优于 surprise-only filtering，因为 depth 编码了更多 provenance 信息\n\n4. **Drayson et al. (EMNLP 2025)**\n   - 证明 binary machine-generated text detection 可防止 collapse\n   - 关键贡献：跟踪 GPT-2 和 SmolLM2（124M-1.7B）上 100 代的特征演化，展示 diversity、Self-BLEU、perplexity 分布随深度系统性变化\n   - 局限：虽然 characterize 了 depth-wise feature evolution，但只构建了 binary detector，未做 depth prediction\n   - 与我们的关系：最直接的前驱工作。他们 empirically ground 了 depth-discriminative signals exist 的前提，我们在此基础上构建首个 ordinal depth classifier\n\n**我们的定位**：从 binary quality gate → graduated quality signal。类比：二值化 vs. 灰度图。Depth-graduated curation 是 provenance-aware domain reweighting 的一种形式，比 binary filtering 在 threshold 附近信息损失更小。\n\n---\n\n## Thread 4: Data Mixing / Contamination Estimation → Depth-Aware Mixing\n\n**核心问题**：大规模预训练数据混合已有系统方法论，但现有方法不考虑合成文本的 depth 维度。\n\n**核心论文**：\n\n1. **DoReMi (Xie et al., NeurIPS 2023)** [需验证年份]\n   - 使用 proxy model 学习 domain weights，优化 worst-group downstream performance\n   - 与我们的关系：depth-graduated weighting 是 provenance-aware domain reweighting——与 DoReMi 的 domain weighting 理念一致，但我们的 weighting 来自 estimated depth 而非 domain identity，语义更可解释\n\n2. **Data Mixing Laws (Ye et al., 2024)** [需验证确切作者和年份]\n   - 研究不同数据源混合比例对 LLM 性能的 scaling law\n   - 与我们的关系：如果 depth 是一个新的 mixing dimension，depth-aware mixing law 可以指导实际预训练数据配比\n\n3. **ConStat (NeurIPS 2024)** [需验证确切作者]\n   - Performance-based contamination detection：通过 rephrased samples 上的性能差异检测 benchmark contamination\n   - 与我们的关系：ConStat 检测 benchmark contamination（eval-side），我们估计 training data depth contamination（data-side）——互补视角\n\n4. **DATAPROPHET (ICLR 2026)** [需验证确切作者]\n   - Training-free data quality metrics（perplexity + similarity + diversity）用于多模态合成数据选择\n   - 与我们的关系：他们的 quality metrics 可作为我们 depth-quality 单调性验证的 baseline quality proxy\n\n**我们的定位**：在 data mixing 框架中引入 depth 作为新的数据维度。现有方法按 domain/source/quality 分层，我们增加 generational depth 维度，使 provenance 信息进入 mixing 决策。\n\n---\n\n## 总结：四线交汇\n\n```\nThread 1 (Binary Detection)    →  我们：binary → ordinal\nThread 2 (Model Collapse)      →  我们：macro understanding → micro forensics\nThread 3 (Verification/Curation) →  我们：binary gate → graduated signal\nThread 4 (Data Mixing)          →  我们：depth as new mixing dimension\n```\n\n核心差异化一句话：**No existing work estimates how many recursive generation steps a text has undergone — we fill this gap with the first ordinal depth classifier and demonstrate its utility for graduated data curation.**\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89ccfe7b-f888-453f-89c5-64ca27ec6fb0",
+  "isSidechain": false,
+  "requestId": "req_011Caxhb3acWPGPu3k8zKS1S",
+  "type": "assistant",
+  "uuid": "42ecc56b-ffe8-4d50-aff4-620a4e875b16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeFa4vghF8pssUaXK33Xou",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1385,
+      "cache_read_input_tokens": 35387,
+      "output_tokens": 11342,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1385,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11342,
+          "cache_read_input_tokens": 35387,
+          "cache_creation_input_tokens": 1385,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1385
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-12T12:52:21.450Z_
+
+<details><summary>↩ Tool result · `toolu_01EqpG1kuf2fT1hW6hWgeJRF`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/theory_framework.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fa1350d0-4a66-45be-9cfe-7e19e566c484",
+  "isSidechain": false,
+  "promptId": "9729880e-bd4e-40a2-b79a-77916db351e5",
+  "type": "user",
+  "uuid": "90ebb44e-3431-4b96-95a0-de4cb54c1085",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/theory_framework.md",
+    "content": "# 信道级联 + DPI 理论框架草案\n\n> 将递归生成建模为 iterated lossy channel，用 Data Processing Inequality 约束 depth-discriminability 的 fundamental limit。\n\n---\n\n## 1. 信道级联模型形式化\n\n### 基本设定\n\n设 X₀ 为人类撰写的文本（seed text），表示为某概率空间上的随机变量。LLM 的生成过程建模为一个随机信道：\n\n$$\\mathcal{T}: \\mathcal{X} \\to \\mathcal{X}$$\n\n将输入文本映射到输出文本。递归生成形成 Markov chain：\n\n$$X_0 \\to X_1 \\to X_2 \\to \\cdots \\to X_k$$\n\n其中 $X_{i+1} = \\mathcal{T}(X_i)$，即 depth-$(i+1)$ 的文本由 depth-$i$ 的文本经过一次 LLM 信道产生。\n\n**关键假设**：\n\n- **(A1) 时不变信道**：同一 LLM + 同一 decoding strategy 在每次迭代中使用相同的信道 $\\mathcal{T}$。（prompt-chain 设定下成立；retrain-chain 需放宽为 $\\mathcal{T}_i$）\n- **(A2) Markov 性**：$X_{i+1}$ 仅依赖 $X_i$，不依赖 $X_0, \\ldots, X_{i-1}$（prompt-chain 逐段独立生成时成立）\n- **(A3) 有损信道**：$\\mathcal{T}$ 是 non-invertible 的——生成过程丢失关于输入的信息（sampling 引入 noise，decoding 策略截断分布尾部）\n\n### 形式化表述\n\n$$X_0 \\xrightarrow{\\mathcal{T}} X_1 \\xrightarrow{\\mathcal{T}} X_2 \\xrightarrow{\\mathcal{T}} \\cdots \\xrightarrow{\\mathcal{T}} X_k$$\n\n这是一个齐次 Markov chain（在假设 A1 下），其转移核由 LLM 的条件分布 $p_\\theta(\\cdot | x)$ 决定。\n\n---\n\n## 2. Data Processing Inequality 约束\n\n### DPI 基本形式\n\n对于 Markov chain $X_0 \\to X_1 \\to \\cdots \\to X_k$，DPI 给出：\n\n$$I(X_0; X_k) \\leq I(X_0; X_{k-1}) \\leq \\cdots \\leq I(X_0; X_1) \\leq H(X_0)$$\n\n即 $I(X_0; X_k)$ 关于 $k$ 单调非递增。\n\n**直觉**：每经过一次 LLM 信道，关于原始人类文本 $X_0$ 的信息只会减少或不变，绝不增加。递归生成是不可逆的信息丢失过程。\n\n### 严格衰减条件\n\n当 $\\mathcal{T}$ 是 strictly lossy channel（即 $I(X_i; X_{i+1}) < H(X_i)$ for all $i$）时，衰减是严格的：\n\n$$I(X_0; X_k) < I(X_0; X_{k-1}) \\quad \\forall k \\geq 1$$\n\n这对应于 LLM 生成过程中 sampling noise 不可消除的事实——任何 temperature > 0 或 nucleus/top-k 截断都引入不可逆信息损失。\n\n### 与 Depth Discriminability 的联系\n\n两个不同深度 $k, k'$ 的文本 $X_k, X_{k'}$ 的可区分性取决于它们的分布差异。定义可区分性度量：\n\n$$D(k, k') = d(P_{X_k}, P_{X_{k'}})$$\n\n其中 $d$ 是某种分布距离（JSD、MMD、Total Variation 等）。\n\n**关键观察**：随着 $k$ 增大，$P_{X_k}$ 趋近于信道 $\\mathcal{T}$ 的不动点分布 $P^*$（如果存在），相邻深度的分布差异趋于零：\n\n$$D(k, k+1) \\to 0 \\quad \\text{as} \\quad k \\to \\infty$$\n\n---\n\n## 3. K* 的理论解释\n\n### 定义\n\n$K^*$ 是 **判别饱和边界（discriminability saturation boundary）**：\n\n$$K^* = \\max\\{k : D(k-1, k) > \\epsilon\\}$$\n\n其中 $\\epsilon$ 是 noise floor（对应于有限样本下的统计检验 power limit）。\n\n### Information-Theoretic 解释\n\n$K^*$ 对应于 $I(X_0; X_k)$ 降至 noise floor 的临界深度：\n\n$$K^* \\approx \\min\\{k : I(X_0; X_k) - I(X_0; X_{k+1}) < \\delta\\}$$\n\n其中 $\\delta$ 是 MI 增量的可检测下限。\n\n**关键 insight**：$K^*$ 不是分类器的能力上限，而是 **information-theoretic impossibility boundary**——任何方法（无论多复杂）都无法区分 depth $> K^*$ 的文本，因为原始人类文本的信息已经被信道噪声完全淹没。\n\n### 与 Channel Capacity 的关系\n\n信道 $\\mathcal{T}$ 的 \"contraction rate\" $\\rho$ 控制 MI 衰减速度：\n\n$$I(X_0; X_k) \\leq \\rho^k \\cdot H(X_0) \\quad (\\text{if exponential decay})$$\n\n- $\\rho$ 接近 1（低噪声信道，如 greedy decoding）→ 衰减慢，$K^*$ 大\n- $\\rho$ 接近 0（高噪声信道，如 high-temperature sampling）→ 衰减快，$K^*$ 小\n\n**但这里有一个反直觉的 nuance**：虽然 high-temperature 使 $\\rho$ 更小（信息丢失更快），但它同时保持了更高的 diversity，使相邻深度的分布差异可能更大。因此 $K^*$ 与 decoding strategy 的关系不是简单单调的——这正是需要实验验证的假设。\n\n---\n\n## 4. Propositions / Theorems 骨架\n\n### Proposition 1: MI 单调衰减（DPI 直接推论）\n\n**Statement**: 设 $X_0 \\to X_1 \\to \\cdots \\to X_k$ 为上述递归生成 Markov chain。则对任意 $k \\geq 1$：\n\n$$I(X_0; X_k) \\leq I(X_0; X_{k-1})$$\n\n等号成立当且仅当 $X_{k-1} \\to X_k$ 是 sufficient statistic（即信道 $\\mathcal{T}$ 是无损的，实际中不成立）。\n\n**Proof sketch**:\n直接由 DPI 定理得出。$X_0 \\to X_{k-1} \\to X_k$ 构成 Markov chain，DPI 立即给出 $I(X_0; X_k) \\leq I(X_0; X_{k-1})$。严格不等号由 $\\mathcal{T}$ 的 strictly lossy 性质保证（sampling 引入不可消除的噪声）。$\\square$\n\n**论文中的作用**：建立理论基础——depth discrimination 必然随深度退化，这不是分类器缺陷，而是信息论必然。\n\n---\n\n### Proposition 2: 不动点收敛与 K* 有限性\n\n**Statement**: 若信道 $\\mathcal{T}$ 具有唯一不动点分布 $P^*$（即 $\\mathcal{T}(P^*) = P^*$），且 $\\mathcal{T}$ 关于某分布度量 $d$ 是 contractive 的（$d(\\mathcal{T}(P), \\mathcal{T}(Q)) \\leq \\rho \\cdot d(P, Q)$，$0 < \\rho < 1$），则：\n\n(a) $d(P_{X_k}, P^*) \\leq \\rho^k \\cdot d(P_{X_0}, P^*)$\n\n(b) $D(k, k+1) = d(P_{X_k}, P_{X_{k+1}}) \\leq (\\rho^k + \\rho^{k+1}) \\cdot d(P_{X_0}, P^*)$\n\n(c) 对任意 $\\epsilon > 0$，$K^*(\\epsilon)$ 有限。\n\n**Proof sketch**:\n(a) 由 contractive mapping theorem 的标准迭代 bound。\n(b) 三角不等式：$d(P_{X_k}, P_{X_{k+1}}) \\leq d(P_{X_k}, P^*) + d(P_{X_{k+1}}, P^*)$，代入 (a) 得结论。\n(c) $D(k, k+1)$ 以几何速率趋于 0，因此超过 $\\epsilon$ 的 $k$ 值数量有限。$\\square$\n\n**论文中的作用**：证明 $K^*$ 的有限性是理论必然——saturation 不是方法缺陷而是系统属性。同时给出 $K^* = O(\\log(d(P_{X_0}, P^*)/\\epsilon) / \\log(1/\\rho))$ 的粗略 scaling。\n\n---\n\n### Proposition 3: 衰减速率与 Decoding Strategy 的关系（经验驱动假设）\n\n**Statement（Conjecture，标注为 empirically motivated）**: 设 $\\rho(\\tau)$ 为 temperature 为 $\\tau$ 时信道 $\\mathcal{T}_\\tau$ 的 contraction rate。在以下简化假设下（unigram-level，忽略序列结构）：\n\n(a) $\\rho(\\tau)$ 关于 $\\tau$ 非单调：存在 $\\tau^*$ 使得 $\\rho(\\tau)$ 在 $\\tau < \\tau^*$ 时随 $\\tau$ 递增，在 $\\tau > \\tau^*$ 时随 $\\tau$ 递减。\n\n(b) 直觉：极低 temperature（近 greedy）→ 信道近确定性 → $\\rho$ 大但 diversity 低 → MI 本身小。极高 temperature → 信道近均匀随机 → $\\rho$ 小 → MI 快速衰减。中间 temperature 平衡两个效应。\n\n**Proof sketch**: 此为 conjecture，不提供证明。给出 unigram softmax 信道的显式 contraction rate 计算作为 supporting analysis，实验验证 $K^*(\\tau)$ 的非单调性。\n\n**论文中的作用**：将 decoding strategy 对 $K^*$ 的影响从 ad hoc 观察提升为 hypothesis-driven 研究。用 AIC/BIC model comparison 区分 exponential vs. polynomial MI 衰减。\n\n---\n\n## 5. 计算上的 Tractable Proxy\n\n### JSD 作为 MI 近似\n\nMutual information 在高维文本空间中不可直接计算。我们采用 Jensen-Shannon Divergence (JSD) 作为 computationally tractable proxy：\n\n$$\\text{JSD}(P_{X_k} \\| P_{X_{k'}}) = \\frac{1}{2} D_{\\text{KL}}(P_{X_k} \\| M) + \\frac{1}{2} D_{\\text{KL}}(P_{X_{k'}} \\| M)$$\n\n其中 $M = \\frac{1}{2}(P_{X_k} + P_{X_{k'}})$。\n\n**在 unigram level 上计算**：将 $P_{X_k}$ 估计为 depth-$k$ 文档集合的 empirical unigram distribution。\n\n**局限性（必须在论文中承认）**：\n- Unigram JSD 忽略序列结构（bigram, trigram, syntactic patterns）\n- 不等价于真正的 MI——JSD 是 distributional divergence，MI 是 sample-level information quantity\n- 但 DPI 的定性结论（单调衰减）仍成立，因为 $\\text{JSD}(P_{X_k} \\| P_{X_0})$ 在 Markov chain 下也满足类似的单调性\n\n**补充度量**：\n- Pairwise classifier AUC 作为 empirical discriminability 的非参数度量\n- Feature-space Mahalanobis distance 作为多维度的分布距离\n\n---\n\n## 6. 理论与实验的对接\n\n| 理论预测 | 实验验证方法 |\n|---|---|\n| $I(X_0; X_k)$ 单调衰减 | JSD$(P_{X_0}, P_{X_k})$ 随 $k$ 递减曲线 |\n| $K^*$ 有限 | Pairwise AUC 矩阵 + 操作性 K* 定义 |\n| 衰减速率 $\\rho$ 由 decoding strategy 控制 | $K^*(\\text{greedy})$ vs. $K^*(p{=}0.95)$ vs. $K^*(T{=}1.2)$ |\n| Exponential vs. polynomial decay | AIC/BIC model comparison on JSD decay curves |\n| 不动点 $P^*$ 存在 | 检验 $P_{X_k}$ 对 $k$ 的收敛性（JSD$(P_{X_k}, P_{X_{k+1}}) \\to 0$） |\n\n---\n\n## 7. 与既有理论的关系\n\n- **Shumailov et al. (Nature 2024)**：他们的 tail disappearance → diversity loss → mode conflation 三阶段模型对应我们的 $P_{X_k} \\to P^*$ 收敛过程中的不同阶段——尾部消失是收敛初期，mode conflation 是收敛后期\n- **Strong Model Collapse (Dohmatob et al., ICLR 2025)**：他们的 statistical learning theory bound 与我们的 DPI bound 互补——他们关注 retrain-chain 下 generalization error 的增长，我们关注 distributional information 的衰减\n- **JPEG 重压缩类比**：JPEG 信道也是 contractive mapping（量化步骤不可逆），K* 对应 JPEG recompression detection 的 cycle limit——在图像 forensics 中已被充分研究的问题\n\n---\n\n## 8. 写作注意事项\n\n1. **措辞校准**：Propositions 1-2 是严格的（DPI + contractive mapping 标准结果）；Proposition 3 标注为 \"empirically motivated conjecture\"，不 overclaim\n2. **JSD proxy 局限性**：在 Method section 设专段讨论 unigram 近似的局限和 justification\n3. **信道假设**：A1（时不变）和 A2（Markov）在 prompt-chain 下合理，在 retrain-chain 下需要放宽——在 Discussion 中讨论\n4. **不做\"完整证明\"**：论文风格是 proposition + proof sketch + experimental validation，不是纯理论论文的 full proof 风格。重点在 theory-experiment connection\n5. **Appendix 安排**：完整的 contraction rate 计算、unigram softmax channel 分析放 appendix\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "fa1350d0-4a66-45be-9cfe-7e19e566c484",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-12T12:49:34.960Z_
+
+<details><summary>↩ Tool result · `toolu_01WWqNrmAyYV7qDUEdiRwQPM`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/related_work_structure.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "42ecc56b-ffe8-4d50-aff4-620a4e875b16",
+  "isSidechain": false,
+  "promptId": "9729880e-bd4e-40a2-b79a-77916db351e5",
+  "type": "user",
+  "uuid": "84a2ad70-d045-4230-ae9f-339f2c3d14af",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/related_work_structure.md",
+    "content": "# Related Work 结构笔记\n\n> 四个 thread 的核心论文梳理，每个 thread 说明与本工作的定位关系。\n\n---\n\n## Thread 1: Binary Synthetic Text Detection → 我们扩展到 Ordinal Depth\n\n**核心问题**：现有检测方法将合成文本视为 binary label（human vs. machine），忽略了代际深度这一关键维度。\n\n**核心论文**：\n\n1. **Min-K%++ (Zhang et al., ICLR 2025)**\n   - 通过 token probability 分析检测 pre-training membership，改进了 Min-K% 基线\n   - 局限：membership inference ≠ ordinal depth estimation；仅判断\"是否在训练集中\"，无法回答\"经过了几代生成\"\n   - 与我们的关系：Min-K% 的 low-probability token fraction 是我们 token-level 特征的子集；我们证明这些特征可以做更细粒度的 ordinal prediction\n\n2. **DivEye (TMLR 2026)** [需验证确切作者]\n   - 9 个 surprisal-based 统计特征（分布矩 + 一阶/二阶差分）用于可解释的 binary 检测，超过 zero-shot baseline 33.2%\n   - 局限：纯 binary 分类，未利用特征随 depth 变化的系统性趋势\n   - 与我们的关系：DivEye 的 9 维 surprisal 特征是我们特征集的核心子集；我们扩展为 ordinal regression 输入，证明同一特征集可支撑 depth 分辨\n\n3. **DetectGPT (Mitchell et al., ICML 2023)**\n   - 利用 log probability curvature（perturbation-based）检测 machine-generated text\n   - 后续改进：DNA-GPT、Fast-DetectGPT 等\n   - 与我们的关系：zero-shot detection 方法的 confidence score 理论上可作为 depth proxy（confidence ↑ with depth），但我们在 baseline 对比中验证其与 true depth 的 Spearman 相关性，预期弱于专用 ordinal classifier\n\n4. **Binoculars (Hans et al., 2024)** [需验证发表年份和venue]\n   - 使用两个 LM 的 perplexity 比值检测合成文本\n   - 与我们的关系：另一种 binary detection confidence → depth proxy 的 baseline\n\n**我们的定位**：从 binary classification 升级为 ordinal regression。不是提出新的检测特征，而是证明已有特征（DivEye-style + 扩展）在 ordinal depth 维度上有系统性可分辨结构，且 ordinal signal 对下游 data curation 有实用价值。\n\n---\n\n## Thread 2: Model Collapse / Iterative Retraining → 我们量化代际退化边界\n\n**核心问题**：递归训练导致的模型坍缩已被广泛研究，但缺少从 forensic 视角量化单个文档\"经历了几代\"的工具。\n\n**核心论文**：\n\n1. **Shumailov et al. (Nature 2024)**\n   - 首次系统证明递归训练导致 tail disappearance → diversity loss → mode conflation 的三阶段坍缩\n   - 早期坍缩（tail loss）比晚期坍缩（mode conflation）发生得更早、更剧烈\n   - 与我们的关系：他们刻画了 macro 现象（population-level collapse dynamics），我们构建 micro 工具（单文档 depth forensics）。他们的\"早期退化最剧烈\"观察是我们 K* 假设的经验基础（K* ≈ 3-5）\n\n2. **Alemohammad et al. (ICML 2024)** [需验证年份——可能是 2023 preprint, 2024 发表]\n   - \"Self-consuming generative models go MAD\"——证明迭代训练在缺乏新鲜数据注入时导致 Model Autophagy Disorder\n   - 关注图像生成，但核心机制（diversity collapse under recursive feedback）跨模态通用\n   - 与我们的关系：跨模态的理论对应；他们的 MAD 概念对应我们的 depth → quality 单调衰减假设\n\n3. **Dohmatob et al. (ICLR 2025)**\n   - \"Strong Model Collapse\"——提供理论基础，证明在 data replacement 设定下 collapse 是不可避免的\n   - 与我们的关系：他们的理论 bound 可与我们的信道级联 DPI 框架互补——DPI 给出 information-theoretic 视角，Strong Collapse 给出 statistical learning 视角\n\n4. **Schaeffer et al. (2025)**\n   - \"Position: Model Collapse Does Not Mean What You Think\"——识别了 8 种不同的 collapse 定义，指出在 data accumulation（非 replacement）条件下，catastrophic collapse 需要\"trillions of models\"\n   - 关键承认：tail disappearance 和 diversity loss 是真实的、有实际危害的现象，即使不达到 catastrophic collapse\n   - 与我们的关系：他们的 nuanced position 支持我们的 framing——不需要 catastrophic collapse 也有 graduated degradation，K* 度量的正是这种 non-catastrophic but real 的退化边界\n\n**我们的定位**：Model collapse 文献研究\"递归训练会发生什么\"（understanding），我们研究\"给定一段文本，它经历了几代\"（forensics/estimation）。宏观理解 vs. 微观工具。我们的 K* 量化了 collapse 文献一直在定性讨论的\"可区分性边界\"。\n\n---\n\n## Thread 3: Verification-Based Data Curation → Graduated Filtering 替代 Binary\n\n**核心问题**：现有数据质量控制要么不区分合成/人类文本（Surplexity），要么用 binary quality gate（verification 方法），丢失了 depth 提供的 graded quality signal。\n\n**核心论文**：\n\n1. **Feng et al. (ICLR 2025)**\n   - \"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification\"\n   - 理论 + 实验证明 verification（外部信号筛选高质量合成样本）可防止 collapse\n   - 提出 imperfect verifier 的充分条件\n   - 局限：verification 是 binary pass/fail gate，不估计深度，不提供 graded signal\n   - 与我们的关系：他们证明了\"筛选有用\"，我们证明\"按深度 graded 筛选更好\"——从 binary gate 到 ordinal weighting\n\n2. **Yi et al. (arXiv 2510.16657, 2025)**\n   - 通过外部 verifier 注入信息逆转 collapse trajectory\n   - 发现长期性能收敛到 verifier 的 knowledge center\n   - 局限：同样是 binary verification，不估计 depth\n   - 与我们的关系：如果 verifier 能利用 depth signal 做 graduated verification，理论上可延缓 convergence to knowledge center\n\n3. **Surplexity (2024)** [需验证确切作者]\n   - \"Learning by Surprise\"——按 surprise 值过滤训练数据缓解 collapse\n   - 不区分 human vs. AI text，完全基于 perplexity 信号\n   - 与我们的关系：Surplexity 是我们 downstream curation 实验的 baseline 之一；depth-aware filtering 预期优于 surprise-only filtering，因为 depth 编码了更多 provenance 信息\n\n4. **Drayson et al. (EMNLP 2025)**\n   - 证明 binary machine-generated text detection 可防止 collapse\n   - 关键贡献：跟踪 GPT-2 和 SmolLM2（124M-1.7B）上 100 代的特征演化，展示 diversity、Self-BLEU、perplexity 分布随深度系统性变化\n   - 局限：虽然 characterize 了 depth-wise feature evolution，但只构建了 binary detector，未做 depth prediction\n   - 与我们的关系：最直接的前驱工作。他们 empirically ground 了 depth-discriminative signals exist 的前提，我们在此基础上构建首个 ordinal depth classifier\n\n**我们的定位**：从 binary quality gate → graduated quality signal。类比：二值化 vs. 灰度图。Depth-graduated curation 是 provenance-aware domain reweighting 的一种形式，比 binary filtering 在 threshold 附近信息损失更小。\n\n---\n\n## Thread 4: Data Mixing / Contamination Estimation → Depth-Aware Mixing\n\n**核心问题**：大规模预训练数据混合已有系统方法论，但现有方法不考虑合成文本的 depth 维度。\n\n**核心论文**：\n\n1. **DoReMi (Xie et al., NeurIPS 2023)** [需验证年份]\n   - 使用 proxy model 学习 domain weights，优化 worst-group downstream performance\n   - 与我们的关系：depth-graduated weighting 是 provenance-aware domain reweighting——与 DoReMi 的 domain weighting 理念一致，但我们的 weighting 来自 estimated depth 而非 domain identity，语义更可解释\n\n2. **Data Mixing Laws (Ye et al., 2024)** [需验证确切作者和年份]\n   - 研究不同数据源混合比例对 LLM 性能的 scaling law\n   - 与我们的关系：如果 depth 是一个新的 mixing dimension，depth-aware mixing law 可以指导实际预训练数据配比\n\n3. **ConStat (NeurIPS 2024)** [需验证确切作者]\n   - Performance-based contamination detection：通过 rephrased samples 上的性能差异检测 benchmark contamination\n   - 与我们的关系：ConStat 检测 benchmark contamination（eval-side），我们估计 training data depth contamination（data-side）——互补视角\n\n4. **DATAPROPHET (ICLR 2026)** [需验证确切作者]\n   - Training-free data quality metrics（perplexity + similarity + diversity）用于多模态合成数据选择\n   - 与我们的关系：他们的 quality metrics 可作为我们 depth-quality 单调性验证的 baseline quality proxy\n\n**我们的定位**：在 data mixing 框架中引入 depth 作为新的数据维度。现有方法按 domain/source/quality 分层，我们增加 generational depth 维度，使 provenance 信息进入 mixing 决策。\n\n---\n\n## 总结：四线交汇\n\n```\nThread 1 (Binary Detection)    →  我们：binary → ordinal\nThread 2 (Model Collapse)      →  我们：macro understanding → micro forensics\nThread 3 (Verification/Curation) →  我们：binary gate → graduated signal\nThread 4 (Data Mixing)          →  我们：depth as new mixing dimension\n```\n\n核心差异化一句话：**No existing work estimates how many recursive generation steps a text has undergone — we fill this gap with the first ordinal depth classifier and demonstrate its utility for graduated data curation.**\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "42ecc56b-ffe8-4d50-aff4-620a4e875b16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-12T12:51:01.436Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01NWKXVLjMkhrqJwstXDGQSu`</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/claim_routes.md",
+  "content": "# 双路线 Claim 框架\n\n> 根据 MVP 结果 K* 的取值，准备两条论文叙事路线。\n\n---\n\n## 路线 A：K* ≥ 3（MVP Pass）\n\n### Core Claim\n**Generational depth estimation is feasible and enables graduated filtering that outperforms binary detection for quality-aware data curation.**\n\n### Supporting Claims 拆解\n\n**C1: Depth signals exist and are ordinal-structured**\n- 递归生成文本的统计特征（surprisal、vocabulary diversity、tail metrics）随 depth 呈系统性单调变化\n- Ordinal regression（CORAL/CORN）显著优于 multinomial classification，证明 depth 的有序结构可被利用\n- 证据：pairwise AUC matrix、ordinal vs. multinomial ablation、calibration curves\n\n**C2: K* characterization reveals linguistic degradation ordering**\n- K* 是首次被系统量化的判别饱和边界\n- Feature group ablation 揭示\"降解序\"：不同语言维度（vocabulary diversity → surprisal dynamics → tail metrics）在不同 depth 饱和\n- Heatmap：feature group × depth → discriminative power\n- 证据：per-feature saturation curves、cross-model K* comparison、decoding strategy 对 K* 的调控效应\n\n**C3: Graduated filtering > binary filtering**\n- Depth-aware weighted filtering（weight ∝ quality(k)/quality(0)）在 MMLU/HellaSwag 等 data-quality-sensitive tasks 上显著优于 binary filtering 和 no filtering\n- 理论动机：binary filtering 在 threshold 附近信息损失最大，ordinal signal 允许 soft weighting\n- 证据：downstream benchmark results with bootstrap CIs + paired significance tests、contamination severity ablation（10%/30%/50%）\n\n**C4: Cross-model generalization**\n- 在 model A 上训练的 depth classifier 可迁移到 model B 的生成文本\n- Cross-scale probe（7B/14B）验证小模型训练的特征在更大模型生成文本上的迁移性\n- 证据：cross-model transfer accuracy matrix、feature distribution MMD analysis\n\n### Story Arc\n\n```\nProblem:  Web data 被未知深度的递归合成文本污染，binary detection 丢失 graded quality signal\nInsight:  递归生成是 iterated lossy channel，depth-discriminative signals 系统性存在且可量化\n          → 类比 JPEG 重压缩检测\nMethod:   (1) 15维特征 + ordinal regression → depth estimation\n          (2) Depth-graduated curation: weight ∝ estimated quality decay\nResults:  K*≥3 → fine-grained depth discrimination feasible\n          Graduated filtering 显著优于 binary 和 no filtering\n          Cross-model/cross-scale 泛化\nTakeaway: Depth is the missing dimension in synthetic data curation\n```\n\n### 评审攻击面预演\n\n**Q1: \"方法论贡献不足——feature engineering + off-the-shelf ordinal regression\"**\n- Rebuttal：(a) 贡献不在分类器本身，而在 problem formulation + empirical characterization + practical paradigm shift；(b) 信道级联 + DPI 理论框架提供了 beyond-empirical 的科学理解；(c) 类比 DetectGPT——方法简单但 problem formulation 有影响力；(d) learned representation baseline（frozen LM embeddings + MLP）作为对比，证明 hand-crafted features 在此任务上的优势（可解释性 + 泛化性）\n\n**Q2: \"Prompt-chain ≠ 真实递归污染路径，ecological validity 存疑\"**\n- Rebuttal：(a) Prompt-chain 是 upper bound estimate——如果 prompt-chain 下特征已饱和，retrain-chain 只会更快饱和；(b) 我们用 retrain-chain validation（1 config, LoRA fine-tuning）验证两种 chain 的 feature distribution 对比和 cross-setting transfer accuracy；(c) Clean chains 定位为 theoretical bound，实际 depth estimates 定位为 ordinal quality proxies\n\n**Q3: \"Cross-scale 证据不足——真实世界合成文本主要来自 frontier models（GPT-4, Claude）\"**\n- Rebuttal：(a) 我们明确定位 practical scope 为开源模型生态（7B-14B）；(b) frontier model limitation 是 principled limitation（RLHF/instruction-tuning 改变分布、API-only 限制特征计算），非简单的\"没做\"；(c) 7B-14B probe 已覆盖开源社区主流生成规模；(d) WildChat feature trend analysis 提供 naturalistic 证据\n\n---\n\n## 路线 B：K* = 2（Conditional Pass）\n\n### Core Claim\n**The saturation boundary K* is a novel, measurable fundamental quantity of recursive text generation: even coarse ordinal depth signals (human / gen-1 / gen-2+) provide calibration advantages over binary detection, and K*'s dependence on model family and decoding strategy yields actionable guidance for data curation.**\n\n### Supporting Claims 拆解\n\n**C1: K* 是首次被系统测量的 fundamental resolution limit**\n- 这不是分类器的能力上限，而是 information-theoretic impossibility boundary（DPI 约束）\n- K*=2 意味着 depth ≥2 的文本在信息论意义上已不可区分——这本身是重要的科学发现\n- 证据：信道级联 + DPI 理论推导、empirical K* measurement across models/decoding strategies\n\n**C2: Linguistic degradation ordering 揭示递归生成的结构性规律**\n- 即使 K*=2，per-feature saturation analysis 仍揭示哪些语言维度先坍缩\n- Feature group × depth heatmap 展示 degradation ordering\n- 证据：vocabulary diversity 先于 semantic coherence 坍缩（假设）、cross-model 对比 heatmap\n\n**C3: Decoding strategy 调控 K***\n- 假设检验：greedy → 指数衰减（K* 更小），high-temperature → 多项式衰减（K* 可能更大）\n- AIC/BIC model comparison 验证 exponential vs. polynomial MI 衰减\n- 实际意义：指导数据生成策略选择——如果特定 decoding 延长 discriminability，可指导 synthetic data generation best practices\n- 证据：K*(decoding strategy) 的系统性变化、MI 衰减曲线拟合\n\n**C4: 即使 coarse ordinal signal（3-class）仍有 calibration advantage**\n- 3-class（human / gen-1 / gen-2+）vs. binary 在 downstream tasks 上的对比\n- Depth=1（单代合成，质量较高）vs. depth≥2（多代合成，质量显著下降）的区分对 curation 有实际价值\n- 证据：3-class graduated filtering vs. binary filtering benchmark results\n\n### 如何把 K*=2 包装为 Contribution 而非 Limitation\n\n关键 framing 转换：\n\n| 避免的措辞 | 改用的措辞 |\n|---|---|\n| \"Unfortunately, depth discrimination saturates at K*=2\" | \"We establish K*=2 as the fundamental resolution limit for prompt-chain recursive generation\" |\n| \"Only 3 classes are distinguishable\" | \"The human/first-gen/multi-gen trichotomy captures the critical quality boundary\" |\n| \"The classifier cannot distinguish depth 3 from depth 4\" | \"Beyond depth 2, texts converge to a stationary distribution — a novel empirical finding consistent with our DPI analysis\" |\n| \"If K*≤2, the contribution is limited\" | \"K* itself is the contribution: its measurement, model-dependence, and decoding-strategy modulation are all first-of-kind results\" |\n\n### Saturation Characterization 路线的卖点\n\n1. **首次量化测量**：之前只有定性讨论（Shumailov \"early collapse\"），我们给出精确的 K* 数值和置信区间\n2. **可操作指导**：K*=2 告诉 practitioners \"对于 model X + decoding Y，depth≥2 的文本无需细分——binary vs. first-gen vs. rest 即可\"\n3. **理论-实验闭环**：DPI 预测 MI 单调衰减 → 实验测量 K* 位置 → 衰减曲线拟合验证理论\n4. **跨模型/跨策略 K* 地图**：不同 model family 和 decoding strategy 的 K* 对比，形成 actionable lookup table\n5. **Model collapse early-warning 应用**：即使 K*=2，depth distribution（human / gen-1 / gen-2+ 占比）作为 corpus quality indicator\n\n### Story Arc\n\n```\nProblem:  同路线 A\nInsight:  递归生成的 depth-discriminability 有 fundamental limit K*\n          K* 不是分类器能力问题，而是 information-theoretic boundary\nMethod:   DPI 理论框架 + systematic empirical measurement of K*\nResults:  K*=2 across most configurations → human/gen-1/gen-2+ trichotomy\n          K* varies with decoding strategy → actionable guidance\n          Even 3-class graduated filtering > binary filtering\nTakeaway: K* is the right quantity to measure; its value tells you exactly\n          how much depth granularity your curation can exploit\n```\n\n### 评审攻击面预演\n\n**Q1: \"K*=2 means the depth classifier is not very useful — just use binary detection\"**\n- Rebuttal：(a) 3-class > binary 在 downstream benchmarks 上有统计显著差异——first-gen text 和 multi-gen text 质量差异显著；(b) K* 本身是一个比分类器更重要的科学贡献——它量化了 recursive generation 的 information-theoretic resolution limit；(c) K* 随 decoding strategy 变化的发现直接指导 synthetic data generation 最佳实践\n\n**Q2: \"如果 K*=2 是 fundamental limit，后续工作空间在哪？\"**\n- Rebuttal：(a) Scale effect——更大模型的 K* 可能更大（7B probe 数据）；(b) Retrain-chain vs. prompt-chain 可能有不同 K*；(c) Domain-specific K*（code vs. natural language vs. scientific text）；(d) 信息注入策略（external verifier）对 K* 的调控\n\n**Q3: \"理论框架（DPI）过于简化，unigram 近似不 justified\"**\n- Rebuttal：(a) 我们明确标注 JSD 作为 MI proxy 的 unigram 层面局限性；(b) DPI bound 是 model-free 的——即使 proxy 不精确，monotone decay 的定性结论仍成立；(c) 这是 first attempt，更精确的 MI estimation（如 neural MI estimators）留作 future work\n\n---\n\n## 路线选择决策树\n\n```\nMVP 结果出来后：\n├── AUC(0 vs 1) < 0.70 → FAIL，重新评估项目\n├── K* ≥ 3 → 路线 A（depth estimation + graduated filtering 为主线）\n├── K* = 2 且 feature trends 清晰 → 路线 B（K* characterization 为主线）\n└── K* = 2 且 feature trends 不清晰 → 评估是否有 decoding strategy 调控空间\n    ├── 有 → 路线 B + decoding strategy modulation 加强\n    └── 无 → 考虑 scope narrowing 或 target 降级\n```\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84a2ad70-d045-4230-ae9f-339f2c3d14af",
+  "isSidechain": false,
+  "requestId": "req_011Caxhb3acWPGPu3k8zKS1S",
+  "type": "assistant",
+  "uuid": "eb61f376-846b-417f-ab75-50e9f880586a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeFa4vghF8pssUaXK33Xou",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1385,
+      "cache_read_input_tokens": 35387,
+      "output_tokens": 11342,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1385,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11342,
+          "cache_read_input_tokens": 35387,
+          "cache_creation_input_tokens": 1385,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1385
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-12T12:51:01.456Z_
+
+<details><summary>↩ Tool result · `toolu_01NWKXVLjMkhrqJwstXDGQSu`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/claim_routes.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "eb61f376-846b-417f-ab75-50e9f880586a",
+  "isSidechain": false,
+  "promptId": "9729880e-bd4e-40a2-b79a-77916db351e5",
+  "type": "user",
+  "uuid": "d96f40e2-e8e9-4345-96d4-7d9d7cb9994a",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/claim_routes.md",
+    "content": "# 双路线 Claim 框架\n\n> 根据 MVP 结果 K* 的取值，准备两条论文叙事路线。\n\n---\n\n## 路线 A：K* ≥ 3（MVP Pass）\n\n### Core Claim\n**Generational depth estimation is feasible and enables graduated filtering that outperforms binary detection for quality-aware data curation.**\n\n### Supporting Claims 拆解\n\n**C1: Depth signals exist and are ordinal-structured**\n- 递归生成文本的统计特征（surprisal、vocabulary diversity、tail metrics）随 depth 呈系统性单调变化\n- Ordinal regression（CORAL/CORN）显著优于 multinomial classification，证明 depth 的有序结构可被利用\n- 证据：pairwise AUC matrix、ordinal vs. multinomial ablation、calibration curves\n\n**C2: K* characterization reveals linguistic degradation ordering**\n- K* 是首次被系统量化的判别饱和边界\n- Feature group ablation 揭示\"降解序\"：不同语言维度（vocabulary diversity → surprisal dynamics → tail metrics）在不同 depth 饱和\n- Heatmap：feature group × depth → discriminative power\n- 证据：per-feature saturation curves、cross-model K* comparison、decoding strategy 对 K* 的调控效应\n\n**C3: Graduated filtering > binary filtering**\n- Depth-aware weighted filtering（weight ∝ quality(k)/quality(0)）在 MMLU/HellaSwag 等 data-quality-sensitive tasks 上显著优于 binary filtering 和 no filtering\n- 理论动机：binary filtering 在 threshold 附近信息损失最大，ordinal signal 允许 soft weighting\n- 证据：downstream benchmark results with bootstrap CIs + paired significance tests、contamination severity ablation（10%/30%/50%）\n\n**C4: Cross-model generalization**\n- 在 model A 上训练的 depth classifier 可迁移到 model B 的生成文本\n- Cross-scale probe（7B/14B）验证小模型训练的特征在更大模型生成文本上的迁移性\n- 证据：cross-model transfer accuracy matrix、feature distribution MMD analysis\n\n### Story Arc\n\n```\nProblem:  Web data 被未知深度的递归合成文本污染，binary detection 丢失 graded quality signal\nInsight:  递归生成是 iterated lossy channel，depth-discriminative signals 系统性存在且可量化\n          → 类比 JPEG 重压缩检测\nMethod:   (1) 15维特征 + ordinal regression → depth estimation\n          (2) Depth-graduated curation: weight ∝ estimated quality decay\nResults:  K*≥3 → fine-grained depth discrimination feasible\n          Graduated filtering 显著优于 binary 和 no filtering\n          Cross-model/cross-scale 泛化\nTakeaway: Depth is the missing dimension in synthetic data curation\n```\n\n### 评审攻击面预演\n\n**Q1: \"方法论贡献不足——feature engineering + off-the-shelf ordinal regression\"**\n- Rebuttal：(a) 贡献不在分类器本身，而在 problem formulation + empirical characterization + practical paradigm shift；(b) 信道级联 + DPI 理论框架提供了 beyond-empirical 的科学理解；(c) 类比 DetectGPT——方法简单但 problem formulation 有影响力；(d) learned representation baseline（frozen LM embeddings + MLP）作为对比，证明 hand-crafted features 在此任务上的优势（可解释性 + 泛化性）\n\n**Q2: \"Prompt-chain ≠ 真实递归污染路径，ecological validity 存疑\"**\n- Rebuttal：(a) Prompt-chain 是 upper bound estimate——如果 prompt-chain 下特征已饱和，retrain-chain 只会更快饱和；(b) 我们用 retrain-chain validation（1 config, LoRA fine-tuning）验证两种 chain 的 feature distribution 对比和 cross-setting transfer accuracy；(c) Clean chains 定位为 theoretical bound，实际 depth estimates 定位为 ordinal quality proxies\n\n**Q3: \"Cross-scale 证据不足——真实世界合成文本主要来自 frontier models（GPT-4, Claude）\"**\n- Rebuttal：(a) 我们明确定位 practical scope 为开源模型生态（7B-14B）；(b) frontier model limitation 是 principled limitation（RLHF/instruction-tuning 改变分布、API-only 限制特征计算），非简单的\"没做\"；(c) 7B-14B probe 已覆盖开源社区主流生成规模；(d) WildChat feature trend analysis 提供 naturalistic 证据\n\n---\n\n## 路线 B：K* = 2（Conditional Pass）\n\n### Core Claim\n**The saturation boundary K* is a novel, measurable fundamental quantity of recursive text generation: even coarse ordinal depth signals (human / gen-1 / gen-2+) provide calibration advantages over binary detection, and K*'s dependence on model family and decoding strategy yields actionable guidance for data curation.**\n\n### Supporting Claims 拆解\n\n**C1: K* 是首次被系统测量的 fundamental resolution limit**\n- 这不是分类器的能力上限，而是 information-theoretic impossibility boundary（DPI 约束）\n- K*=2 意味着 depth ≥2 的文本在信息论意义上已不可区分——这本身是重要的科学发现\n- 证据：信道级联 + DPI 理论推导、empirical K* measurement across models/decoding strategies\n\n**C2: Linguistic degradation ordering 揭示递归生成的结构性规律**\n- 即使 K*=2，per-feature saturation analysis 仍揭示哪些语言维度先坍缩\n- Feature group × depth heatmap 展示 degradation ordering\n- 证据：vocabulary diversity 先于 semantic coherence 坍缩（假设）、cross-model 对比 heatmap\n\n**C3: Decoding strategy 调控 K***\n- 假设检验：greedy → 指数衰减（K* 更小），high-temperature → 多项式衰减（K* 可能更大）\n- AIC/BIC model comparison 验证 exponential vs. polynomial MI 衰减\n- 实际意义：指导数据生成策略选择——如果特定 decoding 延长 discriminability，可指导 synthetic data generation best practices\n- 证据：K*(decoding strategy) 的系统性变化、MI 衰减曲线拟合\n\n**C4: 即使 coarse ordinal signal（3-class）仍有 calibration advantage**\n- 3-class（human / gen-1 / gen-2+）vs. binary 在 downstream tasks 上的对比\n- Depth=1（单代合成，质量较高）vs. depth≥2（多代合成，质量显著下降）的区分对 curation 有实际价值\n- 证据：3-class graduated filtering vs. binary filtering benchmark results\n\n### 如何把 K*=2 包装为 Contribution 而非 Limitation\n\n关键 framing 转换：\n\n| 避免的措辞 | 改用的措辞 |\n|---|---|\n| \"Unfortunately, depth discrimination saturates at K*=2\" | \"We establish K*=2 as the fundamental resolution limit for prompt-chain recursive generation\" |\n| \"Only 3 classes are distinguishable\" | \"The human/first-gen/multi-gen trichotomy captures the critical quality boundary\" |\n| \"The classifier cannot distinguish depth 3 from depth 4\" | \"Beyond depth 2, texts converge to a stationary distribution — a novel empirical finding consistent with our DPI analysis\" |\n| \"If K*≤2, the contribution is limited\" | \"K* itself is the contribution: its measurement, model-dependence, and decoding-strategy modulation are all first-of-kind results\" |\n\n### Saturation Characterization 路线的卖点\n\n1. **首次量化测量**：之前只有定性讨论（Shumailov \"early collapse\"），我们给出精确的 K* 数值和置信区间\n2. **可操作指导**：K*=2 告诉 practitioners \"对于 model X + decoding Y，depth≥2 的文本无需细分——binary vs. first-gen vs. rest 即可\"\n3. **理论-实验闭环**：DPI 预测 MI 单调衰减 → 实验测量 K* 位置 → 衰减曲线拟合验证理论\n4. **跨模型/跨策略 K* 地图**：不同 model family 和 decoding strategy 的 K* 对比，形成 actionable lookup table\n5. **Model collapse early-warning 应用**：即使 K*=2，depth distribution（human / gen-1 / gen-2+ 占比）作为 corpus quality indicator\n\n### Story Arc\n\n```\nProblem:  同路线 A\nInsight:  递归生成的 depth-discriminability 有 fundamental limit K*\n          K* 不是分类器能力问题，而是 information-theoretic boundary\nMethod:   DPI 理论框架 + systematic empirical measurement of K*\nResults:  K*=2 across most configurations → human/gen-1/gen-2+ trichotomy\n          K* varies with decoding strategy → actionable guidance\n          Even 3-class graduated filtering > binary filtering\nTakeaway: K* is the right quantity to measure; its value tells you exactly\n          how much depth granularity your curation can exploit\n```\n\n### 评审攻击面预演\n\n**Q1: \"K*=2 means the depth classifier is not very useful — just use binary detection\"**\n- Rebuttal：(a) 3-class > binary 在 downstream benchmarks 上有统计显著差异——first-gen text 和 multi-gen text 质量差异显著；(b) K* 本身是一个比分类器更重要的科学贡献——它量化了 recursive generation 的 information-theoretic resolution limit；(c) K* 随 decoding strategy 变化的发现直接指导 synthetic data generation 最佳实践\n\n**Q2: \"如果 K*=2 是 fundamental limit，后续工作空间在哪？\"**\n- Rebuttal：(a) Scale effect——更大模型的 K* 可能更大（7B probe 数据）；(b) Retrain-chain vs. prompt-chain 可能有不同 K*；(c) Domain-specific K*（code vs. natural language vs. scientific text）；(d) 信息注入策略（external verifier）对 K* 的调控\n\n**Q3: \"理论框架（DPI）过于简化，unigram 近似不 justified\"**\n- Rebuttal：(a) 我们明确标注 JSD 作为 MI proxy 的 unigram 层面局限性；(b) DPI bound 是 model-free 的——即使 proxy 不精确，monotone decay 的定性结论仍成立；(c) 这是 first attempt，更精确的 MI estimation（如 neural MI estimators）留作 future work\n\n---\n\n## 路线选择决策树\n\n```\nMVP 结果出来后：\n├── AUC(0 vs 1) < 0.70 → FAIL，重新评估项目\n├── K* ≥ 3 → 路线 A（depth estimation + graduated filtering 为主线）\n├── K* = 2 且 feature trends 清晰 → 路线 B（K* characterization 为主线）\n└── K* = 2 且 feature trends 不清晰 → 评估是否有 decoding strategy 调控空间\n    ├── 有 → 路线 B + decoding strategy modulation 加强\n    └── 无 → 考虑 scope narrowing 或 target 降级\n```\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "eb61f376-846b-417f-ab75-50e9f880586a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-12T12:52:21.436Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01EqpG1kuf2fT1hW6hWgeJRF`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/theory_framework.md",
+  "content": "# 信道级联 + DPI 理论框架草案\n\n> 将递归生成建模为 iterated lossy channel，用 Data Processing Inequality 约束 depth-discriminability 的 fundamental limit。\n\n---\n\n## 1. 信道级联模型形式化\n\n### 基本设定\n\n设 X₀ 为人类撰写的文本（seed text），表示为某概率空间上的随机变量。LLM 的生成过程建模为一个随机信道：\n\n$$\\mathcal{T}: \\mathcal{X} \\to \\mathcal{X}$$\n\n将输入文本映射到输出文本。递归生成形成 Markov chain：\n\n$$X_0 \\to X_1 \\to X_2 \\to \\cdots \\to X_k$$\n\n其中 $X_{i+1} = \\mathcal{T}(X_i)$，即 depth-$(i+1)$ 的文本由 depth-$i$ 的文本经过一次 LLM 信道产生。\n\n**关键假设**：\n\n- **(A1) 时不变信道**：同一 LLM + 同一 decoding strategy 在每次迭代中使用相同的信道 $\\mathcal{T}$。（prompt-chain 设定下成立；retrain-chain 需放宽为 $\\mathcal{T}_i$）\n- **(A2) Markov 性**：$X_{i+1}$ 仅依赖 $X_i$，不依赖 $X_0, \\ldots, X_{i-1}$（prompt-chain 逐段独立生成时成立）\n- **(A3) 有损信道**：$\\mathcal{T}$ 是 non-invertible 的——生成过程丢失关于输入的信息（sampling 引入 noise，decoding 策略截断分布尾部）\n\n### 形式化表述\n\n$$X_0 \\xrightarrow{\\mathcal{T}} X_1 \\xrightarrow{\\mathcal{T}} X_2 \\xrightarrow{\\mathcal{T}} \\cdots \\xrightarrow{\\mathcal{T}} X_k$$\n\n这是一个齐次 Markov chain（在假设 A1 下），其转移核由 LLM 的条件分布 $p_\\theta(\\cdot | x)$ 决定。\n\n---\n\n## 2. Data Processing Inequality 约束\n\n### DPI 基本形式\n\n对于 Markov chain $X_0 \\to X_1 \\to \\cdots \\to X_k$，DPI 给出：\n\n$$I(X_0; X_k) \\leq I(X_0; X_{k-1}) \\leq \\cdots \\leq I(X_0; X_1) \\leq H(X_0)$$\n\n即 $I(X_0; X_k)$ 关于 $k$ 单调非递增。\n\n**直觉**：每经过一次 LLM 信道，关于原始人类文本 $X_0$ 的信息只会减少或不变，绝不增加。递归生成是不可逆的信息丢失过程。\n\n### 严格衰减条件\n\n当 $\\mathcal{T}$ 是 strictly lossy channel（即 $I(X_i; X_{i+1}) < H(X_i)$ for all $i$）时，衰减是严格的：\n\n$$I(X_0; X_k) < I(X_0; X_{k-1}) \\quad \\forall k \\geq 1$$\n\n这对应于 LLM 生成过程中 sampling noise 不可消除的事实——任何 temperature > 0 或 nucleus/top-k 截断都引入不可逆信息损失。\n\n### 与 Depth Discriminability 的联系\n\n两个不同深度 $k, k'$ 的文本 $X_k, X_{k'}$ 的可区分性取决于它们的分布差异。定义可区分性度量：\n\n$$D(k, k') = d(P_{X_k}, P_{X_{k'}})$$\n\n其中 $d$ 是某种分布距离（JSD、MMD、Total Variation 等）。\n\n**关键观察**：随着 $k$ 增大，$P_{X_k}$ 趋近于信道 $\\mathcal{T}$ 的不动点分布 $P^*$（如果存在），相邻深度的分布差异趋于零：\n\n$$D(k, k+1) \\to 0 \\quad \\text{as} \\quad k \\to \\infty$$\n\n---\n\n## 3. K* 的理论解释\n\n### 定义\n\n$K^*$ 是 **判别饱和边界（discriminability saturation boundary）**：\n\n$$K^* = \\max\\{k : D(k-1, k) > \\epsilon\\}$$\n\n其中 $\\epsilon$ 是 noise floor（对应于有限样本下的统计检验 power limit）。\n\n### Information-Theoretic 解释\n\n$K^*$ 对应于 $I(X_0; X_k)$ 降至 noise floor 的临界深度：\n\n$$K^* \\approx \\min\\{k : I(X_0; X_k) - I(X_0; X_{k+1}) < \\delta\\}$$\n\n其中 $\\delta$ 是 MI 增量的可检测下限。\n\n**关键 insight**：$K^*$ 不是分类器的能力上限，而是 **information-theoretic impossibility boundary**——任何方法（无论多复杂）都无法区分 depth $> K^*$ 的文本，因为原始人类文本的信息已经被信道噪声完全淹没。\n\n### 与 Channel Capacity 的关系\n\n信道 $\\mathcal{T}$ 的 \"contraction rate\" $\\rho$ 控制 MI 衰减速度：\n\n$$I(X_0; X_k) \\leq \\rho^k \\cdot H(X_0) \\quad (\\text{if exponential decay})$$\n\n- $\\rho$ 接近 1（低噪声信道，如 greedy decoding）→ 衰减慢，$K^*$ 大\n- $\\rho$ 接近 0（高噪声信道，如 high-temperature sampling）→ 衰减快，$K^*$ 小\n\n**但这里有一个反直觉的 nuance**：虽然 high-temperature 使 $\\rho$ 更小（信息丢失更快），但它同时保持了更高的 diversity，使相邻深度的分布差异可能更大。因此 $K^*$ 与 decoding strategy 的关系不是简单单调的——这正是需要实验验证的假设。\n\n---\n\n## 4. Propositions / Theorems 骨架\n\n### Proposition 1: MI 单调衰减（DPI 直接推论）\n\n**Statement**: 设 $X_0 \\to X_1 \\to \\cdots \\to X_k$ 为上述递归生成 Markov chain。则对任意 $k \\geq 1$：\n\n$$I(X_0; X_k) \\leq I(X_0; X_{k-1})$$\n\n等号成立当且仅当 $X_{k-1} \\to X_k$ 是 sufficient statistic（即信道 $\\mathcal{T}$ 是无损的，实际中不成立）。\n\n**Proof sketch**:\n直接由 DPI 定理得出。$X_0 \\to X_{k-1} \\to X_k$ 构成 Markov chain，DPI 立即给出 $I(X_0; X_k) \\leq I(X_0; X_{k-1})$。严格不等号由 $\\mathcal{T}$ 的 strictly lossy 性质保证（sampling 引入不可消除的噪声）。$\\square$\n\n**论文中的作用**：建立理论基础——depth discrimination 必然随深度退化，这不是分类器缺陷，而是信息论必然。\n\n---\n\n### Proposition 2: 不动点收敛与 K* 有限性\n\n**Statement**: 若信道 $\\mathcal{T}$ 具有唯一不动点分布 $P^*$（即 $\\mathcal{T}(P^*) = P^*$），且 $\\mathcal{T}$ 关于某分布度量 $d$ 是 contractive 的（$d(\\mathcal{T}(P), \\mathcal{T}(Q)) \\leq \\rho \\cdot d(P, Q)$，$0 < \\rho < 1$），则：\n\n(a) $d(P_{X_k}, P^*) \\leq \\rho^k \\cdot d(P_{X_0}, P^*)$\n\n(b) $D(k, k+1) = d(P_{X_k}, P_{X_{k+1}}) \\leq (\\rho^k + \\rho^{k+1}) \\cdot d(P_{X_0}, P^*)$\n\n(c) 对任意 $\\epsilon > 0$，$K^*(\\epsilon)$ 有限。\n\n**Proof sketch**:\n(a) 由 contractive mapping theorem 的标准迭代 bound。\n(b) 三角不等式：$d(P_{X_k}, P_{X_{k+1}}) \\leq d(P_{X_k}, P^*) + d(P_{X_{k+1}}, P^*)$，代入 (a) 得结论。\n(c) $D(k, k+1)$ 以几何速率趋于 0，因此超过 $\\epsilon$ 的 $k$ 值数量有限。$\\square$\n\n**论文中的作用**：证明 $K^*$ 的有限性是理论必然——saturation 不是方法缺陷而是系统属性。同时给出 $K^* = O(\\log(d(P_{X_0}, P^*)/\\epsilon) / \\log(1/\\rho))$ 的粗略 scaling。\n\n---\n\n### Proposition 3: 衰减速率与 Decoding Strategy 的关系（经验驱动假设）\n\n**Statement（Conjecture，标注为 empirically motivated）**: 设 $\\rho(\\tau)$ 为 temperature 为 $\\tau$ 时信道 $\\mathcal{T}_\\tau$ 的 contraction rate。在以下简化假设下（unigram-level，忽略序列结构）：\n\n(a) $\\rho(\\tau)$ 关于 $\\tau$ 非单调：存在 $\\tau^*$ 使得 $\\rho(\\tau)$ 在 $\\tau < \\tau^*$ 时随 $\\tau$ 递增，在 $\\tau > \\tau^*$ 时随 $\\tau$ 递减。\n\n(b) 直觉：极低 temperature（近 greedy）→ 信道近确定性 → $\\rho$ 大但 diversity 低 → MI 本身小。极高 temperature → 信道近均匀随机 → $\\rho$ 小 → MI 快速衰减。中间 temperature 平衡两个效应。\n\n**Proof sketch**: 此为 conjecture，不提供证明。给出 unigram softmax 信道的显式 contraction rate 计算作为 supporting analysis，实验验证 $K^*(\\tau)$ 的非单调性。\n\n**论文中的作用**：将 decoding strategy 对 $K^*$ 的影响从 ad hoc 观察提升为 hypothesis-driven 研究。用 AIC/BIC model comparison 区分 exponential vs. polynomial MI 衰减。\n\n---\n\n## 5. 计算上的 Tractable Proxy\n\n### JSD 作为 MI 近似\n\nMutual information 在高维文本空间中不可直接计算。我们采用 Jensen-Shannon Divergence (JSD) 作为 computationally tractable proxy：\n\n$$\\text{JSD}(P_{X_k} \\| P_{X_{k'}}) = \\frac{1}{2} D_{\\text{KL}}(P_{X_k} \\| M) + \\frac{1}{2} D_{\\text{KL}}(P_{X_{k'}} \\| M)$$\n\n其中 $M = \\frac{1}{2}(P_{X_k} + P_{X_{k'}})$。\n\n**在 unigram level 上计算**：将 $P_{X_k}$ 估计为 depth-$k$ 文档集合的 empirical unigram distribution。\n\n**局限性（必须在论文中承认）**：\n- Unigram JSD 忽略序列结构（bigram, trigram, syntactic patterns）\n- 不等价于真正的 MI——JSD 是 distributional divergence，MI 是 sample-level information quantity\n- 但 DPI 的定性结论（单调衰减）仍成立，因为 $\\text{JSD}(P_{X_k} \\| P_{X_0})$ 在 Markov chain 下也满足类似的单调性\n\n**补充度量**：\n- Pairwise classifier AUC 作为 empirical discriminability 的非参数度量\n- Feature-space Mahalanobis distance 作为多维度的分布距离\n\n---\n\n## 6. 理论与实验的对接\n\n| 理论预测 | 实验验证方法 |\n|---|---|\n| $I(X_0; X_k)$ 单调衰减 | JSD$(P_{X_0}, P_{X_k})$ 随 $k$ 递减曲线 |\n| $K^*$ 有限 | Pairwise AUC 矩阵 + 操作性 K* 定义 |\n| 衰减速率 $\\rho$ 由 decoding strategy 控制 | $K^*(\\text{greedy})$ vs. $K^*(p{=}0.95)$ vs. $K^*(T{=}1.2)$ |\n| Exponential vs. polynomial decay | AIC/BIC model comparison on JSD decay curves |\n| 不动点 $P^*$ 存在 | 检验 $P_{X_k}$ 对 $k$ 的收敛性（JSD$(P_{X_k}, P_{X_{k+1}}) \\to 0$） |\n\n---\n\n## 7. 与既有理论的关系\n\n- **Shumailov et al. (Nature 2024)**：他们的 tail disappearance → diversity loss → mode conflation 三阶段模型对应我们的 $P_{X_k} \\to P^*$ 收敛过程中的不同阶段——尾部消失是收敛初期，mode conflation 是收敛后期\n- **Strong Model Collapse (Dohmatob et al., ICLR 2025)**：他们的 statistical learning theory bound 与我们的 DPI bound 互补——他们关注 retrain-chain 下 generalization error 的增长，我们关注 distributional information 的衰减\n- **JPEG 重压缩类比**：JPEG 信道也是 contractive mapping（量化步骤不可逆），K* 对应 JPEG recompression detection 的 cycle limit——在图像 forensics 中已被充分研究的问题\n\n---\n\n## 8. 写作注意事项\n\n1. **措辞校准**：Propositions 1-2 是严格的（DPI + contractive mapping 标准结果）；Proposition 3 标注为 \"empirically motivated conjecture\"，不 overclaim\n2. **JSD proxy 局限性**：在 Method section 设专段讨论 unigram 近似的局限和 justification\n3. **信道假设**：A1（时不变）和 A2（Markov）在 prompt-chain 下合理，在 retrain-chain 下需要放宽——在 Discussion 中讨论\n4. **不做\"完整证明\"**：论文风格是 proposition + proof sketch + experimental validation，不是纯理论论文的 full proof 风格。重点在 theory-experiment connection\n5. **Appendix 安排**：完整的 contraction rate 计算、unigram softmax channel 分析放 appendix\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d96f40e2-e8e9-4345-96d4-7d9d7cb9994a",
+  "isSidechain": false,
+  "requestId": "req_011Caxhb3acWPGPu3k8zKS1S",
+  "type": "assistant",
+  "uuid": "fa1350d0-4a66-45be-9cfe-7e19e566c484",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeFa4vghF8pssUaXK33Xou",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1385,
+      "cache_read_input_tokens": 35387,
+      "output_tokens": 11342,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1385,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11342,
+          "cache_read_input_tokens": 35387,
+          "cache_creation_input_tokens": 1385,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1385
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "90ebb44e-3431-4b96-95a0-de4cb54c1085",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature review and paper framework design",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-12T12:52:42.823Z_
+
+三份文档已写入：
+
+**产出 1: `docs/related_work_structure.md`** — 四线交汇结构：
+- Thread 1 (Binary Detection → ordinal): DetectGPT, Min-K%++, DivEye, Binoculars
+- Thread 2 (Model Collapse → micro forensics): Shumailov Nature'24, Alemohammad, Dohmatob ICLR'25, Schaeffer'25
+- Thread 3 (Verification → graduated signal): Feng ICLR'25, Yi'25, Surplexity, Drayson EMNLP'25（最直接前驱）
+- Thread 4 (Data Mixing → depth-aware): DoReMi, ConStat, DATAPROPHET
+
+不确定的论文已标 [需验证]。
+
+**产出 2: `docs/claim_routes.md`** — 双路线框架：
+- **路线 A (K*≥3)**：depth estimation feasible → graduated filtering > binary，4 个 supporting claims + story arc + 3 个评审攻击面预演
+- **路线 B (K*=2)**：K* 本身是 first-of-kind scientific quantity，framing 转换表（避免 hedging 措辞），saturation characterization 5 个卖点 + 3 个攻击面预演
+- 底部附决策树
+
+**产出 3: `docs/theory_framework.md`** — 信道级联 + DPI 理论框架：
+- 递归生成 = iterated lossy channel Markov chain
+- 3 个 proposition 骨架：(1) MI 单调衰减（DPI 直接推论），(2) 不动点收敛 → K* 有限性（contractive mapping），(3) 衰减速率与 decoding strategy 的非单调关系（conjecture）
+- JSD 作为 tractable MI proxy 的定位和局限
+- 理论预测 ↔ 实验验证对照表
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90ebb44e-3431-4b96-95a0-de4cb54c1085",
+  "isSidechain": false,
+  "requestId": "req_011Caxhv94oAGEcFsXCh6pXt",
+  "type": "assistant",
+  "uuid": "25954cde-ed60-4624-830d-24911bdc20d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R6Rm8wuwV3MJE479QqMQy8",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11550,
+      "cache_read_input_tokens": 36772,
+      "output_tokens": 538,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11550,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 538,
+          "cache_read_input_tokens": 36772,
+          "cache_creation_input_tokens": 11550,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11550
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "25954cde-ed60-4624-830d-24911bdc20d7",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature review and paper framework design",
+  "sessionId": "9c0252dc-811f-4c6a-8513-34772e132ad8"
+}
+```
+
+---

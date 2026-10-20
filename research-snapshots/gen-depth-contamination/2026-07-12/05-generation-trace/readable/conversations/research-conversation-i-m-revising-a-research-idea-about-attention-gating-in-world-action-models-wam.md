@@ -1,0 +1,4126 @@
+# Research conversation: I'm revising a research idea about attention gating in World Action Models (WAMs). The reviewer flagged several concurre
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 67
+- **Recorded user turns:** 1
+- **Tool calls:** 28
+- **Original source:** `logs/chats/exported-trajectories/account-3/agent-af6c2c00c7e2589c6.jsonl`
+- **Structured JSON:** [`f26ce6c320dd214f3cd3.json`](../../sessions/f2/f26ce6c320dd214f3cd3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+67 recorded events
+
+### User
+
+_source line 1 · 2026-05-10T18:22:43.714Z_
+
+I'm revising a research idea about attention gating in World Action Models (WAMs). The reviewer flagged several concurrent works I need to investigate:
+
+1. **CKT-WAM** (arXiv 2605.06247) — "parameter-efficient adapter-based transfer between WAMs using adapter modules with specialized routed experts"
+2. **OA-WAM** (arXiv 2605.06481) — related to WAM attention modification
+3. **EA-WM** (arXiv 2605.06192) — related to WAM attention modification
+
+Search for each of these papers on arXiv and use WebFetch to read their abstracts and method descriptions. I need to understand:
+- What exactly does each paper propose?
+- Do any of them address noise-pair-conditioned attention gating?
+- How does my proposed idea (conditioning cross-modal attention on both timestep embeddings in dual-timestep WAMs) differentiate from each?
+
+Also search for:
+- "world action model adapter 2026"
+- "world action model attention 2026" 
+- "WAM cross-modal attention arXiv 2026"
+
+to find any OTHER concurrent works I might be missing. Report findings in detail.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "09cc884f-fced-4ca6-9c3d-0965276f1791",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T18:22:43.717Z_
+
+```json
+{
+  "parentUuid": "09cc884f-fced-4ca6-9c3d-0965276f1791",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "e80e1609-3afa-4f8a-845a-4228db11d22f",
+  "timestamp": "2026-05-10T18:22:43.717Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-10T18:22:59.046Z_
+
+
+
+I'll start by loading the WebSearch and WebFetch tool schemas, then search for all the papers and related works.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e80e1609-3afa-4f8a-845a-4228db11d22f",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMVVFCPQdCBmcPacbeU",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "61fa1764-4b5a-4b76-99c7-f97cb90011d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016RnuELA9WrsLq6qmknjLjp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 825,
+      "cache_read_input_tokens": 8223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 825,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-10T18:22:59.341Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01JjiBnebfowujCC4RsbCz9i`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "61fa1764-4b5a-4b76-99c7-f97cb90011d5",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMVVFCPQdCBmcPacbeU",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0107c084-ab22-4dbb-9d15-67fef8322937",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016RnuELA9WrsLq6qmknjLjp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 825,
+      "cache_read_input_tokens": 8223,
+      "output_tokens": 106,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 825
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 106,
+          "cache_read_input_tokens": 8223,
+          "cache_creation_input_tokens": 825,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 825,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-10T18:22:59.344Z_
+
+<details><summary>↩ Tool result · `toolu_01JjiBnebfowujCC4RsbCz9i`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0107c084-ab22-4dbb-9d15-67fef8322937",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "fd297239-b87d-4112-9a28-e47e03ebda7f",
+  "sourceToolAssistantUUID": "0107c084-ab22-4dbb-9d15-67fef8322937",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-10T18:23:03.062Z_
+
+
+
+Now let me search for all three papers and the broader queries in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd297239-b87d-4112-9a28-e47e03ebda7f",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMWeJSKoMXdUGCHGgnN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ba3a9b1e-9fa0-4748-adff-cdfea8a85ee2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXGPmTNHi5vi26qLWey4e4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1915,
+      "cache_read_input_tokens": 9048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1915,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-10T18:23:04.552Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016GesPEoJSdb2DZ7Sfai37V`</summary>
+
+```json
+{
+  "query": "arXiv 2605.06247 CKT-WAM adapter world action model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ba3a9b1e-9fa0-4748-adff-cdfea8a85ee2",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMWeJSKoMXdUGCHGgnN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4abe81cc-e3e5-403e-8492-880c48fabe1b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXGPmTNHi5vi26qLWey4e4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1915,
+      "cache_read_input_tokens": 9048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1915,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-10T18:23:04.969Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ViM46rdMnb2xboDd18Usxu`</summary>
+
+```json
+{
+  "query": "arXiv 2605.06481 OA-WAM world action model attention"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4abe81cc-e3e5-403e-8492-880c48fabe1b",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMWeJSKoMXdUGCHGgnN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f3982994-64d8-4eec-815a-fde6f3c050df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXGPmTNHi5vi26qLWey4e4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1915,
+      "cache_read_input_tokens": 9048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1915,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-10T18:23:05.521Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LnSMkPrGiBQuCV9YWJKyMo`</summary>
+
+```json
+{
+  "query": "arXiv 2605.06192 EA-WM world action model attention"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f3982994-64d8-4eec-815a-fde6f3c050df",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMWeJSKoMXdUGCHGgnN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5ba447fc-e082-4b75-a03a-bab0129d5257",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXGPmTNHi5vi26qLWey4e4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1915,
+      "cache_read_input_tokens": 9048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1915,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T18:23:05.910Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01D6ABjYUvJ4YGwmc7fhZXzP`</summary>
+
+```json
+{
+  "query": "world action model adapter 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ba447fc-e082-4b75-a03a-bab0129d5257",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMWeJSKoMXdUGCHGgnN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "56841c62-d962-43f5-80dd-7d5c94ec436f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXGPmTNHi5vi26qLWey4e4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1915,
+      "cache_read_input_tokens": 9048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1915,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-10T18:23:06.381Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VA1C1FyipBRuK2gVNbsUzX`</summary>
+
+```json
+{
+  "query": "world action model attention 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "56841c62-d962-43f5-80dd-7d5c94ec436f",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMWeJSKoMXdUGCHGgnN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4092ad4d-5c42-452c-b183-ce64d14bb390",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXGPmTNHi5vi26qLWey4e4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1915,
+      "cache_read_input_tokens": 9048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1915,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-10T18:23:06.664Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011TLAh6NrFN8xpwoYn8wabP`</summary>
+
+```json
+{
+  "query": "WAM cross-modal attention arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4092ad4d-5c42-452c-b183-ce64d14bb390",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMWeJSKoMXdUGCHGgnN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b372568a-0021-41ea-ab1f-7cf8de6a1b00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXGPmTNHi5vi26qLWey4e4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1915,
+      "cache_read_input_tokens": 9048,
+      "output_tokens": 321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1915
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 321,
+          "cache_read_input_tokens": 9048,
+          "cache_creation_input_tokens": 1915,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1915,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-10T18:23:10.328Z_
+
+<details><summary>↩ Tool result · `toolu_016GesPEoJSdb2DZ7Sfai37V`</summary>
+
+```text
+Web search results for query: "arXiv 2605.06247 CKT-WAM adapter world action model"
+
+Links: [{"title":"CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models","url":"https://arxiv.org/html/2605.06247v1"},{"title":"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation","url":"https://arxiv.org/html/2605.06481v1"},{"title":"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising","url":"https://arxiv.org/html/2604.26694v2"},{"title":"[2605.06222] When to Trust Imagination: Adaptive Action Execution for World Action Models","url":"https://arxiv.org/abs/2605.06222"},{"title":"When to Trust Imagination: Adaptive Action Execution for World Action Models","url":"https://arxiv.org/html/2605.06222"},{"title":"World Action Models are Zero-shot Policies","url":"https://arxiv.org/html/2602.15922v1"},{"title":"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields","url":"https://arxiv.org/html/2605.06192v1"},{"title":"DreamZero: World Action Models are Zero-shot Policies","url":"https://dreamzero0.github.io/"},{"title":"[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://arxiv.org/abs/2603.16666"},{"title":"Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://arxiv.org/html/2603.16666v1"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models
+
+The paper addresses knowledge transfer across heterogeneous World Action Models (WAMs), which are generative frameworks for embodied control, yet transferring knowledge across different WAMs remains challenging due to mismatched latent interfaces, high adaptation cost, and the rigidity of conventional distillation objectives.
+
+CKT-WAM is a parameter-efficient Context Knowledge Transfer framework that transfers teacher WAM's knowledge into a student WAM through a compact context in the text embedding space, rather than output imitation or dense hidden-state matching.
+
+The method extracts intermediate teacher hidden states, reduces the number of tokens via compressors' learnable-query cross attention (LQCA), and transforms them through an always-on generalized adapter, a lightweight mechanism.
+
+The paper was recently published on arXiv (May 7, 2026) and is authored by researchers from Tsinghua University, LivsynRobotics, and Shanghai AI Laboratory.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4abe81cc-e3e5-403e-8492-880c48fabe1b",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "05c8f887-77a0-4882-ac8c-7cf255346456",
+  "sourceToolAssistantUUID": "4abe81cc-e3e5-403e-8492-880c48fabe1b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-10T18:23:11.803Z_
+
+<details><summary>↩ Tool result · `toolu_01ViM46rdMnb2xboDd18Usxu`</summary>
+
+```text
+Web search results for query: "arXiv 2605.06481 OA-WAM world action model attention"
+
+Links: [{"title":"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation","url":"https://arxiv.org/html/2605.06481v1"},{"title":"When to Trust Imagination: Adaptive Action Execution for World Action Models","url":"https://arxiv.org/html/2605.06222"},{"title":"[2605.06222] When to Trust Imagination: Adaptive Action Execution for World Action Models","url":"https://arxiv.org/abs/2605.06222"},{"title":"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising","url":"https://arxiv.org/html/2604.26694v2"},{"title":"CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models","url":"https://arxiv.org/html/2605.06247v1"},{"title":"World Action Models are Zero-shot Policies","url":"https://arxiv.org/html/2602.15922v1"},{"title":"Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://arxiv.org/html/2603.16666v1"},{"title":"Being-H0.7: A Latent World-Action Model from Egocentric Videos","url":"https://arxiv.org/html/2605.00078v1"},{"title":"X-WAM: Unified 4D World Action Modeling from Video ...","url":"https://sharinka0715.github.io/X-WAM/"},{"title":"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields","url":"https://arxiv.org/html/2605.06192v1"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation** (arXiv:2605.06481v1, published May 7, 2026) is authored by researchers from Tsinghua University, Shanghai Jiao Tong University, and Nanyang Technological University, with corresponding author contact information provided.
+
+The paper addresses robot manipulation using an object-addressable approach. Robot manipulation naturally unfolds at the object level, requiring robots to identify language-named objects in scenes, reason about their spatial and functional relations, and generate correct, robust closed-loop actions—rather than simply replaying training trajectories.
+
+A key technical contribution of OA-WAM involves its attention mechanism. Each transformer layer uses a slot-aware variant of the standard self-attention module, where queries and values are projected as in the base layer but the keys read from a boolean slot mask from the token-type tensor; non-slot positions use standard self-attention with no mask intervention, so the OA constraint is purely a slot-typed-position phenomenon.
+
+The model is designed to work with N+1 addressable object slots whose cross-slot attention key reads only the identity address subvector, maintaining robust manipulation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f3982994-64d8-4eec-815a-fde6f3c050df",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "1f421c29-41e4-4d50-b73e-fcb9d7cb2def",
+  "sourceToolAssistantUUID": "f3982994-64d8-4eec-815a-fde6f3c050df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-10T18:23:12.401Z_
+
+<details><summary>↩ Tool result · `toolu_01D6ABjYUvJ4YGwmc7fhZXzP`</summary>
+
+```text
+Web search results for query: "world action model adapter 2026"
+
+Links: [{"title":"[2602.15922] World Action Models are Zero-shot Policies","url":"https://arxiv.org/abs/2602.15922"},{"title":"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation","url":"https://arxiv.org/html/2605.06481v1"},{"title":"DreamZero: World Action Models are Zero-shot Policies","url":"https://dreamzero0.github.io/"},{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"},{"title":"MotuBrain: An Advanced World Action Model for Robot Control","url":"https://arxiv.org/html/2604.27792v2"},{"title":"World Action Models are Zero-shot Policies | OpenReview","url":"https://openreview.net/forum?id=cd33uUB609"},{"title":"Paper page - World Action Models are Zero-shot Policies","url":"https://huggingface.co/papers/2602.15922"},{"title":"Being-H0.7: A Latent World-Action Model from Egocentric Videos","url":"https://arxiv.org/html/2605.00078v1"},{"title":"World Action Model (WaM) Overview","url":"https://www.emergentmind.com/topics/world-action-model-wam"},{"title":"[2603.22078] Do World Action Models Generalize Better than VLAs? A Robustness Study","url":"https://arxiv.org/abs/2603.22078"}]
+
+Based on the search results, here's what I found about world action models and adapters in 2026:
+
+## World Action Models (WAMs) Overview
+
+A World Action Model (WaM) is a unified computational system that jointly models perception, action selection, and future-state prediction via shared transformer architectures, employing coupled loss functions and autoregressive token-based methods to enhance predictive accuracy and decision making across robotics, autonomous driving, and similar domains.
+
+## Key 2026 Research
+
+One of the most prominent recent developments is **DreamZero**, a World Action Model (WAM) built upon a pretrained video diffusion backbone that learns physical dynamics by predicting future world states and actions, using video as a dense representation of how the world evolves.
+
+DreamZero enables few-shot embodiment adaptation, transferring to a new embodiment with only 30 minutes of play data while retaining zero-shot generalization. Additionally, through model and system optimizations, it enables a 14B autoregressive video diffusion model to perform real-time closed-loop control at 7Hz.
+
+## Performance Advantages
+
+World action models are built upon world models that are trained on large corpora of video data to predict future states, and with minor adaptations, their latent representation can be decoded into robot actions. DreamZero achieves over 2x improvement in generalization to new tasks and environments compared to state-of-the-art VLAs in real robot experiments.
+
+Other notable 2026 WAM research includes MotuBrain and various approaches to improving robotic manipulation through world-action model frameworks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "56841c62-d962-43f5-80dd-7d5c94ec436f",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "d8e5a53e-62e1-478c-bc1f-0ea66e2ee780",
+  "sourceToolAssistantUUID": "56841c62-d962-43f5-80dd-7d5c94ec436f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-10T18:23:13.132Z_
+
+<details><summary>↩ Tool result · `toolu_01LnSMkPrGiBQuCV9YWJKyMo`</summary>
+
+```text
+Web search results for query: "arXiv 2605.06192 EA-WM world action model attention"
+
+Links: [{"title":"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields","url":"https://arxiv.org/html/2605.06192v1"},{"title":"[2605.06222] When to Trust Imagination: Adaptive Action Execution for World Action Models","url":"https://arxiv.org/abs/2605.06222"},{"title":"When to Trust Imagination: Adaptive Action Execution for World Action Models","url":"https://arxiv.org/html/2605.06222"},{"title":"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation","url":"https://arxiv.org/html/2605.06481v1"},{"title":"World Action Models are Zero-shot Policies","url":"https://arxiv.org/html/2602.15922v1"},{"title":"World2Act: Latent Action Post-Training via Skill-Compositional World Models","url":"https://arxiv.org/html/2603.10422"},{"title":"[2506.21539] WorldVLA: Towards Autoregressive Action World Model","url":"https://arxiv.org/abs/2506.21539"},{"title":"A Comprehensive Survey on World Models for Embodied AI","url":"https://arxiv.org/html/2510.16732v1"},{"title":"World Model for Robot Learning: A Comprehensive Survey","url":"https://arxiv.org/html/2605.00080v1"},{"title":"Latent Policy Steering with Embodiment-Agnostic Pretrained World Models","url":"https://arxiv.org/html/2507.13340"}]
+
+Based on the search results, I found detailed information about arXiv paper 2605.06192. Here's what it contains:
+
+## EA-WM: Event-Aware Generative World Model
+
+The paper introduces EA-WM, built on pretrained video diffusion models as a foundation for robotic world models.
+
+### Key Innovation: Attention Mechanism
+
+The paper introduces an event-aware bidirectional fusion mechanism driven by Event-Difference Latent Supervision (EDLS), which compels the model to dynamically allocate attention not only to the robot's geometric progression but also to regions undergoing state transitions and interaction dynamics, leading to significantly more physically consistent rollouts.
+
+### Architecture
+
+At the architectural level, EA-WM augments a diffusion-transformer backbone with a dedicated KVAF (Kinematic-to-Visual Action Fields) branch and interval-based bidirectional fusion, facilitating continuous interaction between structured kinematic cues and video features.
+
+### Action Conditioning Approach
+
+Compared with raw action vectors, KVAFs bring action conditioning into the same image domain as future video generation, thereby alleviating domain misalignment and providing richer spatial and geometric cues for robotic world modeling.
+
+### Performance
+
+Compared to existing state-of-the-art baselines, EA-WM significantly enhances the physical adherence, 3D geometric accuracy, and fine-grained controllability of generated rollouts, establishing a new standard for robotic video modeling.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5ba447fc-e082-4b75-a03a-bab0129d5257",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "f7a3f40c-6425-48ff-94b4-f8232dd4a551",
+  "sourceToolAssistantUUID": "5ba447fc-e082-4b75-a03a-bab0129d5257",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T18:23:13.469Z_
+
+<details><summary>↩ Tool result · `toolu_01VA1C1FyipBRuK2gVNbsUzX`</summary>
+
+```text
+Web search results for query: "world action model attention 2026"
+
+Links: [{"title":"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation","url":"https://arxiv.org/html/2605.06481v1"},{"title":"[2602.15922] World Action Models are Zero-shot Policies","url":"https://arxiv.org/abs/2602.15922"},{"title":"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields","url":"https://arxiv.org/html/2605.06192v1"},{"title":"Learning Vision-Language-Action World Models for Autonomous Driving","url":"https://arxiv.org/html/2604.09059v1"},{"title":"Being-H0.7: A Latent World-Action Model from Egocentric Videos","url":"https://arxiv.org/html/2605.00078v1"},{"title":"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising","url":"https://arxiv.org/html/2604.26694v2"},{"title":"DreamZero: World Action Models are Zero-shot Policies","url":"https://dreamzero0.github.io/"},{"title":"MotuBrain: An Advanced World Action Model for Robot Control","url":"https://arxiv.org/html/2604.27792v2"},{"title":"ShengShu Technology Unveils World Action Model \"Motubrain\": One Brain, Infinite Possibilities for Robotic Intelligence | RoboticsTomorrow","url":"https://www.roboticstomorrow.com/news/2026/04/29/shengshu-technology-unveils-world-action-model-motubrain-one-brain-infinite-possibilities-for-robotic-intelligence/26497/"},{"title":"World Action Model (WaM) Overview","url":"https://www.emergentmind.com/topics/world-action-model-wam"}]
+
+Based on the search results, here's what I found about world action models and attention mechanisms in 2026:
+
+## World Action Models Overview
+
+A World Action Model (WaM) is a unified computational system that jointly models perception, action selection, and future-state prediction via shared transformer architectures, employing coupled loss functions and autoregressive token-based methods to enhance predictive accuracy and decision making across robotics, autonomous driving, and similar domains.
+
+## Recent Developments in 2026
+
+Several cutting-edge world action models have emerged recently:
+
+**DreamZero**: DreamZero is a World Action Model (WAM) built upon a pretrained video diffusion backbone. DreamZero outperforms pretrained baselines, achieving 49% task progress on unseen verbs compared to 25-32% for state-of-the-art VLAs.
+
+**MotuBrain**: ShengShu Technology announced Motubrain, a World Action Model that replaces multiple task-specific systems with a single, unified model that functions as a robotic brain for the physical world. Motubrain achieved a 63.77 EWM Score on WorldArena.
+
+**Attention Mechanisms**: Cross-modal interaction is implemented through joint attention over video, action, and text tokens. An H-bridge design is adopted where full video-action joint attention is applied only in the middle 50% of Transformer layers, while the bottom and top 25% layers use decoupled attention.
+
+Predictive environmental modeling forces attention to object dynamics and physical consequences, yielding more robust, retry-capable, and reliable action policies.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4092ad4d-5c42-452c-b183-ce64d14bb390",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "eeb5a150-6b63-4746-a691-7f88984e30da",
+  "sourceToolAssistantUUID": "4092ad4d-5c42-452c-b183-ce64d14bb390",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-10T18:23:17.930Z_
+
+<details><summary>↩ Tool result · `toolu_011TLAh6NrFN8xpwoYn8wabP`</summary>
+
+```text
+Web search results for query: "WAM cross-modal attention arXiv 2026"
+
+Links: [{"title":"[2412.20455] Cross-Modal Fusion and Attention Mechanism for Weakly Supervised Video Anomaly Detection","url":"https://arxiv.org/abs/2412.20455"},{"title":"Cross-Modal Fusion and Attention Mechanism for Weakly Supervised Video Anomaly Detection","url":"https://arxiv.org/html/2412.20455v1"},{"title":"Cross-Modal Binary Attention: An Energy-Efficient Fusion Framework for Audio-Visual Learning","url":"https://arxiv.org/html/2602.00701v1"},{"title":"[2601.11151] Cross-Modal Attention Network with Dual Graph Learning in Multimodal Recommendation","url":"https://arxiv.org/abs/2601.11151"},{"title":"Cross-modal attention for multi-modal image registration - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC9588729/"},{"title":"Q K V softmax αij Attention Mechanisms in Neural Networks","url":"https://arxiv.org/pdf/2601.03329"},{"title":"Cross-Modal Retrieval: A Systematic Review of Methods and Future Directions","url":"https://arxiv.org/html/2308.14263v3"},{"title":"Multimodal Fusion and Vision-Language Models: A Survey for Robot Vision","url":"https://arxiv.org/html/2504.02477v1"},{"title":"TACA: Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers","url":"https://arxiv.org/html/2506.07986v2"},{"title":"Multimodal Transformer Using Cross-Channel attention for Object Detection in Remote Sensing Images","url":"https://arxiv.org/html/2310.13876v3"}]
+
+Based on the search results, I found several papers related to cross-modal attention mechanisms from arXiv in 2026, though none appear to specifically focus on something called "WAM cross-modal attention." Here are the most relevant findings:
+
+## Recent Cross-Modal Attention Papers (2026)
+
+One notable paper introduces Cross Modal Q-K Attention, a novel cross-modal fusion mechanism that achieves linear O(N) complexity while enabling effective extraction of complementary spatiotemporal features across modalities. This mechanism employs bidirectional cross-modal Query-Key attention to extract complementary spatiotemporal features between audio and visual modalities.
+
+Another recent work from January 2026 presents CRANE (Cross-modal Recursive Attention Network with dual graph Embedding), which features a Recursive Cross-Modal Attention (RCA) mechanism that iteratively refines modality features based on cross-correlations in a joint latent space, effectively capturing high-order intra- and inter-modal dependencies.
+
+Additionally, TACA (Temperature-Adjusted Cross-modal Attention) is proposed as an enhancement to multimodal diffusion transformers, introducing modality-specific temperature scaling to mitigate cross-attention suppression, and timestep-dependent adjustments to cross-modal interactions.
+
+If you're looking for a specific paper with "WAM" in the title or abstract, the search results didn't return a match for that exact acronym. Could you provide more context about what "WAM" stands for or which application domain it's related to?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b372568a-0021-41ea-ab1f-7cf8de6a1b00",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "9779887a-0e02-43d8-b89d-6e11761d552f",
+  "sourceToolAssistantUUID": "b372568a-0021-41ea-ab1f-7cf8de6a1b00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-10T18:23:22.749Z_
+
+Good, I have initial results. Now let me fetch the full abstracts and method details from each of the three target papers, plus a few additional potentially relevant ones.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9779887a-0e02-43d8-b89d-6e11761d552f",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMY1YACgGFNPKtMNLw3",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "157efabc-7847-4806-bc94-ef8c65fc68fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019QForHjyTJKJ1EinV3XQeL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5219,
+      "cache_read_input_tokens": 10963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5219,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-10T18:23:26.144Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01JfmDcSQ1Bf5W2er3jGmKCN`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.06247",
+  "prompt": "Extract the full title, authors, abstract, and any method description visible on this page. Focus on: what adapter mechanism is used, how knowledge transfer works, what \"routed experts\" means in this context, and whether noise-pair-conditioned attention gating or dual-timestep conditioning is mentioned."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "157efabc-7847-4806-bc94-ef8c65fc68fc",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMY1YACgGFNPKtMNLw3",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8a134ba4-41de-442a-a99c-0e6629521070",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019QForHjyTJKJ1EinV3XQeL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5219,
+      "cache_read_input_tokens": 10963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5219,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-10T18:23:27.435Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01D6eLydFCFgnPLt59LtHLnM`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.06481",
+  "prompt": "Extract the full title, authors, abstract, and any method description visible on this page. Focus on: what the attention modification is, how object-addressable attention works, whether noise-pair-conditioned attention gating or dual-timestep cross-modal attention conditioning is mentioned."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a134ba4-41de-442a-a99c-0e6629521070",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMY1YACgGFNPKtMNLw3",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c61577c2-e564-477d-a24b-bd390f0b9849",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019QForHjyTJKJ1EinV3XQeL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5219,
+      "cache_read_input_tokens": 10963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5219,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-10T18:23:28.312Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PkV4eMn9bdqoA84ibCDyQJ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.06192",
+  "prompt": "Extract the full title, authors, abstract, and any method description visible on this page. Focus on: what attention mechanism is used, how event-aware attention works, whether noise-pair-conditioned attention gating or dual-timestep cross-modal attention conditioning is mentioned."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c61577c2-e564-477d-a24b-bd390f0b9849",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMY1YACgGFNPKtMNLw3",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "cfeadb6f-1698-45f2-9881-c8d619518100",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019QForHjyTJKJ1EinV3XQeL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5219,
+      "cache_read_input_tokens": 10963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5219,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-10T18:23:29.828Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XuMHi14ycbEPS6Fs1VYj26`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.06222",
+  "prompt": "Extract the full title, authors, abstract. This paper is about adaptive action execution for WAMs - describe what it proposes and whether it modifies attention mechanisms, uses attention gating, or involves timestep conditioning."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cfeadb6f-1698-45f2-9881-c8d619518100",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMY1YACgGFNPKtMNLw3",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ff3cba00-def6-4af6-b158-f55036e9cd1c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019QForHjyTJKJ1EinV3XQeL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5219,
+      "cache_read_input_tokens": 10963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5219,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-10T18:23:31.637Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0139UU4boXMmNsRa4ZCUhFPA`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.00078",
+  "prompt": "Extract the full title, authors, abstract. This paper \"Being-H0.7\" is about a latent world-action model. Describe what it proposes, especially any attention mechanism modifications, cross-modal attention, or timestep-based conditioning."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff3cba00-def6-4af6-b158-f55036e9cd1c",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMY1YACgGFNPKtMNLw3",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5b4f3fe8-366a-47d5-9eee-8b8baf0a3cb8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019QForHjyTJKJ1EinV3XQeL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5219,
+      "cache_read_input_tokens": 10963,
+      "output_tokens": 648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 5219
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 648,
+          "cache_read_input_tokens": 10963,
+          "cache_creation_input_tokens": 5219,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 5219,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-10T18:23:31.831Z_
+
+<details><summary>↩ Tool result · `toolu_01JfmDcSQ1Bf5W2er3jGmKCN`</summary>
+
+```text
+# CKT-WAM Paper Summary
+
+**Full Title:** CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models
+
+**Authors:** Yuhua Jiang, Yijun Guo, Hongbing Yang, Guojun Lei, Nuo Chen, Yinuo Zhang, Shaoqiang Yan, Bo Lin, Feifei Gao, Biqing Qi
+
+## Abstract
+The paper addresses knowledge transfer across heterogeneous World Action Models (WAMs) through a compact context mechanism in text embedding space rather than output imitation or hidden-state matching.
+
+## Key Technical Components
+
+**Adapter Mechanism:** The framework employs "an always-on generalized adapter, a lightweight router, and sparsely activated specialized adapters" to transform compressed teacher representations.
+
+**Knowledge Transfer Process:** The method extracts intermediate teacher hidden states, compresses token counts via "learnable-query cross attention (LQCA)," then appends resulting context to the student model's conditioning textual embeddings.
+
+**Routed Experts:** The "lightweight router" and "sparsely activated specialized adapters" function as a routed expert system, selectively activating task-specific adapter paths while maintaining a shared general adapter.
+
+## Notable Results
+- Achieves 86.1% success rate on LIBERO-Plus with only 1.17% trainable parameters
+- Demonstrates 83.3% average success on real-world long-horizon manipulation tasks
+- Code available on GitHub
+
+**Note:** The page does not mention noise-pair-conditioned attention gating or dual-timestep conditioning.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a134ba4-41de-442a-a99c-0e6629521070",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "89e92de9-5e6d-4a96-9b1f-147c5079f161",
+  "sourceToolAssistantUUID": "8a134ba4-41de-442a-a99c-0e6629521070",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-10T18:23:32.677Z_
+
+<details><summary>↩ Tool result · `toolu_01PkV4eMn9bdqoA84ibCDyQJ`</summary>
+
+```text
+# EA-WM: Event-Aware Generative World Model
+
+## Full Title
+"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields"
+
+## Authors
+Zhaoyang Yang, Yurun Jin, Lizhe Qi, Cong Huang, Kai Chen
+
+## Abstract
+The paper addresses how pretrained video diffusion models can serve as foundations for robotic world models. The authors propose that existing approaches inadequately leverage action signals to guide video synthesis, often failing to preserve robot geometry and interaction dynamics. Their solution involves projecting actions directly into camera views as "Structured Kinematic-to-Visual Action Fields" rather than using abstract tokens.
+
+## Attention Mechanism & Event-Aware Components
+
+The visible abstract describes "event-aware bidirectional fusion blocks that modulate cross-branch attention." These blocks are designed to capture object state changes and interaction dynamics.
+
+**Important Note:** The page content provided does not include detailed technical descriptions of the attention mechanisms. Specific terms like "noise-pair-conditioned attention gating" or "dual-timestep cross-modal attention conditioning" do not appear in this excerpt. Accessing the full PDF or HTML version would be necessary to identify the precise attention architecture employed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cfeadb6f-1698-45f2-9881-c8d619518100",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "41443bac-bc39-4f4b-a9a1-0ccd332a0dcf",
+  "sourceToolAssistantUUID": "cfeadb6f-1698-45f2-9881-c8d619518100",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-10T18:23:32.942Z_
+
+<details><summary>↩ Tool result · `toolu_01D6eLydFCFgnPLt59LtHLnM`</summary>
+
+```text
+# OA-WAM Paper Summary
+
+## Full Title
+"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation"
+
+## Authors
+Yushan Liu, Peibo Sun, Shoujie Li, Yifan Xie, Lingfeng Zhang, Xintao Chao, Shiyuan Dong, Fang Chen, Xiao-Ping Zhang, Wenbo Ding
+
+## Abstract
+The paper addresses limitations in Vision-Language-Action policies by proposing a model that decomposes scenes into object slots. The key innovation involves "routing cross-slot attention through address-only keys and resetting the address slice at every transformer layer" to separate object identification from current state representation.
+
+## Attention Modification Method
+The core attention modification uses **address-only keys** in cross-slot routing. This approach separates which object to manipulate from its current visual/contextual state without requiring additional tokens. The method resets address information at each transformer layer.
+
+## Object-Addressable Attention
+The architecture decomposes frames into N+1 slot states (one robot slot, N object slots). Each slot maintains: a persistent address vector and a time-varying content vector. This dual-vector design enables robust object reference under scene changes.
+
+## Special Techniques Not Found
+Neither "noise-pair-conditioned attention gating" nor "dual-timestep cross-modal attention conditioning" appear in the provided content.
+
+## Performance Results
+- LIBERO: 97.8%
+- SimplerEnv: 79.3%
+- Causal intervention test swap-binding: 0.87 cosine similarity
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c61577c2-e564-477d-a24b-bd390f0b9849",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "e38652aa-1524-4c1c-b8a5-00203b1cd25f",
+  "sourceToolAssistantUUID": "c61577c2-e564-477d-a24b-bd390f0b9849",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-10T18:23:35.583Z_
+
+<details><summary>↩ Tool result · `toolu_01XuMHi14ycbEPS6Fs1VYj26`</summary>
+
+```text
+# Paper Summary
+
+**Full Title:** "When to Trust Imagination: Adaptive Action Execution for World Action Models"
+
+**Authors:** Rui Wang, Yue Zhang, Jiehong Lin, Kuncheng Luo, Jianan Wang, Zhongrui Wang, Xiaojuan Qi
+
+**Abstract:** The paper addresses a key limitation in World Action Models (WAMs) for robotic manipulation. Rather than executing a predetermined number of predicted actions, the authors propose enabling robots to adaptively adjust execution length based on whether predictions remain reliable.
+
+## Key Proposal
+
+The work introduces Future Forward Dynamics Causal Attention (FFDC), which operates as "a lightweight verifier that jointly reasons over predicted future actions, predicted visual dynamics, real observations, and language instructions" to assess trustworthiness of remaining action sequences.
+
+## Attention Mechanism Details
+
+The approach **does modify attention mechanisms**—specifically, it incorporates causal attention focused on forward dynamics. The method conditions reasoning on multiple modalities (predicted actions, visual predictions, observations, and language) to estimate prediction reliability.
+
+The system achieves adaptive action chunk sizing through prediction-observation consistency matching, enabling longer execution phases when confidence is high while triggering replanning during contact-rich interactions or deviations from predicted outcomes.
+
+**Results:** On RoboTwin benchmarks, the method reduces forward passes by 69.10% and execution time by 34.02% while improving success rates by 2.54%. Real-world experiments showed 35% success rate improvement.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ff3cba00-def6-4af6-b158-f55036e9cd1c",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "41b561a8-b472-441c-8124-65fd0f55cb18",
+  "sourceToolAssistantUUID": "ff3cba00-def6-4af6-b158-f55036e9cd1c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-10T18:23:36.631Z_
+
+<details><summary>↩ Tool result · `toolu_0139UU4boXMmNsRa4ZCUhFPA`</summary>
+
+```text
+# Being-H0.7: A Latent World-Action Model from Egocentric Videos
+
+## Full Title
+Being-H0.7: A Latent World-Action Model from Egocentric Videos
+
+## Authors
+Hao Luo, Wanpeng Zhang, Yicheng Feng, Sipeng Zheng, Haiweng Xu, Chaoyi Xu, Ziheng Xi, Yuhui Fu, Zongqing Lu
+
+## Abstract
+The paper addresses limitations in Visual-Language-Action models by introducing future-aware reasoning without generating pixel-level predictions. It proposes "learnable latent queries between perception and action as a compact reasoning interface" trained with dual branches—a deployable prior branch and training-only posterior branch. The model aligns these branches in latent space, enabling the prior branch to "reason future-aware, action-useful structure from current observations alone" at inference time.
+
+## Key Proposal
+Rather than using world models that generate future video frames, Being-H0.7 incorporates future prediction through a dual-branch architecture operating in latent space. The posterior branch uses embeddings from future observations during training to guide the prior branch, eliminating the need for costly pixel-space rollouts during deployment. This approach combines "the predictive benefits of world models with the efficiency and deployability of direct VLA policies."
+
+The paper does not explicitly describe attention mechanism modifications or cross-modal attention techniques in the available abstract content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b4f3fe8-366a-47d5-9eee-8b8baf0a3cb8",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "51aa53a9-5e84-4878-9976-1fecdcab9d6a",
+  "sourceToolAssistantUUID": "5b4f3fe8-366a-47d5-9eee-8b8baf0a3cb8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-10T18:23:39.794Z_
+
+Good. Now let me get more details from the full HTML versions of the three main papers to understand their methods more deeply, and also check a few more potentially relevant papers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51aa53a9-5e84-4878-9976-1fecdcab9d6a",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMZPWmtegXQvc9QrQig",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "aca060c7-5832-44ff-a4b0-eb6b5bf7d787",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V4uZnAZrHWXpN8qec5hogV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2553,
+      "cache_read_input_tokens": 16182,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2553,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-10T18:23:43.916Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01BL8gZAPTgujgWqYumGaWkn`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2605.06247v1",
+  "prompt": "Extract the detailed method section. Specifically: 1) How does the LQCA (learnable-query cross attention) work? 2) What are the \"specialized routed experts\" - how does the router select them? 3) Is there any noise-level conditioning, timestep conditioning, or noise-pair conditioning? 4) Does the adapter modify cross-modal attention between action tokens and visual tokens, or does it work in text embedding space only? 5) What is the relationship to diffusion noise schedules if any?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aca060c7-5832-44ff-a4b0-eb6b5bf7d787",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMZPWmtegXQvc9QrQig",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3602250a-727d-4bc7-887f-4fdbed9cc363",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V4uZnAZrHWXpN8qec5hogV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2553,
+      "cache_read_input_tokens": 16182,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2553,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-10T18:23:46.507Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01DvQ9BzpxXsngA8iXudVUUj`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2605.06481v1",
+  "prompt": "Extract the detailed method section. Specifically: 1) How does the slot-aware attention work step by step? 2) How are address-only keys used in cross-slot attention? 3) Is there any timestep conditioning, noise-pair conditioning, or attention gating mechanism? 4) How does the cross-modal attention between vision and action work? 5) Does the model use a diffusion backbone, and if so how does it handle denoising timesteps?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3602250a-727d-4bc7-887f-4fdbed9cc363",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMZPWmtegXQvc9QrQig",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c1c161e9-6ab7-4e2f-8337-d57c9c57a590",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V4uZnAZrHWXpN8qec5hogV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2553,
+      "cache_read_input_tokens": 16182,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2553,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-10T18:23:48.806Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01HGPsu2Vd6MZkeceWaDEHV7`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2605.06192v1",
+  "prompt": "Extract the detailed method section. Specifically: 1) How do the event-aware bidirectional fusion blocks work? 2) What is Event-Difference Latent Supervision (EDLS)? 3) Is there any noise-pair conditioning, attention gating, or dual-timestep mechanism? 4) How does the KVAF (Kinematic-to-Visual Action Fields) branch interact with the diffusion backbone? 5) How does the cross-modal attention between action and visual features work? 6) What role do denoising timesteps play in the architecture?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c1c161e9-6ab7-4e2f-8337-d57c9c57a590",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMZPWmtegXQvc9QrQig",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "22b0420c-3a60-4865-bfc3-1324e13a7d27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V4uZnAZrHWXpN8qec5hogV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2553,
+      "cache_read_input_tokens": 16182,
+      "output_tokens": 598,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2553
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 598,
+          "cache_read_input_tokens": 16182,
+          "cache_creation_input_tokens": 2553,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2553,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-10T18:23:53.272Z_
+
+<details><summary>↩ Tool result · `toolu_01BL8gZAPTgujgWqYumGaWkn`</summary>
+
+```text
+# CKT-WAM Method Details
+
+## 1) LQCA (Learnable-Query Cross Attention)
+
+The LQCA mechanism compresses teacher hidden states using learnable query tokens. Teacher features are first projected to student dimensionality, then two learnable query banks (Qg and Qs) perform multi-head cross-attention: "compressed teacher contexts are then obtained by LN(MHCA(Q~*, KZ, VZ)+Q~*)" where the cross-attention summarizes the full teacher sequence into only Kg or Ks tokens. This creates a bottleneck that extracts task-relevant information while discarding irrelevant details.
+
+## 2) Specialized Routed Experts
+
+The framework maintains M=8 specialized adapters, each implementing "a lightweight residual bottleneck operating on the specialized compact context." Selection occurs through route-first sparse execution: the system "summarize[s] the teacher hidden states by average pooling" into a routing representation, which feeds through a lightweight gating network producing softmax scores over all adapters. For each batch instance, "we select the top-k adapters" (k=2) and execute only those specialized branches, with sparse aggregation: "the final specialized context is computed by weighted sparse aggregation" across selected adapters.
+
+## 3) Noise-Level Conditioning
+
+The method uses **shared noise-level conditioning across modalities** but does not apply timestep-specific conditioning. The teacher is queried with "timestep fixed to t*=0" intentionally, avoiding "timestep-specific noise corruption into teacher features." During training, "we sample a shared noise level from the base model's log-normal distribution" applied uniformly to video and action latents, though "modality-specific perturbations" remain distinct.
+
+## 4) Attention Modification Location
+
+The transferred context operates **exclusively in text embedding space**. The mechanism works by "appending the aggregated context CA to the conditioning sequence" of textual embeddings. The augmented sequence "is fed into the frozen student backbone only through multi-head cross-attention," meaning visual and action token self-attention remains unmodified—the context only influences future frames through the existing cross-modal pathway.
+
+## 5) Diffusion Noise Schedule Relationship
+
+The approach leverages the student's diffusion objective directly. Both video and action predictions use "the student's original diffusion-style latent objective," with losses weighted by "noise-dependent weight ω(σb)." The framework preserves the pretraining noise schedule without modification; the teacher context simply augments the conditioning that guides denoising across the full noise trajectory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3602250a-727d-4bc7-887f-4fdbed9cc363",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "16db072e-cc75-4e67-80bf-c3fcc31def17",
+  "sourceToolAssistantUUID": "3602250a-727d-4bc7-887f-4fdbed9cc363",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-10T18:23:55.826Z_
+
+<details><summary>↩ Tool result · `toolu_01DvQ9BzpxXsngA8iXudVUUj`</summary>
+
+```text
+# OA-WAM Method Details
+
+## 1) Slot-Aware Attention Step-by-Step
+
+The slot-aware attention operates within a standard transformer architecture but with critical modifications. At each of the 32 transformer layers, slot-positioned tokens undergo specialized processing:
+
+- Standard queries and values are computed normally from the full hidden state
+- Key projections are restricted to only the first 32 dimensions (the address subvector)
+- Within-frame slots attend bidirectionally for permutation equivariance
+- Attention is block-causal across frames
+- After each transformer block, a forward hook resets the address slice back to its cached identity value
+
+## 2) Address-Only Keys in Cross-Slot Attention
+
+The mechanism uses a parameter-free masking approach: "the cross-slot key projection input is restricted to the address subvector" through `mask≤32` that "zeros all coordinates beyond the first 32." This ensures "the slot-routing key signal at every layer depends only on the frozen identity address."
+
+The frozen address is computed once at episode start from language labels and initial DINOv3 features, then never updated. This architectural constraint keeps "which object to act on" decoupled from "what that object currently is."
+
+## 3) Timestep/Noise Conditioning and Attention Gating
+
+The architecture includes sinusoidal frame-index embeddings (`π^t`) concatenated into slot vectors. For the action head, the model uses flow-matching training with noise conditioning: actions are interpolated as `A^τ = τA + (1-τ)ε` where τ and ε are sampled during training.
+
+No explicit attention gating mechanism is described; routing control comes from the address-only key constraint itself.
+
+## 4) Cross-Modal Attention Between Vision and Action
+
+The model doesn't employ explicit cross-modal attention routing. Instead, "slot embeddings replace placeholder positions" in a unified block-causal sequence containing six parallel token streams (text, noun phrases, image VQ codes, object slots, proprioception, past actions). All streams share the same Chameleon-7B trunk.
+
+## 5) Diffusion Backbone and Denoising
+
+OA-WAM does **not** use a diffusion backbone. Instead, it uses "a flow-matching MLP that predicts a velocity field," trained with conditional flow-matching loss. At inference, "the chunk is decoded by 4-step forward Euler integration in a single forward pass," avoiding autoregressive error accumulation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c1c161e9-6ab7-4e2f-8337-d57c9c57a590",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "caf1e175-2e1e-4a05-965b-85a0aebc29ef",
+  "sourceToolAssistantUUID": "c1c161e9-6ab7-4e2f-8337-d57c9c57a590",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-10T18:23:57.528Z_
+
+<details><summary>↩ Tool result · `toolu_01HGPsu2Vd6MZkeceWaDEHV7`</summary>
+
+```text
+# EA-WM Method Analysis: Event-Aware Fusion and KVAF Integration
+
+## 1. Event-Aware Bidirectional Fusion Blocks
+
+The fusion modules operate at sparse layers within the architecture. At each fusion layer ℓ, an event MLP computes a shared representation from video and KVAF tokens, generating both a per-token event gate and predicted event latent. As stated: "The event gate controls bidirectional cross-attention between the two streams" through gated residual connections that modulate information exchange.
+
+## 2. Event-Difference Latent Supervision (EDLS)
+
+EDLS supervises event predictions using frame-difference latents. The system computes frame differences as "|I_τ - I_{τ-1}|" and encodes them through the VAE to obtain event targets. This approach encourages the model to "dynamically allocate attention...to regions undergoing state transitions and interaction dynamics."
+
+## 3. Noise-Pair Conditioning and Dual-Timestep Mechanisms
+
+The architecture employs flow-matching training rather than explicit noise-pair conditioning. During training, both video and KVAF latents are "perturbed at timestep t, producing noised latents z^v_t and z^k_t together with their training targets." A timestep-dependent weight ω(t) scales the overall loss.
+
+## 4. KVAF Branch Interaction with Diffusion Backbone
+
+The KVAF stream is processed by "a full-depth copy of the DiT blocks" alongside the original Wan2.2 backbone. KVAFs are encoded into the same latent space as videos via VAE, enabling direct representation alignment before dual-stream processing.
+
+## 5. Cross-Modal Attention Mechanism
+
+Bidirectional cross-attention operates as: "H̃^v_{ℓ-1} = H^v_{ℓ-1} + G_ℓ ⊙ CA_{v←k}(H^v_{ℓ-1}, H^k_ℓ)" where G_ℓ is the event gate. The gating mechanism directly "controls how much KVAF information is injected into the video stream."
+
+## 6. Denoising Timestep Role
+
+Timesteps are sampled during flow-matching training and determine the noise level for both streams. The scheduler-dependent weight ω(t) modulates the flow-matching loss, allowing timestep-aware training dynamics across the dual-stream architecture.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "22b0420c-3a60-4865-bfc3-1324e13a7d27",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "667523ec-581e-45fe-9c51-b7e3479c039b",
+  "sourceToolAssistantUUID": "22b0420c-3a60-4865-bfc3-1324e13a7d27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-10T18:23:59.675Z_
+
+Now let me search for a few more potentially relevant concurrent works.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "667523ec-581e-45fe-9c51-b7e3479c039b",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMavxADNgXKwNCwnV2d",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4b030758-c359-4de8-9fbf-bb0cab68cb04",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H243gzhZ6dPs3mFRLsvjWv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2406,
+      "cache_read_input_tokens": 18735,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2406,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-10T18:24:00.235Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013JgD9FnU8cUr55i3hzucz9`</summary>
+
+```json
+{
+  "query": "arXiv 2026 \"attention gating\" \"world model\" diffusion robot"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b030758-c359-4de8-9fbf-bb0cab68cb04",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMavxADNgXKwNCwnV2d",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "cc84d7e0-a89e-4748-b3e7-6108ea96384a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H243gzhZ6dPs3mFRLsvjWv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2406,
+      "cache_read_input_tokens": 18735,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2406,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-10T18:24:01.122Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LJD7vu6qFuLcpdyyAawe1D`</summary>
+
+```json
+{
+  "query": "arXiv 2026 \"dual timestep\" OR \"noise pair\" world action model diffusion"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc84d7e0-a89e-4748-b3e7-6108ea96384a",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMavxADNgXKwNCwnV2d",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ae0c0d20-d740-42c5-902a-d8565fc821a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H243gzhZ6dPs3mFRLsvjWv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2406,
+      "cache_read_input_tokens": 18735,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2406,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-10T18:24:02.047Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TRap3ckzYbrjNrYktkt7uT`</summary>
+
+```json
+{
+  "query": "X-WAM unified 4D world action model asynchronous denoising arXiv 2604.26694"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae0c0d20-d740-42c5-902a-d8565fc821a8",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMavxADNgXKwNCwnV2d",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2b139886-0c63-4122-b547-0d79567d83c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H243gzhZ6dPs3mFRLsvjWv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2406,
+      "cache_read_input_tokens": 18735,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2406,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-10T18:24:02.896Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VH5gZmZCWJ7VNdrjfJDnrc`</summary>
+
+```json
+{
+  "query": "MotuBrain world action model robot control arXiv 2604.27792"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b139886-0c63-4122-b547-0d79567d83c9",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMavxADNgXKwNCwnV2d",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0bf7af76-0aa6-45bf-98ef-dd053a50af9b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H243gzhZ6dPs3mFRLsvjWv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2406,
+      "cache_read_input_tokens": 18735,
+      "output_tokens": 253,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2406
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 253,
+          "cache_read_input_tokens": 18735,
+          "cache_creation_input_tokens": 2406,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2406,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-10T18:24:09.260Z_
+
+<details><summary>↩ Tool result · `toolu_01TRap3ckzYbrjNrYktkt7uT`</summary>
+
+```text
+Web search results for query: "X-WAM unified 4D world action model asynchronous denoising arXiv 2604.26694"
+
+Links: [{"title":"X-WAM: Unified 4D World Action Modeling from Video ...","url":"https://sharinka0715.github.io/X-WAM/"},{"title":"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising","url":"https://arxiv.org/html/2604.26694v2"},{"title":"X-WAM: Bridging Action and 4D Synthesis | StartupHub.ai","url":"https://www.startuphub.ai/ai-news/ai-research/2026/x-wam-bridging-action-and-4d-synthesis"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Request PDF","url":"https://www.researchgate.net/publication/395371959_Unified_World_Models_Coupling_Video_and_Action_Diffusion_for_Pretraining_on_Large_Robotic_Datasets"},{"title":"Unified Video Action Model | Request PDF","url":"https://www.researchgate.net/publication/395361978_Unified_Video_Action_Model"},{"title":"Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://arxiv.org/html/2603.16666v1"},{"title":"GitHub - LMD0311/Awesome-World-Model: Collect some World Models for Autonomous Driving (and Robotic, etc.) papers. · GitHub","url":"https://github.com/LMD0311/Awesome-World-Model"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://arxiv.org/html/2504.02792v1"},{"title":"Awesome-Video-World-Models/README.md at main · hit-perfect/Awesome-Video-World-Models","url":"https://github.com/hit-perfect/Awesome-Video-World-Models/blob/main/README.md"},{"title":"World Action Models are Zero-shot Policies","url":"https://arxiv.org/html/2602.15922v1"}]
+
+I found detailed information about the X-WAM paper. Here's what the search revealed:
+
+## X-WAM: Unified 4D World Action Model with Asynchronous Denoising
+
+X-WAM is a unified 4D World Action Model that simultaneously targets high-fidelity video generation, 3D spatial reconstruction, and real-time policy execution.
+
+### Key Technical Contributions:
+
+**Multi-view RGB-D Video Generation:** X-WAM leverages pretrained video diffusion models by predicting multi-view RGB-D videos and obtains spatial information efficiently through a lightweight structural adaptation: replicating the final few blocks of the pretrained Diffusion Transformer into a dedicated depth prediction branch for the reconstruction of future spatial information.
+
+**Asynchronous Noise Sampling (ANS):** X-WAM proposes Asynchronous Noise Sampling (ANS) to jointly optimize generation quality and action decoding efficiency. ANS applies a specialized asynchronous denoising schedule during inference, which rapidly decodes actions with fewer steps to enable efficient real-time execution, while dedicating the full sequence of steps to generate high-fidelity video.
+
+### Performance Results:
+
+Pretrained on over 5,800 hours of robotic data, X-WAM achieves 79.2% and 90.7% average success rate on RoboCasa and RoboTwin 2.0 benchmarks, while producing high-fidelity 4D reconstruction and generation surpassing existing methods in both visual and geometric metrics.
+
+The paper (arXiv:2604.26694) represents a significant advancement in unified world action modeling for robotic systems, addressing the challenge of efficiently balancing high-quality visual generation with real-time action execution.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2b139886-0c63-4122-b547-0d79567d83c9",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "249cc2d6-5c67-4032-959f-1f8b029d3090",
+  "sourceToolAssistantUUID": "2b139886-0c63-4122-b547-0d79567d83c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-10T18:24:10.014Z_
+
+<details><summary>↩ Tool result · `toolu_013JgD9FnU8cUr55i3hzucz9`</summary>
+
+```text
+Web search results for query: "arXiv 2026 "attention gating" "world model" diffusion robot"
+
+Links: [{"title":"World Model for Robot Learning: A Comprehensive Survey","url":"https://arxiv.org/html/2605.00080v1"},{"title":"MotuBrain: An Advanced World Action Model for Robot Control","url":"https://arxiv.org/html/2604.27792v2"},{"title":"A Step Toward World Models: A Survey on Robotic Manipulation","url":"https://arxiv.org/html/2511.02097v1"},{"title":"LaDi-WM: A Latent Diffusion-based World Model for Predictive Manipulation","url":"https://arxiv.org/html/2505.11528"},{"title":"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising","url":"https://arxiv.org/html/2604.26694v2"},{"title":"Video Generation Models in Robotics: Applications, Research Challenges, Future Directions","url":"https://arxiv.org/html/2601.07823v1"},{"title":"SeedPolicy: Horizon Scaling via Self-Evolving Diffusion Policy for Robot Manipulation","url":"https://arxiv.org/html/2603.05117"},{"title":"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields","url":"https://arxiv.org/html/2605.06192v1"},{"title":"Being-H0.7: A Latent World-Action Model from Egocentric Videos","url":"https://arxiv.org/html/2605.00078v1"},{"title":"World Action Models are Zero-shot Policies","url":"https://arxiv.org/html/2602.15922v1"}]
+
+I found several relevant results about attention gating, world models, diffusion, and robotics from arXiv in 2026. Here are the key papers:
+
+## Key Papers Found:
+
+1. **SeedPolicy: Horizon Scaling via Self-Evolving Diffusion Policy** - Proposes Self-Evolving Gated Attention (SEGA), a temporal module that maintains a time-evolving latent state via gated attention, enabling efficient recurrent updates that compress long-horizon observations into a fixed-size representation while filtering irrelevant temporal information.
+
+2. **MotuBrain: An Advanced World Action Model for Robot Control** - Builds on a unified video-action backbone and adopts a three-stream Mixture-of-Transformers architecture with text, video, and action streams, using an H-bridge attention design to balance cross-modal interaction and efficiency, while supporting flexible multiview inputs through view-dependent 3D RoPE offsets.
+
+3. **EA-WM: Event-Aware Generative World Model** - Augments a diffusion-transformer backbone with a dedicated KVAF branch and interval-based bidirectional fusion, and introduces an event-aware bidirectional fusion mechanism driven by Event-Difference Latent Supervision (EDLS), which compels the model to dynamically allocate attention to regions undergoing state transitions and interaction dynamics.
+
+4. **X-WAM: Unified 4D World Action Modeling** - A unified 4D world model that addresses limitations of prior models by predicting multi-view RGB-D videos to leverage strong visual priors of pretrained video diffusion models, and proposes Asynchronous Noise Sampling (ANS) to jointly optimize generation quality and action decoding efficiency.
+
+5. **World Model for Robot Learning: A Comprehensive Survey** - This recent survey covers multiple approaches including LDA-1B, which moves visual forecasting into a DINO latent space and couples visual and action experts through shared self-attention inside a multimodal diffusion transformer, and FRAPPE, which trains multiple parallel expert streams with separate adapters and aligns them to visual foundation models in latent space.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cc84d7e0-a89e-4748-b3e7-6108ea96384a",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "53cf575d-b179-495d-8048-66f6da7db42d",
+  "sourceToolAssistantUUID": "cc84d7e0-a89e-4748-b3e7-6108ea96384a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-10T18:24:10.136Z_
+
+<details><summary>↩ Tool result · `toolu_01LJD7vu6qFuLcpdyyAawe1D`</summary>
+
+```text
+Web search results for query: "arXiv 2026 "dual timestep" OR "noise pair" world action model diffusion"
+
+Links: [{"title":"Dual-Stream Diffusion for World-Model Augmented Vision-Language-Action Model","url":"https://arxiv.org/html/2510.27607"},{"title":"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising","url":"https://arxiv.org/html/2604.26694v2"},{"title":"Dual-Stream Diffusion for World-Model Augmented Vision- ...","url":"https://arxiv.org/pdf/2510.27607"},{"title":"[2510.27607] Dual-Stream Diffusion for World-Model Augmented Vision-Language-Action Model","url":"https://arxiv.org/abs/2510.27607"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://arxiv.org/html/2504.02792v1"},{"title":"Revisiting Multi-Agent World Modeling from a Diffusion-Inspired Perspective","url":"https://arxiv.org/html/2505.20922v1"},{"title":"Diffusion World Model","url":"https://arxiv.org/html/2402.03570v1"},{"title":"Watch Your Step: Information Injection in Diffusion Models via Shadow Timestep Embedding","url":"https://arxiv.org/html/2605.00935"},{"title":"[2605.00935] Watch Your Step: Information Injection in Diffusion Models via Shadow Timestep Embedding","url":"https://arxiv.org/abs/2605.00935"},{"title":"MotuBrain: An Advanced World Action Model for Robot Control","url":"https://arxiv.org/html/2604.27792v2"}]
+
+Based on the search results, I found several relevant papers from 2026 related to dual timestep and noise pair approaches in world action model diffusion. Here are the key findings:
+
+## Most Relevant Papers
+
+**1. Dual-Stream Diffusion for World-Model Augmented Vision-Language-Action Model (DUST)**
+DUST is a world-model augmented VLA framework that handles the modality conflict and enhances the performance of VLAs across diverse tasks. The paper introduces a decoupled diffusion training algorithm that applies independent noising schedules to each modality, enabling the model to learn causal relationships between them under various noise configurations. Actions and future image embeddings are noised independently, with separate timesteps allowing for causal dependencies to be learned between the modalities.
+
+**2. Unified 4D World Action Modeling from Video Priors (X-WAM)**
+This recent paper proposes Asynchronous Noise Sampling (ANS) to jointly optimize generation quality and action decoding efficiency, applying a specialized asynchronous denoising schedule during inference. ANS systematically samples from a joint distribution of video and actions that strictly matches the test-time distribution, instead of completely decoupling the noise timesteps via independent random sampling.
+
+**3. Unified World Models (UWM)**
+A key insight is to integrate an action diffusion process and an image diffusion process into a single diffusion transformer model conditioned on independent diffusion timesteps. During training, the timesteps are sampled independently at random, exposing the model to different combinations of image and action noises.
+
+These papers represent the latest developments in using dual/independent noise timesteps for world action models in diffusion-based architectures.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ae0c0d20-d740-42c5-902a-d8565fc821a8",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "4401b1ae-ebd0-49d0-960e-9a10aa38bd8e",
+  "sourceToolAssistantUUID": "ae0c0d20-d740-42c5-902a-d8565fc821a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-10T18:24:11.010Z_
+
+<details><summary>↩ Tool result · `toolu_01VH5gZmZCWJ7VNdrjfJDnrc`</summary>
+
+```text
+Web search results for query: "MotuBrain world action model robot control arXiv 2604.27792"
+
+Links: [{"title":"MotuBrain: An Advanced World Action Model for Robot Control","url":"https://arxiv.org/html/2604.27792v2"},{"title":"Robotics Papers on X: \"MotuBrain: An Advanced World Action Model for Robot Control MotuBrain Team, Chendong Xiang, Fan Bao, Haitian Liu, Hengkai Tan, Hongzhe Bi, James Li, Jiabao Liu, Jingrui Pang, Kiro Jing, Louis Liu, Mengchen Cai, Rongxu Cui, Ruowen Zhao, … https://t.co/oZbprFxWT8 [𝚌𝚜.𝚁𝙾] https://t.co/s7cd8REIkf\" / X","url":"https://x.com/OWW/status/2050111551198105787"},{"title":"GitHub - leofan90/Awesome-World-Models: A comprehensive list of papers for the definition of World Models and using World Models for General Video Generation, Embodied AI, and Autonomous Driving, including papers, codes, and related websites. · GitHub","url":"https://github.com/leofan90/awesome-world-models"},{"title":"MotuBrain World Model Tops Two Global Benchmarks — A Breakthrough in Robot Intelligence - DeepInsightAI","url":"https://deepinsightai.io/motubrain-world-model/"},{"title":"World Model for Robot Learning: A Comprehensive Survey","url":"https://arxiv.org/html/2605.00080v1"},{"title":"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation","url":"https://arxiv.org/html/2605.06481v1"},{"title":"ShengShu Technology Unveils World Action Model \"Motubrain\": One Brain, Infinite Possibilities for Robotic Intelligence | RoboticsTomorrow","url":"https://www.roboticstomorrow.com/news/2026/04/29/shengshu-technology-unveils-world-action-model-motubrain-one-brain-infinite-possibilities-for-robotic-intelligence/26497/"},{"title":"Motubrain: a World Action Model by Shengshu Technology and Tsinghua University","url":"https://chinaresearchcollective.substack.com/p/motubrain-a-world-action-model-by"},{"title":"[2601.21998] Causal World Modeling for Robot Control","url":"https://arxiv.org/abs/2601.21998"},{"title":"Causal World Modeling for Robot Control","url":"https://arxiv.org/html/2601.21998v1"}]
+
+Based on the search results, here's what I found about MotuBrain:
+
+## MotuBrain: An Advanced World Action Model for Robot Control
+
+MotuBrain is a research paper available on arXiv as 2604.27792v2, published on May 1, 2026. MotuBrain was announced by ShengShu Technology as a World Action Model that replaces multiple task-specific systems with a single, unified model that functions as a robotic brain for the physical world.
+
+### Key Architecture and Features
+
+MotuBrain adopts UniDiffuser to jointly model and schedule video and action, and uses a three-stream Mixture-of-Transformers architecture to integrate video generation, action modeling, and language conditioning within one system. This unified formulation supports inference over five distributions: vision-language-action policy modeling, world modeling, video generation, inverse dynamics, and joint video-action prediction.
+
+The model can learn from a broader family of multimodal data, including video-only data without action labels, interaction data without explicit task language, and heterogeneous robot trajectories from different embodiments.
+
+### Performance
+
+On RoboTwin 2.0, MotuBrain achieves average success rates of 95%, and on WorldArena, MotuBrain attains the strongest reported EWMScore. In mid-April 2026, MotuBrain ranked first in motion quality and action smoothness on WorldArena, and was the only model to exceed an average score of 95 in randomized environments on RoboTwin2.0.
+
+### Real-World Capabilities
+
+MotuBrain can be adapted to new humanoid embodiments with only 50–100 same-embodiment trajectories, while retaining the ability to solve long-horizon and dexterous manipulation tasks without relying on an additional VLM planner.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0bf7af76-0aa6-45bf-98ef-dd053a50af9b",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "a51395b0-9533-4208-be9d-9715f0efaaf7",
+  "sourceToolAssistantUUID": "0bf7af76-0aa6-45bf-98ef-dd053a50af9b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-10T18:24:15.529Z_
+
+Excellent findings. Let me now fetch details on two more highly relevant papers: the "shadow timestep embedding" paper and the DUST dual-stream diffusion paper, plus the UWM paper, as these relate directly to dual-timestep conditioning.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a51395b0-9533-4208-be9d-9715f0efaaf7",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMbvUufbYb6nZ77XDZD",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "617d256a-720e-4d22-91b2-b1824c3688c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B7vKAXdWDjV1bDDpNqNeNf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4253,
+      "cache_read_input_tokens": 21141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4253,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-10T18:24:18.377Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TJdau32YnZAkD7439XhJEb`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.00935",
+  "prompt": "Extract the full title, authors, abstract. This paper is about \"shadow timestep embedding\" for information injection in diffusion models. Describe what it proposes, especially: does it use dual timesteps? Does it condition attention on timestep pairs? How does it relate to world action models or cross-modal attention?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "617d256a-720e-4d22-91b2-b1824c3688c1",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMbvUufbYb6nZ77XDZD",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e098286e-1d7e-4613-bee4-833e626688c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B7vKAXdWDjV1bDDpNqNeNf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4253,
+      "cache_read_input_tokens": 21141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4253,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-10T18:24:20.807Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0196NCfeDTYJrMVacYg2taiU`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2510.27607",
+  "prompt": "Extract the full title, authors, abstract. This is the DUST paper about dual-stream diffusion for world-model augmented VLA. Describe: how do the independent noising schedules work? Is there attention gating conditioned on timestep? How do the dual timesteps interact with cross-modal attention?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e098286e-1d7e-4613-bee4-833e626688c4",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMbvUufbYb6nZ77XDZD",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "298a4568-153d-402e-8e9b-bab7acd1726d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B7vKAXdWDjV1bDDpNqNeNf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4253,
+      "cache_read_input_tokens": 21141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4253,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-10T18:24:22.739Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015x9RJyzAsPc5y9YamgNBEa`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2504.02792",
+  "prompt": "Extract the full title, authors, abstract. This is the UWM (Unified World Models) paper. Describe: how do independent diffusion timesteps for action and image work? Is there attention gating or cross-modal attention conditioned on noise levels or timestep pairs?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "298a4568-153d-402e-8e9b-bab7acd1726d",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMbvUufbYb6nZ77XDZD",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "93d8b057-92cc-4d2c-a5e4-a5a72d93baa6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B7vKAXdWDjV1bDDpNqNeNf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4253,
+      "cache_read_input_tokens": 21141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4253,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-10T18:24:22.846Z_
+
+<details><summary>↩ Tool result · `toolu_01TJdau32YnZAkD7439XhJEb`</summary>
+
+```text
+# Paper Summary
+
+**Full Title:** "Watch Your Step: Information Injection in Diffusion Models via Shadow Timestep Embedding"
+
+**Authors:** An Huang, Junggab Son, Zuobin Xiong
+
+## Abstract Summary
+
+The paper investigates timestep embeddings in diffusion models as an underexplored security surface. The authors propose Shadow Timestep Embedding (STE), a mechanism for encoding hidden information within the temporal conditioning signal that guides the denoising network across noise levels.
+
+## Key Findings (Based on Available Information)
+
+The abstract reveals that the work:
+
+- Identifies distinct representational capabilities across different timesteps that enable "side-channel information" encoding
+- Offers theoretical analysis treating timestep embeddings as position-encoding mappings
+- Derives mutual coherence evaluation explaining separability of timestep intervals
+- Frames diffusion model timesteps as a "powerful side channel for carrying dedicated information"
+
+## Limitations of This Response
+
+The provided content does **not** contain sufficient detail to address your specific questions about:
+- Whether the approach uses dual timesteps
+- Whether it employs attention conditioning on timestep pairs
+- Connections to world action models or cross-modal attention mechanisms
+
+These implementation details would require access to the full paper PDF or TeX source to answer accurately.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e098286e-1d7e-4613-bee4-833e626688c4",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "7b23c19b-082d-4dd8-9956-552fae5b667c",
+  "sourceToolAssistantUUID": "e098286e-1d7e-4613-bee4-833e626688c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-10T18:24:25.136Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TEiPoU5TG61EaN8xXxXFdJ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.26694v2",
+  "prompt": "Extract the method details of X-WAM. Focus on: 1) How does Asynchronous Noise Sampling work - are there separate timesteps for video and action? 2) How does cross-modal attention work between video and action streams? 3) Is there any attention gating mechanism conditioned on noise levels or timesteps? 4) How do the dual denoising schedules affect cross-modal interaction?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b23c19b-082d-4dd8-9956-552fae5b667c",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMbvUufbYb6nZ77XDZD",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1b126ca5-0f7c-45a0-a664-372c970c622d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B7vKAXdWDjV1bDDpNqNeNf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4253,
+      "cache_read_input_tokens": 21141,
+      "output_tokens": 616,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4253
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 616,
+          "cache_read_input_tokens": 21141,
+          "cache_creation_input_tokens": 4253,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4253,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-10T18:24:25.509Z_
+
+<details><summary>↩ Tool result · `toolu_0196NCfeDTYJrMVacYg2taiU`</summary>
+
+```text
+# DUST Paper: Dual-Stream Diffusion for VLA
+
+**Full Title:** "Dual-Stream Diffusion for World-Model Augmented Vision-Language-Action Model"
+
+**Authors:** John Won, Kyungmin Lee, Huiwon Jang, Dongyoung Kim, Jinwoo Shin
+
+**Abstract:**
+The paper proposes DUST, addressing the challenge of jointly predicting next-state observations and actions in robotic policy learning. It introduces a "multimodal diffusion transformer architecture that explicitly maintains separate modality streams while enabling cross-modal knowledge sharing." The approach uses "independent noise perturbations for each modality and a decoupled flow matching loss" to learn joint distributions bidirectionally without requiring unified latent spaces. Results show up to 6% improvements on simulated benchmarks and 13% gains on real-world Franka tasks.
+
+## Technical Details from Abstract
+
+**Independent Noising Schedules:** The paper mentions "independent noise perturbations for each modality" as a key training technique, but the provided content does not detail the specific mechanisms of how these schedules function.
+
+**Attention Gating & Timestep Conditioning:** No information about attention gating conditioned on timestep is available in the excerpt provided.
+
+**Dual Timesteps & Cross-Modal Attention:** The abstract notes an "asynchronous sampling method where action and vision tokens are sampled at different rates," but specific interactions with cross-modal attention mechanisms are not elaborated in this content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "298a4568-153d-402e-8e9b-bab7acd1726d",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "573bf1b9-e18d-459d-8cc5-2dd5f9039f4b",
+  "sourceToolAssistantUUID": "298a4568-153d-402e-8e9b-bab7acd1726d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-10T18:24:27.214Z_
+
+<details><summary>↩ Tool result · `toolu_015x9RJyzAsPc5y9YamgNBEa`</summary>
+
+```text
+# Unified World Models Paper Summary
+
+**Full Title:** "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets"
+
+**Authors:** Chuning Zhu, Raymond Yu, Siyuan Feng, Benjamin Burchfiel, Paarth Shah, Abhishek Gupta
+
+**Abstract:** The paper presents a framework leveraging both video and action data for robot learning. It "integrates an action diffusion process and a video diffusion process within a unified transformer architecture, where independent diffusion timesteps govern each modality." By controlling these timesteps, the system can represent policies, forward dynamics, inverse dynamics, and video generation. Results show improved pretraining on multitask datasets and the ability to learn from unlabeled video.
+
+---
+
+## Regarding Independent Timesteps and Attention Mechanisms
+
+Based solely on the content provided above, the abstract describes that "independent diffusion timesteps govern each modality" but does not elaborate on the specific attention mechanisms, gating strategies, or cross-modal conditioning details. The page does not disclose whether attention gating, cross-modal attention conditioned on noise levels, or timestep-pair conditioning are employed.
+
+To answer your technical questions about architectural implementation, you would need to consult the full paper PDF, available via the arXiv link provided.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "93d8b057-92cc-4d2c-a5e4-a5a72d93baa6",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "07e49658-4420-46aa-bd71-e502408cd2b1",
+  "sourceToolAssistantUUID": "93d8b057-92cc-4d2c-a5e4-a5a72d93baa6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-10T18:24:35.118Z_
+
+<details><summary>↩ Tool result · `toolu_01TEiPoU5TG61EaN8xXxXFdJ`</summary>
+
+```text
+# X-WAM Method Details: Asynchronous Noise Sampling and Cross-Modal Interaction
+
+## 1. Asynchronous Noise Sampling (ANS) with Separate Timesteps
+
+X-WAM employs distinct noise timesteps for video (t_O) and actions (t_a), with t_a < t_O. During inference, actions decode in T_a steps while video continues for T_O steps, enabling rapid action extraction before complete video generation.
+
+The training approach uses **coupled joint sampling** rather than independent distributions:
+
+> "jointly samples from a joint distribution of video and actions that strictly matches the test-time distribution"
+
+This contrasts with prior work using independent sampling, which created mismatches between training and inference regimes.
+
+## 2. Cross-Modal Attention Mechanism
+
+The architecture uses **unilateral attention** between streams. The depth branch specifically demonstrates this asymmetry:
+
+> "the depth branch can read from the main branch, but not vice versa, thereby strictly preserving the integrity"
+
+For the RGB-action relationship, the document indicates bidirectional full attention processes the unified concatenated sequence, but the interleaved depth branch architecture suggests modalities can influence each other through shared transformer blocks rather than explicit gating.
+
+## 3. Attention Gating Conditioned on Timesteps
+
+The paper does not describe explicit attention gating mechanisms conditioned on noise levels. Instead, temporal information is encoded through RoPE embeddings, allowing "the model to infer temporal correspondence between states/actions and video frames."
+
+## 4. Dual Denoising Schedule Effects
+
+The asynchronous schedules create a training-inference alignment problem that ANS solves. The coupled sampling ensures configurations where video remains noisier than actions (t_O ≥ t_a) match actual inference behavior, improving training efficiency for both action decoding speed and video quality.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1b126ca5-0f7c-45a0-a664-372c970c622d",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "86d98c9d-a29f-4fe9-8553-82d731c6bbdb",
+  "sourceToolAssistantUUID": "1b126ca5-0f7c-45a0-a664-372c970c622d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-10T18:24:38.581Z_
+
+Let me also fetch more details on the DUST and UWM method sections since the abstracts were not detailed enough.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "86d98c9d-a29f-4fe9-8553-82d731c6bbdb",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMdhYM9MstnLvwhabDn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e9022f54-1629-46f3-a15b-90efcfd572a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BtTqCQp5BWJ7umSS8NVeQe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2154,
+      "cache_read_input_tokens": 25394,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2154,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-10T18:24:41.945Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01UYtHo8HJCbTRNYnEYERoz6`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2510.27607",
+  "prompt": "Extract the detailed method section of DUST. Focus on: 1) How do independent noise perturbations work for each modality (action vs vision)? 2) Is there any attention gating conditioned on noise levels or timesteps? 3) How does the cross-modal attention work between action and vision streams? 4) Does the model condition cross-attention weights on the noise level or timestep of either modality? 5) What is the \"asynchronous sampling\" method?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9022f54-1629-46f3-a15b-90efcfd572a2",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMdhYM9MstnLvwhabDn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ad28025e-80d7-4000-8fbc-323f105b0cf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BtTqCQp5BWJ7umSS8NVeQe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2154,
+      "cache_read_input_tokens": 25394,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2154,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-10T18:24:44.303Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013c7d6SYijMfqgnZEzL5BB2`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2504.02792v1",
+  "prompt": "Extract the detailed method section of UWM (Unified World Models). Focus on: 1) How do independent diffusion timesteps for image and action work? 2) Is there any attention gating or attention modulation conditioned on noise levels or timestep pairs? 3) How does the cross-modal interaction between image and action tokens work within the unified transformer? 4) Does the model use timestep embeddings that affect cross-attention between modalities?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ad28025e-80d7-4000-8fbc-323f105b0cf5",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMdhYM9MstnLvwhabDn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3a6cea18-bb72-48e7-911a-a4b1a7051e5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BtTqCQp5BWJ7umSS8NVeQe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2154,
+      "cache_read_input_tokens": 25394,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2154,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-10T18:24:45.101Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FiDLGWvCNz2aCsKTR3bMtF`</summary>
+
+```json
+{
+  "query": "\"noise-pair\" OR \"noise pair conditioned\" attention gating diffusion world model arXiv 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a6cea18-bb72-48e7-911a-a4b1a7051e5d",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMdhYM9MstnLvwhabDn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "47d14b34-3fde-4922-99f8-7c80ab0900d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BtTqCQp5BWJ7umSS8NVeQe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2154,
+      "cache_read_input_tokens": 25394,
+      "output_tokens": 440,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2154
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 440,
+          "cache_read_input_tokens": 25394,
+          "cache_creation_input_tokens": 2154,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2154,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-10T18:24:47.767Z_
+
+<details><summary>↩ Tool result · `toolu_01UYtHo8HJCbTRNYnEYERoz6`</summary>
+
+```text
+# DUST Method Analysis
+
+## 1) Independent Noise Perturbations
+
+Each modality receives separately sampled timesteps and noise during training. As stated: "actions and future image embeddings are noised independently, with timesteps τA and τo respectively." This enables the model to learn bidirectional causal relationships—sometimes predicting clean future states from noisy actions, and vice versa.
+
+## 2) Attention Gating by Timestep
+
+Rather than gating attention weights themselves, the architecture uses **adaptive layer normalization (AdaLN)** per modality. Each stream "receives its own distinct timestep embedding via adaptive layernorm." This modality-specific conditioning occurs throughout processing, not just at attention layers.
+
+## 3) Cross-Modal Attention Mechanism
+
+The dual-stream design temporarily concatenates modalities: "action and vision token streams are propagated through separate pathways...concatenated only temporarily during the shared cross-modal attention layer, which facilitates information exchange, and are immediately split back."
+
+## 4) Timestep Conditioning in Cross-Attention
+
+The paper does **not** explicitly describe conditioning cross-attention weights on noise levels. Instead, cross-modal attention operates on concatenated tokens with per-modality AdaLN providing the timestep context to each stream independently.
+
+## 5) Asynchronous Sampling Strategy
+
+During inference, vision tokens undergo more frequent updates than actions. Vision completes No steps while actions complete NA steps, with No = q × NA. The mechanism: "vision tokens are updated at every single fine-grained step. In contrast, action tokens are updated only every q steps."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ad28025e-80d7-4000-8fbc-323f105b0cf5",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "08140805-906e-4ae9-9f5e-78ad6d795fbd",
+  "sourceToolAssistantUUID": "ad28025e-80d7-4000-8fbc-323f105b0cf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-10T18:24:52.041Z_
+
+<details><summary>↩ Tool result · `toolu_01FiDLGWvCNz2aCsKTR3bMtF`</summary>
+
+```text
+Web search results for query: ""noise-pair" OR "noise pair conditioned" attention gating diffusion world model arXiv 2025 2026"
+
+Links: [{"title":"1 Attention in Diffusion Model: A Survey","url":"https://arxiv.org/pdf/2504.03738"},{"title":"Attention in Diffusion Model: A Survey","url":"https://arxiv.org/html/2504.03738v1"},{"title":"arXiv:2505.22935v2 [cs.LG] 10 Jun 2025","url":"https://arxiv.org/pdf/2505.22935"},{"title":"[2505.22935] Is Noise Conditioning Necessary? A Unified Theory of Unconditional Graph Diffusion Models","url":"https://arxiv.org/abs/2505.22935"},{"title":"Noise-Level Diffusion Guidance: Well Begun is Half Done","url":"https://arxiv.org/html/2509.13936v1"},{"title":"Simple Drop-in LoRA Conditioning on Attention Layers Will Improve Your Diffusion Model","url":"https://arxiv.org/html/2405.03958v3"},{"title":"Multi-view Image Diffusion via Coordinate Noise and Fourier Attention","url":"https://arxiv.org/html/2412.03756v1"},{"title":"Attention in Diffusion Model: A Survey by Litao Hua, Fan Liu, Jie Su, Xingyu Miao, Zizhou Ouyang, Zeyu Wang, Runze Hu, Zhenyu Wen, Bing Zhai, Yang Long, Haoran Duan, Yuan Zhou :: SSRN","url":"https://papers.ssrn.com/sol3/Delivery.cfm/4f973912-c1eb-4331-9ba9-a9ff4c935120-MECA.pdf?abstractid=5204619&mirid=1"},{"title":"ReCDAP: Relation-Based Conditional Diffusion with Attention Pooling for Few-Shot Knowledge Graph Completion","url":"https://arxiv.org/html/2505.07171v1"},{"title":"ICLR 2025 Papers","url":"https://iclr.cc/virtual/2025/papers.html"}]
+
+Based on the search results, I found several relevant papers from arXiv 2025-2026, but none that specifically match the exact "noise-pair" or "noise pair conditioned attention gating diffusion world model" query. Here are the most relevant results:
+
+**Most Relevant Papers:**
+
+1. **"Attention in Diffusion Model: A Survey"** (April 2025) - Discusses how attention mechanisms, particularly self-attention and cross-attention, play a crucial role in diffusion models and guide the denoising process.
+
+2. **"Is Noise Conditioning Necessary? A Unified Theory of Unconditional Graph Diffusion Models"** (May-June 2025) - Challenges the assumption that explicit noise-level conditioning is essential for Graph Diffusion Models, investigating whether denoisers can implicitly infer noise levels directly from corrupted graph structures.
+
+3. **"Noise-Level Diffusion Guidance: Well Begun is Half Done"** (September 2025) - Proposes Noise Level Guidance (NLG), a noise-level optimization approach that refines initial noise by increasing the likelihood of its alignment with general guidance.
+
+4. **"Multi-view Image Diffusion via Coordinate Noise and Fourier Attention"** (December 2024) - Introduces a noise initialization technique that incorporates shared noise and low spatial frequency information to induce noise correlations across views.
+
+None of these papers appear to be specifically about "noise-pair conditioned attention gating" for world models. If you're looking for a more specific paper with that exact terminology, it may not yet be indexed or may use different terminology.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "47d14b34-3fde-4922-99f8-7c80ab0900d3",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "9f2a4e17-1724-4ad4-a13c-2311d3f9db30",
+  "sourceToolAssistantUUID": "47d14b34-3fde-4922-99f8-7c80ab0900d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-10T18:24:52.293Z_
+
+<details><summary>↩ Tool result · `toolu_013c7d6SYijMfqgnZEzL5BB2`</summary>
+
+```text
+# Unified World Models: Independent Timesteps and Cross-Modal Interaction
+
+## 1. Independent Diffusion Timesteps
+
+The core mechanism uses **decoupled timesteps** for actions and images. Rather than a single shared timestep, UWM maintains separate timestep variables: `t_a` for actions and `t_o'` for next observations. The paper explains: "Fixing the timestep for either t_a or t_o' to T marginalizes the corresponding variable a, o', while setting the timestep to 0 performs conditioning."
+
+This decoupling enables flexible inference—setting `t_o' = T` marginalizes out observations to produce a policy `p(a|o)`, while `t_a = 0` conditions on clean actions for forward dynamics `p(o'|o,a)`.
+
+## 2. Attention Gating or Modulation
+
+The paper provides **no evidence of timestep-dependent attention gating**. Instead, timestep information conditions the model through **Adaptive Layer Normalization (AdaLN)**. The architecture description states: "The diffusion timesteps are encoded using a shared sinusoidal timestep encoder...[resulting] in two timestep embeddings. These timestep embeddings are concatenated with the image features, and the combined features are used to condition the transformer via Adaptive Layer Normalization (AdaLN)."
+
+This is a static conditioning approach—not dynamic gating based on noise levels.
+
+## 3. Cross-Modal Interaction
+
+The paper identifies a key limitation: standard joint diffusion lacks intermediary space for image-action communication. The solution involves **register tokens**: "adding redundant tokens that are eventually discarded (i.e. registers) helps with model performance...because images and actions are distinct modalities that can benefit from having an intermediary medium to exchange information."
+
+Beyond registers, the mechanism is a standard transformer processing concatenated action and image patch embeddings without specialized cross-modal gating.
+
+## 4. Timestep Embeddings and Cross-Attention
+
+The paper does **not describe timestep-modulated cross-attention**. Timestep embeddings condition the model globally via AdaLN rather than controlling inter-modal attention weights. The two separate timestep embeddings are "concatenated with the image features" for layer normalization, not for dynamic attention routing between modalities.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3a6cea18-bb72-48e7-911a-a4b1a7051e5d",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "9a9b6dfb-f778-4c7b-a42d-dc1add4e09ef",
+  "sourceToolAssistantUUID": "3a6cea18-bb72-48e7-911a-a4b1a7051e5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-10T18:24:56.286Z_
+
+Now let me do one final search to check for the MotuBrain's H-bridge attention design and any other works I may have missed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9a9b6dfb-f778-4c7b-a42d-dc1add4e09ef",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMexyKBWFVnbZTJdGgc",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6597527e-166f-49bc-ba1a-478727973608",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FMhdW6LnyJ6cRrv9U76U6t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 981,
+      "cache_creation_input_tokens": 1375,
+      "cache_read_input_tokens": 27548,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1375,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-10T18:24:59.602Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01UoCuKZKAsuybxY4AJ8JHsY`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.27792v2",
+  "prompt": "Extract the method section of MotuBrain. Focus on: 1) How does the H-bridge attention design work? Where is full joint attention applied vs decoupled attention? 2) How do the three streams (text, video, action) interact via attention? 3) Is there any timestep conditioning or noise-pair conditioning on the attention mechanism? 4) How does the model handle denoising timesteps for video vs action?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6597527e-166f-49bc-ba1a-478727973608",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMexyKBWFVnbZTJdGgc",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2c736fcc-874e-449f-b2e6-4eb8c4e85e89",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FMhdW6LnyJ6cRrv9U76U6t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 981,
+      "cache_creation_input_tokens": 1375,
+      "cache_read_input_tokens": 27548,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1375,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-10T18:25:00.298Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XEAee4Xy8ePaEBo4kpqtNo`</summary>
+
+```json
+{
+  "query": "\"cross-modal attention\" \"timestep\" conditioning gating diffusion transformer robot policy arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c736fcc-874e-449f-b2e6-4eb8c4e85e89",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMexyKBWFVnbZTJdGgc",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "64e450ec-5143-473d-b307-55ad652642dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FMhdW6LnyJ6cRrv9U76U6t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 981,
+      "cache_creation_input_tokens": 1375,
+      "cache_read_input_tokens": 27548,
+      "output_tokens": 269,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1375
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 981,
+          "output_tokens": 269,
+          "cache_read_input_tokens": 27548,
+          "cache_creation_input_tokens": 1375,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1375,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-10T18:25:05.032Z_
+
+<details><summary>↩ Tool result · `toolu_01UoCuKZKAsuybxY4AJ8JHsY`</summary>
+
+```text
+# MotuBrain Method Section Analysis
+
+## 1. H-Bridge Attention Design
+
+The model employs a selective attention strategy rather than uniform cross-modal processing. According to the paper, "full V-A joint attention is applied only in the middle 50% of Transformer layers, while the bottom and top 25% layers use decoupled attention."
+
+In decoupled layers, "video tokens and action tokens are processed independently and do not perform joint-attention." This design reduces computational costs while preserving modality-specific representations in shallow and deep layers.
+
+## 2. Three-Stream Interaction via Attention
+
+The architecture consists of three streams: text (conditioning), video, and action. The paper states that "Cross-modal interaction is implemented through joint attention over video, action, and text tokens."
+
+The text stream operates distinctly: "the text stream serves as a conditioning branch: its hidden states participate in Transformer attention, but no output head is applied to text tokens." This maintains a dedicated conditioning pathway while supporting semantic grounding.
+
+## 3. Timestep and Noise Conditioning
+
+The model uses separate timestep sampling strategies. Specifically, "separate SNR-based timestep sampling for the two modalities" occurs, with "timeshift=6 for video and timeshift=1 for action." This differential sampling makes video predictions more robust to noise while maintaining action accuracy.
+
+## 4. Video vs. Action Denoising
+
+The optimization objective combines both modalities: "ℒ=λᵥℒᵥ+λₐℒₐ" where video and action losses are weighted separately. Both streams are denoised jointly despite their independent timestep sampling, enabling unified learning while maintaining modality-appropriate noise schedules.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2c736fcc-874e-449f-b2e6-4eb8c4e85e89",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "fdb34fe4-76e9-4504-8ffe-cc805891cbc9",
+  "sourceToolAssistantUUID": "2c736fcc-874e-449f-b2e6-4eb8c4e85e89",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-10T18:25:07.739Z_
+
+<details><summary>↩ Tool result · `toolu_01XEAee4Xy8ePaEBo4kpqtNo`</summary>
+
+```text
+Web search results for query: ""cross-modal attention" "timestep" conditioning gating diffusion transformer robot policy arXiv 2026"
+
+Links: [{"title":"Diffusion Transformer Policy","url":"https://arxiv.org/html/2410.15959v1"},{"title":"On-Device Diffusion Transformer Policy for Efficient Robot Manipulation","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Wu_On-Device_Diffusion_Transformer_Policy_for_Efficient_Robot_Manipulation_ICCV_2025_paper.pdf"},{"title":"Diffusion Transformer Policy: Scaling Diffusion Transformer for Generalist Vision-Language-Action Learning","url":"https://arxiv.org/html/2410.15959v3"},{"title":"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion .","url":"https://arxiv.org/pdf/2303.04137"},{"title":"On-Device Diffusion Transformer Policy for Efficient Robot Manipulation","url":"https://arxiv.org/html/2508.00697v1"},{"title":"Multimodal Diffusion Transformer: Learning Versatile Behavior from Multimodal Goals","url":"https://intuitive-robots.github.io/mdt_policy/"},{"title":"Diffusion Policy for Robot Learning: What It Is and How to Use It | SVRC","url":"https://www.roboticscenter.ai/blog/diffusion-policy-robots"},{"title":"Diffusion Transformer Policies","url":"https://www.emergentmind.com/topics/diffusion-transformer-policies"},{"title":"Scaling Diffusion Policy in Transformer to 1 Billion Parameters for Robotic Manipulation","url":"https://arxiv.org/html/2409.14411v1"},{"title":"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion","url":"https://diffusion-policy.cs.columbia.edu/"}]
+
+Based on the search results, I found several relevant papers and resources on diffusion transformer policies for robot learning that involve cross-modal attention, timestep conditioning, and gating mechanisms. Here are the key findings:
+
+## Main Research Papers
+
+The Diffusion Transformer Policy is a DiT-based generalist diffusion policy with a Transformer diffusion structure that has been developed for robot manipulation. The model concatenates instruction tokens, image observation features, timestep, and noised action together to construct a token sequence as the input for transformer network to denoise the raw actions.
+
+## Conditioning Mechanisms
+
+The denoising blocks process noisy action tokens with self-attention and fuse the conditioning information from the latent state representation via cross-attention, with MDT applying adaLN conditioning to condition the blocks on the current noise level.
+
+Adaptive layer norm (AdaLN) replaces standard layer norm layers, enabling the model to change the distribution of the noise action embedding according to the conditions.
+
+## Gating Mechanisms
+
+Gate scores are optimized during the training process using Singular Value Decomposition (SVD) to estimate layer importance, since SVD provides singular values that capture the most significant components of a weight matrix. LightDP combines transformer block pruning with learned gating and fine-tuning along with consistency distillation, achieving real-time performance.
+
+The research represents advances in efficient and scalable diffusion-based robot policies combining cross-modal attention mechanisms with timestep conditioning through adaptive normalization techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "64e450ec-5143-473d-b307-55ad652642dc",
+  "isSidechain": true,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "agentId": "af6c2c00c7e2589c6",
+  "type": "user",
+  "uuid": "5437bdba-a5a3-4677-b6b8-a783e5e2b0a5",
+  "sourceToolAssistantUUID": "64e450ec-5143-473d-b307-55ad652642dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-10T18:26:29.309Z_
+
+I now have a thorough picture of the landscape. Here is my detailed report.
+
+---
+
+## Detailed Report: Concurrent Works Analysis for Attention Gating in WAMs
+
+### 1. CKT-WAM (arXiv 2605.06247)
+
+**Full title:** "CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models"
+**Authors:** Yuhua Jiang, Yijun Guo, Hongbing Yang, Guojun Lei, Nuo Chen, Yinuo Zhang, Shaoqiang Yan, Bo Lin, Feifei Gao, Biqing Qi
+
+**What it proposes:** CKT-WAM is a parameter-efficient framework for transferring knowledge from a teacher WAM to a student WAM. It extracts intermediate teacher hidden states, compresses them via Learnable-Query Cross Attention (LQCA) into a compact context, and appends this context to the student's text embedding conditioning sequence. The transfer path includes three components: (a) an always-on generalized adapter, (b) a lightweight router, and (c) M=8 sparsely activated specialized adapters (the "routed experts"). The router uses average-pooled teacher features through a gating network to select the top-k=2 specialized adapters per instance.
+
+**Critical detail on noise/timestep handling:** The teacher is queried at a fixed timestep t*=0 to avoid injecting timestep-specific noise corruption into the teacher features. Training uses a shared noise level sampled from the base model's log-normal distribution applied uniformly to video and action latents, though modality-specific perturbations remain distinct. There is no noise-pair conditioning or dual-timestep conditioning of any kind.
+
+**Where the context operates:** Exclusively in text embedding space. The context is appended to the student's conditioning sequence and influences denoising only through the existing cross-attention pathway. Visual and action token self-attention is never modified.
+
+**Relevance to your idea:** Low overlap. CKT-WAM is about inter-model knowledge transfer via adapter modules, not about modifying the intra-model attention mechanism. It does not address noise-pair-conditioned attention gating or timestep-dependent cross-modal attention. The "routed experts" are adapter-selection routers, not attention gating mechanisms.
+
+---
+
+### 2. OA-WAM (arXiv 2605.06481)
+
+**Full title:** "OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation"
+**Authors:** Yushan Liu, Peibo Sun, Shoujie Li, Yifan Xie, Lingfeng Zhang, Xintao Chao, Shiyuan Dong, Fang Chen, Xiao-Ping Zhang, Wenbo Ding
+
+**What it proposes:** OA-WAM decomposes scenes into N+1 object slots (1 robot + N objects), each maintaining a persistent address vector and a time-varying content vector. The core innovation is "address-only key" attention: in cross-slot attention, key projections are restricted to the first 32 dimensions (the identity address subvector), with all other coordinates zeroed. This keeps "which object to act on" decoupled from "what the object currently looks like." A forward hook resets the address slice back to its cached identity value after each transformer block.
+
+**Architecture:** Built on a Chameleon-7B trunk with six parallel token streams (text, noun phrases, image VQ codes, object slots, proprioception, past actions) in a unified block-causal sequence. It does NOT use a diffusion backbone -- it uses flow-matching with a 4-step forward Euler integration for action decoding.
+
+**Relevance to your idea:** Moderate surface-level overlap but fundamentally different mechanism. OA-WAM modifies attention to enforce object identity separation (address vs. content), not to condition attention on noise levels or timesteps. There is no noise-pair conditioning, no attention gating, and no dual-timestep mechanism. The attention modification serves spatial/identity routing, not temporal/noise-level modulation. You should cite this as a concurrent work that also modifies WAM attention, but clearly differentiate that your approach conditions attention on denoising timesteps rather than on object identity slots.
+
+---
+
+### 3. EA-WM (arXiv 2605.06192)
+
+**Full title:** "EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields"
+**Authors:** Zhaoyang Yang, Yurun Jin, Lizhe Qi, Cong Huang, Kai Chen
+
+**What it proposes:** EA-WM augments a Wan2.2 diffusion-transformer backbone with a parallel KVAF (Kinematic-to-Visual Action Fields) branch -- a full-depth copy of the DiT blocks that processes action fields projected into camera-view space. The two branches interact via event-aware bidirectional fusion blocks. At each fusion layer, an event MLP computes a per-token event gate G_l that controls bidirectional cross-attention between the video stream and the KVAF stream: `H_v = H_v + G_l * CA_{v<-k}(H_v, H_k)`. This gating is supervised by Event-Difference Latent Supervision (EDLS), which uses frame-difference latents `|I_t - I_{t-1}|` encoded through the VAE as supervision targets.
+
+**Noise/timestep handling:** Uses flow-matching training where both video and KVAF latents are perturbed at the same timestep t, with a timestep-dependent weight omega(t) on the loss. No dual-timestep or noise-pair conditioning.
+
+**Relevance to your idea:** This is the most relevant concurrent work. EA-WM uses gated cross-modal attention between action (KVAF) and video streams, which is conceptually close to attention gating. However, the gating is driven by event-difference supervision (EDLS) -- it gates based on whether spatial regions are undergoing state transitions -- not by noise levels or denoising timesteps. Your proposed noise-pair-conditioned gating, which conditions cross-modal attention on both timestep embeddings in a dual-timestep WAM, is mechanistically distinct: you modulate attention based on where each modality is in its denoising trajectory, while EA-WM modulates attention based on spatial event saliency. You should clearly discuss EA-WM and explain this differentiation.
+
+---
+
+### 4. Additional Concurrent Works You Should Be Aware Of
+
+**X-WAM (arXiv 2604.26694)** -- "Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising." Proposes Asynchronous Noise Sampling (ANS) with separate timesteps for video (t_O) and action (t_a), where t_a < t_O. Actions are decoded in fewer steps than video. Uses coupled joint sampling during training to match the inference distribution. Cross-modal interaction is through shared transformer blocks with unilateral attention (depth branch reads from main branch, not vice versa). No explicit attention gating conditioned on timesteps. This paper is highly relevant because it directly operates in the dual-timestep regime but does not condition the attention mechanism itself on the timestep pair -- which is precisely what your work proposes.
+
+**MotuBrain (arXiv 2604.27792)** -- Uses an H-bridge attention design: full video-action joint attention only in the middle 50% of transformer layers, with decoupled (independent) attention in the top and bottom 25%. Uses separate SNR-based timestep sampling with different timeshift values (6 for video, 1 for action). However, the attention pattern is architecturally fixed (not conditioned on timesteps) -- it does not dynamically gate attention based on noise levels.
+
+**DUST (arXiv 2510.27607)** -- "Dual-Stream Diffusion for World-Model Augmented VLA." Uses independent noise perturbations with separate timesteps (tau_A, tau_o) for action and vision streams. Cross-modal attention operates on temporarily concatenated tokens with per-modality AdaLN providing timestep context. The attention weights themselves are NOT conditioned on noise levels -- only the layer normalization is timestep-aware.
+
+**UWM (arXiv 2504.02792)** -- "Unified World Models: Coupling Video and Action Diffusion." Maintains independent diffusion timesteps (t_a, t_o') for action and observation. Timestep information conditions the model through AdaLN (Adaptive Layer Normalization), not through attention gating. Uses register tokens as intermediary for cross-modal communication. No timestep-dependent attention modulation.
+
+**When to Trust Imagination (arXiv 2605.06222)** -- Proposes Future Forward Dynamics Causal Attention (FFDC) for adaptive action execution length in WAMs. Not about modifying the attention mechanism for generation but rather for post-hoc verification of action reliability.
+
+**Being-H0.7 (arXiv 2605.00078)** -- Latent world-action model using learnable latent queries as a reasoning interface between perception and action, with a dual-branch (prior/posterior) architecture. Does not modify cross-modal attention with timestep conditioning.
+
+---
+
+### 5. Key Answers to Your Questions
+
+**Does any paper address noise-pair-conditioned attention gating?**
+No. None of the surveyed papers condition the attention mechanism itself on noise-level pairs. The closest approaches are:
+- EA-WM gates cross-modal attention, but based on spatial event saliency (EDLS), not noise levels.
+- DUST, UWM, and MotuBrain use per-modality timestep embeddings, but only through AdaLN -- the attention weights are not dynamically modulated by the timestep pair.
+- X-WAM uses asynchronous timesteps but does not gate attention based on them.
+
+**How does your proposed idea differentiate?**
+Your proposal to condition cross-modal attention weights on both timestep embeddings in dual-timestep WAMs occupies a clear gap in the literature. Existing dual-timestep works (X-WAM, UWM, DUST, MotuBrain) all feed timestep information through AdaLN or fixed architectural patterns -- none dynamically gate the attention matrix based on the (t_action, t_video) pair. EA-WM is the closest in spirit (gated cross-modal attention) but uses event-difference supervision rather than noise-level conditioning. Your differentiation should emphasize that:
+1. Unlike EA-WM's spatial-event-driven gating, your gating is noise-schedule-driven, adapting cross-modal information flow to the denoising stage of each modality.
+2. Unlike X-WAM/UWM/DUST/MotuBrain, which use timesteps only for normalization, your method directly modulates attention weights, potentially allowing the model to learn when action information is most useful for video denoising and vice versa at different noise levels.
+
+---
+
+### Papers to Cite as Concurrent Work
+
+Must-cite (reviewer flagged):
+- CKT-WAM (2605.06247) -- adapter transfer, low overlap but should acknowledge
+- OA-WAM (2605.06481) -- attention modification in WAMs, different purpose (object identity routing)
+- EA-WM (2605.06192) -- gated cross-modal attention, closest competitor, differentiate on gating signal
+
+Strongly recommended additional citations:
+- X-WAM (2604.26694) -- dual-timestep WAM without attention gating
+- UWM (2504.02792) -- independent timesteps with AdaLN only
+- DUST (2510.27607) -- dual-stream diffusion with independent noise, AdaLN timestep conditioning
+- MotuBrain (2604.27792) -- H-bridge fixed attention pattern with separate SNR sampling
+
+Sources:
+- [CKT-WAM](https://arxiv.org/abs/2605.06247)
+- [OA-WAM](https://arxiv.org/abs/2605.06481)
+- [EA-WM](https://arxiv.org/abs/2605.06192)
+- [X-WAM](https://arxiv.org/abs/2604.26694)
+- [MotuBrain](https://arxiv.org/abs/2604.27792)
+- [DUST](https://arxiv.org/abs/2510.27607)
+- [UWM](https://arxiv.org/abs/2504.02792)
+- [When to Trust Imagination](https://arxiv.org/abs/2605.06222)
+- [Being-H0.7](https://arxiv.org/abs/2605.00078)
+- [Watch Your Step: Shadow Timestep Embedding](https://arxiv.org/abs/2605.00935)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5437bdba-a5a3-4677-b6b8-a783e5e2b0a5",
+  "isSidechain": true,
+  "agentId": "af6c2c00c7e2589c6",
+  "requestId": "req_011CauMg7CCR3sCYw1xqXQLL",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "65ffd0ae-d5f5-4329-8321-2b3e94512d86",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PwwL833tN15x5BhTzZrc6A",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2514,
+      "cache_read_input_tokens": 28923,
+      "output_tokens": 3033,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2514
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3033,
+          "cache_read_input_tokens": 28923,
+          "cache_creation_input_tokens": 2514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2514,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
