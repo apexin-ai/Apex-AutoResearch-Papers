@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb2b29f36d30acf1f55e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp fewnerd s456 cuda1",
+  "task_key": "worker_exp_fewnerd_s456_cuda1_20260518T094849",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_fewnerd_s456_cuda1_20260518T094849_result.json",
+    "occurrence": 1,
+    "bytes": 432,
+    "sha256": "b6d5e1ae1099ba3612045196faa957d690f3007ca14799807c66c24c535b22c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "监控已设置。当前状态：\n- **进程**: 运行中（PID 138025），已运行 ~16 分钟\n- **进度**: ~13%（40,000/301,184 prompts），速度 ~55 it/s\n- **预计完成**: 约 80 分钟后\n- **GPU**: 实际使用 CUDA_VISIBLE_DEVICES=2（脚本中写的是 2，已在运行中无法更改）\n- **输出**: samples.jsonl 尚未写入（推理结束后批量写入）\n\n下次检查在约 5 分钟后。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-fewnerd-s456-cuda1.md"
+}

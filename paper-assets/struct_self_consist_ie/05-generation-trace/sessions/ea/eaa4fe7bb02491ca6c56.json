@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "eaa4fe7bb02491ca6c56",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "exp d054 rerun gpu1 qwen scierc",
+  "task_key": "worker_exp_d054_rerun_gpu1_qwen_scierc_20260514T221746",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_d054_rerun_gpu1_qwen_scierc_20260514T221746.log",
+    "occurrence": 1,
+    "bytes": 622277,
+    "sha256": "2c13dac775cbde5e40c9d20099d89764e2bd9fb6f3a9f6483547b2559788d261"
+  },
+  "statistics": {
+    "messages": 334,
+    "user_turns": 0,
+    "tool_calls": 146,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 146,
+      "tool_result": 146
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 334,
+      "chunks": [
+        {
+          "path": "eaa4fe7bb02491ca6c56-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "eaa4fe7bb02491ca6c56-part-0002.json",
+          "message_count": 154
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-d054-rerun-gpu1-qwen-scierc.md"
+}

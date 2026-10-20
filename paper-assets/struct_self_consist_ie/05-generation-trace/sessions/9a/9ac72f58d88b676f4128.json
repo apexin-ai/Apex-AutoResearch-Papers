@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "9ac72f58d88b676f4128",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "gpu exp 001 rerun full instances",
+  "task_key": "worker_gpu_exp_001_rerun_full_instances_20260514T121024",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp_001_rerun_full_instances_20260514T121024.log",
+    "occurrence": 1,
+    "bytes": 1426912,
+    "sha256": "ec69fa2d7cc897a6e7b7213a76988b2101263bddfee05bda68a41cd2fdd3d9ad"
+  },
+  "statistics": {
+    "messages": 343,
+    "user_turns": 1,
+    "tool_calls": 104,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 125,
+      "tool_call": 104,
+      "tool_result": 104,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 216,
+      "chunks": [
+        {
+          "path": "9ac72f58d88b676f4128-part-0001.json",
+          "message_count": 155
+        },
+        {
+          "path": "9ac72f58d88b676f4128-part-0002.json",
+          "message_count": 61
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 127,
+      "chunks": [
+        {
+          "path": "9ac72f58d88b676f4128-part-0002.json",
+          "message_count": 60
+        },
+        {
+          "path": "9ac72f58d88b676f4128-part-0003.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-exp-001-rerun-full-instances.md"
+}

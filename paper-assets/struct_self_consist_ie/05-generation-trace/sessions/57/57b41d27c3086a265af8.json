@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57b41d27c3086a265af8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp exp 026 t08",
+  "task_key": "worker_exp_exp_026_t08_20260516T131559",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_exp_026_t08_20260516T131559_result.json",
+    "occurrence": 1,
+    "bytes": 456,
+    "sha256": "25bf082dd6174ee252c2c142351b6472de282e88c499659ab3bbd734a7c849c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "T=0.8 推理已经完成。输出已存在：\n\n- `output/exp_026_t08/samples.jsonl` (20MB, 551 instances)\n- `output/exp_026_t08/report.json`\n\n关键结果（NER, SciERC full test set, n=529）：\n- Greedy F1: 0.6633\n- Oracle F1: 0.7684 (headroom: +0.1051)\n- SJ ρ: +0.3589, FK ρ: +0.2498\n- LP ρ: +0.2526, LP AUROC: 0.5890\n- Verdict: MARGINAL\n\n需要我注册到 registry，还是这个实验已经完成不需要额外操作？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp-026-t08.md"
+}

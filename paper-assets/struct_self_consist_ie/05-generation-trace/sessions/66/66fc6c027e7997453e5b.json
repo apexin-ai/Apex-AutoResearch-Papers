@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66fc6c027e7997453e5b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu_status_check_20260515T114433",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_gpu_status_check_20260515T114433_result.json",
+    "occurrence": 1,
+    "bytes": 958,
+    "sha256": "3b3485df42b7e96e56d67998dfa4c07d009f4e9ddc4ce78251dd3056d38cc8c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态报告\n\n| GPU | 显存占用 | GPU 利用率 | 状态 | 进程 |\n|-----|---------|-----------|------|------|\n| GPU 0 | 30208 / 32607 MiB (93%) | 87-94% | **占用** | PID 180048 `VLLM::EngineCore` (30198 MiB) |\n| GPU 1 | 4 / 32607 MiB | 0% | **空闲** | — |\n| GPU 2 | 4 / 32607 MiB | 0% | **空闲** | — |\n| GPU 3 | 4 / 32607 MiB | 0% | **空闲** | — |\n\n硬件：4× RTX 5090 (32GB)，Driver 595.58.03，CUDA 13.2\n\n## Tmux Sessions\n\n| Session | 状态 |\n|---------|------|\n| `exp_011_ood_scierc_to_conll` | **运行中** — vLLM 推理进行中，进度 90% (24760/27624)，约 35s 后完成 |\n| `exp_017_llama_conll_n16_r1024` | **已完成** — 停在 shell prompt，无活跃进程 |\n| `exp_017_llama_conll_n16_s456_r1024` | **已完成** — 停在 shell prompt，无活跃进程 |\n\nGPU 0 被 `exp_011_ood_scierc_to_conll` 的 vLLM 推理占用，预计 1 分钟内完成。GPU 1-3 空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check.md"
+}

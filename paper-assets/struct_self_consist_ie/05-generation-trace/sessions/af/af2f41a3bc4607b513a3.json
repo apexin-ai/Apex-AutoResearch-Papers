@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af2f41a3bc4607b513a3",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code prepare 4b conll scs inference",
+  "task_key": "worker_code_prepare_4b_conll_scs_inference_20260515T190528",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prepare_4b_conll_scs_inference_20260515T190528_result.json",
+    "occurrence": 1,
+    "bytes": 987,
+    "sha256": "22fc394c427721180ec804bf1b8946bc450065b9ce035f9477cae036537d4945"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Task complete.\n\n**Summary — Qwen3-4B CoNLL SCS Inference:**\n\n- **Greedy F1 = 0.925** (higher than 8B's 0.907 — 4B benefits more from LoRA on this dataset)\n- **SJ > FK > LP ordering holds**: rho 0.405 > 0.396 > 0.319 (structural consistency signals generalize across scale)\n- **Structural beats surface**: SJ outperforms LP by +0.84pp rho\n- **LP AUROC = 0.769 (full) / 0.815 (conditional)** — LP is a useful signal but weaker than structural\n- **Verdict: MARGINAL** — oracle headroom is only 1.57pp because the 4B model already achieves 92.5% F1 on CoNLL, leaving minimal room for selection to help\n\nCross-scale takeaway: the SJ>FK>LP hierarchy is robust to model scale (4B vs 8B), but the 4B model has weaker SJ correlation (0.405 vs 0.450), possibly because higher base accuracy means less variance in sample quality for SCS to discriminate. Note the 8B comparison used N=16 vs N=8 here, so the rho gap may partly reflect sample count."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-4b-conll-scs-inference.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c96a4f80bd3c3b6f8baa",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "research re pct zero investigation",
+  "task_key": "worker_research_re_pct_zero_investigation_20260514T084713",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_re_pct_zero_investigation_20260514T084713_result.json",
+    "occurrence": 1,
+    "bytes": 1915,
+    "sha256": "619163e15194213174c8a49bfc203527c1ff5c3ff017367980f573d5de91cc53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到根因了。\n\n## 结论\n\n**pct_zero 上升的原因是两个脚本的统计口径不同，不是模型质量下降。**\n\n### 关键差异\n\n| | `mvp_pilot.py` (pilot_001) | `run_mvp_pilot.py` (pilot_003) |\n|---|---|---|\n| `compute_sample_f1_distribution` 的输入 | **`nonempty_instances`**（只含 gold 非空的实例） | **`sampled`**（全部 551 个实例） |\n| RE gold-empty 实例数 | 154 个被排除 | 154 个被**包含** |\n| RE 参与计算的实例 | 397 个 | 551 个 |\n\n### 数学验证\n\n- **pilot_001**: 397 × 8 = 3176 个 sample，58.3% F1=0 → ~1852 个零\n- **pilot_003**: 551 × 8 = 4408 个 sample，67.6% F1=0 → ~2980 个零\n  - 其中 154 个 gold-empty 实例贡献 154 × 8 = 1232 个必然为零的 sample（gold 为空时 F1 恒=0，因为 `_prf(0,0,0)` 返回 0）\n  - 扣除后：(2980 - 1232) / (4408 - 1232) = 1748 / 3176 = **55.0%**\n\n### 实际情况\n\n在相同口径（gold-nonempty）下，pilot_003 的 RE pct_zero 是 **55.0%**，反而**低于** pilot_001 的 58.3%。这合理——max_tokens=1024 消除了截断导致的 parse failure，更多 sample 产生了有效预测。\n\n### bug 位置\n\n`run_mvp_pilot.py` 第 185 行：\n```python\nsample_f1_dist = compute_sample_f1_distribution(sampled, subtask=st)\n```\n\n应该改为只在 gold-nonempty 实例上计算（与 pilot_001 一致），或者两个脚本统一到同一个口径。`mvp_pilot.py` 的做法（排除 gold-empty）更合理，因为 gold-empty 实例的 F1=0 是 trivial 的，不反映模型能力。\n\n### 假设 B 部分确认\n\n164 个 parse failure 在 pilot_001 中**没有被排除**——它们被当作空预测加入 samples 列表。但因为 pilot_001 整体在 gold-nonempty 上做统计，这些 parse failure 中属于 gold-nonempty 实例的确实贡献了 F1=0。pilot_003 消除了 parse failure 后，这部分反而变好了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-re-pct-zero-investigation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62230dd6435752c13988",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis multiseed selection f1",
+  "task_key": "worker_analysis_multiseed_selection_f1_20260515T124243",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_multiseed_selection_f1_20260515T124243_result.json",
+    "occurrence": 1,
+    "bytes": 2133,
+    "sha256": "59d754e216404437ef0411ac28cec2b4a28b630478f1f4f5f484e360a087c40d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `output/analysis_multiseed_selection_f1.json`，汇总如下：\n\n---\n\n## Qwen SciERC NER (N=8, 529 instances, 3 seeds)\n\n| Method | Mean F1 | ±σ | Δ vs Greedy |\n|--------|--------:|-----:|------------:|\n| **Greedy** | 0.6458 | 0.0020 | — |\n| Random | 0.6069 | 0.0060 | -0.0389 |\n| **LP** | **0.6462** | 0.0034 | **+0.0004** |\n| SJ | 0.6413 | 0.0086 | -0.0045 |\n| FK | 0.6413 | 0.0080 | -0.0046 |\n| EM | 0.6339 | 0.0057 | -0.0119 |\n| VC | 0.6194 | 0.0068 | -0.0265 |\n| Oracle | 0.7764 | 0.0039 | +0.1306 |\n\nLP 是唯一略超 greedy 的 signal，但 p > 0.19（所有 seed），不显著。其余 signal 均 ≤ greedy。\n\n## LLaMA SciERC NER (N=8, 529 instances, 3 seeds)\n\n| Method | Mean F1 | ±σ | Δ vs Greedy |\n|--------|--------:|-----:|------------:|\n| **Greedy** | 0.6457 | 0.0003 | — |\n| Random | 0.6201 | 0.0014 | -0.0257 |\n| **LP** | **0.6451** | 0.0032 | -0.0006 |\n| FK | 0.6440 | 0.0038 | -0.0018 |\n| SJ | 0.6438 | 0.0056 | -0.0019 |\n| VC | 0.6414 | 0.0013 | -0.0044 |\n| EM | 0.6379 | 0.0087 | -0.0078 |\n| Oracle | 0.7660 | 0.0087 | +0.1203 |\n\n所有 signal 均 ≤ greedy（p 全部 > 0.09，不显著）。\n\n## LLaMA CoNLL NER (N=16, 2756 instances, 3 seeds)\n\n| Method | Mean F1 | ±σ | Δ vs Greedy | p-value range |\n|--------|--------:|-----:|------------:|--------------:|\n| **Greedy** | 0.9240 | 0.0002 | — | — |\n| Random | 0.9216 | 0.0002 | -0.0024 | — |\n| **VC** | **0.9268** | 0.0002 | **+0.0028** | 0.003–0.027 |\n| **FK** | **0.9263** | 0.0001 | **+0.0023** | 0.0001–0.015 |\n| **EM** | **0.9263** | 0.0001 | **+0.0023** | 0.0003–0.015 |\n| **SJ** | **0.9262** | 0.0003 | **+0.0023** | 0.0004–0.012 |\n| **LP** | **0.9252** | 0.0003 | **+0.0012** | 0.002–0.180 |\n| Oracle | 0.9488 | 0.0006 | +0.0249 | — |\n\nCoNLL 上所有 5 个 signal 均显著 beat greedy（VC/SJ/FK/EM 的 bootstrap p < 0.03 across all seeds）。SciERC 上 greedy 已接近最优，selection 无显著提升——oracle gap（~13 pt）表明 room 在，但当前 signal 对 SciERC 这种 fine-grained 任务的 selection 能力不足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-multiseed-selection-f1-copy-2.md"
+}

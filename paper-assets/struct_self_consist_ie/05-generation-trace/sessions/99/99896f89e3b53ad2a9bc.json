@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "99896f89e3b53ad2a9bc",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "gpu exp 001 ner n16 scierc",
+  "task_key": "worker_gpu_exp_001_ner_n16_scierc_20260514T114538",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp_001_ner_n16_scierc_20260514T114538.log",
+    "occurrence": 1,
+    "bytes": 853305,
+    "sha256": "8dffaf949c867152632a787fc648ce34ed0b0a323da6a634cef32dc73f8a4129"
+  },
+  "statistics": {
+    "messages": 253,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 67,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 253,
+      "chunks": [
+        {
+          "path": "99896f89e3b53ad2a9bc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "99896f89e3b53ad2a9bc-part-0002.json",
+          "message_count": 73
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-exp-001-ner-n16-scierc.md"
+}

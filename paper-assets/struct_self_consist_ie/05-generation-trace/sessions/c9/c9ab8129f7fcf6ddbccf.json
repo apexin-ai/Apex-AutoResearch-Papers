@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9ab8129f7fcf6ddbccf",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "research n samples confound",
+  "task_key": "worker_research_n_samples_confound_20260515T200139",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_n_samples_confound_20260515T200139_result.json",
+    "occurrence": 1,
+    "bytes": 1212,
+    "sha256": "9066b24fe85ad99d3cd46f617c5873904b9b7457810080f74539c3a4fc46ce92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n### 1. Qwen3-8B n=8 CoNLL：**存在**\n\n- **路径**: `output/exp002_conll2003/samples.jsonl`\n- **模型**: `qwen3-8b-conll2003-merged`\n- **配置**: n_samples=8, T=1.0, 3453 instances\n- **greedy F1**: 0.9074\n- **已有分析**: `n8_5signal_results.json`（SJ rho=0.4357, EM rho=0.4507）\n\n### 2. Qwen3-8B n=8 SciERC：**存在**\n\n- **路径**: `output/mvp_pilot_001/samples.jsonl`\n- **模型**: `qwen3-8b-scierc-merged`\n- **配置**: n_samples=8, T=1.0, 551 instances\n- **greedy F1**: 0.6110\n\n### 3. N-scaling 对比分析也已完成\n\n`output/bootstrap_ci_nscaling/results.json` 包含 Qwen_CoNLL 和 Qwen_SciERC 的 n=8 vs n=16 bootstrap CI 对比：\n\n| 数据集 | 信号 | rho_n8 | rho_n16 | Δρ | 95% CI |\n|--------|------|--------|---------|------|--------|\n| CoNLL | SJ | 0.4389 | 0.4496 | 0.011 | [-0.014, 0.035] |\n| CoNLL | EM | 0.4523 | 0.4612 | 0.009 | [-0.015, 0.032] |\n| SciERC | SJ | 0.3624 | 0.4280 | 0.066 | [0.004, 0.128] |\n| SciERC | EM | 0.3339 | 0.3409 | 0.007 | [-0.049, 0.065] |\n\nCoNLL 上 n=8→16 几乎无差异（CI 跨零）；SciERC 上 SJ 有微弱提升但绝对值仍小。**数据齐全，可直接用于控制组对比。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-n-samples-confound.md"
+}

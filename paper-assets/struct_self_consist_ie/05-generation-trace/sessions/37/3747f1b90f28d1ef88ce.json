@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3747f1b90f28d1ef88ce",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh gpu status check",
+  "task_key": "worker_ssh_gpu_status_check_20260521T143452",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_gpu_status_check_20260521T143452_result.json",
+    "occurrence": 1,
+    "bytes": 1128,
+    "sha256": "b5e3158bbb78965ce232d2174d859cabcedb052a68b063897bc761785d3594da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## autodl-5090\n\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| cuda:0 | 67% | 30148/32607 MiB | `fewnerd_n16_s42` — finetuned model, n_samples=16, seed=42 |\n| cuda:1 | 77% | 30204/32607 MiB | **exp_fewnerd_mf4v2_s42_v3** — finetuned model, n_samples=8, seed=42 ✅ 运行中 |\n| cuda:2 | 82% | 30230/32607 MiB | **exp_fewnerd_mf4v2_s123_v3** — finetuned model, n_samples=8, seed=123 ✅ 运行中 |\n| cuda:3 | 68% | 29946/32607 MiB | **exp_e2_pretrained_fewnerd_s456** — pretrained Qwen2.5-7B, n_samples=8, seed=456 ✅ 运行中 |\n\n## autodl-5090-c\n\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| cuda:0 | 83% | 30131/32607 MiB | `fewnerd_n16_s123` — finetuned model, n_samples=16, seed=123 |\n| cuda:1 | 0% | 0/32607 MiB | **空闲** |\n| cuda:2 | 0% | 0/32607 MiB | **空闲** |\n| cuda:3 | 81% | 30889/32607 MiB | **exp_e2_pretrained_fewnerd_s123** — pretrained Qwen2.5-7B, n_samples=8, seed=123 ✅ 运行中 |\n\n## 汇总\n\n4 个目标实验进程全部在跑。**autodl-5090-c 的 cuda:1 和 cuda:2 空闲**，可用于新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-status-check.md"
+}

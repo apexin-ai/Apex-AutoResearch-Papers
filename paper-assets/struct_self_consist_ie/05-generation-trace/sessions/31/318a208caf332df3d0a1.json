@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "318a208caf332df3d0a1",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "urgent 5090 disk cleanup",
+  "task_key": "worker_urgent_5090_disk_cleanup_20260521T024751",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_urgent_5090_disk_cleanup_20260521T024751_result.json",
+    "occurrence": 1,
+    "bytes": 400,
+    "sha256": "1849eb228e40018a79dfa2890f629d7500649ad2fbc1062d779b5a1891b90f9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**结果**：92% → 49%，释放 108GB（21GB → 129GB 可用）。32B inference 不受影响，保护目录完整。\n\n| 已删除 | 大小 |\n|--------|------|\n| HF cache Qwen2.5-32B 原始下载 | 62GB |\n| HF cache Llama 模型 | 21GB |\n| HF cache Qwen3-8B | 16GB |\n| 32B LoRA adapter（已合并） | 9.1GB |\n| HF hub cache + /tmp 临时文件 | ~4.4GB |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-5090-disk-cleanup.md"
+}

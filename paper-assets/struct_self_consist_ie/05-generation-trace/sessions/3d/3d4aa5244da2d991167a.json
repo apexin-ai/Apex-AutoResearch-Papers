@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d4aa5244da2d991167a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code method validation scripts",
+  "task_key": "worker_code_method_validation_scripts_20260518T172526",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_method_validation_scripts_20260518T172526_result.json",
+    "occurrence": 1,
+    "bytes": 768,
+    "sha256": "b4a7aa91723d9e608b546baccbd1635fcc896c6b3ec8ab4b31b19f6d0d710c6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个脚本全部完成，dry-run + 真实数据测试均通过。\n\n| 脚本 | 功能 | 验证 |\n|------|------|------|\n| `analysis_dgs_full_validation.py` | 3 数据集 DGS 全量验证 + bootstrap CI + permutation test + 退化分层 | PASS |\n| `analysis_dgs_ablation.py` | 5 策略消融 (Greedy/LP-all/DGS-degen/DGS-lp/DGS-full) | PASS |\n| `analysis_dgs_cross_model.py` | 跨模型验证 (LLaMA)，支持 reference 对比 | PASS |\n| `analysis_dgs_multiseed.py` | 多 seed 稳定性，mean±std | PASS |\n\n所有脚本位于 `autodl-5090:/root/autodl-tmp/struct_self_consist_ie/code/`，使用 argparse 参数化，支持 `--dry-run`，输出 JSON + 终端报告。验证报告写入 `artifacts/method_scripts/scripts_validation_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-method-validation-scripts.md"
+}

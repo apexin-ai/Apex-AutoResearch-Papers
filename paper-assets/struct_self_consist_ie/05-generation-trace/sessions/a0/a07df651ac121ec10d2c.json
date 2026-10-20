@@ -1,0 +1,321 @@
+{
+  "schema_version": "1.0",
+  "id": "a07df651ac121ec10d2c",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260514T194021",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_paper_writing_method_20260514T194021.jsonl",
+    "occurrence": 1,
+    "bytes": 23356,
+    "sha256": "c2912e68cf01eeddb3d700a5859e7575a053b4ae4bf920dc58bec0e37528cc31"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T19:41:45.720156+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260514T194021",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T19:41:45.720731+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260514T194021",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T19:41:45.721182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260514T194021",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/red-section.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T19:41:45.721509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: red-section\n3\tdescription: \"当实验结论为 negative / 审稿人指出 core claim 不成立 / 你要写或修改任何 paper/**/*.md 或 .tex 文件时,立即使用本 skill。提供 Framing 调整提案模板、写作规范、审稿攻击面预演。违反即被 Reviewer critical 打回。\"\n4\talways: true\n5\troles:\n6\t  - agent\n7\t---\n8\t\n9\t# Red Section — Narrative Re-framing\n10\t\n11\t## 什么时候用\n12\t- 实验 conclusion = negative\n13\t- 审稿人指出 core claim 不成立\n14\t- 写论文前（作为通用写作规范）\n15\t\n16\t## Negative 结果的正确心态\n17\t\"不是失败，是发现了 X\"。你的输出应该是 framing 调整提案，而不是 failure report。\n18\t\n19\t## 产出格式\n20\t\n21\t### Framing 调整提案模板\n22\t1. 原 claim：什么\n23\t2. 实验结果：什么（客观数字，不加修饰）\n24\t3. 重新审视：\n25\t   - 这个结果挑战了哪个 hypothesis？\n26\t   - 是否暴露了被忽略的变量？\n27\t   - 在新的 framing 下，哪些已做实验依然有效？哪些要补？\n28\t4. 新的 narrative 骨架（3 种备选，供 Director 选）\n29\t5. 对论文各章节的影响（abstract / intro / method / experiments / discussion / conclusion 逐一评估）\n30\t6. 建议下一步实验（必须至少 3 组备选，填新 framing 下的矩阵空格）\n31\t\n32\t### 写作规范（所有写作场景通用）\n33\t- 禁止 cherry-picking\n34\t- 所有数字必须追溯到 registry\n35\t- 强度与 evidence 匹配（1 个数据集 → 不能说 \"consistently\"）\n36\t- 每个定量 claim 必须附 exp_id\n37\t- 限制强度词（\"significantly\" 必须有统计检验）\n38\t\n39\t### 审稿攻击面预演\n40\t- 这个 section 最容易被审稿人攻击的点\n41\t- 预写 rebuttal 要点\n42\t\n43\t## 输出给谁\n44\t- Framing 调整提案 → Main Agent 向 Director 汇报\n45\t- 写作 skill 合规检查 → Reviewer 审查时验证\n46\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260514T194021",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T19:41:45.721670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260514T194021",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T19:41:45.721798+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/references.bib\ndocs/paper/acl.sty\ndocs/paper/acl_natbib.bst\ndocs/paper/figures/fig_overview.pdf\ndocs/paper/figures/fig_selection_gap.pdf\ndocs/paper/figures/fig_signal_heatmap.pdf\ndocs/paper/figures/fig_reliability.pdf\ndocs/paper/main.tex\ndocs/paper/sections/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260514T194021",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T19:41:45.721941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260514T194021",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T19:41:45.722070+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{inconsolata}\n11\t\\usepackage{graphicx}\n12\t\\usepackage{booktabs}\n13\t\\usepackage{amsmath}\n14\t\\usepackage{amssymb}\n15\t\\usepackage{multirow}\n16\t\\usepackage{xcolor}\n17\t\\usepackage{subcaption}\n18\t\n19\t\\graphicspath{{figures/}}\n20\t\n21\t\\title{Strong Predictors, Weak Selectors: A Systematic Comparison of Confidence Signals for Test-Time Scaling in Information Extraction}\n22\t\n23\t\\author{Anonymous}\n24\t\n25\t\\begin{document}\n26\t\\maketitle\n27\t\n28\t\\input{sections/abstract}\n29\t\\input{sections/introduction}\n30\t\\input{sections/related_work}\n31\t\\input{sections/method}\n32\t\\input{sections/experiments}\n33\t\\input{sections/discussion}\n34\t\\input{sections/conclusion}\n35\t\n36\t\\section*{Limitations}\n37\t\\input{sections/limitations}\n38\t\n39\t\\bibliography{references}\n40\t\n41\t\\end{document}\n42\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260514T194021",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T19:41:45.722229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260514T194021",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T19:41:45.722455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\paragraph{Datasets.}\n8\tWe evaluate on three English IE benchmarks spanning a difficulty gradient.\n9\t\\textbf{SciERC} \\cite{luan2018scierc} contains 551 test instances from scientific abstracts annotated for joint NER (6 entity types) and RE (7 relation types), representing a complex schema with overlapping structures.\n10\t\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} provides 3{,}453 test sentences from newswire with 4 entity types, serving as a high-accuracy benchmark where models achieve ${>}$91\\% micro F1.\n11\t\\textbf{WNUT-17} \\cite{derczynski2017wnut} consists of 1{,}287 test instances from social media with emerging entities, used to probe method boundaries where model capability is insufficient.\n12\tThis gradient---from near-solved (CoNLL) through challenging (SciERC) to infeasible (WNUT-17)---enables systematic characterization of how signal effectiveness varies with task difficulty (\\S\\ref{sec:complexity_robustness}).\n13\t\n14\t\\paragraph{Models.}\n15\tOur primary model is \\textbf{Qwen3-8B}, fine-tuned with LoRA ($r{=}32$) separately per dataset.\n16\tFor cross-model validation, we evaluate \\textbf{LLaMA-3.1-8B-Instruct} to assess whether structural confidence signals transfer across architectures and training regimes.\n17\t\n18\t\\paragraph{Sampling and Evaluation.}\n19\tFor each test instance, we draw $N$ independent samples at temperature $T{=}1.0$, with $T{=}0.7$ for robustness analysis.\n20\tWe use $N{=}8$ for both SciERC and CoNLL in the primary evaluation, and $N{=}16$ for SciERC scaling experiments.\n21\tQuality estimation is measured along two axes: \\textit{rank correlation} with instance-level F1 via Spearman $\\rho$ and Kendall $\\tau$, and \\textit{binary discrimination} via AUROC (instances above vs.\\ below median F1).\n22\tDownstream utility is assessed through \\textbf{best-of-$N$ selection F1}: the F1 obtained when each signal selects one sample per instan\n…[truncated 16805 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260514T194021",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T19:41:45.722604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260514T194021",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T19:41:45.722837+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Auto-generated from literature_map.yaml — do not edit manually\n2\t\n3\t@inproceedings{angelopoulos2021conformal,\n4\t  title = {Uncertainty Sets for Image Classifiers using Conformal Prediction},\n5\t  author = {Angelopoulos, Anastasios N. and Bates, Stephen and Malik, Jitendra and Jordan, Michael I.},\n6\t  booktitle = {ICLR 2021},\n7\t  year = {2021},\n8\t  url = {https://arxiv.org/abs/2009.14193}\n9\t}\n10\t\n11\t% SUPPLEMENTARY — not cited in main text\n12\t@article{bates2021rcps,\n13\t  title = {Distribution-free, Risk-controlling Prediction Sets},\n14\t  author = {Bates, Stephen and Angelopoulos, Anastasios and Lei, Lihua and Malik, Jitendra and Jordan, Michael},\n15\t  journal = {Journal of the ACM},\n16\t  year = {2021},\n17\t  doi = {10.1145/3478535},\n18\t  url = {http://dx.doi.org/10.1145/3478535}\n19\t}\n20\t\n21\t@article{brown2024monkeys,\n22\t  title = {Large Language Monkeys: Scaling Inference Compute with Repeated Sampling},\n23\t  author = {Brown, Bradley and Juravsky, Jordan and Ehrlich, Ryan and Clark, Ronald and Le, Quoc V. and Ré, Christopher and Mirhoseini, Azalia},\n24\t  journal = {arXiv preprint arXiv:2407.21787},\n25\t  year = {2024},\n26\t  url = {https://arxiv.org/abs/2407.21787}\n27\t}\n28\t\n29\t@inproceedings{chen2024usc,\n30\t  title = {Universal Self-Consistency for Large Language Model Generation},\n31\t  author = {Chen, Xinyun and Aksitov, Renat and Alon, Uri and Ren, Jie and Xiao, Kefan and Yin, Pengcheng and Prakash, Sushant and Sutton, Charles and Wang, Xuezhi and Zhou, Denny},\n32\t  booktitle = {arXiv preprint (ICML 2024 Workshop ICL)},\n33\t  year = {2024},\n34\t  url = {https://arxiv.org/abs/2311.17311}\n35\t}\n36\t\n37\t@article{cobbe2021verifiers,\n38\t  title = {Training Verifiers to Solve Math Word Problems},\n39\t  author = {Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},\n40\t  journal = {arXiv preprint arXiv:\n…[truncated 18708 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260514T194021",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T19:41:45.723059+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260514T194021",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex",
+              "content": "\\section{Method}\\label{sec:method}\n\nWe present a framework for evaluating confidence signals in test-time scaling for information extraction.\nThis section formalizes the problem (\\S\\ref{sec:formulation}), defines five confidence signals spanning three families (\\S\\ref{sec:signals}), and introduces the evaluation protocol (\\S\\ref{sec:evaluation}).\n\n\\subsection{Problem Formulation}\\label{sec:formulation}\n\nGiven a language model $\\mathcal{M}$ and an input instance $x$, we independently sample $N$ structured outputs $\\{y_1, \\ldots, y_N\\}$ at temperature $T > 0$.\nEach $y_i$ is a structured extraction result---an entity set for NER or a relation set for RE---produced via constrained decoding \\cite{willard2023guided} to ensure valid output structure.\nOur goal is to define a confidence signal $c$ that serves two purposes: (a) \\textit{quality estimation}---predicting which instances the model handles reliably, and (b) \\textit{sample selection}---identifying the best output among the $N$ candidates.\n\nA key distinction underlies this framework.\nA \\textbf{per-sample signal} scores each $y_i$ independently, $c_{\\text{ps}}: (x, y_i) \\to \\mathbb{R}$, enabling direct ranking of the $N$ candidates.\nAn \\textbf{instance-level signal} aggregates over all $N$ samples, $c_{\\text{il}}: (x, \\{y_i\\}_{i=1}^N) \\to \\mathbb{R}$, producing a single score per input.\nInstance-level signals can estimate overall prediction reliability but do not inherently rank individual samples.\nThis asymmetry---between predicting \\textit{which inputs} are easy and selecting \\textit{which output} is best---is central to the correlation-selection gap we investigate.\n\nTable~\\ref{tab:notation} summarizes our notation.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{cl}\n\\toprule\nSymbol & Meaning \\\\\n\\midrule\n$\\mathcal{M}$ & Language model \\\\\n$x$ & Input instance \\\\\n$y_i$ & $i$-th stochastic sample \\\\\n$N$ & Number of samples \\\\\n$T$ & Sampling temperature \\\\\n$c(\\cdot)$ & Confidence signal \\\\\nSJ & Soft Jaccard similarity \\\\\nFK & Fleiss' $\\kappa$ \\\\\nEM & Exact-match voting rate \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Notation used throughout the paper.}\n\\label{tab:notation}\n\\end{table}\n\n\\subsection{Confidence Signals}\\label{sec:signals}\n\nWe compare five signals from three families: \\textit{model-internal} (log-probability), \\textit{surface} (exact match, Fleiss' $\\kappa$), and \\textit{structural} (Soft Jaccard, entity voting).\n\n\\paragraph{Log-probability (model-internal, per-sample).}\nThe only per-sample signal in our comparison.\nFor a sample $y_i$ consisting of tokens $t_1, \\ldots, t_{|y_i|}$, we define:\n\\begin{equation}\\label{eq:logprob}\nc_{\\text{lp}}(y_i) = \\frac{1}{|y_i|} \\sum_{j=1}^{|y_i|} \\log p_{\\mathcal{M}}(t_j \\mid t_{<j}, x)\n\\end{equation}\nThis is the length-normalized mean log-likelihood, reflecting the model's internal confidence in its generation.\nBecause it scores each sample independently, it can directly rank the $N$ candidates for sample selection.\n\n\\paragraph{Exact match voting (surface, instance-level).}\nFollowing self-consistency \\cite{wang2023selfconsistency}, we measure pairwise agreement across samples at the string level:\n\\begin{equation}\\label{eq:em}\nc_{\\text{em}}(x) = \\frac{1}{\\binom{N}{2}} \\sum_{i<j} \\mathbb{1}[y_i = y_j]\n\\end{equation}\nEquivalently, this can be expressed as the majority fraction $\\max_y |\\{i : y_i = y\\}| / N$.\nEM treats entire outputs as atomic units: two samples either match exactly or not, with no notion of partial overlap.\n\n\\paragraph{Fleiss' $\\kappa$ (surface, instance-level).}\nWe adapt the inter-rater agreement measure of \\citet{fleiss1971agreement} by treating the $N$ samples as independent annotators, token positions as items, and the token vocabulary as the set of categories:\n\\begin{equation}\\label{eq:fk}\n\\kappa = \\frac{\\bar{P} - \\bar{P}_e}{1 - \\bar{P}_e}\n\\end{equation}\nwhere $\\bar{P}$ is the observed agreement rate across token positions and $\\bar{P}_e$ is the agreement expected by chance.\nUnlike EM, FK captures partial agreement---two samples that share most tokens but differ in a few positions receive a high score.\nHowever, FK operates at the string level and does not account for the structure of the extracted output.\n\n\\paragraph{Soft Jaccard (structural, instance-level).}\nOur core structural signal extends Jaccard similarity \\cite{jaccard1901distribution} to operate on extracted entity or relation \\textit{sets} rather than raw strings.\nFor two samples $y_i$ and $y_j$, we first group extractions by entity type.\nWithin each group, we compute a bipartite matching using the Hungarian algorithm with span overlap as the similarity metric.\nThe pairwise Soft Jaccard score is:\n\\begin{equation}\\label{eq:sj}\n\\text{SJ}(y_i, y_j) = \\frac{|M|}{\\max(|A_i|, |A_j|)}\n\\end{equation}\nwhere $|M|$ is the number of matched extraction pairs and $|A_i|$, $|A_j|$ are the extraction counts of each sample.\nThe instance-level signal averages over all sample pairs:\n\\begin{equation}\\label{eq:sj_instance}\nc_{\\text{sj}}(x) = \\frac{1}{\\binom{N}{2}} \\sum_{i<j} \\text{SJ}(y_i, y_j)\n\\end{equation}\nTwo design choices distinguish SJ from surface signals.\nFirst, type-aware grouping prevents spurious matches between extractions of different entity types.\nSecond, span-overlap matching tolerates near-synonym variations (e.g., ``machine learning'' vs.\\ ``ML''), which would be penalized by exact string comparison.\n\n\\paragraph{Entity voting confidence (structural, instance-level).}\nWhile SJ compares entire extraction sets, entity voting operates at the granularity of individual extractions.\nFor each entity $e$ appearing in the union $E_\\cup$ of all $N$ samples, we compute its frequency:\n\\begin{equation}\\label{eq:freq}\n\\text{freq}(e) = \\frac{|\\{i : e \\in y_i\\}|}{N}\n\\end{equation}\nThe instance-level confidence is the mean frequency across all observed entities:\n\\begin{equation}\\label{eq:voting}\nc_{\\text{vote}}(x) = \\frac{1}{|E_\\cup|} \\sum_{e \\in E_\\cup} \\text{freq}(e)\n\\end{equation}\nThis adapts majority voting \\cite{wang2023selfconsistency} from discrete answer selection to set-valued extraction.\nEntities that appear consistently across samples contribute high frequency; hallucinated or idiosyncratic extractions that appear in only one or two samples pull the score down.\nThis per-entity granularity enables the signal to distinguish instances where the model reliably extracts a core set of entities (high $c_{\\text{vote}}$) from those where extractions vary widely across samples (low $c_{\\text{vote}}$).\n\n\\subsection{Evaluation Framework}\\label{sec:evaluation}\n\nWe assess confidence signals along two complementary dimensions.\n\n\\paragraph{Quality estimation.}\nQuality estimation asks: \\textit{for which instances does the model produce reliable outputs?}\nWe measure rank correlation between the confidence signal and instance-level F1 via Spearman $\\rho$ and Kendall $\\tau$.\nFor binary discrimination, we compute AUROC by classifying instances as above or below median F1.\nThese metrics evaluate whether a signal can identify reliable vs.\\ unreliable predictions without access to gold labels.\n\n\\paragraph{Sample selection.}\nSample selection asks: \\textit{given $N$ candidates for a single instance, which one is best?}\nWe report best-of-$N$ F1: for each instance, the signal selects one sample, and we compute micro F1 over all instances.\nWe compare against an \\textit{oracle} (which always selects the highest-F1 sample) and a \\textit{greedy baseline} ($T{=}0$, $N{=}1$).\nPer-sample signals like log-probability directly rank the $N$ candidates.\nInstance-level signals (SJ, FK, EM, Voting) produce a single score per instance and thus require an auxiliary strategy for sample selection---we select the sample closest to the consensus output, i.e., the one with highest average pairwise similarity to all other samples.\n\n\\paragraph{The two dimensions are complementary, not redundant.}\nA signal with high rank correlation accurately predicts relative instance difficulty, making it useful for quality-aware routing or selective prediction.\nHowever, high correlation does not guarantee effective sample selection: if per-sample variance is low---the model produces $N$ similar outputs for a given input---even a perfect quality estimator cannot distinguish among near-identical candidates.\nWe investigate this decoupling empirically in \\S\\ref{sec:selection_gap}.\n"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T19:41:45.723397+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260514T194021",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T19:41:45.723578+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method 章节已写入 `docs/paper/sections/method.tex`。\n\n要点：\n- 三个小节：Problem Formulation (`sec:formulation`)、Confidence Signals (`sec:signals`)、Evaluation Framework (`sec:evaluation`)，label 与 experiments.tex 中的引用一致\n- 信号分类与 experiments.tex 保持一致：Structural (Voting, SJ)、Surface (FK, EM)、Model-internal (logprob)\n- 包含记号表（Table 1）\n- 所有公式有 label，使用 equation 环境\n- 仅引用 references.bib 中已有的 key：`wang2023selfconsistency`、`fleiss1971agreement`、`jaccard1901distribution`、`willard2023guided`\n- 末尾自然过渡到 `\\S\\ref{sec:selection_gap}` 的实验分析\n- 约 1000 词，无具体实验数字，无禁忌用语"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260514T194021"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-method.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af02718854821be55aa0",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis logprob rho inconsistency",
+  "task_key": "worker_analysis_logprob_rho_inconsistency_20260514T122249",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_logprob_rho_inconsistency_20260514T122249_result.json",
+    "occurrence": 1,
+    "bytes": 1245,
+    "sha256": "a57586361174a2c55c8d40a310da4786e8e1e6b66ca54aef444e53f55fc94129"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**NER logprob ρ 差异的根因是温度 (T)**，不是实例子集、N 采样数或归一化方式。\n\n### 因子分解（NER ρ gap = 0.174）\n\n| 因子 | 贡献 | 占比 | 判定 |\n|------|------|------|------|\n| **(b) 温度 T=0.7 vs T=1.0** | **+0.129** | **74%** | **主因** |\n| (a) 实例子集 200 vs 529 | +0.039 | 22% | 次要 |\n| (c) N=16 vs N=8 | +0.007 | 4% | 可忽略 |\n| (d) 归一化方式 | 0 | 0% | 排除（两者相同） |\n\n### 关键证据\n\n- **同 200 实例**，exp-001 (N=16,T=0.7) ρ=0.314 vs exp-012 (N=8,T=1.0) ρ=0.179，差距 +0.135\n- **仅改 N**（exp-001 内从 N=16 子采样到 N=8），ρ 仅从 0.314 降到 0.308，差 +0.007\n- 因此 T 效应 ≈ 0.135 - 0.007 = **0.129**\n\n### 机制\n\nT=1.0 使 logprob 分布更宽（range 0.153 vs T=0.7 的 0.098），采样多样性带来的噪声稀释了 logprob 与 F1 的相关性。\n\n### 建议\n\n统一 logprob baseline 比较时，应固定 T。如果要在 T=1.0 数据上报告 logprob baseline，ρ≈0.14 是正确的数字。exp-001 的 ρ=0.314 不可直接对比，因为 T=0.7 的 logprob 信号本身更强。\n\n诊断脚本和完整 JSON 已保存到服务器 `output/logprob_diagnosis/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-logprob-rho-inconsistency.md"
+}

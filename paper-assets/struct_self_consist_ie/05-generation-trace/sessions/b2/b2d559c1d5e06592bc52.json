@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2d559c1d5e06592bc52",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh kill 5090c duplicate seed123",
+  "task_key": "worker_ssh_kill-5090c-duplicate-seed123_20260520T044411",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_kill-5090c-duplicate-seed123_20260520T044411_result.json",
+    "occurrence": 1,
+    "bytes": 743,
+    "sha256": "564e5e130e3d5018ed2ac818be14f83f81b6a78f2a67eb658da9e19523e913a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：**\n\n- **PID 155276 已成功 kill**（SIGTERM，无需 SIGKILL）\n- **无其他 seed123 相关进程**\n- **GPU 3 已释放**：0% 利用率，0 MiB 显存占用\n\n**5090-c 当前 GPU 状态：**\n\n| GPU | 利用率 | 显存占用 | 用途 |\n|-----|--------|----------|------|\n| 0 | 97% | 25885/32607 MiB | 14B fewnerd s42 训练 (llamafactory) |\n| 1 | 97% | 25827/32607 MiB | 14B fewnerd s42 训练 (llamafactory) |\n| 2 | 83% | 29869/32607 MiB | vLLM EngineCore（可能是 pipeline 其他推理任务） |\n| 3 | **0%** | **0/32607 MiB** | **已释放** ✓ |\n\nGPU 0-1 在跑 `train_config_qwen25_14b_fewnerd_s42.yaml` 训练，GPU 2 有个 vLLM 进程（PID 155544），不是 seed123 相关，未动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-5090c-duplicate-seed123.md"
+}

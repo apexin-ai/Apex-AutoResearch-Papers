@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "379b1d19457af5597599",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh diagnose exp b1 scd conll control",
+  "task_key": "worker_ssh_diagnose-exp_b1_scd_conll_control_20260520T121546",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_diagnose-exp_b1_scd_conll_control_20260520T121546_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "9d4471233821d7cdcbae333b7f91655ce91a04f59620dda008b30c3a7e52a921"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：假阳性告警，实验已正常完成。**\n\n- `exp_b1_scd_conll_control` 在 ~23 分钟内完成了 2 epochs / 690 steps 训练，train_loss=0.0359, eval_loss=0.0362，checkpoints 和结果文件均已写入 `checkpoints/qwen3-8b-conll-scd-lora/`\n- cron 误判原因：配置了 `report_to: none` 且无 sentinel 文件，进程正常退出后被识别为\"死亡\"\n- 其他 3 个 SCD 实验（fewnerd_standard / fewnerd_curriculum_q / threshold_ablation）全部健康运行中，分别占用 GPU 0/1/3\n- 服务器资源充足：磁盘剩余 148G，GPU 2 空闲\n\n报告已写入 `artifacts/diagnose_exp_b1_scd_conll_control.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-exp-b1-scd-conll-control.md"
+}

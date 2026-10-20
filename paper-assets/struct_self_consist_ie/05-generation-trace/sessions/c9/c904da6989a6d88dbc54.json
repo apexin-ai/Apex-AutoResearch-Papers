@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c904da6989a6d88dbc54",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis scierc n16 3seed selection f1",
+  "task_key": "worker_analysis_scierc_n16_3seed_selection_f1_20260515T130955",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_scierc_n16_3seed_selection_f1_20260515T130955_result.json",
+    "occurrence": 1,
+    "bytes": 1503,
+    "sha256": "4b9722cc57af9c0b80409d0c7809a1ab19fcdf6e85b2dc014a5464c642132d45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已复制到本地。汇总结果：\n\n## SciERC N=16 三种子 Selection F1 结果\n\n**551 instances, 3 seeds (42/123/456), N=16 samples**\n\n| Method | Mean F1 | ±σ | Δ Greedy | p(Fisher) |\n|--------|--------:|----:|---------:|----------:|\n| Greedy | 0.6184 | 0.0001 | — | — |\n| Random | 0.5847 | 0.0014 | -0.0337 | — |\n| **VC** | 0.5875 | 0.0053 | **-0.0309** | 1.000 |\n| **SJ** | 0.6179 | 0.0023 | -0.0005 | 0.689 |\n| **FK** | 0.6199 | 0.0022 | +0.0015 | 0.460 |\n| **EM** | 0.6097 | 0.0037 | -0.0087 | 0.995 |\n| **LP** | 0.6229 | 0.0067 | **+0.0045** | 0.076 |\n| Oracle | 0.7871 | 0.0028 | +0.1687 | — |\n\n**关键发现**：\n- **LP 是最佳信号**（+0.45pp vs greedy），接近显著（p=0.076）\n- **FK** 也正向（+0.15pp），但不显著\n- **VC/EM** 显著低于 greedy\n- **SJ** 约等于 greedy\n\n## N=16 vs N=8 对比\n\n| Signal | N=16 | N=8 | Δ(16-8) | N=16 Δg | N=8 Δg |\n|--------|-----:|----:|--------:|--------:|-------:|\n| SJ | 0.6179 | 0.6157 | +0.0022 | -0.0005 | -0.0043 |\n| FK | 0.6199 | 0.6157 | +0.0042 | +0.0015 | -0.0044 |\n| LP | 0.6229 | 0.6204 | +0.0025 | +0.0045 | +0.0004 |\n| Oracle gap | 0.1687 | — | 0.1253 | — | — |\n\n- **N=16 的 SJ/FK 从负 Δg 翻正**：N=8 时 SJ/FK 低于 greedy ~0.4pp，N=16 时 SJ 约平 greedy、FK 高于 greedy 0.15pp\n- **Oracle gap 大幅扩大**（0.169 vs 0.125），说明 N=16 有更多 headroom\n- **LP 在两个 N 下都是最好的信号**，N=16 进一步提升"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-scierc-n16-3seed-selection-f1.md"
+}

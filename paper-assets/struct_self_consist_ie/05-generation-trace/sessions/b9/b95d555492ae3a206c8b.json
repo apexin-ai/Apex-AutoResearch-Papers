@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b95d555492ae3a206c8b",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis d141 task2 task3 combined",
+  "task_key": "worker_analysis_d141_task2_task3_combined_20260518T132400",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_d141_task2_task3_combined_20260518T132400.log",
+    "occurrence": 1,
+    "bytes": 736653,
+    "sha256": "542a30e6e7b4d202c87ccdc54f224741b241fc181f02c311cb3630e5c6c8452b"
+  },
+  "statistics": {
+    "messages": 162,
+    "user_turns": 0,
+    "tool_calls": 65,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 28,
+      "tool_call": 65,
+      "tool_result": 65,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 162,
+      "chunks": [
+        {
+          "path": "b95d555492ae3a206c8b-part-0001.json",
+          "message_count": 109
+        },
+        {
+          "path": "b95d555492ae3a206c8b-part-0002.json",
+          "message_count": 53
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-d141-task2-task3-combined.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92949619993d463dcd0d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "infra check 5090c cuda0 collision",
+  "task_key": "worker_infra_check_5090c_cuda0_collision_20260521T113110",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_check_5090c_cuda0_collision_20260521T113110_result.json",
+    "occurrence": 1,
+    "bytes": 898,
+    "sha256": "43100abfb2132c301ec37388b4cf93f17617ea4a4d328a008c1fded14c395df0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 进程状态\n\n| 实验 | PID | 状态 |\n|------|-----|------|\n| exp_fewnerd_n16_s456_v2 | 293438 | **已完成** (EXIT_CODE=0)，19:02 UTC 正常退出 |\n| exp_fewnerd_n16_s123 | 311981 | **运行中**，已运行 ~7 分钟 |\n\n### s456_v2 产出\n- `output/fewnerd_n16_seed456_v2/report.json` (1.6KB)\n- `output/fewnerd_n16_seed456_v2/samples.jsonl` (1.28GB)\n- 日志确认 `EXIT_CODE=0`，引擎正常 shutdown\n\n### s123 进度\n- 正在处理 prompts: 2992/602368 (~0.5%)，运行约 5 分钟\n- 预估速度: input ~1455 toks/s, output ~677 toks/s\n- 预估剩余时间: ~3 小时\n\n### GPU 0 状态\n- 显存: 30131 / 32607 MiB (92%)\n- 利用率: 80%\n- s123 独占 GPU 0，无碰撞\n\n### 建议操作\n1. **更新 registry**: 将 exp_fewnerd_n16_s456_v2 标记为 COMPLETED\n2. **无需干预 s123**: 正常运行中，GPU 独占，无碰撞"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-5090c-cuda0-collision.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a1e9f276b99e4488268",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "research scaling narrative analysis",
+  "task_key": "worker_research_scaling-narrative-analysis_20260520T040340",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_scaling-narrative-analysis_20260520T040340_result.json",
+    "occurrence": 1,
+    "bytes": 1337,
+    "sha256": "108fde9ed811f07c0fd314e65cc387930b1aa63bbd0b689faa6dcd063a548c20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析报告已写入 `artifacts/scaling_version_analysis.md`。`register_artifact` 工具当前不可用，文件已在标准 artifacts 目录下。\n\n---\n\n**核心结论：**\n\n1. **倾向判断：建议以 Version B（Non-monotonic）为默认写作方案**\n   - A 要求严格单调（7B<14B<32B degen），任何一个反转即被否证；B 兼容任何结果\n   - B 的 \"measure, don't predict\" 信息与论文 diagnostic positioning（D154: cross-config degen ρ=0.052, p=0.81）一致\n   - 若数据恰好单调，B→A 只需一段改写；反向改写代价更大\n\n2. **共识点（两个版本共享）**：degeneracy gates construction 在全部 9 个条件中成立，不受版本选择影响。\n\n3. **7B 数据判断标准**：\n   - **Degen pattern** 是主判据：7B<14B<32B→选A；任何反转→选B；近似相等(Δ<3pp)→选B(lite)\n   - **Construction Δ 必须反向跟踪 degen**：最低 degen 的 scale point 应有最大正 construction。若不跟踪→gating 假说需修正\n   - **7B degen <10%** 强烈支持 A；**>15%** 偏向 B\n   - **Greedy F1 单调但 degen 非单调** = Version B 最强证据\n\n4. **Fallback**：若 pattern 模糊，用混合叙事——\"scale 有弱趋势，但训练 recipe（LoRA rank 3× shift）和 epoch（11%→31%）的影响更大\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-scaling-narrative-analysis.md"
+}

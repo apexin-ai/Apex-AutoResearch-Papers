@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a12dc1760ea88b76cf0",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis auroc nan and sj variance",
+  "task_key": "worker_analysis_auroc_nan_and_sj_variance_20260518T232350",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_auroc_nan_and_sj_variance_20260518T232350_result.json",
+    "occurrence": 1,
+    "bytes": 2316,
+    "sha256": "5c42dc5155c8fb44ed6b86452148a02aeaf7ba8ac72c590ea77399b4bcf1d47f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the complete report:\n\n---\n\n## Problem A: AUROC NaN — Root Cause + Fix\n\n**Root cause**: The s789 script used `greedy_f1 > median` as the binary label. For FewNERD, **median greedy F1 = 1.0** (>50% instances have perfect extraction), so `greedy_f1 > 1.0` produces **zero positive labels**. sklearn `roc_auc_score` returns NaN with a warning (not raising), so the `except: auroc=0.5` never triggered. Additionally, the other seeds used a completely different AUROC definition (oracle-based sample-level) from `analyze_fewnerd_results.py`.\n\n**Fix applied** to `analyze_fewnerd_s789.py`:\n- Replaced broken `greedy_f1 > median` with oracle-based sample-level AUROC (Mann-Whitney U)\n- Consistent with seed42/123/456 definition\n\n| Signal | Before | After | seed42 ref |\n|--------|--------|-------|------------|\n| LP | NaN | 0.5994 | 0.5782 |\n| SJ | NaN | 0.5139 | 0.5197 |\n| FK | NaN | 0.5131 | 0.5210 |\n| EM | NaN | 0.5033 | 0.5137 |\n| VC | NaN | 0.5392 | 0.5354 |\n\n**4-seed summary**: Does NOT reference NaN AUROC values — no downstream contamination.\n\n---\n\n## Problem B: SJ Selection Delta — Real Seed Variance\n\nUsing **identical code** for all 4 seeds (`debug_sj_variance.py`):\n\n| Seed | SJ soft Δpp | SJ hard Δpp | LP Δpp |\n|------|------------|-------------|--------|\n| 42 | **-2.14** | -2.26 | +1.36 |\n| 123 | **-2.91** | -3.34 | +1.44 |\n| 456 | **-0.76** | -0.94 | +1.37 |\n| 789 | **-6.24** | -6.22 | +1.36 |\n\n- SJ soft delta: mean=-3.01, std=2.02, range=5.48pp\n- LP delta: mean=+1.38, std=0.04 (very stable by comparison)\n- Hard vs soft Jaccard difference: 0.02-0.43pp (negligible)\n\n**Conclusion**: The 4pp gap between s789 (-6.2pp) and s42 (-2.1pp) is **real seed variance**. The s789 script used hard Jaccard (now fixed to soft), but this only accounted for ~0.02pp. SJ selection is intrinsically more variable than LP selection across seeds.\n\n---\n\n## Files Modified\n- `code/analyze_fewnerd_s789.py` — AUROC fix + SJ soft Jaccard\n- `output/fewnerd_seed789_merged/analysis.json` — regenerated\n- `output/fewnerd_seed789_merged/full_signal_analysis.json` — regenerated\n\n## New Files\n- `code/debug_sj_variance.py` — unified 4-seed comparison script\n- `output/debug_sj_variance_results.json` — 4-seed SJ delta results"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-auroc-nan-and-sj-variance.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bf3a29d588fbc3c30d6",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh conll freeform prep",
+  "task_key": "worker_ssh_conll_freeform_prep_20260522T090955",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_conll_freeform_prep_20260522T090955_result.json",
+    "occurrence": 1,
+    "bytes": 2122,
+    "sha256": "83c0df41bc0621d24446933a52a4773ca656a3405af446f4ee85560c069867b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Part 1: GPU 状态\n\n**autodl-5090**\n\n| GPU | Util | VRAM | 状态 |\n|-----|------|------|------|\n| 0 | 0% | 2/32G | **空闲** |\n| 1 | 0% | 2/32G | **空闲** |\n| 2 | 72% | 29.7/32G | conll_pretrained_n64_s42 — 75% (165k/221k), **ETA ~20min** |\n| 3 | 0% | 2/32G | **空闲** |\n\n**autodl-5090-c**\n\n| GPU | Util | VRAM | 状态 |\n|-----|------|------|------|\n| 0 | 87% | 30.1/32G | fewnerd_n32_s42 (fine-tuned, N=32) |\n| 1 | 78% | 30.1/32G | fewnerd_pretrained_n16_s42 |\n| 2 | 0% | 0/32G | **空闲** |\n| 3 | 81% | 29.8/32G | fewnerd_pretrained_n32_s42 |\n\n### 已完成实验 — MV 指标\n\n**conll_pretrained_n16_seed42** (Qwen2.5-7B-Instruct):\n- greedy=0.5986, MV_strict=0.6320, **Δ_SC=+3.34pp**, oracle=0.7282\n- δ_degen=25.5%, α_crit=0.299, α_crit_eff=0.402\n\n**scierc_pretrained_n64_seed42** (Qwen2.5-7B-Instruct):\n- greedy=0.2432, MV_strict=0.2717, **Δ_SC=+2.85pp**, oracle=0.5017\n- δ_degen=0.0%, α_crit=0.122, α_crit_eff=0.122\n\n### 仍在运行（无 samples.jsonl）\n- conll_pretrained_n64_seed42 — ~20min\n- fewnerd_n32_seed42, fewnerd_pretrained_n16_seed42, fewnerd_pretrained_n32_seed42 — 全在 5090-c\n\n---\n\n### Part 2: CoNLL Free-Form Ablation\n\n**已经完成，无需重跑。** 数据在 `output/review_round9_experiments/freeform_conll/`：\n\n- 4 seeds (42/123/456/789), N=8, T=1.0, model=qwen3-8b-conll2003-merged, `use_grammar=False`\n- 3453 instances/seed, parse rate ~79-81%\n- 论文 appendix 已引用这些结果（§CoNLL NER free-form results）\n\n关键数字（与论文一致）：\n- LP range median: 0.058±0.007\n- LP-selected F1: 0.896 vs greedy 0.904 (Δ=-0.77pp)\n- QE: SJ ρ=0.461, EM ρ=0.471, LP ρ=0.326\n\n**实现机制**：`sampling.py` 的 `run_sampling_pipeline` 已有 `use_grammar` 参数（默认 True），设 False 即为 free-form。`run_mvp_pilot.py` 未暴露此 flag，但已有单独脚本生成了数据。\n\n**可用 GPU**：autodl-5090 cuda:0/1/3 均空闲，5090-c cuda:2 空闲。如果需要额外实验（如 pretrained model free-form 或不同 N），随时可以启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-conll-freeform-prep.md"
+}

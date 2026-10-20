@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a5b058a6aac5596288d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp 024 claim audit",
+  "task_key": "worker_analysis_exp_024_claim_audit_20260517T104228",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_024_claim_audit_20260517T104228_result.json",
+    "occurrence": 1,
+    "bytes": 1059,
+    "sha256": "4339647f7a8f9b1f24a4e28880934b68359615c6bac56d9206388e7bf7ac6e2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report saved to `artifacts/exp_024_claim_audit/audit_report.md`.\n\n**Summary: 97 ✅ / 1 ❌ / 5 ⚠️**\n\n**1 issue requiring fix:**\n- **experiments.tex L52**: \"EM strongest (ρ=0.360)\" in the WNUT paragraph is wrong for WNUT. The ρ=0.360 comes from SciERC conditional (Figure signal_heatmap), not WNUT. On WNUT conditional, LP (0.350) > EM (0.333). Misleading cross-reference.\n\n**5 items to review (not errors but worth noting):**\n1. T ablation table shows degen=17.6% at T=1.0 vs 17.8% everywhere else (different subtask protocol)\n2. LP range 0.041 (main text, NER-only) vs 0.060 (T ablation table) at T=1.0 -- larger discrepancy than subtask alone explains\n3. N=8 Few-NERD LP Δ: +1.37 (paired subset n=4,351) vs +1.36 (full-set) -- minor rounding from subset\n4. SciERC N=16 \"+0.52 pp (p=0.003)\" -- no secondary source to cross-verify\n5. VC AUROC=0.706 in verifier section -- from N=16 analysis, not verifiable from QE table (N=8: 0.663)\n\n**No old value residuals found** (58%, 21%, 10%, 11.1%→4.5%, +0.62pp all absent)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-024-claim-audit.md"
+}

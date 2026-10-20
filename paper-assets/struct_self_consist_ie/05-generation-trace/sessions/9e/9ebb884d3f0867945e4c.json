@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ebb884d3f0867945e4c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh unified lp best recompute",
+  "task_key": "worker_ssh_unified_lp_best_recompute_20260522T064332",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_unified_lp_best_recompute_20260522T064332_result.json",
+    "occurrence": 1,
+    "bytes": 1155,
+    "sha256": "5a6f3b1a0ab20348c279d185f3d87a06037b07d71cb34ba670f1a2a3d35c5d28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已完成。汇总如下：\n\n## 统一 Instance 集 LP-best F1 结果\n\n### SciERC (529 gold-nonempty instances, unified baseline from N=8 greedy)\n\n| N | LP-best F1 | LP Δ(pp) |\n|---|-----------|----------|\n| 8 | 0.6651 | -0.32 |\n| 16 | 0.6635 | -0.48 |\n| 32 | 0.6708 | +0.25 |\n| 64 | 0.6712 | +0.29 |\n\nLP baseline (greedy F1): **0.6683**\n\n### CoNLL (2756 gold-nonempty instances, unified baseline from N=8 greedy)\n\n| N | LP-best F1 | LP Δ(pp) |\n|---|-----------|----------|\n| 8 | 0.8961 | -1.62 |\n| 16 | 0.8887 | -2.36 |\n| 32 | 0.8923 | -2.00 |\n| 64 | 0.8889 | -2.34 |\n\nLP baseline (greedy F1): **0.9123**\n\n**关键发现**：LP-best 在两个数据集上均未超越 greedy baseline，CoNLL 上甚至有 -1.6 到 -2.4pp 的下降。这说明 mean log-probability 不是一个有效的样本选择器——即使选了模型自评\"最确信\"的样本，entity extraction 质量依然不如 greedy 解码。SciERC 在 N=32/64 时 LP-best 略微回正（+0.25/+0.29pp），但幅度很小。\n\n脚本已保存至服务器 `code/lp_best_unified.py`，结果保存至 `output/unified_lp_best_results.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-unified-lp-best-recompute.md"
+}

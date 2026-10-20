@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "cb3848c2a2c2293307a9",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "fix n scaling metric consistency",
+  "task_key": "worker_fix_n_scaling_metric_consistency_20260516T154206",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_n_scaling_metric_consistency_20260516T154206.log",
+    "occurrence": 1,
+    "bytes": 716638,
+    "sha256": "3a380e389467e016dc8357edbfb1c3ee71b2ed14bc67e87966f606798b700e6b"
+  },
+  "statistics": {
+    "messages": 131,
+    "user_turns": 0,
+    "tool_calls": 47,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 33,
+      "tool_call": 47,
+      "tool_result": 47,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 131,
+      "chunks": [
+        {
+          "path": "cb3848c2a2c2293307a9-part-0001.json",
+          "message_count": 114
+        },
+        {
+          "path": "cb3848c2a2c2293307a9-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-n-scaling-metric-consistency.md"
+}

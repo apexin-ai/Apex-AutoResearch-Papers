@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93091739b6cbd00ae79a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose 5090c 14b conll",
+  "task_key": "worker_diagnose_5090c_14b_conll_20260521T003634",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_5090c_14b_conll_20260521T003634_result.json",
+    "occurrence": 1,
+    "bytes": 1600,
+    "sha256": "1e6a00a809bdc56b5c1f17961d3c26add4391b8e2c18405f68b6ce25a40b77f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the summary:\n\n---\n\n## 1. 14B Inference (exp_14b_inference_fewnerd)\n\n**Status: N=8 running on cuda:0** — PID 252310, 1896/301184 prompts (1%), ETA ~6-10h.\n\nFewNERD completed so far:\n| N | greedy_f1 | oracle_f1 | ρ(SJ,F1) | Verdict |\n|---|-----------|-----------|----------|---------|\n| 1 | 0.7985 | 0.7541 | NaN | FAIL |\n| 2 | 0.7985 | 0.8086 | 0.205 | FAIL |\n| 4 | 0.7984 | 0.8544 | 0.314 | MARGINAL |\n| 8 | — running — | | | |\n\n`kill_after_n8.sh` (PID 224789) is active, will terminate after N=8 completes.\n\nSciERC and CoNLL 14B N=1-16 all completed previously.\n\n## 2. CoNLL seed=123 T-ablation — ALL DONE\n\nAll 3 runs completed successfully, all PASS, all structural > surface:\n\n| T | greedy_f1 | oracle_f1 | κ_mean | ρ(κ,F1) | ρ(SJ,F1) | Δ_struct | Verdict |\n|---|-----------|-----------|--------|---------|----------|----------|---------|\n| 0.5 | 0.9073 | 0.9351 | 0.894 | 0.453 | 0.460 | +0.007 | PASS |\n| **0.8** | **0.9068** | **0.9466** | **0.825** | **0.472** | **0.485** | **+0.013** | **PASS** |\n| 1.2 | 0.9072 | 0.9550 | 0.668 | 0.409 | 0.435 | +0.027 | PASS |\n\nT=0.8 has the highest ρ — sweet-spot replicated across seeds. T=1.2 has the largest structural advantage (Δ=+0.027) but lowest absolute correlation.\n\n## 3. GPU Availability\n\n| GPU | Status | Memory |\n|-----|--------|--------|\n| cuda:0 | **BUSY** — 14B N=8 inference | 31.1/32.6 GB |\n| cuda:1 | **FREE** | 0/32.6 GB |\n| cuda:2 | **FREE** | 0/32.6 GB |\n| cuda:3 | **FREE** | 0/32.6 GB |\n\n**3 GPUs idle**, available for new work."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-5090c-14b-conll.md"
+}

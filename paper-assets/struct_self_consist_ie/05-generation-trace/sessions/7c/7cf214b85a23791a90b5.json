@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7cf214b85a23791a90b5",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis selection f1 4configs",
+  "task_key": "worker_analysis_selection_f1_4configs_20260515T030701",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_selection_f1_4configs_20260515T030701_result.json",
+    "occurrence": 1,
+    "bytes": 1245,
+    "sha256": "fe38652ffea4986c1da379e2b015850479d7073f4a03997cefafea049f38ac87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 格式正确，数值合理。所有 5 个 JSON 文件已保存到 `/root/autodl-tmp/struct_self_consist_ie/output/review_round2/`。\n\n汇总结果：\n\n| Config | N | Greedy | Oracle | SJ | FK | EM | LP | VC |\n|--------|---|--------|--------|-----|-----|-----|-----|-----|\n| llama_scierc_n8 | 529 | .6460 | .7780 | .6433 | .6386 | .6343 | **.6518** | .6332 |\n| llama_scierc_n16 | 529 | .6445 | .8062 | .6494 | .6492 | .6395 | .6462 | .6402 |\n| qwen_conll_n8 | 2756 | .9079 | .9483 | .8990 | .8926 | .8975 | .8974 | .8948 |\n| llama_conll_n8 | 2756 | .9242 | .9426 | .9237 | .9245 | .9244 | .9244 | .9233 |\n\n关键发现：\n- **LLaMA SciERC N=8**: 只有 logprob 略优于 greedy (+0.006, p=0.39 不显著)；voting_conf 显著差于 greedy (p=0.03)\n- **LLaMA SciERC N=16**: SJ/FK 略优于 greedy (+0.005) 但均不显著\n- **Qwen CoNLL N=8**: 所有 signal 都**显著差于 greedy** (p<0.001)，greedy 已经很强 (0.908)\n- **LLaMA CoNLL N=8**: 所有 signal 与 greedy 几乎无差异 (|Δ|<0.001)，greedy 更强 (0.924)\n\n总体：在这 4 个配置上，没有 signal 能可靠地超过 greedy baseline 做 sample selection。Oracle-greedy gap 虽大（SciERC ~13pt），但现有 signal 无法利用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-selection-f1-4configs.md"
+}

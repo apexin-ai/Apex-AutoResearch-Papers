@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8ff385966203ca6bf07",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis oracle improvable fraction",
+  "task_key": "worker_analysis_oracle_improvable_fraction_20260515T050344",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_oracle_improvable_fraction_20260515T050344_result.json",
+    "occurrence": 1,
+    "bytes": 908,
+    "sha256": "bbf073af67fa280b44b71f27dd4766c0dc35acac9fad2cbc351bc92a4aa705b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n| Config | Total | Improv | Degrad | Tied | Imp% | Headroom | Degrad |\n|---|---|---|---|---|---|---|---|\n| qwen_scierc_ner | 529 | 222 | 2 | 305 | 0.4197 | 0.3186 | 0.4773 |\n| qwen_scierc_re | 397 | 164 | 9 | 224 | 0.4131 | 0.4530 | 0.2803 |\n| llama_scierc_ner | 529 | 208 | 2 | 319 | 0.3932 | 0.3368 | 0.1114 |\n| qwen_conll_ner | 2756 | 251 | 5 | 2500 | 0.0911 | 0.4482 | 0.2419 |\n| llama_conll_ner | 2756 | 110 | 0 | 2646 | 0.0399 | 0.4608 | 0.0000 |\n\nSciERC 上约 39-42% 的 instance 有至少一个 sample 优于 greedy，headroom 约 0.32-0.45 F1。CoNLL 上 improvable 比例显著低（4-9%），因为 greedy 本身已经很强，但 improvable instance 的 headroom 仍有 0.45 左右。degradable instance 极少（0-9 个），说明 sampling 几乎不会全部劣于 greedy。\n\n已保存到 `output/review_round2/oracle_improvable_fraction.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-oracle-improvable-fraction.md"
+}

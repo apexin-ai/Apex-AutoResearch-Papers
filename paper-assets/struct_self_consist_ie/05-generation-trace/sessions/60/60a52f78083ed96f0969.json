@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60a52f78083ed96f0969",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis diversity stratified selection",
+  "task_key": "worker_analysis_diversity_stratified_selection_20260515T044339",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_diversity_stratified_selection_20260515T044339_result.json",
+    "occurrence": 1,
+    "bytes": 1470,
+    "sha256": "4734be233ae31df876a90d255d7d2285b3b6b0adfcbe0d4627b9caa88c15397d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已保存到 `review_round2/diversity_stratified_selection.json`。\n\n### 关键发现\n\n**1. High-diversity 组的 oracle headroom 非常大：**\n| 配置 | n | Oracle Headroom |\n|------|---|-----------------|\n| Qwen SciERC high-div | 232 | **+0.1631** (57.5% → 73.8%) |\n| LLaMA SciERC high-div | 186 | **+0.2014** (56.3% → 76.4%) |\n\n好样本确实存在——oracle 可以比 greedy 提升 16-20 个百分点。\n\n**2. High-diversity 组的 selection gap 仍然近零或为负：**\n\n| Signal | Qwen gap | LLaMA gap |\n|--------|----------|-----------|\n| SJ | -0.0006 | -0.0012 |\n| FK | -0.0020 | -0.0008 |\n| EM | -0.0192 | -0.0249 |\n| Voting | -0.0255 | -0.0174 |\n| Logprob | +0.0076 | +0.0196 |\n\nSJ/FK 几乎为零（±0.2%），EM/Voting 甚至为负（选出的比 greedy 更差）。Logprob 是唯一正向信号但也极微弱（<2%），远不及 headroom。\n\n**3. 是否排除了 constrained decoding confound？**\n\n**是。** 在 high-diversity 组中：\n- 样本 diversity 充足（n_unique ≥ 4，即 8 个样本中至少 4 种不同输出）\n- Oracle headroom 16-20%，证明好样本存在\n- 但所有 5 个 selection signal 的 gap 都接近零\n\n这排除了\"diversity 不够所以信号选不出来\"的替代解释。问题不在于 constrained decoding 限制了多样性，而在于 **consistency signals 本身无法区分好样本和坏样本**——即使有大量不同的输出可供选择。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-diversity-stratified-selection.md"
+}

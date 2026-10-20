@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b45ba41908f15db685d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code llama fewnerd progress check",
+  "task_key": "worker_code_llama_fewnerd_progress_check_20260519T002618",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_llama_fewnerd_progress_check_20260519T002618_result.json",
+    "occurrence": 1,
+    "bytes": 573,
+    "sha256": "53a1eb8b9afdfc3053dc49c9bbcc9a91251bb3e245951fe9786e88fa684e17b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态：**Running**\n\n| 指标 | 值 |\n|---|---|\n| 进度 | 23000 / 24708 steps (93.1%) |\n| Epoch | 2.79 / ~3.0 |\n| Train loss | 0.0151 (稳定) |\n| Eval loss | 0.0328 (逐步下降: 0.0344 → 0.0332 → 0.0328) |\n| GPU | GPU:1, 30888/32607 MiB (95% util) |\n| ETA | **~66 分钟 (~1.1 小时)** |\n\n训练收敛良好，loss 已很低且 eval loss 持续下降，无过拟合迹象。预计约 1 小时后完成。\n\n完成后需要启动推理流程 `run_llama_fewnerd_inference.sh`。建议训练结束后再来检查并启动推理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-fewnerd-progress-check.md"
+}

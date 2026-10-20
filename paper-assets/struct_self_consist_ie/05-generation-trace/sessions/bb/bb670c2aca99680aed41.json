@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb670c2aca99680aed41",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_8_1778893737.md",
+  "task_key": "loop_8_1778893737",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_8_1778893737.md",
+    "occurrence": 1,
+    "bytes": 3322,
+    "sha256": "f0adcdcc3a99e129e7cd894d7ba2fd6b8947d51dcb679123404591a96ab988e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_wall_time\nupdated: '2026-05-16T01:07:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（autodl-5090），4 张 RTX 5090 32GB\n- **不要再做论文审稿或修改** — Director 明确禁止。Round 9 已提交 pending 用户确认，等官方审稿结果\n- 之前我 spawn 的 Reviewer Worker 读了错误文件（可能是 artifacts 旧版而非 docs/paper/sections/），产出被 Director 判定无效。论文实际状态已由 Director 直接验证通过\n- Table 4 SciERC 8B ρ 不一致已发现根因（v1 vs v2 checkpoint），但修复方案待 Director 决策（方案 A：统一为 Table 1 值）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090（别名 bjb1-21071），账号 root\n- 工作目录：/root/autodl-tmp/struct_self_consist_ie\n- Python：/root/miniconda3/bin/python，环境激活 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径：checkpoints/ 下有 qwen3-4b-conll2003-merged-ckpt4200、qwen3-4b-scierc-merged、qwen3-8b-scierc-merged-v2 等\n- 数据：data/conll2003/、data/scierc/processed_data/\n- 推理输出：output/ 下各 exp 目录，分析结果在 output/review_round8/\n- 活跃进程：无。所有 GPU 空闲，无 cron，无 Worker\n\n### 3. 📊 当前状态\n**刚做完**：\n- 5 项 R8 数据分析全部完成并汇报（SJ union normalizer、Seed 456 LP range、thinking token LP、RE 3-seed selection、N=8 multi-seed QE）\n- 2×2 scale matrix 完整（8B vs 4B × CoNLL vs SciERC），4B finetune + merge + inference 全部 DONE\n- Table 1 vs Table 4 SciERC 8B ρ 不一致根因已查明\n\n**Registry 状态**：无 RUNNING/PREPARING 实验。最近 5 个实验全部 DONE（scierc_scs_inference success、conll_scs_inference_v2 success、scierc_finetune_v4 success、conll_merge_inference_v2 killed、scierc_merge_inference killed）\n\n**等待中**：Round 9 官方审稿结果\n\n### 4. 📋 待办\n- Round 9 审稿结果到达 → 按 on-experiment-done skill 分叉处理（但不做论文修改除非 Director 指示）\n- Director 决策 Table 4 修复方案 → 执行对应修改（方案 A 改数值 or 方案 B 重跑推理）\n- Director 分配新任务 → 4 张 GPU 全部空闲待命\n- 如需补充实验（审稿人要求） → 按 GPU 白名单 spawn Worker\n\n### 5. 🎯 战略上下文\n- **项目核心**：系统比较 5 类置信信号在 IE test-time scaling 中的有效性。核心发现：universal correlation-selection gap\n- **投稿目标**：EMNLP 2026 Findings，DDL 2026-05-25（9 天）\n- **审稿状态**：Round 8 Borderline (R1=3.5, R2=2.5)，Round 9 pending\n- **关键数据**：R8 全部分析数据在 output/review_round8/，selection_f1_4b_results.json 有 4B selection 数据\n- **易踩的坑**：\n  1. 论文文件有两套——artifacts/_project/paper/（旧/可能过时）和 docs/paper/sections/（当前真源）。之前 Worker 读错了路径\n  2. SciERC 8B 有两个 checkpoint（v1 和 v2），推理结果不同。Table 1 用 v2，Table 4 曾用 v1（已上报待修）\n  3. RE 结果是 preliminary（task-dependent，3-seed 一致 negative），论文中已标注 15+ 处\n  4. n_samples confound：8B 用 n=16，4B 用 n=8，但 Qwen3-8B n=8 控制组数据已存在（bootstrap CI 确认差异可忽略）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778893737.md"
+}

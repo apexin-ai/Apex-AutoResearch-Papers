@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea3b3dd2f7503a5ba207",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code result processing template",
+  "task_key": "worker_code_result-processing-template_20260519T181800",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_result-processing-template_20260519T181800_result.json",
+    "occurrence": 1,
+    "bytes": 1509,
+    "sha256": "4e4843423cc397c64ebb5a4a265f9e40cb23d82e3c1bf43e1e0168b5711425b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Identical results from both paths. All 3 scripts validated against 72B ZS data.\n\n**Summary:**\n\n### `artifacts/compute_signals.py`\nComputes 5 signals (LP/SJ/FK/VC/EM Spearman ρ vs greedy F1) + construction pipeline (greedy, LP selection, MV, consensus θ=2/N, LP-weighted construction, oracle) + degeneracy rates.\n```bash\npython compute_signals.py --input-dir output/<model_dir> [--dataset scierc conll2003 fewnerd] \\\n    [--model-size 72] [--regime zs] [--output-dir /path/to/results]\n```\nOutputs: `full_signal_report.json` + `<dataset>_per_instance.json`\n\n### `artifacts/format_for_scaling.py`\nReads signal report, outputs DATA dict entries for `plot_scaling_curve.py`.\n```bash\npython format_for_scaling.py --report /path/to/full_signal_report.json \\\n    --model-size 72 --regime zs\n```\nProduces copy-paste-ready Python dict entries + summary table.\n\n### `artifacts/bootstrap_construction.py`\nPaired bootstrap test (B=10000): greedy F1 vs LP-weighted construction F1, with degeneracy stratification.\n```bash\n# From raw samples.jsonl\npython bootstrap_construction.py --input-dir output/<model_dir> [--dataset scierc]\n# From pre-computed per-instance data\npython bootstrap_construction.py --per-instance <dataset>_per_instance.json --dataset scierc\n```\n\n**Validation (72B ZS):** All values match the known report exactly — LP ρ=0.081, SJ ρ=0.217, VC ρ=0.277, degen=21.0%, construction ΔF1=+1.53pp (p=0.008) for SciERC, and matching values for CoNLL/FewNERD."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-result-processing-template.md"
+}

@@ -1,0 +1,1821 @@
+{
+  "schema_version": "1.0",
+  "id": "e60ad370d5bf992a495d",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "analysis exp 027 mlp verifier",
+  "task_key": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analysis_exp_027_mlp_verifier_20260516T133606.jsonl",
+    "occurrence": 1,
+    "bytes": 107228,
+    "sha256": "65d6f3a31ac7c31f5908d0903595fe38ebe03a4c8aa8e067051059d8c5651acc"
+  },
+  "statistics": {
+    "messages": 89,
+    "user_turns": 0,
+    "tool_calls": 44,
+    "roles": {
+      "tool_call": 44,
+      "tool_result": 44,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T13:45:24.389664+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T13:45:24.390241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T13:45:24.390479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_001*",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T13:45:24.390623+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_019_trained_verifier/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T13:45:24.390774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner.log\\\\n\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2:\\\\nall_signals_report.json\\\\nre_all_signals_report.json\\\\nreport.json\\\\nrun.log\\\\nsamples.jsonl\\\\n\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2_r1024:\\\\nrun.log\\\\n\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2:\\\\nall_signals_report.json\\\\nre_all_signals_report.json\\\\nreport.json\\\\nrun.log\\\\nsamples.jsonl\\\\n\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024:\\\\nreport.json\\\\nrun.log\\\\nsamples.jsonl\\\\n\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2:\\\\nreport.json\\\\nrun.log\\\\nsamples.jsonl\\\\n\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner:\\\\nall_signals_report.json\\\\nreport.json\\\\nsamples.jsonl\\\\n\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner_r1024:\\\\nrun.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T13:45:24.390915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"feature_importance.json\\\\nreport.md\\\\nresults.json\\\\ntrain_verifier.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T13:45:24.391038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_019_trained_verifier/train_verifier.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T13:45:24.391362+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-019: Trained Verifier Baseline (Logistic Regression on 5 confidence signals).\\\\n\\\\nSample-level LR verifier with LOO-CV to close the oracle gap.\\\\nCompares supervised selection F1 with unsupervised single-signal baselines.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.model_selection import LeaveOneOut, StratifiedKFold, cross_val_predict\\\\nfrom sklearn.metrics import roc_auc_score\\\\nfrom sklearn.preprocessing import StandardScaler\\\\n\\\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\\\nfrom consistency import (\\\\n    _ner_soft_jaccard_pair,\\\\n    _extract_surface_keys,\\\\n    structural_consistency_soft_jaccard,\\\\n    fleiss_kappa_surface,\\\\n)\\\\nfrom evaluation import per_instance_f1\\\\n\\\\nBASE = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie\\\\\\\"\\\\nOUT_DIR = Path(f\\\\\\\"{BASE}/output/exp_019_trained_verifier\\\\\\\")\\\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n\\\\nSEEDS = [42, 123, 789]\\\\nSEED_PATHS = {\\\\n    42: f\\\\\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\\\\\",\\\\n    123: f\\\\\\\"{BASE}/output/exp_018_qwen_scierc_seed123/samples.jsonl\\\\\\\",\\\\n    789: f\\\\\\\"{BASE}/output/exp_022_seed789/samples.jsonl\\\\\\\",\\\\n}\\\\nSUBTASK = \\\\\\\"ner\\\\\\\"\\\\nSIGNALS = [\\\\\\\"SJ\\\\\\\", \\\\\\\"FK\\\\\\\", \\\\\\\"LP\\\\\\\", \\\\\\\"EM\\\\\\\", \\\\\\\"VC\\\\\\\"]\\\\n\\\\n\\\\ndef load_data(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f if line.strip()]\\\\n\\\\n\\\\n# ── Per-sample signal computations (reused from analyze_3seed.py) ──\\\\n\\\\ndef compute_sample_sj_scores(instance):\\\\n    samples = instance[\\\\\\\"samples\\\\\\\"]\\\\n    N = len(samples)\\\\n    matrix = np.zeros((N, N))\\\\n    for i in range(N):\\\\n        for j in range(i + 1, N):\\\\n            s = _ner_soft_jaccard_pair(\\\\n                samples[i].get(\\\\\\\"entities\\\\\\\", [])\n…[truncated 7154 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T13:45:24.391560+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -50 /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T13:45:24.391936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\n…[truncated 9082 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T13:45:24.392147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_019_trained_verifier/results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T13:45:24.392443+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_seed\\\\\\\": {\\\\n    \\\\\\\"42\\\\\\\": {\\\\n      \\\\\\\"n_instances\\\\\\\": 529,\\\\n      \\\\\\\"n_samples\\\\\\\": 8,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.6439,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.7758,\\\\n      \\\\\\\"unsup_selection_f1\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.645,\\\\n        \\\\\\\"FK\\\\\\\": 0.6448,\\\\n        \\\\\\\"LP\\\\\\\": 0.6501,\\\\n        \\\\\\\"EM\\\\\\\": 0.6362,\\\\n        \\\\\\\"VC\\\\\\\": 0.6256\\\\n      },\\\\n      \\\\\\\"lr_selection_f1_loo\\\\\\\": 0.6484,\\\\n      \\\\\\\"lr_selection_f1_5fold\\\\\\\": 0.6475,\\\\n      \\\\\\\"lr_auroc_loo\\\\\\\": 0.6795,\\\\n      \\\\\\\"lr_auroc_5fold\\\\\\\": 0.6794,\\\\n      \\\\\\\"single_signal_aurocs\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.6715,\\\\n        \\\\\\\"FK\\\\\\\": 0.6154,\\\\n        \\\\\\\"LP\\\\\\\": 0.6116,\\\\n        \\\\\\\"EM\\\\\\\": 0.6472,\\\\n        \\\\\\\"VC\\\\\\\": 0.6879\\\\n      },\\\\n      \\\\\\\"feature_importance\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": -0.1739,\\\\n        \\\\\\\"FK\\\\\\\": 0.0925,\\\\n        \\\\\\\"LP\\\\\\\": 0.1161,\\\\n        \\\\\\\"EM\\\\\\\": 0.1913,\\\\n        \\\\\\\"VC\\\\\\\": 0.6455\\\\n      },\\\\n      \\\\\\\"ablation\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"auroc_without\\\\\\\": 0.6814,\\\\n          \\\\\\\"delta\\\\\\\": -0.0019\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"auroc_without\\\\\\\": 0.6802,\\\\n          \\\\\\\"delta\\\\\\\": -0.0007\\\\n        },\\\\n        \\\\\\\"LP\\\\\\\": {\\\\n          \\\\\\\"auroc_without\\\\\\\": 0.6788,\\\\n          \\\\\\\"delta\\\\\\\": 0.0007\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"auroc_without\\\\\\\": 0.678,\\\\n          \\\\\\\"delta\\\\\\\": 0.0015\\\\n        },\\\\n        \\\\\\\"VC\\\\\\\": {\\\\n          \\\\\\\"auroc_without\\\\\\\": 0.6577,\\\\n          \\\\\\\"delta\\\\\\\": 0.0218\\\\n        }\\\\n      },\\\\n      \\\\\\\"learning_curve\\\\\\\": {\\\\n        \\\\\\\"0.1\\\\\\\": {\\\\n          \\\\\\\"mean_auroc\\\\\\\": 0.6201,\\\\n          \\\\\\\"std_auroc\\\\\\\": 0.0755,\\\\n          \\\\\\\"n_train\\\\\\\": 52\\\\n        },\\\\n        \\\\\\\"0.25\\\\\\\": {\\\\n          \\\\\\\"mean_auroc\\\\\\\": 0.6682,\\\\n          \\\\\\\"std_auroc\\\\\\\": 0.0384,\\\\n          \\\\\\\"n_train\\\\\\\": 132\\\\n        },\\\\n        \\\\\\\"0.5\\\\\\\": {\\\\n          \\\\\\\"mean_auroc\\\\\\\"\n…[truncated 7138 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T13:45:24.392608+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_022_seed789/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T13:45:24.392774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_022_seed789/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T13:45:24.392982+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "python3 -c \"import json; data=[json.loads(l) for l in open('/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl')]; print(f'instances={len(data)}, samples_per={len(data[0][\\\"samples\\\"])}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T13:45:24.393120+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T13:45:24.393308+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T13:45:24.393445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl\\\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/samples.jsonl\\\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/samples.jsonl\\\\n    1653 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T13:45:24.393593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "mkdir -p /root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T13:45:24.393830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T13:45:24.394061+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat > /root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/train_mlp_verifier.py << 'SCRIPT'\n#!/usr/bin/env python3\n\"\"\"exp-027: MLP + Random Forest verifiers on 5 confidence signals (+ interactions).\n\nCompares nonlinear supervised verifiers against LR baseline from exp-019.\nUses exp-001 N=16 SciERC data across 3 seeds.\n\"\"\"\n\nimport json\nimport sys\nimport time\nimport warnings\nfrom collections import Counter\nfrom itertools import combinations\nfrom pathlib import Path\n\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.neural_network import MLPClassifier\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import StratifiedKFold, cross_val_predict\nfrom sklearn.metrics import roc_auc_score\nfrom sklearn.preprocessing import StandardScaler\n\nwarnings.filterwarnings(\"ignore\")\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import (\n    _ner_soft_jaccard_pair,\n    _extract_surface_keys,\n    structural_consistency_soft_jaccard,\n    fleiss_kappa_surface,\n)\nfrom evaluation import per_instance_f1\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nOUT_DIR = Path(f\"{BASE}/output/exp_027_mlp_verifier\")\nOUT_DIR.mkdir(parents=True, exist_ok=True)\n\nSEEDS = [42, 123, 456]\nSEED_PATHS = {\n    42: f\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\",\n    123: f\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\",\n    456: f\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\",\n}\nSUBTASK = \"ner\"\nSIGNALS = [\"SJ\", \"FK\", \"LP\", \"EM\", \"VC\"]\n\n\ndef load_data(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f if line.strip()]\n\n\n# ── Per-sample signal computations ──\n\ndef compute_sample_sj_scores(instance):\n    samples = instance[\"samples\"]\n    N = len(samples)\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            s = _ner_soft_jaccard_pair(\n                samples[i].get(\"entities\", []),\n                samples[j].get(\"entities\", []),\n            )\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n\n\ndef compute_sample_surface_scores(instance):\n    samples = instance[\"samples\"]\n    N = len(samples)\n    key_sets = [frozenset(_extract_surface_keys(s, SUBTASK)) for s in samples]\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            union = len(key_sets[i] | key_sets[j])\n            inter = len(key_sets[i] & key_sets[j])\n            s = inter / union if union > 0 else 1.0\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    fk_scores = [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n    return fk_scores, key_sets\n\n\ndef compute_sample_voting_conf(key_sets, N):\n    all_keys = set()\n    for ks in key_sets:\n        all_keys |= ks\n    if not all_keys:\n        return [1.0] * N\n    key_freq = {}\n    for k in all_keys:\n        key_freq[k] = sum(1 for ks in key_sets if k in ks) / N\n    scores = []\n    for ks in key_sets:\n        if not ks:\n            scores.append(0.0)\n        else:\n            scores.append(float(np.mean([key_freq[k] for k in ks])))\n    return scores\n\n\ndef compute_sample_em_scores(key_sets):\n    counter = Counter(key_sets)\n    return [counter[ks] / len(key_sets) for ks in key_sets]\n\n\ndef compute_sample_logprobs(instance):\n    lps = []\n    for s in instance[\"samples\"]:\n        lp = s.get(\"mean_logprob\")\n        if lp is None:\n            lp = s.get(\"cumulative_logprob\", -999) / max(s.get(\"n_tokens\", 1), 1)\n        lps.append(lp)\n    return lps\n\n\ndef compute_instance_signals(instance):\n    \"\"\"Compute instance-level aggregate signals (5 features).\"\"\"\n    samples = instance[\"samples\"]\n    N = len(samples)\n    sj = structural_consistency_soft_jaccard(samples, subtask=SUBTASK)\n    fk = fleiss_kappa_surface(samples, subtask=SUBTASK)\n\n    counter = Counter()\n    for s in samples:\n        for e in s.get(\"entities\", []):\n            counter[(e[\"text\"], e[\"type\"])] += 1\n    rates = [v / N for v in counter.values()] if counter else [0.0]\n    vc = float(np.mean(rates))\n\n    keys = [frozenset((e[\"text\"], e[\"type\"]) for e in s.get(\"entities\", [])) for s in samples]\n    em_counter = Counter(keys)\n    em = max(em_counter.values()) / N if em_counter else 0.0\n\n    lps = compute_sample_logprobs(instance)\n    lp = float(np.mean(lps))\n\n    return {\"SJ\": sj, \"FK\": fk, \"LP\": lp, \"EM\": em, \"VC\": vc}\n\n\ndef compute_sample_f1s(instance):\n    gold = instance.get(\"gold\", {})\n    gold_entities = set()\n    for e in gold.get(\"entities\", []):\n        gold_entities.add((e[\"text\"], e[\"type\"]))\n    f1s = []\n    for s in instance[\"samples\"]:\n        pred_entities = set()\n        for e in s.get(\"entities\", []):\n            pred_entities.add((e[\"text\"], e[\"type\"]))\n        if not gold_entities and not pred_entities:\n            f1s.append(1.0)\n        elif not gold_entities or not pred_entities:\n            f1s.append(0.0)\n        else:\n            tp = len(gold_entities & pred_entities)\n            p = tp / len(pred_entities) if pred_entities else 0\n            r = tp / len(gold_entities) if gold_entities else 0\n            f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0\n            f1s.append(f1)\n    return f1s\n\n\ndef build_features_and_labels(data):\n    \"\"\"Build instance-level features and binary labels.\"\"\"\n    X_5_list = []\n    instance_f1s = []\n\n    for inst in data:\n        signals = compute_instance_signals(inst)\n        X_5_list.append([signals[s] for s in SIGNALS])\n        sample_f1s = compute_sample_f1s(inst)\n        instance_f1s.append(max(sample_f1s))\n\n    X_5 = np.array(X_5_list)\n    instance_f1s = np.array(instance_f1s)\n    median_f1 = np.median(instance_f1s)\n    y = (instance_f1s > median_f1).astype(int)\n\n    # 15 features: 5 basic + 10 pairwise products\n    interactions = []\n    for i, j in combinations(range(5), 2):\n        interactions.append(X_5[:, i] * X_5[:, j])\n    X_15 = np.hstack([X_5, np.column_stack(interactions)])\n\n    return X_5, X_15, y, instance_f1s\n\n\ndef build_sample_features_and_labels(data):\n    \"\"\"Build sample-level features for selection F1.\"\"\"\n    all_sample_features = []  # list of (n_samples, 5) arrays per instance\n    all_sample_f1s = []\n    all_instance_gold = []\n\n    for inst in data:\n        samples = inst[\"samples\"]\n        N = len(samples)\n\n        sj_scores = compute_sample_sj_scores(inst)\n        fk_scores, key_sets = compute_sample_surface_scores(inst)\n        vc_scores = compute_sample_voting_conf(key_sets, N)\n        em_scores = compute_sample_em_scores(key_sets)\n        lp_scores = compute_sample_logprobs(inst)\n\n        feat_matrix = np.array([sj_scores, fk_scores, lp_scores, em_scores, vc_scores]).T\n        all_sample_features.append(feat_matrix)\n\n        sample_f1s = compute_sample_f1s(inst)\n        all_sample_f1s.append(sample_f1s)\n        all_instance_gold.append(inst.get(\"gold\", {}))\n\n    return all_sample_features, all_sample_f1s, all_instance_gold\n\n\ndef selection_f1_from_probs(all_sample_features, all_sample_f1s, all_instance_gold, model_cls, model_kwargs, use_interactions=False):\n    \"\"\"Train sample-level model with LOO-CV over instances, select best sample per instance.\"\"\"\n    n_instances = len(all_sample_features)\n\n    # Flatten for training\n    selected_f1s = []\n\n    for i in range(n_instances):\n        # Train on all other instances' samples\n        train_X = []\n        train_y = []\n        for j in range(n_instances):\n            if j == i:\n                continue\n            feats = all_sample_features[j]\n            f1s = all_sample_f1s[j]\n            best_f1 = max(f1s)\n            for k in range(len(f1s)):\n                x = feats[k]\n                if use_interactions:\n                    ints = [x[a] * x[b] for a, b in combinations(range(5), 2)]\n                    x = np.concatenate([x, ints])\n                train_X.append(x)\n                train_y.append(1 if f1s[k] == best_f1 else 0)\n\n        train_X = np.array(train_X)\n        train_y = np.array(train_y)\n\n        scaler = StandardScaler()\n        train_X_scaled = scaler.fit_transform(train_X)\n\n        model = model_cls(**model_kwargs)\n        model.fit(train_X_scaled, train_y)\n\n        # Predict on held-out instance\n        test_feats = all_sample_features[i]\n        test_X = []\n        for k in range(len(test_feats)):\n            x = test_feats[k]\n            if use_interactions:\n                ints = [x[a] * x[b] for a, b in combinations(range(5), 2)]\n                x = np.concatenate([x, ints])\n            test_X.append(x)\n        test_X = scaler.transform(np.array(test_X))\n\n        probs = model.predict_proba(test_X)[:, 1]\n        best_idx = np.argmax(probs)\n        selected_f1s.append(all_sample_f1s[i][best_idx])\n\n    return float(np.mean(selected_f1s))\n\n\ndef run_instance_level_cv(X, y, model_cls, model_kwargs, n_splits=5):\n    \"\"\"5-fold stratified CV for AUROC.\"\"\"\n    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)\n    scaler = StandardScaler()\n    X_scaled = scaler.fit_transform(X)\n\n    model = model_cls(**model_kwargs)\n    y_prob = cross_val_predict(model, X_scaled, y, cv=skf, method='predict_proba')[:, 1]\n    auroc = roc_auc_score(y, y_prob)\n    return auroc, y_prob\n\n\ndef run_seed(seed, path):\n    print(f\"\\n{'='*60}\")\n    print(f\"Processing seed={seed}: {path}\")\n    print(f\"{'='*60}\")\n    t0 = time.time()\n\n    data = load_data(path)\n    print(f\"  Loaded {len(data)} instances, N={len(data[0]['samples'])} samples each\")\n\n    # Build features\n    X_5, X_15, y, instance_f1s = build_features_and_labels(data)\n    print(f\"  Features: X_5={X_5.shape}, X_15={X_15.shape}, y balance={y.mean():.3f}\")\n\n    # Build sample-level features\n    all_sample_features, all_sample_f1s, all_instance_gold = build_sample_features_and_labels(data)\n\n    # Define models\n    models = {\n        'LR_5feat': (LogisticRegression, {'max_iter': 1000, 'random_state': 42}, X_5),\n        'MLP_5feat': (MLPClassifier, {'hidden_layer_sizes': (64, 64), 'max_iter': 500, 'random_state': 42, 'early_stopping': True}, X_5),\n        'RF_5feat': (RandomForestClassifier, {'n_estimators': 100, 'random_state': 42}, X_5),\n        'MLP_15feat': (MLPClassifier, {'hidden_layer_sizes': (64, 64), 'max_iter': 500, 'random_state': 42, 'early_stopping': True}, X_15),\n        'RF_15feat': (RandomForestClassifier, {'n_estimators': 100, 'random_state': 42}, X_15),\n    }\n\n    results = {}\n    for name, (model_cls, model_kwargs, X) in models.items():\n        auroc, y_prob = run_instance_level_cv(X, y, model_cls, model_kwargs)\n        results[name] = {'auroc': round(auroc, 4)}\n        print(f\"  {name}: AUROC={auroc:.4f}\")\n\n    # Selection F1 (sample-level LOO) - only for key models to save time\n    print(\"  Computing selection F1 (LOO)...\")\n    sel_models = {\n        'LR_5feat': (LogisticRegression, {'max_iter': 1000, 'random_state': 42}, False),\n        'MLP_5feat': (MLPClassifier, {'hidden_layer_sizes': (64, 64), 'max_iter': 500, 'random_state': 42, 'early_stopping': True}, False),\n        'RF_5feat': (RandomForestClassifier, {'n_estimators': 100, 'random_state': 42}, False),\n        'MLP_15feat': (MLPClassifier, {'hidden_layer_sizes': (64, 64), 'max_iter': 500, 'random_state': 42, 'early_stopping': True}, True),\n        'RF_15feat': (RandomForestClassifier, {'n_estimators': 100, 'random_state': 42}, True),\n    }\n\n    for name, (model_cls, model_kwargs, use_int) in sel_models.items():\n        sel_f1 = selection_f1_from_probs(all_sample_features, all_sample_f1s, all_instance_gold, model_cls, model_kwargs, use_interactions=use_int)\n        results[name]['selection_f1'] = round(sel_f1, 4)\n        print(f\"  {name} selection F1={sel_f1:.4f}\")\n\n    # Single signal baselines (AUROC)\n    single_aurocs = {}\n    for idx, sig in enumerate(SIGNALS):\n        X_single = X_5[:, idx:idx+1]\n        auroc_s, _ = run_instance_level_cv(X_single, y, LogisticRegression, {'max_iter': 1000, 'random_state': 42})\n        single_aurocs[sig] = round(auroc_s, 4)\n    results['single_signal_aurocs'] = single_aurocs\n    print(f\"  Single signal AUROCs: {single_aurocs}\")\n\n    # Unsupervised selection F1 baselines\n    unsup_sel_f1 = {}\n    for idx, sig in enumerate(SIGNALS):\n        sel_f1s = []\n        for i, inst in enumerate(data):\n            scores = [all_sample_features[i][k][idx] for k in range(len(all_sample_features[i]))]\n            best_idx = np.argmax(scores)\n            sel_f1s.append(all_sample_f1s[i][best_idx])\n        unsup_sel_f1[sig] = round(float(np.mean(sel_f1s)), 4)\n    results['unsup_selection_f1'] = unsup_sel_f1\n    print(f\"  Unsup selection F1: {unsup_sel_f1}\")\n\n    # Greedy and oracle F1\n    greedy_f1s = []\n    oracle_f1s = []\n    for i, inst in enumerate(data):\n        greedy_f1s.append(all_sample_f1s[i][0] if 'greedy' not in inst else compute_sample_f1s({'samples': [inst['greedy']], 'gold': inst['gold']})[0])\n        oracle_f1s.append(max(all_sample_f1s[i]))\n\n    # Use greedy decode if available\n    for i, inst in enumerate(data):\n        if 'greedy' in inst:\n            gold_ents = set((e[\"text\"], e[\"type\"]) for e in inst[\"gold\"].get(\"entities\", []))\n            pred_ents = set((e[\"text\"], e[\"type\"]) for e in inst[\"greedy\"].get(\"entities\", []))\n            if not gold_ents and not pred_ents:\n                greedy_f1s[i] = 1.0\n            elif not gold_ents or not pred_ents:\n                greedy_f1s[i] = 0.0\n            else:\n                tp = len(gold_ents & pred_ents)\n                p = tp / len(pred_ents) if pred_ents else 0\n                r = tp / len(gold_ents) if gold_ents else 0\n                greedy_f1s[i] = 2 * p * r / (p + r) if (p + r) > 0 else 0\n\n    results['greedy_f1'] = round(float(np.mean(greedy_f1s)), 4)\n    results['oracle_f1'] = round(float(np.mean(oracle_f1s)), 4)\n\n    # RF feature importance\n    rf_model = RandomForestClassifier(n_estimators=100, random_state=42)\n    X_15_scaled = StandardScaler().fit_transform(X_15)\n    rf_model.fit(X_15_scaled, y)\n    feat_names = SIGNALS + [f\"{SIGNALS[i]}x{SIGNALS[j]}\" for i, j in combinations(range(5), 2)]\n    importances = dict(zip(feat_names, [round(x, 4) for x in rf_model.feature_importances_]))\n    results['rf_feature_importance_15'] = importances\n\n    rf_model_5 = RandomForestClassifier(n_estimators=100, random_state=42)\n    X_5_scaled = StandardScaler().fit_transform(X_5)\n    rf_model_5.fit(X_5_scaled, y)\n    results['rf_feature_importance_5'] = dict(zip(SIGNALS, [round(x, 4) for x in rf_model_5.feature_importances_]))\n    print(f\"  RF importance (5feat): {results['rf_feature_importance_5']}\")\n\n    # Ablation: drop each feature, report AUROC change\n    ablation = {}\n    best_auroc = results['MLP_15feat']['auroc']  # reference: best model\n    for idx, sig in enumerate(SIGNALS):\n        # Drop from 5-feat\n        keep = [i for i in range(5) if i != idx]\n        X_abl = X_5[:, keep]\n        auroc_abl, _ = run_instance_level_cv(X_abl, y, MLPClassifier, {'hidden_layer_sizes': (64, 64), 'max_iter': 500, 'random_state': 42, 'early_stopping': True})\n        ablation[sig] = {\n            'auroc_without': round(auroc_abl, 4),\n            'delta_from_full_5': round(results['MLP_5feat']['auroc'] - auroc_abl, 4),\n        }\n    results['ablation_mlp'] = ablation\n\n    results['n_instances'] = len(data)\n    results['n_samples'] = len(data[0]['samples'])\n    elapsed = time.time() - t0\n    results['elapsed_seconds'] = round(elapsed, 1)\n    print(f\"  Done in {elapsed:.1f}s\")\n\n    return results\n\n\ndef main():\n    all_results = {}\n    for seed in SEEDS:\n        path = SEED_PATHS[seed]\n        all_results[seed] = run_seed(seed, path)\n\n    # Aggregate across seeds\n    agg = {}\n    model_names = ['LR_5feat', 'MLP_5feat', 'RF_5feat', 'MLP_15feat', 'RF_15feat']\n    for name in model_names:\n        aurocs = [all_results[s][name]['auroc'] for s in SEEDS]\n        sel_f1s = [all_results[s][name]['selection_f1'] for s in SEEDS]\n        agg[name] = {\n            'auroc_mean': round(float(np.mean(aurocs)), 4),\n            'auroc_std': round(float(np.std(aurocs, ddof=1)), 4),\n            'selection_f1_mean': round(float(np.mean(sel_f1s)), 4),\n            'selection_f1_std': round(float(np.std(sel_f1s, ddof=1)), 4),\n        }\n\n    # Best single signal\n    best_sig_aurocs = {sig: np.mean([all_results[s]['single_signal_aurocs'][sig] for s in SEEDS]) for sig in SIGNALS}\n    best_sig = max(best_sig_aurocs, key=best_sig_aurocs.get)\n    agg['best_single_signal'] = best_sig\n    agg['best_single_auroc'] = round(best_sig_aurocs[best_sig], 4)\n\n    # Best unsup selection F1\n    best_unsup_f1s = {sig: np.mean([all_results[s]['unsup_selection_f1'][sig] for s in SEEDS]) for sig in SIGNALS}\n    best_unsup_sig = max(best_unsup_f1s, key=best_unsup_f1s.get)\n    agg['best_unsup_signal'] = best_unsup_sig\n    agg['best_unsup_selection_f1'] = round(best_unsup_f1s[best_unsup_sig], 4)\n\n    agg['greedy_f1'] = round(float(np.mean([all_results[s]['greedy_f1'] for s in SEEDS])), 4)\n    agg['oracle_f1'] = round(float(np.mean([all_results[s]['oracle_f1'] for s in SEEDS])), 4)\n\n    # Save results\n    output = {\n        'per_seed': {str(s): all_results[s] for s in SEEDS},\n        'aggregated': agg,\n    }\n    with open(OUT_DIR / \"results.json\", \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nSaved: {OUT_DIR / 'results.json'}\")\n\n    # Generate report\n    lines = []\n    lines.append(\"# exp-027: MLP + Random Forest Verifiers\")\n    lines.append(\"\")\n    lines.append(\"## Setup\")\n    lines.append(f\"- Data: SciERC NER, N=16, 3 seeds ({', '.join(map(str, SEEDS))})\")\n    lines.append(f\"- Instances per seed: {all_results[SEEDS[0]]['n_instances']}\")\n    lines.append(\"- Binary label: instance max-sample F1 > median\")\n    lines.append(\"- CV: 5-fold stratified (AUROC), LOO (selection F1)\")\n    lines.append(\"- Features: 5 basic (SJ, FK, LP, EM, VC) + 10 pairwise interactions = 15\")\n    lines.append(\"\")\n\n    lines.append(\"## Main Results (3-seed mean ± std)\")\n    lines.append(\"\")\n    lines.append(\"| Model | Features | AUROC | Selection F1 |\")\n    lines.append(\"|-------|----------|-------|-------------|\")\n    lines.append(f\"| Best single ({best_sig}) | 1 | {agg['best_single_auroc']:.4f} | {agg['best_unsup_selection_f1']:.4f} |\")\n    for name in model_names:\n        feat_str = \"5\" if \"5feat\" in name else \"15\"\n        model_str = name.split(\"_\")[0]\n        lines.append(f\"| {model_str} | {feat_str} | {agg[name]['auroc_mean']:.4f} ± {agg[name]['auroc_std']:.4f} | {agg[name]['selection_f1_mean']:.4f} ± {agg[name]['selection_f1_std']:.4f} |\")\n    lines.append(f\"| Oracle | — | — | {agg['oracle_f1']:.4f} |\")\n    lines.append(\"\")\n\n    # Interpretation\n    lr_auroc = agg['LR_5feat']['auroc_mean']\n    mlp5_auroc = agg['MLP_5feat']['auroc_mean']\n    mlp15_auroc = agg['MLP_15feat']['auroc_mean']\n    rf15_auroc = agg['RF_15feat']['auroc_mean']\n\n    lines.append(\"## Key Findings\")\n    lines.append(\"\")\n    delta_mlp_lr = mlp5_auroc - lr_auroc\n    if abs(delta_mlp_lr) < 0.01:\n        lines.append(f\"- **MLP ≈ LR on 5 features** (Δ={delta_mlp_lr:+.4f}): features are the bottleneck, not the aggregation method.\")\n    elif delta_mlp_lr > 0.01:\n        lines.append(f\"- **MLP >> LR on 5 features** (Δ={delta_mlp_lr:+.4f}): nonlinear combinations extract more from existing signals.\")\n    else:\n        lines.append(f\"- **MLP < LR on 5 features** (Δ={delta_mlp_lr:+.4f}): MLP overfits on small feature set.\")\n\n    delta_15_5 = mlp15_auroc - mlp5_auroc\n    lines.append(f\"- 15-feat vs 5-feat MLP: Δ={delta_15_5:+.4f} {'(interactions help)' if delta_15_5 > 0.005 else '(interactions negligible)'}\")\n    lines.append(f\"- Best model AUROC vs best single signal: {max(mlp15_auroc, rf15_auroc):.4f} vs {agg['best_single_auroc']:.4f}\")\n    lines.append(\"\")\n\n    # RF feature importance\n    lines.append(\"## RF Feature Importance (15-feat, averaged)\")\n    lines.append(\"\")\n    lines.append(\"| Feature | Importance |\")\n    lines.append(\"|---------|-----------|\")\n    feat_names = SIGNALS + [f\"{SIGNALS[i]}x{SIGNALS[j]}\" for i, j in combinations(range(5), 2)]\n    avg_imp = {}\n    for fn in feat_names:\n        vals = [all_results[s]['rf_feature_importance_15'][fn] for s in SEEDS]\n        avg_imp[fn] = np.mean(vals)\n    for fn in sorted(feat_names, key=lambda x: avg_imp[x], reverse=True)[:10]:\n        lines.append(f\"| {fn} | {avg_imp[fn]:.4f} |\")\n    lines.append(\"\")\n\n    # Ablation\n    lines.append(\"## Ablation (MLP 5-feat, drop one signal)\")\n    lines.append(\"\")\n    lines.append(\"| Dropped | AUROC w/o | Δ from full |\")\n    lines.append(\"|---------|-----------|-------------|\")\n    for sig in SIGNALS:\n        abl_aurocs = [all_results[s]['ablation_mlp'][sig]['auroc_without'] for s in SEEDS]\n        deltas = [all_results[s]['ablation_mlp'][sig]['delta_from_full_5'] for s in SEEDS]\n        lines.append(f\"| w/o {sig} | {np.mean(abl_aurocs):.4f} | {np.mean(deltas):+.4f} |\")\n    lines.append(f\"| Full (5) | {agg['MLP_5feat']['auroc_mean']:.4f} | — |\")\n    lines.append(\"\")\n\n    # Per-seed detail\n    lines.append(\"## Per-Seed Detail\")\n    lines.append(\"\")\n    lines.append(\"| Model | seed42 | seed123 | seed456 |\")\n    lines.append(\"|-------|--------|---------|---------|\")\n    for name in model_names:\n        vals = [f\"{all_results[s][name]['auroc']:.4f}\" for s in SEEDS]\n        lines.append(f\"| {name} AUROC | {' | '.join(vals)} |\")\n    for name in model_names:\n        vals = [f\"{all_results[s][name]['selection_f1']:.4f}\" for s in SEEDS]\n        lines.append(f\"| {name} SelF1 | {' | '.join(vals)} |\")\n    lines.append(\"\")\n\n    report_path = OUT_DIR / \"report.md\"\n    with open(report_path, \"w\") as f:\n        f.write(\"\\n\".join(lines))\n    print(f\"Saved: {report_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T13:45:24.394984+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T13:45:24.395187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python output/exp_027_mlp_verifier/train_mlp_verifier.py > /tmp/exp027.log 2>&1 & echo $!",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T13:45:24.395346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python output/exp_027_mlp_verifier/train_mlp_verifier.py > /tmp/exp027.log 2>&1 & echo $!'\\\\n\\\\nStdout:\\\\n\\\\n304239\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T13:45:24.395647+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -20 /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T13:45:24.395786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T13:45:24.395909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T13:45:24.396032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T13:45:24.396181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T13:45:24.396312+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 0 May 16 21:38 /tmp/exp027.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T13:45:24.396525+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /proc -maxdepth 1 -name \"304239\" -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T13:45:24.396733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/proc/304239\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T13:45:24.396885+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T13:45:24.397008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T13:45:24.397173+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "kill 304239 2>/dev/null; cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python -u output/exp_027_mlp_verifier/train_mlp_verifier.py > /tmp/exp027.log 2>&1 & echo $!",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T13:45:24.397307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"304430\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T13:45:24.397467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T13:45:24.397637+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nProcessing seed=42: /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl\\\\n============================================================\\\\n  Loaded 551 instances, N=16 samples each\\\\n  Features: X_5=(551, 5), X_15=(551, 15), y balance=0.494\\\\n  LR_5feat: AUROC=0.6634\\\\n  MLP_5feat: AUROC=0.6629\\\\n  RF_5feat: AUROC=0.6042\\\\n  MLP_15feat: AUROC=0.6434\\\\n  RF_15feat: AUROC=0.6267\\\\n  Computing selection F1 (LOO)...\\\\n  LR_5feat selection F1=0.6396\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T13:45:24.397789+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -15 /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T13:45:24.397918+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nProcessing seed=42: /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl\\\\n============================================================\\\\n  Loaded 551 instances, N=16 samples each\\\\n  Features: X_5=(551, 5), X_15=(551, 15), y balance=0.494\\\\n  LR_5feat: AUROC=0.6634\\\\n  MLP_5feat: AUROC=0.6629\\\\n  RF_5feat: AUROC=0.6042\\\\n  MLP_15feat: AUROC=0.6434\\\\n  RF_15feat: AUROC=0.6267\\\\n  Computing selection F1 (LOO)...\\\\n  LR_5feat selection F1=0.6396\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T13:45:24.398072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "kill 304430 2>/dev/null; echo \"killed\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T13:45:24.398226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"killed\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T13:45:24.398454+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat > /root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/train_mlp_verifier.py << 'SCRIPT'\n#!/usr/bin/env python3\n\"\"\"exp-027: MLP + Random Forest verifiers on 5 confidence signals (+ interactions).\n\nCompares nonlinear supervised verifiers against LR baseline from exp-019.\nUses exp-001 N=16 SciERC data across 3 seeds.\nSelection F1 uses 5-fold grouped CV (grouped by instance) instead of LOO for speed.\n\"\"\"\n\nimport json\nimport sys\nimport time\nimport warnings\nfrom collections import Counter\nfrom itertools import combinations\nfrom pathlib import Path\n\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.neural_network import MLPClassifier\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import StratifiedKFold, cross_val_predict, KFold\nfrom sklearn.metrics import roc_auc_score\nfrom sklearn.preprocessing import StandardScaler\n\nwarnings.filterwarnings(\"ignore\")\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import (\n    _ner_soft_jaccard_pair,\n    _extract_surface_keys,\n    structural_consistency_soft_jaccard,\n    fleiss_kappa_surface,\n)\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nOUT_DIR = Path(f\"{BASE}/output/exp_027_mlp_verifier\")\nOUT_DIR.mkdir(parents=True, exist_ok=True)\n\nSEEDS = [42, 123, 456]\nSEED_PATHS = {\n    42: f\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\",\n    123: f\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\",\n    456: f\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\",\n}\nSUBTASK = \"ner\"\nSIGNALS = [\"SJ\", \"FK\", \"LP\", \"EM\", \"VC\"]\n\n\ndef load_data(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f if line.strip()]\n\n\ndef compute_sample_sj_scores(instance):\n    samples = instance[\"samples\"]\n    N = len(samples)\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            s = _ner_soft_jaccard_pair(\n                samples[i].get(\"entities\", []),\n                samples[j].get(\"entities\", []),\n            )\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    return [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n\n\ndef compute_sample_surface_scores(instance):\n    samples = instance[\"samples\"]\n    N = len(samples)\n    key_sets = [frozenset(_extract_surface_keys(s, SUBTASK)) for s in samples]\n    matrix = np.zeros((N, N))\n    for i in range(N):\n        for j in range(i + 1, N):\n            union = len(key_sets[i] | key_sets[j])\n            inter = len(key_sets[i] & key_sets[j])\n            s = inter / union if union > 0 else 1.0\n            matrix[i][j] = s\n            matrix[j][i] = s\n    np.fill_diagonal(matrix, 1.0)\n    fk_scores = [float(np.mean([matrix[k][j] for j in range(N) if j != k])) for k in range(N)]\n    return fk_scores, key_sets\n\n\ndef compute_sample_voting_conf(key_sets, N):\n    all_keys = set()\n    for ks in key_sets:\n        all_keys |= ks\n    if not all_keys:\n        return [1.0] * N\n    key_freq = {k: sum(1 for ks2 in key_sets if k in ks2) / N for k in all_keys}\n    return [float(np.mean([key_freq[k] for k in ks])) if ks else 0.0 for ks in key_sets]\n\n\ndef compute_sample_em_scores(key_sets):\n    counter = Counter(key_sets)\n    return [counter[ks] / len(key_sets) for ks in key_sets]\n\n\ndef compute_sample_logprobs(instance):\n    lps = []\n    for s in instance[\"samples\"]:\n        lp = s.get(\"mean_logprob\")\n        if lp is None:\n            lp = s.get(\"cumulative_logprob\", -999) / max(s.get(\"n_tokens\", 1), 1)\n        lps.append(lp)\n    return lps\n\n\ndef compute_instance_signals(instance):\n    samples = instance[\"samples\"]\n    N = len(samples)\n    sj = structural_consistency_soft_jaccard(samples, subtask=SUBTASK)\n    fk = fleiss_kappa_surface(samples, subtask=SUBTASK)\n\n    counter = Counter()\n    for s in samples:\n        for e in s.get(\"entities\", []):\n            counter[(e[\"text\"], e[\"type\"])] += 1\n    rates = [v / N for v in counter.values()] if counter else [0.0]\n    vc = float(np.mean(rates))\n\n    keys = [frozenset((e[\"text\"], e[\"type\"]) for e in s.get(\"entities\", [])) for s in samples]\n    em_counter = Counter(keys)\n    em = max(em_counter.values()) / N if em_counter else 0.0\n\n    lps = compute_sample_logprobs(instance)\n    lp = float(np.mean(lps))\n\n    return {\"SJ\": sj, \"FK\": fk, \"LP\": lp, \"EM\": em, \"VC\": vc}\n\n\ndef compute_sample_f1s(instance):\n    gold_entities = set()\n    for e in instance.get(\"gold\", {}).get(\"entities\", []):\n        gold_entities.add((e[\"text\"], e[\"type\"]))\n    f1s = []\n    for s in instance[\"samples\"]:\n        pred_entities = set((e[\"text\"], e[\"type\"]) for e in s.get(\"entities\", []))\n        if not gold_entities and not pred_entities:\n            f1s.append(1.0)\n        elif not gold_entities or not pred_entities:\n            f1s.append(0.0)\n        else:\n            tp = len(gold_entities & pred_entities)\n            p = tp / len(pred_entities)\n            r = tp / len(gold_entities)\n            f1s.append(2 * p * r / (p + r) if (p + r) > 0 else 0)\n    return f1s\n\n\ndef build_features_and_labels(data):\n    X_5_list = []\n    instance_best_f1s = []\n\n    for inst in data:\n        signals = compute_instance_signals(inst)\n        X_5_list.append([signals[s] for s in SIGNALS])\n        sample_f1s = compute_sample_f1s(inst)\n        instance_best_f1s.append(max(sample_f1s))\n\n    X_5 = np.array(X_5_list)\n    instance_best_f1s = np.array(instance_best_f1s)\n    median_f1 = np.median(instance_best_f1s)\n    y = (instance_best_f1s > median_f1).astype(int)\n\n    interactions = []\n    for i, j in combinations(range(5), 2):\n        interactions.append(X_5[:, i] * X_5[:, j])\n    X_15 = np.hstack([X_5, np.column_stack(interactions)])\n\n    return X_5, X_15, y, instance_best_f1s\n\n\ndef build_sample_features(data):\n    \"\"\"Per-instance sample-level features: list of (N, 5) arrays.\"\"\"\n    all_feats = []\n    all_f1s = []\n    for inst in data:\n        N = len(inst[\"samples\"])\n        sj_scores = compute_sample_sj_scores(inst)\n        fk_scores, key_sets = compute_sample_surface_scores(inst)\n        vc_scores = compute_sample_voting_conf(key_sets, N)\n        em_scores = compute_sample_em_scores(key_sets)\n        lp_scores = compute_sample_logprobs(inst)\n        feat = np.array([sj_scores, fk_scores, lp_scores, em_scores, vc_scores]).T\n        all_feats.append(feat)\n        all_f1s.append(compute_sample_f1s(inst))\n    return all_feats, all_f1s\n\n\ndef selection_f1_grouped_cv(all_feats, all_f1s, model_cls, model_kwargs, use_interactions=False, n_splits=5):\n    \"\"\"5-fold CV grouped by instance for selection F1.\"\"\"\n    n_inst = len(all_feats)\n    kf = KFold(n_splits=n_splits, shuffle=True, random_state=42)\n    indices = np.arange(n_inst)\n\n    selected_f1s = np.zeros(n_inst)\n\n    for train_idx, test_idx in kf.split(indices):\n        # Build training data from train instances\n        train_X = []\n        train_y = []\n        for i in train_idx:\n            feats = all_feats[i]\n            f1s = all_f1s[i]\n            best_f1 = max(f1s)\n            for k in range(len(f1s)):\n                x = feats[k]\n                if use_interactions:\n                    ints = [x[a] * x[b] for a, b in combinations(range(5), 2)]\n                    x = np.concatenate([x, ints])\n                train_X.append(x)\n                train_y.append(1 if f1s[k] >= best_f1 - 1e-9 else 0)\n\n        train_X = np.array(train_X)\n        train_y = np.array(train_y)\n\n        scaler = StandardScaler()\n        train_X_s = scaler.fit_transform(train_X)\n\n        model = model_cls(**model_kwargs)\n        model.fit(train_X_s, train_y)\n\n        # Predict on test instances\n        for i in test_idx:\n            test_feats = all_feats[i]\n            test_X = []\n            for k in range(len(test_feats)):\n                x = test_feats[k]\n                if use_interactions:\n                    ints = [x[a] * x[b] for a, b in combinations(range(5), 2)]\n                    x = np.concatenate([x, ints])\n                test_X.append(x)\n            test_X_s = scaler.transform(np.array(test_X))\n            probs = model.predict_proba(test_X_s)[:, 1]\n            best_idx = np.argmax(probs)\n            selected_f1s[i] = all_f1s[i][best_idx]\n\n    return float(np.mean(selected_f1s))\n\n\ndef run_instance_level_cv(X, y, model_cls, model_kwargs, n_splits=5):\n    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)\n    scaler = StandardScaler()\n    X_scaled = scaler.fit_transform(X)\n    model = model_cls(**model_kwargs)\n    y_prob = cross_val_predict(model, X_scaled, y, cv=skf, method='predict_proba')[:, 1]\n    auroc = roc_auc_score(y, y_prob)\n    return auroc\n\n\ndef run_seed(seed, path):\n    print(f\"\\n{'='*60}\")\n    print(f\"Processing seed={seed}\")\n    print(f\"{'='*60}\")\n    t0 = time.time()\n\n    data = load_data(path)\n    n_inst = len(data)\n    n_samp = len(data[0]['samples'])\n    print(f\"  {n_inst} instances, N={n_samp}\")\n\n    X_5, X_15, y, _ = build_features_and_labels(data)\n    print(f\"  X_5={X_5.shape}, X_15={X_15.shape}, y_pos_rate={y.mean():.3f}\")\n\n    all_feats, all_f1s = build_sample_features(data)\n    print(f\"  Sample features computed\")\n\n    # Instance-level AUROC (5-fold CV)\n    models_inst = {\n        'LR_5feat': (LogisticRegression, {'max_iter': 1000, 'random_state': 42}, X_5),\n        'MLP_5feat': (MLPClassifier, {'hidden_layer_sizes': (64, 64), 'max_iter': 500, 'random_state': 42, 'early_stopping': True}, X_5),\n        'RF_5feat': (RandomForestClassifier, {'n_estimators': 100, 'random_state': 42}, X_5),\n        'MLP_15feat': (MLPClassifier, {'hidden_layer_sizes': (64, 64), 'max_iter': 500, 'random_state': 42, 'early_stopping': True}, X_15),\n        'RF_15feat': (RandomForestClassifier, {'n_estimators': 100, 'random_state': 42}, X_15),\n    }\n\n    results = {}\n    for name, (cls, kwargs, X) in models_inst.items():\n        auroc = run_instance_level_cv(X, y, cls, kwargs)\n        results[name] = {'auroc': round(auroc, 4)}\n        print(f\"  {name} AUROC={auroc:.4f}\")\n\n    # Sample-level selection F1 (5-fold grouped CV)\n    print(\"  Computing selection F1 (5-fold grouped CV)...\")\n    sel_models = {\n        'LR_5feat': (LogisticRegression, {'max_iter': 1000, 'random_state': 42}, False),\n        'MLP_5feat': (MLPClassifier, {'hidden_layer_sizes': (64, 64), 'max_iter': 500, 'random_state': 42, 'early_stopping': True}, False),\n        'RF_5feat': (RandomForestClassifier, {'n_estimators': 100, 'random_state': 42}, False),\n        'MLP_15feat': (MLPClassifier, {'hidden_layer_sizes': (64, 64), 'max_iter': 500, 'random_state': 42, 'early_stopping': True}, True),\n        'RF_15feat': (RandomForestClassifier, {'n_estimators': 100, 'random_state': 42}, True),\n    }\n    for name, (cls, kwargs, use_int) in sel_models.items():\n        sf1 = selection_f1_grouped_cv(all_feats, all_f1s, cls, kwargs, use_interactions=use_int)\n        results[name]['selection_f1'] = round(sf1, 4)\n        print(f\"    {name} sel_F1={sf1:.4f}\")\n\n    # Single signal AUROCs\n    single_aurocs = {}\n    for idx, sig in enumerate(SIGNALS):\n        a = run_instance_level_cv(X_5[:, idx:idx+1], y, LogisticRegression, {'max_iter': 1000, 'random_state': 42})\n        single_aurocs[sig] = round(a, 4)\n    results['single_signal_aurocs'] = single_aurocs\n\n    # Unsupervised selection F1\n    unsup_sel = {}\n    for idx, sig in enumerate(SIGNALS):\n        sfs = []\n        for i in range(n_inst):\n            scores = all_feats[i][:, idx]\n            sfs.append(all_f1s[i][np.argmax(scores)])\n        unsup_sel[sig] = round(float(np.mean(sfs)), 4)\n    results['unsup_selection_f1'] = unsup_sel\n\n    # Greedy & oracle\n    greedy_f1s = []\n    oracle_f1s = []\n    for i, inst in enumerate(data):\n        if 'greedy' in inst:\n            gold_ents = set((e[\"text\"], e[\"type\"]) for e in inst[\"gold\"].get(\"entities\", []))\n            pred_ents = set((e[\"text\"], e[\"type\"]) for e in inst[\"greedy\"].get(\"entities\", []))\n            if not gold_ents and not pred_ents:\n                gf = 1.0\n            elif not gold_ents or not pred_ents:\n                gf = 0.0\n            else:\n                tp = len(gold_ents & pred_ents)\n                p = tp / len(pred_ents)\n                r = tp / len(gold_ents)\n                gf = 2*p*r/(p+r) if (p+r) > 0 else 0\n            greedy_f1s.append(gf)\n        else:\n            greedy_f1s.append(all_f1s[i][0])\n        oracle_f1s.append(max(all_f1s[i]))\n    results['greedy_f1'] = round(float(np.mean(greedy_f1s)), 4)\n    results['oracle_f1'] = round(float(np.mean(oracle_f1s)), 4)\n\n    # RF feature importance (full fit)\n    rf15 = RandomForestClassifier(n_estimators=100, random_state=42)\n    rf15.fit(StandardScaler().fit_transform(X_15), y)\n    feat_names_15 = SIGNALS + [f\"{SIGNALS[i]}x{SIGNALS[j]}\" for i, j in combinations(range(5), 2)]\n    results['rf_importance_15'] = dict(zip(feat_names_15, [round(x, 4) for x in rf15.feature_importances_]))\n\n    rf5 = RandomForestClassifier(n_estimators=100, random_state=42)\n    rf5.fit(StandardScaler().fit_transform(X_5), y)\n    results['rf_importance_5'] = dict(zip(SIGNALS, [round(x, 4) for x in rf5.feature_importances_]))\n\n    # Ablation: drop each feature from MLP_5feat\n    ablation = {}\n    for drop_idx, sig in enumerate(SIGNALS):\n        keep = [i for i in range(5) if i != drop_idx]\n        X_abl = X_5[:, keep]\n        a = run_instance_level_cv(X_abl, y, MLPClassifier, {'hidden_layer_sizes': (64, 64), 'max_iter': 500, 'random_state': 42, 'early_stopping': True})\n        ablation[sig] = {'auroc_without': round(a, 4), 'delta': round(results['MLP_5feat']['auroc'] - a, 4)}\n    results['ablation_mlp'] = ablation\n\n    results['n_instances'] = n_inst\n    results['n_samples'] = n_samp\n    results['elapsed_s'] = round(time.time() - t0, 1)\n    print(f\"  Done in {results['elapsed_s']}s\")\n    return results\n\n\ndef main():\n    t_start = time.time()\n    all_results = {}\n    for seed in SEEDS:\n        all_results[seed] = run_seed(seed, SEED_PATHS[seed])\n\n    # Aggregate\n    model_names = ['LR_5feat', 'MLP_5feat', 'RF_5feat', 'MLP_15feat', 'RF_15feat']\n    agg = {}\n    for name in model_names:\n        aurocs = [all_results[s][name]['auroc'] for s in SEEDS]\n        sel_f1s = [all_results[s][name]['selection_f1'] for s in SEEDS]\n        agg[name] = {\n            'auroc_mean': round(float(np.mean(aurocs)), 4),\n            'auroc_std': round(float(np.std(aurocs, ddof=1)), 4),\n            'selection_f1_mean': round(float(np.mean(sel_f1s)), 4),\n            'selection_f1_std': round(float(np.std(sel_f1s, ddof=1)), 4),\n            'per_seed_auroc': {str(s): all_results[s][name]['auroc'] for s in SEEDS},\n            'per_seed_sel_f1': {str(s): all_results[s][name]['selection_f1'] for s in SEEDS},\n        }\n\n    best_sig_aurocs = {sig: np.mean([all_results[s]['single_signal_aurocs'][sig] for s in SEEDS]) for sig in SIGNALS}\n    best_sig = max(best_sig_aurocs, key=best_sig_aurocs.get)\n    agg['best_single_signal'] = best_sig\n    agg['best_single_auroc'] = round(best_sig_aurocs[best_sig], 4)\n\n    best_unsup = {sig: np.mean([all_results[s]['unsup_selection_f1'][sig] for s in SEEDS]) for sig in SIGNALS}\n    best_unsup_sig = max(best_unsup, key=best_unsup.get)\n    agg['best_unsup_signal'] = best_unsup_sig\n    agg['best_unsup_sel_f1'] = round(best_unsup[best_unsup_sig], 4)\n    agg['greedy_f1'] = round(float(np.mean([all_results[s]['greedy_f1'] for s in SEEDS])), 4)\n    agg['oracle_f1'] = round(float(np.mean([all_results[s]['oracle_f1'] for s in SEEDS])), 4)\n\n    output = {'per_seed': {str(s): all_results[s] for s in SEEDS}, 'aggregated': agg}\n    with open(OUT_DIR / \"results.json\", \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nSaved results.json\")\n\n    # Report\n    lines = [\"# exp-027: MLP + Random Forest Verifiers\", \"\"]\n    lines.append(\"## Setup\")\n    lines.append(f\"- Data: SciERC NER, N=16, seeds={SEEDS}\")\n    lines.append(f\"- Instances per seed: {all_results[SEEDS[0]]['n_instances']}\")\n    lines.append(\"- Binary label: instance best-sample F1 > median\")\n    lines.append(\"- Instance AUROC: 5-fold stratified CV\")\n    lines.append(\"- Selection F1: 5-fold grouped CV (grouped by instance)\")\n    lines.append(\"- Features: 5 basic (SJ, FK, LP, EM, VC) or +10 pairwise interactions = 15\")\n    lines.append(\"\")\n\n    lines.append(\"## Main Results (3-seed mean ± std)\")\n    lines.append(\"\")\n    lines.append(\"| Model | Features | AUROC | Selection F1 |\")\n    lines.append(\"|-------|----------|-------|-------------|\")\n    lines.append(f\"| Best single ({best_sig}) | 1 | {agg['best_single_auroc']:.4f} | {agg['best_unsup_sel_f1']:.4f} ({best_unsup_sig}) |\")\n    for name in model_names:\n        feat = \"5\" if \"5feat\" in name else \"15\"\n        mdl = name.split(\"_\")[0]\n        lines.append(f\"| {mdl} | {feat} | {agg[name]['auroc_mean']:.4f} ± {agg[name]['auroc_std']:.4f} | {agg[name]['selection_f1_mean']:.4f} ± {agg[name]['selection_f1_std']:.4f} |\")\n    lines.append(f\"| Greedy | — | — | {agg['greedy_f1']:.4f} |\")\n    lines.append(f\"| Oracle | — | — | {agg['oracle_f1']:.4f} |\")\n    lines.append(\"\")\n\n    lr5 = agg['LR_5feat']['auroc_mean']\n    mlp5 = agg['MLP_5feat']['auroc_mean']\n    mlp15 = agg['MLP_15feat']['auroc_mean']\n    rf5 = agg['RF_5feat']['auroc_mean']\n    rf15 = agg['RF_15feat']['auroc_mean']\n\n    lines.append(\"## Key Findings\")\n    lines.append(\"\")\n    d = mlp5 - lr5\n    if abs(d) < 0.01:\n        lines.append(f\"1. **MLP ≈ LR on 5 features** (Δ={d:+.4f}): features are the bottleneck, not aggregation.\")\n    elif d > 0.01:\n        lines.append(f\"1. **MLP > LR on 5 features** (Δ={d:+.4f}): nonlinear combos help.\")\n    else:\n        lines.append(f\"1. **MLP < LR on 5 features** (Δ={d:+.4f}): MLP may overfit with limited features.\")\n\n    d15 = mlp15 - mlp5\n    lines.append(f\"2. Interactions (15-feat): MLP Δ={d15:+.4f}, RF Δ={rf15-rf5:+.4f}\")\n    best_model_auroc = max(lr5, mlp5, rf5, mlp15, rf15)\n    lines.append(f\"3. Best supervised AUROC={best_model_auroc:.4f} vs best single signal={agg['best_single_auroc']:.4f} (Δ={best_model_auroc - agg['best_single_auroc']:+.4f})\")\n\n    best_sel = max(agg[n]['selection_f1_mean'] for n in model_names)\n    lines.append(f\"4. Best supervised selection F1={best_sel:.4f} vs best unsup={agg['best_unsup_sel_f1']:.4f} (Δ={best_sel - agg['best_unsup_sel_f1']:+.4f})\")\n    lines.append(\"\")\n\n    # Conclusion\n    lines.append(\"## Conclusion\")\n    lines.append(\"\")\n    if abs(d) < 0.01 and abs(d15) < 0.01:\n        lines.append(\"The 5 confidence signals contain limited discriminative information that cannot be unlocked\")\n        lines.append(\"by nonlinear models or interaction terms. The bottleneck is feature quality, not model capacity.\")\n    elif d > 0.01:\n        lines.append(\"Nonlinear models extract additional signal from the 5 features, suggesting untapped information\")\n        lines.append(\"in feature interactions.\")\n    lines.append(\"\")\n\n    # Feature importance\n    lines.append(\"## RF Feature Importance (15-feat, 3-seed avg)\")\n    lines.append(\"\")\n    lines.append(\"| Feature | Importance |\")\n    lines.append(\"|---------|-----------|\")\n    fn15 = SIGNALS + [f\"{SIGNALS[i]}x{SIGNALS[j]}\" for i, j in combinations(range(5), 2)]\n    avg_imp = {fn: np.mean([all_results[s]['rf_importance_15'][fn] for s in SEEDS]) for fn in fn15}\n    for fn in sorted(fn15, key=lambda x: avg_imp[x], reverse=True):\n        lines.append(f\"| {fn} | {avg_imp[fn]:.4f} |\")\n    lines.append(\"\")\n\n    # Ablation\n    lines.append(\"## Ablation (MLP 5-feat, drop one signal)\")\n    lines.append(\"\")\n    lines.append(\"| Dropped | Avg AUROC w/o | Avg Δ |\")\n    lines.append(\"|---------|--------------|-------|\")\n    for sig in SIGNALS:\n        abl_a = np.mean([all_results[s]['ablation_mlp'][sig]['auroc_without'] for s in SEEDS])\n        abl_d = np.mean([all_results[s]['ablation_mlp'][sig]['delta'] for s in SEEDS])\n        lines.append(f\"| w/o {sig} | {abl_a:.4f} | {abl_d:+.4f} |\")\n    lines.append(f\"| Full (5) | {agg['MLP_5feat']['auroc_mean']:.4f} | — |\")\n    lines.append(\"\")\n\n    # Per-seed\n    lines.append(\"## Per-Seed Detail\")\n    lines.append(\"\")\n    lines.append(\"| Model | seed42 AUROC | seed123 AUROC | seed456 AUROC |\")\n    lines.append(\"|-------|-------------|---------------|---------------|\")\n    for name in model_names:\n        vals = [str(all_results[s][name]['auroc']) for s in SEEDS]\n        lines.append(f\"| {name} | {' | '.join(vals)} |\")\n    lines.append(\"\")\n    lines.append(\"| Model | seed42 SelF1 | seed123 SelF1 | seed456 SelF1 |\")\n    lines.append(\"|-------|-------------|---------------|---------------|\")\n    for name in model_names:\n        vals = [str(all_results[s][name]['selection_f1']) for s in SEEDS]\n        lines.append(f\"| {name} | {' | '.join(vals)} |\")\n    lines.append(\"\")\n\n    total_time = time.time() - t_start\n    lines.append(f\"*Total runtime: {total_time:.0f}s*\")\n\n    with open(OUT_DIR / \"report.md\", \"w\") as f:\n        f.write(\"\\n\".join(lines))\n    print(f\"Saved report.md\")\n    print(f\"\\nTotal: {total_time:.0f}s\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T13:45:24.398813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T13:45:24.398958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python -u output/exp_027_mlp_verifier/train_mlp_verifier.py > /tmp/exp027.log 2>&1 & echo \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T13:45:24.399095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=304680\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T13:45:24.399349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -20 /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T13:45:24.399487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    LR_5feat sel_F1=0.6396\\\\n    MLP_5feat sel_F1=0.6350\\\\n    RF_5feat sel_F1=0.6154\\\\n    MLP_15feat sel_F1=0.6374\\\\n    RF_15feat sel_F1=0.6096\\\\n  Done in 25.7s\\\\n\\\\n============================================================\\\\nProcessing seed=123\\\\n============================================================\\\\n  551 instances, N=16\\\\n  X_5=(551, 5), X_15=(551, 15), y_pos_rate=0.492\\\\n  Sample features computed\\\\n  LR_5feat AUROC=0.6379\\\\n  MLP_5feat AUROC=0.6231\\\\n  RF_5feat AUROC=0.5638\\\\n  MLP_15feat AUROC=0.6133\\\\n  RF_15feat AUROC=0.5684\\\\n  Computing selection F1 (5-fold grouped CV)...\\\\n    LR_5feat sel_F1=0.6416\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T13:45:24.399646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -30 /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T13:45:24.399784+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  551 instances, N=16\\\\n  X_5=(551, 5), X_15=(551, 15), y_pos_rate=0.494\\\\n  Sample features computed\\\\n  LR_5feat AUROC=0.6634\\\\n  MLP_5feat AUROC=0.6629\\\\n  RF_5feat AUROC=0.6042\\\\n  MLP_15feat AUROC=0.6434\\\\n  RF_15feat AUROC=0.6267\\\\n  Computing selection F1 (5-fold grouped CV)...\\\\n    LR_5feat sel_F1=0.6396\\\\n    MLP_5feat sel_F1=0.6350\\\\n    RF_5feat sel_F1=0.6154\\\\n    MLP_15feat sel_F1=0.6374\\\\n    RF_15feat sel_F1=0.6096\\\\n  Done in 25.7s\\\\n\\\\n============================================================\\\\nProcessing seed=123\\\\n============================================================\\\\n  551 instances, N=16\\\\n  X_5=(551, 5), X_15=(551, 15), y_pos_rate=0.492\\\\n  Sample features computed\\\\n  LR_5feat AUROC=0.6379\\\\n  MLP_5feat AUROC=0.6231\\\\n  RF_5feat AUROC=0.5638\\\\n  MLP_15feat AUROC=0.6133\\\\n  RF_15feat AUROC=0.5684\\\\n  Computing selection F1 (5-fold grouped CV)...\\\\n    LR_5feat sel_F1=0.6416\\\\n    MLP_5feat sel_F1=0.6370\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T13:45:24.399910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -10 /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T13:45:24.400036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Sample features computed\\\\n  LR_5feat AUROC=0.6379\\\\n  MLP_5feat AUROC=0.6231\\\\n  RF_5feat AUROC=0.5638\\\\n  MLP_15feat AUROC=0.6133\\\\n  RF_15feat AUROC=0.5684\\\\n  Computing selection F1 (5-fold grouped CV)...\\\\n    LR_5feat sel_F1=0.6416\\\\n    MLP_5feat sel_F1=0.6370\\\\n    RF_5feat sel_F1=0.6004\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T13:45:24.400177+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -5 /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T13:45:24.400307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Computing selection F1 (5-fold grouped CV)...\\\\n    LR_5feat sel_F1=0.6416\\\\n    MLP_5feat sel_F1=0.6370\\\\n    RF_5feat sel_F1=0.6004\\\\n    MLP_15feat sel_F1=0.6394\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T13:45:24.400431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -15 /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T13:45:24.400557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Processing seed=123\\\\n============================================================\\\\n  551 instances, N=16\\\\n  X_5=(551, 5), X_15=(551, 15), y_pos_rate=0.492\\\\n  Sample features computed\\\\n  LR_5feat AUROC=0.6379\\\\n  MLP_5feat AUROC=0.6231\\\\n  RF_5feat AUROC=0.5638\\\\n  MLP_15feat AUROC=0.6133\\\\n  RF_15feat AUROC=0.5684\\\\n  Computing selection F1 (5-fold grouped CV)...\\\\n    LR_5feat sel_F1=0.6416\\\\n    MLP_5feat sel_F1=0.6370\\\\n    RF_5feat sel_F1=0.6004\\\\n    MLP_15feat sel_F1=0.6394\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T13:45:24.400675+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -5 /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T13:45:24.400793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    LR_5feat sel_F1=0.6416\\\\n    MLP_5feat sel_F1=0.6370\\\\n    RF_5feat sel_F1=0.6004\\\\n    MLP_15feat sel_F1=0.6394\\\\n    RF_15feat sel_F1=0.6024\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T13:45:24.401002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -20 /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T13:45:24.401373+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  MLP_15feat AUROC=0.6133\\\\n  RF_15feat AUROC=0.5684\\\\n  Computing selection F1 (5-fold grouped CV)...\\\\n    LR_5feat sel_F1=0.6416\\\\n    MLP_5feat sel_F1=0.6370\\\\n    RF_5feat sel_F1=0.6004\\\\n    MLP_15feat sel_F1=0.6394\\\\n    RF_15feat sel_F1=0.6024\\\\n  Done in 26.4s\\\\n\\\\n============================================================\\\\nProcessing seed=456\\\\n============================================================\\\\n  551 instances, N=16\\\\n  X_5=(551, 5), X_15=(551, 15), y_pos_rate=0.490\\\\n  Sample features computed\\\\n  LR_5feat AUROC=0.6553\\\\n  MLP_5feat AUROC=0.6319\\\\n  RF_5feat AUROC=0.5923\\\\n  MLP_15feat AUROC=0.6400\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T13:45:24.401548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -10 /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T13:45:24.401686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  X_5=(551, 5), X_15=(551, 15), y_pos_rate=0.490\\\\n  Sample features computed\\\\n  LR_5feat AUROC=0.6553\\\\n  MLP_5feat AUROC=0.6319\\\\n  RF_5feat AUROC=0.5923\\\\n  MLP_15feat AUROC=0.6400\\\\n  RF_15feat AUROC=0.6179\\\\n  Computing selection F1 (5-fold grouped CV)...\\\\n    LR_5feat sel_F1=0.6405\\\\n    MLP_5feat sel_F1=0.6411\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T13:45:24.401804+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -5 /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T13:45:24.401923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  MLP_15feat AUROC=0.6400\\\\n  RF_15feat AUROC=0.6179\\\\n  Computing selection F1 (5-fold grouped CV)...\\\\n    LR_5feat sel_F1=0.6405\\\\n    MLP_5feat sel_F1=0.6411\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T13:45:24.402039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -c \"Saved\" /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T13:45:24.402172+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T13:45:24.402293+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -10 /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-16T13:45:24.402413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  LR_5feat AUROC=0.6553\\\\n  MLP_5feat AUROC=0.6319\\\\n  RF_5feat AUROC=0.5923\\\\n  MLP_15feat AUROC=0.6400\\\\n  RF_15feat AUROC=0.6179\\\\n  Computing selection F1 (5-fold grouped CV)...\\\\n    LR_5feat sel_F1=0.6405\\\\n    MLP_5feat sel_F1=0.6411\\\\n    RF_5feat sel_F1=0.6241\\\\n    MLP_15feat sel_F1=0.6248\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-16T13:45:24.402531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -5 /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-16T13:45:24.402655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Computing selection F1 (5-fold grouped CV)...\\\\n    LR_5feat sel_F1=0.6405\\\\n    MLP_5feat sel_F1=0.6411\\\\n    RF_5feat sel_F1=0.6241\\\\n    MLP_15feat sel_F1=0.6248\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-16T13:45:24.402771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -3 /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-16T13:45:24.402889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    RF_5feat sel_F1=0.6241\\\\n    MLP_15feat sel_F1=0.6248\\\\n    RF_15feat sel_F1=0.6308\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-16T13:45:24.403001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -5 /tmp/exp027.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-16T13:45:24.403153+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\nSaved results.json\\\\nSaved report.md\\\\n\\\\nTotal: 79s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-16T13:45:24.403304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/report.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-16T13:45:24.403470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# exp-027: MLP + Random Forest Verifiers\\\\n\\\\n## Setup\\\\n- Data: SciERC NER, N=16, seeds=[42, 123, 456]\\\\n- Instances per seed: 551\\\\n- Binary label: instance best-sample F1 > median\\\\n- Instance AUROC: 5-fold stratified CV\\\\n- Selection F1: 5-fold grouped CV (grouped by instance)\\\\n- Features: 5 basic (SJ, FK, LP, EM, VC) or +10 pairwise interactions = 15\\\\n\\\\n## Main Results (3-seed mean ± std)\\\\n\\\\n| Model | Features | AUROC | Selection F1 |\\\\n|-------|----------|-------|-------------|\\\\n| Best single (EM) | 1 | 0.6476 | 0.6470 (LP) |\\\\n| LR | 5 | 0.6522 ± 0.0130 | 0.6406 ± 0.0010 |\\\\n| MLP | 5 | 0.6393 ± 0.0209 | 0.6377 ± 0.0031 |\\\\n| RF | 5 | 0.5868 ± 0.0208 | 0.6133 ± 0.0120 |\\\\n| MLP | 5 | 0.6322 ± 0.0165 | 0.6339 ± 0.0079 |\\\\n| RF | 5 | 0.6043 ± 0.0314 | 0.6143 ± 0.0148 |\\\\n| Greedy | — | — | 0.6441 |\\\\n| Oracle | — | — | 0.8231 |\\\\n\\\\n## Key Findings\\\\n\\\\n1. **MLP < LR on 5 features** (Δ=-0.0129): MLP may overfit with limited features.\\\\n2. Interactions (15-feat): MLP Δ=-0.0071, RF Δ=+0.0175\\\\n3. Best supervised AUROC=0.6522 vs best single signal=0.6476 (Δ=+0.0046)\\\\n4. Best supervised selection F1=0.6406 vs best unsup=0.6470 (Δ=-0.0064)\\\\n\\\\n## Conclusion\\\\n\\\\n\\\\n## RF Feature Importance (15-feat, 3-seed avg)\\\\n\\\\n| Feature | Importance |\\\\n|---------|-----------|\\\\n| FKxLP | 0.0888 |\\\\n| LPxEM | 0.0780 |\\\\n| LP | 0.0768 |\\\\n| SJxLP | 0.0761 |\\\\n| SJxEM | 0.0729 |\\\\n| LPxVC | 0.0711 |\\\\n| EMxVC | 0.0658 |\\\\n| FKxVC | 0.0653 |\\\\n| FKxEM | 0.0639 |\\\\n| FK | 0.0635 |\\\\n| SJxFK | 0.0625 |\\\\n| SJ | 0.0609 |\\\\n| SJxVC | 0.0580 |\\\\n| VC | 0.0549 |\\\\n| EM | 0.0416 |\\\\n\\\\n## Ablation (MLP 5-feat, drop one signal)\\\\n\\\\n| Dropped | Avg AUROC w/o | Avg Δ |\\\\n|---------|--------------|-------|\\\\n| w/o SJ | 0.6363 | +0.0030 |\\\\n| w/o FK | 0.6162 | +0.0231 |\\\\n| w/o LP | 0.6352 | +0.0041 |\\\\n| w/o EM | 0.6024 | +0.0369 |\\\\n| w/o VC | 0.6352 | +0.0041 |\\\\n| Full (5) | 0.6393 | — |\\\\n\\\\n## Per-Seed Detail\\\\n\\\\n| Model\n…[truncated 781 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-16T13:45:24.403670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "sed -i 's/feat = \"5\" if \"5feat\" in name else \"15\"/feat = \"15\" if \"15feat\" in name else \"5\"/' /root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/train_mlp_verifier.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-16T13:45:24.403808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-16T13:45:24.403971+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json\nfrom pathlib import Path\nfrom itertools import combinations\nimport numpy as np\n\nOUT_DIR = Path('output/exp_027_mlp_verifier')\nwith open(OUT_DIR / 'results.json') as f:\n    output = json.load(f)\n\nSEEDS = [42, 123, 456]\nSIGNALS = ['SJ', 'FK', 'LP', 'EM', 'VC']\nmodel_names = ['LR_5feat', 'MLP_5feat', 'RF_5feat', 'MLP_15feat', 'RF_15feat']\nagg = output['aggregated']\nall_results = output['per_seed']\n\nlines = ['# exp-027: MLP + Random Forest Verifiers', '']\nlines.append('## Setup')\nlines.append('- Data: SciERC NER, N=16, seeds=[42, 123, 456]')\nlines.append('- Instances per seed: 551')\nlines.append('- Binary label: instance best-sample F1 > median')\nlines.append('- Instance AUROC: 5-fold stratified CV')\nlines.append('- Selection F1: 5-fold grouped CV (grouped by instance)')\nlines.append('- Features: 5 basic (SJ, FK, LP, EM, VC) or +10 pairwise interactions = 15')\nlines.append('')\n\nbest_sig = agg['best_single_signal']\nbest_unsup_sig = agg['best_unsup_signal']\n\nlines.append('## Main Results (3-seed mean +/- std)')\nlines.append('')\nlines.append('| Model | Features | AUROC | Selection F1 |')\nlines.append('|-------|----------|-------|-------------|')\nlines.append(f'| Best single ({best_sig}) | 1 | {agg[\\\"best_single_auroc\\\"]:.4f} | {agg[\\\"best_unsup_sel_f1\\\"]:.4f} ({best_unsup_sig}) |')\nfor name in model_names:\n    feat = '15' if '15feat' in name else '5'\n    mdl = name.split('_')[0]\n    a = agg[name]\n    lines.append(f'| {mdl} | {feat} | {a[\\\"auroc_mean\\\"]:.4f} +/- {a[\\\"auroc_std\\\"]:.4f} | {a[\\\"selection_f1_mean\\\"]:.4f} +/- {a[\\\"selection_f1_std\\\"]:.4f} |')\nlines.append(f'| Greedy | - | - | {agg[\\\"greedy_f1\\\"]:.4f} |')\nlines.append(f'| Oracle | - | - | {agg[\\\"oracle_f1\\\"]:.4f} |')\nlines.append('')\n\nlr5 = agg['LR_5feat']['auroc_mean']\nmlp5 = agg['MLP_5feat']['auroc_mean']\nmlp15 = agg['MLP_15feat']['auroc_mean']\nrf5 = agg['RF_5feat']['auroc_mean']\nrf15 = agg['RF_15feat']['auroc_mean']\nd = mlp5 - lr5\nd15 = mlp15 - mlp5\n\nlines.append('## Key Findings')\nlines.append('')\nlines.append(f'1. **MLP ≈ LR on 5 features** (AUROC delta={d:+.4f}): nonlinear model does NOT improve over LR.')\nlines.append(f'   Features are the bottleneck, not model capacity.')\nlines.append(f'2. **RF underperforms** both LR and MLP (AUROC={rf5:.4f}), likely overfitting to noise with limited features.')\nlines.append(f'3. Interaction features (15-feat): MLP delta={d15:+.4f}, RF delta={rf15-rf5:+.4f} - marginal or no gain.')\nbest_model_auroc = max(lr5, mlp5, rf5, mlp15, rf15)\nlines.append(f'4. Best supervised AUROC={best_model_auroc:.4f} vs best single signal={agg[\\\"best_single_auroc\\\"]:.4f} (delta={best_model_auroc - agg[\\\"best_single_auroc\\\"]:+.4f})')\nbest_sel = max(agg[n]['selection_f1_mean'] for n in model_names)\nlines.append(f'5. Best supervised selection F1={best_sel:.4f} vs best unsup={agg[\\\"best_unsup_sel_f1\\\"]:.4f} (delta={best_sel - agg[\\\"best_unsup_sel_f1\\\"]:+.4f})')\nlines.append('')\n\nlines.append('## Conclusion')\nlines.append('')\nlines.append('**Features are the bottleneck, not model capacity.** MLP and RF fail to improve over')\nlines.append('simple LR on 5 signals, and even LR barely beats the best single signal (EM).')\nlines.append('This confirms that the 5 instance-level aggregates (SJ, FK, LP, EM, VC) have')\nlines.append('limited discriminative information that cannot be unlocked by nonlinear models')\nlines.append('or interaction terms. Future work should focus on richer features (e.g., per-sample')\nlines.append('structural patterns, entity-level signals) rather than more complex classifiers.')\nlines.append('')\n\n# Feature importance\nlines.append('## RF Feature Importance (15-feat, 3-seed avg)')\nlines.append('')\nlines.append('| Feature | Importance |')\nlines.append('|---------|-----------|')\nfn15 = SIGNALS + [f'{SIGNALS[i]}x{SIGNALS[j]}' for i, j in combinations(range(5), 2)]\navg_imp = {fn: np.mean([all_results[str(s)]['rf_importance_15'][fn] for s in SEEDS]) for fn in fn15}\nfor fn in sorted(fn15, key=lambda x: avg_imp[x], reverse=True):\n    lines.append(f'| {fn} | {avg_imp[fn]:.4f} |')\nlines.append('')\n\n# Ablation\nlines.append('## Ablation (MLP 5-feat, drop one signal)')\nlines.append('')\nlines.append('| Dropped | Avg AUROC w/o | Avg delta |')\nlines.append('|---------|--------------|-------|')\nfor sig in SIGNALS:\n    abl_a = np.mean([all_results[str(s)]['ablation_mlp'][sig]['auroc_without'] for s in SEEDS])\n    abl_d = np.mean([all_results[str(s)]['ablation_mlp'][sig]['delta'] for s in SEEDS])\n    lines.append(f'| w/o {sig} | {abl_a:.4f} | {abl_d:+.4f} |')\nlines.append(f'| Full (5) | {agg[\\\"MLP_5feat\\\"][\\\"auroc_mean\\\"]:.4f} | - |')\nlines.append('')\n\n# Per-seed\nlines.append('## Per-Seed Detail')\nlines.append('')\nlines.append('| Model | seed42 AUROC | seed123 AUROC | seed456 AUROC |')\nlines.append('|-------|-------------|---------------|---------------|')\nfor name in model_names:\n    vals = [str(all_results[str(s)][name]['auroc']) for s in SEEDS]\n    lines.append(f'| {name} | {\\\" | \\\".join(vals)} |')\nlines.append('')\nlines.append('| Model | seed42 SelF1 | seed123 SelF1 | seed456 SelF1 |')\nlines.append('|-------|-------------|---------------|---------------|')\nfor name in model_names:\n    vals = [str(all_results[str(s)][name]['selection_f1']) for s in SEEDS]\n    lines.append(f'| {name} | {\\\" | \\\".join(vals)} |')\nlines.append('')\n\nwith open(OUT_DIR / 'report.md', 'w') as f:\n    f.write('\\n'.join(lines))\nprint('report.md regenerated')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-16T13:45:24.404177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"report.md regenerated\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-16T13:45:24.404325+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/",
+              "account": "root"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-16T13:45:24.404455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 48\\\\ndrwxr-xr-x   2 root root    88 May 16 21:44 .\\\\ndrwxr-xr-x 115 root root  8192 May 16 21:37 ..\\\\n-rw-r--r--   1 root root  3169 May 16 21:44 report.md\\\\n-rw-r--r--   1 root root  7631 May 16 21:43 results.json\\\\n-rw-r--r--   1 root root 20904 May 16 21:44 train_mlp_verifier.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-16T13:45:24.404579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "exp-027 MLP+RF Verifier Results",
+              "type": "report",
+              "description": "MLP and Random Forest verifiers on 5 confidence signals vs LR baseline. Key finding: features are the bottleneck, not model capacity. MLP/RF fail to beat LR (AUROC 0.639/0.587 vs 0.652). Interactions (15-feat) provide no gain.",
+              "project": "struct_self_consist_ie",
+              "exp_id": "exp_027",
+              "source_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/report.md",
+              "tags": "['verifier', 'mlp', 'random-forest', 'ablation', 'feature-bottleneck']"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-16T13:45:24.404706+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/report.md\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-16T13:45:24.404848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/report.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-16T13:45:24.405021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# exp-027: MLP + Random Forest Verifiers\\\\n\\\\n## Setup\\\\n- Data: SciERC NER, N=16, seeds=[42, 123, 456]\\\\n- Instances per seed: 551\\\\n- Binary label: instance best-sample F1 > median\\\\n- Instance AUROC: 5-fold stratified CV\\\\n- Selection F1: 5-fold grouped CV (grouped by instance)\\\\n- Features: 5 basic (SJ, FK, LP, EM, VC) or +10 pairwise interactions = 15\\\\n\\\\n## Main Results (3-seed mean +/- std)\\\\n\\\\n| Model | Features | AUROC | Selection F1 |\\\\n|-------|----------|-------|-------------|\\\\n| Best single (EM) | 1 | 0.6476 | 0.6470 (LP) |\\\\n| LR | 5 | 0.6522 +/- 0.0130 | 0.6406 +/- 0.0010 |\\\\n| MLP | 5 | 0.6393 +/- 0.0209 | 0.6377 +/- 0.0031 |\\\\n| RF | 5 | 0.5868 +/- 0.0208 | 0.6133 +/- 0.0120 |\\\\n| MLP | 15 | 0.6322 +/- 0.0165 | 0.6339 +/- 0.0079 |\\\\n| RF | 15 | 0.6043 +/- 0.0314 | 0.6143 +/- 0.0148 |\\\\n| Greedy | - | - | 0.6441 |\\\\n| Oracle | - | - | 0.8231 |\\\\n\\\\n## Key Findings\\\\n\\\\n1. **MLP ≈ LR on 5 features** (AUROC delta=-0.0129): nonlinear model does NOT improve over LR.\\\\n   Features are the bottleneck, not model capacity.\\\\n2. **RF underperforms** both LR and MLP (AUROC=0.5868), likely overfitting to noise with limited features.\\\\n3. Interaction features (15-feat): MLP delta=-0.0071, RF delta=+0.0175 - marginal or no gain.\\\\n4. Best supervised AUROC=0.6522 vs best single signal=0.6476 (delta=+0.0046)\\\\n5. Best supervised selection F1=0.6406 vs best unsup=0.6470 (delta=-0.0064)\\\\n\\\\n## Conclusion\\\\n\\\\n**Features are the bottleneck, not model capacity.** MLP and RF fail to improve over\\\\nsimple LR on 5 signals, and even LR barely beats the best single signal (EM).\\\\nThis confirms that the 5 instance-level aggregates (SJ, FK, LP, EM, VC) have\\\\nlimited discriminative information that cannot be unlocked by nonlinear models\\\\nor interaction terms. Future work should focus on richer features (e.g., per-sample\\\\nstructural patterns, entity-level signals) rather than more complex classifiers.\\\\n\\\\n## RF Fea\n…[truncated 1505 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-16T13:45:24.405201+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "exp-027 MLP+RF Verifier Results",
+              "type": "report",
+              "description": "MLP and Random Forest verifiers on 5 confidence signals vs LR baseline. Key finding: features are the bottleneck, not model capacity. MLP/RF fail to beat LR (AUROC 0.639/0.587 vs 0.652). Interactions (15-feat) provide no gain.",
+              "project": "struct_self_consist_ie",
+              "exp_id": "exp_027",
+              "content": "# exp-027: MLP + Random Forest Verifiers\\n\\n## Setup\\n- Data: SciERC NER, N=16, seeds=[42, 123, 456]\\n- Instances per seed: 551\\n- Binary label: instance best-sample F1 > median\\n- Instance AUROC: 5-fold stratified CV\\n- Selection F1: 5-fold grouped CV (grouped by instance)\\n- Features: 5 basic (SJ, FK, LP, EM, VC) or +10 pairwise interactions = 15\\n\\n## Main Results (3-seed mean +/- std)\\n\\n| Model | Features | AUROC | Selection F1 |\\n|-------|----------|-------|-------------|\\n| Best single (EM) | 1 | 0.6476 | 0.6470 (LP) |\\n| LR | 5 | 0.6522 +/- 0.0130 | 0.6406 +/- 0.0010 |\\n| MLP | 5 | 0.6393 +/- 0.0209 | 0.6377 +/- 0.0031 |\\n| RF | 5 | 0.5868 +/- 0.0208 | 0.6133 +/- 0.0120 |\\n| MLP | 15 | 0.6322 +/- 0.0165 | 0.6339 +/- 0.0079 |\\n| RF | 15 | 0.6043 +/- 0.0314 | 0.6143 +/- 0.0148 |\\n| Greedy | - | - | 0.6441 |\\n| Oracle | - | - | 0.8231 |\\n\\n## Key Findings\\n\\n1. **MLP ~ LR on 5 features** (AUROC delta=-0.0129): nonlinear model does NOT improve over LR. Features are the bottleneck, not model capacity.\\n2. **RF underperforms** both LR and MLP (AUROC=0.5868), likely overfitting to noise with limited features.\\n3. Interaction features (15-feat): MLP delta=-0.0071, RF delta=+0.0175 - marginal or no gain.\\n4. Best supervised AUROC=0.6522 vs best single signal=0.6476 (delta=+0.0046)\\n5. Best supervised selection F1=0.6406 vs best unsup=0.6470 (delta=-0.0064)\\n\\n## Conclusion\\n\\n**Features are the bottleneck, not model capacity.** MLP and RF fail to improve over simple LR on 5 signals, and even LR barely beats the best single signal (EM). This confirms that the 5 instance-level aggregates (SJ, FK, LP, EM, VC) have limited discriminative information that cannot be unlocked by nonlinear models or interaction terms. Future work should focus on richer features (e.g., per-sample structural patterns, entity-level signals) rather than more complex classifiers.",
+              "content_filename": "report.md",
+              "tags": "['verifier', 'mlp', 'random-forest', 'ablation', 'feature-bottleneck']"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-16T13:45:24.405370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_4901b1\\\", \\\"name\\\": \\\"exp-027 MLP+RF Verifier Results\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"MLP and Random Forest verifiers on 5 confidence signals vs LR baseline. Key finding: features are the bottleneck, not model capacity. MLP/RF fail to beat LR (AUROC 0.639/0.587 vs 0.652). Interactions (15-feat) provide no gain.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/exp_027/report/report.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": \\\"exp_027\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T13:45:15.346345+00:00\\\", \\\"tags\\\": [\\\"verifier\\\", \\\"mlp\\\", \\\"random-forest\\\", \\\"ablation\\\", \\\"feature-bottleneck\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-16T13:45:24.405545+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结论：\n\n**特征是瓶颈，不是模型容量。**\n\n| Model | Features | AUROC | Selection F1 |\n|-------|----------|-------|-------------|\n| Best single (EM) | 1 | 0.6476 | 0.6470 (LP) |\n| LR | 5 | **0.6522** | **0.6406** |\n| MLP | 5 | 0.6393 | 0.6377 |\n| RF | 5 | 0.5868 | 0.6133 |\n| MLP | 15 | 0.6322 | 0.6339 |\n| RF | 15 | 0.6043 | 0.6143 |\n\n- MLP ≈ LR（Δ=-0.013），RF 更差（过拟合）\n- 15-feat interactions 无增益\n- LR 仅比最佳单信号高 +0.005 AUROC\n- 所有 supervised verifier 的 selection F1 都没超过 unsupervised LP baseline（0.647）\n\n输出已保存到 `/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/`（results.json, report.md, train_mlp_verifier.py）并注册为 artifact。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_027_mlp_verifier_20260516T133606"
+          },
+          "id": "event-000089"
+        }
+      ],
+      "message_count": 89
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-exp-027-mlp-verifier.md"
+}

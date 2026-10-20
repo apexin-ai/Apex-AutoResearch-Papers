@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42e0c760f32782f11195",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis fewnerd conll 3seed aggregation",
+  "task_key": "worker_analysis_fewnerd_conll_3seed_aggregation_20260518T120508",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_fewnerd_conll_3seed_aggregation_20260518T120508_result.json",
+    "occurrence": 1,
+    "bytes": 2634,
+    "sha256": "bddaf3c5056dc148dfcab5dc609fa3473f6025c57158bad5a1e9bfa4f369da26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 `full_signal_analysis.json` 已生成。现在汇总所有数据。\n\n以下是从实际分析文件中提取的完整 3-seed 汇总：\n\n```\n=== Few-NERD 3-seed Summary (Qwen3-8B, N=8) ===\n```\n\n| Metric | seed=42 | seed=123 | seed=456 | Mean±Std |\n|--------|---------|----------|----------|----------|\n| greedy_f1 | 0.7478 | 0.7480 | 0.7486 | 0.7482±0.0003 |\n| oracle_f1 | 0.8719 | 0.8772 | 0.8751 | 0.8747±0.0022 |\n| headroom_pp | 12.40 | 12.92 | 12.65 | 12.66±0.21 |\n| degeneracy_rate (%) | 10.13 | 9.37 | 8.24 | 9.25±0.77 |\n| lp_sel_f1 | 0.7614 | 0.7624 | 0.7623 | 0.7620±0.0005 |\n| **lp_delta_pp** | **+1.36** | **+1.44** | **+1.37** | **+1.39±0.04** |\n| LP auroc | 0.5782 | 0.5767 | 0.5768 | 0.5772±0.0007 |\n| LP rho (global) | 0.4215 | 0.4223 | 0.4206 | 0.4215±0.0007 |\n| SJ rho | 0.3002 | 0.3203 | 0.3268 | 0.3158±0.0113 |\n| FK rho | 0.3132 | 0.3420 | 0.3361 | 0.3304±0.0123 |\n| EM rho | 0.2871 | 0.3230 | 0.3078 | 0.3060±0.0147 |\n| VC rho | 0.3858 | 0.3633 | 0.3943 | 0.3811±0.0131 |\n| SJ auroc | 0.5197 | 0.5254 | 0.5263 | 0.5238±0.0029 |\n| FK auroc | 0.5210 | 0.5272 | 0.5295 | 0.5259±0.0036 |\n| EM auroc | 0.5137 | 0.5172 | 0.5233 | 0.5181±0.0040 |\n| VC auroc | 0.5354 | 0.5359 | 0.5412 | 0.5375±0.0026 |\n| within_instance_rho (LP cond.) | 0.4225 | 0.4274 | 0.4329 | 0.4276±0.0043 |\n\n```\n=== CoNLL 3-seed Summary (Qwen3-8B, N=8) ===\n```\n\n| Metric | seed=42 | seed=123 | seed=456 | Mean±Std |\n|--------|---------|----------|----------|----------|\n| greedy_f1 | 0.9079 | 0.9077 | 0.9070 | 0.9075±0.0004 |\n| oracle_f1 | 0.9483 | 0.9476 | 0.9453 | 0.9471±0.0013 |\n| headroom_pp | 4.04 | 3.99 | 3.84 | 3.96±0.09 |\n| degeneracy_rate (CF1) | 0.5914 | 0.6303 | 0.6288 | 0.6168±0.0180 |\n| lp_sel_f1 | 0.8974 | 0.8999 | 0.8997 | 0.8990±0.0011 |\n| **lp_delta_pp** | **-1.05** | **-0.77** | **-0.73** | **-0.85±0.14** |\n| SJ delta_pp | -0.89 | -0.56 | -0.45 | -0.63±0.19 |\n| FK delta_pp | -0.91 | -0.53 | -0.51 | -0.65±0.18 |\n| EM delta_pp | -1.07 | -0.66 | -0.73 | -0.82±0.18 |\n| VC delta_pp | -1.29 | -0.37 | -0.68 | -0.78±0.38 |\n\n**关键发现：**\n- **Few-NERD LP Δ = +1.39±0.04pp** — 三个 seed 一致正向，非常稳定（std 仅 0.04）\n- **CoNLL LP Δ = -0.85±0.14pp** — 三个 seed 一致负向，LP 选择在高退化率数据集上不 work\n- Few-NERD 中 LP 是唯一正向 signal；CoNLL 中所有 signal 都负向，但 LP 表现与 SJ/FK 相当\n- 实际数据确认：seed=42 LP Δ=+1.36pp（非+1.36，精确为+1.3551），seed=123 LP Δ=+1.44pp，seed=456 LP Δ=+1.37pp，与任务描述中的已知值一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fewnerd-conll-3seed-aggregation.md"
+}

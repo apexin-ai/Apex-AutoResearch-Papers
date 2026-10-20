@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7108cb4d86251ae66e34",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5090c cuda3 pending exp",
+  "task_key": "worker_ssh_5090c_cuda3_pending_exp_20260521T181022",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090c_cuda3_pending_exp_20260521T181022_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "643b246e0d6f8b0f2aeb7bf38990b0411c9121445707d9d82d8abda36ce04bb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动，模型正在加载到 cuda:3（15397 MiB）。\n\n**状态总结：**\n- **e2_fewnerd_s42** — 刚启动在 cuda:3，tmux session `e2_fewnerd_s42`，vLLM 正在加载 Qwen2.5-7B-Instruct\n- **e2_fewnerd_s456** — 已有另一个 session `exp_e2_pretrained_fewnerd_s456` 在 cuda:2 上运行（30233 MiB）\n\nE2 pretrained 实验完成情况：\n| 数据集 | s42 | s123 | s456 |\n|--------|-----|------|------|\n| CoNLL | ✅ 3453 | ✅ 3453 | ✅ 3453 |\n| SciERC | ✅ 551 | ✅ 551 | ✅ 551 |\n| FewNERD | ⏳ 刚启动 | ✅ 37648 | ⏳ 另一session运行中 |\n\nFewNERD s42 预计约 37k samples，需数小时完成。日志路径：`output/e2_pretrained_fewnerd_s42.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5090c-cuda3-pending-exp.md"
+}

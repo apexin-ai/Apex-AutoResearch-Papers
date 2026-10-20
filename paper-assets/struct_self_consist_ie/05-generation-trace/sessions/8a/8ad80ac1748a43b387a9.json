@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ad80ac1748a43b387a9",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code prep server b 5090b",
+  "task_key": "worker_code_prep_server_b_5090b_20260519T062027",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prep_server_b_5090b_20260519T062027_result.json",
+    "occurrence": 1,
+    "bytes": 2255,
+    "sha256": "be113a997e603cd2516d6d76cd36a76a012cf40eb4e45645f4b5b892b56dedb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks complete. Here's the summary:\n\n---\n\n## autodl-5090-b 环境检查报告\n\n### 1. 磁盘空间\n- **总量** 350GB，**已用** 66GB，**可用** 285GB\n- 当前占用：`struct_self_consist_ie` 50GB\n- **充足**，Qwen2.5-72B 4-bit (~40GB) + 推理输出 (~5GB) 无问题\n\n### 2. GPU 状态\n- **4x RTX 5090**，每卡 32GB VRAM，当前全部空闲 (0% utilization, 2MiB used)\n- 72B 4-bit tensor parallel 4卡 ~10GB/卡，**完全可行**\n\n### 3. Qwen2.5-72B 模型\n- **未下载**。当前只有 Qwen3-8B（及其 LoRA/merged checkpoints）\n- 需要下载 `Qwen/Qwen2.5-72B-Instruct-AWQ` 或 `GPTQ-Int4` 量化版（~40GB）\n- 预计下载时间：取决于网络，autodl 内网有加速，通常 20-40 分钟\n\n### 4. 推理环境（需 `source env.sh`）\n| 组件 | 版本 |\n|------|------|\n| Python | 3.12.3 |\n| PyTorch | 2.10.0+cu128 |\n| transformers | 4.57.1 |\n| vLLM | 0.18.1 |\n| bitsandbytes | 0.49.2 |\n\nvLLM 0.18.1 支持 AWQ/GPTQ 4-bit + tensor parallel，**环境就绪**。\n\n### 5. 数据集\n三个数据集均已存在：\n- `scierc/` — processed_data 目录\n- `conll2003/` — train/dev/test JSON + llmfactory 格式\n- `fewnerd/` — train/dev/test JSON + llmfactory 格式\n\n### 6. 推理代码\n- `run_mvp_pilot.py` 已存在，支持 `--dataset`, `--tensor_parallel`, `--temperature`, `--n_samples` 等参数\n- `sampling.py` 含完整 prompt 模板（NER/RE/Full/Train-aligned）和 vLLM sampler\n- 现有 prompt 是面向 fine-tuned 模型的 UIE 格式，**72B zero-shot 推理可能需要调整 prompt**（Qwen2.5-72B-Instruct 没有经过 UIE 格式微调）\n\n### 7. 可行性评估\n\n| 项目 | 状态 |\n|------|------|\n| 磁盘 | OK (285GB free) |\n| GPU | OK (4x 5090, 128GB total VRAM) |\n| 软件栈 | OK (vLLM 0.18.1 + transformers 4.57.1) |\n| 数据 | OK (3/3 datasets present) |\n| 代码 | OK (pipeline ready) |\n| 模型 | **需下载** (~40GB) |\n| Prompt | **可能需调整** (现有 prompt 为 fine-tuned UIE 格式，zero-shot 72B 可能需要更详细的 instruction 或 few-shot examples) |\n\n### 待执行\n1. 下载 Qwen2.5-72B 4-bit 量化模型（AWQ 推荐，vLLM 原生支持）\n2. 评估是否需要为 zero-shot 场景调整 prompt template"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-server-b-5090b.md"
+}

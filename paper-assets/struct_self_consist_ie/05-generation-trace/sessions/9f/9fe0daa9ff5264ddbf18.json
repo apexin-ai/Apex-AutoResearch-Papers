@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fe0daa9ff5264ddbf18",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "eval exp 003 wnut17 infer",
+  "task_key": "worker_eval_exp_003_wnut17_infer_20260514T134612",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp_003_wnut17_infer_20260514T134612_result.json",
+    "occurrence": 1,
+    "bytes": 337,
+    "sha256": "ac4994abf9ad28ed2aad8d9205db9847de324c1c7f759e29923fe6bb59a8b9ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交，registry 已更新为 RUNNING。\n\n**总结：**\n- tmux 会话 `exp003_wnut17_eval` 在 autodl-5090 cuda:1 上运行\n- 模型：`qwen3-8b-wnut17-merged`，数据：WNUT-17（1287 test），N=16, T=1.0, seed=42\n- 日志：`output/exp003_wnut17_eval.log`\n- Registry：`exp_003_wnut17_eval` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-003-wnut17-infer.md"
+}

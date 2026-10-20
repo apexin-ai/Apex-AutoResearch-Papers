@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5aee47e74503a07caf86",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis 3seed summary",
+  "task_key": "worker_analysis_3seed_summary_20260514T183119",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_3seed_summary_20260514T183119_result.json",
+    "occurrence": 1,
+    "bytes": 1801,
+    "sha256": "9e2104d13b11e3412f01355410a0fd85b0f32ed519196a9035da7cf037ced257"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### Spearman ρ — Full (n=529)\n\n| Signal | seed42 | seed123 | seed456 | Mean±SD |\n|-------------|--------|---------|---------|--------------|\n| voting_conf | 0.441 | 0.413 | 0.411 | **0.422±0.017** |\n| SJ | 0.428 | 0.424 | 0.384 | **0.412±0.025** |\n| EM | 0.335 | 0.337 | 0.316 | 0.329±0.011 |\n| FK | 0.281 | 0.275 | 0.223 | 0.260±0.032 |\n| logprob | 0.219 | 0.251 | 0.232 | 0.234±0.016 |\n\n### Spearman ρ — Conditional (n≈477–479)\n\n| Signal | seed42 | seed123 | seed456 | Mean±SD |\n|-------------|--------|---------|---------|--------------|\n| EM | 0.415 | 0.404 | 0.406 | **0.408±0.006** |\n| SJ | 0.369 | 0.376 | 0.349 | **0.365±0.014** |\n| voting_conf | 0.353 | 0.339 | 0.346 | 0.346±0.007 |\n| FK | 0.193 | 0.178 | 0.157 | 0.176±0.019 |\n| logprob | 0.156 | 0.173 | 0.171 | 0.166±0.009 |\n\n### AUROC — Full / Conditional\n\n| Signal | Full Mean±SD | Cond Mean±SD |\n|-------------|---------------|---------------|\n| EM | **0.780±0.011** | **0.788±0.009** |\n| SJ | 0.728±0.015 | 0.713±0.013 |\n| voting_conf | 0.721±0.012 | 0.701±0.010 |\n| FK | 0.605±0.025 | 0.585±0.023 |\n| logprob | 0.596±0.010 | 0.577±0.008 |\n\n### 关键结论\n\n- **structural > surface: 3/3 seeds**，全部一致\n- **信号排序跨 seed 高度一致**：Top-3 (EM, SJ, voting_conf) vs Bottom-2 (FK, logprob) 在所有 seed 和两个 split 中无例外\n- **Conditional 排序完全一致**：EM > SJ > voting_conf > FK > logprob，3 个 seed 零差异\n- **EM 是最佳二分类器**（AUROC 0.780/0.788），但 ρ 排第 3；**voting_conf/SJ 是最佳连续预测器**（ρ 0.422/0.412）\n- SD 极小（多数 <0.02），说明采样随机性对信号排序影响可忽略\n\n产出已保存到 `artifacts/3seed_summary/` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-3seed-summary-copy-2.md"
+}

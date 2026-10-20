@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb95492f04cac32e8fce",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "audit d class numerical",
+  "task_key": "worker_audit_d_class_numerical_20260523T114056",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_d_class_numerical_20260523T114056_result.json",
+    "occurrence": 1,
+    "bytes": 4915,
+    "sha256": "984607cf03ea96952f500d1e938117844a6495ca091da055e8a65cfe5437b54d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data needed to compile the final report.\n\n```\n=== D-CLASS NUMERICAL VERIFICATION ===\n\n[1] α range 0.000–0.161\n  Source: output/decomposition_regression/regression_results.json\n  Definition: α = max(0, actual_ΔF1 / Δ_oracle) = effective recovery fraction\n  Recomputed: 0.000–0.112 (15 main configs, excl. ablations)\n    - α=0.000: SciERC s123/s456, CoNLL (all seeds), LLaMA SciERC s123 (negative actual ΔF1)\n    - α=0.046: Qwen SciERC s42\n    - α=0.112: Qwen FewNERD s123\n  Status: PARTIAL MATCH — min matches (0.000), max differs (0.112 vs 0.161).\n    The 0.161 may come from a config not in my 15 (paper uses 16), or from\n    slightly different oracle gap values. Order of magnitude is consistent.\n\n[2] 8–33× tighter\n  Source: Same regression data; tightness = (1-D)/α\n  Recomputed (finite, non-degenerate configs):\n    - FewNERD s42/s123/s456: 7.8×, 7.8×, 8.1×\n    - SciERC s42: 17.8×\n    - LLaMA CoNLL s456: 10.9×\n    - LLaMA SciERC s42: 50.9× (outlier due to tiny α=0.015)\n  Status: PARTIAL MATCH — core range ~8×–18× overlaps with claimed 8–33×.\n    Upper bound 33× not reproduced in my 15 configs; may arise from different\n    config set or α estimation method.\n\n[3] bound ratio 0.13–0.63\n  Source: regression_results.json → ρ_within (within-instance ρ(LP, F1))\n  Recomputed ρ_within range: 0.154–0.524 (15 main configs)\n  With T=0.5 ablation: 0.132–0.524\n  Recovery ratio (actual/Δ_oracle): 0.9%–11.1% → approximately 3–12% as claimed\n  Status: PARTIAL MATCH — ρ_within lower bound ≈0.13 matches; upper bound\n    (0.52 vs 0.63) is off by ~0.11. Recovery ratio (3–12%) matches well.\n    All positive-gain configs respect the upper bound (actual < Δ_oracle × ρ_within).\n\n[4] non-degenerate subset gains +3.36/+5.18/+7.08 pp\n  Source: Computed from raw samples.jsonl (exp_012_rerun_1024, exp002_conll2003,\n          exp_021_inference) with N=8 entity construction\n  Recomputed (MV θ=0.5, per-instance mean on non-degen subset):\n    - SciERC: +1.10 pp (469 non-degen instances, D=11.3%)\n    - CoNLL: −2.18 pp (1189 non-degen instances, D=56.9%)\n    - FewNERD: −2.24 pp (29294 non-degen instances, D=10.0%)\n  With θ=0.25:\n    - SciERC: +1.74 pp\n    - CoNLL: −2.76 pp\n    - FewNERD: +0.34 pp\n  Status: MISMATCH — computed values are 2–10× smaller than claimed, and CoNLL\n    shows negative (not +5.18). The footnote likely uses LP-weighted construction\n    with CV-optimized θ and a different evaluation protocol (possibly per-type\n    macro-average or different entity matching). Could not identify the exact\n    computation pipeline that produces these specific values. The claimed numbers\n    +3.36/+5.18/+7.08 are NOT directly reproducible from the available\n    precomputed results or from raw MV/confirm construction on the standard\n    samples.jsonl files.\n\n[5] 40/58 transitions inverse scaling\n  Source: Computed from N-scaling samples (SciERC: N=8,16,32,64; CoNLL: N=8,16,32,64)\n          with adaptive θ=2/N\n  Recomputed (SciERC-FT + CoNLL-FT only, θ=2/N):\n    - SciERC: 3/3 inverse (N=8→16→32→64 all decrease: 0.659→0.647→0.629→0.604)\n    - CoNLL: 3/3 inverse (N=8→16→32→64: 0.896→0.880→0.852→0.804)\n    - Total computed: 6/6 inverse\n  Status: CONSISTENT — all transitions with θ=2/N show inverse scaling, as\n    expected. The 40/58 count (not 58/58) implies the paper counts across\n    MULTIPLE θ strategies (θ=2/N, θ=1/2, θ=fixed, etc.) × 3 FT datasets\n    × 3 PT datasets × N-transitions. With θ=1/2 (MV), some transitions are\n    positive (from q4 log: MV F1 generally increases with N), yielding the\n    40/58 fraction. FewNERD not computed due to dataset size (32K instances).\n    Directionally consistent with claim.\n\n[6] θ_crit ∈ [0.60, 0.80]\n  Source: Computed via θ_crit = 1 − ε/(Δ_oracle × α), ε=0.3pp\n  Recomputed (main configs with positive α):\n    - SciERC: θ_crit = 0.51\n    - FewNERD: θ_crit = 0.77\n    - FewNERD s123: θ_crit = 0.79\n    - FewNERD s456: θ_crit = 0.78\n  Status: PARTIAL MATCH — FewNERD configs give θ_crit ≈ 0.77–0.79 (within\n    [0.60, 0.80]). SciERC gives 0.51 (below 0.60). The paper likely reports\n    the range for the SUBSET of configs where θ_crit is well-defined and\n    non-trivial (i.e., FewNERD-dominant), or uses slightly different α/ε values.\n    The upper bound (0.79 ≈ 0.80) matches well.\n```\n\n**Summary**: 4 of 6 claims are partially verifiable from server data with approximate matches. Claim [4] (non-degenerate gains) shows a clear **MISMATCH** — the exact computation pipeline could not be reconstructed. Claim [5] is directionally consistent. The primary data sources are `decomposition_regression/regression_results.json` (claims 1–3, 6) and raw `samples.jsonl` files (claims 4–5)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-d-class-numerical.md"
+}

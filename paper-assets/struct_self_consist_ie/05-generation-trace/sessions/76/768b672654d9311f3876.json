@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "768b672654d9311f3876",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis re nonzero selection",
+  "task_key": "worker_analysis_re_nonzero_selection_20260515T071419",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_re_nonzero_selection_20260515T071419_result.json",
+    "occurrence": 1,
+    "bytes": 700,
+    "sha256": "1610845519549e04f5c5c7f74083e8aaa38aea7cef7f58c527078a9a33b528f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果写入 `artifacts/re_nonzero_selection_analysis.md`。\n\n关键发现：\n\n- 551 个 instance 中仅 238 个 (43.2%) 有非零 RE greedy F1\n- **全部 5 个信号在两个子集上都无法超过 greedy**（所有 gain 为负，p=1.0）\n- **非零子集上 selection 更差**，gain 幅度是全集的 5-10 倍（如 VC: -0.1005 vs -0.0325），因为 greedy 在非零子集上已经很强 (F1=0.6743)，信号主动选了更差的样本\n- Zero-F1 instance 并未拉低信号表现，反而起到了缓冲作用（选错也无所谓，greedy 本来就是 0）\n- Oracle gap 仍然存在 (0.7574 vs 0.6743)，说明有改进空间，但当前信号无法利用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-re-nonzero-selection.md"
+}

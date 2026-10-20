@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d20aa3c5b25741726daa",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis fk independence tost fix",
+  "task_key": "worker_analysis_fk-independence-tost-fix_20260515T215445",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_fk-independence-tost-fix_20260515T215445.log",
+    "occurrence": 1,
+    "bytes": 710146,
+    "sha256": "13cc451bfd2a55e40bfdade821e99460199f1e7728b17bb8326e0d3905488489"
+  },
+  "statistics": {
+    "messages": 271,
+    "user_turns": 0,
+    "tool_calls": 107,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 107,
+      "tool_result": 107,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 271,
+      "chunks": [
+        {
+          "path": "d20aa3c5b25741726daa-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d20aa3c5b25741726daa-part-0002.json",
+          "message_count": 91
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-fk-independence-tost-fix.md"
+}

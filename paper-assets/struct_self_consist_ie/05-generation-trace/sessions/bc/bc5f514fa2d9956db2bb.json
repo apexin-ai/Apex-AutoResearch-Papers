@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc5f514fa2d9956db2bb",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "director / loop_10.md",
+  "task_key": "loop_10",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/director/loop_10.md",
+    "occurrence": 1,
+    "bytes": 3531,
+    "sha256": "741d968168cc6ddcfec7954b3b6ebdb07d2abc9cee5fe67c6f8702fa2f6a2576"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: max_messages\nupdated: '2026-05-21T04:42:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- Probe AUROC 只能引用 GroupKFold 数字（CoNLL 0.882, FewNERD 0.636, SciERC 0.630）。StratifiedKFold 数字（0.920/0.957/0.977/0.980）因 entity-level CV leakage 已作废，任何场景都不能引用\n- 论文中 \"majority vote\" vs \"LP-weighted\" 标签已修正过一次（D214 claim audit CRITICAL），不要回退\n- LSC baselines: greedy=0.794, MV=0.792, oracle=0.882。之前被错写为 greedy 0.779 / MV 0.837 / oracle 0.867，已修正\n- GPU 白名单：autodl-5090 (cuda:0-3), autodl-5090-b (cuda:0-3), autodl-5090-c (cuda:0-3)，共 12 卡\n\n### 2. 🖥️ 基础设施快照\n- 服务器 3 台：autodl-5090 / autodl-5090-b / autodl-5090-c\n- 工作目录：/root/autodl-tmp/struct_self_consist_ie\n- 论文本地路径：projects/struct_self_consist_ie/docs/paper/（main.tex 入口）\n- GroupKFold 最终数据：服务器 output/entity_probe_fulldata/groupkfold_probe_results.json\n- 本地 artifact：artifacts/exp_hidden_state_probe/data/groupkfold_probe_results.md（500-inst 子集，仅参考）\n- 活跃进程：FewNERD T=0.5/1.2 s456 (5090-b), 7B N=16 (5090-c:2), 14B FewNERD (5090-c:0), 8 GPU 填充 Worker 正在启动\n\n### 3. 📊 当前状态\n刚完成：Narrative B 补丁（probe GroupKFold 数字 + 复杂度依赖 introspection boundary）已落地到论文全部 11 处。编译通过，8 页正文，0 critical warnings。\n\n已提交 pre-submission 审稿（apr_20260521T042646_3z9n, continue 模式），等用户审批卡片。\n\nAgent 刚报告：32B FewNERD 完成（greedy 0.800, oracle 0.879），T-ablation 3-seed 大部分完成（FewNERD T=0.5/1.2 s456 还在跑），CoNLL N=16 PASS。12 个实验批量更新到 registry。\n\nRESET_BOTH 已批准，本 handoff 后 Agent 和 Director 都会重建 session。\n\n### 4. 📋 待办\n- 用户审批审稿卡片 → Review 团队启动最终审查 → 收到审稿报告后按 review-report-action skill 处理\n- FewNERD T=0.5/1.2 s456 完成 → 3-seed T-ablation 表完整，更新论文 mean±std\n- 14B FewNERD 完成 → 分析 scale curve（8B vs 14B vs 32B），决定是否写入论文\n- 7B N=16 完成 → N-scaling curve 数据点补全\n- Review 团队报告页面超限 → Paper Agent 处理 page fitting（当前正文约 8.3 页，Conclusion 在第 8-9 页边界）\n- Reviewer #23 flagged degeneracy 不一致（FewNERD T=1.2 = 24.7% vs discussion.tex SciERC T=1.2 = 14.9%）→ 已确认无误，两个是不同数据集，discussion.tex line 4 的 14.9% 是 SciERC（Table tab:t_degeneracy 明确标注 SciERC）\n\n### 5. 🎯 战略上下文\n- DDL 2026-05-25（~4 天）。论文核心内容已完成，当前在 polish + 补充实验阶段\n- 核心贡献：correlation-selection gap（4-stage diagnostic cascade）+ self-verification ceiling（7 methods all fail）+ introspection boundary（probe 0.63-0.88, complexity-dependent）+ prescriptive escape routes（LP construction +1.40pp, cross-model +0.42pp, LP selection +1.39pp）\n- D216 决策：introspection boundary 是 complexity-dependent（Narrative B），不是 \"probe >> MV\"（旧 Narrative A）\n- API 余额耗尽 — Frontier SC 实验（GPT-5.5 等）被阻塞，用户多次被问但未解决\n- 易错点：(1) 不要把 appendix tab:t_degeneracy 的 SciERC 数字和 FewNERD 数字混淆 (2) CoNLL probe 0.882 vs MV 0.87 是 borderline，论文用 \"only marginally exceeds\" 措辞 (3) 32B 是 Qwen2.5-72B zero-shot（论文写 72B），不是 Qwen3-32B\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10.md"
+}

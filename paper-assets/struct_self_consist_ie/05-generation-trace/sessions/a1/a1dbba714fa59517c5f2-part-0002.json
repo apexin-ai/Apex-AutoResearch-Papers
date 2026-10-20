@@ -1,0 +1,1565 @@
+{
+  "schema_version": "1.0",
+  "session_id": "a1dbba714fa59517c5f2",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-18T04:07:13.781Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015nTgnUfgJr9AojV6BntGAt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"dataset: scierc\\\\nsubtask: joint\\\\nn_samples: 1\\\\ntemperature: 0.01\\\\nnum_instances: 551\\\\nuse_train_format: True\\\\nner_greedy_f1: 0.6475458308693081\\\\nner_oracle_f1: 0.649450875630751\\\\nner_oracle_headroom: 0.0019050447614429311\\\\nner_fleiss_kappa_mean: 1.0\\\\nner_soft_jaccard_mean: 1.0\\\\nner_n_gold_empty_filtered: 22\\\\nner_n_all_samples_f1_zero_filtered: 48\\\\nner_structural_beats_surface: False\\\\nner_rho_advantage: nan\\\\nner_sample_f1_mean: 0.6146311107371212\\\\nner_sample_f1_std: 0.3225477508488613\\\\nner_sample_f1_pct_zero: 12.704174228675136\\\\nre_greedy_f1: 0.3793445878848064\\\\nre_oracle_f1: 0.37618809404702347\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "0d0a7933-6b2f-4a3c-8ad5-cee8b69455f3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"dataset: scierc\\\\nsubtask: joint\\\\nn_samples: 1\\\\ntemperature: 0.01\\\\nnum_instances: 551\\\\nuse_train_format: True\\\\nner_greedy_f1: 0.6475458308693081\\\\nner_oracle_f1: 0.649450875630751\\\\nner_oracle_headroom: 0.0019050447614429311\\\\nner_fleiss_kappa_mean: 1.0\\\\nner_soft_jaccard_mean: 1.0\\\\nner_n_gold_empty_filtered: 22\\\\nner_n_all_samples_f1_zero_filtered: 48\\\\nner_structural_beats_surface: False\\\\nner_rho_advantage: nan\\\\nner_sample_f1_mean: 0.6146311107371212\\\\nner_sample_f1_std: 0.3225477508488613\\\\nner_sample_f1_pct_zero: 12.704174228675136\\\\nre_greedy_f1: 0.3793445878848064\\\\nre_oracle_f1: 0.37618809404702347\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"dataset: scierc\\nsubtask: joint\\nn_samples: 1\\ntemperature: 0.01\\nnum_instances: 551\\nuse_train_format: True\\nner_greedy_f1: 0.6475458308693081\\nner_oracle_f1: 0.649450875630751\\nner_oracle_headroom: 0.0019050447614429311\\nner_fleiss_kappa_mean: 1.0\\nner_soft_jaccard_mean: 1.0\\nner_n_gold_empty_filtered: 22\\nner_n_all_samples_f1_zero_filtered: 48\\nner_structural_beats_surface: False\\nner_rho_advantage: nan\\nner_sample_f1_mean: 0.6146311107371212\\nner_sample_f1_std: 0.3225477508488613\\nner_sample_f1_pct_zero: 12.704174228675136\\nre_greedy_f1: 0.3793445878848064\\nre_oracle_f1: 0.37618809404702347\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UzN6HkwnTY2rhbwGnzQagm",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cd /root/autodl-tmp/struct_self_consist_ie && grep -rn \"0\\.614[^0-9]\" output/ --include=\"*.py\" --include=\"*.md\" 2>/dev/null | head -10",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "9c58a4c3-a537-48ef-b353-a5bf09e0a568",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GSr5bV2Ki8C3wC1Sdsi7ac",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4843,
+                "cache_read_input_tokens": 92230,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4843
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-18T04:07:14.942Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UzN6HkwnTY2rhbwGnzQagm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "6ab9f9fd-9bcc-4776-b324-71a7ed19ae99",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "OK so `gate0_ft002v2_ckpt400` is n_samples=1, temperature=0.01 - basically a greedy eval of a different checkpoint. Its `ner_sample_f1_mean` = 0.6146 is effectively the \"greedy\" F1 of that checkpoint, and it's computed on all 551 instances (or rather on gold-filtered instances where n_gold_empty=22, so likely on 529 instances but including zero-F1 cases differently).\n\nWait, this report has `ner_sample_f1_mean: 0.6146` which for n_samples=1 at T=0.01 is essentially the model's greedy output. \n\nI'm seeing `ner_greedy_f1: 0.6475` as the micro F1, while the macro F1 is `ner_sample_f1_mean = 0.6146`. But since this is a different checkpoint than what was used in exp_012, these metrics aren't directly comparable.\n\nLooking at the next chunk, rerun_1024 shows `ner_sample_f1_mean: 0.6077`, confirming these are different checkpoints. I'm wondering if the SCIERC_REF greedy values are coming from gate0_ft002v2_ckpt400, which would be inconsistent with the main experiments. Let me trace back to see which checkpoint d108_greedy_f1 actually used, since it had `sample_f1_mean: 0.6146311107371212`.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "d4a3fefa-f18a-4527-b07d-91d439ae1534",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WKjsJwPsJR3BaCdChLUj97",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1335,
+                "cache_read_input_tokens": 97073,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1335
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019B5MhZtEqfRHEAumHUoBpS",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json\nd = json.load(open('output/d108_greedy_f1/results.json'))\n# Find the exp_012 entry\nfor entry in d:\n    if 'exp_012' in entry.get('exp_dir', ''):\n        print(json.dumps(entry, indent=2))\n\" | head -30",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "931a5d16-52f5-4bd9-96c2-2d6eee542168",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WKjsJwPsJR3BaCdChLUj97",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1335,
+                "cache_read_input_tokens": 97073,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1335
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-18T04:07:33.951Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019B5MhZtEqfRHEAumHUoBpS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp_dir\\\\\\\": \\\\\\\"exp_012_rerun_1024\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-7B\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.6632805497460412,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.6077394535406134,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.7775133848899465\\\\n}\\\\n{\\\\n  \\\\\\\"exp_dir\\\\\\\": \\\\\\\"exp_012_rerun_1024\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-7B\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"re\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.42893018583626313,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.3544350077048391,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.5795918367346938\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "bc7ef8d4-426a-44ce-bbfb-6d54ff922127",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp_dir\\\\\\\": \\\\\\\"exp_012_rerun_1024\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-7B\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.6632805497460412,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.6077394535406134,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.7775133848899465\\\\n}\\\\n{\\\\n  \\\\\\\"exp_dir\\\\\\\": \\\\\\\"exp_012_rerun_1024\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-7B\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"re\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.42893018583626313,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.3544350077048391,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.5795918367346938\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_dir\\\": \\\"exp_012_rerun_1024\\\",\\n  \\\"model\\\": \\\"Qwen2.5-7B\\\",\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"greedy_f1\\\": 0.6632805497460412,\\n  \\\"sample_f1_mean\\\": 0.6077394535406134,\\n  \\\"oracle_f1\\\": 0.7775133848899465\\n}\\n{\\n  \\\"exp_dir\\\": \\\"exp_012_rerun_1024\\\",\\n  \\\"model\\\": \\\"Qwen2.5-7B\\\",\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"re\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"greedy_f1\\\": 0.42893018583626313,\\n  \\\"sample_f1_mean\\\": 0.3544350077048391,\\n  \\\"oracle_f1\\\": 0.5795918367346938\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QguCe3zG7v28du4SFGJf13",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json\nd = json.load(open('output/d108_greedy_f1/results.json'))\n# Find entries with sample_f1_mean near 0.614\nfor entry in d:\n    sfm = entry.get('sample_f1_mean', 0)\n    gf = entry.get('greedy_f1', 0)\n    if abs(sfm - 0.6146) < 0.001 or abs(gf - 0.614) < 0.001:\n        print(json.dumps(entry, indent=2))\n\" | head -40",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "02dcc642-54c2-410f-b0ab-eb42b4287011",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WKjsJwPsJR3BaCdChLUj97",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1335,
+                "cache_read_input_tokens": 97073,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1335
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-18T04:07:45.237Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QguCe3zG7v28du4SFGJf13",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp_dir\\\\\\\": \\\\\\\"exp_001_seed456_v2_ner\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-7B\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 16,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.6638905413444378,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.6139313815531879,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.8111510791366907\\\\n}\\\\n{\\\\n  \\\\\\\"exp_dir\\\\\\\": \\\\\\\"exp_re_scierc_seed123\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-7B\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.6634844868735084,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.6153279694157351,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.7864366448542535\\\\n}\\\\n{\\\\n  \\\\\\\"exp_dir\\\\\\\": \\\\\\\"gate0_ft002v2_ckpt400\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-7B-ft\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 1,\\\\n  \\\\\\\"temperature\\\\\\\": 0.01,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.6475458308693081,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.6146311107371212,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.649450875630751\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "667775b8-f861-403a-b068-29dd58bbac9d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp_dir\\\\\\\": \\\\\\\"exp_001_seed456_v2_ner\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-7B\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 16,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.6638905413444378,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.6139313815531879,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.8111510791366907\\\\n}\\\\n{\\\\n  \\\\\\\"exp_dir\\\\\\\": \\\\\\\"exp_re_scierc_seed123\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-7B\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.6634844868735084,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.6153279694157351,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.7864366448542535\\\\n}\\\\n{\\\\n  \\\\\\\"exp_dir\\\\\\\": \\\\\\\"gate0_ft002v2_ckpt400\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-7B-ft\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 1,\\\\n  \\\\\\\"temperature\\\\\\\": 0.01,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.6475458308693081,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.6146311107371212,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.649450875630751\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_dir\\\": \\\"exp_001_seed456_v2_ner\\\",\\n  \\\"model\\\": \\\"Qwen2.5-7B\\\",\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 16,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"greedy_f1\\\": 0.6638905413444378,\\n  \\\"sample_f1_mean\\\": 0.6139313815531879,\\n  \\\"oracle_f1\\\": 0.8111510791366907\\n}\\n{\\n  \\\"exp_dir\\\": \\\"exp_re_scierc_seed123\\\",\\n  \\\"model\\\": \\\"Qwen2.5-7B\\\",\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"greedy_f1\\\": 0.6634844868735084,\\n  \\\"sample_f1_mean\\\": 0.6153279694157351,\\n  \\\"oracle_f1\\\": 0.7864366448542535\\n}\\n{\\n  \\\"exp_dir\\\": \\\"gate0_ft002v2_ckpt400\\\",\\n  \\\"model\\\": \\\"Qwen2.5-7B-ft\\\",\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 1,\\n  \\\"temperature\\\": 0.01,\\n  \\\"num_instances\\\": 551,\\n  \\\"greedy_f1\\\": 0.6475458308693081,\\n  \\\"sample_f1_mean\\\": 0.6146311107371212,\\n  \\\"oracle_f1\\\": 0.649450875630751\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I see something important. The d108 results show:\n\n`exp_re_scierc_seed123` (SciERC NER, n=8 samples, T=1.0):\n- greedy_f1 (micro): 0.663\n- sample_f1_mean: 0.6153 \n- oracle_f1: 0.7864\n\nAnd `gate0_ft002v2_ckpt400`:\n- sample_f1_mean: 0.6146\n\nBut neither is 0.614 exactly.\n\nLet me look at this from yet another angle. The values in SCIERC_REF:\n\n\n- greedy: 0.614\n- oracle: 0.752\n- headroom: 13.8\n- lp_rho: 0.205\n- lp_delta: 0.42\n\nThese must be from a different analysis or table altogether. I need to find where that 0.42 LP delta value comes from specifically, and trace back which script or analysis generated these reference values for SciERC.\n\nLooking at the oracle value of 0.752, that matches exp010 at N=8 with seed42 on all 551 instances, which gives an oracle of 0.7522 and greedy of 0.6185 — close to 0.614 but not exact. The exp_012_rerun_1024 is a separate run entirely, so I need to figure out which experiment and configuration actually produced these exact numbers.\n\nThe real issue is that the SCIERC_REF values appear to be pulled from different experiments without consistent sourcing. The oracle and greedy values are internally consistent with each other (the headroom of 13.8 percentage points checks out), but they don't seem to come from the same experimental run as the lp_rho value, which suggests the author mixed results from different analyses without verifying they all came from the same configuration.\n\nLet me look at this differently—maybe the exp_012_rerun_1024 analysis was re-run with different code at some point, or perhaps there's another analysis file that produced that 0.614 greedy score I'm seeing referenced.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "861053a8-b4c5-482e-ac1d-723e28ddf318",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018FC5sNujCbSehY1ak5iEHS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2217,
+                "cache_read_input_tokens": 98408,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2217
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GHCENzFMJcZW2GL8ibEBhF",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json\nd = json.load(open('output/review_round4/logprob_tie_results_n529.json'))\nprint(json.dumps(d, indent=2)[:3000])\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "d92de613-03a2-41c6-bfa3-4ff4acc3d284",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018FC5sNujCbSehY1ak5iEHS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2217,
+                "cache_read_input_tokens": 98408,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2217
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": "2026-05-18T04:08:12.009Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GHCENzFMJcZW2GL8ibEBhF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"filtering\\\\\\\": {\\\\n    \\\\\\\"total\\\\\\\": 551,\\\\n    \\\\\\\"empty_gold\\\\\\\": 22,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"logprob_range\\\\\\\": {\\\\n    \\\\\\\"stats\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.06218863264816551,\\\\n      \\\\\\\"median\\\\\\\": 0.040121078648161536,\\\\n      \\\\\\\"P25\\\\\\\": 0.026459537324479056,\\\\n      \\\\\\\"P75\\\\\\\": 0.068535793140826,\\\\n      \\\\\\\"P90\\\\\\\": 0.12211430813918056,\\\\n      \\\\\\\"P95\\\\\\\": 0.17111163644260913,\\\\n      \\\\\\\"min\\\\\\\": 9.569561941535909e-05,\\\\n      \\\\\\\"max\\\\\\\": 0.6083185912848283,\\\\n      \\\\\\\"std\\\\\\\": 0.06908752812874064\\\\n    },\\\\n    \\\\\\\"instance_tied_by_eps\\\\\\\": {\\\\n      \\\\\\\"0.01\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 6,\\\\n        \\\\\\\"pct\\\\\\\": 1.13\\\\n      },\\\\n      \\\\\\\"0.05\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 319,\\\\n        \\\\\\\"pct\\\\\\\": 60.3\\\\n      },\\\\n      \\\\\\\"0.1\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 444,\\\\n        \\\\\\\"pct\\\\\\\": 83.93\\\\n      },\\\\n      \\\\\\\"0.5\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 526,\\\\n        \\\\\\\"pct\\\\\\\": 99.43\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"full_set\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 529,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.6439,\\\\n    \\\\\\\"logprob_best_f1\\\\\\\": 0.6501,\\\\n    \\\\\\\"sj_best_f1\\\\\\\": 0.6492,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 0.7758\\\\n  },\\\\n  \\\\\\\"non_tied_subsets\\\\\\\": {\\\\n    \\\\\\\"0.05\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 210,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.596,\\\\n      \\\\\\\"logprob_best_f1\\\\\\\": 0.6246,\\\\n      \\\\\\\"sj_best_f1\\\\\\\": 0.6127,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.7421,\\\\n      \\\\\\\"lp_vs_greedy\\\\\\\": {\\\\n        \\\\\\\"mean_gain\\\\\\\": 0.0286,\\\\n        \\\\\\\"p_value\\\\\\\": 0.010358\\\\n      },\\\\n      \\\\\\\"sj_vs_lp\\\\\\\": {\\\\n        \\\\\\\"mean_diff\\\\\\\": -0.0119,\\\\n        \\\\\\\"p_value\\\\\\\": 0.374698\\\\n      },\\\\n      \\\\\\\"sj_vs_greedy\\\\\\\": {\\\\n        \\\\\\\"mean_diff\\\\\\\": 0.0167,\\\\n        \\\\\\\"p_value\\\\\\\": 0.175738\\\\n      }\\\\n    },\\\\n    \\\\\\\"0.1\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 85,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.5779,\\\\n      \\\\\\\"logprob_best_f1\\\\\\\": 0.6148,\\\\n      \\\\\\\"sj_best_f1\\\\\\\": 0.5757,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.7316,\\\\n      \\\\\\\"lp_vs_greedy\\\\\\\": {\\\\n        \\\\\\\"mean_gain\\\\\\\": 0.0369,\\\\n        \\\\\\\"p_value\\\\\\\": 0.079204\\\\n      },\\\\n      \\\\\\\"sj_vs_lp\\\\\\\": {\\\\n        \\\\\\\"mean_diff\\\\\\\": -0.0391,\\\\n        \\\\\\\"p_value\\\\\\\": 0.119161\\\\n      },\\\\n      \\\\\\\"sj_vs_greedy\\\\\\\": {\\\\n        \\\\\\\"mean_diff\\\\\\\": -0.0022,\\\\n        \\\\\\\"p_value\\\\\\\": 0.923365\\\\n      }\\\\n    },\\\\n    \\\\\\\"0.5\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 3,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.6111,\\\\n      \\\\\\\"logprob_best_f1\\\\\\\": 0.5444,\\\\n      \\\\\\\"sj_best_f1\\\\\\\": 0.473,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.6746,\\\\n      \\\\\\\"lp_vs_greedy\\\\\\\": {\\\\n        \\\\\\\"mean_gain\\\\\\\": -0.0667,\\\\n        \\\\\\\"p_value\\\\\\\": 0.678366\\\\n      },\\\\n      \\\\\\\"sj_vs_lp\\\\\\\": {\\\\n        \\\\\\\"mean_diff\\\\\\\": -0.0714,\\\\n        \\\\\\\"p_value\\\\\\\": 0.42265\\\\n      },\\\\n      \\\\\\\"sj_vs_greedy\\\\\\\": {\\\\n        \\\\\\\"mean_diff\\\\\\\": -0.1381,\\\\n        \\\\\\\"p_value\\\\\\\": 0.427916\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"pairwise_ties\\\\\\\": {\\\\n    \\\\\\\"total_pairs\\\\\\\": 14812,\\\\n    \\\\\\\"n_pairs_per_instance\\\\\\\": 28,\\\\n    \\\\\\\"diff_stats\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.022842,\\\\n      \\\\\\\"median\\\\\\\": 0.011655,\\\\n      \\\\\\\"P25\\\\\\\": 0.00457,\\\\n      \\\\\\\"P75\\\\\\\": 0.02595\\\\n    },\\\\n    \\\\\\\"by_eps\\\\\\\": {\\\\n      \\\\\\\"0.001\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 1222,\\\\n        \\\\\\\"total\\\\\\\": 14812,\\\\n        \\\\\\\"pct\\\\\\\": 8.25\\\\n      },\\\\n      \\\\\\\"0.005\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 3979,\\\\n        \\\\\\\"total\\\\\\\": 14812,\\\\n        \\\\\\\"pct\\\\\\\": 26.86\\\\n      },\\\\n      \\\\\\\"0.01\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 6699,\\\\n        \\\\\\\"total\\\\\\\": 14812,\\\\n        \\\\\\\"pct\\\\\\\": 45.23\\\\n      },\\\\n      \\\\\\\"0.02\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 9969,\\\\n        \\\\\\\"total\\\\\\\": 14812,\\\\n        \\\\\\\"pct\\\\\\\": 67.3\\\\n      },\\\\n      \\\\\\\"0.05\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 13259,\\\\n        \\\\\\\"total\\\\\\\": 14812,\\\\n        \\\\\\\"pct\\\\\\\": 89.52\\\\n      },\\\\n      \\\\\\\"0.1\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 14312,\\\\n        \\\\\\\"total\\\\\\\": 14812,\\\\n        \\\\\\\"pct\\\\\\\": 96.62\\\\n      },\\\\n      \\\\\\\"0.2\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 14693,\\\\n        \\\\\\\"total\\\\\\\": 14812,\\\\n        \\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "d8b78fb5-29bf-4196-8e5c-8227e01e2b6e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"filtering\\\\\\\": {\\\\n    \\\\\\\"total\\\\\\\": 551,\\\\n    \\\\\\\"empty_gold\\\\\\\": 22,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"logprob_range\\\\\\\": {\\\\n    \\\\\\\"stats\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.06218863264816551,\\\\n      \\\\\\\"median\\\\\\\": 0.040121078648161536,\\\\n      \\\\\\\"P25\\\\\\\": 0.026459537324479056,\\\\n      \\\\\\\"P75\\\\\\\": 0.068535793140826,\\\\n      \\\\\\\"P90\\\\\\\": 0.12211430813918056,\\\\n      \\\\\\\"P95\\\\\\\": 0.17111163644260913,\\\\n      \\\\\\\"min\\\\\\\": 9.569561941535909e-05,\\\\n      \\\\\\\"max\\\\\\\": 0.6083185912848283,\\\\n      \\\\\\\"std\\\\\\\": 0.06908752812874064\\\\n    },\\\\n    \\\\\\\"instance_tied_by_eps\\\\\\\": {\\\\n      \\\\\\\"0.01\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 6,\\\\n        \\\\\\\"pct\\\\\\\": 1.13\\\\n      },\\\\n      \\\\\\\"0.05\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 319,\\\\n        \\\\\\\"pct\\\\\\\": 60.3\\\\n      },\\\\n      \\\\\\\"0.1\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 444,\\\\n        \\\\\\\"pct\\\\\\\": 83.93\\\\n      },\\\\n      \\\\\\\"0.5\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 526,\\\\n        \\\\\\\"pct\\\\\\\": 99.43\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"full_set\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 529,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.6439,\\\\n    \\\\\\\"logprob_best_f1\\\\\\\": 0.6501,\\\\n    \\\\\\\"sj_best_f1\\\\\\\": 0.6492,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 0.7758\\\\n  },\\\\n  \\\\\\\"non_tied_subsets\\\\\\\": {\\\\n    \\\\\\\"0.05\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 210,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.596,\\\\n      \\\\\\\"logprob_best_f1\\\\\\\": 0.6246,\\\\n      \\\\\\\"sj_best_f1\\\\\\\": 0.6127,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.7421,\\\\n      \\\\\\\"lp_vs_greedy\\\\\\\": {\\\\n        \\\\\\\"mean_gain\\\\\\\": 0.0286,\\\\n        \\\\\\\"p_value\\\\\\\": 0.010358\\\\n      },\\\\n      \\\\\\\"sj_vs_lp\\\\\\\": {\\\\n        \\\\\\\"mean_diff\\\\\\\": -0.0119,\\\\n        \\\\\\\"p_value\\\\\\\": 0.374698\\\\n      },\\\\n      \\\\\\\"sj_vs_greedy\\\\\\\": {\\\\n        \\\\\\\"mean_diff\\\\\\\": 0.0167,\\\\n        \\\\\\\"p_value\\\\\\\": 0.175738\\\\n      }\\\\n    },\\\\n    \\\\\\\"0.1\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 85,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.5779,\\\\n      \\\\\\\"logprob_best_f1\\\\\\\": 0.6148,\\\\n      \\\\\\\"sj_best_f1\\\\\\\": 0.5757,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.7316,\\\\n      \\\\\\\"lp_vs_greedy\\\\\\\": {\\\\n        \\\\\\\"mean_gain\\\\\\\": 0.0369,\\\\n        \\\\\\\"p_value\\\\\\\": 0.079204\\\\n      },\\\\n      \\\\\\\"sj_vs_lp\\\\\\\": {\\\\n        \\\\\\\"mean_diff\\\\\\\": -0.0391,\\\\n        \\\\\\\"p_value\\\\\\\": 0.119161\\\\n      },\\\\n      \\\\\\\"sj_vs_greedy\\\\\\\": {\\\\n        \\\\\\\"mean_diff\\\\\\\": -0.0022,\\\\n        \\\\\\\"p_value\\\\\\\": 0.923365\\\\n      }\\\\n    },\\\\n    \\\\\\\"0.5\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 3,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.6111,\\\\n      \\\\\\\"logprob_best_f1\\\\\\\": 0.5444,\\\\n      \\\\\\\"sj_best_f1\\\\\\\": 0.473,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.6746,\\\\n      \\\\\\\"lp_vs_greedy\\\\\\\": {\\\\n        \\\\\\\"mean_gain\\\\\\\": -0.0667,\\\\n        \\\\\\\"p_value\\\\\\\": 0.678366\\\\n      },\\\\n      \\\\\\\"sj_vs_lp\\\\\\\": {\\\\n        \\\\\\\"mean_diff\\\\\\\": -0.0714,\\\\n        \\\\\\\"p_value\\\\\\\": 0.42265\\\\n      },\\\\n      \\\\\\\"sj_vs_greedy\\\\\\\": {\\\\n        \\\\\\\"mean_diff\\\\\\\": -0.1381,\\\\n        \\\\\\\"p_value\\\\\\\": 0.427916\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"pairwise_ties\\\\\\\": {\\\\n    \\\\\\\"total_pairs\\\\\\\": 14812,\\\\n    \\\\\\\"n_pairs_per_instance\\\\\\\": 28,\\\\n    \\\\\\\"diff_stats\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.022842,\\\\n      \\\\\\\"median\\\\\\\": 0.011655,\\\\n      \\\\\\\"P25\\\\\\\": 0.00457,\\\\n      \\\\\\\"P75\\\\\\\": 0.02595\\\\n    },\\\\n    \\\\\\\"by_eps\\\\\\\": {\\\\n      \\\\\\\"0.001\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 1222,\\\\n        \\\\\\\"total\\\\\\\": 14812,\\\\n        \\\\\\\"pct\\\\\\\": 8.25\\\\n      },\\\\n      \\\\\\\"0.005\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 3979,\\\\n        \\\\\\\"total\\\\\\\": 14812,\\\\n        \\\\\\\"pct\\\\\\\": 26.86\\\\n      },\\\\n      \\\\\\\"0.01\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 6699,\\\\n        \\\\\\\"total\\\\\\\": 14812,\\\\n        \\\\\\\"pct\\\\\\\": 45.23\\\\n      },\\\\n      \\\\\\\"0.02\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 9969,\\\\n        \\\\\\\"total\\\\\\\": 14812,\\\\n        \\\\\\\"pct\\\\\\\": 67.3\\\\n      },\\\\n      \\\\\\\"0.05\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 13259,\\\\n        \\\\\\\"total\\\\\\\": 14812,\\\\n        \\\\\\\"pct\\\\\\\": 89.52\\\\n      },\\\\n      \\\\\\\"0.1\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 14312,\\\\n        \\\\\\\"total\\\\\\\": 14812,\\\\n        \\\\\\\"pct\\\\\\\": 96.62\\\\n      },\\\\n      \\\\\\\"0.2\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 14693,\\\\n        \\\\\\\"total\\\\\\\": 14812,\\\\n        \\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"filtering\\\": {\\n    \\\"total\\\": 551,\\n    \\\"empty_gold\\\": 22,\\n    \\\"n\\\": 529\\n  },\\n  \\\"logprob_range\\\": {\\n    \\\"stats\\\": {\\n      \\\"mean\\\": 0.06218863264816551,\\n      \\\"median\\\": 0.040121078648161536,\\n      \\\"P25\\\": 0.026459537324479056,\\n      \\\"P75\\\": 0.068535793140826,\\n      \\\"P90\\\": 0.12211430813918056,\\n      \\\"P95\\\": 0.17111163644260913,\\n      \\\"min\\\": 9.569561941535909e-05,\\n      \\\"max\\\": 0.6083185912848283,\\n      \\\"std\\\": 0.06908752812874064\\n    },\\n    \\\"instance_tied_by_eps\\\": {\\n      \\\"0.01\\\": {\\n        \\\"count\\\": 6,\\n        \\\"pct\\\": 1.13\\n      },\\n      \\\"0.05\\\": {\\n        \\\"count\\\": 319,\\n        \\\"pct\\\": 60.3\\n      },\\n      \\\"0.1\\\": {\\n        \\\"count\\\": 444,\\n        \\\"pct\\\": 83.93\\n      },\\n      \\\"0.5\\\": {\\n        \\\"count\\\": 526,\\n        \\\"pct\\\": 99.43\\n      }\\n    }\\n  },\\n  \\\"full_set\\\": {\\n    \\\"n\\\": 529,\\n    \\\"greedy_f1\\\": 0.6439,\\n    \\\"logprob_best_f1\\\": 0.6501,\\n    \\\"sj_best_f1\\\": 0.6492,\\n    \\\"oracle_f1\\\": 0.7758\\n  },\\n  \\\"non_tied_subsets\\\": {\\n    \\\"0.05\\\": {\\n      \\\"n\\\": 210,\\n      \\\"greedy_f1\\\": 0.596,\\n      \\\"logprob_best_f1\\\": 0.6246,\\n      \\\"sj_best_f1\\\": 0.6127,\\n      \\\"oracle_f1\\\": 0.7421,\\n      \\\"lp_vs_greedy\\\": {\\n        \\\"mean_gain\\\": 0.0286,\\n        \\\"p_value\\\": 0.010358\\n      },\\n      \\\"sj_vs_lp\\\": {\\n        \\\"mean_diff\\\": -0.0119,\\n        \\\"p_value\\\": 0.374698\\n      },\\n      \\\"sj_vs_greedy\\\": {\\n        \\\"mean_diff\\\": 0.0167,\\n        \\\"p_value\\\": 0.175738\\n      }\\n    },\\n    \\\"0.1\\\": {\\n      \\\"n\\\": 85,\\n      \\\"greedy_f1\\\": 0.5779,\\n      \\\"logprob_best_f1\\\": 0.6148,\\n      \\\"sj_best_f1\\\": 0.5757,\\n      \\\"oracle_f1\\\": 0.7316,\\n      \\\"lp_vs_greedy\\\": {\\n        \\\"mean_gain\\\": 0.0369,\\n        \\\"p_value\\\": 0.079204\\n      },\\n      \\\"sj_vs_lp\\\": {\\n        \\\"mean_diff\\\": -0.0391,\\n        \\\"p_value\\\": 0.119161\\n      },\\n      \\\"sj_vs_greedy\\\": {\\n        \\\"mean_diff\\\": -0.0022,\\n        \\\"p_value\\\": 0.923365\\n      }\\n    },\\n    \\\"0.5\\\": {\\n      \\\"n\\\": 3,\\n      \\\"greedy_f1\\\": 0.6111,\\n      \\\"logprob_best_f1\\\": 0.5444,\\n      \\\"sj_best_f1\\\": 0.473,\\n      \\\"oracle_f1\\\": 0.6746,\\n      \\\"lp_vs_greedy\\\": {\\n        \\\"mean_gain\\\": -0.0667,\\n        \\\"p_value\\\": 0.678366\\n      },\\n      \\\"sj_vs_lp\\\": {\\n        \\\"mean_diff\\\": -0.0714,\\n        \\\"p_value\\\": 0.42265\\n      },\\n      \\\"sj_vs_greedy\\\": {\\n        \\\"mean_diff\\\": -0.1381,\\n        \\\"p_value\\\": 0.427916\\n      }\\n    }\\n  },\\n  \\\"pairwise_ties\\\": {\\n    \\\"total_pairs\\\": 14812,\\n    \\\"n_pairs_per_instance\\\": 28,\\n    \\\"diff_stats\\\": {\\n      \\\"mean\\\": 0.022842,\\n      \\\"median\\\": 0.011655,\\n      \\\"P25\\\": 0.00457,\\n      \\\"P75\\\": 0.02595\\n    },\\n    \\\"by_eps\\\": {\\n      \\\"0.001\\\": {\\n        \\\"count\\\": 1222,\\n        \\\"total\\\": 14812,\\n        \\\"pct\\\": 8.25\\n      },\\n      \\\"0.005\\\": {\\n        \\\"count\\\": 3979,\\n        \\\"total\\\": 14812,\\n        \\\"pct\\\": 26.86\\n      },\\n      \\\"0.01\\\": {\\n        \\\"count\\\": 6699,\\n        \\\"total\\\": 14812,\\n        \\\"pct\\\": 45.23\\n      },\\n      \\\"0.02\\\": {\\n        \\\"count\\\": 9969,\\n        \\\"total\\\": 14812,\\n        \\\"pct\\\": 67.3\\n      },\\n      \\\"0.05\\\": {\\n        \\\"count\\\": 13259,\\n        \\\"total\\\": 14812,\\n        \\\"pct\\\": 89.52\\n      },\\n      \\\"0.1\\\": {\\n        \\\"count\\\": 14312,\\n        \\\"total\\\": 14812,\\n        \\\"pct\\\": 96.62\\n      },\\n      \\\"0.2\\\": {\\n        \\\"count\\\": 14693,\\n        \\\"total\\\": 14812,\\n        \\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "OK so the review_round4 logprob_tie_results shows:\n- full_set n=529: greedy=0.6439, logprob_best=0.6501, oracle=0.7758\n\nThese match the exp_012_rerun_1024 with gold-filtered n=529 values I computed earlier.\n\nThe 0.6111 in this file is for a tiny subset (n=3, eps=0.5). Not relevant.\n\nLet me try to directly determine if 0.614 might be a rounded version of the n=551 all-instances greedy for exp_012_rerun_1024. \n\nI'm checking the greedy scores across different experiments and subsets—the all-instances value rounds to 0.618, not 0.614, and exp_012_logprob gives 0.585 while exp001 seed42 gets 0.616, none of which match exactly. I think the SCIERC_REF values might come from a specific script I haven't located yet, so let me search for any file that has all these values together.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "19a022b1-3e08-432f-8832-f95b838371d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SvWKr9pRKStGpmjmKr3YDo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3105,
+                "cache_read_input_tokens": 100625,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3105
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UbsMZgCwY7rn5nuxTavYEx",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cd /root/autodl-tmp/struct_self_consist_ie && grep -rn \"0\\.614\" . --include=\"*.py\" | grep -v \"__pycache__\\|\\.pyc\" | head -20",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "897d3edb-3743-4ec9-bc37-004f87f2a517",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SvWKr9pRKStGpmjmKr3YDo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3105,
+                "cache_read_input_tokens": 100625,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3105
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-18T04:08:25.560Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UbsMZgCwY7rn5nuxTavYEx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"./code/analyze_fewnerd_results.py:26:    \\\\\\\"greedy\\\\\\\": 0.614, \\\\\\\"oracle\\\\\\\": 0.752, \\\\\\\"headroom\\\\\\\": 13.8,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "745bee43-223c-41ea-8716-d29ee5408f1b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"./code/analyze_fewnerd_results.py:26:    \\\\\\\"greedy\\\\\\\": 0.614, \\\\\\\"oracle\\\\\\\": 0.752, \\\\\\\"headroom\\\\\\\": 13.8,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"./code/analyze_fewnerd_results.py:26:    \\\"greedy\\\": 0.614, \\\"oracle\\\": 0.752, \\\"headroom\\\": 13.8,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EeaQWEynf6udopXWaux5vk",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cd /root/autodl-tmp/struct_self_consist_ie && grep -rn \"greedy.*macro\\|macro.*greedy\\|selection.*greedy\\|greedy_macro\\|0\\.618\" output/ --include=\"*.md\" 2>/dev/null | head -20",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "0c2a0a80-cdc8-462b-acf5-220ea77e465a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SvWKr9pRKStGpmjmKr3YDo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3105,
+                "cache_read_input_tokens": 100625,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3105
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-18T04:08:26.784Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EeaQWEynf6udopXWaux5vk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"output/d112_mf3_random_single/investigation.md:5:**Single (0.645) 实际上是 T=0 greedy decode 的 macro F1，而非论文标注的 \\\\\\\"one T=1.0 draw\\\\\\\"。** \\\\noutput/d112_mf3_random_single/investigation.md:142:信号 DO significantly improve over random/single-sample selection，但未能超过 T=0 greedy。\\\\noutput/d112_mf3_random_single/investigation.md:144:这实际上强化了论文的 \\\\\\\"correlation-selection gap\\\\\\\" 叙事：信号能选出比随机更好的样本（比 Random 高 3-4pp），但仍远不及 oracle (0.778) 和 greedy (0.645-0.663)。\\\\noutput/d112_mf3_random_single/investigation.md:162:> \\\\\\\"Selection signals improve over random selection (LP: +3.7pp, SJ: +3.6pp) but fail to match greedy decoding (T=0, F1=0.663), let alone the oracle (0.778).\\\\\\\"\\\\noutput/d112_hybrid_strategy/summary.md:8:| SciERC_NER_Qwen8B_N8 | 8 | 551 | 21.1% | 0.6182 | 0.5835 | 0.6188 | **0.6200** | 0.7448 | +0.0018 |\\\\noutput/d112_hybrid_strategy/summary.md:18:- Pure MBR F1 = 0.6188 (gain over greedy: +0.0005)\\\\noutput/d112_table2_fix/investigation.md:19:4. The \\\\\\\"Single\\\\\\\" row (0.645) was ALSO computing greedy output with macro F1,\\\\noutput/d112_table2_fix/investigation.md:53:- Core conclusion unchanged: selection does NOT significantly outperform greedy\\\\noutput/d112_table2_fix/investigation.md:81:   selection matches greedy, it provides no benefit—the gap between correlation\\\\noutput/d112_table2_fix/investigation.md:82:   and selection utility is real, just not in the direction of \\\\\\\"greedy wins by a lot\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "1d0981e0-5d98-4c2a-9072-a2decbf93c99",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"output/d112_mf3_random_single/investigation.md:5:**Single (0.645) 实际上是 T=0 greedy decode 的 macro F1，而非论文标注的 \\\\\\\"one T=1.0 draw\\\\\\\"。** \\\\noutput/d112_mf3_random_single/investigation.md:142:信号 DO significantly improve over random/single-sample selection，但未能超过 T=0 greedy。\\\\noutput/d112_mf3_random_single/investigation.md:144:这实际上强化了论文的 \\\\\\\"correlation-selection gap\\\\\\\" 叙事：信号能选出比随机更好的样本（比 Random 高 3-4pp），但仍远不及 oracle (0.778) 和 greedy (0.645-0.663)。\\\\noutput/d112_mf3_random_single/investigation.md:162:> \\\\\\\"Selection signals improve over random selection (LP: +3.7pp, SJ: +3.6pp) but fail to match greedy decoding (T=0, F1=0.663), let alone the oracle (0.778).\\\\\\\"\\\\noutput/d112_hybrid_strategy/summary.md:8:| SciERC_NER_Qwen8B_N8 | 8 | 551 | 21.1% | 0.6182 | 0.5835 | 0.6188 | **0.6200** | 0.7448 | +0.0018 |\\\\noutput/d112_hybrid_strategy/summary.md:18:- Pure MBR F1 = 0.6188 (gain over greedy: +0.0005)\\\\noutput/d112_table2_fix/investigation.md:19:4. The \\\\\\\"Single\\\\\\\" row (0.645) was ALSO computing greedy output with macro F1,\\\\noutput/d112_table2_fix/investigation.md:53:- Core conclusion unchanged: selection does NOT significantly outperform greedy\\\\noutput/d112_table2_fix/investigation.md:81:   selection matches greedy, it provides no benefit—the gap between correlation\\\\noutput/d112_table2_fix/investigation.md:82:   and selection utility is real, just not in the direction of \\\\\\\"greedy wins by a lot\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"output/d112_mf3_random_single/investigation.md:5:**Single (0.645) 实际上是 T=0 greedy decode 的 macro F1，而非论文标注的 \\\"one T=1.0 draw\\\"。** \\noutput/d112_mf3_random_single/investigation.md:142:信号 DO significantly improve over random/single-sample selection，但未能超过 T=0 greedy。\\noutput/d112_mf3_random_single/investigation.md:144:这实际上强化了论文的 \\\"correlation-selection gap\\\" 叙事：信号能选出比随机更好的样本（比 Random 高 3-4pp），但仍远不及 oracle (0.778) 和 greedy (0.645-0.663)。\\noutput/d112_mf3_random_single/investigation.md:162:> \\\"Selection signals improve over random selection (LP: +3.7pp, SJ: +3.6pp) but fail to match greedy decoding (T=0, F1=0.663), let alone the oracle (0.778).\\\"\\noutput/d112_hybrid_strategy/summary.md:8:| SciERC_NER_Qwen8B_N8 | 8 | 551 | 21.1% | 0.6182 | 0.5835 | 0.6188 | **0.6200** | 0.7448 | +0.0018 |\\noutput/d112_hybrid_strategy/summary.md:18:- Pure MBR F1 = 0.6188 (gain over greedy: +0.0005)\\noutput/d112_table2_fix/investigation.md:19:4. The \\\"Single\\\" row (0.645) was ALSO computing greedy output with macro F1,\\noutput/d112_table2_fix/investigation.md:53:- Core conclusion unchanged: selection does NOT significantly outperform greedy\\noutput/d112_table2_fix/investigation.md:81:   selection matches greedy, it provides no benefit—the gap between correlation\\noutput/d112_table2_fix/investigation.md:82:   and selection utility is real, just not in the direction of \\\"greedy wins by a lot\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+              }
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CAkHaQbQfjRZz1kvkcUZxS",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cd /root/autodl-tmp/struct_self_consist_ie && cat output/d112_hybrid_strategy/summary.md | head -30",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "d2a1165e-fb38-4bd6-99d1-d8aa20339ce3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K2Tj1x3bzC37X74of7LsHo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1450,
+                "cache_read_input_tokens": 103730,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1450
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": "2026-05-18T04:08:30.141Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CAkHaQbQfjRZz1kvkcUZxS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Hybrid Strategy: Expected F1 Gain\\\\n\\\\n**Strategy**: Use greedy for degenerate instances (constant F1 across all samples),\\\\nMBR selection (highest SJ utility) for non-degenerate instances.\\\\n\\\\n| Dataset | N | #Inst | %Degen | Greedy | Random | MBR-SJ | **Hybrid** | Oracle | Hybrid Δ(greedy) |\\\\n|---------|---|-------|--------|--------|--------|--------|------------|--------|------------------|\\\\n| SciERC_NER_Qwen8B_N8 | 8 | 551 | 21.1% | 0.6182 | 0.5835 | 0.6188 | **0.6200** | 0.7448 | +0.0018 |\\\\n| CoNLL_NER_Qwen8B_N16 | 16 | 3453 | 58.0% | 0.7239 | 0.6919 | 0.7215 | **0.7215** | 0.7639 | -0.0024 |\\\\n| SciERC_RE_Qwen8B_N16 | 16 | 551 | 45.7% | 0.2904 | 0.2612 | 0.2847 | **0.2847** | 0.4544 | -0.0057 |\\\\n\\\\n## Key Findings\\\\n\\\\n### SciERC_NER_Qwen8B_N8\\\\n- Degenerate instances: 116/551 (21.1%)\\\\n- Non-degenerate instances: 435/551 (78.9%)\\\\n- Hybrid F1 = 0.6200 (gain over greedy: +0.0018)\\\\n- Pure MBR F1 = 0.6188 (gain over greedy: +0.0005)\\\\n- Hybrid closes 22.6% of oracle gap (vs 21.9% for pure MBR)\\\\n\\\\n### CoNLL_NER_Qwen8B_N16\\\\n- Degenerate instances: 2002/3453 (58.0%)\\\\n- Non-degenerate instances: 1451/3453 (42.0%)\\\\n- Hybrid F1 = 0.7215 (gain over greedy: -0.0024)\\\\n- Pure MBR F1 = 0.7215 (gain over greedy: -0.0024)\\\\n- Hybrid closes 41.0% of oracle gap (vs 41.0% for pure MBR)\\\\n\\\\n### SciERC_RE_Qwen8B_N16\\\\n- Degenerate instances: 252/551 (45.7%)\\\\n- Non-degenerate instances: 299/551 (54.3%)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "cd593b29-ddda-4589-9da7-4265765e6b9b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Hybrid Strategy: Expected F1 Gain\\\\n\\\\n**Strategy**: Use greedy for degenerate instances (constant F1 across all samples),\\\\nMBR selection (highest SJ utility) for non-degenerate instances.\\\\n\\\\n| Dataset | N | #Inst | %Degen | Greedy | Random | MBR-SJ | **Hybrid** | Oracle | Hybrid Δ(greedy) |\\\\n|---------|---|-------|--------|--------|--------|--------|------------|--------|------------------|\\\\n| SciERC_NER_Qwen8B_N8 | 8 | 551 | 21.1% | 0.6182 | 0.5835 | 0.6188 | **0.6200** | 0.7448 | +0.0018 |\\\\n| CoNLL_NER_Qwen8B_N16 | 16 | 3453 | 58.0% | 0.7239 | 0.6919 | 0.7215 | **0.7215** | 0.7639 | -0.0024 |\\\\n| SciERC_RE_Qwen8B_N16 | 16 | 551 | 45.7% | 0.2904 | 0.2612 | 0.2847 | **0.2847** | 0.4544 | -0.0057 |\\\\n\\\\n## Key Findings\\\\n\\\\n### SciERC_NER_Qwen8B_N8\\\\n- Degenerate instances: 116/551 (21.1%)\\\\n- Non-degenerate instances: 435/551 (78.9%)\\\\n- Hybrid F1 = 0.6200 (gain over greedy: +0.0018)\\\\n- Pure MBR F1 = 0.6188 (gain over greedy: +0.0005)\\\\n- Hybrid closes 22.6% of oracle gap (vs 21.9% for pure MBR)\\\\n\\\\n### CoNLL_NER_Qwen8B_N16\\\\n- Degenerate instances: 2002/3453 (58.0%)\\\\n- Non-degenerate instances: 1451/3453 (42.0%)\\\\n- Hybrid F1 = 0.7215 (gain over greedy: -0.0024)\\\\n- Pure MBR F1 = 0.7215 (gain over greedy: -0.0024)\\\\n- Hybrid closes 41.0% of oracle gap (vs 41.0% for pure MBR)\\\\n\\\\n### SciERC_RE_Qwen8B_N16\\\\n- Degenerate instances: 252/551 (45.7%)\\\\n- Non-degenerate instances: 299/551 (54.3%)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"# Hybrid Strategy: Expected F1 Gain\\n\\n**Strategy**: Use greedy for degenerate instances (constant F1 across all samples),\\nMBR selection (highest SJ utility) for non-degenerate instances.\\n\\n| Dataset | N | #Inst | %Degen | Greedy | Random | MBR-SJ | **Hybrid** | Oracle | Hybrid Δ(greedy) |\\n|---------|---|-------|--------|--------|--------|--------|------------|--------|------------------|\\n| SciERC_NER_Qwen8B_N8 | 8 | 551 | 21.1% | 0.6182 | 0.5835 | 0.6188 | **0.6200** | 0.7448 | +0.0018 |\\n| CoNLL_NER_Qwen8B_N16 | 16 | 3453 | 58.0% | 0.7239 | 0.6919 | 0.7215 | **0.7215** | 0.7639 | -0.0024 |\\n| SciERC_RE_Qwen8B_N16 | 16 | 551 | 45.7% | 0.2904 | 0.2612 | 0.2847 | **0.2847** | 0.4544 | -0.0057 |\\n\\n## Key Findings\\n\\n### SciERC_NER_Qwen8B_N8\\n- Degenerate instances: 116/551 (21.1%)\\n- Non-degenerate instances: 435/551 (78.9%)\\n- Hybrid F1 = 0.6200 (gain over greedy: +0.0018)\\n- Pure MBR F1 = 0.6188 (gain over greedy: +0.0005)\\n- Hybrid closes 22.6% of oracle gap (vs 21.9% for pure MBR)\\n\\n### CoNLL_NER_Qwen8B_N16\\n- Degenerate instances: 2002/3453 (58.0%)\\n- Non-degenerate instances: 1451/3453 (42.0%)\\n- Hybrid F1 = 0.7215 (gain over greedy: -0.0024)\\n- Pure MBR F1 = 0.7215 (gain over greedy: -0.0024)\\n- Hybrid closes 41.0% of oracle gap (vs 41.0% for pure MBR)\\n\\n### SciERC_RE_Qwen8B_N16\\n- Degenerate instances: 252/551 (45.7%)\\n- Non-degenerate instances: 299/551 (54.3%)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+              }
+            }
+          },
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "In d112_hybrid_strategy, SciERC_NER_Qwen8B_N8 with n=551: Greedy = 0.6182, Oracle = 0.7448. These match my computed values for exp_012_rerun_1024 all instances (greedy=0.618212, oracle=0.744827).\n\nSo the correct values for \"SciERC NER, Qwen8B, N=8, all 551 instances, seed42, max_tokens=1024\" are:\n- Greedy: 0.618\n- Oracle: 0.745\n\n\n- Headroom: 12.7pp\n\nBut SCIERC_REF reports greedy=0.614, oracle=0.752, headroom=13.8pp—these don't match at all, so those values must be wrong. Let me check if they could be from a different seed by looking at exp_re_scierc_seed123 with N=8, where the greedy F1 is 0.663 and the sample mean is around 0.6153.\n\nActually, I'm wondering if the SCIERC_REF values might be an average across multiple experiments. Computing the mean of sample F1 scores from three different runs gives me roughly 0.609, which still doesn't equal 0.614.\n\nI think I need to accept that I can't trace the exact origin of 0.614—it could be from an older code version, a manual approximation, or a computation I haven't located yet. But what's clear is that lp_rho=0.205 definitely comes from the max_tokens=1024 experiment, while the greedy/oracle/headroom values don't match that same data. Now I'm shifting focus to track down where lp_delta=0.42 originates by examining LP selection delta values across the experiments.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "1690192d-8003-48e6-9716-736e0a832403",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W3nAk3WHDVVtF4bkHAUD8F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1022,
+                "cache_read_input_tokens": 105180,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1022
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me focus specifically on the LP delta=0.42 and check whether it's from the 512 or 1024 data."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "3e7bc3a8-4e85-4f3a-9384-f3e8b0712e0d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W3nAk3WHDVVtF4bkHAUD8F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1022,
+                "cache_read_input_tokens": 105180,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1022
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019Tq4txPpwDEP8jQ1uT7ciw",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json, sys\nsys.path.insert(0, 'code')\nfrom evaluation import per_instance_f1\nimport numpy as np\n\n# Try exp_012_rerun_1024 with all 551 instances (not gold-filtered)\n# This is what the fewnerd script would do if it processed SciERC data the same way\ndata = [json.loads(l) for l in open('output/exp_012_rerun_1024/samples.jsonl') if l.strip()]\n\n# Filter: gold entities > 0 (like fewnerd script does)\nvalid = [d for d in data if len(d['gold'].get('entities', [])) > 0]\n\ngreedy_f1s = np.array([per_instance_f1(d['greedy'], d['gold'], subtask='ner') for d in valid])\nprint(f'Greedy macro: {np.mean(greedy_f1s):.6f}')\n\n# Now compute LP selection with the SAME logic as analyze_fewnerd_results.py\nfrom consistency import _ner_soft_jaccard_pair, _extract_surface_keys\n\nlp_sel_f1s = np.zeros(len(valid))\nfor i, d in enumerate(valid):\n    samples = d['samples']\n    n = len(samples)\n    lp_scores = []\n    for s in samples:\n        lp = s.get('mean_logprob')\n        if lp is None:\n            lp = s.get('cumulative_logprob', -999) / max(s.get('n_tokens', 1), 1)\n        lp_scores.append(lp)\n    best_idx = int(np.argmax(lp_scores))\n    sample_f1s = np.array([per_instance_f1(s, d['gold'], subtask='ner') for s in samples])\n    lp_sel_f1s[i] = sample_f1s[best_idx]\n\nlp_macro = float(np.mean(lp_sel_f1s))\ndelta_pp = (lp_macro - np.mean(greedy_f1s)) * 100\nprint(f'LP selection macro: {lp_macro:.6f}')\nprint(f'LP delta: {delta_pp:+.4f}pp')\n\n# Also check the max-signal approach vs direct LP approach\n# In fewnerd script, LP spearman is computed as:\n# rho(instance_max_signal['LP'], greedy_f1s)\nmax_lp_per_instance = np.array([max(\n    s.get('mean_logprob', s.get('cumulative_logprob', -999) / max(s.get('n_tokens', 1), 1))\n    for s in d['samples']\n) for d in valid])\n\nfrom scipy import stats\nrho, p = stats.spearmanr(max_lp_per_instance, greedy_f1s)\nprint(f'LP rho (max signal vs greedy F1): {rho:.4f}')\nprint(f'Compare to SCIERC_REF lp_rho=0.205')\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "239838ff-dbcc-4e7f-81ef-9932b60a6b29",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W3nAk3WHDVVtF4bkHAUD8F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1022,
+                "cache_read_input_tokens": 105180,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1022
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000201"
+        },
+        {
+          "source_line": 202,
+          "timestamp": "2026-05-18T04:09:05.034Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019Tq4txPpwDEP8jQ1uT7ciw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Greedy macro: 0.643922\\\\nLP selection macro: 0.650072\\\\nLP delta: +0.6150pp\\\\nLP rho (max signal vs greedy F1): 0.2149\\\\nCompare to SCIERC_REF lp_rho=0.205\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "9ccd02d2-6102-417a-8398-b11b6ee1b803",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Greedy macro: 0.643922\\\\nLP selection macro: 0.650072\\\\nLP delta: +0.6150pp\\\\nLP rho (max signal vs greedy F1): 0.2149\\\\nCompare to SCIERC_REF lp_rho=0.205\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Greedy macro: 0.643922\\nLP selection macro: 0.650072\\nLP delta: +0.6150pp\\nLP rho (max signal vs greedy F1): 0.2149\\nCompare to SCIERC_REF lp_rho=0.205\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"
+              }
+            }
+          },
+          "id": "event-000202"
+        },
+        {
+          "source_line": 203,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "So with exp_012_rerun_1024 and gold-filtered n=529:\n- LP rho (using fewnerd script's method) = 0.2149 (not 0.205)\n- LP delta = +0.615pp (not +0.42pp)\n\nAnd the all_signals_5signal.json had logprob rho = 0.2052, which uses a different correlation method.\n\nSo now I know:\n- lp_rho=0.205 comes from all_signals_5signal.json (which correlates logprob with per-sample F1, not the fewnerd script's method)\n\n\n- lp_delta=+0.42pp doesn't match the 1024 version either, and the 512 version gave -0.07pp instead\n\nLet me check if this delta came from a hybrid analysis that mixed results from different experiments, maybe combining greedy performance from one run with logprob deltas from another.\n\nActually, I'm wondering if the 0.42pp delta comes from a different type of analysis altogether—perhaps something like a quartile-based selection or a conditional analysis rather than the standard argmax approach. Let me look more carefully at the logprob baseline metrics in the report, which had separate rho values for full and conditional sets. The rho=0.2052 matches what I see in the reference data, but these sections don't contain selection delta values either.\n\nI should try a completely different angle and check if there was a separate analysis or tab I haven't examined yet.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "e2687595-17a5-4b92-a836-a0dc78e97902",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018bnmqD2ogwzrsHuA9E6jwF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1771,
+                "cache_read_input_tokens": 106202,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1771
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000203"
+        },
+        {
+          "source_line": 204,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T1WXVmFo9UepfYinojBrdS",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cd /root/autodl-tmp/struct_self_consist_ie && find . -name \"*tab*fewnerd*\" -o -name \"*fewnerd*tab*\" -o -name \"*cross_dataset*table*\" 2>/dev/null | grep -v __pycache__ | head -10",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "7dde38c0-a0cc-4060-b0ee-e408f31e3fdc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018bnmqD2ogwzrsHuA9E6jwF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1771,
+                "cache_read_input_tokens": 106202,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1771
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000204"
+        },
+        {
+          "source_line": 205,
+          "timestamp": "2026-05-18T04:09:23.160Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T1WXVmFo9UepfYinojBrdS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "bced7ebe-2a1e-4bde-af33-8623777c8f1d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+              }
+            }
+          },
+          "id": "event-000205"
+        },
+        {
+          "source_line": 206,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HpKJdfmD5odTGN3K7obSgs",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json\nd = json.load(open('output/d112_table2_fix/cross_dataset_check.json'))\nprint(json.dumps(d, indent=2)[:3000])\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "d41989fe-12b6-413c-906d-205d55d0f21c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018bnmqD2ogwzrsHuA9E6jwF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1771,
+                "cache_read_input_tokens": 106202,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1771
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000206"
+        },
+        {
+          "source_line": 207,
+          "timestamp": "2026-05-18T04:09:24.778Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HpKJdfmD5odTGN3K7obSgs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"conll\\\\\\\": {\\\\n    \\\\\\\"report_greedy_f1\\\\\\\": 0.906727560161602,\\\\n    \\\\\\\"report_f1_type\\\\\\\": \\\\\\\"micro (from report.json, 3453 instances)\\\\\\\",\\\\n    \\\\\\\"recomputed_macro_f1\\\\\\\": 0.9069619201150406,\\\\n    \\\\\\\"n_instances_filtered\\\\\\\": 2756,\\\\n    \\\\\\\"n_instances_total\\\\\\\": 3453,\\\\n    \\\\\\\"micro_macro_gap\\\\\\\": -0.00023435995343856764,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"CoNLL report.json also uses micro F1, but gap is small due to high performance\\\\\\\"\\\\n  },\\\\n  \\\\\\\"wnut17\\\\\\\": {\\\\n    \\\\\\\"report_greedy_f1\\\\\\\": 0.52316715542522,\\\\n    \\\\\\\"report_f1_type\\\\\\\": \\\\\\\"micro (from report.json, 1287 instances)\\\\\\\",\\\\n    \\\\\\\"recomputed_macro_f1\\\\\\\": 0.4222651078964577,\\\\n    \\\\\\\"n_instances_filtered\\\\\\\": 689,\\\\n    \\\\\\\"n_instances_total\\\\\\\": 1287,\\\\n    \\\\\\\"micro_macro_gap\\\\\\\": 0.10090204752876225,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"WNUT report.json also uses micro F1\\\\\\\"\\\\n  },\\\\n  \\\\\\\"scierc_re\\\\\\\": {\\\\n    \\\\\\\"report_greedy_f1\\\\\\\": 0.42893018583626313,\\\\n    \\\\\\\"report_f1_type\\\\\\\": \\\\\\\"micro (from report.json, 551 instances incl gold-empty)\\\\\\\",\\\\n    \\\\\\\"recomputed_macro_f1\\\\\\\": 0.4042311317203893,\\\\n    \\\\\\\"n_instances_filtered\\\\\\\": 397,\\\\n    \\\\\\\"micro_macro_gap\\\\\\\": 0.02469905411587381\\\\n  },\\\\n  \\\\\\\"conll_selection\\\\\\\": {\\\\n    \\\\\\\"greedy_macro_from_selection_script\\\\\\\": 0.907887,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"Already computed as macro F1 in selection script, consistent\\\\\\\"\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "2d499e42-5a17-41e0-9070-83d55e9b6593",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"conll\\\\\\\": {\\\\n    \\\\\\\"report_greedy_f1\\\\\\\": 0.906727560161602,\\\\n    \\\\\\\"report_f1_type\\\\\\\": \\\\\\\"micro (from report.json, 3453 instances)\\\\\\\",\\\\n    \\\\\\\"recomputed_macro_f1\\\\\\\": 0.9069619201150406,\\\\n    \\\\\\\"n_instances_filtered\\\\\\\": 2756,\\\\n    \\\\\\\"n_instances_total\\\\\\\": 3453,\\\\n    \\\\\\\"micro_macro_gap\\\\\\\": -0.00023435995343856764,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"CoNLL report.json also uses micro F1, but gap is small due to high performance\\\\\\\"\\\\n  },\\\\n  \\\\\\\"wnut17\\\\\\\": {\\\\n    \\\\\\\"report_greedy_f1\\\\\\\": 0.52316715542522,\\\\n    \\\\\\\"report_f1_type\\\\\\\": \\\\\\\"micro (from report.json, 1287 instances)\\\\\\\",\\\\n    \\\\\\\"recomputed_macro_f1\\\\\\\": 0.4222651078964577,\\\\n    \\\\\\\"n_instances_filtered\\\\\\\": 689,\\\\n    \\\\\\\"n_instances_total\\\\\\\": 1287,\\\\n    \\\\\\\"micro_macro_gap\\\\\\\": 0.10090204752876225,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"WNUT report.json also uses micro F1\\\\\\\"\\\\n  },\\\\n  \\\\\\\"scierc_re\\\\\\\": {\\\\n    \\\\\\\"report_greedy_f1\\\\\\\": 0.42893018583626313,\\\\n    \\\\\\\"report_f1_type\\\\\\\": \\\\\\\"micro (from report.json, 551 instances incl gold-empty)\\\\\\\",\\\\n    \\\\\\\"recomputed_macro_f1\\\\\\\": 0.4042311317203893,\\\\n    \\\\\\\"n_instances_filtered\\\\\\\": 397,\\\\n    \\\\\\\"micro_macro_gap\\\\\\\": 0.02469905411587381\\\\n  },\\\\n  \\\\\\\"conll_selection\\\\\\\": {\\\\n    \\\\\\\"greedy_macro_from_selection_script\\\\\\\": 0.907887,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"Already computed as macro F1 in selection script, consistent\\\\\\\"\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"conll\\\": {\\n    \\\"report_greedy_f1\\\": 0.906727560161602,\\n    \\\"report_f1_type\\\": \\\"micro (from report.json, 3453 instances)\\\",\\n    \\\"recomputed_macro_f1\\\": 0.9069619201150406,\\n    \\\"n_instances_filtered\\\": 2756,\\n    \\\"n_instances_total\\\": 3453,\\n    \\\"micro_macro_gap\\\": -0.00023435995343856764,\\n    \\\"note\\\": \\\"CoNLL report.json also uses micro F1, but gap is small due to high performance\\\"\\n  },\\n  \\\"wnut17\\\": {\\n    \\\"report_greedy_f1\\\": 0.52316715542522,\\n    \\\"report_f1_type\\\": \\\"micro (from report.json, 1287 instances)\\\",\\n    \\\"recomputed_macro_f1\\\": 0.4222651078964577,\\n    \\\"n_instances_filtered\\\": 689,\\n    \\\"n_instances_total\\\": 1287,\\n    \\\"micro_macro_gap\\\": 0.10090204752876225,\\n    \\\"note\\\": \\\"WNUT report.json also uses micro F1\\\"\\n  },\\n  \\\"scierc_re\\\": {\\n    \\\"report_greedy_f1\\\": 0.42893018583626313,\\n    \\\"report_f1_type\\\": \\\"micro (from report.json, 551 instances incl gold-empty)\\\",\\n    \\\"recomputed_macro_f1\\\": 0.4042311317203893,\\n    \\\"n_instances_filtered\\\": 397,\\n    \\\"micro_macro_gap\\\": 0.02469905411587381\\n  },\\n  \\\"conll_selection\\\": {\\n    \\\"greedy_macro_from_selection_script\\\": 0.907887,\\n    \\\"note\\\": \\\"Already computed as macro F1 in selection script, consistent\\\"\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000207"
+        },
+        {
+          "source_line": 208,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "This cross_dataset_check.json only has CoNLL, WNUT, and SciERC_RE, not SciERC_NER. \n\nI'm now quite confident that the SCIERC_REF values cannot be traced to any single specific computation in the project. They appear to be manually entered values, possibly from:\n1. A console output that was lost (not saved to any JSON)\n2. A combination of values from different experiments/analyses\n3. An older code version that computed slightly different values\n\nThe key evidence:\n- lp_rho=0.205: comes from exp_012_rerun_1024/report.json's `ner_logprob_baseline.full.rho = 0.20517` (matched 1024 version)\n\n\n- greedy=0.614: doesn't match any computed greedy macro F1 across the experiments\n- oracle=0.752: closest is exp010 at N=8 seed42 with all instances (0.7522), but that uses different data than exp_012_rerun_1024\n- lp_delta=0.42 and headroom=13.8: neither can be verified from the actual computations\n\nThe actual LP delta from exp_012_rerun_1024 gives a different value, which means these reference numbers are fundamentally unverifiable against the codebase. 0.615pp (gold-filtered n=529) or +0.59pp (all n=551)\n- NOT +0.42pp\n\nAnd the greedy and oracle don't match either.\n\nSo the SCIERC_REF values can't be directly from either version. But since lp_rho=0.205 definitely comes from the 1024 version, and that version's LP delta of 0.615pp is closer to 0.42 than the 512 version's -0.07pp, the SCIERC_REF values were probably intended for the 1024 version but computed incorrectly or with a different method—maybe using sum logprob instead of mean, or handling the logprobs field differently.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "3bc19d38-342a-45f1-87ea-2159b83bd521",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wxje3DfCzc3U12mgQx2zJN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1679,
+                "cache_read_input_tokens": 107973,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1679
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000208"
+        },
+        {
+          "source_line": 209,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TWd8tC389P4gA3KpunQZUJ",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json, sys\nsys.path.insert(0, 'code')\nfrom evaluation import per_instance_f1\nimport numpy as np\n\ndata = [json.loads(l) for l in open('output/exp_012_rerun_1024/samples.jsonl') if l.strip()]\nvalid = [d for d in data if len(d['gold'].get('entities', [])) > 0]\n\ngreedy_f1s = np.array([per_instance_f1(d['greedy'], d['gold'], subtask='ner') for d in valid])\n\n# Try different LP methods\nfor method_name, get_lp in [\n    ('mean_logprob', lambda s: s.get('mean_logprob', s.get('cumulative_logprob', -999) / max(s.get('n_tokens', 1), 1))),\n    ('cumulative_logprob', lambda s: s.get('cumulative_logprob', -999)),\n]:\n    lp_f1s = []\n    for d in valid:\n        lps = [get_lp(s) for s in d['samples']]\n        best = int(np.argmax(lps))\n        f1 = per_instance_f1(d['samples'][best], d['gold'], subtask='ner')\n        lp_f1s.append(f1)\n    lp_f1s = np.array(lp_f1s)\n    delta = (np.mean(lp_f1s) - np.mean(greedy_f1s)) * 100\n    print(f'{method_name}: LP sel={np.mean(lp_f1s):.6f}, delta={delta:+.4f}pp')\n\n# Also check if logprobs key has per-token logprobs\nd0 = valid[0]\nprint(f'\\\\nSample keys: {list(d0[\\\"samples\\\"][0].keys())}')\nprint(f'Logprobs key in main dict: {\\\"logprobs\\\" in d0}')\nif 'logprobs' in d0:\n    print(f'Logprobs keys: {list(d0[\\\"logprobs\\\"].keys()) if isinstance(d0[\\\"logprobs\\\"], dict) else type(d0[\\\"logprobs\\\"])}')\n    if isinstance(d0['logprobs'], dict):\n        for k in list(d0['logprobs'].keys())[:3]:\n            val = d0['logprobs'][k]\n            print(f'  {k}: {type(val).__name__}, len={len(val) if isinstance(val, (list, dict)) else \\\"scalar\\\"}, val={str(val)[:100]}')\n    elif isinstance(d0['logprobs'], list):\n        print(f'  Length: {len(d0[\\\"logprobs\\\"])}')\n        if d0['logprobs']:\n            print(f'  First: {str(d0[\\\"logprobs\\\"][0])[:100]}')\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "c286398f-1aae-4f4c-9c15-d5b88538567c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wxje3DfCzc3U12mgQx2zJN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1679,
+                "cache_read_input_tokens": 107973,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1679
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000209"
+        },
+        {
+          "source_line": 210,
+          "timestamp": "2026-05-18T04:09:57.686Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TWd8tC389P4gA3KpunQZUJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"mean_logprob: LP sel=0.650072, delta=+0.6150pp\\\\ncumulative_logprob: LP sel=0.593052, delta=-5.0870pp\\\\n\\\\nSample keys: ['entities', 'relations', 'events', 'cumulative_logprob', 'n_tokens', 'mean_logprob']\\\\nLogprobs key in main dict: True\\\\nLogprobs keys: <class 'list'>\\\\n  Length: 8\\\\n  First: -0.02399272851717699\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "9862ee2c-159e-4599-8712-8acf9c735767",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"mean_logprob: LP sel=0.650072, delta=+0.6150pp\\\\ncumulative_logprob: LP sel=0.593052, delta=-5.0870pp\\\\n\\\\nSample keys: ['entities', 'relations', 'events', 'cumulative_logprob', 'n_tokens', 'mean_logprob']\\\\nLogprobs key in main dict: True\\\\nLogprobs keys: <class 'list'>\\\\n  Length: 8\\\\n  First: -0.02399272851717699\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"mean_logprob: LP sel=0.650072, delta=+0.6150pp\\ncumulative_logprob: LP sel=0.593052, delta=-5.0870pp\\n\\nSample keys: ['entities', 'relations', 'events', 'cumulative_logprob', 'n_tokens', 'mean_logprob']\\nLogprobs key in main dict: True\\nLogprobs keys: <class 'list'>\\n  Length: 8\\n  First: -0.02399272851717699\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"
+              }
+            }
+          },
+          "id": "event-000210"
+        },
+        {
+          "source_line": 211,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Interesting! There's a `logprobs` key at the top level of each instance (not inside samples), containing a list of 8 floats - one per sample. These are separate from the `mean_logprob` inside each sample.\n\nLet me check if using these external logprobs gives a different LP delta.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "a6f41b7b-96ef-4f5e-9338-fda88b76383b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013CKsnzPnX2N9DNr3R4ej9f",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1751,
+                "cache_read_input_tokens": 109652,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1751
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000211"
+        },
+        {
+          "source_line": 212,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K4XfpDnTUfW939RtGgYwyZ",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json, sys\nsys.path.insert(0, 'code')\nfrom evaluation import per_instance_f1\nimport numpy as np\n\ndata = [json.loads(l) for l in open('output/exp_012_rerun_1024/samples.jsonl') if l.strip()]\nvalid = [d for d in data if len(d['gold'].get('entities', [])) > 0]\n\ngreedy_f1s = np.array([per_instance_f1(d['greedy'], d['gold'], subtask='ner') for d in valid])\n\n# Method 1: use external logprobs list\nlp_f1s_ext = []\nfor d in valid:\n    ext_lps = d.get('logprobs', [])\n    if ext_lps and len(ext_lps) == len(d['samples']):\n        best = int(np.argmax(ext_lps))\n    else:\n        # fallback to sample's mean_logprob\n        lps = [s.get('mean_logprob', -999) for s in d['samples']]\n        best = int(np.argmax(lps))\n    f1 = per_instance_f1(d['samples'][best], d['gold'], subtask='ner')\n    lp_f1s_ext.append(f1)\nlp_f1s_ext = np.array(lp_f1s_ext)\ndelta_ext = (np.mean(lp_f1s_ext) - np.mean(greedy_f1s)) * 100\nprint(f'External logprobs: LP sel={np.mean(lp_f1s_ext):.6f}, delta={delta_ext:+.4f}pp')\n\n# Check if external logprobs match sample's mean_logprob\nd0 = valid[0]\nprint(f'\\\\nExternal logprobs[0]: {d0[\\\"logprobs\\\"][0]:.6f}')\nprint(f'Sample[0].mean_logprob: {d0[\\\"samples\\\"][0][\\\"mean_logprob\\\"]:.6f}')\nprint(f'Match: {abs(d0[\\\"logprobs\\\"][0] - d0[\\\"samples\\\"][0][\\\"mean_logprob\\\"]) < 0.0001}')\n\n# Count mismatches\nmismatches = 0\nfor d in valid:\n    for j, (el, sl) in enumerate(zip(d['logprobs'], [s.get('mean_logprob') for s in d['samples']])):\n        if abs(el - sl) > 0.0001:\n            mismatches += 1\nprint(f'Total logprob mismatches: {mismatches} / {len(valid)*8}')\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "55676bdc-eb43-499f-aa58-77d829d0c2ca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013CKsnzPnX2N9DNr3R4ej9f",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1751,
+                "cache_read_input_tokens": 109652,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1751
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000212"
+        },
+        {
+          "source_line": 213,
+          "timestamp": "2026-05-18T04:10:11.600Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K4XfpDnTUfW939RtGgYwyZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"External logprobs: LP sel=0.650072, delta=+0.6150pp\\\\n\\\\nExternal logprobs[0]: -0.023993\\\\nSample[0].mean_logprob: -0.023993\\\\nMatch: True\\\\nTotal logprob mismatches: 0 / 4232\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "adeee568-87f5-4db9-9614-9029062a10fe",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"External logprobs: LP sel=0.650072, delta=+0.6150pp\\\\n\\\\nExternal logprobs[0]: -0.023993\\\\nSample[0].mean_logprob: -0.023993\\\\nMatch: True\\\\nTotal logprob mismatches: 0 / 4232\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"External logprobs: LP sel=0.650072, delta=+0.6150pp\\n\\nExternal logprobs[0]: -0.023993\\nSample[0].mean_logprob: -0.023993\\nMatch: True\\nTotal logprob mismatches: 0 / 4232\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"
+              }
+            }
+          },
+          "id": "event-000213"
+        },
+        {
+          "source_line": 214,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The external logprobs perfectly match the sample mean_logprob values. The LP delta remains +0.615pp, not +0.42pp.\n\nAt this point, I've exhaustively checked every plausible source of the SCIERC_REF values:\n\n| SCIERC_REF | Exp_012_1024 (gold-filt n=529) | Exp_012_1024 (all n=551) | Exp010 (seed42 N=8 n=551) | Exp001 (seed42 N=8 n=529) |\n|------------|-------------------------------|-------------------------|--------------------------|--------------------------|\n\n\n| greedy=0.614 | 0.644 ❌ | 0.618 ❌ | 0.618 ❌ | 0.642 ❌ |\n| oracle=0.752 | 0.776 ❌ | 0.745 ❌ | **0.752** ✅ | 0.779 ❌ |\n| headroom=13.8 | 13.2 ❌ | 12.7 ❌ | 13.4 ❌ | 13.7 ❌ |\n| lp_rho=0.205 | **0.205** ✅ | N\n\nLooking at the metrics across these experiments, only the oracle score from Exp010 and the lp_rho value match the reference, while the greedy and headroom values consistently diverge across all configurations.\n\nTracing back the SCIERC_REF values, I can pin down lp_rho=0.205 to exp_012_rerun_1024 and oracle=0.752 to exp010 with seed42, but greedy=0.614 and lp_delta=0.42 don't correspond to any single computation I can identify. It looks like these reference values were pieced together from different sources rather than coming from one coherent run. lost computations. The lp_rho confirms the 1024 data was used for at least one value, but the greedy and lp_delta don't match any reproducible computation on either 512 or 1024 data.\n\nGiven that:\n1. lp_rho=0.205 → from 1024 data (confirmed)\n2. lp_delta=0.42 → not reproducible from either 512 or 1024 data\n3. greedy=0.614 → not reproducible from either 512 or 1024 data\n\nThe answer is: **INCONCLUSIVE** for most values, but **lp_rho uses 1024 data**. The 0.42pp lp_delta is most likely an error regardless of which data it was computed from, since neither 512 nor 1024 produces this value.\n\nThe 0.614 greedy value might be an averaged result across seeds or computed through a different method, and there's a possibility the reference values came from a predecessor script or alternate experiment run that I haven't located yet. Let me write up the conclusion now.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "ecaca38e-fa24-467c-9e2c-67a882d1d5b4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XCegomxJWUURJvpg9mY4PN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1047,
+                "cache_read_input_tokens": 111403,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1047
+                },
+                "output_tokens": 13,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000214"
+        },
+        {
+          "source_line": 215,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LVuFvSc6H5re7z1sgPP3wv",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cd /root/autodl-tmp/struct_self_consist_ie && /root/miniconda3/bin/python -c \"\nimport json, sys\nsys.path.insert(0, 'code')\nfrom evaluation import per_instance_f1\nimport numpy as np\n\n# Maybe SCIERC_REF computed using per-instance greedy as SAMPLE_F1 (not actual greedy decode)\n# i.e., treating greedy as samples[0] and computing sample F1 mean\ndata = [json.loads(l) for l in open('output/exp_012_rerun_1024/samples.jsonl') if l.strip()]\nvalid = [d for d in data if len(d['gold'].get('entities', [])) > 0]\n\n# 1. Mean of ALL sample F1s (including greedy which = samples[0])\nall_sample_f1_mean = []\nfor d in valid:\n    f1s = [per_instance_f1(s, d['gold'], subtask='ner') for s in d['samples']]\n    all_sample_f1_mean.append(np.mean(f1s))\nprint(f'Mean of per-instance avg sample F1: {np.mean(all_sample_f1_mean):.6f}')\n\n# 2. Sample F1 mean (= mean of all individual sample F1 values)\nsample_f1s_all = []\nfor d in valid:\n    for s in d['samples']:\n        sample_f1s_all.append(per_instance_f1(s, d['gold'], subtask='ner'))\nprint(f'Grand mean sample F1: {np.mean(sample_f1s_all):.6f}')\n\n# 3. Best non-greedy sample (MBR)\nfrom consistency import _ner_soft_jaccard_pair, _extract_surface_keys\nsj_sel_f1 = []\nfor d in valid:\n    samples = d['samples']\n    n = len(samples)\n    sj_scores = []\n    for k in range(n):\n        pairs = []\n        for j in range(n):\n            if j != k:\n                s = _ner_soft_jaccard_pair(\n                    samples[k].get('entities', []),\n                    samples[j].get('entities', []))\n                pairs.append(s)\n        sj_scores.append(np.mean(pairs))\n    best_idx = int(np.argmax(sj_scores))\n    sj_sel_f1.append(per_instance_f1(samples[best_idx], d['gold'], subtask='ner'))\nsj_macro = np.mean(sj_sel_f1)\nprint(f'SJ selection macro: {sj_macro:.6f}')\n\n# 4. The hybrid/MBR F1 from d112 was 0.6200 on all n=551\n# Let me check what the LP delta would be if computed as:\n# (LP_sel - random) instead of (LP_sel - greedy)\nrandom_f1 = np.mean([per_instance_f1(d['samples'][np.random.randint(len(d['samples']))], d['gold'], subtask='ner') for d in valid])\nprint(f'Random: {random_f1:.6f}')\n\n# Actually, maybe the analysis was run with 'conditional' filtering\n# (removing instances where greedy F1 = 0)\ncond = [(d, f1) for d, f1 in zip(valid, [per_instance_f1(d['greedy'], d['gold'], subtask='ner') for d in valid]) if f1 > 0]\ncond_data = [d for d, _ in cond]\ncond_greedy = np.array([f1 for _, f1 in cond])\nprint(f'\\\\nConditional (greedy>0) n={len(cond_data)}')\nprint(f'Greedy macro: {np.mean(cond_greedy):.6f}')\n\nlp_f1_cond = []\nfor d in cond_data:\n    lps = [s.get('mean_logprob', -999) for s in d['samples']]\n    best = int(np.argmax(lps))\n    lp_f1_cond.append(per_instance_f1(d['samples'][best], d['gold'], subtask='ner'))\nlp_f1_cond = np.array(lp_f1_cond)\ndelta_cond = (np.mean(lp_f1_cond) - np.mean(cond_greedy)) * 100\nprint(f'LP sel: {np.mean(lp_f1_cond):.6f}, delta: {delta_cond:+.4f}pp')\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "56b70ed9-5809-4430-843d-2a744837df58",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XCegomxJWUURJvpg9mY4PN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1047,
+                "cache_read_input_tokens": 111403,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1047
+                },
+                "output_tokens": 13,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000215"
+        },
+        {
+          "source_line": 216,
+          "timestamp": "2026-05-18T04:10:52.527Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LVuFvSc6H5re7z1sgPP3wv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mean of per-instance avg sample F1: 0.607739\\\\nGrand mean sample F1: 0.607739\\\\nSJ selection macro: 0.645005\\\\nRandom: 0.603062\\\\n\\\\nConditional (greedy>0) n=477\\\\nGreedy macro: 0.714119\\\\nLP sel: 0.707243, delta: -0.6876pp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "b9588c8d-bc93-40a8-8b55-281b83a3d0d2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mean of per-instance avg sample F1: 0.607739\\\\nGrand mean sample F1: 0.607739\\\\nSJ selection macro: 0.645005\\\\nRandom: 0.603062\\\\n\\\\nConditional (greedy>0) n=477\\\\nGreedy macro: 0.714119\\\\nLP sel: 0.707243, delta: -0.6876pp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.48}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Mean of per-instance avg sample F1: 0.607739\\nGrand mean sample F1: 0.607739\\nSJ selection macro: 0.645005\\nRandom: 0.603062\\n\\nConditional (greedy>0) n=477\\nGreedy macro: 0.714119\\nLP sel: 0.707243, delta: -0.6876pp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.48}}"
+              }
+            }
+          },
+          "id": "event-000216"
+        },
+        {
+          "source_line": 217,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "None of these match either. I've now exhaustively checked every reasonable computation method, filtering condition, and data source. The SCIERC_REF values (greedy=0.614, oracle=0.752, headroom=13.8, lp_delta=+0.42) cannot be reproduced from any experiment in the project.\n\nHere's my conclusion:\n\n1. **lp_rho=0.205**: This is the ONLY value that can be definitively traced. It comes from `exp_012_rerun_1024/all_signals_5signal.json` → `logprob.rho = 0.20517`, which is from the **1024** version. \n\nI've also confirmed this same value appears in `exp_012_rerun_1024/report.json` under the NER logprob baseline metrics.\n\n2. **greedy=0.614**: Cannot be traced. The closest values I'm finding are 0.618, 0.644, and 0.616 from various experiment configurations, but none of them match exactly.\n\n3. **oracle=0.752**: This matches exp010 N=8 seed42 with n=551, giving oracle=0.7522, though it's from a different experiment using exp001 data rather than exp_012.\n\n4. **lp_delta=+0.42pp**: Also can't be traced. I'm seeing +0.615pp, +0.59pp, and -0.07pp from different configurations, but nothing matching +0.42.\n\n5. **headroom=13.8**: The math checks out internally (0.752-0.614=0.138=13.8pp), but I can't trace where the underlying values come from.\n\nLooking at the overall pattern, the SCIERC_REF values appear to be a mix from different sources, with at least one value coming from the 1024 data.\n\nThe values seem to have been manually pulled together from old console output that's no longer available, and they're internally inconsistent since they're drawn from different experiments and conditions. On the max_tokens=512 pollution question, the lp_rho=0.205 confirms 1024 data was used, but since greedy and lp_delta don't match any actual computation, I can't definitively say whether they came from 512 or 1024. The 512 version gives lp_delta=-0.07, which is nowhere near +0.42, while the 1024 version gives +0.59 to +0.62, which at least matches the sign and is in the ballpark.\n\nThis suggests the values were probably meant to be from 1024 but were computed incorrectly. Either way, the answer is inconclusive—these values are untraceable and likely wrong regardless of which max_tokens version they're supposed to be from.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "8a6d6c3b-23cd-47ae-8616-a5dfaf9c2501",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KqQhjQwsbg7TtNs7RSNLSZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2381,
+                "cache_read_input_tokens": 112450,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2381
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000217"
+        },
+        {
+          "source_line": 218,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I've completed the exhaustive investigation. Here's the result.\n\n## tab:fewnerd SciERC 行溯源\n\n### SCIERC_REF 硬编码值来源：**无法追溯到任何单一实验/JSON**\n\n各值逐一追踪结果：\n\n| SCIERC_REF 值 | 可追溯性 | 最接近的实际计算值 |\n|---|---|---|\n| **greedy=0.614** | ❌ 无匹配 | exp_012_rerun_1024: 0.618 (n=551) 或 0.644 (n=529 gold-filtered) |\n| **oracle=0.752** | ⚠️ 仅匹配 exp010 N=8 seed42 n=551 (0.7522)，但这是**不同实验** | exp_012_rerun_1024: 0.745 (n=551) 或 0.776 (n=529) |\n| **headroom=13.8** | ✅ 与 greedy/oracle 内部一致 (0.752-0.614=0.138) | 但基础值本身不可追溯 |\n| **lp_rho=0.205** | ✅ **唯一可确认来源**: exp_012_rerun_1024/report.json `ner_logprob_baseline.full.rho = 0.20517` | **确认为 max_tokens=1024** |\n| **lp_delta=+0.42pp** | ❌ 无匹配 | exp_012_rerun_1024: +0.62pp (n=529) 或 +0.59pp (n=551) |\n\n### 关键证据\n\n- `exp_012_rerun_1024/comparison.json` 明确记录：512 版 logprob rho=0.1396，1024 版 rho=0.2052。**lp_rho=0.205 来自 1024 版无疑。**\n- 512 版 LP delta = **-0.07pp**（负值），1024 版 = **+0.62pp**。+0.42pp 与两者都不匹配。\n- `d112_table2_fix/corrected_table2.json` 给出经过验证的 seed42+123 平均值：greedy=0.645, oracle=0.778, LP delta=+0.20pp——也与 SCIERC_REF 不符。\n- greedy=0.614 不匹配任何实验的任何过滤条件（n=551 全集 / n=529 gold-filtered / n=477 conditional）。\n- 所有 JSON 中出现 `lp_delta: 0.42` 的文件（exp_020_pilot, exp_021_inference, exp_027_fewnerd_n16）都是 `analyze_fewnerd_results.py` 的输出，仅在回显 SCIERC_REF 常量。\n- 无 git 历史可追溯 SCIERC_REF 被设置的 commit。\n\n### 结论\n\n```\ntab:fewnerd SciERC 行是否受 max_tokens=512 污染: INCONCLUSIVE\n\n判断依据:\n- lp_rho=0.205 确认来自 1024 版本（不受 512 污染）\n- greedy=0.614 和 lp_delta=+0.42pp 无法追溯到任何实验：\n  - 512 版给出 LP Δ=-0.07pp（差距极大）\n  - 1024 版给出 LP Δ=+0.62pp（方向正确但数值不符）\n  - 两者都无法产生 greedy=0.614\n- 这些值很可能是从某次已丢失的分析/控制台输出中手动摘录的，\n  混合了不同实验/条件/计算方法的结果\n- 核心问题不是 512 vs 1024 污染，而是 SCIERC_REF 所有值\n （除 lp_rho 外）均不可复现，属于硬编码 bug\n```\n\n**建议**：用 `exp_012_rerun_1024/samples.jsonl`（1024 版，seed42）重新计算所有值，根据论文使用的过滤条件（n=529 gold-filtered 或 n=551 全集）统一基准。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "uuid": "aacc6b63-931a-40ee-9050-07e54c02d4e6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KqQhjQwsbg7TtNs7RSNLSZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2381,
+                "cache_read_input_tokens": 112450,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2381
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000218"
+        },
+        {
+          "source_line": 219,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I've completed the exhaustive investigation. Here's the result.\n\n## tab:fewnerd SciERC 行溯源\n\n### SCIERC_REF 硬编码值来源：**无法追溯到任何单一实验/JSON**\n\n各值逐一追踪结果：\n\n| SCIERC_REF 值 | 可追溯性 | 最接近的实际计算值 |\n|---|---|---|\n| **greedy=0.614** | ❌ 无匹配 | exp_012_rerun_1024: 0.618 (n=551) 或 0.644 (n=529 gold-filtered) |\n| **oracle=0.752** | ⚠️ 仅匹配 exp010 N=8 seed42 n=551 (0.7522)，但这是**不同实验** | exp_012_rerun_1024: 0.745 (n=551) 或 0.776 (n=529) |\n| **headroom=13.8** | ✅ 与 greedy/oracle 内部一致 (0.752-0.614=0.138) | 但基础值本身不可追溯 |\n| **lp_rho=0.205** | ✅ **唯一可确认来源**: exp_012_rerun_1024/report.json `ner_logprob_baseline.full.rho = 0.20517` | **确认为 max_tokens=1024** |\n| **lp_delta=+0.42pp** | ❌ 无匹配 | exp_012_rerun_1024: +0.62pp (n=529) 或 +0.59pp (n=551) |\n\n### 关键证据\n\n- `exp_012_rerun_1024/comparison.json` 明确记录：512 版 logprob rho=0.1396，1024 版 rho=0.2052。**lp_rho=0.205 来自 1024 版无疑。**\n- 512 版 LP delta = **-0.07pp**（负值），1024 版 = **+0.62pp**。+0.42pp 与两者都不匹配。\n- `d112_table2_fix/corrected_table2.json` 给出经过验证的 seed42+123 平均值：greedy=0.645, oracle=0.778, LP delta=+0.20pp——也与 SCIERC_REF 不符。\n- greedy=0.614 不匹配任何实验的任何过滤条件（n=551 全集 / n=529 gold-filtered / n=477 conditional）。\n- 所有 JSON 中出现 `lp_delta: 0.42` 的文件（exp_020_pilot, exp_021_inference, exp_027_fewnerd_n16）都是 `analyze_fewnerd_results.py` 的输出，仅在回显 SCIERC_REF 常量。\n- 无 git 历史可追溯 SCIERC_REF 被设置的 commit。\n\n### 结论\n\n```\ntab:fewnerd SciERC 行是否受 max_tokens=512 污染: INCONCLUSIVE\n\n判断依据:\n- lp_rho=0.205 确认来自 1024 版本（不受 512 污染）\n- greedy=0.614 和 lp_delta=+0.42pp 无法追溯到任何实验：\n  - 512 版给出 LP Δ=-0.07pp（差距极大）\n  - 1024 版给出 LP Δ=+0.62pp（方向正确但数值不符）\n  - 两者都无法产生 greedy=0.614\n- 这些值很可能是从某次已丢失的分析/控制台输出中手动摘录的，\n  混合了不同实验/条件/计算方法的结果\n- 核心问题不是 512 vs 1024 污染，而是 SCIERC_REF 所有值\n （除 lp_rho 外）均不可复现，属于硬编码 bug\n```\n\n**建议**：用 `exp_012_rerun_1024/samples.jsonl`（1024 版，seed42）重新计算所有值，根据论文使用的过滤条件（n=529 gold-filtered 或 n=551 全集）统一基准。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 783120,
+            "duration_api_ms": 758989,
+            "num_turns": 86,
+            "stop_reason": "end_turn",
+            "session_id": "b83220ab-6246-4184-902b-db808a278bb2",
+            "total_cost_usd": 3.126317999999999,
+            "usage": {
+              "input_tokens": 49,
+              "cache_creation_input_tokens": 102990,
+              "cache_read_input_tokens": 3146129,
+              "output_tokens": 36281,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 102990,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 2015,
+                  "cache_read_input_tokens": 112450,
+                  "cache_creation_input_tokens": 2381,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2381
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2176,
+                "outputTokens": 24,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002296,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 49,
+                "outputTokens": 36281,
+                "cacheReadInputTokens": 3146129,
+                "cacheCreationInputTokens": 102990,
+                "webSearchRequests": 0,
+                "costUSD": 3.1240219999999996,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "d004a1e0-6083-44ed-af1d-526308e95a60"
+          },
+          "id": "event-000219"
+        }
+      ]
+    }
+  ]
+}

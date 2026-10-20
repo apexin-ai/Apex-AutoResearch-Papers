@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af2d1f1c0aeab4dac455",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix analyze fewnerd lp aggregation",
+  "task_key": "worker_fix_analyze_fewnerd_lp_aggregation_20260518T135035",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_analyze_fewnerd_lp_aggregation_20260518T135035_result.json",
+    "occurrence": 1,
+    "bytes": 489,
+    "sha256": "1a4234890ca5651ff10591f767d4356faeae6abc79935c05b75f5b899d624c6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Import 成功，无语法或依赖错误。\n\n修改总结：\n- **L25, L32**：注释 `max_LP` → `mean_LP`\n- **L29**：`SCIERC_REF[\"lp_rho\"]` 从 `0.215` → `0.205`\n- **L211**：LP ρ global 计算从 `instance_max_signal[\"LP\"]` → `instance_mean_lp`\n- **L218-219**：LP ρ conditional 计算从 `instance_max_signal[\"LP\"][non_degen_mask]` → `instance_mean_lp[non_degen_mask]`\n\n重新运行脚本后 SciERC LP ρ 将为 0.205，与论文 Table 1 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-analyze-fewnerd-lp-aggregation.md"
+}

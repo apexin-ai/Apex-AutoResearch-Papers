@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a642cba4d06a4937300",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "reviewer / loop_9.md",
+  "task_key": "loop_9",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_9.md",
+    "occurrence": 1,
+    "bytes": 3568,
+    "sha256": "04c839119030aa32bc1c10f476ac6dcbf6150363d9f8d6775f4ffd3c7886583b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_wall_time\nupdated: '2026-05-15T23:44:39+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0-3 on autodl-5090，越界进程必须 critical 打回\n- 服务器账号：root@autodl-5090，SSH 端口可能因 AutoDL 重启变化\n- 论文数字修改后必须重编译验证（上次 PDF 22:28 编译，但 section 修改在 22:21-22:26，需确认最终 PDF 是否包含所有 patch）\n- experiments.tex:118 的 \"≤0.1 pp\" on CoNLL 4B：VC 实际是 +0.203pp，已标 info 给 Director，尚未修正\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090(root)，4× RTX 5090 32GB，全部空闲（0% util, 2 MiB）\n- 工作目录：/root/autodl-tmp/struct_self_consist_ie\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 模型路径：checkpoints/qwen3-4b-{scierc,conll2003}-merged/, checkpoints/qwen3-8b-*-merged*/\n- 数据：data/conll2003/, data/scierc/processed_data/\n- 输出：output/（selection_f1_4b_results.json, review_round8/, analysis_round8/ 等）\n- 活跃进程：无。无 RUNNING 实验，无 cron 任务\n- 本地 workspace：/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/\n\n### 3. 📊 当前状态\n**刚完成**：\n- 4B scale ablation 2×2 全面审查（CoNLL + SciERC, QE + selection），已发 3 份审查报告给 Director\n- Paper Agent r8-framing-compress 审查（PASS，mean |Δρ| 修正确认，压缩质量确认）\n- Paper Agent r8-content-patch 审查（discussion.tex 压缩，experiments.tex 微调）\n- PDF 重编译确认：19 页总计（正文+appendix），632KB\n\n**Registry 状态**：全部 DONE，无 RUNNING/PREPARING。104 experiments total。\n\n**等待中**：\n- 多个分析 worker 刚完成（r8_tasks_12, r8_tasks_34, r8w2_thinking_tokens, r7c1_re_multiseed）——我未逐一深审，因为没有新实验数据或 registry 变更\n- Paper Agent 可能还有后续 Phase（标题 overclaim, Abstract 修复等）\n- Round 9 审稿请求预计即将到来\n\n### 4. 📋 待办\n- Paper Agent 提交 Round 9 全文审查请求 → 按 §5.3 模板评分（Originality/Clarity/Soundness/Significance/Presentation + Overall），重点验证 4B 数据写入正确性、页数 ≤8 正文\n- Director 转发 framing 调整提案 → Read negative-framing-review skill，按四维度审\n- 新实验注册 → 按 audit checklist 审查，GPU 白名单核查\n- PDF 视觉审查请求 → 用 pdf_to_images 检查排版\n\n### 5. 🎯 战略上下文\n- **核心发现**：correlation-selection gap 是 universal 的——5 类信号都有 QE correlation（ρ up to 0.45）但 selection 全部 fail（all p>0.05）\n- **4B ablation 结论**（D098/D099）：4B ≈ 8B，gap 与 model capacity 无关，task difficulty 是主驱动。SciERC NER 4B 的 SJ_ρ=0.422 反而高于 8B 的 0.383，但 selection 仍 -1.49pp。CoNLL 4B greedy_f1=0.9234 > 8B 的 0.9123，headroom 仅 1.7pp（MARGINAL）\n- **SciERC RE 质量问题**：47.6% 样本 F1=0，conditional LP correlation 不显著（p=0.074）。RE 标注 preliminary\n- **易踩坑**：(1) selection_f1_4b_results.json 和 report.json 的 headroom 数字不同（filtering 不同：529 vs 551 instances），论文用 529 instances 版本（13.0pp）；(2) registry 有多个 killed/superseded 实验（merge_inference 系列），不要和活跃实验混淆；(3) freeform ablation 3-seed 结果在 exp_freeform_seed123/789 里，variance_ratio ~0.89-0.97 证明 compression 是 intrinsic\n- **DDL**：EMNLP 2026-05-25（10 天），当前在 Round 8 修复 → Round 9 审稿路径上\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-copy-3.md"
+}

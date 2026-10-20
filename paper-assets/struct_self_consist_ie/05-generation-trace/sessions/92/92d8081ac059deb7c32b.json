@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92d8081ac059deb7c32b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu 5090 kill and fill",
+  "task_key": "worker_gpu_5090_kill_and_fill_20260521T075158",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_5090_kill_and_fill_20260521T075158_result.json",
+    "occurrence": 1,
+    "bytes": 941,
+    "sha256": "d6e911633267c1a9a6bc52e3007b5cd9117afe343f26e57d781ad37ec9ae11b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 张卡全部在跑。最终状态：\n\n| GPU | 状态 | 实验 | PID | 备注 |\n|-----|------|------|-----|------|\n| cuda:0 | 运行中 | FewNERD MF4v2 seed456 | 3308 | fine-tuned 模型，13:53 开始 |\n| cuda:1 | **新启动** | FewNERD MF4v2 seed123 | 13611 | fine-tuned 模型，刚启动 |\n| cuda:2 | **新启动** | FewNERD MF4v2 seed42 | 13761 | fine-tuned 模型，刚启动 |\n| cuda:3 | 运行中 | E2 pretrained FewNERD seed42 | 8696 | base Qwen2.5-7B，14:59 开始 |\n\n操作总结：\n- 已 kill cuda:1 重复的 E2 pretrained FewNERD 进程（PID 3470）\n- cuda:2 的 E2 pretrained CoNLL 已完成（report.json 已生成）\n- 在 cuda:1/cuda:2 启动了 FewNERD MF4v2 的 seed123 和 seed42 实验（37648 instances，预计 3-4h）\n- 注意：模型路径需要用嵌套路径 `checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged`，任务模板里的路径缺少 vocab 文件"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-5090-kill-and-fill.md"
+}

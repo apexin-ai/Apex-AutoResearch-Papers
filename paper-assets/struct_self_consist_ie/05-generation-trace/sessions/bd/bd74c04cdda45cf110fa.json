@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd74c04cdda45cf110fa",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "extract diversity stratified table",
+  "task_key": "worker_extract_diversity_stratified_table_20260515T045028",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_extract_diversity_stratified_table_20260515T045028_result.json",
+    "occurrence": 1,
+    "bytes": 2255,
+    "sha256": "f293fe7121be77bf6ad6fc668793eef4bdd8ddba05a543df14d3865be9a4514d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 数据完整，直接提取。\n\n## Qwen SciERC NER\n\n| Group | n | Greedy F1 | Oracle F1 | Headroom | SJ sel | FK sel | EM sel | LP sel | VC sel | Best signal | Best gap vs greedy |\n|-------|--:|----------:|----------:|---------:|-------:|-------:|-------:|-------:|-------:|:-----------:|-------------------:|\n| **high-diversity** (≥4 unique) | 232 | .5753 | .7384 | .1631 | .5747 | .5733 | .5561 | **.5829** | .5498 | **LP** | **+.0076** |\n| medium (=3 unique) | 112 | .6740 | .8063 | .1323 | .6968 | **.6989** | .6938 | .6888 | .6461 | **FK** | **+.0249** |\n| **low-diversity** (≤2 unique) | 185 | .7118 | .8043 | .0925 | .7018 | .7018 | .7018 | .7109 | **.7117** | **VC** | **−.0001** |\n\n## LLaMA SciERC NER\n\n| Group | n | Greedy F1 | Oracle F1 | Headroom | SJ sel | FK sel | EM sel | LP sel | VC sel | Best signal | Best gap vs greedy |\n|-------|--:|----------:|----------:|---------:|-------:|-------:|-------:|-------:|-------:|:-----------:|-------------------:|\n| **high-diversity** (≥4 unique) | 186 | .5630 | .7644 | .2014 | .5618 | .5622 | .5381 | **.5826** | .5455 | **LP** | **+.0196** |\n| medium (=3 unique) | 107 | .6307 | .7623 | .1316 | .6209 | .6246 | **.6277** | .6250 | .6140 | **EM** | **−.0029** |\n| **low-diversity** (≤2 unique) | 236 | .7184 | .7959 | .0775 | .7177 | .7176 | .7164 | .7185 | **.7252** | **VC** | **+.0068** |\n\n## 关键发现\n\n**High-diversity 组 (≥4 unique)**：\n- Headroom 大（Qwen 16.3pp, LLaMA 20.1pp），但所有 consistency-based 信号（SJ/FK/EM/VC）都**低于 greedy**\n- 唯一正向信号是 **logprob (LP)**：Qwen +0.76pp, LLaMA +1.96pp\n- 说明当输出高度分歧时，consistency 信号失效，只有模型自身置信度（logprob）能提供微弱的选择信号\n\n**Low-diversity 组 (≤2 unique)**：\n- Headroom 小（Qwen 9.25pp, LLaMA 7.75pp），所有信号的 gap 都接近零（|gap| < 1pp）\n- 最佳信号是 **voting confidence (VC)**，但增益可忽略\n- 天花板效应：输出几乎一致时，selection 无改进空间\n\n**Diversity histogram（参考）**：\n- Qwen: 1→59, 2→126, 3→112, 4→94, 5→72, 6→32, 7→16, 8→18\n- LLaMA: 1→94, 2→142, 3→107, 4→71, 5→57, 6→36, 7→16, 8→6"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/extract-diversity-stratified-table.md"
+}

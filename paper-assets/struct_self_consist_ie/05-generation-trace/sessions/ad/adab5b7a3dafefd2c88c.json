@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "adab5b7a3dafefd2c88c",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code llama conll inference",
+  "task_key": "worker_code_llama_conll_inference_20260518T181743",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_llama_conll_inference_20260518T181743.log",
+    "occurrence": 1,
+    "bytes": 1468076,
+    "sha256": "a5999d5aee9e3340622d8d19fee4aad5bad4c96883a6b41d14b991dd042ebd8a"
+  },
+  "statistics": {
+    "messages": 327,
+    "user_turns": 1,
+    "tool_calls": 108,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 102,
+      "tool_call": 108,
+      "tool_result": 108,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 192,
+      "chunks": [
+        {
+          "path": "adab5b7a3dafefd2c88c-part-0001.json",
+          "message_count": 143
+        },
+        {
+          "path": "adab5b7a3dafefd2c88c-part-0002.json",
+          "message_count": 49
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 135,
+      "chunks": [
+        {
+          "path": "adab5b7a3dafefd2c88c-part-0002.json",
+          "message_count": 47
+        },
+        {
+          "path": "adab5b7a3dafefd2c88c-part-0003.json",
+          "message_count": 88
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-llama-conll-inference.md"
+}

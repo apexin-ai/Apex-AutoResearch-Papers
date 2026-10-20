@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "411d4be40fa0fbcd8f8a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnosis wnut17 data quality",
+  "task_key": "worker_diagnosis_wnut17_data_quality_20260514T140815",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnosis_wnut17_data_quality_20260514T140815_result.json",
+    "occurrence": 1,
+    "bytes": 855,
+    "sha256": "de348fb31e460b878909cc73d18a9984e40f8b92d3a5f8bcc44be8af8ef37776"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因：训练数据 63.8% 空实例**（2166/3394 无实体），模型习得过强的\"空输出\"先验。\n\n核心数据：\n- 355 个 F1=0 实例中 **260 个（73%）模型直接输出空**\n- 空预测的 mean_logprob = -0.007（极高置信），非空预测 = -0.05 → 这直接解释了 logprob rho = -0.41（反向相关）\n- 155 个实例 16 个 sample 全空（SJ=1.0, F1=0）→ 解释了 SJ rho ≈ 0.09\n- Conditional 集（F1>0）上 SJ rho=0.288, logprob rho=0.350 → 方法在非空预测上有效\n\n**不是数据转换 bug**，数据转换逻辑正确。\n\n**修复建议**：P0 — 将训练空实例从 63.8% 下采样到 ≤25% 后重训；P1 — 使用 epoch 3 checkpoint（eval_loss 最低 0.077）替代 epoch 5。\n\n报告已写入 `artifacts/wnut17_diagnosis_report.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-wnut17-data-quality.md"
+}

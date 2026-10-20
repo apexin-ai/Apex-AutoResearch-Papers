@@ -1,0 +1,1283 @@
+{
+  "schema_version": "1.0",
+  "session_id": "63d8f05e1a596ce29adc",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 218,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "aedcbbc7535afaffe",
+                "tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+                "description": "Reading ~/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/e8944ff2-cece-4f47-933d-e2f9ac696d17/tool-results/toolu_01Cy58UwJsAVGkBi79ThSVSn.txt",
+                "usage": {
+                  "total_tokens": 65501,
+                  "tool_uses": 31,
+                  "duration_ms": 168043
+                },
+                "last_tool_name": "Read",
+                "uuid": "50a33dab-1f5f-463f-8432-35d805d7ba35",
+                "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17"
+              }
+            }
+          ],
+          "id": "event-000218"
+        },
+        {
+          "source_line": 219,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EnpRsEGFFA2Bd5LtNRpAPk",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/e8944ff2-cece-4f47-933d-e2f9ac696d17/tool-results/toolu_01Cy58UwJsAVGkBi79ThSVSn.txt",
+                "limit": 200,
+                "offset": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "dd37bb2a-a116-47be-9dd7-aa05b2072a24",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012qvxy8g6Bdzbfe49vLpXmB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 943,
+                "cache_read_input_tokens": 63840,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 943,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000219"
+        },
+        {
+          "source_line": 220,
+          "timestamp": "2026-05-25T20:32:00.309Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EnpRsEGFFA2Bd5LtNRpAPk",
+              "type": "tool_result",
+              "content": "50\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/checklist.tex-58-\\end{enumerate}\n51\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/checklist.tex-59-\n52\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/checklist.tex-60-\\subsection*{D\\hspace{0.5em} Did you use human annotators or research with human subjects?}\n53\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/checklist.tex-61-\n54\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/checklist.tex-62-No. All experiments use existing annotated benchmarks. No new human annotation or human subjects research was conducted.\n55\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/checklist.tex-63-\n56\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/checklist.tex-64-\\subsection*{E\\hspace{0.5em} AI Assistants}\n57\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/checklist.tex-65-\n58\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/checklist.tex-66-\\begin{enumerate}\n59\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/checklist.tex-67-\\item[E1.] \\textbf{Did you include information in your paper about your use of AI assistants?}\\\\\n60\tdocs/paper/sections/checklist.tex-68-Yes. See Appendix~\\ref{app:ai-assistants}.\n61\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/checklist.tex-69-\\end{enumerate}\n62\t--\n63\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-72-\\multicolumn{3}{l}{\\textit{Per-sample signal}} \\\\\n64\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-73-LP           & $\\mathbf{0.647} \\pm 0.005$ & .29 \\\\\n65\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-74-\\midrule\n66\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-75-\\multicolumn{3}{l}{\\textit{Instance-level signals (consensus-proximity selection)}} \\\\\n67\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-76-SJ           & $0.646 \\pm 0.002$ & .67 \\\\\n68\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-77-FK           & $0.646 \\pm 0.001$ & .79 \\\\\n69\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-78-EM           & $0.637 \\pm 0.001$ & n/a$^\\dagger$ \\\\\n70\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-79-VC           & $0.623 \\pm 0.004$ & n/a$^\\dagger$ \\\\\n71\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-80-\\midrule\n72\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-81-Random           & $0.610 \\pm 0.003$ & --- \\\\\n73\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-82-\\bottomrule\n74\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-83-\\end{tabular}\n75\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-84-\\end{table}\n76\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-85-\n77\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-86-\\begin{figure}[t]\n78\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-87-\\centering\n79\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-88-\\includegraphics[width=\\columnwidth]{fig_selection_gap}\n80\tdocs/paper/sections/_archived/experiments_OLD.tex-89-\\caption{The correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: quality estimation $\\rho$ (seed 42); line with error bars: $\\Delta$F1 vs.\\ greedy (3-seed mean, seeds 42/123/456). Despite $\\rho$ up to 0.38, no signal significantly outperforms greedy (all $p{>}0.05$; Table~\\ref{tab:selection}). Dashed green: oracle upper bound ($+13.0$~pp); dotted gray: random baseline.}\n81\tdocs/paper/sections/_archived/experiments_OLD.tex-90-\\label{fig:selection_gap}\n82\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-91-\\end{figure}\n83\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-92-\n84\tdocs/paper/sections/_archived/experiments_OLD.tex-93-Instance-level signals assign identical QE scores to all candidates; MBR conversion does not improve over greedy on the primary test bed (Table~\\ref{tab:selection}; Figure~\\ref{fig:selection_gap}).\n85\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-94-Instance-level signals predict \\textit{which inputs} the model handles reliably, not \\textit{which output} is best.\n86\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-95-\n87\tdocs/paper/sections/_archived/experiments_OLD.tex-96-\\paragraph{LP: the sole per-sample signal also fails.}\n88\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-97-On SciERC ($n{=}529$, 2-seed sign tests\\footnote{MDE${\\approx}$1.5~pp at 80\\% power ($n{=}529$); Few-NERD ($n{=}32{,}565$; MDE${\\approx}$0.22~pp) provides the definitive test.}), the oracle (0.775) reveals 13.0~pp of headroom, but LP achieves $+0.2$~pp ($p{=}0.29$), below the MDE (${\\approx}$1.5~pp); selection effects below this threshold cannot be reliably detected.\n89\tdocs/paper/sections/_archived/experiments_OLD.tex-98-The pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}); under stringent TOST anchors, some configurations show significant \\textit{degradation} (Appendix~\\ref{app:tost}).\n90\tdocs/paper/sections/_archived/experiments_OLD.tex-99-Few-NERD provides the definitive contrast: LP achieves $+1.39$~pp ($p{<}0.001$) at low degeneracy (\\S\\ref{sec:fewnerd}), while structural signals still degrade selection.\n91\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-100-\n92\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-101-\\paragraph{Qualitative factors governing selection effectiveness.}\n93\tdocs/paper/sections/_archived/experiments_OLD.tex:102:Three factors shape LP selection gains: (1)~\\textit{instance degeneracy} (SciERC 17.8\\%, CoNLL 61.7\\%; Table~\\ref{tab:fewnerd}); (2)~\\textit{oracle headroom} (CoNLL ${\\approx}4$\\,pp vs.\\ SciERC 13.0\\,pp); (3)~\\textit{LP-quality alignment} (Few-NERD $\\rho{\\approx}0.5$--$0.7$ vs.\\ SciERC $\\rho{\\approx}0.26$).\n94\tdocs/paper/sections/_archived/experiments_OLD.tex-103-The pattern matches observations: Few-NERD (low degeneracy, strong alignment) yields $+1.39$\\,pp; SciERC (weak alignment) $+0.04{\\pm}0.48$\\,pp (3-seed; Table~\\ref{tab:multiseed}); CoNLL (high degeneracy) none; WNUT-17 shows reversed LP ($\\rho{=}{-}0.446$) yet QE remains effective (VC $\\rho{=}0.724$, $N{=}16$; Table~\\ref{tab:wnut}).\n95\tdocs/paper/sections/_archived/experiments_OLD.tex-104-The factors do not combine into a predictive model ($R^2{<}0$, 23 configurations) but each is supported by controlled ablations (\\S\\ref{sec:fewnerd}, \\S\\ref{sec:discussion}).\n96\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-105-\n97\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-106-%% ============================================================\n98\tdocs/paper/sections/_archived/experiments_OLD.tex-107-\\subsection{Cross-Dataset Contrast: Few-NERD}\n99\tdocs/paper/sections/_archived/experiments_OLD.tex-108-\\label{sec:fewnerd}\n100\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-109-\n101\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-110-\\begin{table}[t]\n102\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-111-\\centering\n103\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-112-\\small\n104\tdocs/paper/sections/_archived/experiments_OLD.tex-113-\\caption{LP selection across datasets (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered). Few-NERD/CoNLL: 3-seed means; SciERC: single-seed (3-seed in Table~\\ref{tab:multiseed}). $p$: paired bootstrap.}\n105\tdocs/paper/sections/_archived/experiments_OLD.tex:114:\\label{tab:fewnerd}\n106\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-115-\\resizebox{\\columnwidth}{!}{%\n107\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-116-\\begin{tabular}{@{}lrccccr@{}}\n108\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-117-\\toprule\n109\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-118-Dataset & $n$ & Greedy & Degen.\\% & LP $\\rho$ & LP $\\Delta$ & $p$ \\\\\n110\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-119-\\midrule\n111\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-120-WNUT-17 & 1{,}287 & .452 & 67.9\\% & $-$.446 & $-$0.45\\,pp & .72 \\\\\n112\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-121-CoNLL & 2{,}756 & .908 & 61.7\\% & .302 & $-$0.85\\,pp & 1.0 \\\\\n113\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-122-SciERC & 529 & .644 & 17.8\\% & .205 & $+$0.61\\,pp & .193 \\\\\n114\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-123-Few-NERD & 32{,}565 & .748 & 13.0\\% & .220 & $\\mathbf{+1.39}$\\,pp & ${<}.001$ \\\\\n115\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-124-\\bottomrule\n116\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-125-\\end{tabular}}\n117\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-126-\\end{table}\n118\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-127-\n119\tdocs/paper/sections/_archived/experiments_OLD.tex:128:Few-NERD (Table~\\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\\times$ more seed-stable ($\\sigma{=}0.04$ vs.\\ SJ $2.02$~pp), generalizing to LLaMA (Table~\\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $31$\\%, halving LP gains; Appendix~\\ref{app:epoch_confound}).\n120\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-129-\n121\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-130-\\paragraph{Degeneracy alone does not predict LP direction.}\n122\tdocs/paper/sections/_archived/experiments_OLD.tex-131-Across 23 configurations, degeneracy does not predict LP gain ($\\rho{=}0.052$, $p{=}0.81$; Figure~\\ref{fig:degeneracy_scatter}), though it causally modulates LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}). Cross-dataset prediction requires LP signal quality (Appendix~\\ref{app:conditional_decomp}).\n123\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-132-\n124\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-133-\\begin{figure}[t]\n125\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-134-\\centering\n126\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-135-\\includegraphics[width=\\columnwidth]{figures/fig_degeneracy_lp_scatter.pdf}\n127\tdocs/paper/sections/_archived/experiments_OLD.tex-136-\\caption{Instance degeneracy vs.\\ LP selection gain across 23 configurations ($N{=}8$; $\\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type analysis ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}\n128\tdocs/paper/sections/_archived/experiments_OLD.tex-137-\\label{fig:degeneracy_scatter}\n129\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-138-\\end{figure}\n130\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-139-\n131\tdocs/paper/sections/_archived/experiments_OLD.tex-140-Structural signals remain negative regardless of sample budget; $N$-scaling analyses are in Appendix~\\ref{app:n_scaling}.\n132\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-141-\n133\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-142-%% ============================================================\n134\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-143-\\subsection{Robustness}\n135\tdocs/paper/sections/_archived/experiments_OLD.tex-144-\\label{sec:robustness_main}\n136\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-145-\n137\tdocs/paper/sections/_archived/experiments_OLD.tex-146-Consistency signals are robust across $T{\\in}\\{0.7, 1.0\\}$ with sublinear $N$-scaling gains (Table~\\ref{tab:robustness}); signal rankings are stable across seeds ($W{=}1.0$; Table~\\ref{tab:ranking-stability}). NER calibration is reasonable (ECE 0.069--0.096; Appendix~\\ref{app:calibration}).\n138\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-147-\n139\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-148-\\begin{table}[t]\n140\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-149-\\centering\n141\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-150-\\small\n142\tdocs/paper/sections/_archived/experiments_OLD.tex-151-\\caption{Scale ablation: 8B vs.\\ 4B QE $\\rho$ ($N{=}8$, $T{=}1.0$, seed 42). RE in Appendix~\\ref{app:re_extension}.}\n143\tdocs/paper/sections/_archived/experiments_OLD.tex-152-\\label{tab:scale_ablation}\n144\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-153-\\begin{tabular}{@{}ll cc r@{}}\n145\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-154-\\toprule\n146\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-155-& & \\textbf{8B} & \\textbf{4B} & $\\Delta$ \\\\\n147\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-156-\\midrule\n148\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-157-CoNLL & SJ & .436 & .422 & $-$.014 \\\\\n149\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex-158-      & FK & .400 & .418 & $+$.018 \\\\\n150\t--\n151\tdocs/paper/sections/appendix.tex-211-On the full set, EM is diluted by trivial agreement: instances where all $N$ samples produce identical (possibly incorrect) outputs receive EM${=}1$ regardless of quality, compressing the signal's dynamic range.\n152\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-212-On the conditional set, where the model demonstrably produces varied outputs, exact agreement becomes the strongest quality signal.\n153\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-213-The margin over SJ is largest on RE ($\\Delta\\rho{=}{+}0.171$), where compound extraction decisions amplify output variability, and smallest on CoNLL LLaMA ($\\Delta\\rho{=}{+}0.002$), where all signals converge near $\\rho{\\approx}0.46$.\n154\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-214-\n155\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-215-\\paragraph{WNUT-17 full signal analysis.}\n156\tdocs/paper/sections/appendix.tex-216-Table~\\ref{tab:wnut} reports all five signals on WNUT-17 with full-set and conditional $\\rho$.\n157\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-217-\n158\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-218-\\begin{table}[t]\n159\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-219-\\centering\n160\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-220-\\small\n161\tdocs/paper/sections/appendix.tex-221-\\caption{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$). Cond: non-zero F1 instances ($n{=}334$). Full-set $\\rho$ reflects binary success prediction; conditional $\\rho$ measures quality gradation. LP's conditional $\\rho$ is highest despite negative full-set $\\rho$.}\n162\tdocs/paper/sections/appendix.tex-222-\\label{tab:wnut}\n163\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-223-\\begin{tabular}{lcccc}\n164\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-224-\\toprule\n165\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-225-Signal & $\\rho$ & AUROC & Cond.\\ $\\rho$ & Cond.\\ $p$ \\\\\n166\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-226-\\midrule\n167\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-227-VC      & .724 & .913 & .038 & .487 \\\\\n168\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-228-FK      & .125 & .555 & .169 & .002 \\\\\n169\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-229-SJ      & .089 & .517 & .288 & ${<}$1e-7 \\\\\n170\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-230-EM      & .050 & .487 & .333 & ${<}$1e-9 \\\\\n171\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-231-LP & $-$.410 & .219 & .350 & ${<}$1e-10 \\\\\n172\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-232-\\bottomrule\n173\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-233-\\end{tabular}\n174\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-234-\\end{table}\n175\tdocs/paper/sections/appendix.tex-235-The full-set $p$-values are: VC ${<}$1e-112, FK $p{=}0.001$, SJ $p{=}0.020$, EM $p{=}0.194$, LP ${<}$1e-28.\n176\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-236-VC's high full-set $\\rho{=}0.724$ is entirely attributable to the zero/non-zero boundary (conditional $\\rho{=}0.038$, $p{=}0.49$), while LP's conditional $\\rho{=}0.350$ is the highest among all signals on the non-zero subset, full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.\n177\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-237-\n178\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-238-\\paragraph{Cross-configuration selection analysis.}\n179\tdocs/paper/sections/appendix.tex-239-Table~\\ref{tab:cross_selection} extends the selection analysis to five additional configurations.\n180\tdocs/paper/sections/appendix.tex-240-On LLaMA SciERC, where output diversity remains substantial (18\\% identical outputs, 39\\% unique), LP achieves the highest selection F1 (0.652) at $N{=}8$ but still falls within bootstrap noise of single-sample (0.646), replicating the gap observed on Qwen SciERC (Table~\\ref{tab:selection}).\n181\tdocs/paper/sections/appendix.tex:241:[Omitted long matching line]\n182\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-242-On CoNLL, 48--87\\% of instances produce identical outputs across all $N$ samples; this reflects a ceiling effect (single-sample F1 ${\\approx}$0.91--0.92) rather than signal failure, and selection analysis on these configurations is uninformative because there is little per-sample variance for any signal to exploit.\n183\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-243-\n184\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-244-\\begin{table*}[t]\n185\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-245-\\centering\n186\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-246-\\small\n187\tdocs/paper/sections/appendix.tex:247:\\caption{Best-of-$N$ selection F1 (macro, instance-averaged) across configurations ($T{=}1.0$, 3-seed mean). Best non-oracle signal per row in \\textbf{bold}. LP is the only signal with positive selection on both Few-NERD configurations (Qwen $+1.39$~pp, Table~\\ref{tab:fewnerd}; LLaMA $+0.36$~pp). At $N{=}16$ on LLaMA CoNLL, VC achieves small but significant gains ($+0.28$~pp, $p{<}0.03$; see text below). CoNLL shows especially tight clustering where greedy already exceeds 0.90.}\n188\tdocs/paper/sections/appendix.tex-248-\\label{tab:cross_selection}\n189\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-249-\\begin{tabular}{llccccccc}\n190\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-250-\\toprule\n191\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-251-Config & $n$ & Greedy & Oracle & SJ & FK & EM & LP & VC \\\\\n192\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-252-\\midrule\n193\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-253-LLaMA/SciERC $N{=}8$ & 529 & .646 & .778 & .643 & .639 & .634 & \\textbf{.652} & .633 \\\\\n194\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-254-LLaMA/SciERC $N{=}16$ & 529 & .645 & .806 & \\textbf{.649} & \\textbf{.649} & .640 & .646 & .640 \\\\\n195\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-255-\\addlinespace\n196\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-256-LLaMA/Few-NERD $N{=}8$ & 32{,}565 & .784 & .884 & .779 & .779 & .774 & \\textbf{.788} & .760 \\\\\n197\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-257-\\addlinespace\n198\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-258-Qwen/CoNLL $N{=}8$ & 2{,}756 & .908 & .948 & \\textbf{.899} & .893 & .898 & .897 & .895 \\\\\n199\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-259-LLaMA/CoNLL $N{=}8$ & 2{,}756 & .924 & .943 & .924 & \\textbf{.925} & .924 & .924 & .923 \\\\\n200\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-260-\\bottomrule\n201\t\n202\t[Showing results with pagination = limit: 200]"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "47cdfabe-1499-484a-9513-68ecef90c6ee"
+          },
+          "id": "event-000220"
+        },
+        {
+          "source_line": 221,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "aedcbbc7535afaffe",
+                "tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+                "description": "Searching for WNUT|wnut",
+                "usage": {
+                  "total_tokens": 75724,
+                  "tool_uses": 32,
+                  "duration_ms": 173548
+                },
+                "last_tool_name": "Grep",
+                "uuid": "4bdac8cb-e772-43ce-9f94-a644a78b6bff",
+                "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17"
+              }
+            }
+          ],
+          "id": "event-000221"
+        },
+        {
+          "source_line": 222,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015xBdPgCAYytQnVQEmpmSre",
+              "name": "Grep",
+              "input": {
+                "pattern": "WNUT|wnut",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+                "output_mode": "content",
+                "-C": 5,
+                "head_limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "00b7fe1a-f963-4103-befa-1e61a2193f1b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GUCt9d9YKTExE1WmVYeAMT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10219,
+                "cache_read_input_tokens": 64783,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 10219,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000222"
+        },
+        {
+          "source_line": 223,
+          "timestamp": "2026-05-25T20:32:05.567Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>Path does not exist: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie.</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_015xBdPgCAYytQnVQEmpmSre"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "1b3ab0e0-f11d-4062-ace1-988680dd6213",
+            "tool_use_result": "Error: Path does not exist: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie."
+          },
+          "id": "event-000223"
+        },
+        {
+          "source_line": 224,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "aedcbbc7535afaffe",
+                "tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+                "description": "Finding docs/paper/sections/experiment*.tex",
+                "usage": {
+                  "total_tokens": 76096,
+                  "tool_uses": 33,
+                  "duration_ms": 179938
+                },
+                "last_tool_name": "Glob",
+                "uuid": "0dd305c8-9cc4-408a-9801-5ad43da3f563",
+                "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17"
+              }
+            }
+          ],
+          "id": "event-000224"
+        },
+        {
+          "source_line": 225,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E6kk2cVLtr4aPBdxgwwKL6",
+              "name": "Glob",
+              "input": {
+                "pattern": "docs/paper/sections/experiment*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "fd8b0554-f3c0-42e4-a396-f2ccfcb86ca0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TPK6x2etNGcFyajxbFBsWY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 319,
+                "cache_read_input_tokens": 75002,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 319,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000225"
+        },
+        {
+          "source_line": 226,
+          "timestamp": "2026-05-25T20:32:12.069Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E6kk2cVLtr4aPBdxgwwKL6",
+              "type": "tool_result",
+              "content": "docs/paper/sections/experiments_main.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "1c3ab34f-4f57-4c1c-a43b-dd05f2c6917f"
+          },
+          "id": "event-000226"
+        },
+        {
+          "source_line": 227,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "aedcbbc7535afaffe",
+                "tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+                "description": "Searching for 0\\.062.*WNUT|WNUT.*0\\.062|SJ.*0\\.062|0\\.062.*SJ",
+                "usage": {
+                  "total_tokens": 76149,
+                  "tool_uses": 34,
+                  "duration_ms": 181201
+                },
+                "last_tool_name": "Grep",
+                "uuid": "22b5764b-b3a3-417f-b482-551241899ebe",
+                "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17"
+              }
+            }
+          ],
+          "id": "event-000227"
+        },
+        {
+          "source_line": 228,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LV5MEDsesj2JPHSZZ5gNBE",
+              "name": "Grep",
+              "input": {
+                "pattern": "0\\.062.*WNUT|WNUT.*0\\.062|SJ.*0\\.062|0\\.062.*SJ",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+                "output_mode": "content",
+                "-C": 5,
+                "glob": "*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "358e4644-807f-48d5-8e0c-2b9c0bd54dfb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TPK6x2etNGcFyajxbFBsWY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 319,
+                "cache_read_input_tokens": 75002,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 319,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000228"
+        },
+        {
+          "source_line": 229,
+          "timestamp": "2026-05-25T20:32:13.233Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LV5MEDsesj2JPHSZZ5gNBE",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1514-VC selection degrades with increasing $N$ ($-2.66$~pp at $N{=}2$ to $-4.35$~pp at $N{=}32$), consistent with mode-seeking bias in voting-based selection as the candidate pool grows.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1515-\ndocs/paper/sections/appendix.tex-1516-\\paragraph{Few-NERD $N$-scaling: MV at $N{=}16$.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1517-On Few-NERD (Qwen3-8B, 3-seed), increasing from $N{=}8$ to $N{=}16$ reduces degeneracy ($8.8$\\%$\\to$$4.0{\\pm}1.4$\\%) and attenuates MV degradation ($-2.74$\\,pp$\\to$$-1.65{\\pm}0.61$\\,pp), but MV remains negative.\ndocs/paper/sections/appendix.tex-1518-Additional samples reduce the MV penalty but do not reverse it, consistent with the correlated-error mechanism: more samples provide better frequency estimates but cannot overcome systematic shared mistakes.\ndocs/paper/sections/appendix.tex:1519:SJ $\\rho$ is used for quality estimation at $N{=}16$ (FK conditional $\\rho$ shows sign instability across seeds: mean${=}0.051{\\pm}0.062$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1520-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1521-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1522-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1523-\\small\ndocs/paper/sections/appendix.tex-1524-\\caption{Effect of sample count on selection (SciERC NER, Qwen3-8B, $T{=}1.0$, gold-filtered, seed${=}42$; exp\\_025).\\protect\\footnotemark\\ ``Best $\\Delta$'': highest selection gain across all 5 signals. Per-signal $\\Delta$ in pp vs.~greedy.}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "b2501960-d1bf-4610-a007-25f318627915"
+          },
+          "id": "event-000229"
+        },
+        {
+          "source_line": 230,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "aedcbbc7535afaffe",
+                "tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+                "description": "Searching for WNUT|wnut",
+                "usage": {
+                  "total_tokens": 77298,
+                  "tool_uses": 35,
+                  "duration_ms": 184711
+                },
+                "last_tool_name": "Grep",
+                "uuid": "74543b14-e9cf-451a-b072-dfa318509563",
+                "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17"
+              }
+            }
+          ],
+          "id": "event-000230"
+        },
+        {
+          "source_line": 231,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XBdujLmhnam6kXDmW72L2j",
+              "name": "Grep",
+              "input": {
+                "pattern": "WNUT|wnut",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+                "output_mode": "content",
+                "-C": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "84acc88d-e7e6-4670-ae15-5f50d2439c7e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JS6P974xrUj57A2kfE4H56",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1097,
+                "cache_read_input_tokens": 75321,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1097,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 52,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000231"
+        },
+        {
+          "source_line": 232,
+          "timestamp": "2026-05-25T20:32:16.737Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XBdujLmhnam6kXDmW72L2j",
+              "type": "tool_result",
+              "content": "7-\\paragraph{Datasets.}\n8-We evaluate on four English NER benchmarks spanning a difficulty gradient.\n9-\\textbf{SciERC} \\cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed (${\\approx}$65\\% F1).\n10-\\textbf{Few-NERD} \\cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\\approx}$75\\% F1) provides a low-degeneracy contrast where LP selection succeeds (\\S\\ref{sec:selection_gap}).\n11-\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control.\n12:\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 53.7\\% zero F1) probes the signal-collapse boundary.\n13-\n14-\\paragraph{Models and sampling.}\n15-\\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are Low-Rank Adaptation (LoRA) fine-tuned using LLaMA Factory \\cite{zheng2024llamafactory} (Appendix~\\ref{app:training}; Few-NERD uses 3 epochs vs.\\ 5 for others; Appendix~\\ref{app:epoch_confound}).\n16-$N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \\cite{willard2023guided}; $N {\\in} \\{16, 32, 64\\}$ for scaling (Figure~\\ref{fig:n_scaling}; Appendix~\\ref{app:n_scaling}). Thinking-token impact on LP is negligible ($<$2.7\\% of median range; Appendix~\\ref{app:thinking_token}).\n17-\n--\n29-\n30-\\paragraph{Signal rankings are difficulty-dependent.}\n31-On SciERC, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over LP ($0.205$); bootstrap CIs confirm the gap ($\\Delta\\rho{=}{+}0.151{\\pm}0.006$, 5 seeds; Appendix~\\ref{app:bootstrap_signal}).\n32-Under seed-replication Holm--Bonferroni correction ($k{=}5$ seeds), the SJ~${>}$~LP advantage reaches $p_{\\text{adj}}{=}0.013$ (Appendix~\\ref{app:bootstrap_signal}).\n33-On CoNLL (F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$).\n34:At the signal-collapse boundary (WNUT-17, F1${\\approx}$42\\%), full-set correlations are dominated by the zero/non-zero boundary (VC $\\rho{=}0.724$ at $N{=}16$, but conditional $\\rho{=}0.038$; Table~\\ref{tab:wnut}); LP shows the reverse (conditional $\\rho{=}0.350$; Figure~\\ref{fig:signal_heatmap}).\n35-\n36-%% ============================================================\n37-\\subsection{Cross-Dataset Contrast: Few-NERD}\\label{sec:fewnerd}\n38-\n39-\\begin{table}[t]\n--\n44-\\resizebox{\\columnwidth}{!}{%\n45-\\begin{tabular}{@{}lrccccr@{}}\n46-\\toprule\n47-Dataset & $n$ & Greedy & Degen.\\% & LP $\\rho$ & LP $\\Delta$ & $p$ \\\\\n48-\\midrule\n49:WNUT-17 & 1{,}287 & .452 & 67.9\\% & $-$.446 & $-$0.45\\,pp & .72 \\\\\n50-CoNLL & 2{,}756 & .908 & 61.7\\% & .302 & $-$0.85\\,pp & 1.0 \\\\\n51-SciERC & 529 & .663 & 12.2\\% & .159 & $+$0.61\\,pp & .193 \\\\\n52-Few-NERD & 32{,}565 & .748 & 13.0\\% & .220 & $\\mathbf{+1.39}$\\,pp & ${<}.001$ \\\\\n53-\\bottomrule\n54-\\end{tabular}}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "b5d42b9a-b71e-4fee-9017-64186ec801b4"
+          },
+          "id": "event-000232"
+        },
+        {
+          "source_line": 233,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "aedcbbc7535afaffe",
+                "tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+                "description": "Searching for 0\\.062|method boundary|breaks down",
+                "usage": {
+                  "total_tokens": 78690,
+                  "tool_uses": 36,
+                  "duration_ms": 191080
+                },
+                "last_tool_name": "Grep",
+                "uuid": "009c4edf-b5cb-4d08-9821-de086d36bf28",
+                "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17"
+              }
+            }
+          ],
+          "id": "event-000233"
+        },
+        {
+          "source_line": 234,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Br2m9cFwmb8ZGhqm5K5Kd1",
+              "name": "Grep",
+              "input": {
+                "pattern": "0\\.062|method boundary|breaks down",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+                "output_mode": "content",
+                "-C": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "1de41d20-4191-4bf2-bda7-640684ab949a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016jHM5Vqv7nhrrNe3p9qFg5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1390,
+                "cache_read_input_tokens": 76418,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1390,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000234"
+        },
+        {
+          "source_line": 235,
+          "timestamp": "2026-05-25T20:32:23.107Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Br2m9cFwmb8ZGhqm5K5Kd1",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "e509d6bd-4582-4365-bd2e-e28cc517bb30"
+          },
+          "id": "event-000235"
+        },
+        {
+          "source_line": 236,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "aedcbbc7535afaffe",
+                "tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+                "description": "Searching for 0\\.062",
+                "usage": {
+                  "total_tokens": 78955,
+                  "tool_uses": 37,
+                  "duration_ms": 199540
+                },
+                "last_tool_name": "Grep",
+                "uuid": "f41c72a1-249a-46d4-b0b9-531cbc9a4957",
+                "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17"
+              }
+            }
+          ],
+          "id": "event-000236"
+        },
+        {
+          "source_line": 237,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014vQwczYZV3kp4BUZgGjq57",
+              "name": "Grep",
+              "input": {
+                "pattern": "0\\.062",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+                "output_mode": "content",
+                "-C": 3,
+                "glob": "*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "f981638e-a9e1-4baf-8e20-966069df045d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0132fjPA3UidJhExK6WmXB3R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 192,
+                "cache_read_input_tokens": 77808,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 192,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000237"
+        },
+        {
+          "source_line": 238,
+          "timestamp": "2026-05-25T20:32:31.569Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014vQwczYZV3kp4BUZgGjq57",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1307-Metric & Constrained & Free-form & $\\Delta$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1308-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1309-Mean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\ndocs/paper/sections/appendix.tex:1310:Mean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1311-Tied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1312-\\bottomrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1313-\\end{tabular}\n--\ndocs/paper/sections/appendix.tex-1516-\\paragraph{Few-NERD $N$-scaling: MV at $N{=}16$.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1517-On Few-NERD (Qwen3-8B, 3-seed), increasing from $N{=}8$ to $N{=}16$ reduces degeneracy ($8.8$\\%$\\to$$4.0{\\pm}1.4$\\%) and attenuates MV degradation ($-2.74$\\,pp$\\to$$-1.65{\\pm}0.61$\\,pp), but MV remains negative.\ndocs/paper/sections/appendix.tex-1518-Additional samples reduce the MV penalty but do not reverse it, consistent with the correlated-error mechanism: more samples provide better frequency estimates but cannot overcome systematic shared mistakes.\ndocs/paper/sections/appendix.tex:1519:SJ $\\rho$ is used for quality estimation at $N{=}16$ (FK conditional $\\rho$ shows sign instability across seeds: mean${=}0.051{\\pm}0.062$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1520-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1521-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-1522-\\centering\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-2165-\ndocs/paper/sections/appendix.tex-2166-\\subsection{Conditional Decomposition of LP Selection}\\label{app:conditional_decomp}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-2167-\ndocs/paper/sections/appendix.tex:2168:To test whether LP-quality alignment is associated with selection gains within datasets, we restrict LP selection to the favorable subset: non-degenerate instances whose within-instance LP range exceeds the dataset-specific median (SciERC: 0.040 nats, CoNLL: 0.062, Few-NERD: 0.067).\ndocs/paper/sections/appendix.tex-2169-Table~\\ref{tab:conditional_decomp} reports results across three datasets.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-2170-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-2171-\\begin{table}[h]"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "392753e2-ba50-4d8b-800a-af7f035ec39e"
+          },
+          "id": "event-000238"
+        },
+        {
+          "source_line": 239,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "aedcbbc7535afaffe",
+                "tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+                "description": "Reading docs/paper/sections/experiments_main.tex",
+                "usage": {
+                  "total_tokens": 80347,
+                  "tool_uses": 38,
+                  "duration_ms": 205179
+                },
+                "last_tool_name": "Read",
+                "uuid": "ed5d307c-ebf3-4989-88d2-67e1d50a480c",
+                "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17"
+              }
+            }
+          ],
+          "id": "event-000239"
+        },
+        {
+          "source_line": 240,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015WfzuYcJm6ky9LtFgr3GqB",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "d216e405-0585-44f3-a42a-17e93e4eb2a7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RpsiZtSYBwrU72K2XPsgV5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1390,
+                "cache_read_input_tokens": 78000,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1390,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000240"
+        },
+        {
+          "source_line": 241,
+          "timestamp": "2026-05-25T20:32:37.216Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015WfzuYcJm6ky9LtFgr3GqB",
+              "type": "tool_result",
+              "content": "1\t\\section{Cross-Dataset Experiments}\\label{sec:experiments}\n2\t\n3\tSections~\\ref{sec:selection_gap}--\\ref{sec:theory} developed the diagnostic framework on SciERC; this section extends it across datasets and models.\n4\t\n5\t\\subsection{Experimental Setup}\\label{sec:setup}\n6\t\n7\t\\paragraph{Datasets.}\n8\tWe evaluate on four English NER benchmarks spanning a difficulty gradient.\n9\t\\textbf{SciERC} \\cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed (${\\approx}$65\\% F1).\n10\t\\textbf{Few-NERD} \\cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\\approx}$75\\% F1) provides a low-degeneracy contrast where LP selection succeeds (\\S\\ref{sec:selection_gap}).\n11\t\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control.\n12\t\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 53.7\\% zero F1) probes the signal-collapse boundary.\n13\t\n14\t\\paragraph{Models and sampling.}\n15\t\\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are Low-Rank Adaptation (LoRA) fine-tuned using LLaMA Factory \\cite{zheng2024llamafactory} (Appendix~\\ref{app:training}; Few-NERD uses 3 epochs vs.\\ 5 for others; Appendix~\\ref{app:epoch_confound}).\n16\t$N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \\cite{willard2023guided}; $N {\\in} \\{16, 32, 64\\}$ for scaling (Figure~\\ref{fig:n_scaling}; Appendix~\\ref{app:n_scaling}). Thinking-token impact on LP is negligible ($<$2.7\\% of median range; Appendix~\\ref{app:thinking_token}).\n17\t\n18\t\\begin{figure}[t]\n19\t\\centering\n20\t\\includegraphics[width=0.92\\columnwidth]{figures/fig_n_scaling_mv.pdf}\n21\t\\caption{MV $\\Delta$F1 vs.\\ $\\log_2 N$ across three datasets (Qwen3-8B FT, seed${=}42$). Dotted gray: $\\Delta{=}0$. Gains are dataset-dependent: persistently negative on Few-NERD, near zero on SciERC at higher $N$, marginally positive on CoNLL ($+0.6$\\,pp at $N{=}64$).}\n22\t\\label{fig:n_scaling}\n23\t\\end{figure}\n24\t\n25\t%% ============================================================\n26\t\\subsection{Quality Estimation Results}\\label{sec:qe_results}\n27\t\n28\tTable~\\ref{tab:multiseed} presents $\\rho$ and AUROC for five signals on SciERC across NER and RE tasks with both model families (Appendix~\\ref{app:multiseed}).\n29\t\n30\t\\paragraph{Signal rankings are difficulty-dependent.}\n31\tOn SciERC, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over LP ($0.205$); bootstrap CIs confirm the gap ($\\Delta\\rho{=}{+}0.151{\\pm}0.006$, 5 seeds; Appendix~\\ref{app:bootstrap_signal}).\n32\tUnder seed-replication Holm--Bonferroni correction ($k{=}5$ seeds), the SJ~${>}$~LP advantage reaches $p_{\\text{adj}}{=}0.013$ (Appendix~\\ref{app:bootstrap_signal}).\n33\tOn CoNLL (F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$).\n34\tAt the signal-collapse boundary (WNUT-17, F1${\\approx}$42\\%), full-set correlations are dominated by the zero/non-zero boundary (VC $\\rho{=}0.724$ at $N{=}16$, but conditional $\\rho{=}0.038$; Table~\\ref{tab:wnut}); LP shows the reverse (conditional $\\rho{=}0.350$; Figure~\\ref{fig:signal_heatmap}).\n35\t\n36\t%% ============================================================\n37\t\\subsection{Cross-Dataset Contrast: Few-NERD}\\label{sec:fewnerd}\n38\t\n39\t\\begin{table}[t]\n40\t\\centering\n41\t\\small\n42\t\\caption{LP selection across datasets (instance-averaged F1; Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered, 3-seed means). $p$: paired bootstrap.}\n43\t\\label{tab:fewnerd}\n44\t\\resizebox{\\columnwidth}{!}{%\n45\t\\begin{tabular}{@{}lrccccr@{}}\n46\t\\toprule\n47\tDataset & $n$ & Greedy & Degen.\\% & LP $\\rho$ & LP $\\Delta$ & $p$ \\\\\n48\t\\midrule\n49\tWNUT-17 & 1{,}287 & .452 & 67.9\\% & $-$.446 & $-$0.45\\,pp & .72 \\\\\n50\tCoNLL & 2{,}756 & .908 & 61.7\\% & .302 & $-$0.85\\,pp & 1.0 \\\\\n51\tSciERC & 529 & .663 & 12.2\\% & .159 & $+$0.61\\,pp & .193 \\\\\n52\tFew-NERD & 32{,}565 & .748 & 13.0\\% & .220 & $\\mathbf{+1.39}$\\,pp & ${<}.001$ \\\\\n53\t\\bottomrule\n54\t\\end{tabular}}\n55\t\\end{table}\n56\t\n57\tFew-NERD (Table~\\ref{tab:fewnerd}; Appendix~\\ref{app:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp\\footnote{Under corpus micro-F1, $\\Delta{=}+0.09{\\pm}0.03$\\,pp; gains concentrate on few-entity instances.}, $p{<}0.001$; VC $-1.79$, SJ $-2.14$~pp), with LP $50{\\times}$ more seed-stable ($\\sigma{=}0.04$ vs.\\ SJ $2.02$), generalizing to LLaMA (Table~\\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $26$\\%; Appendix~\\ref{app:epoch_confound}).\n58\t\n59\tSignal ranking is task-specific; per-type analysis shows MV degradation concentrates in low-F1 types ($\\rho{=}0.90$, $p{=}0.002$; Appendix~\\ref{app:pertype}).\n60\t\n61\t\\paragraph{Degeneracy alone does not predict LP direction.}\n62\tDegeneracy does not predict LP gain across configurations ($\\rho{=}0.052$, $p{=}0.81$, power $0.07$; Figure~\\ref{fig:degeneracy_scatter}; Appendix~\\ref{app:power_analysis}), though it co-varies with LP within fixed settings ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}). Restricting to favorable subsets recovers gains on SciERC ($+2.47$\\,pp) but not CoNLL ($-1.78$\\,pp; Appendix~\\ref{app:conditional_decomp}).\n63\t\n64\t\\begin{figure}[t]\n65\t\\centering\n66\t\\includegraphics[width=\\columnwidth]{figures/fig_degeneracy_lp_scatter.pdf}\n67\t\\caption{Instance degeneracy vs.\\ LP selection gain across 23 configurations ($N{=}8$; $\\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type ($\\rho{=}{-}0.881$; Appendix~\\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}\n68\t\\label{fig:degeneracy_scatter}\n69\t\\end{figure}\n70\t\n71\tMV gains range from $-2.71$ to $+0.6$\\,pp (Figure~\\ref{fig:n_scaling}); RE extension in Appendices~\\ref{app:re_extension}--\\ref{app:re_n16_selection}.\n72\t\n73\t%% ============================================================\n74\t\\subsection{Robustness}\\label{sec:robustness_main}\n75\t\n76\tSignal rankings are robust across temperatures, seeds, $N$, and model sizes (4B--72B; Table~\\ref{tab:robustness}; Appendices~\\ref{app:t_ablation},~\\ref{app:calibration},~\\ref{app:llama3b}), under OOD domain shift (Appendix~\\ref{app:ood}), and with calibration-based reranking (Appendix~\\ref{app:calibration_baseline}).\n77\t\n78\t%% ============================================================\n79\t\\subsection{Entity Construction (Conditional)}\\label{sec:prescriptive}\n80\t\n81\tEntity-level majority vote ($\\theta{=}2/N$, LP-weighted) yields $+1.40{\\pm}0.51$\\,pp on Few-NERD ($p{<}0.001$; Table~\\ref{tab:entity_construction}), but non-significant on SciERC/CoNLL (Appendices~\\ref{app:holm},~\\ref{app:entity_merge},~\\ref{app:weighting_variants}).\n82\t\n83\t\\phantomsection\\label{sec:selection_results}\n84\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "0e92b64f-14e0-45b7-8f55-02226a0d03a3"
+          },
+          "id": "event-000241"
+        },
+        {
+          "source_line": 242,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "aedcbbc7535afaffe",
+                "tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+                "description": "Running Trace WNUT SJ rho provenance across experiments",
+                "usage": {
+                  "total_tokens": 83221,
+                  "tool_uses": 39,
+                  "duration_ms": 223949
+                },
+                "last_tool_name": "Bash",
+                "uuid": "02233032-a0ed-4f0c-8b44-6f3268cbdce1",
+                "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17"
+              }
+            }
+          ],
+          "id": "event-000242"
+        },
+        {
+          "source_line": 243,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SV3jkdzQHsG9wxfvc7GpuY",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/e8944ff2-cece-4f47-933d-e2f9ac696d17/tool-results/mcp-agent-ml-research-read_registry-1779740546053.txt | python3 -c \"\nimport sys, json\ndata = json.load(sys.stdin)\nresult_str = data['result']\nregistry = json.loads(result_str)\nexperiments = registry.get('data', {}).get('experiments', {})\n\n# Find WNUT experiments with signal rho values\n# exp_003_wnut17_v2 mentions SJ rho=0.062 in its note\nprint('=== exp_003_wnut17_v2 spec.note ===')\nprint(experiments['exp_003_wnut17_v2']['spec']['note'])\nprint()\n\n# exp_003_ner_wnut17: N=16, rho_sj_full = 0.082\nprint('=== exp_003_ner_wnut17 N=16 ===')\nm = experiments['exp_003_ner_wnut17']['metrics']\nprint(f'  N={m[\\\"N\\\"]}, rho_sj_full={m[\\\"ner\\\"][\\\"rho_sj_full\\\"]}, rho_fk_full={m[\\\"ner\\\"][\\\"rho_fk_full\\\"]}')\nprint()\n\n# exp_003_wnut17_eval: N=16, rho_sj = 0.089\nprint('=== exp_003_wnut17_eval N=16 ===')\nm = experiments['exp_003_wnut17_eval']['metrics']\nprint(f'  N={m[\\\"N\\\"]}, rho_sj={m[\\\"rho_sj\\\"]}, rho_fk={m[\\\"rho_fk\\\"]}')\nprint()\n\n# exp_wnut17_qwen25_7b: N=8 (different model), no rho in metrics\nprint('=== exp_wnut17_qwen25_7b (Qwen2.5-7B, N=8) ===')\nm = experiments['exp_wnut17_qwen25_7b']['metrics']\nprint(f'  metrics: {json.dumps(m, indent=2)}')\n\" 2>&1",
+                "description": "Trace WNUT SJ rho provenance across experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "775ecee0-58ce-4adb-9033-e2dfb9525d7c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LdA8urQCusNRxRGfXWGYLz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2870,
+                "cache_read_input_tokens": 79390,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2870,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000243"
+        },
+        {
+          "source_line": 244,
+          "timestamp": "2026-05-25T20:32:56.069Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SV3jkdzQHsG9wxfvc7GpuY",
+              "type": "tool_result",
+              "content": "=== exp_003_wnut17_v2 spec.note ===\nD045: Training succeeded (train_loss=0.105) but inference FAIL: 54% F1=0, SJ rho=0.062 (p=0.106). WNUT-17 abandoned — model capability insufficient on social media NER. Paper reports as Claim 3 (capability boundary) evidence.\n\n=== exp_003_ner_wnut17 N=16 ===\n  N=16, rho_sj_full=0.082, rho_fk_full=0.124\n\n=== exp_003_wnut17_eval N=16 ===\n  N=16, rho_sj=0.089, rho_fk=0.125\n\n=== exp_wnut17_qwen25_7b (Qwen2.5-7B, N=8) ===\n  metrics: {\n  \"seed42\": {\n    \"greedy_f1\": 0.4524,\n    \"construction_f1\": 0.4439,\n    \"construction_delta_pp\": -0.84,\n    \"construction_p\": 0.95\n  },\n  \"seed123\": {\n    \"greedy_f1\": 0.4518,\n    \"construction_f1\": 0.4579,\n    \"construction_delta_pp\": 0.61,\n    \"construction_p\": 0.08\n  },\n  \"seed456\": {\n    \"greedy_f1\": 0.4526,\n    \"construction_f1\": 0.4583,\n    \"construction_delta_pp\": 0.57,\n    \"construction_p\": 0.12\n  },\n  \"oracle_headroom_pp\": \"6.3-9.2\"\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "07dc5abb-ee9c-478e-a81d-9c28f7312027"
+          },
+          "id": "event-000244"
+        },
+        {
+          "source_line": 245,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "aedcbbc7535afaffe",
+                "tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+                "description": "Running Find all WNUT artifact files",
+                "usage": {
+                  "total_tokens": 84454,
+                  "tool_uses": 40,
+                  "duration_ms": 229628
+                },
+                "last_tool_name": "Bash",
+                "uuid": "7ef6868a-948d-47b8-a987-fa9541e21dba",
+                "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17"
+              }
+            }
+          ],
+          "id": "event-000245"
+        },
+        {
+          "source_line": 246,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TeWB3zg4t3U3ZUr9roq3Qe",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/ -name \"*wnut*\" -type f 2>/dev/null",
+                "description": "Find all WNUT artifact files"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "28a27c50-2e63-4a9d-8a79-95558788fe2a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W43rXbsKGLVxiTtxRqkAyy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1229,
+                "cache_read_input_tokens": 82260,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1229,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000246"
+        },
+        {
+          "source_line": 247,
+          "timestamp": "2026-05-25T20:33:01.788Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TeWB3zg4t3U3ZUr9roq3Qe",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/wnut17_diagnosis_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_003/report/wnut17_diagnosis_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/configs/export_config_qwen25_7b_wnut17.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/configs/export_config_wnut17.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/configs/train_config_qwen25_7b_wnut17_s42.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/configs/train_config_wnut17.yaml",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "aeec9ae0-c974-494b-a957-67ce4c2c45c8"
+          },
+          "id": "event-000247"
+        },
+        {
+          "source_line": 248,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "aedcbbc7535afaffe",
+                "tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+                "description": "Searching for wnut.*rho_sj|wnut.*sj.*rho|WNUT.*SJ.*0\\.",
+                "usage": {
+                  "total_tokens": 84456,
+                  "tool_uses": 41,
+                  "duration_ms": 231585
+                },
+                "last_tool_name": "Grep",
+                "uuid": "8280bf0f-88ac-48d8-b5fa-5622c6c73503",
+                "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17"
+              }
+            }
+          ],
+          "id": "event-000248"
+        },
+        {
+          "source_line": 249,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017jryWBQZqrfaqpFx98BM5X",
+              "name": "Grep",
+              "input": {
+                "pattern": "wnut.*rho_sj|wnut.*sj.*rho|WNUT.*SJ.*0\\.",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts",
+                "-i": true,
+                "output_mode": "content",
+                "-C": 3,
+                "head_limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "28439ea1-629e-4c6e-8b21-3a381441f3a8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W43rXbsKGLVxiTtxRqkAyy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1229,
+                "cache_read_input_tokens": 82260,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1229,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000249"
+        },
+        {
+          "source_line": 250,
+          "timestamp": "2026-05-25T20:33:04.316Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017jryWBQZqrfaqpFx98BM5X",
+              "type": "tool_result",
+              "content": "artifacts/_project/report/round_7_consistency_de165f.md-50-**证据**:\nartifacts/_project/report/round_7_consistency_de165f.md-51-- Registry exp_003_wnut17_eval: N=16, T=1, seed=42\nartifacts/_project/report/round_7_consistency_de165f.md-52-- Registry exp_003_ner_wnut17: N=16, T=1, seed=42\nartifacts/_project/report/round_7_consistency_de165f.md:53:- 论文 WNUT 表 SJ ρ=.089 与 exp_003_wnut17_eval 的 rho_sj=0.089 精确匹配（N=16 数据）\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/round_7_consistency_de165f.md-54-- 论文 WNUT 表 FK ρ=.125 与 exp_003_wnut17_eval 的 rho_fk=0.125 精确匹配\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/round_7_consistency_de165f.md-55-\nartifacts/_project/report/round_7_consistency_de165f.md-56-**影响**: 如果数据确实来自 N=16 但 caption 标注 N=8，则与正文 \"primary N=8\" 声称不一致。精确匹配 N=16 registry 值增强了 caption 标注错误的可能性。\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/provenance_audit_c032_c023_c021.md-112-This file is in `artifacts/_project/paper/` which is excluded from compilation per constraint C001. The current compiled paper at `docs/paper/sections/` does NOT contain 0.062 for WNUT.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/provenance_audit_c032_c023_c021.md-113-\nartifacts/_project/report/provenance_audit_c032_c023_c021.md-114-Searching all output files for 0.062 in WNUT context yields **no matches**. The closest values found are:\nartifacts/_project/report/provenance_audit_c032_c023_c021.md:115:- exp003_wnut17_pilot: SJ full rho = 0.0825 (different seed)\nartifacts/_project/report/provenance_audit_c032_c023_c021.md:116:- exp003_wnut17_eval: SJ full rho = 0.0888\nartifacts/_project/report/provenance_audit_c032_c023_c021.md-117-- exp_009_v2 global SJ rho (SciERC RE, not WNUT): 0.0625\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/provenance_audit_c032_c023_c021.md-118-\nartifacts/_project/report/provenance_audit_c032_c023_c021.md-119-The value 0.062 for WNUT SJ is **untraceable** — it does not appear in any analysis output file. It may have originated from:\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/provenance_audit_c032_c023_c021.md-133-|-------|----------------|---------------|-------------------|--------|\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/provenance_audit_c032_c023_c021.md-134-| c032 LP cond RE ρ | 0.002 | **0.011** | exp_012_rerun_1024 (correct filter, n=238) | Provenance stale; paper correct |\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/provenance_audit_c032_c023_c021.md-135-| c023 RE SJ Q1/Q4 | Q1=0.447/Q4=0.540 (registry) | **Q1=0.110/Q4=0.473** | exp_009_v2_re_rerun (gold-filtered) | Registry outdated; paper correct |\nartifacts/_project/report/provenance_audit_c032_c023_c021.md:136:| c021 WNUT SJ ρ | 0.062 | **0.089** | exp003_wnut17_eval (n=689) | Provenance stale; paper correct |\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/provenance_audit_c032_c023_c021.md-137-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/provenance_audit_c032_c023_c021.md-138-**All three paper values are correct in the current compiled paper.** The discrepancies exist only between the provenance yaml / registry entries and the paper — not between the paper and the ground truth data. The provenance yaml and registry entries need updating.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/audit_report.md-12-|----|-------|-------------------|----------------|--------|\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/audit_report.md-13-| c032 | LP cond RE ρ = 0.002 | **0.011** | 0.0112 | CORRECT (already fixed or misreported) |\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/audit_report.md-14-| c023 | Q1-Q4 SJ ρ = 0.110→0.473 | **0.110→0.473** | 0.447→0.540 | **DISCREPANCY CONFIRMED** |\nartifacts/_project/report/audit_report.md:15:| c021 | WNUT SJ ρ = 0.062 | **0.089** | 0.089 | CORRECT (fixed in docs/ version) |\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/audit_report.md-16-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/audit_report.md-17----\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/audit_report.md-18-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/audit_report.md-125-```\nartifacts/_project/report/audit_report.md-126-exp_012_rerun_1024 (max_tokens=1024, n_cond=238) → LP RE cond ρ=0.0112 → paper: 0.011 ✓\nartifacts/_project/report/audit_report.md-127-exp009_stratification_results.json (by_sent_len, scierc_re) → Q1=0.447, Q4=0.540 → paper: 0.110, 0.473 ✗\nartifacts/_project/report/audit_report.md:128:exp003_wnut17_eval (n=689, gold-filtered) → SJ ρ=0.089 → paper: 0.089 ✓\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/audit_report.md-129-```\n--\nartifacts/_project/report/negative_results_summary.md-33-| exp_001_seed456_t10_full | SciERC seed=456 early: RE rho_sj=0.268 weak | RE rho_sj=0.268 |\nartifacts/_project/report/negative_results_summary.md-34-| exp_001_seed123_t10_full | SciERC seed=123 early: RE rho_sj=0.265 weak | RE rho_sj=0.265 |\nartifacts/_project/report/negative_results_summary.md-35-| exp_001_seed456_v2 | SciERC joint NER+RE seed=456 v2: early pipeline | no metrics |\nartifacts/_project/report/negative_results_summary.md:36:| exp_003_ner_wnut17 | WNUT-17: 53.7% zero-F1, structural rho weak (SJ=0.082) | rho_sj=0.082 |\nartifacts/_project/report/negative_results_summary.md-37-| exp_wnut17_qwen25_7b | WNUT-17 Qwen2.5: construction delta inconsistent across seeds | seed42 delta=-0.84pp |\nartifacts/_project/report/negative_results_summary.md-38-| exp_003_wnut17_v2 | WNUT-17 v2: no metrics | no metrics |\nartifacts/_project/report/negative_results_summary.md-39-| exp_011_ood_conll_to_scierc | OOD CoNLL->SciERC: schema mismatch, F1=0.009 | rho_sj=-0.186 |\n--\nartifacts/_project/report/round_7_consistency.md-50-**证据**:\nartifacts/_project/report/round_7_consistency.md-51-- Registry exp_003_wnut17_eval: N=16, T=1, seed=42\nartifacts/_project/report/round_7_consistency.md-52-- Registry exp_003_ner_wnut17: N=16, T=1, seed=42\nartifacts/_project/report/round_7_consistency.md:53:- 论文 WNUT 表 SJ ρ=.089 与 exp_003_wnut17_eval 的 rho_sj=0.089 精确匹配（N=16 数据）\n\n[Showing results with pagination = limit: 50]"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "77b50e8f-3780-48d7-832c-e2aa7e6620ff"
+          },
+          "id": "event-000250"
+        },
+        {
+          "source_line": 251,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "aedcbbc7535afaffe",
+                "tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+                "description": "Reading artifacts/_project/report/provenance_audit_c032_c023_c021.md",
+                "usage": {
+                  "total_tokens": 87926,
+                  "tool_uses": 42,
+                  "duration_ms": 237107
+                },
+                "last_tool_name": "Read",
+                "uuid": "7e49cdcd-b6ac-4d71-8987-ef8a92946f6a",
+                "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17"
+              }
+            }
+          ],
+          "id": "event-000251"
+        },
+        {
+          "source_line": 252,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01USjrPA2u5DbBsMvCwXXEwX",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/provenance_audit_c032_c023_c021.md",
+                "offset": 100,
+                "limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "91001a20-179a-4987-842f-bbf8b6daa30a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Vok7WkA9PaEVqU2Hp1xegh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3468,
+                "cache_read_input_tokens": 83489,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3468,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000252"
+        },
+        {
+          "source_line": 253,
+          "timestamp": "2026-05-25T20:33:09.135Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01USjrPA2u5DbBsMvCwXXEwX",
+              "type": "tool_result",
+              "content": "100\ti.e., SJ full-set ρ = **0.089**, p = 0.020\n101\t\n102\tThis matches `output/exp003_wnut17_eval/report.json`:\n103\t- `correlation_softjaccard_vs_f1_full.rho = 0.08883161` → rounds to 0.089\n104\t- `correlation_softjaccard_vs_f1_full.p_value = 0.01970` → rounds to 0.020\n105\t- n = 689 (after gold-empty filtering)\n106\t\n107\t### Tracing the 0.062\n108\t\n109\tThe value ρ=0.062 appears ONLY in the **old deprecated paper** at:\n110\t- `artifacts/_project/paper/experiments.tex:181` — \"SJ achieves ρ=0.062 (p=0.106, not statistically significant)\"\n111\t\n112\tThis file is in `artifacts/_project/paper/` which is excluded from compilation per constraint C001. The current compiled paper at `docs/paper/sections/` does NOT contain 0.062 for WNUT.\n113\t\n114\tSearching all output files for 0.062 in WNUT context yields **no matches**. The closest values found are:\n115\t- exp003_wnut17_pilot: SJ full rho = 0.0825 (different seed)\n116\t- exp003_wnut17_eval: SJ full rho = 0.0888\n117\t- exp_009_v2 global SJ rho (SciERC RE, not WNUT): 0.0625\n118\t\n119\tThe value 0.062 for WNUT SJ is **untraceable** — it does not appear in any analysis output file. It may have originated from:\n120\t1. An earlier experiment run that was overwritten\n121\t2. A different seed/N configuration\n122\t3. A manual transcription error in the old draft\n123\t\n124\t### Conclusion\n125\t\n126\t**Provenance yaml is stale.** The current paper correctly uses ρ=0.089 from exp003_wnut17_eval (N=16, T=1.0, gold-filtered n=689). The 0.062 value from the old paper draft is untraceable and no longer appears in the compiled paper.\n127\t\n128\t---\n129\t\n130\t## Summary\n131\t\n132\t| Claim | Provenance yaml | Current paper | Ground truth source | Status |\n133\t|-------|----------------|---------------|-------------------|--------|\n134\t| c032 LP cond RE ρ | 0.002 | **0.011** | exp_012_rerun_1024 (correct filter, n=238) | Provenance stale; paper correct |\n135\t| c023 RE SJ Q1/Q4 | Q1=0.447/Q4=0.540 (registry) | **Q1=0.110/Q4=0.473** | exp_009_v2_re_rerun (gold-filtered) | Registry outdated; paper correct |\n136\t| c021 WNUT SJ ρ | 0.062 | **0.089** | exp003_wnut17_eval (n=689) | Provenance stale; paper correct |\n137\t\n138\t**All three paper values are correct in the current compiled paper.** The discrepancies exist only between the provenance yaml / registry entries and the paper — not between the paper and the ground truth data. The provenance yaml and registry entries need updating.\n139\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "099f719a-4626-4458-a6b7-f759d7227457"
+          },
+          "id": "event-000253"
+        },
+        {
+          "source_line": 254,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "aedcbbc7535afaffe",
+                "tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Find WNUT SJ rho N=8 value",
+                "usage": {
+                  "total_tokens": 88959,
+                  "tool_uses": 42,
+                  "duration_ms": 263043
+                },
+                "uuid": "f3ecf97d-f4ae-4279-abbb-723c5b7f3bfc",
+                "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17"
+              }
+            }
+          ],
+          "id": "event-000254"
+        },
+        {
+          "source_line": 255,
+          "timestamp": "2026-05-25T20:33:35.062Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WjjdvrUESo27dPRPwZjgBo",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Here is the complete picture:\n\n## WNUT-17 SJ Spearman rho values\n\n**The 0.062 value is untraceable and no longer in the current paper.** It was only in an old deprecated draft (`artifacts/_project/paper/experiments.tex`), which is not compiled. A provenance audit already confirmed this.\n\n### Available WNUT SJ rho values from the registry:\n\n| Experiment | Model | N | SJ rho (full) | Source |\n|---|---|---|---|---|\n| `exp_003_ner_wnut17` | Qwen3-8B | 16 | **0.082** | `rho_sj_full` in registry metrics |\n| `exp_003_wnut17_eval` | Qwen3-8B | 16 | **0.089** | `rho_sj` in registry metrics; matches `report.json` raw value 0.08883 |\n| `exp_003_wnut17_v2` | Qwen3-8B (downsampled) | 16 | **0.062** | In note text only, no structured metric; untraceable to a report.json |\n\n**There are no WNUT SJ rho values at N=8 in the registry.** The `exp_wnut17_qwen25_7b` experiment (Qwen2.5-7B, N=8, 3-seed) recorded only construction F1 metrics, not signal rho values.\n\n### What the current paper uses:\n- The appendix table `tab:wnut` (line 229 of `appendix.tex`) reports SJ rho = **.089** at **N=16** (from `exp_003_wnut17_eval`).\n- The main text does NOT mention WNUT SJ rho directly -- it references the table and discusses VC rho=0.724 and LP conditional rho=0.350.\n\n### At N=16:\n- SJ rho = **0.089** (exp_003_wnut17_eval, the authoritative value used in the current paper)\n- SJ rho = **0.082** (exp_003_ner_wnut17, same model, slightly different computation)\n\n### At N=8:\n- **No WNUT SJ rho data exists.** No experiment computed signal rho for WNUT at N=8.\n\n### Summary:\nThe paper's current value (0.089 in `tab:wnut`) is correct for N=16. The old value 0.062 was from a deprecated draft and is untraceable to any output file. Neither 0.082 nor 0.089 corresponds to N=8 -- both are N=16. If the user needs an N=8 WNUT SJ rho, that experiment has not been run."
+                },
+                {
+                  "type": "text",
+                  "text": "agentId: aedcbbc7535afaffe (use SendMessage with to: 'aedcbbc7535afaffe' to continue this agent)\n<usage>total_tokens: 88658\ntool_uses: 42\nduration_ms: 263045</usage>"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e8944ff2-cece-4f47-933d-e2f9ac696d17",
+            "uuid": "30ffa42d-db18-4d9c-bd42-c74775f31079",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "I need to find the correct WNUT-17 SJ (Structured Jaccard) Spearman ρ value at N=8 for this project. The paper currently has 0.062 but this might be wrong. The registry output has been saved to:\n/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/e8944ff2-cece-4f47-933d-e2f9ac696d17/tool-results/mcp-agent-ml-research-read_registry-1779740546053.txt\n\nSearch that file for WNUT experiments and look for SJ rho values. The file is JSON with schema: {result: string}. Probe structure with jq, then search for WNUT and SJ.\n\nAlso search the artifacts directory for WNUT results:\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/\n\nLook for CSV/JSON files with WNUT signal results, especially at N=8.\n\nReport the WNUT SJ ρ value at N=8 and at N=16 if available. The user mentioned it might be 0.082 or 0.089.",
+              "agentId": "aedcbbc7535afaffe",
+              "agentType": "general-purpose",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Here is the complete picture:\n\n## WNUT-17 SJ Spearman rho values\n\n**The 0.062 value is untraceable and no longer in the current paper.** It was only in an old deprecated draft (`artifacts/_project/paper/experiments.tex`), which is not compiled. A provenance audit already confirmed this.\n\n### Available WNUT SJ rho values from the registry:\n\n| Experiment | Model | N | SJ rho (full) | Source |\n|---|---|---|---|---|\n| `exp_003_ner_wnut17` | Qwen3-8B | 16 | **0.082** | `rho_sj_full` in registry metrics |\n| `exp_003_wnut17_eval` | Qwen3-8B | 16 | **0.089** | `rho_sj` in registry metrics; matches `report.json` raw value 0.08883 |\n| `exp_003_wnut17_v2` | Qwen3-8B (downsampled) | 16 | **0.062** | In note text only, no structured metric; untraceable to a report.json |\n\n**There are no WNUT SJ rho values at N=8 in the registry.** The `exp_wnut17_qwen25_7b` experiment (Qwen2.5-7B, N=8, 3-seed) recorded only construction F1 metrics, not signal rho values.\n\n### What the current paper uses:\n- The appendix table `tab:wnut` (line 229 of `appendix.tex`) reports SJ rho = **.089** at **N=16** (from `exp_003_wnut17_eval`).\n- The main text does NOT mention WNUT SJ rho directly -- it references the table and discusses VC rho=0.724 and LP conditional rho=0.350.\n\n### At N=16:\n- SJ rho = **0.089** (exp_003_wnut17_eval, the authoritative value used in the current paper)\n- SJ rho = **0.082** (exp_003_ner_wnut17, same model, slightly different computation)\n\n### At N=8:\n- **No WNUT SJ rho data exists.** No experiment computed signal rho for WNUT at N=8.\n\n### Summary:\nThe paper's current value (0.089 in `tab:wnut`) is correct for N=16. The old value 0.062 was from a deprecated draft and is untraceable to any output file. Neither 0.082 nor 0.089 corresponds to N=8 -- both are N=16. If the user needs an N=8 WNUT SJ rho, that experiment has not been run."
+                }
+              ],
+              "totalDurationMs": 263045,
+              "totalTokens": 88658,
+              "totalToolUseCount": 42,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1032,
+                "cache_read_input_tokens": 86957,
+                "output_tokens": 668,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1032
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 668,
+                    "cache_read_input_tokens": 86957,
+                    "cache_creation_input_tokens": 1032,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1032,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 10,
+                "searchCount": 14,
+                "bashCount": 18,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 0
+              }
+            }
+          },
+          "id": "event-000255"
+        }
+      ]
+    }
+  ]
+}

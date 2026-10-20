@@ -1,0 +1,291 @@
+{
+  "schema_version": "1.0",
+  "id": "bac6d9e0c45fe35909a2",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "ssh scierc pretrained mv recompute",
+  "task_key": "worker_ssh_scierc_pretrained_mv_recompute_20260521T200938",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_ssh_scierc_pretrained_mv_recompute_20260521T200938.jsonl",
+    "occurrence": 1,
+    "bytes": 8214,
+    "sha256": "090b280c35ccfc4ea73aaf9cf9c549c76dd1e63527641e34c6a54d0e984dc0a8"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T20:10:18.698815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_scierc_pretrained_mv_recompute_20260521T200938",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T20:10:18.699744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_scierc_pretrained_mv_recompute_20260521T200938",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T20:10:18.700047+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_scierc_pretrained_mv_recompute_20260521T200938",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc_s123/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc_s456/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T20:10:18.700339+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0 total\\\\n\\\", \\\"stderr\\\": \\\"wc: /root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc_s123/samples.jsonl: No such file or directory\\\\nwc: /root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc_s456/samples.jsonl: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_scierc_pretrained_mv_recompute_20260521T200938",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T20:10:18.700601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_scierc_pretrained_mv_recompute_20260521T200938",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc_s123/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc_s456/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T20:10:18.700844+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     551 /root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc_s123/samples.jsonl\\\\n     551 /root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc_s456/samples.jsonl\\\\n    1102 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_scierc_pretrained_mv_recompute_20260521T200938",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T20:10:18.701095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_scierc_pretrained_mv_recompute_20260521T200938",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T20:10:18.701335+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_scierc_pretrained_mv_recompute_20260521T200938",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T20:10:18.701547+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_scierc_pretrained_mv_recompute_20260521T200938",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/recompute_alpha_crit_unified.py --input output/e2_pretrained_scierc_s123/samples.jsonl --dataset scierc --seed 123",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T20:10:18.701763+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_scierc_pretrained_mv_recompute_20260521T200938",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/recompute_alpha_crit_unified.py --input output/e2_pretrained_scierc_s456/samples.jsonl --dataset scierc --seed 456",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T20:10:18.702049+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Dataset: scierc, Seed: 123\\\\n  n=529 gold-nonempty (of 551 total)\\\\n  greedy_f1:       0.2436\\\\n  mv_strict_f1:    0.2548  (>N/2, need>=5/8)\\\\n  mv_incl_f1:      0.2587  (>=N/2, need>=4/8)\\\\n  oracle_f1:       0.3941\\\\n  Δ_SC strict:     +1.12pp\\\\n  Δ_SC incl:       +1.52pp\\\\n  δ (degen):       0.6%\\\\n  α_crit strict:   0.1460\\\\n  α_crit incl:     0.1486\\\\n  α_crit_eff str:  0.1468\\\\n  α_crit_eff incl: 0.1494\\\\nJSON:{\\\\\\\"n_total\\\\\\\": 551, \\\\\\\"n_gold_nonempty\\\\\\\": 529, \\\\\\\"greedy_f1\\\\\\\": 0.24356089022255561, \\\\\\\"mv_strict_f1\\\\\\\": 0.25480612577386774, \\\\\\\"mv_incl_f1\\\\\\\": 0.25872576177285317, \\\\\\\"oracle_f1\\\\\\\": 0.3940963231486277, \\\\\\\"delta_sc_strict_pp\\\\\\\": 1.1245235551312127, \\\\\\\"delta_sc_incl_pp\\\\\\\": 1.5164871550297554, \\\\\\\"degen\\\\\\\": 0.005671077504725898, \\\\\\\"alpha_crit_strict\\\\\\\": 0.14600448095593727, \\\\\\\"alpha_crit_incl\\\\\\\": 0.14858415526566973, \\\\\\\"alpha_crit_eff_strict\\\\\\\": 0.14683720613249204, \\\\\\\"alpha_crit_eff_incl\\\\\\\": 0.1494315934135728, \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\", \\\\\\\"seed\\\\\\\": 123}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_scierc_pretrained_mv_recompute_20260521T200938",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T20:10:18.702354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Dataset: scierc, Seed: 456\\\\n  n=529 gold-nonempty (of 551 total)\\\\n  greedy_f1:       0.2436\\\\n  mv_strict_f1:    0.2642  (>N/2, need>=5/8)\\\\n  mv_incl_f1:      0.2682  (>=N/2, need>=4/8)\\\\n  oracle_f1:       0.3952\\\\n  Δ_SC strict:     +2.06pp\\\\n  Δ_SC incl:       +2.46pp\\\\n  δ (degen):       0.9%\\\\n  α_crit strict:   0.1522\\\\n  α_crit incl:     0.1549\\\\n  α_crit_eff str:  0.1537\\\\n  α_crit_eff incl: 0.1563\\\\nJSON:{\\\\\\\"n_total\\\\\\\": 551, \\\\\\\"n_gold_nonempty\\\\\\\": 529, \\\\\\\"greedy_f1\\\\\\\": 0.2436472346786248, \\\\\\\"mv_strict_f1\\\\\\\": 0.26423403586033345, \\\\\\\"mv_incl_f1\\\\\\\": 0.268199233716475, \\\\\\\"oracle_f1\\\\\\\": 0.3951819579702716, \\\\\\\"delta_sc_strict_pp\\\\\\\": 2.0586801181708636, \\\\\\\"delta_sc_incl_pp\\\\\\\": 2.4551999037850214, \\\\\\\"degen\\\\\\\": 0.00945179584120983, \\\\\\\"alpha_crit_strict\\\\\\\": 0.15222906850308082, \\\\\\\"alpha_crit_incl\\\\\\\": 0.1548672566371681, \\\\\\\"alpha_crit_eff_strict\\\\\\\": 0.1536816359506293, \\\\\\\"alpha_crit_eff_incl\\\\\\\": 0.15634499763561435, \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\", \\\\\\\"seed\\\\\\\": 456}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_scierc_pretrained_mv_recompute_20260521T200938",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T20:10:18.702863+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 seed 都跑完了。汇总 3-seed 结果：\n\n## SciERC Pretrained — 3-Seed Results\n\n| Metric | s42_v2 | s123 | s456 | **Mean ± Std** |\n|---|---|---|---|---|\n| greedy_f1 | 0.2434 | 0.2436 | 0.2436 | **0.2435 ± 0.0001** |\n| mv_strict_f1 | 0.2618 | 0.2548 | 0.2642 | **0.2603 ± 0.0040** |\n| oracle_f1 | 0.3888 | 0.3941 | 0.3952 | **0.3927 ± 0.0028** |\n| degeneracy | 0.009 | 0.006 | 0.009 | **0.008 ± 0.002** |\n| n_instances | 529 | 529 | 529 | 529 |\n| MV Δ (pp) | +1.84 | +1.12 | +2.06 | **+1.67 ± 0.40** |\n| α_crit_eff_strict | — | 0.1468 | 0.1537 | — |\n\n**关键数字**: MV strict F1 = **0.2603 ± 0.0040**, MV Δ = **+1.67 ± 0.40 pp**, degeneracy 很低 (0.8%)。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_scierc_pretrained_mv_recompute_20260521T200938"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-scierc-pretrained-mv-recompute.md"
+}

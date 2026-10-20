@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e630384a20a03d0bb9ea",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code construction voting variants",
+  "task_key": "worker_code_construction-voting-variants_20260519T223005",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_construction-voting-variants_20260519T223005_result.json",
+    "occurrence": 1,
+    "bytes": 1153,
+    "sha256": "ca1a2a62f6437f3385e9ea1a4e03d6c0f9bd82839ef029af718450d2f232be8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved. Here's the summary:\n\n### Construction Voting Scheme Variants (Llama 8B FT, 3-seed mean, θ=2/N=0.25)\n\n| Method | FewNERD F1 | Δ | p | SciERC F1 | Δ | p |\n|---|---|---|---|---|---|---|\n| Greedy | 78.42 | — | — | 64.57 | — | — |\n| LP-weighted | 78.44 | +0.02 | 0.314 | 65.48 | +0.91 | 0.006* |\n| **VC-weighted** | **78.57** | **+0.15** | **0.002*** | **65.62** | **+1.05** | **0.003*** |\n| SJ-weighted | 78.22 | −0.20 | 1.000 | 65.08 | +0.51 | 0.062 |\n\nKey findings:\n- **VC-weighted is the best variant on both datasets**, significantly outperforming greedy (p<0.005 on both). On SciERC it even slightly beats LP-weighted (+1.05 vs +0.91 pp).\n- **LP-weighted** is significant on SciERC but not on FewNERD (where the gap is negligible +0.02pp).\n- **SJ-weighted hurts on FewNERD** (−0.20pp) and is borderline non-significant on SciERC (p=0.062). This makes sense — SJ over-weights \"consensus\" samples that may all share the same error.\n\nResults saved to:\n- Server: `/root/autodl-tmp/struct_self_consist_ie/output/construction_variants/`\n- Local: `artifacts/construction_voting_variants.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-construction-voting-variants.md"
+}

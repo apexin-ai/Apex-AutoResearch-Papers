@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c432bb3cd38d0f16b97d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis scierc 5seed construction",
+  "task_key": "worker_analysis_scierc-5seed-construction_20260523T191438",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_scierc-5seed-construction_20260523T191438_result.json",
+    "occurrence": 1,
+    "bytes": 682,
+    "sha256": "1955f00bda50f358d6420b5391aa162fb287cc35f9e9eda27a60323a645fda4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成并注册。核心发现：\n\n| Seed | Δ (pp) | p-value |\n|------|--------|---------|\n| 42   | −0.58  | 0.82    |\n| 123  | +0.96  | 0.09    |\n| 456  | +1.91  | 0.003*  |\n| 2024 | +1.48  | 0.023*  |\n| 3141 | +1.78  | 0.008*  |\n\n**Mean Δ = +1.11pp, 4/5 positive, pooled p = 0.0003。**\n\n与论文报告的 \"+0.32pp n.s.\" 不一致——当前结果更强。差异可能是因为论文引用了旧实验 `exp_001_seed42_v2`（恰好对应 seed 42 的负方向结果）。如果确认使用 `scierc_mf4v2` 数据，可以将 entity construction claim 从 n.s. 升级为 significant（p<0.001），但需注明 seed 42 为唯一负方向。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-scierc-5seed-construction.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99da7474a8445bb1f442",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp qwen conll seed456",
+  "task_key": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_qwen_conll_seed456_20260518T092856_result.json",
+    "occurrence": 1,
+    "bytes": 1270,
+    "sha256": "f3912101c2e3cefb7894f1cc9acc6481aba50159e166e7c349bafcb1855f4a46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Merged model cleaned up. Everything complete. Here's the comparison summary:\n\n## CoNLL seed=456 vs seed=42\n\n| Metric | seed=456 | seed=42 |\n|--------|----------|---------|\n| **greedy_f1** | 0.9068 | 0.9079 |\n| **oracle_f1** | 0.9453 | 0.9468 |\n| **headroom** | 3.84pp | 3.89pp |\n| **degen (CF1 gold-filtered)** | 62.9% | 59.1% |\n\n**Selection F1 (all signals below greedy):**\n\n| Signal | seed=456 F1 | seed=456 delta | seed=42 delta |\n|--------|-------------|----------------|---------------|\n| SJ | 0.9025 | **-0.45pp** | -0.57pp |\n| FK | 0.9018 | **-0.51pp** | -0.65pp |\n| VC | 0.9001 | **-0.68pp** | -0.82pp |\n| EM | 0.8996 | **-0.73pp** | -0.89pp |\n| LP | 0.8997 | **-0.73pp** | -1.05pp |\n\n**Summary line:**\n```\nseed=456: greedy_f1=0.9068, LP_sel_f1=0.8997, LP_delta=-0.73pp, degen=62.9%\nvs seed=42: greedy_f1=0.9079, LP_delta=-1.05pp, degen=59.1%\n```\n\n**Conclusion:** The LP negative result is confirmed robust across seeds. At seed=456, LP delta is -0.73pp (vs -1.05pp at seed=42). All 5 signals are negative vs greedy on CoNLL, with degeneracy even higher (62.9% vs 59.1%). The negative LP delta is smaller in magnitude but still clearly negative. Self-consistency selection cannot beat greedy on CoNLL regardless of seed."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-qwen-conll-seed456.md"
+}

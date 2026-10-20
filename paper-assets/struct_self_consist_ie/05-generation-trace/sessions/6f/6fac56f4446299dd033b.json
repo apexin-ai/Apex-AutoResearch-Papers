@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fac56f4446299dd033b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check gpu 5090 4x 2 status",
+  "task_key": "worker_check_gpu-5090-4x-2-status_20260514T133129",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_gpu-5090-4x-2-status_20260514T133129_result.json",
+    "occurrence": 1,
+    "bytes": 1431,
+    "sha256": "5530b4ee5b235f902335dc97988bd46afa17c05e5f43675f89305526a07b975b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## gpu-5090-4x-2 服务器状态\n\n### GPU 状态（4x RTX 5090 32GB）\n\n| GPU | 显存占用 | GPU利用率 | 状态 |\n|-----|---------|----------|------|\n| 0 | 30202/32607 MiB | 82% | **占用** — exp001_seed456 |\n| 1 | 2/32607 MiB | 0% | **空闲** |\n| 2 | 30154/32607 MiB | 89% | **占用** — exp001_seed123 |\n| 3 | 30166/32607 MiB | 85% | **占用** — exp008_re_n16 |\n\n### 运行中的训练任务（3个 tmux session）\n\n| Session | GPU | 命令 | 模型 | 数据集 |\n|---------|-----|------|------|--------|\n| exp001_seed456 | GPU 0 | `run_mvp_pilot.py` | qwen3-8b-scierc-merged-v2 | scierc/joint, n=16, seed=456 |\n| exp001_seed123 | GPU 2 | `run_mvp_pilot.py` | qwen3-8b-scierc-merged-v2 | scierc/joint, n=16, seed=123 |\n| exp008_re_n16 | GPU 3 | `run_mvp_pilot.py` | qwen3-8b-scierc-merged-v2 | scierc/joint, n=16, seed=42 |\n\n三个任务均启动于 21:27，运行约 5 分钟，各自带有 VLLM::EngineCore 进程。\n\n### 项目环境\n\n- **代码**：就绪，`code/` 下有完整脚本\n- **数据**：就绪，`data/` 目录存在\n- **Checkpoints**：9 个模型目录（qwen3-8b 多版本 + llama3.1-8b）\n- **磁盘**：250GB 中已用 107GB，剩余 144GB（43%），充足\n- **输出**：`output/` 目录已有 27 个子目录\n\n### 结论\n\n服务器正常运行，3/4 GPU 正在跑 scierc joint 实验（不同 seed 的重复实验）。**GPU 1 空闲可用。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-5090-4x-2-status.md"
+}

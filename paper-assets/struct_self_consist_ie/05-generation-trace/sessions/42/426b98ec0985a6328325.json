@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "426b98ec0985a6328325",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run conll t ablation s456",
+  "task_key": "worker_run_conll_t_ablation_s456_20260521T004153",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_conll_t_ablation_s456_20260521T004153_result.json",
+    "occurrence": 1,
+    "bytes": 647,
+    "sha256": "40e3addca12ce8e5d2d16e00695f9275f2073ba09fb4fcd3c9c95e13ea7fa81a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部 RUNNING，registry 更新完成。\n\n**汇总：**\n\n| 实验 | GPU | PID | 进度 |\n|------|-----|-----|------|\n| `exp_conll_t05_s456` (T=0.5) | cuda:1 | 253823 | ~21% (5928/27624) |\n| `exp_conll_t08_s456` (T=0.8) | cuda:2 | 254524 | ~11% (3088/27624) |\n| `exp_conll_t12_s456` (T=1.2) | cuda:3 | 255217 | ~5% (1408/27624) |\n\n- cuda:0 未碰（14B inference 继续运行）\n- 模型：`qwen3-8b-conll2003-merged`，数据集：CoNLL-2003，N=8，seed=456\n- 日志文件：`output/exp_conll_t{05,08,12}_seed456.log`\n- 每个跑 27624 prompts（3453 × 8），按当前速度估计各需 ~5-8 小时完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-conll-t-ablation-s456.md"
+}

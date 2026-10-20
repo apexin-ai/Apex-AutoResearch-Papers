@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e63595d139aae7ed667c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis theta sensitivity sweep",
+  "task_key": "worker_analysis_theta_sensitivity_sweep_20260519T053845",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_theta_sensitivity_sweep_20260519T053845_result.json",
+    "occurrence": 1,
+    "bytes": 897,
+    "sha256": "f712da2ba229f40d8621b64b45d5b709f4a72800f713fd93a340d33d8a070acd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Summary:\n\n**θ sweep data** (from `fair_results.json`, all datasets, N=8):\n\n| Dataset | Best θ (LP-w) | Best Δ LP-w | θ=0.25 Δ LP-w |\n|---------|--------------|-------------|----------------|\n| SciERC  | 0.30/0.35    | +1.71 pp    | +1.67 pp       |\n| Few-NERD| 0.25         | +0.88 pp    | +0.88 pp       |\n| CoNLL   | 0.30         | -0.39 pp    | -0.71 pp       |\n\nKey pattern: θ ∈ [0.15, 0.35] is a stable plateau on all datasets. Below 0.10, spurious entities crash F1 (up to -7 pp on Few-NERD). Above 0.40, over-filtering degrades recall.\n\n**Files modified:**\n- `appendix.tex:1526–1577` — new `\\subsection{Entity Construction Threshold Sensitivity}` with `\\label{app:theta_sweep}` and Table~\\ref{tab:theta_sweep}\n- `experiments.tex:188` — replaced the tuning-free sentence with θ robustness claim referencing Appendix~\\ref{app:theta_sweep}"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-theta-sensitivity-sweep.md"
+}

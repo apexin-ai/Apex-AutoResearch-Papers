@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1b232e29ddb13bcc6ce",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp exp 022 3rd seed scierc",
+  "task_key": "worker_exp_exp_022_3rd_seed_scierc_20260516T100642",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_exp_022_3rd_seed_scierc_20260516T100642_result.json",
+    "occurrence": 1,
+    "bytes": 425,
+    "sha256": "21c48faaec1e96be693c74aeb7792366c0fd240899aa64b3b75eed53a9964aaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **exp_022_seed789** 已在 autodl-5090 GPU 0 上启动，tmux session `exp_022_seed789`，PID 286743\n- 模型: `qwen3-8b-scierc-merged-v2`，SciERC joint (NER+RE)，N=8, T=1.0, seed=789, max_tokens=1024, logprobs 已开启\n- 输出目录: `output/exp_022_seed789/`\n- Registry 已更新为 RUNNING\n\nvLLM 模型加载中，推理预计 1-2h（551 instances × 8 samples，单卡 5090）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp-022-3rd-seed-scierc.md"
+}

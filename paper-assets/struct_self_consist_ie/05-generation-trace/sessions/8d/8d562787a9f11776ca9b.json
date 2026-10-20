@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d562787a9f11776ca9b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 7b completion decision point",
+  "task_key": "worker_ssh_7b-completion-decision-point_20260520T014931",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_7b-completion-decision-point_20260520T014931_result.json",
+    "occurrence": 1,
+    "bytes": 963,
+    "sha256": "a2d818adc8a517bb813a832e22d6998c44ebbb87e4623b4ec27c42d0fac7b307"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 7B Pipeline (5090-c): 训练中，98% 完成\n\n- 进度: **20197 / 20590** steps (98%)\n- 剩余: 393 steps × ~2.34s/step ≈ **~15 分钟**\n- Loss: 0.0063, lr: 2.79e-07（正常收敛末段）\n- 阶段: Phase 1 (Training)，还没进 export\n\n### 5090-b 下载: 仍在进行，模型权重未就绪\n\n- PID 160848 仍在运行\n- 目录大小 16G，但**没有 .safetensors 文件**——只有 config/tokenizer 等元数据文件\n- 大概率权重还在下载中或在 HF cache blob 目录里未完成\n\n### 决策建议\n\n**现在不需要行动。** 训练还有 ~15 分钟，之后 export 需要 ~5-10 分钟，决策窗口在 ~20-25 分钟后才打开。同时 5090-b 下载也未完成（无 safetensors），即使训练结束也无法分流。\n\n**建议**: 20 分钟后再查。届时如果 5090-b 下载完成且 pipeline 正在 export，可以拦截分流；否则让 pipeline 在 5090-c 继续跑完。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-7b-completion-decision-point.md"
+}

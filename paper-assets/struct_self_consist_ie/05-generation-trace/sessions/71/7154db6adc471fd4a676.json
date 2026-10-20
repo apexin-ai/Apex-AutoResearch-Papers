@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7154db6adc471fd4a676",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose autodl 5090 cleanup",
+  "task_key": "worker_diagnose_autodl-5090-cleanup_20260518T010051",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_autodl-5090-cleanup_20260518T010051_result.json",
+    "occurrence": 1,
+    "bytes": 661,
+    "sha256": "4f5c56dd1d6ba3b6a7db20a1ef1867e59933cee6817d775b622dca873435a21f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。核心发现：\n\n**两个实验已自行恢复，正在正常运行，无需任何干预。**\n\n- **磁盘**: `/root/autodl-tmp` 有 149G 空闲，非空间问题。原 I/O 错误推测为 RAID 瞬时抖动。\n- **GPU**: 旧 vLLM PID 416808 已不存在。当前 GPU 0/1 各跑一个训练任务，GPU 2/3 空闲。\n- **Checkpoint**: 两个 checkpoint-100 均完整保存（1015M，含 adapter + optimizer）。\n- **训练进度**: 3-epoch 已过半(51%)，10-epoch 在 14.5%，loss 曲线正常。\n- **预计完成**: 3-epoch ~8min，10-epoch ~40min。\n\n报告已写入 `artifacts/exp_029a/report/server_diagnostic.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-autodl-5090-cleanup.md"
+}

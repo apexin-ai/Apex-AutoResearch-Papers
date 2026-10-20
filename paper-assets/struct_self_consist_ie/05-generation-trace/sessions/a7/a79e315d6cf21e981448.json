@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a79e315d6cf21e981448",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp entity token lp",
+  "task_key": "worker_code_exp_entity_token_lp_20260516T055007",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_entity_token_lp_20260516T055007_result.json",
+    "occurrence": 1,
+    "bytes": 944,
+    "sha256": "806bbf958b04bd23197a8b5a14ebb67e8b8e7418217adf1bc259ce1642cbd0df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All steps complete. Summary of the **exp_entity_token_lp** experiment:\n\n**Entity-token LP does not improve sample selection F1.** It is strictly worse than full-sequence LP on both datasets:\n\n| | SciERC | CoNLL |\n|---|---|---|\n| Greedy F1 | 0.6430 | 0.9065 |\n| Full-LP Selection | 0.6465 (+0.35pp) | 0.8989 (-0.76pp) |\n| Entity-LP Selection | 0.6262 (-1.68pp) | 0.8659 (-4.06pp) |\n| Entity-LP vs Full-LP | **-2.03pp** | **-3.30pp** |\n\n**Why it fails:**\n- **CoNLL**: Entity tokens are saturated (logprobs ~0.0), yielding zero discriminative variance (79.4% of instances tied). The model generates entity tokens with near-certainty.\n- **SciERC**: Entity-LP has 4x higher within-instance variance than full-LP, but the signal is too noisy — entity tokens are only 5.3% of total tokens, making the mean logprob unstable.\n\nArtifacts registered: `art_20260516_6077d0` (results.json), `art_20260516_d4f4aa` (report.md)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-entity-token-lp.md"
+}

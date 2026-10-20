@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92af8988040c6e78b31f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5090c cuda3 e2 conll s123",
+  "task_key": "worker_ssh_5090c_cuda3_e2_conll_s123_20260521T162125",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090c_cuda3_e2_conll_s123_20260521T162125_result.json",
+    "occurrence": 1,
+    "bytes": 371,
+    "sha256": "aadba2ef97b659bc8fe879f2984e0e1179e04041c7b1124929547c60b0166cea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已成功启动，运行正常：\n\n- **PID**: 336929\n- **GPU 3**: 30247 MiB / 32607 MiB，utilization 82%\n- **模型**: Qwen2.5-7B-Instruct（未微调）\n- **输出目录**: `output/e2_pretrained_conll_s123_v2`\n- **进度**: 正在采样，27624 个 prompt（3453 实例 × 8 samples），当前速度 ~3.68 it/s\n\n预计运行约 2 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5090c-cuda3-e2-conll-s123.md"
+}

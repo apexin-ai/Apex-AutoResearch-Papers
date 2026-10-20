@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "865ef891854fdb69ba13",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh check 5epoch and pretrained progress",
+  "task_key": "worker_ssh_check_5epoch_and_pretrained_progress_20260521T193528",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check_5epoch_and_pretrained_progress_20260521T193528_result.json",
+    "occurrence": 1,
+    "bytes": 1786,
+    "sha256": "7c7701c22cd06dd9468e7bca476387d074c9c1566b6a5b42ee64647f8428c173"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收集完毕。汇总如下：\n\n---\n\n## autodl-5090\n\n| 实验 | PID | 状态 | 进度 | GPU |\n|------|-----|------|------|-----|\n| **5-epoch s42** (cuda:1) | 63198 | ALIVE | 264,160 / 301,184 (**87.7%**) | GPU1: 73%, 30222 MiB |\n| **5-epoch s123** (cuda:2) | 63337 | ALIVE | 260,856 / 301,184 (**86.6%**) | GPU2: 80%, 30194 MiB |\n| **pretrained s456** (cuda:3) | 47635 | ALIVE | 23,554 / 37,648 (**62.6%**) | GPU3: 73%, 30540 MiB |\n| GPU 0 | — | idle | — | 0%, 2 MiB |\n\n- 5ep s42/s123 ETA ~12-15 min\n- pretrained s456 ETA ~13 min（进度条显示 `21:11 elapsed, ~14 min remaining`）\n- 注意：pretrained s456 的进度条按 instance 计数（37648），而非 prompts（301184），可能是不同代码版本\n- **所有 output 目录都是空的**（没有 samples.jsonl），代码在推理完成后才写入\n\n## autodl-5090-c\n\n| 实验 | PID | 状态 | 进度 | GPU |\n|------|-----|------|------|-----|\n| **5-epoch s456** (cuda:0) | 353735 | ALIVE | 130,784 / 301,184 (**43.4%**) | GPU0: 92%, 30259 MiB |\n| **pretrained s42** (cuda:3) | 346388 | ALIVE | 98,968 / 301,184 (**32.9%**) | GPU3: 79%, 30295 MiB |\n| **pretrained s456** (cuda:2) | 345834 | **CRASHED** | 47,392 / 301,184 (15.7%) 后崩溃 | GPU2: 0%, 0 MiB |\n| GPU 1 | — | idle | — | 0%, 0 MiB |\n\n- 5ep s456 ETA ~55 min\n- pretrained s42 ETA ~2.5h\n- **pretrained s456 已崩溃**：日志显示 `02:53:46 Shutdown initiated (timeout=0), Aborting 253282 requests`，GPU 已释放\n\n## 关键问题\n\n1. **pretrained s456 未完成**（5090 上仍在 62.6%），跳过 recompute\n2. **5090-c 上 pretrained s456 崩溃**，cuda:2 空闲，需要重启\n3. 5090 上 `/tmp/recompute_s456.log` 的监控脚本持续报 \"File does not exist yet\"，等待中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-5epoch-and-pretrained-progress.md"
+}

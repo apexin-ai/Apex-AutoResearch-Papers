@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "91d72668f46fbf7b0e90",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code diagnostic calibration",
+  "task_key": "worker_code_diagnostic_calibration_20260518T173407",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_diagnostic_calibration_20260518T173407.log",
+    "occurrence": 1,
+    "bytes": 752909,
+    "sha256": "9a9483e17d284a863d25d60f69562d323f76cf48ce2ec355256bc532f2fde845"
+  },
+  "statistics": {
+    "messages": 173,
+    "user_turns": 0,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 39,
+      "tool_call": 64,
+      "tool_result": 64,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 173,
+      "chunks": [
+        {
+          "path": "91d72668f46fbf7b0e90-part-0001.json",
+          "message_count": 123
+        },
+        {
+          "path": "91d72668f46fbf7b0e90-part-0002.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-diagnostic-calibration.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "774b0948ae8b96da4c85",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "submit 4b conll scs inference cuda2",
+  "task_key": "worker_submit_4b_conll_scs_inference_cuda2_20260515T193149",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_submit_4b_conll_scs_inference_cuda2_20260515T193149_result.json",
+    "occurrence": 1,
+    "bytes": 597,
+    "sha256": "bddfa63fa5d9c7f470f3aeda8b4469de69248336b78470a733c8b0cbba94b622"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果已完整存在，无需重提交。**\n\n`output/exp_qwen3_4b_conll_scs_inference/report.json` 数据完整：\n\n| 指标 | 值 |\n|------|-----|\n| greedy_f1 | 0.9251 |\n| oracle_f1 | 0.9408 |\n| oracle_headroom | 1.57pp |\n| SJ_rho (full/cond) | 0.405 / 0.431 |\n| FK_rho (full/cond) | 0.396 / 0.420 |\n| LP_rho (full/cond) | 0.319 / 0.338 |\n| LP_auroc (full/cond) | 0.769 / 0.815 |\n| structural_beats_surface | true (+0.84pp) |\n| n_instances | 3453 (2756 after gold-empty filter) |\n| verdict | MARGINAL |\n\nRegistry 也已记录为 `DONE/success`。结果没丢。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-4b-conll-scs-inference-cuda2.md"
+}

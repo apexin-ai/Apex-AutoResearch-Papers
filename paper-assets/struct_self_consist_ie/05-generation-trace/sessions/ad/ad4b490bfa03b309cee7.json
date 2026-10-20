@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad4b490bfa03b309cee7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis adaptive combination audit",
+  "task_key": "worker_analysis_adaptive_combination_audit_20260519T022017",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_adaptive_combination_audit_20260519T022017_result.json",
+    "occurrence": 1,
+    "bytes": 3891,
+    "sha256": "2c0e03db10a89753b11bae06db03d0b6a4d2cba89a1d941fb38cec01dbbcfeea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**确认存在 gold label 泄漏。** 以下是逐行分析。\n\n---\n\n## 泄漏核心：`compute_lp_alignment` (line 357-383)\n\n```python\ndef compute_lp_alignment(inst):\n    gold = entity_set(inst[\"gold\"][\"entities\"])          # line 358: 读取 gold labels\n    samples = inst[\"samples\"]\n    logprobs = inst.get(\"logprobs\", None)\n\n    lps = []\n    f1s = []\n    for i, s in enumerate(samples):\n        lp = s.get(\"mean_logprob\", None)\n        ...\n        lps.append(lp)\n        pred = entity_set(s.get(\"entities\", []))\n        _, _, f = compute_prf(pred, gold)                # line 372: 每个 sample 对 gold 算 F1\n        f1s.append(f)\n\n    ...\n    from scipy.stats import spearmanr\n    rho, _ = spearmanr(lps, f1s)                         # line 380: LP 与 gold-F1 的 Spearman 相关\n    return rho\n```\n\n**这个函数的语义**：计算某个实例内，各 sample 的 log-probability 与其 gold F1 的 Spearman 相关系数。**这个信号本身就是 gold label 的函数**——没有 gold label 无法计算。\n\n---\n\n## 泄漏传播路径：`adaptive_combination_cv` (line 385-443)\n\n```python\ndef adaptive_combination_cv(data, n_splits=5, seed=42, variant=\"uniform\"):\n    ...\n    alignments = np.array([compute_lp_alignment(inst) for inst in data])  # line 389: 对 ALL 实例算 alignment（含 gold）\n    lp_f1s = compute_per_instance_f1s(data, make_lp_selection_fn())       # line 390\n\n    ...\n    for fold_idx, (train_idx, test_idx) in enumerate(kf.split(indices)):\n        ...\n        for gate_t in gating_thresholds:\n            for constr_t in THRESHOLDS:\n                ...\n                for i in train_idx:\n                    if alignments[i] > gate_t:           # line 407: 用 gold-derived alignment 做门控决策\n                        train_f1_sum += lp_f1s[i]\n                    else:\n                        ...\n                        gold = entity_set(data[i][\"gold\"][\"entities\"])  # line 411\n                        ...\n                        train_f1_sum += f\n\n        # Test phase\n        for i in test_idx:\n            if alignments[i] > best_gate_t:              # line 423: TEST 实例也用自己的 gold-derived alignment\n                f = lp_f1s[i]\n            else:\n                ...\n                gold = entity_set(data[i][\"gold\"][\"entities\"])  # line 427\n                ...\n```\n\n---\n\n## 泄漏机制总结\n\n两层泄漏：\n\n1. **`compute_lp_alignment` 本身是 gold 的函数**（line 358, 372）：alignment score = spearman(logprobs, gold_F1)。没有 gold label 就不可能算出这个值。这是一个 **fundamentally supervised signal**，不是 unsupervised 的 LP 信号。\n\n2. **alignment 在 CV split 之前对全部数据计算**（line 389）：`alignments` 数组包含所有实例（包括每个 fold 的 test 实例）。当 line 423 用 `alignments[i] > best_gate_t` 对 test 实例做门控决策时，这个决策使用了 **该实例自身的 gold label 信息**。CV 只保护了 `gate_t` 和 `constr_t` 两个超参的选择，但门控信号本身已经泄漏了。\n\n**泄漏程度**：这不是边缘泄漏，而是核心机制性泄漏。adaptive combination 的整个决策逻辑建立在\"LP 与 gold F1 的相关性\"之上。在真实部署场景中，没有 gold label，`compute_lp_alignment` 无法运行，这个方法不可用。\n\n**结论：adaptive combination 的结果不能写入论文。**\n\n---\n\n如果要做 clean 版本的 adaptive gating，决策信号应该只使用 unsupervised 的 LP 统计量，例如：\n- within-instance LP 方差（高方差 → 模型不确定 → 用 construction）\n- LP range（max LP - min LP）\n- 平均 LP 绝对值（高 LP → 模型自信 → 用 LP selection）\n\n这些信号不依赖 gold label，可以在 inference 时计算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-adaptive-combination-audit.md"
+}

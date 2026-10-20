@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a36ae098c3dd6a0a7d8b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "experiment exp 017 llama conll n16 s123",
+  "task_key": "worker_experiment_exp_017_llama_conll_n16_s123_20260514T192424",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_exp_017_llama_conll_n16_s123_20260514T192424_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "8bd4c28f6533f80e6b9f986e11201d06e4b27638d482715afede1ba8fd6a2e70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. `exp_017_llama_conll_n16_s123` completed successfully.\n\n**Summary:**\n\n| Signal | Full ρ (N=8→N=16) | Full AUROC (N=8→N=16) |\n|---|---|---|\n| **SJ** | 0.4314→**0.4698** (+0.038) | 0.7039→**0.7402** (+0.036) |\n| **FK** | 0.4277→**0.4594** (+0.032) | 0.7026→**0.7351** (+0.033) |\n| logprob | 0.3072→0.3161 (+0.009) | 0.7610→0.7680 (+0.007) |\n| EM | 0.4306→0.4676 (+0.037) | 0.7046→0.7399 (+0.035) |\n| voting_conf | 0.4256→0.4612 (+0.036) | 0.7088→0.7429 (+0.034) |\n\n**Conclusion: success** — structural > surface (SJ_ρ=0.470 >> logprob_ρ=0.316). Seed=123 confirms the same ranking as seed=42 baseline. Key finding: structural signals benefit **4× more** from N=8→N=16 scaling than logprob (Δρ ≈ +0.035 vs +0.009), consistent with the hypothesis that structural consistency signals improve with more samples while surface logprob is nearly N-invariant."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-exp-017-llama-conll-n16-s123.md"
+}

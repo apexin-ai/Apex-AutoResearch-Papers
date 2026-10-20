@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73594efbb3a5f060d619",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu 14b conll check and retry",
+  "task_key": "worker_gpu_14b_conll_check_and_retry_20260521T111624",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_14b_conll_check_and_retry_20260521T111624_result.json",
+    "occurrence": 1,
+    "bytes": 1316,
+    "sha256": "f2dcfe860fd9ec3d7b16deb65397957da6cff3d763cbefb86222365e85ab3e20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 14B CoNLL v2 推理结果\n\n**状态：完成** — samples.jsonl 行数 = 3453（完整）\n\n### 核心指标\n\n| 指标 | 值 |\n|------|-----|\n| Greedy F1 | 0.0462 |\n| Oracle F1 | 0.1549 |\n| Oracle headroom | +0.1087 |\n| Fleiss' κ (mean) | 0.3712 |\n| Soft Jaccard (mean) | 0.6580 |\n| Sample F1 (mean) | 0.0397 |\n| Sample F1=0 (%) | **95.2%** |\n\n### 相关性分析\n\n| | Full (n=2756) | Conditional (n=161) |\n|---|---|---|\n| ρ(κ, F1) | -0.099 (p=1.7e-7) | **-0.339** (p=1.1e-5) |\n| ρ(SJ, F1) | -0.270 (p=2.0e-47) | -0.231 (p=3.2e-3) |\n| Structural > Surface | **NO** (delta=-0.171) | |\n\n### Logprob baseline\n\n| | ρ | τ | AUROC |\n|---|---|---|---|\n| Full | -0.187 | -0.152 | 0.272 |\n| Conditional | -0.307 | -0.241 | 0.286 |\n\n### Verdict: **FAIL**\n- 95.2% samples F1=0，模型基础 NER 能力极差\n- 所有相关性为**负**，consistency 指标与质量反相关\n- 建议：re-run at T=0.7（但根本问题是 14B finetuned on FewNERD 在 CoNLL 上 zero-shot 表现极差）\n\n### GPU 状态 (5090-c)\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 0% | 空闲 |\n| 1 | 0% | 空闲 |\n| 2 | 0% | **空闲**（14B 已退出） |\n| 3 | 75% | 30295/32607 MiB（有任务运行中） |\n\nGPU 0/1/2 全部空闲。GPU 3 仍有进程占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-14b-conll-check-and-retry.md"
+}

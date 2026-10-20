@@ -1,0 +1,668 @@
+{
+  "schema_version": "1.0",
+  "id": "86fa6b55872e6ea1543d",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "extract diversity stratified table",
+  "task_key": "worker_extract_diversity_stratified_table_20260515T045028",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_extract_diversity_stratified_table_20260515T045028.log",
+    "occurrence": 1,
+    "bytes": 61096,
+    "sha256": "28c5b99ba35202388592e49a6bad259a227ea9ca1d9bdd890bf4b1880f83861c"
+  },
+  "statistics": {
+    "messages": 14,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 3,
+      "tool_result": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+                "session_id": "87f90ba9-4b1b-4baf-ba1a-414baa0ba961",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "b656b894-4fbc-435e-a879-e7c1f720b86f",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778836800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "ecffccb0-6f69-4221-912e-13bef858d10b",
+                "session_id": "87f90ba9-4b1b-4baf-ba1a-414baa0ba961"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read the diversity stratified selection data from the server."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "87f90ba9-4b1b-4baf-ba1a-414baa0ba961",
+            "uuid": "851d5552-4b88-4d01-9b97-29ee3a1c87d9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B6SjW3jNz2AF77zDsixyZs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11332,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11332
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014XxR7KkuX58QCtrhbdnB4T",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "87f90ba9-4b1b-4baf-ba1a-414baa0ba961",
+            "uuid": "59065876-4062-4e25-bfa5-a5c1bec11e08",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B6SjW3jNz2AF77zDsixyZs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11332,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11332
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T04:50:43.830Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_014XxR7KkuX58QCtrhbdnB4T",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "87f90ba9-4b1b-4baf-ba1a-414baa0ba961",
+            "uuid": "4028db3a-39db-446b-b0fb-a3e8c99e820c",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the diversity stratified selection JSON and the diversity analysis JSON first.",
+              "signature": "EpUCClkIDRgCKkBzlbtNtsPjx34EA2yiZmm1aLREO2WSBz6DiDyX6CW0olTs0Q6nVpGmIVbGl9VHfvg9NDi8ELErN4QnvZvZbt8JMg9jbGF1ZGUtb3B1cy00LTY4ABIMrqM2nl5hFvr0ay78GgxgFDRSLXxnf1jfwMsiMC193ucQnqHqXHMZot5+7tyd+pM0SbNaETsTVIuSbNv6mjIiC8Tz9Vt0j1iqDqWgrSpq1BI+rIiNtUd/Zii554WcNuHfzQ081R47dUdi0puh9BSi0/smD7Nm1XxAQYpeSwgsy2ceHK1qS/NpIobNzfGtZUGxb+pdzbMlRZFarRAZUKclQyfeX+Ej4c80A3dbOT6HqUcQcsSVIwS4IxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "87f90ba9-4b1b-4baf-ba1a-414baa0ba961",
+            "uuid": "7c951873-c6ac-4b78-92ff-5196c4ed7650",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KSaForbv7oLasLZk1xZy7P",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 685,
+                "cache_read_input_tokens": 23173,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 685
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Anba2uAzh4joZDybsYfSmp",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/review_round2/diversity_stratified_selection.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "87f90ba9-4b1b-4baf-ba1a-414baa0ba961",
+            "uuid": "650b3a84-a895-4441-b0b9-fc755b881884",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KSaForbv7oLasLZk1xZy7P",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 685,
+                "cache_read_input_tokens": 23173,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 685
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019LAHUbvLRK7GwZrTVWFvdh",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/review_round2/diversity_analysis.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "87f90ba9-4b1b-4baf-ba1a-414baa0ba961",
+            "uuid": "ab348755-d37d-4635-b3f2-77c4a0d33384",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KSaForbv7oLasLZk1xZy7P",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 685,
+                "cache_read_input_tokens": 23173,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 685
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T04:50:49.034Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Anba2uAzh4joZDybsYfSmp",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"qwen_scierc_ner\\\\\\\": {\\\\n    \\\\\\\"n_total_valid\\\\\\\": 529,\\\\n    \\\\\\\"strata\\\\\\\": {\\\\n      \\\\\\\"high_diversity\\\\\\\": {\\\\n        \\\\\\\"criterion\\\\\\\": \\\\\\\"n_unique >= 4\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": 232,\\\\n        \\\\\\\"greedy_f1\\\\\\\": 0.5753,\\\\n        \\\\\\\"oracle_f1\\\\\\\": 0.7384,\\\\n        \\\\\\\"oracle_headroom\\\\\\\": 0.1631,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5747,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0006\\\\n          },\\\\n          \\\\\\\"fk\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5733,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.002\\\\n          },\\\\n          \\\\\\\"em\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5561,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0192\\\\n          },\\\\n          \\\\\\\"voting_conf\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5498,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0255\\\\n          },\\\\n          \\\\\\\"logprob\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5829,\\\\n            \\\\\\\"selection_gap\\\\\\\": 0.0076\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"medium\\\\\\\": {\\\\n        \\\\\\\"criterion\\\\\\\": \\\\\\\"n_unique == 3\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": 112,\\\\n        \\\\\\\"greedy_f1\\\\\\\": 0.674,\\\\n        \\\\\\\"oracle_f1\\\\\\\": 0.8063,\\\\n        \\\\\\\"oracle_headroom\\\\\\\": 0.1323,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.6968,\\\\n            \\\\\\\"selection_gap\\\\\\\": 0.0228\\\\n          },\\\\n          \\\\\\\"fk\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.6989,\\\\n            \\\\\\\"selection_gap\\\\\\\": 0.0249\\\\n          },\\\\n          \\\\\\\"em\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.6938,\\\\n            \\\\\\\"selection_gap\\\\\\\": 0.0198\\\\n          },\\\\n          \\\\\\\"voting_conf\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.6461,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0279\\\\n          },\\\\n          \\\\\\\"logprob\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.6888,\\\\n            \\\\\\\"selection_gap\\\\\\\": 0.0148\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"low_diversity\\\\\\\": {\\\\n        \\\\\\\"criterion\\\\\\\": \\\\\\\"n_unique <= 2\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": 185,\\\\n        \\\\\\\"greedy_f1\\\\\\\": 0.7118,\\\\n        \\\\\\\"oracle_f1\\\\\\\": 0.8043,\\\\n        \\\\\\\"oracle_headroom\\\\\\\": 0.0925,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7018,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0099\\\\n          },\\\\n          \\\\\\\"fk\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7018,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0099\\\\n          },\\\\n          \\\\\\\"em\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7018,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0099\\\\n          },\\\\n          \\\\\\\"voting_conf\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7117,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0001\\\\n          },\\\\n          \\\\\\\"logprob\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7109,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0009\\\\n          }\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_scierc_ner\\\\\\\": {\\\\n    \\\\\\\"n_total_valid\\\\\\\": 529,\\\\n    \\\\\\\"strata\\\\\\\": {\\\\n      \\\\\\\"high_diversity\\\\\\\": {\\\\n        \\\\\\\"criterion\\\\\\\": \\\\\\\"n_unique >= 4\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": 186,\\\\n        \\\\\\\"greedy_f1\\\\\\\": 0.563,\\\\n        \\\\\\\"oracle_f1\\\\\\\": 0.7644,\\\\n        \\\\\\\"oracle_headroom\\\\\\\": 0.2014,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5618,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0012\\\\n          },\\\\n          \\\\\\\"fk\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5622,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0008\\\\n          },\\\\n          \\\\\\\"em\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5381,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0249\\\\n          },\\\\n          \\\\\\\"voting_conf\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5455,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0174\\\\n          },\\\\n          \\\\\\\"logprob\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5826,\\\\n            \\\\\\\"selection_gap\\\\\\\": 0.0196\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"medium\\\\\\\": {\\\\n        \\\\\\\"criterion\\\\\\\": \\\\\\\"n_unique == 3\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": 107,\\\\n        \\\\\\\"greedy_f1\\\\\\\": 0.6307,\\\\n        \\\\\\\"oracle_f1\\\\\\\": 0.7623,\\\\n        \\\\\\\"oracle_headroom\\\\\\\": 0.1316,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.6209,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0098\\\\n          },\\\\n          \\\\\\\"fk\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.6246,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0061\\\\n          },\\\\n          \\\\\\\"em\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.6277,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0029\\\\n          },\\\\n          \\\\\\\"voting_conf\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.614,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0167\\\\n          },\\\\n          \\\\\\\"logprob\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.625,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0057\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"low_diversity\\\\\\\": {\\\\n        \\\\\\\"criterion\\\\\\\": \\\\\\\"n_unique <= 2\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": 236,\\\\n        \\\\\\\"greedy_f1\\\\\\\": 0.7184,\\\\n        \\\\\\\"oracle_f1\\\\\\\": 0.7959,\\\\n        \\\\\\\"oracle_headroom\\\\\\\": 0.0775,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7177,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0007\\\\n          },\\\\n          \\\\\\\"fk\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7176,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0008\\\\n          },\\\\n          \\\\\\\"em\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7164,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.002\\\\n          },\\\\n          \\\\\\\"voting_conf\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7252,\\\\n            \\\\\\\"selection_gap\\\\\\\": 0.0068\\\\n          },\\\\n          \\\\\\\"logprob\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7185,\\\\n            \\\\\\\"selection_gap\\\\\\\": 0.0001\\\\n          }\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"ceiling_effect_note\\\\\\\": \\\\\\\"CoNLL (57-88% identical outputs) and WNUT (low diversity) are ceiling-effect cases where low diversity is a natural consequence of near-perfect model performance, not constrained decoding. Their selection results should not be cited as independent evidence for the correlation-selection gap.\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "87f90ba9-4b1b-4baf-ba1a-414baa0ba961",
+            "uuid": "298275d1-9fba-4348-8aac-1051f5c7e6a6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"qwen_scierc_ner\\\\\\\": {\\\\n    \\\\\\\"n_total_valid\\\\\\\": 529,\\\\n    \\\\\\\"strata\\\\\\\": {\\\\n      \\\\\\\"high_diversity\\\\\\\": {\\\\n        \\\\\\\"criterion\\\\\\\": \\\\\\\"n_unique >= 4\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": 232,\\\\n        \\\\\\\"greedy_f1\\\\\\\": 0.5753,\\\\n        \\\\\\\"oracle_f1\\\\\\\": 0.7384,\\\\n        \\\\\\\"oracle_headroom\\\\\\\": 0.1631,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5747,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0006\\\\n          },\\\\n          \\\\\\\"fk\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5733,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.002\\\\n          },\\\\n          \\\\\\\"em\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5561,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0192\\\\n          },\\\\n          \\\\\\\"voting_conf\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5498,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0255\\\\n          },\\\\n          \\\\\\\"logprob\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5829,\\\\n            \\\\\\\"selection_gap\\\\\\\": 0.0076\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"medium\\\\\\\": {\\\\n        \\\\\\\"criterion\\\\\\\": \\\\\\\"n_unique == 3\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": 112,\\\\n        \\\\\\\"greedy_f1\\\\\\\": 0.674,\\\\n        \\\\\\\"oracle_f1\\\\\\\": 0.8063,\\\\n        \\\\\\\"oracle_headroom\\\\\\\": 0.1323,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.6968,\\\\n            \\\\\\\"selection_gap\\\\\\\": 0.0228\\\\n          },\\\\n          \\\\\\\"fk\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.6989,\\\\n            \\\\\\\"selection_gap\\\\\\\": 0.0249\\\\n          },\\\\n          \\\\\\\"em\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.6938,\\\\n            \\\\\\\"selection_gap\\\\\\\": 0.0198\\\\n          },\\\\n          \\\\\\\"voting_conf\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.6461,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0279\\\\n          },\\\\n          \\\\\\\"logprob\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.6888,\\\\n            \\\\\\\"selection_gap\\\\\\\": 0.0148\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"low_diversity\\\\\\\": {\\\\n        \\\\\\\"criterion\\\\\\\": \\\\\\\"n_unique <= 2\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": 185,\\\\n        \\\\\\\"greedy_f1\\\\\\\": 0.7118,\\\\n        \\\\\\\"oracle_f1\\\\\\\": 0.8043,\\\\n        \\\\\\\"oracle_headroom\\\\\\\": 0.0925,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7018,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0099\\\\n          },\\\\n          \\\\\\\"fk\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7018,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0099\\\\n          },\\\\n          \\\\\\\"em\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7018,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0099\\\\n          },\\\\n          \\\\\\\"voting_conf\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7117,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0001\\\\n          },\\\\n          \\\\\\\"logprob\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7109,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0009\\\\n          }\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_scierc_ner\\\\\\\": {\\\\n    \\\\\\\"n_total_valid\\\\\\\": 529,\\\\n    \\\\\\\"strata\\\\\\\": {\\\\n      \\\\\\\"high_diversity\\\\\\\": {\\\\n        \\\\\\\"criterion\\\\\\\": \\\\\\\"n_unique >= 4\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": 186,\\\\n        \\\\\\\"greedy_f1\\\\\\\": 0.563,\\\\n        \\\\\\\"oracle_f1\\\\\\\": 0.7644,\\\\n        \\\\\\\"oracle_headroom\\\\\\\": 0.2014,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5618,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0012\\\\n          },\\\\n          \\\\\\\"fk\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5622,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0008\\\\n          },\\\\n          \\\\\\\"em\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5381,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0249\\\\n          },\\\\n          \\\\\\\"voting_conf\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5455,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0174\\\\n          },\\\\n          \\\\\\\"logprob\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.5826,\\\\n            \\\\\\\"selection_gap\\\\\\\": 0.0196\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"medium\\\\\\\": {\\\\n        \\\\\\\"criterion\\\\\\\": \\\\\\\"n_unique == 3\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": 107,\\\\n        \\\\\\\"greedy_f1\\\\\\\": 0.6307,\\\\n        \\\\\\\"oracle_f1\\\\\\\": 0.7623,\\\\n        \\\\\\\"oracle_headroom\\\\\\\": 0.1316,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.6209,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0098\\\\n          },\\\\n          \\\\\\\"fk\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.6246,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0061\\\\n          },\\\\n          \\\\\\\"em\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.6277,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0029\\\\n          },\\\\n          \\\\\\\"voting_conf\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.614,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0167\\\\n          },\\\\n          \\\\\\\"logprob\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.625,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0057\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"low_diversity\\\\\\\": {\\\\n        \\\\\\\"criterion\\\\\\\": \\\\\\\"n_unique <= 2\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": 236,\\\\n        \\\\\\\"greedy_f1\\\\\\\": 0.7184,\\\\n        \\\\\\\"oracle_f1\\\\\\\": 0.7959,\\\\n        \\\\\\\"oracle_headroom\\\\\\\": 0.0775,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7177,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0007\\\\n          },\\\\n          \\\\\\\"fk\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7176,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.0008\\\\n          },\\\\n          \\\\\\\"em\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7164,\\\\n            \\\\\\\"selection_gap\\\\\\\": -0.002\\\\n          },\\\\n          \\\\\\\"voting_conf\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7252,\\\\n            \\\\\\\"selection_gap\\\\\\\": 0.0068\\\\n          },\\\\n          \\\\\\\"logprob\\\\\\\": {\\\\n            \\\\\\\"selection_f1\\\\\\\": 0.7185,\\\\n            \\\\\\\"selection_gap\\\\\\\": 0.0001\\\\n          }\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"ceiling_effect_note\\\\\\\": \\\\\\\"CoNLL (57-88% identical outputs) and WNUT (low diversity) are ceiling-effect cases where low diversity is a natural consequence of near-perfect model performance, not constrained decoding. Their selection results should not be cited as independent evidence for the correlation-selection gap.\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen_scierc_ner\\\": {\\n    \\\"n_total_valid\\\": 529,\\n    \\\"strata\\\": {\\n      \\\"high_diversity\\\": {\\n        \\\"criterion\\\": \\\"n_unique >= 4\\\",\\n        \\\"n\\\": 232,\\n        \\\"greedy_f1\\\": 0.5753,\\n        \\\"oracle_f1\\\": 0.7384,\\n        \\\"oracle_headroom\\\": 0.1631,\\n        \\\"signals\\\": {\\n          \\\"sj\\\": {\\n            \\\"selection_f1\\\": 0.5747,\\n            \\\"selection_gap\\\": -0.0006\\n          },\\n          \\\"fk\\\": {\\n            \\\"selection_f1\\\": 0.5733,\\n            \\\"selection_gap\\\": -0.002\\n          },\\n          \\\"em\\\": {\\n            \\\"selection_f1\\\": 0.5561,\\n            \\\"selection_gap\\\": -0.0192\\n          },\\n          \\\"voting_conf\\\": {\\n            \\\"selection_f1\\\": 0.5498,\\n            \\\"selection_gap\\\": -0.0255\\n          },\\n          \\\"logprob\\\": {\\n            \\\"selection_f1\\\": 0.5829,\\n            \\\"selection_gap\\\": 0.0076\\n          }\\n        }\\n      },\\n      \\\"medium\\\": {\\n        \\\"criterion\\\": \\\"n_unique == 3\\\",\\n        \\\"n\\\": 112,\\n        \\\"greedy_f1\\\": 0.674,\\n        \\\"oracle_f1\\\": 0.8063,\\n        \\\"oracle_headroom\\\": 0.1323,\\n        \\\"signals\\\": {\\n          \\\"sj\\\": {\\n            \\\"selection_f1\\\": 0.6968,\\n            \\\"selection_gap\\\": 0.0228\\n          },\\n          \\\"fk\\\": {\\n            \\\"selection_f1\\\": 0.6989,\\n            \\\"selection_gap\\\": 0.0249\\n          },\\n          \\\"em\\\": {\\n            \\\"selection_f1\\\": 0.6938,\\n            \\\"selection_gap\\\": 0.0198\\n          },\\n          \\\"voting_conf\\\": {\\n            \\\"selection_f1\\\": 0.6461,\\n            \\\"selection_gap\\\": -0.0279\\n          },\\n          \\\"logprob\\\": {\\n            \\\"selection_f1\\\": 0.6888,\\n            \\\"selection_gap\\\": 0.0148\\n          }\\n        }\\n      },\\n      \\\"low_diversity\\\": {\\n        \\\"criterion\\\": \\\"n_unique <= 2\\\",\\n        \\\"n\\\": 185,\\n        \\\"greedy_f1\\\": 0.7118,\\n        \\\"oracle_f1\\\": 0.8043,\\n        \\\"oracle_headroom\\\": 0.0925,\\n        \\\"signals\\\": {\\n          \\\"sj\\\": {\\n            \\\"selection_f1\\\": 0.7018,\\n            \\\"selection_gap\\\": -0.0099\\n          },\\n          \\\"fk\\\": {\\n            \\\"selection_f1\\\": 0.7018,\\n            \\\"selection_gap\\\": -0.0099\\n          },\\n          \\\"em\\\": {\\n            \\\"selection_f1\\\": 0.7018,\\n            \\\"selection_gap\\\": -0.0099\\n          },\\n          \\\"voting_conf\\\": {\\n            \\\"selection_f1\\\": 0.7117,\\n            \\\"selection_gap\\\": -0.0001\\n          },\\n          \\\"logprob\\\": {\\n            \\\"selection_f1\\\": 0.7109,\\n            \\\"selection_gap\\\": -0.0009\\n          }\\n        }\\n      }\\n    }\\n  },\\n  \\\"llama_scierc_ner\\\": {\\n    \\\"n_total_valid\\\": 529,\\n    \\\"strata\\\": {\\n      \\\"high_diversity\\\": {\\n        \\\"criterion\\\": \\\"n_unique >= 4\\\",\\n        \\\"n\\\": 186,\\n        \\\"greedy_f1\\\": 0.563,\\n        \\\"oracle_f1\\\": 0.7644,\\n        \\\"oracle_headroom\\\": 0.2014,\\n        \\\"signals\\\": {\\n          \\\"sj\\\": {\\n            \\\"selection_f1\\\": 0.5618,\\n            \\\"selection_gap\\\": -0.0012\\n          },\\n          \\\"fk\\\": {\\n            \\\"selection_f1\\\": 0.5622,\\n            \\\"selection_gap\\\": -0.0008\\n          },\\n          \\\"em\\\": {\\n            \\\"selection_f1\\\": 0.5381,\\n            \\\"selection_gap\\\": -0.0249\\n          },\\n          \\\"voting_conf\\\": {\\n            \\\"selection_f1\\\": 0.5455,\\n            \\\"selection_gap\\\": -0.0174\\n          },\\n          \\\"logprob\\\": {\\n            \\\"selection_f1\\\": 0.5826,\\n            \\\"selection_gap\\\": 0.0196\\n          }\\n        }\\n      },\\n      \\\"medium\\\": {\\n        \\\"criterion\\\": \\\"n_unique == 3\\\",\\n        \\\"n\\\": 107,\\n        \\\"greedy_f1\\\": 0.6307,\\n        \\\"oracle_f1\\\": 0.7623,\\n        \\\"oracle_headroom\\\": 0.1316,\\n        \\\"signals\\\": {\\n          \\\"sj\\\": {\\n            \\\"selection_f1\\\": 0.6209,\\n            \\\"selection_gap\\\": -0.0098\\n          },\\n          \\\"fk\\\": {\\n            \\\"selection_f1\\\": 0.6246,\\n            \\\"selection_gap\\\": -0.0061\\n          },\\n          \\\"em\\\": {\\n            \\\"selection_f1\\\": 0.6277,\\n            \\\"selection_gap\\\": -0.0029\\n          },\\n          \\\"voting_conf\\\": {\\n            \\\"selection_f1\\\": 0.614,\\n            \\\"selection_gap\\\": -0.0167\\n          },\\n          \\\"logprob\\\": {\\n            \\\"selection_f1\\\": 0.625,\\n            \\\"selection_gap\\\": -0.0057\\n          }\\n        }\\n      },\\n      \\\"low_diversity\\\": {\\n        \\\"criterion\\\": \\\"n_unique <= 2\\\",\\n        \\\"n\\\": 236,\\n        \\\"greedy_f1\\\": 0.7184,\\n        \\\"oracle_f1\\\": 0.7959,\\n        \\\"oracle_headroom\\\": 0.0775,\\n        \\\"signals\\\": {\\n          \\\"sj\\\": {\\n            \\\"selection_f1\\\": 0.7177,\\n            \\\"selection_gap\\\": -0.0007\\n          },\\n          \\\"fk\\\": {\\n            \\\"selection_f1\\\": 0.7176,\\n            \\\"selection_gap\\\": -0.0008\\n          },\\n          \\\"em\\\": {\\n            \\\"selection_f1\\\": 0.7164,\\n            \\\"selection_gap\\\": -0.002\\n          },\\n          \\\"voting_conf\\\": {\\n            \\\"selection_f1\\\": 0.7252,\\n            \\\"selection_gap\\\": 0.0068\\n          },\\n          \\\"logprob\\\": {\\n            \\\"selection_f1\\\": 0.7185,\\n            \\\"selection_gap\\\": 0.0001\\n          }\\n        }\\n      }\\n    }\\n  },\\n  \\\"ceiling_effect_note\\\": \\\"CoNLL (57-88% identical outputs) and WNUT (low diversity) are ceiling-effect cases where low diversity is a natural consequence of near-perfect model performance, not constrained decoding. Their selection results should not be cited as independent evidence for the correlation-selection gap.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T04:50:49.454Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019LAHUbvLRK7GwZrTVWFvdh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"qwen_scierc_ner\\\\\\\": {\\\\n    \\\\\\\"n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"unique_fraction\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.4327,\\\\n      \\\\\\\"median\\\\\\\": 0.375,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"1\\\\\\\": 59,\\\\n        \\\\\\\"2\\\\\\\": 126,\\\\n        \\\\\\\"3\\\\\\\": 112,\\\\n        \\\\\\\"4\\\\\\\": 94,\\\\n        \\\\\\\"5\\\\\\\": 72,\\\\n        \\\\\\\"6\\\\\\\": 32,\\\\n        \\\\\\\"7\\\\\\\": 16,\\\\n        \\\\\\\"8\\\\\\\": 18\\\\n      }\\\\n    },\\\\n    \\\\\\\"logprob_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.020484,\\\\n      \\\\\\\"median\\\\\\\": 0.013479,\\\\n      \\\\\\\"p25\\\\\\\": 0.008671,\\\\n      \\\\\\\"p75\\\\\\\": 0.022697\\\\n    },\\\\n    \\\\\\\"f1_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.1442,\\\\n      \\\\\\\"median\\\\\\\": 0.1308\\\\n    },\\\\n    \\\\\\\"pairwise_sj\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.7026,\\\\n      \\\\\\\"median\\\\\\\": 0.7143,\\\\n      \\\\\\\"p25\\\\\\\": 0.5674,\\\\n      \\\\\\\"p75\\\\\\\": 0.8661,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"0.0-0.1\\\\\\\": 0,\\\\n        \\\\\\\"0.1-0.2\\\\\\\": 1,\\\\n        \\\\\\\"0.2-0.3\\\\\\\": 11,\\\\n        \\\\\\\"0.3-0.4\\\\\\\": 26,\\\\n        \\\\\\\"0.4-0.5\\\\\\\": 52,\\\\n        \\\\\\\"0.5-0.6\\\\\\\": 67,\\\\n        \\\\\\\"0.6-0.7\\\\\\\": 91,\\\\n        \\\\\\\"0.7-0.8\\\\\\\": 109,\\\\n        \\\\\\\"0.8-0.9\\\\\\\": 65,\\\\n        \\\\\\\"0.9-1.0\\\\\\\": 107\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_scierc_ner\\\\\\\": {\\\\n    \\\\\\\"n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"unique_fraction\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.3885,\\\\n      \\\\\\\"median\\\\\\\": 0.375,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"1\\\\\\\": 94,\\\\n        \\\\\\\"2\\\\\\\": 142,\\\\n        \\\\\\\"3\\\\\\\": 107,\\\\n        \\\\\\\"4\\\\\\\": 71,\\\\n        \\\\\\\"5\\\\\\\": 57,\\\\n        \\\\\\\"6\\\\\\\": 36,\\\\n        \\\\\\\"7\\\\\\\": 16,\\\\n        \\\\\\\"8\\\\\\\": 6\\\\n      }\\\\n    },\\\\n    \\\\\\\"logprob_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.01876,\\\\n      \\\\\\\"median\\\\\\\": 0.013596,\\\\n      \\\\\\\"p25\\\\\\\": 0.008513,\\\\n      \\\\\\\"p75\\\\\\\": 0.023427\\\\n    },\\\\n    \\\\\\\"f1_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.1267,\\\\n      \\\\\\\"median\\\\\\\": 0.1102\\\\n    },\\\\n    \\\\\\\"pairwise_sj\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.7443,\\\\n      \\\\\\\"median\\\\\\\": 0.7571,\\\\n      \\\\\\\"p25\\\\\\\": 0.6095,\\\\n      \\\\\\\"p75\\\\\\\": 0.9167,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"0.0-0.1\\\\\\\": 0,\\\\n        \\\\\\\"0.1-0.2\\\\\\\": 2,\\\\n        \\\\\\\"0.2-0.3\\\\\\\": 12,\\\\n        \\\\\\\"0.3-0.4\\\\\\\": 21,\\\\n        \\\\\\\"0.4-0.5\\\\\\\": 39,\\\\n        \\\\\\\"0.5-0.6\\\\\\\": 53,\\\\n        \\\\\\\"0.6-0.7\\\\\\\": 74,\\\\n        \\\\\\\"0.7-0.8\\\\\\\": 104,\\\\n        \\\\\\\"0.8-0.9\\\\\\\": 78,\\\\n        \\\\\\\"0.9-1.0\\\\\\\": 146\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"qwen_conll_ner\\\\\\\": {\\\\n    \\\\\\\"n_valid\\\\\\\": 2756,\\\\n    \\\\\\\"n_total\\\\\\\": 3453,\\\\n    \\\\\\\"unique_fraction\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.2351,\\\\n      \\\\\\\"median\\\\\\\": 0.125,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"1\\\\\\\": 1563,\\\\n        \\\\\\\"2\\\\\\\": 570,\\\\n        \\\\\\\"3\\\\\\\": 303,\\\\n        \\\\\\\"4\\\\\\\": 151,\\\\n        \\\\\\\"5\\\\\\\": 95,\\\\n        \\\\\\\"6\\\\\\\": 35,\\\\n        \\\\\\\"7\\\\\\\": 29,\\\\n        \\\\\\\"8\\\\\\\": 10\\\\n      }\\\\n    },\\\\n    \\\\\\\"logprob_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.025641,\\\\n      \\\\\\\"median\\\\\\\": 0.020858,\\\\n      \\\\\\\"p25\\\\\\\": 0.010158,\\\\n      \\\\\\\"p75\\\\\\\": 0.033703\\\\n    },\\\\n    \\\\\\\"f1_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.0921,\\\\n      \\\\\\\"median\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"pairwise_sj\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.8688,\\\\n      \\\\\\\"median\\\\\\\": 1.0,\\\\n      \\\\\\\"p25\\\\\\\": 0.75,\\\\n      \\\\\\\"p75\\\\\\\": 1.0,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"0.0-0.1\\\\\\\": 0,\\\\n        \\\\\\\"0.1-0.2\\\\\\\": 8,\\\\n        \\\\\\\"0.2-0.3\\\\\\\": 40,\\\\n        \\\\\\\"0.3-0.4\\\\\\\": 57,\\\\n        \\\\\\\"0.4-0.5\\\\\\\": 83,\\\\n        \\\\\\\"0.5-0.6\\\\\\\": 135,\\\\n        \\\\\\\"0.6-0.7\\\\\\\": 154,\\\\n        \\\\\\\"0.7-0.8\\\\\\\": 316,\\\\n        \\\\\\\"0.8-0.9\\\\\\\": 285,\\\\n        \\\\\\\"0.9-1.0\\\\\\\": 1678\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_conll_ner\\\\\\\": {\\\\n    \\\\\\\"n_valid\\\\\\\": 2756,\\\\n    \\\\\\\"n_total\\\\\\\": 3453,\\\\n    \\\\\\\"unique_fraction\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.1465,\\\\n      \\\\\\\"median\\\\\\\": 0.125,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"1\\\\\\\": 2421,\\\\n        \\\\\\\"2\\\\\\\": 243,\\\\n        \\\\\\\"3\\\\\\\": 63,\\\\n        \\\\\\\"4\\\\\\\": 17,\\\\n        \\\\\\\"5\\\\\\\": 8,\\\\n        \\\\\\\"6\\\\\\\": 2,\\\\n        \\\\\\\"7\\\\\\\": 1,\\\\n        \\\\\\\"8\\\\\\\": 1\\\\n      }\\\\n    },\\\\n    \\\\\\\"logprob_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.006875,\\\\n      \\\\\\\"median\\\\\\\": 9.4e-05,\\\\n      \\\\\\\"p25\\\\\\\": 0.0,\\\\n      \\\\\\\"p75\\\\\\\": 0.011135\\\\n    },\\\\n    \\\\\\\"f1_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.0204,\\\\n      \\\\\\\"median\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"pairwise_sj\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.9718,\\\\n      \\\\\\\"median\\\\\\\": 1.0,\\\\n      \\\\\\\"p25\\\\\\\": 1.0,\\\\n      \\\\\\\"p75\\\\\\\": 1.0,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"0.0-0.1\\\\\\\": 0,\\\\n        \\\\\\\"0.1-0.2\\\\\\\": 0,\\\\n        \\\\\\\"0.2-0.3\\\\\\\": 4,\\\\n        \\\\\\\"0.3-0.4\\\\\\\": 4,\\\\n        \\\\\\\"0.4-0.5\\\\\\\": 11,\\\\n        \\\\\\\"0.5-0.6\\\\\\\": 35,\\\\n        \\\\\\\"0.6-0.7\\\\\\\": 35,\\\\n        \\\\\\\"0.7-0.8\\\\\\\": 80,\\\\n        \\\\\\\"0.8-0.9\\\\\\\": 101,\\\\n        \\\\\\\"0.9-1.0\\\\\\\": 2486\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"wnut17_ner\\\\\\\": {\\\\n    \\\\\\\"n_valid\\\\\\\": 689,\\\\n    \\\\\\\"n_total\\\\\\\": 1287,\\\\n    \\\\\\\"unique_fraction\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.2244,\\\\n      \\\\\\\"median\\\\\\\": 0.125,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"1\\\\\\\": 381,\\\\n        \\\\\\\"2\\\\\\\": 173,\\\\n        \\\\\\\"3\\\\\\\": 71,\\\\n        \\\\\\\"4\\\\\\\": 37,\\\\n        \\\\\\\"5\\\\\\\": 15,\\\\n        \\\\\\\"6\\\\\\\": 10,\\\\n        \\\\\\\"7\\\\\\\": 2,\\\\n        \\\\\\\"8\\\\\\\": 0\\\\n      }\\\\n    },\\\\n    \\\\\\\"logprob_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.021478,\\\\n      \\\\\\\"median\\\\\\\": 0.016891,\\\\n      \\\\\\\"p25\\\\\\\": 4e-06,\\\\n      \\\\\\\"p75\\\\\\\": 0.032964\\\\n    },\\\\n    \\\\\\\"f1_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.1002,\\\\n      \\\\\\\"median\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"pairwise_sj\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.8227,\\\\n      \\\\\\\"median\\\\\\\": 1.0,\\\\n      \\\\\\\"p25\\\\\\\": 0.6845,\\\\n      \\\\\\\"p75\\\\\\\": 1.0,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"0.0-0.1\\\\\\\": 0,\\\\n        \\\\\\\"0.1-0.2\\\\\\\": 8,\\\\n        \\\\\\\"0.2-0.3\\\\\\\": 20,\\\\n        \\\\\\\"0.3-0.4\\\\\\\": 24,\\\\n        \\\\\\\"0.4-0.5\\\\\\\": 49,\\\\n        \\\\\\\"0.5-0.6\\\\\\\": 51,\\\\n        \\\\\\\"0.6-0.7\\\\\\\": 25,\\\\n        \\\\\\\"0.7-0.8\\\\\\\": 84,\\\\n        \\\\\\\"0.8-0.9\\\\\\\": 32,\\\\n        \\\\\\\"0.9-1.0\\\\\\\": 396\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "87f90ba9-4b1b-4baf-ba1a-414baa0ba961",
+            "uuid": "b011cbef-b353-4e23-aaef-cb0a96e327f5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"qwen_scierc_ner\\\\\\\": {\\\\n    \\\\\\\"n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"unique_fraction\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.4327,\\\\n      \\\\\\\"median\\\\\\\": 0.375,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"1\\\\\\\": 59,\\\\n        \\\\\\\"2\\\\\\\": 126,\\\\n        \\\\\\\"3\\\\\\\": 112,\\\\n        \\\\\\\"4\\\\\\\": 94,\\\\n        \\\\\\\"5\\\\\\\": 72,\\\\n        \\\\\\\"6\\\\\\\": 32,\\\\n        \\\\\\\"7\\\\\\\": 16,\\\\n        \\\\\\\"8\\\\\\\": 18\\\\n      }\\\\n    },\\\\n    \\\\\\\"logprob_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.020484,\\\\n      \\\\\\\"median\\\\\\\": 0.013479,\\\\n      \\\\\\\"p25\\\\\\\": 0.008671,\\\\n      \\\\\\\"p75\\\\\\\": 0.022697\\\\n    },\\\\n    \\\\\\\"f1_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.1442,\\\\n      \\\\\\\"median\\\\\\\": 0.1308\\\\n    },\\\\n    \\\\\\\"pairwise_sj\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.7026,\\\\n      \\\\\\\"median\\\\\\\": 0.7143,\\\\n      \\\\\\\"p25\\\\\\\": 0.5674,\\\\n      \\\\\\\"p75\\\\\\\": 0.8661,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"0.0-0.1\\\\\\\": 0,\\\\n        \\\\\\\"0.1-0.2\\\\\\\": 1,\\\\n        \\\\\\\"0.2-0.3\\\\\\\": 11,\\\\n        \\\\\\\"0.3-0.4\\\\\\\": 26,\\\\n        \\\\\\\"0.4-0.5\\\\\\\": 52,\\\\n        \\\\\\\"0.5-0.6\\\\\\\": 67,\\\\n        \\\\\\\"0.6-0.7\\\\\\\": 91,\\\\n        \\\\\\\"0.7-0.8\\\\\\\": 109,\\\\n        \\\\\\\"0.8-0.9\\\\\\\": 65,\\\\n        \\\\\\\"0.9-1.0\\\\\\\": 107\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_scierc_ner\\\\\\\": {\\\\n    \\\\\\\"n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"unique_fraction\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.3885,\\\\n      \\\\\\\"median\\\\\\\": 0.375,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"1\\\\\\\": 94,\\\\n        \\\\\\\"2\\\\\\\": 142,\\\\n        \\\\\\\"3\\\\\\\": 107,\\\\n        \\\\\\\"4\\\\\\\": 71,\\\\n        \\\\\\\"5\\\\\\\": 57,\\\\n        \\\\\\\"6\\\\\\\": 36,\\\\n        \\\\\\\"7\\\\\\\": 16,\\\\n        \\\\\\\"8\\\\\\\": 6\\\\n      }\\\\n    },\\\\n    \\\\\\\"logprob_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.01876,\\\\n      \\\\\\\"median\\\\\\\": 0.013596,\\\\n      \\\\\\\"p25\\\\\\\": 0.008513,\\\\n      \\\\\\\"p75\\\\\\\": 0.023427\\\\n    },\\\\n    \\\\\\\"f1_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.1267,\\\\n      \\\\\\\"median\\\\\\\": 0.1102\\\\n    },\\\\n    \\\\\\\"pairwise_sj\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.7443,\\\\n      \\\\\\\"median\\\\\\\": 0.7571,\\\\n      \\\\\\\"p25\\\\\\\": 0.6095,\\\\n      \\\\\\\"p75\\\\\\\": 0.9167,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"0.0-0.1\\\\\\\": 0,\\\\n        \\\\\\\"0.1-0.2\\\\\\\": 2,\\\\n        \\\\\\\"0.2-0.3\\\\\\\": 12,\\\\n        \\\\\\\"0.3-0.4\\\\\\\": 21,\\\\n        \\\\\\\"0.4-0.5\\\\\\\": 39,\\\\n        \\\\\\\"0.5-0.6\\\\\\\": 53,\\\\n        \\\\\\\"0.6-0.7\\\\\\\": 74,\\\\n        \\\\\\\"0.7-0.8\\\\\\\": 104,\\\\n        \\\\\\\"0.8-0.9\\\\\\\": 78,\\\\n        \\\\\\\"0.9-1.0\\\\\\\": 146\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"qwen_conll_ner\\\\\\\": {\\\\n    \\\\\\\"n_valid\\\\\\\": 2756,\\\\n    \\\\\\\"n_total\\\\\\\": 3453,\\\\n    \\\\\\\"unique_fraction\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.2351,\\\\n      \\\\\\\"median\\\\\\\": 0.125,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"1\\\\\\\": 1563,\\\\n        \\\\\\\"2\\\\\\\": 570,\\\\n        \\\\\\\"3\\\\\\\": 303,\\\\n        \\\\\\\"4\\\\\\\": 151,\\\\n        \\\\\\\"5\\\\\\\": 95,\\\\n        \\\\\\\"6\\\\\\\": 35,\\\\n        \\\\\\\"7\\\\\\\": 29,\\\\n        \\\\\\\"8\\\\\\\": 10\\\\n      }\\\\n    },\\\\n    \\\\\\\"logprob_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.025641,\\\\n      \\\\\\\"median\\\\\\\": 0.020858,\\\\n      \\\\\\\"p25\\\\\\\": 0.010158,\\\\n      \\\\\\\"p75\\\\\\\": 0.033703\\\\n    },\\\\n    \\\\\\\"f1_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.0921,\\\\n      \\\\\\\"median\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"pairwise_sj\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.8688,\\\\n      \\\\\\\"median\\\\\\\": 1.0,\\\\n      \\\\\\\"p25\\\\\\\": 0.75,\\\\n      \\\\\\\"p75\\\\\\\": 1.0,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"0.0-0.1\\\\\\\": 0,\\\\n        \\\\\\\"0.1-0.2\\\\\\\": 8,\\\\n        \\\\\\\"0.2-0.3\\\\\\\": 40,\\\\n        \\\\\\\"0.3-0.4\\\\\\\": 57,\\\\n        \\\\\\\"0.4-0.5\\\\\\\": 83,\\\\n        \\\\\\\"0.5-0.6\\\\\\\": 135,\\\\n        \\\\\\\"0.6-0.7\\\\\\\": 154,\\\\n        \\\\\\\"0.7-0.8\\\\\\\": 316,\\\\n        \\\\\\\"0.8-0.9\\\\\\\": 285,\\\\n        \\\\\\\"0.9-1.0\\\\\\\": 1678\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_conll_ner\\\\\\\": {\\\\n    \\\\\\\"n_valid\\\\\\\": 2756,\\\\n    \\\\\\\"n_total\\\\\\\": 3453,\\\\n    \\\\\\\"unique_fraction\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.1465,\\\\n      \\\\\\\"median\\\\\\\": 0.125,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"1\\\\\\\": 2421,\\\\n        \\\\\\\"2\\\\\\\": 243,\\\\n        \\\\\\\"3\\\\\\\": 63,\\\\n        \\\\\\\"4\\\\\\\": 17,\\\\n        \\\\\\\"5\\\\\\\": 8,\\\\n        \\\\\\\"6\\\\\\\": 2,\\\\n        \\\\\\\"7\\\\\\\": 1,\\\\n        \\\\\\\"8\\\\\\\": 1\\\\n      }\\\\n    },\\\\n    \\\\\\\"logprob_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.006875,\\\\n      \\\\\\\"median\\\\\\\": 9.4e-05,\\\\n      \\\\\\\"p25\\\\\\\": 0.0,\\\\n      \\\\\\\"p75\\\\\\\": 0.011135\\\\n    },\\\\n    \\\\\\\"f1_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.0204,\\\\n      \\\\\\\"median\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"pairwise_sj\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.9718,\\\\n      \\\\\\\"median\\\\\\\": 1.0,\\\\n      \\\\\\\"p25\\\\\\\": 1.0,\\\\n      \\\\\\\"p75\\\\\\\": 1.0,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"0.0-0.1\\\\\\\": 0,\\\\n        \\\\\\\"0.1-0.2\\\\\\\": 0,\\\\n        \\\\\\\"0.2-0.3\\\\\\\": 4,\\\\n        \\\\\\\"0.3-0.4\\\\\\\": 4,\\\\n        \\\\\\\"0.4-0.5\\\\\\\": 11,\\\\n        \\\\\\\"0.5-0.6\\\\\\\": 35,\\\\n        \\\\\\\"0.6-0.7\\\\\\\": 35,\\\\n        \\\\\\\"0.7-0.8\\\\\\\": 80,\\\\n        \\\\\\\"0.8-0.9\\\\\\\": 101,\\\\n        \\\\\\\"0.9-1.0\\\\\\\": 2486\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"wnut17_ner\\\\\\\": {\\\\n    \\\\\\\"n_valid\\\\\\\": 689,\\\\n    \\\\\\\"n_total\\\\\\\": 1287,\\\\n    \\\\\\\"unique_fraction\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.2244,\\\\n      \\\\\\\"median\\\\\\\": 0.125,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"1\\\\\\\": 381,\\\\n        \\\\\\\"2\\\\\\\": 173,\\\\n        \\\\\\\"3\\\\\\\": 71,\\\\n        \\\\\\\"4\\\\\\\": 37,\\\\n        \\\\\\\"5\\\\\\\": 15,\\\\n        \\\\\\\"6\\\\\\\": 10,\\\\n        \\\\\\\"7\\\\\\\": 2,\\\\n        \\\\\\\"8\\\\\\\": 0\\\\n      }\\\\n    },\\\\n    \\\\\\\"logprob_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.021478,\\\\n      \\\\\\\"median\\\\\\\": 0.016891,\\\\n      \\\\\\\"p25\\\\\\\": 4e-06,\\\\n      \\\\\\\"p75\\\\\\\": 0.032964\\\\n    },\\\\n    \\\\\\\"f1_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.1002,\\\\n      \\\\\\\"median\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"pairwise_sj\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.8227,\\\\n      \\\\\\\"median\\\\\\\": 1.0,\\\\n      \\\\\\\"p25\\\\\\\": 0.6845,\\\\n      \\\\\\\"p75\\\\\\\": 1.0,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"0.0-0.1\\\\\\\": 0,\\\\n        \\\\\\\"0.1-0.2\\\\\\\": 8,\\\\n        \\\\\\\"0.2-0.3\\\\\\\": 20,\\\\n        \\\\\\\"0.3-0.4\\\\\\\": 24,\\\\n        \\\\\\\"0.4-0.5\\\\\\\": 49,\\\\n        \\\\\\\"0.5-0.6\\\\\\\": 51,\\\\n        \\\\\\\"0.6-0.7\\\\\\\": 25,\\\\n        \\\\\\\"0.7-0.8\\\\\\\": 84,\\\\n        \\\\\\\"0.8-0.9\\\\\\\": 32,\\\\n        \\\\\\\"0.9-1.0\\\\\\\": 396\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"qwen_scierc_ner\\\": {\\n    \\\"n_valid\\\": 529,\\n    \\\"n_total\\\": 551,\\n    \\\"unique_fraction\\\": {\\n      \\\"mean\\\": 0.4327,\\n      \\\"median\\\": 0.375,\\n      \\\"histogram\\\": {\\n        \\\"1\\\": 59,\\n        \\\"2\\\": 126,\\n        \\\"3\\\": 112,\\n        \\\"4\\\": 94,\\n        \\\"5\\\": 72,\\n        \\\"6\\\": 32,\\n        \\\"7\\\": 16,\\n        \\\"8\\\": 18\\n      }\\n    },\\n    \\\"logprob_std\\\": {\\n      \\\"mean\\\": 0.020484,\\n      \\\"median\\\": 0.013479,\\n      \\\"p25\\\": 0.008671,\\n      \\\"p75\\\": 0.022697\\n    },\\n    \\\"f1_std\\\": {\\n      \\\"mean\\\": 0.1442,\\n      \\\"median\\\": 0.1308\\n    },\\n    \\\"pairwise_sj\\\": {\\n      \\\"mean\\\": 0.7026,\\n      \\\"median\\\": 0.7143,\\n      \\\"p25\\\": 0.5674,\\n      \\\"p75\\\": 0.8661,\\n      \\\"histogram\\\": {\\n        \\\"0.0-0.1\\\": 0,\\n        \\\"0.1-0.2\\\": 1,\\n        \\\"0.2-0.3\\\": 11,\\n        \\\"0.3-0.4\\\": 26,\\n        \\\"0.4-0.5\\\": 52,\\n        \\\"0.5-0.6\\\": 67,\\n        \\\"0.6-0.7\\\": 91,\\n        \\\"0.7-0.8\\\": 109,\\n        \\\"0.8-0.9\\\": 65,\\n        \\\"0.9-1.0\\\": 107\\n      }\\n    }\\n  },\\n  \\\"llama_scierc_ner\\\": {\\n    \\\"n_valid\\\": 529,\\n    \\\"n_total\\\": 551,\\n    \\\"unique_fraction\\\": {\\n      \\\"mean\\\": 0.3885,\\n      \\\"median\\\": 0.375,\\n      \\\"histogram\\\": {\\n        \\\"1\\\": 94,\\n        \\\"2\\\": 142,\\n        \\\"3\\\": 107,\\n        \\\"4\\\": 71,\\n        \\\"5\\\": 57,\\n        \\\"6\\\": 36,\\n        \\\"7\\\": 16,\\n        \\\"8\\\": 6\\n      }\\n    },\\n    \\\"logprob_std\\\": {\\n      \\\"mean\\\": 0.01876,\\n      \\\"median\\\": 0.013596,\\n      \\\"p25\\\": 0.008513,\\n      \\\"p75\\\": 0.023427\\n    },\\n    \\\"f1_std\\\": {\\n      \\\"mean\\\": 0.1267,\\n      \\\"median\\\": 0.1102\\n    },\\n    \\\"pairwise_sj\\\": {\\n      \\\"mean\\\": 0.7443,\\n      \\\"median\\\": 0.7571,\\n      \\\"p25\\\": 0.6095,\\n      \\\"p75\\\": 0.9167,\\n      \\\"histogram\\\": {\\n        \\\"0.0-0.1\\\": 0,\\n        \\\"0.1-0.2\\\": 2,\\n        \\\"0.2-0.3\\\": 12,\\n        \\\"0.3-0.4\\\": 21,\\n        \\\"0.4-0.5\\\": 39,\\n        \\\"0.5-0.6\\\": 53,\\n        \\\"0.6-0.7\\\": 74,\\n        \\\"0.7-0.8\\\": 104,\\n        \\\"0.8-0.9\\\": 78,\\n        \\\"0.9-1.0\\\": 146\\n      }\\n    }\\n  },\\n  \\\"qwen_conll_ner\\\": {\\n    \\\"n_valid\\\": 2756,\\n    \\\"n_total\\\": 3453,\\n    \\\"unique_fraction\\\": {\\n      \\\"mean\\\": 0.2351,\\n      \\\"median\\\": 0.125,\\n      \\\"histogram\\\": {\\n        \\\"1\\\": 1563,\\n        \\\"2\\\": 570,\\n        \\\"3\\\": 303,\\n        \\\"4\\\": 151,\\n        \\\"5\\\": 95,\\n        \\\"6\\\": 35,\\n        \\\"7\\\": 29,\\n        \\\"8\\\": 10\\n      }\\n    },\\n    \\\"logprob_std\\\": {\\n      \\\"mean\\\": 0.025641,\\n      \\\"median\\\": 0.020858,\\n      \\\"p25\\\": 0.010158,\\n      \\\"p75\\\": 0.033703\\n    },\\n    \\\"f1_std\\\": {\\n      \\\"mean\\\": 0.0921,\\n      \\\"median\\\": 0.0\\n    },\\n    \\\"pairwise_sj\\\": {\\n      \\\"mean\\\": 0.8688,\\n      \\\"median\\\": 1.0,\\n      \\\"p25\\\": 0.75,\\n      \\\"p75\\\": 1.0,\\n      \\\"histogram\\\": {\\n        \\\"0.0-0.1\\\": 0,\\n        \\\"0.1-0.2\\\": 8,\\n        \\\"0.2-0.3\\\": 40,\\n        \\\"0.3-0.4\\\": 57,\\n        \\\"0.4-0.5\\\": 83,\\n        \\\"0.5-0.6\\\": 135,\\n        \\\"0.6-0.7\\\": 154,\\n        \\\"0.7-0.8\\\": 316,\\n        \\\"0.8-0.9\\\": 285,\\n        \\\"0.9-1.0\\\": 1678\\n      }\\n    }\\n  },\\n  \\\"llama_conll_ner\\\": {\\n    \\\"n_valid\\\": 2756,\\n    \\\"n_total\\\": 3453,\\n    \\\"unique_fraction\\\": {\\n      \\\"mean\\\": 0.1465,\\n      \\\"median\\\": 0.125,\\n      \\\"histogram\\\": {\\n        \\\"1\\\": 2421,\\n        \\\"2\\\": 243,\\n        \\\"3\\\": 63,\\n        \\\"4\\\": 17,\\n        \\\"5\\\": 8,\\n        \\\"6\\\": 2,\\n        \\\"7\\\": 1,\\n        \\\"8\\\": 1\\n      }\\n    },\\n    \\\"logprob_std\\\": {\\n      \\\"mean\\\": 0.006875,\\n      \\\"median\\\": 9.4e-05,\\n      \\\"p25\\\": 0.0,\\n      \\\"p75\\\": 0.011135\\n    },\\n    \\\"f1_std\\\": {\\n      \\\"mean\\\": 0.0204,\\n      \\\"median\\\": 0.0\\n    },\\n    \\\"pairwise_sj\\\": {\\n      \\\"mean\\\": 0.9718,\\n      \\\"median\\\": 1.0,\\n      \\\"p25\\\": 1.0,\\n      \\\"p75\\\": 1.0,\\n      \\\"histogram\\\": {\\n        \\\"0.0-0.1\\\": 0,\\n        \\\"0.1-0.2\\\": 0,\\n        \\\"0.2-0.3\\\": 4,\\n        \\\"0.3-0.4\\\": 4,\\n        \\\"0.4-0.5\\\": 11,\\n        \\\"0.5-0.6\\\": 35,\\n        \\\"0.6-0.7\\\": 35,\\n        \\\"0.7-0.8\\\": 80,\\n        \\\"0.8-0.9\\\": 101,\\n        \\\"0.9-1.0\\\": 2486\\n      }\\n    }\\n  },\\n  \\\"wnut17_ner\\\": {\\n    \\\"n_valid\\\": 689,\\n    \\\"n_total\\\": 1287,\\n    \\\"unique_fraction\\\": {\\n      \\\"mean\\\": 0.2244,\\n      \\\"median\\\": 0.125,\\n      \\\"histogram\\\": {\\n        \\\"1\\\": 381,\\n        \\\"2\\\": 173,\\n        \\\"3\\\": 71,\\n        \\\"4\\\": 37,\\n        \\\"5\\\": 15,\\n        \\\"6\\\": 10,\\n        \\\"7\\\": 2,\\n        \\\"8\\\": 0\\n      }\\n    },\\n    \\\"logprob_std\\\": {\\n      \\\"mean\\\": 0.021478,\\n      \\\"median\\\": 0.016891,\\n      \\\"p25\\\": 4e-06,\\n      \\\"p75\\\": 0.032964\\n    },\\n    \\\"f1_std\\\": {\\n      \\\"mean\\\": 0.1002,\\n      \\\"median\\\": 0.0\\n    },\\n    \\\"pairwise_sj\\\": {\\n      \\\"mean\\\": 0.8227,\\n      \\\"median\\\": 1.0,\\n      \\\"p25\\\": 0.6845,\\n      \\\"p75\\\": 1.0,\\n      \\\"histogram\\\": {\\n        \\\"0.0-0.1\\\": 0,\\n        \\\"0.1-0.2\\\": 8,\\n        \\\"0.2-0.3\\\": 20,\\n        \\\"0.3-0.4\\\": 24,\\n        \\\"0.4-0.5\\\": 49,\\n        \\\"0.5-0.6\\\": 51,\\n        \\\"0.6-0.7\\\": 25,\\n        \\\"0.7-0.8\\\": 84,\\n        \\\"0.8-0.9\\\": 32,\\n        \\\"0.9-1.0\\\": 396\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The diversity_stratified_selection.json already contains all the data I need for both high-diversity and low-diversity groups for both Qwen SciERC NER and LLaMA SciERC NER. Let me format the tables.\n\nLet me extract the data:\n\n**Qwen SciERC NER:**\n\nHigh-diversity (n_unique ≥ 4):\n- n = 232\n- Greedy F1 = 0.5753\n- Oracle F1 = 0.7384\n- Headroom = 0.1631\n\n\n- Across the selection methods, logprob performs best with a gap of +0.0076, while variance-based selection shows the largest drop at -0.0255.\n\nLow-diversity (n_unique ≤ 2):\n- n = 185\n- Greedy F1 = 0.7118\n- Oracle F1 = 0.8043\n- Headroom = 0.0925\n- SJ sel = 0.7018\n\nFor the low-diversity subset, voting confidence emerges as the strongest signal with nearly zero gap (-0.0001), suggesting the model's confidence estimates are well-calibrated here.\n\nNow looking at LLaMA's performance on SciERC NER with high diversity examples, there's substantial headroom of 0.2014 between greedy and oracle F1, indicating significant room for improvement through better selection strategies. I'm realizing the user only asked for high and low diversity groups, so I should skip the medium group and just format these results as tables.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "87f90ba9-4b1b-4baf-ba1a-414baa0ba961",
+            "uuid": "d1a23df6-145e-4148-86f7-6855ba11f0ea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DwAUEMeFEZ9a6ZK7pL1jw4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6194,
+                "cache_read_input_tokens": 23858,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6194
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 数据完整，直接提取。\n\n## Qwen SciERC NER\n\n| Group | n | Greedy F1 | Oracle F1 | Headroom | SJ sel | FK sel | EM sel | LP sel | VC sel | Best signal | Best gap vs greedy |\n|-------|--:|----------:|----------:|---------:|-------:|-------:|-------:|-------:|-------:|:-----------:|-------------------:|\n| **high-diversity** (≥4 unique) | 232 | .5753 | .7384 | .1631 | .5747 | .5733 | .5561 | **.5829** | .5498 | **LP** | **+.0076** |\n| medium (=3 unique) | 112 | .6740 | .8063 | .1323 | .6968 | **.6989** | .6938 | .6888 | .6461 | **FK** | **+.0249** |\n| **low-diversity** (≤2 unique) | 185 | .7118 | .8043 | .0925 | .7018 | .7018 | .7018 | .7109 | **.7117** | **VC** | **−.0001** |\n\n## LLaMA SciERC NER\n\n| Group | n | Greedy F1 | Oracle F1 | Headroom | SJ sel | FK sel | EM sel | LP sel | VC sel | Best signal | Best gap vs greedy |\n|-------|--:|----------:|----------:|---------:|-------:|-------:|-------:|-------:|-------:|:-----------:|-------------------:|\n| **high-diversity** (≥4 unique) | 186 | .5630 | .7644 | .2014 | .5618 | .5622 | .5381 | **.5826** | .5455 | **LP** | **+.0196** |\n| medium (=3 unique) | 107 | .6307 | .7623 | .1316 | .6209 | .6246 | **.6277** | .6250 | .6140 | **EM** | **−.0029** |\n| **low-diversity** (≤2 unique) | 236 | .7184 | .7959 | .0775 | .7177 | .7176 | .7164 | .7185 | **.7252** | **VC** | **+.0068** |\n\n## 关键发现\n\n**High-diversity 组 (≥4 unique)**：\n- Headroom 大（Qwen 16.3pp, LLaMA 20.1pp），但所有 consistency-based 信号（SJ/FK/EM/VC）都**低于 greedy**\n- 唯一正向信号是 **logprob (LP)**：Qwen +0.76pp, LLaMA +1.96pp\n- 说明当输出高度分歧时，consistency 信号失效，只有模型自身置信度（logprob）能提供微弱的选择信号\n\n**Low-diversity 组 (≤2 unique)**：\n- Headroom 小（Qwen 9.25pp, LLaMA 7.75pp），所有信号的 gap 都接近零（|gap| < 1pp）\n- 最佳信号是 **voting confidence (VC)**，但增益可忽略\n- 天花板效应：输出几乎一致时，selection 无改进空间\n\n**Diversity histogram（参考）**：\n- Qwen: 1→59, 2→126, 3→112, 4→94, 5→72, 6→32, 7→16, 8→18\n- LLaMA: 1→94, 2→142, 3→107, 4→71, 5→57, 6→36, 7→16, 8→6"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "87f90ba9-4b1b-4baf-ba1a-414baa0ba961",
+            "uuid": "debaa6de-5749-4f0c-a625-443130c66076",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DwAUEMeFEZ9a6ZK7pL1jw4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6194,
+                "cache_read_input_tokens": 23858,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6194
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 数据完整，直接提取。\n\n## Qwen SciERC NER\n\n| Group | n | Greedy F1 | Oracle F1 | Headroom | SJ sel | FK sel | EM sel | LP sel | VC sel | Best signal | Best gap vs greedy |\n|-------|--:|----------:|----------:|---------:|-------:|-------:|-------:|-------:|-------:|:-----------:|-------------------:|\n| **high-diversity** (≥4 unique) | 232 | .5753 | .7384 | .1631 | .5747 | .5733 | .5561 | **.5829** | .5498 | **LP** | **+.0076** |\n| medium (=3 unique) | 112 | .6740 | .8063 | .1323 | .6968 | **.6989** | .6938 | .6888 | .6461 | **FK** | **+.0249** |\n| **low-diversity** (≤2 unique) | 185 | .7118 | .8043 | .0925 | .7018 | .7018 | .7018 | .7109 | **.7117** | **VC** | **−.0001** |\n\n## LLaMA SciERC NER\n\n| Group | n | Greedy F1 | Oracle F1 | Headroom | SJ sel | FK sel | EM sel | LP sel | VC sel | Best signal | Best gap vs greedy |\n|-------|--:|----------:|----------:|---------:|-------:|-------:|-------:|-------:|-------:|:-----------:|-------------------:|\n| **high-diversity** (≥4 unique) | 186 | .5630 | .7644 | .2014 | .5618 | .5622 | .5381 | **.5826** | .5455 | **LP** | **+.0196** |\n| medium (=3 unique) | 107 | .6307 | .7623 | .1316 | .6209 | .6246 | **.6277** | .6250 | .6140 | **EM** | **−.0029** |\n| **low-diversity** (≤2 unique) | 236 | .7184 | .7959 | .0775 | .7177 | .7176 | .7164 | .7185 | **.7252** | **VC** | **+.0068** |\n\n## 关键发现\n\n**High-diversity 组 (≥4 unique)**：\n- Headroom 大（Qwen 16.3pp, LLaMA 20.1pp），但所有 consistency-based 信号（SJ/FK/EM/VC）都**低于 greedy**\n- 唯一正向信号是 **logprob (LP)**：Qwen +0.76pp, LLaMA +1.96pp\n- 说明当输出高度分歧时，consistency 信号失效，只有模型自身置信度（logprob）能提供微弱的选择信号\n\n**Low-diversity 组 (≤2 unique)**：\n- Headroom 小（Qwen 9.25pp, LLaMA 7.75pp），所有信号的 gap 都接近零（|gap| < 1pp）\n- 最佳信号是 **voting confidence (VC)**，但增益可忽略\n- 天花板效应：输出几乎一致时，selection 无改进空间\n\n**Diversity histogram（参考）**：\n- Qwen: 1→59, 2→126, 3→112, 4→94, 5→72, 6→32, 7→16, 8→18\n- LLaMA: 1→94, 2→142, 3→107, 4→71, 5→57, 6→36, 7→16, 8→6"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 41900,
+            "duration_api_ms": 41955,
+            "num_turns": 4,
+            "stop_reason": "end_turn",
+            "session_id": "87f90ba9-4b1b-4baf-ba1a-414baa0ba961",
+            "total_cost_usd": 0.19966174999999997,
+            "usage": {
+              "input_tokens": 7,
+              "cache_creation_input_tokens": 18211,
+              "cache_read_input_tokens": 58872,
+              "output_tokens": 2204,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 18211,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1811,
+                  "cache_read_input_tokens": 23858,
+                  "cache_creation_input_tokens": 6194,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 6194
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1182,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0012720000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 7,
+                "outputTokens": 2204,
+                "cacheReadInputTokens": 58872,
+                "cacheCreationInputTokens": 18211,
+                "webSearchRequests": 0,
+                "costUSD": 0.19838974999999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "47b8856f-c3d1-4a41-98ca-0cfcaf656f4a"
+          },
+          "id": "event-000014"
+        }
+      ],
+      "message_count": 14
+    }
+  ],
+  "readable_path": "readable/worker-executions/extract-diversity-stratified-table.md"
+}

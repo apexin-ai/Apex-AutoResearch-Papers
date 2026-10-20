@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f92b7924f64805b38396",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh f1 scaling law",
+  "task_key": "worker_ssh_f1-scaling-law_20260520T101432",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_f1-scaling-law_20260520T101432.log",
+    "occurrence": 1,
+    "bytes": 583872,
+    "sha256": "bea2960842f1054cef7b64225acd039c3efca6610c3ce53e19a1719212a1119d"
+  },
+  "statistics": {
+    "messages": 191,
+    "user_turns": 0,
+    "tool_calls": 67,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 67,
+      "tool_result": 67,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 191,
+      "chunks": [
+        {
+          "path": "f92b7924f64805b38396-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f92b7924f64805b38396-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-f1-scaling-law.md"
+}

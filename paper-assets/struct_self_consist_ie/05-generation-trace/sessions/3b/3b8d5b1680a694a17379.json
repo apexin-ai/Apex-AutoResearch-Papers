@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b8d5b1680a694a17379",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis fewnerd 3epoch construction",
+  "task_key": "worker_analysis_fewnerd-3epoch-construction_20260524T071447",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_fewnerd-3epoch-construction_20260524T071447_result.json",
+    "occurrence": 1,
+    "bytes": 542,
+    "sha256": "01b4ac6269d0183a0331857994b57b7faeff0da9be81e504604ea9e4cdb70bcf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n| Dataset | Seeds | MV Δ | LP Δ | Pooled p |\n|---------|-------|------|------|----------|\n| FewNERD (3-epoch) | 42, 456 | -0.03pp (n.s.) | **+0.74pp** | <0.001 |\n\n关键发现：\n- LP construction 方向与论文一致（+0.74pp vs 论文报的 +1.40pp），pooled p<0.001\n- 种子间方差大：seed42 LP Δ=-0.04pp，seed456 LP Δ=+1.52pp\n- MV construction 在 FewNERD 上无效（-0.03pp, p=0.64），LP 加权是关键\n\n报告已写入 `artifacts/rebuttal_construction_fewnerd_3epoch.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fewnerd-3epoch-construction.md"
+}

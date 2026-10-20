@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6f3f85135a5c97e780df",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "exp 027 mlp verifier upgrade",
+  "task_key": "worker_exp_027_mlp_verifier_upgrade_20260518T054501",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_027_mlp_verifier_upgrade_20260518T054501.log",
+    "occurrence": 1,
+    "bytes": 618765,
+    "sha256": "91bff461f3d18de31bfa62e4cfe614b8bc351c2bdaa002da0ece27740887f1e7"
+  },
+  "statistics": {
+    "messages": 251,
+    "user_turns": 0,
+    "tool_calls": 95,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 95,
+      "tool_result": 95,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 251,
+      "chunks": [
+        {
+          "path": "6f3f85135a5c97e780df-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6f3f85135a5c97e780df-part-0002.json",
+          "message_count": 71
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-027-mlp-verifier-upgrade.md"
+}

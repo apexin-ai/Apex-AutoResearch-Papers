@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4178a79094b12e1936c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "merge 32b fewnerd",
+  "task_key": "worker_merge_32b_fewnerd_20260521T001425",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_merge_32b_fewnerd_20260521T001425_result.json",
+    "occurrence": 1,
+    "bytes": 932,
+    "sha256": "6769a3bb63bf64fd73fb32ce3ebdc94777b0feecdb4d69ed5baa9069272ecc19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理运行正常：\n\n- vLLM 加载完成，KV cache 197,712 tokens，最大并发 48.27×\n- 37,648 个 FewNERD prompts 正在渲染（~540 it/s）\n- 4 张 GPU 各占用 ~31GB，利用率 41-53%\n\n---\n\n**全部任务完成汇总：**\n\n| 步骤 | 状态 | 详情 |\n|------|------|------|\n| 训练诊断 | **成功** | 41180 steps 完成，best eval_loss=0.0334 @ step 32000，epoch 4-5 过拟合 |\n| LoRA merge | **完成** | checkpoint-32000 → `qwen25-32b-fewnerd-merged`（14 shards, ~61GB bf16） |\n| Inference 启动 | **运行中** | PID 978386, 4×TP, 37648 instances, N=8, T=1.0, seed=42, logprobs |\n| Registry | **已更新** | `exp_qwen25_32b_fewnerd` → DONE; `exp_32b_inference_fewnerd` → RUNNING |\n| Cron 清理 | **完成** | `exp_qwen25_32b_fewnerd` cron 已删除 |\n\n磁盘剩余 22GB（250G 盘），推理输出应够用。FewNERD 37648 条 × N=8 估计需要数小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/merge-32b-fewnerd.md"
+}

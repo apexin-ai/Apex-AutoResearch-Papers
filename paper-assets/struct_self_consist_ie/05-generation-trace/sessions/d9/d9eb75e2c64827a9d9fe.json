@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "d9eb75e2c64827a9d9fe",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code exp 011 ood cross dataset",
+  "task_key": "worker_code_exp_011_ood_cross_dataset_20260515T113645",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_011_ood_cross_dataset_20260515T113645.log",
+    "occurrence": 1,
+    "bytes": 1177224,
+    "sha256": "cddb63d3bcd946f4a8306356b4d7da74a7c05528fafa01c019bb17c2701d0044"
+  },
+  "statistics": {
+    "messages": 305,
+    "user_turns": 1,
+    "tool_calls": 102,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "assistant": 93,
+      "tool_call": 102,
+      "tool_result": 102,
+      "record": 1,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 201,
+      "chunks": [
+        {
+          "path": "d9eb75e2c64827a9d9fe-part-0001.json",
+          "message_count": 145
+        },
+        {
+          "path": "d9eb75e2c64827a9d9fe-part-0002.json",
+          "message_count": 56
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 104,
+      "chunks": [
+        {
+          "path": "d9eb75e2c64827a9d9fe-part-0002.json",
+          "message_count": 104
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-011-ood-cross-dataset.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6287a428cc0aebf5ebc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis logprob tie analysis",
+  "task_key": "worker_analysis_logprob_tie_analysis_20260515T071401",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_logprob_tie_analysis_20260515T071401_result.json",
+    "occurrence": 1,
+    "bytes": 1164,
+    "sha256": "b6e5c35dd6b3dcf536ee85a179a914f881e875c19a76c07f0e6b6005e226ea07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 register_artifact 工具可用。报告已写入 `artifacts/logprob_tie_analysis.md`。\n\n---\n\n## 分析结果摘要\n\n### Tie 问题严重\n\n- Median logprob range 仅 **0.041**（8 个样本间 mean_logprob 最大差异）\n- **ε=0.05 时 60% instance 是 tied**，ε=0.1 时 84% tied\n- 大部分 instance 上 logprob selection 退化为近随机\n\n### Non-tied 子集上 logprob 有效\n\n| 子集 | N | LP-best vs Greedy | p-value |\n|------|---|-------------------|---------|\n| range ≥ 0.05 | 222 (40%) | **+0.027** | **0.010** |\n| range ≥ 0.1 | 90 (16%) | +0.035 | 0.079 |\n\n在 non-tied 子集上 logprob 甚至**优于 SJ** (0.6133 vs 0.6066)。\n\n### SJ 优势来自 spread 而非 signal quality\n\n- SJ 仅 12.5% tied vs logprob 60% tied\n- 两者一致性仅 14.3% → 捕获不同维度\n- Within-instance ρ 随 logprob spread 从 0.08 增长到 0.39\n\n### 结论\n\n**Ties 是 logprob 表现差的充分解释**。Logprob 包含有效质量信号 (ρ≈0.39 when spread)，但被数值压缩限制。SJ 胜出因为离散 Jaccard 天然有更大区分度，不是因为更好的信号。两者组合潜力大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-logprob-tie-analysis.md"
+}

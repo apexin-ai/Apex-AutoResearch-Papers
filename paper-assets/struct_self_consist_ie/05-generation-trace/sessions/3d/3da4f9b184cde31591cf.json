@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "3da4f9b184cde31591cf",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "run 8gpu fill priority",
+  "task_key": "worker_run_8gpu_fill_priority_20260521T042232",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_8gpu_fill_priority_20260521T042232.log",
+    "occurrence": 1,
+    "bytes": 716270,
+    "sha256": "1e4dc95da6bca1d47daf0a64b4fe45ded72c157b4a7e2d8ee9bed2cf4b1a06f3"
+  },
+  "statistics": {
+    "messages": 362,
+    "user_turns": 0,
+    "tool_calls": 143,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 71,
+      "tool_call": 143,
+      "tool_result": 143,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 362,
+      "chunks": [
+        {
+          "path": "3da4f9b184cde31591cf-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3da4f9b184cde31591cf-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3da4f9b184cde31591cf-part-0003.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-8gpu-fill-priority.md"
+}

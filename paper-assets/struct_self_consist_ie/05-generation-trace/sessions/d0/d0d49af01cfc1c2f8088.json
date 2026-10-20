@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0d49af01cfc1c2f8088",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis ner selection bootstrap",
+  "task_key": "worker_analysis_ner_selection_bootstrap_20260514T233738",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_ner_selection_bootstrap_20260514T233738_result.json",
+    "occurrence": 1,
+    "bytes": 2080,
+    "sha256": "9318e2a8408d4ba0a449a8d467ff40e061c4846e0e833a24e88b5f5007137a4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整结果如下：\n\n---\n\n## NER Selection F1 Bootstrap 统计报告 (n=529)\n\n### 1. Bootstrap 95% CI (B=10000)\n\n| Method | Mean F1 | 95% CI | Width |\n|--------|---------|--------|-------|\n| greedy | 0.6439 | [0.6180, 0.6692] | 0.0511 |\n| logprob_best | 0.6501 | [0.6246, 0.6751] | 0.0505 |\n| sj_best | 0.6450 | [0.6190, 0.6712] | 0.0522 |\n| voting_conf_best | 0.6337 | [0.6071, 0.6597] | 0.0527 |\n\n**差值 vs greedy 的 95% CI：**\n\n| Method - greedy | Diff | 95% CI | 含0? |\n|-----------------|------|--------|------|\n| logprob_best | +0.0061 | [-0.0300, +0.0420] | YES |\n| sj_best | +0.0011 | [-0.0352, +0.0377] | YES |\n| voting_conf_best | -0.0102 | [-0.0471, +0.0257] | YES |\n\n### 2. Paired Permutation Test (10000 permutations)\n\n| Comparison | Diff | p-value | Sig |\n|------------|------|---------|-----|\n| logprob_best vs greedy | +0.0061 | 0.3864 | n.s. |\n| sj_best vs greedy | +0.0011 | 0.8827 | n.s. |\n| voting_conf_best vs greedy | -0.0102 | 0.1868 | n.s. |\n\n### 3. Sign Test\n\n| Comparison | W/T/L | Win% (non-tie) | p-value |\n|------------|-------|-----------------|---------|\n| logprob_best vs greedy | 61W/398T/70L | 46.6% | 0.4847 |\n| sj_best vs greedy | 58W/420T/51L | 53.2% | 0.5657 |\n| voting_conf_best vs greedy | 66W/395T/68L | 49.3% | 0.9312 |\n\n### 4. Effect Size (Cohen's d)\n\n| Comparison | d |\n|------------|---|\n| logprob_best vs greedy | 0.0375 |\n| sj_best vs greedy | 0.0066 |\n| voting_conf_best vs greedy | -0.0576 |\n\n### 结论\n\n**logprob_best +0.61pp 不显著。** 所有统计检验一致：\n\n- 差值 95% CI 跨越 0（[-0.030, +0.042]）\n- Permutation test p=0.39，远高于 0.05\n- Sign test 显示 logprob_best 甚至输多赢少（61W vs 70L，win%=46.6%）\n- Cohen's d=0.038，几乎无效应\n\n**所有三个信号（logprob、SJ、voting）vs greedy 均不显著。** 529 个实例中，75% 的实例在所有方法间得到相同 F1（ties），实际有差异的实例太少且方向不一致，无法支撑 best-of-N selection 在 NER 上优于 greedy 的结论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ner-selection-bootstrap.md"
+}

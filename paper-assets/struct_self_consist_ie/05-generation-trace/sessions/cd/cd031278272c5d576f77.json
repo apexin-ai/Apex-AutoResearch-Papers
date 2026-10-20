@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd031278272c5d576f77",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis claim audit",
+  "task_key": "worker_analysis_claim_audit_20260519T133313",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_claim_audit_20260519T133313_result.json",
+    "occurrence": 1,
+    "bytes": 1192,
+    "sha256": "dd51b54bfb775c93e9074a24bafd95dd8c9e3329e8e5a8bae6eb11004d19d685"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计报告已写入 `artifacts/claim_audit_report.md` 并注册。\n\n核心发现：\n\n**4 个需修复的不一致 (❌)**：\n1. WNUT VC ρ 打字错误：experiments.tex:104 写了 0.730，应为 0.724\n2. Table 1 SciERC AUROC 列与 registry 系统性偏离（EM: 0.614 vs 0.749），疑似 AUROC 计算管线不同\n3. CoNLL LP 选择 Δ：Table 3 写 -0.85pp，附录 cross-selection 表算出 -1.1pp\n4. WNUT zero-F1 率在论文内不统一（51% vs 52%）\n\n**6 个存疑/无法验证的声明 (⚠️)**：\n- \"13–87% degeneracy\" 跨 benchmarks → 87% 来自特定 model×N 配置，非跨数据集\n- CoNLL 退化率 48.4% 可能是 N=16 值误用于 N=8 表格\n- FewNERD 退化率 13.8% 无法从 registry seed 数据复现（3-seed 均值约 11.8%）\n- FewNERD LP ρ=.220 种子间方差极大，无法从现有数据验证\n- Entity construction 数值因评估协议不同（multi-seed vs 5-fold CV）无法直接对比\n\n**已知矛盾状态**：当前论文版本中未找到 \"Discussion +0.1pp\" vs \"Limitations +0.4pp\" 冲突，可能已在编辑中修复。72B 节中 SciERC -0.1pp 和 CoNLL -0.4pp 是不同数据集的结果，非矛盾。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-claim-audit.md"
+}

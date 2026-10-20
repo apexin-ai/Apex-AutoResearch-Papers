@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39835e26d8acc63032fb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp 010 selection curves",
+  "task_key": "worker_exp_010_selection_curves_20260514T144948",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_010_selection_curves_20260514T144948_result.json",
+    "occurrence": 1,
+    "bytes": 1445,
+    "sha256": "f5621cba0126887f47fe2f47853c20bc8e2bb07d94e825a88419d4148e346ba9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。图表和数据已注册。结果分析：\n\n## 核心发现\n\n**1. 哪个信号 N 增加时 F1 增幅最大？**\n- **NER (SciERC/CoNLL)**: SJ、FK、logprob 几乎并列（Δ≈+0.02~0.03），差距极小\n- **RE (SciERC)**: logprob 最佳（+0.055），voting_conf 次之（+0.053），SJ/FK 相对弱（+0.04）\n\n**2. Saturation point？**\n- 所有信号在 N=8 后增长明显放缓。NER SciERC 从 N=8→16 各信号仅提升 <0.01\n- RE 的 oracle 仍在快速增长（+0.05 from N=8→16），说明不是数据瓶颈，而是信号能力不足\n\n**3. SJ vs logprob gap 随 N 变化**\n- NER: SJ 和 logprob 在 N=16 几乎相同（0.620 vs 0.621）——consistency 和 confidence 信号等价\n- RE: logprob 在所有 N 值持续领先 SJ 约 +0.01~0.02——关系抽取中模型内部信心比跨样本一致性更有效\n\n**4. NER vs RE 的 scaling 差异**\n- RE 的 oracle headroom 远大于 NER（+0.275 vs +0.189），但实际信号只恢复了约 15-20% 的 headroom\n- RE 是更难的任务，信号的绝对改善空间更大，但相对效率低\n\n**5. 一个反常结果**: NER SciERC 的 voting_conf 随 N 增加反而**下降**（0.598→0.585）——在该数据上基于投票置信度的选择不如随机。\n\n**输出文件**:\n- PDF/PNG: `artifacts/exp_010_selection_curves/chart/fig_selection_curves.pdf`\n- 指标: `artifacts/exp_010_selection_curves/data/exp010_metrics.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-010-selection-curves.md"
+}

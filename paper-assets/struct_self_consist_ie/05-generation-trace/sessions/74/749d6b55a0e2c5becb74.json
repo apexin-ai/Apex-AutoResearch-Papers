@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "749d6b55a0e2c5becb74",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "infra env setup v2",
+  "task_key": "worker_infra_env_setup_v2_20260514T050925",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_env_setup_v2_20260514T050925_result.json",
+    "occurrence": 1,
+    "bytes": 514,
+    "sha256": "ae58fd4771923180663d9955de3560ab0945f00b9b800121ed8d8f20ce5bb541"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "环境搭建完成。汇总：\n\n| 项目 | 版本/信息 |\n|------|----------|\n| Python | 3.12.3 (conda base) |\n| CUDA | 12.8 (driver 595.58.03) |\n| PyTorch | 2.10.0+cu128 |\n| vLLM | 0.18.1 |\n| Transformers | 4.57.1 |\n| Accelerate | 1.11.0 |\n| Datasets | 4.0.0 |\n| SciPy | 1.17.1 |\n| LLaMA Factory | 0.9.4 |\n| GPU | 4× RTX 5090 32GB |\n\n所有依赖就绪，`env.sh` 已写入 `/root/autodl-tmp/struct_self_consist_ie/env.sh`，后续命令 `source env.sh` 即可激活完整环境。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-env-setup-v2.md"
+}

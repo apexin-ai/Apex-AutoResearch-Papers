@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51061c7ca02735552103",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis d112 claim audit",
+  "task_key": "worker_analysis_d112_claim_audit_20260516T094502",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_d112_claim_audit_20260516T094502_result.json",
+    "occurrence": 1,
+    "bytes": 1105,
+    "sha256": "43e447d37c2f7fdc73b023a2a8f023f87bb6d2de24f000efdb38c326ffddc058"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。主要发现：\n\n**5个HIGH严重度问题：**\n1. Discussion \"+0.1pp over single-sample\" vs Limitations \"+0.4pp over greedy\" — 数学上矛盾（审稿人已指出）\n2. Table 1 VC AUROC (.663) vs multi-seed table (.697±.010) — seed=42 数学上不可能产生这个均值/σ组合\n3. Provenance c002 \"EM AUROC=0.749\" vs Table 1 实际值 .614 — provenance 严重过时\n4. Provenance greedy=0.644 vs paper greedy=0.663 — 来源实验不同，1.9pp差距\n5. Provenance VC AUROC=0.684 vs Table 1 VC AUROC=.663 — provenance 过时\n\n**关于 \"Single=T=0 greedy\" 的结论：**\nSingle 行大概率确实是 T=1.0。证据：±0.001 方差（T=0 应为零方差）+ 与 Greedy 行差 1.8pp（如果都是 T=0 应完全相同）。混淆来源是 provenance 引用了不同实验的 greedy 值 (0.644) 恰好接近 Single (0.645)。\n\n**最优先修复：** limitations.tex L10 的 \"+0.4pp over greedy\" 需改为 \"+0.1pp over single-sample\"（或从实验数据确认正确值）。\n\n产出已保存到 `artifacts/d112_claim_audit/` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d112-claim-audit.md"
+}

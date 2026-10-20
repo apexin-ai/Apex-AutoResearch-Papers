@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b1080e37318cf0c882e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh appendix overfull hbox verify",
+  "task_key": "worker_ssh_appendix-overfull-hbox-verify_20260520T013501",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_appendix-overfull-hbox-verify_20260520T013501_result.json",
+    "occurrence": 1,
+    "bytes": 322,
+    "sha256": "671d340f6d241adac511ef7982efe9f878bde5d86545d1394a95040edb6e809a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译结果：\n\n- **编译错误**: 0\n- **Overfull hbox**: 0（全部已修复）\n- **输出**: main.pdf, 36 页, 786KB\n- Underfull 71 处（正常，不影响排版质量）\n- 警告 6 处\n\nappendix 的 overfull hbox 修复已全部生效，主文也没有 overfull hbox。无需进一步修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-appendix-overfull-hbox-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81cdf9139ca6dacbbba5",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "knowledge memory error correlation update",
+  "task_key": "worker_knowledge_memory-error-correlation-update_20260520T014418",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_knowledge_memory-error-correlation-update_20260520T014418_result.json",
+    "occurrence": 1,
+    "bytes": 632,
+    "sha256": "c8e39a5a679c752f3112c11d7c40ddb5748c20b8d8315d63a3dcd9e3cdf5c812"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件均已更新：\n\n**memory.md** — Error Correlation 分析结果已存在（之前的 session 写入），补充了数据源路径 `artifacts/fs_vs_zs_error_correlation.json`。\n\n**report.md** — 近期结论中 exp_qwen25_72b_fewshot 条目已修正：\n- 删除 \"归因于 demonstration-induced error correlation\"\n- 替换为：error correlation 分析推翻该假说（FS/ZS Jaccard 无显著差异，entropy 方向相反），LP signal 区分力退化（ρ 0.081→0.060）是更可能的直接原因\n- \"论文 framing 不需调整\" → \"论文 Discussion 中该解释需弱化或替换\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-memory-error-correlation-update.md"
+}

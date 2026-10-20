@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73e22579fc1aedee12ca",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code fewnerd analysis script",
+  "task_key": "worker_code_fewnerd_analysis_script_20260516T171529",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fewnerd_analysis_script_20260516T171529_result.json",
+    "occurrence": 1,
+    "bytes": 386,
+    "sha256": "c7e9ae85bf030c0079cbccd4271dc7ce7aa0ad02aaaeb52a5890bc0c131bb4f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已就绪：`/root/autodl-tmp/struct_self_consist_ie/code/analyze_fewnerd_results.py`\n\nPilot dry-run 通过，所有 6 个模块正常输出。LP 信号在 pilot 数据中为 N/A 是预期的（pilot 没有 logprob 字段），exp-021 inference 完成后直接运行：\n\n```bash\npython code/analyze_fewnerd_results.py --input_dir output/exp_021_inference/\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fewnerd-analysis-script.md"
+}

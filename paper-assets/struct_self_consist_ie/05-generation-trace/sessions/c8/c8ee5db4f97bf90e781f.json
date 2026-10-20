@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "c8ee5db4f97bf90e781f",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "exp freeform conll 4seed",
+  "task_key": "worker_exp_freeform_conll_4seed_20260516T024618",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_freeform_conll_4seed_20260516T024618.log",
+    "occurrence": 1,
+    "bytes": 1128946,
+    "sha256": "07dc51722f793884046dcdcb079f80d6eb4aa89b977bcd8e7cdef63ac8f50fb8"
+  },
+  "statistics": {
+    "messages": 519,
+    "user_turns": 1,
+    "tool_calls": 213,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 85,
+      "tool_call": 213,
+      "tool_result": 213,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 472,
+      "chunks": [
+        {
+          "path": "c8ee5db4f97bf90e781f-part-0001.json",
+          "message_count": 164
+        },
+        {
+          "path": "c8ee5db4f97bf90e781f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c8ee5db4f97bf90e781f-part-0003.json",
+          "message_count": 128
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 47,
+      "chunks": [
+        {
+          "path": "c8ee5db4f97bf90e781f-part-0003.json",
+          "message_count": 47
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-freeform-conll-4seed.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8bfad8557220b9a15d8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix fig3 cross delta scierc",
+  "task_key": "worker_fix_fig3_cross_delta_scierc_20260517T093619",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_fig3_cross_delta_scierc_20260517T093619_result.json",
+    "occurrence": 1,
+    "bytes": 333,
+    "sha256": "c35afaa6cabf153e0d7d3650b88bea94806469de13df3e2550f960f17a0ab5b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。SciERC 蓝色圆点的 y 值已从 0.62 降到约 0.42（图中可见 SciERC 点位于 y ≈ 0.42 处，Greedy Baseline 之上）。\n\n- 脚本 `cross_delta` 已改为 `[-1.05, 0.42, 1.36]`\n- PDF/PNG 已重新生成（服务器 17:39）\n- PDF 已同步到 `docs/paper/figures/fig_degeneracy_lp_scatter.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-fig3-cross-delta-scierc.md"
+}

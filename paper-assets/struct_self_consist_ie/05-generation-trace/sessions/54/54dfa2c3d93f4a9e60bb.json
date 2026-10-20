@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54dfa2c3d93f4a9e60bb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fig fig2 fig5 style",
+  "task_key": "worker_fig_fig2_fig5_style_20260524T091855",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fig_fig2_fig5_style_20260524T091855_result.json",
+    "occurrence": 1,
+    "bytes": 543,
+    "sha256": "efecc7bc7be02e9aa6165f004884e59b9646a5b48820f7b5cbd44bdd73a7dbc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个图表已更新：\n\n**Figure 2 (`fig_selection_gap`)**：DejaVu Sans 字体，SciERC #EE6677 柱状图，深灰 ΔF1 折线，Oracle 绿线 #228833，Random 灰线，字号统一 9-13pt，双轴右侧 spine 保留，legend 水平排列避免遮挡。\n\n**Figure 5 (`fig_n_scaling_mv`)**：统一配色 CoNLL #228833/s、SciERC #EE6677/^、FewNERD #4477AA/o，markersize 7，figsize (3.5, 2.5)，新增 PNG 输出。\n\n4 个输出文件均已生成：`fig_selection_gap.pdf/png`、`fig_n_scaling_mv.pdf/png`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fig-fig2-fig5-style.md"
+}

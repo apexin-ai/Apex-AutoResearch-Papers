@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9d91e1fc08264839655",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh check mf4v2 s42 v4 completion",
+  "task_key": "worker_ssh_check_mf4v2_s42_v4_completion_20260521T232236",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check_mf4v2_s42_v4_completion_20260521T232236_result.json",
+    "occurrence": 1,
+    "bytes": 508,
+    "sha256": "dc7b37ef22ddecef45b86e2edcf6ae4a03825d8496c8d4b008b7e190cf690717"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态：仍在运行\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | PID 366486 存活，已运行 1h15m |\n| **进度** | 71% (214,976 / 301,184 prompts)，已耗时 ~1h13m |\n| **推理速度** | input ~8000 toks/s, output ~3943 toks/s, ~50-78 it/s |\n| **output 目录** | 空（samples.jsonl 尚未写入，应在全部完成后生成） |\n| **预计剩余** | ~30 分钟（按当前速率推算） |\n\n进程正常推理中，无报错。等完成后再收集结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-mf4v2-s42-v4-completion.md"
+}

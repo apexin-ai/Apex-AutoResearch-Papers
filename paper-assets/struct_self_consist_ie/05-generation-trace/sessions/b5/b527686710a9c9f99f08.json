@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b527686710a9c9f99f08",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code llama conll analysis cuda2",
+  "task_key": "worker_code_llama_conll_analysis_cuda2_20260518T190506",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_llama_conll_analysis_cuda2_20260518T190506_result.json",
+    "occurrence": 1,
+    "bytes": 1231,
+    "sha256": "554344803f8608377e3ba11b82c62fc3dec793d71cc0e64aa5a91da4d9a964bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LLaMA FewNERD training is at 62% (15454/24708), ~4.2h remaining. No immediate inference tasks for cuda:2.\n\n## Summary\n\n### Completed: LLaMA CoNLL DGS + 5-Signal Analysis\n\n**DGS Results** (`output/exp_017_llama_conll/dgs_results.json`):\n| Metric | Value |\n|--------|-------|\n| Degeneracy | 89.4% (2465/2756) |\n| Greedy F1 | 0.9239 |\n| DGS F1 | 0.9254 |\n| DGS - Greedy | **+0.14pp** [0.03, 0.28] |\n| Non-degen LP - Greedy | **+1.37pp** [0.30, 2.66] |\n\n**5-Signal rho (3-seed mean)**:\n| Signal | rho | SD |\n|--------|-----|-----|\n| SJ | 0.463 | 0.007 |\n| EM | 0.460 | 0.008 |\n| VC | 0.458 | 0.003 |\n| FK | 0.455 | 0.006 |\n| LP | 0.310 | 0.006 |\n\n**Cross-Model Comparison (CoNLL)**:\n| | LLaMA | Qwen |\n|--|-------|------|\n| Degeneracy | 89.4% | 57.9% |\n| Greedy F1 | 0.924 | 0.907 |\n| Headroom | 2.11pp | 4.24pp |\n| DGS delta | +0.14pp | -0.81pp |\n\n### Registry & Artifacts Updated\n- `exp_017_llama_conll` metrics updated with DGS + 3-seed rho/AUROC\n- Report at `output/exp_017_llama_conll/analysis_report.md`\n\n### GPU Status\n- cuda:0/2: Free (no high-priority inference tasks)\n- cuda:1: LLaMA FewNERD training (62%, ~4.2h remaining)\n- cuda:3: LLaMA SciERC seed123 inference (vLLM)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-conll-analysis-cuda2.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "433adde23b73f80a748e",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code dev set lp alignment gating",
+  "task_key": "worker_code_dev_set_lp_alignment_gating_20260519T051829",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_dev_set_lp_alignment_gating_20260519T051829.log",
+    "occurrence": 1,
+    "bytes": 726600,
+    "sha256": "c79ec98506baf9c05e2b52cc1be04ecbb6b4a87ede9f29e315b5d8eed3791d3f"
+  },
+  "statistics": {
+    "messages": 176,
+    "user_turns": 0,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 64,
+      "tool_result": 64,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 176,
+      "chunks": [
+        {
+          "path": "433adde23b73f80a748e-part-0001.json",
+          "message_count": 125
+        },
+        {
+          "path": "433adde23b73f80a748e-part-0002.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-dev-set-lp-alignment-gating.md"
+}

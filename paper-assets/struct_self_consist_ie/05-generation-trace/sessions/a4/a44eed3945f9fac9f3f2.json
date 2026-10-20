@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "a44eed3945f9fac9f3f2",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh fix seed42 bootstrap v2",
+  "task_key": "worker_ssh_fix-seed42-bootstrap-v2_20260520T052426",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_fix-seed42-bootstrap-v2_20260520T052426.log",
+    "occurrence": 1,
+    "bytes": 1119598,
+    "sha256": "d3b8a57c825591f047010d09e23c141f3e0ae592313639d9b7dbe40d799cd589"
+  },
+  "statistics": {
+    "messages": 207,
+    "user_turns": 0,
+    "tool_calls": 77,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 77,
+      "tool_result": 77,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 207,
+      "chunks": [
+        {
+          "path": "a44eed3945f9fac9f3f2-part-0001.json",
+          "message_count": 81
+        },
+        {
+          "path": "a44eed3945f9fac9f3f2-part-0002.json",
+          "message_count": 64
+        },
+        {
+          "path": "a44eed3945f9fac9f3f2-part-0003.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-fix-seed42-bootstrap-v2.md"
+}

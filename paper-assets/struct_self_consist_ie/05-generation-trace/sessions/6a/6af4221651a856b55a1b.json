@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6af4221651a856b55a1b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh autodl5090 gpu cleanup and freeform",
+  "task_key": "worker_ssh_autodl5090_gpu_cleanup_and_freeform_20260522T110014",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_autodl5090_gpu_cleanup_and_freeform_20260522T110014_result.json",
+    "occurrence": 1,
+    "bytes": 1489,
+    "sha256": "3aa54ef6ebd5c2a67a6508b1a1346b614df198a0a43d2615e1d1a7cf844e223a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 清理\nautodl-5090 清理前: 4/4 GPU 被占用（~30GB/32GB each）\n**无法清理** — 4 个进程是正在运行的 FewNERD n=32 seed=42 分片采样实验：\n- PID 129317 → shard0 (0-9412), 37% 完成\n- PID 130001 → shard1 (9412-18824)\n- PID 130710 → shard2 (18824-28236)\n- PID 131421 → shard3 (28236-37648)\n\n当前速度 ~50 it/s，每 shard 301,184 prompts，预计还需 **~65-70 分钟**完成（约 19:30 左右释放）。\n\n## FewNERD Free-Form 准备\n已在服务器创建 `run_freeform_fewnerd.py`（参考 `run_freeform_conll.py`）。\n\n禁用 grammar 参数: `use_grammar=False`（在脚本内硬编码，同 CoNLL free-form 模式）\n\n完整运行命令（GPU 释放后执行）:\n```bash\ncd /root/autodl-tmp/struct_self_consist_ie && \\\nCUDA_VISIBLE_DEVICES=0 python -u run_freeform_fewnerd.py \\\n  --seed 42 --gpu 0 --n_samples 8 --temperature 1.0 \\\n  2>&1 | tee output/fewnerd_freeform_seed42.log\n```\n\n多 seed 并行（4 GPU 全空时）:\n```bash\nfor i in 0 1 2 3; do\n  seed=(42 123 456 789)\n  tmux new-session -d -s fewnerd_ff_s${seed[$i]} \\\n    \"cd /root/autodl-tmp/struct_self_consist_ie && \\\n     python -u run_freeform_fewnerd.py --seed ${seed[$i]} --gpu $i \\\n     2>&1 | tee output/fewnerd_freeform_seed${seed[$i]}.log\"\ndone\n```\n\n目标 GPU: 待 n=32 实验完成后，autodl-5090 cuda:0-3 均可用\n预估 free-form 单 seed 运行时间: ~80-90 分钟（37,648 instances × 9 prompts each）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-autodl5090-gpu-cleanup-and-freeform.md"
+}

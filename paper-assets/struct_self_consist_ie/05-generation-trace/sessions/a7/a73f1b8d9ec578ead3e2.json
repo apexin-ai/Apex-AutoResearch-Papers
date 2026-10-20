@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a73f1b8d9ec578ead3e2",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix conditional filtering inconsistency",
+  "task_key": "worker_fix_conditional_filtering_inconsistency_20260514T124449",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_conditional_filtering_inconsistency_20260514T124449_result.json",
+    "occurrence": 1,
+    "bytes": 1584,
+    "sha256": "29734a0401720bbe9859f5b635a6c3800537db4d84688d624ea0df0d3bdd4aa6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器代码完全一致，均已使用正确的 `greedy_f1 > 0` 定义。\n\n---\n\n## 完成总结\n\n### 排查结果\n\n**根因**：6 处代码中，5 处使用了错误的 conditional 定义 `any(sample_f1 > 0)`（只要任一 sample 有 F1>0 即保留），而标准定义是 `greedy_f1 > 0`（排除 greedy 完全无提取能力的实例）。\n\n**影响**：以 RE 为例，错误定义产生 n_cond=331，正确定义产生 n_cond=238，差 93 个实例（greedy F1=0 但某些 sample 偶然 F1>0 的 knowledge-gap 实例被错误保留）。\n\n### 修复状态\n\n| 脚本 | 修复前状态 | 当前状态 |\n|------|-----------|---------|\n| `exp001_postprocess.py` | 已正确 | ✅ |\n| `run_mvp_pilot.py` | 此前已修复 | ✅ |\n| `analyze_exp015_unified.py` | 此前已修复 | ✅ |\n| `analyze_logprob_baseline.py` | 此前已修复 | ✅ |\n| `analyze_component_wise_re.py` | 此前已修复 | ✅ |\n| `analyze_exp002_conll2003.py` | 此前已修复 | ✅ |\n| `analyze_exp004_re_diagnostic.py` threshold_sensitivity | **本次修复** | ✅ |\n| `analyze_exp004_re_diagnostic.py` bootstrap | 此前已修复 | ✅ |\n\n### 产出\n1. **诊断报告**: `output/conditional_filter_diagnosis.json` (autodl-5090)\n2. **修正 metrics**: `output/exp001_n16_seed42/corrected_conditional_metrics.json` — 重算验证 n_cond 与 `exp001_all_signals_report.json` 完全一致\n3. **Registry**: `exp_001_ner_n16_scierc` metrics 已为正确值，无需更新\n4. **gpu-5090-4x-2**: 代码已同步，正在运行的实验将使用正确定义"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-conditional-filtering-inconsistency.md"
+}

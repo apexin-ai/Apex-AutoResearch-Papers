@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34e7c37f114928376a1a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis fewnerd seed42 reanalyze",
+  "task_key": "worker_analysis_fewnerd_seed42_reanalyze_20260518T210539",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_fewnerd_seed42_reanalyze_20260518T210539_result.json",
+    "occurrence": 1,
+    "bytes": 908,
+    "sha256": "aa2c4d1bbbf14733b67ee48cb61e1376cfe175b2cb1b02f36cc41e078180e725"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。三组 FewNERD multi-seed 统一对比结果：\n\n| Metric | seed42 | seed123 | seed456 | Mean | Std |\n|---|---|---|---|---|---|\n| Greedy F1 | 0.7478 | 0.7480 | 0.7486 | 0.7482 | 0.0003 |\n| Oracle F1 | 0.8719 | 0.8772 | 0.8751 | 0.8747 | 0.0022 |\n| Headroom (pp) | 12.40 | 12.92 | 12.65 | 12.66 | 0.21 |\n| Degen Rate (%) | 10.13 | 9.37 | 8.24 | 9.25 | 0.78 |\n| LP ρ (global) | 0.4215 | 0.4223 | 0.4206 | 0.4215 | 0.0007 |\n| LP Δ (pp) | +1.36 | +1.44 | +1.37 | +1.39 | 0.04 |\n| LP sig (p<0.05) | Yes | Yes | Yes | 3/3 | - |\n\n三组数据条件完全一致（n_total=37648, n_filtered=32565, N=8），且已有同一管道（`full_signal_analysis.json`）生成的结果。核心指标方差极小（Greedy F1 std=0.0003, LP ρ std=0.0007），LP selection 显著性 3/3 全通过。结果已保存到服务器 `output/fewnerd_multiseed_unified.json` 和本地 artifacts。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fewnerd-seed42-reanalyze.md"
+}

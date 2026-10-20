@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "362d4688f4c065822716",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run fewnerd t ablation collect and next",
+  "task_key": "worker_run_fewnerd_t_ablation_collect_and_next_20260521T004210",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_fewnerd_t_ablation_collect_and_next_20260521T004210_result.json",
+    "occurrence": 1,
+    "bytes": 976,
+    "sha256": "fd649f54d8856037db8ec8e964d5850b1276c73838ccaa863ef3c6afc60547df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。4 GPU 均已加载模型（~30GB 显存各），开始推理。\n\n---\n\n**Phase 1 汇总 — seed=42 FewNERD T-ablation 结果：**\n\n| Metric | T=0.5 | T=0.8 | T=1.2 |\n|--------|-------|-------|-------|\n| greedy_f1 | 0.788 | 0.788 | 0.789 |\n| oracle_f1 | 0.857 | 0.875 | 0.875 |\n| oracle_headroom | 6.85% | 8.66% | 8.62% |\n| degeneracy_rate | 14.6% | 19.0% | 28.2% |\n| rho_SJ_F1 (full) | **0.267** | 0.206 | 0.136 |\n| rho_SJ_F1 (cond) | **0.299** | 0.225 | 0.213 |\n| rho_advantage (SJ−Fleiss) | 0.044 | **0.102** | 0.076 |\n| logprob_baseline rho | 0.356 | 0.232 | 0.103 |\n\n**Phase 2 — 已启动 4 个新实验（autodl-5090-b）：**\n\n| 实验 | GPU | Seed | T | ETA |\n|------|-----|------|---|-----|\n| exp_fewnerd_t05_s123 | cuda:0 | 123 | 0.5 | ~18min |\n| exp_fewnerd_t08_s123 | cuda:1 | 123 | 0.8 | ~18min |\n| exp_fewnerd_t12_s123 | cuda:2 | 123 | 1.2 | ~18min |\n| exp_fewnerd_t08_s456 | cuda:3 | 456 | 0.8 | ~18min |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-fewnerd-t-ablation-collect-and-next.md"
+}

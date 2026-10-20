@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "febd279d40340c5e3596",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "bugfix e theta v2 bugs",
+  "task_key": "worker_bugfix_e_theta_v2_bugs_20260520T171400",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_bugfix_e_theta_v2_bugs_20260520T171400.log",
+    "occurrence": 1,
+    "bytes": 551731,
+    "sha256": "dc9180ab21723ac99d3f9a726d16311f58d71b31f7a6f28ead1db68dee2c6502"
+  },
+  "statistics": {
+    "messages": 293,
+    "user_turns": 1,
+    "tool_calls": 98,
+    "roles": {
+      "log": 1,
+      "system": 48,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 98,
+      "tool_result": 98,
+      "user": 1,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "febd279d40340c5e3596-part-0001.json",
+          "message_count": 20
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 273,
+      "chunks": [
+        {
+          "path": "febd279d40340c5e3596-part-0001.json",
+          "message_count": 160
+        },
+        {
+          "path": "febd279d40340c5e3596-part-0002.json",
+          "message_count": 113
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/bugfix-e-theta-v2-bugs.md"
+}

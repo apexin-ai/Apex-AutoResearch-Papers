@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff1d9f806f8d4d594e14",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code parallel inference eval",
+  "task_key": "worker_code_parallel_inference_eval_20260516T210847",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_parallel_inference_eval_20260516T210847_result.json",
+    "occurrence": 1,
+    "bytes": 751,
+    "sha256": "eb4cfe7b093391fc7e972ad517782e4d7f31b99881f750c618219aa3c4ebfaaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部正常。\n\n## 结论\n\n**可行，已实施完成。**\n\n| 项目 | 值 |\n|------|------|\n| 改造内容 | 加 `--start_index` / `--end_index` 参数，2 行代码 |\n| 4 个 shard PID | 332037, 332038, 332039, 332040 |\n| GPU 利用率 | 79%-88%（全部 4 卡满载） |\n| 每 shard 数据量 | 9,412 instances × 8 samples = 75,296 prompts |\n| 预估完成时间 | ~25-30 分钟（从启动算起），vs 原单卡剩余 ~78 分钟 |\n| 输出位置 | `output/exp_021_inference/shard_{0,1,2,3}/sampled_results.jsonl` |\n| 合并方式 | `bash merge_shards_exp021.sh`（cat 4 个 JSONL），然后 `--skip_sampling` 跑评估 |\n\n速度提升约 **3×**（4 卡并行但单卡 KV cache 略小，略有效率损失）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-parallel-inference-eval.md"
+}

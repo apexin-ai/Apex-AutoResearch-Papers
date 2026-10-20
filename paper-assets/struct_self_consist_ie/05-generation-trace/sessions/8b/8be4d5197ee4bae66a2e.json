@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8be4d5197ee4bae66a2e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix conll seed42 n8 metrics",
+  "task_key": "worker_fix_conll-seed42-n8-metrics_20260519T162228",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_conll-seed42-n8-metrics_20260519T162228_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "3d82465b02c59f5a78c46a3b8a54095a08bba1acab47f35679ffd3a596fb760f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**seed42 原始值**（CoNLL N=8，无 gold filter，3453 instances）：\n- Constant utility: 61.5%（2125/3453）\n- Oracle gap closed: 37.4%\n- Within-inst SJ ρ (median): 1.000\n\n**3-seed 均值**（seed42 / seed123 / seed456）：\n- Constant utility: (61.5 + 65.6 + 65.7) / 3 = 64.3% → **64%**（原 66%）\n- Oracle gap closed: (37.4 + 38.4 + 33.4) / 3 = 36.4% → **36%**（不变）\n- Within-inst SJ ρ: (1.000 + 0.981 + 0.990) / 3 = 0.990 → **0.990**（原 0.985）\n\n**appendix.tex diff**：\n- L363: `66\\%` → `64\\%`\n- L364: 不变（36%）\n- L365: `0.985` → `0.990`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-conll-seed42-n8-metrics.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ed2a9924ed17a6387d3",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp e theta v4 no model",
+  "task_key": "worker_exp_e_theta_v4_no_model_20260520T160018",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_e_theta_v4_no_model_20260520T160018_result.json",
+    "occurrence": 1,
+    "bytes": 1124,
+    "sha256": "689ebc521d3a8dfe386fd0de8c1ac53267d1b620a2c8ec3899a46bce7301f591"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**V4（无 model_id）与 V1（全特征）完全一致**，gap = 0.0：\n\n| 指标 | V1 (full) | V4 (no model_id) | Gap |\n|---|---|---|---|\n| overall adaptive F1 | 0.7932 | 0.7932 | 0.0 |\n| delta(adaptive - fixed) | +0.0184 | +0.0184 | 0.0 |\n| `model_id_matters` | — | **false** | — |\n\n每个 config 的 per-config F1 也完全相同。\n\n### 关键分析\n\n**θ predictor 是 model-general 的。** 移除 model_id（is_qwen/is_llama）后性能无任何下降。V1 中 model_id 的 feature importance 本身就极小（is_qwen: +0.000454, is_llama: -0.000454），佐证了这一点。\n\n这意味着 θ 的最优选择完全由 instance-level 信号（degeneracy、agreement、logprob variance、n_unique_entities）和 dataset 特征决定，与底层模型无关 — 支持更强的 claim：**该 predictor 可以跨模型迁移**。\n\n结合 V3（无 dataset_id）同样 gap=0 的结果，实际上 predictor 只需 4 个纯 instance-level 特征（degeneracy_level, agreement_mean, n_unique_entities, lp_variance）即可工作，完全 dataset-general 且 model-general。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-e-theta-v4-no-model.md"
+}

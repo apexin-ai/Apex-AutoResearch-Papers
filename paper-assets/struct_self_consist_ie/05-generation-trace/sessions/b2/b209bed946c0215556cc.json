@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b209bed946c0215556cc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp021 full metrics",
+  "task_key": "worker_analysis_exp021_full_metrics_20260516T220747",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp021_full_metrics_20260516T220747_result.json",
+    "occurrence": 1,
+    "bytes": 2390,
+    "sha256": "da34849712ba0a9ce4592a206ddea29d5b040d87619516017adaaffccef65683"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部指标已补全。以下是完整结果汇总：\n\n---\n\n## Exp-021 Few-NERD 完整分析结果\n\n**数据规模**: 37,648 instances (过滤 gold-empty 后 32,565), N=8 samples/instance\n\n### 1. Basic Metrics\n\n| 指标 | Few-NERD | SciERC (ref) | CoNLL (ref) |\n|------|----------|--------------|-------------|\n| Greedy macro F1 | 0.7478 | 0.614 | — |\n| Oracle macro F1 | 0.8719 | 0.752 | — |\n| Headroom | 12.4pp | 13.8pp | — |\n| Zero-F1 rate | 11.9% | — | — |\n| **Degeneracy rate** | **10.1%** | 21% | 58% |\n\n**Degeneracy 定义**: instance 内 N=8 samples 的 key_sets（entity spans 集合）全部相同（unique == 1）。Few-NERD 的 10.1% 远低于 SciERC (21%) 和 CoNLL (58%)，说明多样性充足。\n\n### 2. LP Within-Instance Range\n\n| 统计量 | 值 |\n|--------|------|\n| Mean | 0.0879 |\n| Median | 0.0662 |\n| Std | 0.0758 |\n| P25 | 0.0344 |\n| P75 | 0.1239 |\n\n### 3. Sample-Level AUROC（oracle label = argmax F1 sample）\n\n| Signal | AUROC |\n|--------|-------|\n| **LP** | **0.5782** |\n| VC | 0.5354 |\n| FK | 0.5210 |\n| SJ | 0.5197 |\n| EM | 0.5137 |\n\n### 4. Instance-Level Spearman ρ（signal vs greedy F1）\n\n| Signal | ρ (global) | ρ (conditional, non-degenerate) |\n|--------|-----------|-------------------------------|\n| **LP** | **0.4215** | **0.4225** |\n| VC | 0.3858 | 0.3234 |\n| FK | 0.3132 | 0.3093 |\n| SJ | 0.3002 | 0.2937 |\n| EM | 0.2871 | 0.2710 |\n\n### 5. Selection F1 (pick best-scoring sample per signal)\n\n| Signal | Sel F1 | Δ vs greedy |\n|--------|--------|-------------|\n| **LP** | **0.7614** | **+1.36pp** *** |\n| VC | 0.7299 | -1.79pp |\n| SJ | 0.7264 | -2.14pp |\n| FK | 0.7253 | -2.26pp |\n| EM | 0.7093 | -3.85pp |\n\nLP delta 95% CI: [+1.18, +1.53], p < 0.001\n\n### 6. Cross-Dataset Comparison\n\n| Dataset | Greedy | Oracle | Headroom | LP ρ | LP Δ |\n|---------|--------|--------|----------|------|------|\n| SciERC | 0.614 | 0.752 | +13.8pp | 0.205 | +0.42pp |\n| **Few-NERD** | **0.748** | **0.872** | **+12.4pp** | **0.421** | **+1.36pp** |\n\n结果已保存到 `output/exp_021_inference/results.json`。\n\n**关键发现**: Few-NERD 上 LP signal 表现远强于 SciERC（ρ 翻倍: 0.42 vs 0.21, Δ 3倍: +1.36 vs +0.42），degeneracy 极低 (10.1%)，LP range 适中 (median 0.066)，说明在低 degeneracy 场景下 LP 信号的区分力显著增强。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp021-full-metrics.md"
+}

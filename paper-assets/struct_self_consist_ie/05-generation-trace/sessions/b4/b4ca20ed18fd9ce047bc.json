@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4ca20ed18fd9ce047bc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis option c degen vs headroom",
+  "task_key": "worker_analysis_option_c_degen_vs_headroom_20260517T085228",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_option_c_degen_vs_headroom_20260517T085228_result.json",
+    "occurrence": 1,
+    "bytes": 1632,
+    "sha256": "2491051091d2b5fc5f3955d65a6be14c7e7f2e07950fa39d0d438bcd85ae50be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n```\n=== Option C: Constant F1 Degen vs Oracle Headroom ===\n\nType            | Degen% (CF1) |  Greedy F1 |  Oracle F1 | Headroom (pp) |      n\n--------------------------------------------------------------------------------\nart             |       25.84% |     0.7557 |     0.8477 |         9.21pp |   1277\nbuilding        |       12.35% |     0.7024 |     0.8514 |        14.90pp |   1587\nevent           |       12.71% |     0.6548 |     0.8162 |        16.14pp |   1306\nlocation        |       14.08% |     0.7924 |     0.8951 |        10.27pp |   8023\norganization    |       10.89% |     0.7202 |     0.8535 |        13.33pp |   6647\nother           |       11.13% |     0.6373 |     0.8312 |        19.39pp |   3433\nperson          |       15.28% |     0.8220 |     0.9141 |         9.21pp |   8016\nproduct         |       14.32% |     0.6563 |     0.8140 |        15.78pp |   2276\n\nSpearman ρ(Constant_F1_degen, oracle_headroom) = -0.619, p = 0.1017, n=8\nNot significant (p >= 0.05)\n```\n\n**结论：** Spearman ρ = **-0.619**，p = 0.1017，n=8 下不显著。\n\n方向是负相关：degeneracy 越高的 type（如 art 25.84%），oracle headroom 反而越小（9.21pp）。这与预期相反——高 degeneracy 本应意味着更多\"有用的多样性\"从而带来更大 oracle headroom，但实际上高 degeneracy 的 type（art）greedy 本身就较强（0.756），oracle 提升空间有限；而低 degeneracy 的 type（other 11.13%）greedy 很弱（0.637），oracle headroom 反而最大（19.39pp）。\n\nOption C 在 n=8 的粒度下未通过显著性检验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-option-c-degen-vs-headroom.md"
+}

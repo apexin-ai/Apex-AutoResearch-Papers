@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6175b0b542b6aeb809d9",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run scierc probe 5090c",
+  "task_key": "worker_run_scierc_probe_5090c_20260521T022157",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_scierc_probe_5090c_20260521T022157_result.json",
+    "occurrence": 1,
+    "bytes": 609,
+    "sha256": "daaffff9846dd05f4c317bfc6889b7b108b159f25affdf82d9d6fb70b9898344"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron monitoring set up — checks FewNERD N=16 every 20 minutes and will auto-register results when it finishes.\n\n**Status summary:**\n\n| Task | Status | Result |\n|------|--------|--------|\n| SciERC Entity Probe (cuda:1) | ✅ DONE | AUROC = 0.977 ± 0.001 |\n| CoNLL T=1.0 (cuda:3) | ✅ DONE | greedy_f1=0.908, ρ(SJ,F1)=0.425 |\n| FewNERD N=16 (cuda:2) | 🔄 3.9% | ~2h remaining, cron monitoring active |\n| 14B inference (cuda:0) | 🔄 running | not touched per instructions |\n\ncuda:1 and cuda:3 are now free. All requested tasks are handled — waiting on FewNERD N=16 to finish."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-scierc-probe-5090c.md"
+}

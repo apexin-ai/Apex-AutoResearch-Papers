@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c39b8b9712ddd90f812",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_16_1779387513.md",
+  "task_key": "loop_16_1779387513",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_16_1779387513.md",
+    "occurrence": 1,
+    "bytes": 5082,
+    "sha256": "f9ce4401b4e772367b4e822d44c13bd697eb72ef40729b451fd75a2241478945"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-21T12:24:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 cuda:0/1/2/3 + autodl-5090-c cuda:0/1/2/3，共 8 卡。白名单外的 GPU 不可用，即使 Director 指令也必须 push back\n- **Round 27 审稿修复 DDL: 2026-05-25**（距今 ~4 天），所有修复必须在此前完成并提交 Round 28\n- 14B 推理存活判定必须同时查 `ps -p PID` + `nvidia-smi`，两者都否定才能标 failed（已误判 5 次）\n- MF4v2 系列实验必须用 `run_mvp_pilot.py`（greedy_f1/micro-F1），不能用旧 pipeline 的 greedy_macro_f1\n- Entity matching 两套方案：Local 实验用 offset matching (start,end,type)，Frontier SC 用 text matching (text.lower(),type)——不可混用\n- SCD 已确认虚假提升（metric 口径不一致），不构成论文贡献，不要再碰\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：autodl-5090 / autodl-5090-c，工作目录 `/root/autodl-tmp/struct_self_consist_ie`\n- **Python**：`/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型 checkpoints**（autodl-5090）：`checkpoints/qwen3-8b-fewnerd-exp021-merged`、`checkpoints/qwen3-8b-scierc-merged-v2`、`checkpoints/qwen3-8b-conll2003-merged`\n- **预训练模型**：autodl-5090 `/root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct`；autodl-5090-c `/root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct`\n- **活跃 cron**：exp_fewnerd_n16_s42_v2（PID 32117，autodl-5090 cuda:0）\n- **活跃 Worker**：\n  - `worker_ssh_5090_cuda3_cleanup_and_mbr_20260521T122136`（turn 10，正在检查 e2_pretrained_fewnerd 进度 75% + CoNLL MF4v2 启动问题）\n  - `worker_cpu_mv_consistency_check_20260521T122158`（turn 2，MBR vs α_crit MV 一致性验证）\n\n### 3. 📊 当前状态\n**7 个实验 RUNNING**：\n| 服务器 | GPU | 实验 | 进度估计 |\n|--------|-----|------|---------|\n| 5090 cuda:0 | exp_fewnerd_n16_s42_v2 | ~13%, PID 32117, cron 监控中 |\n| 5090 cuda:1 | exp_fewnerd_mf4v2_s42 | ~83%, N=8 seed=42 |\n| 5090 cuda:2 | exp_fewnerd_mf4v2_s123 | ~82%, N=8 seed=123 |\n| 5090 cuda:3 | exp_e2_pretrained_fewnerd | ~75% (28249/37648), seed=42 |\n| 5090-c cuda:0 | exp_fewnerd_n16_s123 | ~12%, N=16 seed=123 |\n| 5090-c cuda:1 | exp_scierc_n16_s42 | RUNNING, N=16 seed=42 |\n| 5090-c cuda:3 | exp_e2_pretrained_fewnerd_s123 | ~38%, seed=123 |\n\n**5090-c cuda:2 空闲** — exp_conll_n16_s123 状态 ALLOCATED 但未提交。\n\n**QUEUED (3)**：exp_fewnerd_mf4_s456/s123/s42（等 GPU 释放）\n\n**审稿修复进度**（Round 27 → Round 28）：\n- CRITICAL R27-N1（因果语言 sweep）：Paper Agent 已派发\n- CRITICAL R27-N2（k=19 vs k=21 Holm-Bonferroni）：Agent 排队验证\n- WARNING W1-W7 + MINOR M1-M3 + R54 追加：Paper Agent 综合 patch 已派发\n- 阻塞项：k 值验证 / ρ_max 核实 / DeepSeek 正交性验证 / MBR vs α_crit 一致性（Worker 正在做）\n\n### 4. 📋 待办（条件触发式）\n- exp_fewnerd_mf4v2_s42/s123 完成（~15min）→ GPU cuda:1/2 释放 → 立即提交 QUEUED 的 exp_fewnerd_mf4_s456/s123（或 CoNLL MF4v2）\n- exp_conll_n16_s123 仍 ALLOCATED on 5090-c cuda:2 → 需 spawn Worker 提交，或确认 cleanup Worker 正在处理\n- exp_e2_pretrained_fewnerd 完成 → 分析 pre-trained vs fine-tuned correlation-selection gap 差异，更新论文 E2 章节\n- Worker `mv_consistency_check` 完成 → 根据 MBR vs α_crit 结果更新 R54-2 修复，通知 Paper Agent\n- Worker `cleanup_and_mbr` 完成 → 检查 CoNLL MF4v2 是否成功启动，处理 cuda:3 释放后的排队\n- 所有 N=16 实验完成（fewnerd s42_v2 + s123 + scierc s42）→ 汇总 N-scaling 3-seed 统计结果，更新论文 scaling law 章节\n- Paper Agent 完成 CRITICAL+WARNING patch → 编译确认 ≤8 页 → 提交 Round 28\n\n### 5. 🎯 战略上下文\n- **项目核心**：Self-Consistency for NER 的 correlation-selection gap 诊断与分析。核心 claim 锚定 conditional rho（非 full rho）(D222)。θ_crit 升级为 Proposition (D220)。α_crit 叙事已修正：从 \"SC universally fails\" 改为 \"MV ≈ greedy when ρ < θ_crit\" (D223)\n- **目标**：Round 28 审稿目标 3.5-4.0 (Borderline Conference → Conference)，从 Round 27 的 3.0 提升 (D225)\n- **最易判断错的事**：\n  1. 不要把 GC4-par 和 GC4-seq 直接对比（不同 decoding 模式）\n  2. 不要把 instance-average F1 和 micro-F1 混用（SCD 教训 M046）\n  3. 14B 推理\"无输出\"≠ 失败——vLLM model loading 阶段 15-20min 无产出是正常的\n  4. CoNLL checkpoint rsync 可能未完成就启动实验——先检查 checkpoint 大小 >15GB\n  5. B2 entity verifier 结论是 negative（+0.30pp not significant），不入论文 main text\n  6. GPT-5.5 只支持 T=1.0，TUM 代理余额已耗尽（2026-05-20），Frontier SC 和 Spider SQL 实验受阻\n- **决策链关键节点**：D222（conditional rho 锚定）→ D223（α_crit 叙事修正）→ D224（Round 27 Action Matrix）→ D225（目标校准 3.5-4.0）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779387513.md"
+}

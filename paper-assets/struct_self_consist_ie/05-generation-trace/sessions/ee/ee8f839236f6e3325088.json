@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee8f839236f6e3325088",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis batch completion check b",
+  "task_key": "worker_analysis_batch_completion_check_b_20260516T140055",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_batch_completion_check_b_20260516T140055_result.json",
+    "occurrence": 1,
+    "bytes": 657,
+    "sha256": "f7e6f2b4bc0c1ca78bef448d04fb82bce49cf6df10a0ba310b185bc55c1af0f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 3 个实验均已完成，报告已写入 `artifacts/batch_completion_check_b.md`。\n\n核心发现：\n- **exp_026_t05** (T=0.5): 完成，verdict=FAIL，SJ ρ=0.297，oracle headroom 仅 0.078\n- **exp_026_t08** (T=0.8): 完成，verdict=MARGINAL，SJ ρ=0.359，headroom 更大(0.105)，T=0.8 各项指标优于 T=0.5\n- **Trained verifier (exp_019 LR, N=8)**: LR selection F1 仅比 greedy +0.0011，oracle gap closure 0.8%，VC 系数独大(0.75)，信号高度冗余\n- **exp_027 MLP/RF (N=16)**: MLP/RF 均无法超越 LR，所有监督方法的 selection F1 甚至不如 greedy。**结论：特征是瓶颈而非模型容量**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-batch-completion-check-b.md"
+}

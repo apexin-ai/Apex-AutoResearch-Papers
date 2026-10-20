@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3bcd8417377ed1575e5",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis esj qwen3 results",
+  "task_key": "worker_analysis_esj-qwen3-results_20260522T181930",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_esj-qwen3-results_20260522T181930_result.json",
+    "occurrence": 1,
+    "bytes": 1464,
+    "sha256": "b16659bf934bdf660b7ca415a37938e20652375e94227a6d11e30ad147039f63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the summary:\n\n---\n\n## exp_esj_qwen3_all 结果：**Negative**\n\n### 核心数据\n\n| Metric | SciERC | CoNLL | FewNERD |\n|--------|--------|-------|---------|\n| **Greedy F1** | 0.650 | 0.909 | 0.772 |\n| **Best MV F1** | 0.647 | 0.907 | 0.764 |\n| **Best ESJ F1** | 0.576 | 0.824 | 0.682 |\n| **ESJ vs Greedy** | **-0.074** | **-0.085** | **-0.090** |\n| ESJ entity ρ | 0.020 | 0.087 | -0.008 |\n| ESJ entity AUROC | 0.512 | 0.553 | 0.495 |\n| Agreement ρ | 0.515 | 0.777 | 0.673 |\n| Agreement AUROC | 0.792 | 0.941 | 0.881 |\n| Within-inst ESJ ρ | 0.056 | -0.008 | 0.332 |\n| Within-inst LP ρ | 0.188 | 0.280 | 0.543 |\n\n### 结论\n\n**ESJ 在 Qwen3-8B finetuned 模型上完全失败，不支持 self-calibration claim。**\n\n1. **Entity-level AUROC ≈ 随机** (0.495–0.553)，ρ 近零。P(yes) 与实体正确性无相关性。\n2. **ESJ filtering 一致性地降低 F1**——在三个数据集上比 greedy 低 7–9 个点，比 MV 低 7–8 个点。\n3. **ESJ 在 agreement 各分组内均无区分力**：disputed/mid/consensus 三组的 ESJ mean 几乎相同（FewNERD: 0.655/0.650/0.650），AUROC 均 ~0.49。\n4. **Agreement 信号远优于 ESJ**：AUROC 0.79–0.94 vs 0.50–0.55。\n5. **LP（log-probability）也一致优于 ESJ** 做 within-instance sample ranking。\n\n模型无法通过 entailment verification 可靠地自我校准——P(yes) 分布不编码实体质量信息。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-esj-qwen3-results.md"
+}

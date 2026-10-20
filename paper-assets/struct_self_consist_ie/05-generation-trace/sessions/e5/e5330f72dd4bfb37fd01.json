@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5330f72dd4bfb37fd01",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "audit llama degen 86 vs 89",
+  "task_key": "worker_audit_llama_degen_86_vs_89_20260518T061917",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_llama_degen_86_vs_89_20260518T061917_result.json",
+    "occurrence": 1,
+    "bytes": 1569,
+    "sha256": "ece1eeef495dd8a05551d87d9e74447ea1a41d46a27ef3a9f62cc553e37cc0db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了。**`exp_017_llama_conll_n16_s123_r1024` 的 CF1 = 2380/2756 = 86.36%**，精确匹配 cascade worker 的 2380。\n\n## 结论\n\n- **86.4% 来源**: `output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl`，**N=16**, seed=123, max_tokens=1024，CF1 (Constant F1, gold-filtered) = 2380/2756 = 86.36%\n- **89.2% 来源**: `output/exp_017_llama_conll_infer/full_signal_analysis.json`，**N=8**, 默认 seed，CF1 (Constant F1, gold-filtered) = 2459/2756 = 89.22%\n- **冲突原因**: **N 不匹配** (N=16 vs N=8) + **seed/max_tokens 配置不同** (s123_r1024 vs 默认)。计算定义相同（都是 F1-based constant degeneracy），但数据来源不同。N 越大 degeneracy 越低是符合预期的（更多 sample 越难保持全部一致）\n- **正确值（N=8, F1-based, gold-filtered）**: **89.2%** (2459/2756)，来自 `full_signal_analysis.json`，可通过直接计算验证\n\n### 关键证据\n\n```\n# N=8 验证 (exp_017_llama_conll_infer)\nConstant F1 (CF1): 2459/2756 = 0.8922  ← matches full_signal_analysis.json\n\n# N=16 各配置 CF1:\nn16 (seed42):           2385/2756 = 0.8654\nn16_s123:               2387/2756 = 0.8661  \nn16_s456:               2392/2756 = 0.8679\nn16_r1024 (seed42):     2383/2756 = 0.8647\nn16_s123_r1024:         2380/2756 = 0.8636  ← 精确匹配 cascade worker 的 2380\nn16_s456_r1024:         2390/2756 = 0.8672\n```\n\nCascade worker (D132) 读取了 N=16 seed123 r1024 的数据，误报为 LLaMA CoNLL degeneracy，未注明 N=16。论文中引用 N=8 数据时应使用 **89.2%**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-llama-degen-86-vs-89.md"
+}

@@ -1,0 +1,2177 @@
+{
+  "schema_version": "1.0",
+  "id": "5ea2145b0ca1a04316c4",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "cron hook exp 018 llama scierc seed42 r1024 20260516T010857 288648",
+  "task_key": "cron_hook_exp_018_llama_scierc_seed42_r1024_20260516T010857_288648",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/archive/cron_hook_exp_018_llama_scierc_seed42_r1024_20260516T010857_288648.jsonl",
+    "occurrence": 1,
+    "bytes": 108494,
+    "sha256": "a53e23d55682c02a7dc0adf87133ce255682fb87a06f708aa9be3e42c8fed01b"
+  },
+  "statistics": {
+    "messages": 110,
+    "user_turns": 2,
+    "tool_calls": 53,
+    "roles": {
+      "user": 2,
+      "tool_call": 53,
+      "tool_result": 53,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T21:50:04.639282+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #11。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 的 cuda:0, cuda:1, cuda:2, cuda:3（4× RTX 5090 32GB）。当前全部空闲，无实验在跑\n- 论文 ρ 值必须来自 gold-filtered 管道（排除 gold-empty 实例），不得从 registry metrics 直接引用 EM/VC（registry 用 report.json，与分析脚本有系统性差异）\n- CoNLL canonical n=2756，SciERC canonical n=551（全集，非 529 交集）\n- 论文数据只能用 _rerun_1024 或本身 max_tokens=1024 的实验（exp_012 用了 512 导致 voting_conf 虚高，已修正）\n- DDL: **2026-05-25**（EMNLP 2026 Findings），距今 10 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090（4× RTX 5090 32GB）\n- 工作目录：`/root/autodl-tmp/struct_self_consist_ie/`\n- Python：`/root/miniconda3/bin/python`，激活命令：`source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 基座模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n- 4B merged checkpoints：CoNLL ckpt-4200，SciERC ckpt-400\n- ft_002_v2 merged（8B SciERC）：`checkpoints/qwen3-8b-scierc-merged-v2/`\n- Canonical 分析数据：`artifacts/analysis_unified_rho.json`（unified_rho_full.json LLaMA SciERC 污染已修复）\n- ε sweep：`analysis_round8/epsilon_sweep.csv`\n- 活跃进程：无（0 个 RUNNING 实验，0 个活跃 cron）\n- Worker 池：0（全部已完成）\n\n### 3. 📊 当前状态\n**所有实验已完成。** Registry 104 个实验：58 success / 22 negative / 5 failed / 19 killed。\n\n刚完成的关键工作：\n- **4B scale ablation 全部完成**（D098）：2×2 矩阵 {CoNLL, SciERC} × {8B, 4B} 全部有数据。核心结论：correlation-selection gap 与 model capacity 无关，task difficulty 是主驱动。SciERC 4B SJ_ρ=0.4221（>8B +3.96pp）但 selection -1.49pp，完美展示 gap\n- **ε robustness 分析完成**（D095）：ε=0.05 justified，non-tied Δ=+2.86pp (p=0.0035)\n- **LLaMA SciERC 数据污染修复**（D092-D094）：unified_rho_full.json 已修正\n- **RE 3-seed 一致 negative**（D091）：43-45% zero-F1 是系统性的，LP 是唯一跨任务正向信号\n\n**当前瓶颈是论文写作，不是实验。** Paper Agent 应该在执行以下任务：\n1. 4B scale ablation compact table 写入（≤0.5 页）\n2. 页数压缩至 ≤8 页\n3. 标题 overclaim 修复\n4. Abstract 过载修复\n5. ε robustness 写入\n\n等待中的回调/决策：无 Worker、无 Cron、无 pending Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- Director 要求 Round 9 审稿 → spawn reviewer Worker（continue mode）\n- Paper Agent 完成所有修复 → 触发 Round 9 审稿 → 反馈处理 → final polish → 提交\n- Round 9 审稿发现需补充实验 → GPU 全部空闲可立即跑（autodl-5090 cuda:0-3）\n- Director 问进度 → 汇报：所有实验完成，论文修复是唯一关键路径，距 DDL 10 天\n- 任何新 Worker 连接 autodl-5090 → 先 `source /etc/network_turbo` 再操作\n\n### 5. 🎯 战略上下文\n**项目核心结论**：Universal correlation-selection gap——5 类置信信号（SJ/FK/EM/VC/LP）在 IE test-time scaling 中 correlation 与 selection performance 存在系统性脱节。Controlled ablation（free-form + T=0.7 + 4B scale）证明 score compression 是 model/task intrinsic，非 constrained decoding artifact。\n\n**决策链关键节点**：\n- D098: 4B ablation 证明 gap 与 model capacity 无关\n- D095: ε=0.05 empirically justified\n- D092-D094: LLaMA SciERC 数据污染修正（FK rho 0.81→0.48 是 artifact）\n- D091: RE signal effectiveness 是 task-dependent（纳入 framing，无需调整）\n- D066: LLaMA fresh rerun 决策，seed 变异 σ 增大 5× 是真实的\n\n**最易判断错的事**：\n- 不要以为还需要跑实验——当前瓶颈 100% 是论文写作和审稿修复\n- 不要把 registry metrics 直接搬进论文（EM/VC 值有系统差异，必须用分析脚本输出）\n- CoNLL 4B headroom 只有 1.70pp，selection 全部 MARGINAL（≤0.1pp）——这不是 negative，是 \"low headroom = nothing to select\" 的预期结果，写法要谨慎\n- RE 上所有结构信号 selection < greedy，只有 LP 跨任务正向——这强化了 gap 论点而非削弱\n- Round 8 审稿 borderline (R1=3.5, R2=2.5)，修复质量决定接受/拒绝，不能草率\n\n## 项目硬约束 (memory.md 节选)\n\n## 服务器环境\n- autodl-5090: 4× RTX 5090 32GB, Python 3.12, vLLM 0.18.1, LLaMA Factory 0.9.4, tmux 3.2a\n- gpu-5090-4x-2: 4× RTX 5090 32GB, PyTorch 2.10.0+cu128, vLLM 0.18.1\n- conda: /root/miniconda3/\n- 环境初始化: `source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径: /root/autodl-tmp/struct_self_consist_ie/\n- 基座模型: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\n- ft_002_v2 merged: checkpoints/qwen3-8b-scierc-merged-v2/\n- run_mvp_pilot.py 支持 --collect_logprobs, --num_test (默认已改为 9999)\n\n## 可查的历史\n前 18 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T21:50:13.891686+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T21:50:13.942323+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T21:50:17.608400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T21:50:18.062051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3674}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 453
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T21:50:18.062461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'PREPARING'}",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T21:50:18.062693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T21:50:18.614960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2986}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 552
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T21:50:18.615374+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 552
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T21:50:18.615565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T21:50:18.817072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **exp_qwen3_4b_scierc_merge_inference** (killed): SciERC 4B best checkpoint merge + SCS inference. Complete 2x2 scale matrix (4B SciERC cell). Cross-scale + cross-task evidence for correlation-selection gap.\\\\n- **exp_qwen3_4b_conll_merge_inference_v2** (killed): CoNLL 4B checkpoint-4200 (best from resume training) merge + SCS inference. Replaces v1 which used checkpoint-3800 merged model. Cross-scale evidence for correlation-selection gap.\\\\n- **exp_qwen3_4b_scierc_scs_inference** (success): SciERC 4B SCS inference after v4 finetune merge. Complete 2x2 scale matrix (4B SciERC cell). Cross-scale + cross-task evidence for correlation-selection gap.\\\\n\\\\n## 趋势\\\\n成功 58 / 负向 22 / 失败 4 / 共 104\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nautodl-5090: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\\\n\\\\n## 告警\\\\n- ft_002: 已被终止 — unknown\\\\n- mvp_pilot_002: 训练失败 — unknown\\\\n- exp_007_ner_llama: 已被终止 — unknown\\\\n- exp001_seed123: 已被终止 — unknown\\\\n- exp001_seed456: 已被终止 — unknown\\\\n- exp008_re_n16: 已被终止 — unknown\\\\n- exp_002_merge_conll2003: 已被终止 — unknown\\\\n- exp_001_n16_seed123_full: 已被终止 — unknown\\\\n- exp_001_n16_seed456_full: 已被终止 — unknown\\\\n- exp_008_re_n16_full: 已被终止 — unknown\\\\n- exp_001_seed42_v2_r1024: 已被终止 — unknown\\\\n- exp_001_seed123_v2_r1024: 已被终止 — unknown\\\\n- exp_001_seed456_v2_ner_r1024: 已被终止 — unknown\\\\n- exp_002_conll_n16_r1024: 已被终止 — unknown\\\\n- exp_007_llama_n16_r1024: 已被终止 — unknown\\\\n- exp_018_llama_scierc_seed456: 已被终止 — unknown\\\\n- exp_019_supervised_verifier: 已被终止 — unknown\\\\n- exp_lp_t07_scierc: 已被终止 — unknown\\\\n- exp_qwen3_4b_scierc_finetune: 已被终止 — unknown\\\\n- exp_freeform_seed789_v2: 训练失败 — unknown\\\\n- exp_qwen3_4b_scierc_finetune_v2: 训练失败 — unknown\\\\n- exp_qwen3_4b_scierc_fi\n…[truncated 228 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 201
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T21:50:18.817493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T21:50:18.868515+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md\\\", \\\"content\\\": \\\"# struct_self_consist_ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 20:08 UTC | 更新原因: 4B selection 分析完成，Paper Agent 已收到 Patch 指令，更新任务状态和关键路径\\\\n\\\\n## 核心方向\\\\n系统比较 5 类置信信号在 IE test-time scaling 中的有效性。**核心发现：universal correlation-selection gap（controlled ablation 证明 score compression 是 model/task intrinsic，非 constrained decoding artifact）。** 详见 paper_framing.md。\\\\n\\\\n## 当前阶段\\\\n**Round 8 审稿修复中** — Borderline (R1=3.5, R2=2.5)。DDL: 2026-05-25 (10 天)。\\\\n\\\\n### 4B Scale Ablation（D098 全部完成 ✅）\\\\n2×2 矩阵 {CoNLL, SciERC} × {8B, 4B} QE correlation + selection F1 全部完成。\\\\n- **核心结论**：gap 与 model capacity 无关，task difficulty 是主驱动。R14 RESOLVED。\\\\n- SciERC NER 4B：SJ_ρ=0.4221 (>8B +3.96pp) 但 selection -1.49pp（完美展示 correlation-selection gap at 4B）\\\\n- CoNLL 4B：headroom 1.70pp，selection 全部 ≤0.1pp（MARGINAL）\\\\n- n_samples confound：用 Qwen3-8B n=8 数据排除，无需新实验\\\\n- Paper Agent 已收到 Patch 指令，写入 compact scale ablation table\\\\n\\\\n### Round 8 问题状态\\\\n1. ~~BLOCKING: 页数超限~~ → Paper Agent 压缩中 + 预留 4B table 空间\\\\n2. ~~BLOCKING: ε justification~~ → D095 ✅\\\\n3. **HIGH: 标题 overclaim** → Paper Agent Phase 2\\\\n4. **HIGH: Abstract 过载** → Paper Agent Phase 2\\\\n5. ~~HIGH: RE preliminary~~ → D095 ✅\\\\n6. ~~HIGH: LP T=0.7 缺失~~ → D095 ✅\\\\n\\\\n### 数据修复\\\\n- unified_rho_full.json LLaMA SciERC 污染修复 ✅\\\\n- Registry desync 清理：Agent 正在处理（scierc→DONE with metrics, conll_merge_v2→killed）\\\\n\\\\n## 关键路径\\\\n**Registry 清理 → Paper Agent 写入 4B + 页数压缩 + Phase 2-5 → Round 9 审稿 → 提交**\\\\n1. Agent 完成 registry 清理（进行中）\\\\n2. Paper Agent: 4B data Patch + 页数压缩 + 标题/Abstract + 全部修复\\\\n3. Round 9 审稿 (continue mode)\\\\n4. 反馈处理 (1-2d) → Final polish → 提交 (DDL: 2026-05-25)\\\\n\\\\n## 近期任务\\\\n- [x] Agent: 4B selection 分析 ✅\\\\n- [ ] Agent: Registry desync 清理（进行中）\\\\n- [ ] Paper Agent: 4B scale ablation Patch（compact table ≤0.5 页）\\\\n- [ ] Paper Agent Phase 1: 页数压缩至 ≤8 页（含 4B table）\\\\n- [ ] Paper Agent:\n…[truncated 1806 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 51
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T21:50:30.600757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T21:50:30.651576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T21:50:33.764990+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "status": "running"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T21:50:33.966292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 201
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T21:50:33.966722+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "limit": "5"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T21:50:34.167893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_analysis_scierc_4b_inference_check_20260515T195900\\\", \\\"task_type\\\": \\\"analysis:scierc_4b_inference_check\\\", \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T19:59:00.635628+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T20:00:43.358369+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_4b_selection_pipeline_20260515T200110\\\", \\\"task_type\\\": \\\"analysis:4b_selection_pipeline\\\", \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T20:01:10.966043+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T20:05:35.545190+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_research_n_samples_confound_20260515T200139\\\", \\\"task_type\\\": \\\"research:n_samples_confound\\\", \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T20:01:39.966644+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T20:05:13.758629+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_maintenance_registry_cleanup_20260515T200152\\\", \\\"task_type\\\": \\\"maintenance:registry_cleanup\\\", \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T20:01:52.186025+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T20:04:43.721729+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_sj_union_normalizer_20260515T201939\\\", \\\"task_type\\\": \\\"analysis:sj_union_normalizer\\\", \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T20:19:39.731593+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T20:23:45.198052+00:00\\\"}], \\\"count\\\": 5}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 201
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T21:50:48.139037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T21:50:48.190323+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/agent_c38ec76b."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T21:50:50.852821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T21:50:50.903554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T21:50:53.673799+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu/agent-ml-research"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T21:50:53.825591+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Glob",
+            "elapsed_ms": 151
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T21:50:56.294473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T21:50:56.345456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T21:51:17.134678+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T21:51:17.335941+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "ToolSearch",
+            "elapsed_ms": 201
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T21:51:22.214691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/paper/**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T21:51:23.169241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/limitations.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/n_scaling_appendix_tables.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/n_scaling_appendix_tables_44b000.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct\n…[truncated 395 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Glob",
+            "elapsed_ms": 954
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T21:51:23.169703+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/paper/**/*.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T21:51:23.420844+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Glob",
+            "elapsed_ms": 251
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T21:51:23.421379+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "file": "paper_framing.md"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T21:51:23.472530+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — struct_self_consist_ie\\\\n\\\\n> Updated 2026-05-15 — D098: 4B scale ablation 2×2 矩阵完成。4B ≈ 8B（多数 correlation 4B 反而更高），gap 与 model capacity 无关，task difficulty 是信号退化主驱动。Scale ablation 证明 universality across scales。R14 RESOLVED。\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Findings (via ARR May 2026)\\\\n- Deadline: ARR May cycle, 2026-05-25\\\\n\\\\n## Core Claims (3 条, D072 updated — ablation proves universality)\\\\n\\\\n### Claim 1 (PRIMARY — Universal Correlation-Selection Gap)\\\\nThe correlation-selection gap in structured IE is a **fundamental property of the task**, not an artifact of constrained decoding. Confidence signals reliably predict output quality (AUROC up to 0.75) but cannot select better candidates from multiple samples. A controlled free-form decoding ablation proves this gap is universal: removing constrained decoding does NOT recover logprob variance or selection ability.\\\\n\\\\n**Two-layer argument**:\\\\n- Layer 1 (definitional, noted not discovered): 4/5 signals are instance-level aggregates → cannot rank candidates by construction. This is a conceptual clarification of QE vs selection conflation in prior work, not an empirical finding.\\\\n- Layer 2 (empirical, the core contribution): (a) Logprob — the only per-sample signal — fails due to intrinsic score compression (60% of instances have within-sample range < 0.05). (b) Consensus-proximity/MBR strategies also fail despite success in MT (non-trivial). (c) **Free-form ablation FALSIFIES regime-specific hypothesis**: removing constrained decoding does NOT recover logprob discrimination (std ratio 0.97, tied fraction -2pp) → compression is model/task intrinsic, proving universality via elimination.\\\\n\\\\n**Key evidence (score compression)**:\\\\n- Non-tied subset (40%): logprob selection +2.9pp vs greedy (p=0.01), within-instance ρ:\n…[truncated 10535 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 51
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T21:52:01.919416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.tex",
+              "limit": "60"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T21:52:02.120785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{inconsolata}\n11\t\\usepackage{graphicx}\n12\t\\usepackage{booktabs}\n13\t\\usepackage{amsmath}\n14\t\\usepackage{amssymb}\n15\t\\usepackage{multirow}\n16\t\\usepackage{xcolor}\n17\t\\usepackage{subcaption}\n18\t\n19\t\\graphicspath{{figures/}}\n20\t\n21\t\\title{Strong Predictors, Weak Selectors:\\\\ Confidence Signals Predict but Struggle to Select in 8B-Scale Information Extraction}\n22\t\n23\t\\author{Anonymous}\n24\t\n25\t\\begin{document}\n26\t\\maketitle\n27\t\n28\t\\input{sections/abstract}\n29\t\\input{sections/introduction}\n30\t\\input{sections/related_work}\n31\t\\input{sections/method}\n32\t\\input{sections/experiments}\n33\t\\input{sections/discussion}\n34\t\\input{sections/conclusion}\n35\t\n36\t\\section*{Limitations}\n37\t\\input{sections/limitations}\n38\t\n39\t\\section*{Ethics Statement}\n40\tAll experiments use publicly available benchmarks (SciERC, CoNLL-2003, WNUT-17) and open-weight models (Qwen3-8B, LLaMA-3.1-8B).\n41\tCoNLL-2003 is derived from the Reuters RCV1 corpus, which is available for research purposes under a NIST agreement; we use the standard research distribution.\n42\tNo new human data was collected or annotated for this study.\n43\tOur findings on signal limitations could inform more reliable deployment of IE systems by guiding practitioners toward appropriate confidence signals for their use case.\n44\tCode and data will be released upon acceptance at [anonymized URL].\n45\t\n46\t\\bibliography{references}\n47\t\n48\t\\appendix\n49\t\\input{sections/appendix}\n50\t\n51\t\\end{document}\n52\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T21:52:02.322076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/*.tex 2>/dev/null",
+              "description": "Count lines in paper section files"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T21:52:02.473766+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "   10 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex\n  827 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex\n    6 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex\n   25 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex\n  132 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex\n   35 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex\n   14 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex\n   63 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex\n   25 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex\n 1137 total"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T21:52:11.210963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T21:52:11.211465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T21:52:11.211770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/analysis_round8/**",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T21:52:11.262507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\paragraph{Datasets.}\n8\tWe evaluate on three English IE benchmarks spanning a difficulty gradient.\n9\t\\textbf{SciERC} \\cite{luan2018scierc} contains 551 test instances annotated for joint NER (6 types) and RE (7 types).\n10\t\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} provides 3{,}453 test sentences with 4 entity types, where models achieve ${\\approx}$91\\% micro F1.\n11\t\\textbf{WNUT-17} \\cite{derczynski2017wnut} consists of 1{,}287 social media instances with emerging entities, used to probe method boundaries (52\\% zero F1).\n12\t\n13\t\\paragraph{Models and sampling.}\n14\tBoth \\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are fine-tuned with LoRA (rank$=$32, $\\alpha{=}64$) for 5 epochs using LLaMA Factory \\cite{zheng2024llamafactory} under identical training procedures.\n15\tQwen3-8B's SciERC checkpoint has a minor train--test mismatch (empty thinking tokens); a quantitative analysis rules out this confound (Appendix~\\ref{app:thinking_token}).\n16\tWe draw $N{=}8$ samples at $T{=}1.0$ (primary), with $N{=}16$ for scaling experiments.\\footnote{We use a single seed at $N{=}8$ to establish primary results at minimal compute; $N{=}16$ runs with 3 seeds verify scaling behavior and signal ranking stability ($\\sigma{\\leq}0.026$; Table~\\ref{tab:multiseed}). $N$-scaling analysis (Appendix~\\ref{app:n_scaling}) shows sublinear gains beyond $N{=}8$.}\n17\tInference uses vLLM with constrained decoding \\cite{willard2023guided}.\n18\t\n19\t%% ============================================================\n20\t\\subsection{Quality Estimation Results}\n21\t\\label{sec:qe_results}\n22\t\n23\t\\begin{table*}[t]\n24\t\\centering\n25\t\\small\n26\t\\caption{Quality estimation (Spearman $\\rho$ and AUROC; $N{=}8$, seed${=}42$). Best per column in \\textbf{bold}. SciERC: joint NER (6 types) and RE (7 types, preliminary); CoNLL: NER (4 types). $N{=}16$ in Table~\\ref{tab:robustness} (Appendix~\\ref{app:robustnes\n…[truncated 7835 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T21:52:11.263059+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tSelf-consistency---sampling multiple outputs and selecting via agreement---yields large gains on discrete-answer tasks, but information extraction (IE) produces \\textit{sets} of entities and relations with partial overlap, where no majority vote exists.\n3\tCan confidence signals still guide selection in this structured setting?\n4\t\n5\tWe compare five confidence signals---spanning structural consistency, surface agreement, and model-internal families---across three NER benchmarks and one RE benchmark (preliminary) with two 8B-parameter models.\n6\tAll signals achieve strong quality estimation yet none improves best-of-$N$ sample selection despite substantial oracle headroom---the \\textit{correlation-selection gap}.\n7\tThe gap has two layers: instance-level signals cannot rank candidates by construction, and log-probability---the only per-sample signal---is too compressed within instances to discriminate; a free-form decoding ablation confirms that constrained decoding is not the cause.\n8\tSignal rankings shift with task difficulty and collapse at the capability boundary.\n9\tClosing the gap likely requires learned per-sample scoring such as trained verifiers.\n10\t\\end{abstract}\n11\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T21:52:11.263390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Glob",
+            "elapsed_ms": 51
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T21:52:25.949868+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/artifacts/*4b*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T21:52:26.354065+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Glob",
+            "elapsed_ms": 404
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T21:52:26.908009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/artifacts/*epsilon*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T21:52:27.361208+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Glob",
+            "elapsed_ms": 453
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T21:52:27.361545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "limit": "50"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T21:52:27.412030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Notation}\\label{app:notation}\n2\t\n3\tTable~\\ref{tab:notation} summarizes the notation used throughout the paper.\n4\t\n5\t\\begin{table}[h]\n6\t\\centering\n7\t\\small\n8\t\\begin{tabular}{cl}\n9\t\\toprule\n10\tSymbol & Meaning \\\\\n11\t\\midrule\n12\t$\\mathcal{M}$ & Language model \\\\\n13\t$x$ & Input instance \\\\\n14\t$y_i$ & $i$-th stochastic sample \\\\\n15\t$N$ & Number of samples \\\\\n16\t$T$ & Sampling temperature \\\\\n17\t$c(\\cdot)$ & Confidence signal \\\\\n18\tSJ & Soft Jaccard similarity \\\\\n19\tFK & Fleiss' $\\kappa$ \\\\\n20\tEM & Exact-match voting rate \\\\\n21\tVC ($c_{\\mathrm{vc}}$) & Entity voting confidence \\\\\n22\tLP ($c_{\\mathrm{lp}}$) & Log-probability (mean token log-likelihood) \\\\\n23\t\\bottomrule\n24\t\\end{tabular}\n25\t\\caption{Notation used throughout the paper.}\n26\t\\label{tab:notation}\n27\t\\end{table}\n28\t\n29\t\\section{Robustness Analysis}\\label{app:robustness}\n30\t\n31\tWe exclude instances with empty gold annotations from all correlation analyses (CoNLL: 697/3{,}453 instances, 20.2\\%; SciERC: 22/551, 4.0\\%).\n32\tFor these instances, F1 is trivially zero regardless of prediction quality, and consistency signals reflect agreement on the empty set rather than extraction quality---including them inflates or deflates Spearman $\\rho$ depending on signal behavior at the boundary.\n33\t\n34\t\\begin{table}[t]\n35\t\\centering\n36\t\\small\n37\t\\caption{Signal robustness across configurations (Spearman $\\rho$). Top: temperature on Qwen SciERC. Middle: sample size on Qwen SciERC. Bottom: transfer across model families (both 8B) (LLaMA CoNLL $N{=}16$, 3-seed mean $\\pm\\sigma$). $^\\dagger$Mean over 3 seeds ($\\sigma{=}0.013$; individual: 0.398, 0.423, 0.410). $\\sigma$ computed as sample standard deviation.}\n38\t\\label{tab:robustness}\n39\t\\begin{tabular}{llcc}\n40\t\\toprule\n41\t& & NER $\\rho$ & RE $\\rho$ \\\\\n42\t\\midrule\n43\t\\multicolumn{4}{l}{\\textit{Temperature} (Qwen SciERC, $N{=}8$)} \\\\\n44\t\\quad SJ & $T{=}0.7$ & 0.364 & 0.234 \\\\\n45\t\\quad SJ & $T{=}1.0$ & 0.360 & 0.250 \\\\\n46\t\\quad FK & $T{=}0.7$ & 0.289 & 0.184 \\\\\n47\t\\quad FK & \n…[truncated 124 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T21:52:31.434344+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/ 2>/dev/null | head -30",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T21:52:31.936665+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3seed_ner_summary.md\n3seed_summary\n__pycache__\n_project\nanalysis_fk_bootstrap_ci_full.json\nanalysis_lp_range_cdf.json\nanalysis_lp_range_cdf_n16_3seed.json\nanalysis_scierc_n16_3seed_selection_f1.json\nanalysis_scierc_re_n16_3seed_selection_f1.json\nanalysis_unified_rho.json\nanalysis_unified_rho_full.json\nanalyze_exp004_re_diagnostic.py\nanalyze_exp004_v2_re_diagnostic.py\nanalyze_exp005_v2_temperature.py\nanalyze_exp015_metrics_expansion.py\nanalyze_exp016_ensemble.py\nanalyze_ood_signals.py\naudit_autodl5090_loop3.md\naudit_gpu5090_4x2_loop3.md\nauroc_bug_diagnosis.md\nautodl_process_check.md\nbjb1_status_report.md\nbootstrap_ci_nscaling\nbootstrap_ci_summary.json\nbootstrap_ci_tables.tex\nconsistency.py\nd072_paper_patch_inventory.md\ndata\ndata_utils.py\ndream_reports"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Bash",
+            "elapsed_ms": 502
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T21:52:32.037717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "epsilon",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T21:52:32.088455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "441:The median within-instance LP range is only 0.041 nats---below the $\\varepsilon{=}0.05$ threshold used throughout, providing data-driven justification for this cutoff rather than an arbitrary choice.\n442:At $\\varepsilon{=}0.05$, 60.3\\% of instances ($n{=}529$, excluding empty gold annotations) have a within-sample range below the threshold, and 75\\% of pairwise comparisons are effective ties ($|\\Delta|{<}0.026$).\n450:\\caption{CDF of within-instance LP range on SciERC NER ($N{=}8$, $n{=}529$). The median LP range is 0.041 nats (dashed line), below $\\varepsilon{=}0.05$. The smooth CDF confirms compression is pervasive, not bimodal.}\n457:\\caption{Log-probability score compression on SciERC NER ($N{=}8$, $n{=}529$). ``Tied'' = fraction of instances where within-instance LP range ${<}\\varepsilon$.}\n461:$\\varepsilon$ threshold & Tied instances (\\%) \\\\\n476:\\paragraph{$\\varepsilon$ sensitivity sweep.}\n477:Table~\\ref{tab:epsilon_sweep} sweeps the tied/non-tied threshold from $\\varepsilon{=}0.01$ to $0.20$.\n479:$\\varepsilon{=}0.05$ yields the strongest statistical separation ($p{=}0.004$); at $\\varepsilon{\\geq}0.15$, the non-tied subset becomes too small for reliable inference ($n{\\leq}36$).\n484:\\caption{$\\varepsilon$ sensitivity sweep for LP selection on SciERC NER ($N{=}8$, seed${=}42$, $n{=}529$). ``Tied\\%'' = fraction with within-instance LP range ${<}\\varepsilon$. $\\Delta$: selection F1 gain over greedy on the non-tied subset. The tied fraction increases smoothly; $\\varepsilon{=}0.05$ yields the strongest statistical separation.}\n485:\\label{tab:epsilon_sweep}\n488:$\\varepsilon$ & Tied\\% & Non-tied $n$ & $\\Delta$ (pp) & $p$ \\\\\n501:\\paragraph{$\\varepsilon$ robustness of selection F1.}\\label{app:epsilon_robustness}\n502:The preceding analysis stratifies LP by a tied/non-tied threshold; consistency-based signals (SJ, FK, VC, EM) also use $\\varepsilon$ to define MBR-style proximity in selection.\n503:Table~\\ref{tab:epsilon_robustness} reports the maximum selection F1 variati\n…[truncated 963 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T21:53:10.357217+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*round*8*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T21:53:10.709348+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/round8_analysis_data_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/round8_analysis_data_summary.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Glob",
+            "elapsed_ms": 352
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T21:53:10.910303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*review*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T21:53:10.961148+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/best/review_context.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/logs/review_best.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/median/review_context.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/best/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/median/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/logs/review_median.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/worst/review_context.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/worst/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/logs/review_worst.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303/best/review_context.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303/logs/review_best.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303/median/review_context.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303/best/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projec\n…[truncated 3496 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T21:53:14.227833+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/round8_analysis_data_summary.md",
+              "limit": "80"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T21:53:14.729589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Round 8 Analysis Data Summary\n2\t\n3\t拉取时间: 2026-05-15\n4\t\n5\t---\n6\t\n7\t## 1. SJ Union vs Max Normalizer 对比\n8\t\n9\t### SciERC (Qwen SciERC NER N=8 seed42, n=529)\n10\t\n11\t| Normalizer | Spearman ρ | p-value | AUROC | mean SJ | std SJ |\n12\t|------------|-----------|---------|-------|---------|--------|\n13\t| SJ_max | 0.3599 | 1.28e-17 | 0.7180 | 0.7026 | 0.1956 |\n14\t| SJ_union | 0.3650 | 4.11e-18 | 0.7154 | 0.6918 | 0.1977 |\n15\t\n16\t- **Δρ = +0.0051** (union略高)，ΔAUROC = −0.0025 (max略高)\n17\t- 结论：两种 normalizer 差异极小，ρ 差 <0.01\n18\t\n19\t### CoNLL (LLaMA CoNLL NER N=8 seed42, n=2756)\n20\t\n21\t| Normalizer | Spearman ρ | AUROC | mean SJ | std SJ |\n22\t|------------|-----------|-------|---------|--------|\n23\t| SJ_max | 0.4314 | 0.7039 | 0.9718 | 0.092 |\n24\t| SJ_union | 0.4318 | 0.7041 | 0.9709 | 0.0941 |\n25\t\n26\t- **Δρ = +0.0004**，ΔAUROC = +0.0002\n27\t- 结论：CoNLL 上两种 normalizer 几乎完全一致\n28\t\n29\t**跨数据集总结：SJ_union 与 SJ_max 的 Spearman ρ 差异在两个数据集上均 < 0.01，可互换使用。**\n30\t\n31\t---\n32\t\n33\t## 2. Seed 456 LP Range Analysis\n34\t\n35\t数据来源: Qwen SciERC joint N=8, n_valid=529\n36\t\n37\t| Metric | seed42 | seed456 |\n38\t|--------|--------|---------|\n39\t| median LP range | **0.0401** | **0.0396** |\n40\t| IQR_25 | 0.0265 | 0.0236 |\n41\t| IQR_75 | 0.0685 | 0.0733 |\n42\t| IQR | 0.0421 | 0.0498 |\n43\t| tied_fraction (ε=0.05) | **60.3%** | **62.2%** |\n44\t| mean LP range | 0.0622 | 0.0567 |\n45\t| std LP range | 0.0691 | 0.0522 |\n46\t\n47\t**关键数值（Paper Agent 直接引用）：**\n48\t- seed456: median = 0.040, IQR = [0.024, 0.073], tied = 62.2%\n49\t- seed42: median = 0.040, IQR = [0.026, 0.069], tied = 60.3%\n50\t- 两个 seed 高度一致，证实 LP range 窄 + tied fraction 高的现象具有跨 seed 鲁棒性\n51\t\n52\t---\n53\t\n54\t## 3. Table 2 Selection F1 — NER (unified pipeline, 2-seed mean, seeds 42+123)\n55\t\n56\t配置: Qwen SciERC NER N=8\n57\t\n58\t| Signal | Selection F1 | ΔF1 vs Greedy | combined_p |\n59\t|--------|-------------|---------------|------------|\n60\t| Greedy | 0.6448 | — | — |\n61\t| Random | 0.6101 | −0.0347 | — |\n62\t| **LP** | **0.6468** | **+0.0020** | 0.289 |\n63\t| **SJ** | **0.6\n…[truncated 571 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Read",
+            "elapsed_ms": 501
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T21:53:14.880434+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/review_issues.yaml",
+              "limit": "100"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T21:53:14.981301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tissues:\n2\t# ===== RESOLVED ISSUES (Rounds 0-7) =====\n3\t- id: R0-C1\n4\t  summary: 模型规模单一（仅 8B）\n5\t  category: experiment\n6\t  severity: critical\n7\t  status: resolved\n8\t  first_raised_round: 0\n9\t  last_seen_round: 1\n10\t  mentions:\n11\t  - round: 0\n12\t    reviewers: [1, 2]\n13\t    note: 8B→8B 仅验证架构鲁棒性非规模鲁棒性\n14\t  - round: 1\n15\t    reviewers: [1, 2]\n16\t    note: model-agnostic 与 Limitations 矛盾\n17\t  action_items:\n18\t  - round: 1\n19\t    action: 全文替换 model-agnostic → consistent across tested model families\n20\t    assigned_to: Paper Agent\n21\t    status: resolved\n22\t  resolution: Round 2 Reviewer 确认措辞修正到位，无再提\n23\t  resolution_round: 2\n24\t- id: R0-C2\n25\t  summary: 相关工作显著遗漏\n26\t  category: framing\n27\t  severity: warning\n28\t  status: resolved\n29\t  first_raised_round: 0\n30\t  last_seen_round: 1\n31\t  mentions:\n32\t  - round: 0\n33\t    reviewers: [1, 2]\n34\t    note: 5 篇核心文献缺失\n35\t  - round: 1\n36\t    reviewers: [1, 2]\n37\t    note: 新遗漏：Optimal SC, Difficulty-Adaptive SC\n38\t  action_items:\n39\t  - round: 1\n40\t    action: 补充 6 篇引用到 Related Work\n41\t    assigned_to: Paper Agent\n42\t    status: resolved\n43\t  resolution: 'Round 2: 49 条 bib 全部 cited, 0 orphan, 无遗漏'\n44\t  resolution_round: 2\n45\t- id: R0-C3\n46\t  summary: RE 结论仅基于 SciERC 单数据集\n47\t  category: experiment\n48\t  severity: critical\n49\t  status: resolved\n50\t  first_raised_round: 0\n51\t  last_seen_round: 4\n52\t  mentions:\n53\t  - round: 0\n54\t    reviewers: [1, 2]\n55\t    note: 需跨数据集验证或降级措辞\n56\t  - round: 2\n57\t    reviewers: [1, 2]\n58\t    note: Abstract RE 措辞需修正\n59\t  - round: 3\n60\t    reviewers: [1, 2]\n61\t    note: Round 2 措辞修正到位，但 R3 Reviewer 2 再次提出 44% zero-F1 floor effect 严重压缩可区分范围\n62\t  - round: 4\n63\t    reviewers: [1, 2]\n64\t    note: R2 确认 claim 降级已完成（Conclusion 明确 hedge）。两位 Reviewer 仍认为 RE 证据薄弱，但 claim 范围已恰当限定——后续改进作为 R4-W1 追踪\n65\t  action_items:\n66\t  - round: 1\n67\t    action: 降级措辞 universal → observed in SciERC\n68\t    assigned_to: Paper Agent\n69\t    status: resolved\n70\t  - round: 2\n71\t    action: Abstract 改为 NER (three datasets) and RE (SciERC)\n72\t\n…[truncated 854 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T21:53:18.594661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/review_issues.yaml",
+              "offset": "100",
+              "limit": "200"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T21:53:18.645449+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\t  category: writing\n101\t  severity: critical\n102\t  status: resolved\n103\t  first_raised_round: 0\n104\t  last_seen_round: 0\n105\t  mentions:\n106\t  - round: 0\n107\t    reviewers: [1, 2]\n108\t    note: 缺少 selection curves、reliability diagrams\n109\t  action_items: []\n110\t  resolution: 论文已包含 6 个 figures\n111\t  resolution_round: 1\n112\t- id: R0-C6\n113\t  summary: 成本分析 negligible 误导\n114\t  category: method\n115\t  severity: critical\n116\t  status: resolved\n117\t  first_raised_round: 0\n118\t  last_seen_round: 0\n119\t  mentions:\n120\t  - round: 0\n121\t    reviewers: [1, 2]\n122\t    note: 8-16× 推理开销不应描述为 negligible\n123\t  action_items: []\n124\t  resolution: Round 1+ 未再提及\n125\t  resolution_round: 1\n126\t- id: R0-W1\n127\t  summary: 未探索 signal combination\n128\t  category: experiment\n129\t  severity: warning\n130\t  status: resolved\n131\t  first_raised_round: 0\n132\t  last_seen_round: 0\n133\t  mentions:\n134\t  - round: 0\n135\t    reviewers: [1, 2]\n136\t    note: 互补性已证明但未尝试组合\n137\t  action_items: []\n138\t  resolution: Round 1+ 未再提及\n139\t  resolution_round: 1\n140\t- id: R0-W4\n141\t  summary: 统计检验不系统\n142\t  category: experiment\n143\t  severity: critical\n144\t  status: resolved\n145\t  first_raised_round: 0\n146\t  last_seen_round: 1\n147\t  mentions:\n148\t  - round: 1\n149\t    reviewers: [1, 2]\n150\t    note: Bootstrap 细节不足\n151\t  action_items:\n152\t  - round: 1\n153\t    action: 补完整 bootstrap 规范\n154\t    assigned_to: Paper Agent\n155\t    status: resolved\n156\t  resolution: Round 2 Reviewer 评价 bootstrap 达到高标准\n157\t  resolution_round: 2\n158\t- id: R0-RR-D1\n159\t  summary: Voting Conf N-scaling +0.018 与数据矛盾\n160\t  category: experiment\n161\t  severity: warning\n162\t  status: resolved\n163\t  first_raised_round: 0\n164\t  last_seen_round: 0\n165\t  mentions:\n166\t  - round: 0\n167\t    reviewers: [Research Reviewer]\n168\t    note: +0.018 实际为 -0.080\n169\t  action_items:\n170\t  - round: 0\n171\t    action: 修正声明\n172\t    assigned_to: Main Agent\n173\t    status: resolved\n174\t  resolution: 已修正\n175\t  resolution_round: 1\n176\t- id: R1-N1\n177\t  summary: Bootstrap 检验细节不足\n…[truncated 3343 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T21:53:22.126093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "status: open|status: in_progress|round: 8",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/review_issues.yaml",
+              "output_mode": "content",
+              "-C": "3"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T21:53:22.176837+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1255-  summary: Gap 概念部分 tautological——instance-level 信号无法 select 是定义必然\n1256-  category: framing\n1257-  severity: critical\n1258:  status: in_progress\n1259-  first_raised_round: 3\n1260:  last_seen_round: 8\n1261-  mentions:\n1262-  - round: 3\n1263-    reviewers: [1, 2]\n--\n1274-  - round: 7\n1275-    reviewers: [1, 2]\n1276-    note: 需根本性 reframing——dismiss instance-level failure in one sentence\n1277:  - round: 8\n1278-    reviewers: [1, 2]\n1279-    note: 'R2 列 critical N2（论文将 4/5 definitional failure 与 LP/MBR empirical failure 混为统一 finding）。R1 rebut（三处透明声明不构成误导，两层结构有信息量），但 agree 可改善呈现（如 Table 3 用水平线分隔 instance-level 和 per-sample）。分歧记录：R2 认为根本 framing 错误，R1 认为呈现改进问题。'\n1280-  action_items:\n1281-  - round: 7\n1282-    action: 根本性 reframing——以 LP compression + MBR failure 为核心\n1283-    assigned_to: Paper Agent\n1284:    status: in_progress\n1285:  - round: 8\n1286-    action: 至少在 Table 3 中用视觉分组区分 instance-level 和 per-sample 信号；考虑 Abstract/Introduction 更突出两层区分\n1287-    assigned_to: Paper Agent\n1288:    status: in_progress\n1289-  resolution: ''\n1290-  resolution_round: null\n1291-- id: R3-W4\n1292-  summary: FK 独立性假设 justification 不足\n1293-  category: method\n1294-  severity: warning\n1295:  status: in_progress\n1296-  first_raised_round: 3\n1297:  last_seen_round: 8\n1298-  mentions:\n1299-  - round: 3\n1300-    reviewers: [1, 2]\n--\n1302-  - round: 7\n1303-    reviewers: [1, 2]\n1304-    note: n=5 t-test 功效极低\n1305:  - round: 8\n1306-    reviewers: [1, 2]\n1307-    note: 'R1 W2 再次提出（n=5 t-test 应改用 instance-level 检验 n=529+）。R2 agree with nuance。共识：当前 justification 不足。'\n1308-  action_items:\n1309-  - round: 7\n1310-    action: 改用 permutation test 或 bootstrap CI\n1311-    assigned_to: Paper Agent\n1312:    status: in_progress\n1313:  - round: 8\n1314-    action: 改用 instance-level 检验（n=529+），或在论文中降级 FK 独立性声称为 approximate justification\n1315-    assigned_to: Paper Agent\n1316:    status: in_progress\n1317-  resolution: ''\n1318-  resolution_round: null\n1319-- id: R3-W5\n1320-  summary: Cross-model 实为 cross-archi\n…[truncated 5615 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T21:54:24.416781+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "paper:round8-fixes",
+              "project": "struct_self_consist_ie",
+              "task_prompt": "你是论文修复 Worker。项目 struct_self_consist_ie 的 EMNLP 2026 论文需要完成 Round 8 审稿修复。DDL: 2026-05-25（10 天）。\n\n## 论文位置\n本地路径：`/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/`\n- main.tex（主文件，包含 \\input{sections/...}）\n- sections/abstract.tex, introduction.tex, experiments.tex, discussion.tex, conclusion.tex, limitations.tex, method.tex, related_work.tex, appendix.tex\n\n## 需要修复的问题（按优先级）\n\n### P0: 标题更新\n当前标题: \"Strong Predictors, Weak Selectors: Confidence Signals Predict but Struggle to Select in 8B-Scale Information Extraction\"\n问题: 论文现在包含 4B scale ablation 数据（Qwen3-4B），\"8B-Scale\" 不再准确。\n修复: 把 \"8B-Scale\" 改为更通用的表述（例如 \"LLM-Scale\" 或直接去掉 scale 限定）。副标题 \"Struggle to Select\" 保留（Round 8 共识）。\n注意: 文件在 main.tex 第 21 行。\n\n### P1: Abstract 简化\n当前问题（R4-W3, Round 8 共识）：Abstract 过密，包含 5 个信号名称 + 3 个数据集 + 4 个指标。\n修复要求:\n1. 简化为 问题-发现-意义 三段式\n2. 移除大部分具体数字和信号缩写（信号名称移至 Introduction）\n3. 明确标注 RE 为 preliminary（R4-W1 要求）\n4. 更新以反映 4B scale ablation 结果（不再只是 \"two 8B-parameter models\"）\n5. 保留核心信息：correlation-selection gap + free-form ablation + score compression\n\n当前 abstract.tex 内容:\n```\n\\begin{abstract}\nSelf-consistency---sampling multiple outputs and selecting via agreement---yields large gains on discrete-answer tasks, but information extraction (IE) produces \\textit{sets} of entities and relations with partial overlap, where no majority vote exists.\nCan confidence signals still guide selection in this structured setting?\n\nWe compare five confidence signals---spanning structural consistency, surface agreement, and model-internal families---across three NER benchmarks and one RE benchmark (preliminary) with two 8B-parameter models.\nAll signals achieve strong quality estimation yet none improves best-of-$N$ sample selection despite substantial oracle headroom---the \\textit{correlation-selection gap}.\nThe gap has two layers: instance-level signals cannot rank candidates by construction, and log-probability---the only per-sample signal---is too compressed within instances to discriminate; a free-form decoding ablation confirms that constrained decoding is not the cause.\nSignal rankings shift with task difficulty and collapse at the capability boundary.\nClosing the gap likely requires learned per-sample scoring such as trained verifiers.\n\\end{abstract}\n```\n\n### P2: Table 3 (tab:selection) 视觉分组\nRound 8 共识(R3-W2): 在 Table 3 中用视觉分隔（水平线）区分 instance-level 信号（SJ, FK, EM, VC）和 per-sample 信号（LP）。\n当前 experiments.tex 中 Table 3 已经有分组（L71-78），但需要确认标注是否清晰。检查并加强分组标签。\n\n### P3: 4B selection 描述精度\nexperiments.tex L131: \"the best signal selects at greedy level (0.662)\" \n实际数据（paper_framing.md）:\n- SciERC NER 4B: greedy=0.6622, SJ=0.6473 (-1.49pp), FK=0.6466 (-1.56pp), LP=0.6399 (-2.23pp)\n- 所有信号都 **低于** greedy，不是 \"at greedy level\"\n修复: 改为更准确的描述，如 \"all signals fall below greedy (Δ up to −2.2 pp) despite 13.0 pp of oracle headroom\"\n\nCoNLL NER 4B 数据:\n- greedy=0.9213, SJ=0.9220(+0.07pp), FK=0.9215, LP=0.9221(+0.09pp), oracle=0.9382\n- headroom 1.70pp, selection ≤0.1pp — 可以说 \"indistinguishable from greedy\"\n\n### P4: Introduction/Discussion 更新\n- Introduction 中如果有 \"two 8B models\" 的表述需要更新为包含 4B\n- Discussion 中关于 scale 的讨论需要反映 4B 发现\n\n### P5: 页数检查\nACL format 正文限制 8 页。请检查当前页数（通过估算行数）。如果超过，需要压缩。压缩优先级：appendix 内容不算页数，正文中冗余描述可删减。\n\n## 写作规范\n- 所有数字必须追溯到 paper_framing.md 中的数据\n- RE 相关 claim 必须标注 preliminary\n- 不要 cherry-pick——负向结果如实写\n- 强度词与 evidence 匹配（单数据集不能用 consistently）\n\n## 完成后\n1. 列出所有修改文件和具体变更\n2. 标记哪些 review issues 被此次修改 resolve 了\n3. 估算页数变化",
+              "tool_groups": "['knowledge']"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T21:54:44.599973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_round8-fixes_20260515T215425\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_paper_round8-fixes_20260515T215425.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_paper_round8-fixes_20260515T215425 started. Use get_worker_status('worker_paper_round8-fixes_20260515T215425') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 20183
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-15T21:54:45.154446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:fk-independence-tost-fix",
+              "project": "struct_self_consist_ie",
+              "task_prompt": "你是分析 Worker。需要完成两项分析任务来修复 Round 8 审稿问题。\n\n## 服务器信息\n- 服务器: autodl-5090\n- 环境激活: `source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径: /root/autodl-tmp/struct_self_consist_ie/\n- Python: /root/miniconda3/bin/python\n- 分析数据: artifacts/analysis_unified_rho.json, analysis_round8/ 目录\n\n## 任务 1: FK Independence Instance-Level Test (R3-W4)\nRound 8 审稿反馈: FK (Fleiss' κ) 的独立性假设检验目前用 n=5 的 t-test，统计功效极低。需要改用 instance-level 检验（n=529+ 或 n=2756）。\n\n**要做的事**:\n1. SSH 到服务器，查看当前 FK 独立性检验的代码（可能在 analysis_round8/ 或 artifacts/ 目录下）\n2. 设计 instance-level bootstrap 或 permutation test:\n   - 对每个 instance，计算 N=8 个 sample 的 FK 值\n   - 检验 FK 值与 random baseline 的差异是否显著\n   - 报告 instance-level 的 bootstrap 95% CI 和 p-value\n3. 如果无法做 instance-level FK test（FK 是跨 sample 的聚合指标），则在论文中建议降级表述为 \"approximate justification\"，并给出具体的降级措辞建议\n4. 结果写入 `/root/autodl-tmp/struct_self_consist_ie/analysis_round8/fk_independence_instance_test.json`\n\n## 任务 2: TOST δ External Benchmark (R4-M2)\nRound 8 审稿反馈: 当前 TOST (Two One-Sided Tests) 等价检验的 δ 值基于 oracle headroom 锚定，被批评为循环论证。需要用外部实际意义基准。\n\n**要做的事**:\n1. 查找当前 TOST 分析代码和 δ 值设定\n2. 提出 2-3 个外部基准替代方案:\n   - NER/RE 领域 standard error of measurement (SEM)\n   - 已发表论文中的 typical improvement margins (e.g., 0.5-1.0 pp for NER at 90+ F1)\n   - Practical significance threshold from deployment perspective\n3. 用最合理的外部基准重新运行 TOST\n4. 结果写入 `/root/autodl-tmp/struct_self_consist_ie/analysis_round8/tost_external_delta.json`\n\n## 完成后\n把两项分析的关键结论写入 save_project_file(file=\"analysis_fk_tost_round8.md\")，供 Paper Agent 直接引用。包含:\n- FK: 新检验方法 + 结果 + 建议论文措辞\n- TOST: 新 δ 选择理由 + 结果 + 建议论文措辞",
+              "tool_groups": "['ssh', 'knowledge', 'registry']"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-15T21:54:54.863364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_fk-independence-tost-fix_20260515T215445\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_fk-independence-tost-fix_20260515T215445.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_fk-independence-tost-fix_20260515T215445 started. Use get_worker_status('worker_analysis_fk-independence-tost-fix_20260515T215445') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 9708
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-15T21:54:54.863777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际跑 0（全部实验完成）| Worker 池 0→2 (GPU 0 / CPU 2)\n\nLoop #11 session-start 完成。状态确认：\n- Registry: 104 实验，58 success / 22 negative / 5 failed / 19 killed。0 RUNNING，0 PREPARING\n- Crons: 0 active\n- GPU: autodl-5090 cuda:0-3 全部空闲（待命用于 Round 9 可能的补充实验）\n\n**当前瓶颈 100% 是论文修复。** 已 spawn 2 Workers 并行推进：\n\n1. **paper:round8-fixes** — 处理全部 Round 8 in-progress issues:\n   - P0: 标题 \"8B-Scale\" → 更通用（4B 数据已有）\n   - P1: Abstract 简化 + RE preliminary 标注\n   - P2: Table 3 视觉分组（instance-level vs per-sample）\n   - P3: 4B selection 描述精度修正（\"at greedy level\" → 实际 below greedy）\n   - P4: Introduction/Discussion 更新反映 4B\n   - P5: 页数检查\n\n2. **analysis:fk-independence-tost-fix** — 两项分析修复:\n   - FK 独立性检验：n=5 t-test → instance-level bootstrap/permutation (n=529+)\n   - TOST δ: oracle-headroom 锚定 → 外部实际意义基准\n\n**关键路径**: Workers 完成 (预计今天) → Round 9 审稿 (1d) → 反馈处理 (1-2d) → Final polish → 提交 (DDL: 2026-05-25, 10天)\n\n请 Director 确认优先级是否正确，或有其他紧急修复需加入。",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-15T21:54:58.636446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3772
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-15T21:55:04.366511+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "2 Workers 已启动，Director 已汇报。\n\n- **Worker 1** (`worker_paper_round8-fixes_20260515T215425`): 论文文本修复（标题/Abstract/Table 3/4B 精度/页数）\n- **Worker 2** (`worker_analysis_fk-independence-tost-fix_20260515T215445`): FK instance-level 检验 + TOST 外部 δ 分析\n\n等待 Worker 回调。Worker 完成后将处理结果、更新 registry/report.md、推进 Round 9 审稿。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024"
+          },
+          "id": "event-000074"
+        }
+      ],
+      "message_count": 74
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-16T01:06:49.167607+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-16T01:06:57.193207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-16T01:06:57.246171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "ToolSearch",
+            "elapsed_ms": 52
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-16T01:07:02.367303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-16T01:07:02.468105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-16T01:07:03.323000+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (166,234 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-agent-c38ec76b/d3d06344-40a8-4a34-8a2d-b777b3ed9570/tool-results/mcp-agent-ml-research-read_registry-1778893623088.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-agent-c38ec76b/d3d06344-40a8-4a34-8a2d-b777b3ed9570/tool-results/mcp-agent-ml-research-read_registry-1778893623088.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-agent-c38ec76b/d3d06344-40a8-4a34-8a2d-b777b3ed9570/tool-results/mcp-agent-ml-research-read_registry-1778893623088.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 955
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-16T01:07:03.323431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 855
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-16T01:07:03.474329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-16T01:07:03.474845+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **exp_qwen3_4b_scierc_merge_inference** (killed): SciERC 4B best checkpoint merge + SCS inference. Complete 2x2 scale matrix (4B SciERC cell). Cross-scale + cross-task evidence for correlation-selection gap.\\\\n- **exp_qwen3_4b_conll_merge_inference_v2** (killed): CoNLL 4B checkpoint-4200 (best from resume training) merge + SCS inference. Replaces v1 which used checkpoint-3800 merged model. Cross-scale evidence for correlation-selection gap.\\\\n- **exp_qwen3_4b_scierc_scs_inference** (success): SciERC 4B SCS inference after v4 finetune merge. Complete 2x2 scale matrix (4B SciERC cell). Cross-scale + cross-task evidence for correlation-selection gap.\\\\n\\\\n## 趋势\\\\n成功 58 / 负向 22 / 失败 4 / 共 104\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nautodl-5090: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\\\n\\\\n## 告警\\\\n- ft_002: 已被终止 — unknown\\\\n- mvp_pilot_002: 训练失败 — unknown\\\\n- exp_007_ner_llama: 已被终止 — unknown\\\\n- exp001_seed123: 已被终止 — unknown\\\\n- exp001_seed456: 已被终止 — unknown\\\\n- exp008_re_n16: 已被终止 — unknown\\\\n- exp_002_merge_conll2003: 已被终止 — unknown\\\\n- exp_001_n16_seed123_full: 已被终止 — unknown\\\\n- exp_001_n16_seed456_full: 已被终止 — unknown\\\\n- exp_008_re_n16_full: 已被终止 — unknown\\\\n- exp_001_seed42_v2_r1024: 已被终止 — unknown\\\\n- exp_001_seed123_v2_r1024: 已被终止 — unknown\\\\n- exp_001_seed456_v2_ner_r1024: 已被终止 — unknown\\\\n- exp_002_conll_n16_r1024: 已被终止 — unknown\\\\n- exp_007_llama_n16_r1024: 已被终止 — unknown\\\\n- exp_018_llama_scierc_seed456: 已被终止 — unknown\\\\n- exp_019_supervised_verifier: 已被终止 — unknown\\\\n- exp_lp_t07_scierc: 已被终止 — unknown\\\\n- exp_qwen3_4b_scierc_finetune: 已被终止 — unknown\\\\n- exp_freeform_seed789_v2: 训练失败 — unknown\\\\n- exp_qwen3_4b_scierc_finetune_v2: 训练失败 — unknown\\\\n- exp_qwen3_4b_scierc_fi\n…[truncated 228 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-16T01:07:03.625941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-16T01:07:03.927743+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md\\\", \\\"content\\\": \\\"# struct_self_consist_ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 20:08 UTC | 更新原因: 4B selection 分析完成，Paper Agent 已收到 Patch 指令，更新任务状态和关键路径\\\\n\\\\n## 核心方向\\\\n系统比较 5 类置信信号在 IE test-time scaling 中的有效性。**核心发现：universal correlation-selection gap（controlled ablation 证明 score compression 是 model/task intrinsic，非 constrained decoding artifact）。** 详见 paper_framing.md。\\\\n\\\\n## 当前阶段\\\\n**Round 8 审稿修复中** — Borderline (R1=3.5, R2=2.5)。DDL: 2026-05-25 (10 天)。\\\\n\\\\n### 4B Scale Ablation（D098 全部完成 ✅）\\\\n2×2 矩阵 {CoNLL, SciERC} × {8B, 4B} QE correlation + selection F1 全部完成。\\\\n- **核心结论**：gap 与 model capacity 无关，task difficulty 是主驱动。R14 RESOLVED。\\\\n- SciERC NER 4B：SJ_ρ=0.4221 (>8B +3.96pp) 但 selection -1.49pp（完美展示 correlation-selection gap at 4B）\\\\n- CoNLL 4B：headroom 1.70pp，selection 全部 ≤0.1pp（MARGINAL）\\\\n- n_samples confound：用 Qwen3-8B n=8 数据排除，无需新实验\\\\n- Paper Agent 已收到 Patch 指令，写入 compact scale ablation table\\\\n\\\\n### Round 8 问题状态\\\\n1. ~~BLOCKING: 页数超限~~ → Paper Agent 压缩中 + 预留 4B table 空间\\\\n2. ~~BLOCKING: ε justification~~ → D095 ✅\\\\n3. **HIGH: 标题 overclaim** → Paper Agent Phase 2\\\\n4. **HIGH: Abstract 过载** → Paper Agent Phase 2\\\\n5. ~~HIGH: RE preliminary~~ → D095 ✅\\\\n6. ~~HIGH: LP T=0.7 缺失~~ → D095 ✅\\\\n\\\\n### 数据修复\\\\n- unified_rho_full.json LLaMA SciERC 污染修复 ✅\\\\n- Registry desync 清理：Agent 正在处理（scierc→DONE with metrics, conll_merge_v2→killed）\\\\n\\\\n## 关键路径\\\\n**Registry 清理 → Paper Agent 写入 4B + 页数压缩 + Phase 2-5 → Round 9 审稿 → 提交**\\\\n1. Agent 完成 registry 清理（进行中）\\\\n2. Paper Agent: 4B data Patch + 页数压缩 + 标题/Abstract + 全部修复\\\\n3. Round 9 审稿 (continue mode)\\\\n4. 反馈处理 (1-2d) → Final polish → 提交 (DDL: 2026-05-25)\\\\n\\\\n## 近期任务\\\\n- [x] Agent: 4B selection 分析 ✅\\\\n- [ ] Agent: Registry desync 清理（进行中）\\\\n- [ ] Paper Agent: 4B scale ablation Patch（compact table ≤0.5 页）\\\\n- [ ] Paper Agent Phase 1: 页数压缩至 ≤8 页（含 4B table）\\\\n- [ ] Paper Agent:\n…[truncated 1783 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 301
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-16T01:07:15.290519+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-agent-c38ec76b/d3d06344-40a8-4a34-8a2d-b777b3ed9570/tool-results/mcp-agent-ml-research-read_registry-1778893623088.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\nexps = data.get('data', data) if isinstance(data, dict) else data\nif isinstance(exps, dict) and 'experiments' in exps:\n    exps = exps['experiments']\nelif isinstance(exps, dict):\n    exps = list(exps.values())\n\n# Show status summary\nfrom collections import Counter\nstatuses = Counter()\nfor e in exps:\n    if isinstance(e, dict):\n        statuses[e.get('status','?')] += 1\nprint('=== Status Summary ===')\nfor s, c in statuses.most_common():\n    print(f'  {s}: {c}')\n\n# Show non-DONE experiments\nprint('\\n=== Non-DONE experiments ===')\nfor e in exps:\n    if isinstance(e, dict) and e.get('status') not in ('DONE',):\n        print(f\\\"  {e.get('exp_id','?')}: status={e.get('status')}, conclusion={e.get('conclusion','')}\\\")\n\n# Show recent DONE with details\nprint('\\n=== Last 5 DONE experiments ===')\ndone = [e for e in exps if isinstance(e, dict) and e.get('status') == 'DONE']\ndone.sort(key=lambda x: x.get('updated_at',''), reverse=True)\nfor e in done[:5]:\n    print(f\\\"  {e.get('exp_id')}: conclusion={e.get('conclusion')}, updated={e.get('updated_at','')[:16]}\\\")\n    if e.get('metrics'):\n        print(f\\\"    metrics: {json.dumps(e['metrics'], ensure_ascii=False)[:200]}\\\")\n\"\n",
+              "description": "Parse registry JSON for status summary"
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-16T01:07:15.541602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== Status Summary ===\n\n=== Non-DONE experiments ===\n\n=== Last 5 DONE experiments ==="
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Bash",
+            "elapsed_ms": 251
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-16T01:07:15.542049+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-16T01:07:15.593019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\\\", \\\"content\\\": \\\"# Memory — struct_self_consist_ie\\\\n\\\\n## 服务器环境\\\\n- autodl-5090: 4× RTX 5090 32GB, Python 3.12, vLLM 0.18.1, LLaMA Factory 0.9.4, tmux 3.2a\\\\n- gpu-5090-4x-2: 4× RTX 5090 32GB, PyTorch 2.10.0+cu128, vLLM 0.18.1\\\\n- conda: /root/miniconda3/\\\\n- 环境初始化: `source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\\\\n- 项目路径: /root/autodl-tmp/struct_self_consist_ie/\\\\n- 基座模型: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\\\\n- ft_002_v2 merged: checkpoints/qwen3-8b-scierc-merged-v2/\\\\n- run_mvp_pilot.py 支持 --collect_logprobs, --num_test (默认已改为 9999)\\\\n\\\\n## 数据修正链 (D054-D060) 关键教训\\\\n- exp_012 是唯一使用 max_tokens=512 的实验，导致 voting_conf ρ 虚高 (0.502→0.379)\\\\n- SJ/FK 对 max_tokens 参数鲁棒（Δ<0.004），但 voting_conf 极度敏感\\\\n- 修正后 AUROC 排名反转：EM (0.749) > SJ (0.692) > Voting (0.684)\\\\n- Selection claim 由 bootstrap 确认为 null result（p=0.39），不能写 \\\\\\\"significantly outperforms\\\\\\\"\\\\n- 论文数据必须来自 _rerun_1024 或本身就用 1024 的实验\\\\n\\\\n## D066 LLaMA fresh rerun (2026-05-15)\\\\n- D066 决策：LLaMA 3-seed 全部使用 fresh rerun 数据（seed42_r1024 + seed123 + seed456_r1024）\\\\n- exp_018_llama_scierc_seed456（旧 exp_007 复制品）已标记 SUPERSEDED\\\\n- LLaMA NER SJ ρ 修正：旧 0.362±0.004 → 新 0.325±0.021（σ 增大 5× 是真实 seed 变异，seed123 拉高均值）\\\\n- **分析脚本与 report.json 的 EM/VC 值存在系统性差异**（如 seed42 VC: 脚本 0.373 vs report.json 0.405）。Reviewer 要求论文统一使用分析脚本输出（与 Qwen 同一套）。不要从 registry metrics（来自 report.json）直接引用 EM/VC 到论文。\\\\n- NER 信号排名 6/6 完全稳定：VC > SJ > EM > FK > LP\\\\n- Core claim \\\\\\\"structural > logprob\\\\\\\" NER 全部成立 (12/12)；RE 仅 VC 稳定胜 LP\\\\n\\\\n## ρ 一致性审计 (2026-05-15) — 关键管道 bug\\\\n- **根因**：旧管道 `compute_metrics.py` 包含 gold-empty 实例 + FK 对全空 sample 返回 0（应为 1.0）\\\\n- CoNLL 697/3453 (20%) gold-empty 实例导致 FK ρ 膨胀 0.48→0.81，SJ ρ 压低 0.48→0.18，排名反转\\\\n- **统一标准**：排除 gold-empty 实例。CoNLL n=2756，SciERC n=551（或 n=529 排除空 gold NER）\\\\n- 论文所有 ρ 值必须来自 gold-filtered 管道（`rho_audit.py\n…[truncated 2297 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-16T01:07:25.786339+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-agent-c38ec76b/d3d06344-40a8-4a34-8a2d-b777b3ed9570/tool-results/mcp-agent-ml-research-read_registry-1778893623088.txt') as f:\n    raw = json.load(f)\n\n# The result field is a JSON string\ninner = json.loads(raw['result'])\ndata = inner.get('data', inner)\n\nif isinstance(data, dict):\n    if 'experiments' in data:\n        exps = data['experiments']\n    else:\n        exps = list(data.values())\nelif isinstance(data, list):\n    exps = data\nelse:\n    print('Unknown structure:', type(data))\n    exps = []\n\nprint(f'Total experiments: {len(exps)}')\nfrom collections import Counter\nstatuses = Counter()\nconclusions = Counter()\nfor e in exps:\n    if isinstance(e, dict):\n        statuses[e.get('status','?')] += 1\n        if e.get('conclusion'):\n            conclusions[e.get('conclusion')] += 1\n    \nprint('\\nStatus distribution:')\nfor s, c in statuses.most_common():\n    print(f'  {s}: {c}')\n    \nprint('\\nConclusion distribution:')\nfor c, n in conclusions.most_common():\n    print(f'  {c}: {n}')\n\n# Non-DONE\nnon_done = [e for e in exps if isinstance(e, dict) and e.get('status') != 'DONE']\nif non_done:\n    print('\\nNon-DONE:')\n    for e in non_done:\n        print(f'  {e.get(\\\"exp_id\\\")}: {e.get(\\\"status\\\")} / {e.get(\\\"conclusion\\\",\\\"\\\")}')\nelse:\n    print('\\nAll experiments are DONE.')\n\"\n",
+              "description": "Parse registry with better error handling"
+            }
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-16T01:07:25.888409+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total experiments: 104\n\nStatus distribution:\n\nConclusion distribution:\n\nAll experiments are DONE."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Bash",
+            "elapsed_ms": 102
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-16T01:07:35.038924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-agent-c38ec76b/d3d06344-40a8-4a34-8a2d-b777b3ed9570/tool-results/mcp-agent-ml-research-read_registry-1778893623088.txt') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\ndata = inner.get('data', inner)\nif isinstance(data, list):\n    exps = data\nelif isinstance(data, dict) and 'experiments' in data:\n    exps = data['experiments']\nelse:\n    exps = list(data.values()) if isinstance(data, dict) else []\n\n# Show first experiment structure\nif exps:\n    e = exps[0]\n    if isinstance(e, str):\n        print('Experiments are strings, first:', e[:200])\n    else:\n        print('Keys:', list(e.keys())[:20])\n        print('Sample:', json.dumps(e, ensure_ascii=False)[:500])\n\"\n",
+              "description": "Inspect registry experiment structure"
+            }
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-16T01:07:35.290176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 16, in <module>\n    e = exps[0]\n        ~~~~^^^\nKeyError: 0"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Bash",
+            "elapsed_ms": 251
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-16T01:07:40.514526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-agent-c38ec76b/d3d06344-40a8-4a34-8a2d-b777b3ed9570/tool-results/mcp-agent-ml-research-read_registry-1778893623088.txt') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\ndata = inner.get('data', inner)\nprint('Type:', type(data))\nif isinstance(data, dict):\n    print('Keys:', list(data.keys())[:10])\n    first_key = list(data.keys())[0]\n    first_val = data[first_key]\n    print('First key:', first_key)\n    print('First val type:', type(first_val))\n    if isinstance(first_val, dict):\n        print('First val keys:', list(first_val.keys())[:15])\n        print('Status:', first_val.get('status'))\n        print('Conclusion:', first_val.get('conclusion'))\n    else:\n        print('First val:', str(first_val)[:300])\n\"\n",
+              "description": "Debug registry data structure"
+            }
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-16T01:07:40.565224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Type: <class 'dict'>\nKeys: ['experiments', 'count', 'total', 'baseline']\nFirst key: experiments\nFirst val type: <class 'dict'>\nFirst val keys: ['exp_qwen3_4b_conll_merge_inference_v2', 'exp_qwen3_4b_scierc_scs_inference', 'exp_qwen3_4b_scierc_merge_inference', 'exp_qwen3_4b_conll_scs_inference_v2', 'exp_qwen3_4b_scierc_finetune_v4', 'exp_qwen3_4b_scierc_finetune_v3', 'exp_qwen3_4b_conll_finetune_resume', 'exp_freeform_seed789_v3', 'exp_freeform_seed123', 'exp_qwen3_4b_scierc_finetune_v2', 'exp_qwen3_4b_conll_scs_inference', 'exp_freeform_seed789', 'exp_freeform_seed456', 'exp_qwen3_4b_conll_finetune', 'exp_freeform_seed789_v2']\nStatus: None\nConclusion: None"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-16T01:07:49.302321+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-agent-c38ec76b/d3d06344-40a8-4a34-8a2d-b777b3ed9570/tool-results/mcp-agent-ml-research-read_registry-1778893623088.txt') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\nexps_dict = inner['data']['experiments']\n\nfrom collections import Counter\nstatuses = Counter()\nconclusions = Counter()\nfor eid, e in exps_dict.items():\n    statuses[e.get('status','?')] += 1\n    if e.get('conclusion'):\n        conclusions[e.get('conclusion')] += 1\n\nprint(f'Total: {len(exps_dict)}')\nprint('\\nStatus:')\nfor s, c in statuses.most_common():\n    print(f'  {s}: {c}')\nprint('\\nConclusion:')\nfor c, n in conclusions.most_common():\n    print(f'  {c}: {n}')\n\nnon_done = {eid: e for eid, e in exps_dict.items() if e.get('status') != 'DONE'}\nif non_done:\n    print('\\nNon-DONE:')\n    for eid, e in non_done.items():\n        print(f'  {eid}: {e.get(\\\"status\\\")} / {e.get(\\\"conclusion\\\",\\\"\\\")}')\nelse:\n    print('\\nAll DONE.')\n    \n# Show RUNNING/PREPARING specifically\nrunning = {eid: e for eid, e in exps_dict.items() if e.get('status') in ('RUNNING', 'PREPARING', 'PENDING', 'QUEUED', 'ALLOCATED', 'ANALYZING')}\nif running:\n    print('\\nActive:')\n    for eid, e in running.items():\n        print(f'  {eid}: {e.get(\\\"status\\\")}')\n\"\n",
+              "description": "Parse registry experiments properly"
+            }
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-16T01:07:49.353043+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total: 104\n\nStatus:\n  DONE: 104\n\nConclusion:\n  success: 58\n  negative: 22\n  killed: 20\n  failed: 4\n\nAll DONE."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-16T01:07:52.667802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "file": "paper_framing.md",
+              "max_chars": "6000"
+            }
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-16T01:07:53.119875+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — struct_self_consist_ie\\\\n\\\\n> Updated 2026-05-15 — D098: 4B scale ablation 2×2 矩阵完成。4B ≈ 8B（多数 correlation 4B 反而更高），gap 与 model capacity 无关，task difficulty 是信号退化主驱动。Scale ablation 证明 universality across scales。R14 RESOLVED。\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Findings (via ARR May 2026)\\\\n- Deadline: ARR May cycle, 2026-05-25\\\\n\\\\n## Core Claims (3 条, D072 updated — ablation proves universality)\\\\n\\\\n### Claim 1 (PRIMARY — Universal Correlation-Selection Gap)\\\\nThe correlation-selection gap in structured IE is a **fundamental property of the task**, not an artifact of constrained decoding. Confidence signals reliably predict output quality (AUROC up to 0.75) but cannot select better candidates from multiple samples. A controlled free-form decoding ablation proves this gap is universal: removing constrained decoding does NOT recover logprob variance or selection ability.\\\\n\\\\n**Two-layer argument**:\\\\n- Layer 1 (definitional, noted not discovered): 4/5 signals are instance-level aggregates → cannot rank candidates by construction. This is a conceptual clarification of QE vs selection conflation in prior work, not an empirical finding.\\\\n- Layer 2 (empirical, the core contribution): (a) Logprob — the only per-sample signal — fails due to intrinsic score compression (60% of instances have within-sample range < 0.05). (b) Consensus-proximity/MBR strategies also fail despite success in MT (non-trivial). (c) **Free-form ablation FALSIFIES regime-specific hypothesis**: removing constrained decoding does NOT recover logprob discrimination (std ratio 0.97, tied fraction -2pp) → compression is model/task intrinsic, proving universality via elimination.\\\\n\\\\n**Key evidence (score compression)**:\\\\n- Non-tied subset (40%): logprob selection +2.9pp vs greedy (p=0.01), within-instance ρ:\n…[truncated 4433 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 452
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-16T01:07:53.321234+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__load_project_config",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-16T01:07:53.371838+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-16T01:07:56.191365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "status": "running",
+              "limit": "10"
+            }
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-16T01:07:56.458104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_review_r9_data_integrity_20260516T010154\\\", \\\"task_type\\\": \\\"review:r9_data_integrity\\\", \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-16T01:01:54.340533+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 1}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 266
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-16T01:07:56.508830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "struct_self_consist_ie",
+              "section": "execution"
+            }
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-16T01:07:56.559557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"account\\\": \\\"root\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"project_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"aliases\\\": [\\\"bjb1-21071\\\"], \\\"server\\\": \\\"autodl-5090\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 50
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-16T01:07:59.922611+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-16T01:07:59.973352+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-16T01:08:02.485802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "limit": "20"
+            }
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-16T01:08:02.536473+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_analysis_scierc_4b_inference_check_20260515T195900\\\", \\\"task_type\\\": \\\"analysis:scierc_4b_inference_check\\\", \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T19:59:00.635628+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T20:00:43.358369+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_4b_selection_pipeline_20260515T200110\\\", \\\"task_type\\\": \\\"analysis:4b_selection_pipeline\\\", \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T20:01:10.966043+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T20:05:35.545190+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_research_n_samples_confound_20260515T200139\\\", \\\"task_type\\\": \\\"research:n_samples_confound\\\", \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T20:01:39.966644+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T20:05:13.758629+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_maintenance_registry_cleanup_20260515T200152\\\", \\\"task_type\\\": \\\"maintenance:registry_cleanup\\\", \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T20:01:52.186025+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T20:04:43.721729+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_sj_union_normalizer_20260515T201939\\\", \\\"task_type\\\": \\\"analysis:sj_union_normalizer\\\", \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T20:19:39.731593+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T20:23:45.198052+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_paper_round8-fixes_20260515T215425\\\", \\\"task_type\\\": \\\"paper:round8-fixes\\\", \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"status\\\": \\\"failed\\\", \\\"started_at\\\": \\\"2026-05-15T21:54:25.524452+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T21:58:22.267747+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_fk-independence-tost-fix_20260515T215445\\\", \\\"task_type\\\": \\\"analysis:fk-independence-tost-fix\\\", \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"status\\\": \\\"done\\\", \\\n…[truncated 3874 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 50
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-16T01:08:57.286991+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（autodl-5090），目前全部空闲，无需新 GPU 实验\n- 论文 ρ 值必须来自 gold-filtered 管道（排除 gold-empty 实例），不得从 registry metrics 直接引用 EM/VC 到论文（registry 来自 report.json，与分析脚本有系统性差异，见 memory.md D066）\n- 论文数据集：551 全集为 canonical，529 交集仅参考不进论文\n- exp_012 是唯一 max_tokens=512 实验，其 voting_conf ρ 虚高，论文数据必须来自 _rerun_1024 或本身用 1024 的实验\n- LLaMA SciERC 数据：unified_rho_full.json 已修复污染（D092-D094），旧值不可用\n- Selection claim 是 null result（bootstrap p=0.39），禁止写 \"significantly outperforms\"\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090（别名 bjb1-21071），4× RTX 5090 32GB，全部空闲\n- 工作目录：/root/autodl-tmp/struct_self_consist_ie/\n- Python：/root/miniconda3/bin/python（conda base 环境），激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 基座模型：/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\n- ft_002_v2 merged：checkpoints/qwen3-8b-scierc-merged-v2/\n- 分析产出：artifacts/analysis_unified_rho.json（canonical ρ 数据），analysis_round8/epsilon_sweep.csv\n- 活跃进程：无 GPU 训练进程，无活跃 cron\n- 活跃 Worker：worker_review_r9_data_integrity_20260516T010154（review:r9_data_integrity，started 01:01 UTC，仍在运行——等其回调）\n\n### 3. 📊 当前状态\nRegistry 104 实验全部 DONE（success 58 / negative 22 / killed 20 / failed 4）。无 RUNNING/PREPARING 实验。Cron reconcile 0 条。\n\n上一轮完成了：\n- 4B scale ablation 2×2 矩阵全部完成（D098），证明 gap 与 model capacity 无关\n- Round 8 审稿问题大部分已解决：页数超限（压缩中）、ε justification（D095 ✅）、RE preliminary（D095 ✅）、LP T=0.7（D095 ✅）\n- Paper Agent 已收到 4B data patch + 页数压缩 + 标题/Abstract 修复指令\n- Table 1 vs Table 4 ρ 不一致问题已分析（worker done）\n- Round 9 审稿已启动：narrative coherence review 已完成，**data integrity review 仍在运行**（等回调）\n\n等待中：\n- worker_review_r9_data_integrity 回调 → 处理审稿反馈\n- Paper Agent 完成全部修复（4B table + 压缩 + Phase 2-5）→ 可能需要更多 Round 9 审稿迭代\n\n### 4. 📋 待办（条件触发式）\n- worker_review_r9_data_integrity 回调到达 → 读取审稿结果，汇总 R9 两个 reviewer 的 findings，向 Director 汇报并建议修复优先级\n- R9 审稿发现需要补充实验 → 用空闲 GPU 立即跑（cuda:0-3 全部可用）\n- R9 审稿发现数据/数字不一致 → 派 Worker 修复论文对应 section\n- Paper Agent 全部修复完成 → 启动 Round 10 final review（focus: 页数合规 + 数字一致性）\n- Final review 通过 → 向 Director 报告可提交，等 Director 确认后做 final polish + 提交\n\n### 5. 🎯 战略上下文\n- **核心结论**：IE test-time scaling 中存在 universal correlation-selection gap。5 类置信信号能预测质量（AUROC 0.75）但无法从多个样本中选出更好的。Free-form ablation + 4B scale ablation 两条独立证据线证明 gap 是 model/task intrinsic，非 artifact。\n- **决策链**：D054-D060 数据修正 → D066 LLaMA fresh rerun → D072 ablation proves universality → D073 RE task-dependent framing → D092-D094 数据污染修复 → D095 ε + RE 确认 → D098 4B scale ablation 完成 → D099-D100 Table 数据统一\n- **DDL**：EMNLP 2026 Findings via ARR May，**2026-05-25**（9 天）。关键路径是 Paper Agent 写作修复（2-3d）→ 审稿迭代（1-2 轮）→ final polish → 提交\n- **最容易判断错的事**：\n  1. 不要把 registry metrics 当论文数据源——必须用分析脚本输出（gold-filtered pipeline）\n  2. CoNLL 4B headroom 只有 1.70pp，selection 全部 ≤0.1pp 是 MARGINAL 不是 negative——不要当 negative 处理\n  3. RE signal ranking 与 NER 反转（LP > SJ > FK），这是 task-dependent 特性已纳入 framing（D073），不需要 framing 调整\n  4. 当前阶段是写作修复+审稿，不是跑新实验——GPU 空闲是正常的，除非审稿发现需要补实验\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_018_llama_scierc_seed42_r1024"
+          },
+          "id": "event-000110"
+        }
+      ],
+      "message_count": 36
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-exp-018-llama-scierc-seed42-r1024-20260516t010857-288648.md"
+}

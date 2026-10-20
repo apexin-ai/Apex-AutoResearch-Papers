@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "a8f8976b4054b89c1a31",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "research round25 submission checklist",
+  "task_key": "worker_research_round25-submission-checklist_20260520T040401",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_round25-submission-checklist_20260520T040401_result.json",
+    "occurrence": 1,
+    "bytes": 2137517,
+    "sha256": "6ae213c6acb2e3bd3b76d9d5e08c2fae589280b6c4594207378307d0b5b19cfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2137537,
+                "serialized_sha256": "0849a36fdff09366e35c03c693f548dfc9bee286134a36e4d79f55bb2c0dffb2",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-round25-submission-checklist.md"
+}

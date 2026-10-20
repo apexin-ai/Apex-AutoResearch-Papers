@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "925e3f01db810a3ebeb7",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "director / loop_11.md",
+  "task_key": "loop_11",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/director/loop_11.md",
+    "occurrence": 1,
+    "bytes": 3867,
+    "sha256": "72cdf7c7d15c565016098acc4a3a88ec0ec3017391a0d4d27e95ad38da53561c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: max_messages\nupdated: '2026-05-21T23:01:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 cuda:0-3 + autodl-5090-c cuda:0-3，共 8 张，不得使用其他服务器/卡\n- MV 统一用 strict threshold >N/2（N=8 时需 ≥5 票），整个项目一致，不得混用 inclusive ≥N/2\n- FewNERD finetuned MV Δ 论文当前引用 -2.74±0.54pp（原始数据），v3 re-runs 给出 -2.44pp（s123=-2.63, s456=-2.24），s42_v3 完成前不切换数据源\n- 5-epoch MV Δ 不可描述为\"improvement\"——26% degeneracy 使 MV≡greedy，aggregate Δ shrinkage 是稀释效应，非真实改善\n- N=16 FK conditional rho 有 sign flip（mean=0.051±0.062），论文不得引用 N=16 FK conditional\n- 论文已进入审稿阶段（Review Group C），Director 不参与投稿材料/格式，只管研究实验\n\n### 2. 🖥️ 基础设施快照\n- **autodl-5090**: connect.bjb1.seetacloud.com, /root/autodl-tmp/struct_self_consist_ie, 磁盘 91%⚠️ 需清理\n- **autodl-5090-c**: connect.westb.seetacloud.com, /root/autodl-tmp/struct_self_consist_ie, 磁盘 72%\n- Python: /root/miniconda3/bin/python（conda base）\n- FewNERD finetuned model: qwen3-8b-fewnerd-exp021-merged（5090 上有嵌套子目录的 tokenizer，5090-c 环境 confirmed-working from s456_v3）\n- 活跃进程：mf4v2_s42_v3 在 5090 cuda:0（~78% 进度，约 25 min 前检查），其余 7 卡空闲\n- 论文源码：projects/struct_self_consist_ie/docs/paper/（本地 workspace，非远程）\n\n### 3. 📊 当前状态\n**刚做完**：\n- 5-epoch s42/s123/s456 MV results 全部持久化 ✓\n- Kill mf4v2_s42_v4 (5090-c cuda:0) + pretrained_s42_v2 (5090-c cuda:3) ✓\n- Paper Agent per-type flip patch 完成（7/8 types direction flip 整合到 appendix + main text + discussion）✓\n- Round 33 审稿已提交（approval_id: apr_20260521T220622_m50z，含 per-type flip 最完整版本）\n- ROADMAP 全面更新至 final polish 阶段 ✓\n\n**RUNNING**：mf4v2_s42_v3 (5090 cuda:0)，完成后需 MV recompute → 3-seed provenance 最后一块\n**等待**：Round 33 审稿结果；mf4v2_s42_v3 worker 回调\n\n### 4. 📋 待办\n- mf4v2_s42_v3 完成 → 立即 MV recompute，保存 recompute_mv_results.txt → 3-seed provenance 验证完毕\n- v3 3-seed mean 计算完毕 → 对比原始 -2.74±0.54pp，决定是否更新论文数字（差异不大可能保持原始）\n- Round 33 审稿报告到达 → 按强制协议处理（Holistic Pass → Action Matrix → post_to_reviewer → 派 Agent/Paper Agent）\n- 5090 磁盘 91% → v3 完成后清理临时文件降到 85% 以下\n- DDL 5/25 (~3.5 days) → R33 修复完成后做 final compile + submission prep\n\n### 5. 🎯 战略上下文\n- **核心结论**：Agreement signals correlate with quality (ρ up to 0.47) but MV fails to improve selection in finetuned NER models（correlation-selection gap）。Pretrained MV works on all 3 datasets，finetuned MV fails on FewNERD/SciERC。7/8 per-type direction flip 是排除 baseline quality confound 的决定性证据。\n- **叙事演变**（D232→D233）：从\"finetuning-induced degeneracy\"转向\"finetuning decouples agreement from quality through dataset-dependent pathways\"——CoNLL 是 diversity elimination，FewNERD 是 correlated error patterns\n- **目标**：3.5-4.0 (Borderline Conference → Conference)，D225\n- **R30 所有 weakness 已修复**：SciERC 3-seed, RE/SQL downgrade, Prop 1 repositioning, causal language, 5-epoch confound, per-type flip\n- **易错点**：(1) 不要把 v3 re-run 数字和论文原始数字混用——当前论文用原始数据，s42_v3 完成前不改 (2) Conclusion 只有 1 句，R30 曾说太短但页面预算紧张，不要轻易加内容 (3) 实验程序本质完成，不要为填 GPU 发明 make-work 实验 (4) 49 页 appendix 可能被 R33 指出过长，准备精简方案\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11.md"
+}

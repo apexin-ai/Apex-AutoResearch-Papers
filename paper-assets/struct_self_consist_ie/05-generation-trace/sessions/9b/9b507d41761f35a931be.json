@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b507d41761f35a931be",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh p1 fix mf4v2 s42 checkpoint",
+  "task_key": "worker_ssh_p1_fix_mf4v2_s42_checkpoint_20260521T205933",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_p1_fix_mf4v2_s42_checkpoint_20260521T205933_result.json",
+    "occurrence": 1,
+    "bytes": 1409,
+    "sha256": "464090a061db362fde7f858c00dfb0bc7e1584f8b70fa6c7f4fd5b7a3aff1605"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry run 通过——模型开始加载 4/4 shards，tokenizer 无报错。\n\n---\n\n## Checkpoint 修复\n- **5090 checkpoint 路径**: `checkpoints/qwen3-8b-fewnerd-exp021-merged/`\n- **缺失文件**: model-00003-of-00004.safetensors, model-00004-of-00004.safetensors, model.safetensors.index.json, special_tokens_map.json, tokenizer.json, tokenizer_config.json, vocab.json（共 7 个）\n- **修复方式**: 从本地嵌套子目录 `qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged/` 复制，无需跨服务器 rsync\n- **修复后验证**: OK — tokenizer 加载成功 (151669 tokens), dry run 15 秒内正常启动模型加载\n\n## 重启命令\n- **工作目录**: `/root/autodl-tmp/struct_self_consist_ie`\n- **完整命令**:\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed42_v3/\n```\n- **预期输出目录**: `output/fewnerd_mf4v2_seed42_v3/`\n- **GPU**: cuda:0（4 卡全空闲）\n- **tmux session 名**: `exp_fewnerd_mf4v2_s42_v3`\n- **日志路径**: `~/runs/struct_self_consist_ie/exp_fewnerd_mf4v2_s42_v3.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p1-fix-mf4v2-s42-checkpoint.md"
+}

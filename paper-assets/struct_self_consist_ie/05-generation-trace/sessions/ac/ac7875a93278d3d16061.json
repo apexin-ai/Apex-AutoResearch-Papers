@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac7875a93278d3d16061",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper bib verification",
+  "task_key": "worker_paper_bib-verification_20260523T165159",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_bib-verification_20260523T165159_result.json",
+    "occurrence": 1,
+    "bytes": 1783,
+    "sha256": "3f89347aba2c1c8960bb46ef044ed768382647c8baba700a90fe6aecbbbb41e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0 warnings, 55 entries used. 编译完全通过。\n\n---\n\n## 报告\n\n### 1. 六条 BibTeX 条目核对结果\n\n| Key | 修正内容 |\n|-----|---------|\n| `muller2021understanding` | 无需修改 |\n| `kumar2004minimum` | 无需修改 |\n| `dembczynski2011exact` | URL hash 修正：`03e0704b...` → `71ad16ad...` |\n| `madaan2023selfrefine` | author 修正：`Gupta, Shyam` → `Gupta, Shashank` |\n| `kuleshov2022calibrated` | 孤立条目，已删除（该条目元数据错误：标题和作者混合了 Kuleshov-Liang 2015 和 Kuleshov-Deshpande 2022 两篇不同论文） |\n| `shinn2023reflexion` | author 补全：添加缺失作者 `Berman, Edward`（位于 Cassano 和 Gopinath 之间） |\n\n### 2. 孤立条目（12 条，已全部删除）\n\n| Key | 论文 |\n|-----|------|\n| `min2023factscore` | FActScore (EMNLP 2023) |\n| `xiong2024verbalized` | Can LLMs Express Their Uncertainty? (ICLR 2024) |\n| `manakul2023selfcheckgpt` | SelfCheckGPT (EMNLP 2023) |\n| `kuleshov2015calibrated` | Calibrated Structured Prediction (NeurIPS 2015) |\n| `kuleshov2022calibrated` | Calibrated Structured Prediction (错误条目) |\n| `chen2021codex` | Evaluating LLMs Trained on Code |\n| `fisch2021conformal` | Few-Shot Conformal Prediction (ICML 2021) |\n| `varshney2022selective` | Investigating Selective Prediction (ACL 2022 Findings) |\n| `vazhentsev2022uncertainty` | Uncertainty Estimation of Transformer Predictions (ACL 2022) |\n| `zhang2023ener` | E-NER (ACL 2023 Findings) |\n| `he2024uncertainty` | Uncertainty Estimation on Sequential Labeling (NAACL 2024 Findings) |\n| `denero2009fast` | Fast Consensus Decoding (ACL-IJCNLP 2009) |\n\n### 3. 编译结果\n\n- bibtex: **0 warnings**，55 entries used\n- pdflatex: 编译成功，46 页输出"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-bib-verification.md"
+}

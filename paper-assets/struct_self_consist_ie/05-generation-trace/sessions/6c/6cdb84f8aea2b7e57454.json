@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6cdb84f8aea2b7e57454",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code 5090c scp deploy v2",
+  "task_key": "worker_code_5090c_scp_deploy_v2_20260518T200204",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_5090c_scp_deploy_v2_20260518T200204.log",
+    "occurrence": 1,
+    "bytes": 721458,
+    "sha256": "d2f0b8660cd594b6f3414cd03c6de9c81ec33d3204662095d37618efcf0b9d16"
+  },
+  "statistics": {
+    "messages": 314,
+    "user_turns": 0,
+    "tool_calls": 118,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 74,
+      "tool_call": 118,
+      "tool_result": 118,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 314,
+      "chunks": [
+        {
+          "path": "6cdb84f8aea2b7e57454-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6cdb84f8aea2b7e57454-part-0002.json",
+          "message_count": 134
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-5090c-scp-deploy-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d242c46ca7fecc656570",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh b1 conll eval",
+  "task_key": "worker_ssh_b1-conll-eval_20260520T122939",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_b1-conll-eval_20260520T122939_result.json",
+    "occurrence": 1,
+    "bytes": 388,
+    "sha256": "e84d219911b21c893d44a52ccce5300d56d67e72d65f387e62a46cc51e6ebf3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Merge 完成。但 **GPU 2 当前非空闲** — 正在运行 `bc5cdr_inference.py`（LLaMA-8B zero-shot, PID 210509, 启动于 20:19）。\n\n两个选项：\n1. **Kill bc5cdr_inference** 释放 GPU 2，立即开始 CoNLL SCD eval（bc5cdr 推理可以后续重跑）\n2. **等待** bc5cdr 完成（估计还需 20-30 分钟）\n\n是否 kill PID 210509 以释放 GPU 2？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-b1-conll-eval.md"
+}

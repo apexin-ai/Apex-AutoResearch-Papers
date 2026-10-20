@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "357f1ff2e7de7fd689bf",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix logprob tie n529",
+  "task_key": "worker_fix_logprob_tie_n529_20260515T073507",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_logprob_tie_n529_20260515T073507_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "a36a99a5334c316d34f989e3dbbec63e95917cd3376149bed1d625594a0bf9e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果：\n\n**Instance-level ties (n=529)**:  ε=0.05 下 60.3% 的 instance 是 tied（range < 0.05）\n\n**Pairwise ties**: 论文声称 \"75% of comparisons are ties\" 对应 ε ≈ 0.026（P75 of pairwise diffs），在 per-token mean_logprob 尺度上是合理的阈值\n\n**Non-tied 子集 (range ≥ 0.05, n=210)**: LP-best 显著优于 greedy (+2.9 F1, p=0.01)；SJ-best 略低于 LP-best (−1.2, p=0.37 不显著)\n\n**n=529 vs n=551 差异**: 所有核心指标 delta < 0.002，无实质影响\n\n产出已注册：`art_20260515_b672a9`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-logprob-tie-n529.md"
+}

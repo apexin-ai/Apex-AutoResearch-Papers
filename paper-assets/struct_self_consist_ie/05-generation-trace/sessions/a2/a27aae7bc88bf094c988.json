@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a27aae7bc88bf094c988",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh kill vllm conll eval",
+  "task_key": "worker_ssh_kill-vllm-conll-eval_20260520T124853",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_kill-vllm-conll-eval_20260520T124853_result.json",
+    "occurrence": 1,
+    "bytes": 803,
+    "sha256": "7942660120dbaccd566905db84769cdbd3b70ec30a10d75f0b1f54de1420f98c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 结果\n\n**Phase 1: VLLM Kill**\n- PID 210775 (SIGTERM killed) + PID 214178 (新 spawn 的 VLLM, force killed)\n- GPU 2 已完全释放 (2 MiB, 0% util)\n- PID 210509 (bc5cdr) 已不存在\n\n**Phase 2: B1 SCD CoNLL Eval**\n\n| 指标 | 值 |\n|---|---|\n| Pre-SCD greedy F1 (avg) | **90.78%** |\n| Post-SCD greedy F1 | **91.84%** |\n| Delta | **+1.06 pp** |\n\n**Negative control 假设未验证** — SCD 训练后 CoNLL greedy F1 提升了 +1.06 pp，而非预期的不变/下降。可能原因：SCD curriculum 提供了通用训练收益，或额外训练步数本身就带来了提升。\n\n结果保存在：\n- `output/b1_scd_conll_eval/report.json`\n- `artifacts/b1_scd_conll_eval/eval_result.json`\n\nGPU 2 现在空闲，可用于后续任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-vllm-conll-eval.md"
+}

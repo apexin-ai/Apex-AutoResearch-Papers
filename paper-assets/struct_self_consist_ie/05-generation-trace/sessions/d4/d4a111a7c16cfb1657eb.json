@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0",
+  "id": "d4a111a7c16cfb1657eb",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh bc5cdr inference",
+  "task_key": "worker_ssh_bc5cdr-inference_20260520T095413",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_bc5cdr-inference_20260520T095413.log",
+    "occurrence": 1,
+    "bytes": 3935214,
+    "sha256": "7db32f178168209cb7392d1e3a9a925a0dcb6e04dd2fc3ffb39d4f9bb77e0f8e"
+  },
+  "statistics": {
+    "messages": 1161,
+    "user_turns": 4,
+    "tool_calls": 412,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 2,
+      "assistant": 316,
+      "tool_call": 412,
+      "tool_result": 412,
+      "user": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 284,
+      "chunks": [
+        {
+          "path": "d4a111a7c16cfb1657eb-part-0001.json",
+          "message_count": 142
+        },
+        {
+          "path": "d4a111a7c16cfb1657eb-part-0002.json",
+          "message_count": 142
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 309,
+      "chunks": [
+        {
+          "path": "d4a111a7c16cfb1657eb-part-0002.json",
+          "message_count": 38
+        },
+        {
+          "path": "d4a111a7c16cfb1657eb-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d4a111a7c16cfb1657eb-part-0004.json",
+          "message_count": 91
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 372,
+      "chunks": [
+        {
+          "path": "d4a111a7c16cfb1657eb-part-0004.json",
+          "message_count": 33
+        },
+        {
+          "path": "d4a111a7c16cfb1657eb-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "d4a111a7c16cfb1657eb-part-0006.json",
+          "message_count": 159
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 182,
+      "chunks": [
+        {
+          "path": "d4a111a7c16cfb1657eb-part-0006.json",
+          "message_count": 21
+        },
+        {
+          "path": "d4a111a7c16cfb1657eb-part-0007.json",
+          "message_count": 112
+        },
+        {
+          "path": "d4a111a7c16cfb1657eb-part-0008.json",
+          "message_count": 49
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "d4a111a7c16cfb1657eb-part-0008.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-bc5cdr-inference.md"
+}

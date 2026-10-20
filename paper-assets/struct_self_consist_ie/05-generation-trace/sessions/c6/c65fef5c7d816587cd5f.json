@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c65fef5c7d816587cd5f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh conll n32 results mv",
+  "task_key": "worker_ssh_conll_n32_results_mv_20260522T041133",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_conll_n32_results_mv_20260522T041133_result.json",
+    "occurrence": 1,
+    "bytes": 650,
+    "sha256": "49706621a31dd81db2fcb4246c01eb5b87f8e4cd128e85d65a8d2ad4557ac502"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CoNLL N=32 MV recompute 完成。完整指标：\n\n| 指标 | 值 |\n|------|-----|\n| greedy_f1 | 0.9120 |\n| mv_strict_f1 | 0.9166 |\n| mv_incl_f1 | 0.9169 |\n| oracle_f1 | 0.9690 |\n| mv_delta_strict | +0.46pp |\n| mv_delta_incl | +0.49pp |\n| degeneracy_rate | 40.5% |\n| alpha_crit_strict | 0.4560 |\n| alpha_crit_incl | 0.4560 |\n| alpha_crit_eff_strict | 0.7663 |\n| alpha_crit_eff_incl | 0.7663 |\n\n注意：MV recompute 的 greedy_f1 (0.9120) 与 report.json (0.9072) 略有差异——recompute 只在 gold-nonempty 的 2756 条上计算，report.json 在全部 3453 条上计算。oracle_f1 同理（0.9690 vs 0.9645）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-conll-n32-results-mv.md"
+}

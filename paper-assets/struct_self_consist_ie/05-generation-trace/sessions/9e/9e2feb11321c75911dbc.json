@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "9e2feb11321c75911dbc",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "paper holm esj update",
+  "task_key": "worker_paper_holm-esj-update_20260522T185603",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_holm-esj-update_20260522T185603.log",
+    "occurrence": 1,
+    "bytes": 3236223,
+    "sha256": "d7fa8172d69145e2bf49100e029281e012bf975f337c2beff4b9ea0281080bab"
+  },
+  "statistics": {
+    "messages": 163,
+    "user_turns": 0,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 64,
+      "tool_result": 64,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 163,
+      "chunks": [
+        {
+          "path": "9e2feb11321c75911dbc-part-0001.json",
+          "message_count": 92
+        },
+        {
+          "path": "9e2feb11321c75911dbc-part-0002.json",
+          "message_count": 6
+        },
+        {
+          "path": "9e2feb11321c75911dbc-part-0003.json",
+          "message_count": 6
+        },
+        {
+          "path": "9e2feb11321c75911dbc-part-0004.json",
+          "message_count": 7
+        },
+        {
+          "path": "9e2feb11321c75911dbc-part-0005.json",
+          "message_count": 7
+        },
+        {
+          "path": "9e2feb11321c75911dbc-part-0006.json",
+          "message_count": 45
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-holm-esj-update.md"
+}

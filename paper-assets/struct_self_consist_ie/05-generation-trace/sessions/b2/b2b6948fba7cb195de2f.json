@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2b6948fba7cb195de2f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "data qwen scierc 3seed em voting",
+  "task_key": "worker_data_qwen_scierc_3seed_em_voting_20260514T211403",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_data_qwen_scierc_3seed_em_voting_20260514T211403_result.json",
+    "occurrence": 1,
+    "bytes": 1375,
+    "sha256": "76832f74d24f0422d70f0a5a3c04fc7bcbe85e167223c7df52bcc480f1f5772b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n### 产出\n\n**服务器上**：3 个 `all_signals_report.json` 已生成\n- `output/exp_001_seed42_v2/all_signals_report.json`\n- `output/exp_001_seed123_v2/all_signals_report.json`\n- `output/exp_001_seed456_v2_ner/all_signals_report.json`\n\n**本地**：`artifacts/data/qwen_scierc_3seed_em_voting.json`\n\n### EM 和 voting_conf 3-seed 汇总（full split）\n\n| Signal | Metric | Mean±Std | CV% |\n|--------|--------|----------|-----|\n| **EM** | rho | 0.3293±0.0114 | 3.5% |\n| **EM** | AUROC | 0.7797±0.0110 | 1.4% |\n| **EM** | ECE | 0.3340±0.0018 | 0.5% |\n| **voting_conf** | rho | 0.4217±0.0166 | 3.9% |\n| **voting_conf** | AUROC | 0.7209±0.0115 | 1.6% |\n| **voting_conf** | ECE | 0.3157±0.0039 | 1.2% |\n\n### EM 和 voting_conf 3-seed 汇总（conditional split）\n\n| Signal | Metric | Mean±Std | CV% |\n|--------|--------|----------|-----|\n| **EM** | rho | 0.4082±0.0061 | 1.5% |\n| **EM** | AUROC | 0.7881±0.0086 | 1.1% |\n| **EM** | ECE | 0.3065±0.0028 | 0.9% |\n| **voting_conf** | rho | 0.3461±0.0069 | 2.0% |\n| **voting_conf** | AUROC | 0.7013±0.0097 | 1.4% |\n| **voting_conf** | ECE | 0.3120±0.0075 | 2.4% |\n\nCV 均 <4%（full split），<2.5%（conditional split），跨 seed 稳定性良好。EM 在 AUROC 上最强（0.78-0.79），voting_conf 在 rho 上最强（0.42 full / 0.35 cond）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-qwen-scierc-3seed-em-voting.md"
+}

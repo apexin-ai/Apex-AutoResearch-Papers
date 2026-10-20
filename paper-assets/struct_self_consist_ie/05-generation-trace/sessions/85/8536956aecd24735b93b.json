@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8536956aecd24735b93b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper research lit batch4",
+  "task_key": "worker_paper_research_lit_batch4_20260514T184756",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_research_lit_batch4_20260514T184756_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "e2524b389a7102378fcffcb596d89322f2c6727c5ac59be616a7e830b3f18994"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "YAML 验证通过。10 篇论文已全部追加到 `literature_map.yaml`，total_papers 更新为 51。\n\n**本批次新增：**\n\n| cluster | bibtex_key | role |\n|---------|-----------|------|\n| generative_ie | wadhwa2023revisiting | foundation |\n| generative_ie | sainz2024gollie | foundation |\n| generative_ie | luan2018scierc | dataset |\n| generative_ie | tjongkimsang2003conll | dataset |\n| generative_ie | derczynski2017wnut | dataset |\n| generative_ie | willard2023guided | background |\n| agreement_metrics | fleiss1971agreement | foundation |\n| agreement_metrics | jaccard1901distribution | foundation |\n| self_consistency_reasoning | wang2025rankedvoting | background |\n| self_consistency_reasoning | oh2025latentsc | background |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-lit-batch4.md"
+}

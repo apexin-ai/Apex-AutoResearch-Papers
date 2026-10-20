@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "d3e376d45140b9efb9bc",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code exp docred re sc",
+  "task_key": "worker_code_exp_docred_re_sc_20260520T192023",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_docred_re_sc_20260520T192023.log",
+    "occurrence": 1,
+    "bytes": 743216,
+    "sha256": "2d1c1976ff61dc4c59b35d36557a5e7feabdfa2a975b26bfde212d46d0a065a5"
+  },
+  "statistics": {
+    "messages": 243,
+    "user_turns": 1,
+    "tool_calls": 86,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 86,
+      "tool_result": 86,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "d3e376d45140b9efb9bc-part-0001.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 224,
+      "chunks": [
+        {
+          "path": "d3e376d45140b9efb9bc-part-0001.json",
+          "message_count": 161
+        },
+        {
+          "path": "d3e376d45140b9efb9bc-part-0002.json",
+          "message_count": 63
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-docred-re-sc.md"
+}

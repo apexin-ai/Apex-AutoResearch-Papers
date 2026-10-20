@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9e089eda79d3092400a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "data llama conll nscaling bootstrap",
+  "task_key": "worker_data_llama_conll_nscaling_bootstrap_20260514T211418",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_data_llama_conll_nscaling_bootstrap_20260514T211418_result.json",
+    "occurrence": 1,
+    "bytes": 185,
+    "sha256": "ff079cd96a0c5a9998ce176dac043a3ed174bf5e13e219a8db40bd1b9e79e8fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor timed out (the process had already finished before it could detect the exit). No action needed — all results were already captured and the summary file updated."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-llama-conll-nscaling-bootstrap.md"
+}

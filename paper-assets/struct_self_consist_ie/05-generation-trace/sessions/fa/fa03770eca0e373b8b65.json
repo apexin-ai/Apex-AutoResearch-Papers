@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa03770eca0e373b8b65",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh gpu status both servers",
+  "task_key": "worker_ssh_gpu_status_both_servers_20260521T154119",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_gpu_status_both_servers_20260521T154119_result.json",
+    "occurrence": 1,
+    "bytes": 829,
+    "sha256": "f998e6ac0b29e13eaf60739b9c944be7dc2de96538d42e0d29da97775a6db21e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### autodl-5090\n| GPU | Util | 显存 | 实验 |\n|-----|------|------|------|\n| 0 | 83% | 30152 / 32607 MiB | `run_mvp_pilot.py` — Qwen2.5-7B-Instruct, fewnerd NER, seed=456, logprobs (VLLM) |\n| 1 | 84% | 30204 / 32607 MiB | 同上 (VLLM worker) |\n| 2 | 80% | 30230 / 32607 MiB | 同上 (VLLM worker) |\n| 3 | 54% | 29946 / 32607 MiB | 同上 (VLLM worker) |\n\n### autodl-5090-c\n| GPU | Util | 显存 | 实验 |\n|-----|------|------|------|\n| 0 | 0% | 0 / 32607 MiB | 空闲 |\n| 1 | 0% | 0 / 32607 MiB | 空闲 |\n| 2 | 0% | 0 / 32607 MiB | 空闲 |\n| 3 | 0% | 0 / 32607 MiB | 空闲 |\n\n**空闲 GPU 列表：autodl-5090-c GPU 0/1/2/3（共 4 张）**\n\nautodl-5090 全部 4 卡被 vLLM 占满，正在跑 `e2_pretrained_fewnerd_s456` 实验（output dir: `output/e2_pretrained_fewnerd_s456/`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-status-both-servers.md"
+}

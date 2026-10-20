@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbf9a0f4c476a7c59f0f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh n32 crash prevention code audit",
+  "task_key": "worker_ssh_n32_crash_prevention_code_audit_20260522T152939",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_n32_crash_prevention_code_audit_20260522T152939_result.json",
+    "occurrence": 1,
+    "bytes": 3186,
+    "sha256": "57f3f55ffa59b95a8f819a43fcd616009062265f499ce59f01d0d6afc02ce356"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码全部读完。以下是分析。\n\n---\n\n## Save 机制分析\n\n**架构**：全部推理结果存在内存，最后一次性写文件。\n\n流程：\n1. `run_sampling_pipeline()` → 在内存中完成所有 stochastic sampling (N=32) + greedy sampling (N=1)\n2. 结果组装到 `sampled_instances: list[dict]` 列表\n3. 最后调用 `save_sampled_results(sampled_instances, output_path)` 一次性写 JSONL\n4. **无任何 intermediate checkpoint**——没有 pickle、没有 partial save、没有 batch flush\n\n**Crash 点**：`sampling.py:673`\n```python\nwith open(path, \"w\", encoding=\"utf-8\") as f:\n    for inst in sampled:\n        f.write(json.dumps(inst, ensure_ascii=False) + \"\\n\")\n```\n`ensure_ascii=False` + vLLM 生成的 lone surrogates → UTF-8 编码器拒绝 → `UnicodeEncodeError`。\n\n## 关键发现：fix 并未部署\n\n服务器上的 sampling.py **没有** `errors='replace'`——`grep -n \"errors\" sampling.py` 返回空。文件仍是原始的 `open(path, \"w\", encoding=\"utf-8\")`。运行中的 N=32 进程加载的代码 100% 是有漏洞的版本。\n\n## Crash 风险评估\n\n| 问题 | 结论 |\n|------|------|\n| N=32 save 会 crash 吗？ | **高概率会。** N=16 在 72% save 位置就撞到了 surrogate。N=32 每个 instance 有 2x 更多 samples，遇到 surrogate 的概率更高。 |\n| Partial output 可用吗？ | **可用。** 写到 crash 之前的行都是完整有效的 JSONL（每行一个完整 json.dumps 输出）。可以用 `load_sampled_results()` 直接加载。 |\n| 能否跳过推理只恢复 save？ | **不行。** 没有中间 pickle/cache。推理结果只存在于 `run_sampling_pipeline()` 的局部变量 `sampled_instances` 里。UnicodeEncodeError 导致进程退出，内存丢失。 |\n| 能否热补丁？ | **不可行。** Python bytecode 已编译进内存，修改磁盘文件不影响运行中的进程。理论上可以 gdb attach + py-call 替换函数对象，但风险极高，可能直接 crash 进程。 |\n| 完全重跑需要多久？ | 11h / 0.7 ≈ **15.7h 总推理时间**。剩余推理 ~4.7h，加上推理后的 greedy pass + parse + save。 |\n\n## 推荐方案\n\n**继续跑，不要杀进程。同时做两件准备：**\n\n1. **立即修复磁盘上的 sampling.py**，把 line 672 改为：\n   ```python\n   with open(path, \"w\", encoding=\"utf-8\", errors=\"replace\") as f:\n   ```\n\n2. **准备 rescue 脚本**：N=32 推理完成后（~4.7h），save 大概率 crash。此时：\n   - 统计 partial JSONL 已写入行数 → 这些 instance 数据完好\n   - 用 `--skip_sampling --samples_path <partial_file>` 先跑 evaluation（拿到部分结果）\n   - 如果需要完整数据：用 `--start_index <已保存数> --end_index <total>` 只对缺失 instance 重跑推理（磁盘上已是修复版代码），然后拼接两个 JSONL\n\n**不建议杀掉重跑**的原因：已投入 ~11h；让它跑完后 partial output 至少覆盖 ~70%+ instance（参考 N=16 经验），这些数据可以直接用于评估。最坏情况下只需补跑剩余 ~30% instance（~4-5h），比完全重跑（~15.7h）节省大量时间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-n32-crash-prevention-code-audit.md"
+}

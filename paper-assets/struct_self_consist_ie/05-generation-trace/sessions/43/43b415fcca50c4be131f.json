@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43b415fcca50c4be131f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh p0 figure10 oracle scaling",
+  "task_key": "worker_ssh_p0-figure10-oracle-scaling_20260520T132907",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_p0-figure10-oracle-scaling_20260520T132907_result.json",
+    "occurrence": 1,
+    "bytes": 570,
+    "sha256": "88afad94dfa705dc968cb61ba8c2fce339d47239e46d68a253f2a892e901000b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 10 已生成，保存在 `autodl-5090:/root/autodl-tmp/struct_self_consist_ie/artifacts/f1_scaling/fig_oracle_scaling.{pdf,png}`（PDF 30KB）。\n\n内容摘要：\n- **6 条曲线**：Qwen2.5-7B（实线）+ LLaMA-3.1-8B（虚线）× SciERC/CoNLL/FewNERD\n- 拟合公式 $F_1(N) = a - b \\cdot N^{-c}$，所有 R² > 0.999\n- 标注：SciERC c=0.39/0.30，FewNERD c=0.61，CoNLL 只标 a/b（c_se 过大）\n- LLaMA FewNERD 标注 \"(4-pt)\"（仅 N∈{1,2,4,8}）\n- N=1 处 \"×\" 标记 greedy F1（低于 oracle 是 T=1 采样噪声所致）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p0-figure10-oracle-scaling.md"
+}

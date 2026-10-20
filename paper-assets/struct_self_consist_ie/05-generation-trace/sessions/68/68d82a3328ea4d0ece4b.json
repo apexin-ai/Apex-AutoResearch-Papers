@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68d82a3328ea4d0ece4b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops kill v1 zombie",
+  "task_key": "worker_ops_kill-v1-zombie_20260522T173243",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill-v1-zombie_20260522T173243_result.json",
+    "occurrence": 1,
+    "bytes": 303,
+    "sha256": "79d5909c13e50539ff8aa6f1bc97cf2ab226a1a8b06f338467a1d09e9e13806d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **PID 387495, 387768** — 已成功 kill，进程不存在\n- **cuda:3** — 已释放，0MiB 显存 / 0% 利用率\n- **残留进程** — 无，grep 无匹配\n- **其他 GPU 状态**：cuda:0/2 空闲，cuda:1 被 VLLM 占用（29892MiB，与本次任务无关）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-v1-zombie.md"
+}

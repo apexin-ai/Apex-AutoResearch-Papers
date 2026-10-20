@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ab202fe8b1815d72d5f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix tab fewnerd unified gf meanlp",
+  "task_key": "worker_fix_tab_fewnerd_unified_gf_meanlp_20260518T042835",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_tab_fewnerd_unified_gf_meanlp_20260518T042835_result.json",
+    "occurrence": 1,
+    "bytes": 2131,
+    "sha256": "cb232a633338963acac21b0d7f14d547aca8106ef99e642a94d391507d6ac9d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All computations and code updates are done. Here's the report:\n\n## 重算结果\n\n### Few-NERD mean_LP ρ (gold-filtered n=32565)\n- max_LP ρ (旧): 0.421 (验证通过: 0.420671)\n- mean_LP ρ (新): **0.221**\n- 其他指标不变 (greedy=0.749, headroom=12.4pp, degen=13.8%, LP Δ=+1.35pp)\n\n### CoNLL gold-filtered 全套 (mean_LP)\n| 指标 | 旧论文值 | 新 gf 值 | 差异 |\n|------|---------|----------|------|\n| n | 2756 | 2756 | 同 |\n| greedy | .908 | .909 | +0.1pp |\n| oracle | — | .948 | 新增 |\n| headroom | 4.0pp | 3.97pp | -0.03pp |\n| degen% | 47.4% | 59.2% | +11.8pp (F1-based定义) |\n| LP ρ | .316 | .311 | -0.005 |\n| LP Δ | n.s. | -1.07pp | 确认为负 |\n\n### 三数据集完整新旧对比表\n| Dataset | n | greedy | oracle | headroom | degen% | LP ρ | LP Δ |\n|---------|---|--------|--------|----------|--------|------|------|\n| SciERC (旧) | 551 | .614 | .752 | 13.8pp | 17.8% | .205 | +0.42pp |\n| SciERC (新) | 529 | .644 | .776 | 13.2pp | 17.8% | .205 | +0.61pp |\n| Few-NERD (旧) | 32565 | .748 | — | 12.4pp | 13.8% | .421 | +1.36pp |\n| Few-NERD (新) | 32565 | .749 | .873 | 12.4pp | 13.8% | **.221** | +1.35pp |\n| CoNLL (旧) | 2756 | .908 | — | 4.0pp | 47.4% | .316 | n.s. |\n| CoNLL (新) | 2756 | .909 | .948 | 3.97pp | 59.2% | **.311** | **-1.07pp** |\n\n### analyze_fewnerd_results.py 更新\n- 已更新: **YES**\n- 更新内容:\n  - `SCIERC_REF`: 更新为 gold-filtered n=529, greedy=0.644, oracle=0.776, headroom=13.2, lp_rho=0.205, lp_delta=0.61\n  - `CONLL_REF`: 新增，n=2756, greedy=0.9088, oracle=0.9485, headroom=3.97, degen=59.2, lp_rho=0.311, lp_delta=-1.07\n  - LP 信号的 Spearman ρ 计算改为 `instance_mean_lp`（mean_LP 定义），其他信号保持 max\n  - 跨数据集对比表新增 CoNLL 行\n  - 两处 source comment 标注日期 2026-05-18\n\n**注意**: CoNLL degen% 从 47.4% 升至 59.2%，差异源于定义不同（新值为 F1-based: 所有 N=8 sample F1 完全相同；旧值可能为 entity key_sets 一致性定义）。CoNLL LP Δ = -1.07pp，确认 LP selection 在该数据集上无正向效果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-tab-fewnerd-unified-gf-meanlp.md"
+}

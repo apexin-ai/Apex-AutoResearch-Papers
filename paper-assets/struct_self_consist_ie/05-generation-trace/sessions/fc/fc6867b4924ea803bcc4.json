@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc6867b4924ea803bcc4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check ft 002 and cleanup",
+  "task_key": "worker_check_ft_002_and_cleanup_20260514T080112",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_ft_002_and_cleanup_20260514T080112_result.json",
+    "occurrence": 1,
+    "bytes": 728,
+    "sha256": "b8194ae5161b7e5462a24da9644b895032d8399ec028fda384f69b52bc374ab7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| 项目 | 结果 |\n|------|------|\n| **stale wget** | PID 3762/3804 已 kill |\n| **ft_002 状态** | **已崩溃（killed）** — 进程不存在，GPU 全空闲 |\n| **训练进度** | 70/585 steps (11.97%)，elapsed 3m32s |\n| **最后 loss** | 0.1134 (step 70)，loss 曲线正常下降中 (0.77→0.11) |\n| **checkpoint** | 无模型权重保存，仅有 trainer_log.jsonl |\n| **崩溃原因** | 不明 — 无 ft_002_train.log（训练可能未用 nohup 重定向，或日志路径不同） |\n| **registry** | 已更新：status=DONE, conclusion=killed, metrics 已记录 |\n\n需要重新启动 ft_002 训练时，建议用 nohup 并重定向日志到 `ft_002_train.log` 以便排查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-ft-002-and-cleanup.md"
+}

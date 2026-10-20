@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b2cf91e79ff6dfacbe1",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code check llama fewnerd inference",
+  "task_key": "worker_code_check_llama_fewnerd_inference_20260519T021613",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_check_llama_fewnerd_inference_20260519T021613_result.json",
+    "occurrence": 1,
+    "bytes": 830,
+    "sha256": "1d6cdc7e2c265e87276de538b1517537ba62dfb819ef527103625514b7c80bfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n| 阶段 | 状态 |\n|---|---|\n| **tmux `llama_fewnerd_infer`** | **运行中** — 进度 ~66% (199k/301k prompts)，已运行 ~1h05m，速度 ~9.5k input / ~4k output toks/s |\n| **Merged model** | 已完成 — `/checkpoints/llama3.1-8b-fewnerd-merged/` (4 shards, ~15GB) |\n| **Inference seed42** | 未完成 — `output/llama_fewnerd_s42/` 已创建但为空 |\n| **Inference seed123** | 未完成 — `output/llama_fewnerd_s123/` 已创建但为空 |\n| **Inference seed456** | 未完成 — `output/llama_fewnerd_s456/` 已创建但为空 |\n| **Analysis** | 未开始 — 无 analysis.json |\n\n推理正在跑，3 个 seed 共 301,184 prompts，当前完成约 66%。输出文件尚未写入（可能是全部完成后一次性写入）。按当前速度，预计还需 ~30-35 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-llama-fewnerd-inference.md"
+}

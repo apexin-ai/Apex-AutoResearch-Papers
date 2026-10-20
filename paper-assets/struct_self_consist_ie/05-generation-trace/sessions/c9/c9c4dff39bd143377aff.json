@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9c4dff39bd143377aff",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix registry spec 3 running",
+  "task_key": "worker_fix_registry-spec-3-running_20260519T162019",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_registry-spec-3-running_20260519T162019_result.json",
+    "occurrence": 1,
+    "bytes": 1778,
+    "sha256": "de0a7acedce9cd326364de66f61dad2e14d49e588e72fa0d8aadeeff1c6a6fd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 3 个实验的 registry spec 已经是完整的，无需补全。\n\n当前 registry 中的 spec 状态：\n\n**1. exp_qwen25_32b_fewnerd** (autodl-5090, PID 804438 仍在运行)\n- command: `CUDA_VISIBLE_DEVICES=0,1,2,3 FORCE_TORCHRUN=1 NNODES=1 NPROC_PER_NODE=4 llamafactory-cli train /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml`\n- server: autodl-5090\n- gpu_ids: `[\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"]`\n- model_name: Qwen2.5-32B-Instruct\n- seed: 42\n- data_path: `/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/llmfactory_train.json`\n- data_count: 131767\n- log_path: `/root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_32b_fewnerd_s42.log`\n\n**2. exp_qwen25_14b_fewnerd** (autodl-5090-c, PID 56773 仍在运行)\n- command: `CUDA_VISIBLE_DEVICES=0,1 FORCE_TORCHRUN=1 NNODES=1 NPROC_PER_NODE=2 llamafactory-cli train train_config_qwen25_14b_fewnerd_s42.yaml`\n- server: autodl-5090-c\n- gpu_ids: `[\"cuda:0\", \"cuda:1\"]`\n- model_name: Qwen2.5-14B-Instruct\n- seed: 42\n- data_count: 131767\n- log_path: `/root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_14b_fewnerd_s42.log`\n\n**3. exp_qwen25_7b_fewnerd** (autodl-5090-c)\n- command: `nohup bash run_fewnerd_qwen25_7b_pipeline.sh > logs/pipeline_qwen25_7b_fewnerd.log 2>&1 &`\n- server: autodl-5090-c\n- gpu_ids: `[\"cuda:2\", \"cuda:3\"]`\n- model_name: Qwen2.5-7B-Instruct\n- seed: 42\n- data_count: 131767\n- log_path: `/root/autodl-tmp/struct_self_consist_ie/logs/pipeline_qwen25_7b_fewnerd.log`\n\n关于 14B 日志文件名：registry 中记录为 `train_qwen25_14b_fewnerd_s42.log`（完整命名），注意日志实际在 `/root/autodl-tmp/struct_self_consist_ie/logs/` 而非 `/root/struct_self_consist_ie/logs/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-registry-spec-3-running.md"
+}

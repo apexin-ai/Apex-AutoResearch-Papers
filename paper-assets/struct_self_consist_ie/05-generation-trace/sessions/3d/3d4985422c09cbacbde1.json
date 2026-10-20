@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d4985422c09cbacbde1",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code fig selection gap ner only",
+  "task_key": "worker_code_fig_selection_gap_ner_only_20260519T034814",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fig_selection_gap_ner_only_20260519T034814_result.json",
+    "occurrence": 1,
+    "bytes": 1050,
+    "sha256": "e92a0b385f7ced05e76a592af1909819e6665a6b769ef355a861c9cff477ccbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## 汇报\n\n### 数据值（SciERC NER, N=8, T=1.0）\n\n| Signal | Spearman ρ | ΔF1 vs Greedy (pp) |\n|--------|-----------|-------------------|\n| SJ | 0.360 | -0.45 ± 1.03 |\n| FK | 0.267 | -0.46 ± 0.97 |\n| EM | 0.299 | -1.19 ± 0.73 |\n| VC | 0.252 | -2.65 ± 0.88 |\n| LP | 0.205 | +0.04 ± 0.50 |\n\n- Oracle: +13.05 pp | Random: -3.90 pp\n- ρ 来源: `exp_016_rerun_1024/correlation_matrix.json` (seed42, n=529)\n- ΔF1 来源: `analysis_multiseed_selection_f1.json` (3 seeds: 42/123/456)\n\n### 路径\n- 远程: `output/figures/fig_selection_gap.pdf` + `docs/paper/figures/fig_selection_gap.pdf`\n- 本地: `docs/paper/figures/fig_selection_gap.pdf`\n- 旧版备份: `docs/paper/figures/fig_selection_gap_dual_panel.pdf`\n- 生成脚本: `code/plot_selection_gap_single.py`\n\n### 与旧图差异\n- 旧图: 单面板只有 ΔF1 柱状图（3 信号 VC/SJ/LP）\n- 新图: 单面板双 Y 轴，蓝柱 = Spearman ρ，红线 = ΔF1，**5 个信号全部包含**（新增 FK、EM），Oracle/Random 参考线"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig-selection-gap-ner-only.md"
+}

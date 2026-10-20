@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e492aa6dec535df4a972",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "inference qwen scierc seed123",
+  "task_key": "worker_inference_qwen_scierc_seed123_20260515T050621",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_inference_qwen_scierc_seed123_20260515T050621_result.json",
+    "occurrence": 1,
+    "bytes": 1156,
+    "sha256": "5dd86764ff7866cf56091dd9759407a628257de34093c783cd03157cfffbd21e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "从前面 head 输出已经能确认。第一个 instance 的 `samples` 数组包含 8 个 sample（从 JSON 结构可见），每个 sample 含 `cumulative_logprob`、`n_tokens`、`mean_logprob`，且有 `greedy` 和 `logprobs` 字段。第三个 instance 同样如此。\n\n**结果汇总：**\n\n- `samples.jsonl` 行数：**551**（符合预期）\n- 每个 instance 包含 **8 个 stochastic samples** + 1 个 greedy + logprobs（已验证）\n- seed=123, N=8, T=1.0, joint subtask, collect_logprobs ✓\n\n**关键指标（RE, joint mode）：**\n\n| 指标 | 值 |\n|------|-----|\n| NER Greedy F1 | 0.6633 → (见 report) |\n| RE Greedy F1 | 0.4243 |\n| RE Oracle F1 | 0.5904 |\n| Oracle headroom | +0.1661 |\n| Fleiss' κ (mean) | 0.2979 |\n| Soft Jaccard (mean) | 0.6165 |\n| Full ρ(κ,F1) | +0.2908 (p=3.5e-09) |\n| Full ρ(SJ,F1) | +0.2486 (p=5.3e-07) |\n| Cond ρ(κ,F1) | +0.2166 (p=8.3e-04) |\n| Cond ρ(SJ,F1) | +0.3091 (p=1.4e-06) |\n| Logprob Full ρ | +0.3143, AUROC=0.6605 |\n| Verdict | FAIL (ρ_sj < 0.40) |\n\n输出目录：`output/exp_018_qwen_scierc_seed123/`，含 `samples.jsonl`（551行）和 `report.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/inference-qwen-scierc-seed123.md"
+}

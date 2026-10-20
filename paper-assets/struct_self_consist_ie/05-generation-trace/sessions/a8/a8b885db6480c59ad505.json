@@ -1,0 +1,1172 @@
+{
+  "schema_version": "1.0",
+  "id": "a8b885db6480c59ad505",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "code 72b fs signal pipeline",
+  "task_key": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_code_72b-fs-signal-pipeline_20260519T224957.jsonl",
+    "occurrence": 1,
+    "bytes": 45151,
+    "sha256": "df913023e0e27b3e1c1165ced045862ea679db7760dd42ae5e10324df1c33ab7"
+  },
+  "statistics": {
+    "messages": 57,
+    "user_turns": 0,
+    "tool_calls": 28,
+    "roles": {
+      "tool_call": 28,
+      "tool_result": 28,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T22:52:37.246661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T22:52:37.246993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T22:52:37.247198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "ps -p 131293 -o pid,cmd= 2>/dev/null && echo \"RUNNING\" || echo \"DONE\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T22:52:37.247361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T22:52:37.247494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -path \"*72b*\" -name \"samples.jsonl\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T22:52:37.247621+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T22:52:37.247743+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "ls /tmp/pipeline_test/compute_signals.py /tmp/pipeline_test/format_for_scaling.py /tmp/pipeline_test/bootstrap_construction.py 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T22:52:37.247868+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T22:52:37.248012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "ps -p 131293 -o pid,cmd=",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T22:52:37.248163+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID \\\\n131293 bash -c rm -f /tmp/agent-ml-exit/exp_qwen25_72b_fewshot.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_qwen25_72b_fewshot.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/struct_self_consist_ie && export CUDA_VISIBLE_DEVICES=0,1,2,3 && timeout 43200 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\\\\\\\"'; } > ~/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T22:52:37.248311+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -path \"*72b*\" -name \"samples.jsonl\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T22:52:37.248444+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot_pilot/scierc/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/scierc/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/conll2003/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_zeroshot/fewnerd/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/scierc/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/conll2003/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T22:52:37.248566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "ls /tmp/pipeline_test/",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T22:52:37.248692+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bootstrap_construction.py\\\\ncompute_signals.py\\\\nconll2003\\\\nfewnerd\\\\nformat_for_scaling.py\\\\nfull_signal_report.json\\\\nscierc_paired_bootstrap_result.json\\\\nscierc_per_instance.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T22:52:37.248809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -path \"*fewshot*\" -name \"samples.jsonl\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T22:52:37.248932+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/scierc/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/conll2003/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T22:52:37.249093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "tail -30 /root/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T22:52:37.249250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/scierc/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/conll2003/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T22:52:37.249372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "nvidia-smi --query-gpu=utilization.gpu,memory.used --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T22:52:37.249587+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[scierc] Total time: 483.1s\\\\nSaved 551 instances to output/72b_fewshot/scierc/samples.jsonl\\\\n\\\\n============================================================\\\\nDataset: conll2003 (3-shot)\\\\n============================================================\\\\nLoaded 3453 test instances\\\\n[conll2003] Building few-shot prompts for 3453 instances...\\\\n[conll2003] Prompt char lengths: min=5689, max=6181, mean=5758\\\\n[conll2003] Stochastic sampling N=8, T=1.0...\\\\n\\\\rRendering prompts:   0%|          | 0/3453 [00:00<?, ?it/s]\\\\rRendering prompts:   1%|▏         | 44/3453 [00:00<00:07, 438.46it/s]\\\\rRendering prompts:   3%|▎         | 88/3453 [00:00<00:07, 438.70it/s]\\\\rRendering prompts:   4%|▍         | 133/3453 [00:00<00:07, 440.38it/s]\\\\rRendering prompts:   5%|▌         | 178/3453 [00:00<00:07, 440.10it/s]\\\\rRendering prompts:   6%|▋         | 223/3453 [00:00<00:07, 436.84it/s]\\\\rRendering prompts:   8%|▊         | 268/3453 [00:00<00:07, 438.55it/s]\\\\rRendering prompts:   9%|▉         | 312/3453 [00:00<00:07, 438.21it/s]\\\\rRendering prompts:  10%|█         | 356/3453 [00:00<00:07, 427.77it/s]\\\\rRendering prompts:  12%|█▏        | 399/3453 [00:00<00:07, 427.49it/s]\\\\rRendering prompts:  13%|█▎        | 442/3453 [00:01<00:07, 421.97it/s]\\\\rRendering prompts:  14%|█▍        | 485/3453 [00:01<00:07, 419.34it/s]\\\\rRendering prompts:  15%|█▌        | 527/3453 [00:01<00:07, 414.74it/s]\\\\rRendering prompts:  16%|█▋        | 569/3453 [00:01<00:06, 414.70it/s]\\\\rRendering prompts:  18%|█▊        | 611/3453 [00:01<00:06, 414.90it/s]\\\\rRendering prompts:  19%|█▉        | 653/3453 [00:01<00:06, 415.39it/s]\\\\rRendering prompts:  20%|██        | 695/3453 [00:01<00:06, 415.48it/s]\\\\rRendering prompts:  21%|██▏       | 738/3453 [00:01<00:06, 418.71it/s]\\\\rRendering prompts:  23%|██▎       | 781/3453 [00:01<00:06, 420.15it/s]\\\\rRendering prompts:  24%|██▍       | 824/3453 [00:01<00:06, 420.26it/s]\\\\rRendering prompts:  25%|██▌       | \n…[truncated 6383 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T22:52:37.249746+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     551 /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/scierc/samples.jsonl\\\\n    3453 /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/conll2003/samples.jsonl\\\\n    4004 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T22:52:37.249880+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"100 %, 31972 MiB\\\\n100 %, 31972 MiB\\\\n100 %, 31972 MiB\\\\n100 %, 31972 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T22:52:37.250039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc && python /tmp/pipeline_test/compute_signals.py --input-dir /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/scierc --dataset scierc --model-size 72 --regime fs --output-dir /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T22:52:37.250184+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003 && python /tmp/pipeline_test/compute_signals.py --input-dir /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/conll2003 --dataset conll2003 --model-size 72 --regime fs --output-dir /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/",
+              "account": "root"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T22:52:37.250328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  scierc\\\\n============================================================\\\\n  Loaded 529 instances (gold-filtered)\\\\n  N=8\\\\n\\\\n  Signal correlations (Spearman rho vs greedy F1):\\\\n    LP  : rho=0.0603\\\\n    SJ  : rho=0.2933\\\\n    FK  : rho=0.3011\\\\n    VC  : rho=0.2578\\\\n    EM  : rho=0.2055\\\\n\\\\n  Entity F1 (mean [95% CI]):\\\\n    Greedy                    0.4615  [0.4347, 0.4872]\\\\n    LP Selection              0.4479  [0.4230, 0.4724]\\\\n    Majority Vote             0.4553  [0.4300, 0.4809]\\\\n    Consensus theta=2/N       0.4475  [0.4250, 0.4700]\\\\n    Consensus LP-wt           0.4607  [0.4358, 0.4864]\\\\n    Oracle                    0.6044  [0.5815, 0.6274]\\\\n\\\\n  Degeneracy (constant-F1): 88/529 (16.6%)\\\\n  Degeneracy (entity-set):  32/529 (6.0%)\\\\n\\\\nReport saved to /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/full_signal_report.json\\\\nPer-instance data: /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/scierc_per_instance.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.56}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T22:52:37.250466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003 && python /tmp/pipeline_test/compute_signals.py --input-dir /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/conll2003 --dataset conll2003 --model-size 72 --regime fs --output-dir /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\nERROR: No samples.jsonl found under /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/conll2003\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T22:52:37.250623+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/conll2003/",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T22:52:37.250747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "head -3 /tmp/pipeline_test/compute_signals.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T22:52:37.250871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 9424\\\\ndrwxr-xr-x 2 root root      35 May 20 01:03 .\\\\ndrwxr-xr-x 4 root root      49 May 20 01:03 ..\\\\n-rw-r--r-- 1 root root 9648679 May 20 01:03 samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T22:52:37.250994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Compute 5 confidence signals + entity construction pipeline for NER.\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T22:52:37.251155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "grep -n \"No samples.jsonl\" /tmp/pipeline_test/compute_signals.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T22:52:37.251290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"438:        print(f\\\\\\\"ERROR: No samples.jsonl found under {args.input_dir}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T22:52:37.251409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "sed -n '420,445p' /tmp/pipeline_test/compute_signals.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T22:52:37.251527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T22:52:37.251643+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "grep -n -B5 \"No samples.jsonl\" /tmp/pipeline_test/compute_signals.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T22:52:37.251771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"433-    datasets = find_datasets(args.input_dir)\\\\n434-    if args.dataset:\\\\n435-        datasets = {k: v for k, v in datasets.items() if k in args.dataset}\\\\n436-\\\\n437-    if not datasets:\\\\n438:        print(f\\\\\\\"ERROR: No samples.jsonl found under {args.input_dir}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T22:52:37.251890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "grep -n \"def find_datasets\" /tmp/pipeline_test/compute_signals.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T22:52:37.252008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"397:def find_datasets(input_dir):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T22:52:37.252121+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "grep -n -A20 \"def find_datasets\" /tmp/pipeline_test/compute_signals.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T22:52:37.252278+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"397:def find_datasets(input_dir):\\\\n398-    \\\\\\\"\\\\\\\"\\\\\\\"Auto-detect dataset directories under input_dir.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n399-    datasets = {}\\\\n400-    for name in [\\\\\\\"scierc\\\\\\\", \\\\\\\"conll2003\\\\\\\", \\\\\\\"fewnerd\\\\\\\"]:\\\\n401-        path = os.path.join(input_dir, name, \\\\\\\"samples.jsonl\\\\\\\")\\\\n402-        if os.path.exists(path):\\\\n403-            datasets[name] = path\\\\n404-    top_path = os.path.join(input_dir, \\\\\\\"samples.jsonl\\\\\\\")\\\\n405-    if os.path.exists(top_path) and not datasets:\\\\n406-        ds_name = os.path.basename(input_dir)\\\\n407-        for known in [\\\\\\\"scierc\\\\\\\", \\\\\\\"conll\\\\\\\", \\\\\\\"fewnerd\\\\\\\"]:\\\\n408-            if known in ds_name.lower():\\\\n409-                ds_name = known\\\\n410-                break\\\\n411-        datasets[ds_name] = top_path\\\\n412-    return datasets\\\\n413-\\\\n414-\\\\n415-def main():\\\\n416-    parser = argparse.ArgumentParser(\\\\n417-        description=\\\\\\\"Compute 5 signals + construction pipeline\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T22:52:37.252441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/pipeline_test/compute_signals.py --input-dir /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot/conll2003 --dataset conll --model-size 72 --regime fs --output-dir /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T22:52:37.252583+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  conll\\\\n============================================================\\\\n  Loaded 2756 instances (gold-filtered)\\\\n  N=8\\\\n\\\\n  Signal correlations (Spearman rho vs greedy F1):\\\\n    LP  : rho=0.1060\\\\n    SJ  : rho=0.4418\\\\n    FK  : rho=0.4508\\\\n    VC  : rho=0.4255\\\\n    EM  : rho=0.4028\\\\n\\\\n  Entity F1 (mean [95% CI]):\\\\n    Greedy                    0.7450  [0.7307, 0.7593]\\\\n    LP Selection              0.7474  [0.7337, 0.7615]\\\\n    Majority Vote             0.7428  [0.7288, 0.7565]\\\\n    Consensus theta=2/N       0.7400  [0.7263, 0.7540]\\\\n    Consensus LP-wt           0.7453  [0.7315, 0.7590]\\\\n    Oracle                    0.7958  [0.7827, 0.8091]\\\\n\\\\n  Degeneracy (constant-F1): 1930/2756 (70.0%)\\\\n  Degeneracy (entity-set):  1699/2756 (61.6%)\\\\n\\\\nReport saved to /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/full_signal_report.json\\\\nPer-instance data: /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/conll_per_instance.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.63}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T22:52:37.252734+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/pipeline_test/bootstrap_construction.py --per-instance /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/scierc_per_instance.json --dataset scierc",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T22:52:37.252870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  scierc\\\\n============================================================\\\\nInstances: 529, Samples/instance: N/A (from per-instance data)\\\\n\\\\nGreedy F1:       0.4615\\\\nConstruction F1: 0.4607\\\\nObserved diff:   -0.0008 (-0.08pp)\\\\n\\\\n=== Paired Bootstrap Test (B=10000) ===\\\\n95% CI of diff:  [-0.0120, +0.0108]\\\\np-value (one-sided, H0: diff<=0): 0.5435\\\\nCohen's d:       -0.0059\\\\nSignificant (p<0.05): NO\\\\n\\\\n=== Instance Distribution ===\\\\nPositive (construction > greedy): 82 (15.5%)\\\\nNegative (construction < greedy): 84 (15.9%)\\\\nTied:                             363 (68.6%)\\\\n\\\\n=== Degeneracy ===\\\\nDegenerate instances: 32 (6.0%)\\\\nNon-degenerate:       497 (94.0%)\\\\n\\\\n  Non-degen greedy F1:       0.4471\\\\n  Non-degen construction F1: 0.4462\\\\n  Non-degen diff:            -0.0009 (-0.09pp)\\\\n  Non-degen 95% CI:          [-0.0128, +0.0117]\\\\n  Non-degen p-value:         0.5431\\\\n  Non-degen positive/negative/tied: 82/84/331\\\\n\\\\n  Degen greedy F1:       0.6848\\\\n  Degen construction F1: 0.6848\\\\n  Degen diff:            +0.0000\\\\n\\\\nResult saved to /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/scierc_paired_bootstrap_result.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-19T22:52:37.253003+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/pipeline_test/bootstrap_construction.py --per-instance /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/conll_per_instance.json --dataset conll2003",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-19T22:52:37.253168+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  conll2003\\\\n============================================================\\\\nInstances: 2756, Samples/instance: N/A (from per-instance data)\\\\n\\\\nGreedy F1:       0.7450\\\\nConstruction F1: 0.7453\\\\nObserved diff:   +0.0003 (+0.03pp)\\\\n\\\\n=== Paired Bootstrap Test (B=10000) ===\\\\n95% CI of diff:  [-0.0029, +0.0035]\\\\np-value (one-sided, H0: diff<=0): 0.4174\\\\nCohen's d:       0.0040\\\\nSignificant (p<0.05): NO\\\\n\\\\n=== Instance Distribution ===\\\\nPositive (construction > greedy): 88 (3.2%)\\\\nNegative (construction < greedy): 69 (2.5%)\\\\nTied:                             2599 (94.3%)\\\\n\\\\n=== Degeneracy ===\\\\nDegenerate instances: 1699 (61.6%)\\\\nNon-degenerate:       1057 (38.4%)\\\\n\\\\n  Non-degen greedy F1:       0.5956\\\\n  Non-degen construction F1: 0.5965\\\\n  Non-degen diff:            +0.0009 (+0.09pp)\\\\n  Non-degen 95% CI:          [-0.0072, +0.0091]\\\\n  Non-degen p-value:         0.4111\\\\n  Non-degen positive/negative/tied: 88/69/900\\\\n\\\\n  Degen greedy F1:       0.8379\\\\n  Degen construction F1: 0.8379\\\\n  Degen diff:            +0.0000\\\\n\\\\nResult saved to /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/conll2003_paired_bootstrap_result.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-19T22:52:37.253326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/pipeline_test/format_for_scaling.py --report /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/full_signal_report.json --model-size 72 --regime fs",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-19T22:52:37.253470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# ─── Copy-paste into plot_scaling_curve.py DATA dict ───\\\\n\\\\n    # ── Qwen3-72B FS ──\\\\n    (72, \\\\\\\"fs\\\\\\\", \\\\\\\"SciERC\\\\\\\")          : {\\\\\\\"lp_rho\\\\\\\": 0.06, \\\\\\\"sj_rho\\\\\\\": 0.293, \\\\\\\"vc_rho\\\\\\\": 0.258, \\\\\\\"degen\\\\\\\": 16.6, \\\\\\\"construction_lp_delta\\\\\\\": -0.08, \\\\\\\"greedy_f1\\\\\\\": 0.461, \\\\\\\"oracle_f1\\\\\\\": 0.604},\\\\n\\\\n\\\\n# ─── Summary Table ───\\\\n# Key                                    LP_ρ    SJ_ρ    VC_ρ  Degen%    Δ_LP  Greedy  Oracle\\\\n# (72, \\\\\\\"fs\\\\\\\", \\\\\\\"SciERC\\\\\\\")                  0.060   0.293   0.258  16.600  -0.080   0.461   0.604\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-19T22:52:37.253604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/pipeline_test/format_for_scaling.py --report /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/full_signal_report.json --model-size 72 --regime fs",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-19T22:52:37.253751+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# ─── Copy-paste into plot_scaling_curve.py DATA dict ───\\\\n\\\\n    # ── Qwen3-72B FS ──\\\\n    (72, \\\\\\\"fs\\\\\\\", \\\\\\\"CoNLL\\\\\\\")           : {\\\\\\\"lp_rho\\\\\\\": 0.106, \\\\\\\"sj_rho\\\\\\\": 0.442, \\\\\\\"vc_rho\\\\\\\": 0.426, \\\\\\\"degen\\\\\\\": 70.0, \\\\\\\"construction_lp_delta\\\\\\\": 0.03, \\\\\\\"greedy_f1\\\\\\\": 0.745, \\\\\\\"oracle_f1\\\\\\\": 0.796},\\\\n\\\\n\\\\n# ─── Summary Table ───\\\\n# Key                                    LP_ρ    SJ_ρ    VC_ρ  Degen%    Δ_LP  Greedy  Oracle\\\\n# (72, \\\\\\\"fs\\\\\\\", \\\\\\\"CoNLL\\\\\\\")                   0.106   0.442   0.426  70.000   0.030   0.745   0.796\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-19T22:52:37.253906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "tail -5 /root/runs/struct_self_consist_ie/exp_qwen25_72b_fewshot.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-19T22:52:37.254026+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/scierc/full_signal_report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-19T22:52:37.254159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/72b_fewshot_signals/conll2003/full_signal_report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-19T22:52:37.254378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[fewnerd] Building few-shot prompts for 37648 instances...\\\\n[fewnerd] Prompt char lengths: min=6315, max=7531, mean=6447\\\\n[fewnerd] Stochastic sampling N=8, T=1.0...\\\\n\\\\rRendering prompts:   0%|          | 0/37648 [00:00<?, ?it/s]\\\\rRendering prompts:   0%|          | 36/37648 [00:00<01:46, 351.71it/s]\\\\rRendering prompts:   0%|          | 74/37648 [00:00<01:43, 362.63it/s]\\\\rRendering prompts:   0%|          | 111/37648 [00:00<01:44, 358.76it/s]\\\\rRendering prompts:   0%|          | 147/37648 [00:00<01:44, 357.57it/s]\\\\rRendering prompts:   0%|          | 185/37648 [00:00<01:43, 362.88it/s]\\\\rRendering prompts:   1%|          | 223/37648 [00:00<01:42, 366.14it/s]\\\\rRendering prompts:   1%|          | 260/37648 [00:00<01:42, 364.75it/s]\\\\rRendering prompts:   1%|          | 297/37648 [00:00<01:42, 363.97it/s]\\\\rRendering prompts:   1%|          | 335/37648 [00:00<01:42, 364.10it/s]\\\\rRendering prompts:   1%|          | 373/37648 [00:01<01:41, 367.63it/s]\\\\rRendering prompts:   1%|          | 410/37648 [00:01<01:42, 363.85it/s]\\\\rRendering prompts:   1%|          | 448/37648 [00:01<01:41, 366.68it/s]\\\\rRendering prompts:   1%|▏         | 485/37648 [00:01<01:41, 365.82it/s]\\\\rRendering prompts:   1%|▏         | 523/37648 [00:01<01:40, 368.07it/s]\\\\rRendering prompts:   1%|▏         | 560/37648 [00:01<01:47, 343.74it/s]\\\\rRendering prompts:   2%|▏         | 595/37648 [00:01<01:52, 329.11it/s]\\\\rRendering prompts:   2%|▏         | 632/37648 [00:01<01:48, 339.98it/s]\\\\rRendering prompts:   2%|▏         | 669/37648 [00:01<01:46, 347.64it/s]\\\\rRendering prompts:   2%|▏         | 706/37648 [00:01<01:44, 353.28it/s]\\\\rRendering prompts:   2%|▏         | 742/37648 [00:02<01:43, 355.17it/s]\\\\rRendering prompts:   2%|▏         | 779/37648 [00:02<01:42, 358.79it/s]\\\\rRendering prompts:   2%|▏         | 816/37648 [00:02<01:42, 360.67it/s]\\\\rRendering prompts:   2%|▏         | 853/37648 [00:02<01:41, 362.65it/s]\\\\rRenderin\n…[truncated 6376 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-19T22:52:37.254592+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scierc\\\\\\\": {\\\\n    \\\\\\\"name\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 529,\\\\n    \\\\\\\"n_samples\\\\\\\": 8,\\\\n    \\\\\\\"signals\\\\\\\": {\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.29329163662663027\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3010684888544646\\\\n      },\\\\n      \\\\\\\"LP\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.06027582188572302\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2054891113947109\\\\n      },\\\\n      \\\\\\\"VC\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2578493806429398\\\\n      }\\\\n    },\\\\n    \\\\\\\"baselines\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.46146453840215657,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.4347084232717503,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.4871786793336888\\\\n      },\\\\n      \\\\\\\"lp_selection\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.44788919289617896,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.42297656659660443,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.47239215265433726\\\\n      },\\\\n      \\\\\\\"majority_vote\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4552882110538065,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.42999127526537734,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.4808550407794264\\\\n      },\\\\n      \\\\\\\"oracle\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6044266482994188,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.5814665852945625,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.62740604281247\\\\n      },\\\\n      \\\\\\\"consensus_theta2n\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.44749545211659014,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.42497915338179987,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.46995082738672783\\\\n      },\\\\n      \\\\\\\"consensus_lp_weighted\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4606649546630643,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.4358086410543877,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.48635787128225694\\\\n      }\\\\n    },\\\\n    \\\\\\\"consensus_variants\\\\\\\": {\\\\n      \\\\\\\"high=0.5_medium=0.1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4398718841606867,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.4163787210369317,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.4641643319910324\\\\n      },\\\\n      \\\\\\\"high=0.6_medium=0.2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.45555589406084235,\\\\n        \n…[truncated 649 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-19T22:52:37.254792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"conll\\\\\\\": {\\\\n    \\\\\\\"name\\\\\\\": \\\\\\\"conll\\\\\\\",\\\\n    \\\\\\\"n_instances\\\\\\\": 2756,\\\\n    \\\\\\\"n_samples\\\\\\\": 8,\\\\n    \\\\\\\"signals\\\\\\\": {\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.441758432978281\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4508204940873203\\\\n      },\\\\n      \\\\\\\"LP\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.10603090944237105\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4027710183091927\\\\n      },\\\\n      \\\\\\\"VC\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4255488206935679\\\\n      }\\\\n    },\\\\n    \\\\\\\"baselines\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7449576104910294,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7306649761838441,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7593339765060662\\\\n      },\\\\n      \\\\\\\"lp_selection\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7473685538022954,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7336554557623948,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7614729069776447\\\\n      },\\\\n      \\\\\\\"majority_vote\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7427829302898389,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7288397197306327,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7564712109191478\\\\n      },\\\\n      \\\\\\\"oracle\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7958385663420529,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7827460599531022,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.8090547404135938\\\\n      },\\\\n      \\\\\\\"consensus_theta2n\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7399691673796225,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7262815080184964,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7539540858139382\\\\n      },\\\\n      \\\\\\\"consensus_lp_weighted\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7452931349059022,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7315013707961716,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7590211930618345\\\\n      }\\\\n    },\\\\n    \\\\\\\"consensus_variants\\\\\\\": {\\\\n      \\\\\\\"high=0.5_medium=0.1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7434944522264676,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.7295606977961946,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.757217690509546\\\\n      },\\\\n      \\\\\\\"high=0.6_medium=0.2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7445556225392173,\\\\n        \\\\\\\"ci_lo\\\\\\\n…[truncated 640 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-19T22:52:37.255030+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All pipeline steps done for SciERC and CoNLL. FewNERD at 91% (~30 min remaining).\n\n---\n\n## 72B Few-Shot Signal Results\n\n### Full Signal Reports\n\n#### SciERC (FS, N=8, 529 instances)\n| Signal | ρ |\n|--------|------|\n| LP | 0.060 |\n| SJ | 0.293 |\n| FK | 0.301 |\n| VC | 0.258 |\n| EM | 0.205 |\n\n- Greedy F1: 0.461 [0.435, 0.487]\n- LP Selection F1: 0.448\n- Majority Vote F1: 0.455\n- Consensus LP-wt F1: 0.461\n- Oracle F1: 0.604\n- Degeneracy: 16.6% (constant-F1), 6.0% (entity-set)\n- Construction Δ: **-0.08pp** (p=0.54, not significant)\n\n#### CoNLL (FS, N=8, 2756 instances)\n| Signal | ρ |\n|--------|------|\n| LP | 0.106 |\n| SJ | 0.442 |\n| FK | 0.451 |\n| VC | 0.426 |\n| EM | 0.403 |\n\n- Greedy F1: 0.745 [0.731, 0.759]\n- LP Selection F1: 0.747\n- Majority Vote F1: 0.743\n- Consensus LP-wt F1: 0.745\n- Oracle F1: 0.796\n- Degeneracy: 70.0% (constant-F1), 61.6% (entity-set)\n- Construction Δ: **+0.03pp** (p=0.42, not significant)\n\n---\n\n### ZS vs FS Comparison\n\n| Dataset | Metric | ZS | FS | Δ (FS−ZS) |\n|---------|--------|----|----|-----------|\n| **SciERC** | LP ρ | 0.081 | 0.060 | **-0.021** |\n| | Degen% | 21.0% | 16.6% | **-4.4pp** (better) |\n| | Construction Δ | +1.53pp | -0.08pp | **lost** |\n| **CoNLL** | LP ρ | -0.002 | 0.106 | **+0.108** |\n| | Degen% | 67.7% | 70.0% | +2.3pp |\n| | Construction Δ | -0.37pp | +0.03pp | +0.40pp |\n\n**Key findings:**\n- **CoNLL LP ρ jumps from ~0 to 0.106** — few-shot examples make log-prob discriminative where ZS had zero signal\n- SciERC LP ρ slightly decreases (0.081→0.060), and the ZS construction gain (+1.53pp) vanishes in FS\n- SJ/FK/VC are all strong in FS for both datasets (0.26–0.45), same pattern as ZS\n- Degeneracy is largely unchanged between regimes\n\n---\n\n### DATA dict entries (copy-paste ready)\n\n```python\n    # ── Qwen3-72B FS ──\n    (72, \"fs\", \"SciERC\")          : {\"lp_rho\": 0.06, \"sj_rho\": 0.293, \"vc_rho\": 0.258, \"degen\": 16.6, \"construction_lp_delta\": -0.08, \"greedy_f1\": 0.461, \"oracle_f1\": 0.604},\n    (72, \"fs\", \"CoNLL\")           : {\"lp_rho\": 0.106, \"sj_rho\": 0.442, \"vc_rho\": 0.426, \"degen\": 70.0, \"construction_lp_delta\": 0.03, \"greedy_f1\": 0.745, \"oracle_f1\": 0.796},\n```\n\n---\n\n### FewNERD Status\n91% done (273256/301184 prompts), ETA ~30 min. Will need a follow-up run of the same pipeline once it completes."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_72b-fs-signal-pipeline_20260519T224957"
+          },
+          "id": "event-000057"
+        }
+      ],
+      "message_count": 57
+    }
+  ],
+  "readable_path": "readable/conversations/code-72b-fs-signal-pipeline.md"
+}

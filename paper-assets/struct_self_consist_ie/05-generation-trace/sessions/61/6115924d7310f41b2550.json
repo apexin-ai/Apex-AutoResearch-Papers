@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6115924d7310f41b2550",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh esj probe qwen3 prep",
+  "task_key": "worker_ssh_esj_probe_qwen3_prep_20260522T152951",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_esj_probe_qwen3_prep_20260522T152951_result.json",
+    "occurrence": 1,
+    "bytes": 3782,
+    "sha256": "0c2604448c7195258a2fe1b55b302ade61afbcbae7ba4129437f1895508ac998"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下。\n\n---\n\n## ESJ Probe on Qwen3-8B 准备工作汇总\n\n### 1. ESJ 代码\n\n**文件**: `/root/autodl-tmp/struct_self_consist_ie/code/run_esj.py` (~530 行)\n\n**机制**: 对 N=8 samples 中每个 unique entity，用 finetuned 模型做 yes/no verification forward pass，取 P(yes) 作为 entity-level confidence。Prompt 模板：\n\n```\nIn the following sentence, is \"{entity_text}\" a {entity_type} entity? Answer only yes or no.\nSentence: {sentence}\nAnswer:\n```\n\n通过 `apply_chat_template(enable_thinking=False)` 格式化，已适配 Qwen3。\n\n**CLI 参数**:\n```\n--base_model_path  (required, 模型路径)\n--adapter_path     (optional, LoRA adapter；merged 模型不需要)\n--data_path        (required, samples.jsonl)\n--output_dir       (required, 输出目录)\n--max_instances    (default=0, 即全量)\n--batch_size       (default=16)\n```\n\nDevice 硬编码为 `\"cuda\"`，通过 `CUDA_VISIBLE_DEVICES` 选 GPU。\n\n**无已有 ESJ 结果**（`esj_results.json` 搜索为空）。\n\n### 2. Qwen3-8B Finetuned 模型（已 merged，可直接加载）\n\n| 数据集 | Merged 模型路径 | 大小 |\n|--------|----------------|------|\n| CoNLL2003 | `checkpoints/qwen3-8b-conll2003-merged/` | ~16GB |\n| SciERC | `checkpoints/qwen3-8b-scierc-merged-v2/` | ~16GB |\n| FewNERD | `checkpoints/qwen3-8b-fewnerd-5epoch-merged/` | ~16GB |\n\n都是 merged 模型，不需要 `--adapter_path`。\n\n### 3. 可用数据（samples.jsonl）\n\n| 数据集 | 路径 | 实例数 |\n|--------|------|--------|\n| SciERC | `output/scierc_mf4v2_seed42/samples.jsonl` | 551 |\n| CoNLL | `output/conll_mf4v2_seed123/samples.jsonl` | 3,453 |\n| FewNERD | `output/fewnerd_mf4v2_seed42/samples.jsonl` | 37,648 |\n\n每个实例含 N=8 samples + gold + greedy + logprobs，格式完全匹配 `run_esj.py` 的输入要求。\n\n### 4. 预估运行时长\n\n每个实例平均 ~8-12 个 unique entities → 对应 verification prompts：\n- SciERC: ~5K prompts → **~15-30s**\n- CoNLL: ~25K prompts → **~1-2 min**\n- FewNERD: ~300K prompts → **~12-25 min**\n\n单 GPU 总计 **~15-30 分钟**（3 个 job 串行）。如果并行跑 3 张 GPU，**~25 分钟**搞定（由 FewNERD 瓶颈决定）。\n\n### 5. GPU 可用性\n\nautodl-5090: **cuda:0-3 全部空闲**（4× RTX 5090 32GB，0% utilization）。\n\n**推荐**: 3 张 GPU 并行跑 3 个数据集（cuda:0=SciERC, cuda:1=CoNLL, cuda:2=FewNERD）。\n\n### 6. 运行命令草案\n\n```bash\ncd /root/autodl-tmp/struct_self_consist_ie\n\n# SciERC (cuda:0)\nCUDA_VISIBLE_DEVICES=0 python code/run_esj.py \\\n  --base_model_path checkpoints/qwen3-8b-scierc-merged-v2 \\\n  --data_path output/scierc_mf4v2_seed42/samples.jsonl \\\n  --output_dir output/esj_qwen3_scierc_seed42 \\\n  --batch_size 32 &\n\n# CoNLL (cuda:1)\nCUDA_VISIBLE_DEVICES=1 python code/run_esj.py \\\n  --base_model_path checkpoints/qwen3-8b-conll2003-merged \\\n  --data_path output/conll_mf4v2_seed123/samples.jsonl \\\n  --output_dir output/esj_qwen3_conll_seed123 \\\n  --batch_size 32 &\n\n# FewNERD (cuda:2)\nCUDA_VISIBLE_DEVICES=2 python code/run_esj.py \\\n  --base_model_path checkpoints/qwen3-8b-fewnerd-5epoch-merged \\\n  --data_path output/fewnerd_mf4v2_seed42/samples.jsonl \\\n  --output_dir output/esj_qwen3_fewnerd_seed42 \\\n  --batch_size 32 &\n\nwait\n```\n\n`batch_size=32` 可以用（5090 32GB 跑 8B bf16 forward-only 绰绰有余，prompt 很短）。\n\n### 注意事项\n\n- **CoNLL 没有 seed42 的 mf4v2 数据**，最近的是 seed123。如需 seed42 需先跑 inference。\n- 3 个 job 同时加载 3 份 ~16GB 模型到 3 张 GPU，不存在显存冲突。\n- 输出为 `esj_results.json`，包含 construction F1、entity-level AUROC/ρ、sample ranking 等完整指标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-esj-probe-qwen3-prep.md"
+}

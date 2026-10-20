@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bef1b857898b2726708d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check exp021 completion",
+  "task_key": "worker_check_exp021_completion_20260516T203526",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_exp021_completion_20260516T203526_result.json",
+    "occurrence": 1,
+    "bytes": 440,
+    "sha256": "5a0efae23ca8637595a1aee287cf0ae564449496a030e8860a353d4d54d5319f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**SUCCESS**\n\n- **Total steps**: 6177 (完整 3 epochs)\n- **Train loss**: 0.0480\n- **Eval loss**: 0.0275\n- **Train runtime**: 3h 57m 25s\n- **Final checkpoint**: `/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_full/checkpoint-6177/`\n- **Best model (merged)**: `/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_full/adapter_model.safetensors` (349MB)\n- **无错误**，评估也正常完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp021-completion.md"
+}

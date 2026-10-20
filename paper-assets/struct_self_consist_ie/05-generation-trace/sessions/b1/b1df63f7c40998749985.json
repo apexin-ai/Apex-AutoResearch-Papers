@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1df63f7c40998749985",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis rho paper impact list",
+  "task_key": "worker_analysis_rho_paper_impact_list_20260515T132710",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_rho_paper_impact_list_20260515T132710_result.json",
+    "occurrence": 1,
+    "bytes": 960,
+    "sha256": "b696a6bae6a5be313b22e352a9dae984449b25d00c4a0d476faa843478b0871c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出：\n\n**本地**: `artifacts/rho_paper_impact_list.md` (详细版，269 行)\n**服务器**: `/root/autodl-tmp/struct_self_consist_ie/analysis_rho_unification/` 下:\n- `paper_impact_list.md` (精简版)\n- `analysis_unified_rho.json` (已同步)\n\n核心结论：\n\n1. **论文核心贡献（correlation-selection gap）不受影响** — 基于 SciERC N=8，不在修正范围内\n2. **主要影响在 appendix**: tab:robustness (LLaMA CoNLL N=16 全部 5 signal 偏低 ~0.015)、tab:n-scaling (FK N-scaling 可能从 +0.030 降至 +0.005)\n3. **FK N-scaling claim 可能失效** — seed456 FK 从 0.345→0.272，是唯一可能受实质影响的 claim\n4. **Structural advantage over LP 反而加强** — 统一管道下 SJ-LP Δ 从 +0.153 增至 ~+0.170\n5. **关键缺口**: JSON 不含 N=8 数据和 seed123，Table 1 (N=8 LLaMA CoNLL) 及多处正文引用需用统一管道补算后才能确定是否需更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rho-paper-impact-list.md"
+}

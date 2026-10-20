@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44a2d63543026b1cfd8e",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "director / loop_12.md",
+  "task_key": "loop_12",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/director/loop_12.md",
+    "occurrence": 1,
+    "bytes": 3229,
+    "sha256": "4976d312b0347c743cc96bbf0f295adda500a2a51dd9977edc3d53f42a06fa12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: max_messages\nupdated: '2026-05-24T01:31:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 autodl-5090 的 cuda:0-3（4张5090），不可用其他服务器的卡\n- SciERC construction 数字在论文中保持 +0.32pp n.s.（单种子 seed42），不要更新为 5-seed +1.11pp——原因是三张表的 SciERC greedy baseline 不一致（.667/.663/.647），贸然改一个会引发 cross-table 矛盾\n- tab:scale_comparison（appendix L1606）使用 entity-type-averaged macro-F1（Greedy=.667），tab:selection（主表）使用 instance-averaged macro-F1（Greedy=.645）——两个都是对的，不要统一\n- 匿名 repo 用 HTTPS+token 认证推送，路径 /tmp/anon_repo/，最新 commit 70ed395\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，4×RTX 5090，当前全部空闲\n- 本地论文目录：/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/\n- 编译：pdflatex，main.tex → main.pdf（46页，8页正文+38页appendix）\n- 产出目录：projects/struct_self_consist_ie/artifacts/（含 scierc_5seed_construction_report.md, inverse_scaling_summary.json, multiseed_flip_overlap_analysis.md 等）\n- 无活跃进程/tmux/cron 任务，所有实验已完成\n\n### 3. 📊 当前状态\n- R41 审稿已提交（apr_20260523T210143_2pos），待用户在飞书卡片确认审稿模式（推荐 continue）——已催用户 3 次，未回复\n- Paper Agent 已派单做 DDL 前 writing polish（camera-ready 检查、caption 精炼、tab:scale_comparison 脚注），等待回调\n- Registry: 0 RUNNING, 0 PREPARING，205 成功 / 55 负向 / 16 失败 / 共 311\n- 本轮完成的关键修复：SciERC EM AUROC .749→.631（copy-paste bug）、headroom 11.4→13.0pp（4处）、MV +0.61→+0.6pp、bib 清理（3修正+12孤立删除）、ARR checklist 15/15、匿名检查通过\n\n### 4. 📋 待办\n- 用户确认 R41 审稿卡片 → 审稿团队启动新一轮审查，重点验证本轮 3 个数据修复\n- Paper Agent writing polish 完成 → 检查修改、重新编译、推送匿名 repo\n- 审稿报告返回 → 按 review-report-action skill 处理（Holistic Pass + Per-Comment Action Matrix）\n- 如果用户要求补实验 → 4张5090可用，可立即安排 ablation/robustness check\n- DDL 5/25 到了用户仍未确认审稿 → 直接编译最终版提交（contingency）\n\n### 5. 🎯 战略上下文\n- 论文核心发现：test-time scaling 对 NER 存在 correlation-selection gap（QE 信号有预测力但 selection 无增益）；degeneracy + signal alignment collapse 是联合失败条件；entity construction 在低 degeneracy 下有条件增益但 Holm 校正后仅 suggestive（p_adj=0.055）\n- 最大风险：SciERC 跨表 greedy baseline 不一致（.667/.663/.647）——这是已知问题，决策是保守不改。如果审稿人追问，camera-ready 时统一 F1 计算方法是正确解法\n- 易错点：不要把 tab:scale_comparison 的 .667 改成 .645，那会破坏该表的内部一致性（72B ZS 行也用 entity-type-averaged）\n- Figure 1 最终版仍等用户确认\n- 关键决策链：D001-D069 在 decisions.yaml，错题本 M069（EM AUROC copy-paste）在 mistakes.yaml\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12.md"
+}

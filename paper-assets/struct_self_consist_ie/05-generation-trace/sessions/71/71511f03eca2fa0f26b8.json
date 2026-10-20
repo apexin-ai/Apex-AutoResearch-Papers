@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "71511f03eca2fa0f26b8",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "exp qwen conll seed456",
+  "task_key": "worker_exp_qwen_conll_seed456_20260518T092856",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_qwen_conll_seed456_20260518T092856.log",
+    "occurrence": 1,
+    "bytes": 1954938,
+    "sha256": "dc072495bdaf3a0eb476414a652309cf509c2a692279aef430a3462e8ad1ee89"
+  },
+  "statistics": {
+    "messages": 365,
+    "user_turns": 1,
+    "tool_calls": 120,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 117,
+      "tool_call": 120,
+      "tool_result": 120,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 233,
+      "chunks": [
+        {
+          "path": "71511f03eca2fa0f26b8-part-0001.json",
+          "message_count": 163
+        },
+        {
+          "path": "71511f03eca2fa0f26b8-part-0002.json",
+          "message_count": 70
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 132,
+      "chunks": [
+        {
+          "path": "71511f03eca2fa0f26b8-part-0002.json",
+          "message_count": 26
+        },
+        {
+          "path": "71511f03eca2fa0f26b8-part-0003.json",
+          "message_count": 70
+        },
+        {
+          "path": "71511f03eca2fa0f26b8-part-0004.json",
+          "message_count": 36
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-qwen-conll-seed456.md"
+}

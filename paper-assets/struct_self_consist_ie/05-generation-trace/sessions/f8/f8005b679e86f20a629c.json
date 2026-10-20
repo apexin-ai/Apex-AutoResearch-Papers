@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8005b679e86f20a629c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu exp b3 prompted diversity",
+  "task_key": "worker_gpu_exp_b3_prompted_diversity_20260520T172625",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp_b3_prompted_diversity_20260520T172625_result.json",
+    "occurrence": 1,
+    "bytes": 1272,
+    "sha256": "8cee4049680db7d2917c04cfd49d5cc41bd41bf849dff7197c8b66701e736b48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态已为 PENDING，spec 已更新。准备完成，汇总如下：\n\n---\n\n**exp_b3_prompted_diversity 准备就绪**\n\n| 项目 | 状态 |\n|------|------|\n| 代码 | `/root/autodl-tmp/struct_self_consist_ie/code/exp_b3_prompted_diversity.py` (581行，与本地一致) |\n| 数据 | `/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/test.json` (37648行，取前3000条有实体的) |\n| 模型 | `checkpoints/qwen3-8b-fewnerd-exp021-merged` ✓ |\n| 依赖 | vLLM + xgrammar 已安装 (conda base, Python 3.12) |\n| GPU | cuda:3 空闲 (0 MiB / 32607 MiB) |\n| Registry | PENDING, spec 已写入 |\n\n**运行命令：**\n```bash\nCUDA_VISIBLE_DEVICES=3 python /root/autodl-tmp/struct_self_consist_ie/code/exp_b3_prompted_diversity.py --phase both --num_instances 3000 --seed 42\n```\n\n**注意事项：**\n- seed 改为 42（代码默认 123），与 spec 一致\n- `CUDA_VISIBLE_DEVICES=3` 让脚本内 cuda:0 映射到物理 GPU 3\n- 预计时长 2-4h（vLLM batch inference: greedy 1轮 + single 8 samples + multi 4×2 = 共 17 轮推理，3000 instances）\n- 输出目录：`/root/autodl-tmp/struct_self_consist_ie/output/exp_b3_prompted_diversity/`\n- Prior run conclusion: negative (cross_template_jaccard=0.67, multi strictly worse)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-b3-prompted-diversity.md"
+}

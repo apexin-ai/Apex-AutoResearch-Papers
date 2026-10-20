@@ -1,0 +1,572 @@
+{
+  "schema_version": "1.0",
+  "id": "5de565c2983766c8e14f",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "analysis mlp verifier",
+  "task_key": "worker_analysis_mlp_verifier_20260518T011632",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analysis_mlp_verifier_20260518T011632.jsonl",
+    "occurrence": 1,
+    "bytes": 40097,
+    "sha256": "11f5638f82de95c96df86ee07a77e6a0cd8e757c55813637d5feaa322e6cb11e"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T01:19:55.436595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T01:19:55.436929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T01:19:55.437163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "filters": "{'id': 'exp_019'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T01:19:55.437346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4473}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T01:19:55.437477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "filters": "{'id': 'exp_001'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T01:19:55.437606+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3632}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T01:19:55.437723+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -maxdepth 2 -type d | sort",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T01:19:55.437933+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_epsilon_sweep\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8\\\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_nscaling\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d108_greedy_f1\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d108_lp_vc_combination\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d108_mbr_within_rho\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d108_q4q5\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d110_4b_degeneracy\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d112_disk_cleanup\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d112_hybrid_strategy\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d112_mf3_random_single\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d112_table2_fix\\\\n/root/autodl-tmp/struct_self_consist_ie/output/d114_auroc_investigation\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only_backup\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_full\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pi\n…[truncated 6433 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T01:19:55.438113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"*019*\" -type f | head -20; echo \"---\"; find /root/autodl-tmp/struct_self_consist_ie/ -name \"*supervised*\" -o -name \"*verifier*\" | grep -v __pycache__ | head -20",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T01:19:55.438307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_019_trained_verifier\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_019_trained_verifier/train_verifier.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/train_mlp_verifier.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/r17_analyses/mlp_verifier_comparison.json\\\\n/root/autodl-tmp/struct_self_consist_ie/train_supervised_verifier.py\\\\n/root/autodl-tmp/struct_self_consist_ie/evaluate_verifier.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T01:19:55.438440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T01:19:55.438566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"report.md\\\\nresults.json\\\\ntrain_mlp_verifier.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T01:19:55.438685+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T01:19:55.438814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"correlation_matrix.json\\\\nlinear_combo_grid.json\\\\nlogistic_ensemble.json\\\\nselection_f1_comparison.json\\\\nselection_f1_full.json\\\\nsummary.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T01:19:55.438954+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T01:19:55.439250+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_seed\\\\\\\": {\\\\n    \\\\\\\"42\\\\\\\": {\\\\n      \\\\\\\"LR_5feat\\\\\\\": {\\\\n        \\\\\\\"auroc\\\\\\\": 0.6634,\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.6396\\\\n      },\\\\n      \\\\\\\"MLP_5feat\\\\\\\": {\\\\n        \\\\\\\"auroc\\\\\\\": 0.6629,\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.6357\\\\n      },\\\\n      \\\\\\\"RF_5feat\\\\\\\": {\\\\n        \\\\\\\"auroc\\\\\\\": 0.6042,\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.6196\\\\n      },\\\\n      \\\\\\\"MLP_15feat\\\\\\\": {\\\\n        \\\\\\\"auroc\\\\\\\": 0.6434,\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.6282\\\\n      },\\\\n      \\\\\\\"RF_15feat\\\\\\\": {\\\\n        \\\\\\\"auroc\\\\\\\": 0.6267,\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.6121\\\\n      },\\\\n      \\\\\\\"single_signal_aurocs\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.5838,\\\\n        \\\\\\\"FK\\\\\\\": 0.4915,\\\\n        \\\\\\\"LP\\\\\\\": 0.5618,\\\\n        \\\\\\\"EM\\\\\\\": 0.6509,\\\\n        \\\\\\\"VC\\\\\\\": 0.5676\\\\n      },\\\\n      \\\\\\\"unsup_selection_f1\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.646,\\\\n        \\\\\\\"FK\\\\\\\": 0.6469,\\\\n        \\\\\\\"LP\\\\\\\": 0.6453,\\\\n        \\\\\\\"EM\\\\\\\": 0.6317,\\\\n        \\\\\\\"VC\\\\\\\": 0.589\\\\n      },\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.6442,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.8247,\\\\n      \\\\\\\"rf_feature_importance_15\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.0581,\\\\n        \\\\\\\"FK\\\\\\\": 0.0622,\\\\n        \\\\\\\"LP\\\\\\\": 0.0802,\\\\n        \\\\\\\"EM\\\\\\\": 0.0427,\\\\n        \\\\\\\"VC\\\\\\\": 0.0501,\\\\n        \\\\\\\"SJxFK\\\\\\\": 0.0641,\\\\n        \\\\\\\"SJxLP\\\\\\\": 0.0755,\\\\n        \\\\\\\"SJxEM\\\\\\\": 0.0752,\\\\n        \\\\\\\"SJxVC\\\\\\\": 0.0542,\\\\n        \\\\\\\"FKxLP\\\\\\\": 0.0885,\\\\n        \\\\\\\"FKxEM\\\\\\\": 0.0695,\\\\n        \\\\\\\"FKxVC\\\\\\\": 0.0568,\\\\n        \\\\\\\"LPxEM\\\\\\\": 0.0839,\\\\n        \\\\\\\"LPxVC\\\\\\\": 0.0702,\\\\n        \\\\\\\"EMxVC\\\\\\\": 0.0688\\\\n      },\\\\n      \\\\\\\"rf_feature_importance_5\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.1894,\\\\n        \\\\\\\"FK\\\\\\\": 0.2324,\\\\n        \\\\\\\"LP\\\\\\\": 0.2728,\\\\n        \\\\\\\"EM\\\\\\\": 0.1338,\\\\n        \\\\\\\"VC\\\\\\\": 0.1717\\\\n      },\\\\n      \\\\\\\"ablation_mlp\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"auroc_without\\\\\\\": 0.6558,\\\\n          \\\\\\\"delta_from_full_5\\\\\\\"\n…[truncated 7119 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T01:19:55.439417+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_019_trained_verifier/train_verifier.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T01:19:55.439670+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-019: Trained Verifier Baseline (Logistic Regression on 5 confidence signals).\\\\n\\\\nSample-level LR verifier with LOO-CV to close the oracle gap.\\\\nCompares supervised selection F1 with unsupervised single-signal baselines.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.model_selection import LeaveOneOut, StratifiedKFold, cross_val_predict\\\\nfrom sklearn.metrics import roc_auc_score\\\\nfrom sklearn.preprocessing import StandardScaler\\\\n\\\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\\\nfrom consistency import (\\\\n    _ner_soft_jaccard_pair,\\\\n    _extract_surface_keys,\\\\n    structural_consistency_soft_jaccard,\\\\n    fleiss_kappa_surface,\\\\n)\\\\nfrom evaluation import per_instance_f1\\\\n\\\\nBASE = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie\\\\\\\"\\\\nOUT_DIR = Path(f\\\\\\\"{BASE}/output/exp_019_trained_verifier\\\\\\\")\\\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n\\\\nSEEDS = [42, 123, 789]\\\\nSEED_PATHS = {\\\\n    42: f\\\\\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\\\\\",\\\\n    123: f\\\\\\\"{BASE}/output/exp_018_qwen_scierc_seed123/samples.jsonl\\\\\\\",\\\\n    789: f\\\\\\\"{BASE}/output/exp_022_seed789/samples.jsonl\\\\\\\",\\\\n}\\\\nSUBTASK = \\\\\\\"ner\\\\\\\"\\\\nSIGNALS = [\\\\\\\"SJ\\\\\\\", \\\\\\\"FK\\\\\\\", \\\\\\\"LP\\\\\\\", \\\\\\\"EM\\\\\\\", \\\\\\\"VC\\\\\\\"]\\\\n\\\\n\\\\ndef load_data(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f if line.strip()]\\\\n\\\\n\\\\n# ── Per-sample signal computations (reused from analyze_3seed.py) ──\\\\n\\\\ndef compute_sample_sj_scores(instance):\\\\n    samples = instance[\\\\\\\"samples\\\\\\\"]\\\\n    N = len(samples)\\\\n    matrix = np.zeros((N, N))\\\\n    for i in range(N):\\\\n        for j in range(i + 1, N):\\\\n            s = _ner_soft_jaccard_pair(\\\\n                samples[i].get(\\\\\\\"entities\\\\\\\", [])\n…[truncated 7153 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T01:19:55.439832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/r17_analyses/mlp_verifier_comparison.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T01:19:55.440080+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-027 MLP Verifier Comparison\\\\\\\",\\\\n  \\\\\\\"data\\\\\\\": \\\\\\\"SciERC NER, N=16, 3 seeds (42, 123, 456)\\\\\\\",\\\\n  \\\\\\\"data_source\\\\\\\": \\\\\\\"exp_001_seed{42,123,456}_v2\\\\\\\",\\\\n  \\\\\\\"n_instances_per_seed\\\\\\\": 551,\\\\n  \\\\\\\"baselines\\\\\\\": {\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.6441,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 0.8231,\\\\n    \\\\\\\"oracle_greedy_gap\\\\\\\": 0.179,\\\\n    \\\\\\\"best_single_signal\\\\\\\": \\\\\\\"EM\\\\\\\",\\\\n    \\\\\\\"best_single_signal_auroc\\\\\\\": 0.6476,\\\\n    \\\\\\\"best_unsup_signal\\\\\\\": \\\\\\\"LP\\\\\\\",\\\\n    \\\\\\\"best_unsup_selection_f1\\\\\\\": 0.647\\\\n  },\\\\n  \\\\\\\"model_comparison\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"LR_5feat\\\\\\\",\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.6522,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.013,\\\\n      \\\\\\\"selection_f1_mean\\\\\\\": 0.6407,\\\\n      \\\\\\\"selection_f1_std\\\\\\\": 0.001,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.0034,\\\\n      \\\\\\\"oracle_gap_closed_pct\\\\\\\": -1.9\\\\n    },\\\\n    {\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"MLP_5feat\\\\\\\",\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.6393,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0209,\\\\n      \\\\\\\"selection_f1_mean\\\\\\\": 0.6386,\\\\n      \\\\\\\"selection_f1_std\\\\\\\": 0.0029,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.0055,\\\\n      \\\\\\\"oracle_gap_closed_pct\\\\\\\": -3.1\\\\n    },\\\\n    {\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"RF_5feat\\\\\\\",\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.5868,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0208,\\\\n      \\\\\\\"selection_f1_mean\\\\\\\": 0.6154,\\\\n      \\\\\\\"selection_f1_std\\\\\\\": 0.0076,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.0287,\\\\n      \\\\\\\"oracle_gap_closed_pct\\\\\\\": -16.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"MLP_15feat\\\\\\\",\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.6322,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0165,\\\\n      \\\\\\\"selection_f1_mean\\\\\\\": 0.6339,\\\\n      \\\\\\\"selection_f1_std\\\\\\\": 0.005,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.0102,\\\\n      \\\\\\\"oracle_gap_closed_pct\\\\\\\": -5.7\\\\n    },\\\\n    {\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"RF_15feat\\\\\\\",\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.6043,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0314,\\\\n      \\\\\\\"selection_f1_mean\\\\\\\n…[truncated 5295 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T01:19:55.440309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_019_trained_verifier/report.md 2>/dev/null || echo \"NO REPORT\"; echo \"===\"; cat /root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/report.md 2>/dev/null || echo \"NO REPORT\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T01:19:55.440448+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T01:19:55.440631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# exp-019: Trained Verifier Baseline (Logistic Regression)\\\\n\\\\nSeeds: [42, 123, 789], Dataset: SciERC NER, N=8, Qwen2.5-7B-Instruct\\\\n\\\\n## 1. Selection F1 Comparison\\\\n\\\\n| Method | seed42 | seed123 | seed789 | Mean ± σ |\\\\n|--------|--------|---------|---------|----------|\\\\n| Greedy | 0.6439 | 0.6457 | 0.6511 | 0.6469 ± 0.0037 |\\\\n| SJ (unsup) | 0.6450 | 0.6475 | 0.6378 | 0.6434 ± 0.0050 |\\\\n| FK (unsup) | 0.6448 | 0.6468 | 0.6410 | 0.6442 ± 0.0029 |\\\\n| LP (unsup) | 0.6501 | 0.6436 | 0.6478 | 0.6472 ± 0.0033 |\\\\n| EM (unsup) | 0.6362 | 0.6381 | 0.6406 | 0.6383 ± 0.0022 |\\\\n| VC (unsup) | 0.6256 | 0.6204 | 0.6195 | 0.6218 ± 0.0033 |\\\\n| **LR (supervised)** | 0.6484 | 0.6467 | 0.6490 | **0.6480 ± 0.0012** |\\\\n| Oracle | 0.7758 | 0.7805 | 0.7885 | 0.7816 ± 0.0064 |\\\\n\\\\nOracle gap: 0.1347\\\\nLR gain over greedy: +0.0011\\\\nLR vs best unsupervised (LP): +0.0009\\\\nGap closure: 0.8%\\\\n\\\\n## 2. Instance-level AUROC\\\\n\\\\n| Method | seed42 | seed123 | seed789 | Mean ± σ |\\\\n|--------|--------|---------|---------|----------|\\\\n| SJ | 0.6715 | 0.6919 | 0.6893 | 0.6842 ± 0.0111 |\\\\n| FK | 0.6154 | 0.6300 | 0.6020 | 0.6158 ± 0.0140 |\\\\n| LP | 0.6116 | 0.6132 | 0.6124 | 0.6124 ± 0.0008 |\\\\n| EM | 0.6472 | 0.6596 | 0.6468 | 0.6512 ± 0.0073 |\\\\n| VC | 0.6879 | 0.7089 | 0.7223 | 0.7064 ± 0.0173 |\\\\n| **LR (5 signals)** | 0.6795 | 0.7016 | 0.7109 | **0.6973 ± 0.0161** |\\\\n\\\\nLR vs best single signal (VC): -0.0090\\\\n\\\\n## 3. Feature Importance (LR Coefficients)\\\\n\\\\n| Signal | seed42 | seed123 | seed789 | Mean ± σ |\\\\n|--------|--------|---------|---------|----------|\\\\n| SJ | -0.1739 | -0.0996 | -0.0845 | -0.1193 ± 0.0479 |\\\\n| FK | 0.0925 | 0.1324 | 0.0432 | 0.0894 ± 0.0447 |\\\\n| LP | 0.1161 | 0.0914 | 0.1073 | 0.1049 ± 0.0125 |\\\\n| EM | 0.1913 | 0.1588 | -0.0438 | 0.1021 ± 0.1274 |\\\\n| VC | 0.6455 | 0.6768 | 0.9198 | 0.7474 ± 0.1501 |\\\\n\\\\n## 4. Ablation (Leave-One-Signal-Out AUROC)\\\\n\\\\n| Dropped | seed42 AUROC | seed123 A\n…[truncated 3244 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T01:19:55.440877+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\\\", \\\"content\\\": \\\"# 项目记忆\\\\n\\\\n## 易混淆指标辨析（2026-05-17）\\\\n\\\\n**ρ=-0.881 (p=0.004)** = KeySet degeneracy vs **oracle headroom**（论文 L171 / appendix:1121）\\\\n**ρ=-0.381 (p=0.352)** = KeySet degeneracy vs **LP Δ**（selection improvement）\\\\n\\\\n这是两个不同的 y 轴变量。论文中的 ρ=-0.881 是正确的，已被 Reviewer 确认。不要再混淆。\\\\n\\\\n## SciERC LP Δ 两个版本（2026-05-17）\\\\n\\\\n- **+0.42pp** = full-set (n=551)，论文全文统一使用此值\\\\n- **+0.62pp** = gold-filtered (n=529)\\\\n\\\\nFigure 3 和正文保持一致用 full-set +0.42。\\\\n\\\\n## Cross-model Degeneracy 规律（2026-05-17）\\\\n\\\\nDegeneracy 由 **model capability × task difficulty × training convergence** 共同决定：\\\\n- Stronger model + easy task → 极端 degen（LLaMA-CoNLL 89.2%）\\\\n- Weaker model + hard task → low degen（Qwen3-SciERC 17.8%）\\\\n- CoNLL 是 high-degen regime 不论 backbone（Qwen3 47.4%, LLaMA 89.2%）\\\\n- Training convergence 调控 degen: Few-NERD 3-epoch 11.1% → 5-epoch 31.3%（+20pp）\\\\n- **Alignment (within-instance ρ) 是 dataset-intrinsic**: median ρ 不随 epoch 显著变化 (0.6667→0.6151)\\\\n\\\\nLLaMA on CoNLL headroom 仅 1.84pp（greedy 0.9242, oracle 0.9426），使得 selection 评估无意义。但 structural signals 的 QE diagnostic ρ≈0.43 仍显著优于 LP ρ=0.31，证明诊断价值是 model-agnostic 的。\\\\n\\\\nLP range median=0.0002 at 89% degen — LP 在极端 degen 下完全无法区分 samples。\\\\n\\\\n## exp_021 vs exp_028 within-instance ρ(LP, F1) 对比（2026-05-18）\\\\n\\\\n### 配对对比（同 5000 实例子集，N=8）\\\\n\\\\n| Metric | 3-epoch (exp_027) | 5-epoch (exp_028) | Delta |\\\\n|--------|-------------------|-------------------|-------|\\\\n| ρ mean | **0.5241** | 0.4066 | -0.1175 |\\\\n| ρ median | **0.6667** | 0.6151 | -0.0516 |\\\\n| ρ std | 0.4673 | 0.5506 | +0.0833 |\\\\n| Valid instances | 3723/4351 (85.6%) | 2988/4351 (68.7%) | -16.9pp |\\\\n\\\\n### 全量 exp_021（37648 实例，N=8）\\\\n- Mean ρ: 0.5106, Median ρ: 0.6667, Std: 0.4749\\\\n- Valid: 28086/32565 (86.3%)\\\\n\\\\n### 结论\\\\n1. **Median ρ 几乎不变** (0.6667→0.6151, Δ=-0.05): 非 degenerate 实例上 LP-F1 alignment 不受 training conver\n…[truncated 8816 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T01:19:55.441147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "file": "memory.md",
+              "content": "# 项目记忆\n\n## MLP Verifier Baseline (2026-05-18)\n\n### 实验配置\n- Data: SciERC NER, N=16, 3 seeds (42, 123, 456), 551 instances/seed\n- Source: exp_001_seed{42,123,456}_v2\n- Binary label: instance max-sample F1 > median\n- CV: 5-fold stratified (AUROC), LOO (selection F1)\n- Output: /root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/\n\n### 结果\n\n| Model | Features | AUROC (mean±std) | Selection F1 (mean±std) | Δ vs Greedy |\n|-------|----------|------------------|-------------------------|-------------|\n| Best single (EM) | 1 | 0.6476 | 0.6470 | +0.0029 |\n| LR | 5 signals | 0.6522 ± 0.0130 | 0.6407 ± 0.0010 | -0.0034 |\n| MLP (64,32) | 5 signals | 0.6393 ± 0.0209 | 0.6386 ± 0.0029 | -0.0055 |\n| RF (100 trees) | 5 signals | 0.5868 ± 0.0208 | 0.6154 ± 0.0076 | -0.0287 |\n| MLP (64,32) | 15 (+ interactions) | 0.6322 ± 0.0165 | 0.6339 ± 0.0050 | -0.0102 |\n| RF (100 trees) | 15 (+ interactions) | 0.6043 ± 0.0314 | 0.6146 ± 0.0081 | -0.0295 |\n| Greedy | — | — | 0.6441 | — |\n| Oracle | — | — | 0.8231 | — |\n\n### 诊断结论: FEATURE BOTTLENECK\n\n- MLP AUROC (0.6393) < LR AUROC (0.6522), Δ = -0.0129\n- 加 10 个 pairwise interaction features 使 MLP 更差 (0.6322)\n- 所有 supervised models 无法超越 greedy selection F1\n- RF 大幅低于 LR（过拟合 551 实例的 5 features）\n- **5 个 confidence signals 的 discriminative power 不足以进行有效 sample selection；瓶颈在信号质量而非模型容量**\n\n### 与 exp-019 LR Baseline 的对比\n- exp-019 (N=8, LOO-CV, seeds 42/123/789): LR AUROC=0.6973, Selection F1=0.6480, gap closure=0.8%\n- exp-027 (N=16, 5-fold, seeds 42/123/456): LR AUROC=0.6522, Selection F1=0.6407\n- N=16 的 LR AUROC 比 N=8 低（更多 samples 使得 instance-level 区分更难），但 selection F1 相当\n- 两个实验一致结论：supervised combination 无法显著超越 best unsupervised signal\n\n### 论文支撑\n此结果支持论文核心 claim：structural signals 作为 lightweight QE diagnostics 有价值（ρ 显著），但其 discriminative ceiling 限制了 supervised selection 的提升空间。Feature bottleneck 意味着未来改进需引入更强信号（如 token-level LP patterns, cross-sample attention）而非更复杂的 aggregator。\n\n## 易混淆指标辨析（2026-05-17）\n\n**ρ=-0.881 (p=0.004)** = KeySet degeneracy vs **oracle headroom**（论文 L171 / appendix:1121）\n**ρ=-0.381 (p=0.352)** = KeySet degeneracy vs **LP Δ**（selection improvement）\n\n这是两个不同的 y 轴变量。论文中的 ρ=-0.881 是正确的，已被 Reviewer 确认。不要再混淆。\n\n## SciERC LP Δ 两个版本（2026-05-17）\n\n- **+0.42pp** = full-set (n=551)，论文全文统一使用此值\n- **+0.62pp** = gold-filtered (n=529)\n\nFigure 3 和正文保持一致用 full-set +0.42。\n\n## Cross-model Degeneracy 规律（2026-05-17）\n\nDegeneracy 由 **model capability × task difficulty × training convergence** 共同决定：\n- Stronger model + easy task → 极端 degen（LLaMA-CoNLL 89.2%）\n- Weaker model + hard task → low degen（Qwen3-SciERC 17.8%）\n- CoNLL 是 high-degen regime 不论 backbone（Qwen3 47.4%, LLaMA 89.2%）\n- Training convergence 调控 degen: Few-NERD 3-epoch 11.1% → 5-epoch 31.3%（+20pp）\n- **Alignment (within-instance ρ) 是 dataset-intrinsic**: median ρ 不随 epoch 显著变化 (0.6667→0.6151)\n\nLLaMA on CoNLL headroom 仅 1.84pp（greedy 0.9242, oracle 0.9426），使得 selection 评估无意义。但 structural signals 的 QE diagnostic ρ≈0.43 仍显著优于 LP ρ=0.31，证明诊断价值是 model-agnostic 的。\n\nLP range median=0.0002 at 89% degen — LP 在极端 degen 下完全无法区分 samples。\n\n## exp_021 vs exp_028 within-instance ρ(LP, F1) 对比（2026-05-18）\n\n### 配对对比（同 5000 实例子集，N=8）\n\n| Metric | 3-epoch (exp_027) | 5-epoch (exp_028) | Delta |\n|--------|-------------------|-------------------|-------|\n| ρ mean | **0.5241** | 0.4066 | -0.1175 |\n| ρ median | **0.6667** | 0.6151 | -0.0516 |\n| ρ std | 0.4673 | 0.5506 | +0.0833 |\n| Valid instances | 3723/4351 (85.6%) | 2988/4351 (68.7%) | -16.9pp |\n\n### 全量 exp_021（37648 实例，N=8）\n- Mean ρ: 0.5106, Median ρ: 0.6667, Std: 0.4749\n- Valid: 28086/32565 (86.3%)\n\n### 结论\n1. **Median ρ 几乎不变** (0.6667→0.6151, Δ=-0.05): 非 degenerate 实例上 LP-F1 alignment 不受 training convergence 显著影响 → **alignment IS dataset-intrinsic**\n2. **Mean ρ 下降较多** (0.5241→0.4066, Δ=-0.12): 主要因为 valid instances 从 85.6%→68.7%——更多实例变 degenerate，拉低 mean\n3. **两个条件的 driver 不同**: degeneracy 受 training convergence 调控，alignment 则是 dataset-intrinsic（median ρ 稳定）\n4. **Practitioner lever**: early stopping 控制 degeneracy，从而决定 LP selection 的有效性窗口\n5. **⚠️ 之前 exp_028 分析报告中 exp_021 ρ=0.6226 是错误值**（可能来自 N=16 分析），正确 N=8 同子集值: mean=0.5241, median=0.6667\n\n## exp_028 结果：5-epoch Few-NERD 收敛测试（2026-05-18）\n\n### 实验配置\n- Model: Qwen3-8B + LoRA, Few-NERD, 5 epochs (vs exp-021 3 epochs)\n- Inference: N=8, T=1.0, logprobs collected\n- Gold-filtered instances: 4351/5000\n\n### 核心结果\n\n| Metric | 3-epoch (exp-021) | 5-epoch (exp-028) | Delta |\n|--------|-------------------|-------------------|-------|\n| Degeneracy (CF1) % | 11.1% | **31.3%** | +20.2pp |\n| Greedy F1 | 0.7478 | 0.7773 | +2.95pp |\n| Oracle F1 | — | 0.8723 | — |\n| Headroom (pp) | — | 9.50pp | — |\n| LP sel F1 | 0.7614 | 0.7835 | +2.21pp |\n| LP sel delta (pp) | +1.37 | **+0.62** | -0.75 |\n\n### QE Signals (5-epoch)\n\n| Signal | AUROC | ρ (global) | Sel F1 | Delta |\n|--------|-------|------------|--------|-------|\n| LP | 0.5234 | **0.4495** | 0.7835 | +0.62pp |\n| SJ | 0.4988 | 0.3777 | 0.7697 | -0.77pp |\n| FK | 0.4985 | 0.3892 | 0.7693 | -0.80pp |\n| EM | 0.4951 | 0.3893 | 0.7663 | -1.10pp |\n| VC | 0.5006 | 0.3585 | 0.7576 | -1.97pp |\n\n### Within-instance LP-F1 correlation\n- Mean ρ: 0.4066, Median ρ: 0.6151, Std: 0.5506\n- Valid instances: 2988/4351 (68.7%)\n\n### LP Range\n- Mean: 0.0514, Std: 0.0673, Median: 0.0318\n\n### Report.json 补充（inference-level stats）\n- Greedy F1 (raw, pre-gold-filter): 0.7940\n- Oracle F1 (raw): 0.8770\n- FK mean: 0.5284, SJ mean: 0.8070\n- LP baseline ρ (full): 0.3319, AUROC: 0.6806\n- SJ vs F1 ρ (full): 0.3716\n- FK vs F1 ρ (full): 0.2760\n- Structural > Surface confirmed (ρ advantage = +0.096)\n- Sample F1 mean: 0.7269, std: 0.3416, pct_zero: 12.3%\n\n### 结论：NEGATIVE\n**5-epoch degeneracy 31.3% 远超 3-epoch 的 11.1%（+20.2pp）。** Few-NERD 的低 degeneracy 可能源于模型 under-convergence 而非数据集/任务本质特性。\n\n关键影响：\n1. LP selection delta 从 +1.37pp 降至 +0.62pp（更多 degenerate instances 压缩了 selection 空间）\n2. 结构信号（SJ/FK/EM/VC）在 5-epoch 上 selection delta 全为负，仅 LP 正\n3. 但 LP global ρ=0.4495 仍显著（p≈0），within-instance median ρ=0.6151 说明非 degenerate 实例上 LP 仍有区分力\n4. **论文叙事需修正**：不能以 Few-NERD low degeneracy 作为\"结构化任务天然适合 self-consistency\"的证据\n\n## Rank=8 vs Rank=32 LP 统计对比 (2026-05-18)\n\n数据来源: exp-023 (rank=8) vs exp-012 (rank=32), SciERC, N=8, T=1.0, 551 instances\n\n| Metric | Rank=8 (exp-023) | Rank=32 (exp-012) |\n|--------|------------------|-------------------|\n| LP median within-instance range | 0.056931 | 0.042857 |\n| LP mean within-instance range | 0.075814 | 0.059754 |\n| LP tied fraction | 0/551 (0.00%) | 1/551 (0.18%) |\n| Within-instance ρ(LP,F1) mean | 0.2395 | 0.1532 |\n| Within-instance ρ(LP,F1) median | 0.3164 | 0.2474 |\n| ρ valid instances | 506/551 (91.8%) | 451/551 (81.9%) |\n\n### 关键发现\n1. **Rank=8 的 LP 变异性更大**: median range 0.057 vs 0.043（+33%），说明低 rank adapter 产生更多样化的 log-probability 分布\n2. **Rank=8 的 LP-F1 alignment 更强**: within-instance ρ median 0.32 vs 0.25（+28%），mean 0.24 vs 0.15（+56%）\n3. **两者 tied fraction 都极低**: rank=8 为 0%，rank=32 为 0.18%，LP degeneracy 不是 SciERC 上的问题\n4. **Rank=8 有更多 valid ρ 实例**: 91.8% vs 81.9%，因为更大的 LP range 使得更多实例有足够变异性来计算 correlation\n5. **结论**: 低 rank adapter 反而提升了 LP 作为 QE 信号的质量，可能因为 rank=8 的 under-parameterization 迫使模型在 uncertain instances 上产生更有区分性的 logprob 分布\n\n## 文献调研：一致性 ≠ 正确性（2026-05-16）\n\n### 调研背景\nFew-NERD（8类粗粒度NER）上，结构一致性信号（SJ/FK/EM/VC）的 global ρ 为负或近零，selection delta 全为负。根因：模型存在 systematic bias（类型语义重叠 → 8 samples 一致但全错），暴露 self-consistency 的根本假设缺陷。\n\n### 最相关论文（5篇）\n\n#### 1. Self-Consistency Falls Short! The Adverse Effects of Positional Bias on Long-Context Problems\n- **Authors**: Adam Byerly, Daniel Khashabi\n- **Year/Venue**: 2024, TACL (arXiv: 2411.01101)\n- **关系**: **最强验证**。正式证明当 errors correlated 时，self-consistency 放大而非纠正错误\n- **Key insight**: 长上下文任务中，positional bias 导致所有 samples 产生相关错误，违反 self-consistency 的核心假设（error independence）。Self-consistency 不仅无效，反而 actively degrades performance。实验覆盖 GPT-4o、LLaMA-3.3-70B、Qwen-2.5-72B\n- **与我们的平行关系**: 他们的 \"positional bias → correlated errors\" 对应我们的 \"type semantic overlap → systematic misclassification\"。机制不同但失败模式完全相同\n\n#### 2. Consistency–Accuracy Correlation in Hard-Prompted LLMs for Entity and Relation Extraction\n- **Venue**: PMC (PMC12888769), 2025\n- **关系**: **IE 领域直接验证**\n- **Key insight**: 在 EPOP 语料（植物健康数据，实体+关系抽取）上测试 GPT/DeepSeek/Qwen/Kimi 四个模型，发现 high consistency does NOT strongly correlate with high accuracy。相关性是 model-dependent 且随 task complexity 变化。在 relational IE 中，consistency alone 不应被用作 prediction quality 的 proxy\n- **与我们的关系**: 直接在 IE 任务上验证了我们在 NER 上的发现——一致性不等于正确性\n\n#### 3. Beyond Majority Voting: SCOPE (Subgroup-specific Confidence-weighted Pseudo-label Estimation)\n- **Year/Venue**: 2024, arXiv: 2512.15146\n- **关系**: **提出解决方案**\n- **Key insight**: Majority voting 的问题：(1) 所有 votes 权重相同，忽略 confidence；(2) binary voting 无法捕获 fine-grained signals；(3) confirmation bias——模型强化自身错误。SCOPE 用 step-wise confidence 加权替代简单 frequency count，并通过 dynamic subgroup partitioning 平衡 quality 与 diversity\n- **可借鉴**: confidence weighting + subgroup partitioning 思路可用于我们的结构一致性信号设计\n\n#### 4. Diversified Sampling Improves Scaling LLM Inference\n- **Year**: 2025, arXiv: 2502.11027\n- **关系**: **互补——从 sampling 端解决 correlated errors**\n- **Key insight**: 同一 prompt 反复 sampling 导致输出 \"trapped\" 在 local cluster 中。通过 diversified prompts（role perturbation、instruction variation、jabberwocky perturbation）可以打破 error correlation，提升 coverage。在 reasoning/math/code 任务上显著提升\n- **可借鉴**: 如果我们在 NER 中使用多样化 prompt 策略（不同 instruction 模板、不同 few-shot examples、不同 entity type 描述），可能减少 systematic bias 导致的 correlated errors\n\n#### 5. The Hidden Strength of Disagreement: Consensus-Diversity Tradeoff in Adaptive Multi-Agent Systems\n- **Authors**: Wu & Ito\n- **Year/Venue**: 2025, EMNLP (arXiv: 2502.16565)\n- **关系**: **理论框架**\n- **Key insight**: 显式 consensus（voting/prompting）有 premature homogenization 风险。隐式 consensus（agents 独立决策但共享信息）保留了 diversity，在动态环境中优于显式 voting。形式化了 consensus-diversity tradeoff\n- **与我们的关系**: 我们的结构一致性信号是显式 consensus measure，当模型有 systematic bias 时导致 premature homogenization（全部 samples 一致地错）\n\n### 补充相关工作\n\n#### 6. Don't Always Pick the Highest-Performing Model: Information Theoretic View of LLM Ensemble Selection\n- **Year**: 2026, arXiv: 2602.08003\n- 用 Gaussian-copula 建模 correlated errors，证明 ensemble 存在 information-theoretic error floor\n\n#### 7. Wang et al. 2023 Self-Consistency (ICLR 2023, arXiv: 2203.11171)\n- 原文假设 diverse reasoning paths → correct answer 更可能被多数路径选中\n- **未显式讨论** systematic bias 导致所有路径收敛到同一错误答案的 failure mode\n\n#### 8. LLM-TOPLA: Efficient LLM Ensemble by Maximising Diversity\n- **Year/Venue**: 2024, EMNLP Findings\n- 用 focal diversity metric 选择互补性强的 ensemble 成员，减少 error correlation\n\n### 核心结论\n\n#### Q1: 有没有人正式分析过 self-consistency 在什么条件下失败？\n**有。** Byerly & Khashabi (2024, TACL) 是最系统的分析，证明 positional bias 导致 correlated errors 时 self-consistency 失败。但他们聚焦 long-context + positional bias，没有覆盖 structured prediction 中 semantic overlap 导致的 systematic bias。\n\n#### Q2: \"Correlated failures\" 如何破坏 voting-based 方法？\n多篇论文从不同角度论证：error correlation 违反了 voting 的 independence 假设。当 errors correlated，增加 samples 不能提升 accuracy（有 information-theoretic floor），甚至可能 amplify errors。\n\n#### Q3: 有没有人提出过针对 systematic bias 的改进？\n- **Confidence weighting** (SCOPE): 用 confidence 加权替代 equal voting\n- **Diversified sampling**: 用不同 prompt 变体打破 local cluster\n- **Subgroup partitioning**: 将 samples 分组，组间保持 diversity\n- **Cross-model probing**: 用不同模型交叉验证（但成本高）\n\n#### Q4: 结构化预测中 self-consistency 的特殊挑战？\nConsistency-accuracy correlation 论文（PMC12888769）在 IE 任务上直接验证了一致性≠正确性。但目前 **没有** 专门针对 NER/结构化预测中 self-consistency failure modes 的系统性研究——这是我们的 contribution gap。\n\n### 对我们下一步的启示\n\n1. **论文 framing**: 我们的发现（结构一致性在 systematic bias 下失败）有文献支撑但 **在 structured IE 领域是新的**。Byerly & Khashabi 做了 long-context，我们做 structured prediction，互补\n2. **可借鉴技术**：\n   - Confidence-weighted consistency（替代 raw agreement）\n   - Diversified prompting（不同 instruction/few-shot 模板减少 correlated errors）\n   - Adaptive stopping（当 consistency 低时增加 samples，但当 consistency 高且可能是 systematic bias 时需要 different strategy）\n3. **Discussion 要写的**: 引用 Byerly & Khashabi 说明这是 self-consistency 的 general failure mode，我们在 IE 领域首次系统性展示，并分析了结构化预测特有的原因（type semantic overlap、span boundary ambiguity）\n"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T01:19:55.441457+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T01:19:55.441635+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。实验 exp_027 已有完整结果，无需重跑。\n\n**核心结论：Feature Bottleneck Confirmed**\n\n| Model | AUROC | Selection F1 | vs Greedy |\n|-------|-------|-------------|-----------|\n| LR (5 signals) | 0.6522 | 0.6407 | -0.34pp |\n| MLP (64,32, 5 signals) | 0.6393 | 0.6386 | -0.55pp |\n| RF (100 trees, 5 signals) | 0.5868 | 0.6154 | -2.87pp |\n| MLP (64,32, 15 feat) | 0.6322 | 0.6339 | -1.02pp |\n\n- MLP < LR (Δ = -0.013 AUROC): 非线性模型无法从 5 个 signals 中提取更多信息\n- 加 10 个 pairwise interactions 反而更差\n- 所有 supervised models 无法超越 greedy（0.6441）\n- Verdict: 瓶颈在信号质量（feature bottleneck），不在 aggregation 方式。支持论文 \"structural signals 是 lightweight diagnostics，不是 strong selectors\" 的结论。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_mlp_verifier_20260518T011632"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-mlp-verifier.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db8679c955c211ee22bb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose exp b1 scd threshold ablation",
+  "task_key": "worker_diagnose_exp_b1_scd_threshold_ablation_20260520T200210",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp_b1_scd_threshold_ablation_20260520T200210_result.json",
+    "occurrence": 1,
+    "bytes": 521,
+    "sha256": "0e121273275dac552fa94059b589d0ed66a102e01c1f60231464c6381daebf87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**诊断结果：训练成功完成，是监控误判。**\n\n根因：配置文件中 `report_to: none` 导致无 W&B 指标上报，加上无 sentinel file，Cron 监控将正常完成的训练误判为反复崩溃。\n\n实际状态：\n- 9412/9412 steps 全部完成，train_loss=0.0201，eval_loss=0.0306\n- 日志中零错误/异常\n- checkpoint-9412（final）和所有结果文件均完好\n- LoRA adapter 可直接使用\n\n报告已写入 `artifacts/diagnose_exp_b1_scd_threshold_ablation.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-b1-scd-threshold-ablation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a40a8c00999ef8cc64a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "inference llama scierc seed123",
+  "task_key": "worker_inference_llama_scierc_seed123_20260515T050635",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_inference_llama_scierc_seed123_20260515T050635_result.json",
+    "occurrence": 1,
+    "bytes": 318,
+    "sha256": "86c606d2dfd9767241aa26a8e504eefa11995c576dc877448ad00e7465739e51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理完成，验证通过。\n\n**结果摘要：**\n- 输出路径：`output/exp_018_llama_scierc_seed123/`\n- 551 行 × 8 samples，logprobs 已收集\n- NER: Greedy F1=0.6583, Oracle F1=0.7689, SJ ρ=0.3552\n- RE: Greedy F1=0.4318, Oracle F1=0.5803, SJ ρ=0.2462\n- Verdict: FAIL (RE ρ_sj < 0.40)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/inference-llama-scierc-seed123.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e139e2c8968003d085a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh p3 pertype artifact",
+  "task_key": "worker_ssh_p3_pertype_artifact_20260521T213858",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_p3_pertype_artifact_20260521T213858_result.json",
+    "occurrence": 1,
+    "bytes": 1216,
+    "sha256": "982a1cd734961d4724c1afe85523980fc4166e4b4a79a81c8240088ef8c5f295"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 已保存到 `artifacts/fewnerd_per_type_mv_analysis.md`。\n\n## 汇报\n\n### Per-Type MV Analysis Data\n\n**数据来源**\n- FewNERD, 8 coarse entity types, N=8 samples\n- finetuned 3-epoch (fewnerd_mf4v2, seeds 42/123/456) + base model (exp_021, seed 42)\n- 服务器 JSON: `/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_per_type_mv_analysis.json`\n\n### 关键发现\n\n**θ=0.5 (strict MV) 时出现强正相关**——与之前报告的 +0.90 吻合：\n\n| 配置 | Pearson r | p-value |\n|------|-----------|---------|\n| exp_021, θ=0.5 | **+0.87** | **0.005** |\n| mf4v2, θ=0.5 | +0.77 | 0.024 |\n\n**θ=0.25 (liberal, 2/N) 时相关性不显著**（r=-0.52, p=0.19）且方向相反。\n\n### 机制解释\n\n- θ=0.5 是强过滤器：easy types（person, location）样本一致性高，MV 保留大部分实体；hard types（other, building）样本多样，MV 丢弃过多实体 → 大幅 F1 下降\n- θ=0.25 允许更多样本贡献实体，反而让 hard types 受益（聚合多样的正确实体）\n- 之前报告的 \"Corr ≈ +0.90 (p=0.002)\" 最可能对应 **exp_021 θ=0.5**（Pearson r=0.87, p=0.005），数值略有差异可能是筛选条件不同"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p3-pertype-artifact.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9146e4de5f50c75f407b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis freeform appendix table",
+  "task_key": "worker_analysis_freeform_appendix_table_20260515T102920",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_freeform_appendix_table_20260515T102920_result.json",
+    "occurrence": 1,
+    "bytes": 474,
+    "sha256": "f99c8a7977c45f314cb244912693e619db8e502a14216d980919f824e047e2bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成并注册。文件在 `artifacts/freeform_ablation_appendix_table.tex`，包含四个 Panel：\n\n- **A** — Logprob 分布对比（mean std/range/tied fraction，Δ 均为负，压缩假说未被证实）\n- **B** — Selection F1（NER + RE，含 greedy / LP-selected / selection gap）\n- **C** — QE Spearman ρ 对比（5 signals × 2 tasks，正 Δ 加粗）\n- **D** — Parse rate（99.95%）\n\n需要 `\\usepackage{booktabs, multirow}`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-freeform-appendix-table.md"
+}

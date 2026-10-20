@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cda20de6f7b317030c96",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check 14b inference status",
+  "task_key": "worker_check_14b-inference-status_20260520T143619",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_14b-inference-status_20260520T143619_result.json",
+    "occurrence": 1,
+    "bytes": 1088,
+    "sha256": "1d2c5f936819c0f0dff2d0beac85fa15f00e23956f34993229e061988f1a9b69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/14b_inference_status_check.md`。\n\n## 状态总结\n\n**进程运行情况**（与预期不同，实际是 shell 脚本循环 N∈{1,2,4,8,16}）：\n\n| 任务 | GPU | 当前 N | 进度 | 预估剩余 |\n|------|-----|--------|------|---------|\n| **SciERC** | 3 (99%) | N=16 | 63% | 即将全部完成 |\n| **CoNLL** | 1 (12%) | N=2 | 21% | ~2-3h 完成全部 N |\n| **FewNERD** | 0 (98%) | N=1 | 13% (4886/37648) | 20-30h+ |\n\n**已出结果 — 情况很差**：\n\n- **SciERC** (N=1~8 已完): greedy F1 = **0.41%**，99%+ 样本 F1=0，全部 FAIL\n- **CoNLL** (N=1 完): greedy F1 = **4.6%**，95% 样本 F1=0，FAIL\n- Consistency signal (Fleiss/SJ) 与 F1 **负相关**（方向反了）\n- 所有 report 建议降温到 T=0.7\n\n核心问题：14B 模型在 FewNERD 上训练后，**跨数据集泛化几乎为零**。SciERC/CoNLL 的 F1 接近 0 说明模型输出格式可能与这两个数据集的 gold 不兼容，或者模型根本无法识别非 FewNERD 的实体类型。需要等 FewNERD 自身结果出来后对比确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-14b-inference-status.md"
+}

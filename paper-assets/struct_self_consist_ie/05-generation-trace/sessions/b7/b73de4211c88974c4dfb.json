@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b73de4211c88974c4dfb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code update n scaling figure",
+  "task_key": "worker_code_update_n_scaling_figure_20260522T112607",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_update_n_scaling_figure_20260522T112607_result.json",
+    "occurrence": 1,
+    "bytes": 445,
+    "sha256": "203411c6a200abb2913ea9b9ce3057639cab49d3e66f7f5e18119a3b103e7ab5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 生成成功。\n\n**修改内容：**\n- FewNERD 数据：`[8, 16]` → `[8, 16, 32]`，值从 `[-2.71, -1.65]` → `[-2.74, -1.65, -0.91]`\n- CoNLL 和 SciERC 数据不变\n\n**新 PDF 路径：** `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/fig_n_scaling_mv.pdf`\n\n图中 Few-NERD 绿色线现在有 3 个数据点（N=8, 16, 32），趋势向 break-even 线收敛。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-update-n-scaling-figure.md"
+}

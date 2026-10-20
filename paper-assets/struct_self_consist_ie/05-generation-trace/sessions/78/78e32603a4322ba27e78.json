@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "78e32603a4322ba27e78",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "fix conditional filtering inconsistency",
+  "task_key": "worker_fix_conditional_filtering_inconsistency_20260514T124449",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_conditional_filtering_inconsistency_20260514T124449.log",
+    "occurrence": 1,
+    "bytes": 741752,
+    "sha256": "fe5341f4580b99c9fadd649cd9a0c4fb915aebd5a3d6fc0190c5a73fca66eb3c"
+  },
+  "statistics": {
+    "messages": 190,
+    "user_turns": 0,
+    "tool_calls": 68,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 7,
+      "assistant": 44,
+      "tool_call": 68,
+      "tool_result": 68,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 190,
+      "chunks": [
+        {
+          "path": "78e32603a4322ba27e78-part-0001.json",
+          "message_count": 139
+        },
+        {
+          "path": "78e32603a4322ba27e78-part-0002.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-conditional-filtering-inconsistency.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ee82e7a860609924108",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp d054 rerun gpu2 qwen conll llama scierc",
+  "task_key": "worker_exp_d054_rerun_gpu2_qwen_conll_llama_scierc_20260514T221758",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_d054_rerun_gpu2_qwen_conll_llama_scierc_20260514T221758_result.json",
+    "occurrence": 1,
+    "bytes": 118,
+    "sha256": "123695d2f9a13eadc3735cc6579806715d3d15d8d42d4140ab2c4e6af671a7f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 1 (Qwen × CoNLL) 正在 cuda:2 推理，PID=123868。55248 prompts，4 分钟后轮询进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-d054-rerun-gpu2-qwen-conll-llama-scierc.md"
+}

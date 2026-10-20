@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa10c186800fe54186f6",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis gating bootstrap ci",
+  "task_key": "worker_analysis_gating_bootstrap_ci_20260519T101033",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_gating_bootstrap_ci_20260519T101033_result.json",
+    "occurrence": 1,
+    "bytes": 1075,
+    "sha256": "a82aa73d6b3336fef1c3dc664c576e4dbc809d45449ebec430a1849cd119ce66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n### Bootstrap CI (B=1000)\n\n| 数据集 | mean ρ | 95% CI(ρ) | adjusted | 95% CI(adj) | routing |\n|--------|--------|-----------|----------|-------------|---------|\n| SciERC | 0.214 | [0.146, 0.281] | 0.167 | [0.116, 0.220] | **greedy** |\n| CoNLL | 0.294 | [-0.061, 0.620] | 0.065 | [-0.009, 0.156] | **greedy** |\n| FewNERD | 0.615 | [0.459, 0.759] | 0.516 | [0.374, 0.648] | **LP** |\n\n### Threshold 敏感性\n- Routing decisions 在 **τ∈[0.2, 0.4] 全范围一致**（SciERC/CoNLL 始终 greedy，FewNERD 始终 LP）\n- Robust range（all stability ≥ 95%）：**τ ∈ [0.25, 0.35]**，τ=0.3 正好居中\n\n### Greedy Fallback\n- CoNLL 78% degeneracy → 样本几乎相同，construction 无新实体可聚合 → greedy 是唯一合理选择\n- SciERC 33% negative ρ → LP 不可靠\n- FewNERD 仅 14.3% negative ρ，16% degeneracy → LP well-justified\n\n结果保存在 `output/gating_bootstrap/gating_analysis.json`（服务器端）和 artifact `gating_bootstrap_analysis`，memory.md 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gating-bootstrap-ci.md"
+}

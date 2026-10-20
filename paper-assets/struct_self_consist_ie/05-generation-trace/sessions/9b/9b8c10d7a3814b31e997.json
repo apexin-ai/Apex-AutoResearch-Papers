@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b8c10d7a3814b31e997",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix n scaling metric consistency",
+  "task_key": "worker_fix_n_scaling_metric_consistency_20260516T154206",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_n_scaling_metric_consistency_20260516T154206_result.json",
+    "occurrence": 1,
+    "bytes": 1683,
+    "sha256": "0c32da532ad9c3ec419a58e4136a2e9f2c27d72c233bc91786ec0a54476144f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### N-scaling 表修正结果\n\n**修改文件：**\n1. `docs/paper/sections/appendix.tex` — 表格数据 + 上方总结文字\n2. `docs/paper/sections/discussion.tex` — 引用数值\n\n**数据源：** `/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/unified_results.json`（macro F1, 551实例, seed=42 inference, 10-trial subsampling for N<32）\n\n### 修正前后对比\n\n| N | 列 | 旧值 | 新值 | 问题 |\n|---|---|------|------|------|\n| 2 | Oracle | +3.3 | +4.4 | 数值错误 |\n| 2 | SJ/FK/EM | -2.26/-1.79/-1.91 | -2.54/-2.54/-2.54 | N=2时3个信号必然相同（对称tie） |\n| 4 | Degen | 24.6% | 22.4% | |\n| 4 | EM | -0.58 | -1.27 | |\n| 4 | VC | -2.18 | -1.30 | |\n| 8 | Degen | 13.3% | 12.4% | |\n| 8 | Oracle | +14.2 | +13.8 | |\n| 8 | **EM** | **+0.35** | **-0.33** | **符号错误** |\n| 8 | VC | -1.43 | -1.82 | |\n| 16 | **EM** | **+0.40** | **-0.15** | **符号错误** |\n| 16 | VC | -2.04 | -2.91 | |\n| 32 | Oracle | ~+20 | +19.2 | |\n| 32 | FK | +0.83 | +0.62 | |\n\n### 与 Table 2 的关系\n\n- **Table 2 greedy**: 0.645 macro F1 (529 instances, 2-seed mean)\n- **N-scaling 表 greedy**: 0.614 macro F1 (551 instances, seed=42 only)\n- Footnote 已说明差异来源（instance set + weighting）\n- 表内只报告 deltas (pp)，无直接绝对值冲突\n- **结论：metric 空间一致（都是 macro F1），baseline 差异已由 footnote 充分说明**\n\n### 根因\n\n旧表格由一个有 bug 的早期脚本生成（`n_ablation.py` 的 `results.json` 中 rank32 regime），未使用统一 N=32 数据源的正确 greedy field，且 N=2 时未正确处理 consensus 信号的对称 tie。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-n-scaling-metric-consistency.md"
+}

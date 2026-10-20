@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37822b4ea2bccb46728f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check full gpu status and inference",
+  "task_key": "worker_check_full_gpu_status_and_inference_20260515T192920",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_full_gpu_status_and_inference_20260515T192920_result.json",
+    "occurrence": 1,
+    "bytes": 1247,
+    "sha256": "f9ee34b92f01c945bd62af15147a026cd07499a8b06b49ae22a5187a89af48cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| GPU | PID | 实验名 | 状态 | 进度 |\n|-----|-----|--------|------|------|\n| cuda:0 | 227128 | **SciERC 4B finetune v4** (`train_config_scierc_4b.yaml`) | 训练中 | **87/585 steps (15%)**, ~2.0s/it, 已跑 ~3min |\n| cuda:1 | 224639 | **CoNLL 4B resume** (`train_config_conll2003_4b_resume.yaml`) | 训练中 | **4218/4390 steps (96%)**, loss=0.0096, 剩余 ~35s |\n| cuda:2 | — | 空闲 | idle | — |\n| cuda:3 | — | 空闲 | idle | — |\n\n关键发现：\n\n1. **CoNLL SCS inference 已不在运行** — cuda:0 被 SciERC finetune v4 占据（PID 227128，03:26 启动）。结果目录 `results/exp_qwen3_4b_conll_scs/` 不存在，inference 进程已消失，之前的推理被挤掉或已终止。\n\n2. **SciERC finetune v4 正在 cuda:0 上跑** — 刚启动 ~3 分钟，87/585 steps (15%)，1861 样本 × 5 epochs，batch=16，预计总耗时 ~19 分钟。\n\n3. **CoNLL resume 即将完成** — 4218/4390 (96%)，loss 降到 0.0096，trainer_log 最新记录到 step 4220。checkpoint-4200 已保存。预计 1-2 分钟内结束。\n\n4. **seed789_v3 已完成** — 551 instances × 8 samples = 4408 total，parse rate 100%，耗时 229.7s。结果已写入 `results/exp_freeform_ablation_seed789/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-full-gpu-status-and-inference.md"
+}

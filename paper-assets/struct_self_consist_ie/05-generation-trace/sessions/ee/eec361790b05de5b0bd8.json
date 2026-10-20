@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "eec361790b05de5b0bd8",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "eval exp 012 logprob",
+  "task_key": "worker_eval_exp_012_logprob_20260514T105409",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp_012_logprob_20260514T105409.log",
+    "occurrence": 1,
+    "bytes": 1136540,
+    "sha256": "2cbdca98a1f3f99580ed9a9e4708239f49ebee9e864542ada805976b9e5f85a5"
+  },
+  "statistics": {
+    "messages": 254,
+    "user_turns": 1,
+    "tool_calls": 82,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 80,
+      "tool_call": 82,
+      "tool_result": 82,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 201,
+      "chunks": [
+        {
+          "path": "eec361790b05de5b0bd8-part-0001.json",
+          "message_count": 121
+        },
+        {
+          "path": "eec361790b05de5b0bd8-part-0002.json",
+          "message_count": 80
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 53,
+      "chunks": [
+        {
+          "path": "eec361790b05de5b0bd8-part-0002.json",
+          "message_count": 53
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-exp-012-logprob.md"
+}

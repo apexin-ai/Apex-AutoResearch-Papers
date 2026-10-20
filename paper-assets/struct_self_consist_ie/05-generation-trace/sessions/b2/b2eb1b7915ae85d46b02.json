@@ -1,0 +1,532 @@
+{
+  "schema_version": "1.0",
+  "id": "b2eb1b7915ae85d46b02",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "analysis sj threshold check",
+  "task_key": "worker_analysis_sj_threshold_check_20260515T032543",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analysis_sj_threshold_check_20260515T032543.jsonl",
+    "occurrence": 1,
+    "bytes": 28297,
+    "sha256": "e6b00364d960ac95facc08a5e51afe759ef7e0fc030b2f74302845e28f7940c3"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "tool_call": 12,
+      "tool_result": 12,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T03:27:31.574206+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T03:27:31.574665+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T03:27:31.574940+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T03:27:31.575460+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Consistency metrics for structured information extraction with self-consistency.\\\\n\\\\nImplements three complementary consistency measures over N sampled extractions:\\\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\\\n\\\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nfrom itertools import combinations\\\\nfrom typing import TYPE_CHECKING\\\\n\\\\nimport numpy as np\\\\nfrom scipy.optimize import linear_sum_assignment\\\\n\\\\nif TYPE_CHECKING:\\\\n    pass\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Type aliases (mirrors shared data format)\\\\n# ---------------------------------------------------------------------------\\\\nEntity = dict       # {\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"end\\\\\\\"}\\\\nRelation = dict     # {\\\\\\\"head\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"type\\\\\\\", ...}\\\\nEvent = dict        # {\\\\\\\"trigger\\\\\\\": {...}, \\\\\\\"arguments\\\\\\\": [...]}\\\\nExtraction = dict   # {\\\\\\\"entities\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"events\\\\\\\"}\\\\n\\\\n\\\\n# ===================================================================\\\\n# 1. Fleiss' Kappa — surface-level entity agreement\\\\n# ===================================================================\\\\n\\\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        return {(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in sample.get(\\\\\\\"entities\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"re\\\\\\\":\\\\n        return {(r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in sample.get(\\\\\\\"relations\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"eae\\\\\\\":\\\\n   \n…[truncated 7249 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T03:27:31.575724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"def _span_soft_jaccard\\|def _ner_soft_jaccard_pair\\|def _re_soft_jaccard_pair\\|def _eae_soft_jaccard_pair\\|threshold\\|cutoff\\|minimum\\|filter\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T03:27:31.575872+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T03:27:31.576023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n -E \"def _span_soft_jaccard|def _ner_soft_jaccard_pair|def _re_soft_jaccard_pair|threshold|cutoff|minimum\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T03:27:31.576198+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T03:27:31.576354+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n -E \"def _span|def _ner|def _re_soft|threshold|cutoff|minimum\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T03:27:31.576488+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T03:27:31.576609+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"def _span\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T03:27:31.576730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"123:def _span_soft_jaccard(s1_start: int, s1_end: int, s2_start: int, s2_end: int) -> float:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T03:27:31.576847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"def _ner\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T03:27:31.577001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"134:def _ner_soft_jaccard_pair(entities_a: list[Entity], entities_b: list[Entity]) -> float:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T03:27:31.577121+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"threshold\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T03:27:31.577273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T03:27:31.577418+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -220 /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T03:27:31.577648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Consistency metrics for structured information extraction with self-consistency.\\\\n\\\\nImplements three complementary consistency measures over N sampled extractions:\\\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\\\n\\\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nfrom itertools import combinations\\\\nfrom typing import TYPE_CHECKING\\\\n\\\\nimport numpy as np\\\\nfrom scipy.optimize import linear_sum_assignment\\\\n\\\\nif TYPE_CHECKING:\\\\n    pass\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Type aliases (mirrors shared data format)\\\\n# ---------------------------------------------------------------------------\\\\nEntity = dict       # {\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"end\\\\\\\"}\\\\nRelation = dict     # {\\\\\\\"head\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"type\\\\\\\", ...}\\\\nEvent = dict        # {\\\\\\\"trigger\\\\\\\": {...}, \\\\\\\"arguments\\\\\\\": [...]}\\\\nExtraction = dict   # {\\\\\\\"entities\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"events\\\\\\\"}\\\\n\\\\n\\\\n# ===================================================================\\\\n# 1. Fleiss' Kappa — surface-level entity agreement\\\\n# ===================================================================\\\\n\\\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        return {(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in sample.get(\\\\\\\"entities\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"re\\\\\\\":\\\\n        return {(r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in sample.get(\\\\\\\"relations\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"eae\\\\\\\":\\\\n   \n…[truncated 6681 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T03:27:31.577868+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat > /root/autodl-tmp/struct_self_consist_ie/scripts/sj_threshold_analysis.py << 'PYEOF'\n\"\"\"Analyze SJ Hungarian matching: quantify sim≈0 matched pairs.\"\"\"\nimport sys\nimport json\nimport os\nimport numpy as np\nfrom itertools import combinations\nfrom collections import defaultdict\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import _span_soft_jaccard\n\ndef analyze_ner_matched_pairs(entities_a, entities_b):\n    \"\"\"Like _ner_soft_jaccard_pair but returns individual matched similarities.\"\"\"\n    matched_sims = []\n    \n    if not entities_a and not entities_b:\n        return matched_sims\n    if not entities_a or not entities_b:\n        return matched_sims\n    \n    from scipy.optimize import linear_sum_assignment\n    \n    types = set()\n    groups_a = defaultdict(list)\n    groups_b = defaultdict(list)\n    \n    for e in entities_a:\n        t = e[\"type\"]\n        types.add(t)\n        groups_a[t].append(e)\n    for e in entities_b:\n        t = e[\"type\"]\n        types.add(t)\n        groups_b[t].append(e)\n    \n    for t in types:\n        ga = groups_a.get(t, [])\n        gb = groups_b.get(t, [])\n        \n        if not ga or not gb:\n            continue\n        \n        cost = np.zeros((len(ga), len(gb)), dtype=np.float64)\n        for i, ea in enumerate(ga):\n            for j, eb in enumerate(gb):\n                cost[i, j] = _span_soft_jaccard(ea[\"start\"], ea[\"end\"],\n                                                 eb[\"start\"], eb[\"end\"])\n        \n        row_ind, col_ind = linear_sum_assignment(-cost)\n        for r, c in zip(row_ind, col_ind):\n            matched_sims.append({\n                \"sim\": float(cost[r, c]),\n                \"type\": t,\n                \"a_text\": ga[r].get(\"text\", \"\"),\n                \"b_text\": gb[c].get(\"text\", \"\"),\n                \"a_span\": (ga[r][\"start\"], ga[r][\"end\"]),\n                \"b_span\": (gb[c][\"start\"], gb[c][\"end\"]),\n            })\n    \n    return matched_sims\n\n\n# Load data\ndata_path = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\"\ninstances = []\nwith open(data_path) as f:\n    for line in f:\n        instances.append(json.loads(line))\n\nprint(f\"Loaded {len(instances)} instances\")\n\nall_matched = []\nn_pairs = 0\n\nfor inst_idx, inst in enumerate(instances):\n    samples = inst[\"samples\"]\n    n = len(samples)\n    \n    for i, j in combinations(range(n), 2):\n        ents_a = samples[i].get(\"entities\", [])\n        ents_b = samples[j].get(\"entities\", [])\n        \n        pairs = analyze_ner_matched_pairs(ents_a, ents_b)\n        all_matched.extend(pairs)\n        n_pairs += 1\n\nsims = np.array([m[\"sim\"] for m in all_matched])\ntotal = len(sims)\n\nsim_eq_0 = int(np.sum(sims == 0))\nsim_lt_01 = int(np.sum(sims < 0.1))\nsim_lt_05 = int(np.sum(sims < 0.5))\nsim_ge_05 = int(np.sum(sims >= 0.5))\n\nprint(f\"\\n=== SJ Threshold Analysis ===\")\nprint(f\"Code has explicit threshold: NO\")\nprint(f\"Hungarian matching matches ANY pair including sim=0\")\nprint(f\"\")\nprint(f\"Total sample pairs analyzed: {n_pairs}\")\nprint(f\"Total matched entity pairs: {total}\")\nprint(f\"  sim = 0 (no overlap): {sim_eq_0} ({100*sim_eq_0/total:.1f}%)\")\nprint(f\"  sim < 0.1: {sim_lt_01} ({100*sim_lt_01/total:.1f}%)\")\nprint(f\"  sim < 0.5: {sim_lt_05} ({100*sim_lt_05/total:.1f}%)\")\nprint(f\"  sim >= 0.5: {sim_ge_05} ({100*sim_ge_05/total:.1f}%)\")\n\nprint(f\"\\nDistribution (10 bins):\")\nbins = np.arange(0, 1.1, 0.1)\nhist, _ = np.histogram(sims, bins=bins)\nfor k in range(len(hist)):\n    lo = bins[k]\n    hi = bins[k+1]\n    bracket = \"[\" if k == 0 else \"[\"\n    end_bracket = \"]\" if k == len(hist)-1 else \")\"\n    print(f\"  [{lo:.1f}, {hi:.1f}{end_bracket}: {hist[k]} ({100*hist[k]/total:.1f}%)\")\n\n# Examples of sim=0 matches\nzero_matches = [m for m in all_matched if m[\"sim\"] == 0]\nprint(f\"\\n--- Examples of sim=0 matches (first 10) ---\")\nfor m in zero_matches[:10]:\n    print(f\"  type={m['type']}, a='{m['a_text']}' {m['a_span']}, b='{m['b_text']}' {m['b_span']}\")\n\n# Stats by type\nprint(f\"\\n--- Breakdown by entity type ---\")\ntype_sims = defaultdict(list)\nfor m in all_matched:\n    type_sims[m[\"type\"]].append(m[\"sim\"])\n\nfor t in sorted(type_sims.keys()):\n    s = np.array(type_sims[t])\n    n_zero = int(np.sum(s == 0))\n    print(f\"  {t}: total={len(s)}, sim=0: {n_zero} ({100*n_zero/len(s):.1f}%), mean={s.mean():.3f}, median={np.median(s):.3f}\")\n\n# Save results\nout_dir = \"/root/autodl-tmp/struct_self_consist_ie/output/review_round2\"\nos.makedirs(out_dir, exist_ok=True)\n\nresult = {\n    \"code_has_threshold\": False,\n    \"total_sample_pairs\": n_pairs,\n    \"total_matched_entity_pairs\": total,\n    \"sim_eq_0\": {\"count\": sim_eq_0, \"pct\": round(100*sim_eq_0/total, 2)},\n    \"sim_lt_0.1\": {\"count\": sim_lt_01, \"pct\": round(100*sim_lt_01/total, 2)},\n    \"sim_lt_0.5\": {\"count\": sim_lt_05, \"pct\": round(100*sim_lt_05/total, 2)},\n    \"sim_ge_0.5\": {\"count\": sim_ge_05, \"pct\": round(100*sim_ge_05/total, 2)},\n    \"histogram\": {f\"[{bins[k]:.1f},{bins[k+1]:.1f})\": int(hist[k]) for k in range(len(hist))},\n    \"by_type\": {\n        t: {\n            \"total\": len(type_sims[t]),\n            \"sim_eq_0\": int(np.sum(np.array(type_sims[t]) == 0)),\n            \"mean\": round(float(np.mean(type_sims[t])), 4),\n            \"median\": round(float(np.median(type_sims[t])), 4),\n        }\n        for t in sorted(type_sims.keys())\n    },\n    \"mean_sim\": round(float(sims.mean()), 4),\n    \"median_sim\": round(float(np.median(sims)), 4),\n    \"std_sim\": round(float(sims.std()), 4),\n}\n\nwith open(os.path.join(out_dir, \"sj_threshold_analysis.json\"), \"w\") as f:\n    json.dump(result, f, indent=2)\n\nprint(f\"\\nResults saved to {out_dir}/sj_threshold_analysis.json\")\nprint(f\"\\nOverall: mean_sim={sims.mean():.4f}, median={np.median(sims):.4f}, std={sims.std():.4f}\")\nPYEOF\necho \"Script written.\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T03:27:31.578107+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written.\\\\n\\\", \\\"stderr\\\": \\\"bash: line 1: /root/autodl-tmp/struct_self_consist_ie/scripts/sj_threshold_analysis.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T03:27:31.578317+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "mkdir -p /root/autodl-tmp/struct_self_consist_ie/scripts && ls /root/autodl-tmp/struct_self_consist_ie/scripts/",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T03:27:31.578456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T03:27:31.578591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport sys, json, os, numpy as np\nfrom itertools import combinations\nfrom collections import defaultdict\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import _span_soft_jaccard\nfrom scipy.optimize import linear_sum_assignment\n\ndef analyze_ner_matched_pairs(entities_a, entities_b):\n    matched_sims = []\n    if not entities_a and not entities_b:\n        return matched_sims\n    if not entities_a or not entities_b:\n        return matched_sims\n    types = set()\n    groups_a = defaultdict(list)\n    groups_b = defaultdict(list)\n    for e in entities_a:\n        t = e['type']; types.add(t); groups_a[t].append(e)\n    for e in entities_b:\n        t = e['type']; types.add(t); groups_b[t].append(e)\n    for t in types:\n        ga = groups_a.get(t, [])\n        gb = groups_b.get(t, [])\n        if not ga or not gb:\n            continue\n        cost = np.zeros((len(ga), len(gb)), dtype=np.float64)\n        for i, ea in enumerate(ga):\n            for j, eb in enumerate(gb):\n                cost[i, j] = _span_soft_jaccard(ea['start'], ea['end'], eb['start'], eb['end'])\n        row_ind, col_ind = linear_sum_assignment(-cost)\n        for r, c in zip(row_ind, col_ind):\n            matched_sims.append({'sim': float(cost[r, c]), 'type': t,\n                'a_text': ga[r].get('text',''), 'b_text': gb[c].get('text',''),\n                'a_span': (ga[r]['start'], ga[r]['end']), 'b_span': (gb[c]['start'], gb[c]['end'])})\n    return matched_sims\n\ndata_path = '/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl'\ninstances = []\nwith open(data_path) as f:\n    for line in f:\n        instances.append(json.loads(line))\nprint(f'Loaded {len(instances)} instances')\n\nall_matched = []\nn_pairs = 0\nfor inst in instances:\n    samples = inst['samples']\n    for i, j in combinations(range(len(samples)), 2):\n        ents_a = samples[i].get('entities', [])\n        ents_b = samples[j].get('entities', [])\n        pairs = analyze_ner_matched_pairs(ents_a, ents_b)\n        all_matched.extend(pairs)\n        n_pairs += 1\n\nsims = np.array([m['sim'] for m in all_matched])\ntotal = len(sims)\nsim_eq_0 = int(np.sum(sims == 0))\nsim_lt_01 = int(np.sum(sims < 0.1))\nsim_lt_05 = int(np.sum(sims < 0.5))\nsim_ge_05 = int(np.sum(sims >= 0.5))\n\nprint(f'')\nprint(f'=== SJ Threshold Analysis ===')\nprint(f'Code has explicit threshold: NO')\nprint(f'Hungarian matching matches ANY pair including sim=0')\nprint(f'')\nprint(f'Total sample pairs analyzed: {n_pairs}')\nprint(f'Total matched entity pairs: {total}')\nprint(f'  sim = 0 (no overlap): {sim_eq_0} ({100*sim_eq_0/total:.1f}%)')\nprint(f'  sim < 0.1: {sim_lt_01} ({100*sim_lt_01/total:.1f}%)')\nprint(f'  sim < 0.5: {sim_lt_05} ({100*sim_lt_05/total:.1f}%)')\nprint(f'  sim >= 0.5: {sim_ge_05} ({100*sim_ge_05/total:.1f}%)')\n\nprint(f'')\nprint(f'Distribution (10 bins):')\nbins = np.arange(0, 1.1, 0.1)\nhist, _ = np.histogram(sims, bins=bins)\nfor k in range(len(hist)):\n    lo = bins[k]; hi = bins[k+1]\n    end_bracket = ']' if k == len(hist)-1 else ')'\n    print(f'  [{lo:.1f}, {hi:.1f}{end_bracket}: {hist[k]} ({100*hist[k]/total:.1f}%)')\n\nzero_matches = [m for m in all_matched if m['sim'] == 0]\nprint(f'')\nprint(f'--- Examples of sim=0 matches (first 10) ---')\nfor m in zero_matches[:10]:\n    print(f\\\"  type={m['type']}, a='{m['a_text']}' {m['a_span']}, b='{m['b_text']}' {m['b_span']}\\\")\n\nprint(f'')\nprint(f'--- Breakdown by entity type ---')\ntype_sims = defaultdict(list)\nfor m in all_matched:\n    type_sims[m['type']].append(m['sim'])\nfor t in sorted(type_sims.keys()):\n    s = np.array(type_sims[t])\n    n_zero = int(np.sum(s == 0))\n    print(f'  {t}: total={len(s)}, sim=0: {n_zero} ({100*n_zero/len(s):.1f}%), mean={s.mean():.3f}, median={np.median(s):.3f}')\n\nout_dir = '/root/autodl-tmp/struct_self_consist_ie/output/review_round2'\nos.makedirs(out_dir, exist_ok=True)\nresult = {\n    'code_has_threshold': False,\n    'total_sample_pairs': n_pairs,\n    'total_matched_entity_pairs': total,\n    'sim_eq_0': {'count': sim_eq_0, 'pct': round(100*sim_eq_0/total, 2)},\n    'sim_lt_0.1': {'count': sim_lt_01, 'pct': round(100*sim_lt_01/total, 2)},\n    'sim_lt_0.5': {'count': sim_lt_05, 'pct': round(100*sim_lt_05/total, 2)},\n    'sim_ge_0.5': {'count': sim_ge_05, 'pct': round(100*sim_ge_05/total, 2)},\n    'histogram': {f'[{bins[k]:.1f},{bins[k+1]:.1f})': int(hist[k]) for k in range(len(hist))},\n    'by_type': {t: {'total': len(type_sims[t]), 'sim_eq_0': int(np.sum(np.array(type_sims[t]) == 0)),\n        'mean': round(float(np.mean(type_sims[t])), 4), 'median': round(float(np.median(type_sims[t])), 4)}\n        for t in sorted(type_sims.keys())},\n    'mean_sim': round(float(sims.mean()), 4),\n    'median_sim': round(float(np.median(sims)), 4),\n    'std_sim': round(float(sims.std()), 4),\n}\nwith open(os.path.join(out_dir, 'sj_threshold_analysis.json'), 'w') as f:\n    json.dump(result, f, indent=2)\nprint(f'')\nprint(f'Overall: mean_sim={sims.mean():.4f}, median={np.median(sims):.4f}, std={sims.std():.4f}')\nprint(f'Results saved to {out_dir}/sj_threshold_analysis.json')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T03:27:31.578783+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 551 instances\\\\n\\\\n=== SJ Threshold Analysis ===\\\\nCode has explicit threshold: NO\\\\nHungarian matching matches ANY pair including sim=0\\\\n\\\\nTotal sample pairs analyzed: 15428\\\\nTotal matched entity pairs: 37661\\\\n  sim = 0 (no overlap): 644 (1.7%)\\\\n  sim < 0.1: 653 (1.7%)\\\\n  sim < 0.5: 1280 (3.4%)\\\\n  sim >= 0.5: 36381 (96.6%)\\\\n\\\\nDistribution (10 bins):\\\\n  [0.0, 0.1): 653 (1.7%)\\\\n  [0.1, 0.2): 41 (0.1%)\\\\n  [0.2, 0.3): 67 (0.2%)\\\\n  [0.3, 0.4): 215 (0.6%)\\\\n  [0.4, 0.5): 304 (0.8%)\\\\n  [0.5, 0.6): 407 (1.1%)\\\\n  [0.6, 0.7): 597 (1.6%)\\\\n  [0.7, 0.8): 241 (0.6%)\\\\n  [0.8, 0.9): 124 (0.3%)\\\\n  [0.9, 1.0]: 35012 (93.0%)\\\\n\\\\n--- Examples of sim=0 matches (first 10) ---\\\\n  type=Method, a='Amorph' (26, 32), b='analyzer' (4, 12)\\\\n  type=Method, a='Amorph' (26, 32), b='analyzer' (4, 12)\\\\n  type=Method, a='Amorph' (26, 32), b='analyzer' (4, 12)\\\\n  type=Material, a='Japanese character strings' (65, 91), b='dictionaries' (33, 45)\\\\n  type=Material, a='Japanese character strings' (65, 91), b='dictionaries' (33, 45)\\\\n  type=Material, a='Japanese character strings' (65, 91), b='dictionaries' (33, 45)\\\\n  type=Material, a='dictionaries' (33, 45), b='Japanese character strings' (65, 91)\\\\n  type=Material, a='dictionaries' (33, 45), b='Japanese character strings' (65, 91)\\\\n  type=OtherScientificTerm, a='NE items' (151, 159), b='dictionary lookup stage' (53, 76)\\\\n  type=OtherScientificTerm, a='dictionary lookup stage' (53, 76), b='rules' (88, 93)\\\\n\\\\n--- Breakdown by entity type ---\\\\n  Generic: total=5173, sim=0: 89 (1.7%), mean=0.972, median=1.000\\\\n  Material: total=3382, sim=0: 33 (1.0%), mean=0.969, median=1.000\\\\n  Method: total=10130, sim=0: 102 (1.0%), mean=0.975, median=1.000\\\\n  Metric: total=1603, sim=0: 27 (1.7%), mean=0.946, median=1.000\\\\n  OtherScientificTerm: total=11569, sim=0: 355 (3.1%), mean=0.940, median=1.000\\\\n  Task: total=5804, sim=0: 38 (0.7%), mean=0.957, median=1.000\\\\n\\\\nOvera\n…[truncated 260 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T03:27:31.578969+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n### 代码确认\n- **没有任何 minimum similarity threshold**。`linear_sum_assignment(-cost)` 直接做最大化匹配，sim=0 的 pair 也会被 match。\n\n### 数据统计（Qwen SciERC N=8, 551 instances）\n\n| 区间 | 数量 | 占比 |\n|------|------|------|\n| sim = 0（完全不重叠） | 644 | 1.7% |\n| sim < 0.1 | 653 | 1.7% |\n| sim < 0.5 | 1,280 | 3.4% |\n| **sim >= 0.5** | **36,381** | **96.6%** |\n\n分布高度集中在 [0.9, 1.0]（93.0%），说明绝大多数 matched pair 是近乎完全重叠的。sim=0 的 644 个 pair 占比很小（1.7%），影响有限。\n\n按 entity type 看，**OtherScientificTerm** 的 sim=0 比例最高（3.1%, 355/11569），可能因为该类型边界模糊、提取变异大。\n\n总体 mean_sim=0.9595, median=1.0, std=0.1645。\n\n结果已保存到 `/root/autodl-tmp/struct_self_consist_ie/output/review_round2/sj_threshold_analysis.json`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_sj_threshold_check_20260515T032543"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-sj-threshold-check.md"
+}

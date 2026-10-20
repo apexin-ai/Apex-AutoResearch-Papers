@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "553af5cd4f3acf1b9461",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp esj entity self judgment",
+  "task_key": "worker_exp_esj_entity_self_judgment_20260520T160012",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_esj_entity_self_judgment_20260520T160012_result.json",
+    "occurrence": 1,
+    "bytes": 1281,
+    "sha256": "a2d0a5083051b5a54c5e99e9b242db44b7ad0bd3c01d767a44a37dd0d39abcaf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态：所有 4 块 GPU 被 Qwen2.5-32B FewNERD QLoRA 训练占用。**\n\n- 进度：32800 / 41180 steps (79.65%)\n- 预估剩余：~7h48m\n- 是 4-GPU 分布式训练，无法释放单块 GPU\n\n**需要注意的差异：**\n- 任务说 \"Qwen2.5-7B-Instruct FewNERD-FT merged checkpoint\"，但服务器上没有该模型\n- 实际可用的 FewNERD FT 模型是 **Qwen3-8B + qwen3-8b-fewnerd-5epoch-lora**（base 在 `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`）\n- 脚本已按实际情况适配：加载 base + LoRA → merge → forward pass\n\n**ESJ 脚本已就绪**，上传到了 `/root/autodl-tmp/struct_self_consist_ie/code/run_esj.py`。\n\n当 GPU 可用时，dry-run 命令：\n```bash\nCUDA_VISIBLE_DEVICES=1 python /root/autodl-tmp/struct_self_consist_ie/code/run_esj.py \\\n  --base_model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B \\\n  --adapter_path /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-5epoch-lora \\\n  --data_path /root/autodl-tmp/struct_self_consist_ie/output/exp_028_fewnerd_5epoch/samples.jsonl \\\n  --output_dir /root/autodl-tmp/struct_self_consist_ie/results/esj_fewnerd \\\n  --max_instances 100 --batch_size 16\n```\n\n等训练结束后提交全量？还是要我终止当前训练释放 GPU？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-esj-entity-self-judgment.md"
+}

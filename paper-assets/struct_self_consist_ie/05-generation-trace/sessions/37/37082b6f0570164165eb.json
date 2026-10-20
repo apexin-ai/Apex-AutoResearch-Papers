@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37082b6f0570164165eb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp exp 026 t12",
+  "task_key": "worker_exp_exp_026_t12_20260516T125546",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_exp_026_t12_20260516T125546_result.json",
+    "occurrence": 1,
+    "bytes": 986,
+    "sha256": "8bedfd95906242b4519747331039f9faaa5ba7638b06854026b12d61af4a862d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_026_t12 完成。结果汇总：\n\n| 指标 | T=0.5 | T=0.8 | **T=1.2** |\n|------|-------|-------|-----------|\n| Greedy F1 | 0.6647 | 0.6633 | 0.6615 |\n| Oracle F1 | 0.7423 | 0.7684 | **0.7914** |\n| Oracle headroom | +0.078 | +0.105 | **+0.130** |\n| Fleiss' κ (mean) | 0.577 | 0.451 | 0.356 |\n| Soft Jaccard (mean) | 0.833 | 0.749 | 0.645 |\n| ρ(κ, F1) full | 0.256 | 0.250 | **0.338** |\n| ρ(SJ, F1) full | 0.297 | 0.359 | **0.377** |\n| ρ(SJ, F1) cond | 0.278 | 0.312 | **0.355** |\n| Sample F1 mean | 0.636 | 0.622 | 0.594 |\n| Logprob ρ full | 0.218 | 0.253 | 0.196 |\n| Verdict | FAIL | MARGINAL | **MARGINAL** |\n\nT=1.2 的 consistency-quality 相关性（SJ ρ=0.377）是三个温度中最高的，oracle headroom 也最大（+0.130）。代价是 sample F1 均值下降至 0.594 且 F1=0 比例升至 13.9%。logprob baseline 的 ρ 在 T=1.2 下反而最低（0.196），说明高温度下 structural consistency 信号的相对优势更大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp-026-t12.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78b558f207f448f27ef3",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops anon repo author fix",
+  "task_key": "worker_ops_anon_repo_author_fix_20260525T115618",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_anon_repo_author_fix_20260525T115618_result.json",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "f13fa06ffe751003b212306f15ac2e3b8cbb39387a1c5d09655b64304890cfba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "服务器上该目录不是 git 仓库，无需修复 git config。\n\n---\n\n### 修复报告\n\n| 项目 | 结果 |\n|------|------|\n| **本地 commit author** | `48849f5 Anonymous <anonymous@example.com>` ✓ |\n| **Force-push** | 成功，`f3a74af → 48849f5` |\n| **旧 hash f3a74af 可访问性** | GitHub API 返回 **404** ✓ |\n| **所有历史 commit author** | 全部 8 个 commit 均为 `Anonymous <anonymous@example.com>`，无泄漏 ✓ |\n| **Remote URL** | PAT 已清除，当前为 `https://github.com/anonymous-nlp-2026/struct_self_consist_ie.git` ✓ |\n| **服务器 git config** | 服务器上 `/root/autodl-tmp/struct_self_consist_ie` 不是 git 仓库，无需修复 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-anon-repo-author-fix.md"
+}

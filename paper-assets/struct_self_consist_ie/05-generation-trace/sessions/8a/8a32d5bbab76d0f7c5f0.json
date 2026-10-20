@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a32d5bbab76d0f7c5f0",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis e4 ensemble scaling",
+  "task_key": "worker_analysis_e4_ensemble_scaling_20260521T113230",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_e4_ensemble_scaling_20260521T113230_result.json",
+    "occurrence": 1,
+    "bytes": 307,
+    "sha256": "4b8b6684efcc2fbf7512c8da78de517a47d598eb3457a5148a64ca8662102deb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Data artifact registered successfully (`art_20260521_629168`).\n\nE4 Ensemble Scaling analysis is fully complete. Both artifacts are now registered:\n- **Report**: `art_20260521_634edd` — `e4_ensemble_scaling_report.md`\n- **Data**: `art_20260521_629168` — `e4_ensemble_scaling_data.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-e4-ensemble-scaling.md"
+}

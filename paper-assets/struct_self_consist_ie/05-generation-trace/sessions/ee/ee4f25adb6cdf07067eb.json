@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee4f25adb6cdf07067eb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp freeform conll 4seed",
+  "task_key": "worker_exp_freeform_conll_4seed_20260516T024618",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_freeform_conll_4seed_20260516T024618_result.json",
+    "occurrence": 1,
+    "bytes": 192,
+    "sha256": "da00752245518c7eeeb35a338fe723da94bc49d02d7e512361d39ab843d1ce47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n- 实验注册表已更新：`exp_freeform_conll_4seed` → DONE (success)，含完整 metrics\n- Artifact 已注册：`art_20260516_b7c778`（summary.json）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-freeform-conll-4seed.md"
+}

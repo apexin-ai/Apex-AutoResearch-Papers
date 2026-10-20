@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "972bc61c81c01997fba2",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "audit table fewnerd source v2",
+  "task_key": "worker_audit_table_fewnerd_source_v2_20260518T035825",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_table_fewnerd_source_v2_20260518T035825_result.json",
+    "occurrence": 1,
+    "bytes": 2628,
+    "sha256": "4973d2b2d13fb01909a760670940b790b383abd78569481ae6db435eb7fe694b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I've completed the exhaustive investigation. Here's the result.\n\n## tab:fewnerd SciERC 行溯源\n\n### SCIERC_REF 硬编码值来源：**无法追溯到任何单一实验/JSON**\n\n各值逐一追踪结果：\n\n| SCIERC_REF 值 | 可追溯性 | 最接近的实际计算值 |\n|---|---|---|\n| **greedy=0.614** | ❌ 无匹配 | exp_012_rerun_1024: 0.618 (n=551) 或 0.644 (n=529 gold-filtered) |\n| **oracle=0.752** | ⚠️ 仅匹配 exp010 N=8 seed42 n=551 (0.7522)，但这是**不同实验** | exp_012_rerun_1024: 0.745 (n=551) 或 0.776 (n=529) |\n| **headroom=13.8** | ✅ 与 greedy/oracle 内部一致 (0.752-0.614=0.138) | 但基础值本身不可追溯 |\n| **lp_rho=0.205** | ✅ **唯一可确认来源**: exp_012_rerun_1024/report.json `ner_logprob_baseline.full.rho = 0.20517` | **确认为 max_tokens=1024** |\n| **lp_delta=+0.42pp** | ❌ 无匹配 | exp_012_rerun_1024: +0.62pp (n=529) 或 +0.59pp (n=551) |\n\n### 关键证据\n\n- `exp_012_rerun_1024/comparison.json` 明确记录：512 版 logprob rho=0.1396，1024 版 rho=0.2052。**lp_rho=0.205 来自 1024 版无疑。**\n- 512 版 LP delta = **-0.07pp**（负值），1024 版 = **+0.62pp**。+0.42pp 与两者都不匹配。\n- `d112_table2_fix/corrected_table2.json` 给出经过验证的 seed42+123 平均值：greedy=0.645, oracle=0.778, LP delta=+0.20pp——也与 SCIERC_REF 不符。\n- greedy=0.614 不匹配任何实验的任何过滤条件（n=551 全集 / n=529 gold-filtered / n=477 conditional）。\n- 所有 JSON 中出现 `lp_delta: 0.42` 的文件（exp_020_pilot, exp_021_inference, exp_027_fewnerd_n16）都是 `analyze_fewnerd_results.py` 的输出，仅在回显 SCIERC_REF 常量。\n- 无 git 历史可追溯 SCIERC_REF 被设置的 commit。\n\n### 结论\n\n```\ntab:fewnerd SciERC 行是否受 max_tokens=512 污染: INCONCLUSIVE\n\n判断依据:\n- lp_rho=0.205 确认来自 1024 版本（不受 512 污染）\n- greedy=0.614 和 lp_delta=+0.42pp 无法追溯到任何实验：\n  - 512 版给出 LP Δ=-0.07pp（差距极大）\n  - 1024 版给出 LP Δ=+0.62pp（方向正确但数值不符）\n  - 两者都无法产生 greedy=0.614\n- 这些值很可能是从某次已丢失的分析/控制台输出中手动摘录的，\n  混合了不同实验/条件/计算方法的结果\n- 核心问题不是 512 vs 1024 污染，而是 SCIERC_REF 所有值\n （除 lp_rho 外）均不可复现，属于硬编码 bug\n```\n\n**建议**：用 `exp_012_rerun_1024/samples.jsonl`（1024 版，seed42）重新计算所有值，根据论文使用的过滤条件（n=529 gold-filtered 或 n=551 全集）统一基准。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-table-fewnerd-source-v2.md"
+}

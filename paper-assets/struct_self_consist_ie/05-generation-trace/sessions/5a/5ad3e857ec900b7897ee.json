@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "5ad3e857ec900b7897ee",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "writing d070 d071 paper revision",
+  "task_key": "worker_writing_d070_d071_paper_revision_20260515T093414",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_writing_d070_d071_paper_revision_20260515T093414.log",
+    "occurrence": 1,
+    "bytes": 818032,
+    "sha256": "591d70f6a4fb03ea7070158213c02719131b52e5dff69fc6a29a5e817f4296d3"
+  },
+  "statistics": {
+    "messages": 195,
+    "user_turns": 0,
+    "tool_calls": 74,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 74,
+      "tool_result": 74,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 195,
+      "chunks": [
+        {
+          "path": "5ad3e857ec900b7897ee-part-0001.json",
+          "message_count": 138
+        },
+        {
+          "path": "5ad3e857ec900b7897ee-part-0002.json",
+          "message_count": 57
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/writing-d070-d071-paper-revision.md"
+}

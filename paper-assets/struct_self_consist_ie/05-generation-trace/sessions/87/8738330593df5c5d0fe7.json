@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "id": "8738330593df5c5d0fe7",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "exp hidden probe fewnerd",
+  "task_key": "worker_exp_hidden_probe_fewnerd_20260518T105429",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_hidden_probe_fewnerd_20260518T105429.log",
+    "occurrence": 1,
+    "bytes": 1600334,
+    "sha256": "5395ae55ff99bd328d1153df3f57960e8bfe0d05c6425024a4852e35c886fce1"
+  },
+  "statistics": {
+    "messages": 1077,
+    "user_turns": 2,
+    "tool_calls": 471,
+    "roles": {
+      "log": 1,
+      "system": 34,
+      "record": 1,
+      "assistant": 96,
+      "tool_call": 471,
+      "user": 2,
+      "tool_result": 471,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "8738330593df5c5d0fe7-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 478,
+      "chunks": [
+        {
+          "path": "8738330593df5c5d0fe7-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "8738330593df5c5d0fe7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8738330593df5c5d0fe7-part-0003.json",
+          "message_count": 124
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 593,
+      "chunks": [
+        {
+          "path": "8738330593df5c5d0fe7-part-0003.json",
+          "message_count": 56
+        },
+        {
+          "path": "8738330593df5c5d0fe7-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "8738330593df5c5d0fe7-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "8738330593df5c5d0fe7-part-0006.json",
+          "message_count": 177
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-hidden-probe-fewnerd.md"
+}

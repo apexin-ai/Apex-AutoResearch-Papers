@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0f1e5fe963f079d2222",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "collect exp 14b inference fewnerd results",
+  "task_key": "worker_collect_exp_14b_inference_fewnerd_results_20260521T071849",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_collect_exp_14b_inference_fewnerd_results_20260521T071849_result.json",
+    "occurrence": 1,
+    "bytes": 1289,
+    "sha256": "0ff98bb05936561f094874577f0c0976c9e322bc0c9109f1601f8a0e0422e6ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the summary:\n\n## exp_14b_inference_fewnerd — DONE/success\n\n**Process**: PID 217692 finished and was killed by `kill_after_n8.sh` after completing N=8 (N=16 intentionally cut per Director). GPUs now running other experiments (PIDs 293xxx-294xxx).\n\n**Results** (`output/14b_final_inference/`):\n\n| N | greedy_f1 | oracle_f1 | oracle_headroom | soft_jaccard ρ | ρ_advantage | structural > surface | verdict |\n|---|-----------|-----------|-----------------|----------------|-------------|----------------------|---------|\n| 1 | 0.7985 | 0.7541 | -0.044 | — | — | — | FAIL |\n| 2 | 0.7985 | 0.8086 | +0.010 | 0.205 | -0.006 | no | FAIL |\n| 4 | 0.7984 | 0.8544 | +0.056 | 0.314 | +0.042 | **yes** | MARGINAL |\n| 8 | 0.7984 | 0.8791 | +0.081 | 0.324 | +0.083 | **yes** | MARGINAL |\n\n**Key patterns**:\n- greedy_f1 stable at ~0.798 regardless of N\n- oracle_f1 grows strongly: 0.754 → 0.879 (N=1→8), headroom +8.1pp at N=8\n- structural consistency beats surface (logprob) starting at N=4, with rho_advantage widening from +0.042 to +0.083\n- Cross-domain SciERC/CoNLL results also completed (15 subdirs total) but expected poor\n\nRegistry updated: conclusion → success, failure_reason cleared, metrics and checkpoint_path set."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-exp-14b-inference-fewnerd-results.md"
+}

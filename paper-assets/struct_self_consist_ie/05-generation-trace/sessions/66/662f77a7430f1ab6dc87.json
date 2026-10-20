@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "id": "662f77a7430f1ab6dc87",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "fig fig3 fig6 20260524T093312 retry1",
+  "task_key": "worker_fig_fig3_fig6_20260524T093312_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fig_fig3_fig6_20260524T093312_retry1.log",
+    "occurrence": 1,
+    "bytes": 588868,
+    "sha256": "fec0e67d31607df4f2f34952aeac0cf7b3ed2880fa55d3e3a190e84cf1301db8"
+  },
+  "statistics": {
+    "messages": 208,
+    "user_turns": 4,
+    "tool_calls": 77,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 1,
+      "assistant": 34,
+      "tool_call": 77,
+      "tool_result": 77,
+      "user": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 51,
+      "chunks": [
+        {
+          "path": "662f77a7430f1ab6dc87-part-0001.json",
+          "message_count": 51
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 52,
+      "chunks": [
+        {
+          "path": "662f77a7430f1ab6dc87-part-0001.json",
+          "message_count": 52
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 96,
+      "chunks": [
+        {
+          "path": "662f77a7430f1ab6dc87-part-0001.json",
+          "message_count": 77
+        },
+        {
+          "path": "662f77a7430f1ab6dc87-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "662f77a7430f1ab6dc87-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "662f77a7430f1ab6dc87-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fig-fig3-fig6-20260524t093312-retry1.md"
+}

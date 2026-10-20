@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88531c6f67701e93b219",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp a1 spider sql sc",
+  "task_key": "worker_code_exp_a1_spider_sql_sc_20260520T181611",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_a1_spider_sql_sc_20260520T181611_result.json",
+    "occurrence": 1,
+    "bytes": 1388,
+    "sha256": "802ce65fc95559c61f6058dbd97c8dc543f9669414c2803883040974bd01394d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出报告：\n\n---\n\n**Spider SQL SC Pilot 实验准备状态**\n\n| 项 | 状态 |\n|---|---|\n| 脚本 | `run_spider_sc.py` (470行) 已部署到 autodl-5090-b |\n| 合成数据库生成器 | `generate_spider_dbs.py` — 已执行，166 个数据库就绪 |\n| 模型 | Qwen2.5-7B-Instruct — 已在 HF 缓存 |\n| GPU | cuda:2 — 32GB 空闲 |\n| vLLM | 0.18.1 — import 测试通过 |\n| Spider 数据 | `xlangai/spider` HF 数据集 — validation 1034 例 → 随机抽 200 |\n| 数据库文件 | **合成数据库**（原版 Google Drive 被 AutoDL Squid 代理阻断） |\n| Registry | `exp_spider_sc_pilot` — PENDING |\n\n**运行命令：**\n```\nsource /root/autodl-tmp/struct_self_consist_ie/env.sh && CUDA_VISIBLE_DEVICES=2 python3 /root/autodl-tmp/struct_self_consist_ie/code/run_spider_sc.py\n```\n\n**数据库说明：** Spider 原版数据库仅通过 Google Drive 分发，AutoDL 代理完全阻断 Google 域名。已用 `tables.json` 的 schema 信息生成 166 个合成 SQLite 数据库（每表 15 行），gold query 执行测试 78% 返回非空结果。对 SC 诊断性指标（degeneracy rate、agreement pattern、LP gap）有效；绝对 execution accuracy 为近似值。如需精确数值，后续可从 VPN 环境下载原版数据库替换。\n\n**预计时长：** ~15-20 分钟（200 examples × 9 次推理 on 5090）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-a1-spider-sql-sc.md"
+}

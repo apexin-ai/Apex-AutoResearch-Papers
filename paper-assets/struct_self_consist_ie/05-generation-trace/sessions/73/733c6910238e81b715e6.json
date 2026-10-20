@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "id": "733c6910238e81b715e6",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose exp b1 scd fewnerd curriculum q",
+  "task_key": "worker_diagnose_exp_b1_scd_fewnerd_curriculum_q_20260520T190612",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp_b1_scd_fewnerd_curriculum_q_20260520T190612_result.json",
+    "occurrence": 1,
+    "bytes": 2705,
+    "sha256": "396fe081ed781378e61b0617b37171f9948865f6b60a7cbbe48459947f5e668d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results obtained. Now let me also check the log for the final output confirmation.\n\n```json\n{\n  \"checkpoint_verified\": true,\n  \"checkpoint_details\": {\n    \"path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-scd-fallback-lora/\",\n    \"base_model\": \"qwen3-8b-fewnerd-exp021-merged\",\n    \"peft_type\": \"LORA\",\n    \"lora_rank\": 32,\n    \"lora_alpha\": 64,\n    \"train_loss\": 0.023,\n    \"eval_loss\": 0.033,\n    \"epochs\": 2,\n    \"adapter_size_mb\": 349\n  },\n  \"other_scd_experiments_status\": {\n    \"exp_b1_scd_fewnerd_standard\": \"COMPLETED (train_loss=0.023, eval_loss=0.0329)\",\n    \"exp_b1_scd_threshold_ablation\": \"RUNNING (~92% at last check, GPU 3)\"\n  },\n  \"eval_results\": {\n    \"pre_scd_greedy_f1\": 0.7482,\n    \"post_scd_greedy_f1\": 0.7866,\n    \"delta_pp\": 3.84,\n    \"n_instances\": 37648,\n    \"post_scd_greedy_precision\": 0.7663,\n    \"post_scd_greedy_recall\": 0.8080,\n    \"post_scd_instance_avg_f1\": 0.7809,\n    \"total_tp\": 78252,\n    \"total_fp\": 23869,\n    \"total_fn\": 18590\n  },\n  \"available_gpus\": [\"cuda:1\", \"cuda:2\"]\n}\n```\n\n**SCD distillation 效果显著**：FewNERD greedy F1 从 0.7482 提升到 **0.7866**，绝对提升 **+3.84pp**。这个涨幅与 CoNLL 上观察到的趋势一致（CoNLL: 0.9078→0.9184, +1.06pp），且 FewNERD 涨幅更大，说明 SCD 在更复杂的 8 类实体任务上收益更高。\n\nPost-SCD greedy F1 (0.7866) 已超越 pre-SCD consensus_theta2n (0.7637)，意味着蒸馏后的单次 greedy 推理已经优于蒸馏前 8 次采样 + theta2n 构建的结果，验证了 SCD 的核心 claim。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "checkpoint_verified": true,
+              "checkpoint_details": {
+                "path": "/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-scd-fallback-lora/",
+                "base_model": "qwen3-8b-fewnerd-exp021-merged",
+                "peft_type": "LORA",
+                "lora_rank": 32,
+                "lora_alpha": 64,
+                "train_loss": 0.023,
+                "eval_loss": 0.033,
+                "epochs": 2,
+                "adapter_size_mb": 349
+              },
+              "other_scd_experiments_status": {
+                "exp_b1_scd_fewnerd_standard": "COMPLETED (train_loss=0.023, eval_loss=0.0329)",
+                "exp_b1_scd_threshold_ablation": "RUNNING (~92% at last check, GPU 3)"
+              },
+              "eval_results": {
+                "pre_scd_greedy_f1": 0.7482,
+                "post_scd_greedy_f1": 0.7866,
+                "delta_pp": 3.84,
+                "n_instances": 37648,
+                "post_scd_greedy_precision": 0.7663,
+                "post_scd_greedy_recall": 0.808,
+                "post_scd_instance_avg_f1": 0.7809,
+                "total_tp": 78252,
+                "total_fp": 23869,
+                "total_fn": 18590
+              },
+              "available_gpus": [
+                "cuda:1",
+                "cuda:2"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-b1-scd-fewnerd-curriculum-q.md"
+}

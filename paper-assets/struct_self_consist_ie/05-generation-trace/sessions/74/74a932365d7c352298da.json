@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74a932365d7c352298da",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh b2 v4 inverse frequency",
+  "task_key": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_b2-v4-inverse-frequency_20260520T115649_result.json",
+    "occurrence": 1,
+    "bytes": 1404,
+    "sha256": "7dccd5ea62db0b501e95076e324609f9c7c6539793f9956d819184a7362480cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。所有结果已保存到 `artifacts/b2_v4_inverse_freq/`（results.json + summary.md）。\n\n## 关键结果：Fold 3 (FewNERD 跨域泛化)\n\n| 版本 | XGB AUC | LGB AUC | ECE (LGB) | Best F1 Δ vs Greedy |\n|------|---------|---------|-----------|---------------------|\n| B2 orig | 0.8282 | 0.8335 | - | - |\n| B2-v2 (joint) | 0.8603 | 0.8477 | 0.1357 | -0.008 |\n| B2-v3 (invariant) | 0.8518 | 0.8562 | 0.1373 | -0.010 |\n| **B2-v4 replace** | 0.8224 | 0.8340 | 0.2188 | -0.013 |\n| **B2-v4 augment** | 0.8554 | 0.8541 | 0.1934 | -0.009 |\n\n## 分析\n\n**Variant A (replace)** 失败 — 直接替换 ac/vc/sj 为 IFW 版本导致 AUC 全面下降，ECE 恶化。IFW 破坏了原始特征的判别力。\n\n**Variant B (augment)** 表现中性偏积极 — LGB AUC 0.8541 略优于 v2 的 0.8477 (+0.006)，接近 v3 的 0.8562。但 ECE 恶化（0.19 vs 0.14），F1 delta 仍为负。\n\n**Feature stability 分析验证了 IFW 假设的部分有效性**：\n- `ac_ifw` cross-domain std: 0.110 vs `agreement_count`: 0.122（降低 10%）\n- `sj_ifw` cross-domain std: 0.063 vs `sj`: 0.138（降低 54%）\n- 但代价是均值相关性也下降（`sj_ifw`: 0.22 vs `sj`: 0.55）\n\n**结论**：IFW 确实提高了特征的跨域稳定性，但同时削弱了判别力。作为补充特征（augment）有微弱正效果，但不足以解决跨域 F1 负迁移问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-b2-v4-inverse-frequency.md"
+}

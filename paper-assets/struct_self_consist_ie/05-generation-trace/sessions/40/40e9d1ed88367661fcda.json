@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40e9d1ed88367661fcda",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix llama 3seed summary r1024",
+  "task_key": "worker_fix_llama_3seed_summary_r1024_20260515T062613",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_llama_3seed_summary_r1024_20260515T062613_result.json",
+    "occurrence": 1,
+    "bytes": 929,
+    "sha256": "9b554c4ea94905c087b4e2fc2a72707156fb534ad548c897110ae13db4e14763"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**Step 1-2**: 修正 `compute_llama_3seed_summary.py` 的 SEED_DIRS（seed42: `exp007_llama_inference` → `exp_018_llama_scierc_seed42_r1024`，seed456: 加 `_r1024` 后缀），输出改写到 `llama_scierc_3seed_fresh_summary.json`，重新执行。\n\n**Step 3 验证通过**: seed42 NER SJ ρ = **0.3096** ✓（完美匹配 registry），FK ρ = 0.2352 ✓，LP ρ = 0.1503 ✓。\n\n**Step 4**: Qwen 3-seed summary 已存在，直接使用。\n\n**Step 5**: 综合表已写入 `artifacts/multi_seed_stability_table.md` 并注册（`art_20260515_c0274b`）。\n\n关键发现：\n- **NER 排名完全稳定**：VC > SJ > EM > FK > LP，6 个 seed×model 组合全部一致\n- **\"structural > logprob\" 在 NER 上成立**（12/12），RE 上仅 VC > LP 稳定，SJ/FK 未必胜 LP\n- LLaMA SJ ρ 修正：旧均值 0.362 → 新均值 0.325，σ 增大 ~5× 是真实 seed 变异"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-llama-3seed-summary-r1024.md"
+}

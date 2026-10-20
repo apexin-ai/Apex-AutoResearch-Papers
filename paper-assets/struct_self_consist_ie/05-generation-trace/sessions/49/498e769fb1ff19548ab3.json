@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "498e769fb1ff19548ab3",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code registry batch cleanup",
+  "task_key": "worker_code_registry_batch_cleanup_20260518T195913",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_registry_batch_cleanup_20260518T195913_result.json",
+    "occurrence": 1,
+    "bytes": 550,
+    "sha256": "96265fa5f97784b6bfe3ef52f4ebb12801d240adab7b5993ca3507edb772ef61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5个实验全部注册成功，状态均为 DONE。\n\n| 实验 | conclusion | 状态 |\n|---|---|---|\n| `exp_ccs_selection` | negative | DONE |\n| `exp_entity_consensus` | negative | DONE |\n| `exp_adaptive_temperature` | negative | DONE |\n| `exp_diagnostic_calibration` | negative | DONE |\n| `exp_epoch_dgs_analysis` | success | DONE |\n\n无失败。每个实验经过完整状态机 PREPARING → PENDING → QUEUED → ALLOCATED → RUNNING → DONE，hypothesis、conclusion、checkpoint_path、log_path、spec 均已设置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-registry-batch-cleanup.md"
+}

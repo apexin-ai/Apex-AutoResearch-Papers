@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5eabcab3cd6a7f62645",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp exp 020 fewnerd smoke",
+  "task_key": "worker_exp_exp_020_fewnerd_smoke_20260516T102550",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_exp_020_fewnerd_smoke_20260516T102550_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "55045bbd4d18e8c231c40118282acf07d61a4df81a1e1033068a48b851ac62df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training launched successfully on cuda:1 (RTX 5090).\n\n**Status:**\n- Config: `train_config_fewnerd.yaml` — Qwen3-8B, LoRA rank=16, 1 epoch, Few-NERD SUPERVISED (131K samples)\n- Total steps: 8,236 at ~1.9s/step → ETA ~4.3 hours (~22:50 server time)\n- Log: `checkpoints/fewnerd_train.log`\n- Registry: `exp_020_fewnerd_smoke` → RUNNING\n\nI'll check back shortly to verify loss at step 50, then periodically until training completes. After that: export merged model → pilot inference (200 instances, N=8) → 5-signal analysis."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp-020-fewnerd-smoke-copy-2.md"
+}

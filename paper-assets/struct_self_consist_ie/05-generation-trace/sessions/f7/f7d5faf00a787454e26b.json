@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7d5faf00a787454e26b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "audit ref check A",
+  "task_key": "worker_audit_ref-check-A_20260526T101756",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_ref-check-A_20260526T101756_result.json",
+    "occurrence": 1,
+    "bytes": 829,
+    "sha256": "49cc85fe860607428ca66485f77e19dc62616a1f305807c710f4b9ca2e3d9999"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/ref_audit_worker_A.md`。\n\n**核心结论**：64 条 bib entries 全部真实存在，无虚假引用。\n\n**需修正（3 项）**：\n1. **[li2023stepaware]** — 标题多了 \"Large\"，ACL 2023 proceedings 无此词\n2. **[yee2019noisy]** — 作者列表（3人）与 bib 中 arXiv URL 指向的版本（4人，含 Nathan Ng）不一致\n3. **[holm1979simple]** — Holm-Bonferroni 方法在正文中被引用 15+ 次但从未 `\\cite`，bib entry 未被使用\n\n**需关注（3 项）**：\n- `snell2025scaling`: arXiv 与 ICLR proceedings 标题不同，bib 使用 proceedings 版，可接受\n- `xu2024llmie`: 作者 \"Wang, Yang\" 在 S2 中缺失，需对照出版商确认\n- `li2024simple`, `xiao2022uncertainty`: 在 bib 中但未被引用，建议删除或添加引用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-ref-check-a.md"
+}

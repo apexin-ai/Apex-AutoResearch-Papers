@@ -1,0 +1,315 @@
+{
+  "schema_version": "1.0",
+  "session_id": "95281f2e1f95349bf7c0",
+  "rounds": [
+    {
+      "number": 100,
+      "messages": [
+        {
+          "source_line": 1441,
+          "timestamp": "2026-05-15T00:09:39.555742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际跑 0（Writing 阶段）| Worker 池 0 (GPU 0 / CPU 0)\n\n**fig_signal_heatmap_1024 已确认生成完毕。**\n\n- PDF: 36 KB, PNG: 203 KB — 文件大小正常\n- 格式：2×2 grid（Top: Spearman ρ Full/Conditional, Bottom: AUROC Full/Conditional）\n- 数据：exp_012_rerun_1024 (N=8, 1024 tokens, SciERC Qwen)，每 panel 2 行 (NER/RE) × 5 列信号\n- Artifact 已注册 (art_20260515_957a2a)\n- 脚本：`artifacts/figures/plot_signal_heatmap_1024.py`\n\n当前无待办任务，待命。",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-001441"
+        },
+        {
+          "source_line": 1442,
+          "timestamp": "2026-05-15T00:09:43.474423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3918
+          },
+          "id": "event-001442"
+        },
+        {
+          "source_line": 1443,
+          "timestamp": "2026-05-15T00:09:45.610594+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已生成。注册 artifact 并汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3"
+          },
+          "id": "event-001443"
+        },
+        {
+          "source_line": 1444,
+          "timestamp": "2026-05-15T00:09:45.653245+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已生成。注册 artifact 并汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3"
+          },
+          "id": "event-001444"
+        }
+      ]
+    },
+    {
+      "number": 101,
+      "messages": [
+        {
+          "source_line": 1445,
+          "timestamp": "2026-05-15T00:17:07.398862+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] **数据溯源查询**\n\nPaper Agent 需要确认 experiments.tex L260 中 LLaMA cross-model conditional RE 数据的来源：\n- SJ RE conditional ρ = 0.405\n- FK RE conditional ρ = 0.259\n\n从 registry 中查找：哪个实验产出了这两个值？可能在 exp_007/exp_009 系列或其他 LLaMA 相关实验中。搜索 registry 中 model 含 LLaMA 且有 re_cond 指标的实验，报告 exp_id 和对应 metrics。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "source": "director"
+          },
+          "id": "event-001445"
+        },
+        {
+          "source_line": 1446,
+          "timestamp": "2026-05-15T00:17:18.298862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"llama\\|LLaMA\\|Llama\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/registry.yaml | head -30",
+              "description": "Find LLaMA experiments in registry"
+            }
+          },
+          "id": "event-001446"
+        },
+        {
+          "source_line": 1447,
+          "timestamp": "2026-05-15T00:17:18.452093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "17:      framework: LLaMA Factory 0.9.4\n123:      command: llamafactory-cli train /root/autodl-tmp/struct_self_consist_ie/train_config_v2.yaml\n260:      command: CUDA_VISIBLE_DEVICES=1 llamafactory-cli train train_config_v2.yaml\n730:        && llamafactory-cli train train_config_llama.yaml'\n742:      model_name: LLaMA-3.1-8B-Instruct\n756:    checkpoint_path: /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora\n767:      base_model: Meta-Llama-3.1-8B-Instruct\n773:  exp_007_ner_llama:\n779:      description: Fine-tune LLaMA-3.1-8B on SciERC + NER pilot (N=8, T=0.7). Model-agnostic\n784:      model_name: llama-3.1-8b-instruct (new fine-tune)\n787:      failure_reason: Superseded by exp_007_ner_multi_model + exp_007_llama_inference\n790:    failure_reason: superseded by exp_007_llama_inference (DONE)\n1286:        llamafactory-cli export export_config_conll2003.yaml > /tmp/merge_conll2003.log\n1623:  exp_007_llama_inference:\n1629:      command: python run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged\n1632:        output/exp007_llama_inference/\n1637:      log_path: ~/runs/struct_self_consist_ie/exp_007_llama_inference.log\n1644:      model_name: Meta-Llama-3.1-8B-Instruct (LoRA fine-tuned on SciERC)\n1646:      checkpoint_source: checkpoints/llama3.1-8b-scierc-merged\n1647:      description: LLaMA-3.1-8B SciERC joint inference (NER+RE) with 8 samples, T=1.0,\n1651:    log_path: output/exp007_llama_inference/\n1682:      model: LLaMA-3.1-8B-Instruct\n1786:  exp_017_llama_conll:\n1792:      command: llamafactory-cli train train_config_llama_conll2003.yaml\n1796:      model_name: Meta-Llama-3.1-8B-Instruct\n1805:      checkpoint_path: /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora/\n1950:  exp_007_llama_seed123:\n1956:      description: LLaMA 3.1-8B SciERC joint extraction, seed=123, cross-model robustness\n1958:      hypothesis: Structural consistency generalizes across model architectures (LLaMA\n1961:        --model_p\n…[truncated 79 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Bash",
+            "elapsed_ms": 153
+          },
+          "id": "event-001447"
+        },
+        {
+          "source_line": 1448,
+          "timestamp": "2026-05-15T00:17:21.818330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"exp_007_llama\\|exp_009\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/registry.yaml | grep -v \"^.*#\" | head -20",
+              "description": "Find exp_007_llama and exp_009 entries"
+            }
+          },
+          "id": "event-001448"
+        },
+        {
+          "source_line": 1449,
+          "timestamp": "2026-05-15T00:17:21.919300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "787:      failure_reason: Superseded by exp_007_ner_multi_model + exp_007_llama_inference\n790:    failure_reason: superseded by exp_007_llama_inference (DONE)\n1623:  exp_007_llama_inference:\n1637:      log_path: ~/runs/struct_self_consist_ie/exp_007_llama_inference.log\n1811:  exp_009_capability_stratification:\n1950:  exp_007_llama_seed123:\n1963:        --num_test 9999 --collect_logprobs --output_dir output/exp_007_llama_seed123\n1974:      log_path: /root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/run.log\n1975:      checkpoint_path: /root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/\n2002:  exp_007_llama_seed456:\n2015:        --num_test 9999 --collect_logprobs --output_dir output/exp_007_llama_seed456\n2026:      log_path: output/exp_007_llama_seed456/run.log\n2028:    log_path: /root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/run.log\n2029:    checkpoint_path: /root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/\n2256:  exp_009_v2:\n2262:      command: python3 code/exp_009_v2_stratification.py\n2268:    checkpoint_path: output/exp_009_v2/results.json\n2269:    log_path: output/exp_009_v2_run.log\n2590:  exp_007_llama_n16:\n2599:      parent: exp_007_llama_inference"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-001449"
+        },
+        {
+          "source_line": 1450,
+          "timestamp": "2026-05-15T00:17:25.784972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/registry.yaml",
+              "offset": "1623",
+              "limit": "80"
+            }
+          },
+          "id": "event-001450"
+        },
+        {
+          "source_line": 1451,
+          "timestamp": "2026-05-15T00:17:25.835727+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1623\t  exp_007_llama_inference:\n1624\t    status: DONE\n1625\t    retry_count: 0\n1626\t    created_at: '2026-05-14T13:54:48.055Z'\n1627\t    updated_at: '2026-05-14T14:28:32.909Z'\n1628\t    spec:\n1629\t      command: python run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged\n1630\t        --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples\n1631\t        8 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir\n1632\t        output/exp007_llama_inference/\n1633\t      server: autodl-5090\n1634\t      gpu:\n1635\t      - cuda:0\n1636\t      pid: '75172'\n1637\t      log_path: ~/runs/struct_self_consist_ie/exp_007_llama_inference.log\n1638\t      submitted_at: '2026-05-14T13:54:47.962Z'\n1639\t      submitted_via: submit_training_job\n1640\t      backend: tmux\n1641\t      account: root\n1642\t      data_path: data/scierc/processed_data\n1643\t      data_count: 551\n1644\t      model_name: Meta-Llama-3.1-8B-Instruct (LoRA fine-tuned on SciERC)\n1645\t      seed: 42\n1646\t      checkpoint_source: checkpoints/llama3.1-8b-scierc-merged\n1647\t      description: LLaMA-3.1-8B SciERC joint inference (NER+RE) with 8 samples, T=1.0,\n1648\t        logprobs collected.\n1649\t      wall_clock_seconds: 1038.5\n1650\t      gpu_hours: 0.29\n1651\t    log_path: output/exp007_llama_inference/\n1652\t    checkpoint_path: N/A\n1653\t    metrics:\n1654\t      ner:\n1655\t        greedy_f1: 0.66\n1656\t        oracle_f1: 0.781\n1657\t        headroom: 0.121\n1658\t        rho_fk: 0.327\n1659\t        rho_sj: 0.363\n1660\t        rho_fk_cond: 0.226\n1661\t        rho_sj_cond: 0.311\n1662\t        rho_logprob: 0.183\n1663\t        rho_logprob_cond: 0.109\n1664\t        structural_beats_surface: true\n1665\t        sample_f1_pct_zero: 11.6\n1666\t      re:\n1667\t        greedy_f1: 0.434\n1668\t        oracle_f1: 0.568\n1669\t        headroom: 0.135\n1670\t        rho_fk: 0.305\n1671\t        rho_sj: 0.299\n1672\t        rho_fk_cond: 0.259\n1673\t        rho_sj_cond: 0.405\n1674\t        rho_logprob: 0.288\n1675\t     \n…[truncated 1153 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001451"
+        },
+        {
+          "source_line": 1452,
+          "timestamp": "2026-05-15T00:17:39.289702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际跑 0（Writing 阶段）| Worker 池 0 (GPU 0 / CPU 0)\n\n**数据溯源结果：**\n\nexperiments.tex L260 中 LLaMA RE conditional ρ 来自 **exp_007_llama_inference**（registry L1623）。\n\n该实验详情：\n- 模型：Meta-Llama-3.1-8B-Instruct (LoRA fine-tuned on SciERC)\n- 配置：SciERC joint, N=8, T=1.0, seed=42, max_tokens=1024（非 512 截断）\n- n_instances=551\n\nRE conditional metrics（registry L1672-1673）：\n- `rho_sj_cond`: **0.405** ← SJ RE conditional ρ\n- `rho_fk_cond`: **0.259** ← FK RE conditional ρ\n- `rho_logprob_cond`: 0.092\n\n数据可靠，非 512 截断受害实验。exp_007_llama_inference 使用默认 max_tokens（D058 确认仅 exp_012 用了 512）。",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-001452"
+        },
+        {
+          "source_line": 1453,
+          "timestamp": "2026-05-15T00:17:43.110313+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3820
+          },
+          "id": "event-001453"
+        },
+        {
+          "source_line": 1454,
+          "timestamp": "2026-05-15T00:17:45.146373+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3"
+          },
+          "id": "event-001454"
+        }
+      ]
+    },
+    {
+      "number": 102,
+      "messages": [
+        {
+          "source_line": 1455,
+          "timestamp": "2026-05-15T01:19:09.101186+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001455"
+        },
+        {
+          "source_line": 1456,
+          "timestamp": "2026-05-15T01:20:03.765344+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 的 gpu_ids 需从 `get_project_status` 确认，历史分配为 cuda:0-3，但当前 Writing 阶段 4/4 空闲\n- exp_012 是唯一使用 max_tokens=512 的实验（D058 确认），其他实验均为 1024。任何引用 exp_012 原始数据（非 exp_012_rerun_1024）的地方都是错的\n- 论文数据必须来自 `_rerun_1024` 或本身就用 1024 的实验，不要引用未修正的 exp_012/exp_015_v2 中的 voting_conf ρ（虚高 0.502 → 实际 0.379）\n- Selection claim 已由 bootstrap 确认为 null result（p=0.39），不要在任何地方写成 \"logprob significantly outperforms greedy\"\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，4× RTX 5090 32GB\n- 工作目录：`/root/autodl-tmp/struct_self_consist_ie/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- 模型路径：`checkpoints/qwen3-8b-scierc-merged-v2`（Qwen）、`checkpoints/llama3.1-8b-scierc-merged`（LLaMA）、`checkpoints/llama3.1-8b-conll2003-lora`（LLaMA CoNLL）\n- 数据：`data/scierc/processed_data`、`data/conll2003/`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：无（全部实验完成，Writing 阶段）\n- Cron：reconcile 返回 0 active\n\n### 3. 📊 当前状态\n本 session 完成：\n1. 注册 `exp_016_rerun_1024_bootstrap`（conclusion=negative，bootstrap CI=[-0.030,+0.042]，p=0.39）\n2. 更新 paper_framing.md — Claim 2 统一为 \"No signal significantly outperforms greedy\"，加入 bootstrap evidence\n3. 生成 fig_selection_gap_1024（带 bootstrap CI error bars + n.s. 标签），已注册 art_20260514_bc177f\n4. 生成 fig_signal_heatmap_1024（2×2 grid: ρ+AUROC × Full+Conditional），已注册 art_20260515_957a2a\n5. 更新 ROADMAP：图表全部标记完成，时间线同步\n6. 数据溯源：确认 experiments.tex L260 的 LLaMA RE cond ρ 来自 exp_007_llama_inference（SJ 0.405, FK 0.259）\n\nRegistry：无 RUNNING/PREPARING 实验。全部 58 个实验已完结。\n等待中：无 Worker / Cron 回调。Paper Agent 通过 Director 按需请求数据。\n\n### 4. 📋 待办\n- Director 转达 Paper Agent 数据需求 → 从 registry 查找并汇报（不需要 SSH，数据都在 registry）\n- Paper Agent 完成 method.tex 公式修正 → 无需你介入\n- Paper Agent Step 5 Reviewer 循环完成 → Director 可能要求补充实验或图表\n- 如果 Reviewer 要求新实验 → 确认 GPU 白名单后 spawn Worker 提交（autodl-5090 4 卡空闲可用）\n- DDL 2026-05-25（距今 10 天）前如需 S3 备份 → 用 s3-backup skill\n\n### 5. 🎯 战略上下文\n- 核心结论三条：(1) structural consistency >> logprob 做 quality estimation（EM AUROC 0.749 vs logprob 0.578）；(2) correlation-selection gap 统计确认（bootstrap p=0.39）；(3) task-complexity boundary（RE 因 compound error 更弱）\n- 数据修正链 D054-D060 是本项目最大事故——exp_012 的 512 截断导致 voting_conf ρ 虚高、AUROC 排名反转、selection claims 反转。所有修正已完成并验证\n- 最直接竞争者：Nédellec & Xia (2026-02) 做了 consistency-accuracy correlation for IE，但只用 surface matching（我们的 SJ 解决了他们的 limitation）\n- 易踩坑：旧版 fig_signal_heatmap.pdf/png 还在 artifacts/figures/ 里（N=16/512 数据），新版是 `_1024` 后缀。Paper Agent 引用图表时确保用新版\n- exp_007_llama_inference 是 LLaMA SciERC 的主数据源（N=8, T=1.0, seed=42），RE cond 值来自这里\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3"
+          },
+          "id": "event-001456"
+        }
+      ]
+    }
+  ]
+}

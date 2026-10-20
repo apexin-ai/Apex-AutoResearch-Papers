@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ecfb1e686b1a86bad87",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run scierc t s456 3gpu",
+  "task_key": "worker_run_scierc_t_s456_3gpu_20260521T032250",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_scierc_t_s456_3gpu_20260521T032250_result.json",
+    "occurrence": 1,
+    "bytes": 635,
+    "sha256": "d31263e21b87ab47b3a63850b5d205b2840b8e3305d5549dbfa1f8a3475c708f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部正常运行：\n\n| Exp ID | Server | GPU | VRAM | 状态 |\n|--------|--------|-----|------|------|\n| exp_scierc_t05_s456 | autodl-5090-b | cuda:2 | 30306 MiB | 处理中 ~192/4408 prompts |\n| exp_scierc_t08_s456 | autodl-5090-b | cuda:3 | 30290 MiB | 处理中 ~96/4408 prompts |\n| exp_scierc_t12_s456 | autodl-5090-c | cuda:1 | 30307 MiB | 处理中 ~168/4408 prompts |\n\n551 instances × 8 samples = 4408 prompts，当前吞吐 ~1800-2700 toks/s，预计 7-10 分钟完成。\n\n注意：5090-c 无 tmux，T=1.2 实验用 nohup 启动（PID=272106），进程正常但无 tmux session 管理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-scierc-t-s456-3gpu.md"
+}

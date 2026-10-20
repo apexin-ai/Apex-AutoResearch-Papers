@@ -1,0 +1,292 @@
+{
+  "schema_version": "1.0",
+  "id": "ad3262f5e27c9b46a433",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "infra check 5090c cuda0 collision",
+  "task_key": "worker_infra_check_5090c_cuda0_collision_20260521T113110",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_infra_check_5090c_cuda0_collision_20260521T113110.jsonl",
+    "occurrence": 1,
+    "bytes": 8925,
+    "sha256": "45a00b83d3da3b494d802209725ce3cd91bd4b41afc17e6cb306bcc51c1118a9"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T11:31:46.311318+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_check_5090c_cuda0_collision_20260521T113110",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T11:31:46.311865+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_check_5090c_cuda0_collision_20260521T113110",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T11:31:46.312160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_check_5090c_cuda0_collision_20260521T113110",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ps -p 293438,311981 -o pid,stat,etime,cmd",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T11:31:46.312391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_check_5090c_cuda0_collision_20260521T113110",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T11:31:46.312638+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED CMD\\\\n311981 Ss+        07:27 bash -c rm -f /tmp/agent-ml-exit/exp_fewnerd_n16_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/struct_self_consist_ie/exp_fewnerd_n16_s123.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_fewnerd_n16_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/struct_self_consist_ie && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_n16_s123/\\\\\\\"'; } > ~/runs/struct_self_consist_ie/exp_fewnerd_n16_s123.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_check_5090c_cuda0_collision_20260521T113110",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T11:31:46.312870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 30131 MiB, 32607 MiB, 80 %\\\\n1, 30145 MiB, 32607 MiB, 84 %\\\\n2, 30149 MiB, 32607 MiB, 87 %\\\\n3, 30295 MiB, 32607 MiB, 86 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_check_5090c_cuda0_collision_20260521T113110",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T11:31:46.313104+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_check_5090c_cuda0_collision_20260521T113110",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_n16_seed456_v2/",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T11:31:46.316309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_check_5090c_cuda0_collision_20260521T113110",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "tail -5 /root/runs/struct_self_consist_ie/exp_fewnerd_n16_s456_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T11:31:46.316562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1250196\\\\ndrwxr-xr-x  2 root root         58 May 21 19:02 .\\\\ndrwxr-xr-x 59 root root       4096 May 21 19:23 ..\\\\n-rw-r--r--  1 root root       1621 May 21 19:02 report.json\\\\n-rw-r--r--  1 root root 1280190866 May 21 19:01 samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_check_5090c_cuda0_collision_20260521T113110",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T11:31:46.316793+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_check_5090c_cuda0_collision_20260521T113110",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "tail -5 /root/runs/struct_self_consist_ie/exp_fewnerd_n16_s123.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T11:31:46.317008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\nReport saved to output/fewnerd_n16_seed456_v2/report.json\\\\n(EngineCore pid=294412) INFO 05-21 19:02:51 [core.py:1201] Shutdown initiated (timeout=0)\\\\n(EngineCore pid=294412) INFO 05-21 19:02:51 [core.py:1224] Shutdown complete\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_check_5090c_cuda0_collision_20260521T113110",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T11:31:46.317386+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"(EngineCore pid=312685) INFO 05-21 19:24:30 [gpu_worker.py:617] CUDA graph pool memory: 0.4 GiB (actual), 0.36 GiB (estimated), difference: 0.05 GiB (11.7%).\\\\n(EngineCore pid=312685) INFO 05-21 19:24:30 [core.py:281] init engine (profile, create kv cache, warmup model) took 14.12 seconds\\\\nINFO 05-21 19:24:31 [llm.py:391] Supported tasks: ['generate']\\\\n\\\\rRendering prompts:   0%|          | 0/37648 [00:00<?, ?it/s]\\\\rRendering prompts:   0%|          | 29/37648 [00:00<02:11, 285.21it/s]\\\\rRendering prompts:   0%|          | 77/37648 [00:00<01:34, 397.14it/s]\\\\rRendering prompts:   0%|          | 120/37648 [00:00<01:31, 412.02it/s]\\\\rRendering prompts:   0%|          | 169/37648 [00:00<01:24, 442.62it/s]\\\\rRendering prompts:   1%|          | 218/37648 [00:00<01:21, 458.81it/s]\\\\rRendering prompts:   1%|          | 267/37648 [00:00<01:19, 467.96it/s]\\\\rRendering prompts:   1%|          | 317/37648 [00:00<01:18, 475.36it/s]\\\\rRendering prompts:   1%|          | 366/37648 [00:00<01:17, 477.98it/s]\\\\rRendering prompts:   1%|          | 414/37648 [00:00<01:17, 478.08it/s]\\\\rRendering prompts:   1%|          | 463/37648 [00:01<01:17, 480.50it/s]\\\\rRendering prompts:   1%|▏         | 512/37648 [00:01<01:17, 477.65it/s]\\\\rRendering prompts:   1%|▏         | 561/37648 [00:01<01:17, 480.73it/s]\\\\rRendering prompts:   2%|▏         | 610/37648 [00:01<01:18, 474.74it/s]\\\\rRendering prompts:   2%|▏         | 659/37648 [00:01<01:17, 478.07it/s]\\\\rRendering prompts:   2%|▏         | 707/37648 [00:02<03:57, 155.74it/s]\\\\rRendering prompts:   2%|▏         | 756/37648 [00:02<03:08, 196.02it/s]\\\\rRendering prompts:   2%|▏         | 806/37648 [00:02<02:33, 240.32it/s]\\\\rRendering prompts:   2%|▏         | 856/37648 [00:02<02:09, 284.62it/s]\\\\rRendering prompts:   2%|▏         | 901/37648 [00:02<01:55, 317.41it/s]\\\\rRendering prompts:   3%|▎         | 950/37648 [00:02<01:43, 354.71it/s]\\\\rRendering prompts:   3%|▎         | 999/376\n…[truncated 6370 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_check_5090c_cuda0_collision_20260521T113110",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T11:31:46.317736+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 进程状态\n\n| 实验 | PID | 状态 |\n|------|-----|------|\n| exp_fewnerd_n16_s456_v2 | 293438 | **已完成** (EXIT_CODE=0)，19:02 UTC 正常退出 |\n| exp_fewnerd_n16_s123 | 311981 | **运行中**，已运行 ~7 分钟 |\n\n### s456_v2 产出\n- `output/fewnerd_n16_seed456_v2/report.json` (1.6KB)\n- `output/fewnerd_n16_seed456_v2/samples.jsonl` (1.28GB)\n- 日志确认 `EXIT_CODE=0`，引擎正常 shutdown\n\n### s123 进度\n- 正在处理 prompts: 2992/602368 (~0.5%)，运行约 5 分钟\n- 预估速度: input ~1455 toks/s, output ~677 toks/s\n- 预估剩余时间: ~3 小时\n\n### GPU 0 状态\n- 显存: 30131 / 32607 MiB (92%)\n- 利用率: 80%\n- s123 独占 GPU 0，无碰撞\n\n### 建议操作\n1. **更新 registry**: 将 exp_fewnerd_n16_s456_v2 标记为 COMPLETED\n2. **无需干预 s123**: 正常运行中，GPU 独占，无碰撞"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_check_5090c_cuda0_collision_20260521T113110"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/infra-check-5090c-cuda0-collision.md"
+}

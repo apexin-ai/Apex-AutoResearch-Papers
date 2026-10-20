@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b442b8be930aa7968707",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 001 n16 seed456 submit",
+  "task_key": "worker_code_exp_001_n16_seed456_submit_20260515T103148",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_001_n16_seed456_submit_20260515T103148_result.json",
+    "occurrence": 1,
+    "bytes": 367,
+    "sha256": "6c730a62aa578f71abf839a392aadcdf4fe86dda2dc491dd148a205f3ef2f238"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动：\n\n- **tmux session**: `exp_001_n16_seed456` 运行中\n- **GPU:0**: PID 174881，已占用 2064 MiB（vLLM 正在加载 Qwen3-8B 模型）\n- **数据**: 551 条 scierc test 实例已加载\n- **修正**: `--data_dir` 改为 `data/scierc/processed_data`（原命令中 `data/` 缺少子路径）\n\n预计 ~8-9 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-001-n16-seed456-submit.md"
+}

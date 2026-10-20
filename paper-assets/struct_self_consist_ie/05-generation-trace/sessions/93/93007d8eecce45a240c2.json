@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93007d8eecce45a240c2",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis 72b zeroshot partial results",
+  "task_key": "worker_analysis_72b_zeroshot_partial_results_20260519T113709",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_72b_zeroshot_partial_results_20260519T113709_result.json",
+    "occurrence": 1,
+    "bytes": 1535,
+    "sha256": "8f5e75afcaf00819977a9bdd2b4bbc01d444ca5ad0431321172413b769583c07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总完成。核心结果：\n\n## 72B Zero-Shot 信号报告摘要\n\n### Greedy F1 & Oracle Headroom\n\n| Dataset | Greedy F1 | Oracle F1 | Headroom |\n|---------|-----------|-----------|----------|\n| SciERC | 0.399 | 0.549 | **+15.0pp** |\n| CoNLL | 0.712 | 0.765 | **+5.3pp** |\n\n### Signal ρ（与 instance-level F1 的 Spearman 相关）\n\n| Signal | SciERC | CoNLL |\n|--------|--------|-------|\n| LP | 0.081 | **-0.002** |\n| SJ | 0.217 | 0.304 |\n| FK | 0.227 | 0.302 |\n| VC | **0.277** | 0.297 |\n| EM | 0.181 | 0.281 |\n\n### LP Selection Δ\n\n| Dataset | Δ vs Greedy |\n|---------|-------------|\n| SciERC | **-0.10pp** (hurt) |\n| CoNLL | **-0.39pp** (hurt) |\n\n### 关键发现\n\n1. **LP 信号在零样本下彻底失效**：ρ 接近零（SciERC 0.081, CoNLL -0.002），LP selection 反而损害性能。这是与 fine-tuned 模型最大的差异。\n2. **非 LP 信号仍有效**：VC/SJ/FK 的 ρ 在 0.22-0.30 之间，说明结构一致性信号不依赖 fine-tuning。\n3. **Greedy F1 在 SciERC 上远低于 fine-tuned 7B**（0.40 vs ~0.55+），但 CoNLL 表现尚可（0.71）。\n4. **Oracle headroom 大**（SciERC 15pp），但没有现有方法能有效利用——所有聚合方法均无法稳定超越 greedy。\n5. **Degeneracy 数据不在信号报告中**，需要从 samples.jsonl 单独计算。\n\n### FewNERD 状态\n\n72b_zeroshot/ 下没有 fewnerd 目录或输出文件，推理可能尚未启动。\n\n产出已写入 `artifacts/72b_zeroshot_signal_summary.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-72b-zeroshot-partial-results.md"
+}

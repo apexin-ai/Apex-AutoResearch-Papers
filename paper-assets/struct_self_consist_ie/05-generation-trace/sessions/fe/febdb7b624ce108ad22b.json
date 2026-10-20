@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "febdb7b624ce108ad22b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh verify persist 5epoch recompute",
+  "task_key": "worker_ssh_verify_persist_5epoch_recompute_20260521T220719",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_verify_persist_5epoch_recompute_20260521T220719_result.json",
+    "occurrence": 1,
+    "bytes": 981,
+    "sha256": "afc12113144bf71304fa6f05c00a0ff6107eac9158e434317cfde664058f6064"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 持久化验证\n\n| seed | output/ | artifacts/ | size |\n|------|---------|------------|------|\n| s42 | ✓ (autodl-5090) | ✓ 已创建 | 902 bytes |\n| s123 | ✓ (autodl-5090) | ✓ 已创建 | 905 bytes |\n| s456 | ✓ (autodl-5090-c) | — (不同服务器，未复制) | 904 bytes |\n\n## 文件内容摘要\n\n| seed | greedy_f1 | mv_strict_f1 | mv_incl_f1 | oracle_f1 | Δ_SC strict | Δ_SC incl | δ(degen) |\n|------|-----------|-------------|-----------|-----------|-------------|-----------|----------|\n| s42 | 0.7980 | 0.7935 | 0.7968 | 0.8781 | -0.45pp | -0.12pp | 25.7% |\n| s123 | 0.7976 | 0.7941 | 0.7984 | 0.8814 | -0.35pp | +0.08pp | 27.1% |\n| s456 | 0.7978 | 0.7950 | 0.7980 | 0.8793 | -0.28pp | +0.02pp | 25.9% |\n\n所有文件内容完整，包含人类可读摘要和 JSON 结构化数据。s42/s123 已复制到 `artifacts/exp_fewnerd_5epoch_s{42,123}/`。s456 在 autodl-5090-c 的 `output/` 中存在，未做跨服务器复制。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-persist-5epoch-recompute.md"
+}

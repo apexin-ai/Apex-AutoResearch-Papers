@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff8171436eacd4a8e4a8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh diagnose 5090 pretrained failure",
+  "task_key": "worker_ssh_diagnose_5090_pretrained_failure_20260522T073013",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_diagnose_5090_pretrained_failure_20260522T073013_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "baaa5cd333e36662cd28c752672c40d62afbf5ecda6c674404921858965cc56e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型加载成功，vLLM 正常启动。修复有效。\n\n## 诊断结论\n\n**根因**：ModelScope `snapshot_download` 在 `cache_dir` 下创建了嵌套目录结构 `Qwen/Qwen2___5-7B-Instruct/`，导致 `/root/autodl-tmp/models/Qwen2.5-7B-Instruct/` 顶层目录没有 `config.json`，vLLM 验证失败立即退出。\n\n**修复**：已在顶层目录创建符号链接指向嵌套子目录中的所有模型文件。dry-run 验证通过，模型正常加载（14.25 GiB，4.6s）。\n\n4 张 5090 GPU 全部空闲，可以重新提交 3 个 pretrained 实验。需要我现在重新提交吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-5090-pretrained-failure.md"
+}

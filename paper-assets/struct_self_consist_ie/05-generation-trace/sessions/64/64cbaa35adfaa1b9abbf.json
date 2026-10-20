@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64cbaa35adfaa1b9abbf",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh migrate 5090b v3",
+  "task_key": "worker_ssh_migrate_5090b_v3_20260521T104244",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_migrate_5090b_v3_20260521T104244_result.json",
+    "occurrence": 1,
+    "bytes": 1021,
+    "sha256": "0b98765e094a51693ab1b955c9fcb88a40e89a962bd1c2d18482899aaa300719"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "迁移完成。报告如下：\n\n## 迁移报告：bjb2-11496 → autodl-5090\n\n**目标路径**: `/root/autodl-tmp/struct_self_consist_ie/output_from_5090b/`  \n**传输方式**: rsync via 公网 (connect.bjb2.seetacloud.com:11496)  \n**总量**: 1.4G（压缩传输 151MB）\n\n| 实验目录 | 大小 | 数据集 | greedy_f1 | oracle_f1 | headroom | verdict |\n|---|---|---|---|---|---|---|\n| conll_mf4v2_seed123 | 56M | conll2003 | 0.908 | 0.953 | 0.044 | **PASS** |\n| conll_mf4v2_seed456 | 56M | conll2003 | 0.907 | 0.943 | 0.036 | **PASS** |\n| fewnerd_mf4v2_seed42 | 642M | fewnerd | 0.788 | 0.878 | 0.090 | FAIL |\n| fewnerd_mf4v2_seed123 | 653M | fewnerd | 0.788 | 0.889 | 0.101 | MARGINAL |\n| scierc_mf4v2_seed42 | 20M | scierc | 0.663 | 0.781 | 0.118 | MARGINAL |\n| fewnerd_mf4v2_seed456 | — | — | — | — | — | **源端为空目录，未迁移** |\n\n5/6 目录迁移成功，文件大小与源端一致。`fewnerd_mf4v2_seed456` 在 bjb2-11496 上就是空目录（0 字节）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-migrate-5090b-v3.md"
+}

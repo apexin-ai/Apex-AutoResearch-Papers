@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79a60495c9d06c5b450d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis scierc sample auroc",
+  "task_key": "worker_analysis_scierc_sample_auroc_20260516T174126",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_scierc_sample_auroc_20260516T174126_result.json",
+    "occurrence": 1,
+    "bytes": 512,
+    "sha256": "6126e9e0b2ac5624466b7e4cced091d2b1edcbb58a818c7434c7ef7464a1efe0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n**SciERC N=8 sample-level AUROC (529 instances, 8 samples each):**\n\n| Signal | AUROC |\n|--------|-------|\n| LP | 0.5035 |\n| SJ | 0.4810 |\n| FK | 0.4774 |\n| EM | 0.4598 |\n| VC | 0.4894 |\n\n所有信号的 sample-level AUROC 都在 0.5 附近（随机水平），说明单独信号无法在 sample 粒度预测 oracle。N=32 结果类似（LP=0.4693）。\n\n已将 `code/analyze_fewnerd_results.py` 中 `SCIERC_REF[\"lp_auroc\"]` 从错误的 0.72 更正为 0.5035。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-scierc-sample-auroc.md"
+}

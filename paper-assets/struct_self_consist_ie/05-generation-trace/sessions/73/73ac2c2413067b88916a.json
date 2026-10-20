@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73ac2c2413067b88916a",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_9_1778881804.md",
+  "task_key": "loop_9_1778881804",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_9_1778881804.md",
+    "occurrence": 1,
+    "bytes": 5752,
+    "sha256": "bf2e635428ad36402352035e2c2bfcd8ed7cabf9c3a0c359da58e1106094c01c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T19:06:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：`cuda:0, cuda:1, cuda:2, cuda:3`（autodl-5090），白名单外的 GPU 即使 Director 指令也必须 push back\n- 论文数据必须来自 gold-filtered 管道（排除 gold-empty 实例）。CoNLL n=2756，SciERC n=551。禁止直接引用 registry metrics 中的 EM/VC 到论文（report.json vs 分析脚本存在系统性差异）\n- 551 全集为 canonical（无选择偏差），529 交集仅参考不进论文\n- 论文 ρ 值只能来自 `rho_audit.py` 或 bootstrap CI 脚本，不能来自旧管道 `compute_metrics.py`（含 gold-empty bug）\n- DDL: **2026-05-25**（10 天），EMNLP 2026 Findings via ARR May\n- exp_qwen3_4b_scierc_finetune 已被 killed 一次，v2 在 PREPARING——不要重复旧的启动方式\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: autodl-5090（4× RTX 5090 32GB），SSH alias `bjb1-21071`\n- **工作目录**: `/root/autodl-tmp/struct_self_consist_ie/`\n- **Python**: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **基座模型**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n- **Fine-tuned checkpoint**: `checkpoints/qwen3-8b-scierc-merged-v2/`\n- **Canonical 数据**: `artifacts/analysis_unified_rho.json`（gold-filtered 统一 ρ），`analysis_round8/epsilon_sweep.csv`\n- **网络**: 必须 `source /etc/network_turbo` + 设 `HF_HOME=/root/autodl-tmp/.hf_cache` + SSL 证书环境变量\n- **活跃进程**:\n  - exp_qwen3_4b_conll_finetune: PID 205001, cuda:0, cron 监控中（训练 88%）\n  - exp_freeform_seed789_v2: PID 218882, cuda:2, cron 监控中\n- **活跃 Worker**:\n  - `worker_code_qwen3_4b_conll_finetune_20260515T164745` — 监控 4B CoNLL fine-tune（88% 进度，~16分钟剩余）\n  - `worker_analysis_freeform_3seed_integration_20260515T184905` — 整合 freeform 3-seed 分析（turn 27，密集 ssh_read_only）\n  - `worker_code_4b_conll_scs_inference_prep_20260515T190423` — 准备 4B CoNLL SCS 推理代码（刚启动，turn 0）\n\n### 3. 📊 当前状态\n**刚完成**: D095 ε sweep 解决 BLOCKING #2，LP T=0.7 两数据集 success 纳入论文，RE 3-seed 确认 negative（保持 preliminary）。unified_rho_full.json LLaMA SciERC 污染已修复。10 项 CPU 分析全部完成。\n\n**Registry 摘要**: 95 实验（DONE 90, RUNNING 2, ANALYZING 2, PREPARING 1）\n\n**RUNNING**:\n- `exp_qwen3_4b_conll_finetune` (cuda:0) — Qwen3-4B CoNLL NER LoRA fine-tune scale ablation，88% 完成\n- `exp_freeform_seed789_v2` (cuda:2) — freeform decoding ablation seed789 重跑\n\n**ANALYZING**（等 Worker 整合）:\n- `exp_freeform_seed123` — freeform seed123，metrics 已有（parse rate 99.95%）\n- `exp_freeform_seed456` — freeform seed456，metrics 已有（parse rate 99.95%）\n\n**PREPARING**:\n- `exp_qwen3_4b_scierc_finetune_v2` (cuda:3) — 4B SciERC fine-tune，v1 被 killed，v2 待提交\n\n**等待中**:\n- 3 个 Worker 运行中，等回调\n- exp_qwen3_4b_conll_finetune cron 会自动推进到 ANALYZING\n- exp_freeform_seed789_v2 cron 同上\n- 关键路径已转为**纯写作**：Paper Agent 5 Phase 写作修复\n\n### 4. 📋 待办（条件触发式）\n- **exp_qwen3_4b_conll_finetune cron 回调（~16min）** → 分析结果，验证 correlation-selection gap / SJ>FK / LP compression 是否跨 scale 泛化 → 更新 registry + report.md → 汇报 Director\n- **exp_freeform_seed789_v2 cron 回调** → 与 seed123/seed456 整合 3-seed freeform 分析 → 确认 LP compression universality 的 3-seed 统计显著性\n- **worker_analysis_freeform_3seed_integration 完成** → 读产出，将 3-seed freeform 统计写入 paper_framing.md + memory.md\n- **worker_code_4b_conll_scs_inference_prep 完成** → 用产出的推理脚本对 4B CoNLL fine-tuned model 跑 SCS 推理（需等 fine-tune 完成）\n- **exp_qwen3_4b_scierc_finetune_v2 就绪** → Worker 准备好代码后提交到 cuda:3\n- **4B 全部实验完成** → 汇总 4B vs 8B cross-scale evidence → 写入论文 §4.x scale ablation 段落\n- **所有实验完成** → 启动 Paper Agent 5 Phase 写作修复（页数压缩 → 标题/Abstract → framing → 统计 → 次要修复）→ Round 9 审稿 → 提交\n\n### 5. 🎯 战略上下文\n**核心发现**: Universal correlation-selection gap——置信信号能预测质量（AUROC 0.75）但不能选出更好的候选。Free-form ablation 证明 LP score compression 是 model/task intrinsic，非 constrained decoding artifact。\n\n**决策链关键节点**:\n- D095: ε=0.05 稳健（sweep 验证），BLOCKING #2 已解决\n- D094/D093/D092: LLaMA SciERC 数据污染修复链\n- D091: RE 3-seed 一致 negative → \"task-dependent signal effectiveness\"（非 framing 调整，已 pre-emptively 纳入）\n- D096/D097: Qwen3-4B scale ablation（CoNLL + SciERC），主动回应 R3-R8 \"single model scale\" concern\n\n**审稿状态**: Round 8 borderline (R1=3.5, R2=2.5)。6 个 issue 中 4 个已解决（✅），剩余 2 个 HIGH（标题 overclaim + Abstract 过载）待 Paper Agent Phase 2。\n\n**易错点**:\n- 不要把 registry metrics（来自 report.json）直接引用到论文——必须用分析脚本输出（与 Qwen 同一套管道）\n- FK ρ inconsistency 根因是旧管道 gold-empty bug（CoNLL 20% gold-empty 导致 FK ρ 膨胀 0.48→0.81），所有 ρ 必须用 gold-filtered 管道\n- freeform seed123/456 在 ANALYZING 但 metrics 已有——Worker 在做整合分析，不需要重新跑推理\n- 4B experiments 是 **scale ablation**（回应审稿 concern），不是核心实验——论文 narrative 不依赖 4B 结果\n- Paper Agent 写作修复是关键路径，GPU 实验全部是补充证据\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778881804.md"
+}

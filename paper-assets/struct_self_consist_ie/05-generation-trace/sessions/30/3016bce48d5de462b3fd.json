@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "3016bce48d5de462b3fd",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "research citation audit",
+  "task_key": "worker_research_citation_audit_20260517T085237",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_citation_audit_20260517T085237.log",
+    "occurrence": 1,
+    "bytes": 544226,
+    "sha256": "cfd57c34ef12b6ed86b45e305df65fbdd788b4d7e17d2becf6d4f38df92e2958"
+  },
+  "statistics": {
+    "messages": 168,
+    "user_turns": 0,
+    "tool_calls": 71,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 22,
+      "tool_call": 71,
+      "tool_result": 71,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 168,
+      "chunks": [
+        {
+          "path": "3016bce48d5de462b3fd-part-0001.json",
+          "message_count": 168
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-citation-audit.md"
+}

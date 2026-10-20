@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e040f5f9ee03d19c0364",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code entity consensus",
+  "task_key": "worker_code_entity_consensus_20260518T173346",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_entity_consensus_20260518T173346_result.json",
+    "occurrence": 1,
+    "bytes": 1073,
+    "sha256": "61a7bd4e155ac88105ca9ff12ae775babb022ec1bb256764624e68592cb9168e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果总结：\n\n**FewNERD** — consensus (high=0.5) 是唯一一个超越 greedy 的配置：**0.7583 vs 0.7478**（+1.05pp），也超过 LP selection (0.7666) 还差一点。高阈值损害性能严重（0.8→0.6780）。\n\n**SciERC** — consensus (high=0.6) 接近 greedy（0.6444 vs 0.6439），但都不超过 LP selection (0.6501)。N=8 样本数有限，consensus 优势不明显。\n\n**CoNLL** — greedy 最强 (0.9070)，consensus 全部配置都低于 greedy。该数据集 degeneracy 高（样本间差异小），consensus 无法提供增量。\n\n**共性规律**：\n- 阈值越高，F1 越低（保守 → 高 precision 但低 recall）\n- LP-weighted medium zone 在低阈值时有正贡献\n- Span-based majority vote 全面弱于 greedy，consensus 在 FewNERD 上有改善但幅度有限\n\n输出文件：\n- JSON: `/root/autodl-tmp/struct_self_consist_ie/output/entity_consensus_results.json`\n- Markdown: `/root/autodl-tmp/struct_self_consist_ie/output/entity_consensus_report.md`\n- 脚本: `code/entity_consensus.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-entity-consensus.md"
+}

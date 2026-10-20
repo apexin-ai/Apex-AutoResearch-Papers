@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7a2935b6ca1e93a8c21",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "review page compliance",
+  "task_key": "worker_review_page_compliance_20260523T133629",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_review_page_compliance_20260523T133629_result.json",
+    "occurrence": 1,
+    "bytes": 893,
+    "sha256": "5a17394405a0159d691878c65e22e43d5cfc088f7c04872385ff7d40ed5bae3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有检查项结果：\n\n| # | 检查项 | 结果 |\n|---|--------|------|\n| 1 | PDF 编译 | **PASS** — 编译成功，无错误 |\n| 2 | 主文 ≤8 页 | **PASS** — Discussion 和 Limitations 均在第 8 页，References 从第 9 页开始 |\n| 3 | 0 undefined references | **PASS** — `grep -c 'undefined' main.log` 返回 0 |\n| 4 | Discussion 内容完整 | **PASS** — 四项均在 `experiments_main.tex:111-115`：NER degeneracy 主题、α binding constraint（8–33× tighter）、diagnostic framework 贡献声明、实用指南（high degeneracy >50%） |\n| 5 | α 修正 | **PASS** — `theory.tex:38` 为 `α=0.000–0.121`，与 tab:bound_verification 一致 |\n| 6 | Section 7.5 压缩后完整 | **PASS** — θ=2/N（L103）、+1.40±0.51pp（L104）、p_adj=0.006（L105）、training convergence（L107）均保留 |\n\n6/6 PASS，页面合规。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-page-compliance.md"
+}

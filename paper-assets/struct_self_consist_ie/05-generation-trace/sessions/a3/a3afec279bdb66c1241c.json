@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3afec279bdb66c1241c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis r8w3 sj union v2",
+  "task_key": "worker_analysis_r8w3_sj_union_v2_20260515T215512",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_r8w3_sj_union_v2_20260515T215512_result.json",
+    "occurrence": 1,
+    "bytes": 970,
+    "sha256": "4ada2b6e221c16cf67f68d83761fed0ac74524b4e0ee780b55fbc52631624ba9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| Dataset | Model | n | ρ(SJ_max) | ρ(SJ_union) | Δρ | p_max | p_union |\n|---------|-------|---|-----------|-------------|-----|-------|---------|\n| CoNLL NER | Qwen3-8B | 2756 | 0.4357 | 0.4376 | -0.0019 | 4.71e-128 | 2.74e-129 |\n| CoNLL NER | Qwen3-4B | 2756 | 0.4217 | 0.4212 | +0.0004 | 3.07e-119 | 5.64e-119 |\n| SciERC NER | LLaMA-8B | 529 | 0.3630 | 0.3719 | -0.0089 | 6.41e-18 | 8.57e-19 |\n| SciERC NER | Qwen3-4B | 529 | 0.4221 | 0.4234 | -0.0014 | 2.89e-24 | 1.98e-24 |\n\n**验证通过**：所有 4 个实验的 ρ(SJ_max) 与 registry 参考值一致（最大偏差 0.0007）。SJ 实现和 consistency.py 完全一致（max_diff=0.0）。\n\n**结论**：所有 |Δρ| < 0.01（最大 0.0089，出现在 SciERC LLaMA-8B）。分母选择 `max(|g_i|, |g_j|)` vs `|g_i ∪ g_j|` 对 Spearman ρ 的影响可忽略，不改变任何排序结论。\n\n结果已保存到 `output/review_round8/r8w3_sj_union_v2.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r8w3-sj-union-v2.md"
+}

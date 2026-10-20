@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b035cb1b1c0ae072dd99",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "registry conll 4b resume registration",
+  "task_key": "worker_registry_conll_4b_resume_registration_20260515T193650",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_registry_conll_4b_resume_registration_20260515T193650_result.json",
+    "occurrence": 1,
+    "bytes": 496,
+    "sha256": "b949ac04ba501d8bac8995e01bcb4e34ce350774ee78d9d586500562fdda02fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "注册完成。\n\n**`exp_qwen3_4b_conll_finetune_resume`** 已注册到 registry，状态 DONE (success)：\n\n| 字段 | 值 |\n|------|-----|\n| 模型 | Qwen3-4B |\n| 数据集 | CoNLL2003 (14042 samples) |\n| Resume from | checkpoint-3800 |\n| 最终 step | 4390 (5 epochs) |\n| Best checkpoint | checkpoint-4200 (eval_loss=0.0225) |\n| Train loss | 0.001136 |\n| 训练时长 | 1185.8s (~20min, resume 部分) |\n| Checkpoint 路径 | `checkpoints/qwen3-4b-conll2003-lora/` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/registry-conll-4b-resume-registration.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91453cba4ffe2d8cd2fa",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh harvest wave3 nvidia check",
+  "task_key": "worker_ssh_harvest_wave3_nvidia_check_20260522T071704",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_harvest_wave3_nvidia_check_20260522T071704_result.json",
+    "occurrence": 1,
+    "bytes": 2343,
+    "sha256": "17d042a239a8a6804f8952b3ff1abe3e9a293493aabaf66faa32c3b171ee9b98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MV recompute 完成。汇总如下：\n\n---\n\n## nvidia-smi\n\n### autodl-5090 — 全部空闲\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0 | RTX 5090 | 0% | 2/32607 MiB |\n| 1 | RTX 5090 | 0% | 2/32607 MiB |\n| 2 | RTX 5090 | 0% | 2/32607 MiB |\n| 3 | RTX 5090 | 0% | 2/32607 MiB |\n\n**cuda:0 无进程运行**（pmon 显示 `-`），之前系统显示的 100% 利用率已消失。\n\n### autodl-5090-c — 3 张卡在跑\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0 | RTX 5090 | 85% | 30115/32607 MiB |\n| 1 | RTX 5090 | 85% | 30079/32607 MiB |\n| 2 | RTX 5090 | 0% | 0/32607 MiB |\n| 3 | RTX 5090 | 91% | 29785/32607 MiB |\n\n**进程详情**（全部是 VLLM::EngineCore）：\n- cuda:0 — PID 381917, sm=85%, mem=40%\n- cuda:1 — PID 392754, sm=83%, mem=46%\n- cuda:3 — PID 387768, sm=82%, mem=47%\n\n---\n\n## Part 2: 4 个实验状态 (autodl-5090)\n\n| 实验 | 状态 | 说明 |\n|------|------|------|\n| **CoNLL N=32 s456** | **完成** | 3453 行 samples.jsonl, 213MB |\n| CoNLL PT N=16 | **未运行** | 目录空（仅创建于 13:29） |\n| SciERC PT N=64 | **未运行** | 目录空（仅创建于 13:29） |\n| CoNLL PT N=64 | **未运行** | 目录空（仅创建于 13:30） |\n\n### CoNLL N=32 s456 — MV strict recompute 结果\n\n| 指标 | 值 |\n|------|-----|\n| greedy_f1 | **0.9117** |\n| mv_strict_f1 | **0.9167** |\n| mv_delta_pp | **+0.51pp** |\n| degeneracy_rate | **40.1%** |\n| oracle_f1 | **0.9686** |\n| alpha_crit_strict | 0.4558 |\n| alpha_crit_eff_strict | 0.7614 |\n\n---\n\n## Part 3: FewNERD 实验状态 (autodl-5090-c)\n\n| 实验 | 状态 | 说明 |\n|------|------|------|\n| FewNERD N=32 FT (cuda:0) | **运行中** | 目录空但 GPU 85% 活跃 (PID 381917 VLLM) |\n| FewNERD PT N=16 (cuda:1) | **运行中** | 目录空但 GPU 85% 活跃 (PID 392754 VLLM) |\n| FewNERD PT N=32 (cuda:3) | **运行中** | 目录空但 GPU 91% 活跃 (PID 387768 VLLM) |\n\n3 个 FewNERD 实验正在 5090-c 上推理中，samples.jsonl 尚未生成（可能在内存中累积或脚本完成后才写入）。\n\n---\n\n**关键发现**：5090 四卡完全空闲——3 个 pretrained 实验（CoNLL PT N=16、CoNLL PT N=64、SciERC PT N=64）目录已创建但都是空的，没有进程在跑，看起来从未实际启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-wave3-nvidia-check.md"
+}

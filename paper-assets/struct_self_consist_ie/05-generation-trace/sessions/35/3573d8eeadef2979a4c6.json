@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "3573d8eeadef2979a4c6",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "audit recompute tab fewnerd all",
+  "task_key": "worker_audit_recompute_tab_fewnerd_all_20260518T041428",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_recompute_tab_fewnerd_all_20260518T041428.log",
+    "occurrence": 1,
+    "bytes": 703542,
+    "sha256": "3bf22546c67518a118d7a4f0d41a512586d4c9e0e3e0507a3127ff7ee7eb0514"
+  },
+  "statistics": {
+    "messages": 270,
+    "user_turns": 2,
+    "tool_calls": 94,
+    "roles": {
+      "log": 1,
+      "system": 53,
+      "record": 1,
+      "assistant": 24,
+      "tool_call": 94,
+      "tool_result": 94,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "3573d8eeadef2979a4c6-part-0001.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 23,
+      "chunks": [
+        {
+          "path": "3573d8eeadef2979a4c6-part-0001.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 235,
+      "chunks": [
+        {
+          "path": "3573d8eeadef2979a4c6-part-0001.json",
+          "message_count": 145
+        },
+        {
+          "path": "3573d8eeadef2979a4c6-part-0002.json",
+          "message_count": 90
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-recompute-tab-fewnerd-all.md"
+}

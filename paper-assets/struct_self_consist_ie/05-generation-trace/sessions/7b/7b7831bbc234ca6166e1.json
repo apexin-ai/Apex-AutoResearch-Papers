@@ -1,0 +1,2287 @@
+{
+  "schema_version": "1.0",
+  "id": "7b7831bbc234ca6166e1",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "cron hook exp 029a",
+  "task_key": "cron_hook_exp_029a",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/cron_hook_exp_029a.jsonl",
+    "occurrence": 1,
+    "bytes": 113937,
+    "sha256": "e6bdf70fb6c5059d5f0d2455559acf79f25be18a0cd97f88a6fe68e0e8691517"
+  },
+  "statistics": {
+    "messages": 116,
+    "user_turns": 1,
+    "tool_calls": 57,
+    "roles": {
+      "user": 1,
+      "tool_call": 57,
+      "tool_result": 57,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T00:55:21.104635+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: exp_029a\n- project: struct_self_consist_ie\n- server: autodl-5090\n- log_path: logs/exp_029a_train.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T00:55:41.371919+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T00:55:41.424791+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 52
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T00:55:46.046285+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T00:55:46.046683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T00:55:46.856470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T00:55:46.856837+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T00:55:47.566601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (213,573 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-agent-707474fb/bf2c2c6e-80e4-459d-8524-76ea7e2ab454/tool-results/mcp-agent-ml-research-read_registry-1779065747449.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-agent-707474fb/bf2c2c6e-80e4-459d-8524-76ea7e2ab454/tool-results/mcp-agent-ml-research-read_registry-1779065747449.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-agent-707474fb/bf2c2c6e-80e4-459d-8524-76ea7e2ab454/tool-results/mcp-agent-ml-research-read_registry-1779065747449.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1520
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T00:55:47.719002+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 1672
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T00:55:47.769815+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-18T00:55:28Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 128 个实验 — ANALYZING 2, DONE 126\\\\n**DONE 分布**: failed 4, killed 22, negative 26, success 74\\\\n\\\\n### GPU 占用\\\\n- **分配**: 4 张 — autodl-5090:cuda:0, autodl-5090:cuda:1, autodl-5090:cuda:2, autodl-5090:cuda:3\\\\n- **空闲（分配了没跑）**: autodl-5090:cuda:2, autodl-5090:cuda:3\\\\n\\\\n### 💾 磁盘余量\\\\n- **autodl-5090**:\\\\n  - `/autodl-pub`: 5.0T/14T 可用（已用 65%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 813G/879G 可用（已用 3%）\\\\n\\\\n### 🏃 RUNNING\\\\n_（无）_\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `exp_028_fewnerd_5epoch` [negative] — 2026-05-17T20:29:42\\\\n- `exp_028` [negative] — 2026-05-17T20:26:59 — startup recovery: RUNNING with no cron and no server/pid info\\\\n- `exp_017_llama_conll` [success] — 2026-05-17T11:42:18\\\\n- `exp_024_claim_audit` [success] — 2026-05-17T10:55:08\\\\n- `exp_026_T12` [success] — 2026-05-17T10:06:44\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-18\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp_029b | Training convergence modulates degeneracy across datasets. SciERC 10-epoch training should produce higher degeneracy than 5-epoch baseline (17.8%), confirming monotonic epoch-degeneracy relationship across datasets. | — | — | — |\\\\n| exp_029a | Training convergence modulates degeneracy across datasets. SciERC 3-epoch training should produce lower degeneracy than 5-epoch baseline (17.8%), confirming epoch confound is not Few-NERD-specific. | — | — | — |\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **exp_028_fewnerd_5epoch** (negative): Few-NERD low degeneracy (10%) partially due to under-convergence at 3 epochs. 5 epochs should increase\n…[truncated 2208 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 913
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T00:55:47.822499+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md\\\", \\\"content\\\": \\\"# struct_self_consist_ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-17 23:28 UTC | 更新原因: Session handoff: Round 18 submitted, all fixes complete, waiting review callback\\\\n\\\\n> 核心方向详见 paper_framing.md (D129 revised)\\\\n\\\\n## 核心方向\\\\nStructured Self-Consistency for IE: LP selection 需要 TWO jointly necessary conditions — low degeneracy + LP-quality alignment。Degeneracy 由 task structure × model convergence 联合决定；Alignment 是 dataset-intrinsic (median ρ 稳定)。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Round 18 已提交审稿 (fresh mode, approval pending)\\\\n- **Round 17 得分**: 3.25 (R1=3.5, R2=3.0)\\\\n- **本轮完成全部工作**:\\\\n  - D129 Reframe: degeneracy 从 \\\\\\\"structural\\\\\\\" → \\\\\\\"task × convergence 交互\\\\\\\"\\\\n  - 页数压缩 12→8 页 (Reviewer 验证论证链完整)\\\\n  - Calibration baseline 写入 (证明 bottleneck 是 alignment 非 calibration)\\\\n  - Practitioner decision tree 写入 Discussion\\\\n  - Editorial pass: 70 处 AI 风格清除 + 14 bib 统一 + 引用修复\\\\n  - exp_028 NEGATIVE (degen 31.33%) → reframe + epoch_confound appendix\\\\n  - exp_017 LLaMA+CoNLL cross-model validation (degen 89.2%)\\\\n  - T ablation 表修正 (LP range median, degen 17.8% 统一)\\\\n  - fig:selection_gap 引用修正\\\\n  - Two-condition framework 在 Abstract/Intro 突出度提升\\\\n\\\\n## 近期任务\\\\n- [x] 全部 R17 修复 + D129 reframe + 页数压缩\\\\n- [x] Round 18 submit_paper_to_review (fresh mode)\\\\n- [ ] 等待 Round 18 审稿回调\\\\n- [ ] 根据审稿意见决定是否补实验\\\\n- [ ] 新 session: 与 Reviewer 讨论 proactive ablation (GPU 空闲期间)\\\\n- [ ] EMNLP 2026 投稿 (DDL 2026-05-25, 8 days)\\\\n\\\\n## GPU 预算\\\\n4×RTX 5090 (autodl-5090: cuda:0-3) — 全部空闲\\\\n\\\\n## 新 session 首要行动\\\\n1. 检查 Round 18 审稿是否已回\\\\n2. 与 Reviewer 讨论: 审稿回来前是否有 proactive ablation 值得跑 (GPU 空闲)\\\\n3. 特别关注: SciERC epoch 扩展 (D129 limitation 最大攻击面)\\\\n4. 论文正文恰好 8 页无余量, 任何新增内容需同步压缩\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D129 | 2026-05-17 | D129: exp_028 NEGATIVE (degen 31.33% >> 20%)。启动 fr | exp_028_fewnerd_\n…[truncated 1091 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 965
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T00:55:57.210911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "filters": "{'exp_id': 'exp_029a'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T00:55:57.712900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3846}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 501
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T00:55:58.265299+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "filters": "{'exp_id': 'exp_029b'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T00:55:58.720593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4616}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 455
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T00:55:58.720999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T00:55:59.273214+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"autodl-5090\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"autodl-5090\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}, {\\\"server\\\": \\\"autodl-5090\\\", \\\"gpu_id\\\": \\\"cuda:2\\\"}, {\\\"server\\\": \\\"autodl-5090\\\", \\\"gpu_id\\\": \\\"cuda:3\\\"}], \\\"actually_running_gpus\\\": [], \\\"allocated_but_idle\\\": [{\\\"server\\\": \\\"autodl-5090\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}, {\\\"server\\\": \\\"autodl-5090\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}, {\\\"server\\\": \\\"autodl-5090\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}, {\\\"server\\\": \\\"autodl-5090\\\", \\\"gpu_id\\\": \\\"cuda:3\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [], \\\"worker_pool\\\": {\\\"total\\\": 0, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 0, \\\"details\\\": []}, \\\"summary\\\": \\\"分配 4 张, 实际跑 0 张 ⚠️ | Worker 0 (GPU 0 / CPU 0)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 552
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T00:55:59.273711+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "file": "memory.md"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T00:55:59.375010+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\\\", \\\"content\\\": \\\"# 项目记忆\\\\n\\\\n## 易混淆指标辨析（2026-05-17）\\\\n\\\\n**ρ=-0.881 (p=0.004)** = KeySet degeneracy vs **oracle headroom**（论文 L171 / appendix:1121）\\\\n**ρ=-0.381 (p=0.352)** = KeySet degeneracy vs **LP Δ**（selection improvement）\\\\n\\\\n这是两个不同的 y 轴变量。论文中的 ρ=-0.881 是正确的，已被 Reviewer 确认。不要再混淆。\\\\n\\\\n## SciERC LP Δ 两个版本（2026-05-17）\\\\n\\\\n- **+0.42pp** = full-set (n=551)，论文全文统一使用此值\\\\n- **+0.62pp** = gold-filtered (n=529)\\\\n\\\\nFigure 3 和正文保持一致用 full-set +0.42。\\\\n\\\\n## Cross-model Degeneracy 规律（2026-05-17）\\\\n\\\\nDegeneracy 由 **model capability × task difficulty × training convergence** 共同决定：\\\\n- Stronger model + easy task → 极端 degen（LLaMA-CoNLL 89.2%）\\\\n- Weaker model + hard task → low degen（Qwen3-SciERC 17.8%）\\\\n- CoNLL 是 high-degen regime 不论 backbone（Qwen3 47.4%, LLaMA 89.2%）\\\\n- Training convergence 调控 degen: Few-NERD 3-epoch 11.1% → 5-epoch 31.3%（+20pp）\\\\n- **Alignment (within-instance ρ) 是 dataset-intrinsic**: median ρ 不随 epoch 显著变化 (0.6667→0.6151)\\\\n\\\\nLLaMA on CoNLL headroom 仅 1.84pp（greedy 0.9242, oracle 0.9426），使得 selection 评估无意义。但 structural signals 的 QE diagnostic ρ≈0.43 仍显著优于 LP ρ=0.31，证明诊断价值是 model-agnostic 的。\\\\n\\\\nLP range median=0.0002 at 89% degen — LP 在极端 degen 下完全无法区分 samples。\\\\n\\\\n## exp_021 vs exp_028 within-instance ρ(LP, F1) 对比（2026-05-18）\\\\n\\\\n### 配对对比（同 5000 实例子集，N=8）\\\\n\\\\n| Metric | 3-epoch (exp_027) | 5-epoch (exp_028) | Delta |\\\\n|--------|-------------------|-------------------|-------|\\\\n| ρ mean | **0.5241** | 0.4066 | -0.1175 |\\\\n| ρ median | **0.6667** | 0.6151 | -0.0516 |\\\\n| ρ std | 0.4673 | 0.5506 | +0.0833 |\\\\n| Valid instances | 3723/4351 (85.6%) | 2988/4351 (68.7%) | -16.9pp |\\\\n\\\\n### 全量 exp_021（37648 实例，N=8）\\\\n- Mean ρ: 0.5106, Median ρ: 0.6667, Std: 0.4749\\\\n- Valid: 28086/32565 (86.3%)\\\\n\\\\n### 结论\\\\n1. **Median ρ 几乎不变** (0.6667→0.6151, Δ=-0.05): 非 degenerate 实例上 LP-F1 alignment 不受 training conver\n…[truncated 7697 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 101
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T00:56:09.987570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/registry.yaml | python3 -c \"\nimport sys, yaml\ndata = yaml.safe_load(sys.stdin)\nfor exp in data.get('experiments', []):\n    if exp.get('exp_id') in ('exp_029a', 'exp_029b'):\n        import json\n        print(json.dumps(exp, indent=2, default=str))\n\"",
+              "description": "Extract exp_029a and exp_029b from registry.yaml"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T00:56:12.499880+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 5, in <module>\n    if exp.get('exp_id') in ('exp_029a', 'exp_029b'):\n       ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "elapsed_ms": 2512
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T00:56:17.835513+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport yaml, json\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/registry.yaml') as f:\n    data = yaml.safe_load(f)\n# Check structure\nif isinstance(data, dict) and 'experiments' in data:\n    exps = data['experiments']\n    if isinstance(exps, dict):\n        for k in ('exp_029a', 'exp_029b'):\n            if k in exps:\n                print(f'=== {k} ===')\n                print(json.dumps(exps[k], indent=2, default=str))\n    elif isinstance(exps, list):\n        for e in exps:\n            if isinstance(e, dict) and e.get('exp_id') in ('exp_029a', 'exp_029b'):\n                print(json.dumps(e, indent=2, default=str))\nelse:\n    print('Top-level keys:', list(data.keys()) if isinstance(data, dict) else type(data))\n\"\n",
+              "description": "Parse registry.yaml structure and extract exp_029a/b"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T00:56:18.392356+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== exp_029a ===\n{\n  \"status\": \"ANALYZING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-17T23:32:17.191Z\",\n  \"updated_at\": \"2026-05-18T00:55:16.982Z\",\n  \"hypothesis\": \"Training convergence modulates degeneracy across datasets. SciERC 3-epoch training should produce lower degeneracy than 5-epoch baseline (17.8%), confirming epoch confound is not Few-NERD-specific.\",\n  \"parent\": \"ft_002_v2\",\n  \"spec\": {\n    \"command\": \"FORCE_TORCHRUN=0 CUDA_VISIBLE_DEVICES=0 bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && llamafactory-cli train train_config_scierc_3ep.yaml\\\"\",\n    \"server\": \"autodl-5090\",\n    \"gpu\": \"cuda:0\",\n    \"pid\": 436761,\n    \"data_path\": \"data/scierc_uie_train\",\n    \"data_count\": 1861,\n    \"model_name\": \"Qwen3-8B LoRA rank=32\",\n    \"seed\": 42,\n    \"checkpoint_path\": \"checkpoints/qwen3-8b-scierc-3epoch-lora\",\n    \"log_path\": \"logs/exp_029a_train.log\",\n    \"checkpoint_source\": \"Qwen/Qwen3-8B\",\n    \"eval_data\": \"data/scierc_uie_dev\"\n  },\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-18T00:55:16.392Z\"\n  },\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-18T00:55:20.617085+00:00\"\n      }\n    ]\n  }\n}\n=== exp_029b ===\n{\n  \"status\": \"ANALYZING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-17T23:32:18.543Z\",\n  \"updated_at\": \"2026-05-18T00:55:26.193Z\",\n  \"hypothesis\": \"Training convergence modulates degeneracy across datasets. SciERC 10-epoch training should produce higher degeneracy than 5-epoch baseline (17.8%), confirming monotonic epoch-degeneracy relationship across datasets.\",\n  \"parent\": \"ft_002_v2\",\n  \"spec\": {\n    \"command\": \"FORCE_TORCHRUN=0 CUDA_VISIBLE_DEVICES=1 bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && llamafactory-cli train train_config_scierc_10ep.yaml\\\"\",\n    \"server\": \"autodl-5090\",\n    \"gpu\": \"cuda:1\",\n    \"pid\": 436916,\n    \"data_path\": \"data/scierc_uie_train\",\n    \"data_count\n…[truncated 602 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "elapsed_ms": 556
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T00:56:37.761297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_029b",
+              "field": "status",
+              "value": "DONE",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T00:56:38.566924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+              "limit": "50"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T00:56:38.617794+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8046}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 856
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T00:56:38.618224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T00:56:44.096307+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_029b",
+              "field": "conclusion",
+              "value": "failed",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T00:56:44.851913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_029b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T23:32:18.543Z\\\", \\\"updated_at\\\": \\\"2026-05-18T00:56:44.514Z\\\", \\\"hypothesis\\\": \\\"Training convergence modulates degeneracy across datasets. SciERC 10-epoch training should produce higher degeneracy than 5-epoch baseline (17.8%), confirming monotonic epoch-degeneracy relationship across datasets.\\\", \\\"parent\\\": \\\"ft_002_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"FORCE_TORCHRUN=0 CUDA_VISIBLE_DEVICES=1 bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && llamafactory-cli train train_config_scierc_10ep.yaml\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 436916, \\\"data_path\\\": \\\"data/scierc_uie_train\\\", \\\"data_count\\\": 1861, \\\"model_name\\\": \\\"Qwen3-8B LoRA rank=32\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"checkpoints/qwen3-8b-scierc-10epoch-lora\\\", \\\"log_path\\\": \\\"logs/exp_029b_train.log\\\", \\\"checkpoint_source\\\": \\\"Qwen/Qwen3-8B\\\", \\\"eval_data\\\": \\\"data/scierc_uie_dev\\\"}, \\\"failure_reason\\\": \\\"OOM on cuda:1 due to residual vLLM process (PID 416808) occupying 30.2GB VRAM\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T00:55:24.371Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T00:55:29.806594+00:00\\\"}]}, \\\"conclusion\\\": \\\"failed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7376}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 755
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T00:56:47.212415+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_029b",
+              "field": "status",
+              "value": "DONE",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-18T00:56:48.868104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_029b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T23:32:18.543Z\\\", \\\"updated_at\\\": \\\"2026-05-18T00:56:47.625Z\\\", \\\"hypothesis\\\": \\\"Training convergence modulates degeneracy across datasets. SciERC 10-epoch training should produce higher degeneracy than 5-epoch baseline (17.8%), confirming monotonic epoch-degeneracy relationship across datasets.\\\", \\\"parent\\\": \\\"ft_002_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"FORCE_TORCHRUN=0 CUDA_VISIBLE_DEVICES=1 bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && llamafactory-cli train train_config_scierc_10ep.yaml\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 436916, \\\"data_path\\\": \\\"data/scierc_uie_train\\\", \\\"data_count\\\": 1861, \\\"model_name\\\": \\\"Qwen3-8B LoRA rank=32\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"checkpoints/qwen3-8b-scierc-10epoch-lora\\\", \\\"log_path\\\": \\\"logs/exp_029b_train.log\\\", \\\"checkpoint_source\\\": \\\"Qwen/Qwen3-8B\\\", \\\"eval_data\\\": \\\"data/scierc_uie_dev\\\"}, \\\"failure_reason\\\": \\\"OOM on cuda:1 due to residual vLLM process (PID 416808) occupying 30.2GB VRAM\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T00:55:24.371Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T00:55:29.806594+00:00\\\"}]}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-18T00:56:47.625Z\\\"}, \\\"hint\\\": \\\"💡 建议将故障原因写入 memory.md（如何避免再犯）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6426}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1655
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-18T00:57:22.813611+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Find inference/analysis scripts",
+              "subagent_type": "Explore",
+              "prompt": "In the project at /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/, I need to find the inference and analysis scripts used for running model inference (N=8 samples, T=1.0) and computing degeneracy/LP metrics. Also check the remote server path structure by looking at any deploy scripts or config files that reference /root/autodl-tmp/struct_self_consist_ie/.\n\nSearch broadly:\n1. Glob for *.py and *.sh files in the project artifacts directory and the project root\n2. Grep for \"inference\" or \"degeneracy\" or \"logprob\" in Python files\n3. Look for any train_config*.yaml files\n4. Check if there's a run_inference.py or similar script\n\nReport: file paths and a brief description of what each does, especially the inference pipeline and analysis pipeline."
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-18T00:57:24.369171+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type f \\( -name \"*.py\" -o -name \"*.sh\" \\) | head -50"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-18T00:57:24.419903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/figures/paper/fig_signal_heatmap.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/figures/paper/fig_reliability.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/scripts/adalp_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/mpl_toolkits/axes_grid1/mpl_axes.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/mpl_toolkits/axes_grid1/axes_divider.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/mpl_toolkits/axes_grid1/anchored_artists.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/mpl_toolkits/axes_grid1/axes_size.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/mpl_toolkits/axes_grid1/tests/conftest.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/mpl_toolkits/axes_grid1/tests/test_axes_grid1.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/mpl_toolkits/axes_grid1/tests/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/mpl_toolkits/axes_grid1/axes_rgb.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/mpl_toolkits/axes_grid1/parasite_axes.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/mpl_toolkits/axes_grid1/axes_grid.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packa\n…[truncated 5533 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-18T00:57:26.177370+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/*.py"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-18T00:57:26.378663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/data_utils.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/data_utils.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/evaluation.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/intermediate/consistency.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/consistency.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/sampling.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/run_mvp_pilot.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/consistency.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/intermediate/sampling.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/ft_001/report/sampling.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/mvp_pilot.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/mvp_pilot_001/report/mvp_pilot.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/sampling.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/run_mvp_pilot.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp005_temperature/analyze_exp005_temperature.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_015_metrics_expansion/intermediate/analyze_exp015_metrics_expansion.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/an\n…[truncated 12013 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Glob",
+            "elapsed_ms": 201
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-18T00:57:26.379057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/*.sh"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-18T00:57:27.182287+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Glob",
+            "elapsed_ms": 803
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-18T00:57:27.283022+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/scripts/*.py"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-18T00:57:27.333688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/scripts/*.sh"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-18T00:57:27.334029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/scripts/adalp_analysis.py"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Glob",
+            "elapsed_ms": 51
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-18T00:57:27.334248+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-18T00:57:29.342189+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "inference|degeneracy|logprob",
+              "type": "py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+              "head_limit": "30"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-18T00:57:29.745363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 30 files limit: 30\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/scripts/adalp_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/bootstrap_selection_test.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_019_trained_verifier/train_verifier.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp-019/intermediate/train_verifier.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_ood_signals.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/evaluate_verifier.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/train_supervised_verifier.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/re_conditional_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n8_bootstrap_ci.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/plot_length_logprob_scatter.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/scipy/stats/_odds_ratio.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/scipy/stats/_multicomp.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/scipy/stats/_morestats.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/scipy/stats/_binomtest.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/scipy/spatial/tests/test_qhull.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv\n…[truncated 1918 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Grep",
+            "elapsed_ms": 403
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-18T00:57:29.796207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/**/train_config*.yaml"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-18T00:57:29.896998+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Glob",
+            "elapsed_ms": 100
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-18T00:57:29.897463+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/**/run_inference*.py"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-18T00:57:29.947935+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-18T00:57:31.706446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/scripts/adalp_analysis.py"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-18T00:57:32.108425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tAdaLP (Adaptive LP Selection) Analysis.\n3\tPer-instance degeneracy decides greedy vs LP selection.\n4\tLeave-one-dataset-out CV for threshold selection.\n5\t\"\"\"\n6\timport json\n7\timport numpy as np\n8\tfrom collections import Counter\n9\tfrom pathlib import Path\n10\t\n11\tN = 8  # number of samples to use\n12\t\n13\tDATA_PATHS = {\n14\t    \"SciERC\": \"output/exp_012_logprob/samples_with_logprobs.jsonl\",\n15\t    \"CoNLL\": \"output/exp_002_conll_n16/samples.jsonl\",\n16\t    \"FewNERD\": \"output/exp_027_fewnerd_n16/samples.jsonl\",\n17\t}\n18\t\n19\tTAU_CANDIDATES = [0.25, 0.375, 0.5, 0.625, 0.75]\n20\t\n21\t\n22\tdef compute_ner_f1(pred_entities, gold_entities):\n23\t    pred_set = {(e['text'], e['type'], e.get('start', -1), e.get('end', -1))\n24\t                for e in pred_entities}\n25\t    gold_set = {(e['text'], e['type'], e.get('start', -1), e.get('end', -1))\n26\t                for e in gold_entities}\n27\t    if not pred_set and not gold_set:\n28\t        return 1.0\n29\t    if not pred_set or not gold_set:\n30\t        return 0.0\n31\t    tp = len(pred_set & gold_set)\n32\t    prec = tp / len(pred_set)\n33\t    rec = tp / len(gold_set)\n34\t    if prec + rec == 0:\n35\t        return 0.0\n36\t    return 2 * prec * rec / (prec + rec)\n37\t\n38\t\n39\tdef load_dataset(path):\n40\t    \"\"\"Load dataset and compute per-instance metrics.\"\"\"\n41\t    instances = []\n42\t    with open(path) as f:\n43\t        for line in f:\n44\t            d = json.loads(line)\n45\t            gold_ents = d['gold']['entities']\n46\t            samples = d['samples'][:N]\n47\t            greedy = d['greedy']\n48\t\n49\t            sample_f1s = [compute_ner_f1(s['entities'], gold_ents) for s in samples]\n50\t            sample_lps = [s['mean_logprob'] for s in samples]\n51\t            greedy_f1 = compute_ner_f1(greedy['entities'], gold_ents)\n52\t\n53\t            # LP selection: pick sample with highest mean_logprob\n54\t            lp_idx = int(np.argmax(sample_lps))\n55\t            lp_f1 = sample_f1s[lp_idx]\n56\t\n57\t            # Oracle: best F1 among samples\n58\t            o\n…[truncated 9252 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "elapsed_ms": 401
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-18T00:57:32.159225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/scripts/"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-18T00:57:32.211631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 20\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 17 14:18 .\ndrwxr-xr-x 11 ubuntu ubuntu  4096 May 18 00:56 ..\n-rw-r--r--  1 ubuntu ubuntu 10248 May 17 14:18 adalp_analysis.py"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "elapsed_ms": 52
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-18T00:57:32.212095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ | head -40"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-18T00:57:32.312813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 700\ndrwxr-xr-x 11 ubuntu ubuntu   4096 May 18 00:56 .\ndrwxrwxr-x  4 ubuntu ubuntu   4096 May 14 04:20 ..\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 14 04:20 .claude\ndrwxr-xr-x  6 ubuntu ubuntu   4096 May 15 02:23 .venv\n-rw-r--r--  1 ubuntu ubuntu  16416 May 18 00:57 AGENTS.md\n-rw-r--r--  1 ubuntu ubuntu      0 May 14 04:23 ROADMAP.lock\n-rw-------  1 ubuntu ubuntu   3992 May 18 00:56 ROADMAP.md\ndrwxr-xr-x 72 ubuntu ubuntu  12288 May 17 20:25 artifacts\ndrwxr-xr-x  2 ubuntu ubuntu  69632 May 18 00:56 checkpoints\n-rw-r--r--  1 ubuntu ubuntu      0 May 16 03:03 constraints.lock\n-rw-------  1 ubuntu ubuntu    457 May 16 03:03 constraints.yaml\n-rw-r--r--  1 ubuntu ubuntu      0 May 14 04:23 decisions.lock\n-rw-------  1 ubuntu ubuntu 125486 May 17 20:28 decisions.yaml\ndrwxr-xr-x  4 ubuntu ubuntu   4096 May 15 05:25 docs\n-rwxr-xr-x  1 ubuntu ubuntu      0 May 14 09:33 dream_registry.lock\n-rw-------  1 ubuntu ubuntu   8728 May 16 22:54 dream_registry.yaml\n-rw-r--r--  1 ubuntu ubuntu   8656 May 16 22:54 dream_registry.yaml.bak\n-rw-r--r--  1 ubuntu ubuntu      0 May 14 11:49 experiment_plan.lock\n-rw-------  1 ubuntu ubuntu  16031 May 16 14:01 experiment_plan.yaml\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 14 13:35 figures\n-rw-r--r--  1 ubuntu ubuntu      0 May 14 15:47 literature_map.lock\n-rw-------  1 ubuntu ubuntu  43680 May 14 19:51 literature_map.yaml\ndrwxr-xr-x  4 ubuntu ubuntu   4096 May 14 04:25 logs\n-rw-r--r--  1 ubuntu ubuntu  11698 May 17 20:38 memory.md\n-rw-r--r--  1 ubuntu ubuntu      0 May 17 07:38 mistakes.lock\n-rw-------  1 ubuntu ubuntu   2876 May 17 09:37 mistakes.yaml\n-rw-r--r--  1 ubuntu ubuntu  32983 May 17 08:10 paper_framing.md\n-rw-r--r--  1 ubuntu ubuntu      0 May 14 19:32 paper_provenance.lock\n-rw-------  1 ubuntu ubuntu  27292 May 16 10:05 paper_provenance.yaml\n-rw-r--r--  1 ubuntu ubuntu      0 May 14 06:04 registry.lock\n-rw-------  1 ubuntu ubuntu 217165 May 18 00:56 registry.yaml\n-rw-r--r--  1 ubuntu ubuntu   2957 May 18 00:56 report.md\ndrwxr-xr-x  2 \n…[truncated 234 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-18T00:57:34.621983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -maxdepth 1 -name \"*.py\" -type f | head -30"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-18T00:57:35.025252+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_009_v2_stratification.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/data_utils.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/bootstrap_selection_test.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp009_stratification_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp004_re_diagnostic.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp001_postprocess.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/evaluation.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_ood_signals.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n8_bootstrap_ci.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp015_metrics_expansion.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/consistency.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/plot_length_logprob_scatter.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/evaluate_verifier.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp004_v2_re_diagnostic.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/sampling.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_016_v2_ensemble.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/mvp_pilot.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_\n…[truncated 513 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "elapsed_ms": 403
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-18T00:57:35.025788+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -l \"inference\\|degeneracy\\|logprob\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/*.py 2>/dev/null"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-18T00:57:35.278324+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp004_v2_re_diagnostic.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp005_v2_temperature.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp015_metrics_expansion.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp016_ensemble.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_ood_signals.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/bootstrap_selection_test.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/evaluate_verifier.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp001_postprocess.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp009_stratification_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_009_v2_stratification.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_016_v2_ensemble.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n8_bootstrap_ci.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/plot_length_logprob_scatter.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/re_conditional_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/run_mvp_pilot.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/sampling.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/train_supervised_verifier.py"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "elapsed_ms": 252
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-18T00:57:35.278759+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/*.py | head -25"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-18T00:57:35.329536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu 25806 May 14 11:49 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp004_re_diagnostic.py\n-rw-r--r-- 1 ubuntu ubuntu 21379 May 14 15:24 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp004_v2_re_diagnostic.py\n-rw-r--r-- 1 ubuntu ubuntu 15051 May 14 15:24 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp005_v2_temperature.py\n-rw-r--r-- 1 ubuntu ubuntu 21562 May 14 11:47 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp015_metrics_expansion.py\n-rw-r--r-- 1 ubuntu ubuntu 31742 May 14 12:14 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp016_ensemble.py\n-rw-r--r-- 1 ubuntu ubuntu  9093 May 15 11:41 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_ood_signals.py\n-rw-r--r-- 1 ubuntu ubuntu  9666 May 16 16:10 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/bootstrap_selection_test.py\n-rw-r--r-- 1 ubuntu ubuntu 13271 May 14 05:50 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/consistency.py\n-rw-r--r-- 1 ubuntu ubuntu  9089 May 14 04:26 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/data_utils.py\n-rw-r--r-- 1 ubuntu ubuntu  9928 May 15 10:14 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/evaluate_verifier.py\n-rw-r--r-- 1 ubuntu ubuntu 14438 May 16 11:35 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/evaluation.py\n-rw-r--r-- 1 ubuntu ubuntu  9941 May 14 11:48 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp001_postprocess.py\n-rw-r--r-- 1 ubuntu ubuntu 19226 May 14 14:52 /home/ubuntu/.agent-ml\n…[truncated 1525 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-18T00:57:37.086533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/sampling.py",
+              "limit": "100"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-18T00:57:37.287599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Multi-sample inference module for structured IE with vLLM + XGrammar constrained decoding.\n2\t\n3\tProvides VLLMSampler for batch sampling, prompt construction for UIE tasks,\n4\tand a full pipeline that produces SampledInstance dicts.\n5\t\"\"\"\n6\t\n7\tfrom __future__ import annotations\n8\t\n9\timport json\n10\timport os\n11\tfrom typing import Any\n12\t\n13\t\n14\t# ---------------------------------------------------------------------------\n15\t# UIE JSON schema for XGrammar constrained decoding\n16\t# ---------------------------------------------------------------------------\n17\t\n18\tUIE_JSON_SCHEMA: dict[str, Any] = {\n19\t    \"type\": \"object\",\n20\t    \"properties\": {\n21\t        \"entities\": {\n22\t            \"type\": \"array\",\n23\t            \"items\": {\n24\t                \"type\": \"object\",\n25\t                \"properties\": {\n26\t                    \"text\": {\"type\": \"string\"},\n27\t                    \"type\": {\"type\": \"string\"},\n28\t                    \"start\": {\"type\": \"integer\"},\n29\t                    \"end\": {\"type\": \"integer\"},\n30\t                },\n31\t                \"required\": [\"text\", \"type\", \"start\", \"end\"],\n32\t            },\n33\t        },\n34\t        \"relations\": {\n35\t            \"type\": \"array\",\n36\t            \"items\": {\n37\t                \"type\": \"object\",\n38\t                \"properties\": {\n39\t                    \"head\": {\"type\": \"string\"},\n40\t                    \"tail\": {\"type\": \"string\"},\n41\t                    \"type\": {\"type\": \"string\"},\n42\t                    \"head_start\": {\"type\": \"integer\"},\n43\t                    \"head_end\": {\"type\": \"integer\"},\n44\t                    \"tail_start\": {\"type\": \"integer\"},\n45\t                    \"tail_end\": {\"type\": \"integer\"},\n46\t                },\n47\t                \"required\": [\"head\", \"tail\", \"type\", \"head_start\", \"head_end\",\n48\t                             \"tail_start\", \"tail_end\"],\n49\t            },\n50\t        },\n51\t        \"events\": {\n52\t            \"type\": \"array\",\n53\t            \"items\": {\n54\t                \"type\": \"object\",\n55\t             \n…[truncated 1838 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-18T00:57:37.288156+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/bootstrap_selection_test.py",
+              "limit": "100"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-18T00:57:37.489325+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Bootstrap significance test for N=32 LP selection improvement.\n3\t\n4\tTests whether selection by each signal (LP, SJ, FK, EM, VC) yields\n5\tstatistically significant improvement over greedy decoding, using\n6\tpaired bootstrap resampling and permutation tests.\n7\t\"\"\"\n8\t\n9\timport json\n10\timport sys\n11\timport numpy as np\n12\tfrom collections import Counter\n13\t\n14\tsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\n15\tfrom consistency import _ner_soft_jaccard_pair, _extract_surface_keys\n16\tfrom evaluation import per_instance_f1\n17\t\n18\tBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\n19\tDATA_PATH = f\"{BASE}/output/exp_025_n32/samples.jsonl\"\n20\tOUT_PATH = f\"{BASE}/output/exp_025_n32/bootstrap_results.json\"\n21\tSCRIPT_PATH = f\"{BASE}/output/exp_025_n32/bootstrap_selection_test.py\"\n22\tSUBTASK = \"ner\"\n23\tSIGNALS = [\"LP\", \"SJ\", \"FK\", \"EM\", \"VC\"]\n24\tB = 10000\n25\tSEED = 42\n26\t\n27\t\n28\tdef load_data(path):\n29\t    with open(path) as f:\n30\t        return [json.loads(line) for line in f if line.strip()]\n31\t\n32\t\n33\tdef compute_signals(samples):\n34\t    n = len(samples)\n35\t\n36\t    # LP\n37\t    lp_scores = []\n38\t    for s in samples:\n39\t        lp = s.get(\"mean_logprob\")\n40\t        if lp is None:\n41\t            lp = s.get(\"cumulative_logprob\", -999) / max(s.get(\"n_tokens\", 1), 1)\n42\t        lp_scores.append(lp)\n43\t\n44\t    key_sets = [frozenset(_extract_surface_keys(s, SUBTASK)) for s in samples]\n45\t\n46\t    # FK (Fleiss Kappa-like pairwise Jaccard on surface keys)\n47\t    fk_matrix = np.zeros((n, n))\n48\t    for i in range(n):\n49\t        for j in range(i + 1, n):\n50\t            union = len(key_sets[i] | key_sets[j])\n51\t            inter = len(key_sets[i] & key_sets[j])\n52\t            s = inter / union if union > 0 else 1.0\n53\t            fk_matrix[i][j] = s\n54\t            fk_matrix[j][i] = s\n55\t    np.fill_diagonal(fk_matrix, 1.0)\n56\t    fk_scores = [float(np.mean([fk_matrix[k][j] for j in range(n) if j != k])) for k in range(n)]\n57\t\n58\t    # SJ (Soft J\n…[truncated 1622 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-18T00:57:37.489836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/plot_length_logprob_scatter.py"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-18T00:57:37.490324+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\timport json\n2\timport numpy as np\n3\timport matplotlib\n4\tmatplotlib.use('Agg')\n5\timport matplotlib.pyplot as plt\n6\tfrom scipy import stats\n7\t\n8\tDATA = \"exp_012_rerun_1024/samples_with_logprobs.jsonl\"\n9\tOUT_PDF = \"figures/fig_length_logprob_scatter.pdf\"\n10\tOUT_PNG = \"figures/fig_length_logprob_scatter.png\"\n11\t\n12\t\n13\tdef entity_f1(pred_ents, gold_ents):\n14\t    pred_set = {(e['text'], e['type'], e['start'], e['end']) for e in pred_ents}\n15\t    gold_set = {(e['text'], e['type'], e['start'], e['end']) for e in gold_ents}\n16\t    if not gold_set and not pred_set:\n17\t        return 1.0\n18\t    if not gold_set or not pred_set:\n19\t        return 0.0\n20\t    tp = len(pred_set & gold_set)\n21\t    p = tp / len(pred_set) if pred_set else 0\n22\t    r = tp / len(gold_set) if gold_set else 0\n23\t    return 2 * p * r / (p + r) if (p + r) > 0 else 0.0\n24\t\n25\t\n26\tdef relation_f1(pred_rels, gold_rels):\n27\t    pred_set = {(r['head'], r['tail'], r['type']) for r in pred_rels}\n28\t    gold_set = {(r['head'], r['tail'], r['type']) for r in gold_rels}\n29\t    if not gold_set and not pred_set:\n30\t        return 1.0\n31\t    if not gold_set or not pred_set:\n32\t        return 0.0\n33\t    tp = len(pred_set & gold_set)\n34\t    p = tp / len(pred_set) if pred_set else 0\n35\t    r = tp / len(gold_set) if gold_set else 0\n36\t    return 2 * p * r / (p + r) if (p + r) > 0 else 0.0\n37\t\n38\t\n39\tner_tokens, ner_logprobs, ner_f1s = [], [], []\n40\tre_tokens, re_logprobs, re_f1s = [], [], []\n41\t\n42\twith open(DATA) as f:\n43\t    for line in f:\n44\t        d = json.loads(line)\n45\t        gold = d['gold']\n46\t        gold_ents = gold.get('entities', [])\n47\t        gold_rels = gold.get('relations', [])\n48\t\n49\t        for s in d['samples']:\n50\t            nt = s['n_tokens']\n51\t            mlp = s['mean_logprob']\n52\t\n53\t            if gold_ents:\n54\t                ef1 = entity_f1(s.get('entities', []), gold_ents)\n55\t                ner_tokens.append(nt)\n56\t                ner_logprobs.append(mlp)\n57\t                ner_f1s.append(\n…[truncated 3454 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-18T00:57:40.200273+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"/root/autodl-tmp/struct_self_consist_ie\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/*.py | head -20"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-18T00:57:40.401413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp004_re_diagnostic.py:BASE = Path(\"/root/autodl-tmp/struct_self_consist_ie\")\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp004_v2_re_diagnostic.py:sys.path.insert(0, \"/root/autodl-tmp/struct_self_consist_ie/code\")\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp004_v2_re_diagnostic.py:BASE = Path(\"/root/autodl-tmp/struct_self_consist_ie\")\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp005_v2_temperature.py:sys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp005_v2_temperature.py:BASE = \"/root/autodl-tmp/struct_self_consist_ie/output\"\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp015_metrics_expansion.py:    cd /root/autodl-tmp/struct_self_consist_ie\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp015_metrics_expansion.py:                        default=\"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004\")\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp015_metrics_expansion.py:                        default=\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob\")\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp015_metrics_expansion.py:                        default=\"/root/autodl-tmp/struct_self_consist_ie/output/exp015_metrics_expansion\")\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp016_ensemble.py:    cd /root/autodl-tmp/struct_self_consist_ie\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_se\n…[truncated 1841 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-18T00:57:40.602654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/evaluation.py",
+              "limit": "100"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-18T00:57:40.804355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Evaluation module for structured self-consistency IE experiments.\n2\t\n3\tProvides strict-match NER/EAE evaluation, per-instance F1 computation,\n4\tcorrelation analysis, and summary report generation.\n5\t\"\"\"\n6\t\n7\tfrom __future__ import annotations\n8\t\n9\timport statistics\n10\tfrom typing import Any\n11\t\n12\tfrom scipy.stats import kendalltau, spearmanr\n13\t\n14\t\n15\t# ---------------------------------------------------------------------------\n16\t# NER evaluation (strict match)\n17\t# ---------------------------------------------------------------------------\n18\t\n19\tdef entity_strict_match(\n20\t    pred_entities: list[dict],\n21\t    gold_entities: list[dict],\n22\t) -> tuple[int, int, int]:\n23\t    \"\"\"Compute strict entity match counts.\n24\t\n25\t    Strict match requires exact span (start, end) AND exact type.\n26\t\n27\t    Args:\n28\t        pred_entities: Predicted entity dicts with keys text, type, start, end.\n29\t        gold_entities: Gold entity dicts with the same schema.\n30\t\n31\t    Returns:\n32\t        (tp, fp, fn) counts.\n33\t    \"\"\"\n34\t    pred_set = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in pred_entities}\n35\t    gold_set = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold_entities}\n36\t    tp = len(pred_set & gold_set)\n37\t    fp = len(pred_set - gold_set)\n38\t    fn = len(gold_set - pred_set)\n39\t    return tp, fp, fn\n40\t\n41\t\n42\tdef compute_ner_f1(\n43\t    predictions: list[dict],\n44\t    golds: list[dict],\n45\t) -> dict[str, float]:\n46\t    \"\"\"Compute micro-averaged NER precision, recall, and F1.\n47\t\n48\t    Args:\n49\t        predictions: List of Extraction dicts (one per instance).\n50\t        golds: List of Extraction dicts (one per instance), aligned with predictions.\n51\t\n52\t    Returns:\n53\t        Dict with keys \"precision\", \"recall\", \"f1\".\n54\t    \"\"\"\n55\t    total_tp = total_fp = total_fn = 0\n56\t    for pred, gold in zip(predictions, golds):\n57\t        tp, fp, fn = entity_strict_match(\n58\t            pred.get(\"entities\", []),\n59\t            gold.get(\"entities\", []),\n60\t        )\n61\t  \n…[truncated 1617 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-18T00:57:40.804849+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/run_mvp_pilot.py",
+              "limit": "100"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-18T00:57:40.805295+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"MVP pilot experiment script for structured self-consistency IE.\n2\t\n3\tIntegrates data loading, vLLM sampling, consistency scoring, and evaluation\n4\tinto a single CLI-driven pipeline. Outputs a verdict (PASS/MARGINAL/FAIL)\n5\tbased on the correlation between structural consistency and per-instance F1.\n6\t\"\"\"\n7\t\n8\tfrom __future__ import annotations\n9\t\n10\timport argparse\n11\timport json\n12\timport os\n13\timport random\n14\timport sys\n15\t\n16\timport numpy as np\n17\t\n18\tfrom data_utils import load_scierc, load_ace05\n19\tfrom sampling import (\n20\t    VLLMSampler,\n21\t    run_sampling_pipeline,\n22\t    save_sampled_results,\n23\t    load_sampled_results,\n24\t    realign_spans,\n25\t    SCIERC_SCHEMA_HINT,\n26\t)\n27\tfrom consistency import compute_all_consistency_scores\n28\tfrom evaluation import (\n29\t    per_instance_f1,\n30\t    compute_ner_f1,\n31\t    compute_re_f1,\n32\t    compute_eae_f1,\n33\t    spearman_correlation,\n34\t    kendall_correlation,\n35\t    compute_auroc,\n36\t    compute_sample_f1_distribution,\n37\t)\n38\t\n39\t\n40\tdef parse_args() -> argparse.Namespace:\n41\t    \"\"\"Parse command-line arguments.\"\"\"\n42\t    p = argparse.ArgumentParser(description=\"MVP pilot for structured self-consistency IE\")\n43\t    p.add_argument(\"--model_path\", type=str, required=True, help=\"Path to the fine-tuned model\")\n44\t    p.add_argument(\"--data_dir\", type=str, required=True, help=\"Dataset directory (SciERC or ACE05)\")\n45\t    p.add_argument(\"--dataset\", type=str, default=\"scierc\", choices=[\"scierc\", \"ace05\"],\n46\t                   help=\"Dataset name (default: scierc)\")\n47\t    p.add_argument(\"--subtask\", type=str, default=\"ner\", choices=[\"ner\", \"re\", \"eae\", \"joint\"],\n48\t                   help=\"Subtask (default: ner)\")\n49\t    p.add_argument(\"--schema_hint\", type=str, default=\"\",\n50\t                   help=\"Schema hint string (entity/relation types). Auto-set for scierc if empty\")\n51\t    p.add_argument(\"--use_train_format\", type=lambda x: x.lower() != \"false\", default=True,\n52\t                   help=\"Use train-ali\n…[truncated 3423 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-18T00:57:43.215329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/consistency.py",
+              "limit": "100"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-18T00:57:43.667500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Consistency metrics for structured information extraction with self-consistency.\n2\t\n3\tImplements three complementary consistency measures over N sampled extractions:\n4\t1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\n5\t2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\n6\t3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\n7\t\n8\tKey dependencies: numpy, scipy (linear_sum_assignment).\n9\t\"\"\"\n10\t\n11\tfrom __future__ import annotations\n12\t\n13\tfrom itertools import combinations\n14\tfrom typing import TYPE_CHECKING\n15\t\n16\timport numpy as np\n17\tfrom scipy.optimize import linear_sum_assignment\n18\t\n19\tif TYPE_CHECKING:\n20\t    pass\n21\t\n22\t# ---------------------------------------------------------------------------\n23\t# Type aliases (mirrors shared data format)\n24\t# ---------------------------------------------------------------------------\n25\tEntity = dict       # {\"text\", \"type\", \"start\", \"end\"}\n26\tRelation = dict     # {\"head\", \"tail\", \"type\", ...}\n27\tEvent = dict        # {\"trigger\": {...}, \"arguments\": [...]}\n28\tExtraction = dict   # {\"entities\", \"relations\", \"events\"}\n29\t\n30\t\n31\t# ===================================================================\n32\t# 1. Fleiss' Kappa — surface‐level entity agreement\n33\t# ===================================================================\n34\t\n35\tdef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\n36\t    \"\"\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\"\"\"\n37\t    if subtask == \"ner\":\n38\t        return {(e[\"text\"], e[\"type\"]) for e in sample.get(\"entities\", [])}\n39\t    elif subtask == \"re\":\n40\t        return {(r[\"head\"], r[\"tail\"], r[\"type\"]) for r in sample.get(\"relations\", [])}\n41\t    elif subtask == \"eae\":\n42\t        keys: set[tuple] = set()\n43\t        for ev in sample.get(\"events\", []):\n44\t            t = ev.get(\"trigger\", {})\n45\t            for arg in ev.get(\"arguments\", []):\n46\t                k\n…[truncated 1962 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-18T00:57:43.718314+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_ood_signals.py"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-18T00:57:43.819236+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Cross-dataset OOD signal analysis for structured self-consistency IE.\"\"\"\n3\timport json\n4\timport sys\n5\timport numpy as np\n6\tfrom collections import Counter\n7\tfrom scipy.stats import spearmanr\n8\tfrom sklearn.metrics import roc_auc_score\n9\t\n10\tsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\n11\tfrom consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\n12\tfrom evaluation import per_instance_f1\n13\t\n14\t\n15\tdef load_data(path):\n16\t    records = []\n17\t    with open(path) as f:\n18\t        for line in f:\n19\t            if line.strip():\n20\t                records.append(json.loads(line))\n21\t    return records\n22\t\n23\t\n24\tdef compute_exact_match_rate(samples, subtask):\n25\t    if subtask == \"ner\":\n26\t        keys = [frozenset((e[\"text\"], e[\"type\"]) for e in s.get(\"entities\", [])) for s in samples]\n27\t    else:\n28\t        keys = [frozenset((r[\"head\"], r[\"tail\"], r[\"type\"]) for r in s.get(\"relations\", [])) for s in samples]\n29\t    if not keys:\n30\t        return 0.0\n31\t    counter = Counter(keys)\n32\t    return counter.most_common(1)[0][1] / len(samples)\n33\t\n34\t\n35\tdef compute_voting_confidence(samples, subtask):\n36\t    N = len(samples)\n37\t    if N == 0:\n38\t        return 0.0\n39\t    counter = Counter()\n40\t    if subtask == \"ner\":\n41\t        for s in samples:\n42\t            for e in s.get(\"entities\", []):\n43\t                counter[(e[\"text\"], e[\"type\"])] += 1\n44\t    else:\n45\t        for s in samples:\n46\t            for r in s.get(\"relations\", []):\n47\t                counter[(r[\"head\"], r[\"tail\"], r[\"type\"])] += 1\n48\t    if not counter:\n49\t        return 0.0\n50\t    majority = [v / N for v in counter.values() if v > N / 2]\n51\t    if not majority:\n52\t        return 0.0\n53\t    return float(np.mean(majority))\n54\t\n55\t\n56\tdef compute_mean_logprob(samples):\n57\t    logprobs = [s.get(\"mean_logprob\") for s in samples if s.get(\"mean_logprob\") is not None]\n58\t    logprobs = [lp for lp in logprobs if np.isfinite(lp)]\n59\t    if\n…[truncated 7899 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-18T00:57:43.869845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n8_bootstrap_ci.py"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-18T00:57:43.920594+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Bootstrap CI for 5 signals: Qwen SciERC N=8 seed=42.\"\"\"\n3\timport json, sys\n4\timport numpy as np\n5\tfrom collections import Counter\n6\tfrom scipy.stats import spearmanr\n7\t\n8\tsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\n9\tfrom consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\n10\tfrom evaluation import per_instance_f1\n11\t\n12\tDATA_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\"\n13\tOUT_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json\"\n14\tSUBTASK = \"ner\"\n15\t\n16\tdef load_data(path):\n17\t    records = []\n18\t    with open(path) as f:\n19\t        for line in f:\n20\t            if line.strip():\n21\t                records.append(json.loads(line))\n22\t    return records\n23\t\n24\tdef compute_exact_match_rate(samples, subtask):\n25\t    if subtask == \"ner\":\n26\t        keys = [frozenset((e[\"text\"], e[\"type\"]) for e in s.get(\"entities\", [])) for s in samples]\n27\t    else:\n28\t        keys = [frozenset((r[\"head\"], r[\"tail\"], r[\"type\"]) for r in s.get(\"relations\", [])) for s in samples]\n29\t    if not keys:\n30\t        return 0.0\n31\t    counter = Counter(keys)\n32\t    return counter.most_common(1)[0][1] / len(samples)\n33\t\n34\tdef compute_voting_confidence(samples, subtask):\n35\t    N = len(samples)\n36\t    if N == 0:\n37\t        return 0.0\n38\t    counter = Counter()\n39\t    if subtask == \"ner\":\n40\t        for s in samples:\n41\t            for e in s.get(\"entities\", []):\n42\t                counter[(e[\"text\"], e[\"type\"])] += 1\n43\t    else:\n44\t        for s in samples:\n45\t            for r in s.get(\"relations\", []):\n46\t                counter[(r[\"head\"], r[\"tail\"], r[\"type\"])] += 1\n47\t    if not counter:\n48\t        return 0.0\n49\t    rates = [v / N for v in counter.values()]\n50\t    return float(np.mean(rates))\n51\t\n52\tdef compute_mean_logprob(samples):\n53\t    logprobs = [s.get(\"mean_logprob\") for s in samples if s.get(\"mean_logprob\") is not None]\n54\t \n…[truncated 5058 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-18T00:57:47.250773+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -maxdepth 2 -type f \\( -name \"*.yaml\" -o -name \"*.yml\" -o -name \"*.json\" \\) | grep -E \"(config|deploy|train)\" | head -20"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-18T00:57:47.654956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/constraints.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "elapsed_ms": 404
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-18T00:57:47.757356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/ | grep -E \"^d\" | head -20"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-18T00:57:47.808378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -maxdepth 1 -type d | head -20"
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-18T00:57:47.859047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "drwxr-xr-x 72 ubuntu ubuntu  12288 May 17 20:25 .\ndrwxr-xr-x 11 ubuntu ubuntu   4096 May 18 00:56 ..\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 14 18:34 3seed_summary\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 14 05:09 __pycache__\ndrwxr-xr-x  7 ubuntu ubuntu   4096 May 14 19:29 _project\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 16 05:41 bertoldi_citation_check\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 14 19:36 bootstrap_ci_nscaling\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 16 07:27 d108\ndrwxr-xr-x  4 ubuntu ubuntu   4096 May 16 07:48 d108_lp_vc_combination\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 16 09:28 d112\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 16 09:52 d112_claim_audit\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 16 10:10 d113_table2_fix\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 16 10:10 d113_table2_narrative_fix\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 14 21:47 data\ndrwxr-xr-x 10 ubuntu ubuntu   4096 May 16 22:54 dream_reports\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 14 12:51 exp-001\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 14 11:49 exp-015\ndrwxr-xr-x  5 ubuntu ubuntu   4096 May 16 11:32 exp-019\ndrwxr-xr-x  5 ubuntu ubuntu   4096 May 16 10:57 exp-022\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 14 11:44 exp005_temperature"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-18T00:57:47.859635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_026_T_ablation\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp-022\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_024_claim_audit\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/figures\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/vc_quartile_analysis\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_004_re_diagnostic\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_020_pilot\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_027\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_015_metrics_expansion\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_verbalized_confidence\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_freeform_ablation\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d108\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp-015\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_entity_token_lp\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_005_v2\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_n16\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_028\n/home/ubuntu/.agent-ml-\n…[truncated 78 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "elapsed_ms": 51
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-18T00:57:49.869337+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project -maxdepth 2 -type f -name \"*.py\" 2>/dev/null | head -30"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-18T00:57:49.920024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/intermediate/consistency.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/intermediate/sampling.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/data_utils.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/evaluation.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/consistency.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/sampling.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/run_mvp_pilot.py"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-18T00:57:49.970741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-18T00:57:49.971223+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 36\ndrwxr-xr-x  7 ubuntu ubuntu  4096 May 14 19:29 .\ndrwxr-xr-x 72 ubuntu ubuntu 12288 May 17 20:25 ..\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 17 09:18 chart\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 16 09:49 data\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 16 10:10 intermediate\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 16 09:11 paper\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 16 14:02 report"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-18T00:57:51.729165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/AGENTS.md",
+              "limit": "150"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-18T00:57:51.930355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t## 当前项目\n2\t当前绑定项目：**struct_self_consist_ie**\n3\t\n4\t## 按需查阅\n5\t- 项目配置：`load_project_config(\"struct_self_consist_ie\")` 或 `load_project_config(\"struct_self_consist_ie\", section=\"execution\")`\n6\t- 知识文件：`read_project_file(file=...)` 读取项目文件（ROADMAP.md/memory.md/ideas.md/report.md 等）\n7\t- 路线图：`read_roadmap()` 读取研究方向和短期任务\n8\t- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/`（写文件后用 `register_artifact` 注册）\n9\t\n10\t## Worker 操作规范\n11\t\n12\t### paper-writing-norms\n13\t\n14\t# 论文写作风格规范\n15\t\n16\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n17\t\n18\t---\n19\t\n20\t## 一、总体写作哲学\n21\t\n22\t### 1.1 故事驱动，不是数据堆砌\n23\t\n24\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n25\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n26\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n27\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n28\t\n29\t### 1.2 主线统一性\n30\t\n31\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n32\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n33\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n34\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n35\t\n36\t### 1.3 专有名词必须有定义\n37\t\n38\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n39\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n40\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n41\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n42\t\n43\t### 1.4 写作前必读同类优秀论文\n44\t\n45\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n46\t- 重点学：\n47\t  - Abstract 怎么用最少篇幅讲完故事\n48\t  - Introduction 怎么从大问题切入到具体贡献\n49\t  - Related Work 怎么 positioning 自己（不是 survey）\n50\t  - Table/Figure 怎么压缩信息密度\n51\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n52\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n53\t\n54\t---\n55\t\n56\t## 二、Abstract 写作规范\n57\t\n58\t### 2.1 四个必答问题（150-250 words）\n59\t\n60\tAbstract 必须在很短的篇幅内清楚回答：\n61\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n62\t2. **为什么重要** — 现有方法的不足（不用写太多）\n63\t3. **本文提出什么** — 核心贡献的关键机制（简要，\n…[truncated 2175 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-18T00:57:51.981032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -80 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-18T00:57:52.031835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# 项目记忆\n\n## 易混淆指标辨析（2026-05-17）\n\n**ρ=-0.881 (p=0.004)** = KeySet degeneracy vs **oracle headroom**（论文 L171 / appendix:1121）\n**ρ=-0.381 (p=0.352)** = KeySet degeneracy vs **LP Δ**（selection improvement）\n\n这是两个不同的 y 轴变量。论文中的 ρ=-0.881 是正确的，已被 Reviewer 确认。不要再混淆。\n\n## SciERC LP Δ 两个版本（2026-05-17）\n\n- **+0.42pp** = full-set (n=551)，论文全文统一使用此值\n- **+0.62pp** = gold-filtered (n=529)\n\nFigure 3 和正文保持一致用 full-set +0.42。\n\n## Cross-model Degeneracy 规律（2026-05-17）\n\nDegeneracy 由 **model capability × task difficulty × training convergence** 共同决定：\n- Stronger model + easy task → 极端 degen（LLaMA-CoNLL 89.2%）\n- Weaker model + hard task → low degen（Qwen3-SciERC 17.8%）\n- CoNLL 是 high-degen regime 不论 backbone（Qwen3 47.4%, LLaMA 89.2%）\n- Training convergence 调控 degen: Few-NERD 3-epoch 11.1% → 5-epoch 31.3%（+20pp）\n- **Alignment (within-instance ρ) 是 dataset-intrinsic**: median ρ 不随 epoch 显著变化 (0.6667→0.6151)\n\nLLaMA on CoNLL headroom 仅 1.84pp（greedy 0.9242, oracle 0.9426），使得 selection 评估无意义。但 structural signals 的 QE diagnostic ρ≈0.43 仍显著优于 LP ρ=0.31，证明诊断价值是 model-agnostic 的。\n\nLP range median=0.0002 at 89% degen — LP 在极端 degen 下完全无法区分 samples。\n\n## exp_021 vs exp_028 within-instance ρ(LP, F1) 对比（2026-05-18）\n\n### 配对对比（同 5000 实例子集，N=8）\n\n| Metric | 3-epoch (exp_027) | 5-epoch (exp_028) | Delta |\n|--------|-------------------|-------------------|-------|\n| ρ mean | **0.5241** | 0.4066 | -0.1175 |\n| ρ median | **0.6667** | 0.6151 | -0.0516 |\n| ρ std | 0.4673 | 0.5506 | +0.0833 |\n| Valid instances | 3723/4351 (85.6%) | 2988/4351 (68.7%) | -16.9pp |\n\n### 全量 exp_021（37648 实例，N=8）\n- Mean ρ: 0.5106, Median ρ: 0.6667, Std: 0.4749\n- Valid: 28086/32565 (86.3%)\n\n### 结论\n1. **Median ρ 几乎不变** (0.6667→0.6151, Δ=-0.05): 非 degenerate 实例上 LP-F1 alignment 不受 training convergence 显著影响 → **alignment IS dataset-intrinsic**\n2. **Mean ρ 下降较多** (0.5241→0.4066, Δ=-0.12): 主要因为 valid instances 从 85.6%→68.7%——更多实例变 degenerate，拉低 mean\n3. **两个条件的 driver 不同**: degeneracy 受 training convergence 调控，alignment 则是 dataset-intrinsic（median\n…[truncated 1167 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-18T00:57:54.291752+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp016_ensemble.py",
+              "limit": "80"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-18T00:57:54.643524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"exp-016: Signal Ensemble & Combination Analysis (CPU-only).\n3\t\n4\tFour-part analysis:\n5\t  Part 1: SJ + logprob instance-level correlation (Pearson/Spearman)\n6\t  Part 2: Linear combination grid search (α sweep)\n7\t  Part 3: 5-signal logistic regression ensemble (5-fold CV AUROC)\n8\t  Part 4: Best-of-N selection F1 comparison\n9\t\n10\tUsage:\n11\t    cd /root/autodl-tmp/struct_self_consist_ie\n12\t    pip install scikit-learn  # if not installed\n13\t    python code/analyze_exp016_ensemble.py \\\n14\t        --pilot_dir output/mvp_pilot_004 \\\n15\t        --logprob_dir output/exp_012_logprob \\\n16\t        --output_dir output/exp016_signal_ensemble\n17\t\"\"\"\n18\t\n19\tfrom __future__ import annotations\n20\t\n21\timport argparse\n22\timport json\n23\timport os\n24\timport sys\n25\tfrom collections import Counter\n26\tfrom itertools import combinations\n27\t\n28\timport numpy as np\n29\tfrom scipy.stats import spearmanr, pearsonr\n30\t\n31\tsys.path.insert(0, os.path.join(os.path.dirname(__file__), \"..\"))\n32\tsys.path.insert(0, os.path.dirname(__file__))\n33\t\n34\tfrom consistency import (\n35\t    compute_all_consistency_scores,\n36\t    fleiss_kappa_surface,\n37\t    structural_consistency_soft_jaccard,\n38\t)\n39\tfrom evaluation import per_instance_f1\n40\t\n41\t\n42\t# ---------------------------------------------------------------------------\n43\t# Data loading (reused from exp-015)\n44\t# ---------------------------------------------------------------------------\n45\t\n46\tdef load_samples(path: str) -> list[dict]:\n47\t    instances = []\n48\t    with open(path) as f:\n49\t        for line in f:\n50\t            line = line.strip()\n51\t            if line:\n52\t                instances.append(json.loads(line))\n53\t    return instances\n54\t\n55\t\n56\tdef load_logprob_instances(logprob_dir: str) -> list[dict] | None:\n57\t    \"\"\"Load instances with per-sample logprob from samples_with_logprobs.jsonl.\"\"\"\n58\t    if not logprob_dir or not os.path.isdir(logprob_dir):\n59\t        return None\n60\t    path = os.path.join(logprob_dir\n…[truncated 727 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Read",
+            "elapsed_ms": 351
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-18T00:57:54.694271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -l \"N=8\\|T=1\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/*.py"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-18T00:57:54.746320+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/analyze_exp005_v2_temperature.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp001_postprocess.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_016_v2_ensemble.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/mvp_pilot.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n8_bootstrap_ci.py"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "elapsed_ms": 52
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-18T00:57:56.955363+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/sampling.py /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/consistency.py /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/evaluation.py"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-18T00:57:57.006034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  653 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/sampling.py\n  410 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/consistency.py\n  423 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/evaluation.py\n 1486 total"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-18T00:58:19.104299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have a comprehensive understanding. Let me create the final report.\n\n## Final Report: Inference and Analysis Scripts for struct_self_consist_ie\n\nBased on my thorough search of the project, here are the key inference and analysis scripts:\n\n### Core Inference & Sampling Pipeline\n\n1. **`/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/sampling.py`** (653 lines)\n   - Main multi-sample inference module with vLLM backend\n   - Implements `VLLMSampler` class for batch sampling with XGrammar constrained JSON decoding\n   - Handles N-sample generation with configurable temperature (T=1.0 typical)\n   - UIE JSON schema for entities, relations, events\n   - Provides `run_sampling_pipeline()` and result I/O functions\n   - Remote path: `/root/autodl-tmp/struct_self_consist_ie/code/sampling.py`\n\n2. **`/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/run_mvp_pilot.py`** (335+ lines)\n   - Full end-to-end inference pipeline orchestrator\n   - Integrates data loading, vLLM sampling, consistency scoring, evaluation\n   - CLI-driven with arguments: `--n_samples` (default 8), `--temperature` (default 1.0), `--collect_logprobs`\n   - Outputs verdict (PASS/MARGINAL/FAIL) based on structural consistency correlation\n   - Remote path: `/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py`\n\n### Consistency Scoring & Metrics\n\n3. **`/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/consistency.py`** (410 lines)\n   - Three complementary consistency measures over N samples:\n     - **Fleiss' Kappa** (surface-level: entity/relation text agreement)\n     - **Structural Soft Jaccard** (span-level overlap with Hungarian matching)\n     - **Oracle best-of-N** (upper-bound F1)\n   - Implements `compute_all_consistency_scores()` for joint metrics\n   - Remote path: `/root/autodl-tmp/struct_self_consist_ie/code/consistency.py`\n\n4. **`/home/ubuntu/.agent-ml-research-idea_ge\n…[truncated 5578 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "Agent",
+            "elapsed_ms": 56290
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-18T00:58:47.042805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__tail_training_logs",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-18T00:58:47.093537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-18T00:59:38.612438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "autodl-5090",
+              "exp_id": "exp_029a",
+              "project": "struct_self_consist_ie",
+              "n": "30"
+            }
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-18T00:59:39.466188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"^^^^^^\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/llamafactory/cli.py\\\\\\\", line 24, in main\\\", \\\"    launcher.launch()\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/llamafactory/launcher.py\\\\\\\", line 157, in launch\\\", \\\"    run_exp()\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/llamafactory/train/tuner.py\\\\\\\", line 126, in run_exp\\\", \\\"    _training_function(config={\\\\\\\"args\\\\\\\": args, \\\\\\\"callbacks\\\\\\\": callbacks})\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/llamafactory/train/tuner.py\\\\\\\", line 88, in _training_function\\\", \\\"    run_sft(model_args, data_args, training_args, finetuning_args, generating_args, callbacks)\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/llamafactory/train/sft/workflow.py\\\\\\\", line 134, in run_sft\\\", \\\"    train_result = trainer.train(resume_from_checkpoint=training_args.resume_from_checkpoint)\\\", \\\"                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\\\\\", line 2325, in train\\\", \\\"    return inner_training_loop(\\\", \\\"           ^^^^^^^^^^^^^^^^^^^^\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\\\\\", line 2756, in _inner_training_loop\\\", \\\"    self._maybe_log_save_evaluate(\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\\\\\", line 3228, in _maybe_log_save_evaluate\\\", \\\"    self._save_checkpoint(model, trial)\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\\\\\", line 3345, in _save_checkpoint\\\", \\\"    self._save_optimizer_and_scheduler(output_dir)\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\\\\\", line 3472, in _save_optimizer_and_scheduler\\\", \\\"    torch.save(self.optimizer.state_dict(), os.path.join(output_dir, OPTIMIZER_NA\n…[truncated 667 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 853
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-18T00:59:48.104473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "autodl-5090",
+              "exp_id": "exp_029a",
+              "project": "struct_self_consist_ie",
+              "n": "80"
+            }
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-18T00:59:48.456570+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"\\\\\\\"full_attention\\\\\\\",\\\", \\\"    \\\\\\\"full_attention\\\\\\\",\\\", \\\"    \\\\\\\"full_attention\\\\\\\",\\\", \\\"    \\\\\\\"full_attention\\\\\\\",\\\", \\\"    \\\\\\\"full_attention\\\\\\\",\\\", \\\"    \\\\\\\"full_attention\\\\\\\",\\\", \\\"    \\\\\\\"full_attention\\\\\\\",\\\", \\\"    \\\\\\\"full_attention\\\\\\\",\\\", \\\"    \\\\\\\"full_attention\\\\\\\",\\\", \\\"    \\\\\\\"full_attention\\\\\\\",\\\", \\\"    \\\\\\\"full_attention\\\\\\\",\\\", \\\"    \\\\\\\"full_attention\\\\\\\",\\\", \\\"    \\\\\\\"full_attention\\\\\\\",\\\", \\\"    \\\\\\\"full_attention\\\\\\\",\\\", \\\"    \\\\\\\"full_attention\\\\\\\",\\\", \\\"    \\\\\\\"full_attention\\\\\\\"\\\", \\\"  ],\\\", \\\"  \\\\\\\"max_position_embeddings\\\\\\\": 40960,\\\", \\\"  \\\\\\\"max_window_layers\\\\\\\": 36,\\\", \\\"  \\\\\\\"model_type\\\\\\\": \\\\\\\"qwen3\\\\\\\",\\\", \\\"  \\\\\\\"num_attention_heads\\\\\\\": 32,\\\", \\\"  \\\\\\\"num_hidden_layers\\\\\\\": 36,\\\", \\\"  \\\\\\\"num_key_value_heads\\\\\\\": 8,\\\", \\\"  \\\\\\\"rms_norm_eps\\\\\\\": 1e-06,\\\", \\\"  \\\\\\\"rope_scaling\\\\\\\": null,\\\", \\\"  \\\\\\\"rope_theta\\\\\\\": 1000000,\\\", \\\"  \\\\\\\"sliding_window\\\\\\\": null,\\\", \\\"  \\\\\\\"tie_word_embeddings\\\\\\\": false,\\\", \\\"  \\\\\\\"transformers_version\\\\\\\": \\\\\\\"4.57.1\\\\\\\",\\\", \\\"  \\\\\\\"use_cache\\\\\\\": true,\\\", \\\"  \\\\\\\"use_sliding_window\\\\\\\": false,\\\", \\\"  \\\\\\\"vocab_size\\\\\\\": 151936\\\", \\\"}\\\", \\\"\\\", \\\"[INFO|tokenization_utils_base.py:2421] 2026-05-18 07:39:03,455 >> chat template saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora/checkpoint-100/chat_template.jinja\\\", \\\"[INFO|tokenization_utils_base.py:2590] 2026-05-18 07:39:03,455 >> tokenizer config file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora/checkpoint-100/tokenizer_config.json\\\", \\\"[INFO|tokenization_utils_base.py:2599] 2026-05-18 07:39:03,455 >> Special tokens file saved in /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora/checkpoint-100/special_tokens_map.json\\\", \\\"{'eval_loss': 0.10757593810558319, 'eval_runtime': 16.1523, 'eval_samples_per_second': 17.025, 'eval_steps_per_second': 4.272, 'epoch': 0.86}\\\", \\\"Traceback (m\n…[truncated 3225 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 352
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-18T01:00:13.198143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_029a",
+              "field": "failure_reason",
+              "value": "Disk I/O error during checkpoint-100 save at 28% (100/351 steps). RuntimeError: basic_ios::clear: iostream error + enforce fail at inline_container.cc:668. Eval loss=0.1076 before crash. EXIT_CODE=0 misleading.",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-18T01:00:13.399756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_029a",
+              "field": "conclusion",
+              "value": "failed",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-18T01:00:13.956756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_029a\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T23:32:17.191Z\\\", \\\"updated_at\\\": \\\"2026-05-18T01:00:13.612Z\\\", \\\"hypothesis\\\": \\\"Training convergence modulates degeneracy across datasets. SciERC 3-epoch training should produce lower degeneracy than 5-epoch baseline (17.8%), confirming epoch confound is not Few-NERD-specific.\\\", \\\"parent\\\": \\\"ft_002_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"FORCE_TORCHRUN=0 CUDA_VISIBLE_DEVICES=0 bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && llamafactory-cli train train_config_scierc_3ep.yaml\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 436761, \\\"data_path\\\": \\\"data/scierc_uie_train\\\", \\\"data_count\\\": 1861, \\\"model_name\\\": \\\"Qwen3-8B LoRA rank=32\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"checkpoints/qwen3-8b-scierc-3epoch-lora\\\", \\\"log_path\\\": \\\"logs/exp_029a_train.log\\\", \\\"checkpoint_source\\\": \\\"Qwen/Qwen3-8B\\\", \\\"eval_data\\\": \\\"data/scierc_uie_dev\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T00:55:16.392Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T00:55:20.617085+00:00\\\"}]}, \\\"failure_reason\\\": \\\"Disk I/O error during checkpoint-100 save at 28% (100/351 steps). RuntimeError: basic_ios::clear: iostream error + enforce fail at inline_container.cc:668. Eval loss=0.1076 before crash. EXIT_CODE=0 misleading.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7397}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 758
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-18T01:00:14.761833+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_029a\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T23:32:17.191Z\\\", \\\"updated_at\\\": \\\"2026-05-18T01:00:14.418Z\\\", \\\"hypothesis\\\": \\\"Training convergence modulates degeneracy across datasets. SciERC 3-epoch training should produce lower degeneracy than 5-epoch baseline (17.8%), confirming epoch confound is not Few-NERD-specific.\\\", \\\"parent\\\": \\\"ft_002_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"FORCE_TORCHRUN=0 CUDA_VISIBLE_DEVICES=0 bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && llamafactory-cli train train_config_scierc_3ep.yaml\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 436761, \\\"data_path\\\": \\\"data/scierc_uie_train\\\", \\\"data_count\\\": 1861, \\\"model_name\\\": \\\"Qwen3-8B LoRA rank=32\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"checkpoints/qwen3-8b-scierc-3epoch-lora\\\", \\\"log_path\\\": \\\"logs/exp_029a_train.log\\\", \\\"checkpoint_source\\\": \\\"Qwen/Qwen3-8B\\\", \\\"eval_data\\\": \\\"data/scierc_uie_dev\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T00:55:16.392Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T00:55:20.617085+00:00\\\"}]}, \\\"failure_reason\\\": \\\"Disk I/O error during checkpoint-100 save at 28% (100/351 steps). RuntimeError: basic_ios::clear: iostream error + enforce fail at inline_container.cc:668. Eval loss=0.1076 before crash. EXIT_CODE=0 misleading.\\\", \\\"conclusion\\\": \\\"failed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7781}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1362
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-18T01:00:17.784196+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_029a",
+              "field": "status",
+              "value": "DONE",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-18T01:00:19.593895+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_029a\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T23:32:17.191Z\\\", \\\"updated_at\\\": \\\"2026-05-18T01:00:18.242Z\\\", \\\"hypothesis\\\": \\\"Training convergence modulates degeneracy across datasets. SciERC 3-epoch training should produce lower degeneracy than 5-epoch baseline (17.8%), confirming epoch confound is not Few-NERD-specific.\\\", \\\"parent\\\": \\\"ft_002_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"FORCE_TORCHRUN=0 CUDA_VISIBLE_DEVICES=0 bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && llamafactory-cli train train_config_scierc_3ep.yaml\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 436761, \\\"data_path\\\": \\\"data/scierc_uie_train\\\", \\\"data_count\\\": 1861, \\\"model_name\\\": \\\"Qwen3-8B LoRA rank=32\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"checkpoints/qwen3-8b-scierc-3epoch-lora\\\", \\\"log_path\\\": \\\"logs/exp_029a_train.log\\\", \\\"checkpoint_source\\\": \\\"Qwen/Qwen3-8B\\\", \\\"eval_data\\\": \\\"data/scierc_uie_dev\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T00:55:16.392Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T00:55:20.617085+00:00\\\"}]}, \\\"failure_reason\\\": \\\"Disk I/O error during checkpoint-100 save at 28% (100/351 steps). RuntimeError: basic_ios::clear: iostream error + enforce fail at inline_container.cc:668. Eval loss=0.1076 before crash. EXIT_CODE=0 misleading.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-18T01:00:18.242Z\\\"}, \\\"hint\\\": \\\"💡 建议将故障原因写入 memory.md（如何避免再犯）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7952}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1809
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-18T01:00:50.556361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diagnose:autodl-5090-cleanup",
+              "project": "struct_self_consist_ie",
+              "task_prompt": "## 任务：诊断 autodl-5090 服务器问题并清理环境\n\n### 背景\n两个实验同时失败：\n1. **exp_029a** (cuda:0): SciERC 3-epoch 训练在 28% (100/351 steps) 时 checkpoint 保存崩溃\n   - 错误: `RuntimeError: basic_ios::clear: iostream error` + `enforce fail at inline_container.cc:668`\n   - 这是磁盘 I/O 错误，可能是 /autodl-tmp 空间不足或文件系统问题\n2. **exp_029b** (cuda:1): OOM，原因是残留 vLLM 进程 (PID 416808) 占用 30.2GB 显存\n\n### 你需要做的\n\n#### 1. 磁盘诊断\n- `df -h` 查看所有挂载点，特别是 `/autodl-tmp` 和 `/root/autodl-tmp` 的空间\n- `du -sh /root/autodl-tmp/struct_self_consist_ie/checkpoints/*` 查看各 checkpoint 大小\n- `du -sh /root/autodl-tmp/struct_self_consist_ie/output/*` 查看各输出目录大小\n- 如果 /autodl-tmp 空间不足，识别可以清理的内容（但不要删除任何东西，只报告）\n\n#### 2. GPU 清理\n- `nvidia-smi` 查看当前 GPU 使用情况\n- 检查 PID 416808 是否还存在：`ps aux | grep 416808`\n- 如果存在，kill 掉：`kill -9 416808`\n- 检查是否还有其他残留进程占用 GPU（特别是 vLLM、python 进程）\n- 确认 cuda:0 和 cuda:1 都空闲\n\n#### 3. 清理损坏的 checkpoint\n- 检查 `/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora/` 目录\n  - 是否有 `checkpoint-100/` 子目录（可能损坏）\n  - 如果有，删除损坏的 checkpoint-100 目录\n- 检查 `/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora/` 目录\n  - 是否有任何内容（exp_029b 因为 OOM 可能没开始训练就失败了）\n\n#### 4. 训练配置检查\n- `cat /root/autodl-tmp/struct_self_consist_ie/train_config_scierc_3ep.yaml`\n- `cat /root/autodl-tmp/struct_self_consist_ie/train_config_scierc_10ep.yaml`\n- 检查 checkpoint 保存策略：是否可以改为只保存 adapter（不保存 optimizer state）来减少磁盘写入\n- 检查 save_steps 设置\n\n#### 5. 产出\n写一份简短的诊断报告，包括：\n- 磁盘空间状况（各挂载点）\n- GPU 清理结果\n- 损坏文件清理结果\n- 根因分析（为什么 checkpoint 保存失败）\n- 重试建议（是否需要修改训练配置）\n\n将报告写入本地文件：`/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_029a/report/server_diagnostic.md`\n",
+              "tool_groups": "['ssh']",
+              "tools": "['register_artifact']"
+            }
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-18T01:00:53.366952+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_autodl-5090-cleanup_20260518T010051\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_diagnose_autodl-5090-cleanup_20260518T010051.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diagnose_autodl-5090-cleanup_20260518T010051 started. Use get_worker_status('worker_diagnose_autodl-5090-cleanup_20260518T010051') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2810
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-18T01:01:16.596546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 4/0 (全部空闲 ⚠️) | Worker 1 (GPU 0 / CPU 1: 服务器诊断) | 磁盘: autodl-5090 待诊断\n\n## exp_029a + exp_029b 均技术性失败\n\n两个 SciERC epoch 扩展实验同时失败（非研究性失败）：\n\n### exp_029a (SciERC 3-epoch, cuda:0)\n- 训练 28% (100/351 steps) 时 checkpoint 保存崩溃\n- 错误: `RuntimeError: basic_ios::clear: iostream error`（磁盘 I/O 错误）\n- Eval loss=0.1076（训练本身正常）\n- EXIT_CODE=0（误导性，实际是异常退出）\n\n### exp_029b (SciERC 10-epoch, cuda:1)\n- OOM: 残留 vLLM 进程 (PID 416808) 占用 30.2GB 显存\n- 训练未真正开始\n\n### 已执行\n1. 两个实验均标记 DONE(failed)\n2. 已派 Worker 诊断 autodl-5090 磁盘状况 + 清理残留进程 + 检查训练配置\n\n### 计划\n- 等 Worker 诊断完成 → 确认根因（磁盘空间/文件系统问题）→ 修复后立即重试两个实验\n- 如果是 checkpoint save 策略问题（optimizer state 过大），修改配置只保存 adapter weights\n- EMNLP DDL 5/25（7天），这两个实验对 D129 reframe（epoch confound on SciERC）是关键支撑",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-18T01:01:20.581396+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3984
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-18T01:01:25.459179+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已向 Director 汇报。当前状态：\n- **exp_029a**: DONE(failed) — 磁盘 I/O 错误，checkpoint 保存崩溃\n- **exp_029b**: DONE(failed) — OOM，残留 vLLM 进程\n- **Worker**: 1 个诊断 Worker 在查 autodl-5090 服务器状态\n- **GPU**: 4 张全部空闲，等诊断完成后重试两个实验\n\n等待 Worker 诊断回调。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_029a"
+          },
+          "id": "event-000116"
+        }
+      ],
+      "message_count": 116
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-exp-029a.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c16684f546b9f787e88c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh extract conll freeform table33",
+  "task_key": "worker_ssh_extract_conll_freeform_table33_20260522T134949",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_extract_conll_freeform_table33_20260522T134949_result.json",
+    "occurrence": 1,
+    "bytes": 1398,
+    "sha256": "89a919bc524e05cd5ff47470b25895f5156682f3f2a1bb4e16b5949b5ec563c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results:\n\n```\nTable 33: CoNLL N=8 T=1.0 seed=42\ngold-filtered instances: constrained=2756, freeform=2756\n\n                        Constrained      Free-form        Delta\n--------------------------------------------------------------\ngreedy_f1                  0.908806       0.904588      -0.0042\nmv_strict_f1               0.899232       0.899355      +0.0001\nmv_delta (pp)                -0.96 pp         -0.52 pp      +0.43 pp\nlp_f1                      0.898147       0.895134      -0.0030\nlp_delta (pp)                -1.07 pp         -0.95 pp      +0.12 pp\ndegeneracy_rate               56.9%          60.0%       +3.0 pp\nlp_std_ratio               0.025641       0.023466      -0.0022\n```\n\nKey observations:\n- **greedy_f1** drops 0.42pp without grammar constraints (0.9088 → 0.9046), expected since freeform can produce malformed outputs\n- **mv_strict_f1** is virtually identical (~0.8993 both), MV is robust to the constraint removal\n- **mv_Δ** improves from -0.96pp to -0.52pp in freeform — MV loses less relative to greedy in freeform\n- **lp_f1** drops 0.30pp (0.8981 → 0.8951), LP selection also degrades slightly\n- **degeneracy_rate** increases 3pp (56.9% → 60.0%) — freeform produces slightly more degenerate samples\n- **lp_std_ratio** decreases (0.0256 → 0.0235) — less logprob spread in freeform, consistent with higher degeneracy"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-extract-conll-freeform-table33.md"
+}

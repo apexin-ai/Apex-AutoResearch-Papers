@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d350dc08e6dd28c4959e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code fig scatter v2 dense",
+  "task_key": "worker_code_fig_scatter_v2_dense_20260518T213719",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fig_scatter_v2_dense_20260518T213719_result.json",
+    "occurrence": 1,
+    "bytes": 1526,
+    "sha256": "228bd6219b1ae1a572bb68e46ddb2c80deeddbe8d46a7665fa343897ac05a133"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Complete. Here are the results:\n\n## 23 Data Points (all N=8, gold-filtered, unified entity F1)\n\n| Condition | Degen% | LP Delta (pp) | Category |\n|---|---|---|---|\n| SciERC s42 | 17.8 | +0.61 | Qwen canonical |\n| CoNLL s42 | 58.0 | -0.81 | Qwen canonical |\n| FewNERD s42 | 14.4 | +1.32 | Qwen canonical |\n| SciERC s123 | 17.2 | -0.21 | Multi-seed |\n| SciERC s456 | 20.4 | -0.28 | Multi-seed |\n| CoNLL s123 | 63.0 | -0.77 | Multi-seed |\n| CoNLL s456 | 62.9 | -0.73 | Multi-seed |\n| FewNERD s123 | 13.1 | +1.44 | Multi-seed |\n| FewNERD s456 | 12.1 | +1.37 | Multi-seed |\n| LLaMA SciERC s42/123/456 | 24.9-27.4 | -0.38 to +0.19 | LLaMA |\n| LLaMA CoNLL s42/123/456 | 89.3-89.4 | +0.02 to +0.14 | LLaMA |\n| 3-epoch | 6.4 | -1.18 | Epoch |\n| 10-epoch | 47.8 | +0.99 | Epoch |\n| rank=8 | 7.2 | -0.47 | Rank |\n| T=0.5 / T=0.8 / T=1.2 | 41.4 / 23.8 / 14.9 | -0.23 / +0.03 / -0.61 | Temperature |\n| 4B SciERC | 10.4 | -2.23 | Qwen3-4B |\n| 4B CoNLL | 90.6 | +0.09 | Qwen3-4B |\n\n## Statistics\n- **Spearman rho = 0.052, p = 0.814** (not significant)\n- No correlation between degeneracy rate and LP selection delta across all conditions\n- The LP delta is confounded by dataset-specific factors: FewNERD consistently benefits from LP selection regardless of degen level, while CoNLL consistently does not\n\n## Outputs\n- `artifacts/fig_degeneracy_lp_scatter_v2.pdf` (300 dpi)\n- `artifacts/fig_degeneracy_lp_scatter_v2.png` (150 dpi preview)\n- `artifacts/scatter_v2_data.json` (all 23 data points)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig-scatter-v2-dense.md"
+}

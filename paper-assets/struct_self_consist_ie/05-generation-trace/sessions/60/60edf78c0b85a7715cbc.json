@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60edf78c0b85a7715cbc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code n32 fix deploy",
+  "task_key": "worker_code_n32_fix_deploy_20260523T083150",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_n32_fix_deploy_20260523T083150_result.json",
+    "occurrence": 1,
+    "bytes": 613,
+    "sha256": "508bb6027b76fbc09839ef3aafb2f689dd95581686919968d62ce8ec189759df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完成。修复验证结果：\n\n| 指标 | 修复前（旧版） | 修复后 | 参考值 |\n|------|---------------|--------|--------|\n| Greedy F1 | ~0.538 | 0.539 | 0.538 |\n| **MV Δ** | **+3.2 pp** | **+4.0 pp** | **+3.9 pp** |\n| Degen | ~11.7% | 12.3% | 11.7% |\n| Oracle Δ | ~11.2 pp | +11.3 pp | +11.2 pp |\n| Capture | ~36% | 31% | 36% |\n\n**修复有效**：MV Δ 从 +3.2 pp 提升到 +4.0 pp，与参考值 +3.9 pp 非常接近（差 0.1 pp 属正常波动）。旧版因用 `(text, type)` 投票导致不同位置的同名实体被合并，使 MV 增益被低估了 0.8 pp。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-n32-fix-deploy.md"
+}

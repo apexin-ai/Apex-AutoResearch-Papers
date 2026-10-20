@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6635a8bbadf0e211ebb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp llama3b scierc ablation",
+  "task_key": "worker_exp_llama3b_scierc_ablation_20260516T030431",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_llama3b_scierc_ablation_20260516T030431_result.json",
+    "occurrence": 1,
+    "bytes": 441,
+    "sha256": "a44df5d2a2e69dabdc84623d19fc0104aa797bd38b2ff96e02e20e4dafbcf91c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 2 training is running on autodl-5090 (tmux session `llama3b_train`, cuda:3):\n- **Model**: LLaMA-3.2-3B-Instruct, 48.6M trainable LoRA params (1.49%)\n- **Data**: 1,861 SciERC training samples, 5 epochs\n- **Steps**: 585 total, ~2s/step → ~19 min ETA\n- **Registry**: exp_llama3b_scierc_ablation → RUNNING\n\nMonitoring every 5 minutes. When training finishes I'll proceed to Phase 3 (merge adapter + run inference)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-llama3b-scierc-ablation.md"
+}

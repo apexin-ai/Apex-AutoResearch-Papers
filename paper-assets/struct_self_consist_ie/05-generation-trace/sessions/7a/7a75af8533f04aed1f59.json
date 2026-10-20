@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a75af8533f04aed1f59",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis d108 lp vc combination",
+  "task_key": "worker_analysis_d108_lp_vc_combination_20260516T074431",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_d108_lp_vc_combination_20260516T074431_result.json",
+    "occurrence": 1,
+    "bytes": 1553,
+    "sha256": "92e132f85056b9cd8cbaa350b9a674862b3ce10667cc665790c14d84dff0a4cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifacts registered. Here's the summary:\n\n## D108 LP×VC Combination Selection Results\n\n### Baselines\n\n| | SciERC NER (N=8) | CoNLL NER (N=16) |\n|---|---|---|\n| Random | 0.6261 | 0.8674 |\n| LP-only | 0.6602 | 0.8904 |\n| Greedy | 0.6633 | 0.9067 |\n| Oracle | 0.7775 | 0.9544 |\n\n### Strategy 1: VC-gated LP — **hurts consistently**\nReplacing LP with random selection on low-VC instances always degrades F1. Even at the most generous gate (q=0.25), SciERC drops to 0.6455 and CoNLL to 0.8752.\n\n### Strategy 2: Per-sample VC-weighted LP — **best combination**\n- **SciERC**: α=2.0 → **0.6669** (+0.0067 vs LP, +0.0036 vs greedy)\n- **CoNLL**: α=2.0 → **0.9063** (+0.0159 vs LP, essentially matching greedy at -0.0004)\n\nThis is the strongest finding — weighting LP by per-sample voting frequency closes ~half the LP-to-greedy gap on CoNLL.\n\n### Strategy 3: Tied handling — **confirms LP discrimination weakness**\n- 60% of SciERC instances are LP-tied at ε=0.05; using VC for tied instances gives 0.6673 (+0.0071 vs LP)\n- Oracle for tied instances shows massive headroom (0.7394 on SciERC), confirming the tied instances are where most quality variance lives\n\n### Key takeaway\nVC as a per-sample signal (frequency of the exact surface-key set) meaningfully complements LP. The best combination (LP + 2×VC) nearly recovers greedy-level F1 on CoNLL and exceeds greedy on SciERC, but the remaining gap to oracle (0.11 on SciERC, 0.05 on CoNLL) suggests neither signal captures structural correctness well."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d108-lp-vc-combination.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a039603f4ea5e3bcce5",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis greedy f1 discrepancy",
+  "task_key": "worker_analysis_greedy_f1_discrepancy_20260515T132025",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_greedy_f1_discrepancy_20260515T132025_result.json",
+    "occurrence": 1,
+    "bytes": 821,
+    "sha256": "e54adacdbad0ddfcacafb77bfa978341f3b743966be4482f4fea73c116d9d586"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。总结：\n\n**根因：Micro vs Macro F1 聚合方式不同**\n- Registry 的 0.6617 = **micro F1**（全局 TP/FP/FN 再算 F1，`compute_ner_f1`）\n- 分析文件的 0.6182 = **macro F1**（per-instance F1 取均值，`np.mean(per_instance_f1s)`）\n- 三个 seed 上 gap 一致 ~4.4pp，是系统性差异\n\n**对 ρ 无影响** — ρ 始终基于 per-instance F1 计算，与聚合方式无关。不同文档间的 ρ 差异来自不同推理运行的 sample 差异。\n\n**附加发现**：seed 456 v2 用了 `--subtask joint`，而 seed 42/123 v2 用了 `--subtask ner`，推理模式不一致（影响 <0.3pp）。\n\n**建议**：selection 表格用 macro F1（分析脚本已正确），模型整体性能用 micro F1，同一表格内统一口径。报告已写入 artifacts。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-greedy-f1-discrepancy.md"
+}

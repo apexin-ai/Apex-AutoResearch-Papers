@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f47398c259afc70d63ce",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "exp llama3b phase3",
+  "task_key": "worker_exp_llama3b_phase3_20260516T035207",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_llama3b_phase3_20260516T035207.log",
+    "occurrence": 1,
+    "bytes": 618280,
+    "sha256": "913ddfb3e885618b16e991ab5f9fd80938a8db88a1289d7bd4992a98e8781369"
+  },
+  "statistics": {
+    "messages": 208,
+    "user_turns": 0,
+    "tool_calls": 73,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 73,
+      "tool_result": 73,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 208,
+      "chunks": [
+        {
+          "path": "f47398c259afc70d63ce-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f47398c259afc70d63ce-part-0002.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-llama3b-phase3.md"
+}

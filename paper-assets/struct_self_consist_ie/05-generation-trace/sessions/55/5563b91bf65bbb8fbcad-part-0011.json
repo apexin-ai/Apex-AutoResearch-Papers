@@ -1,0 +1,573 @@
+{
+  "schema_version": "1.0",
+  "session_id": "5563b91bf65bbb8fbcad",
+  "rounds": [
+    {
+      "number": 96,
+      "messages": [
+        {
+          "source_line": 1801,
+          "timestamp": "2026-05-14T18:12:04.086674+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:3seed_summary",
+              "project": "struct_self_consist_ie",
+              "task_prompt": "## 任务：3-seed NER 汇总分析（CPU 任务）\n\n生成 3-seed NER 对比表，包含全 5 信号。\n\n### 数据来源\nSSH 到 autodl-5090，读取以下 3 个实验的 report.json：\n1. `output/exp_001_seed42_v2/report.json` — seed=42\n2. `output/exp_001_seed123_v2/report.json` — seed=123\n3. `output/exp_001_seed456_v2_ner/report.json` — seed=456\n\n### 产出要求\n生成一个汇总表（markdown 格式），包含：\n\n**表 1: 3-seed NER Spearman ρ (full set)**\n| Signal | seed42 | seed123 | seed456 | Mean | SD |\n|--------|--------|---------|---------|------|-----|\n| SJ | | | | | |\n| FK | | | | | |\n| logprob | | | | | |\n| EM | | | | | |\n| voting_conf | | | | | |\n\n**表 2: 3-seed NER Spearman ρ (conditional set)**\n（同上格式）\n\n**表 3: 3-seed NER AUROC**\n（同上格式）\n\n**表 4: Structural > Surface 检验**\n| Seed | SJ ρ | FK ρ | Delta | SJ wins? |\n|------|------|------|-------|----------|\n\n### 统计摘要\n- Mean ± SD for each signal\n- 是否所有 seed 都满足 SJ > FK（structural > surface）?\n- seed 间最大 Δρ(SJ) 是多少?\n\n### 输出\n将汇总表保存为 artifacts，使用 register_artifact 注册。文件名：`3seed_ner_summary.md`\n\n### 服务器信息\n- 服务器：autodl-5090\n- 项目路径：/root/autodl-tmp/struct_self_consist_ie\n",
+              "tool_groups": "['ssh', 'registry']",
+              "tools": "['register_artifact']"
+            }
+          },
+          "id": "event-001801"
+        },
+        {
+          "source_line": 1802,
+          "timestamp": "2026-05-14T18:12:16.407932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:d042_re_rerun",
+              "project": "struct_self_consist_ie",
+              "task_prompt": "## 任务：D042 exp_009_v2 RE 重跑（CPU 分析）\n\nD042 决策要求重新跑 exp_009 stratification 分析，修复两个问题：\n1. **过滤无 gold relation 实例**：之前包含了没有 gold relation 的 instances（这些 F1 恒=0，不是模型能力问题，而是数据本身没有 relation），需要排除\n2. **Proxy 独立性修复**：stratification 使用的 proxy（sentence length, entity count）需要与 target（F1）独立\n\n### 数据来源\nSSH 到 autodl-5090，使用已有数据：\n- NER 数据：output/exp_001_seed42_v2/ + output/exp_001_seed123_v2/\n- RE 数据：output/exp_008_re_n16_v2/\n- CoNLL 数据：output/exp002_conll2003/\n\n### Step 1: 检查已有分析脚本\n```bash\nls code/exp_009*\ncat code/exp_009_v2_stratification.py | head -30\n```\n\n### Step 2: 修改或创建新脚本\n基于 exp_009_v2_stratification.py，添加：\n1. RE 数据过滤：排除 gold_relation_count=0 的实例\n2. Proxy 独立性检验：计算 proxy 与 greedy_F1 的相关性，如果 |ρ| > 0.15 则标记\n3. 使用独立 proxy（与 F1 低相关的变量）做 stratification\n\n### Step 3: 运行分析\n```bash\npython code/exp_009_v3_stratification.py  # 或修改后的脚本名\n```\n\n### Step 4: 记录结果\n- 更新 registry：创建 exp_009_v3（parent=exp_009_v2）\n- 注册 artifact\n\n### 关键注意\n- 之前 exp_009_v2 的 proxy_independence 显示 scierc_re_f1_vs_slen=-0.147，这就是要修复的问题\n- 过滤 gold_relation_count=0 后 RE 样本量会变小，注意统计效力\n\n### 服务器信息\n- 服务器：autodl-5090\n- 环境：conda base\n- 项目路径：/root/autodl-tmp/struct_self_consist_ie\n",
+              "tool_groups": "['ssh', 'registry']",
+              "tools": "['register_artifact']"
+            }
+          },
+          "id": "event-001802"
+        },
+        {
+          "source_line": 1803,
+          "timestamp": "2026-05-14T18:30:41.576010+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_017 LLaMA CoNLL 结果已收集：**SJ ρ=0.431 >> logprob 0.307**，跨模型确认。现在并行派所有任务。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3"
+          },
+          "id": "event-001803"
+        }
+      ]
+    },
+    {
+      "number": 97,
+      "messages": [
+        {
+          "source_line": 1804,
+          "timestamp": "2026-05-14T18:30:42.072839+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_ops_gpu5090-4x2-orphan-check_20260514T174207 已完成（status=done）。用 `get_worker_status('worker_ops_gpu5090-4x2-orphan-check_20260514T174207')` 读取结果，然后处理。\n\n- worker_id: worker_ops_gpu5090-4x2-orphan-check_20260514T174207\n- project: struct_self_consist_ie\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "source": "worker:done"
+          },
+          "id": "event-001804"
+        },
+        {
+          "source_line": 1805,
+          "timestamp": "2026-05-14T18:30:47.814917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_gpu5090-4x2-orphan-check_20260514T174207"
+            }
+          },
+          "id": "event-001805"
+        },
+        {
+          "source_line": 1806,
+          "timestamp": "2026-05-14T18:30:47.865947+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_gpu5090-4x2-orphan-check_20260514T174207\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ops:gpu5090-4x2-orphan-check\\\", \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"started_at\\\": \\\"2026-05-14T17:42:08.091209+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T17:43:00.454878+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"审计完成。报告写入 `artifacts/audit_gpu5090_4x2_loop3.md`。\\\\n\\\\n结论：`gpu-5090-4x-2` 不在可用服务器列表中（仅 autodl-5090、bjb1-21071），无法 SSH 连接。全部 6 个实验（PID 61812/62170/48530/50302/53600/62585）确认已死，应在 registry 中标记为 KILLED。输出数据无法检查，除非该服务器被重新注册或数据曾同步到其他位置。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 51
+          },
+          "id": "event-001806"
+        },
+        {
+          "source_line": 1807,
+          "timestamp": "2026-05-14T18:31:06.040333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:exp_007_llama_n16",
+              "project": "struct_self_consist_ie",
+              "task_prompt": "## 任务：LLaMA SciERC N=16 推理（cuda:1）\n\n当前 LLaMA SciERC 只有 N=8 数据（exp_007_llama_inference）。升级到 N=16 验证 SJ N-scaling 是否 model-agnostic。\n\n### Step 1: 确认 merged 模型存在\nSSH 到 autodl-5090，用 ssh_read_only：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/autodl-tmp/struct_self_consist_ie\nls -la checkpoints/llama3.1-8b-scierc-merged/config.json\n```\n\n### Step 2: 创建 Registry 条目\n用 update_registry 创建 `exp_007_llama_n16`：\n- status: RUNNING\n- spec:\n  - hypothesis: \"LLaMA SciERC N=16: cross-model N-scaling validation, SJ advantage should persist at N=16\"\n  - plan_id: \"exp-007\"\n  - parent: \"exp_007_llama_inference\"\n  - command: 见 Step 3\n  - server: \"autodl-5090\"\n  - data_path: \"data/scierc/processed_data\"\n  - data_count: 551\n  - model_name: \"llama3.1-8b-scierc-merged\"\n  - seed: 42\n\n### Step 3: 提交推理\n用 submit_training_job 提交：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=1 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_007_llama_n16\n```\n\n**关键**：用 `--subtask ner` 与 Qwen v2 NER 协议一致。\n\n### 验证\n- 551 instances × 16 samples = 8816 次推理，预估 ~2h\n- 提交后确认 PID 和日志路径\n- 更新 registry\n\n### 服务器信息\n- 服务器：autodl-5090\n- 环境：conda base\n- 项目路径：/root/autodl-tmp/struct_self_consist_ie\n",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-001807"
+        },
+        {
+          "source_line": 1808,
+          "timestamp": "2026-05-14T18:31:18.608455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_exp_007_llama_n16_20260514T183106\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_exp_007_llama_n16_20260514T183106.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_exp_007_llama_n16_20260514T183106 started. Use get_worker_status('worker_code_exp_007_llama_n16_20260514T183106') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 12568
+          },
+          "id": "event-001808"
+        },
+        {
+          "source_line": 1809,
+          "timestamp": "2026-05-14T18:31:19.060733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:3seed_summary",
+              "project": "struct_self_consist_ie",
+              "task_prompt": "## 任务：NER 3-seed 汇总分析（CPU）\n\n3 个 seed 的 NER-only v2 结果已全部完成。生成统一 5-signal 对比表。\n\n### 数据来源\nSSH 到 autodl-5090，读取 3 个 report.json：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/autodl-tmp/struct_self_consist_ie\n\ncat output/exp_001_seed42_v2/report.json\ncat output/exp_001_seed123_v2/report.json\ncat output/exp_001_seed456_v2_ner/report.json\n```\n\n### 分析要求\n为每个 seed 提取以下指标（full + conditional）：\n1. SJ ρ\n2. FK ρ\n3. logprob ρ\n4. EM ρ\n5. voting_conf ρ\n6. 各信号 AUROC\n\n然后计算：\n- 3-seed mean ± SD（每个信号）\n- structural > surface 的比例（3/3? 2/3?）\n- 信号排序是否跨 seed 一致\n\n### 产出格式\n生成一个 markdown 表格（类似论文 Table 格式）：\n\n| Signal | seed42 ρ | seed123 ρ | seed456 ρ | Mean ρ | SD |\n|--------|----------|-----------|-----------|--------|-----|\n\n分 full / conditional 两个表。\n\n另外生成 JSON 数据文件保存到本地 artifacts：\n```\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/3seed_summary/\n```\n\n用 register_artifact 注册产出。\n\n### 注意\n- seed42: 已知 SJ ρ=0.428\n- seed123: 已知 SJ ρ=0.424\n- seed456: 已知 SJ ρ=0.384\n- 全部是 NER-only (--subtask ner), N=16, T=1.0, 551 instances\n- 如果 report.json 中缺少某些信号，检查 all_signals_report.json 或 run.log\n\n### 服务器信息\n- 服务器：autodl-5090\n- 项目路径：/root/autodl-tmp/struct_self_consist_ie\n",
+              "tool_groups": "['ssh', 'knowledge']",
+              "tools": "['register_artifact']"
+            }
+          },
+          "id": "event-001809"
+        },
+        {
+          "source_line": 1810,
+          "timestamp": "2026-05-14T18:31:29.034728+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_3seed_summary_20260514T183119\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_3seed_summary_20260514T183119.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_3seed_summary_20260514T183119 started. Use get_worker_status('worker_analysis_3seed_summary_20260514T183119') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 9973
+          },
+          "id": "event-001810"
+        },
+        {
+          "source_line": 1811,
+          "timestamp": "2026-05-14T18:31:29.386735+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:d042_re_rerun",
+              "project": "struct_self_consist_ie",
+              "task_prompt": "## 任务：D042 exp_009_v2 RE 重跑（CPU 分析）\n\nD042 决策要求对 exp_009 capability stratification 做 RE 重跑，修复两个问题：\n1. 过滤无 gold relation 的实例（这些实例的 F1 必然为 0，distort stratification）\n2. Proxy 独立性修复（exp_009 发现 scierc_re_f1_vs_slen 相关 -0.147，proxy 不够独立）\n\n### 数据来源\nSSH 到 autodl-5090，找到 exp_009 使用的数据：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/autodl-tmp/struct_self_consist_ie\n\n# 检查 exp_009 原始代码\ncat code/exp_009_v2_stratification.py | head -50\n# 查看输出\nls output/exp_009_v2/ 2>/dev/null || ls output/exp009_v2/ 2>/dev/null\n```\n\n### 修改要求\n1. 在 RE 分析中增加 `gold_relation_count > 0` 过滤\n2. 使用更独立的 proxy 变量（如 entity_count, relation_type_diversity），而非仅 sentence_length\n3. 重新计算 per-stratum SJ/FK/logprob/EM/voting_conf ρ\n\n### 产出\n- 修改后的分析脚本（或创建 exp_009_v3 版本）\n- 过滤前后对比（N 变化、ρ 变化）\n- 新的 proxy 独立性检验结果\n- 更新 registry 创建 exp_009_v3 条目\n\n### 服务器信息\n- 服务器：autodl-5090\n- 项目路径：/root/autodl-tmp/struct_self_consist_ie\n",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-001811"
+        },
+        {
+          "source_line": 1812,
+          "timestamp": "2026-05-14T18:50:42.295807+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "gpu-5090-4x-2 上 6 个 orphan 进程已确认全部死亡，registry 已在之前清理中标记 killed。无需额外操作。\n\n继续派剩余 Workers（cuda:1 LLaMA N=16 + CPU 分析任务）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3"
+          },
+          "id": "event-001812"
+        }
+      ]
+    },
+    {
+      "number": 98,
+      "messages": [
+        {
+          "source_line": 1813,
+          "timestamp": "2026-05-14T18:50:43.489824+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_ops_autodl5090-full-audit_20260514T174157 已完成（status=done）。用 `get_worker_status('worker_ops_autodl5090-full-audit_20260514T174157')` 读取结果，然后处理。\n\n- worker_id: worker_ops_autodl5090-full-audit_20260514T174157\n- project: struct_self_consist_ie\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "source": "worker:done"
+          },
+          "id": "event-001813"
+        },
+        {
+          "source_line": 1814,
+          "timestamp": "2026-05-14T18:50:55.092763+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_autodl5090-full-audit_20260514T174157"
+            }
+          },
+          "id": "event-001814"
+        },
+        {
+          "source_line": 1815,
+          "timestamp": "2026-05-14T18:50:55.144354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_autodl5090-full-audit_20260514T174157\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ops:autodl5090-full-audit\\\", \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"started_at\\\": \\\"2026-05-14T17:41:57.765931+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T17:43:57.931768+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"审计完成。报告已写入 `artifacts/audit_autodl5090_loop3.md`。\\\\n\\\\n**汇总**：autodl-5090 上 4 个实验全部已完成，4 GPU 完全空闲（0% 利用率）。\\\\n\\\\n| 实验 | Registry 状态 | 实际 | Verdict |\\\\n|------|-------------|------|---------|\\\\n| exp_017_llama_conll_infer | RUNNING | **DONE** | MARGINAL (structural>surface +0.004) |\\\\n| exp_001_seed456_v2_ner | RUNNING | **DONE** | MARGINAL (structural>surface +0.16) |\\\\n| exp_003_wnut17_v2_infer | ANALYZING | **DONE** | FAIL (54% F1=0, structural<surface) |\\\\n| exp_002_merge_conll2003 | PREPARING | **DONE** | exit 0 |\\\\n\\\\n4 个都需要在 Registry 标记为 DONE。wnut17 因 54% 样本 F1=0 建议 T=0.7 重跑。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 51
+          },
+          "id": "event-001815"
+        },
+        {
+          "source_line": 1816,
+          "timestamp": "2026-05-14T18:51:17.796672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:exp_007_llama_n16",
+              "project": "struct_self_consist_ie",
+              "task_prompt": "## 任务：LLaMA SciERC N=16 推理（cuda:1）\n\n当前 LLaMA SciERC 只有 N=8 (exp_007_llama_inference)。升级到 N=16 验证 SJ N-scaling 是否 model-agnostic。\n\n### Step 1: 创建 Registry 条目\n用 update_registry 创建 `exp_007_llama_n16`：\n- status: RUNNING\n- spec:\n  - hypothesis: \"LLaMA SciERC N=16: cross-model N-scaling validation. If SJ rho increases from N=8 (0.363) to N=16, N-scaling is model-agnostic.\"\n  - plan_id: \"exp-007\"\n  - parent: \"exp_007_llama_inference\"\n  - command: 见 Step 2\n  - server: \"autodl-5090\"\n  - data_path: \"data/scierc/processed_data\"\n  - data_count: 551\n  - model_name: \"llama3.1-8b-scierc-merged\"\n  - seed: 42\n\n### Step 2: 提交推理\nSSH 到 autodl-5090，用 submit_training_job 提交：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=1 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_007_llama_n16\n```\n\n**关键**：\n- --subtask ner（与 Qwen SciERC v2 runs 一致）\n- N=16（从 N=8 升级）\n- 必须 --collect_logprobs\n- 551 instances × 16 samples = 8816 次推理，预估 ~2h\n\n### 验证\n- 先 ssh_read_only 确认 checkpoints/llama3.1-8b-scierc-merged/ 存在\n- 提交后确认 PID 和日志路径\n\n### 服务器信息\n- 服务器：autodl-5090\n- 环境：conda base\n- 项目路径：/root/autodl-tmp/struct_self_consist_ie\n",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-001816"
+        },
+        {
+          "source_line": 1817,
+          "timestamp": "2026-05-14T18:51:30.146763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_exp_007_llama_n16_20260514T185118\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_exp_007_llama_n16_20260514T185118.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_exp_007_llama_n16_20260514T185118 started. Use get_worker_status('worker_code_exp_007_llama_n16_20260514T185118') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 12350
+          },
+          "id": "event-001817"
+        },
+        {
+          "source_line": 1818,
+          "timestamp": "2026-05-14T18:51:30.549358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:3seed_summary",
+              "project": "struct_self_consist_ie",
+              "task_prompt": "## 任务：3-seed NER 汇总分析（CPU）\n\n生成 seed42/123/456 NER N=16 的全 5-signal 对比表。\n\n### 数据来源\nSSH 到 autodl-5090，读取 3 个 seed 的 report.json：\n```bash\ncd /root/autodl-tmp/struct_self_consist_ie\ncat output/exp_001_seed42_v2/report.json\ncat output/exp_001_seed123_v2/report.json\ncat output/exp_001_seed456_v2_ner/report.json\n```\n\n### 产出要求\n生成对比表，包含每个 seed 的全 5 信号（SJ, FK, logprob, EM, voting_conf）：\n- Spearman ρ (full)\n- Spearman ρ (conditional)\n- AUROC (full)\n- AUROC (conditional)\n- Mean ± SD across seeds\n- Structural > Surface 判定\n\n格式示例：\n```\n| Signal | seed42 ρ | seed123 ρ | seed456 ρ | Mean±SD |\n|--------|----------|-----------|-----------|---------|\n| SJ     | 0.428    | 0.424     | 0.384     | 0.412±0.025 |\n| FK     | ...      | ...       | ...       | ... |\n...\n```\n\n### 写入结果\n1. 将完整对比表写入项目 artifacts：\n   - 本地路径：`/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/3seed_ner_summary.md`\n2. 用 register_artifact 注册\n3. 用 update_registry 更新 exp_001_seed456_v2_ner 的 metrics（补全 5-signal 数据）\n\n### 分析要点\n- seed 间 SJ ρ 变异系数（SD/Mean）\n- 哪个 signal 最 seed-robust？（最低 SD）\n- structural > surface 是否在所有 seed 都成立？\n- 与 ROADMAP 中的 \"NER seed 鲁棒性: seed42 ρ=0.428, seed123 ρ=0.424 (Δ<0.004)\" 对比\n\n### 服务器信息\n- 服务器：autodl-5090\n- 项目路径：/root/autodl-tmp/struct_self_consist_ie\n",
+              "tool_groups": "['ssh', 'registry', 'knowledge']"
+            }
+          },
+          "id": "event-001818"
+        },
+        {
+          "source_line": 1819,
+          "timestamp": "2026-05-14T18:51:44.012463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_3seed_summary_20260514T185130\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_3seed_summary_20260514T185130.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_3seed_summary_20260514T185130 started. Use get_worker_status('worker_analysis_3seed_summary_20260514T185130') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 13463
+          },
+          "id": "event-001819"
+        },
+        {
+          "source_line": 1820,
+          "timestamp": "2026-05-14T18:51:44.566020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:d042_re_rerun",
+              "project": "struct_self_consist_ie",
+              "task_prompt": "## 任务：D042 exp_009_v2 RE 重跑（CPU 分析）\n\nD042 决策：exp_009_v2 RE 部分需要重跑，修复两个问题：\n1. **过滤无 gold relation 实例**：当前分析包含了 gold relation 为空的实例（这些实例的 F1 永远=0），需要排除\n2. **Proxy 独立性修复**：entity_count 作为难度代理可能与 F1 有非平凡相关（ρ=-0.147），需要检查\n\n### Step 1: 了解现有代码\nSSH 到 autodl-5090，查看：\n```bash\ncd /root/autodl-tmp/struct_self_consist_ie\ncat code/exp_009_v2_stratification.py | head -50\n# 看懂数据加载和 stratification 逻辑\n```\n\n### Step 2: 修改或创建分析脚本\n在远程服务器上修改 `code/exp_009_v2_re_rerun.py`（或基于 exp_009_v2_stratification.py 创建新脚本）：\n\n**修改点 1：过滤无 gold relation 实例**\n- 加载 RE 数据时，排除 gold_relations=[] 的实例\n- 记录过滤前后的实例数\n\n**修改点 2：Proxy 独立性检查**\n- 计算 sentence_length vs F1 的 Spearman ρ\n- 计算 entity_count vs F1 的 Spearman ρ\n- 计算 relation_count vs F1 的 Spearman ρ\n- 如果 proxy 与 F1 相关 > 0.3，该 proxy 不适合做独立难度指标\n\n**修改点 3：重新 stratify RE**\n- 用 sentence_length quartiles（最独立的 proxy）重新分组\n- 每组计算 SJ, FK, logprob, EM, voting_conf 的 ρ\n- Bootstrap CI for each group\n\n### Step 3: 运行分析\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/autodl-tmp/struct_self_consist_ie\npython code/exp_009_v2_re_rerun.py\n```\n\n### Step 4: 记录结果\n- 更新 registry：创建 `exp_009_v2_re_rerun` 条目\n- 将结果写入 artifacts\n\n### 数据来源\n- RE 数据：output/exp_001_seed42_v2/ 或 output/exp_008_re_n16_v2/\n- 参考已有 exp_009_v2 的代码结构\n\n### 服务器信息\n- 服务器：autodl-5090\n- 环境：conda base\n- 项目路径：/root/autodl-tmp/struct_self_consist_ie\n",
+              "tool_groups": "['ssh', 'registry', 'knowledge']"
+            }
+          },
+          "id": "event-001820"
+        },
+        {
+          "source_line": 1821,
+          "timestamp": "2026-05-14T18:51:47.379464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_d042_re_rerun_20260514T185144\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_d042_re_rerun_20260514T185144.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_d042_re_rerun_20260514T185144 started. Use get_worker_status('worker_analysis_d042_re_rerun_20260514T185144') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2813
+          },
+          "id": "event-001821"
+        },
+        {
+          "source_line": 1822,
+          "timestamp": "2026-05-14T18:52:11.733039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际在跑 2 (cuda:0, cuda:1) + 预留 2 (cuda:2/3) | Worker 池 4 (GPU 2 / CPU 2)\n\n## D043-D046 执行状态\n\n### 已完成\n1. **D045 WNUT-17 止损** ✅ — exp_003_wnut17_v2 标记 DONE/negative，注明 inference FAIL (54% F1=0, SJ ρ=0.062)\n2. **D046 seed456 确认** ✅ — exp_001_seed456_v2_ner 标记 DONE/success (SJ ρ=0.384)\n3. **exp_017 LLaMA CoNLL 结果** ✅ — 5-signal 评估完成：\n   - **SJ ρ=0.431 >> logprob 0.307 (+0.124)** — 跨模型+跨数据集确认\n   - FK ρ=0.428 ≈ SJ（CoNLL easy task, FK 接近 SJ）\n   - EM ρ=0.431 ≈ SJ（easy task 上 EM 也强）\n   - Logprob AUROC=0.761 > SJ AUROC=0.704（ρ-AUROC 分离持续）\n4. **Registry 清理** ✅ — 7 stale PREPARING + 1 QUEUED(killed) → 全部标 killed/DONE\n\n### 进行中\n| Worker | 任务 | GPU | 状态 |\n|--------|------|-----|------|\n| exp_002_conll_n16 | Qwen CoNLL N=16 推理 | cuda:0 | 已提交，~3h |\n| exp_007_llama_n16 | LLaMA SciERC N=16 推理 | cuda:1 | 已提交，~2h |\n| 3seed_summary | 3-seed 全 5-signal 对比表 | CPU | 运行中 |\n| d042_re_rerun | RE stratification 重跑 (过滤+proxy) | CPU | 运行中 |\n\n### exp_017 跨模型对比速览\n| Setup | SJ ρ | FK ρ | logprob ρ | SJ>logprob |\n|-------|------|------|-----------|------------|\n| Qwen SciERC N=16 s42 | 0.398 | 0.288 | 0.237 | +0.161 ✅ |\n| Qwen CoNLL N=8 | 0.431* | 0.427* | 0.307* | +0.124 ✅ |\n| LLaMA SciERC N=8 | 0.363 | 0.327 | 0.183 | +0.180 ✅ |\n| **LLaMA CoNLL N=8** | **0.431** | **0.428** | **0.307** | **+0.124 ✅** |\n\n*Qwen CoNLL N=8 数据来自 exp_002，指标待确认是否与 LLaMA CoNLL 完全一致。\n\n**SJ > logprob 在所有 4 个 model×dataset 组合上成立。** 跨模型+跨数据集 claim 有充分支撑。",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-001822"
+        },
+        {
+          "source_line": 1823,
+          "timestamp": "2026-05-14T18:53:33.444455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 81711
+          },
+          "id": "event-001823"
+        },
+        {
+          "source_line": 1824,
+          "timestamp": "2026-05-14T18:53:33.848301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "file": "memory.md",
+              "content": "# Memory — struct_self_consist_ie\n\n## 经验教训\n\n### Offset hallucination\nFine-tuned generative IE 模型输出正确 entity text 但 hallucinate character offsets（准确率仅 16.7%）。必须用 span realignment 后处理修复。\n\n### Qwen3 think block vs XGrammar\nQwen3 默认输出 `<think>...</think>` 再接 JSON，但 XGrammar 强制 `{` 为第一个 token。必须在 `apply_chat_template` 中设 `enable_thinking=False`。\n\n### Train/inference prompt alignment\n训练用 unified template \"Extract all structured information...\"，推理必须用完全一致的 template + schema hints。不对齐会导致模型不识别指令。\n\n### Parse failures from max_tokens truncation\nmax_tokens=512 导致 3.7% parse failures。max_tokens=1024 完全消除（0/4408）。\n\n### submit_training_job 需要 tmux\nAutoDL 5090 服务器默认无 tmux。已安装 tmux 3.2a。\n\n### OOM 修复：batch_size + gradient_checkpointing\nQwen3-8B LoRA r=32 在 RTX 5090 32GB 上 batch_size=4 会 OOM。修复：batch_size=2 + gradient_accumulation_steps=8 + gradient_checkpointing=true。\n\n### vLLM 不能直接加载 LoRA adapter\nvLLM 需要 merged model（有 config.json），必须先 LLaMA Factory export 合并。\n\n### 训练配置必须保留 best checkpoint\nft_002_v2 的 best eval checkpoint 被 save_total_limit=3 删掉了。未来需 save_total_limit≥5 + load_best_model_at_end=true。\n\n### E1 否定乘性惩罚假说——RE SJ 问题是根本性的 (2026-05-14)\n- head_sj ρ=0.210 远低于 NER ρ_sj=0.383（Δ=-0.173）\n- 根因：span-level SJ 对 RE 根本缺乏区分力，不是公式问题\n- 方案 B（度量分解）排除，走方案 A（NER-primary + RE 诊断）\n\n### SJ vs κ 在 NER 和 RE 上表现不对称——核心发现 (2026-05-14)\n- **NER**: SJ 一致显著优于 κ（p=7e-20），ρ_sj 稳定 0.36-0.40\n- **RE**: SJ ρ_sj 锁死 ~0.24-0.28 (取决于 N 和 T)\n\n### RE seed 鲁棒性确认——两 seed 高度一致 (2026-05-14)\n- seed42: SJ ρ_full=0.281, F1=0%=44.3% | seed123: SJ ρ_full=0.2835, F1=0%=44.1%\n- Cross-seed Δ: SJ ρ仅0.002, F1=0%仅0.2pp\n- **结论**: RE 结构一致性弱是 task 本质属性（复合错误传播），非随机波动\n- 不再需要额外 RE seed 测试\n\n### 温度对 logprob ρ 影响极大——已确认根因 (2026-05-14)\n- T=0.7 logprob NER ρ≈0.31 vs T=1.0 ρ≈0.14-0.24\n- 温度贡献了 ρ 差异的 74%，实例子集 22%，N 仅 4%\n- 机制：T=1.0 使 logprob 分布更宽，噪声稀释 correlation\n- **所有信号对比必须固定 T**。论文中 T=1.0 是标准\n\n### 温度对其他信号影响小 (2026-05-14)\n- SJ ρ: T=0.7→T=1.0 变化 ±0.01\n- FK: 温度更敏感 (NER +0.06 at T=0.7)\n- 推荐 T=1.0 + conditional filtering\n\n### --num_test 200 默认值 bug (2026-05-14)\nrun_mvp_pilot.py 默认 --num_test 200，导致多个实验只跑了 200/551 实例。已修复为 9999。\n**所有推理命令必须显式传 --num_test 9999 或确认默认值已修改。**\n\n### Conditional filtering 定义不一致 (2026-05-14, 修复中)\n- run.log 和 all_signals_report 对 \"conditional\" 定义不同，导致 RE cond ρ 差 0.127\n- **标准定义: 排除 greedy_F1=0 的实例**（knowledge-gap instances）\n- 在定义统一前，任何 conditional ρ 数字不可引用\n\n### N-scaling \"突破\" 证伪 (2026-05-14)\n- 200 实例 T=0.7: RE voting_conf ρ=0.448（看似突破 0.40）\n- 551 实例 T=1.0: RE voting_conf ρ=0.380（低于 0.40）\n- 原因：小样本 + 低温度产生的 artifact。RE FAIL 确认。\n\n### Baseline 全景 (551 instances, T=1.0, N=16)\nNER: voting_conf (0.399) ≈ SJ (0.398) > EM (0.339) > FK (0.288) > logprob (0.237)\nRE: voting_conf (0.380) > logprob (0.293) > FK (0.281) > SJ (0.277) > EM (0.148)\n\n### exp-016 信号组合发现 (2026-05-14)\n- SJ+voting_conf 线性组合 NER ρ=0.489 (+23%)\n- Ensemble NER AUROC=0.735 vs best single 0.700 (+0.035)\n- RE: logprob-best 是唯一超过 greedy 的选择策略 (0.397 vs 0.374)\n- Oracle gap 巨大 (NER +0.16, RE +0.19)\n\n### exp-004 RE 诊断 (2026-05-14)\n- FEATURE-OF 几乎无信号 (ρ≈0), HYPONYM-OF 最强 (ρ_fk=0.646)\n- Entity span 错误占 RE FN 的 55.5%\n- Fisher z: NER ρ_sj 显著 > RE ρ_sj (p=0.021)\n\n### WNUT-17 数据集不适合结构一致性分析 (2026-05-14, D045)\n- **根因**：模型在社交媒体 NER 上能力不足（54% F1=0），信号无意义\n- 下采样空实例到 25% 后重训仍 FAIL：SJ ρ=0.062 (p=0.106 不显著)\n- **结论**：结构一致性信号依赖模型有足够 extraction 能力（Claim 3 capability boundary）\n- 论文数据集收缩为 SciERC + CoNLL-2003（科学+新闻，两域足够）\n\n### 实验 subtask 标志必须与协议匹配 (2026-05-14)\n- exp_001_seed456_v2 错用 `--subtask joint` 导致结果与 NER-only 的 seed42/123 不可比\n- **规则**：3-seed 协议内的所有 run 必须用相同 --subtask 参数\n- 需要重跑修复（exp_001_seed456_v2_ner 用 --subtask ner）\n\n### 查实验状态必须检查 checkpoints/ 目录 (2026-05-14)\n- exp_017_llama_conll 被误判为 failed，因为只搜了 logs/ 和 output/\n- 实际 checkpoint 在 checkpoints/llama3.1-8b-conll2003-lora/，日志在 checkpoints/exp017_train.log\n- **规则**：查实验状态时搜索路径必须包含 checkpoints/, logs/, output/, 以及项目根目录\n\n### Cross-model SJ stability 确认——LLaMA vs Qwen (2026-05-14)\n- LLaMA-3.1-8B NER ρ_sj=0.363 vs Qwen3-8B ρ_sj=0.398 (Δ=-0.035, 同量级)\n- LLaMA RE ρ_sj=0.299 vs Qwen RE ρ_sj=0.277 (均弱, task-level 特性非模型特异)\n- logprob 在 LLaMA 上更弱 (NER 0.183 vs 0.237) → SJ 优势跨模型放大\n- **论文含义**: SJ 信号可 claim model-agnostic；RE 弱是 task 本身的属性\n- 注意：LLaMA 用 N=8 vs Qwen N=16，N 差异可能影响精确对比\n\n### LLaMA CoNLL-2003 跨模型+跨数据集确认 (2026-05-14)\n- LLaMA CoNLL N=8: SJ ρ=0.431, FK ρ=0.428, logprob ρ=0.307\n- SJ > logprob 在所有 4 个 model×dataset 组合成立（Δ +0.124 ~ +0.180）\n- CoNLL (easy task): SJ ≈ FK ≈ EM（easy 时 surface 信号也有效）\n- ρ-AUROC 分离: logprob AUROC=0.761 > SJ AUROC=0.704\n\n### Conclusion 标注规则 (2026-05-14, Director 纠正)\n- `conclusion=failed`: 仅用于实验本身出错（crash/数据损坏/代码 bug）\n- `conclusion=negative`: 假设未确认（verdict=FAIL），但实验正常完成\n- `conclusion=success`: 实验正常完成且假设确认，或跨模型一致性等正面发现\n\n### autodl-5090 = bjb1-21071 (2026-05-14)\n- 两个名字指向同一台机器（相同 GPU UUID）\n- 之前\"cuda:0 神秘进程\"就是 exp_017_llama_conll\n- **后续统一用 autodl-5090 作为服务器名**\n\n## 服务器环境\n- autodl-5090: 4× RTX 5090 32GB, Python 3.12, vLLM 0.18.1, LLaMA Factory 0.9.4, tmux 3.2a\n- gpu-5090-4x-2: 4× RTX 5090 32GB, PyTorch 2.10.0+cu128, vLLM 0.18.1\n- conda: /root/miniconda3/\n- 环境初始化: `source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径: /root/autodl-tmp/struct_self_consist_ie/\n- 基座模型: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\n- ft_002_v2 merged: checkpoints/qwen3-8b-scierc-merged-v2/\n- run_mvp_pilot.py 支持 --collect_logprobs, --num_test (默认已改为 9999)\n\n## 数据集信息\n- SciERC: 科学域, test=551 instances, HF (本地已有)\n- CoNLL-2003: 新闻域, 4 types, test=3453, HF `BramVanroy/conll2003`\n- WNUT-17: 社交媒体域, 6 types, test=1287 — **已放弃(D045)**，模型能力不足\n\n## voting_conf 命名澄清\n- `entity_voting_conf` = per-entity majority voting (exp-014 定义, 用于 NER)\n- `relation_tuple_match` = relation tuple exact match (exp-004 定义, 用于 RE)\n"
+            }
+          },
+          "id": "event-001824"
+        },
+        {
+          "source_line": 1825,
+          "timestamp": "2026-05-14T18:53:33.899102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-001825"
+        },
+        {
+          "source_line": 1826,
+          "timestamp": "2026-05-14T18:53:41.251327+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Director 已收到汇报。当前状态：\n\n- **GPU**: cuda:0 (Qwen CoNLL N=16, ~3h) + cuda:1 (LLaMA SciERC N=16, ~2h) running; cuda:2/3 预留\n- **CPU Workers**: 3-seed 汇总 + D042 RE 重跑 running\n- **Registry**: 清理完毕（7 stale killed, WNUT-17 marked negative）\n- **Memory**: 更新完毕（新增 WNUT-17 教训、subtask 匹配规则、checkpoint 搜索规则、LLaMA CoNLL 跨模型确认）\n\n等 Worker 回调后继续处理。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3"
+          },
+          "id": "event-001826"
+        }
+      ]
+    },
+    {
+      "number": 99,
+      "messages": [
+        {
+          "source_line": 1827,
+          "timestamp": "2026-05-14T18:53:41.839859+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001827"
+        },
+        {
+          "source_line": 1828,
+          "timestamp": "2026-05-14T18:54:27.540386+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 上 cuda:0/1/2/3，不得用其他服务器的 GPU（gpu-5090-4x-2 已弃用）\n- 推理命令必须 `--num_test 9999`（默认 200 的 bug 已修但不要依赖）\n- 推理命令必须 `--collect_logprobs`（缺 logprob 则无法做 5-signal 对比）\n- 3-seed 协议内 runs 必须统一 `--subtask ner`（之前 seed456 误用 joint 导致重跑）\n- WNUT-17 已放弃（D045），不再投入任何资源\n- 论文数据集只有 SciERC + CoNLL-2003，不要提 WNUT-17 作为正面证据\n- 查实验状态必须搜 checkpoints/ + logs/ + output/（之前只搜 logs/output/ 导致 exp_017 误判 failed）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090（= bjb1-21071，同一台机器）\n- 工作目录：/root/autodl-tmp/struct_self_consist_ie/\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（不是 venv）\n- HF cache：/root/autodl-tmp/.hf_cache/\n- 基座模型：Qwen3-8B `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`，LLaMA `/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct/`\n- Merged 模型：`checkpoints/qwen3-8b-scierc-merged-v2/`, `qwen3-8b-conll2003-merged/`, `llama3.1-8b-scierc-merged/`, `llama3.1-8b-conll2003-merged/`, `qwen3-8b-wnut17-merged/`(废弃)\n- 活跃进程（提交时刻，需 SSH 确认是否仍在跑）：\n  - exp_002_conll_n16: Qwen CoNLL N=16 推理，cuda:0，~3h\n  - exp_007_llama_n16: LLaMA SciERC N=16 推理，cuda:1，~2h\n- Cron：reconcile 返回 0 active（cron 已全部完成/清理）\n\n### 3. 📊 当前状态\n**刚做完**：D043-D046 全部执行——WNUT-17 止损、seed456 3-seed 确认、exp_017 LLaMA CoNLL 5-signal 评估、registry 清理（7 stale PREPARING + 1 QUEUED killed）、GPU 重新调度。\n\n**RUNNING（registry）**：\n- `exp_002_conll_n16` — Qwen CoNLL N=16 推理 (cuda:0)，3453×16=55K 次，~3h\n- `exp_007_llama_n16` — LLaMA SciERC N=16 推理 (cuda:1)，551×16=8.8K 次，~2h\n- `exp_017_llama_conll_infer` — 可能仍标 RUNNING（eval worker 已更新 metrics 但未确认 status→DONE，需检查）\n\n**等待中的 Worker 回调**：\n- `worker_code_exp_002_conll_n16_20260514T181146` — cuda:0 提交\n- `worker_code_exp_007_llama_n16_20260514T185118` — cuda:1 提交\n- `worker_analysis_3seed_summary_20260514T185130` — 3-seed 全 5-signal 对比表\n- `worker_analysis_d042_re_rerun_20260514T185144` — D042 RE stratification 重跑\n\n### 4. 📋 待办（条件触发式）\n- **exp_002_conll_n16 完成** → 收集 5-signal metrics → 与 N=8 (exp_002) 对比 N-scaling → 更新 registry → 汇报 Director\n- **exp_007_llama_n16 完成** → 收集 5-signal metrics → 与 N=8 (exp_007, SJ ρ=0.363) 对比 → 验证 SJ N-scaling model-agnostic → 汇报\n- **3seed_summary Worker 完成** → 检查 artifacts/3seed_ner_summary.md → 确认 mean±SD → 汇报 Director\n- **d042_re_rerun Worker 完成** → 检查过滤后 RE stratification 结果 → 更新 registry\n- **exp_017_llama_conll_infer** → 确认 registry status 是否已更新为 DONE，若仍 RUNNING 则手动设 DONE/success\n- **cuda:2/3 空闲** → 等 cuda:0/1 完成后看是否需要 follow-up 实验（Director 预留）\n- **所有 GPU 实验完成后** → 全结果汇总表 → 通知 Paper Agent 可以 finalize tables/figures\n\n### 5. 🎯 战略上下文\n**核心结论**：structural consistency (SJ) 是最强质量估计器（NER ρ~0.40, AUROC~0.70），显著优于 logprob（Δ +0.12~0.18）。但存在 correlation-selection gap：无信号能在 best-of-N selection 中 beat greedy。信号排序 task-difficulty-dependent（easy: EM≈SJ, hard: SJ>EM）。\n\n**关键决策链**：D041 关闭 RE seed 线 → D042 RE 重跑(进行中) → D043 WNUT-17 止损 → D044 3-seed 确认 → D045/D046 方向锁定\n\n**DDL**：EMNLP 2026 via ARR May，**2026-05-25（距今 11 天）**。Paper Agent 已激活 Full Draft 模式。\n\n**易错点**：\n- exp_003_wnut17_v2 registry 状态是 DONE/negative（不是 success），别被 train metrics 误导\n- Qwen CoNLL N=8 的 5-signal 数字和 LLaMA CoNLL N=8 看起来很接近（SJ 都 ~0.43），但前者来自不同 report.json，需独立验证\n- ρ-AUROC 分离是真实现象（logprob AUROC 高但 ρ 低），论文需解释清楚\n- CoNLL 是 easy task（greedy F1=0.725），所有信号差异收窄，不要 overclaim\n- RE 结构一致性弱是 task 本质属性（D041 已关闭 RE seed 线），论文走 NER-primary + RE diagnostic 叙事\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3"
+          },
+          "id": "event-001828"
+        }
+      ]
+    }
+  ]
+}

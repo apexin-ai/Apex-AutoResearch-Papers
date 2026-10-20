@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3274edf1b259a73ec8b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper figure fig reliability",
+  "task_key": "worker_paper_figure_fig_reliability_20260514T145317",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig_reliability_20260514T145317_result.json",
+    "occurrence": 1,
+    "bytes": 592,
+    "sha256": "1fbbce6a817a0cbb7448281c73f5479cb94eee2d848a2608fd38bbe8e6c55aa7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成并注册。\n\n**输出**: `/figures/paper/fig_reliability.pdf` (20KB, 矢量 PDF)\n\n**结果摘要**:\n\n| Signal | NER ECE | RE ECE |\n|--------|---------|--------|\n| Soft Jaccard | 0.077 | 0.165 |\n| Voting Conf. | 0.071 | 0.128 |\n| Logprob | 0.113 | 0.380 |\n\n结构性一致性信号（SJ、Voting）校准质量显著优于 Logprob，RE 任务差距尤其明显（Logprob ECE 0.380 vs Voting 0.128）。NER 上三者差距较小但结构信号仍占优。配套脚本 `fig_reliability.py` 和数据 `fig_reliability_data.json` 已保存在同目录下。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-reliability.md"
+}

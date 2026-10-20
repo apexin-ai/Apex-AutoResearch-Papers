@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9ab63148946f66e7ab5",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh check gpu state 5090 5090c",
+  "task_key": "worker_ssh_check_gpu_state_5090_5090c_20260521T101137",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check_gpu_state_5090_5090c_20260521T101137_result.json",
+    "occurrence": 1,
+    "bytes": 2178,
+    "sha256": "228fb91e85f59e0a68a9fb1250daaf4e2d92e968ff8ef7e7c1a6d9d8392bc19c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "（`tmux ls` 被 read-only 模式拦截，已从 `ps aux` 中提取 tmux session 信息）\n\n## autodl-5090\n\n| GPU | 状态 | 显存 | GPU-Util | 进程 |\n|-----|------|------|----------|------|\n| cuda:0 | 空闲 | 2MiB / 32607MiB | 0% | — |\n| cuda:1 | 空闲 | 2MiB / 32607MiB | 0% | — |\n| cuda:2 | 空闲 | 2MiB / 32607MiB | 0% | — |\n| cuda:3 | **占用** | 30044MiB / 32607MiB | 57% | VLLM::EngineCore (PID 8696) |\n\n**运行中的实验**：\n- `run_mvp_pilot.py` — Qwen2.5-7B-Instruct pretrained, fewnerd, n_samples=8, seed=42, `output/e2_pretrained_fewnerd/`（tmux session: `exp_e2_pretrained_fewnerd`，已运行 ~3h12m）\n\n**report.json 状态**：\n| 文件 | 状态 | 大小 | 时间 |\n|------|------|------|------|\n| scierc_mf4v2_seed42 | ❌ 不存在 | — | — |\n| scierc_mf4v2_seed123 | ✅ 存在 | 1714B | May 21 17:33 |\n| scierc_mf4v2_seed456 | ✅ 存在 | 1728B | May 21 17:33 |\n| fewnerd_mf4v2_seed42 | ❌ 不存在 | — | — |\n| fewnerd_mf4v2_seed123 | ❌ 不存在 | — | — |\n| fewnerd_mf4v2_seed456 | ✅ 存在 | 1640B | May 21 16:06 |\n\n---\n\n## autodl-5090-c\n\n| GPU | 状态 | 显存 | GPU-Util | 进程 |\n|-----|------|------|----------|------|\n| cuda:0 | **占用** | 30117MiB / 32607MiB | 93% | VLLM::EngineCore (PID 294412) |\n| cuda:1 | 空闲 | 0MiB / 32607MiB | 0% | — |\n| cuda:2 | 空闲 | 0MiB / 32607MiB | 0% | — |\n| cuda:3 | 空闲 | 0MiB / 32607MiB | 0% | — |\n\n**运行中的实验**：\n- `run_mvp_pilot.py` — qwen3-8b-fewnerd-exp021-merged, fewnerd, n_samples=16, seed=456, `output/fewnerd_n16_seed456_v2/`（tmux session: `exp_fewnerd_n16_s456_v2`，已运行 ~2h54m）\n\n**output 目录**：含 54 个子目录，近期活跃的包括 `frontier_sc_deepseek`、`frontier_sc_gemini25pro`、`frontier_sc_gpt55_fewnerd`（今天产出），以及多组 conll/scierc/fewnerd temperature 实验结果。\n\n---\n\n**汇总**：两台机器各有 1 张 GPU 在跑实验（5090 用 cuda:3，5090-c 用 cuda:0），各剩 3 张空闲。6 个 mf4v2 report.json 中已完成 3 个（scierc seed123/456、fewnerd seed456），缺 3 个（scierc seed42、fewnerd seed42/123）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-gpu-state-5090-5090c.md"
+}

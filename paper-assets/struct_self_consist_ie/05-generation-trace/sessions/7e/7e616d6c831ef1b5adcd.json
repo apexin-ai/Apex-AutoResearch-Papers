@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e616d6c831ef1b5adcd",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper figure fig signal heatmap",
+  "task_key": "worker_paper_figure_fig_signal_heatmap_20260514T142903",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig_signal_heatmap_20260514T142903_result.json",
+    "occurrence": 1,
+    "bytes": 502,
+    "sha256": "811c4069864c796dc861f031ebb2410a66cdfc8464886c876610c42d5c798416"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 已生成并注册（`art_20260514_619caf`）。\n\n输出路径: `figures/paper/fig_signal_heatmap.pdf`（42KB 矢量 PDF）\n\n图表内容：\n- 5×5 heatmap，行=confidence signals，列=task conditions（按难度递增）\n- RdYlGn 发散色图，vcenter=0.25，cell 内标注 ρ 值\n- 缺失值灰底 \"—\"，WNUT-17 列左侧虚线标注 \"method boundary\"\n- LLaMA-3.1-8B cross-model ρ 以斜体小字 `L:` 标注在对应 cell 内\n- 底部标注各 task 难度等级"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-signal-heatmap.md"
+}

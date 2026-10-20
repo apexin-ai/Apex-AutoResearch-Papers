@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49b49e31eb2ddadaa5aa",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code ssh check server b",
+  "task_key": "worker_code_ssh_check_server_b_20260519T081927",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_ssh_check_server_b_20260519T081927_result.json",
+    "occurrence": 1,
+    "bytes": 1150,
+    "sha256": "24209d43a453d77360350a7990379e780def559ba3e2229190c240c664fe80c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Server B (autodl-5090-b) 状态汇报\n\n### GPU\n- **4× RTX 5090**，全部 100% 利用率，显存 31.9/32.6 GB\n- vLLM TP=4 运行中（Worker_TP0-TP3）\n\n### 推理进程\n- 脚本：`zeroshot_inference_72b.py --datasets scierc conll2003 fewnerd`\n- 启动时间：15:58（约 21 分钟前）\n- 速度：~9,500 toks/s input，~1,678 toks/s output\n\n### 各数据集进度\n\n| 数据集 | 状态 | 详情 |\n|--------|------|------|\n| **SciERC** | **已完成** | 551 行 output，529 instances × 8 samples，signal report 已生成 |\n| **CoNLL2003** | **进行中 ~87%** | 23,952 / 27,624 prompts（3,453 × 8），预计 ~2 分钟完成 |\n| **FewNERD** | **未开始** | 排在 CoNLL 之后 |\n\n### SciERC 初步信号（full_signal_report.json）\n- Greedy baseline: 39.9% F1\n- Majority vote: 41.3% F1\n- Oracle: 54.9% F1（oracle-greedy gap ~15pt，选择空间大）\n- 最强信号：VC (ρ=0.277)，FK (ρ=0.227)，SJ (ρ=0.217)\n\n### 结论\nCoNLL 推理还剩约 2 分钟即完成，之后自动进入 FewNERD。FewNERD 规模取决于实例数，预计需要额外时间。全部完成无需人工干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ssh-check-server-b.md"
+}

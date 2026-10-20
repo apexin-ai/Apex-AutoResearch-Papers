@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ccd88647e72873438974",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis d110 4b degeneracy",
+  "task_key": "worker_analysis_d110_4b_degeneracy_20260516T080931",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_d110_4b_degeneracy_20260516T080931_result.json",
+    "occurrence": 1,
+    "bytes": 1105,
+    "sha256": "c4c14f02bb60cd42551e95d1cf36d4559399c4dd6104af0949fdb9813f4f820d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n| Config | N | Const F1 | Const SJ | Random F1 | MBR F1 | Oracle F1 | Gap Closed | ρ median | ρ>0 | ρ>0.3 |\n|--------|---|----------|----------|-----------|--------|-----------|------------|----------|-----|-------|\n| **Qwen3-4B CoNLL NER** | 2756 | 90.6% | 89.8% | 0.7339 | 0.7749 | 0.9451 | 19.4% | 0.936 | 64.2% | 62.1% |\n| **Qwen3-4B SciERC NER** | 529 | 10.4% | 7.0% | 0.5965 | 0.6510 | 0.8123 | 25.2% | 0.550 | 69.8% | 60.9% |\n| **Qwen3-4B SciERC RE** | 397 | 25.7% | 6.8% | 0.3875 | 0.4741 | 0.7401 | 24.5% | 0.495 | 67.8% | 56.8% |\n\n关键发现：\n- **CoNLL 高度退化**：4B 在 CoNLL 上 90.6% 的 instance 所有 8 个 sample 的 F1 完全相同，几乎没有 MBR 可利用的空间。但在剩余的非退化 instance 上，ρ 中位数高达 0.936。\n- **SciERC NER/RE 退化较低**：10.4%/25.7% constant F1，MBR 能 close 25% 左右的 oracle gap，ρ 中位数约 0.5。\n\n产出保存在 `autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/d110_4b_degeneracy/`（results.json + table.md + analyze_4b_degeneracy.py）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d110-4b-degeneracy.md"
+}

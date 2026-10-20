@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f62331b8cff70600203c",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_10.md",
+  "task_key": "loop_10",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_10.md",
+    "occurrence": 1,
+    "bytes": 4410,
+    "sha256": "78ec381bc84a91c40b0709e7b07cc5cfc9b4846140adbf6f0c5ba064f09ec890"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T21:50:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 的 cuda:0, cuda:1, cuda:2, cuda:3（4× RTX 5090 32GB）。当前全部空闲，无实验在跑\n- 论文 ρ 值必须来自 gold-filtered 管道（排除 gold-empty 实例），不得从 registry metrics 直接引用 EM/VC（registry 用 report.json，与分析脚本有系统性差异）\n- CoNLL canonical n=2756，SciERC canonical n=551（全集，非 529 交集）\n- 论文数据只能用 _rerun_1024 或本身 max_tokens=1024 的实验（exp_012 用了 512 导致 voting_conf 虚高，已修正）\n- DDL: **2026-05-25**（EMNLP 2026 Findings），距今 10 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090（4× RTX 5090 32GB）\n- 工作目录：`/root/autodl-tmp/struct_self_consist_ie/`\n- Python：`/root/miniconda3/bin/python`，激活命令：`source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 基座模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n- 4B merged checkpoints：CoNLL ckpt-4200，SciERC ckpt-400\n- ft_002_v2 merged（8B SciERC）：`checkpoints/qwen3-8b-scierc-merged-v2/`\n- Canonical 分析数据：`artifacts/analysis_unified_rho.json`（unified_rho_full.json LLaMA SciERC 污染已修复）\n- ε sweep：`analysis_round8/epsilon_sweep.csv`\n- 活跃进程：无（0 个 RUNNING 实验，0 个活跃 cron）\n- Worker 池：0（全部已完成）\n\n### 3. 📊 当前状态\n**所有实验已完成。** Registry 104 个实验：58 success / 22 negative / 5 failed / 19 killed。\n\n刚完成的关键工作：\n- **4B scale ablation 全部完成**（D098）：2×2 矩阵 {CoNLL, SciERC} × {8B, 4B} 全部有数据。核心结论：correlation-selection gap 与 model capacity 无关，task difficulty 是主驱动。SciERC 4B SJ_ρ=0.4221（>8B +3.96pp）但 selection -1.49pp，完美展示 gap\n- **ε robustness 分析完成**（D095）：ε=0.05 justified，non-tied Δ=+2.86pp (p=0.0035)\n- **LLaMA SciERC 数据污染修复**（D092-D094）：unified_rho_full.json 已修正\n- **RE 3-seed 一致 negative**（D091）：43-45% zero-F1 是系统性的，LP 是唯一跨任务正向信号\n\n**当前瓶颈是论文写作，不是实验。** Paper Agent 应该在执行以下任务：\n1. 4B scale ablation compact table 写入（≤0.5 页）\n2. 页数压缩至 ≤8 页\n3. 标题 overclaim 修复\n4. Abstract 过载修复\n5. ε robustness 写入\n\n等待中的回调/决策：无 Worker、无 Cron、无 pending Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- Director 要求 Round 9 审稿 → spawn reviewer Worker（continue mode）\n- Paper Agent 完成所有修复 → 触发 Round 9 审稿 → 反馈处理 → final polish → 提交\n- Round 9 审稿发现需补充实验 → GPU 全部空闲可立即跑（autodl-5090 cuda:0-3）\n- Director 问进度 → 汇报：所有实验完成，论文修复是唯一关键路径，距 DDL 10 天\n- 任何新 Worker 连接 autodl-5090 → 先 `source /etc/network_turbo` 再操作\n\n### 5. 🎯 战略上下文\n**项目核心结论**：Universal correlation-selection gap——5 类置信信号（SJ/FK/EM/VC/LP）在 IE test-time scaling 中 correlation 与 selection performance 存在系统性脱节。Controlled ablation（free-form + T=0.7 + 4B scale）证明 score compression 是 model/task intrinsic，非 constrained decoding artifact。\n\n**决策链关键节点**：\n- D098: 4B ablation 证明 gap 与 model capacity 无关\n- D095: ε=0.05 empirically justified\n- D092-D094: LLaMA SciERC 数据污染修正（FK rho 0.81→0.48 是 artifact）\n- D091: RE signal effectiveness 是 task-dependent（纳入 framing，无需调整）\n- D066: LLaMA fresh rerun 决策，seed 变异 σ 增大 5× 是真实的\n\n**最易判断错的事**：\n- 不要以为还需要跑实验——当前瓶颈 100% 是论文写作和审稿修复\n- 不要把 registry metrics 直接搬进论文（EM/VC 值有系统差异，必须用分析脚本输出）\n- CoNLL 4B headroom 只有 1.70pp，selection 全部 MARGINAL（≤0.1pp）——这不是 negative，是 \"low headroom = nothing to select\" 的预期结果，写法要谨慎\n- RE 上所有结构信号 selection < greedy，只有 LP 跨任务正向——这强化了 gap 论点而非削弱\n- Round 8 审稿 borderline (R1=3.5, R2=2.5)，修复质量决定接受/拒绝，不能草率\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-copy-2.md"
+}

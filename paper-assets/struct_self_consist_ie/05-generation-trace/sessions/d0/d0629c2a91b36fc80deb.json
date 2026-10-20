@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0629c2a91b36fc80deb",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_7_1778859212.md",
+  "task_key": "loop_7_1778859212",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_7_1778859212.md",
+    "occurrence": 1,
+    "bytes": 4562,
+    "sha256": "bfff635e7e3d3824b323ef8491f6ec86bd2c20fe38ea133cfe479771fd81cb3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-15T12:38:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 cuda:0,1,2,3（autodl-5090），但当前阶段无实验需跑，全部实验已完成\n- 论文数据必须来自 `_rerun_1024` 或本身用 max_tokens=1024 的实验，exp_012（max_tokens=512）的 voting_conf ρ 虚高不可引用\n- LLaMA EM/VC 值：论文必须用分析脚本输出（与 Qwen 同一套），禁止从 registry metrics（来自 report.json）直接引用——两者存在系统性差异（如 seed42 VC: 脚本 0.373 vs report.json 0.405）\n- Selection claim 是 bootstrap null result（p=0.39），不能写 \"significantly outperforms\"\n- exp_011_ood_conll_to_scierc 实际应为 negative（entity schema 不兼容致灾难性失败），Reviewer 要求修正 registry conclusion + 去掉论文中不可验证的 \"in-domain 0.335\" 对比\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090（别名 bjb1-21071），4× RTX 5090 32GB\n- 工作目录：/root/autodl-tmp/struct_self_consist_ie/\n- Python：/root/miniconda3/bin/python，环境激活：`source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 基座模型：/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\n- 微调模型：/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2/\n- vLLM 0.18.1, LLaMA Factory 0.9.4, PyTorch 2.10.0+cu128\n- 活跃进程：无（全部实验已完成）\n- Cron：reconcile 返回 0 条，无活跃 cron\n\n### 3. 📊 当前状态\n**阶段：纯论文修订。** 全部 83 个实验完成（75 DONE: 46 success / 20 negative / 8 killed / 1 failed），7 个 PREPARING 和 1 个 PENDING 均为历史废弃条目。无 RUNNING 实验，无活跃 Worker/Cron。\n\n**刚完成的关键工作**：\n- D072 framing 重定位：free-form ablation 负结果证明 correlation-selection gap 是 universal（非 constrained decoding artifact）\n- D073 决策：exp-019 supervised verifier SKIPPED（Reviewer 建议，DDL 风险 + scope creep）\n- D074：LP Selection Flip 保留为 Section 5 解释性分析\n- D075：Title \"Cannot\" → \"Do Not\"\n- OOD cross-dataset、LLaMA CoNLL N=16 双 seed、Appendix LaTeX tables 均已完成\n\n**待处理（论文修订关键路径）**：\n- Paper Agent D072 patch（title + abstract + intro + discussion + conclusion）—— 未启动\n- 补充 patch（OOD 结果 + parse rate + N=16 数据 + appendix tables）—— 未启动\n- Reviewer warnings 修复：exp_011_ood_conll_to_scierc conclusion 改 negative + 去掉 \"in-domain 0.335\" 不明来源对比\n- Round 7 审稿提交\n- 最终提交（DDL: 2026-05-25，距今 10 天）\n\n### 4. 📋 待办（条件触发式）\n- 新 session 启动 → 立即修复 exp_011_ood_conll_to_scierc registry conclusion（改 negative，补 metrics 说明 entity schema 不兼容）\n- Registry 修复完成 → spawn Paper Agent Worker 执行 D072 patch（改 title/abstract/intro/discussion/conclusion，核心叙事从 \"gap finding\" 转 \"universal gap + controlled ablation proof\"）\n- D072 patch 完成 → spawn 补充 patch Worker（OOD section 重写去掉 0.335 + 加 parse rate 99.95% finding + N=16 三种子数据 + appendix tables 整合）\n- 两个 patch 都完成 → 提交 Round 7 审稿\n- Round 7 反馈到达 → 按反馈修改 → 最终提交\n\n### 5. 🎯 战略上下文\n**核心结论**：IE 中的 correlation-selection gap 是 task-intrinsic 的（D072）。5 类置信信号都能预测质量（AUROC 最高 0.75）但不能做 best-of-N selection。Free-form ablation 证明 logprob score compression（60% instances range<0.05）不是 constrained decoding 造成的（std ratio 0.97）。\n\n**决策链关键节点**：D054-D060 数据修正（max_tokens 512→1024）→ D066 LLaMA fresh rerun → D069-D071 审稿驱动的多轮 narrative restructure → D072 ablation 证明 universality → D073 砍 verifier → D075 改 title。\n\n**易错点**：\n1. 不要把 exp_011_ood_conll_to_scierc 当 success 用——SciERC→CoNLL 方向因 entity schema 不兼容（4 vs 6 类型）导致基础任务灾难性失败，不是 OOD 信号失败\n2. LLaMA 数据引用必须用分析脚本值，不是 registry metrics（report.json），两者系统性不一致\n3. 7 个 PREPARING + 1 个 PENDING 实验是历史废弃，状态机限制无法推进到 DONE，忽略即可\n4. 论文 DDL 是 2026-05-25（10 天），关键路径是 D072 patch + 补充 patch + Round 7，必须立即启动 Paper Worker\n5. exp-019 verifier 已被 D073 决策 SKIP，不要重新提起\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778859212.md"
+}

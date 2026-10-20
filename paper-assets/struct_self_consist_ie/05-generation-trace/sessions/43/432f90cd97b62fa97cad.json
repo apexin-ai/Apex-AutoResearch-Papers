@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "432f90cd97b62fa97cad",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh e1 adaptive signal routing",
+  "task_key": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_e1-adaptive-signal-routing_20260520T093508.log",
+    "occurrence": 1,
+    "bytes": 695222,
+    "sha256": "f93c4a9996a284f7edbdcce822f1e56169d686565a884d192b5fd83d513de2f7"
+  },
+  "statistics": {
+    "messages": 183,
+    "user_turns": 0,
+    "tool_calls": 67,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 67,
+      "tool_result": 67,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 183,
+      "chunks": [
+        {
+          "path": "432f90cd97b62fa97cad-part-0001.json",
+          "message_count": 162
+        },
+        {
+          "path": "432f90cd97b62fa97cad-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-e1-adaptive-signal-routing.md"
+}

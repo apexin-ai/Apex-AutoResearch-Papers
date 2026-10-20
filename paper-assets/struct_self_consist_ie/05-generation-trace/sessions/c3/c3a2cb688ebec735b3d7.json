@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3a2cb688ebec735b3d7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 7b near completion check",
+  "task_key": "worker_ssh_7b-near-completion-check_20260520T014647",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_7b-near-completion-check_20260520T014647_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "a0706e25da59b26773af517d82862d5baee1b8783aeaae014afe9a44949f82c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总结\n\n**5090-c — 7B 训练**\n- 当前阶段：**training**（尚未进入 export）\n- 进度：20117/20590 (97.7%)，~2.35s/step\n- 剩余：473 步 ≈ **~18.5 分钟**\n- loss=0.0059，收敛良好\n\n**5090-b — 模型下载**\n- 进程仍在运行\n- 4 个 safetensors 分片全部 incomplete：2.0G + 1.6G + 2.3G + 2.0G = **~7.9GB / ~15GB (约 53%)**\n- 预计还需 **~15-20 分钟**\n\n## 分流建议\n\n**暂不拦截，等两边都就绪再决定。** 原因：\n1. 训练还有 ~18.5 分钟，之后 export（LoRA merge）还需 ~5-10 分钟，总共 ~25-30 分钟后才进入 inference\n2. 5090-b 下载也还需 ~15-20 分钟，到 export 完成时应该刚好下载完\n3. 建议在训练完成时再查一次：如果 5090-b 下载已完成，拦截 pipeline 把 merged model rsync 到 5090-b 跑 inference（4 GPU，预计 ~2x 加速）；如果没完成，就让 pipeline 在 5090-c 继续\n\n下一步：~20 分钟后复查两边状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-7b-near-completion-check.md"
+}

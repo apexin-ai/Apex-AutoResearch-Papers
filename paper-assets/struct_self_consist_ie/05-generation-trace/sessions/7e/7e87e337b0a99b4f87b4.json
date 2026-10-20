@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e87e337b0a99b4f87b4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu 5090c director fill",
+  "task_key": "worker_gpu_5090c_director_fill_20260521T112255",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_5090c_director_fill_20260521T112255_result.json",
+    "occurrence": 1,
+    "bytes": 618,
+    "sha256": "560cf8a936e1093ea22811eecadeee87e47b9b7ff870d59927333180655e17dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已正常启动：\n\n| 实验 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| `exp_fewnerd_n16_s123` | cuda:0 | 311981 | Rendering prompts ~13% (4886/37648) |\n| `exp_conll_n16_s42` | cuda:2 | 312281 | Rendering done, 开始 inference (0/55248) |\n\nCoNLL 数据量小（3453 instances），已完成 prompt rendering 进入生成阶段。FewNERD 37648 instances，prompt rendering 进行中。\n\n关于 `fewnerd_n16_s456_v2`：该目录在 5090-c 的 output/ 下不存在，搜索 `*s456*` 也只找到 `scierc_t12_s456`。可能在其他服务器（如 5090-b）上运行的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-5090c-director-fill.md"
+}

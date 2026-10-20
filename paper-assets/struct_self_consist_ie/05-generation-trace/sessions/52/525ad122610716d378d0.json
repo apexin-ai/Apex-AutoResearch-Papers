@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "id": "525ad122610716d378d0",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh p theoretical impossibility",
+  "task_key": "worker_ssh_p-theoretical-impossibility_20260520T105516",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_p-theoretical-impossibility_20260520T105516.log",
+    "occurrence": 1,
+    "bytes": 912135,
+    "sha256": "5ad4f4942be6364bd9c486ae45bc6dbb84815ccf9b197755af2250af2bc291d1"
+  },
+  "statistics": {
+    "messages": 291,
+    "user_turns": 3,
+    "tool_calls": 94,
+    "roles": {
+      "log": 1,
+      "system": 78,
+      "record": 1,
+      "assistant": 19,
+      "tool_call": 94,
+      "user": 3,
+      "tool_result": 94,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "525ad122610716d378d0-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 93,
+      "chunks": [
+        {
+          "path": "525ad122610716d378d0-part-0001.json",
+          "message_count": 93
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 83,
+      "chunks": [
+        {
+          "path": "525ad122610716d378d0-part-0001.json",
+          "message_count": 81
+        },
+        {
+          "path": "525ad122610716d378d0-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 109,
+      "chunks": [
+        {
+          "path": "525ad122610716d378d0-part-0002.json",
+          "message_count": 109
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-p-theoretical-impossibility.md"
+}

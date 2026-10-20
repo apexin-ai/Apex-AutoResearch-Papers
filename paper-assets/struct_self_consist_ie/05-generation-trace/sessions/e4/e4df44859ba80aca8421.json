@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4df44859ba80aca8421",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis t12 consistency check",
+  "task_key": "worker_analysis_t12_consistency_check_20260518T200406",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_t12_consistency_check_20260518T200406_result.json",
+    "occurrence": 1,
+    "bytes": 1501,
+    "sha256": "39cba4291d956ec9f918ce67f1af3f869c5e47089d23a378422e726a49e20ef8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the consistency report:\n\n| 数据集 | T | Exp ID | 实例数 | N | 分析管道 | 一致性判断 |\n|--------|---|--------|--------|---|---------|-----------|\n| SciERC | 1.0 | exp_012_rerun_1024 | 551 | 8 | MVP + 5-signal | 基准 |\n| SciERC | 1.2 | exp_026_t12 | 551 | 8 | MVP + 5-signal | ✅ 完全一致 |\n| CoNLL | 1.0 | exp_002_conll_n16 | 3453 | **16** | MVP pilot | 基准 |\n| CoNLL | 1.2 | exp_030_conll_t12 | 3453 | **8** | MVP pilot | ❌ N 不一致 |\n| FewNERD | 1.0 | exp_027_fewnerd_n16 | **5000** | **16** | 5-signal (results.json) | 基准 |\n| FewNERD | 1.2 | exp_031_fewnerd_t12 | **37648** | **8** | MVP pilot (report.json) | ❌ 全不一致 |\n\n**问题总结：**\n\n1. **SciERC**: 无问题。T=1.0 和 T=1.2 完全可比（551 inst, N=8, 5-signal pipeline）。\n\n2. **CoNLL**: **N 不一致**。T=1.0 用 N=16，T=1.2 用 N=8。实例数相同（3453），分析管道格式相同（MVP pilot report.json）。N 差异会影响 consistency signal 的统计力度，导致 T=1.2 的 rho 偏低不完全归因于温度效应。\n\n3. **FewNERD**: **三重不一致**（已知）。实例数（5000 vs 37648）、N（16 vs 8）、分析管道（5-signal vs MVP pilot）全部不同。\n\n**结论**：CoNLL T=1.2 存在与 FewNERD 相同性质的 N 不一致问题（N=8 vs 基准 N=16），需要以 N=16 重跑 CoNLL T=1.2 才能进行公平对比。FewNERD T=1.2 则需要同时修复实例数、N 和管道三个问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-t12-consistency-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e79e3e885e5d3a32891",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_12_1778940260.md",
+  "task_key": "loop_12_1778940260",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_12_1778940260.md",
+    "occurrence": 1,
+    "bytes": 3707,
+    "sha256": "2fdd0f863483e11f28ded0d80b90636bea19d064b9c51c2bd76a3020697c068a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T05:43:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 的 cuda:0/1/2/3（4× RTX 5090 32GB）。report.md 显示全部空闲，但提交前必须 `get_project_resource_usage` 确认\n- 论文 ρ 值必须来自 gold-filtered 管道（排除 gold-empty 实例）。CoNLL n=2756，SciERC n=551。禁止从 registry metrics 直接引论文——registry 的 EM/VC 来自 report.json，与分析脚本输出有系统性差异\n- LLaMA 数据必须用 fresh rerun（seed42_r1024 + seed123 + seed456_r1024），旧 exp_018 已 SUPERSEDED\n- exp_tacred_re_benchmark 已被 D105 取消，不要再启动。改为 title/scope 限定 + provenance\n- DDL: **2026-05-25**，Round 12 审稿修改提交截止，剩 ~8 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**autodl-5090**（4× RTX 5090 32GB）\n- 工作目录：`/root/autodl-tmp/struct_self_consist_ie/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 环境激活：`source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 基座模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n- Fine-tuned merged：`checkpoints/qwen3-8b-scierc-merged-v2/`\n- 推理脚本：`run_mvp_pilot.py`（支持 --collect_logprobs, --num_test 默认 9999）\n- W&B / HF cache：`/root/autodl-tmp/.hf_cache/`\n- Canonical 分析数据：`artifacts/analysis_unified_rho.json`\n- 活跃进程：**无**（全部实验已完成或被 kill）\n- Cron：0 个活跃（reconcile 确认）\n\n### 3. 📊 当前状态\n**无 RUNNING 实验。** 上一轮 session 完成了 D106 Round 12 Action Matrix 制定和 3 个实验注册。\n\nRegistry 状态：\n- `exp_entity_token_lp` — **PENDING**（等人工审批）。关键路径：per-token logprobs re-inference + entity-only LP 分析。~3h GPU。\n- `exp_vc_lp_cascade_selection` — PREPARING。VC+LP cascade selection，纯分析无 GPU。\n- `exp_tacred_re_benchmark` — PREPARING。**已被 D105 取消**，不执行。\n\n等待中：\n- exp_entity_token_lp 的审批回调（审批通过后立即提交）\n- Paper Agent 正在并行处理 MF1/MF2/SF8 等写作修复（状态未知，需确认）\n\n### 4. 📋 待办（条件触发式）\n- exp_entity_token_lp 审批通过 → spawn Worker 修改 sampling.py 加 per-token logprobs → submit_training_job re-inference → 完成后分析 entity-only LP variance + selection F1\n- exp_entity_token_lp 完成 → 结果整合到论文 → LP z-score normalization（零 GPU，可并行）→ exp_vc_lp_cascade_selection 分析\n- Paper Agent 完成 MF1/MF2/SF8 修改 → Round 13 审稿（全文一致性检查）\n- 全部实验+写作完成 → Final polish → 提交（DDL 2026-05-25）\n\n### 5. 🎯 战略上下文\n- **核心论点**：correlation-selection gap — 一致性信号能预测质量（ρ up to 0.45）但 MBR consensus-proximity selection 失败，因为 utility 跨实例相关但实例内不相关\n- **审稿状态**：Borderline 3.25/5，Round 12 是关键翻盘机会。主要弱点：MF1（\"by construction\" 措辞自相矛盾）、SF2+SF3（entity-token LP 未测试 + 无 remedy）\n- **决策链关键**：D105 取消 TACRED（改 title 限定为 NER）；D106 finalized action matrix\n- **易错点**：\n  - 不要混淆 registry metrics 和论文值（分析脚本输出才是 canonical）\n  - LP compression 是 model/task intrinsic，不是 temperature artifact（已有两条独立证据线）\n  - RE selection F1 全部信号低于 greedy（这是预期内的 negative，paper_framing D073 已纳入，不需要 framing 调整）\n  - exp_tacred_re_benchmark 虽在 PREPARING 但 D105 已取消，标记废弃即可\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778940260.md"
+}

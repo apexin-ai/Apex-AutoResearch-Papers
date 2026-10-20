@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1dd80d8f98fee973cdc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "audit maintext numbers",
+  "task_key": "worker_audit_maintext-numbers_20260524T042759",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_maintext-numbers_20260524T042759_result.json",
+    "occurrence": 1,
+    "bytes": 865,
+    "sha256": "3c1805f51c7b1dd0c800a5d72cd5186a359868b65604023f9e09e8ed7ad94e2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。发现 14 个问题：\n\n**3 个严重问题（跨表不一致）：**\n- **#5**: Tab selection vs Tab fewnerd SciERC 基线不一致（Greedy .645 vs .663，LP Δ +0.2pp vs +0.61pp）— 同一设置两个表不同数字\n- **#10**: SciERC EM AUROC 论文 .631 vs registry .7493 — registry 和 provenance 从未更新\n- **#11**: LP ρ 在两个表间不一致（SciERC .205 vs .159）\n\n**主要中等问题：**\n- Construction +1.40pp (4-seed non-CV) vs +0.88pp (5-fold CV) 在同一段落混用未说明\n- LP selection +1.39pp 主种子 registry 显示 1.36pp\n- 多个数字无法从 registry 追溯（appendix 来源或统计计算）\n\n**7 个 bug-prone 数字全部正确** ✅（.631 不是 .749、13.0pp 不是 11.4pp、+0.6pp 不是 +0.61pp 等）\n\n报告已写入 `artifacts/audit_maintext_numbers.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-maintext-numbers.md"
+}

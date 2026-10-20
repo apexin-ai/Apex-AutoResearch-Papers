@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b9bb83015b1ed4c7aad",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu 5090 n16 s456 dual launch",
+  "task_key": "worker_gpu_5090_n16_s456_dual_launch_20260521T123213",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_5090_n16_s456_dual_launch_20260521T123213_result.json",
+    "occurrence": 1,
+    "bytes": 802,
+    "sha256": "2e72985b06450f8b7017e5d31ef5e4945b38effb26c14d6e8c5c1d4154d97a3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both experiments confirmed.\n\n## 状态报告\n\n### exp_scierc_n16_s456 — **DONE (success)**\n- **Server**: autodl-5090, cuda:2\n- **Results**: greedy_f1=0.664, oracle_f1=0.806, headroom=0.142, rho_sj_full=0.369, rho_sj_cond=0.348\n- **Verdict**: MARGINAL\n- **Registry**: updated to DONE with full metrics\n\n### exp_conll_n16_s456 — **RUNNING**\n- **Server**: autodl-5090, **cuda:1** (30150 MiB loaded)\n- **PID**: 41031\n- **Progress**: vLLM loaded, prompts rendered (3453/3453), now processing 55248 total requests (3453 instances × 16 samples)\n- **Status**: just started sampling (0% processed prompts)\n\nCoNLL will take a while — 55K inference requests on a single 5090. Estimated ~30-60 min based on SciERC's 551×16=8816 requests completing in ~20 min (6× more data)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-5090-n16-s456-dual-launch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45e3aff920961b70a734",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh cleanup 5090 old checkpoints",
+  "task_key": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_cleanup-5090-old-checkpoints_20260520T070723_result.json",
+    "occurrence": 1,
+    "bytes": 1021,
+    "sha256": "091d5ad2dc7366b83b6b028bc31874d6495680efef7e006c808ab7e340f9673a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理结果\n\n**已删除（5 个目录，~17.5G）：**\n\n| 目录 | 大小 |\n|------|------|\n| qwen3-8b-wnut17-lora | 5.3G |\n| qwen3-4b-conll2003-lora | 4.1G |\n| llama3.1-8b-fewnerd-lora | 3.2G |\n| llama3.1-8b-scierc-lora | 3.2G |\n| ft_fewnerd_smoke | 1.7G |\n\n**磁盘空间对比：**\n- 删除前：79G 可用 (69% used)\n- 删除后：**97G 可用 (62% used)**\n- 释放：~18G\n\n**剩余 checkpoints（8 个）：**\n- qwen25-32b-fewnerd-qlora-s42\n- qwen3-4b-scierc-lora\n- qwen3-8b-conll2003-lora\n- qwen3-8b-fewnerd-5epoch-lora\n- qwen3-8b-scierc-10epoch-lora\n- qwen3-8b-scierc-3epoch-lora\n- qwen3-8b-scierc-lora-rank8\n- qwen3-8b-scierc-lora-v2\n\n**注意：可用空间 97G < 100G 目标。** `*scierc-v2*` glob 未匹配任何目录（`qwen3-8b-scierc-lora-v2` 的子串是 \"scierc-lora-v2\" 而非 \"scierc-v2\"）。如果也需要删除该目录（3.4G），删后可达 ~100G。另外还有 2 个 llama log 文件（共 96K）未删除（非目录，被脚本跳过）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cleanup-5090-old-checkpoints.md"
+}

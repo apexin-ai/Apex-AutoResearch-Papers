@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2b6db5026f3a1c6c3e7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check cuda1 status",
+  "task_key": "worker_check_cuda1_status_20260515T190645",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_cuda1_status_20260515T190645_result.json",
+    "occurrence": 1,
+    "bytes": 633,
+    "sha256": "163599765e9eb01adb6e7eb0ade81243224c7aa6c2a91972f290c9e13a5b3b9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 项目 | 状态 |\n|------|------|\n| **cuda:1** | **空闲** — 2MiB 显存、0% 利用率，无任何进程 |\n| **seed123** | **已完成** — 进程不在，输出目录已存在（`samples.jsonl` 7MB, `ablation_report.json`, `run_summary.json`，最后写入 02:40） |\n| **当前占用** | 只有 **cuda:2** 在跑：PID 220580 `run_freeform_inference.py --seed 456 --num_samples 8`，对应 VLLM 引擎 PID 220875（30340MiB，100% 利用率），tmux session `exp_001_n16_seed456` |\n| **cuda:1 可分配** | **是**，可立即使用 |\n\ncuda:0 和 cuda:3 也都空闲（均 2MiB / 0%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-cuda1-status.md"
+}

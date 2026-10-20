@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "4134646fbaa7c55ba017",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "fix conll seed42 n8 metrics",
+  "task_key": "worker_fix_conll-seed42-n8-metrics_20260519T162228",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_conll-seed42-n8-metrics_20260519T162228.log",
+    "occurrence": 1,
+    "bytes": 691239,
+    "sha256": "5da751320eb2b4a3cfbce4893362d68e5415e6afcc1be5b321127f7bddea3603"
+  },
+  "statistics": {
+    "messages": 158,
+    "user_turns": 0,
+    "tool_calls": 54,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 54,
+      "tool_result": 54,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 158,
+      "chunks": [
+        {
+          "path": "4134646fbaa7c55ba017-part-0001.json",
+          "message_count": 152
+        },
+        {
+          "path": "4134646fbaa7c55ba017-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-conll-seed42-n8-metrics.md"
+}

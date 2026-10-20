@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c6cdf545be8d0bb1a6c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis adalp adaptive selection",
+  "task_key": "worker_analysis_adalp_adaptive_selection_20260517T141535",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_adalp_adaptive_selection_20260517T141535_result.json",
+    "occurrence": 1,
+    "bytes": 1490,
+    "sha256": "d48f2c7b6172af765fe76ec5826b0c4e5b6b66c7daa07a0134bb2d7ee3cca55f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果总结：\n\n## 主结果表\n\n| Dataset | Greedy F1 | LP F1 | AdaLP F1 | Oracle F1 | AdaLP vs Greedy | AdaLP vs LP |\n|---------|-----------|-------|----------|-----------|-----------------|-------------|\n| SciERC  | 0.6105    | 0.6080| 0.6090   | 0.7712    | -0.15pp (p=0.42)| +0.10pp     |\n| CoNLL   | 0.9087    | 0.8981| 0.9054   | 0.9531    | -0.32pp (p=0.003)| +0.74pp    |\n| Few-NERD| 0.7712    | 0.7799| 0.7734   | 0.8829    | +0.22pp (p=0.047)| -0.65pp    |\n\n## LODO CV\n\n| Fold | Train sets | Test set | Best τ | AdaLP F1 (test) |\n|------|-----------|----------|--------|-----------------|\n| 1 | CoNLL, FewNERD | SciERC | 0.625 | 0.6090 |\n| 2 | SciERC, FewNERD | CoNLL | 0.500 | 0.9054 |\n| 3 | SciERC, CoNLL | FewNERD | 0.500 | 0.7734 |\n\nMean CV F1: 0.7626\n\n## 关键发现\n\nAdaLP 效果不理想：\n- 在 CoNLL 上显著差于 greedy（-0.32pp, p=0.003）\n- 在 FewNERD 上显著差于 LP（-0.65pp, p<0.001）\n- SciERC 上无显著差异\n\n根本原因从 bin 分析可见：N=8 的 NER 任务中，绝大多数 instance 的 degeneracy 极高（CoNLL 78% 的 instance degen > 0.75），导致 AdaLP 几乎总是选 greedy，失去了自适应的意义。在低 degeneracy bin 中，LP selection 反而经常比 greedy 差（CoNLL 的 (0,0.25] bin 中 LP 比 greedy 低 11.4pp），说明低 degeneracy 不一定意味着 LP 更可靠。\n\n产出文件：\n- `scripts/adalp_analysis.py`\n- `output/adalp_analysis_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-adalp-adaptive-selection.md"
+}

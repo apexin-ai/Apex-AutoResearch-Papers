@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f18e2f7bb12190a7a36",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp qwen fewnerd seed456",
+  "task_key": "worker_exp_qwen_fewnerd_seed456_20260518T092846",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_qwen_fewnerd_seed456_20260518T092846_result.json",
+    "occurrence": 1,
+    "bytes": 810,
+    "sha256": "51ef2107dd9a8f051b9e8c2e24e4f701a9e1828311380813fd6c878cf6f87a1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理状态总结：\n\n**seed=456 Few-NERD 推理已启动**\n- tmux session: `fewnerd_s456`\n- GPU: cuda:2 (autodl-5090)\n- 配置: Qwen3-8B merged, N=8, T=1.0, seed=456, XGrammar constrained\n- 进度: 3,392/301,184 prompts (~1.1%)\n- 速度: 正在升温，最近 35-60 it/s\n- 预计完成: ~2-3 小时后（约 19:30-20:30 CST）\n- 日志: `output/exp_021_fewnerd_n8_seed456_run.log`\n- 完成后自动运行 `analyze_fewnerd_results.py`\n\n**seed=42 参考值（目标复现）:**\n| 指标 | 值 |\n|------|-----|\n| greedy_f1 | 0.7478 |\n| LP_sel_f1 | 0.7614 |\n| LP_delta | +1.36pp |\n| degen% | 10.13% |\n| LP_rho | 0.4215 |\n| n_total | 37,648 |\n\n推理完成后需要：验证 samples.jsonl 行数 → 运行分析 pipeline → 汇总 metrics。需要我定时检查进度吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-qwen-fewnerd-seed456.md"
+}

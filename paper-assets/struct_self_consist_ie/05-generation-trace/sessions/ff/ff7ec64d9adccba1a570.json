@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff7ec64d9adccba1a570",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper patch experiments",
+  "task_key": "worker_paper_patch-experiments_20260516T024604",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_patch-experiments_20260516T024604_result.json",
+    "occurrence": 1,
+    "bytes": 804,
+    "sha256": "5ec7db0a3ec736e5eea7285f2dbb108c928958c4fbba4c953e31c8d30d9dd73f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 7 tasks complete:\n\n1. **4B Scale Ablation** (lines 221-247) — new `\\paragraph` with `tab:scale-ablation` table and discussion\n2. **Free-form Ablation** (lines 249-256) — new `\\paragraph` discussing score compression intrinsicness, referencing `tab:freeform-ablation`\n3. **ε=0.05 Justification** (line 268) — tied definition with robustness across ε∈{0.01, 0.05, 0.10}\n4. **Fisher's z-test fix** (line 167) — now specifies NER vs RE ρ values being compared\n5. **RE (preliminary)** — added to all 3 table captions (lines 44, 106, 188)\n6. **3 Figure environments** — `fig:signal_heatmap` (line 91), `fig:selection_gap` (line 147), `fig:reliability` (line 283)\n7. **n=81 RE subset** (line 176) — high-complexity RE instances defined with Voting/SJ correlations"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-patch-experiments.md"
+}

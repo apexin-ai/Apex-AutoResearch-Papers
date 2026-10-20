@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3db34b907f1552e3373c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp statistical hardening",
+  "task_key": "worker_exp_statistical_hardening_20260518T064531",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_statistical_hardening_20260518T064531_result.json",
+    "occurrence": 1,
+    "bytes": 1856,
+    "sha256": "c0426b2157ddd9058a5f7d6b471b5a56af67d827529848b87d55d57f2e97e422"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 output files generated. Here's the complete summary:\n\n## 统计加固结果汇总\n\n### W1: Table 3 multi-seed (mean ± std)\n| Dataset | Seeds | Greedy F1 | LP Sel F1 | LP Δ (pp) | Oracle F1 |\n|---------|-------|-----------|-----------|-----------|-----------|\n| SciERC N=8 | 3 | 0.6458±0.0020 | 0.6462±0.0034 | +0.04±0.48 | 0.8198±0.0029 |\n| SciERC N=16 | 3 | 0.6441±0.0002 | 0.6488±0.0070 | +0.47±0.72 | 0.8370* |\n| CoNLL N=8 | 1 | 0.9079 | 0.8974 | -1.05 | 0.9483 |\n| Few-NERD N=8 | 1 | 0.7478 | 0.7614 | +1.36 | 0.8719 |\n\n### W2: ICC + Permutation Test (SciERC 6 entity types)\n- **ICC = -0.0038** (near zero, types are essentially independent)\n- **Permutation p = 0.2471** (observed ρ = 0.6000, not significant with only 6 types)\n- Effective df ≈ k-1 = 5\n\n### I8: Paired Bootstrap (LP selection vs Greedy)\n| Dataset | LP Δ (pp) | 95% CI | p-value |\n|---------|-----------|--------|---------|\n| SciERC N=8 | +0.61 | [-0.77, +1.99] | 0.1930 |\n| CoNLL N=8 | -1.05 | [-1.45, -0.66] | 1.0000 |\n| Few-NERD N=8 | **+1.36** | [+1.18, +1.53] | **0.0000** |\n\n- SciERC: LP gain positive but not significant (p=0.19)\n- CoNLL: LP hurts (high-accuracy regime, greedy already strong)\n- Few-NERD: LP gain highly significant (p<0.001, large dataset)\n\n### I9: Per-Type LP Heterogeneity (SciERC)\n| Entity Type | n | LP Δ (pp) | Bootstrap p |\n|------------|---|-----------|-------------|\n| Material | 127 | +2.47 | 0.17 |\n| Task | 196 | +0.97 | 0.32 |\n| Metric | 54 | +0.62 | 0.46 |\n| Method | 281 | +0.51 | 0.30 |\n| Generic | 202 | +0.06 | 0.49 |\n| OtherScientificTerm | 296 | -0.42 | 0.62 |\n\n- **Kruskal-Wallis p = 0.7962** (no significant heterogeneity across types)\n- Highest gain: Material (+2.47pp), lowest: OtherScientificTerm (-0.42pp)\n\nAll results saved to `output/statistical_hardening/`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-statistical-hardening.md"
+}

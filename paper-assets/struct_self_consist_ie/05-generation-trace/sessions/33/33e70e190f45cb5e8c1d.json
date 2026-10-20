@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33e70e190f45cb5e8c1d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code fix sample f1 dist",
+  "task_key": "worker_code_fix_sample_f1_dist_20260514T043208",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix_sample_f1_dist_20260514T043208_result.json",
+    "occurrence": 1,
+    "bytes": 667,
+    "sha256": "61c3ff362f71e8f3627d8595b45fb77ddc0605be7162200c0cafb137be2c6c1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files work. Here's a summary of changes:\n\n**evaluation.py**: Added `compute_sample_f1_distribution()` (lines ~170–220) that computes per-sample F1 against gold for every sample in every instance, returning aggregate stats (`mean`, `std`, `pct_f1_zero`) and per-instance breakdowns.\n\n**run_mvp_pilot.py**:\n- Imported `compute_sample_f1_distribution`\n- Added step 3b: calls the new function after consistency scoring\n- Added `sample_f1_mean`, `sample_f1_std`, `sample_f1_pct_zero` to the report dict\n- Added warning field when `pct_f1_zero > 30` recommending T=0.7\n- Updated `print_report` to display the three new metrics and the warning"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-sample-f1-dist.md"
+}

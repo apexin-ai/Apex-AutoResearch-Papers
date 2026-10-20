@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3dac1954a45a0ce27a4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run 5090b t ablation",
+  "task_key": "worker_run_5090b_t_ablation_20260520T223630",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_5090b_t_ablation_20260520T223630_result.json",
+    "occurrence": 1,
+    "bytes": 945,
+    "sha256": "060141662de4ee75fdd9c7eeb1362fdb10bf474f9b86abcc099e00b67aecd68b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部正常运行：\n\n| GPU | 实验 | 显存 | 状态 |\n|-----|------|------|------|\n| cuda:0 | FewNERD T=0.5 | 30234/32607 MiB | 推理中，正在处理 301184 prompts |\n| cuda:1 | FewNERD T=0.8 | 30232/32607 MiB | 推理中 |\n| cuda:2 | FewNERD T=1.2 | 30240/32607 MiB | 推理中 |\n| cuda:3 | CoNLL T=0.5 | 30226/32607 MiB | 推理中，~10% (2768/27624)，~6700 tok/s |\n\n**配置汇总**：\n- 模型：FewNERD 用 `qwen3-8b-fewnerd-exp021-merged`，CoNLL 用 `qwen3-8b-conll2003-merged`\n- 脚本：`code/run_mvp_pilot.py`，N=8，seed=42，`--collect_logprobs`\n- tmux sessions：`fewnerd_t05`, `fewnerd_t08`, `fewnerd_t12`, `conll_t05`\n- Registry：4 个实验均注册为 RUNNING（`exp_fewnerd_t05_s42`, `exp_fewnerd_t08_s42`, `exp_fewnerd_t12_s42`, `exp_conll_t05_s42`）\n\nFewNERD 37648 instances × 8 samples 预计每个温度跑 2-4 小时，CoNLL 3453 instances 预计 30-60 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-5090b-t-ablation.md"
+}

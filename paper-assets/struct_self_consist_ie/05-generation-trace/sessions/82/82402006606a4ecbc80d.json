@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82402006606a4ecbc80d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops disk cleanup investigation",
+  "task_key": "worker_ops_disk_cleanup_investigation_20260516T094423",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_disk_cleanup_investigation_20260516T094423_result.json",
+    "occurrence": 1,
+    "bytes": 753,
+    "sha256": "6a1f79566378a8993afc628e5769c392b85eae546bc1ade54640b3468a4fcd2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理方案已保存到 `/root/autodl-tmp/struct_self_consist_ie/output/d112_disk_cleanup/cleanup_plan.md`。\n\n**核心结论**：仅 Tier 1（删 4 个过时/中间目录）即可释放 ~41.3GB，满足 ≥32GB 目标：\n\n| 路径 | 大小 | 原因 |\n|------|------|------|\n| `qwen3-8b-scierc-merged` | 16G | 旧 v1，已被 v2 取代 |\n| `qwen3-8b-scierc-merged-v2-ckpt400` | 16G | v2 中间 ckpt，非最终版 |\n| `qwen3-8b-scierc-lora` | 1.7G | 旧 v1 LoRA，已被 lora-v2 取代 |\n| `qwen3-4b-conll2003-merged-ckpt4200` | 7.6G | 中间 ckpt，最终版已存在 |\n\nft_002_v2（`qwen3-8b-scierc-lora-v2` + `qwen3-8b-scierc-merged-v2`）及各 dataset 最新 LoRA 均保留。未执行任何删除操作，等待确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-investigation.md"
+}

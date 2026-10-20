@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb9649b27ffe4371e5f5",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops registry metrics update",
+  "task_key": "worker_ops_registry_metrics_update_20260515T113729",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_registry_metrics_update_20260515T113729_result.json",
+    "occurrence": 1,
+    "bytes": 1317,
+    "sha256": "91e7415b3e6fc9e1e66d8ab8898159eaf6d7112e66a136a5bf985e40a213e3de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部更新完成。汇总：\n\n### exp_001_n16_seed456 — Qwen SciERC N=16 seed456 → DONE\n\n| Metric | NER | RE |\n|--------|-----|------|\n| Greedy F1 | 0.6617 | 0.4215 |\n| Oracle F1 | 0.8075 | 0.4748 |\n| ρ(SJ) | **0.4134** | 0.1966 |\n| ρ(FK) | 0.3448 | 0.2179 |\n| ρ(VC) | 0.4042 | 0.2155 |\n| ρ(LP) | 0.2136 | **0.4006** |\n| ρ(EM) | 0.2907 | 0.028 |\n| AUROC(SJ) | **0.7094** | — |\n| AUROC(FK) | 0.6499 | — |\n| AUROC(VC) | 0.6776 | — |\n| AUROC(LP) | 0.6121 | — |\n| AUROC(EM) | 0.6542 | — |\n\n### exp_017_llama_conll_n16_r1024 — LLaMA CoNLL N=16 seed42 → DONE\n\n| Metric | Value |\n|--------|-------|\n| Greedy NER F1 | 0.9264 |\n| Oracle NER F1 | 0.9494 |\n| ρ(FK) | **0.8095** |\n| ρ(VC) | 0.7949 |\n| ρ(SJ) | 0.1815 |\n| AUROC(FK) | **0.9070** |\n| AUROC(VC) | 0.8757 |\n\n### exp_017_llama_conll_n16_s456_r1024 — LLaMA CoNLL N=16 seed456 → DONE\n\n| Metric | Value |\n|--------|-------|\n| Greedy NER F1 | 0.9265 |\n| Oracle NER F1 | 0.9499 |\n| ρ(FK) | **0.8085** |\n| ρ(VC) | 0.7968 |\n| ρ(SJ) | 0.1895 |\n| AUROC(FK) | **0.9059** |\n| AUROC(VC) | 0.8775 |\n\nCoNLL AUROC 使用 `>=median` 阈值（median F1=1.0，87.6% 实例完全正确，`>median` 无正例）。CoNLL 上 FK 和 VC 显著优于其他信号；SciERC 上 SJ 最强。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-metrics-update.md"
+}

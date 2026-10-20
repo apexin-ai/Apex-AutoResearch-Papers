@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38b095f5061c16112ac8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "knowledge appendix error entropy addition",
+  "task_key": "worker_knowledge_appendix-error-entropy-addition_20260520T030113",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_knowledge_appendix-error-entropy-addition_20260520T030113_result.json",
+    "occurrence": 1,
+    "bytes": 575,
+    "sha256": "b611470b8053ebdf8faafd5d408a21ca5ff0a7316f8c4fed242776f636b517be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**插入位置**：`\\subsection{Few-Shot Error Correlation Analysis}`（`\\label{app:fs_error}`），原 Jaccard 段落之后、closing 句之前（第 1625-1628 行）。\n\n**插入内容**（3 句）：\n- SciERC entropy 无显著差异（0.483 vs 0.485, p=0.81）\n- CoNLL entropy 在 FS 下显著更高（0.209 vs 0.184, p<10⁻⁹, r=0.106 small effect, Wilcoxon signed-rank）\n- 更新了 closing 句：error overlap preserved + entropy may rise → nature rather than diversity of errors\n\n所有数值与 `fs_vs_zs_error_correlation.json` 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-appendix-error-entropy-addition.md"
+}

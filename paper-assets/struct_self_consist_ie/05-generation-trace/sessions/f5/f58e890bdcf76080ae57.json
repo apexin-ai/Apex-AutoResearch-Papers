@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f58e890bdcf76080ae57",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 005 v2",
+  "task_key": "worker_code_exp_005_v2_20260514T152032",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_005_v2_20260514T152032_result.json",
+    "occurrence": 1,
+    "bytes": 1417,
+    "sha256": "a6fde0f563e1b2a9aabd713fe999d5ba3507753297f1265b535de4ec17e6e8e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 和 artifact 已更新。\n\n## exp-005 v2 结果汇总\n\n### 温度敏感性对比表（Full-set, Spearman ρ）\n\n| Signal | T=0.7 NER | T=1.0 NER | Δρ NER | Class | T=0.7 RE | T=1.0 RE | Δρ RE | Class |\n|---|---|---|---|---|---|---|---|---|\n| **soft_jaccard** | 0.391 | 0.378 | +0.014 | MODERATE | 0.060 | 0.069 | -0.010 | ROBUST |\n| **fleiss_kappa** | 0.334 | 0.274 | **+0.060** | SENSITIVE | 0.105 | 0.202 | **-0.097** | SENSITIVE |\n| **exact_match** | 0.295 | 0.263 | +0.033 | MODERATE | -0.089 | -0.098 | +0.008 | ROBUST |\n| **voting_conf** | 0.457 | 0.445 | +0.012 | MODERATE | 0.515 | 0.501 | +0.014 | MODERATE |\n| **mean_logprob** | N/A | 0.134 | N/A | N/A | N/A | 0.361 | N/A | N/A |\n\n### 关键发现\n\n1. **FK 温度敏感**：NER Δ=+0.06, RE Δ=-0.097 — 确认之前 exp_005 结论\n2. **SJ 近似鲁棒**：RE Δ=-0.010 (ROBUST)，NER Δ=+0.014 (MODERATE, 略超 0.01 阈值)\n3. **voting_conf 两端 MODERATE**：Δρ ≈ 0.012-0.014，接近鲁棒边界\n4. **EM 混合**：NER MODERATE (Δ=+0.033), RE ROBUST (Δ=+0.008)\n5. **所有 bootstrap 95% CI 跨越零**——温度差异无统计学显著性\n6. **Conditional filtering >> temperature tuning**：NER 条件过滤改善最大 0.12 vs 温度最大 0.06；RE 条件过滤改善最大 0.54 vs 温度最大 0.10\n7. **logprob** 仅有 T=1.0 数据（NER ρ=0.134, RE ρ=0.361），无法做温度对比"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-005-v2.md"
+}

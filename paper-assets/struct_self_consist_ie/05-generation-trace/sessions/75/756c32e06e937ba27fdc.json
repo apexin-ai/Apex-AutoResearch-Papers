@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "756c32e06e937ba27fdc",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "audit data integrity",
+  "task_key": "worker_audit_data_integrity_20260523T102309",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_data_integrity_20260523T102309.log",
+    "occurrence": 1,
+    "bytes": 868301,
+    "sha256": "f8341dd0a77279f262c357f1e53a408b29d7bdd85223d389267db3a2047140bb"
+  },
+  "statistics": {
+    "messages": 282,
+    "user_turns": 2,
+    "tool_calls": 98,
+    "roles": {
+      "log": 1,
+      "system": 23,
+      "record": 2,
+      "assistant": 57,
+      "tool_call": 98,
+      "tool_result": 98,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "756c32e06e937ba27fdc-part-0001.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 87,
+      "chunks": [
+        {
+          "path": "756c32e06e937ba27fdc-part-0001.json",
+          "message_count": 87
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 179,
+      "chunks": [
+        {
+          "path": "756c32e06e937ba27fdc-part-0001.json",
+          "message_count": 77
+        },
+        {
+          "path": "756c32e06e937ba27fdc-part-0002.json",
+          "message_count": 102
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-data-integrity.md"
+}

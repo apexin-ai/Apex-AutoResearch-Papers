@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44435188db3f21cd25ce",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5090 check n16 s42",
+  "task_key": "worker_ssh_5090_check_n16_s42_20260521T145133",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090_check_n16_s42_20260521T145133_result.json",
+    "occurrence": 1,
+    "bytes": 998,
+    "sha256": "c0fe87851698116330a63bc5e07c4cab007bd7d3f3dd0da7aae3df32aeeb74dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告：FewNERD N=16 s42\n\n**进程**: 运行中 (PID 32118, cuda:0, 启动 19:23, 已运行 ~3.5h)\n\n**阶段**: vLLM batch generation（无中间进度输出）\n- Prompt rendering 已完成 (37648/37648, 耗时 1m34s)\n- 进入 vLLM 推理阶段后脚本不输出进度，完成后才一次性写 `samples.jsonl` + `report.json`\n- 输出目录 `output/fewnerd_n16_s42/` 目前为空（正常，脚本在生成全部完成后才写入）\n\n**GPU 状态**:\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 (本实验) | 80% | 30726/32607 MiB |\n| 1 (fewnerd_mf4v2_s42) | 85% | 30204 MiB |\n| 2 (fewnerd_mf4v2_s123) | 81% | 30230 MiB |\n| 3 (e2_pretrained_fewnerd_s456) | 67% | 29946 MiB |\n\n**预估**: n_samples=16 × 37648 instances = 602,368 次生成。参考 n=8 的 fewnerd_mf4v2_seed42 前一次运行（约 1h 完成），n=16 大约需要 4-6h 总时长，预计还需 ~1-2.5h 完成。\n\n4 卡全满，都在跑实验，状态正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5090-check-n16-s42.md"
+}

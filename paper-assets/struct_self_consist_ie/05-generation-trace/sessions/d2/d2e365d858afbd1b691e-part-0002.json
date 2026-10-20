@@ -1,0 +1,1359 @@
+{
+  "schema_version": "1.0",
+  "session_id": "d2e365d858afbd1b691e",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 101,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VPhHyfhcHgcdWA7NEStaF8",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/compute_signals.py",
+                "old_string": "    # --- Degeneracy ---\n    degen_flags = [compute_degeneracy(inst) for inst in instances]\n    n_degen = sum(degen_flags)\n    degen_rate = n_degen / len(instances) if instances else 0.0",
+                "new_string": "    # --- Degeneracy (constant-F1 definition for scaling curve) ---\n    degen_f1_flags = [compute_degeneracy_f1(inst) for inst in instances]\n    n_degen_f1 = sum(degen_f1_flags)\n    degen_rate = n_degen_f1 / len(instances) if instances else 0.0\n\n    # Entity-set degeneracy (for bootstrap stratification)\n    degen_set_flags = [compute_degeneracy_set(inst) for inst in instances]\n    n_degen_set = sum(degen_set_flags)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "6a04a802-e907-4b83-9b46-bb829580b53b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GG41T9fwtfTnXngg6ENSym",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1682,
+                "cache_read_input_tokens": 111312,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1682
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-19T18:26:58.786Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VPhHyfhcHgcdWA7NEStaF8",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/compute_signals.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "64ad748a-0104-4728-aaa4-e5f69d77a0b7",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/compute_signals.py",
+              "oldString": "    # --- Degeneracy ---\n    degen_flags = [compute_degeneracy(inst) for inst in instances]\n    n_degen = sum(degen_flags)\n    degen_rate = n_degen / len(instances) if instances else 0.0",
+              "newString": "    # --- Degeneracy (constant-F1 definition for scaling curve) ---\n    degen_f1_flags = [compute_degeneracy_f1(inst) for inst in instances]\n    n_degen_f1 = sum(degen_f1_flags)\n    degen_rate = n_degen_f1 / len(instances) if instances else 0.0\n\n    # Entity-set degeneracy (for bootstrap stratification)\n    degen_set_flags = [compute_degeneracy_set(inst) for inst in instances]\n    n_degen_set = sum(degen_set_flags)",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"Compute 5 confidence signals + entity construction pipeline for NER.\n\nSignals: LP (Log Probability), SJ (Soft Jaccard), FK (Fleiss Kappa),\n         VC (Vote Count), EM (Exact Match Rate)\nConstruction: greedy, LP selection, majority vote, consensus θ=2/N,\n              LP-weighted construction (high=0.5, medium=2/N), oracle\n\nUsage:\n    # Process all datasets under a model output directory\n    python compute_signals.py --input-dir /path/to/output/72b_zeroshot\n\n    # Process specific dataset with model metadata\n    python compute_signals.py --input-dir /path/to/output/7b_ft \\\n        --dataset scierc --model-size 7 --regime ft\n\n    # Custom output directory\n    python compute_signals.py --input-dir /path/to/output/72b_zeroshot \\\n        --output-dir /path/to/results\n\nExpected input: <input-dir>/<dataset>/samples.jsonl  (or <input-dir>/samples.jsonl)\nOutput: full_signal_report.json + <dataset>_per_instance.json per dataset\n\"\"\"\n\nimport argparse\nimport json\nimport math\nimport os\nimport statistics\nimport sys\nfrom collections import Counter, defaultdict\n\nimport numpy as np\nfrom scipy.stats import spearmanr\n\nCODE_DIR = os.environ.get(\n    \"STRUCT_CODE_DIR\",\n    \"/root/autodl-tmp/struct_self_consist_ie/code\",\n)\nif os.path.isdir(CODE_DIR):\n    sys.path.insert(0, CODE_DIR)\n\ntry:\n    from consistency import fleiss_kappa_surface, structural_consistency_soft_jaccard\n    HAS_CONSISTENCY = True\nexcept ImportError:\n    HAS_CONSISTENCY = False\n    print(\"WARNING: consistency module not found; SJ/FK signals will be skipped\")\n\n\n# ---------------------------------------------------------------------------\n# Core metrics\n# ---------------------------------------------------------------------------\n\ndef compute_entity_f1(pred_entities, gold_entities):\n    pred = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in pred_entities}\n    gold = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold_entities}\n    if not gold and not pred:\n        return 1.0\n    if not gold or not pred:\n        return 0.0\n    tp = len(pred & gold)\n    if tp == 0:\n        return 0.0\n    p = tp / len(pred)\n    r = tp / len(gold)\n    return 2 * p * r / (p + r)\n\n\ndef compute_degeneracy_f1(inst):\n    \"\"\"Constant-F1 degeneracy: all N samples have identical F1 against gold.\"\"\"\n    gold_ents = inst[\"gold\"][\"entities\"]\n    f1s = [compute_entity_f1(s.get(\"entities\", []), gold_ents)\n           for s in inst[\"samples\"]]\n    return len(set(round(f, 10) for f in f1s)) <= 1\n\n\ndef compute_degeneracy_set(inst):\n    \"\"\"Entity-set degeneracy: all N samples produce identical entity sets.\"\"\"\n    key_sets = set()\n    for s in inst[\"samples\"]:\n        ks = frozenset((e[\"start\"], e[\"end\"], e[\"type\"])\n                       for e in s.get(\"entities\", []))\n        key_sets.add(ks)\n    return len(key_sets) == 1\n\n\n# ---------------------------------------------------------------------------\n# Signal computation\n# ---------------------------------------------------------------------------\n\ndef compute_mean_logprob(samples, inst):\n    lps = []\n    for i, s in enumerate(samples):\n        lp = s.get(\"mean_logprob\")\n        if lp is None and \"logprobs\" in inst and i < len(inst[\"logprobs\"]):\n            lp = inst[\"logprobs\"][i]\n        if lp is not None and np.isfinite(lp):\n            lps.append(lp)\n    return float(np.mean(lps)) if lps else float(\"nan\")\n\n\ndef compute_exact_match_rate(samples):\n    keys = [frozenset((e[\"text\"], e[\"type\"]) for e in s.get(\"entities\", []))\n            for s in samples]\n    if not keys:\n        return 0.0\n    counter = Counter(keys)\n    return counter.most_common(1)[0][1] / len(samples)\n\n\ndef compute_voting_confidence(samples):\n    N = len(samples)\n    if N == 0:\n        return 0.0\n    counter = Counter()\n    for s in samples:\n        for e in s.get(\"entities\", []):\n            counter[(e[\"text\"], e[\"type\"])] += 1\n    if not counter:\n        return 0.0\n    return float(np.mean([v / N for v in counter.values()]))\n\n\ndef safe_spearman(x, y):\n    x, y = np.asarray(x, dtype=float), np.asarray(y, dtype=float)\n    mask = np.isfinite(x) & np.isfinite(y)\n    x, y = x[mask], y[mask]\n    if len(x) < 3:\n        return float(\"nan\")\n    return float(spearmanr(x, y).statistic)\n\n\n# ---------------------------------------------------------------------------\n# Construction pipeline\n# ---------------------------------------------------------------------------\n\ndef consensus_construct(inst, high_thresh=0.5, medium_thresh=0.25):\n    \"\"\"LP-weighted entity construction with two-tier thresholding.\n\n    Entities with freq > high_thresh are auto-included.\n    Entities with freq in (medium_thresh, high_thresh] are included only if\n    their contributing samples' mean LP exceeds the instance median LP.\n    \"\"\"\n    samples = inst[\"samples\"]\n    N = len(samples)\n\n    entity_counts = Counter()\n    entity_sample_indices = defaultdict(list)\n    for i, s in enumerate(samples):\n        seen = set()\n        for e in s.get(\"entities\", []):\n            key = (e[\"start\"], e[\"end\"], e[\"type\"])\n            if key not in seen:\n                entity_counts[key] += 1\n                entity_sample_indices[key].append(i)\n                seen.add(key)\n\n    sample_lps = []\n    for i, s in enumerate(samples):\n        lp = s.get(\"mean_logprob\")\n        if lp is None and \"logprobs\" in inst and i < len(inst[\"logprobs\"]):\n            lp = inst[\"logprobs\"][i]\n        if lp is not None:\n            sample_lps.append(lp)\n    instance_median_lp = statistics.median(sample_lps) if sample_lps else 0.0\n\n    consensus = []\n    for entity_key, count in entity_counts.items():\n        freq = count / N\n        if freq > high_thresh:\n            consensus.append(entity_key)\n        elif freq > medium_thresh:\n            contributing_lps = []\n            for i in entity_sample_indices[entity_key]:\n                lp = samples[i].get(\"mean_logprob\")\n                if lp is None and \"logprobs\" in inst and i < len(inst[\"logprobs\"]):\n                    lp = inst[\"logprobs\"][i]\n                if lp is not None:\n                    contributing_lps.append(lp)\n            if contributing_lps:\n                mean_lp = statistics.mean(contributing_lps)\n                if mean_lp > instance_median_lp:\n                    consensus.append(entity_key)\n\n    return [{\"start\": s, \"end\": e, \"type\": t} for s, e, t in consensus]\n\n\ndef majority_vote_span(inst, threshold=0.5):\n    samples = inst[\"samples\"]\n    N = len(samples)\n    entity_counts = Counter()\n    for s in samples:\n        seen = set()\n        for e in s.get(\"entities\", []):\n            key = (e[\"start\"], e[\"end\"], e[\"type\"])\n            if key not in seen:\n                entity_counts[key] += 1\n                seen.add(key)\n    return [{\"start\": k[0], \"end\": k[1], \"type\": k[2]}\n            for k, c in entity_counts.items() if c / N > threshold]\n\n\n# ---------------------------------------------------------------------------\n# Data loading & helpers\n# ---------------------------------------------------------------------------\n\ndef load_data(path, gold_filter=True):\n    instances = []\n    with open(path) as f:\n        for line in f:\n            if not line.strip():\n                continue\n            obj = json.loads(line)\n            if gold_filter and not obj[\"gold\"].get(\"entities\", []):\n                continue\n            instances.append(obj)\n    return instances\n\n\ndef bootstrap_ci(values, n_boot=2000, seed=42):\n    arr = np.array(values)\n    n = len(arr)\n    if n == 0:\n        return {\"mean\": 0.0, \"ci_lo\": 0.0, \"ci_hi\": 0.0}\n    rng = np.random.RandomState(seed)\n    boot_means = np.array([arr[rng.randint(0, n, n)].mean() for _ in range(n_boot)])\n    boot_means.sort()\n    return {\n        \"mean\": float(arr.mean()),\n        \"ci_lo\": float(boot_means[int(0.025 * n_boot)]),\n        \"ci_hi\": float(boot_means[int(0.975 * n_boot)]),\n    }\n\n\n# ---------------------------------------------------------------------------\n# Main evaluation\n# ---------------------------------------------------------------------------\n\ndef evaluate_dataset(name, path, subtask=\"ner\"):\n    \"\"\"Full signal + construction analysis on one dataset.\"\"\"\n    print(f\"\\n{'='*60}\")\n    print(f\"  {name}\")\n    print(f\"{'='*60}\")\n\n    instances = load_data(path, gold_filter=True)\n    print(f\"  Loaded {len(instances)} instances (gold-filtered)\")\n    if not instances:\n        return None\n\n    N_samples = len(instances[0][\"samples\"])\n\n    # --- 5 signals ---\n    sj_vals, fk_vals = [], []\n    if HAS_CONSISTENCY:\n        for inst in instances:\n            sj_vals.append(structural_consistency_soft_jaccard(\n                inst[\"samples\"], subtask=subtask))\n            fk_vals.append(fleiss_kappa_surface(\n                inst[\"samples\"], subtask=subtask))\n\n    lp_vals, em_vals, vc_vals, f1_vals = [], [], [], []\n    for inst in instances:\n        samples = inst[\"samples\"]\n        gold = inst[\"gold\"]\n        greedy = inst.get(\"greedy\", samples[0])\n        lp_vals.append(compute_mean_logprob(samples, inst))\n        em_vals.append(compute_exact_match_rate(samples))\n        vc_vals.append(compute_voting_confidence(samples))\n        f1_vals.append(compute_entity_f1(\n            greedy.get(\"entities\", []), gold[\"entities\"]))\n\n    signals = {\n        \"LP\": np.array(lp_vals, dtype=float),\n        \"EM\": np.array(em_vals, dtype=float),\n        \"VC\": np.array(vc_vals, dtype=float),\n    }\n    if HAS_CONSISTENCY:\n        signals[\"SJ\"] = np.array(sj_vals, dtype=float)\n        signals[\"FK\"] = np.array(fk_vals, dtype=float)\n\n    f1_arr = np.array(f1_vals, dtype=float)\n\n    signal_results = {}\n    for sig_name in [\"SJ\", \"FK\", \"LP\", \"EM\", \"VC\"]:\n        if sig_name in signals:\n            signal_results[sig_name] = {\n                \"rho\": safe_spearman(signals[sig_name], f1_arr)\n            }\n\n    # --- Baselines & construction ---\n    greedy_f1s = f1_vals\n    oracle_f1s, lp_selection_f1s = [], []\n\n    for inst in instances:\n        gold_ents = inst[\"gold\"][\"entities\"]\n        sample_f1s = [compute_entity_f1(s.get(\"entities\", []), gold_ents)\n                      for s in inst[\"samples\"]]\n        oracle_f1s.append(max(sample_f1s))\n\n        best_lp_idx, best_lp = 0, float(\"-inf\")\n        for i, s in enumerate(inst[\"samples\"]):\n            lp = s.get(\"mean_logprob\")\n            if lp is None and \"logprobs\" in inst and i < len(inst[\"logprobs\"]):\n                lp = inst[\"logprobs\"][i]\n            if lp is not None and lp > best_lp:\n                best_lp = lp\n                best_lp_idx = i\n        lp_selection_f1s.append(compute_entity_f1(\n            inst[\"samples\"][best_lp_idx].get(\"entities\", []), gold_ents))\n\n    mv_f1s = [compute_entity_f1(majority_vote_span(inst),\n              inst[\"gold\"][\"entities\"]) for inst in instances]\n\n    theta = 2 / N_samples\n    consensus_2n_f1s = [compute_entity_f1(\n        consensus_construct(inst, high_thresh=theta, medium_thresh=0.0),\n        inst[\"gold\"][\"entities\"]) for inst in instances]\n\n    consensus_lp_f1s = [compute_entity_f1(\n        consensus_construct(inst, high_thresh=0.5, medium_thresh=theta),\n        inst[\"gold\"][\"entities\"]) for inst in instances]\n\n    # --- Degeneracy ---\n    degen_flags = [compute_degeneracy(inst) for inst in instances]\n    n_degen = sum(degen_flags)\n    degen_rate = n_degen / len(instances) if instances else 0.0\n\n    result = {\n        \"name\": name,\n        \"n_instances\": len(instances),\n        \"n_samples\": N_samples,\n        \"signals\": signal_results,\n        \"baselines\": {\n            \"greedy\": bootstrap_ci(greedy_f1s),\n            \"lp_selection\": bootstrap_ci(lp_selection_f1s),\n            \"majority_vote\": bootstrap_ci(mv_f1s),\n            \"oracle\": bootstrap_ci(oracle_f1s),\n            \"consensus_theta2n\": bootstrap_ci(consensus_2n_f1s),\n            \"consensus_lp_weighted\": bootstrap_ci(consensus_lp_f1s),\n        },\n        \"consensus_variants\": {},\n        \"degeneracy_rate\": degen_rate,\n        \"degeneracy_count\": n_degen,\n        \"lp_selection_delta\": float(np.mean(lp_selection_f1s) - np.mean(greedy_f1s)),\n    }\n\n    # Additional threshold configs\n    for cfg in [{\"high\": 0.5, \"medium\": 0.1},\n                {\"high\": 0.6, \"medium\": 0.2},\n                {\"high\": 0.7, \"medium\": 0.3}]:\n        key = f\"high={cfg['high']}_medium={cfg['medium']}\"\n        cc_f1s = [compute_entity_f1(\n            consensus_construct(inst, high_thresh=cfg[\"high\"],\n                                medium_thresh=cfg[\"medium\"]),\n            inst[\"gold\"][\"entities\"]) for inst in instances]\n        result[\"consensus_variants\"][key] = bootstrap_ci(cc_f1s)\n\n    # --- Print summary ---\n    print(f\"  N={N_samples}\")\n    print(f\"\\n  Signal correlations (Spearman rho vs greedy F1):\")\n    for sig in [\"LP\", \"SJ\", \"FK\", \"VC\", \"EM\"]:\n        if sig in signal_results:\n            print(f\"    {sig:4s}: rho={signal_results[sig]['rho']:.4f}\")\n\n    print(f\"\\n  Entity F1 (mean [95% CI]):\")\n    for label, key in [(\"Greedy\", \"greedy\"), (\"LP Selection\", \"lp_selection\"),\n                       (\"Majority Vote\", \"majority_vote\"),\n                       (\"Consensus theta=2/N\", \"consensus_theta2n\"),\n                       (\"Consensus LP-wt\", \"consensus_lp_weighted\"),\n                       (\"Oracle\", \"oracle\")]:\n        ci = result[\"baselines\"][key]\n        print(f\"    {label:25s} {ci['mean']:.4f}  \"\n              f\"[{ci['ci_lo']:.4f}, {ci['ci_hi']:.4f}]\")\n\n    print(f\"\\n  Degeneracy: {n_degen}/{len(instances)} ({degen_rate*100:.1f}%)\")\n\n    # Attach per-instance arrays (for bootstrap script)\n    result[\"_per_instance\"] = {\n        \"greedy_f1\": greedy_f1s,\n        \"construction_lp_f1\": consensus_lp_f1s,\n        \"oracle_f1\": oracle_f1s,\n        \"degenerate\": degen_flags,\n    }\n\n    return result\n\n\ndef find_datasets(input_dir):\n    \"\"\"Auto-detect dataset directories under input_dir.\"\"\"\n    datasets = {}\n    for name in [\"scierc\", \"conll2003\", \"fewnerd\"]:\n        path = os.path.join(input_dir, name, \"samples.jsonl\")\n        if os.path.exists(path):\n            datasets[name] = path\n    top_path = os.path.join(input_dir, \"samples.jsonl\")\n    if os.path.exists(top_path) and not datasets:\n        ds_name = os.path.basename(input_dir)\n        for known in [\"scierc\", \"conll\", \"fewnerd\"]:\n            if known in ds_name.lower():\n                ds_name = known\n                break\n        datasets[ds_name] = top_path\n    return datasets\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Compute 5 signals + construction pipeline\")\n    parser.add_argument(\"--input-dir\", required=True,\n                        help=\"Model output directory\")\n    parser.add_argument(\"--output-dir\", default=None,\n                        help=\"Output directory (default: input-dir)\")\n    parser.add_argument(\"--dataset\", default=None, nargs=\"+\",\n                        help=\"Dataset(s) to process (default: auto-detect)\")\n    parser.add_argument(\"--model-size\", default=None,\n                        help=\"Model size label (e.g. 7, 14, 32, 72)\")\n    parser.add_argument(\"--regime\", default=None, choices=[\"ft\", \"zs\", \"fs\"],\n                        help=\"Training regime\")\n    args = parser.parse_args()\n\n    output_dir = args.output_dir or args.input_dir\n    os.makedirs(output_dir, exist_ok=True)\n\n    datasets = find_datasets(args.input_dir)\n    if args.dataset:\n        datasets = {k: v for k, v in datasets.items() if k in args.dataset}\n\n    if not datasets:\n        print(f\"ERROR: No samples.jsonl found under {args.input_dir}\")\n        sys.exit(1)\n\n    all_results = {}\n    for ds_name, path in sorted(datasets.items()):\n        result = evaluate_dataset(ds_name, path)\n        if result:\n            if args.model_size:\n                result[\"model_size\"] = args.model_size\n            if args.regime:\n                result[\"regime\"] = args.regime\n            all_results[ds_name] = result\n\n    # Save report (without bulky per-instance arrays)\n    report = {}\n    for ds_name, r in all_results.items():\n        report[ds_name] = {k: v for k, v in r.items() if k != \"_per_instance\"}\n\n    report_path = os.path.join(output_dir, \"full_signal_report.json\")\n    with open(report_path, \"w\") as f:\n        json.dump(report, f, indent=2, default=str)\n    print(f\"\\nReport saved to {report_path}\")\n\n    # Save per-instance arrays for downstream bootstrap analysis\n    for ds_name, r in all_results.items():\n        pi = r.get(\"_per_instance\")\n        if pi:\n            pi_path = os.path.join(output_dir,\n                                   f\"{ds_name}_per_instance.json\")\n            with open(pi_path, \"w\") as f:\n                json.dump(pi, f)\n            print(f\"Per-instance data: {pi_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 321,
+                  "oldLines": 11,
+                  "newStart": 321,
+                  "newLines": 15,
+                  "lines": [
+                    "         consensus_construct(inst, high_thresh=0.5, medium_thresh=theta),",
+                    "         inst[\"gold\"][\"entities\"]) for inst in instances]",
+                    " ",
+                    "-    # --- Degeneracy ---",
+                    "-    degen_flags = [compute_degeneracy(inst) for inst in instances]",
+                    "-    n_degen = sum(degen_flags)",
+                    "-    degen_rate = n_degen / len(instances) if instances else 0.0",
+                    "+    # --- Degeneracy (constant-F1 definition for scaling curve) ---",
+                    "+    degen_f1_flags = [compute_degeneracy_f1(inst) for inst in instances]",
+                    "+    n_degen_f1 = sum(degen_f1_flags)",
+                    "+    degen_rate = n_degen_f1 / len(instances) if instances else 0.0",
+                    " ",
+                    "+    # Entity-set degeneracy (for bootstrap stratification)",
+                    "+    degen_set_flags = [compute_degeneracy_set(inst) for inst in instances]",
+                    "+    n_degen_set = sum(degen_set_flags)",
+                    "+",
+                    "     result = {",
+                    "         \"name\": name,",
+                    "         \"n_instances\": len(instances),"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0115Tz7dFM5hB439eHupYFPA",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/compute_signals.py",
+                "old_string": "        \"degeneracy_rate\": degen_rate,\n        \"degeneracy_count\": n_degen,\n        \"lp_selection_delta\": float(np.mean(lp_selection_f1s) - np.mean(greedy_f1s)),",
+                "new_string": "        \"degeneracy_rate\": degen_rate,\n        \"degeneracy_count\": n_degen_f1,\n        \"degeneracy_set_count\": n_degen_set,\n        \"lp_selection_delta\": float(np.mean(lp_selection_f1s) - np.mean(greedy_f1s)),"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "0bf013f1-95e6-4c1f-ada3-9f8328c3e726",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GK816zBHJMVC2R3UmbfVE2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2240,
+                "cache_read_input_tokens": 111312,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2240
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-19T18:27:03.588Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0115Tz7dFM5hB439eHupYFPA",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/compute_signals.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "5beaab27-9b57-4fe7-a808-661a44c90e20",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/compute_signals.py",
+              "oldString": "        \"degeneracy_rate\": degen_rate,\n        \"degeneracy_count\": n_degen,\n        \"lp_selection_delta\": float(np.mean(lp_selection_f1s) - np.mean(greedy_f1s)),",
+              "newString": "        \"degeneracy_rate\": degen_rate,\n        \"degeneracy_count\": n_degen_f1,\n        \"degeneracy_set_count\": n_degen_set,\n        \"lp_selection_delta\": float(np.mean(lp_selection_f1s) - np.mean(greedy_f1s)),",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"Compute 5 confidence signals + entity construction pipeline for NER.\n\nSignals: LP (Log Probability), SJ (Soft Jaccard), FK (Fleiss Kappa),\n         VC (Vote Count), EM (Exact Match Rate)\nConstruction: greedy, LP selection, majority vote, consensus θ=2/N,\n              LP-weighted construction (high=0.5, medium=2/N), oracle\n\nUsage:\n    # Process all datasets under a model output directory\n    python compute_signals.py --input-dir /path/to/output/72b_zeroshot\n\n    # Process specific dataset with model metadata\n    python compute_signals.py --input-dir /path/to/output/7b_ft \\\n        --dataset scierc --model-size 7 --regime ft\n\n    # Custom output directory\n    python compute_signals.py --input-dir /path/to/output/72b_zeroshot \\\n        --output-dir /path/to/results\n\nExpected input: <input-dir>/<dataset>/samples.jsonl  (or <input-dir>/samples.jsonl)\nOutput: full_signal_report.json + <dataset>_per_instance.json per dataset\n\"\"\"\n\nimport argparse\nimport json\nimport math\nimport os\nimport statistics\nimport sys\nfrom collections import Counter, defaultdict\n\nimport numpy as np\nfrom scipy.stats import spearmanr\n\nCODE_DIR = os.environ.get(\n    \"STRUCT_CODE_DIR\",\n    \"/root/autodl-tmp/struct_self_consist_ie/code\",\n)\nif os.path.isdir(CODE_DIR):\n    sys.path.insert(0, CODE_DIR)\n\ntry:\n    from consistency import fleiss_kappa_surface, structural_consistency_soft_jaccard\n    HAS_CONSISTENCY = True\nexcept ImportError:\n    HAS_CONSISTENCY = False\n    print(\"WARNING: consistency module not found; SJ/FK signals will be skipped\")\n\n\n# ---------------------------------------------------------------------------\n# Core metrics\n# ---------------------------------------------------------------------------\n\ndef compute_entity_f1(pred_entities, gold_entities):\n    pred = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in pred_entities}\n    gold = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold_entities}\n    if not gold and not pred:\n        return 1.0\n    if not gold or not pred:\n        return 0.0\n    tp = len(pred & gold)\n    if tp == 0:\n        return 0.0\n    p = tp / len(pred)\n    r = tp / len(gold)\n    return 2 * p * r / (p + r)\n\n\ndef compute_degeneracy_f1(inst):\n    \"\"\"Constant-F1 degeneracy: all N samples have identical F1 against gold.\"\"\"\n    gold_ents = inst[\"gold\"][\"entities\"]\n    f1s = [compute_entity_f1(s.get(\"entities\", []), gold_ents)\n           for s in inst[\"samples\"]]\n    return len(set(round(f, 10) for f in f1s)) <= 1\n\n\ndef compute_degeneracy_set(inst):\n    \"\"\"Entity-set degeneracy: all N samples produce identical entity sets.\"\"\"\n    key_sets = set()\n    for s in inst[\"samples\"]:\n        ks = frozenset((e[\"start\"], e[\"end\"], e[\"type\"])\n                       for e in s.get(\"entities\", []))\n        key_sets.add(ks)\n    return len(key_sets) == 1\n\n\n# ---------------------------------------------------------------------------\n# Signal computation\n# ---------------------------------------------------------------------------\n\ndef compute_mean_logprob(samples, inst):\n    lps = []\n    for i, s in enumerate(samples):\n        lp = s.get(\"mean_logprob\")\n        if lp is None and \"logprobs\" in inst and i < len(inst[\"logprobs\"]):\n            lp = inst[\"logprobs\"][i]\n        if lp is not None and np.isfinite(lp):\n            lps.append(lp)\n    return float(np.mean(lps)) if lps else float(\"nan\")\n\n\ndef compute_exact_match_rate(samples):\n    keys = [frozenset((e[\"text\"], e[\"type\"]) for e in s.get(\"entities\", []))\n            for s in samples]\n    if not keys:\n        return 0.0\n    counter = Counter(keys)\n    return counter.most_common(1)[0][1] / len(samples)\n\n\ndef compute_voting_confidence(samples):\n    N = len(samples)\n    if N == 0:\n        return 0.0\n    counter = Counter()\n    for s in samples:\n        for e in s.get(\"entities\", []):\n            counter[(e[\"text\"], e[\"type\"])] += 1\n    if not counter:\n        return 0.0\n    return float(np.mean([v / N for v in counter.values()]))\n\n\ndef safe_spearman(x, y):\n    x, y = np.asarray(x, dtype=float), np.asarray(y, dtype=float)\n    mask = np.isfinite(x) & np.isfinite(y)\n    x, y = x[mask], y[mask]\n    if len(x) < 3:\n        return float(\"nan\")\n    return float(spearmanr(x, y).statistic)\n\n\n# ---------------------------------------------------------------------------\n# Construction pipeline\n# ---------------------------------------------------------------------------\n\ndef consensus_construct(inst, high_thresh=0.5, medium_thresh=0.25):\n    \"\"\"LP-weighted entity construction with two-tier thresholding.\n\n    Entities with freq > high_thresh are auto-included.\n    Entities with freq in (medium_thresh, high_thresh] are included only if\n    their contributing samples' mean LP exceeds the instance median LP.\n    \"\"\"\n    samples = inst[\"samples\"]\n    N = len(samples)\n\n    entity_counts = Counter()\n    entity_sample_indices = defaultdict(list)\n    for i, s in enumerate(samples):\n        seen = set()\n        for e in s.get(\"entities\", []):\n            key = (e[\"start\"], e[\"end\"], e[\"type\"])\n            if key not in seen:\n                entity_counts[key] += 1\n                entity_sample_indices[key].append(i)\n                seen.add(key)\n\n    sample_lps = []\n    for i, s in enumerate(samples):\n        lp = s.get(\"mean_logprob\")\n        if lp is None and \"logprobs\" in inst and i < len(inst[\"logprobs\"]):\n            lp = inst[\"logprobs\"][i]\n        if lp is not None:\n            sample_lps.append(lp)\n    instance_median_lp = statistics.median(sample_lps) if sample_lps else 0.0\n\n    consensus = []\n    for entity_key, count in entity_counts.items():\n        freq = count / N\n        if freq > high_thresh:\n            consensus.append(entity_key)\n        elif freq > medium_thresh:\n            contributing_lps = []\n            for i in entity_sample_indices[entity_key]:\n                lp = samples[i].get(\"mean_logprob\")\n                if lp is None and \"logprobs\" in inst and i < len(inst[\"logprobs\"]):\n                    lp = inst[\"logprobs\"][i]\n                if lp is not None:\n                    contributing_lps.append(lp)\n            if contributing_lps:\n                mean_lp = statistics.mean(contributing_lps)\n                if mean_lp > instance_median_lp:\n                    consensus.append(entity_key)\n\n    return [{\"start\": s, \"end\": e, \"type\": t} for s, e, t in consensus]\n\n\ndef majority_vote_span(inst, threshold=0.5):\n    samples = inst[\"samples\"]\n    N = len(samples)\n    entity_counts = Counter()\n    for s in samples:\n        seen = set()\n        for e in s.get(\"entities\", []):\n            key = (e[\"start\"], e[\"end\"], e[\"type\"])\n            if key not in seen:\n                entity_counts[key] += 1\n                seen.add(key)\n    return [{\"start\": k[0], \"end\": k[1], \"type\": k[2]}\n            for k, c in entity_counts.items() if c / N > threshold]\n\n\n# ---------------------------------------------------------------------------\n# Data loading & helpers\n# ---------------------------------------------------------------------------\n\ndef load_data(path, gold_filter=True):\n    instances = []\n    with open(path) as f:\n        for line in f:\n            if not line.strip():\n                continue\n            obj = json.loads(line)\n            if gold_filter and not obj[\"gold\"].get(\"entities\", []):\n                continue\n            instances.append(obj)\n    return instances\n\n\ndef bootstrap_ci(values, n_boot=2000, seed=42):\n    arr = np.array(values)\n    n = len(arr)\n    if n == 0:\n        return {\"mean\": 0.0, \"ci_lo\": 0.0, \"ci_hi\": 0.0}\n    rng = np.random.RandomState(seed)\n    boot_means = np.array([arr[rng.randint(0, n, n)].mean() for _ in range(n_boot)])\n    boot_means.sort()\n    return {\n        \"mean\": float(arr.mean()),\n        \"ci_lo\": float(boot_means[int(0.025 * n_boot)]),\n        \"ci_hi\": float(boot_means[int(0.975 * n_boot)]),\n    }\n\n\n# ---------------------------------------------------------------------------\n# Main evaluation\n# ---------------------------------------------------------------------------\n\ndef evaluate_dataset(name, path, subtask=\"ner\"):\n    \"\"\"Full signal + construction analysis on one dataset.\"\"\"\n    print(f\"\\n{'='*60}\")\n    print(f\"  {name}\")\n    print(f\"{'='*60}\")\n\n    instances = load_data(path, gold_filter=True)\n    print(f\"  Loaded {len(instances)} instances (gold-filtered)\")\n    if not instances:\n        return None\n\n    N_samples = len(instances[0][\"samples\"])\n\n    # --- 5 signals ---\n    sj_vals, fk_vals = [], []\n    if HAS_CONSISTENCY:\n        for inst in instances:\n            sj_vals.append(structural_consistency_soft_jaccard(\n                inst[\"samples\"], subtask=subtask))\n            fk_vals.append(fleiss_kappa_surface(\n                inst[\"samples\"], subtask=subtask))\n\n    lp_vals, em_vals, vc_vals, f1_vals = [], [], [], []\n    for inst in instances:\n        samples = inst[\"samples\"]\n        gold = inst[\"gold\"]\n        greedy = inst.get(\"greedy\", samples[0])\n        lp_vals.append(compute_mean_logprob(samples, inst))\n        em_vals.append(compute_exact_match_rate(samples))\n        vc_vals.append(compute_voting_confidence(samples))\n        f1_vals.append(compute_entity_f1(\n            greedy.get(\"entities\", []), gold[\"entities\"]))\n\n    signals = {\n        \"LP\": np.array(lp_vals, dtype=float),\n        \"EM\": np.array(em_vals, dtype=float),\n        \"VC\": np.array(vc_vals, dtype=float),\n    }\n    if HAS_CONSISTENCY:\n        signals[\"SJ\"] = np.array(sj_vals, dtype=float)\n        signals[\"FK\"] = np.array(fk_vals, dtype=float)\n\n    f1_arr = np.array(f1_vals, dtype=float)\n\n    signal_results = {}\n    for sig_name in [\"SJ\", \"FK\", \"LP\", \"EM\", \"VC\"]:\n        if sig_name in signals:\n            signal_results[sig_name] = {\n                \"rho\": safe_spearman(signals[sig_name], f1_arr)\n            }\n\n    # --- Baselines & construction ---\n    greedy_f1s = f1_vals\n    oracle_f1s, lp_selection_f1s = [], []\n\n    for inst in instances:\n        gold_ents = inst[\"gold\"][\"entities\"]\n        sample_f1s = [compute_entity_f1(s.get(\"entities\", []), gold_ents)\n                      for s in inst[\"samples\"]]\n        oracle_f1s.append(max(sample_f1s))\n\n        best_lp_idx, best_lp = 0, float(\"-inf\")\n        for i, s in enumerate(inst[\"samples\"]):\n            lp = s.get(\"mean_logprob\")\n            if lp is None and \"logprobs\" in inst and i < len(inst[\"logprobs\"]):\n                lp = inst[\"logprobs\"][i]\n            if lp is not None and lp > best_lp:\n                best_lp = lp\n                best_lp_idx = i\n        lp_selection_f1s.append(compute_entity_f1(\n            inst[\"samples\"][best_lp_idx].get(\"entities\", []), gold_ents))\n\n    mv_f1s = [compute_entity_f1(majority_vote_span(inst),\n              inst[\"gold\"][\"entities\"]) for inst in instances]\n\n    theta = 2 / N_samples\n    consensus_2n_f1s = [compute_entity_f1(\n        consensus_construct(inst, high_thresh=theta, medium_thresh=0.0),\n        inst[\"gold\"][\"entities\"]) for inst in instances]\n\n    consensus_lp_f1s = [compute_entity_f1(\n        consensus_construct(inst, high_thresh=0.5, medium_thresh=theta),\n        inst[\"gold\"][\"entities\"]) for inst in instances]\n\n    # --- Degeneracy (constant-F1 definition for scaling curve) ---\n    degen_f1_flags = [compute_degeneracy_f1(inst) for inst in instances]\n    n_degen_f1 = sum(degen_f1_flags)\n    degen_rate = n_degen_f1 / len(instances) if instances else 0.0\n\n    # Entity-set degeneracy (for bootstrap stratification)\n    degen_set_flags = [compute_degeneracy_set(inst) for inst in instances]\n    n_degen_set = sum(degen_set_flags)\n\n    result = {\n        \"name\": name,\n        \"n_instances\": len(instances),\n        \"n_samples\": N_samples,\n        \"signals\": signal_results,\n        \"baselines\": {\n            \"greedy\": bootstrap_ci(greedy_f1s),\n            \"lp_selection\": bootstrap_ci(lp_selection_f1s),\n            \"majority_vote\": bootstrap_ci(mv_f1s),\n            \"oracle\": bootstrap_ci(oracle_f1s),\n            \"consensus_theta2n\": bootstrap_ci(consensus_2n_f1s),\n            \"consensus_lp_weighted\": bootstrap_ci(consensus_lp_f1s),\n        },\n        \"consensus_variants\": {},\n        \"degeneracy_rate\": degen_rate,\n        \"degeneracy_count\": n_degen,\n        \"lp_selection_delta\": float(np.mean(lp_selection_f1s) - np.mean(greedy_f1s)),\n    }\n\n    # Additional threshold configs\n    for cfg in [{\"high\": 0.5, \"medium\": 0.1},\n                {\"high\": 0.6, \"medium\": 0.2},\n                {\"high\": 0.7, \"medium\": 0.3}]:\n        key = f\"high={cfg['high']}_medium={cfg['medium']}\"\n        cc_f1s = [compute_entity_f1(\n            consensus_construct(inst, high_thresh=cfg[\"high\"],\n                                medium_thresh=cfg[\"medium\"]),\n            inst[\"gold\"][\"entities\"]) for inst in instances]\n        result[\"consensus_variants\"][key] = bootstrap_ci(cc_f1s)\n\n    # --- Print summary ---\n    print(f\"  N={N_samples}\")\n    print(f\"\\n  Signal correlations (Spearman rho vs greedy F1):\")\n    for sig in [\"LP\", \"SJ\", \"FK\", \"VC\", \"EM\"]:\n        if sig in signal_results:\n            print(f\"    {sig:4s}: rho={signal_results[sig]['rho']:.4f}\")\n\n    print(f\"\\n  Entity F1 (mean [95% CI]):\")\n    for label, key in [(\"Greedy\", \"greedy\"), (\"LP Selection\", \"lp_selection\"),\n                       (\"Majority Vote\", \"majority_vote\"),\n                       (\"Consensus theta=2/N\", \"consensus_theta2n\"),\n                       (\"Consensus LP-wt\", \"consensus_lp_weighted\"),\n                       (\"Oracle\", \"oracle\")]:\n        ci = result[\"baselines\"][key]\n        print(f\"    {label:25s} {ci['mean']:.4f}  \"\n              f\"[{ci['ci_lo']:.4f}, {ci['ci_hi']:.4f}]\")\n\n    print(f\"\\n  Degeneracy: {n_degen}/{len(instances)} ({degen_rate*100:.1f}%)\")\n\n    # Attach per-instance arrays (for bootstrap script)\n    result[\"_per_instance\"] = {\n        \"greedy_f1\": greedy_f1s,\n        \"construction_lp_f1\": consensus_lp_f1s,\n        \"oracle_f1\": oracle_f1s,\n        \"degenerate\": degen_flags,\n    }\n\n    return result\n\n\ndef find_datasets(input_dir):\n    \"\"\"Auto-detect dataset directories under input_dir.\"\"\"\n    datasets = {}\n    for name in [\"scierc\", \"conll2003\", \"fewnerd\"]:\n        path = os.path.join(input_dir, name, \"samples.jsonl\")\n        if os.path.exists(path):\n            datasets[name] = path\n    top_path = os.path.join(input_dir, \"samples.jsonl\")\n    if os.path.exists(top_path) and not datasets:\n        ds_name = os.path.basename(input_dir)\n        for known in [\"scierc\", \"conll\", \"fewnerd\"]:\n            if known in ds_name.lower():\n                ds_name = known\n                break\n        datasets[ds_name] = top_path\n    return datasets\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Compute 5 signals + construction pipeline\")\n    parser.add_argument(\"--input-dir\", required=True,\n                        help=\"Model output directory\")\n    parser.add_argument(\"--output-dir\", default=None,\n                        help=\"Output directory (default: input-dir)\")\n    parser.add_argument(\"--dataset\", default=None, nargs=\"+\",\n                        help=\"Dataset(s) to process (default: auto-detect)\")\n    parser.add_argument(\"--model-size\", default=None,\n                        help=\"Model size label (e.g. 7, 14, 32, 72)\")\n    parser.add_argument(\"--regime\", default=None, choices=[\"ft\", \"zs\", \"fs\"],\n                        help=\"Training regime\")\n    args = parser.parse_args()\n\n    output_dir = args.output_dir or args.input_dir\n    os.makedirs(output_dir, exist_ok=True)\n\n    datasets = find_datasets(args.input_dir)\n    if args.dataset:\n        datasets = {k: v for k, v in datasets.items() if k in args.dataset}\n\n    if not datasets:\n        print(f\"ERROR: No samples.jsonl found under {args.input_dir}\")\n        sys.exit(1)\n\n    all_results = {}\n    for ds_name, path in sorted(datasets.items()):\n        result = evaluate_dataset(ds_name, path)\n        if result:\n            if args.model_size:\n                result[\"model_size\"] = args.model_size\n            if args.regime:\n                result[\"regime\"] = args.regime\n            all_results[ds_name] = result\n\n    # Save report (without bulky per-instance arrays)\n    report = {}\n    for ds_name, r in all_results.items():\n        report[ds_name] = {k: v for k, v in r.items() if k != \"_per_instance\"}\n\n    report_path = os.path.join(output_dir, \"full_signal_report.json\")\n    with open(report_path, \"w\") as f:\n        json.dump(report, f, indent=2, default=str)\n    print(f\"\\nReport saved to {report_path}\")\n\n    # Save per-instance arrays for downstream bootstrap analysis\n    for ds_name, r in all_results.items():\n        pi = r.get(\"_per_instance\")\n        if pi:\n            pi_path = os.path.join(output_dir,\n                                   f\"{ds_name}_per_instance.json\")\n            with open(pi_path, \"w\") as f:\n                json.dump(pi, f)\n            print(f\"Per-instance data: {pi_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 345,
+                  "oldLines": 7,
+                  "newStart": 345,
+                  "newLines": 8,
+                  "lines": [
+                    "         },",
+                    "         \"consensus_variants\": {},",
+                    "         \"degeneracy_rate\": degen_rate,",
+                    "-        \"degeneracy_count\": n_degen,",
+                    "+        \"degeneracy_count\": n_degen_f1,",
+                    "+        \"degeneracy_set_count\": n_degen_set,",
+                    "         \"lp_selection_delta\": float(np.mean(lp_selection_f1s) - np.mean(greedy_f1s)),",
+                    "     }",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XptwB5y51nBH8k1gNZu8CF",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/compute_signals.py",
+                "old_string": "    print(f\"\\n  Degeneracy: {n_degen}/{len(instances)} ({degen_rate*100:.1f}%)\")",
+                "new_string": "    print(f\"\\n  Degeneracy (constant-F1): {n_degen_f1}/{len(instances)} \"\n          f\"({degen_rate*100:.1f}%)\")\n    print(f\"  Degeneracy (entity-set):  {n_degen_set}/{len(instances)} \"\n          f\"({n_degen_set/len(instances)*100:.1f}%)\")"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "c44b6494-999b-41e0-aceb-149b40c966a7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016JK497W7JpnRMD5z3PkdVN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 348,
+                "cache_read_input_tokens": 113552,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 348
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-19T18:27:07.763Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XptwB5y51nBH8k1gNZu8CF",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/compute_signals.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "39f93322-67cb-46c1-980b-e1008e02007c",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/compute_signals.py",
+              "oldString": "    print(f\"\\n  Degeneracy: {n_degen}/{len(instances)} ({degen_rate*100:.1f}%)\")",
+              "newString": "    print(f\"\\n  Degeneracy (constant-F1): {n_degen_f1}/{len(instances)} \"\n          f\"({degen_rate*100:.1f}%)\")\n    print(f\"  Degeneracy (entity-set):  {n_degen_set}/{len(instances)} \"\n          f\"({n_degen_set/len(instances)*100:.1f}%)\")",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"Compute 5 confidence signals + entity construction pipeline for NER.\n\nSignals: LP (Log Probability), SJ (Soft Jaccard), FK (Fleiss Kappa),\n         VC (Vote Count), EM (Exact Match Rate)\nConstruction: greedy, LP selection, majority vote, consensus θ=2/N,\n              LP-weighted construction (high=0.5, medium=2/N), oracle\n\nUsage:\n    # Process all datasets under a model output directory\n    python compute_signals.py --input-dir /path/to/output/72b_zeroshot\n\n    # Process specific dataset with model metadata\n    python compute_signals.py --input-dir /path/to/output/7b_ft \\\n        --dataset scierc --model-size 7 --regime ft\n\n    # Custom output directory\n    python compute_signals.py --input-dir /path/to/output/72b_zeroshot \\\n        --output-dir /path/to/results\n\nExpected input: <input-dir>/<dataset>/samples.jsonl  (or <input-dir>/samples.jsonl)\nOutput: full_signal_report.json + <dataset>_per_instance.json per dataset\n\"\"\"\n\nimport argparse\nimport json\nimport math\nimport os\nimport statistics\nimport sys\nfrom collections import Counter, defaultdict\n\nimport numpy as np\nfrom scipy.stats import spearmanr\n\nCODE_DIR = os.environ.get(\n    \"STRUCT_CODE_DIR\",\n    \"/root/autodl-tmp/struct_self_consist_ie/code\",\n)\nif os.path.isdir(CODE_DIR):\n    sys.path.insert(0, CODE_DIR)\n\ntry:\n    from consistency import fleiss_kappa_surface, structural_consistency_soft_jaccard\n    HAS_CONSISTENCY = True\nexcept ImportError:\n    HAS_CONSISTENCY = False\n    print(\"WARNING: consistency module not found; SJ/FK signals will be skipped\")\n\n\n# ---------------------------------------------------------------------------\n# Core metrics\n# ---------------------------------------------------------------------------\n\ndef compute_entity_f1(pred_entities, gold_entities):\n    pred = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in pred_entities}\n    gold = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold_entities}\n    if not gold and not pred:\n        return 1.0\n    if not gold or not pred:\n        return 0.0\n    tp = len(pred & gold)\n    if tp == 0:\n        return 0.0\n    p = tp / len(pred)\n    r = tp / len(gold)\n    return 2 * p * r / (p + r)\n\n\ndef compute_degeneracy_f1(inst):\n    \"\"\"Constant-F1 degeneracy: all N samples have identical F1 against gold.\"\"\"\n    gold_ents = inst[\"gold\"][\"entities\"]\n    f1s = [compute_entity_f1(s.get(\"entities\", []), gold_ents)\n           for s in inst[\"samples\"]]\n    return len(set(round(f, 10) for f in f1s)) <= 1\n\n\ndef compute_degeneracy_set(inst):\n    \"\"\"Entity-set degeneracy: all N samples produce identical entity sets.\"\"\"\n    key_sets = set()\n    for s in inst[\"samples\"]:\n        ks = frozenset((e[\"start\"], e[\"end\"], e[\"type\"])\n                       for e in s.get(\"entities\", []))\n        key_sets.add(ks)\n    return len(key_sets) == 1\n\n\n# ---------------------------------------------------------------------------\n# Signal computation\n# ---------------------------------------------------------------------------\n\ndef compute_mean_logprob(samples, inst):\n    lps = []\n    for i, s in enumerate(samples):\n        lp = s.get(\"mean_logprob\")\n        if lp is None and \"logprobs\" in inst and i < len(inst[\"logprobs\"]):\n            lp = inst[\"logprobs\"][i]\n        if lp is not None and np.isfinite(lp):\n            lps.append(lp)\n    return float(np.mean(lps)) if lps else float(\"nan\")\n\n\ndef compute_exact_match_rate(samples):\n    keys = [frozenset((e[\"text\"], e[\"type\"]) for e in s.get(\"entities\", []))\n            for s in samples]\n    if not keys:\n        return 0.0\n    counter = Counter(keys)\n    return counter.most_common(1)[0][1] / len(samples)\n\n\ndef compute_voting_confidence(samples):\n    N = len(samples)\n    if N == 0:\n        return 0.0\n    counter = Counter()\n    for s in samples:\n        for e in s.get(\"entities\", []):\n            counter[(e[\"text\"], e[\"type\"])] += 1\n    if not counter:\n        return 0.0\n    return float(np.mean([v / N for v in counter.values()]))\n\n\ndef safe_spearman(x, y):\n    x, y = np.asarray(x, dtype=float), np.asarray(y, dtype=float)\n    mask = np.isfinite(x) & np.isfinite(y)\n    x, y = x[mask], y[mask]\n    if len(x) < 3:\n        return float(\"nan\")\n    return float(spearmanr(x, y).statistic)\n\n\n# ---------------------------------------------------------------------------\n# Construction pipeline\n# ---------------------------------------------------------------------------\n\ndef consensus_construct(inst, high_thresh=0.5, medium_thresh=0.25):\n    \"\"\"LP-weighted entity construction with two-tier thresholding.\n\n    Entities with freq > high_thresh are auto-included.\n    Entities with freq in (medium_thresh, high_thresh] are included only if\n    their contributing samples' mean LP exceeds the instance median LP.\n    \"\"\"\n    samples = inst[\"samples\"]\n    N = len(samples)\n\n    entity_counts = Counter()\n    entity_sample_indices = defaultdict(list)\n    for i, s in enumerate(samples):\n        seen = set()\n        for e in s.get(\"entities\", []):\n            key = (e[\"start\"], e[\"end\"], e[\"type\"])\n            if key not in seen:\n                entity_counts[key] += 1\n                entity_sample_indices[key].append(i)\n                seen.add(key)\n\n    sample_lps = []\n    for i, s in enumerate(samples):\n        lp = s.get(\"mean_logprob\")\n        if lp is None and \"logprobs\" in inst and i < len(inst[\"logprobs\"]):\n            lp = inst[\"logprobs\"][i]\n        if lp is not None:\n            sample_lps.append(lp)\n    instance_median_lp = statistics.median(sample_lps) if sample_lps else 0.0\n\n    consensus = []\n    for entity_key, count in entity_counts.items():\n        freq = count / N\n        if freq > high_thresh:\n            consensus.append(entity_key)\n        elif freq > medium_thresh:\n            contributing_lps = []\n            for i in entity_sample_indices[entity_key]:\n                lp = samples[i].get(\"mean_logprob\")\n                if lp is None and \"logprobs\" in inst and i < len(inst[\"logprobs\"]):\n                    lp = inst[\"logprobs\"][i]\n                if lp is not None:\n                    contributing_lps.append(lp)\n            if contributing_lps:\n                mean_lp = statistics.mean(contributing_lps)\n                if mean_lp > instance_median_lp:\n                    consensus.append(entity_key)\n\n    return [{\"start\": s, \"end\": e, \"type\": t} for s, e, t in consensus]\n\n\ndef majority_vote_span(inst, threshold=0.5):\n    samples = inst[\"samples\"]\n    N = len(samples)\n    entity_counts = Counter()\n    for s in samples:\n        seen = set()\n        for e in s.get(\"entities\", []):\n            key = (e[\"start\"], e[\"end\"], e[\"type\"])\n            if key not in seen:\n                entity_counts[key] += 1\n                seen.add(key)\n    return [{\"start\": k[0], \"end\": k[1], \"type\": k[2]}\n            for k, c in entity_counts.items() if c / N > threshold]\n\n\n# ---------------------------------------------------------------------------\n# Data loading & helpers\n# ---------------------------------------------------------------------------\n\ndef load_data(path, gold_filter=True):\n    instances = []\n    with open(path) as f:\n        for line in f:\n            if not line.strip():\n                continue\n            obj = json.loads(line)\n            if gold_filter and not obj[\"gold\"].get(\"entities\", []):\n                continue\n            instances.append(obj)\n    return instances\n\n\ndef bootstrap_ci(values, n_boot=2000, seed=42):\n    arr = np.array(values)\n    n = len(arr)\n    if n == 0:\n        return {\"mean\": 0.0, \"ci_lo\": 0.0, \"ci_hi\": 0.0}\n    rng = np.random.RandomState(seed)\n    boot_means = np.array([arr[rng.randint(0, n, n)].mean() for _ in range(n_boot)])\n    boot_means.sort()\n    return {\n        \"mean\": float(arr.mean()),\n        \"ci_lo\": float(boot_means[int(0.025 * n_boot)]),\n        \"ci_hi\": float(boot_means[int(0.975 * n_boot)]),\n    }\n\n\n# ---------------------------------------------------------------------------\n# Main evaluation\n# ---------------------------------------------------------------------------\n\ndef evaluate_dataset(name, path, subtask=\"ner\"):\n    \"\"\"Full signal + construction analysis on one dataset.\"\"\"\n    print(f\"\\n{'='*60}\")\n    print(f\"  {name}\")\n    print(f\"{'='*60}\")\n\n    instances = load_data(path, gold_filter=True)\n    print(f\"  Loaded {len(instances)} instances (gold-filtered)\")\n    if not instances:\n        return None\n\n    N_samples = len(instances[0][\"samples\"])\n\n    # --- 5 signals ---\n    sj_vals, fk_vals = [], []\n    if HAS_CONSISTENCY:\n        for inst in instances:\n            sj_vals.append(structural_consistency_soft_jaccard(\n                inst[\"samples\"], subtask=subtask))\n            fk_vals.append(fleiss_kappa_surface(\n                inst[\"samples\"], subtask=subtask))\n\n    lp_vals, em_vals, vc_vals, f1_vals = [], [], [], []\n    for inst in instances:\n        samples = inst[\"samples\"]\n        gold = inst[\"gold\"]\n        greedy = inst.get(\"greedy\", samples[0])\n        lp_vals.append(compute_mean_logprob(samples, inst))\n        em_vals.append(compute_exact_match_rate(samples))\n        vc_vals.append(compute_voting_confidence(samples))\n        f1_vals.append(compute_entity_f1(\n            greedy.get(\"entities\", []), gold[\"entities\"]))\n\n    signals = {\n        \"LP\": np.array(lp_vals, dtype=float),\n        \"EM\": np.array(em_vals, dtype=float),\n        \"VC\": np.array(vc_vals, dtype=float),\n    }\n    if HAS_CONSISTENCY:\n        signals[\"SJ\"] = np.array(sj_vals, dtype=float)\n        signals[\"FK\"] = np.array(fk_vals, dtype=float)\n\n    f1_arr = np.array(f1_vals, dtype=float)\n\n    signal_results = {}\n    for sig_name in [\"SJ\", \"FK\", \"LP\", \"EM\", \"VC\"]:\n        if sig_name in signals:\n            signal_results[sig_name] = {\n                \"rho\": safe_spearman(signals[sig_name], f1_arr)\n            }\n\n    # --- Baselines & construction ---\n    greedy_f1s = f1_vals\n    oracle_f1s, lp_selection_f1s = [], []\n\n    for inst in instances:\n        gold_ents = inst[\"gold\"][\"entities\"]\n        sample_f1s = [compute_entity_f1(s.get(\"entities\", []), gold_ents)\n                      for s in inst[\"samples\"]]\n        oracle_f1s.append(max(sample_f1s))\n\n        best_lp_idx, best_lp = 0, float(\"-inf\")\n        for i, s in enumerate(inst[\"samples\"]):\n            lp = s.get(\"mean_logprob\")\n            if lp is None and \"logprobs\" in inst and i < len(inst[\"logprobs\"]):\n                lp = inst[\"logprobs\"][i]\n            if lp is not None and lp > best_lp:\n                best_lp = lp\n                best_lp_idx = i\n        lp_selection_f1s.append(compute_entity_f1(\n            inst[\"samples\"][best_lp_idx].get(\"entities\", []), gold_ents))\n\n    mv_f1s = [compute_entity_f1(majority_vote_span(inst),\n              inst[\"gold\"][\"entities\"]) for inst in instances]\n\n    theta = 2 / N_samples\n    consensus_2n_f1s = [compute_entity_f1(\n        consensus_construct(inst, high_thresh=theta, medium_thresh=0.0),\n        inst[\"gold\"][\"entities\"]) for inst in instances]\n\n    consensus_lp_f1s = [compute_entity_f1(\n        consensus_construct(inst, high_thresh=0.5, medium_thresh=theta),\n        inst[\"gold\"][\"entities\"]) for inst in instances]\n\n    # --- Degeneracy (constant-F1 definition for scaling curve) ---\n    degen_f1_flags = [compute_degeneracy_f1(inst) for inst in instances]\n    n_degen_f1 = sum(degen_f1_flags)\n    degen_rate = n_degen_f1 / len(instances) if instances else 0.0\n\n    # Entity-set degeneracy (for bootstrap stratification)\n    degen_set_flags = [compute_degeneracy_set(inst) for inst in instances]\n    n_degen_set = sum(degen_set_flags)\n\n    result = {\n        \"name\": name,\n        \"n_instances\": len(instances),\n        \"n_samples\": N_samples,\n        \"signals\": signal_results,\n        \"baselines\": {\n            \"greedy\": bootstrap_ci(greedy_f1s),\n            \"lp_selection\": bootstrap_ci(lp_selection_f1s),\n            \"majority_vote\": bootstrap_ci(mv_f1s),\n            \"oracle\": bootstrap_ci(oracle_f1s),\n            \"consensus_theta2n\": bootstrap_ci(consensus_2n_f1s),\n            \"consensus_lp_weighted\": bootstrap_ci(consensus_lp_f1s),\n        },\n        \"consensus_variants\": {},\n        \"degeneracy_rate\": degen_rate,\n        \"degeneracy_count\": n_degen_f1,\n        \"degeneracy_set_count\": n_degen_set,\n        \"lp_selection_delta\": float(np.mean(lp_selection_f1s) - np.mean(greedy_f1s)),\n    }\n\n    # Additional threshold configs\n    for cfg in [{\"high\": 0.5, \"medium\": 0.1},\n                {\"high\": 0.6, \"medium\": 0.2},\n                {\"high\": 0.7, \"medium\": 0.3}]:\n        key = f\"high={cfg['high']}_medium={cfg['medium']}\"\n        cc_f1s = [compute_entity_f1(\n            consensus_construct(inst, high_thresh=cfg[\"high\"],\n                                medium_thresh=cfg[\"medium\"]),\n            inst[\"gold\"][\"entities\"]) for inst in instances]\n        result[\"consensus_variants\"][key] = bootstrap_ci(cc_f1s)\n\n    # --- Print summary ---\n    print(f\"  N={N_samples}\")\n    print(f\"\\n  Signal correlations (Spearman rho vs greedy F1):\")\n    for sig in [\"LP\", \"SJ\", \"FK\", \"VC\", \"EM\"]:\n        if sig in signal_results:\n            print(f\"    {sig:4s}: rho={signal_results[sig]['rho']:.4f}\")\n\n    print(f\"\\n  Entity F1 (mean [95% CI]):\")\n    for label, key in [(\"Greedy\", \"greedy\"), (\"LP Selection\", \"lp_selection\"),\n                       (\"Majority Vote\", \"majority_vote\"),\n                       (\"Consensus theta=2/N\", \"consensus_theta2n\"),\n                       (\"Consensus LP-wt\", \"consensus_lp_weighted\"),\n                       (\"Oracle\", \"oracle\")]:\n        ci = result[\"baselines\"][key]\n        print(f\"    {label:25s} {ci['mean']:.4f}  \"\n              f\"[{ci['ci_lo']:.4f}, {ci['ci_hi']:.4f}]\")\n\n    print(f\"\\n  Degeneracy: {n_degen}/{len(instances)} ({degen_rate*100:.1f}%)\")\n\n    # Attach per-instance arrays (for bootstrap script)\n    result[\"_per_instance\"] = {\n        \"greedy_f1\": greedy_f1s,\n        \"construction_lp_f1\": consensus_lp_f1s,\n        \"oracle_f1\": oracle_f1s,\n        \"degenerate\": degen_flags,\n    }\n\n    return result\n\n\ndef find_datasets(input_dir):\n    \"\"\"Auto-detect dataset directories under input_dir.\"\"\"\n    datasets = {}\n    for name in [\"scierc\", \"conll2003\", \"fewnerd\"]:\n        path = os.path.join(input_dir, name, \"samples.jsonl\")\n        if os.path.exists(path):\n            datasets[name] = path\n    top_path = os.path.join(input_dir, \"samples.jsonl\")\n    if os.path.exists(top_path) and not datasets:\n        ds_name = os.path.basename(input_dir)\n        for known in [\"scierc\", \"conll\", \"fewnerd\"]:\n            if known in ds_name.lower():\n                ds_name = known\n                break\n        datasets[ds_name] = top_path\n    return datasets\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Compute 5 signals + construction pipeline\")\n    parser.add_argument(\"--input-dir\", required=True,\n                        help=\"Model output directory\")\n    parser.add_argument(\"--output-dir\", default=None,\n                        help=\"Output directory (default: input-dir)\")\n    parser.add_argument(\"--dataset\", default=None, nargs=\"+\",\n                        help=\"Dataset(s) to process (default: auto-detect)\")\n    parser.add_argument(\"--model-size\", default=None,\n                        help=\"Model size label (e.g. 7, 14, 32, 72)\")\n    parser.add_argument(\"--regime\", default=None, choices=[\"ft\", \"zs\", \"fs\"],\n                        help=\"Training regime\")\n    args = parser.parse_args()\n\n    output_dir = args.output_dir or args.input_dir\n    os.makedirs(output_dir, exist_ok=True)\n\n    datasets = find_datasets(args.input_dir)\n    if args.dataset:\n        datasets = {k: v for k, v in datasets.items() if k in args.dataset}\n\n    if not datasets:\n        print(f\"ERROR: No samples.jsonl found under {args.input_dir}\")\n        sys.exit(1)\n\n    all_results = {}\n    for ds_name, path in sorted(datasets.items()):\n        result = evaluate_dataset(ds_name, path)\n        if result:\n            if args.model_size:\n                result[\"model_size\"] = args.model_size\n            if args.regime:\n                result[\"regime\"] = args.regime\n            all_results[ds_name] = result\n\n    # Save report (without bulky per-instance arrays)\n    report = {}\n    for ds_name, r in all_results.items():\n        report[ds_name] = {k: v for k, v in r.items() if k != \"_per_instance\"}\n\n    report_path = os.path.join(output_dir, \"full_signal_report.json\")\n    with open(report_path, \"w\") as f:\n        json.dump(report, f, indent=2, default=str)\n    print(f\"\\nReport saved to {report_path}\")\n\n    # Save per-instance arrays for downstream bootstrap analysis\n    for ds_name, r in all_results.items():\n        pi = r.get(\"_per_instance\")\n        if pi:\n            pi_path = os.path.join(output_dir,\n                                   f\"{ds_name}_per_instance.json\")\n            with open(pi_path, \"w\") as f:\n                json.dump(pi, f)\n            print(f\"Per-instance data: {pi_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 378,
+                  "oldLines": 7,
+                  "newStart": 378,
+                  "newLines": 10,
+                  "lines": [
+                    "         print(f\"    {label:25s} {ci['mean']:.4f}  \"",
+                    "               f\"[{ci['ci_lo']:.4f}, {ci['ci_hi']:.4f}]\")",
+                    " ",
+                    "-    print(f\"\\n  Degeneracy: {n_degen}/{len(instances)} ({degen_rate*100:.1f}%)\")",
+                    "+    print(f\"\\n  Degeneracy (constant-F1): {n_degen_f1}/{len(instances)} \"",
+                    "+          f\"({degen_rate*100:.1f}%)\")",
+                    "+    print(f\"  Degeneracy (entity-set):  {n_degen_set}/{len(instances)} \"",
+                    "+          f\"({n_degen_set/len(instances)*100:.1f}%)\")",
+                    " ",
+                    "     # Attach per-instance arrays (for bootstrap script)",
+                    "     result[\"_per_instance\"] = {"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Also update the per-instance data to include entity-set degeneracy for bootstrap."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "aa90de7c-4691-4a25-9b8c-71863563bbc3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JVhAwuk3X6zvngaW3TMECy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 335,
+                "cache_read_input_tokens": 113900,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 335
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TujpE6qoJMeYKvGnTTZyeB",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/compute_signals.py",
+                "old_string": "    # Attach per-instance arrays (for bootstrap script)\n    result[\"_per_instance\"] = {\n        \"greedy_f1\": greedy_f1s,\n        \"construction_lp_f1\": consensus_lp_f1s,\n        \"oracle_f1\": oracle_f1s,\n        \"degenerate\": degen_flags,\n    }",
+                "new_string": "    # Attach per-instance arrays (for bootstrap script)\n    result[\"_per_instance\"] = {\n        \"greedy_f1\": greedy_f1s,\n        \"construction_lp_f1\": consensus_lp_f1s,\n        \"oracle_f1\": oracle_f1s,\n        \"degenerate\": degen_set_flags,\n    }"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "98f147e5-c142-42d2-b261-c5bb2f98b7d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JVhAwuk3X6zvngaW3TMECy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 335,
+                "cache_read_input_tokens": 113900,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 335
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-19T18:27:17.393Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TujpE6qoJMeYKvGnTTZyeB",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/compute_signals.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "9f58c3df-5897-4d46-944e-b058dc66161b",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/compute_signals.py",
+              "oldString": "    # Attach per-instance arrays (for bootstrap script)\n    result[\"_per_instance\"] = {\n        \"greedy_f1\": greedy_f1s,\n        \"construction_lp_f1\": consensus_lp_f1s,\n        \"oracle_f1\": oracle_f1s,\n        \"degenerate\": degen_flags,\n    }",
+              "newString": "    # Attach per-instance arrays (for bootstrap script)\n    result[\"_per_instance\"] = {\n        \"greedy_f1\": greedy_f1s,\n        \"construction_lp_f1\": consensus_lp_f1s,\n        \"oracle_f1\": oracle_f1s,\n        \"degenerate\": degen_set_flags,\n    }",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"Compute 5 confidence signals + entity construction pipeline for NER.\n\nSignals: LP (Log Probability), SJ (Soft Jaccard), FK (Fleiss Kappa),\n         VC (Vote Count), EM (Exact Match Rate)\nConstruction: greedy, LP selection, majority vote, consensus θ=2/N,\n              LP-weighted construction (high=0.5, medium=2/N), oracle\n\nUsage:\n    # Process all datasets under a model output directory\n    python compute_signals.py --input-dir /path/to/output/72b_zeroshot\n\n    # Process specific dataset with model metadata\n    python compute_signals.py --input-dir /path/to/output/7b_ft \\\n        --dataset scierc --model-size 7 --regime ft\n\n    # Custom output directory\n    python compute_signals.py --input-dir /path/to/output/72b_zeroshot \\\n        --output-dir /path/to/results\n\nExpected input: <input-dir>/<dataset>/samples.jsonl  (or <input-dir>/samples.jsonl)\nOutput: full_signal_report.json + <dataset>_per_instance.json per dataset\n\"\"\"\n\nimport argparse\nimport json\nimport math\nimport os\nimport statistics\nimport sys\nfrom collections import Counter, defaultdict\n\nimport numpy as np\nfrom scipy.stats import spearmanr\n\nCODE_DIR = os.environ.get(\n    \"STRUCT_CODE_DIR\",\n    \"/root/autodl-tmp/struct_self_consist_ie/code\",\n)\nif os.path.isdir(CODE_DIR):\n    sys.path.insert(0, CODE_DIR)\n\ntry:\n    from consistency import fleiss_kappa_surface, structural_consistency_soft_jaccard\n    HAS_CONSISTENCY = True\nexcept ImportError:\n    HAS_CONSISTENCY = False\n    print(\"WARNING: consistency module not found; SJ/FK signals will be skipped\")\n\n\n# ---------------------------------------------------------------------------\n# Core metrics\n# ---------------------------------------------------------------------------\n\ndef compute_entity_f1(pred_entities, gold_entities):\n    pred = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in pred_entities}\n    gold = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold_entities}\n    if not gold and not pred:\n        return 1.0\n    if not gold or not pred:\n        return 0.0\n    tp = len(pred & gold)\n    if tp == 0:\n        return 0.0\n    p = tp / len(pred)\n    r = tp / len(gold)\n    return 2 * p * r / (p + r)\n\n\ndef compute_degeneracy_f1(inst):\n    \"\"\"Constant-F1 degeneracy: all N samples have identical F1 against gold.\"\"\"\n    gold_ents = inst[\"gold\"][\"entities\"]\n    f1s = [compute_entity_f1(s.get(\"entities\", []), gold_ents)\n           for s in inst[\"samples\"]]\n    return len(set(round(f, 10) for f in f1s)) <= 1\n\n\ndef compute_degeneracy_set(inst):\n    \"\"\"Entity-set degeneracy: all N samples produce identical entity sets.\"\"\"\n    key_sets = set()\n    for s in inst[\"samples\"]:\n        ks = frozenset((e[\"start\"], e[\"end\"], e[\"type\"])\n                       for e in s.get(\"entities\", []))\n        key_sets.add(ks)\n    return len(key_sets) == 1\n\n\n# ---------------------------------------------------------------------------\n# Signal computation\n# ---------------------------------------------------------------------------\n\ndef compute_mean_logprob(samples, inst):\n    lps = []\n    for i, s in enumerate(samples):\n        lp = s.get(\"mean_logprob\")\n        if lp is None and \"logprobs\" in inst and i < len(inst[\"logprobs\"]):\n            lp = inst[\"logprobs\"][i]\n        if lp is not None and np.isfinite(lp):\n            lps.append(lp)\n    return float(np.mean(lps)) if lps else float(\"nan\")\n\n\ndef compute_exact_match_rate(samples):\n    keys = [frozenset((e[\"text\"], e[\"type\"]) for e in s.get(\"entities\", []))\n            for s in samples]\n    if not keys:\n        return 0.0\n    counter = Counter(keys)\n    return counter.most_common(1)[0][1] / len(samples)\n\n\ndef compute_voting_confidence(samples):\n    N = len(samples)\n    if N == 0:\n        return 0.0\n    counter = Counter()\n    for s in samples:\n        for e in s.get(\"entities\", []):\n            counter[(e[\"text\"], e[\"type\"])] += 1\n    if not counter:\n        return 0.0\n    return float(np.mean([v / N for v in counter.values()]))\n\n\ndef safe_spearman(x, y):\n    x, y = np.asarray(x, dtype=float), np.asarray(y, dtype=float)\n    mask = np.isfinite(x) & np.isfinite(y)\n    x, y = x[mask], y[mask]\n    if len(x) < 3:\n        return float(\"nan\")\n    return float(spearmanr(x, y).statistic)\n\n\n# ---------------------------------------------------------------------------\n# Construction pipeline\n# ---------------------------------------------------------------------------\n\ndef consensus_construct(inst, high_thresh=0.5, medium_thresh=0.25):\n    \"\"\"LP-weighted entity construction with two-tier thresholding.\n\n    Entities with freq > high_thresh are auto-included.\n    Entities with freq in (medium_thresh, high_thresh] are included only if\n    their contributing samples' mean LP exceeds the instance median LP.\n    \"\"\"\n    samples = inst[\"samples\"]\n    N = len(samples)\n\n    entity_counts = Counter()\n    entity_sample_indices = defaultdict(list)\n    for i, s in enumerate(samples):\n        seen = set()\n        for e in s.get(\"entities\", []):\n            key = (e[\"start\"], e[\"end\"], e[\"type\"])\n            if key not in seen:\n                entity_counts[key] += 1\n                entity_sample_indices[key].append(i)\n                seen.add(key)\n\n    sample_lps = []\n    for i, s in enumerate(samples):\n        lp = s.get(\"mean_logprob\")\n        if lp is None and \"logprobs\" in inst and i < len(inst[\"logprobs\"]):\n            lp = inst[\"logprobs\"][i]\n        if lp is not None:\n            sample_lps.append(lp)\n    instance_median_lp = statistics.median(sample_lps) if sample_lps else 0.0\n\n    consensus = []\n    for entity_key, count in entity_counts.items():\n        freq = count / N\n        if freq > high_thresh:\n            consensus.append(entity_key)\n        elif freq > medium_thresh:\n            contributing_lps = []\n            for i in entity_sample_indices[entity_key]:\n                lp = samples[i].get(\"mean_logprob\")\n                if lp is None and \"logprobs\" in inst and i < len(inst[\"logprobs\"]):\n                    lp = inst[\"logprobs\"][i]\n                if lp is not None:\n                    contributing_lps.append(lp)\n            if contributing_lps:\n                mean_lp = statistics.mean(contributing_lps)\n                if mean_lp > instance_median_lp:\n                    consensus.append(entity_key)\n\n    return [{\"start\": s, \"end\": e, \"type\": t} for s, e, t in consensus]\n\n\ndef majority_vote_span(inst, threshold=0.5):\n    samples = inst[\"samples\"]\n    N = len(samples)\n    entity_counts = Counter()\n    for s in samples:\n        seen = set()\n        for e in s.get(\"entities\", []):\n            key = (e[\"start\"], e[\"end\"], e[\"type\"])\n            if key not in seen:\n                entity_counts[key] += 1\n                seen.add(key)\n    return [{\"start\": k[0], \"end\": k[1], \"type\": k[2]}\n            for k, c in entity_counts.items() if c / N > threshold]\n\n\n# ---------------------------------------------------------------------------\n# Data loading & helpers\n# ---------------------------------------------------------------------------\n\ndef load_data(path, gold_filter=True):\n    instances = []\n    with open(path) as f:\n        for line in f:\n            if not line.strip():\n                continue\n            obj = json.loads(line)\n            if gold_filter and not obj[\"gold\"].get(\"entities\", []):\n                continue\n            instances.append(obj)\n    return instances\n\n\ndef bootstrap_ci(values, n_boot=2000, seed=42):\n    arr = np.array(values)\n    n = len(arr)\n    if n == 0:\n        return {\"mean\": 0.0, \"ci_lo\": 0.0, \"ci_hi\": 0.0}\n    rng = np.random.RandomState(seed)\n    boot_means = np.array([arr[rng.randint(0, n, n)].mean() for _ in range(n_boot)])\n    boot_means.sort()\n    return {\n        \"mean\": float(arr.mean()),\n        \"ci_lo\": float(boot_means[int(0.025 * n_boot)]),\n        \"ci_hi\": float(boot_means[int(0.975 * n_boot)]),\n    }\n\n\n# ---------------------------------------------------------------------------\n# Main evaluation\n# ---------------------------------------------------------------------------\n\ndef evaluate_dataset(name, path, subtask=\"ner\"):\n    \"\"\"Full signal + construction analysis on one dataset.\"\"\"\n    print(f\"\\n{'='*60}\")\n    print(f\"  {name}\")\n    print(f\"{'='*60}\")\n\n    instances = load_data(path, gold_filter=True)\n    print(f\"  Loaded {len(instances)} instances (gold-filtered)\")\n    if not instances:\n        return None\n\n    N_samples = len(instances[0][\"samples\"])\n\n    # --- 5 signals ---\n    sj_vals, fk_vals = [], []\n    if HAS_CONSISTENCY:\n        for inst in instances:\n            sj_vals.append(structural_consistency_soft_jaccard(\n                inst[\"samples\"], subtask=subtask))\n            fk_vals.append(fleiss_kappa_surface(\n                inst[\"samples\"], subtask=subtask))\n\n    lp_vals, em_vals, vc_vals, f1_vals = [], [], [], []\n    for inst in instances:\n        samples = inst[\"samples\"]\n        gold = inst[\"gold\"]\n        greedy = inst.get(\"greedy\", samples[0])\n        lp_vals.append(compute_mean_logprob(samples, inst))\n        em_vals.append(compute_exact_match_rate(samples))\n        vc_vals.append(compute_voting_confidence(samples))\n        f1_vals.append(compute_entity_f1(\n            greedy.get(\"entities\", []), gold[\"entities\"]))\n\n    signals = {\n        \"LP\": np.array(lp_vals, dtype=float),\n        \"EM\": np.array(em_vals, dtype=float),\n        \"VC\": np.array(vc_vals, dtype=float),\n    }\n    if HAS_CONSISTENCY:\n        signals[\"SJ\"] = np.array(sj_vals, dtype=float)\n        signals[\"FK\"] = np.array(fk_vals, dtype=float)\n\n    f1_arr = np.array(f1_vals, dtype=float)\n\n    signal_results = {}\n    for sig_name in [\"SJ\", \"FK\", \"LP\", \"EM\", \"VC\"]:\n        if sig_name in signals:\n            signal_results[sig_name] = {\n                \"rho\": safe_spearman(signals[sig_name], f1_arr)\n            }\n\n    # --- Baselines & construction ---\n    greedy_f1s = f1_vals\n    oracle_f1s, lp_selection_f1s = [], []\n\n    for inst in instances:\n        gold_ents = inst[\"gold\"][\"entities\"]\n        sample_f1s = [compute_entity_f1(s.get(\"entities\", []), gold_ents)\n                      for s in inst[\"samples\"]]\n        oracle_f1s.append(max(sample_f1s))\n\n        best_lp_idx, best_lp = 0, float(\"-inf\")\n        for i, s in enumerate(inst[\"samples\"]):\n            lp = s.get(\"mean_logprob\")\n            if lp is None and \"logprobs\" in inst and i < len(inst[\"logprobs\"]):\n                lp = inst[\"logprobs\"][i]\n            if lp is not None and lp > best_lp:\n                best_lp = lp\n                best_lp_idx = i\n        lp_selection_f1s.append(compute_entity_f1(\n            inst[\"samples\"][best_lp_idx].get(\"entities\", []), gold_ents))\n\n    mv_f1s = [compute_entity_f1(majority_vote_span(inst),\n              inst[\"gold\"][\"entities\"]) for inst in instances]\n\n    theta = 2 / N_samples\n    consensus_2n_f1s = [compute_entity_f1(\n        consensus_construct(inst, high_thresh=theta, medium_thresh=0.0),\n        inst[\"gold\"][\"entities\"]) for inst in instances]\n\n    consensus_lp_f1s = [compute_entity_f1(\n        consensus_construct(inst, high_thresh=0.5, medium_thresh=theta),\n        inst[\"gold\"][\"entities\"]) for inst in instances]\n\n    # --- Degeneracy (constant-F1 definition for scaling curve) ---\n    degen_f1_flags = [compute_degeneracy_f1(inst) for inst in instances]\n    n_degen_f1 = sum(degen_f1_flags)\n    degen_rate = n_degen_f1 / len(instances) if instances else 0.0\n\n    # Entity-set degeneracy (for bootstrap stratification)\n    degen_set_flags = [compute_degeneracy_set(inst) for inst in instances]\n    n_degen_set = sum(degen_set_flags)\n\n    result = {\n        \"name\": name,\n        \"n_instances\": len(instances),\n        \"n_samples\": N_samples,\n        \"signals\": signal_results,\n        \"baselines\": {\n            \"greedy\": bootstrap_ci(greedy_f1s),\n            \"lp_selection\": bootstrap_ci(lp_selection_f1s),\n            \"majority_vote\": bootstrap_ci(mv_f1s),\n            \"oracle\": bootstrap_ci(oracle_f1s),\n            \"consensus_theta2n\": bootstrap_ci(consensus_2n_f1s),\n            \"consensus_lp_weighted\": bootstrap_ci(consensus_lp_f1s),\n        },\n        \"consensus_variants\": {},\n        \"degeneracy_rate\": degen_rate,\n        \"degeneracy_count\": n_degen_f1,\n        \"degeneracy_set_count\": n_degen_set,\n        \"lp_selection_delta\": float(np.mean(lp_selection_f1s) - np.mean(greedy_f1s)),\n    }\n\n    # Additional threshold configs\n    for cfg in [{\"high\": 0.5, \"medium\": 0.1},\n                {\"high\": 0.6, \"medium\": 0.2},\n                {\"high\": 0.7, \"medium\": 0.3}]:\n        key = f\"high={cfg['high']}_medium={cfg['medium']}\"\n        cc_f1s = [compute_entity_f1(\n            consensus_construct(inst, high_thresh=cfg[\"high\"],\n                                medium_thresh=cfg[\"medium\"]),\n            inst[\"gold\"][\"entities\"]) for inst in instances]\n        result[\"consensus_variants\"][key] = bootstrap_ci(cc_f1s)\n\n    # --- Print summary ---\n    print(f\"  N={N_samples}\")\n    print(f\"\\n  Signal correlations (Spearman rho vs greedy F1):\")\n    for sig in [\"LP\", \"SJ\", \"FK\", \"VC\", \"EM\"]:\n        if sig in signal_results:\n            print(f\"    {sig:4s}: rho={signal_results[sig]['rho']:.4f}\")\n\n    print(f\"\\n  Entity F1 (mean [95% CI]):\")\n    for label, key in [(\"Greedy\", \"greedy\"), (\"LP Selection\", \"lp_selection\"),\n                       (\"Majority Vote\", \"majority_vote\"),\n                       (\"Consensus theta=2/N\", \"consensus_theta2n\"),\n                       (\"Consensus LP-wt\", \"consensus_lp_weighted\"),\n                       (\"Oracle\", \"oracle\")]:\n        ci = result[\"baselines\"][key]\n        print(f\"    {label:25s} {ci['mean']:.4f}  \"\n              f\"[{ci['ci_lo']:.4f}, {ci['ci_hi']:.4f}]\")\n\n    print(f\"\\n  Degeneracy (constant-F1): {n_degen_f1}/{len(instances)} \"\n          f\"({degen_rate*100:.1f}%)\")\n    print(f\"  Degeneracy (entity-set):  {n_degen_set}/{len(instances)} \"\n          f\"({n_degen_set/len(instances)*100:.1f}%)\")\n\n    # Attach per-instance arrays (for bootstrap script)\n    result[\"_per_instance\"] = {\n        \"greedy_f1\": greedy_f1s,\n        \"construction_lp_f1\": consensus_lp_f1s,\n        \"oracle_f1\": oracle_f1s,\n        \"degenerate\": degen_flags,\n    }\n\n    return result\n\n\ndef find_datasets(input_dir):\n    \"\"\"Auto-detect dataset directories under input_dir.\"\"\"\n    datasets = {}\n    for name in [\"scierc\", \"conll2003\", \"fewnerd\"]:\n        path = os.path.join(input_dir, name, \"samples.jsonl\")\n        if os.path.exists(path):\n            datasets[name] = path\n    top_path = os.path.join(input_dir, \"samples.jsonl\")\n    if os.path.exists(top_path) and not datasets:\n        ds_name = os.path.basename(input_dir)\n        for known in [\"scierc\", \"conll\", \"fewnerd\"]:\n            if known in ds_name.lower():\n                ds_name = known\n                break\n        datasets[ds_name] = top_path\n    return datasets\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Compute 5 signals + construction pipeline\")\n    parser.add_argument(\"--input-dir\", required=True,\n                        help=\"Model output directory\")\n    parser.add_argument(\"--output-dir\", default=None,\n                        help=\"Output directory (default: input-dir)\")\n    parser.add_argument(\"--dataset\", default=None, nargs=\"+\",\n                        help=\"Dataset(s) to process (default: auto-detect)\")\n    parser.add_argument(\"--model-size\", default=None,\n                        help=\"Model size label (e.g. 7, 14, 32, 72)\")\n    parser.add_argument(\"--regime\", default=None, choices=[\"ft\", \"zs\", \"fs\"],\n                        help=\"Training regime\")\n    args = parser.parse_args()\n\n    output_dir = args.output_dir or args.input_dir\n    os.makedirs(output_dir, exist_ok=True)\n\n    datasets = find_datasets(args.input_dir)\n    if args.dataset:\n        datasets = {k: v for k, v in datasets.items() if k in args.dataset}\n\n    if not datasets:\n        print(f\"ERROR: No samples.jsonl found under {args.input_dir}\")\n        sys.exit(1)\n\n    all_results = {}\n    for ds_name, path in sorted(datasets.items()):\n        result = evaluate_dataset(ds_name, path)\n        if result:\n            if args.model_size:\n                result[\"model_size\"] = args.model_size\n            if args.regime:\n                result[\"regime\"] = args.regime\n            all_results[ds_name] = result\n\n    # Save report (without bulky per-instance arrays)\n    report = {}\n    for ds_name, r in all_results.items():\n        report[ds_name] = {k: v for k, v in r.items() if k != \"_per_instance\"}\n\n    report_path = os.path.join(output_dir, \"full_signal_report.json\")\n    with open(report_path, \"w\") as f:\n        json.dump(report, f, indent=2, default=str)\n    print(f\"\\nReport saved to {report_path}\")\n\n    # Save per-instance arrays for downstream bootstrap analysis\n    for ds_name, r in all_results.items():\n        pi = r.get(\"_per_instance\")\n        if pi:\n            pi_path = os.path.join(output_dir,\n                                   f\"{ds_name}_per_instance.json\")\n            with open(pi_path, \"w\") as f:\n                json.dump(pi, f)\n            print(f\"Per-instance data: {pi_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 388,
+                  "oldLines": 7,
+                  "newStart": 388,
+                  "newLines": 7,
+                  "lines": [
+                    "         \"greedy_f1\": greedy_f1s,",
+                    "         \"construction_lp_f1\": consensus_lp_f1s,",
+                    "         \"oracle_f1\": oracle_f1s,",
+                    "-        \"degenerate\": degen_flags,",
+                    "+        \"degenerate\": degen_set_flags,",
+                    "     }",
+                    " ",
+                    "     return result"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now re-upload and re-validate."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "e9478f67-e0af-4134-8ecc-ee91b69c3efa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XwkrBzHtavZNfAyqctsJpj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 398,
+                "cache_read_input_tokens": 114235,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 398
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Scs5s1LDUGge97Gk9yLYRz",
+              "name": "Bash",
+              "input": {
+                "command": "scp /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/compute_signals.py autodl-5090-b:/root/autodl-tmp/struct_self_consist_ie/artifacts/",
+                "description": "Upload fixed compute_signals.py",
+                "timeout": 15000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "7d6f4c89-e73b-40db-bbb1-2fc893009962",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XwkrBzHtavZNfAyqctsJpj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 398,
+                "cache_read_input_tokens": 114235,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 398
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-19T18:27:23.260Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Scs5s1LDUGge97Gk9yLYRz",
+              "type": "tool_result",
+              "content": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:11496' (ED25519) to the list of known hosts.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "e900ad10-a8df-43c2-8aa3-bfbbd5839261",
+            "tool_use_result": {
+              "stdout": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:11496' (ED25519) to the list of known hosts.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NMh8ogYocieVeyMiDPQpAK",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090-b",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python artifacts/compute_signals.py --input-dir output/72b_zeroshot --dataset scierc --model-size 72 --regime zs --output-dir /tmp/test_signals",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "b414e0f4-d6fa-42c1-9b07-1df35817f54e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KTyT3W6Lyq8nvmnnPqqn1Y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 211,
+                "cache_read_input_tokens": 114633,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 211
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-19T18:27:32.226Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NMh8ogYocieVeyMiDPQpAK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  scierc\\\\n============================================================\\\\n  Loaded 529 instances (gold-filtered)\\\\n  N=8\\\\n\\\\n  Signal correlations (Spearman rho vs greedy F1):\\\\n    LP  : rho=0.0811\\\\n    SJ  : rho=0.2168\\\\n    FK  : rho=0.2269\\\\n    VC  : rho=0.2774\\\\n    EM  : rho=0.1812\\\\n\\\\n  Entity F1 (mean [95% CI]):\\\\n    Greedy                    0.3993  [0.3750, 0.4249]\\\\n    LP Selection              0.3984  [0.3738, 0.4226]\\\\n    Majority Vote             0.4132  [0.3869, 0.4387]\\\\n    Consensus theta=2/N       0.3941  [0.3709, 0.4163]\\\\n    Consensus LP-wt           0.4146  [0.3891, 0.4393]\\\\n    Oracle                    0.5489  [0.5240, 0.5740]\\\\n\\\\n  Degeneracy (constant-F1): 111/529 (21.0%)\\\\n  Degeneracy (entity-set):  38/529 (7.2%)\\\\n\\\\nReport saved to /tmp/test_signals/full_signal_report.json\\\\nPer-instance data: /tmp/test_signals/scierc_per_instance.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "2968e321-ad07-4846-be8f-04bf2bba5208",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  scierc\\\\n============================================================\\\\n  Loaded 529 instances (gold-filtered)\\\\n  N=8\\\\n\\\\n  Signal correlations (Spearman rho vs greedy F1):\\\\n    LP  : rho=0.0811\\\\n    SJ  : rho=0.2168\\\\n    FK  : rho=0.2269\\\\n    VC  : rho=0.2774\\\\n    EM  : rho=0.1812\\\\n\\\\n  Entity F1 (mean [95% CI]):\\\\n    Greedy                    0.3993  [0.3750, 0.4249]\\\\n    LP Selection              0.3984  [0.3738, 0.4226]\\\\n    Majority Vote             0.4132  [0.3869, 0.4387]\\\\n    Consensus theta=2/N       0.3941  [0.3709, 0.4163]\\\\n    Consensus LP-wt           0.4146  [0.3891, 0.4393]\\\\n    Oracle                    0.5489  [0.5240, 0.5740]\\\\n\\\\n  Degeneracy (constant-F1): 111/529 (21.0%)\\\\n  Degeneracy (entity-set):  38/529 (7.2%)\\\\n\\\\nReport saved to /tmp/test_signals/full_signal_report.json\\\\nPer-instance data: /tmp/test_signals/scierc_per_instance.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.57}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  scierc\\n============================================================\\n  Loaded 529 instances (gold-filtered)\\n  N=8\\n\\n  Signal correlations (Spearman rho vs greedy F1):\\n    LP  : rho=0.0811\\n    SJ  : rho=0.2168\\n    FK  : rho=0.2269\\n    VC  : rho=0.2774\\n    EM  : rho=0.1812\\n\\n  Entity F1 (mean [95% CI]):\\n    Greedy                    0.3993  [0.3750, 0.4249]\\n    LP Selection              0.3984  [0.3738, 0.4226]\\n    Majority Vote             0.4132  [0.3869, 0.4387]\\n    Consensus theta=2/N       0.3941  [0.3709, 0.4163]\\n    Consensus LP-wt           0.4146  [0.3891, 0.4393]\\n    Oracle                    0.5489  [0.5240, 0.5740]\\n\\n  Degeneracy (constant-F1): 111/529 (21.0%)\\n  Degeneracy (entity-set):  38/529 (7.2%)\\n\\nReport saved to /tmp/test_signals/full_signal_report.json\\nPer-instance data: /tmp/test_signals/scierc_per_instance.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.57}}"
+              }
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Degeneracy now matches (21.0%). Let me run all 3 datasets and validate the full pipeline."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "2bf9a73d-acc1-4fb3-b63c-4b3e54c6efc5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FhdaSfjQYiCHFHzGnd3Gw9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 643,
+                "cache_read_input_tokens": 114844,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 643
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BFuLyEMdbqnXq6jrCikget",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090-b",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python artifacts/compute_signals.py --input-dir output/72b_zeroshot --model-size 72 --regime zs --output-dir /tmp/test_signals",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "c004b99a-23fd-48e5-b63f-94c0a5450892",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FhdaSfjQYiCHFHzGnd3Gw9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 643,
+                "cache_read_input_tokens": 114844,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 643
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-19T18:28:04.715Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BFuLyEMdbqnXq6jrCikget",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  conll2003\\\\n============================================================\\\\n  Loaded 2756 instances (gold-filtered)\\\\n  N=8\\\\n\\\\n  Signal correlations (Spearman rho vs greedy F1):\\\\n    LP  : rho=-0.0022\\\\n    SJ  : rho=0.3035\\\\n    FK  : rho=0.3019\\\\n    VC  : rho=0.2967\\\\n    EM  : rho=0.2814\\\\n\\\\n  Entity F1 (mean [95% CI]):\\\\n    Greedy                    0.7120  [0.6973, 0.7271]\\\\n    LP Selection              0.7080  [0.6939, 0.7230]\\\\n    Majority Vote             0.7034  [0.6886, 0.7181]\\\\n    Consensus theta=2/N       0.7028  [0.6887, 0.7175]\\\\n    Consensus LP-wt           0.7083  [0.6937, 0.7231]\\\\n    Oracle                    0.7651  [0.7508, 0.7792]\\\\n\\\\n  Degeneracy (constant-F1): 1866/2756 (67.7%)\\\\n  Degeneracy (entity-set):  1689/2756 (61.3%)\\\\n\\\\n============================================================\\\\n  fewnerd\\\\n============================================================\\\\n  Loaded 32565 instances (gold-filtered)\\\\n  N=8\\\\n\\\\n  Signal correlations (Spearman rho vs greedy F1):\\\\n    LP  : rho=0.1191\\\\n    SJ  : rho=0.3446\\\\n    FK  : rho=0.3215\\\\n    VC  : rho=0.4157\\\\n    EM  : rho=0.3033\\\\n\\\\n  Entity F1 (mean [95% CI]):\\\\n    Greedy                    0.6281  [0.6243, 0.6319]\\\\n    LP Selection              0.6241  [0.6202, 0.6279]\\\\n    Majority Vote             0.6262  [0.6222, 0.6301]\\\\n    Consensus theta=2/N       0.6112  [0.6075, 0.6148]\\\\n    Consensus LP-wt           0.6261  [0.6223, 0.6300]\\\\n    Oracle                    0.7072  [0.7035, 0.7108]\\\\n\\\\n  Degeneracy (constant-F1): 15052/32565 (46.2%)\\\\n  Degeneracy (entity-set):  11384/32565 (35.0%)\\\\n\\\\n============================================================\\\\n  scierc\\\\n============================================================\\\\n  Loaded 529 instances (gold-filtered)\\\\n  N=8\\\\n\\\\n  Signal correlations (Spearman rho vs greedy F1):\\\\n    LP  : rho=0.0811\\\\n    SJ  : rho=0.2168\\\\n    FK  : rho=0.2269\\\\n    VC  : rho=0.2774\\\\n    EM  : rho=0.1812\\\\n\\\\n  Entity F1 (mean [95% CI]):\\\\n    Greedy                    0.3993  [0.3750, 0.4249]\\\\n    LP Selection              0.3984  [0.3738, 0.4226]\\\\n    Majority Vote             0.4132  [0.3869, 0.4387]\\\\n    Consensus theta=2/N       0.3941  [0.3709, 0.4163]\\\\n    Consensus LP-wt           0.4146  [0.3891, 0.4393]\\\\n    Oracle                    0.5489  [0.5240, 0.5740]\\\\n\\\\n  Degeneracy (constant-F1): 111/529 (21.0%)\\\\n  Degeneracy (entity-set):  38/529 (7.2%)\\\\n\\\\nReport saved to /tmp/test_signals/full_signal_report.json\\\\nPer-instance data: /tmp/test_signals/conll2003_per_instance.json\\\\nPer-instance data: /tmp/test_signals/fewnerd_per_instance.json\\\\nPer-instance data: /tmp/test_signals/scierc_per_instance.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 23.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "e4bc52ce-90f5-4330-a9ce-06ef37287108",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  conll2003\\\\n============================================================\\\\n  Loaded 2756 instances (gold-filtered)\\\\n  N=8\\\\n\\\\n  Signal correlations (Spearman rho vs greedy F1):\\\\n    LP  : rho=-0.0022\\\\n    SJ  : rho=0.3035\\\\n    FK  : rho=0.3019\\\\n    VC  : rho=0.2967\\\\n    EM  : rho=0.2814\\\\n\\\\n  Entity F1 (mean [95% CI]):\\\\n    Greedy                    0.7120  [0.6973, 0.7271]\\\\n    LP Selection              0.7080  [0.6939, 0.7230]\\\\n    Majority Vote             0.7034  [0.6886, 0.7181]\\\\n    Consensus theta=2/N       0.7028  [0.6887, 0.7175]\\\\n    Consensus LP-wt           0.7083  [0.6937, 0.7231]\\\\n    Oracle                    0.7651  [0.7508, 0.7792]\\\\n\\\\n  Degeneracy (constant-F1): 1866/2756 (67.7%)\\\\n  Degeneracy (entity-set):  1689/2756 (61.3%)\\\\n\\\\n============================================================\\\\n  fewnerd\\\\n============================================================\\\\n  Loaded 32565 instances (gold-filtered)\\\\n  N=8\\\\n\\\\n  Signal correlations (Spearman rho vs greedy F1):\\\\n    LP  : rho=0.1191\\\\n    SJ  : rho=0.3446\\\\n    FK  : rho=0.3215\\\\n    VC  : rho=0.4157\\\\n    EM  : rho=0.3033\\\\n\\\\n  Entity F1 (mean [95% CI]):\\\\n    Greedy                    0.6281  [0.6243, 0.6319]\\\\n    LP Selection              0.6241  [0.6202, 0.6279]\\\\n    Majority Vote             0.6262  [0.6222, 0.6301]\\\\n    Consensus theta=2/N       0.6112  [0.6075, 0.6148]\\\\n    Consensus LP-wt           0.6261  [0.6223, 0.6300]\\\\n    Oracle                    0.7072  [0.7035, 0.7108]\\\\n\\\\n  Degeneracy (constant-F1): 15052/32565 (46.2%)\\\\n  Degeneracy (entity-set):  11384/32565 (35.0%)\\\\n\\\\n============================================================\\\\n  scierc\\\\n============================================================\\\\n  Loaded 529 instances (gold-filtered)\\\\n  N=8\\\\n\\\\n  Signal correlations (Spearman rho vs greedy F1):\\\\n    LP  : rho=0.0811\\\\n    SJ  : rho=0.2168\\\\n    FK  : rho=0.2269\\\\n    VC  : rho=0.2774\\\\n    EM  : rho=0.1812\\\\n\\\\n  Entity F1 (mean [95% CI]):\\\\n    Greedy                    0.3993  [0.3750, 0.4249]\\\\n    LP Selection              0.3984  [0.3738, 0.4226]\\\\n    Majority Vote             0.4132  [0.3869, 0.4387]\\\\n    Consensus theta=2/N       0.3941  [0.3709, 0.4163]\\\\n    Consensus LP-wt           0.4146  [0.3891, 0.4393]\\\\n    Oracle                    0.5489  [0.5240, 0.5740]\\\\n\\\\n  Degeneracy (constant-F1): 111/529 (21.0%)\\\\n  Degeneracy (entity-set):  38/529 (7.2%)\\\\n\\\\nReport saved to /tmp/test_signals/full_signal_report.json\\\\nPer-instance data: /tmp/test_signals/conll2003_per_instance.json\\\\nPer-instance data: /tmp/test_signals/fewnerd_per_instance.json\\\\nPer-instance data: /tmp/test_signals/scierc_per_instance.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 23.8}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  conll2003\\n============================================================\\n  Loaded 2756 instances (gold-filtered)\\n  N=8\\n\\n  Signal correlations (Spearman rho vs greedy F1):\\n    LP  : rho=-0.0022\\n    SJ  : rho=0.3035\\n    FK  : rho=0.3019\\n    VC  : rho=0.2967\\n    EM  : rho=0.2814\\n\\n  Entity F1 (mean [95% CI]):\\n    Greedy                    0.7120  [0.6973, 0.7271]\\n    LP Selection              0.7080  [0.6939, 0.7230]\\n    Majority Vote             0.7034  [0.6886, 0.7181]\\n    Consensus theta=2/N       0.7028  [0.6887, 0.7175]\\n    Consensus LP-wt           0.7083  [0.6937, 0.7231]\\n    Oracle                    0.7651  [0.7508, 0.7792]\\n\\n  Degeneracy (constant-F1): 1866/2756 (67.7%)\\n  Degeneracy (entity-set):  1689/2756 (61.3%)\\n\\n============================================================\\n  fewnerd\\n============================================================\\n  Loaded 32565 instances (gold-filtered)\\n  N=8\\n\\n  Signal correlations (Spearman rho vs greedy F1):\\n    LP  : rho=0.1191\\n    SJ  : rho=0.3446\\n    FK  : rho=0.3215\\n    VC  : rho=0.4157\\n    EM  : rho=0.3033\\n\\n  Entity F1 (mean [95% CI]):\\n    Greedy                    0.6281  [0.6243, 0.6319]\\n    LP Selection              0.6241  [0.6202, 0.6279]\\n    Majority Vote             0.6262  [0.6222, 0.6301]\\n    Consensus theta=2/N       0.6112  [0.6075, 0.6148]\\n    Consensus LP-wt           0.6261  [0.6223, 0.6300]\\n    Oracle                    0.7072  [0.7035, 0.7108]\\n\\n  Degeneracy (constant-F1): 15052/32565 (46.2%)\\n  Degeneracy (entity-set):  11384/32565 (35.0%)\\n\\n============================================================\\n  scierc\\n============================================================\\n  Loaded 529 instances (gold-filtered)\\n  N=8\\n\\n  Signal correlations (Spearman rho vs greedy F1):\\n    LP  : rho=0.0811\\n    SJ  : rho=0.2168\\n    FK  : rho=0.2269\\n    VC  : rho=0.2774\\n    EM  : rho=0.1812\\n\\n  Entity F1 (mean [95% CI]):\\n    Greedy                    0.3993  [0.3750, 0.4249]\\n    LP Selection              0.3984  [0.3738, 0.4226]\\n    Majority Vote             0.4132  [0.3869, 0.4387]\\n    Consensus theta=2/N       0.3941  [0.3709, 0.4163]\\n    Consensus LP-wt           0.4146  [0.3891, 0.4393]\\n    Oracle                    0.5489  [0.5240, 0.5740]\\n\\n  Degeneracy (constant-F1): 111/529 (21.0%)\\n  Degeneracy (entity-set):  38/529 (7.2%)\\n\\nReport saved to /tmp/test_signals/full_signal_report.json\\nPer-instance data: /tmp/test_signals/conll2003_per_instance.json\\nPer-instance data: /tmp/test_signals/fewnerd_per_instance.json\\nPer-instance data: /tmp/test_signals/scierc_per_instance.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 23.8}}"
+              }
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 3 datasets match the known 72B ZS values. Now validate format_for_scaling.py and bootstrap_construction.py."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "f3ea4f11-00ea-4412-8862-47b1ae0f147c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H4ATngibBrG8dSLrFM7fTB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1400,
+                "cache_read_input_tokens": 115487,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1400
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tj7LAKPs54zrPcRryFQELE",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090-b",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python artifacts/format_for_scaling.py --report /tmp/test_signals/full_signal_report.json --model-size 72 --regime zs",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "35f6e77b-ddd2-46ff-add5-c71d8a12aac4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H4ATngibBrG8dSLrFM7fTB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1400,
+                "cache_read_input_tokens": 115487,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1400
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-19T18:28:12.158Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tj7LAKPs54zrPcRryFQELE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# ─── Copy-paste into plot_scaling_curve.py DATA dict ───\\\\n\\\\n    # ── Qwen3-72B ZS ──\\\\n    (72, \\\\\\\"zs\\\\\\\", \\\\\\\"CoNLL\\\\\\\")           : {\\\\\\\"lp_rho\\\\\\\": -0.002, \\\\\\\"sj_rho\\\\\\\": 0.304, \\\\\\\"vc_rho\\\\\\\": 0.297, \\\\\\\"degen\\\\\\\": 67.7, \\\\\\\"construction_lp_delta\\\\\\\": -0.37, \\\\\\\"greedy_f1\\\\\\\": 0.712, \\\\\\\"oracle_f1\\\\\\\": 0.765},\\\\n    (72, \\\\\\\"zs\\\\\\\", \\\\\\\"FewNERD\\\\\\\")         : {\\\\\\\"lp_rho\\\\\\\": 0.119, \\\\\\\"sj_rho\\\\\\\": 0.345, \\\\\\\"vc_rho\\\\\\\": 0.416, \\\\\\\"degen\\\\\\\": 46.2, \\\\\\\"construction_lp_delta\\\\\\\": -0.2, \\\\\\\"greedy_f1\\\\\\\": 0.628, \\\\\\\"oracle_f1\\\\\\\": 0.707},\\\\n    (72, \\\\\\\"zs\\\\\\\", \\\\\\\"SciERC\\\\\\\")          : {\\\\\\\"lp_rho\\\\\\\": 0.081, \\\\\\\"sj_rho\\\\\\\": 0.217, \\\\\\\"vc_rho\\\\\\\": 0.277, \\\\\\\"degen\\\\\\\": 21.0, \\\\\\\"construction_lp_delta\\\\\\\": 1.53, \\\\\\\"greedy_f1\\\\\\\": 0.399, \\\\\\\"oracle_f1\\\\\\\": 0.549},\\\\n\\\\n\\\\n# ─── Summary Table ───\\\\n# Key                                    LP_ρ    SJ_ρ    VC_ρ  Degen%    Δ_LP  Greedy  Oracle\\\\n# (72, \\\\\\\"zs\\\\\\\", \\\\\\\"CoNLL\\\\\\\")                  -0.002   0.304   0.297  67.700  -0.370   0.712   0.765\\\\n# (72, \\\\\\\"zs\\\\\\\", \\\\\\\"FewNERD\\\\\\\")                 0.119   0.345   0.416  46.200  -0.200   0.628   0.707\\\\n# (72, \\\\\\\"zs\\\\\\\", \\\\\\\"SciERC\\\\\\\")                  0.081   0.217   0.277  21.000   1.530   0.399   0.549\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "f5fbc449-ad14-4e8c-85fd-ed3098dc54d4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# ─── Copy-paste into plot_scaling_curve.py DATA dict ───\\\\n\\\\n    # ── Qwen3-72B ZS ──\\\\n    (72, \\\\\\\"zs\\\\\\\", \\\\\\\"CoNLL\\\\\\\")           : {\\\\\\\"lp_rho\\\\\\\": -0.002, \\\\\\\"sj_rho\\\\\\\": 0.304, \\\\\\\"vc_rho\\\\\\\": 0.297, \\\\\\\"degen\\\\\\\": 67.7, \\\\\\\"construction_lp_delta\\\\\\\": -0.37, \\\\\\\"greedy_f1\\\\\\\": 0.712, \\\\\\\"oracle_f1\\\\\\\": 0.765},\\\\n    (72, \\\\\\\"zs\\\\\\\", \\\\\\\"FewNERD\\\\\\\")         : {\\\\\\\"lp_rho\\\\\\\": 0.119, \\\\\\\"sj_rho\\\\\\\": 0.345, \\\\\\\"vc_rho\\\\\\\": 0.416, \\\\\\\"degen\\\\\\\": 46.2, \\\\\\\"construction_lp_delta\\\\\\\": -0.2, \\\\\\\"greedy_f1\\\\\\\": 0.628, \\\\\\\"oracle_f1\\\\\\\": 0.707},\\\\n    (72, \\\\\\\"zs\\\\\\\", \\\\\\\"SciERC\\\\\\\")          : {\\\\\\\"lp_rho\\\\\\\": 0.081, \\\\\\\"sj_rho\\\\\\\": 0.217, \\\\\\\"vc_rho\\\\\\\": 0.277, \\\\\\\"degen\\\\\\\": 21.0, \\\\\\\"construction_lp_delta\\\\\\\": 1.53, \\\\\\\"greedy_f1\\\\\\\": 0.399, \\\\\\\"oracle_f1\\\\\\\": 0.549},\\\\n\\\\n\\\\n# ─── Summary Table ───\\\\n# Key                                    LP_ρ    SJ_ρ    VC_ρ  Degen%    Δ_LP  Greedy  Oracle\\\\n# (72, \\\\\\\"zs\\\\\\\", \\\\\\\"CoNLL\\\\\\\")                  -0.002   0.304   0.297  67.700  -0.370   0.712   0.765\\\\n# (72, \\\\\\\"zs\\\\\\\", \\\\\\\"FewNERD\\\\\\\")                 0.119   0.345   0.416  46.200  -0.200   0.628   0.707\\\\n# (72, \\\\\\\"zs\\\\\\\", \\\\\\\"SciERC\\\\\\\")                  0.081   0.217   0.277  21.000   1.530   0.399   0.549\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"# ─── Copy-paste into plot_scaling_curve.py DATA dict ───\\n\\n    # ── Qwen3-72B ZS ──\\n    (72, \\\"zs\\\", \\\"CoNLL\\\")           : {\\\"lp_rho\\\": -0.002, \\\"sj_rho\\\": 0.304, \\\"vc_rho\\\": 0.297, \\\"degen\\\": 67.7, \\\"construction_lp_delta\\\": -0.37, \\\"greedy_f1\\\": 0.712, \\\"oracle_f1\\\": 0.765},\\n    (72, \\\"zs\\\", \\\"FewNERD\\\")         : {\\\"lp_rho\\\": 0.119, \\\"sj_rho\\\": 0.345, \\\"vc_rho\\\": 0.416, \\\"degen\\\": 46.2, \\\"construction_lp_delta\\\": -0.2, \\\"greedy_f1\\\": 0.628, \\\"oracle_f1\\\": 0.707},\\n    (72, \\\"zs\\\", \\\"SciERC\\\")          : {\\\"lp_rho\\\": 0.081, \\\"sj_rho\\\": 0.217, \\\"vc_rho\\\": 0.277, \\\"degen\\\": 21.0, \\\"construction_lp_delta\\\": 1.53, \\\"greedy_f1\\\": 0.399, \\\"oracle_f1\\\": 0.549},\\n\\n\\n# ─── Summary Table ───\\n# Key                                    LP_ρ    SJ_ρ    VC_ρ  Degen%    Δ_LP  Greedy  Oracle\\n# (72, \\\"zs\\\", \\\"CoNLL\\\")                  -0.002   0.304   0.297  67.700  -0.370   0.712   0.765\\n# (72, \\\"zs\\\", \\\"FewNERD\\\")                 0.119   0.345   0.416  46.200  -0.200   0.628   0.707\\n# (72, \\\"zs\\\", \\\"SciERC\\\")                  0.081   0.217   0.277  21.000   1.530   0.399   0.549\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me cross-check the output with the existing DATA dict values:\n\nExisting:\n```python\n(72, \"zs\", \"SciERC\"):   {\"lp_rho\": 0.081, \"sj_rho\": 0.217, \"vc_rho\": 0.277,\n                          \"degen\": 21.0, \"construction_lp_delta\": 1.53,\n                          \"greedy_f1\": 0.399, \"oracle_f1\": None},\n\n\n```\n\nNow I'm verifying the metrics for the FewNERD and CoNLL datasets... Generating metrics table...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "38270c18-2db1-4cc4-b26e-43e5a423676f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017mWe5mZjHh4eajSbHEyKJs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1050,
+                "cache_read_input_tokens": 116887,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1050
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All values match the existing DATA dict exactly. Now test the bootstrap script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "2e4c7497-eee0-43b6-877b-a1809a4eae23",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017mWe5mZjHh4eajSbHEyKJs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1050,
+                "cache_read_input_tokens": 116887,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1050
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TkSMvtpk5poTzpsXq9cqp7",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090-b",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python artifacts/bootstrap_construction.py --input-dir output/72b_zeroshot --dataset scierc --output-dir /tmp/test_signals",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "b513543a-4678-489f-928d-6a02b8ee6968",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017mWe5mZjHh4eajSbHEyKJs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1050,
+                "cache_read_input_tokens": 116887,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1050
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-19T18:28:28.686Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TkSMvtpk5poTzpsXq9cqp7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 529 instances, 8 samples/instance, theta=2/N=0.2500\\\\n\\\\n============================================================\\\\n  scierc\\\\n============================================================\\\\nInstances: 529, Samples/instance: N/A (from per-instance data)\\\\n\\\\nGreedy F1:       0.3993\\\\nConstruction F1: 0.4146\\\\nObserved diff:   +0.0153 (+1.53pp)\\\\n\\\\n=== Paired Bootstrap Test (B=10000) ===\\\\n95% CI of diff:  [+0.0025, +0.0282]\\\\np-value (one-sided, H0: diff<=0): 0.0082\\\\nCohen's d:       0.1027\\\\nSignificant (p<0.05): YES\\\\n\\\\n=== Instance Distribution ===\\\\nPositive (construction > greedy): 119 (22.5%)\\\\nNegative (construction < greedy): 72 (13.6%)\\\\nTied:                             338 (63.9%)\\\\n\\\\n=== Degeneracy ===\\\\nDegenerate instances: 38 (7.2%)\\\\nNon-degenerate:       491 (92.8%)\\\\n\\\\n  Non-degen greedy F1:       0.3934\\\\n  Non-degen construction F1: 0.4099\\\\n  Non-degen diff:            +0.0165 (+1.65pp)\\\\n  Non-degen 95% CI:          [+0.0031, +0.0306]\\\\n  Non-degen p-value:         0.0069\\\\n  Non-degen positive/negative/tied: 119/72/300\\\\n\\\\n  Degen greedy F1:       0.4761\\\\n  Degen construction F1: 0.4761\\\\n  Degen diff:            +0.0000\\\\n\\\\nResult saved to /tmp/test_signals/scierc_paired_bootstrap_result.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "eb43edba-9d57-4178-b659-6aac51618b6c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 529 instances, 8 samples/instance, theta=2/N=0.2500\\\\n\\\\n============================================================\\\\n  scierc\\\\n============================================================\\\\nInstances: 529, Samples/instance: N/A (from per-instance data)\\\\n\\\\nGreedy F1:       0.3993\\\\nConstruction F1: 0.4146\\\\nObserved diff:   +0.0153 (+1.53pp)\\\\n\\\\n=== Paired Bootstrap Test (B=10000) ===\\\\n95% CI of diff:  [+0.0025, +0.0282]\\\\np-value (one-sided, H0: diff<=0): 0.0082\\\\nCohen's d:       0.1027\\\\nSignificant (p<0.05): YES\\\\n\\\\n=== Instance Distribution ===\\\\nPositive (construction > greedy): 119 (22.5%)\\\\nNegative (construction < greedy): 72 (13.6%)\\\\nTied:                             338 (63.9%)\\\\n\\\\n=== Degeneracy ===\\\\nDegenerate instances: 38 (7.2%)\\\\nNon-degenerate:       491 (92.8%)\\\\n\\\\n  Non-degen greedy F1:       0.3934\\\\n  Non-degen construction F1: 0.4099\\\\n  Non-degen diff:            +0.0165 (+1.65pp)\\\\n  Non-degen 95% CI:          [+0.0031, +0.0306]\\\\n  Non-degen p-value:         0.0069\\\\n  Non-degen positive/negative/tied: 119/72/300\\\\n\\\\n  Degen greedy F1:       0.4761\\\\n  Degen construction F1: 0.4761\\\\n  Degen diff:            +0.0000\\\\n\\\\nResult saved to /tmp/test_signals/scierc_paired_bootstrap_result.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 529 instances, 8 samples/instance, theta=2/N=0.2500\\n\\n============================================================\\n  scierc\\n============================================================\\nInstances: 529, Samples/instance: N/A (from per-instance data)\\n\\nGreedy F1:       0.3993\\nConstruction F1: 0.4146\\nObserved diff:   +0.0153 (+1.53pp)\\n\\n=== Paired Bootstrap Test (B=10000) ===\\n95% CI of diff:  [+0.0025, +0.0282]\\np-value (one-sided, H0: diff<=0): 0.0082\\nCohen's d:       0.1027\\nSignificant (p<0.05): YES\\n\\n=== Instance Distribution ===\\nPositive (construction > greedy): 119 (22.5%)\\nNegative (construction < greedy): 72 (13.6%)\\nTied:                             338 (63.9%)\\n\\n=== Degeneracy ===\\nDegenerate instances: 38 (7.2%)\\nNon-degenerate:       491 (92.8%)\\n\\n  Non-degen greedy F1:       0.3934\\n  Non-degen construction F1: 0.4099\\n  Non-degen diff:            +0.0165 (+1.65pp)\\n  Non-degen 95% CI:          [+0.0031, +0.0306]\\n  Non-degen p-value:         0.0069\\n  Non-degen positive/negative/tied: 119/72/300\\n\\n  Degen greedy F1:       0.4761\\n  Degen construction F1: 0.4761\\n  Degen diff:            +0.0000\\n\\nResult saved to /tmp/test_signals/scierc_paired_bootstrap_result.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"
+              }
+            }
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me cross-check with the existing paired_bootstrap_construction.py results. Let me run the original to compare.\n\nActually, looking at the results, the key values look correct:\n- Greedy F1: 0.3993 ✓\n- Construction F1: 0.4146 ✓  \n- Diff: +1.53pp ✓\n- p=0.0082 (significant) ✓\n\nThe bootstrap test works correctly. The entity-set degeneracy (38 instances, 7.2%) is used for stratification, while the original paired_bootstrap_construction.py also used entity-set degeneracy (same definition).\n\n\nNow I'm testing the bootstrap script with pre-computed per-instance data.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "494e5922-7923-4d26-98ca-94ffe1d69fe9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014ZzUEbZ1Eo4o1FviUEPDfF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2586,
+                "cache_read_input_tokens": 116887,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2586
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me also verify the per-instance bootstrap path works."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "0f94bb2d-bd34-4f02-b091-eb32c334b82a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014ZzUEbZ1Eo4o1FviUEPDfF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2586,
+                "cache_read_input_tokens": 116887,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2586
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y7s3kfnJSFj5nk4URfkSdg",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090-b",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python artifacts/bootstrap_construction.py --per-instance /tmp/test_signals/scierc_per_instance.json --dataset scierc --output-dir /tmp/test_signals_pi",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "8919d4e4-a6c5-4ca3-8460-f72d9feb9434",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014ZzUEbZ1Eo4o1FviUEPDfF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2586,
+                "cache_read_input_tokens": 116887,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2586
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-19T18:28:37.381Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y7s3kfnJSFj5nk4URfkSdg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  scierc\\\\n============================================================\\\\nInstances: 529, Samples/instance: N/A (from per-instance data)\\\\n\\\\nGreedy F1:       0.3993\\\\nConstruction F1: 0.4146\\\\nObserved diff:   +0.0153 (+1.53pp)\\\\n\\\\n=== Paired Bootstrap Test (B=10000) ===\\\\n95% CI of diff:  [+0.0025, +0.0282]\\\\np-value (one-sided, H0: diff<=0): 0.0082\\\\nCohen's d:       0.1027\\\\nSignificant (p<0.05): YES\\\\n\\\\n=== Instance Distribution ===\\\\nPositive (construction > greedy): 119 (22.5%)\\\\nNegative (construction < greedy): 72 (13.6%)\\\\nTied:                             338 (63.9%)\\\\n\\\\n=== Degeneracy ===\\\\nDegenerate instances: 38 (7.2%)\\\\nNon-degenerate:       491 (92.8%)\\\\n\\\\n  Non-degen greedy F1:       0.3934\\\\n  Non-degen construction F1: 0.4099\\\\n  Non-degen diff:            +0.0165 (+1.65pp)\\\\n  Non-degen 95% CI:          [+0.0031, +0.0306]\\\\n  Non-degen p-value:         0.0069\\\\n  Non-degen positive/negative/tied: 119/72/300\\\\n\\\\n  Degen greedy F1:       0.4761\\\\n  Degen construction F1: 0.4761\\\\n  Degen diff:            +0.0000\\\\n\\\\nResult saved to /tmp/test_signals_pi/scierc_paired_bootstrap_result.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "5062c23e-ddd5-4909-a9b0-380147f495e8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  scierc\\\\n============================================================\\\\nInstances: 529, Samples/instance: N/A (from per-instance data)\\\\n\\\\nGreedy F1:       0.3993\\\\nConstruction F1: 0.4146\\\\nObserved diff:   +0.0153 (+1.53pp)\\\\n\\\\n=== Paired Bootstrap Test (B=10000) ===\\\\n95% CI of diff:  [+0.0025, +0.0282]\\\\np-value (one-sided, H0: diff<=0): 0.0082\\\\nCohen's d:       0.1027\\\\nSignificant (p<0.05): YES\\\\n\\\\n=== Instance Distribution ===\\\\nPositive (construction > greedy): 119 (22.5%)\\\\nNegative (construction < greedy): 72 (13.6%)\\\\nTied:                             338 (63.9%)\\\\n\\\\n=== Degeneracy ===\\\\nDegenerate instances: 38 (7.2%)\\\\nNon-degenerate:       491 (92.8%)\\\\n\\\\n  Non-degen greedy F1:       0.3934\\\\n  Non-degen construction F1: 0.4099\\\\n  Non-degen diff:            +0.0165 (+1.65pp)\\\\n  Non-degen 95% CI:          [+0.0031, +0.0306]\\\\n  Non-degen p-value:         0.0069\\\\n  Non-degen positive/negative/tied: 119/72/300\\\\n\\\\n  Degen greedy F1:       0.4761\\\\n  Degen construction F1: 0.4761\\\\n  Degen diff:            +0.0000\\\\n\\\\nResult saved to /tmp/test_signals_pi/scierc_paired_bootstrap_result.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  scierc\\n============================================================\\nInstances: 529, Samples/instance: N/A (from per-instance data)\\n\\nGreedy F1:       0.3993\\nConstruction F1: 0.4146\\nObserved diff:   +0.0153 (+1.53pp)\\n\\n=== Paired Bootstrap Test (B=10000) ===\\n95% CI of diff:  [+0.0025, +0.0282]\\np-value (one-sided, H0: diff<=0): 0.0082\\nCohen's d:       0.1027\\nSignificant (p<0.05): YES\\n\\n=== Instance Distribution ===\\nPositive (construction > greedy): 119 (22.5%)\\nNegative (construction < greedy): 72 (13.6%)\\nTied:                             338 (63.9%)\\n\\n=== Degeneracy ===\\nDegenerate instances: 38 (7.2%)\\nNon-degenerate:       491 (92.8%)\\n\\n  Non-degen greedy F1:       0.3934\\n  Non-degen construction F1: 0.4099\\n  Non-degen diff:            +0.0165 (+1.65pp)\\n  Non-degen 95% CI:          [+0.0031, +0.0306]\\n  Non-degen p-value:         0.0069\\n  Non-degen positive/negative/tied: 119/72/300\\n\\n  Degen greedy F1:       0.4761\\n  Degen construction F1: 0.4761\\n  Degen diff:            +0.0000\\n\\nResult saved to /tmp/test_signals_pi/scierc_paired_bootstrap_result.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+              }
+            }
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Identical results from both paths. All 3 scripts validated against 72B ZS data.\n\n**Summary:**\n\n### `artifacts/compute_signals.py`\nComputes 5 signals (LP/SJ/FK/VC/EM Spearman ρ vs greedy F1) + construction pipeline (greedy, LP selection, MV, consensus θ=2/N, LP-weighted construction, oracle) + degeneracy rates.\n```bash\npython compute_signals.py --input-dir output/<model_dir> [--dataset scierc conll2003 fewnerd] \\\n    [--model-size 72] [--regime zs] [--output-dir /path/to/results]\n```\nOutputs: `full_signal_report.json` + `<dataset>_per_instance.json`\n\n### `artifacts/format_for_scaling.py`\nReads signal report, outputs DATA dict entries for `plot_scaling_curve.py`.\n```bash\npython format_for_scaling.py --report /path/to/full_signal_report.json \\\n    --model-size 72 --regime zs\n```\nProduces copy-paste-ready Python dict entries + summary table.\n\n### `artifacts/bootstrap_construction.py`\nPaired bootstrap test (B=10000): greedy F1 vs LP-weighted construction F1, with degeneracy stratification.\n```bash\n# From raw samples.jsonl\npython bootstrap_construction.py --input-dir output/<model_dir> [--dataset scierc]\n# From pre-computed per-instance data\npython bootstrap_construction.py --per-instance <dataset>_per_instance.json --dataset scierc\n```\n\n**Validation (72B ZS):** All values match the known report exactly — LP ρ=0.081, SJ ρ=0.217, VC ρ=0.277, degen=21.0%, construction ΔF1=+1.53pp (p=0.008) for SciERC, and matching values for CoNLL/FewNERD."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "uuid": "aa1895cc-eb59-4994-b85d-d14b298fa15d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0118q51ymXEUwdVqmChreJMk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 924,
+                "cache_read_input_tokens": 119473,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 924
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Identical results from both paths. All 3 scripts validated against 72B ZS data.\n\n**Summary:**\n\n### `artifacts/compute_signals.py`\nComputes 5 signals (LP/SJ/FK/VC/EM Spearman ρ vs greedy F1) + construction pipeline (greedy, LP selection, MV, consensus θ=2/N, LP-weighted construction, oracle) + degeneracy rates.\n```bash\npython compute_signals.py --input-dir output/<model_dir> [--dataset scierc conll2003 fewnerd] \\\n    [--model-size 72] [--regime zs] [--output-dir /path/to/results]\n```\nOutputs: `full_signal_report.json` + `<dataset>_per_instance.json`\n\n### `artifacts/format_for_scaling.py`\nReads signal report, outputs DATA dict entries for `plot_scaling_curve.py`.\n```bash\npython format_for_scaling.py --report /path/to/full_signal_report.json \\\n    --model-size 72 --regime zs\n```\nProduces copy-paste-ready Python dict entries + summary table.\n\n### `artifacts/bootstrap_construction.py`\nPaired bootstrap test (B=10000): greedy F1 vs LP-weighted construction F1, with degeneracy stratification.\n```bash\n# From raw samples.jsonl\npython bootstrap_construction.py --input-dir output/<model_dir> [--dataset scierc]\n# From pre-computed per-instance data\npython bootstrap_construction.py --per-instance <dataset>_per_instance.json --dataset scierc\n```\n\n**Validation (72B ZS):** All values match the known report exactly — LP ρ=0.081, SJ ρ=0.217, VC ρ=0.277, degen=21.0%, construction ΔF1=+1.53pp (p=0.008) for SciERC, and matching values for CoNLL/FewNERD."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 656283,
+            "duration_api_ms": 621292,
+            "num_turns": 48,
+            "stop_reason": "end_turn",
+            "session_id": "2957c84f-b5b6-433e-a74b-b873ea59ade0",
+            "total_cost_usd": 3.0714419999999993,
+            "usage": {
+              "input_tokens": 38,
+              "cache_creation_input_tokens": 120752,
+              "cache_read_input_tokens": 3070514,
+              "output_tokens": 31174,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 120752,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 496,
+                  "cache_read_input_tokens": 119473,
+                  "cache_creation_input_tokens": 924,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 924
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1865,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001945,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 38,
+                "outputTokens": 31174,
+                "cacheReadInputTokens": 3070514,
+                "cacheCreationInputTokens": 120752,
+                "webSearchRequests": 0,
+                "costUSD": 3.0694969999999993,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "50f26c16-6191-4fd4-af20-075504ae139b"
+          },
+          "id": "event-000130"
+        }
+      ]
+    }
+  ]
+}

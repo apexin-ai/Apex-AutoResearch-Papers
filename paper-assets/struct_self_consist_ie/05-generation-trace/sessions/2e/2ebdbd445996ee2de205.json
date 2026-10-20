@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ebdbd445996ee2de205",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp freeform ablation seed123",
+  "task_key": "worker_exp_freeform_ablation_seed123_20260515T165416",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_freeform_ablation_seed123_20260515T165416_result.json",
+    "occurrence": 1,
+    "bytes": 481,
+    "sha256": "4a3c6db6f95b30192d2f193d2baa47a0777711fc0181a802f9796a687556de9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验已提交并注册：\n\n| 实验 | Seed | GPU | tmux session | Registry 状态 |\n|------|------|-----|-------------|--------------|\n| `exp_freeform_seed123` | 123 | cuda:1 | `exp_freeform_seed123` | RUNNING |\n| `exp_freeform_seed456` | 456 | cuda:2 | `exp_freeform_seed456` | RUNNING |\n\n进程已确认在运行（PID 207084 和 207157）。预计 1-2h 完成，日志分别在 `/tmp/exp_freeform_seed123.log` 和 `/tmp/exp_freeform_seed456.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-freeform-ablation-seed123.md"
+}

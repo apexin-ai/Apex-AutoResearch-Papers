@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0147697570787c2bc04",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code check dataset and logprob readiness",
+  "task_key": "worker_code_check_dataset_and_logprob_readiness_20260514T114258",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_check_dataset_and_logprob_readiness_20260514T114258_result.json",
+    "occurrence": 1,
+    "bytes": 1903,
+    "sha256": "c039e1ec660770a9064f5bb473689ff53b0f2695ed443c88f41513303391acc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 就绪状态\n\n- [ ] **run_mvp_pilot.py 多数据集支持: NO** — `--dataset` 参数存在但 `choices=[\"scierc\", \"ace05\"]`，未包含 conll2003/wnut17。数据加载路由也只处理这两个数据集。\n- [x] **CoNLL-2003 转换脚本: YES** — `convert_conll2003.py` 已存在于远程服务器，`data/conll2003/` 下有 train/dev/test.json + llmfactory_train.json\n- [x] **WNUT-17 转换脚本: YES** — `convert_wnut17.py` 已存在于远程服务器，`data/wnut17/` 下有 train/dev/test.json + llmfactory_train.json\n- [x] **logprob 推理脚本: YES (基本完成，但硬编码 SciERC)** — `extract_logprobs.py` 130 行，功能完整（N=8 stochastic + 1 greedy + logprob 提取），但模型路径、测试数据路径、schema hint 全部硬编码为 SciERC\n- [x] **GPU 空闲: YES (3/4)** — GPU 0-2 空闲 (0%, 2MiB)；GPU 3 显示 100% util 但仅 2MiB 内存占用（可能是残留进程）\n- [x] **底层支持已就绪** — `data_utils.py` 已有 `load_conll2003()` (L297) 和 `load_wnut17()` (L317)；`sampling.py` 已有 `CONLL2003_SCHEMA_HINT` (L242) 和 `WNUT17_SCHEMA_HINT` (L246)\n\n## 需要的前置工作\n\n1. **修改 `run_mvp_pilot.py`**（阻塞 exp-002/003）：\n   - `choices` 列表加入 `\"conll2003\"`, `\"wnut17\"`\n   - 数据加载分支加入 `load_conll2003` / `load_wnut17` 调用\n   - schema hint 自动解析加入 `CONLL2003_SCHEMA_HINT` / `WNUT17_SCHEMA_HINT`\n   - import 补上 `load_conll2003`, `load_wnut17`, `CONLL2003_SCHEMA_HINT`, `WNUT17_SCHEMA_HINT`\n\n2. **参数化 `extract_logprobs.py`**（阻塞 logprob 实验）：\n   - 当前 MODEL / TEST_DATA / SCHEMA_HINT 全部硬编码为 SciERC\n   - 需要加 `--dataset` / `--model_path` 等 CLI 参数，或至少支持通过环境变量配置\n\n3. **排查 GPU 3** — 100% util + 2MiB 内存不正常，建议 `kill` 残留进程后确认恢复空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-dataset-and-logprob-readiness.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff8f47d2413ce12111e9",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp012 r1024 auroc",
+  "task_key": "worker_analysis_exp012_r1024_auroc_20260514T224900",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp012_r1024_auroc_20260514T224900_result.json",
+    "occurrence": 1,
+    "bytes": 834,
+    "sha256": "6c5cc52fac0326cf492d7e7f210f573117f829ea7a57579c02712d86f172f3e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。以下是 exp_012_rerun_1024 的 5-signal AUROC 完整结果（binary threshold: F1≥1.0）：\n\n### NER\n\n| Signal | Full (n=529) | Conditional (n=477) |\n|--------|-------------|---------------------|\n| **EM** | **0.7493** | **0.7556** |\n| SJ | 0.6917 | 0.6772 |\n| voting_conf | 0.6841 | 0.6618 |\n| FK | 0.6290 | 0.6078 |\n| logprob | 0.5783 | 0.5633 |\n\n### RE\n\n| Signal | Full (n=397) | Conditional (n=238) |\n|--------|-------------|---------------------|\n| **EM** | **0.7059** | **0.7515** |\n| voting_conf | 0.6935 | 0.6420 |\n| SJ | 0.6702 | 0.6463 |\n| FK | 0.6089 | 0.5510 |\n| logprob | 0.6005 | 0.5186 |\n\nEM 在所有 split 上 AUROC 最高。结构化信号（SJ、voting_conf、EM）全部优于 logprob baseline。排序稳定：EM > voting_conf ≈ SJ > FK > logprob。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp012-r1024-auroc.md"
+}

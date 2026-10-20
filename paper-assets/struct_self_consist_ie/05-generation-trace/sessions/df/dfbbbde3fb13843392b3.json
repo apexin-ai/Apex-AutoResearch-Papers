@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfbbbde3fb13843392b3",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "investigate freeform seed789 and resubmit",
+  "task_key": "worker_investigate_freeform_seed789_and_resubmit_20260515T191050",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_investigate_freeform_seed789_and_resubmit_20260515T191050_result.json",
+    "occurrence": 1,
+    "bytes": 1407,
+    "sha256": "7f02abc7f09f151f988fe7fb764926f50e1427c1d1bb5e99ab0ccfae19668978"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已掌握。\n\n## 调查结论\n\n**seed789 没有可用结果。** 目录 `exp_freeform_ablation_seed789/` 存在但完全为空。\n\n- **v1**：vLLM EngineDeadError 崩溃，未产出任何数据\n- **v2**：处理到 550/551 prompts（99.8%）时收到 SIGTERM，engine 被中止，结果未写入磁盘\n\n### 就绪状态\n\n| 项目 | 状态 |\n|------|------|\n| 模型 `checkpoints/qwen3-8b-scierc-merged-v2/` | OK |\n| 脚本 `run_freeform_inference.py` | OK |\n| 数据 `data/scierc/processed_data` | OK (551 instances) |\n| cuda:2 | 空闲 (4 MiB, 0%) |\n\n### 参考参数（seed123/456 一致）\n\n```\nn_instances=551, n_samples=8, temperature=1.0, max_tokens=1024, use_grammar=false\n```\n\n### 推荐提交命令\n\n先清空旧的空目录，然后在 tmux 中运行：\n\n```bash\ncd /root/autodl-tmp/struct_self_consist_ie/\nrm -rf results/exp_freeform_ablation_seed789/\n\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\nCUDA_VISIBLE_DEVICES=2 nohup python run_freeform_inference.py \\\n  --model_path checkpoints/qwen3-8b-scierc-merged-v2 \\\n  --output_dir results/exp_freeform_ablation_seed789 \\\n  --seed 789 \\\n  --num_samples 8 \\\n  --temperature 1.0 \\\n  --max_tokens 1024 \\\n  > ~/runs/struct_self_consist_ie/exp_freeform_seed789_v3.log 2>&1 &\n```\n\n预计耗时 ~230s，与 seed123/456 一致。是否现在提交？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-freeform-seed789-and-resubmit.md"
+}

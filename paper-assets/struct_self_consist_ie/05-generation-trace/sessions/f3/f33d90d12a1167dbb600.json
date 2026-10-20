@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f33d90d12a1167dbb600",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "postprocess exp 028 v2",
+  "task_key": "worker_postprocess_exp_028_v2_20260517T194451",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_postprocess_exp_028_v2_20260517T194451_result.json",
+    "occurrence": 1,
+    "bytes": 81,
+    "sha256": "7df7ca8cda3bae2298fe819cbe320aff4680e79c43385b2b3514f8badf9ae4a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "之前的后台计时器完成，等待唤醒检查推理进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/postprocess-exp-028-v2.md"
+}

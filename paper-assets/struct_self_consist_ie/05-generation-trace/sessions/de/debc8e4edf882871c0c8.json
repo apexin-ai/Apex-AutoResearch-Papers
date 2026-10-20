@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "debc8e4edf882871c0c8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis degen gated selection",
+  "task_key": "worker_analysis_degen_gated_selection_20260518T162321",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_degen_gated_selection_20260518T162321_result.json",
+    "occurrence": 1,
+    "bytes": 858,
+    "sha256": "d72dbdf2949f07d1cc742e2d4c24b08d8c6fe44a6afd29d0ce27674268bda4de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results:\n\n| Dataset | Degen% | Greedy | LP-all | Gated | G-Greedy | G-LP |\n|---------|-------:|-------:|-------:|------:|---------:|-----:|\n| SciERC | 18.7% | 0.6436 | 0.6495 | **0.6507** | +0.0071 | +0.0012 |\n| CoNLL | 62.0% | **0.9087** | 0.8985 | 0.8985 | -0.0102 | +0.0000 |\n| FewNERD | 23.1% | 0.7713 | 0.7800 | **0.7805** | +0.0092 | +0.0004 |\n\n**Gated vs LP-all 改善极小** (+0.00 ~ +0.12pp)。原因：degenerate instances 上所有 sample F1 相同，LP 选谁都一样，gating 没有可修复的 noise。Gated vs Greedy 在 SciERC/FewNERD 上正向（+0.71/+0.92pp），但 CoNLL 上反向（-1.02pp），因为 CoNLL non-degenerate instances 上 LP 本身比 Greedy 差（0.8255 vs 0.8524）。\n\n脚本在 `code/analysis_degen_gated_selection.py`，报告在 `artifacts/degen_gated/degen_gated_selection_results.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-degen-gated-selection.md"
+}

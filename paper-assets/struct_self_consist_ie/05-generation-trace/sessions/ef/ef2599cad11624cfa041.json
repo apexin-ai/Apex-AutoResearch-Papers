@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef2599cad11624cfa041",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh cpu recompute 5epoch lp selection",
+  "task_key": "worker_ssh_cpu_recompute_5epoch_lp_selection_20260522T115415",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_cpu_recompute_5epoch_lp_selection_20260522T115415_result.json",
+    "occurrence": 1,
+    "bytes": 659,
+    "sha256": "f071e5f627d49699ff1cd7367f28f8af527501524502f7c3c71d109339c68df7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results computed. Only 2 seeds available (no `fewnerd_5epoch_s456` exists).\n\n```\nSeed 42:  greedy=0.7944, lp_select=0.7959, Δ=+0.15 pp\nSeed 123: greedy=0.7940, lp_select=0.7949, Δ=+0.09 pp\nMean±σ:   Δ = +0.12 ± 0.04 pp  (n=2 seeds)\nvs 3-epoch: +1.39pp → +0.12 pp (-91.3% change)\n```\n\nKey observations:\n- LP selection gain collapses from +1.39pp (3-epoch) to +0.12pp (5-epoch) — a **91% reduction**\n- LP only selects a different sample from greedy ~6.3% of the time (5-epoch model is much more confident/peaked)\n- Seed 456 data for 5-epoch does not exist on autodl-5090 (only seeds 42 and 123 have full 37648-instance runs)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cpu-recompute-5epoch-lp-selection.md"
+}

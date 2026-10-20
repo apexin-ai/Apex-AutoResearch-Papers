@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50019dfad9e3aa0c248b",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "director / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/director/loop_3.md",
+    "occurrence": 1,
+    "bytes": 4743,
+    "sha256": "925081c18af1bb0673305df592034ab62cf23fd2570b55123f45fdeb34ec3207"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-15T10:20:33+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 autodl-5090 上的 cuda:0/1/2/3（4× RTX 5090 32GB），不可用其他服务器的卡\n- exp-019 supervised verifier 已被 D073 决策取消，不要实现/注册/启动\n- Dream dream_20260515T092545 基于已被证伪的 D071 \"constrained decoding bottleneck\" framing → 结果必须 heavy discount，不能直接采纳其 framing 相关建议\n- 论文中不能再有任何 \"constrained decoding causes score compression\" 的因果归因——ablation 已证伪\n- RE LP selection flip (+1.69pp) 是 single seed、within bootstrap CI，不能作为 claim，最多 appendix observation\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090 (connect.bjb1.seetacloud.com)，account: root\n- 工作目录：/root/autodl-tmp/struct_self_consist_ie\n- Python：conda base 环境 /root/miniconda3/bin/python\n- 模型：Qwen3-8B fine-tuned checkpoints 在服务器上（ft_002_v2 用于 SciERC）；LLaMA-3.1-8B 也有 fine-tuned checkpoint\n- 数据：SciERC + CoNLL-2003 + WNUT-17 在服务器上\n- 活跃进程：无 RUNNING 实验，4× GPU 全部空闲\n- Ablation 数据：constrained=output/exp_012_rerun_1024/samples.jsonl, free-form=results/exp_freeform_ablation/samples.jsonl\n\n### 3. 📊 当前状态\n**刚完成**：\n- D072 framing 更新（universal gap，ablation 证明 score compression 是 intrinsic）\n- D073 取消 exp-019 verifier\n- Paper Agent 完成两批 D072 patch（title 回退 + abstract/intro/discussion/conclusion 全部修改 + appendix freeform table），编译成功 19 页\n- Reviewer 四维度确认 D072 方向，两次 ROADMAP 审查 PASS\n\n**Agent 队列**（按顺序）：\n1. [PROCESSING] 原指令（可能已开始 exp-019 代码，但下一条会取消）\n2. [PENDING] urgent redirect: 取消 exp-019，改为 ablation 深度分析 + appendix table + 多种子\n3. [PENDING] worker_done 回调（n16 readiness check）\n4. [PENDING] F1 discrepancy 调查（ablation greedy NER 0.618 vs 论文 Table 2 0.644，差 2.6pp）\n\n**等待中**：\n- Dream dream_20260515T092545 在 \"reviewing\" 阶段（imagine + write done），完成后会注入 session\n- Agent 处理完 redirect 后的分析结果\n- Reviewer 已被 reset（新 session 会自动启动）\n\n### 4. 📋 待办\n- Dream 完成回调到达 → Read dream-report-action skill → 按 D072 discount D071 相关建议，提取与 framing 无关的 structural insights（related work gaps、presentation issues）\n- Agent 返回 F1 discrepancy 调查 → 如果 eval 方法差异 → 确保 appendix table 注明评估方法不与 Table 2 混用；如果 data 差异 → 修复\n- Agent 返回 ablation 深度分析 → 检查 non-tied subset 重叠度（如果同批 instances 在两种条件下都 non-tied → 进一步证明 compression 是 instance-level intrinsic）\n- 多种子 seed456 如果 ready → approve + allocate GPU（seed42/123 已完成，只缺 456）\n- Paper Agent 补充 patch 处理完毕 → post_to_reviewer 验证 D072 全部修改 → 通过后 submit_paper_to_review Round 7\n- Round 7 审稿 → 目标 3.5+/5 (Findings accept)\n- 最终提交 DDL: 2026-05-25（距今 10 天）\n\n### 5. 🎯 战略上下文\n**核心发现演化**：D070(gap observation) → D071(constrained decoding bottleneck, FALSIFIED) → D072(universal gap proven by controlled ablation) → D073(skip verifier, analytical paper)\n\n**论文定位**：\"Strong Predictors, Weak Selectors\" — 5 个 confidence signals predict quality (AUROC 0.75) but universally fail at best-of-N selection。Controlled free-form ablation 证明 LP score compression 是 model/task intrinsic（std ratio 0.97x），非 constrained decoding artifact → gap 是 structured IE 的 fundamental limitation。\n\n**6 轮 3.0/5 plateau 的突破策略**：内容从 \"12 页说路不通\" 升级为 \"有受控实验证明为什么不通 + 证明是 universal\"。关键加分项：(1) controlled ablation = 方法论严谨性提升，(2) universal scope > regime-specific scope，(3) non-tied subset counterfactual = actionable diagnostic。\n\n**最容易判断错的事**：\n- 不要因为 Dream 报告（基于 D071）建议 \"强化 constrained decoding bottleneck narrative\" 就照做——D071 已被证伪\n- 不要因为 RE LP flip 看起来有趣就升级为 claim——single seed, no significance\n- 不要重启 exp-019 verifier——Reviewer 给出了充分理由取消，D073 已 logged\n- Paper Agent 已完成两批 patch，下一步是 Reviewer 验证，不是继续改——避免 over-editing\n- Ablation F1 与 Table 2 的 2.6pp 差异是 eval pipeline 差异，不影响 within-ablation 结论，但 appendix 不能与 Table 2 数字直接混用\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3.md"
+}

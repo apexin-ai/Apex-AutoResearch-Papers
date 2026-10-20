@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3acb31a8091befd73772",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix remove auroc from crossdataset",
+  "task_key": "worker_fix_remove_auroc_from_crossdataset_20260516T175224",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_remove_auroc_from_crossdataset_20260516T175224_result.json",
+    "occurrence": 1,
+    "bytes": 253,
+    "sha256": "021e28862f38fc1b61c0c1110dbb8c7cc9dac470047e1648615a760c3be8a9be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。cross_dataset_comparison 表已移除 AUROC 列，只保留 Greedy/Oracle/Hdroom/LP ρ/LP Δ。AUROC 仅在 per-dataset QE Metrics section 输出（标注 \"diagnostic only\"），`SCIERC_REF` 中的 `lp_auroc` 字段已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-remove-auroc-from-crossdataset.md"
+}

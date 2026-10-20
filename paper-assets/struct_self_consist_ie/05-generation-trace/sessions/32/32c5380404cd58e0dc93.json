@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32c5380404cd58e0dc93",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code unified metrics fix",
+  "task_key": "worker_code_unified_metrics_fix_20260518T183611",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_unified_metrics_fix_20260518T183611_result.json",
+    "occurrence": 1,
+    "bytes": 1401,
+    "sha256": "2d1d036b4a20703512e164deac6696b52be7339700e7b7ee64fed9ff0b0de00f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。总结：\n\n**创建的文件：**\n- `code/unified_metrics.py` — 全项目唯一的 F1/退化/数据加载模块\n- `code/regression_test_unified_metrics.py` — 回归测试脚本\n- `output/unified_metrics_regression/regression_report.json` — 回归测试报告\n\n**修改的文件（5个）：**\n1. `diagnostic_calibration.py` — `per_instance_f1` → `compute_entity_f1`\n2. `entity_consensus.py` — 本地 `entity_f1` → `compute_entity_f1`\n3. `ccs_selection.py` — 本地 `compute_f1` + `entity_set` → `compute_entity_f1`\n4. `analysis_dgs_gold_filter.py` — 本地 `compute_f1` + `entity_set` → `compute_entity_f1`\n5. `adaptive_temperature_analysis.py` — `compute_span_f1` → `compute_entity_f1`，退化定义从结构恒等改为 constant-F1\n\n**根因：**\n- dgs_gold_filter 的 0.6417 差异源于错误数据路径（已在今天修复）\n- adaptive_temperature 的 0.6442 差异源于不同数据源（exp_001_seed42_v2）+ 结构恒等退化定义\n\n**统一后的 canonical 数字（SciERC, 529 instances, gold_filter=True）：**\n\n| 指标 | 值 | 95% CI |\n|------|-----|--------|\n| Greedy F1 | 0.6439 | [0.6180, 0.6692] |\n| LP-all F1 | 0.6501 | [0.6246, 0.6750] |\n| DGS F1 | 0.6513 | [0.6259, 0.6760] |\n| Oracle F1 | 0.7758 | [0.7541, 0.7969] |\n| Degeneracy | 17.77% | 94/529 |\n| DGS-Greedy | +0.74pp | [-0.60, +2.11] |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-unified-metrics-fix.md"
+}

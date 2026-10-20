@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "dca1ade01ff4e2862f76",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "cpu alpha crit v3 micro f1",
+  "task_key": "worker_cpu_alpha_crit_v3_micro_f1_20260521T094702",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cpu_alpha_crit_v3_micro_f1_20260521T094702.log",
+    "occurrence": 1,
+    "bytes": 619404,
+    "sha256": "037e3acf15aeea6605177b6434a90813549b2f6d1119f0d14fcbca609d4986e3"
+  },
+  "statistics": {
+    "messages": 243,
+    "user_turns": 0,
+    "tool_calls": 86,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 66,
+      "tool_call": 86,
+      "tool_result": 86,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 243,
+      "chunks": [
+        {
+          "path": "dca1ade01ff4e2862f76-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "dca1ade01ff4e2862f76-part-0002.json",
+          "message_count": 63
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/cpu-alpha-crit-v3-micro-f1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fadbc9a45df2e53cf5cb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "infra env setup 5090c",
+  "task_key": "worker_infra_env_setup_5090c_20260518T170441",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_env_setup_5090c_20260518T170441_result.json",
+    "occurrence": 1,
+    "bytes": 116,
+    "sha256": "59b5e53026f26daf635d27ff6641830d2c5366310aa031f126e1665a3af45f07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "请将以上公钥添加到 autodl-5090-c 的 `~/.ssh/authorized_keys` 中，然后告诉我继续。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-env-setup-5090c.md"
+}

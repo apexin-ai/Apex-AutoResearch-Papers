@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d6dc1173af353ce2853",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose 5090 32b inference",
+  "task_key": "worker_diagnose_5090_32b_inference_20260521T003610",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_5090_32b_inference_20260521T003610_result.json",
+    "occurrence": 1,
+    "bytes": 821,
+    "sha256": "b9e6211835aa7d32b237280e2a5a98b8c7bae3495743433693ce0f9e37b6313f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 32B FewNERD Inference 状态报告\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | PID 978386 存活，运行 16m20s |\n| **GPU** | 4x RTX 5090，利用率 96-98%，显存 31.3/32.6 GB |\n| **进度** | 26,528 / 301,184 prompts（8.8%） |\n| **速度** | ~33 it/s，input 5,746 toks/s，output 2,804 toks/s |\n| **预估完成** | 约 2-3 小时后（~10:20-11:20 UTC） |\n| **磁盘** | 92% 已用，剩余 22GB — 需关注 |\n| **输出** | 目录已创建但尚无文件（预计结束时写出） |\n\n已完成：\n- Registry 已更新（exp_32b_inference_fewnerd → RUNNING，含 PID/GPU/进度信息）\n- Cron 监控已注册（每 15 分钟检查一次进度，进程结束后自动更新状态）\n\n⚠️ 磁盘 92% 需关注，301K prompts × 8 samples 的输出可能较大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-5090-32b-inference.md"
+}

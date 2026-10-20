@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "363f12840dece15ca894",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code conll 4b merge inference v2",
+  "task_key": "worker_code_conll_4b_merge_inference_v2_20260515T194325",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_conll_4b_merge_inference_v2_20260515T194325_result.json",
+    "occurrence": 1,
+    "bytes": 421,
+    "sha256": "4df8a35f3c2d9eed58755bffe6a9bbe0828125c55f0bf428a1f7863ad3c0145b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n1. **Merge 完成** — checkpoint-4200 LoRA adapter 已合并到 `checkpoints/qwen3-4b-conll2003-merged-ckpt4200/`（2 个 safetensors，~7.5GB）\n2. **Inference 已启动** — PID 231733，运行在 **cuda:2**（cuda:1 被 `exp_scale_qwen3_4b_conll` 占用，改用空闲的 GPU 2）\n3. **Cron 监控已设置** — 每 5 分钟检查进程状态，完成后自动更新 registry"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-conll-4b-merge-inference-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1882a7a70a3a80f6e58",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu exp 001 seed123",
+  "task_key": "worker_gpu_exp_001_seed123_20260514T122309",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp_001_seed123_20260514T122309_result.json",
+    "occurrence": 1,
+    "bytes": 59,
+    "sha256": "495c3c5f0fc4c67b47908550c8cf07b7e9c2d6b205f9cc77c7b3303b41dae75e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 2:30pm (UTC)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-001-seed123.md"
+}

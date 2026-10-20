@@ -1,0 +1,1674 @@
+{
+  "schema_version": "1.0",
+  "id": "9349aa62db90398e66a5",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "gpu release 5090b migrate",
+  "task_key": "worker_gpu_release_5090b_migrate_20260521T090651",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_gpu_release_5090b_migrate_20260521T090651.jsonl",
+    "occurrence": 1,
+    "bytes": 74622,
+    "sha256": "3e04f7d8c2bf23cdb1b765e89e3394bca6c2908309bf1165346fed6657673830"
+  },
+  "statistics": {
+    "messages": 81,
+    "user_turns": 0,
+    "tool_calls": 40,
+    "roles": {
+      "tool_call": 40,
+      "tool_result": 40,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T09:10:29.637852+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__kill_job",
+              "max_results": "7"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T09:10:29.638250+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T09:10:29.638471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed456/report.json 2>/dev/null && echo \"MF4_S456_DONE\" || echo \"MF4_S456_NOT_DONE\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T09:10:29.638626+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T09:10:29.638760+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-b",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T09:10:29.638900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[Errno None] Unable to connect to port 11496 on 106.38.204.136\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.26}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T09:10:29.639055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed456/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T09:10:29.639213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T09:10:29.639351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed456/report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T09:10:29.639481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 2 MiB, 0 %\\\\n1, 2 MiB, 0 %\\\\n2, 2 MiB, 0 %\\\\n3, 30044 MiB, 72 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T09:10:29.639650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed456/report.json') as f:\n    d = json.load(f)\nfor k in sorted(d.keys()):\n    if any(kw in k.lower() for kw in ['f1', 'mv', 'oracle', 'greedy', 'rho', 'degeneracy', 'verdict', 'structural']):\n        print(f'{k} = {d[k]}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T09:10:29.639787+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T09:10:29.639912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps aux --no-header -w -w",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T09:10:29.640081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root          1  0.0  0.0   4476  3080 ?        Ss   May14   0:02 bash /init/boot/boot.sh\\\\nroot        917  1.7  0.0 724128 21388 ?        Sl   May14 179:52 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        932  0.0  0.0  15444  7996 ?        S    May14   0:45 sshd: /usr/sbin/sshd -D [listener] 1 of 10-100 startups\\\\nroot        935  0.0  0.0 4147828 71900 ?       Sl   May14   3:46 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        937  0.3  0.0 7043580 133312 ?      Sl   May14  38:20 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        939  0.0  0.0 191560 96316 ?        S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        940  0.0  0.0 4126280 20844 ?       Sl   May14   9:33 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        941  0.0  0.0 4126472 25144 ?       Sl   May14  10:11 proxy -c /init/proxy/proxy.ini\\\\nroot       1050  0.0  0.0 28341068 10600 ?      Sl   May14   8:41 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_n2g13yqg/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_n2g13yqg/startup_error\\\\nroot       8406  0.0  0.0   4496  3488 pts/20   Ss+  14:59   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_e2_pretrained_fewnerd.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/struct_self_consist_ie/exp_e2_pretrained_fewnerd.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_e2_pretrained_fewnerd.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/struct_self_consist_ie && export CUDA_VISIBLE_DEVICES=3\n…[truncated 4037 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T09:10:29.640296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4v2_seed456/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T09:10:29.640486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 37648,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.7888970728365621,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.8809715429538372,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.0920744701172751,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.3557137700473044,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.6848113505510054,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.1646552164681241,\\\\n    \\\\\\\"p_value\\\\\\\": 1.1982688972355146e-196,\\\\n    \\\\\\\"n\\\\\\\": 32565\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3133155084647015,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"n\\\\\\\": 32565\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.015181956268569231,\\\\n    \\\\\\\"p_value\\\\\\\": 0.010092321330700786,\\\\n    \\\\\\\"n\\\\\\\": 28714\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.25732623152478556,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"n\\\\\\\": 28714\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 5083,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 3851,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"rho_advantage\\\\\\\": 0.14866029199657743,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.6435392010789137,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.37679111462615084,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 19.304851834791954,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.24500224425638795,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n      \\\\\\\"tau\\\\\\\": 0.1820250730198582,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.0,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6287085032681137,\\\\n      \\\\\\\"n\\\\\\\": 32565\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.23748013451187075,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.0,\\\\n      \\\\\\\"tau\\\\\\\": 0.1780472227595623,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.0,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6222295654774398,\\\\n      \\\\\\\"n\\\\\\\": 28714\\\\n    }\\\\n  },\\\\n  \\\\\\\"verdict\\\\\\\": \\\\\\\"MAR\n…[truncated 248 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T09:10:29.640642+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/checkpoints/",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T09:10:29.640782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp017_train.log\\\\nfewnerd_train.log\\\\nft_001_train.log\\\\nllama_fewnerd_train.log\\\\nllama_fewnerd_train_4gpu.log\\\\nqwen25-32b-fewnerd-merged\\\\nqwen3-4b-scierc-lora\\\\nqwen3-8b-conll2003-lora\\\\nqwen3-8b-conll2003-merged\\\\nqwen3-8b-fewnerd-5epoch-lora\\\\nqwen3-8b-fewnerd-exp021-merged\\\\nqwen3-8b-scierc-10epoch-lora\\\\nqwen3-8b-scierc-3epoch-lora\\\\nqwen3-8b-scierc-lora-rank8\\\\nqwen3-8b-scierc-lora-v2\\\\nqwen3-8b-scierc-merged-v2\\\\nwnut17_train.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T09:10:29.640916+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T09:10:29.641048+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 30117 MiB, 85 %\\\\n1, 0 MiB, 0 %\\\\n2, 0 MiB, 0 %\\\\n3, 0 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T09:10:29.641227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/data/scierc/",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T09:10:29.641367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"processed_data\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T09:10:29.641490+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T09:10:29.641613+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ps aux --no-header -w -w",
+              "account": "root"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T09:10:29.641756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"14b_base_inference\\\\n14b_final_inference\\\\n7b_ft_signals\\\\nconll_n16_s42\\\\nconll_n16_seed123_v2\\\\nconll_n16_seed456_v2\\\\ndocred_re_sc\\\\ne2_pretrained_scierc\\\\nentity_probe_auroc\\\\nentity_probe_auroc_groupkfold\\\\nentity_probe_fulldata\\\\nexp_002_conll_n16\\\\nexp_012_rerun_1024\\\\nexp_021_inference\\\\nexp_b3_prompted_diversity\\\\nexp_conll_seed789\\\\nexp_conll_seed789.log\\\\nexp_conll_t05_seed123\\\\nexp_conll_t05_seed123.log\\\\nexp_conll_t05_seed42\\\\nexp_conll_t05_seed42.log\\\\nexp_conll_t05_seed456\\\\nexp_conll_t05_seed456.log\\\\nexp_conll_t08_seed123\\\\nexp_conll_t08_seed123.log\\\\nexp_conll_t08_seed42\\\\nexp_conll_t08_seed42.log\\\\nexp_conll_t08_seed456\\\\nexp_conll_t08_seed456.log\\\\nexp_conll_t10_seed42\\\\nexp_conll_t12_seed123\\\\nexp_conll_t12_seed123.log\\\\nexp_conll_t12_seed42\\\\nexp_conll_t12_seed42.log\\\\nexp_conll_t12_seed456\\\\nexp_conll_t12_seed456.log\\\\nexp_esj_entity_self_judgment\\\\nexp_esj_entity_self_judgment.log\\\\nexp_esj_entity_self_judgment_dryrun\\\\nexp_fewnerd_seed456\\\\nexp_fewnerd_seed789\\\\nexp_fewnerd_seed789.log\\\\nexp_llama_scierc_seed123\\\\nexp_lsc_latent_sc\\\\nexp_lsc_latent_sc.log\\\\nexp_lsc_latent_sc_dryrun\\\\nexp_mrsc_multi_round\\\\nexp_mrsc_multi_round.log\\\\nexp_scierc_8b_t08_s42\\\\nexp_scierc_seed789_5090c\\\\nexp_scierc_seed789_5090c.log\\\\nexp_scierc_t12_seed456\\\\nexp_scierc_t12_seed456.log\\\\nexp_tlow_fewnerd_t05_s42\\\\nexp_tlow_fewnerd_t05_s42.log\\\\nfewnerd_14b_ckpt36000\\\\nfewnerd_7b\\\\nfewnerd_7b_n16_seed42\\\\nfewnerd_n16_seed456\\\\nfewnerd_n16_seed456_v2\\\\nfewrel_re_sc\\\\nfrontier_sc_deepseek\\\\nfrontier_sc_gemini25pro\\\\nfrontier_sc_gpt55_fewnerd\\\\nfrontier_sc_gpt55_fewnerd_dryrun2\\\\nre_sc\\\\nscierc_t08_s123\\\\nscierc_t12_s456\\\\nwnut17\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T09:10:29.641939+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root          1  0.0  0.0   4476  2428 ?        Ss   May18   0:00 bash /init/boot/boot.sh\\\\nroot       1220  1.7  0.0 718752 20096 ?        Sl   May18  67:09 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot       1237  0.0  0.0  15444  8308 ?        S    May18   0:17 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot       1240  0.3  0.0 6748620 102340 ?      Sl   May18  12:49 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot       1242  0.0  0.0 4147004 75740 ?       Sl   May18   1:31 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot       1243  0.1  0.0 4051780 20472 ?       Sl   May18   3:56 proxy -c /init/proxy/proxy.ini\\\\nroot       1244  0.0  0.0 182296 96852 ?        S    May18   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot       1246  0.0  0.0 3459876 18748 ?       Sl   May18   1:23 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot       1352  0.0  0.0 28341192 10176 ?      Sl   May18   3:22 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_qebyywnj/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_qebyywnj/startup_error\\\\nroot     181914  0.0  0.0  16692  9656 ?        Ss   May20   0:07 sshd: root@notty\\\\nroot     181915  0.0  0.0  16780  9648 ?        Ss   May20   0:08 sshd: root@notty\\\\nroot     290779  0.0  0.0   4364  1816 ?        S    14:50   0:00 bash -c cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p logs output/frontier_sc_gemini25pro && nohup python -u code/run_frontier_sc.py \\\\\\\\   --model \\\\\\\"google/gemini-2.5-pro\\\\\\\" \\\\\\\\   --base_url \\\\\\\"http://47.94.22.126/v1\\\\\\\"\n…[truncated 4073 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T09:10:29.642159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed123_v2/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T09:10:29.642299+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed456_v2/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T09:10:29.642430+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed123_v2/report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.66}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T09:10:29.642554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T09:10:29.642693+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed456_v2/report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T09:10:29.642819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_n16_seed456_v2/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T09:10:29.642944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc/report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T09:10:29.643068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_n16_seed456_v2/report.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T09:10:29.643247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed123_v2/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T09:10:29.643420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 16,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 3453,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.907062543921293,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.9624537281861449,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.0553911842648519,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.7670746495834104,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.8767798653796245,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.4468865834102747,\\\\n    \\\\\\\"p_value\\\\\\\": 2.0161745112362973e-135,\\\\n    \\\\\\\"n\\\\\\\": 2756\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.4566748756237176,\\\\n    \\\\\\\"p_value\\\\\\\": 4.4605134672240374e-142,\\\\n    \\\\\\\"n\\\\\\\": 2756\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.39357754163006586,\\\\n    \\\\\\\"p_value\\\\\\\": 1.3716978652624675e-97,\\\\n    \\\\\\\"n\\\\\\\": 2614\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.4173712802653546,\\\\n    \\\\\\\"p_value\\\\\\\": 1.026906130864799e-110,\\\\n    \\\\\\\"n\\\\\\\": 2614\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 697,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 142,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"rho_advantage\\\\\\\": 0.009788292213442906,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.8675510372442903,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.2863349869681539,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 7.517688679245283,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.3455520843592137,\\\\n      \\\\\\\"p_rho\\\\\\\": 3.9651069214907963e-78,\\\\n      \\\\\\\"tau\\\\\\\": 0.2690749905327668,\\\\n      \\\\\\\"p_tau\\\\\\\": 6.342526247198226e-72,\\\\n      \\\\\\\"auroc\\\\\\\": 0.7741589444412355,\\\\n      \\\\\\\"n\\\\\\\": 2756\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.3749969602836525,\\\\n      \\\\\\\"p_rho\\\\\\\": 4.5973313192456303e-88,\\\\n      \\\\\\\"tau\\\\\\\": 0.296896124594997,\\\\n      \\\\\\\"p_tau\\\\\\\": 2.5375898029512005e-81,\\\\n     \n…[truncated 347 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T09:10:29.643575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed456_v2/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T09:10:29.643704+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T09:10:29.643872+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 16,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 3453,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.9075571177504393,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.954962833406209,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.047405715655769676,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.8000381530470694,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.8964669992778552,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.46973977166577074,\\\\n    \\\\\\\"p_value\\\\\\\": 2.636509847240049e-151,\\\\n    \\\\\\\"n\\\\\\\": 2756\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.4790721183012352,\\\\n    \\\\\\\"p_value\\\\\\\": 3.793891610866045e-158,\\\\n    \\\\\\\"n\\\\\\\": 2756\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.4268340648692793,\\\\n    \\\\\\\"p_value\\\\\\\": 2.7833638442240925e-116,\\\\n    \\\\\\\"n\\\\\\\": 2615\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.4481208126105716,\\\\n    \\\\\\\"p_value\\\\\\\": 2.2487823574422332e-129,\\\\n    \\\\\\\"n\\\\\\\": 2615\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 697,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 141,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"rho_advantage\\\\\\\": 0.00933234663546445,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.8736173088452219,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.27930200286198725,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 7.03011611030479,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.313689203983237,\\\\n      \\\\\\\"p_rho\\\\\\\": 5.46416117502175e-64,\\\\n      \\\\\\\"tau\\\\\\\": 0.24465257310560276,\\\\n      \\\\\\\"p_tau\\\\\\\": 8.748605275378131e-60,\\\\n      \\\\\\\"auroc\\\\\\\": 0.7523817644540164,\\\\n      \\\\\\\"n\\\\\\\": 2756\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.37297457131237816,\\\\n      \\\\\\\"p_rho\\\\\\\": 4.263137647821281e-87,\\\\n      \\\\\\\"tau\\\\\\\": 0.2952213987423704,\\\\n      \\\\\\\"p_tau\\\\\\\": 1.8009792410373345e-80,\\\\n     \n…[truncated 345 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T09:10:29.644094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.24175824175824173,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.38876233864844345,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.14700409689020172,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.223194281198756,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.47305813795469537,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.251629789756483,\\\\n    \\\\\\\"p_value\\\\\\\": 4.3980738373884035e-09,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.21927083225844576,\\\\n    \\\\\\\"p_value\\\\\\\": 3.5167466717964363e-07,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.19528407267775916,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0007609243023877774,\\\\n    \\\\\\\"n\\\\\\\": 294\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.19872009762979181,\\\\n    \\\\\\\"p_value\\\\\\\": 0.000610141171221911,\\\\n    \\\\\\\"n\\\\\\\": 294\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 22,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 235,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": false,\\\\n  \\\\\\\"rho_advantage\\\\\\\": -0.032358957498037216,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.2272236431069471,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.26016047350984783,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 46.290170132325144,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.07797326520743175,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.0731535276717357,\\\\n      \\\\\\\"tau\\\\\\\": 0.05457107390998985,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.08125605036202377,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5412413871973011,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.18954281105310605,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.0010915874475150617,\\\\n      \\\\\\\"tau\\\\\\\": 0.13039119760900228,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.0011499580105913175,\\\\n      \\\\\\\"auroc\n…[truncated 417 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T09:10:29.644318+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "autodl-5090",
+              "gpu_ids": "['cuda:0']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/scierc_mf4v2_seed42/\"",
+              "exp_id": "exp_scierc_mf4_v2_s42",
+              "account": "root",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T09:10:29.644469+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T09:10:29.644612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"18393\\\", \\\"log_file\\\": \\\"~/runs/struct_self_consist_ie/exp_scierc_mf4_v2_s42.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"autodl-5090\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp_scierc_mf4_v2_s42\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T09:10:29.646300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (418,144 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ba323085-0947-4ff0-b169-a620ae4e60de/tool-results/mcp-agent-ml-research-read_registry-1779354522037.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ba323085-0947-4ff0-b169-a620ae4e60de/tool-results/mcp-agent-ml-research-read_registry-1779354522037.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-21T09:10:29.646543+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E '\"(conll_n16_seed123_v2|conll_n16_seed456_v2|e2_pretrained_scierc|fewnerd_n16_seed456_v2|exp_conll_n16_s123_v2|exp_conll_n16_s456_v2|exp_e2_pretrained_scierc|exp_fewnerd_n16_s456_v2)\"' /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ba323085-0947-4ff0-b169-a620ae4e60de/tool-results/mcp-agent-ml-research-read_registry-1779354522037.txt | head -40",
+              "description": "Search registry for relevant experiment IDs"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-21T09:10:29.646688+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-21T09:10:29.646818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -i -E '(conll.*seed123|conll.*seed456|e2_pretrained_scierc|fewnerd.*n16.*456)' /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ba323085-0947-4ff0-b169-a620ae4e60de/tool-results/mcp-agent-ml-research-read_registry-1779354522037.txt | head -40",
+              "description": "Search registry with broader patterns"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-21T09:10:29.647120+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (409.3KB). Full output saved to: /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ba323085-0947-4ff0-b169-a620ae4e60de/tool-results/bh5n42pjo.txt\n\nPreview (first 2KB):\n{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_scierc_mf4_v2_s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T09:01:28.521Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:08:40.545Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/scierc_mf4v2_seed42/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"18393\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_scierc_mf4_v2_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T09:08:39.861Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp_frontier_sc_claude_sonnet4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T06:20:27.878Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:58:17.224Z\\\", \\\"hypothesis\\\": \\\"Frontier model Claude Sonnet 4 on FewNERD SC (200 instances, N=8, T=1.0): if correlation-selection gap persists across model families (GPT + Claude + Gemini + DeepSeek), the finding is universal and not model-specific.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u code/run_frontier_sc.py --model anthropic/claude-sonnet-4 --base_url http://47.94.22.126/v1 --dataset fewnerd --data_dir data/fewnerd/ --n_instances 200 --n_samples 8 --temperature 1.0 --output_dir output/frontier_sc_claude_sonnet4/ --max_tokens 4096\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/fewnerd/test.json\\\", \\\"data_count\\\": 200,\n…[truncated 299 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-21T09:10:29.647336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['status', 'spec']"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-21T09:10:29.647553+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_e2_pretrained_scierc\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/ --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_scierc/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294269\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:20.538Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data/\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained_base\\\", \\\"eval_data\\\": \\\"scierc test set (100 instances, N=8)\\\"}}, \\\"exp_conll_n16_s456_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n16_seed456_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"293990\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:17.355Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\n…[truncated 4110 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-21T09:10:29.647754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s123_v2",
+              "field": "status",
+              "value": "DONE",
+              "project": "struct_self_consist_ie",
+              "spec": "{'checkpoint_path': '/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed123_v2/', 'log_path': '~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log'}"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-21T09:10:29.647902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8395}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-21T09:10:29.648031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s456_v2",
+              "field": "status",
+              "value": "DONE",
+              "project": "struct_self_consist_ie",
+              "spec": "{'checkpoint_path': '/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed456_v2/', 'log_path': '~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log'}"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-21T09:10:29.648203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7094}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-21T09:10:29.648369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_e2_pretrained_scierc",
+              "field": "status",
+              "value": "DONE",
+              "project": "struct_self_consist_ie",
+              "spec": "{'checkpoint_path': '/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc/', 'log_path': '~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log'}"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-21T09:10:29.648507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6848}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-21T09:10:29.648649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s123_v2",
+              "field": "conclusion",
+              "value": "PASS. CoNLL N=16 seed123: greedy_f1=0.907, oracle_f1=0.962, headroom=0.055. structural_beats_surface=true, rho_advantage=0.010. SoftJaccard rho full=0.457/cond=0.417, Fleiss rho full=0.447/cond=0.394. Logprob rho full=0.346/cond=0.375.",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-21T09:10:29.648789+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'PASS. CoNLL N=16 seed123: greedy_f1=0.907, oracle_f1=0.962, headroom=0.055. structural_beats_surface=true, rho_advantage=0.010. SoftJaccard rho full=0.457/cond=0.417, Fleiss rho full=0.447/cond=0.394. Logprob rho full=0.346/cond=0.375.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.669}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-21T09:10:29.648917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s456_v2",
+              "field": "conclusion",
+              "value": "PASS. CoNLL N=16 seed456: greedy_f1=0.908, oracle_f1=0.955, headroom=0.047. structural_beats_surface=true, rho_advantage=0.009. SoftJaccard rho full=0.479/cond=0.448, Fleiss rho full=0.470/cond=0.427. Logprob rho full=0.314/cond=0.373.",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-21T09:10:29.649044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'PASS. CoNLL N=16 seed456: greedy_f1=0.908, oracle_f1=0.955, headroom=0.047. structural_beats_surface=true, rho_advantage=0.009. SoftJaccard rho full=0.479/cond=0.448, Fleiss rho full=0.470/cond=0.427. Logprob rho full=0.314/cond=0.373.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7177}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-21T09:10:29.649202+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_e2_pretrained_scierc",
+              "field": "conclusion",
+              "value": "FAIL. Pretrained Qwen2.5-7B on SciERC: greedy_f1=0.242, oracle_f1=0.389, headroom=0.147. structural_beats_surface=false, rho_advantage=-0.032. SoftJaccard rho full=0.219/cond=0.199, Fleiss rho full=0.252/cond=0.195. Logprob rho full=0.078(ns)/cond=0.190. 46% samples F1=0.",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-21T09:10:29.649351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'FAIL. Pretrained Qwen2.5-7B on SciERC: greedy_f1=0.242, oracle_f1=0.389, headroom=0.147. structural_beats_surface=false, rho_advantage=-0.032. SoftJaccard rho full=0.219/cond=0.199, Fleiss rho full=0.252/cond=0.195. Logprob rho full=0.078(ns)/cond=0.190. 46% samples F1=0.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6616}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-21T09:10:29.649509+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s123_v2",
+              "field": "conclusion",
+              "value": "success",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-21T09:10:29.649635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s456_v2",
+              "field": "conclusion",
+              "value": "success",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-21T09:10:29.649787+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:03.921Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:27.793Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=123, v2): retry after previous failure on 5090 (damaged checkpoint). Extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003.\\\", \\\"parent\\\": \\\"exp_conll_n16_s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_seed123_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"293577\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:14.095Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1494}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-21T09:10:29.649924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_e2_pretrained_scierc",
+              "field": "conclusion",
+              "value": "negative",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-21T09:10:29.650143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s456_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:07.022Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:29.025Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=456, v2): retry after previous failure on 5090. Third seed for 3-seed statistical power on CoNLL-2003 N=16.\\\", \\\"parent\\\": \\\"exp_conll_n16_s456\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n16_seed456_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"293990\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:17.355Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2323}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-21T09:10:29.650326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_scierc\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:18:21.189Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:30.206Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/ --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_scierc/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294269\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:20.538Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data/\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained_base\\\", \\\"eval_data\\\": \\\"scierc test set (100 instances, N=8)\\\"}, \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third dataset for E2 baseline, validates whether correlation-selection gap exists without task-specific fine-tuning across all 3 NER benchmarks.\\\", \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.138}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-21T09:10:29.650493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s123_v2",
+              "field": "metrics",
+              "value": "{'verdict': 'PASS', 'greedy_f1': 0.907, 'oracle_f1': 0.962, 'oracle_headroom': 0.055, 'structural_beats_surface': True, 'rho_advantage': 0.01, 'softjaccard_rho_full': 0.457, 'softjaccard_rho_cond': 0.417, 'fleiss_rho_full': 0.447, 'fleiss_rho_cond': 0.394, 'logprob_rho_full': 0.346, 'logprob_rho_cond': 0.375}",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-21T09:10:29.650670+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:03.921Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:39.029Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=123, v2): retry after previous failure on 5090 (damaged checkpoint). Extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003.\\\", \\\"parent\\\": \\\"exp_conll_n16_s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_seed123_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"293577\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:14.095Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"verdict\\\": \\\"PASS\\\", \\\"greedy_f1\\\": 0.907, \\\"oracle_f1\\\": 0.962, \\\"oracle_headroom\\\": 0.055, \\\"structural_beats_surface\\\": true, \\\"rho_advantage\\\": 0.01, \\\"softjaccard_rho_full\\\": 0.457, \\\"softjaccard_rho_cond\\\": 0.417, \\\"fleiss_rho_full\\\": 0.447, \\\"fleiss_rho_cond\\\": 0.394, \\\"logprob_rho_full\\\": 0.346, \\\"logprob_rho_cond\\\": 0.375}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1487}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-21T09:10:29.650824+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s456_v2",
+              "field": "metrics",
+              "value": "{'verdict': 'PASS', 'greedy_f1': 0.908, 'oracle_f1': 0.955, 'oracle_headroom': 0.047, 'structural_beats_surface': True, 'rho_advantage': 0.009, 'softjaccard_rho_full': 0.479, 'softjaccard_rho_cond': 0.448, 'fleiss_rho_full': 0.47, 'fleiss_rho_cond': 0.427, 'logprob_rho_full': 0.314, 'logprob_rho_cond': 0.373}",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-21T09:10:29.651030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s456_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:07.022Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:41.249Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=456, v2): retry after previous failure on 5090. Third seed for 3-seed statistical power on CoNLL-2003 N=16.\\\", \\\"parent\\\": \\\"exp_conll_n16_s456\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n16_seed456_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"293990\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:17.355Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"verdict\\\": \\\"PASS\\\", \\\"greedy_f1\\\": 0.908, \\\"oracle_f1\\\": 0.955, \\\"oracle_headroom\\\": 0.047, \\\"structural_beats_surface\\\": true, \\\"rho_advantage\\\": 0.009, \\\"softjaccard_rho_full\\\": 0.479, \\\"softjaccard_rho_cond\\\": 0.448, \\\"fleiss_rho_full\\\": 0.47, \\\"fleiss_rho_cond\\\": 0.427, \\\"logprob_rho_full\\\": 0.314, \\\"logprob_rho_cond\\\": 0.373}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.176}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-21T09:10:29.651277+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_e2_pretrained_scierc",
+              "field": "metrics",
+              "value": "{'verdict': 'FAIL', 'greedy_f1': 0.242, 'oracle_f1': 0.389, 'oracle_headroom': 0.147, 'structural_beats_surface': False, 'rho_advantage': -0.032, 'softjaccard_rho_full': 0.219, 'softjaccard_rho_cond': 0.199, 'fleiss_rho_full': 0.252, 'fleiss_rho_cond': 0.195, 'logprob_rho_full': 0.078, 'logprob_rho_cond': 0.19, 'sample_f1_pct_zero': 46.3}",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-21T09:10:29.651465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_scierc\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:18:21.189Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:43.481Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/ --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_scierc/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294269\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:20.538Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data/\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained_base\\\", \\\"eval_data\\\": \\\"scierc test set (100 instances, N=8)\\\"}, \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third dataset for E2 baseline, validates whether correlation-selection gap exists without task-specific fine-tuning across all 3 NER benchmarks.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"verdict\\\": \\\"FAIL\\\", \\\"greedy_f1\\\": 0.242, \\\"oracle_f1\\\": 0.389, \\\"oracle_headroom\\\": 0.147, \\\"structural_beats_surface\\\": false, \\\"rho_advantage\\\": -0.032, \\\"softjaccard_rho_full\\\": 0.219, \\\"softjaccard_rho_cond\\\": 0.199, \\\"fleiss_rho_full\\\": 0.252, \\\"fleiss_rho_cond\\\": 0.195, \\\"logprob_rho_full\\\": 0.078, \\\"logprob_rho_cond\\\": 0.19, \\\"sample_f1_pct_zero\\\": 46.3}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2146}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-21T09:10:29.651632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s123_v2",
+              "field": "status",
+              "value": "DONE",
+              "project": "struct_self_consist_ie",
+              "spec": "{'checkpoint_path': '/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed123_v2/', 'log_path': '~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log'}"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-21T09:10:29.651770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s456_v2",
+              "field": "status",
+              "value": "DONE",
+              "project": "struct_self_consist_ie",
+              "spec": "{'checkpoint_path': '/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed456_v2/', 'log_path': '~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log'}"
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-21T09:10:29.651907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_e2_pretrained_scierc",
+              "field": "status",
+              "value": "DONE",
+              "project": "struct_self_consist_ie",
+              "spec": "{'checkpoint_path': '/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc/', 'log_path': '~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log'}"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-21T09:10:29.652099+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:03.921Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:56.662Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=123, v2): retry after previous failure on 5090 (damaged checkpoint). Extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003.\\\", \\\"parent\\\": \\\"exp_conll_n16_s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_seed123_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"293577\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:14.095Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed123_v2/\\\", \\\"wall_clock_seconds\\\": 6702.6, \\\"gpu_hours\\\": 1.86}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"verdict\\\": \\\"PASS\\\", \\\"greedy_f1\\\": 0.907, \\\"oracle_f1\\\": 0.962, \\\"oracle_headroom\\\": 0.055, \\\"structural_beats_surface\\\": true, \\\"rho_advantage\\\": 0.01, \\\"softjaccard_rho_full\\\": 0.457, \\\"softjaccard_rho_cond\\\": 0.417, \\\"fleiss_rho_full\\\": 0.447, \\\"fleiss_rho_cond\\\": 0.394, \\\"logprob_rho_full\\\": 0.346, \\\"logprob_rho_cond\\\": 0.375}, \\\"completed_at\\\": \\\"2026-05-21T09:09:56.663Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md\n…[truncated 82 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-21T09:10:29.652363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s456_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:07.022Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:10:01.094Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=456, v2): retry after previous failure on 5090. Third seed for 3-seed statistical power on CoNLL-2003 N=16.\\\", \\\"parent\\\": \\\"exp_conll_n16_s456\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n16_seed456_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"293990\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:17.355Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed456_v2/\\\", \\\"wall_clock_seconds\\\": 6703.7, \\\"gpu_hours\\\": 1.86}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"verdict\\\": \\\"PASS\\\", \\\"greedy_f1\\\": 0.908, \\\"oracle_f1\\\": 0.955, \\\"oracle_headroom\\\": 0.047, \\\"structural_beats_surface\\\": true, \\\"rho_advantage\\\": 0.009, \\\"softjaccard_rho_full\\\": 0.479, \\\"softjaccard_rho_cond\\\": 0.448, \\\"fleiss_rho_full\\\": 0.47, \\\"fleiss_rho_cond\\\": 0.427, \\\"logprob_rho_full\\\": 0.314, \\\"logprob_rho_cond\\\": 0.373}, \\\"completed_at\\\": \\\"2026-05-21T09:10:01.095Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\n…[truncated 55 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-21T09:10:29.652584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_scierc\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:18:21.189Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:10:06.216Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/ --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_scierc/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294269\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:20.538Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data/\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained_base\\\", \\\"eval_data\\\": \\\"scierc test set (100 instances, N=8)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc/\\\", \\\"wall_clock_seconds\\\": 6705.7, \\\"gpu_hours\\\": 1.86}, \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third dataset for E2 baseline, validates whether correlation-selection gap exists without task-specific fine-tuning across all 3 NER benchmarks.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"verdict\\\": \\\"FAIL\\\", \\\"greedy_f1\\\": 0.242, \\\"oracle_f1\\\": 0.389, \\\"oracle_headroom\\\": 0.147, \\\"structural_beats_surface\\\": false, \\\"rho_advantage\\\": -0.032, \\\"softjaccard_rho_full\\\": 0.219, \\\"softjaccard_rho_cond\\\": 0.199, \\\"fleiss_rho_full\\\": 0.252, \\\"fleiss_rho_cond\\\": 0.195, \\\"logprob_rho_full\\\": 0.078, \\\"logprob_rho_cond\\\": 0.19, \\\"sample_f1_pct_zero\\\": 46.3},\n…[truncated 220 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-21T09:10:29.652792+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 全部更新完成。现在汇总结果。\n\n---\n\n## 执行结果\n\n### 1. 5090-b 状态\n\n**无法连接**（端口 11496 连接失败）。AutoDL 实例可能已关机或端口已变。如果实例仍在运行，需要去控制台查新端口更新 `~/.ssh/config`。如果已关机，则无需清理，可直接释放。\n\n### 2. 5090 MF4 s456 — 已完成 ✓\n\n| 指标 | 值 |\n|------|-----|\n| verdict | MARGINAL |\n| greedy_f1 | 0.789 |\n| oracle_f1 | 0.881 |\n| oracle_headroom | 0.092 |\n| structural_beats_surface | true |\n| rho_advantage | 0.149 |\n| softjaccard ρ (full/cond) | 0.313 / 0.257 |\n| fleiss ρ (full/cond) | 0.165 / 0.015 |\n| logprob ρ (full/cond) | 0.245 / 0.238 |\n\n### 3. SciERC MF4 s42 — 已在 5090 GPU 0 启动 ✓\n\n- exp_id: `exp_scierc_mf4_v2_s42`, PID 18393, GPU cuda:0\n- 模型: `checkpoints/qwen3-8b-scierc-merged-v2`\n\n### 4. 5090-c 完成实验\n\n| 实验 | 状态 | verdict | greedy_f1 | ρ_adv |\n|------|------|---------|-----------|-------|\n| conll_n16_seed123_v2 | DONE (success) | PASS | 0.907 | +0.010 |\n| conll_n16_seed456_v2 | DONE (success) | PASS | 0.908 | +0.009 |\n| e2_pretrained_scierc | DONE (negative) | FAIL | 0.242 | -0.032 |\n| fewnerd_n16_seed456_v2 | RUNNING | — | — | — |\n\n### 5. 三台服务器 GPU 分配表\n\n| 服务器 | GPU 0 | GPU 1 | GPU 2 | GPU 3 |\n|--------|-------|-------|-------|-------|\n| **5090** | `exp_scierc_mf4_v2_s42` (新启) | 空闲 | 空闲 | `exp_e2_pretrained_fewnerd` |\n| **5090-b** | 连接失败，无法确认 | — | — | — |\n| **5090-c** | `exp_fewnerd_n16_s456_v2` (运行中) | 空闲 | 空闲 | 空闲 |\n\n> 5090-c 还有一个 API-based `frontier_sc_gemini25pro` 在跑（不占 GPU）。\n\n**5090-b 需要你确认：是已关机可以直接释放，还是需要去 AutoDL 控制台查新端口？**"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_release_5090b_migrate_20260521T090651"
+          },
+          "id": "event-000081"
+        }
+      ],
+      "message_count": 81
+    }
+  ],
+  "readable_path": "readable/conversations/gpu-release-5090b-migrate.md"
+}

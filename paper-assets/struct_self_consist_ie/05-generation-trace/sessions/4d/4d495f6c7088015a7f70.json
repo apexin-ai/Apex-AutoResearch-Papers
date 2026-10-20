@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d495f6c7088015a7f70",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "env paperbanana check",
+  "task_key": "worker_env_paperbanana_check_20260523T123910",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_env_paperbanana_check_20260523T123910_result.json",
+    "occurrence": 1,
+    "bytes": 577,
+    "sha256": "c8f92c02fe6aeb9e72a78e6010bcd6c2a875611d8b57b0b244db10eefd6cdc72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n| 检查项 | 结果 |\n|--------|------|\n| **GOOGLE_API_KEY** | **未配置**（环境变量为空，~/.bashrc 中无相关条目） |\n| **PaperBanana** | 已安装，版本 **0.1.0** |\n| **Gemini API 连通性** | HTTP **503**（服务不可用，可能被 AutoDL 代理拦截或 Google 端限制） |\n\n需要后续操作：\n1. 配置 `GOOGLE_API_KEY`——需要你提供 key，我写入 `~/.bashrc`\n2. Gemini API 返回 503，AutoDL 的代理可能无法正常转发 Google API 请求，可能需要确认代理配置或换用直连方式"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/env-paperbanana-check.md"
+}

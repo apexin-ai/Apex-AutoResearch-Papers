@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4fc6514159b769645ce",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis fig selection gap n8",
+  "task_key": "worker_analysis_fig_selection_gap_n8_20260515T143927",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_fig_selection_gap_n8_20260515T143927_result.json",
+    "occurrence": 1,
+    "bytes": 658,
+    "sha256": "aa6def7c8ce3a5230fd3b186b25ff3c98a50cf61c11af80d6004498144801644"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**生成的文件：**\n- 服务器：`output/figures/fig_selection_gap.pdf` + `.png`\n- 本地：`docs/paper/figures/fig_selection_gap.pdf` + `.png`（已覆盖 N=16 版本）\n\n**每个 bar 的精确数值（NER N=8, 3-seed, pp）：**\n\n| Signal | ΔF1 vs Greedy | ± std |\n|--------|--------------|-------|\n| VC | -2.540 | 0.877 |\n| SJ | -0.433 | 1.026 |\n| FK | -0.438 | 0.966 |\n| EM | -1.145 | 0.734 |\n| LP | +0.038 | 0.500 |\n\n参考线：oracle +13.1 pp, random -3.9 pp\n\n**RE N=8 数据不存在**——搜索了 `output/` 全部 JSON，没有 Qwen SciERC RE N=8 的 selection F1 数据，仅画了 NER 单组。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fig-selection-gap-n8.md"
+}

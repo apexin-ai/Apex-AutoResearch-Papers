@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9f7badfff98c8d52709",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "urgent re selection reconcile",
+  "task_key": "worker_urgent_re_selection_reconcile_20260515T034532",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_urgent_re_selection_reconcile_20260515T034532_result.json",
+    "occurrence": 1,
+    "bytes": 2622,
+    "sha256": "35b34cb04c7bc9c38d47341d4a3ab7bdf3b46bf586fd2c0c027d170852c57a2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已出。关键发现整理如下：\n\n---\n\n## RE Selection F1 Reconciliation 结果\n\n### 数据概况\n- 总实例数: 551\n- 有 gold relations 的实例: **397**\n- gold relations 为空的实例: **154**（这些实例的 greedy 和 logprob selection F1 均为 0.000）\n\n### 三子集对比\n\n| 子集 | n | Greedy F1 (mean) | Logprob Sel F1 (mean) | Δ |\n|------|---|---|---|---|\n| A: 全集 | 551 | 0.2913 | 0.2845 | -0.0068 |\n| **B: Gold-nonempty** | **397** | **0.4042** | **0.3948** | **-0.0094** |\n| C: Greedy-F1>0 | 238 | 0.6743 | 0.5995 | -0.0748 |\n\n### Micro-averaged F1（论文报表级别）\n\n| 子集 | Greedy micro-F1 | Logprob micro-F1 | Δ |\n|------|---|---|---|\n| A: 全集 | 0.4289 | **0.3941** | -0.0349 |\n| B: Gold-nonempty | 0.4436 | **0.4156** | -0.0280 |\n| C: Greedy-F1>0 | 0.6229 | 0.5498 | -0.0731 |\n\n### 0.395 vs 0.410 根因\n\n从 raw data 重算，最接近的两个值是：\n- **0.3948** ≈ 0.395 → gold-nonempty 子集的 **mean per-instance** logprob selection F1\n- **0.4156** ≈ 0.416 → gold-nonempty 子集的 **micro-averaged** logprob selection F1\n\n两个数来自**同一子集，不同的 F1 聚合方式**（instance-mean vs micro-average）。两种算法下 logprob selection **都输给 greedy**（greedy mean=0.4042, micro=0.4436），不存在 logprob 赢 greedy 的场景。\n\n如果论文中某处报出 0.410 且声称赢了 greedy，可能的来源：\n1. 使用了不同子集（如漏掉了部分 gold-empty instance 导致 n 偏移）\n2. F1 聚合方式混用（一处用 mean per-instance，另一处用 micro-averaged）\n3. greedy baseline 本身也因子集不同而变化（mean=0.404 vs micro=0.444）\n\n### 5-Signal 完整结果表（Gold-nonempty, n=397, mean per-instance F1）\n\n| Signal | Selection F1 | Δ vs Greedy | Wins | Losses | Ties |\n|--------|-------------|-------------|------|--------|------|\n| SJ-Best | 0.3855 | -0.0188 | 29 | 49 | 319 |\n| FK-Best | 0.3872 | -0.0171 | 34 | 50 | 313 |\n| EM-Best | 0.3727 | -0.0316 | 27 | 62 | 308 |\n| **Logprob-Best** | **0.3948** | **-0.0094** | **36** | **59** | **302** |\n| Voting-Best | 0.3660 | -0.0382 | 39 | 65 | 293 |\n\n### Logprob vs Greedy 详细统计（Gold-nonempty）\n- Wins: 36, Losses: 59, Ties: 302\n- 所有 5 个 signal 的 selection 都**低于** greedy，logprob 是损失最小的\n\n**结论：论文中两组值的矛盾根因是 F1 聚合方式不一致。从 raw data 重算，无论用哪种聚合，logprob selection 都不优于 greedy。建议统一用 mean per-instance F1 = 0.395（与 greedy 0.404 对比）。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-re-selection-reconcile.md"
+}

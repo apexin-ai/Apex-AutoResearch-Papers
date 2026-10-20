@@ -1,0 +1,1849 @@
+{
+  "schema_version": "1.0",
+  "id": "3bcfeef5d81837a83233",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "knowledge 72b fs done update",
+  "task_key": "worker_knowledge_72b-fs-done-update_20260520T010123",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_knowledge_72b-fs-done-update_20260520T010123.log",
+    "occurrence": 1,
+    "bytes": 156823,
+    "sha256": "76137dfac5cebe1c3a8d8f0b753318865d804a735985b1b63a1548267dfd5a9e"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 14,
+      "tool_result": 14,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+                "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "abf06c6f-66ec-4103-8f51-c66db36d1b3b",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779246000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "1ecd6c41-c606-4d64-86b6-e9c56a6a2088",
+                "session_id": "234cf993-33a8-459b-88b9-870947ae7520"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read both files first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "bc933a00-39ba-4b26-8be2-8b72b03c459b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019Qtz7KE33EZPyTTrsUR31Y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11936,
+                "cache_read_input_tokens": 11701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11936
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KiMxdvHgPuRvLuC1Y7qjnz",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "57dd1f51-1047-4f90-9c75-fe887f193a38",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019Qtz7KE33EZPyTTrsUR31Y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11936,
+                "cache_read_input_tokens": 11701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11936
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T01:01:34.284Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KiMxdvHgPuRvLuC1Y7qjnz",
+              "type": "tool_result",
+              "content": "1\t# Handover — 2026-05-20\n2\t\n3\t> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n4\t\n5\t## 运行中\n6\t| exp_id | 假设 | 状态 | 关键指标 | W&B |\n7\t|--------|------|------|---------|-----|\n8\t| exp_qwen25_32b_fewnerd | Scaling from Qwen3-8B to Qwen2.5-32B-Instruct with QLoRA fine-tuning on FewNERD will improve structured self-consistency IE performance due to stronger base model capabilities in instruction following and entity recognition. | — | — | — |\n9\t| exp_qwen25_14b_fewnerd | The correlation-selection gap pattern is consistent at 14B scale, filling the gap between 8B and 32B. Qwen2.5-14B QLoRA fine-tuned on FewNERD should show intermediate degeneracy rates and similar signal ranking patterns, providing a smooth scaling curve for the diagnostic findings. | — | — | — |\n10\t| exp_qwen25_7b_fewnerd | Qwen2.5-7B QLoRA fine-tuned on FewNERD will produce structurally diverse samples enabling self-consistency-based entity extraction with meaningful LP-weighted consensus signals, comparable to the 14B model but with lower compute cost. | — | — | — |\n11\t\n12\t## 待处理\n13\t（无）\n14\t\n15\t## 近期结论\n16\t- **exp_qwen25_72b_fewshot** (negative): Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy). ← 基于 exp_qwen25_72b_zeroshot\n17\t  [72b_fewshot_signal_summary](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/data/72b_fewshot_signal_summary.json) | [zs_vs_fs_comparison_draft](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/paper/zs_vs_fs_comparison_draft.tex)\n18\t- **exp_qwen25_72b_zeroshot** (negative): A larger zero-shot model (72B) will show higher greedy F1 and wider oracle-greedy gap than fine-tuned smaller models, because increased capacity enables more diverse valid extractions per stochastic sample, making self-consistency signals (SJ, FK, VC, EM) more informative for quality estimation.\n19\t- **exp_wnut17_qwen25_7b** (negative): The correlation-selection gap extends to noisy social media NER (WNUT-17). Unlike formal-domain datasets (SciERC/CoNLL/FewNERD), WNUT-17 has higher surface-level noise which may affect structural signal reliability differently. This tests domain generalization of the diagnostic framework.\n20\t\n21\t## 趋势\n22\t成功 101 / 负向 36 / 失败 4 / 共 169\n23\t\n24\t## 下一步\n25\t（无活跃 idea，请通过 ideas.md 添加）\n26\t\n27\t## 资源状态\n28\tautodl-5090: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\n29\tautodl-5090-b: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\n30\tautodl-5090-c: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\n31\t\n32\t## 告警\n33\t- ft_002: 已被终止 — unknown\n34\t- mvp_pilot_002: 训练失败 — unknown\n35\t- exp_007_ner_llama: 已被终止 — unknown\n36\t- exp001_seed123: 已被终止 — unknown\n37\t- exp001_seed456: 已被终止 — unknown\n38\t- exp008_re_n16: 已被终止 — unknown\n39\t- exp_002_merge_conll2003: 已被终止 — unknown\n40\t- exp_001_n16_seed123_full: 已被终止 — unknown\n41\t- exp_001_n16_seed456_full: 已被终止 — unknown\n42\t- exp_008_re_n16_full: 已被终止 — unknown\n43\t- exp_001_seed42_v2_r1024: 已被终止 — unknown\n44\t- exp_001_seed123_v2_r1024: 已被终止 — unknown\n45\t- exp_001_seed456_v2_ner_r1024: 已被终止 — unknown\n46\t- exp_002_conll_n16_r1024: 已被终止 — unknown\n47\t- exp_007_llama_n16_r1024: 已被终止 — unknown\n48\t- exp_018_llama_scierc_seed456: 已被终止 — unknown\n49\t- exp_019_supervised_verifier: 已被终止 — unknown\n50\t- exp_lp_t07_scierc: 已被终止 — unknown\n51\t- exp_qwen3_4b_scierc_finetune: 已被终止 — unknown\n52\t- exp_freeform_seed789_v2: 训练失败 — unknown\n53\t- exp_qwen3_4b_scierc_finetune_v2: 训练失败 — unknown\n54\t- exp_qwen3_4b_scierc_finetune_v3: 训练失败 — unknown\n55\t- exp_qwen3_4b_conll_merge_inference_v2: 已被终止 — unknown\n56\t- exp_qwen3_4b_scierc_merge_inference: 已被终止 — unknown\n57\t- exp_tacred_re_benchmark: 已被终止 — unknown\n58\t- exp_vc_lp_cascade_selection: 已被终止 — unknown\n59\t- hidden_state_probe_conll_v2: 已被终止 — unknown\n60\t- hidden_state_probe_conll_full: 已被终止 — unknown\n61\t- dgs_pilot: 已被终止 — unknown\n62\t- mbr_pilot: 已被终止 — unknown\n63\t- exp_031_fewnerd_t12: 已被终止 — unknown\n64\t- exp_030_conll_t12: 已被终止 — unknown\n65\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "9f934899-3ed9-4203-86fc-53695f796f97",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md",
+                "content": "# Handover — 2026-05-20\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\n|--------|------|------|---------|-----|\n| exp_qwen25_32b_fewnerd | Scaling from Qwen3-8B to Qwen2.5-32B-Instruct with QLoRA fine-tuning on FewNERD will improve structured self-consistency IE performance due to stronger base model capabilities in instruction following and entity recognition. | — | — | — |\n| exp_qwen25_14b_fewnerd | The correlation-selection gap pattern is consistent at 14B scale, filling the gap between 8B and 32B. Qwen2.5-14B QLoRA fine-tuned on FewNERD should show intermediate degeneracy rates and similar signal ranking patterns, providing a smooth scaling curve for the diagnostic findings. | — | — | — |\n| exp_qwen25_7b_fewnerd | Qwen2.5-7B QLoRA fine-tuned on FewNERD will produce structurally diverse samples enabling self-consistency-based entity extraction with meaningful LP-weighted consensus signals, comparable to the 14B model but with lower compute cost. | — | — | — |\n\n## 待处理\n（无）\n\n## 近期结论\n- **exp_qwen25_72b_fewshot** (negative): Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy). ← 基于 exp_qwen25_72b_zeroshot\n  [72b_fewshot_signal_summary](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/data/72b_fewshot_signal_summary.json) | [zs_vs_fs_comparison_draft](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/paper/zs_vs_fs_comparison_draft.tex)\n- **exp_qwen25_72b_zeroshot** (negative): A larger zero-shot model (72B) will show higher greedy F1 and wider oracle-greedy gap than fine-tuned smaller models, because increased capacity enables more diverse valid extractions per stochastic sample, making self-consistency signals (SJ, FK, VC, EM) more informative for quality estimation.\n- **exp_wnut17_qwen25_7b** (negative): The correlation-selection gap extends to noisy social media NER (WNUT-17). Unlike formal-domain datasets (SciERC/CoNLL/FewNERD), WNUT-17 has higher surface-level noise which may affect structural signal reliability differently. This tests domain generalization of the diagnostic framework.\n\n## 趋势\n成功 101 / 负向 36 / 失败 4 / 共 169\n\n## 下一步\n（无活跃 idea，请通过 ideas.md 添加）\n\n## 资源状态\nautodl-5090: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\nautodl-5090-b: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\nautodl-5090-c: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\n\n## 告警\n- ft_002: 已被终止 — unknown\n- mvp_pilot_002: 训练失败 — unknown\n- exp_007_ner_llama: 已被终止 — unknown\n- exp001_seed123: 已被终止 — unknown\n- exp001_seed456: 已被终止 — unknown\n- exp008_re_n16: 已被终止 — unknown\n- exp_002_merge_conll2003: 已被终止 — unknown\n- exp_001_n16_seed123_full: 已被终止 — unknown\n- exp_001_n16_seed456_full: 已被终止 — unknown\n- exp_008_re_n16_full: 已被终止 — unknown\n- exp_001_seed42_v2_r1024: 已被终止 — unknown\n- exp_001_seed123_v2_r1024: 已被终止 — unknown\n- exp_001_seed456_v2_ner_r1024: 已被终止 — unknown\n- exp_002_conll_n16_r1024: 已被终止 — unknown\n- exp_007_llama_n16_r1024: 已被终止 — unknown\n- exp_018_llama_scierc_seed456: 已被终止 — unknown\n- exp_019_supervised_verifier: 已被终止 — unknown\n- exp_lp_t07_scierc: 已被终止 — unknown\n- exp_qwen3_4b_scierc_finetune: 已被终止 — unknown\n- exp_freeform_seed789_v2: 训练失败 — unknown\n- exp_qwen3_4b_scierc_finetune_v2: 训练失败 — unknown\n- exp_qwen3_4b_scierc_finetune_v3: 训练失败 — unknown\n- exp_qwen3_4b_conll_merge_inference_v2: 已被终止 — unknown\n- exp_qwen3_4b_scierc_merge_inference: 已被终止 — unknown\n- exp_tacred_re_benchmark: 已被终止 — unknown\n- exp_vc_lp_cascade_selection: 已被终止 — unknown\n- hidden_state_probe_conll_v2: 已被终止 — unknown\n- hidden_state_probe_conll_full: 已被终止 — unknown\n- dgs_pilot: 已被终止 — unknown\n- mbr_pilot: 已被终止 — unknown\n- exp_031_fewnerd_t12: 已被终止 — unknown\n- exp_030_conll_t12: 已被终止 — unknown\n",
+                "numLines": 65,
+                "startLine": 1,
+                "totalLines": 65
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RAKhnHNZhGdL3bkbDnZoQT",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "a754059a-1768-443d-b43c-f21ee62a7752",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019Qtz7KE33EZPyTTrsUR31Y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11936,
+                "cache_read_input_tokens": 11701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11936
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T01:01:34.933Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RAKhnHNZhGdL3bkbDnZoQT",
+              "type": "tool_result",
+              "content": "1\t# struct_self_consist_ie — Research Dashboard\n2\t\n3\t> 最后更新: 2026-05-20 00:00 UTC | 更新原因: 14B/32B ETA 推迟，72B FS greedy pass 进度更新\n4\t\n5\t## 核心方向\n6\tSelf-consistency for NER: diagnosing correlation-selection gap + entity-level construction as resolution. 详见 paper_framing.md。\n7\t\n8\t## 当前阶段\n9\t**Scale Upgrade + Paper Finalization**。DDL: EMNLP 2026 ARR May (2026-05-25, ~6 天)。\n10\t\n11\tRound 24 审稿: borderline (3.25/5)。冲 Main Conference 4.0。\n12\t\n13\t## 数值审计状态 — 全部关闭 ✅\n14\t\n15\t- [x] appendix L231: FewNERD degen 12.7%→13.0%, diff +10.7pp→+10.4pp\n16\t- [x] appendix L360/L363-365/L687 数值修正 (3-seed mean)\n17\t- [x] Table 5 degen 同步修正 (CoNLL 61.7%, FewNERD 13.0%)\n18\t- [x] Scaling script 8B FT 12处数据修正 + 2处 degen 同步\n19\t- [x] CoNLL oracle/headroom 全局修正: .957→.948, ≈5pp→≈4pp (appendix L248, experiments L102, appendix L932)\n20\t- [x] tab:calibration caption 修复（N=8/16 分标、non-gold-filtered 说明、single seed 标注）\n21\t\n22\t## RUNNING 实验（4 个，12/12 GPU 满载）\n23\t\n24\t### Server A (autodl-5090, 4 GPU): exp_qwen25_32b_fewnerd\n25\t- QLoRA 训练中，PID 804438, 37.3% (15346/41180), loss 0.0528, 2.50s/it\n26\t- ETA ~05-21 01:40 UTC（**最慢瓶颈，+2h 延后**）\n27\t- 完成后: export → 3-seed N=8 inference → signals → construction (~4-6h)\n28\t\n29\t### Server B (autodl-5090-b, 4 GPU): exp_qwen25_72b_fewshot\n30\t- 72B AWQ 3-shot 推理，PID 131293, SciERC done / CoNLL done / FewNERD greedy pass 21% (7894/37648), ~58 min remaining\n31\t- ETA ~05-20 00:45 UTC\n32\t- signal summary 已生成 (72b_fewshot_signal_summary.json); Pipeline 脚本已确认在 autodl-5090-b 就位\n33\t- 完成后: construction pipeline → ZS vs FS 对比表\n34\t\n35\t### Server C (autodl-5090-c, 4 GPU):\n36\t- **exp_qwen25_14b_fewnerd** (cuda:0,1) — QLoRA 训练中，PID 56773, 53.0% (21809/41180), loss 0.0273, 2.15s/it\n37\t  - ETA ~05-20 19:20 UTC（**从 14:00 推迟 +5h**）\n38\t  - 完成后: export → 3-seed N=8 inference → signals → construction (~4h)\n39\t- **exp_qwen25_7b_fewnerd** (cuda:2,3) — 全自动 pipeline，PID 71837, 训练 81% (16681/20590)\n40\t  - ETA ~05-20 01:50 UTC（**仍最先完成**）\n41\t  - Pipeline 自动执行: train → export → 3-seed inference → signals → construction\n42\t\n43\t### 完成时间线（更新 05-20 00:00 UTC）\n44\t1. **~05-20 00:45 UTC**: 72B few-shot FewNERD greedy pass 完成 → construction pipeline → ZS vs FS 对比\n45\t2. **~05-20 01:50 UTC**: 7B pipeline 完成 → scaling curve 最小点\n46\t3. **~05-20 19:20 UTC**: 14B 训练完成 + 推理（+5h 延后）\n47\t4. **~05-21 01:40 UTC**: 32B 训练完成 + 推理（最慢瓶颈，+2h 延后）\n48\t5. **全部数据 ~05-21 07:00 UTC** → DDL 05-25 仍有 ~4 天余量\n49\t\n50\t## 已完成实验（本轮关键）\n51\t\n52\t### 72B Zero-shot — DONE (negative)\n53\t| Dataset | Degen | LP ρ | LP-wt Δ | Greedy F1 |\n54\t|---------|-------|------|---------|-----------|\n55\t| SciERC | 21.0% | 0.081 | **+1.53pp** (p=0.008) | 0.399 |\n56\t| FewNERD | 46.2% | 0.119 | -0.20pp | 0.628 |\n57\t| CoNLL | 67.7% | -0.002 | -0.37pp | 0.712 |\n58\t\n59\t**关键发现**: Degeneracy gates construction (monotonic pattern). Gap is fundamental, not fine-tuning artifact. Structural signals generalize to ZS (ρ 0.22-0.42).\n60\t\n61\t### WNUT-17 — DONE (negative)\n62\tLP 信号反转 (ρ=-0.446), signal-collapse boundary case. Gating 正确路由到 greedy.\n63\t\n64\t## 论文修复状态（R24 Weakness 9/9）\n65\t- [x] R24 全部 16 项编辑修复 + D162 公式删除\n66\t- [x] fig_selection_gap + Gating bootstrap CI + 72B Δ修正 + WNUT-17 写入\n67\t- [x] θ=2/N caveat + Contribution B \"fundamental\" + paper_framing.md 同步\n68\t- [x] R22-W7: LoRA-only scope — 72B ZS section 草稿完成 (zeroshot_scaling_draft.tex)\n69\t- [x] R24-N2: Greedy fallback option — gating bootstrap CI stable τ∈[0.25,0.35]\n70\t- [x] Appendix degeneracy table 全列统一 N=8 3-seed mean\n71\t- [x] 72B ZS SciERC construction bootstrap (p=0.008, CI [+0.25pp, +2.82pp])\n72\t- [x] CoNLL oracle/headroom 全局修正 (.957→.948, ≈5→≈4pp)\n73\t- [ ] R23-N1: Entity construction novelty — 待 scale 数据补强\n74\t- [ ] 72B ZS + 72B FS 完整数据写入论文（待 72B-FS 完成）\n75\t- [ ] Scaling curve 图 + 论文 scaling section（待 7B/14B/32B 完成）\n76\t\n77\t## 近期任务 Checklist\n78\t- [ ] 72B-FS FewNERD 完成 (~05-20 00:45 UTC) → construction pipeline → ZS vs FS 对比表写入论文\n79\t- [ ] 7B 完成 (~05-20 01:50 UTC) → compute_signals.py → format_for_scaling.py → scaling curve 第 3 点\n80\t- [ ] 14B 完成 (~05-20 19:20 UTC) → signals → scaling curve 第 4 点\n81\t- [ ] 32B 完成 (~05-21 01:40 UTC) → signals → scaling curve 第 5 点 (最后一块拼图)\n82\t- [ ] 全部结果到齐 → scaling curve 最终图 + 论文 scaling section 定稿\n83\t- [x] tab:calibration caption 修复完成（Reviewer PASS）\n84\t- [ ] Round 25 提审前最终检查\n85\t\n86\t## 准备就绪的工具\n87\t- `artifacts/plot_scaling_curve.py` — Scaling curve 图脚本（8B FT + 72B ZS 数据已验证）\n88\t- `artifacts/compute_signals.py` — 信号计算 pipeline（72B ZS 验证通过）\n89\t- `artifacts/format_for_scaling.py` — 结果格式化为 scaling dict\n90\t- `artifacts/bootstrap_construction.py` — Paired bootstrap significance test\n91\t- `paper/sections/zeroshot_scaling_draft.tex` — ZS section 草稿\n92\t\n93\t## GPU 预算\n94\t- 3 台 × 4 GPU = 12 GPU，全部在用（12/12）\n95\t\n96\t## 关键决策日志\n97\t\n98\t| ID | 日期 | 摘要 | 关联实验 |\n99\t|----|------|------|----------|\n100\t| D162 | 2026-05-19 | D162: 删除分解公式 E[ΔF1]≈(1-d)×Δ_oracle×g(ρ_within)，改为定 | worker_analysis_23config_regression |\n101\t| D161 | 2026-05-19 | R24 Action Matrix: 保守降调 title + 23-config regressi | D160 |\n102\t| D160 | 2026-05-19 | 大规模实验升级：Scale 7B→72B + Zero-shot regime + WNUT-17  | exp_entity_construction, exp_llama_fewnerd_inference |\n103\t| D159 | 2026-05-19 | D159: Entity construction 论文报告使用 N=8 数据（与主实验一致），LP | exp_entity_construction |\n104\t| D158 | 2026-05-19 | D158: Adaptive combination 因 gold label 泄漏作废。论文 pr | exp_entity_construction |\n105\t| D157 | 2026-05-19 | D157: Entity-level construction 经 5-fold CV 验证显著（S | entity_construction_cv, selective_prediction, lp_alignment_gated |\n106\t| D156 | 2026-05-19 | D156: 论文升级——从纯诊断分析加入 prescriptive 解法（LP-alignment- | — |\n107\t| D155 | 2026-05-18 | D155: LP ρ 修正（0.42→0.22 global）+ AUROC 还原为 0.82（Co | exp_fewnerd_s789_n8, exp_021_fewnerd_n8_seed42 |\n108\t| D154 | 2026-05-18 | D154: 23点扩展后 degen-LP 相关性消失(ρ=0.052)，Two-Condition | fig_scatter_v2, exp_029a, exp_017_llama_conll_finetune |\n109\t| D153 | 2026-05-18 | D153: 论文全文统一使用 per-instance mean F1（unified_metric | exp_026_t10_seed42 |\n110\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "5370fc82-0b66-44d7-ba63-1b0c14f72731",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+                "content": "# struct_self_consist_ie — Research Dashboard\n\n> 最后更新: 2026-05-20 00:00 UTC | 更新原因: 14B/32B ETA 推迟，72B FS greedy pass 进度更新\n\n## 核心方向\nSelf-consistency for NER: diagnosing correlation-selection gap + entity-level construction as resolution. 详见 paper_framing.md。\n\n## 当前阶段\n**Scale Upgrade + Paper Finalization**。DDL: EMNLP 2026 ARR May (2026-05-25, ~6 天)。\n\nRound 24 审稿: borderline (3.25/5)。冲 Main Conference 4.0。\n\n## 数值审计状态 — 全部关闭 ✅\n\n- [x] appendix L231: FewNERD degen 12.7%→13.0%, diff +10.7pp→+10.4pp\n- [x] appendix L360/L363-365/L687 数值修正 (3-seed mean)\n- [x] Table 5 degen 同步修正 (CoNLL 61.7%, FewNERD 13.0%)\n- [x] Scaling script 8B FT 12处数据修正 + 2处 degen 同步\n- [x] CoNLL oracle/headroom 全局修正: .957→.948, ≈5pp→≈4pp (appendix L248, experiments L102, appendix L932)\n- [x] tab:calibration caption 修复（N=8/16 分标、non-gold-filtered 说明、single seed 标注）\n\n## RUNNING 实验（4 个，12/12 GPU 满载）\n\n### Server A (autodl-5090, 4 GPU): exp_qwen25_32b_fewnerd\n- QLoRA 训练中，PID 804438, 37.3% (15346/41180), loss 0.0528, 2.50s/it\n- ETA ~05-21 01:40 UTC（**最慢瓶颈，+2h 延后**）\n- 完成后: export → 3-seed N=8 inference → signals → construction (~4-6h)\n\n### Server B (autodl-5090-b, 4 GPU): exp_qwen25_72b_fewshot\n- 72B AWQ 3-shot 推理，PID 131293, SciERC done / CoNLL done / FewNERD greedy pass 21% (7894/37648), ~58 min remaining\n- ETA ~05-20 00:45 UTC\n- signal summary 已生成 (72b_fewshot_signal_summary.json); Pipeline 脚本已确认在 autodl-5090-b 就位\n- 完成后: construction pipeline → ZS vs FS 对比表\n\n### Server C (autodl-5090-c, 4 GPU):\n- **exp_qwen25_14b_fewnerd** (cuda:0,1) — QLoRA 训练中，PID 56773, 53.0% (21809/41180), loss 0.0273, 2.15s/it\n  - ETA ~05-20 19:20 UTC（**从 14:00 推迟 +5h**）\n  - 完成后: export → 3-seed N=8 inference → signals → construction (~4h)\n- **exp_qwen25_7b_fewnerd** (cuda:2,3) — 全自动 pipeline，PID 71837, 训练 81% (16681/20590)\n  - ETA ~05-20 01:50 UTC（**仍最先完成**）\n  - Pipeline 自动执行: train → export → 3-seed inference → signals → construction\n\n### 完成时间线（更新 05-20 00:00 UTC）\n1. **~05-20 00:45 UTC**: 72B few-shot FewNERD greedy pass 完成 → construction pipeline → ZS vs FS 对比\n2. **~05-20 01:50 UTC**: 7B pipeline 完成 → scaling curve 最小点\n3. **~05-20 19:20 UTC**: 14B 训练完成 + 推理（+5h 延后）\n4. **~05-21 01:40 UTC**: 32B 训练完成 + 推理（最慢瓶颈，+2h 延后）\n5. **全部数据 ~05-21 07:00 UTC** → DDL 05-25 仍有 ~4 天余量\n\n## 已完成实验（本轮关键）\n\n### 72B Zero-shot — DONE (negative)\n| Dataset | Degen | LP ρ | LP-wt Δ | Greedy F1 |\n|---------|-------|------|---------|-----------|\n| SciERC | 21.0% | 0.081 | **+1.53pp** (p=0.008) | 0.399 |\n| FewNERD | 46.2% | 0.119 | -0.20pp | 0.628 |\n| CoNLL | 67.7% | -0.002 | -0.37pp | 0.712 |\n\n**关键发现**: Degeneracy gates construction (monotonic pattern). Gap is fundamental, not fine-tuning artifact. Structural signals generalize to ZS (ρ 0.22-0.42).\n\n### WNUT-17 — DONE (negative)\nLP 信号反转 (ρ=-0.446), signal-collapse boundary case. Gating 正确路由到 greedy.\n\n## 论文修复状态（R24 Weakness 9/9）\n- [x] R24 全部 16 项编辑修复 + D162 公式删除\n- [x] fig_selection_gap + Gating bootstrap CI + 72B Δ修正 + WNUT-17 写入\n- [x] θ=2/N caveat + Contribution B \"fundamental\" + paper_framing.md 同步\n- [x] R22-W7: LoRA-only scope — 72B ZS section 草稿完成 (zeroshot_scaling_draft.tex)\n- [x] R24-N2: Greedy fallback option — gating bootstrap CI stable τ∈[0.25,0.35]\n- [x] Appendix degeneracy table 全列统一 N=8 3-seed mean\n- [x] 72B ZS SciERC construction bootstrap (p=0.008, CI [+0.25pp, +2.82pp])\n- [x] CoNLL oracle/headroom 全局修正 (.957→.948, ≈5→≈4pp)\n- [ ] R23-N1: Entity construction novelty — 待 scale 数据补强\n- [ ] 72B ZS + 72B FS 完整数据写入论文（待 72B-FS 完成）\n- [ ] Scaling curve 图 + 论文 scaling section（待 7B/14B/32B 完成）\n\n## 近期任务 Checklist\n- [ ] 72B-FS FewNERD 完成 (~05-20 00:45 UTC) → construction pipeline → ZS vs FS 对比表写入论文\n- [ ] 7B 完成 (~05-20 01:50 UTC) → compute_signals.py → format_for_scaling.py → scaling curve 第 3 点\n- [ ] 14B 完成 (~05-20 19:20 UTC) → signals → scaling curve 第 4 点\n- [ ] 32B 完成 (~05-21 01:40 UTC) → signals → scaling curve 第 5 点 (最后一块拼图)\n- [ ] 全部结果到齐 → scaling curve 最终图 + 论文 scaling section 定稿\n- [x] tab:calibration caption 修复完成（Reviewer PASS）\n- [ ] Round 25 提审前最终检查\n\n## 准备就绪的工具\n- `artifacts/plot_scaling_curve.py` — Scaling curve 图脚本（8B FT + 72B ZS 数据已验证）\n- `artifacts/compute_signals.py` — 信号计算 pipeline（72B ZS 验证通过）\n- `artifacts/format_for_scaling.py` — 结果格式化为 scaling dict\n- `artifacts/bootstrap_construction.py` — Paired bootstrap significance test\n- `paper/sections/zeroshot_scaling_draft.tex` — ZS section 草稿\n\n## GPU 预算\n- 3 台 × 4 GPU = 12 GPU，全部在用（12/12）\n\n## 关键决策日志\n\n| ID | 日期 | 摘要 | 关联实验 |\n|----|------|------|----------|\n| D162 | 2026-05-19 | D162: 删除分解公式 E[ΔF1]≈(1-d)×Δ_oracle×g(ρ_within)，改为定 | worker_analysis_23config_regression |\n| D161 | 2026-05-19 | R24 Action Matrix: 保守降调 title + 23-config regressi | D160 |\n| D160 | 2026-05-19 | 大规模实验升级：Scale 7B→72B + Zero-shot regime + WNUT-17  | exp_entity_construction, exp_llama_fewnerd_inference |\n| D159 | 2026-05-19 | D159: Entity construction 论文报告使用 N=8 数据（与主实验一致），LP | exp_entity_construction |\n| D158 | 2026-05-19 | D158: Adaptive combination 因 gold label 泄漏作废。论文 pr | exp_entity_construction |\n| D157 | 2026-05-19 | D157: Entity-level construction 经 5-fold CV 验证显著（S | entity_construction_cv, selective_prediction, lp_alignment_gated |\n| D156 | 2026-05-19 | D156: 论文升级——从纯诊断分析加入 prescriptive 解法（LP-alignment- | — |\n| D155 | 2026-05-18 | D155: LP ρ 修正（0.42→0.22 global）+ AUROC 还原为 0.82（Co | exp_fewnerd_s789_n8, exp_021_fewnerd_n8_seed42 |\n| D154 | 2026-05-18 | D154: 23点扩展后 degen-LP 相关性消失(ρ=0.052)，Two-Condition | fig_scatter_v2, exp_029a, exp_017_llama_conll_finetune |\n| D153 | 2026-05-18 | D153: 论文全文统一使用 per-instance mean F1（unified_metric | exp_026_t10_seed42 |\n",
+                "numLines": 110,
+                "startLine": 1,
+                "totalLines": 110
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I need to update both files. Let me plan the changes:\n\n**report.md changes:**\n1. The \"运行中\" table currently has 3 experiments (32b, 14b, 7b) - 72B FS is not there, it's in \"近期结论\" already. Wait, let me re-read...\n\nLooking at report.md:\n- \"运行中\" section has 3 entries: exp_qwen25_32b_fewnerd, exp_qwen25_14b_fewnerd, exp_qwen25_7b_fewnerd\n\n\n- \"近期结论\" already has exp_qwen25_72b_fewshot listed as negative\n\nSo the task is asking me to move 72B FS to completed, but it's already in 近期结论. Let me check if the \"4/4\" in the task refers to the ROADMAP instead. The task mentions updating 运行中实验 from 4/4 to 3/4 and GPU from 12/12 to 8/12, so I need to find where these counts are and adjust them accordingly.\n\nLooking at the report structure, I need to update 近期结论 with the actual FewNERD FS results data, add the Director decision item to 待处理, and make sure the experiment counts are correct across the document. I'm seeing the discrepancy now—the ROADMAP says 4 running experiments with full GPU capacity, but the actual report only shows 3 entries, so I need to sync these. The 72B few-shot experiment is complete with data showing dual-gating was actually disproven, which contradicts the hypothesis in the current conclusion. I'll need to update both documents: remove the 72B experiment from the running section in ROADMAP, move it to completed with the actual findings, adjust GPU allocation from 12/12 to 8/12, and revise the conclusion in report.md to reflect what the data actually shows rather than the original hypothesis.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "33d0a8f3-2cb0-4fe8-a192-cc0b564ae2a7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AYDUJPzqsnspnrNX7qx8kU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5085,
+                "cache_read_input_tokens": 23637,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5085
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll update both files. Let me start with the ROADMAP.md changes."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "90f155b8-ed9a-4c7b-a4fa-72a305029205",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AYDUJPzqsnspnrNX7qx8kU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5085,
+                "cache_read_input_tokens": 23637,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5085
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VsfJ4x1pWHXeVhGpM57K8A",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+                "old_string": "## RUNNING 实验（4 个，12/12 GPU 满载）",
+                "new_string": "## RUNNING 实验（3 个，8/12 GPU）"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "498f22d1-ae5f-4d0a-a261-99aaa482d928",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AYDUJPzqsnspnrNX7qx8kU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5085,
+                "cache_read_input_tokens": 23637,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5085
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T01:01:59.397Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VsfJ4x1pWHXeVhGpM57K8A",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "891e2fdd-7ca9-4cda-9df9-954f80584574",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+              "oldString": "## RUNNING 实验（4 个，12/12 GPU 满载）",
+              "newString": "## RUNNING 实验（3 个，8/12 GPU）",
+              "originalFile": "# struct_self_consist_ie — Research Dashboard\n\n> 最后更新: 2026-05-20 00:00 UTC | 更新原因: 14B/32B ETA 推迟，72B FS greedy pass 进度更新\n\n## 核心方向\nSelf-consistency for NER: diagnosing correlation-selection gap + entity-level construction as resolution. 详见 paper_framing.md。\n\n## 当前阶段\n**Scale Upgrade + Paper Finalization**。DDL: EMNLP 2026 ARR May (2026-05-25, ~6 天)。\n\nRound 24 审稿: borderline (3.25/5)。冲 Main Conference 4.0。\n\n## 数值审计状态 — 全部关闭 ✅\n\n- [x] appendix L231: FewNERD degen 12.7%→13.0%, diff +10.7pp→+10.4pp\n- [x] appendix L360/L363-365/L687 数值修正 (3-seed mean)\n- [x] Table 5 degen 同步修正 (CoNLL 61.7%, FewNERD 13.0%)\n- [x] Scaling script 8B FT 12处数据修正 + 2处 degen 同步\n- [x] CoNLL oracle/headroom 全局修正: .957→.948, ≈5pp→≈4pp (appendix L248, experiments L102, appendix L932)\n- [x] tab:calibration caption 修复（N=8/16 分标、non-gold-filtered 说明、single seed 标注）\n\n## RUNNING 实验（4 个，12/12 GPU 满载）\n\n### Server A (autodl-5090, 4 GPU): exp_qwen25_32b_fewnerd\n- QLoRA 训练中，PID 804438, 37.3% (15346/41180), loss 0.0528, 2.50s/it\n- ETA ~05-21 01:40 UTC（**最慢瓶颈，+2h 延后**）\n- 完成后: export → 3-seed N=8 inference → signals → construction (~4-6h)\n\n### Server B (autodl-5090-b, 4 GPU): exp_qwen25_72b_fewshot\n- 72B AWQ 3-shot 推理，PID 131293, SciERC done / CoNLL done / FewNERD greedy pass 21% (7894/37648), ~58 min remaining\n- ETA ~05-20 00:45 UTC\n- signal summary 已生成 (72b_fewshot_signal_summary.json); Pipeline 脚本已确认在 autodl-5090-b 就位\n- 完成后: construction pipeline → ZS vs FS 对比表\n\n### Server C (autodl-5090-c, 4 GPU):\n- **exp_qwen25_14b_fewnerd** (cuda:0,1) — QLoRA 训练中，PID 56773, 53.0% (21809/41180), loss 0.0273, 2.15s/it\n  - ETA ~05-20 19:20 UTC（**从 14:00 推迟 +5h**）\n  - 完成后: export → 3-seed N=8 inference → signals → construction (~4h)\n- **exp_qwen25_7b_fewnerd** (cuda:2,3) — 全自动 pipeline，PID 71837, 训练 81% (16681/20590)\n  - ETA ~05-20 01:50 UTC（**仍最先完成**）\n  - Pipeline 自动执行: train → export → 3-seed inference → signals → construction\n\n### 完成时间线（更新 05-20 00:00 UTC）\n1. **~05-20 00:45 UTC**: 72B few-shot FewNERD greedy pass 完成 → construction pipeline → ZS vs FS 对比\n2. **~05-20 01:50 UTC**: 7B pipeline 完成 → scaling curve 最小点\n3. **~05-20 19:20 UTC**: 14B 训练完成 + 推理（+5h 延后）\n4. **~05-21 01:40 UTC**: 32B 训练完成 + 推理（最慢瓶颈，+2h 延后）\n5. **全部数据 ~05-21 07:00 UTC** → DDL 05-25 仍有 ~4 天余量\n\n## 已完成实验（本轮关键）\n\n### 72B Zero-shot — DONE (negative)\n| Dataset | Degen | LP ρ | LP-wt Δ | Greedy F1 |\n|---------|-------|------|---------|-----------|\n| SciERC | 21.0% | 0.081 | **+1.53pp** (p=0.008) | 0.399 |\n| FewNERD | 46.2% | 0.119 | -0.20pp | 0.628 |\n| CoNLL | 67.7% | -0.002 | -0.37pp | 0.712 |\n\n**关键发现**: Degeneracy gates construction (monotonic pattern). Gap is fundamental, not fine-tuning artifact. Structural signals generalize to ZS (ρ 0.22-0.42).\n\n### WNUT-17 — DONE (negative)\nLP 信号反转 (ρ=-0.446), signal-collapse boundary case. Gating 正确路由到 greedy.\n\n## 论文修复状态（R24 Weakness 9/9）\n- [x] R24 全部 16 项编辑修复 + D162 公式删除\n- [x] fig_selection_gap + Gating bootstrap CI + 72B Δ修正 + WNUT-17 写入\n- [x] θ=2/N caveat + Contribution B \"fundamental\" + paper_framing.md 同步\n- [x] R22-W7: LoRA-only scope — 72B ZS section 草稿完成 (zeroshot_scaling_draft.tex)\n- [x] R24-N2: Greedy fallback option — gating bootstrap CI stable τ∈[0.25,0.35]\n- [x] Appendix degeneracy table 全列统一 N=8 3-seed mean\n- [x] 72B ZS SciERC construction bootstrap (p=0.008, CI [+0.25pp, +2.82pp])\n- [x] CoNLL oracle/headroom 全局修正 (.957→.948, ≈5→≈4pp)\n- [ ] R23-N1: Entity construction novelty — 待 scale 数据补强\n- [ ] 72B ZS + 72B FS 完整数据写入论文（待 72B-FS 完成）\n- [ ] Scaling curve 图 + 论文 scaling section（待 7B/14B/32B 完成）\n\n## 近期任务 Checklist\n- [ ] 72B-FS FewNERD 完成 (~05-20 00:45 UTC) → construction pipeline → ZS vs FS 对比表写入论文\n- [ ] 7B 完成 (~05-20 01:50 UTC) → compute_signals.py → format_for_scaling.py → scaling curve 第 3 点\n- [ ] 14B 完成 (~05-20 19:20 UTC) → signals → scaling curve 第 4 点\n- [ ] 32B 完成 (~05-21 01:40 UTC) → signals → scaling curve 第 5 点 (最后一块拼图)\n- [ ] 全部结果到齐 → scaling curve 最终图 + 论文 scaling section 定稿\n- [x] tab:calibration caption 修复完成（Reviewer PASS）\n- [ ] Round 25 提审前最终检查\n\n## 准备就绪的工具\n- `artifacts/plot_scaling_curve.py` — Scaling curve 图脚本（8B FT + 72B ZS 数据已验证）\n- `artifacts/compute_signals.py` — 信号计算 pipeline（72B ZS 验证通过）\n- `artifacts/format_for_scaling.py` — 结果格式化为 scaling dict\n- `artifacts/bootstrap_construction.py` — Paired bootstrap significance test\n- `paper/sections/zeroshot_scaling_draft.tex` — ZS section 草稿\n\n## GPU 预算\n- 3 台 × 4 GPU = 12 GPU，全部在用（12/12）\n\n## 关键决策日志\n\n| ID | 日期 | 摘要 | 关联实验 |\n|----|------|------|----------|\n| D162 | 2026-05-19 | D162: 删除分解公式 E[ΔF1]≈(1-d)×Δ_oracle×g(ρ_within)，改为定 | worker_analysis_23config_regression |\n| D161 | 2026-05-19 | R24 Action Matrix: 保守降调 title + 23-config regressi | D160 |\n| D160 | 2026-05-19 | 大规模实验升级：Scale 7B→72B + Zero-shot regime + WNUT-17  | exp_entity_construction, exp_llama_fewnerd_inference |\n| D159 | 2026-05-19 | D159: Entity construction 论文报告使用 N=8 数据（与主实验一致），LP | exp_entity_construction |\n| D158 | 2026-05-19 | D158: Adaptive combination 因 gold label 泄漏作废。论文 pr | exp_entity_construction |\n| D157 | 2026-05-19 | D157: Entity-level construction 经 5-fold CV 验证显著（S | entity_construction_cv, selective_prediction, lp_alignment_gated |\n| D156 | 2026-05-19 | D156: 论文升级——从纯诊断分析加入 prescriptive 解法（LP-alignment- | — |\n| D155 | 2026-05-18 | D155: LP ρ 修正（0.42→0.22 global）+ AUROC 还原为 0.82（Co | exp_fewnerd_s789_n8, exp_021_fewnerd_n8_seed42 |\n| D154 | 2026-05-18 | D154: 23点扩展后 degen-LP 相关性消失(ρ=0.052)，Two-Condition | fig_scatter_v2, exp_029a, exp_017_llama_conll_finetune |\n| D153 | 2026-05-18 | D153: 论文全文统一使用 per-instance mean F1（unified_metric | exp_026_t10_seed42 |\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 19,
+                  "oldLines": 7,
+                  "newStart": 19,
+                  "newLines": 7,
+                  "lines": [
+                    " - [x] CoNLL oracle/headroom 全局修正: .957→.948, ≈5pp→≈4pp (appendix L248, experiments L102, appendix L932)",
+                    " - [x] tab:calibration caption 修复（N=8/16 分标、non-gold-filtered 说明、single seed 标注）",
+                    " ",
+                    "-## RUNNING 实验（4 个，12/12 GPU 满载）",
+                    "+## RUNNING 实验（3 个，8/12 GPU）",
+                    " ",
+                    " ### Server A (autodl-5090, 4 GPU): exp_qwen25_32b_fewnerd",
+                    " - QLoRA 训练中，PID 804438, 37.3% (15346/41180), loss 0.0528, 2.50s/it"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MhUY6FHm43X7nRRLhH5QGN",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+                "old_string": "### Server B (autodl-5090-b, 4 GPU): exp_qwen25_72b_fewshot\n- 72B AWQ 3-shot 推理，PID 131293, SciERC done / CoNLL done / FewNERD greedy pass 21% (7894/37648), ~58 min remaining\n- ETA ~05-20 00:45 UTC\n- signal summary 已生成 (72b_fewshot_signal_summary.json); Pipeline 脚本已确认在 autodl-5090-b 就位\n- 完成后: construction pipeline → ZS vs FS 对比表\n\n### Server C (autodl-5090-c, 4 GPU):",
+                "new_string": "### Server B (autodl-5090-b, 4 GPU): 空闲\n- 72B FS 已完成，4 GPU 已释放\n\n### Server C (autodl-5090-c, 4 GPU):"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "e8f6ace4-5109-40e4-9d5d-feb9a0d9f904",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ALTSVPWbJUqa6EWWhhtjGQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1173,
+                "cache_read_input_tokens": 28722,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1173
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T01:02:04.311Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MhUY6FHm43X7nRRLhH5QGN",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "13c8e263-10c5-433c-9611-3ffa08336275",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+              "oldString": "### Server B (autodl-5090-b, 4 GPU): exp_qwen25_72b_fewshot\n- 72B AWQ 3-shot 推理，PID 131293, SciERC done / CoNLL done / FewNERD greedy pass 21% (7894/37648), ~58 min remaining\n- ETA ~05-20 00:45 UTC\n- signal summary 已生成 (72b_fewshot_signal_summary.json); Pipeline 脚本已确认在 autodl-5090-b 就位\n- 完成后: construction pipeline → ZS vs FS 对比表\n\n### Server C (autodl-5090-c, 4 GPU):",
+              "newString": "### Server B (autodl-5090-b, 4 GPU): 空闲\n- 72B FS 已完成，4 GPU 已释放\n\n### Server C (autodl-5090-c, 4 GPU):",
+              "originalFile": "# struct_self_consist_ie — Research Dashboard\n\n> 最后更新: 2026-05-20 00:00 UTC | 更新原因: 14B/32B ETA 推迟，72B FS greedy pass 进度更新\n\n## 核心方向\nSelf-consistency for NER: diagnosing correlation-selection gap + entity-level construction as resolution. 详见 paper_framing.md。\n\n## 当前阶段\n**Scale Upgrade + Paper Finalization**。DDL: EMNLP 2026 ARR May (2026-05-25, ~6 天)。\n\nRound 24 审稿: borderline (3.25/5)。冲 Main Conference 4.0。\n\n## 数值审计状态 — 全部关闭 ✅\n\n- [x] appendix L231: FewNERD degen 12.7%→13.0%, diff +10.7pp→+10.4pp\n- [x] appendix L360/L363-365/L687 数值修正 (3-seed mean)\n- [x] Table 5 degen 同步修正 (CoNLL 61.7%, FewNERD 13.0%)\n- [x] Scaling script 8B FT 12处数据修正 + 2处 degen 同步\n- [x] CoNLL oracle/headroom 全局修正: .957→.948, ≈5pp→≈4pp (appendix L248, experiments L102, appendix L932)\n- [x] tab:calibration caption 修复（N=8/16 分标、non-gold-filtered 说明、single seed 标注）\n\n## RUNNING 实验（3 个，8/12 GPU）\n\n### Server A (autodl-5090, 4 GPU): exp_qwen25_32b_fewnerd\n- QLoRA 训练中，PID 804438, 37.3% (15346/41180), loss 0.0528, 2.50s/it\n- ETA ~05-21 01:40 UTC（**最慢瓶颈，+2h 延后**）\n- 完成后: export → 3-seed N=8 inference → signals → construction (~4-6h)\n\n### Server B (autodl-5090-b, 4 GPU): exp_qwen25_72b_fewshot\n- 72B AWQ 3-shot 推理，PID 131293, SciERC done / CoNLL done / FewNERD greedy pass 21% (7894/37648), ~58 min remaining\n- ETA ~05-20 00:45 UTC\n- signal summary 已生成 (72b_fewshot_signal_summary.json); Pipeline 脚本已确认在 autodl-5090-b 就位\n- 完成后: construction pipeline → ZS vs FS 对比表\n\n### Server C (autodl-5090-c, 4 GPU):\n- **exp_qwen25_14b_fewnerd** (cuda:0,1) — QLoRA 训练中，PID 56773, 53.0% (21809/41180), loss 0.0273, 2.15s/it\n  - ETA ~05-20 19:20 UTC（**从 14:00 推迟 +5h**）\n  - 完成后: export → 3-seed N=8 inference → signals → construction (~4h)\n- **exp_qwen25_7b_fewnerd** (cuda:2,3) — 全自动 pipeline，PID 71837, 训练 81% (16681/20590)\n  - ETA ~05-20 01:50 UTC（**仍最先完成**）\n  - Pipeline 自动执行: train → export → 3-seed inference → signals → construction\n\n### 完成时间线（更新 05-20 00:00 UTC）\n1. **~05-20 00:45 UTC**: 72B few-shot FewNERD greedy pass 完成 → construction pipeline → ZS vs FS 对比\n2. **~05-20 01:50 UTC**: 7B pipeline 完成 → scaling curve 最小点\n3. **~05-20 19:20 UTC**: 14B 训练完成 + 推理（+5h 延后）\n4. **~05-21 01:40 UTC**: 32B 训练完成 + 推理（最慢瓶颈，+2h 延后）\n5. **全部数据 ~05-21 07:00 UTC** → DDL 05-25 仍有 ~4 天余量\n\n## 已完成实验（本轮关键）\n\n### 72B Zero-shot — DONE (negative)\n| Dataset | Degen | LP ρ | LP-wt Δ | Greedy F1 |\n|---------|-------|------|---------|-----------|\n| SciERC | 21.0% | 0.081 | **+1.53pp** (p=0.008) | 0.399 |\n| FewNERD | 46.2% | 0.119 | -0.20pp | 0.628 |\n| CoNLL | 67.7% | -0.002 | -0.37pp | 0.712 |\n\n**关键发现**: Degeneracy gates construction (monotonic pattern). Gap is fundamental, not fine-tuning artifact. Structural signals generalize to ZS (ρ 0.22-0.42).\n\n### WNUT-17 — DONE (negative)\nLP 信号反转 (ρ=-0.446), signal-collapse boundary case. Gating 正确路由到 greedy.\n\n## 论文修复状态（R24 Weakness 9/9）\n- [x] R24 全部 16 项编辑修复 + D162 公式删除\n- [x] fig_selection_gap + Gating bootstrap CI + 72B Δ修正 + WNUT-17 写入\n- [x] θ=2/N caveat + Contribution B \"fundamental\" + paper_framing.md 同步\n- [x] R22-W7: LoRA-only scope — 72B ZS section 草稿完成 (zeroshot_scaling_draft.tex)\n- [x] R24-N2: Greedy fallback option — gating bootstrap CI stable τ∈[0.25,0.35]\n- [x] Appendix degeneracy table 全列统一 N=8 3-seed mean\n- [x] 72B ZS SciERC construction bootstrap (p=0.008, CI [+0.25pp, +2.82pp])\n- [x] CoNLL oracle/headroom 全局修正 (.957→.948, ≈5→≈4pp)\n- [ ] R23-N1: Entity construction novelty — 待 scale 数据补强\n- [ ] 72B ZS + 72B FS 完整数据写入论文（待 72B-FS 完成）\n- [ ] Scaling curve 图 + 论文 scaling section（待 7B/14B/32B 完成）\n\n## 近期任务 Checklist\n- [ ] 72B-FS FewNERD 完成 (~05-20 00:45 UTC) → construction pipeline → ZS vs FS 对比表写入论文\n- [ ] 7B 完成 (~05-20 01:50 UTC) → compute_signals.py → format_for_scaling.py → scaling curve 第 3 点\n- [ ] 14B 完成 (~05-20 19:20 UTC) → signals → scaling curve 第 4 点\n- [ ] 32B 完成 (~05-21 01:40 UTC) → signals → scaling curve 第 5 点 (最后一块拼图)\n- [ ] 全部结果到齐 → scaling curve 最终图 + 论文 scaling section 定稿\n- [x] tab:calibration caption 修复完成（Reviewer PASS）\n- [ ] Round 25 提审前最终检查\n\n## 准备就绪的工具\n- `artifacts/plot_scaling_curve.py` — Scaling curve 图脚本（8B FT + 72B ZS 数据已验证）\n- `artifacts/compute_signals.py` — 信号计算 pipeline（72B ZS 验证通过）\n- `artifacts/format_for_scaling.py` — 结果格式化为 scaling dict\n- `artifacts/bootstrap_construction.py` — Paired bootstrap significance test\n- `paper/sections/zeroshot_scaling_draft.tex` — ZS section 草稿\n\n## GPU 预算\n- 3 台 × 4 GPU = 12 GPU，全部在用（12/12）\n\n## 关键决策日志\n\n| ID | 日期 | 摘要 | 关联实验 |\n|----|------|------|----------|\n| D162 | 2026-05-19 | D162: 删除分解公式 E[ΔF1]≈(1-d)×Δ_oracle×g(ρ_within)，改为定 | worker_analysis_23config_regression |\n| D161 | 2026-05-19 | R24 Action Matrix: 保守降调 title + 23-config regressi | D160 |\n| D160 | 2026-05-19 | 大规模实验升级：Scale 7B→72B + Zero-shot regime + WNUT-17  | exp_entity_construction, exp_llama_fewnerd_inference |\n| D159 | 2026-05-19 | D159: Entity construction 论文报告使用 N=8 数据（与主实验一致），LP | exp_entity_construction |\n| D158 | 2026-05-19 | D158: Adaptive combination 因 gold label 泄漏作废。论文 pr | exp_entity_construction |\n| D157 | 2026-05-19 | D157: Entity-level construction 经 5-fold CV 验证显著（S | entity_construction_cv, selective_prediction, lp_alignment_gated |\n| D156 | 2026-05-19 | D156: 论文升级——从纯诊断分析加入 prescriptive 解法（LP-alignment- | — |\n| D155 | 2026-05-18 | D155: LP ρ 修正（0.42→0.22 global）+ AUROC 还原为 0.82（Co | exp_fewnerd_s789_n8, exp_021_fewnerd_n8_seed42 |\n| D154 | 2026-05-18 | D154: 23点扩展后 degen-LP 相关性消失(ρ=0.052)，Two-Condition | fig_scatter_v2, exp_029a, exp_017_llama_conll_finetune |\n| D153 | 2026-05-18 | D153: 论文全文统一使用 per-instance mean F1（unified_metric | exp_026_t10_seed42 |\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 26,
+                  "oldLines": 11,
+                  "newStart": 26,
+                  "newLines": 8,
+                  "lines": [
+                    " - ETA ~05-21 01:40 UTC（**最慢瓶颈，+2h 延后**）",
+                    " - 完成后: export → 3-seed N=8 inference → signals → construction (~4-6h)",
+                    " ",
+                    "-### Server B (autodl-5090-b, 4 GPU): exp_qwen25_72b_fewshot",
+                    "-- 72B AWQ 3-shot 推理，PID 131293, SciERC done / CoNLL done / FewNERD greedy pass 21% (7894/37648), ~58 min remaining",
+                    "-- ETA ~05-20 00:45 UTC",
+                    "-- signal summary 已生成 (72b_fewshot_signal_summary.json); Pipeline 脚本已确认在 autodl-5090-b 就位",
+                    "-- 完成后: construction pipeline → ZS vs FS 对比表",
+                    "+### Server B (autodl-5090-b, 4 GPU): 空闲",
+                    "+- 72B FS 已完成，4 GPU 已释放",
+                    " ",
+                    " ### Server C (autodl-5090-c, 4 GPU):",
+                    " - **exp_qwen25_14b_fewnerd** (cuda:0,1) — QLoRA 训练中，PID 56773, 53.0% (21809/41180), loss 0.0273, 2.15s/it"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XD8b5aTFaFCFBFLBmJLiYC",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+                "old_string": "### 完成时间线（更新 05-20 00:00 UTC）\n1. **~05-20 00:45 UTC**: 72B few-shot FewNERD greedy pass 完成 → construction pipeline → ZS vs FS 对比\n2. **~05-20 01:50 UTC**: 7B pipeline 完成 → scaling curve 最小点\n3. **~05-20 19:20 UTC**: 14B 训练完成 + 推理（+5h 延后）\n4. **~05-21 01:40 UTC**: 32B 训练完成 + 推理（最慢瓶颈，+2h 延后）\n5. **全部数据 ~05-21 07:00 UTC** → DDL 05-25 仍有 ~4 天余量",
+                "new_string": "### 完成时间线（更新 05-20 UTC）\n1. ~~**~05-20 00:45 UTC**: 72B few-shot~~ ✅ DONE (negative)\n2. **~05-20 01:50 UTC**: 7B pipeline 完成 → scaling curve 最小点\n3. **~05-20 19:20 UTC**: 14B 训练完成 + 推理（+5h 延后）\n4. **~05-21 01:40 UTC**: 32B 训练完成 + 推理（最慢瓶颈，+2h 延后）\n5. **全部数据 ~05-21 07:00 UTC** → DDL 05-25 仍有 ~4 天余量"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "8101e8d0-f95c-4158-a648-ad64e645fbd7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dn6pZK3No8Ax1Ye8nnNHhi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 431,
+                "cache_read_input_tokens": 29895,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 431
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T01:02:10.303Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XD8b5aTFaFCFBFLBmJLiYC",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "2281d878-7c59-4de0-bd5a-61d13473ee17",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+              "oldString": "### 完成时间线（更新 05-20 00:00 UTC）\n1. **~05-20 00:45 UTC**: 72B few-shot FewNERD greedy pass 完成 → construction pipeline → ZS vs FS 对比\n2. **~05-20 01:50 UTC**: 7B pipeline 完成 → scaling curve 最小点\n3. **~05-20 19:20 UTC**: 14B 训练完成 + 推理（+5h 延后）\n4. **~05-21 01:40 UTC**: 32B 训练完成 + 推理（最慢瓶颈，+2h 延后）\n5. **全部数据 ~05-21 07:00 UTC** → DDL 05-25 仍有 ~4 天余量",
+              "newString": "### 完成时间线（更新 05-20 UTC）\n1. ~~**~05-20 00:45 UTC**: 72B few-shot~~ ✅ DONE (negative)\n2. **~05-20 01:50 UTC**: 7B pipeline 完成 → scaling curve 最小点\n3. **~05-20 19:20 UTC**: 14B 训练完成 + 推理（+5h 延后）\n4. **~05-21 01:40 UTC**: 32B 训练完成 + 推理（最慢瓶颈，+2h 延后）\n5. **全部数据 ~05-21 07:00 UTC** → DDL 05-25 仍有 ~4 天余量",
+              "originalFile": "# struct_self_consist_ie — Research Dashboard\n\n> 最后更新: 2026-05-20 00:00 UTC | 更新原因: 14B/32B ETA 推迟，72B FS greedy pass 进度更新\n\n## 核心方向\nSelf-consistency for NER: diagnosing correlation-selection gap + entity-level construction as resolution. 详见 paper_framing.md。\n\n## 当前阶段\n**Scale Upgrade + Paper Finalization**。DDL: EMNLP 2026 ARR May (2026-05-25, ~6 天)。\n\nRound 24 审稿: borderline (3.25/5)。冲 Main Conference 4.0。\n\n## 数值审计状态 — 全部关闭 ✅\n\n- [x] appendix L231: FewNERD degen 12.7%→13.0%, diff +10.7pp→+10.4pp\n- [x] appendix L360/L363-365/L687 数值修正 (3-seed mean)\n- [x] Table 5 degen 同步修正 (CoNLL 61.7%, FewNERD 13.0%)\n- [x] Scaling script 8B FT 12处数据修正 + 2处 degen 同步\n- [x] CoNLL oracle/headroom 全局修正: .957→.948, ≈5pp→≈4pp (appendix L248, experiments L102, appendix L932)\n- [x] tab:calibration caption 修复（N=8/16 分标、non-gold-filtered 说明、single seed 标注）\n\n## RUNNING 实验（3 个，8/12 GPU）\n\n### Server A (autodl-5090, 4 GPU): exp_qwen25_32b_fewnerd\n- QLoRA 训练中，PID 804438, 37.3% (15346/41180), loss 0.0528, 2.50s/it\n- ETA ~05-21 01:40 UTC（**最慢瓶颈，+2h 延后**）\n- 完成后: export → 3-seed N=8 inference → signals → construction (~4-6h)\n\n### Server B (autodl-5090-b, 4 GPU): 空闲\n- 72B FS 已完成，4 GPU 已释放\n\n### Server C (autodl-5090-c, 4 GPU):\n- **exp_qwen25_14b_fewnerd** (cuda:0,1) — QLoRA 训练中，PID 56773, 53.0% (21809/41180), loss 0.0273, 2.15s/it\n  - ETA ~05-20 19:20 UTC（**从 14:00 推迟 +5h**）\n  - 完成后: export → 3-seed N=8 inference → signals → construction (~4h)\n- **exp_qwen25_7b_fewnerd** (cuda:2,3) — 全自动 pipeline，PID 71837, 训练 81% (16681/20590)\n  - ETA ~05-20 01:50 UTC（**仍最先完成**）\n  - Pipeline 自动执行: train → export → 3-seed inference → signals → construction\n\n### 完成时间线（更新 05-20 00:00 UTC）\n1. **~05-20 00:45 UTC**: 72B few-shot FewNERD greedy pass 完成 → construction pipeline → ZS vs FS 对比\n2. **~05-20 01:50 UTC**: 7B pipeline 完成 → scaling curve 最小点\n3. **~05-20 19:20 UTC**: 14B 训练完成 + 推理（+5h 延后）\n4. **~05-21 01:40 UTC**: 32B 训练完成 + 推理（最慢瓶颈，+2h 延后）\n5. **全部数据 ~05-21 07:00 UTC** → DDL 05-25 仍有 ~4 天余量\n\n## 已完成实验（本轮关键）\n\n### 72B Zero-shot — DONE (negative)\n| Dataset | Degen | LP ρ | LP-wt Δ | Greedy F1 |\n|---------|-------|------|---------|-----------|\n| SciERC | 21.0% | 0.081 | **+1.53pp** (p=0.008) | 0.399 |\n| FewNERD | 46.2% | 0.119 | -0.20pp | 0.628 |\n| CoNLL | 67.7% | -0.002 | -0.37pp | 0.712 |\n\n**关键发现**: Degeneracy gates construction (monotonic pattern). Gap is fundamental, not fine-tuning artifact. Structural signals generalize to ZS (ρ 0.22-0.42).\n\n### WNUT-17 — DONE (negative)\nLP 信号反转 (ρ=-0.446), signal-collapse boundary case. Gating 正确路由到 greedy.\n\n## 论文修复状态（R24 Weakness 9/9）\n- [x] R24 全部 16 项编辑修复 + D162 公式删除\n- [x] fig_selection_gap + Gating bootstrap CI + 72B Δ修正 + WNUT-17 写入\n- [x] θ=2/N caveat + Contribution B \"fundamental\" + paper_framing.md 同步\n- [x] R22-W7: LoRA-only scope — 72B ZS section 草稿完成 (zeroshot_scaling_draft.tex)\n- [x] R24-N2: Greedy fallback option — gating bootstrap CI stable τ∈[0.25,0.35]\n- [x] Appendix degeneracy table 全列统一 N=8 3-seed mean\n- [x] 72B ZS SciERC construction bootstrap (p=0.008, CI [+0.25pp, +2.82pp])\n- [x] CoNLL oracle/headroom 全局修正 (.957→.948, ≈5→≈4pp)\n- [ ] R23-N1: Entity construction novelty — 待 scale 数据补强\n- [ ] 72B ZS + 72B FS 完整数据写入论文（待 72B-FS 完成）\n- [ ] Scaling curve 图 + 论文 scaling section（待 7B/14B/32B 完成）\n\n## 近期任务 Checklist\n- [ ] 72B-FS FewNERD 完成 (~05-20 00:45 UTC) → construction pipeline → ZS vs FS 对比表写入论文\n- [ ] 7B 完成 (~05-20 01:50 UTC) → compute_signals.py → format_for_scaling.py → scaling curve 第 3 点\n- [ ] 14B 完成 (~05-20 19:20 UTC) → signals → scaling curve 第 4 点\n- [ ] 32B 完成 (~05-21 01:40 UTC) → signals → scaling curve 第 5 点 (最后一块拼图)\n- [ ] 全部结果到齐 → scaling curve 最终图 + 论文 scaling section 定稿\n- [x] tab:calibration caption 修复完成（Reviewer PASS）\n- [ ] Round 25 提审前最终检查\n\n## 准备就绪的工具\n- `artifacts/plot_scaling_curve.py` — Scaling curve 图脚本（8B FT + 72B ZS 数据已验证）\n- `artifacts/compute_signals.py` — 信号计算 pipeline（72B ZS 验证通过）\n- `artifacts/format_for_scaling.py` — 结果格式化为 scaling dict\n- `artifacts/bootstrap_construction.py` — Paired bootstrap significance test\n- `paper/sections/zeroshot_scaling_draft.tex` — ZS section 草稿\n\n## GPU 预算\n- 3 台 × 4 GPU = 12 GPU，全部在用（12/12）\n\n## 关键决策日志\n\n| ID | 日期 | 摘要 | 关联实验 |\n|----|------|------|----------|\n| D162 | 2026-05-19 | D162: 删除分解公式 E[ΔF1]≈(1-d)×Δ_oracle×g(ρ_within)，改为定 | worker_analysis_23config_regression |\n| D161 | 2026-05-19 | R24 Action Matrix: 保守降调 title + 23-config regressi | D160 |\n| D160 | 2026-05-19 | 大规模实验升级：Scale 7B→72B + Zero-shot regime + WNUT-17  | exp_entity_construction, exp_llama_fewnerd_inference |\n| D159 | 2026-05-19 | D159: Entity construction 论文报告使用 N=8 数据（与主实验一致），LP | exp_entity_construction |\n| D158 | 2026-05-19 | D158: Adaptive combination 因 gold label 泄漏作废。论文 pr | exp_entity_construction |\n| D157 | 2026-05-19 | D157: Entity-level construction 经 5-fold CV 验证显著（S | entity_construction_cv, selective_prediction, lp_alignment_gated |\n| D156 | 2026-05-19 | D156: 论文升级——从纯诊断分析加入 prescriptive 解法（LP-alignment- | — |\n| D155 | 2026-05-18 | D155: LP ρ 修正（0.42→0.22 global）+ AUROC 还原为 0.82（Co | exp_fewnerd_s789_n8, exp_021_fewnerd_n8_seed42 |\n| D154 | 2026-05-18 | D154: 23点扩展后 degen-LP 相关性消失(ρ=0.052)，Two-Condition | fig_scatter_v2, exp_029a, exp_017_llama_conll_finetune |\n| D153 | 2026-05-18 | D153: 论文全文统一使用 per-instance mean F1（unified_metric | exp_026_t10_seed42 |\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 37,
+                  "oldLines": 8,
+                  "newStart": 37,
+                  "newLines": 8,
+                  "lines": [
+                    "   - ETA ~05-20 01:50 UTC（**仍最先完成**）",
+                    "   - Pipeline 自动执行: train → export → 3-seed inference → signals → construction",
+                    " ",
+                    "-### 完成时间线（更新 05-20 00:00 UTC）",
+                    "-1. **~05-20 00:45 UTC**: 72B few-shot FewNERD greedy pass 完成 → construction pipeline → ZS vs FS 对比",
+                    "+### 完成时间线（更新 05-20 UTC）",
+                    "+1. ~~**~05-20 00:45 UTC**: 72B few-shot~~ ✅ DONE (negative)",
+                    " 2. **~05-20 01:50 UTC**: 7B pipeline 完成 → scaling curve 最小点",
+                    " 3. **~05-20 19:20 UTC**: 14B 训练完成 + 推理（+5h 延后）",
+                    " 4. **~05-21 01:40 UTC**: 32B 训练完成 + 推理（最慢瓶颈，+2h 延后）"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UjGhH4CfboixqBYPGfvRAi",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+                "old_string": "## 已完成实验（本轮关键）\n\n### 72B Zero-shot — DONE (negative)",
+                "new_string": "## 已完成实验（本轮关键）\n\n### 72B Few-shot — DONE (negative)\n| Dataset | Degen | LP ρ | SJ ρ | VC ρ | Greedy F1 | Oracle F1 | Construction Δ |\n|---------|-------|------|------|------|-----------|-----------|----------------|\n| FewNERD | 45.2% | 0.161 | 0.345 | 0.410 | 0.619 | 0.702 | +0.02pp (n.s., p=0.401) |\n\n**关键发现**: Dual-gating hypothesis 被证伪。6/6 条件（3 datasets × ZS/FS）仅 SciERC ZS 显著。Few-shot 降低 degeneracy（46.2%→45.2%）并提升 LP ρ（0.119→0.161），但 construction gain 仍不显著。Gap 不可通过 prompting strategy 弥合。\n\n### 72B Zero-shot — DONE (negative)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "3a32f4d2-634b-4f6f-9c7b-87af70d36580",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Se94xBoXiNH7XYtGAe4mVp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 610,
+                "cache_read_input_tokens": 30326,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 610
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T01:02:18.886Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UjGhH4CfboixqBYPGfvRAi",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "4ed21616-9ba8-4257-a84c-6cf1818eb6a7",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+              "oldString": "## 已完成实验（本轮关键）\n\n### 72B Zero-shot — DONE (negative)",
+              "newString": "## 已完成实验（本轮关键）\n\n### 72B Few-shot — DONE (negative)\n| Dataset | Degen | LP ρ | SJ ρ | VC ρ | Greedy F1 | Oracle F1 | Construction Δ |\n|---------|-------|------|------|------|-----------|-----------|----------------|\n| FewNERD | 45.2% | 0.161 | 0.345 | 0.410 | 0.619 | 0.702 | +0.02pp (n.s., p=0.401) |\n\n**关键发现**: Dual-gating hypothesis 被证伪。6/6 条件（3 datasets × ZS/FS）仅 SciERC ZS 显著。Few-shot 降低 degeneracy（46.2%→45.2%）并提升 LP ρ（0.119→0.161），但 construction gain 仍不显著。Gap 不可通过 prompting strategy 弥合。\n\n### 72B Zero-shot — DONE (negative)",
+              "originalFile": "# struct_self_consist_ie — Research Dashboard\n\n> 最后更新: 2026-05-20 00:00 UTC | 更新原因: 14B/32B ETA 推迟，72B FS greedy pass 进度更新\n\n## 核心方向\nSelf-consistency for NER: diagnosing correlation-selection gap + entity-level construction as resolution. 详见 paper_framing.md。\n\n## 当前阶段\n**Scale Upgrade + Paper Finalization**。DDL: EMNLP 2026 ARR May (2026-05-25, ~6 天)。\n\nRound 24 审稿: borderline (3.25/5)。冲 Main Conference 4.0。\n\n## 数值审计状态 — 全部关闭 ✅\n\n- [x] appendix L231: FewNERD degen 12.7%→13.0%, diff +10.7pp→+10.4pp\n- [x] appendix L360/L363-365/L687 数值修正 (3-seed mean)\n- [x] Table 5 degen 同步修正 (CoNLL 61.7%, FewNERD 13.0%)\n- [x] Scaling script 8B FT 12处数据修正 + 2处 degen 同步\n- [x] CoNLL oracle/headroom 全局修正: .957→.948, ≈5pp→≈4pp (appendix L248, experiments L102, appendix L932)\n- [x] tab:calibration caption 修复（N=8/16 分标、non-gold-filtered 说明、single seed 标注）\n\n## RUNNING 实验（3 个，8/12 GPU）\n\n### Server A (autodl-5090, 4 GPU): exp_qwen25_32b_fewnerd\n- QLoRA 训练中，PID 804438, 37.3% (15346/41180), loss 0.0528, 2.50s/it\n- ETA ~05-21 01:40 UTC（**最慢瓶颈，+2h 延后**）\n- 完成后: export → 3-seed N=8 inference → signals → construction (~4-6h)\n\n### Server B (autodl-5090-b, 4 GPU): 空闲\n- 72B FS 已完成，4 GPU 已释放\n\n### Server C (autodl-5090-c, 4 GPU):\n- **exp_qwen25_14b_fewnerd** (cuda:0,1) — QLoRA 训练中，PID 56773, 53.0% (21809/41180), loss 0.0273, 2.15s/it\n  - ETA ~05-20 19:20 UTC（**从 14:00 推迟 +5h**）\n  - 完成后: export → 3-seed N=8 inference → signals → construction (~4h)\n- **exp_qwen25_7b_fewnerd** (cuda:2,3) — 全自动 pipeline，PID 71837, 训练 81% (16681/20590)\n  - ETA ~05-20 01:50 UTC（**仍最先完成**）\n  - Pipeline 自动执行: train → export → 3-seed inference → signals → construction\n\n### 完成时间线（更新 05-20 UTC）\n1. ~~**~05-20 00:45 UTC**: 72B few-shot~~ ✅ DONE (negative)\n2. **~05-20 01:50 UTC**: 7B pipeline 完成 → scaling curve 最小点\n3. **~05-20 19:20 UTC**: 14B 训练完成 + 推理（+5h 延后）\n4. **~05-21 01:40 UTC**: 32B 训练完成 + 推理（最慢瓶颈，+2h 延后）\n5. **全部数据 ~05-21 07:00 UTC** → DDL 05-25 仍有 ~4 天余量\n\n## 已完成实验（本轮关键）\n\n### 72B Zero-shot — DONE (negative)\n| Dataset | Degen | LP ρ | LP-wt Δ | Greedy F1 |\n|---------|-------|------|---------|-----------|\n| SciERC | 21.0% | 0.081 | **+1.53pp** (p=0.008) | 0.399 |\n| FewNERD | 46.2% | 0.119 | -0.20pp | 0.628 |\n| CoNLL | 67.7% | -0.002 | -0.37pp | 0.712 |\n\n**关键发现**: Degeneracy gates construction (monotonic pattern). Gap is fundamental, not fine-tuning artifact. Structural signals generalize to ZS (ρ 0.22-0.42).\n\n### WNUT-17 — DONE (negative)\nLP 信号反转 (ρ=-0.446), signal-collapse boundary case. Gating 正确路由到 greedy.\n\n## 论文修复状态（R24 Weakness 9/9）\n- [x] R24 全部 16 项编辑修复 + D162 公式删除\n- [x] fig_selection_gap + Gating bootstrap CI + 72B Δ修正 + WNUT-17 写入\n- [x] θ=2/N caveat + Contribution B \"fundamental\" + paper_framing.md 同步\n- [x] R22-W7: LoRA-only scope — 72B ZS section 草稿完成 (zeroshot_scaling_draft.tex)\n- [x] R24-N2: Greedy fallback option — gating bootstrap CI stable τ∈[0.25,0.35]\n- [x] Appendix degeneracy table 全列统一 N=8 3-seed mean\n- [x] 72B ZS SciERC construction bootstrap (p=0.008, CI [+0.25pp, +2.82pp])\n- [x] CoNLL oracle/headroom 全局修正 (.957→.948, ≈5→≈4pp)\n- [ ] R23-N1: Entity construction novelty — 待 scale 数据补强\n- [ ] 72B ZS + 72B FS 完整数据写入论文（待 72B-FS 完成）\n- [ ] Scaling curve 图 + 论文 scaling section（待 7B/14B/32B 完成）\n\n## 近期任务 Checklist\n- [ ] 72B-FS FewNERD 完成 (~05-20 00:45 UTC) → construction pipeline → ZS vs FS 对比表写入论文\n- [ ] 7B 完成 (~05-20 01:50 UTC) → compute_signals.py → format_for_scaling.py → scaling curve 第 3 点\n- [ ] 14B 完成 (~05-20 19:20 UTC) → signals → scaling curve 第 4 点\n- [ ] 32B 完成 (~05-21 01:40 UTC) → signals → scaling curve 第 5 点 (最后一块拼图)\n- [ ] 全部结果到齐 → scaling curve 最终图 + 论文 scaling section 定稿\n- [x] tab:calibration caption 修复完成（Reviewer PASS）\n- [ ] Round 25 提审前最终检查\n\n## 准备就绪的工具\n- `artifacts/plot_scaling_curve.py` — Scaling curve 图脚本（8B FT + 72B ZS 数据已验证）\n- `artifacts/compute_signals.py` — 信号计算 pipeline（72B ZS 验证通过）\n- `artifacts/format_for_scaling.py` — 结果格式化为 scaling dict\n- `artifacts/bootstrap_construction.py` — Paired bootstrap significance test\n- `paper/sections/zeroshot_scaling_draft.tex` — ZS section 草稿\n\n## GPU 预算\n- 3 台 × 4 GPU = 12 GPU，全部在用（12/12）\n\n## 关键决策日志\n\n| ID | 日期 | 摘要 | 关联实验 |\n|----|------|------|----------|\n| D162 | 2026-05-19 | D162: 删除分解公式 E[ΔF1]≈(1-d)×Δ_oracle×g(ρ_within)，改为定 | worker_analysis_23config_regression |\n| D161 | 2026-05-19 | R24 Action Matrix: 保守降调 title + 23-config regressi | D160 |\n| D160 | 2026-05-19 | 大规模实验升级：Scale 7B→72B + Zero-shot regime + WNUT-17  | exp_entity_construction, exp_llama_fewnerd_inference |\n| D159 | 2026-05-19 | D159: Entity construction 论文报告使用 N=8 数据（与主实验一致），LP | exp_entity_construction |\n| D158 | 2026-05-19 | D158: Adaptive combination 因 gold label 泄漏作废。论文 pr | exp_entity_construction |\n| D157 | 2026-05-19 | D157: Entity-level construction 经 5-fold CV 验证显著（S | entity_construction_cv, selective_prediction, lp_alignment_gated |\n| D156 | 2026-05-19 | D156: 论文升级——从纯诊断分析加入 prescriptive 解法（LP-alignment- | — |\n| D155 | 2026-05-18 | D155: LP ρ 修正（0.42→0.22 global）+ AUROC 还原为 0.82（Co | exp_fewnerd_s789_n8, exp_021_fewnerd_n8_seed42 |\n| D154 | 2026-05-18 | D154: 23点扩展后 degen-LP 相关性消失(ρ=0.052)，Two-Condition | fig_scatter_v2, exp_029a, exp_017_llama_conll_finetune |\n| D153 | 2026-05-18 | D153: 论文全文统一使用 per-instance mean F1（unified_metric | exp_026_t10_seed42 |\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 46,
+                  "oldLines": 6,
+                  "newStart": 46,
+                  "newLines": 13,
+                  "lines": [
+                    " ",
+                    " ## 已完成实验（本轮关键）",
+                    " ",
+                    "+### 72B Few-shot — DONE (negative)",
+                    "+| Dataset | Degen | LP ρ | SJ ρ | VC ρ | Greedy F1 | Oracle F1 | Construction Δ |",
+                    "+|---------|-------|------|------|------|-----------|-----------|----------------|",
+                    "+| FewNERD | 45.2% | 0.161 | 0.345 | 0.410 | 0.619 | 0.702 | +0.02pp (n.s., p=0.401) |",
+                    "+",
+                    "+**关键发现**: Dual-gating hypothesis 被证伪。6/6 条件（3 datasets × ZS/FS）仅 SciERC ZS 显著。Few-shot 降低 degeneracy（46.2%→45.2%）并提升 LP ρ（0.119→0.161），但 construction gain 仍不显著。Gap 不可通过 prompting strategy 弥合。",
+                    "+",
+                    " ### 72B Zero-shot — DONE (negative)",
+                    " | Dataset | Degen | LP ρ | LP-wt Δ | Greedy F1 |",
+                    " |---------|-------|------|---------|-----------|"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CKgHi7x2cwJAULoyMJ1jaW",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+                "old_string": "- [ ] 72B-FS FewNERD 完成 (~05-20 00:45 UTC) → construction pipeline → ZS vs FS 对比表写入论文",
+                "new_string": "- [x] 72B-FS FewNERD 完成 → negative, dual-gating 证伪 (6/6 仅 SciERC ZS 显著)\n- [ ] **待 Director 决策**: paper framing 调整 — dual-gating 证伪后需重新定位 construction 叙事"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "62f3daa4-5794-41c6-9e95-68538bf5b365",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XbmFaoKzxaJbAMvwfk8jZ9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 497,
+                "cache_read_input_tokens": 30936,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 497
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T01:02:23.724Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CKgHi7x2cwJAULoyMJ1jaW",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "9584a4ae-406c-4d80-a5f3-8937283d80a2",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+              "oldString": "- [ ] 72B-FS FewNERD 完成 (~05-20 00:45 UTC) → construction pipeline → ZS vs FS 对比表写入论文",
+              "newString": "- [x] 72B-FS FewNERD 完成 → negative, dual-gating 证伪 (6/6 仅 SciERC ZS 显著)\n- [ ] **待 Director 决策**: paper framing 调整 — dual-gating 证伪后需重新定位 construction 叙事",
+              "originalFile": "# struct_self_consist_ie — Research Dashboard\n\n> 最后更新: 2026-05-20 00:00 UTC | 更新原因: 14B/32B ETA 推迟，72B FS greedy pass 进度更新\n\n## 核心方向\nSelf-consistency for NER: diagnosing correlation-selection gap + entity-level construction as resolution. 详见 paper_framing.md。\n\n## 当前阶段\n**Scale Upgrade + Paper Finalization**。DDL: EMNLP 2026 ARR May (2026-05-25, ~6 天)。\n\nRound 24 审稿: borderline (3.25/5)。冲 Main Conference 4.0。\n\n## 数值审计状态 — 全部关闭 ✅\n\n- [x] appendix L231: FewNERD degen 12.7%→13.0%, diff +10.7pp→+10.4pp\n- [x] appendix L360/L363-365/L687 数值修正 (3-seed mean)\n- [x] Table 5 degen 同步修正 (CoNLL 61.7%, FewNERD 13.0%)\n- [x] Scaling script 8B FT 12处数据修正 + 2处 degen 同步\n- [x] CoNLL oracle/headroom 全局修正: .957→.948, ≈5pp→≈4pp (appendix L248, experiments L102, appendix L932)\n- [x] tab:calibration caption 修复（N=8/16 分标、non-gold-filtered 说明、single seed 标注）\n\n## RUNNING 实验（3 个，8/12 GPU）\n\n### Server A (autodl-5090, 4 GPU): exp_qwen25_32b_fewnerd\n- QLoRA 训练中，PID 804438, 37.3% (15346/41180), loss 0.0528, 2.50s/it\n- ETA ~05-21 01:40 UTC（**最慢瓶颈，+2h 延后**）\n- 完成后: export → 3-seed N=8 inference → signals → construction (~4-6h)\n\n### Server B (autodl-5090-b, 4 GPU): 空闲\n- 72B FS 已完成，4 GPU 已释放\n\n### Server C (autodl-5090-c, 4 GPU):\n- **exp_qwen25_14b_fewnerd** (cuda:0,1) — QLoRA 训练中，PID 56773, 53.0% (21809/41180), loss 0.0273, 2.15s/it\n  - ETA ~05-20 19:20 UTC（**从 14:00 推迟 +5h**）\n  - 完成后: export → 3-seed N=8 inference → signals → construction (~4h)\n- **exp_qwen25_7b_fewnerd** (cuda:2,3) — 全自动 pipeline，PID 71837, 训练 81% (16681/20590)\n  - ETA ~05-20 01:50 UTC（**仍最先完成**）\n  - Pipeline 自动执行: train → export → 3-seed inference → signals → construction\n\n### 完成时间线（更新 05-20 UTC）\n1. ~~**~05-20 00:45 UTC**: 72B few-shot~~ ✅ DONE (negative)\n2. **~05-20 01:50 UTC**: 7B pipeline 完成 → scaling curve 最小点\n3. **~05-20 19:20 UTC**: 14B 训练完成 + 推理（+5h 延后）\n4. **~05-21 01:40 UTC**: 32B 训练完成 + 推理（最慢瓶颈，+2h 延后）\n5. **全部数据 ~05-21 07:00 UTC** → DDL 05-25 仍有 ~4 天余量\n\n## 已完成实验（本轮关键）\n\n### 72B Few-shot — DONE (negative)\n| Dataset | Degen | LP ρ | SJ ρ | VC ρ | Greedy F1 | Oracle F1 | Construction Δ |\n|---------|-------|------|------|------|-----------|-----------|----------------|\n| FewNERD | 45.2% | 0.161 | 0.345 | 0.410 | 0.619 | 0.702 | +0.02pp (n.s., p=0.401) |\n\n**关键发现**: Dual-gating hypothesis 被证伪。6/6 条件（3 datasets × ZS/FS）仅 SciERC ZS 显著。Few-shot 降低 degeneracy（46.2%→45.2%）并提升 LP ρ（0.119→0.161），但 construction gain 仍不显著。Gap 不可通过 prompting strategy 弥合。\n\n### 72B Zero-shot — DONE (negative)\n| Dataset | Degen | LP ρ | LP-wt Δ | Greedy F1 |\n|---------|-------|------|---------|-----------|\n| SciERC | 21.0% | 0.081 | **+1.53pp** (p=0.008) | 0.399 |\n| FewNERD | 46.2% | 0.119 | -0.20pp | 0.628 |\n| CoNLL | 67.7% | -0.002 | -0.37pp | 0.712 |\n\n**关键发现**: Degeneracy gates construction (monotonic pattern). Gap is fundamental, not fine-tuning artifact. Structural signals generalize to ZS (ρ 0.22-0.42).\n\n### WNUT-17 — DONE (negative)\nLP 信号反转 (ρ=-0.446), signal-collapse boundary case. Gating 正确路由到 greedy.\n\n## 论文修复状态（R24 Weakness 9/9）\n- [x] R24 全部 16 项编辑修复 + D162 公式删除\n- [x] fig_selection_gap + Gating bootstrap CI + 72B Δ修正 + WNUT-17 写入\n- [x] θ=2/N caveat + Contribution B \"fundamental\" + paper_framing.md 同步\n- [x] R22-W7: LoRA-only scope — 72B ZS section 草稿完成 (zeroshot_scaling_draft.tex)\n- [x] R24-N2: Greedy fallback option — gating bootstrap CI stable τ∈[0.25,0.35]\n- [x] Appendix degeneracy table 全列统一 N=8 3-seed mean\n- [x] 72B ZS SciERC construction bootstrap (p=0.008, CI [+0.25pp, +2.82pp])\n- [x] CoNLL oracle/headroom 全局修正 (.957→.948, ≈5→≈4pp)\n- [ ] R23-N1: Entity construction novelty — 待 scale 数据补强\n- [ ] 72B ZS + 72B FS 完整数据写入论文（待 72B-FS 完成）\n- [ ] Scaling curve 图 + 论文 scaling section（待 7B/14B/32B 完成）\n\n## 近期任务 Checklist\n- [ ] 72B-FS FewNERD 完成 (~05-20 00:45 UTC) → construction pipeline → ZS vs FS 对比表写入论文\n- [ ] 7B 完成 (~05-20 01:50 UTC) → compute_signals.py → format_for_scaling.py → scaling curve 第 3 点\n- [ ] 14B 完成 (~05-20 19:20 UTC) → signals → scaling curve 第 4 点\n- [ ] 32B 完成 (~05-21 01:40 UTC) → signals → scaling curve 第 5 点 (最后一块拼图)\n- [ ] 全部结果到齐 → scaling curve 最终图 + 论文 scaling section 定稿\n- [x] tab:calibration caption 修复完成（Reviewer PASS）\n- [ ] Round 25 提审前最终检查\n\n## 准备就绪的工具\n- `artifacts/plot_scaling_curve.py` — Scaling curve 图脚本（8B FT + 72B ZS 数据已验证）\n- `artifacts/compute_signals.py` — 信号计算 pipeline（72B ZS 验证通过）\n- `artifacts/format_for_scaling.py` — 结果格式化为 scaling dict\n- `artifacts/bootstrap_construction.py` — Paired bootstrap significance test\n- `paper/sections/zeroshot_scaling_draft.tex` — ZS section 草稿\n\n## GPU 预算\n- 3 台 × 4 GPU = 12 GPU，全部在用（12/12）\n\n## 关键决策日志\n\n| ID | 日期 | 摘要 | 关联实验 |\n|----|------|------|----------|\n| D162 | 2026-05-19 | D162: 删除分解公式 E[ΔF1]≈(1-d)×Δ_oracle×g(ρ_within)，改为定 | worker_analysis_23config_regression |\n| D161 | 2026-05-19 | R24 Action Matrix: 保守降调 title + 23-config regressi | D160 |\n| D160 | 2026-05-19 | 大规模实验升级：Scale 7B→72B + Zero-shot regime + WNUT-17  | exp_entity_construction, exp_llama_fewnerd_inference |\n| D159 | 2026-05-19 | D159: Entity construction 论文报告使用 N=8 数据（与主实验一致），LP | exp_entity_construction |\n| D158 | 2026-05-19 | D158: Adaptive combination 因 gold label 泄漏作废。论文 pr | exp_entity_construction |\n| D157 | 2026-05-19 | D157: Entity-level construction 经 5-fold CV 验证显著（S | entity_construction_cv, selective_prediction, lp_alignment_gated |\n| D156 | 2026-05-19 | D156: 论文升级——从纯诊断分析加入 prescriptive 解法（LP-alignment- | — |\n| D155 | 2026-05-18 | D155: LP ρ 修正（0.42→0.22 global）+ AUROC 还原为 0.82（Co | exp_fewnerd_s789_n8, exp_021_fewnerd_n8_seed42 |\n| D154 | 2026-05-18 | D154: 23点扩展后 degen-LP 相关性消失(ρ=0.052)，Two-Condition | fig_scatter_v2, exp_029a, exp_017_llama_conll_finetune |\n| D153 | 2026-05-18 | D153: 论文全文统一使用 per-instance mean F1（unified_metric | exp_026_t10_seed42 |\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 79,
+                  "oldLines": 7,
+                  "newStart": 79,
+                  "newLines": 8,
+                  "lines": [
+                    " - [ ] Scaling curve 图 + 论文 scaling section（待 7B/14B/32B 完成）",
+                    " ",
+                    " ## 近期任务 Checklist",
+                    "-- [ ] 72B-FS FewNERD 完成 (~05-20 00:45 UTC) → construction pipeline → ZS vs FS 对比表写入论文",
+                    "+- [x] 72B-FS FewNERD 完成 → negative, dual-gating 证伪 (6/6 仅 SciERC ZS 显著)",
+                    "+- [ ] **待 Director 决策**: paper framing 调整 — dual-gating 证伪后需重新定位 construction 叙事",
+                    " - [ ] 7B 完成 (~05-20 01:50 UTC) → compute_signals.py → format_for_scaling.py → scaling curve 第 3 点",
+                    " - [ ] 14B 完成 (~05-20 19:20 UTC) → signals → scaling curve 第 4 点",
+                    " - [ ] 32B 完成 (~05-21 01:40 UTC) → signals → scaling curve 第 5 点 (最后一块拼图)"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BQXjaTzdpBLfmsUubUaLNP",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+                "old_string": "## GPU 预算\n- 3 台 × 4 GPU = 12 GPU，全部在用（12/12）",
+                "new_string": "## GPU 预算\n- 3 台 × 4 GPU = 12 GPU，在用 8/12（autodl-5090-b 4 GPU 已释放）"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "1dfbc577-0317-4ec7-b5c3-cce29c90d100",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AXVpLfYwvdESNmdB3nR1HH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 330,
+                "cache_read_input_tokens": 31433,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 330
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T01:02:27.330Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BQXjaTzdpBLfmsUubUaLNP",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "49f8b9d4-5591-4603-bc10-207f176a8957",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+              "oldString": "## GPU 预算\n- 3 台 × 4 GPU = 12 GPU，全部在用（12/12）",
+              "newString": "## GPU 预算\n- 3 台 × 4 GPU = 12 GPU，在用 8/12（autodl-5090-b 4 GPU 已释放）",
+              "originalFile": "# struct_self_consist_ie — Research Dashboard\n\n> 最后更新: 2026-05-20 00:00 UTC | 更新原因: 14B/32B ETA 推迟，72B FS greedy pass 进度更新\n\n## 核心方向\nSelf-consistency for NER: diagnosing correlation-selection gap + entity-level construction as resolution. 详见 paper_framing.md。\n\n## 当前阶段\n**Scale Upgrade + Paper Finalization**。DDL: EMNLP 2026 ARR May (2026-05-25, ~6 天)。\n\nRound 24 审稿: borderline (3.25/5)。冲 Main Conference 4.0。\n\n## 数值审计状态 — 全部关闭 ✅\n\n- [x] appendix L231: FewNERD degen 12.7%→13.0%, diff +10.7pp→+10.4pp\n- [x] appendix L360/L363-365/L687 数值修正 (3-seed mean)\n- [x] Table 5 degen 同步修正 (CoNLL 61.7%, FewNERD 13.0%)\n- [x] Scaling script 8B FT 12处数据修正 + 2处 degen 同步\n- [x] CoNLL oracle/headroom 全局修正: .957→.948, ≈5pp→≈4pp (appendix L248, experiments L102, appendix L932)\n- [x] tab:calibration caption 修复（N=8/16 分标、non-gold-filtered 说明、single seed 标注）\n\n## RUNNING 实验（3 个，8/12 GPU）\n\n### Server A (autodl-5090, 4 GPU): exp_qwen25_32b_fewnerd\n- QLoRA 训练中，PID 804438, 37.3% (15346/41180), loss 0.0528, 2.50s/it\n- ETA ~05-21 01:40 UTC（**最慢瓶颈，+2h 延后**）\n- 完成后: export → 3-seed N=8 inference → signals → construction (~4-6h)\n\n### Server B (autodl-5090-b, 4 GPU): 空闲\n- 72B FS 已完成，4 GPU 已释放\n\n### Server C (autodl-5090-c, 4 GPU):\n- **exp_qwen25_14b_fewnerd** (cuda:0,1) — QLoRA 训练中，PID 56773, 53.0% (21809/41180), loss 0.0273, 2.15s/it\n  - ETA ~05-20 19:20 UTC（**从 14:00 推迟 +5h**）\n  - 完成后: export → 3-seed N=8 inference → signals → construction (~4h)\n- **exp_qwen25_7b_fewnerd** (cuda:2,3) — 全自动 pipeline，PID 71837, 训练 81% (16681/20590)\n  - ETA ~05-20 01:50 UTC（**仍最先完成**）\n  - Pipeline 自动执行: train → export → 3-seed inference → signals → construction\n\n### 完成时间线（更新 05-20 UTC）\n1. ~~**~05-20 00:45 UTC**: 72B few-shot~~ ✅ DONE (negative)\n2. **~05-20 01:50 UTC**: 7B pipeline 完成 → scaling curve 最小点\n3. **~05-20 19:20 UTC**: 14B 训练完成 + 推理（+5h 延后）\n4. **~05-21 01:40 UTC**: 32B 训练完成 + 推理（最慢瓶颈，+2h 延后）\n5. **全部数据 ~05-21 07:00 UTC** → DDL 05-25 仍有 ~4 天余量\n\n## 已完成实验（本轮关键）\n\n### 72B Few-shot — DONE (negative)\n| Dataset | Degen | LP ρ | SJ ρ | VC ρ | Greedy F1 | Oracle F1 | Construction Δ |\n|---------|-------|------|------|------|-----------|-----------|----------------|\n| FewNERD | 45.2% | 0.161 | 0.345 | 0.410 | 0.619 | 0.702 | +0.02pp (n.s., p=0.401) |\n\n**关键发现**: Dual-gating hypothesis 被证伪。6/6 条件（3 datasets × ZS/FS）仅 SciERC ZS 显著。Few-shot 降低 degeneracy（46.2%→45.2%）并提升 LP ρ（0.119→0.161），但 construction gain 仍不显著。Gap 不可通过 prompting strategy 弥合。\n\n### 72B Zero-shot — DONE (negative)\n| Dataset | Degen | LP ρ | LP-wt Δ | Greedy F1 |\n|---------|-------|------|---------|-----------|\n| SciERC | 21.0% | 0.081 | **+1.53pp** (p=0.008) | 0.399 |\n| FewNERD | 46.2% | 0.119 | -0.20pp | 0.628 |\n| CoNLL | 67.7% | -0.002 | -0.37pp | 0.712 |\n\n**关键发现**: Degeneracy gates construction (monotonic pattern). Gap is fundamental, not fine-tuning artifact. Structural signals generalize to ZS (ρ 0.22-0.42).\n\n### WNUT-17 — DONE (negative)\nLP 信号反转 (ρ=-0.446), signal-collapse boundary case. Gating 正确路由到 greedy.\n\n## 论文修复状态（R24 Weakness 9/9）\n- [x] R24 全部 16 项编辑修复 + D162 公式删除\n- [x] fig_selection_gap + Gating bootstrap CI + 72B Δ修正 + WNUT-17 写入\n- [x] θ=2/N caveat + Contribution B \"fundamental\" + paper_framing.md 同步\n- [x] R22-W7: LoRA-only scope — 72B ZS section 草稿完成 (zeroshot_scaling_draft.tex)\n- [x] R24-N2: Greedy fallback option — gating bootstrap CI stable τ∈[0.25,0.35]\n- [x] Appendix degeneracy table 全列统一 N=8 3-seed mean\n- [x] 72B ZS SciERC construction bootstrap (p=0.008, CI [+0.25pp, +2.82pp])\n- [x] CoNLL oracle/headroom 全局修正 (.957→.948, ≈5→≈4pp)\n- [ ] R23-N1: Entity construction novelty — 待 scale 数据补强\n- [ ] 72B ZS + 72B FS 完整数据写入论文（待 72B-FS 完成）\n- [ ] Scaling curve 图 + 论文 scaling section（待 7B/14B/32B 完成）\n\n## 近期任务 Checklist\n- [x] 72B-FS FewNERD 完成 → negative, dual-gating 证伪 (6/6 仅 SciERC ZS 显著)\n- [ ] **待 Director 决策**: paper framing 调整 — dual-gating 证伪后需重新定位 construction 叙事\n- [ ] 7B 完成 (~05-20 01:50 UTC) → compute_signals.py → format_for_scaling.py → scaling curve 第 3 点\n- [ ] 14B 完成 (~05-20 19:20 UTC) → signals → scaling curve 第 4 点\n- [ ] 32B 完成 (~05-21 01:40 UTC) → signals → scaling curve 第 5 点 (最后一块拼图)\n- [ ] 全部结果到齐 → scaling curve 最终图 + 论文 scaling section 定稿\n- [x] tab:calibration caption 修复完成（Reviewer PASS）\n- [ ] Round 25 提审前最终检查\n\n## 准备就绪的工具\n- `artifacts/plot_scaling_curve.py` — Scaling curve 图脚本（8B FT + 72B ZS 数据已验证）\n- `artifacts/compute_signals.py` — 信号计算 pipeline（72B ZS 验证通过）\n- `artifacts/format_for_scaling.py` — 结果格式化为 scaling dict\n- `artifacts/bootstrap_construction.py` — Paired bootstrap significance test\n- `paper/sections/zeroshot_scaling_draft.tex` — ZS section 草稿\n\n## GPU 预算\n- 3 台 × 4 GPU = 12 GPU，全部在用（12/12）\n\n## 关键决策日志\n\n| ID | 日期 | 摘要 | 关联实验 |\n|----|------|------|----------|\n| D162 | 2026-05-19 | D162: 删除分解公式 E[ΔF1]≈(1-d)×Δ_oracle×g(ρ_within)，改为定 | worker_analysis_23config_regression |\n| D161 | 2026-05-19 | R24 Action Matrix: 保守降调 title + 23-config regressi | D160 |\n| D160 | 2026-05-19 | 大规模实验升级：Scale 7B→72B + Zero-shot regime + WNUT-17  | exp_entity_construction, exp_llama_fewnerd_inference |\n| D159 | 2026-05-19 | D159: Entity construction 论文报告使用 N=8 数据（与主实验一致），LP | exp_entity_construction |\n| D158 | 2026-05-19 | D158: Adaptive combination 因 gold label 泄漏作废。论文 pr | exp_entity_construction |\n| D157 | 2026-05-19 | D157: Entity-level construction 经 5-fold CV 验证显著（S | entity_construction_cv, selective_prediction, lp_alignment_gated |\n| D156 | 2026-05-19 | D156: 论文升级——从纯诊断分析加入 prescriptive 解法（LP-alignment- | — |\n| D155 | 2026-05-18 | D155: LP ρ 修正（0.42→0.22 global）+ AUROC 还原为 0.82（Co | exp_fewnerd_s789_n8, exp_021_fewnerd_n8_seed42 |\n| D154 | 2026-05-18 | D154: 23点扩展后 degen-LP 相关性消失(ρ=0.052)，Two-Condition | fig_scatter_v2, exp_029a, exp_017_llama_conll_finetune |\n| D153 | 2026-05-18 | D153: 论文全文统一使用 per-instance mean F1（unified_metric | exp_026_t10_seed42 |\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 96,
+                  "oldLines": 7,
+                  "newStart": 96,
+                  "newLines": 7,
+                  "lines": [
+                    " - `paper/sections/zeroshot_scaling_draft.tex` — ZS section 草稿",
+                    " ",
+                    " ## GPU 预算",
+                    "-- 3 台 × 4 GPU = 12 GPU，全部在用（12/12）",
+                    "+- 3 台 × 4 GPU = 12 GPU，在用 8/12（autodl-5090-b 4 GPU 已释放）",
+                    " ",
+                    " ## 关键决策日志",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now update report.md."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "06d5e52e-ffc9-401d-b4a0-f29fe0e46c1b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H16NoHBwVx9FQV6Bc5Dxbj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 377,
+                "cache_read_input_tokens": 31763,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 377
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019SsaRrCX5bPM9XoftzpHpY",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md",
+                "old_string": "## 待处理\n（无）",
+                "new_string": "## 待处理\n- **Awaiting Director decision**: paper framing 调整 — dual-gating hypothesis 被证伪（6/6 条件仅 SciERC ZS 显著），construction 叙事需重新定位"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "9f9d26c7-84fc-4034-b33f-5405a8e41b5e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H16NoHBwVx9FQV6Bc5Dxbj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 377,
+                "cache_read_input_tokens": 31763,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 377
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T01:02:34.281Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019SsaRrCX5bPM9XoftzpHpY",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "9edc26bf-274a-436a-9bb2-ac9fadd390bb",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md",
+              "oldString": "## 待处理\n（无）",
+              "newString": "## 待处理\n- **Awaiting Director decision**: paper framing 调整 — dual-gating hypothesis 被证伪（6/6 条件仅 SciERC ZS 显著），construction 叙事需重新定位",
+              "originalFile": "# Handover — 2026-05-20\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\n|--------|------|------|---------|-----|\n| exp_qwen25_32b_fewnerd | Scaling from Qwen3-8B to Qwen2.5-32B-Instruct with QLoRA fine-tuning on FewNERD will improve structured self-consistency IE performance due to stronger base model capabilities in instruction following and entity recognition. | — | — | — |\n| exp_qwen25_14b_fewnerd | The correlation-selection gap pattern is consistent at 14B scale, filling the gap between 8B and 32B. Qwen2.5-14B QLoRA fine-tuned on FewNERD should show intermediate degeneracy rates and similar signal ranking patterns, providing a smooth scaling curve for the diagnostic findings. | — | — | — |\n| exp_qwen25_7b_fewnerd | Qwen2.5-7B QLoRA fine-tuned on FewNERD will produce structurally diverse samples enabling self-consistency-based entity extraction with meaningful LP-weighted consensus signals, comparable to the 14B model but with lower compute cost. | — | — | — |\n\n## 待处理\n（无）\n\n## 近期结论\n- **exp_qwen25_72b_fewshot** (negative): Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy). ← 基于 exp_qwen25_72b_zeroshot\n  [72b_fewshot_signal_summary](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/data/72b_fewshot_signal_summary.json) | [zs_vs_fs_comparison_draft](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/paper/zs_vs_fs_comparison_draft.tex)\n- **exp_qwen25_72b_zeroshot** (negative): A larger zero-shot model (72B) will show higher greedy F1 and wider oracle-greedy gap than fine-tuned smaller models, because increased capacity enables more diverse valid extractions per stochastic sample, making self-consistency signals (SJ, FK, VC, EM) more informative for quality estimation.\n- **exp_wnut17_qwen25_7b** (negative): The correlation-selection gap extends to noisy social media NER (WNUT-17). Unlike formal-domain datasets (SciERC/CoNLL/FewNERD), WNUT-17 has higher surface-level noise which may affect structural signal reliability differently. This tests domain generalization of the diagnostic framework.\n\n## 趋势\n成功 101 / 负向 36 / 失败 4 / 共 169\n\n## 下一步\n（无活跃 idea，请通过 ideas.md 添加）\n\n## 资源状态\nautodl-5090: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\nautodl-5090-b: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\nautodl-5090-c: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\n\n## 告警\n- ft_002: 已被终止 — unknown\n- mvp_pilot_002: 训练失败 — unknown\n- exp_007_ner_llama: 已被终止 — unknown\n- exp001_seed123: 已被终止 — unknown\n- exp001_seed456: 已被终止 — unknown\n- exp008_re_n16: 已被终止 — unknown\n- exp_002_merge_conll2003: 已被终止 — unknown\n- exp_001_n16_seed123_full: 已被终止 — unknown\n- exp_001_n16_seed456_full: 已被终止 — unknown\n- exp_008_re_n16_full: 已被终止 — unknown\n- exp_001_seed42_v2_r1024: 已被终止 — unknown\n- exp_001_seed123_v2_r1024: 已被终止 — unknown\n- exp_001_seed456_v2_ner_r1024: 已被终止 — unknown\n- exp_002_conll_n16_r1024: 已被终止 — unknown\n- exp_007_llama_n16_r1024: 已被终止 — unknown\n- exp_018_llama_scierc_seed456: 已被终止 — unknown\n- exp_019_supervised_verifier: 已被终止 — unknown\n- exp_lp_t07_scierc: 已被终止 — unknown\n- exp_qwen3_4b_scierc_finetune: 已被终止 — unknown\n- exp_freeform_seed789_v2: 训练失败 — unknown\n- exp_qwen3_4b_scierc_finetune_v2: 训练失败 — unknown\n- exp_qwen3_4b_scierc_finetune_v3: 训练失败 — unknown\n- exp_qwen3_4b_conll_merge_inference_v2: 已被终止 — unknown\n- exp_qwen3_4b_scierc_merge_inference: 已被终止 — unknown\n- exp_tacred_re_benchmark: 已被终止 — unknown\n- exp_vc_lp_cascade_selection: 已被终止 — unknown\n- hidden_state_probe_conll_v2: 已被终止 — unknown\n- hidden_state_probe_conll_full: 已被终止 — unknown\n- dgs_pilot: 已被终止 — unknown\n- mbr_pilot: 已被终止 — unknown\n- exp_031_fewnerd_t12: 已被终止 — unknown\n- exp_030_conll_t12: 已被终止 — unknown\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 10,
+                  "oldLines": 7,
+                  "newStart": 10,
+                  "newLines": 7,
+                  "lines": [
+                    " | exp_qwen25_7b_fewnerd | Qwen2.5-7B QLoRA fine-tuned on FewNERD will produce structurally diverse samples enabling self-consistency-based entity extraction with meaningful LP-weighted consensus signals, comparable to the 14B model but with lower compute cost. | — | — | — |",
+                    " ",
+                    " ## 待处理",
+                    "-（无）",
+                    "+- **Awaiting Director decision**: paper framing 调整 — dual-gating hypothesis 被证伪（6/6 条件仅 SciERC ZS 显著），construction 叙事需重新定位",
+                    " ",
+                    " ## 近期结论",
+                    " - **exp_qwen25_72b_fewshot** (negative): Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy). ← 基于 exp_qwen25_72b_zeroshot"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FJ625RDr73DuHpKuEaZe1E",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md",
+                "old_string": "- **exp_qwen25_72b_fewshot** (negative): Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy). ← 基于 exp_qwen25_72b_zeroshot\n  [72b_fewshot_signal_summary](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/data/72b_fewshot_signal_summary.json) | [zs_vs_fs_comparison_draft](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/paper/zs_vs_fs_comparison_draft.tex)",
+                "new_string": "- **exp_qwen25_72b_fewshot** (negative): Dual-gating hypothesis 证伪。FewNERD FS: Degen 45.2%, LP ρ 0.161, SJ ρ 0.345, VC ρ 0.410, Greedy F1 0.619, Oracle F1 0.702, Construction Δ +0.02pp (n.s., p=0.401)。6/6 条件仅 SciERC ZS 显著，few-shot 未能弥合 gap。\n  [72b_fewshot_signal_summary](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/data/72b_fewshot_signal_summary.json) | [zs_vs_fs_comparison_draft](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/paper/zs_vs_fs_comparison_draft.tex)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "ddb0a049-8fbf-47f4-ab29-a65fc06ae964",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014YKDXZrLZYd3WfsrLxGNsf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 269,
+                "cache_read_input_tokens": 32140,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 269
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T01:02:43.005Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FJ625RDr73DuHpKuEaZe1E",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "7c5d27dc-5b46-4b53-bf08-e7fff4c1908e",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md",
+              "oldString": "- **exp_qwen25_72b_fewshot** (negative): Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy). ← 基于 exp_qwen25_72b_zeroshot\n  [72b_fewshot_signal_summary](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/data/72b_fewshot_signal_summary.json) | [zs_vs_fs_comparison_draft](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/paper/zs_vs_fs_comparison_draft.tex)",
+              "newString": "- **exp_qwen25_72b_fewshot** (negative): Dual-gating hypothesis 证伪。FewNERD FS: Degen 45.2%, LP ρ 0.161, SJ ρ 0.345, VC ρ 0.410, Greedy F1 0.619, Oracle F1 0.702, Construction Δ +0.02pp (n.s., p=0.401)。6/6 条件仅 SciERC ZS 显著，few-shot 未能弥合 gap。\n  [72b_fewshot_signal_summary](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/data/72b_fewshot_signal_summary.json) | [zs_vs_fs_comparison_draft](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/paper/zs_vs_fs_comparison_draft.tex)",
+              "originalFile": "# Handover — 2026-05-20\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\n|--------|------|------|---------|-----|\n| exp_qwen25_32b_fewnerd | Scaling from Qwen3-8B to Qwen2.5-32B-Instruct with QLoRA fine-tuning on FewNERD will improve structured self-consistency IE performance due to stronger base model capabilities in instruction following and entity recognition. | — | — | — |\n| exp_qwen25_14b_fewnerd | The correlation-selection gap pattern is consistent at 14B scale, filling the gap between 8B and 32B. Qwen2.5-14B QLoRA fine-tuned on FewNERD should show intermediate degeneracy rates and similar signal ranking patterns, providing a smooth scaling curve for the diagnostic findings. | — | — | — |\n| exp_qwen25_7b_fewnerd | Qwen2.5-7B QLoRA fine-tuned on FewNERD will produce structurally diverse samples enabling self-consistency-based entity extraction with meaningful LP-weighted consensus signals, comparable to the 14B model but with lower compute cost. | — | — | — |\n\n## 待处理\n- **Awaiting Director decision**: paper framing 调整 — dual-gating hypothesis 被证伪（6/6 条件仅 SciERC ZS 显著），construction 叙事需重新定位\n\n## 近期结论\n- **exp_qwen25_72b_fewshot** (negative): Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy). ← 基于 exp_qwen25_72b_zeroshot\n  [72b_fewshot_signal_summary](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/data/72b_fewshot_signal_summary.json) | [zs_vs_fs_comparison_draft](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/paper/zs_vs_fs_comparison_draft.tex)\n- **exp_qwen25_72b_zeroshot** (negative): A larger zero-shot model (72B) will show higher greedy F1 and wider oracle-greedy gap than fine-tuned smaller models, because increased capacity enables more diverse valid extractions per stochastic sample, making self-consistency signals (SJ, FK, VC, EM) more informative for quality estimation.\n- **exp_wnut17_qwen25_7b** (negative): The correlation-selection gap extends to noisy social media NER (WNUT-17). Unlike formal-domain datasets (SciERC/CoNLL/FewNERD), WNUT-17 has higher surface-level noise which may affect structural signal reliability differently. This tests domain generalization of the diagnostic framework.\n\n## 趋势\n成功 101 / 负向 36 / 失败 4 / 共 169\n\n## 下一步\n（无活跃 idea，请通过 ideas.md 添加）\n\n## 资源状态\nautodl-5090: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\nautodl-5090-b: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\nautodl-5090-c: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\n\n## 告警\n- ft_002: 已被终止 — unknown\n- mvp_pilot_002: 训练失败 — unknown\n- exp_007_ner_llama: 已被终止 — unknown\n- exp001_seed123: 已被终止 — unknown\n- exp001_seed456: 已被终止 — unknown\n- exp008_re_n16: 已被终止 — unknown\n- exp_002_merge_conll2003: 已被终止 — unknown\n- exp_001_n16_seed123_full: 已被终止 — unknown\n- exp_001_n16_seed456_full: 已被终止 — unknown\n- exp_008_re_n16_full: 已被终止 — unknown\n- exp_001_seed42_v2_r1024: 已被终止 — unknown\n- exp_001_seed123_v2_r1024: 已被终止 — unknown\n- exp_001_seed456_v2_ner_r1024: 已被终止 — unknown\n- exp_002_conll_n16_r1024: 已被终止 — unknown\n- exp_007_llama_n16_r1024: 已被终止 — unknown\n- exp_018_llama_scierc_seed456: 已被终止 — unknown\n- exp_019_supervised_verifier: 已被终止 — unknown\n- exp_lp_t07_scierc: 已被终止 — unknown\n- exp_qwen3_4b_scierc_finetune: 已被终止 — unknown\n- exp_freeform_seed789_v2: 训练失败 — unknown\n- exp_qwen3_4b_scierc_finetune_v2: 训练失败 — unknown\n- exp_qwen3_4b_scierc_finetune_v3: 训练失败 — unknown\n- exp_qwen3_4b_conll_merge_inference_v2: 已被终止 — unknown\n- exp_qwen3_4b_scierc_merge_inference: 已被终止 — unknown\n- exp_tacred_re_benchmark: 已被终止 — unknown\n- exp_vc_lp_cascade_selection: 已被终止 — unknown\n- hidden_state_probe_conll_v2: 已被终止 — unknown\n- hidden_state_probe_conll_full: 已被终止 — unknown\n- dgs_pilot: 已被终止 — unknown\n- mbr_pilot: 已被终止 — unknown\n- exp_031_fewnerd_t12: 已被终止 — unknown\n- exp_030_conll_t12: 已被终止 — unknown\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 13,
+                  "oldLines": 7,
+                  "newStart": 13,
+                  "newLines": 7,
+                  "lines": [
+                    " - **Awaiting Director decision**: paper framing 调整 — dual-gating hypothesis 被证伪（6/6 条件仅 SciERC ZS 显著），construction 叙事需重新定位",
+                    " ",
+                    " ## 近期结论",
+                    "-- **exp_qwen25_72b_fewshot** (negative): Few-shot prompting improves base NER F1 and LP signal quality, enabling LP-weighted construction to outperform greedy selection via dual-gating (sufficient LP ρ + low degeneracy). ← 基于 exp_qwen25_72b_zeroshot",
+                    "+- **exp_qwen25_72b_fewshot** (negative): Dual-gating hypothesis 证伪。FewNERD FS: Degen 45.2%, LP ρ 0.161, SJ ρ 0.345, VC ρ 0.410, Greedy F1 0.619, Oracle F1 0.702, Construction Δ +0.02pp (n.s., p=0.401)。6/6 条件仅 SciERC ZS 显著，few-shot 未能弥合 gap。",
+                    "   [72b_fewshot_signal_summary](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/data/72b_fewshot_signal_summary.json) | [zs_vs_fs_comparison_draft](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/paper/zs_vs_fs_comparison_draft.tex)",
+                    " - **exp_qwen25_72b_zeroshot** (negative): A larger zero-shot model (72B) will show higher greedy F1 and wider oracle-greedy gap than fine-tuned smaller models, because increased capacity enables more diverse valid extractions per stochastic sample, making self-consistency signals (SJ, FK, VC, EM) more informative for quality estimation.",
+                    " - **exp_wnut17_qwen25_7b** (negative): The correlation-selection gap extends to noisy social media NER (WNUT-17). Unlike formal-domain datasets (SciERC/CoNLL/FewNERD), WNUT-17 has higher surface-level noise which may affect structural signal reliability differently. This tests domain generalization of the diagnostic framework."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FS2YyJHN3yKgWiNrDcwyhR",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md",
+                "old_string": "## 资源状态\nautodl-5090: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\nautodl-5090-b: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\nautodl-5090-c: 空闲 cuda:0, cuda:1, cuda:2, cuda:3",
+                "new_string": "## 资源状态\nautodl-5090: 占用 cuda:0-3 (exp_qwen25_32b_fewnerd)\nautodl-5090-b: 空闲 cuda:0-3（72B FS 完成，已释放）\nautodl-5090-c: 占用 cuda:0-3 (exp_qwen25_14b_fewnerd + exp_qwen25_7b_fewnerd)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "e67ad1bb-9718-42ca-93f5-8e33aeb707d4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014ScrCPdDdW7MM4Mn8QQJ1y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 654,
+                "cache_read_input_tokens": 32409,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 654
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T01:02:50.094Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FS2YyJHN3yKgWiNrDcwyhR",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "bee6aba6-0f26-4f46-9e81-318cb4ddd717",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md",
+              "oldString": "## 资源状态\nautodl-5090: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\nautodl-5090-b: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\nautodl-5090-c: 空闲 cuda:0, cuda:1, cuda:2, cuda:3",
+              "newString": "## 资源状态\nautodl-5090: 占用 cuda:0-3 (exp_qwen25_32b_fewnerd)\nautodl-5090-b: 空闲 cuda:0-3（72B FS 完成，已释放）\nautodl-5090-c: 占用 cuda:0-3 (exp_qwen25_14b_fewnerd + exp_qwen25_7b_fewnerd)",
+              "originalFile": "# Handover — 2026-05-20\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\n|--------|------|------|---------|-----|\n| exp_qwen25_32b_fewnerd | Scaling from Qwen3-8B to Qwen2.5-32B-Instruct with QLoRA fine-tuning on FewNERD will improve structured self-consistency IE performance due to stronger base model capabilities in instruction following and entity recognition. | — | — | — |\n| exp_qwen25_14b_fewnerd | The correlation-selection gap pattern is consistent at 14B scale, filling the gap between 8B and 32B. Qwen2.5-14B QLoRA fine-tuned on FewNERD should show intermediate degeneracy rates and similar signal ranking patterns, providing a smooth scaling curve for the diagnostic findings. | — | — | — |\n| exp_qwen25_7b_fewnerd | Qwen2.5-7B QLoRA fine-tuned on FewNERD will produce structurally diverse samples enabling self-consistency-based entity extraction with meaningful LP-weighted consensus signals, comparable to the 14B model but with lower compute cost. | — | — | — |\n\n## 待处理\n- **Awaiting Director decision**: paper framing 调整 — dual-gating hypothesis 被证伪（6/6 条件仅 SciERC ZS 显著），construction 叙事需重新定位\n\n## 近期结论\n- **exp_qwen25_72b_fewshot** (negative): Dual-gating hypothesis 证伪。FewNERD FS: Degen 45.2%, LP ρ 0.161, SJ ρ 0.345, VC ρ 0.410, Greedy F1 0.619, Oracle F1 0.702, Construction Δ +0.02pp (n.s., p=0.401)。6/6 条件仅 SciERC ZS 显著，few-shot 未能弥合 gap。\n  [72b_fewshot_signal_summary](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/data/72b_fewshot_signal_summary.json) | [zs_vs_fs_comparison_draft](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/paper/zs_vs_fs_comparison_draft.tex)\n- **exp_qwen25_72b_zeroshot** (negative): A larger zero-shot model (72B) will show higher greedy F1 and wider oracle-greedy gap than fine-tuned smaller models, because increased capacity enables more diverse valid extractions per stochastic sample, making self-consistency signals (SJ, FK, VC, EM) more informative for quality estimation.\n- **exp_wnut17_qwen25_7b** (negative): The correlation-selection gap extends to noisy social media NER (WNUT-17). Unlike formal-domain datasets (SciERC/CoNLL/FewNERD), WNUT-17 has higher surface-level noise which may affect structural signal reliability differently. This tests domain generalization of the diagnostic framework.\n\n## 趋势\n成功 101 / 负向 36 / 失败 4 / 共 169\n\n## 下一步\n（无活跃 idea，请通过 ideas.md 添加）\n\n## 资源状态\nautodl-5090: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\nautodl-5090-b: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\nautodl-5090-c: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\n\n## 告警\n- ft_002: 已被终止 — unknown\n- mvp_pilot_002: 训练失败 — unknown\n- exp_007_ner_llama: 已被终止 — unknown\n- exp001_seed123: 已被终止 — unknown\n- exp001_seed456: 已被终止 — unknown\n- exp008_re_n16: 已被终止 — unknown\n- exp_002_merge_conll2003: 已被终止 — unknown\n- exp_001_n16_seed123_full: 已被终止 — unknown\n- exp_001_n16_seed456_full: 已被终止 — unknown\n- exp_008_re_n16_full: 已被终止 — unknown\n- exp_001_seed42_v2_r1024: 已被终止 — unknown\n- exp_001_seed123_v2_r1024: 已被终止 — unknown\n- exp_001_seed456_v2_ner_r1024: 已被终止 — unknown\n- exp_002_conll_n16_r1024: 已被终止 — unknown\n- exp_007_llama_n16_r1024: 已被终止 — unknown\n- exp_018_llama_scierc_seed456: 已被终止 — unknown\n- exp_019_supervised_verifier: 已被终止 — unknown\n- exp_lp_t07_scierc: 已被终止 — unknown\n- exp_qwen3_4b_scierc_finetune: 已被终止 — unknown\n- exp_freeform_seed789_v2: 训练失败 — unknown\n- exp_qwen3_4b_scierc_finetune_v2: 训练失败 — unknown\n- exp_qwen3_4b_scierc_finetune_v3: 训练失败 — unknown\n- exp_qwen3_4b_conll_merge_inference_v2: 已被终止 — unknown\n- exp_qwen3_4b_scierc_merge_inference: 已被终止 — unknown\n- exp_tacred_re_benchmark: 已被终止 — unknown\n- exp_vc_lp_cascade_selection: 已被终止 — unknown\n- hidden_state_probe_conll_v2: 已被终止 — unknown\n- hidden_state_probe_conll_full: 已被终止 — unknown\n- dgs_pilot: 已被终止 — unknown\n- mbr_pilot: 已被终止 — unknown\n- exp_031_fewnerd_t12: 已被终止 — unknown\n- exp_030_conll_t12: 已被终止 — unknown\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 25,
+                  "oldLines": 9,
+                  "newStart": 25,
+                  "newLines": 9,
+                  "lines": [
+                    " （无活跃 idea，请通过 ideas.md 添加）",
+                    " ",
+                    " ## 资源状态",
+                    "-autodl-5090: 空闲 cuda:0, cuda:1, cuda:2, cuda:3",
+                    "-autodl-5090-b: 空闲 cuda:0, cuda:1, cuda:2, cuda:3",
+                    "-autodl-5090-c: 空闲 cuda:0, cuda:1, cuda:2, cuda:3",
+                    "+autodl-5090: 占用 cuda:0-3 (exp_qwen25_32b_fewnerd)",
+                    "+autodl-5090-b: 空闲 cuda:0-3（72B FS 完成，已释放）",
+                    "+autodl-5090-c: 占用 cuda:0-3 (exp_qwen25_14b_fewnerd + exp_qwen25_7b_fewnerd)",
+                    " ",
+                    " ## 告警",
+                    " - ft_002: 已被终止 — unknown"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证最终结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "42c29c30-0390-417c-90e0-bfb0056ac5ee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WfMooJ2dNY5i8nxsuP6Mbz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 396,
+                "cache_read_input_tokens": 33063,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 396
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V8Q42Cp7TPrm9zjpJb7jeV",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "78ac0bbf-a36d-4b25-8d3c-023d4d292159",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WfMooJ2dNY5i8nxsuP6Mbz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 396,
+                "cache_read_input_tokens": 33063,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 396
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T01:02:53.044Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V8Q42Cp7TPrm9zjpJb7jeV",
+              "type": "tool_result",
+              "content": "1\t# Handover — 2026-05-20\n2\t\n3\t> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n4\t\n5\t## 运行中\n6\t| exp_id | 假设 | 状态 | 关键指标 | W&B |\n7\t|--------|------|------|---------|-----|\n8\t| exp_qwen25_32b_fewnerd | Scaling from Qwen3-8B to Qwen2.5-32B-Instruct with QLoRA fine-tuning on FewNERD will improve structured self-consistency IE performance due to stronger base model capabilities in instruction following and entity recognition. | — | — | — |\n9\t| exp_qwen25_14b_fewnerd | The correlation-selection gap pattern is consistent at 14B scale, filling the gap between 8B and 32B. Qwen2.5-14B QLoRA fine-tuned on FewNERD should show intermediate degeneracy rates and similar signal ranking patterns, providing a smooth scaling curve for the diagnostic findings. | — | — | — |\n10\t| exp_qwen25_7b_fewnerd | Qwen2.5-7B QLoRA fine-tuned on FewNERD will produce structurally diverse samples enabling self-consistency-based entity extraction with meaningful LP-weighted consensus signals, comparable to the 14B model but with lower compute cost. | — | — | — |\n11\t\n12\t## 待处理\n13\t- **Awaiting Director decision**: paper framing 调整 — dual-gating hypothesis 被证伪（6/6 条件仅 SciERC ZS 显著），construction 叙事需重新定位\n14\t\n15\t## 近期结论\n16\t- **exp_qwen25_72b_fewshot** (negative): Dual-gating hypothesis 证伪。FewNERD FS: Degen 45.2%, LP ρ 0.161, SJ ρ 0.345, VC ρ 0.410, Greedy F1 0.619, Oracle F1 0.702, Construction Δ +0.02pp (n.s., p=0.401)。6/6 条件仅 SciERC ZS 显著，few-shot 未能弥合 gap。\n17\t  [72b_fewshot_signal_summary](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/data/72b_fewshot_signal_summary.json) | [zs_vs_fs_comparison_draft](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/paper/zs_vs_fs_comparison_draft.tex)\n18\t- **exp_qwen25_72b_zeroshot** (negative): A larger zero-shot model (72B) will show higher greedy F1 and wider oracle-greedy gap than fine-tuned smaller models, because increased capacity enables more diverse valid extractions per stochastic sample, making self-consistency signals (SJ, FK, VC, EM) more informative for quality estimation.\n19\t- **exp_wnut17_qwen25_7b** (negative): The correlation-selection gap extends to noisy social media NER (WNUT-17). Unlike formal-domain datasets (SciERC/CoNLL/FewNERD), WNUT-17 has higher surface-level noise which may affect structural signal reliability differently. This tests domain generalization of the diagnostic framework.\n20\t\n21\t## 趋势\n22\t成功 101 / 负向 36 / 失败 4 / 共 169\n23\t\n24\t## 下一步\n25\t（无活跃 idea，请通过 ideas.md 添加）\n26\t\n27\t## 资源状态\n28\tautodl-5090: 占用 cuda:0-3 (exp_qwen25_32b_fewnerd)\n29\tautodl-5090-b: 空闲 cuda:0-3（72B FS 完成，已释放）\n30\tautodl-5090-c: 占用 cuda:0-3 (exp_qwen25_14b_fewnerd + exp_qwen25_7b_fewnerd)\n31\t\n32\t## 告警\n33\t- ft_002: 已被终止 — unknown\n34\t- mvp_pilot_002: 训练失败 — unknown\n35\t- exp_007_ner_llama: 已被终止 — unknown\n36\t- exp001_seed123: 已被终止 — unknown\n37\t- exp001_seed456: 已被终止 — unknown\n38\t- exp008_re_n16: 已被终止 — unknown\n39\t- exp_002_merge_conll2003: 已被终止 — unknown\n40\t- exp_001_n16_seed123_full: 已被终止 — unknown\n41\t- exp_001_n16_seed456_full: 已被终止 — unknown\n42\t- exp_008_re_n16_full: 已被终止 — unknown\n43\t- exp_001_seed42_v2_r1024: 已被终止 — unknown\n44\t- exp_001_seed123_v2_r1024: 已被终止 — unknown\n45\t- exp_001_seed456_v2_ner_r1024: 已被终止 — unknown\n46\t- exp_002_conll_n16_r1024: 已被终止 — unknown\n47\t- exp_007_llama_n16_r1024: 已被终止 — unknown\n48\t- exp_018_llama_scierc_seed456: 已被终止 — unknown\n49\t- exp_019_supervised_verifier: 已被终止 — unknown\n50\t- exp_lp_t07_scierc: 已被终止 — unknown\n51\t- exp_qwen3_4b_scierc_finetune: 已被终止 — unknown\n52\t- exp_freeform_seed789_v2: 训练失败 — unknown\n53\t- exp_qwen3_4b_scierc_finetune_v2: 训练失败 — unknown\n54\t- exp_qwen3_4b_scierc_finetune_v3: 训练失败 — unknown\n55\t- exp_qwen3_4b_conll_merge_inference_v2: 已被终止 — unknown\n56\t- exp_qwen3_4b_scierc_merge_inference: 已被终止 — unknown\n57\t- exp_tacred_re_benchmark: 已被终止 — unknown\n58\t- exp_vc_lp_cascade_selection: 已被终止 — unknown\n59\t- hidden_state_probe_conll_v2: 已被终止 — unknown\n60\t- hidden_state_probe_conll_full: 已被终止 — unknown\n61\t- dgs_pilot: 已被终止 — unknown\n62\t- mbr_pilot: 已被终止 — unknown\n63\t- exp_031_fewnerd_t12: 已被终止 — unknown\n64\t- exp_030_conll_t12: 已被终止 — unknown\n65\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "5c82d477-249c-4c0f-86d4-5af12965b190",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md",
+                "content": "# Handover — 2026-05-20\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\n|--------|------|------|---------|-----|\n| exp_qwen25_32b_fewnerd | Scaling from Qwen3-8B to Qwen2.5-32B-Instruct with QLoRA fine-tuning on FewNERD will improve structured self-consistency IE performance due to stronger base model capabilities in instruction following and entity recognition. | — | — | — |\n| exp_qwen25_14b_fewnerd | The correlation-selection gap pattern is consistent at 14B scale, filling the gap between 8B and 32B. Qwen2.5-14B QLoRA fine-tuned on FewNERD should show intermediate degeneracy rates and similar signal ranking patterns, providing a smooth scaling curve for the diagnostic findings. | — | — | — |\n| exp_qwen25_7b_fewnerd | Qwen2.5-7B QLoRA fine-tuned on FewNERD will produce structurally diverse samples enabling self-consistency-based entity extraction with meaningful LP-weighted consensus signals, comparable to the 14B model but with lower compute cost. | — | — | — |\n\n## 待处理\n- **Awaiting Director decision**: paper framing 调整 — dual-gating hypothesis 被证伪（6/6 条件仅 SciERC ZS 显著），construction 叙事需重新定位\n\n## 近期结论\n- **exp_qwen25_72b_fewshot** (negative): Dual-gating hypothesis 证伪。FewNERD FS: Degen 45.2%, LP ρ 0.161, SJ ρ 0.345, VC ρ 0.410, Greedy F1 0.619, Oracle F1 0.702, Construction Δ +0.02pp (n.s., p=0.401)。6/6 条件仅 SciERC ZS 显著，few-shot 未能弥合 gap。\n  [72b_fewshot_signal_summary](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/data/72b_fewshot_signal_summary.json) | [zs_vs_fs_comparison_draft](/api/workspace-files/projects/struct_self_consist_ie/artifacts/exp_qwen25_72b_fewshot/paper/zs_vs_fs_comparison_draft.tex)\n- **exp_qwen25_72b_zeroshot** (negative): A larger zero-shot model (72B) will show higher greedy F1 and wider oracle-greedy gap than fine-tuned smaller models, because increased capacity enables more diverse valid extractions per stochastic sample, making self-consistency signals (SJ, FK, VC, EM) more informative for quality estimation.\n- **exp_wnut17_qwen25_7b** (negative): The correlation-selection gap extends to noisy social media NER (WNUT-17). Unlike formal-domain datasets (SciERC/CoNLL/FewNERD), WNUT-17 has higher surface-level noise which may affect structural signal reliability differently. This tests domain generalization of the diagnostic framework.\n\n## 趋势\n成功 101 / 负向 36 / 失败 4 / 共 169\n\n## 下一步\n（无活跃 idea，请通过 ideas.md 添加）\n\n## 资源状态\nautodl-5090: 占用 cuda:0-3 (exp_qwen25_32b_fewnerd)\nautodl-5090-b: 空闲 cuda:0-3（72B FS 完成，已释放）\nautodl-5090-c: 占用 cuda:0-3 (exp_qwen25_14b_fewnerd + exp_qwen25_7b_fewnerd)\n\n## 告警\n- ft_002: 已被终止 — unknown\n- mvp_pilot_002: 训练失败 — unknown\n- exp_007_ner_llama: 已被终止 — unknown\n- exp001_seed123: 已被终止 — unknown\n- exp001_seed456: 已被终止 — unknown\n- exp008_re_n16: 已被终止 — unknown\n- exp_002_merge_conll2003: 已被终止 — unknown\n- exp_001_n16_seed123_full: 已被终止 — unknown\n- exp_001_n16_seed456_full: 已被终止 — unknown\n- exp_008_re_n16_full: 已被终止 — unknown\n- exp_001_seed42_v2_r1024: 已被终止 — unknown\n- exp_001_seed123_v2_r1024: 已被终止 — unknown\n- exp_001_seed456_v2_ner_r1024: 已被终止 — unknown\n- exp_002_conll_n16_r1024: 已被终止 — unknown\n- exp_007_llama_n16_r1024: 已被终止 — unknown\n- exp_018_llama_scierc_seed456: 已被终止 — unknown\n- exp_019_supervised_verifier: 已被终止 — unknown\n- exp_lp_t07_scierc: 已被终止 — unknown\n- exp_qwen3_4b_scierc_finetune: 已被终止 — unknown\n- exp_freeform_seed789_v2: 训练失败 — unknown\n- exp_qwen3_4b_scierc_finetune_v2: 训练失败 — unknown\n- exp_qwen3_4b_scierc_finetune_v3: 训练失败 — unknown\n- exp_qwen3_4b_conll_merge_inference_v2: 已被终止 — unknown\n- exp_qwen3_4b_scierc_merge_inference: 已被终止 — unknown\n- exp_tacred_re_benchmark: 已被终止 — unknown\n- exp_vc_lp_cascade_selection: 已被终止 — unknown\n- hidden_state_probe_conll_v2: 已被终止 — unknown\n- hidden_state_probe_conll_full: 已被终止 — unknown\n- dgs_pilot: 已被终止 — unknown\n- mbr_pilot: 已被终止 — unknown\n- exp_031_fewnerd_t12: 已被终止 — unknown\n- exp_030_conll_t12: 已被终止 — unknown\n",
+                "numLines": 65,
+                "startLine": 1,
+                "totalLines": 65
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BGi7Ztfd4B8gPWB6cAKKqh",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "407f0707-4fa9-4023-9f9e-45ad065fe563",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WfMooJ2dNY5i8nxsuP6Mbz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 396,
+                "cache_read_input_tokens": 33063,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 396
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T01:02:53.330Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BGi7Ztfd4B8gPWB6cAKKqh",
+              "type": "tool_result",
+              "content": "1\t# struct_self_consist_ie — Research Dashboard\n2\t\n3\t> 最后更新: 2026-05-20 00:00 UTC | 更新原因: 14B/32B ETA 推迟，72B FS greedy pass 进度更新\n4\t\n5\t## 核心方向\n6\tSelf-consistency for NER: diagnosing correlation-selection gap + entity-level construction as resolution. 详见 paper_framing.md。\n7\t\n8\t## 当前阶段\n9\t**Scale Upgrade + Paper Finalization**。DDL: EMNLP 2026 ARR May (2026-05-25, ~6 天)。\n10\t\n11\tRound 24 审稿: borderline (3.25/5)。冲 Main Conference 4.0。\n12\t\n13\t## 数值审计状态 — 全部关闭 ✅\n14\t\n15\t- [x] appendix L231: FewNERD degen 12.7%→13.0%, diff +10.7pp→+10.4pp\n16\t- [x] appendix L360/L363-365/L687 数值修正 (3-seed mean)\n17\t- [x] Table 5 degen 同步修正 (CoNLL 61.7%, FewNERD 13.0%)\n18\t- [x] Scaling script 8B FT 12处数据修正 + 2处 degen 同步\n19\t- [x] CoNLL oracle/headroom 全局修正: .957→.948, ≈5pp→≈4pp (appendix L248, experiments L102, appendix L932)\n20\t- [x] tab:calibration caption 修复（N=8/16 分标、non-gold-filtered 说明、single seed 标注）\n21\t\n22\t## RUNNING 实验（3 个，8/12 GPU）\n23\t\n24\t### Server A (autodl-5090, 4 GPU): exp_qwen25_32b_fewnerd\n25\t- QLoRA 训练中，PID 804438, 37.3% (15346/41180), loss 0.0528, 2.50s/it\n26\t- ETA ~05-21 01:40 UTC（**最慢瓶颈，+2h 延后**）\n27\t- 完成后: export → 3-seed N=8 inference → signals → construction (~4-6h)\n28\t\n29\t### Server B (autodl-5090-b, 4 GPU): 空闲\n30\t- 72B FS 已完成，4 GPU 已释放\n31\t\n32\t### Server C (autodl-5090-c, 4 GPU):\n33\t- **exp_qwen25_14b_fewnerd** (cuda:0,1) — QLoRA 训练中，PID 56773, 53.0% (21809/41180), loss 0.0273, 2.15s/it\n34\t  - ETA ~05-20 19:20 UTC（**从 14:00 推迟 +5h**）\n35\t  - 完成后: export → 3-seed N=8 inference → signals → construction (~4h)\n36\t- **exp_qwen25_7b_fewnerd** (cuda:2,3) — 全自动 pipeline，PID 71837, 训练 81% (16681/20590)\n37\t  - ETA ~05-20 01:50 UTC（**仍最先完成**）\n38\t  - Pipeline 自动执行: train → export → 3-seed inference → signals → construction\n39\t\n40\t### 完成时间线（更新 05-20 UTC）\n41\t1. ~~**~05-20 00:45 UTC**: 72B few-shot~~ ✅ DONE (negative)\n42\t2. **~05-20 01:50 UTC**: 7B pipeline 完成 → scaling curve 最小点\n43\t3. **~05-20 19:20 UTC**: 14B 训练完成 + 推理（+5h 延后）\n44\t4. **~05-21 01:40 UTC**: 32B 训练完成 + 推理（最慢瓶颈，+2h 延后）\n45\t5. **全部数据 ~05-21 07:00 UTC** → DDL 05-25 仍有 ~4 天余量\n46\t\n47\t## 已完成实验（本轮关键）\n48\t\n49\t### 72B Few-shot — DONE (negative)\n50\t| Dataset | Degen | LP ρ | SJ ρ | VC ρ | Greedy F1 | Oracle F1 | Construction Δ |\n51\t|---------|-------|------|------|------|-----------|-----------|----------------|\n52\t| FewNERD | 45.2% | 0.161 | 0.345 | 0.410 | 0.619 | 0.702 | +0.02pp (n.s., p=0.401) |\n53\t\n54\t**关键发现**: Dual-gating hypothesis 被证伪。6/6 条件（3 datasets × ZS/FS）仅 SciERC ZS 显著。Few-shot 降低 degeneracy（46.2%→45.2%）并提升 LP ρ（0.119→0.161），但 construction gain 仍不显著。Gap 不可通过 prompting strategy 弥合。\n55\t\n56\t### 72B Zero-shot — DONE (negative)\n57\t| Dataset | Degen | LP ρ | LP-wt Δ | Greedy F1 |\n58\t|---------|-------|------|---------|-----------|\n59\t| SciERC | 21.0% | 0.081 | **+1.53pp** (p=0.008) | 0.399 |\n60\t| FewNERD | 46.2% | 0.119 | -0.20pp | 0.628 |\n61\t| CoNLL | 67.7% | -0.002 | -0.37pp | 0.712 |\n62\t\n63\t**关键发现**: Degeneracy gates construction (monotonic pattern). Gap is fundamental, not fine-tuning artifact. Structural signals generalize to ZS (ρ 0.22-0.42).\n64\t\n65\t### WNUT-17 — DONE (negative)\n66\tLP 信号反转 (ρ=-0.446), signal-collapse boundary case. Gating 正确路由到 greedy.\n67\t\n68\t## 论文修复状态（R24 Weakness 9/9）\n69\t- [x] R24 全部 16 项编辑修复 + D162 公式删除\n70\t- [x] fig_selection_gap + Gating bootstrap CI + 72B Δ修正 + WNUT-17 写入\n71\t- [x] θ=2/N caveat + Contribution B \"fundamental\" + paper_framing.md 同步\n72\t- [x] R22-W7: LoRA-only scope — 72B ZS section 草稿完成 (zeroshot_scaling_draft.tex)\n73\t- [x] R24-N2: Greedy fallback option — gating bootstrap CI stable τ∈[0.25,0.35]\n74\t- [x] Appendix degeneracy table 全列统一 N=8 3-seed mean\n75\t- [x] 72B ZS SciERC construction bootstrap (p=0.008, CI [+0.25pp, +2.82pp])\n76\t- [x] CoNLL oracle/headroom 全局修正 (.957→.948, ≈5→≈4pp)\n77\t- [ ] R23-N1: Entity construction novelty — 待 scale 数据补强\n78\t- [ ] 72B ZS + 72B FS 完整数据写入论文（待 72B-FS 完成）\n79\t- [ ] Scaling curve 图 + 论文 scaling section（待 7B/14B/32B 完成）\n80\t\n81\t## 近期任务 Checklist\n82\t- [x] 72B-FS FewNERD 完成 → negative, dual-gating 证伪 (6/6 仅 SciERC ZS 显著)\n83\t- [ ] **待 Director 决策**: paper framing 调整 — dual-gating 证伪后需重新定位 construction 叙事\n84\t- [ ] 7B 完成 (~05-20 01:50 UTC) → compute_signals.py → format_for_scaling.py → scaling curve 第 3 点\n85\t- [ ] 14B 完成 (~05-20 19:20 UTC) → signals → scaling curve 第 4 点\n86\t- [ ] 32B 完成 (~05-21 01:40 UTC) → signals → scaling curve 第 5 点 (最后一块拼图)\n87\t- [ ] 全部结果到齐 → scaling curve 最终图 + 论文 scaling section 定稿\n88\t- [x] tab:calibration caption 修复完成（Reviewer PASS）\n89\t- [ ] Round 25 提审前最终检查\n90\t\n91\t## 准备就绪的工具\n92\t- `artifacts/plot_scaling_curve.py` — Scaling curve 图脚本（8B FT + 72B ZS 数据已验证）\n93\t- `artifacts/compute_signals.py` — 信号计算 pipeline（72B ZS 验证通过）\n94\t- `artifacts/format_for_scaling.py` — 结果格式化为 scaling dict\n95\t- `artifacts/bootstrap_construction.py` — Paired bootstrap significance test\n96\t- `paper/sections/zeroshot_scaling_draft.tex` — ZS section 草稿\n97\t\n98\t## GPU 预算\n99\t- 3 台 × 4 GPU = 12 GPU，在用 8/12（autodl-5090-b 4 GPU 已释放）\n100\t\n101\t## 关键决策日志\n102\t\n103\t| ID | 日期 | 摘要 | 关联实验 |\n104\t|----|------|------|----------|\n105\t| D162 | 2026-05-19 | D162: 删除分解公式 E[ΔF1]≈(1-d)×Δ_oracle×g(ρ_within)，改为定 | worker_analysis_23config_regression |\n106\t| D161 | 2026-05-19 | R24 Action Matrix: 保守降调 title + 23-config regressi | D160 |\n107\t| D160 | 2026-05-19 | 大规模实验升级：Scale 7B→72B + Zero-shot regime + WNUT-17  | exp_entity_construction, exp_llama_fewnerd_inference |\n108\t| D159 | 2026-05-19 | D159: Entity construction 论文报告使用 N=8 数据（与主实验一致），LP | exp_entity_construction |\n109\t| D158 | 2026-05-19 | D158: Adaptive combination 因 gold label 泄漏作废。论文 pr | exp_entity_construction |\n110\t| D157 | 2026-05-19 | D157: Entity-level construction 经 5-fold CV 验证显著（S | entity_construction_cv, selective_prediction, lp_alignment_gated |\n111\t| D156 | 2026-05-19 | D156: 论文升级——从纯诊断分析加入 prescriptive 解法（LP-alignment- | — |\n112\t| D155 | 2026-05-18 | D155: LP ρ 修正（0.42→0.22 global）+ AUROC 还原为 0.82（Co | exp_fewnerd_s789_n8, exp_021_fewnerd_n8_seed42 |\n113\t| D154 | 2026-05-18 | D154: 23点扩展后 degen-LP 相关性消失(ρ=0.052)，Two-Condition | fig_scatter_v2, exp_029a, exp_017_llama_conll_finetune |\n114\t| D153 | 2026-05-18 | D153: 论文全文统一使用 per-instance mean F1（unified_metric | exp_026_t10_seed42 |\n115\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "6378c2ae-1815-4824-b7c1-810fcd590085",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+                "content": "# struct_self_consist_ie — Research Dashboard\n\n> 最后更新: 2026-05-20 00:00 UTC | 更新原因: 14B/32B ETA 推迟，72B FS greedy pass 进度更新\n\n## 核心方向\nSelf-consistency for NER: diagnosing correlation-selection gap + entity-level construction as resolution. 详见 paper_framing.md。\n\n## 当前阶段\n**Scale Upgrade + Paper Finalization**。DDL: EMNLP 2026 ARR May (2026-05-25, ~6 天)。\n\nRound 24 审稿: borderline (3.25/5)。冲 Main Conference 4.0。\n\n## 数值审计状态 — 全部关闭 ✅\n\n- [x] appendix L231: FewNERD degen 12.7%→13.0%, diff +10.7pp→+10.4pp\n- [x] appendix L360/L363-365/L687 数值修正 (3-seed mean)\n- [x] Table 5 degen 同步修正 (CoNLL 61.7%, FewNERD 13.0%)\n- [x] Scaling script 8B FT 12处数据修正 + 2处 degen 同步\n- [x] CoNLL oracle/headroom 全局修正: .957→.948, ≈5pp→≈4pp (appendix L248, experiments L102, appendix L932)\n- [x] tab:calibration caption 修复（N=8/16 分标、non-gold-filtered 说明、single seed 标注）\n\n## RUNNING 实验（3 个，8/12 GPU）\n\n### Server A (autodl-5090, 4 GPU): exp_qwen25_32b_fewnerd\n- QLoRA 训练中，PID 804438, 37.3% (15346/41180), loss 0.0528, 2.50s/it\n- ETA ~05-21 01:40 UTC（**最慢瓶颈，+2h 延后**）\n- 完成后: export → 3-seed N=8 inference → signals → construction (~4-6h)\n\n### Server B (autodl-5090-b, 4 GPU): 空闲\n- 72B FS 已完成，4 GPU 已释放\n\n### Server C (autodl-5090-c, 4 GPU):\n- **exp_qwen25_14b_fewnerd** (cuda:0,1) — QLoRA 训练中，PID 56773, 53.0% (21809/41180), loss 0.0273, 2.15s/it\n  - ETA ~05-20 19:20 UTC（**从 14:00 推迟 +5h**）\n  - 完成后: export → 3-seed N=8 inference → signals → construction (~4h)\n- **exp_qwen25_7b_fewnerd** (cuda:2,3) — 全自动 pipeline，PID 71837, 训练 81% (16681/20590)\n  - ETA ~05-20 01:50 UTC（**仍最先完成**）\n  - Pipeline 自动执行: train → export → 3-seed inference → signals → construction\n\n### 完成时间线（更新 05-20 UTC）\n1. ~~**~05-20 00:45 UTC**: 72B few-shot~~ ✅ DONE (negative)\n2. **~05-20 01:50 UTC**: 7B pipeline 完成 → scaling curve 最小点\n3. **~05-20 19:20 UTC**: 14B 训练完成 + 推理（+5h 延后）\n4. **~05-21 01:40 UTC**: 32B 训练完成 + 推理（最慢瓶颈，+2h 延后）\n5. **全部数据 ~05-21 07:00 UTC** → DDL 05-25 仍有 ~4 天余量\n\n## 已完成实验（本轮关键）\n\n### 72B Few-shot — DONE (negative)\n| Dataset | Degen | LP ρ | SJ ρ | VC ρ | Greedy F1 | Oracle F1 | Construction Δ |\n|---------|-------|------|------|------|-----------|-----------|----------------|\n| FewNERD | 45.2% | 0.161 | 0.345 | 0.410 | 0.619 | 0.702 | +0.02pp (n.s., p=0.401) |\n\n**关键发现**: Dual-gating hypothesis 被证伪。6/6 条件（3 datasets × ZS/FS）仅 SciERC ZS 显著。Few-shot 降低 degeneracy（46.2%→45.2%）并提升 LP ρ（0.119→0.161），但 construction gain 仍不显著。Gap 不可通过 prompting strategy 弥合。\n\n### 72B Zero-shot — DONE (negative)\n| Dataset | Degen | LP ρ | LP-wt Δ | Greedy F1 |\n|---------|-------|------|---------|-----------|\n| SciERC | 21.0% | 0.081 | **+1.53pp** (p=0.008) | 0.399 |\n| FewNERD | 46.2% | 0.119 | -0.20pp | 0.628 |\n| CoNLL | 67.7% | -0.002 | -0.37pp | 0.712 |\n\n**关键发现**: Degeneracy gates construction (monotonic pattern). Gap is fundamental, not fine-tuning artifact. Structural signals generalize to ZS (ρ 0.22-0.42).\n\n### WNUT-17 — DONE (negative)\nLP 信号反转 (ρ=-0.446), signal-collapse boundary case. Gating 正确路由到 greedy.\n\n## 论文修复状态（R24 Weakness 9/9）\n- [x] R24 全部 16 项编辑修复 + D162 公式删除\n- [x] fig_selection_gap + Gating bootstrap CI + 72B Δ修正 + WNUT-17 写入\n- [x] θ=2/N caveat + Contribution B \"fundamental\" + paper_framing.md 同步\n- [x] R22-W7: LoRA-only scope — 72B ZS section 草稿完成 (zeroshot_scaling_draft.tex)\n- [x] R24-N2: Greedy fallback option — gating bootstrap CI stable τ∈[0.25,0.35]\n- [x] Appendix degeneracy table 全列统一 N=8 3-seed mean\n- [x] 72B ZS SciERC construction bootstrap (p=0.008, CI [+0.25pp, +2.82pp])\n- [x] CoNLL oracle/headroom 全局修正 (.957→.948, ≈5→≈4pp)\n- [ ] R23-N1: Entity construction novelty — 待 scale 数据补强\n- [ ] 72B ZS + 72B FS 完整数据写入论文（待 72B-FS 完成）\n- [ ] Scaling curve 图 + 论文 scaling section（待 7B/14B/32B 完成）\n\n## 近期任务 Checklist\n- [x] 72B-FS FewNERD 完成 → negative, dual-gating 证伪 (6/6 仅 SciERC ZS 显著)\n- [ ] **待 Director 决策**: paper framing 调整 — dual-gating 证伪后需重新定位 construction 叙事\n- [ ] 7B 完成 (~05-20 01:50 UTC) → compute_signals.py → format_for_scaling.py → scaling curve 第 3 点\n- [ ] 14B 完成 (~05-20 19:20 UTC) → signals → scaling curve 第 4 点\n- [ ] 32B 完成 (~05-21 01:40 UTC) → signals → scaling curve 第 5 点 (最后一块拼图)\n- [ ] 全部结果到齐 → scaling curve 最终图 + 论文 scaling section 定稿\n- [x] tab:calibration caption 修复完成（Reviewer PASS）\n- [ ] Round 25 提审前最终检查\n\n## 准备就绪的工具\n- `artifacts/plot_scaling_curve.py` — Scaling curve 图脚本（8B FT + 72B ZS 数据已验证）\n- `artifacts/compute_signals.py` — 信号计算 pipeline（72B ZS 验证通过）\n- `artifacts/format_for_scaling.py` — 结果格式化为 scaling dict\n- `artifacts/bootstrap_construction.py` — Paired bootstrap significance test\n- `paper/sections/zeroshot_scaling_draft.tex` — ZS section 草稿\n\n## GPU 预算\n- 3 台 × 4 GPU = 12 GPU，在用 8/12（autodl-5090-b 4 GPU 已释放）\n\n## 关键决策日志\n\n| ID | 日期 | 摘要 | 关联实验 |\n|----|------|------|----------|\n| D162 | 2026-05-19 | D162: 删除分解公式 E[ΔF1]≈(1-d)×Δ_oracle×g(ρ_within)，改为定 | worker_analysis_23config_regression |\n| D161 | 2026-05-19 | R24 Action Matrix: 保守降调 title + 23-config regressi | D160 |\n| D160 | 2026-05-19 | 大规模实验升级：Scale 7B→72B + Zero-shot regime + WNUT-17  | exp_entity_construction, exp_llama_fewnerd_inference |\n| D159 | 2026-05-19 | D159: Entity construction 论文报告使用 N=8 数据（与主实验一致），LP | exp_entity_construction |\n| D158 | 2026-05-19 | D158: Adaptive combination 因 gold label 泄漏作废。论文 pr | exp_entity_construction |\n| D157 | 2026-05-19 | D157: Entity-level construction 经 5-fold CV 验证显著（S | entity_construction_cv, selective_prediction, lp_alignment_gated |\n| D156 | 2026-05-19 | D156: 论文升级——从纯诊断分析加入 prescriptive 解法（LP-alignment- | — |\n| D155 | 2026-05-18 | D155: LP ρ 修正（0.42→0.22 global）+ AUROC 还原为 0.82（Co | exp_fewnerd_s789_n8, exp_021_fewnerd_n8_seed42 |\n| D154 | 2026-05-18 | D154: 23点扩展后 degen-LP 相关性消失(ρ=0.052)，Two-Condition | fig_scatter_v2, exp_029a, exp_017_llama_conll_finetune |\n| D153 | 2026-05-18 | D153: 论文全文统一使用 per-instance mean F1（unified_metric | exp_026_t10_seed42 |\n",
+                "numLines": 115,
+                "startLine": 1,
+                "totalLines": 115
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now update the ROADMAP.md header timestamp."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "c639115b-d3c5-4ec3-9958-7920f139620a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L2mw2M8Bk8g53qiGCGR1iu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5400,
+                "cache_read_input_tokens": 33459,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5400
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V7bQ5SoDbYy3P4gurz6AUj",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+                "old_string": "> 最后更新: 2026-05-20 00:00 UTC | 更新原因: 14B/32B ETA 推迟，72B FS greedy pass 进度更新",
+                "new_string": "> 最后更新: 2026-05-20 UTC | 更新原因: 72B FS 完成 (negative), dual-gating 证伪, autodl-5090-b 释放"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "66cc747b-dfb7-446a-90e3-e99e3c848b6d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L2mw2M8Bk8g53qiGCGR1iu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5400,
+                "cache_read_input_tokens": 33459,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5400
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T01:02:59.035Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V7bQ5SoDbYy3P4gurz6AUj",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "910f13a9-4884-4436-a75d-e864d73ecd24",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+              "oldString": "> 最后更新: 2026-05-20 00:00 UTC | 更新原因: 14B/32B ETA 推迟，72B FS greedy pass 进度更新",
+              "newString": "> 最后更新: 2026-05-20 UTC | 更新原因: 72B FS 完成 (negative), dual-gating 证伪, autodl-5090-b 释放",
+              "originalFile": "# struct_self_consist_ie — Research Dashboard\n\n> 最后更新: 2026-05-20 00:00 UTC | 更新原因: 14B/32B ETA 推迟，72B FS greedy pass 进度更新\n\n## 核心方向\nSelf-consistency for NER: diagnosing correlation-selection gap + entity-level construction as resolution. 详见 paper_framing.md。\n\n## 当前阶段\n**Scale Upgrade + Paper Finalization**。DDL: EMNLP 2026 ARR May (2026-05-25, ~6 天)。\n\nRound 24 审稿: borderline (3.25/5)。冲 Main Conference 4.0。\n\n## 数值审计状态 — 全部关闭 ✅\n\n- [x] appendix L231: FewNERD degen 12.7%→13.0%, diff +10.7pp→+10.4pp\n- [x] appendix L360/L363-365/L687 数值修正 (3-seed mean)\n- [x] Table 5 degen 同步修正 (CoNLL 61.7%, FewNERD 13.0%)\n- [x] Scaling script 8B FT 12处数据修正 + 2处 degen 同步\n- [x] CoNLL oracle/headroom 全局修正: .957→.948, ≈5pp→≈4pp (appendix L248, experiments L102, appendix L932)\n- [x] tab:calibration caption 修复（N=8/16 分标、non-gold-filtered 说明、single seed 标注）\n\n## RUNNING 实验（3 个，8/12 GPU）\n\n### Server A (autodl-5090, 4 GPU): exp_qwen25_32b_fewnerd\n- QLoRA 训练中，PID 804438, 37.3% (15346/41180), loss 0.0528, 2.50s/it\n- ETA ~05-21 01:40 UTC（**最慢瓶颈，+2h 延后**）\n- 完成后: export → 3-seed N=8 inference → signals → construction (~4-6h)\n\n### Server B (autodl-5090-b, 4 GPU): 空闲\n- 72B FS 已完成，4 GPU 已释放\n\n### Server C (autodl-5090-c, 4 GPU):\n- **exp_qwen25_14b_fewnerd** (cuda:0,1) — QLoRA 训练中，PID 56773, 53.0% (21809/41180), loss 0.0273, 2.15s/it\n  - ETA ~05-20 19:20 UTC（**从 14:00 推迟 +5h**）\n  - 完成后: export → 3-seed N=8 inference → signals → construction (~4h)\n- **exp_qwen25_7b_fewnerd** (cuda:2,3) — 全自动 pipeline，PID 71837, 训练 81% (16681/20590)\n  - ETA ~05-20 01:50 UTC（**仍最先完成**）\n  - Pipeline 自动执行: train → export → 3-seed inference → signals → construction\n\n### 完成时间线（更新 05-20 UTC）\n1. ~~**~05-20 00:45 UTC**: 72B few-shot~~ ✅ DONE (negative)\n2. **~05-20 01:50 UTC**: 7B pipeline 完成 → scaling curve 最小点\n3. **~05-20 19:20 UTC**: 14B 训练完成 + 推理（+5h 延后）\n4. **~05-21 01:40 UTC**: 32B 训练完成 + 推理（最慢瓶颈，+2h 延后）\n5. **全部数据 ~05-21 07:00 UTC** → DDL 05-25 仍有 ~4 天余量\n\n## 已完成实验（本轮关键）\n\n### 72B Few-shot — DONE (negative)\n| Dataset | Degen | LP ρ | SJ ρ | VC ρ | Greedy F1 | Oracle F1 | Construction Δ |\n|---------|-------|------|------|------|-----------|-----------|----------------|\n| FewNERD | 45.2% | 0.161 | 0.345 | 0.410 | 0.619 | 0.702 | +0.02pp (n.s., p=0.401) |\n\n**关键发现**: Dual-gating hypothesis 被证伪。6/6 条件（3 datasets × ZS/FS）仅 SciERC ZS 显著。Few-shot 降低 degeneracy（46.2%→45.2%）并提升 LP ρ（0.119→0.161），但 construction gain 仍不显著。Gap 不可通过 prompting strategy 弥合。\n\n### 72B Zero-shot — DONE (negative)\n| Dataset | Degen | LP ρ | LP-wt Δ | Greedy F1 |\n|---------|-------|------|---------|-----------|\n| SciERC | 21.0% | 0.081 | **+1.53pp** (p=0.008) | 0.399 |\n| FewNERD | 46.2% | 0.119 | -0.20pp | 0.628 |\n| CoNLL | 67.7% | -0.002 | -0.37pp | 0.712 |\n\n**关键发现**: Degeneracy gates construction (monotonic pattern). Gap is fundamental, not fine-tuning artifact. Structural signals generalize to ZS (ρ 0.22-0.42).\n\n### WNUT-17 — DONE (negative)\nLP 信号反转 (ρ=-0.446), signal-collapse boundary case. Gating 正确路由到 greedy.\n\n## 论文修复状态（R24 Weakness 9/9）\n- [x] R24 全部 16 项编辑修复 + D162 公式删除\n- [x] fig_selection_gap + Gating bootstrap CI + 72B Δ修正 + WNUT-17 写入\n- [x] θ=2/N caveat + Contribution B \"fundamental\" + paper_framing.md 同步\n- [x] R22-W7: LoRA-only scope — 72B ZS section 草稿完成 (zeroshot_scaling_draft.tex)\n- [x] R24-N2: Greedy fallback option — gating bootstrap CI stable τ∈[0.25,0.35]\n- [x] Appendix degeneracy table 全列统一 N=8 3-seed mean\n- [x] 72B ZS SciERC construction bootstrap (p=0.008, CI [+0.25pp, +2.82pp])\n- [x] CoNLL oracle/headroom 全局修正 (.957→.948, ≈5→≈4pp)\n- [ ] R23-N1: Entity construction novelty — 待 scale 数据补强\n- [ ] 72B ZS + 72B FS 完整数据写入论文（待 72B-FS 完成）\n- [ ] Scaling curve 图 + 论文 scaling section（待 7B/14B/32B 完成）\n\n## 近期任务 Checklist\n- [x] 72B-FS FewNERD 完成 → negative, dual-gating 证伪 (6/6 仅 SciERC ZS 显著)\n- [ ] **待 Director 决策**: paper framing 调整 — dual-gating 证伪后需重新定位 construction 叙事\n- [ ] 7B 完成 (~05-20 01:50 UTC) → compute_signals.py → format_for_scaling.py → scaling curve 第 3 点\n- [ ] 14B 完成 (~05-20 19:20 UTC) → signals → scaling curve 第 4 点\n- [ ] 32B 完成 (~05-21 01:40 UTC) → signals → scaling curve 第 5 点 (最后一块拼图)\n- [ ] 全部结果到齐 → scaling curve 最终图 + 论文 scaling section 定稿\n- [x] tab:calibration caption 修复完成（Reviewer PASS）\n- [ ] Round 25 提审前最终检查\n\n## 准备就绪的工具\n- `artifacts/plot_scaling_curve.py` — Scaling curve 图脚本（8B FT + 72B ZS 数据已验证）\n- `artifacts/compute_signals.py` — 信号计算 pipeline（72B ZS 验证通过）\n- `artifacts/format_for_scaling.py` — 结果格式化为 scaling dict\n- `artifacts/bootstrap_construction.py` — Paired bootstrap significance test\n- `paper/sections/zeroshot_scaling_draft.tex` — ZS section 草稿\n\n## GPU 预算\n- 3 台 × 4 GPU = 12 GPU，在用 8/12（autodl-5090-b 4 GPU 已释放）\n\n## 关键决策日志\n\n| ID | 日期 | 摘要 | 关联实验 |\n|----|------|------|----------|\n| D162 | 2026-05-19 | D162: 删除分解公式 E[ΔF1]≈(1-d)×Δ_oracle×g(ρ_within)，改为定 | worker_analysis_23config_regression |\n| D161 | 2026-05-19 | R24 Action Matrix: 保守降调 title + 23-config regressi | D160 |\n| D160 | 2026-05-19 | 大规模实验升级：Scale 7B→72B + Zero-shot regime + WNUT-17  | exp_entity_construction, exp_llama_fewnerd_inference |\n| D159 | 2026-05-19 | D159: Entity construction 论文报告使用 N=8 数据（与主实验一致），LP | exp_entity_construction |\n| D158 | 2026-05-19 | D158: Adaptive combination 因 gold label 泄漏作废。论文 pr | exp_entity_construction |\n| D157 | 2026-05-19 | D157: Entity-level construction 经 5-fold CV 验证显著（S | entity_construction_cv, selective_prediction, lp_alignment_gated |\n| D156 | 2026-05-19 | D156: 论文升级——从纯诊断分析加入 prescriptive 解法（LP-alignment- | — |\n| D155 | 2026-05-18 | D155: LP ρ 修正（0.42→0.22 global）+ AUROC 还原为 0.82（Co | exp_fewnerd_s789_n8, exp_021_fewnerd_n8_seed42 |\n| D154 | 2026-05-18 | D154: 23点扩展后 degen-LP 相关性消失(ρ=0.052)，Two-Condition | fig_scatter_v2, exp_029a, exp_017_llama_conll_finetune |\n| D153 | 2026-05-18 | D153: 论文全文统一使用 per-instance mean F1（unified_metric | exp_026_t10_seed42 |\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 6,
+                  "newStart": 1,
+                  "newLines": 6,
+                  "lines": [
+                    " # struct_self_consist_ie — Research Dashboard",
+                    " ",
+                    "-> 最后更新: 2026-05-20 00:00 UTC | 更新原因: 14B/32B ETA 推迟，72B FS greedy pass 进度更新",
+                    "+> 最后更新: 2026-05-20 UTC | 更新原因: 72B FS 完成 (negative), dual-gating 证伪, autodl-5090-b 释放",
+                    " ",
+                    " ## 核心方向",
+                    " Self-consistency for NER: diagnosing correlation-selection gap + entity-level construction as resolution. 详见 paper_framing.md。"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两文件已更新完毕。\n\n**report.md**: 待处理增加 Director framing 决策项；近期结论中 72B FS 更新为实际数据（dual-gating 证伪，Construction Δ +0.02pp n.s.）；资源状态反映 autodl-5090-b 释放。\n\n**ROADMAP.md**: RUNNING 从 4 个/12 GPU 改为 3 个/8 GPU；Server B 标记空闲；72B FS 移入已完成区含完整 FewNERD 数据表；时间线第 1 项标记 DONE；checklist 增加 Director 决策待办；GPU 预算更新为 8/12。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "uuid": "8fa9fa0b-b7e3-4f76-b0fa-d9edc7a5d1cb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VQzANfGraPrjKrMPG4zsZt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 313,
+                "cache_read_input_tokens": 38859,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 313
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两文件已更新完毕。\n\n**report.md**: 待处理增加 Director framing 决策项；近期结论中 72B FS 更新为实际数据（dual-gating 证伪，Construction Δ +0.02pp n.s.）；资源状态反映 autodl-5090-b 释放。\n\n**ROADMAP.md**: RUNNING 从 4 个/12 GPU 改为 3 个/8 GPU；Server B 标记空闲；72B FS 移入已完成区含完整 FewNERD 数据表；时间线第 1 项标记 DONE；checklist 增加 Director 决策待办；GPU 预算更新为 8/12。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 94906,
+            "duration_api_ms": 96601,
+            "num_turns": 15,
+            "stop_reason": "end_turn",
+            "session_id": "234cf993-33a8-459b-88b9-870947ae7520",
+            "total_cost_usd": 0.49015125,
+            "usage": {
+              "input_tokens": 15,
+              "cache_creation_input_tokens": 27471,
+              "cache_read_input_tokens": 388343,
+              "output_tokens": 4911,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 27471,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 200,
+                  "cache_read_input_tokens": 38859,
+                  "cache_creation_input_tokens": 313,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 313
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1336,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001436,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 15,
+                "outputTokens": 4911,
+                "cacheReadInputTokens": 388343,
+                "cacheCreationInputTokens": 27471,
+                "webSearchRequests": 0,
+                "costUSD": 0.48871525,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "c5ac03ce-b6d7-4ef7-83fd-94e66d764945"
+          },
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 39
+    }
+  ],
+  "readable_path": "readable/worker-executions/knowledge-72b-fs-done-update.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e581c924e1bf5642fcd3",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_15.md",
+  "task_key": "loop_15",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_15.md",
+    "occurrence": 1,
+    "bytes": 4747,
+    "sha256": "c2f569bc535c4f2c637b001de4bc106a6504b446f36619f329979cb3ba874926"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-17T18:39:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 cuda:0/1/2/3（4 张 5090）。不得使用白名单外 GPU，即使 Director 指令也要 push back\n- ρ=-0.881 (p=0.004) 是 KeySet degen vs **oracle headroom**，已被 Reviewer 确认正确。**绝对不要质疑、重算、或提议修���**（M003）\n- SciERC LP Δ 论文统一用 **+0.42pp (full-set n=551)**，不是 +0.62pp (gold-filtered n=529)\n- Degeneracy 定义：论文 dataset-level 用 **Constant F1 gold-filtered**，per-type 用 **KeySet(text,type)**。两个定义不能混用\n- submit_training_job 命令必须 `bash -c \"...\"` 包裹（tmux 用 /bin/sh）\n- AdaLP (D128) 已 DROP——per-instance degen 需要 gold labels，test time 不可用。脚本保留不用\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，工作目录 `/root/autodl-tmp/struct_self_consist_ie`\n- Python：`source /root/miniconda3/bin/activate`（base env）\n- SciERC checkpoint：`checkpoints/qwen3-8b-scierc-merged-v2`（ft_002_v2, rank=32）\n- Few-NERD checkpoint：`checkpoints/qwen3-8b-fewnerd-exp021-merged`（exp-021, 3 epoch）\n- LLaMA SciERC：`checkpoints/llama3.1-8b-scierc-merged`\n- LLaMA CoNLL：`checkpoints/llama3.1-8b-conll2003-merged`（exp-017, 已完成）\n- 数据：`data/scierc/processed_data`(551), `data/fewnerd_n16_subset`(5000), `data/conll2003/`\n- 活跃进程：exp_028 4-GPU 训练，PIDs 391962-391965, tmux=exp_028, cuda:0-3, step ~16452/41180\n- Cron：exp_028 registered (PID 391751, interval 300s)\n- 后处理脚本：`scripts/exp_028_postprocess/run_all.sh`（merge→inference→analyze，已预写就绪）\n- Calibration baseline：`scripts/calibration_baseline.py` + `output/calibration_baseline_results.json`（已完成）\n- 本地项目目录：`/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/`\n- 论文目录：`docs/paper/sections/`\n\n### 3. 📊 当前状态\n**刚完成**：\n- exp_017_llama_conll DONE/success：LLaMA on CoNLL degen 89.2%, structural signals ρ≈0.43, cross-model validation 通过\n- T ablation 表数值修正（5 处 appendix.tex：LP range 改 median, degen T=1.0 改 17.8%）\n- Calibration baseline：Platt/TempScale 无法改善 selection（单调变换不改 argmax），ECE 改善但 selection 不变——强 negative baseline\n- exp_028 后处理脚本预写 + 修复（ref 值从 JSON 加载，CUDA_VISIBLE_DEVICES=0）\n- Claim audit LP range 0.041 vs 0.060 排查完毕（mean vs median 混淆，已修正）\n\n**RUNNING**：\n- exp_028 (4×GPU, all cards)：Few-NERD 5-epoch LoRA，step ~16452/41180 (40%), loss 0.035, ~1.77 it/s, ETA ~18:30 UTC 今天\n\n**无等待中的 Worker/Cron 回调**（除 exp_028 cron 监控）。\n\n### 4. 📋 待办（条件触发式）\n- exp_028 cron 回调（训练完成）→ 执行 `bash scripts/exp_028_postprocess/run_all.sh`：merge LoRA → N=8 T=1.0 inference on 5000 subset → CF1 gold-filtered degeneracy + LP selection + 5 signals + 与 3-epoch 对比\n- exp_028 conclusion=success（degen ≤15%）→ 确认 \"low degen is structural property of Few-NERD\"，Paper Agent 写 appendix epoch_confound 段\n- exp_028 conclusion=negative（degen >20%）→ 产出 Framing 调整提案给 Director\n- Director 分配 Paper Agent 写 Practitioner Decision Tree（Discussion/Conclusion 中 guidance 段）→ 提供数据支持（degen thresholds 30%/15%, within-instance ρ>0.3）\n- Calibration baseline 结果 → Paper Agent 写入 experiments.tex 或 appendix（Reviewer \"为什么不校准\" 的预防性回答）\n\n### 5. 🎯 战略上下文\n- **论文核心**：Structured self-consistency for IE quality estimation。Dual contribution = QE positive + selection diagnostic。Regime-dependent thesis 是骨架\n- **Cross-model 矩阵已完整**：Qwen3×{SciERC, CoNLL, Few-NERD} + LLaMA×{SciERC, CoNLL}。exp_028 是最后一个 GPU 实验\n- **DDL ~8 天**（EMNLP 2026, 2026-05-25）。exp_028 后全是论文打磨\n- **D127 质量冲刺进展**：AdaLP dropped (D128), calibration done (negative baseline，论文价值高), Practitioner Decision Tree 待 Paper Agent\n- **T ablation 已修正**：全表改 median，与主文 0.041 一致，degen T=1.0=17.8% 与主文匹配\n- **易错点**：\n  - 不要混淆 full-set vs gold-filtered（+0.42 vs +0.62）\n  - 不要混淆 global ρ vs within-instance ρ vs conditional ρ\n  - Calibration baseline 的结论是\"无法改善 selection\"——这是正面结果（证明问题不在校准），不是负面的\n  - exp_028 cron PID 是 391751（主进程），实际训练 PIDs 是 391962-391965\n  - exp_028_fewnerd_5epoch 是 registry 中的重复条目（conclusion=killed），真实状态看 exp_028\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15.md"
+}

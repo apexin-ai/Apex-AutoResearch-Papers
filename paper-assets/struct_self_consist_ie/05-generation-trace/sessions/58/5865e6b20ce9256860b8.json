@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5865e6b20ce9256860b8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "prep 5090b gpu inventory",
+  "task_key": "worker_prep_5090b_gpu_inventory_20260520T221308",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_prep_5090b_gpu_inventory_20260520T221308_result.json",
+    "occurrence": 1,
+    "bytes": 2090,
+    "sha256": "0583ea062786a85df4ef20ad00851e71417dfc7ef4594c661da336b34a3906fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 5090-b 实验就绪度报告\n\n### 可用模型\n| 模型 | 路径 | 状态 |\n|------|------|------|\n| **Qwen2.5-7B-Instruct** | `/root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/` | 完整（~14GB，4个 safetensors） |\n| **Qwen3-8B** | `.hf_cache/models--Qwen--Qwen3-8B` | 可用 |\n| **Qwen2.5-72B-Instruct-AWQ** | `.hf_cache/models--Qwen--Qwen2.5-72B-Instruct-AWQ` | 可用 |\n| **LLaMA-3.1-8B-Instruct** | `.hf_cache/LLM-Research/` + `.hf_cache/llama3.1-8b-instruct/` | 可用 |\n| **Qwen2.5-32B-Instruct** | `.hf_cache/Qwen/Qwen2___5-32B-Instruct/` | **下载中**（7.3GB/~60GB，2/17 shards 完成，当前 ~3-5MB/s） |\n\n### 已有 LoRA checkpoints（16个）\n包括 Qwen3-8B 和 LLaMA-3.1-8B 在 CoNLL/FewNERD/SciERC 上的各种 LoRA 和 merged 模型，以及 SCD 变体（scd-conll, scd-fewnerd, scd-fewnerd-fallback, scd-theta3）。\n\n### 环境\n- **GPU**: 4× RTX 5090 (32GB)，全部空闲（0% 利用率，2MB 显存占用）\n- **vLLM**: v0.18.1\n- **PyTorch**: 2.10.0+cu128，CUDA 可用，4 GPU\n- **Python**: `/root/miniconda3/bin/python`（conda 环境）\n\n### 代码部署\n项目代码完整部署在 `/root/autodl-tmp/struct_self_consist_ie/`，包含：\n- `code/` — 完整分析和推理代码（sampling.py, run_mvp_pilot.py 等）\n- `scripts/` — 后处理脚本\n- `data/` — 数据集\n- `output/` — 已有实验输出（多 seed、72b zeroshot/fewshot、SCD eval 等）\n\n### 32B 下载进度\n正在下载中，当前完成 2/17 shards（~7.3GB），速度 3-5MB/s，预计还需数小时。\n\n### 可立即执行的实验\n1. **额外 seed 实验** — Qwen2.5-7B / Qwen3-8B / LLaMA-3.1-8B 的 LoRA 模型都已就绪，可跑更多 seed 的 NER 推理\n2. **CoNLL T_ablation** — 已有 merged checkpoints，可用 vLLM 做温度消融\n3. **SCD 评估** — 已有 scd-conll/scd-fewnerd 的 merged 模型和评估脚本（`eval_scd_*.py`）\n4. **FewNERD SCD theta3 变体** — LoRA 训练完成（`qwen3-8b-fewnerd-scd-theta3-lora`），可 merge 后评估\n\n4 块 5090 全部空闲，可并行跑多个实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-5090b-gpu-inventory.md"
+}

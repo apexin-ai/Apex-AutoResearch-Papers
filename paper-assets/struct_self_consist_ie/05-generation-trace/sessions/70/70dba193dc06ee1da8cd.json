@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70dba193dc06ee1da8cd",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code download 72b server b",
+  "task_key": "worker_code_download_72b_server_b_20260519T064000",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_download_72b_server_b_20260519T064000_result.json",
+    "occurrence": 1,
+    "bytes": 2008,
+    "sha256": "61777466882ce7fa34d056b915538d034ece4b77ed52d9ee65acd7c9fdad8f96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 显存已完全释放 (4x 2MiB/32607MiB)。\n\n---\n\n## 最终汇报\n\n### 1. 模型下载状态和路径\n- **状态**: 完成 (21/21 files, 33 分钟)\n- **路径**: `/root/autodl-tmp/.hf_cache/models--Qwen--Qwen2.5-72B-Instruct-AWQ/snapshots/698703eae6604af048a3d2f509995dc302088217`\n- **大小**: 40GB on disk (AWQ 4-bit, 11 safetensor shards)\n\n### 2. 磁盘使用\n- `/root/autodl-tmp`: 350GB total, 105GB used (30%), 246GB available\n- `.hf_cache` 目录: 56GB（含之前已有模型）\n\n### 3. Prompt 模板内容 (`code/zeroshot_prompts.py`)\n\n| Dataset | Entity Types |\n|---------|-------------|\n| CoNLL2003 | PER, ORG, LOC, MISC |\n| FewNERD | person, organization, location, building, art, product, event, other |\n| SciERC | Generic, Material, Method, Metric, OtherScientificTerm, Task |\n\n- 输出格式: `{\"entities\": [{\"text\": \"...\", \"type\": \"...\", \"start\": <int>, \"end\": <int>}], \"relations\": [], \"events\": []}`\n- 两种 prompt 变体: `build_zeroshot_prompt` (类型列表) / `build_zeroshot_prompt_with_descriptions` (含类型定义)\n- `format_chat_messages()` 直接生成 vLLM chat completion 格式\n\n### 4. vLLM 加载测试结果\n- **Tokenizer**: vocab_size=151643, chat_template 可用 (`<|im_start|>/<|im_end|>`)\n- **vLLM 加载**: 成功，配置 `tensor_parallel_size=4, quantization='awq', max_model_len=4096, gpu_memory_utilization=0.85`\n- **每 GPU 显存**: model 9.79 GiB + CUDA graph 1.52 GiB ≈ 11.3 GiB / 32 GiB\n- **KV cache**: 207,408 tokens, max concurrency 50.64x (4096 tokens/request)\n- **测试生成**: 通过，输出正常文本\n- **注意**: 需要用本地 snapshot 完整路径加载（`HF_ENDPOINT` 下载时生效，但 vLLM 加载时 huggingface.co 不可达）\n\n### 5. 阻塞问题\n- **无阻塞问题**。唯一注意事项：vLLM 加载时需设 `TRANSFORMERS_OFFLINE=1` + `HF_HUB_OFFLINE=1` 并用本地 snapshot 路径，或确保 `HF_ENDPOINT=https://hf-mirror.com` 在运行时也生效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-download-72b-server-b.md"
+}

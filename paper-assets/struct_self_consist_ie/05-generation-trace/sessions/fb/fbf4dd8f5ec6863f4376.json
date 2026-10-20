@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbf4dd8f5ec6863f4376",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh registry sync gpu status",
+  "task_key": "worker_ssh_registry_sync_gpu_status_20260521T174803",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_registry_sync_gpu_status_20260521T174803_result.json",
+    "occurrence": 1,
+    "bytes": 4528,
+    "sha256": "b51acd733ef62d090160571e2b2ec2993854f71733b2531a47261333836c8869"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the full report.\n\n---\n\n## Part A: GPU 状态\n\n### autodl-5090 (4× RTX 5090)\n\n| GPU | 利用率 | 显存使用 | 状态 |\n|-----|--------|----------|------|\n| 0 | 85% | 30152/32607 MiB | **忙** — `fewnerd_n16_s456` 推理 (qwen3-8b-fewnerd-exp021-merged, FT model) |\n| 1 | 0% | 2/32607 MiB | **空闲** |\n| 2 | 0% | 2/32607 MiB | **空闲** |\n| 3 | 85% | 29946/32607 MiB | **忙** — `e2_pretrained_fewnerd_s456` 推理 (Qwen2.5-7B-Instruct, pretrained baseline) |\n\n运行进程：\n- GPU 0: `run_mvp_pilot.py` — fewnerd n16 s456, FT model, PID 54277\n- GPU 3: `run_mvp_pilot.py` — e2_pretrained_fewnerd_s456, pretrained model, PID 47635\n\n### autodl-5090-c (4× RTX 5090)\n\n| GPU | 利用率 | 显存使用 | 状态 |\n|-----|--------|----------|------|\n| 0 | 0% | 0/32607 MiB | **空闲** |\n| 1 | 0% | 0/32607 MiB | **空闲** |\n| 2 | 0% | 0/32607 MiB | **空闲** |\n| 3 | 0% | 0/32607 MiB | **空闲** |\n\n无 Python/训练进程运行。**全部 4 卡空闲。**\n\n---\n\n## Part B: 已完成实验指标\n\n所有实验位于 **autodl-5090-c** 的 `/root/autodl-tmp/struct_self_consist_ie/output/` 下。\n\n### 1. scierc_n16_s456 (FT model, SciERC NER, n=16)\n- **路径**: `output/scierc_n16_s456/`\n- **行数**: 551 (samples.jsonl)\n- **greedy_f1**: 0.6641\n- **oracle_f1**: 0.8076\n- **oracle_headroom**: 0.1435\n- **mv_f1**: 未记录\n- **verdict**: MARGINAL\n\n### 2. e2_pretrained_conll_s42 (Pretrained, CoNLL NER, n=8)\n- **路径**: `output/e2_pretrained_conll_s42/`\n- **行数**: 3453 (samples.jsonl)\n- **greedy_f1**: 0.5363\n- **oracle_f1**: 0.6299\n- **oracle_headroom**: 0.0936\n- **mv_f1**: 未记录\n- **verdict**: MARGINAL\n\n### 3. e2_pretrained_conll_s123_v2 (Pretrained, CoNLL NER, n=8)\n- **路径**: `output/e2_pretrained_conll_s123_v2/`\n- **行数**: 3453 (samples.jsonl)\n- **greedy_f1**: 0.5364\n- **oracle_f1**: 0.6257\n- **oracle_headroom**: 0.0893\n- **mv_f1**: 未记录\n- **verdict**: MARGINAL\n\n### 4. e2_pretrained_scierc_s42_v2 (Pretrained, SciERC NER, n=8)\n- **路径**: `output/e2_pretrained_scierc_s42_v2/`\n- **行数**: 551 (samples.jsonl)\n- **greedy_f1**: 0.2434\n- **oracle_f1**: 0.3888\n- **oracle_headroom**: 0.1454\n- **mv_f1**: 未记录\n- **verdict**: FAIL\n- **警告**: >30% samples F1=0, 建议 T=0.7 重跑\n\n### 5. scierc_n16_s42 (FT model, SciERC NER, n=16)\n- **路径**: `output/scierc_n16_s42/`\n- **行数**: 551 (samples.jsonl)\n- **greedy_f1**: 0.6631\n- **oracle_f1**: 0.8086\n- **oracle_headroom**: 0.1455\n- **mv_f1**: 未记录\n- **verdict**: MARGINAL\n\n### 补充：scierc_n16_s123 (FT model, SciERC NER, n=16)\n- **路径**: `output/scierc_n16_s123/`\n- **行数**: 551 (samples.jsonl)\n- **greedy_f1**: 0.6619\n- **oracle_f1**: 0.8127\n- **oracle_headroom**: 0.1508\n- **mv_f1**: 未记录\n- **verdict**: PASS\n\n---\n\n## Part C: FewNERD 训练配置\n\n### 核心配置文件（autodl-5090）\n\n**原始 3-epoch 配置**: `train_config_fewnerd_exp021.yaml`\n\n```yaml\nmodel_name_or_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\nstage: sft\nfinetuning_type: lora\nlora_rank: 32\nlora_alpha: 64\nlora_target: all\ntemplate: qwen3\nenable_thinking: false\n\ndataset_dir: /root/autodl-tmp/struct_self_consist_ie/data\ndataset: fewnerd_uie_train\neval_dataset: fewnerd_uie_dev\n\nper_device_train_batch_size: 2\ngradient_accumulation_steps: 8\nlearning_rate: 2.0e-4\nnum_train_epochs: 3.0\nlr_scheduler_type: cosine\nwarmup_ratio: 0.1\nbf16: true\ngradient_checkpointing: true\ncutoff_len: 2048\nseed: 42\n\noutput_dir: .../output/exp_021_fewnerd_full\n```\n\n**已有 5-epoch 配置**: `train_config_fewnerd_5epoch.yaml` — 与 exp021 完全相同，仅 `num_train_epochs: 5.0`，输出到 `checkpoints/qwen3-8b-fewnerd-5epoch-lora`。\n\n### 对应 export 配置: `export_config_fewnerd_5epoch.yaml`（推测存在）\n\n### 训练命令\n\n5-epoch 训练已有现成配置，直接用：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/autodl-tmp/struct_self_consist_ie\nCUDA_VISIBLE_DEVICES=0 llamafactory-cli train train_config_fewnerd_5epoch.yaml\n```\n\n合并 LoRA：\n```bash\nllamafactory-cli export export_config_fewnerd_5epoch.yaml\n```\n\n### Checkpoint 位置\n- **3-epoch merged**: `checkpoints/qwen3-8b-fewnerd-exp021-merged/` (当前推理用的模型)\n- **5-epoch LoRA**: `checkpoints/qwen3-8b-fewnerd-5epoch-lora/` (已存在，训练已完成)\n- **基座模型**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-registry-sync-gpu-status.md"
+}

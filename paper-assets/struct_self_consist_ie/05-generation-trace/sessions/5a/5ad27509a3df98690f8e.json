@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "5ad27509a3df98690f8e",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh b3 prompted diversity",
+  "task_key": "worker_ssh_b3-prompted-diversity_20260520T113805",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_b3-prompted-diversity_20260520T113805.log",
+    "occurrence": 1,
+    "bytes": 1037890,
+    "sha256": "ba5344add34bffb112fc80ac0ddb2df0daafda12f616541f2c552098a73d173e"
+  },
+  "statistics": {
+    "messages": 290,
+    "user_turns": 2,
+    "tool_calls": 104,
+    "roles": {
+      "log": 1,
+      "system": 42,
+      "record": 2,
+      "assistant": 34,
+      "tool_call": 104,
+      "user": 2,
+      "tool_result": 104,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "5ad27509a3df98690f8e-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 250,
+      "chunks": [
+        {
+          "path": "5ad27509a3df98690f8e-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "5ad27509a3df98690f8e-part-0002.json",
+          "message_count": 77
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "5ad27509a3df98690f8e-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-b3-prompted-diversity.md"
+}

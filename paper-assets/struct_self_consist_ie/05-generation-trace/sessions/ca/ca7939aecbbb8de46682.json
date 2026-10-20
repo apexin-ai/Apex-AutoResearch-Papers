@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca7939aecbbb8de46682",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis lp full vs cond rho",
+  "task_key": "worker_analysis_lp_full_vs_cond_rho_20260515T160119",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_lp_full_vs_cond_rho_20260515T160119_result.json",
+    "occurrence": 1,
+    "bytes": 1806,
+    "sha256": "9947d30c12e40daf35d1a75b583e155cee3b880502e118280e45ccd5d8caaed1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## LP Rho 对比\n\n### T=0.7 (exp_lp_scierc_t07) — Qwen SciERC NER, N=8\n\n| 信号 | full rho | cond rho | full n | cond n |\n|------|----------|----------|--------|--------|\n| **LP (logprob)** | **0.2494** | **0.1852** | 529 | 477 |\n| SoftJaccard | 0.3645 | 0.3625 | 529 | 477 |\n| Fleiss Kappa | 0.2890 | 0.2549 | 529 | 477 |\n\n### T=1.0 (exp_012_rerun_1024) — Qwen SciERC Joint, N=8\n\n**NER:**\n\n| 信号 | full rho | cond rho | full n | cond n |\n|------|----------|----------|--------|--------|\n| **LP (logprob)** | **0.2052** | **0.1538** | 529 | 477 |\n| SoftJaccard | 0.3599 | 0.3113 | 529 | 477 |\n| Fleiss Kappa | 0.2665 | 0.1761 | 529 | 477 |\n\n**RE:**\n\n| 信号 | full rho | cond rho | full n | cond n |\n|------|----------|----------|--------|--------|\n| **LP (logprob)** | **0.2662** | **0.0112** (p=0.86, n.s.) | 397 | 238 |\n| SoftJaccard | 0.2503 | 0.2457 | 397 | 238 |\n| Fleiss Kappa | 0.2752 | 0.1139 (p=0.08, n.s.) | 397 | 238 |\n\n### LP full vs cond 差异汇总\n\n| 实验 | subtask | LP full rho | LP cond rho | Δ |\n|------|---------|-------------|-------------|---|\n| T=0.7 | NER | 0.249 | 0.185 | -0.064 |\n| T=1.0 | NER | 0.205 | 0.154 | -0.051 |\n| T=1.0 | RE | 0.266 | 0.011 | -0.255 |\n\n### 数据来源\n- T=0.7: `exp_lp_scierc_t07/report.json` → `logprob_baseline.full.rho` / `logprob_baseline.conditional.rho`\n- T=1.0: `exp_012_rerun_1024/report.json` → `ner_logprob_baseline.full.rho` / `ner_logprob_baseline.conditional.rho`（RE 同理前缀 `re_`）\n- `analysis_round8/` 中的 `seed456_lp_range.json` 和 `exp017_t07_lp_range.json` 是 LP range 分布统计（tied fraction 等），不含 rho 对比。`exp017_t07_lp_range.json` 有一组 LLaMA CoNLL 的信号 rho（LP full rho=0.295），但那是不同模型/数据集。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lp-full-vs-cond-rho.md"
+}

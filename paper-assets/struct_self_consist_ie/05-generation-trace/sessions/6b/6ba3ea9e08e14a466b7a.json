@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ba3ea9e08e14a466b7a",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "reviewer / loop_18.md",
+  "task_key": "loop_18",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_18.md",
+    "occurrence": 1,
+    "bytes": 3751,
+    "sha256": "72ed7d610a28c32c5a7b9fb230f977fca5932c5534a4dab6094e977f5bf6767b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: max_wall_time\nupdated: '2026-05-22T18:25:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- `exp_fewnerd_pretrained_n32_s42_v2` 实际跑在 **autodl-5090** GPU 3（不是 autodl-5090-c），registry 已更正但要注意 kill/查状态时别找错服务器\n- v1 僵尸事件教训：Agent 声称 \"killed\" 但进程实际未死，审查 kill 操作必须 `nvidia-smi` + `ps aux` 双重验证，不能只信 registry\n- FewNERD pretrained 实验使用的是 Qwen2.5-7B-Instruct（非 finetuned Qwen3-8B），模型路径在两台服务器不同：autodl-5090 用 `/root/autodl-tmp/models/Qwen2.5-7B-Instruct`，autodl-5090-c 用 `/root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct`\n\n### 2. 🖥️ 基础设施快照\n- **autodl-5090** (root): `/root/autodl-tmp/struct_self_consist_ie`, conda base (`/root/miniconda3/bin/python`)\n- **autodl-5090-c** (root): 同上路径结构\n- 模型 checkpoints: `checkpoints/qwen3-8b-scierc-merged-v2`, `checkpoints/qwen3-8b-conll2003-merged`, `checkpoints/qwen3-8b-fewnerd-exp021-merged`, `checkpoints/qwen3-8b-fewnerd-5epoch-merged`\n- 活跃进程（截至 handoff）：\n  - autodl-5090 GPU 3: PID 157197→157469(VLLM), exp_fewnerd_pretrained_n32_s42_v2, ~5% 进度, ETA 10-20h\n  - autodl-5090-c GPU 1: PID 452387→452661(VLLM), exp_fewnerd_pretrained_n16_s42_v2, ~23% 进度\n\n### 3. 📊 当前状态\n本轮主要工作：GPU 状态独立审查。发现并报告了 v1 僵尸进程（已被 kill worker 处理）、registry server 字段错误（已修复）、3 个 PREPARING 实验未启动（已重新提交并完成）、MF4 分析结果核实（rho 跨 seed 方差问题已报告）。\n\n**Registry 状态不一致**（截至 handoff 仍存在）：\n- `exp_esj_qwen3_all`: 实际已完成(EXIT_CODE=0)，registry 仍为 PREPARING\n- `exp_scierc_n8_s2024`: 实际已完成，registry 仍为 PREPARING\n- `exp_scierc_n8_s3141`: 实际已完成，registry 仍为 PREPARING\n\n**6/8 GPU 空闲**，DDL 仅剩 ~3 天 (2026-05-25)。idle GPU planning worker 完成但无新实验提交。\n\n### 4. 📋 待办\n- ESJ/SciERC s2024/s3141 registry 更新 → 核实 metrics 是否正确录入，特别关注 SciERC 新 seed 对 Holm-Bonferroni p_adj 的影响（当前 3-seed p_adj=0.055，5-seed 能否降到 <0.05 是核心 claim 存亡问题）\n- exp_fewnerd_pretrained_n32_s42_v2 完成 → 核实 errors='replace' 修复是否生效（v1 在 save 阶段 crash），检查 samples.jsonl 完整性\n- exp_fewnerd_pretrained_n16_s42_v2 完成 → 同上\n- 如有论文章节审查请求 → 先 Read `skills/global/paper-quality-lessons.skill.md`，按 §5+§7 维度审查\n- 如 Director 转发 Framing 提案 → 先 Read `skills/global/negative-framing-review.skill.md`\n\n### 5. 🎯 战略上下文\n- **核心结论**：finetuned 模型上 MV 一致性地损害 F1（FewNERD -2.71±0.43pp），LP selection 微弱正向（+0.09pp）。Pretrained 模型方向相反（MV 有益）。这是 \"correlation-selection gap\" 的核心 diagnostic finding。\n- **最大风险**：FewNERD rho_sj_full 在 seed=42 上仅 0.1648（vs seed=123/456 的 ~0.31），agreement-correctness 相关性跨 seed 不稳定。SciERC 的 MV delta 跨 seed 还会翻符号（s123=+0.34, s456=-0.84）。这些方差如果在论文中未充分披露，审稿人会攻击 robustness。\n- **易错判断**：不要因为 \"3 天 DDL\" 就给 deadline 风险 warning——6 张空闲 GPU + 弹性云扩容意味着算力充足，瓶颈是实验设计/分析，不是算力。只有当**剩余 GPU-hours 估算 > 可用 GPU-hours** 时才是真风险。\n- **ESJ 结果**：Entity-level AUROC=0.4954（≈随机），ESJ 作为 self-judgment baseline 完全无效，可作为 negative result 支撑 agreement-based 方法的优势 claim。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b62e8a114c504e3a62df",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "investigate esj autodl5090c",
+  "task_key": "worker_investigate_esj_autodl5090c_20260520T162024",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_investigate_esj_autodl5090c_20260520T162024_result.json",
+    "occurrence": 1,
+    "bytes": 2170,
+    "sha256": "aacf23e83db6f27d4fd487d6e1f65d9db9bf3a9f04db1a01c6c455e76a03961b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## autodl-5090-c 环境探查结果\n\n### 1. run_esj.py\n**不存在。** 整个 `/root` 下没有任何 `*esj*` 文件。需要从本地推送或创建。\n\n### 2. 项目代码目录\n- `/root/struct_self_consist_ie/` — **不存在**\n- `/root/autodl-tmp/struct_self_consist_ie/` — **存在**，包含 code/data/checkpoints/output 等完整目录结构\n\n### 3. FewNERD 数据\n**存在**，路径：`/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/`\n- train.json, dev.json, test.json, llmfactory_train.json, llmfactory_dev.json\n- 另有 `data/fewnerd_n16_subset/test.json`\n\n### 4. Qwen 模型\n\n| 模型目录 | 大小 |\n|---------|------|\n| `checkpoints/qwen3-8b-fewnerd-exp021-merged` | 16G |\n| `checkpoints/qwen3-8b-conll2003-merged` | 16G |\n| `checkpoints/qwen3-8b-scierc-merged-v2` | 16G |\n| `checkpoints/qwen25-7b-fewnerd-merged` | 15G |\n| `checkpoints/qwen25-7b-wnut17-merged` | — |\n| `checkpoints/qwen25-14b-fewnerd-merged-final` | 28G |\n| `checkpoints/qwen25-14b-fewnerd-merged-ckpt36000` | — |\n| `.hf_cache/` 下有 Qwen3-8B, Qwen2.5-7B-Instruct, Qwen2.5-14B-Instruct (locks) | — |\n| 另有 Llama-3.1-8B-Instruct | — |\n\ncheckpoints 总计 **142G**。\n\n### 5. GPU 状态\n\n| GPU | 型号 | 显存使用 | 利用率 |\n|-----|------|---------|--------|\n| cuda:0 | RTX 5090 | 31101/32607 MiB | 99% |\n| **cuda:1** | **RTX 5090** | **0/32607 MiB** | **0%** ✅ 空闲 |\n| cuda:2 | RTX 5090 | 0/32607 MiB | 0% |\n| cuda:3 | RTX 5090 | 0/32607 MiB | 0% |\n\n### 6. Python/ML 环境\n- Python: **3.12.3** (miniconda3, `python3` 不在 PATH 中，需用 `/root/miniconda3/bin/python`)\n- PyTorch: **2.10.0+cu128**\n- Transformers: **4.57.1**\n- vLLM: **0.18.1**\n- flash-attn: **未安装**\n\n### 7. 磁盘空间\n\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| / (根) | 30G | 11G | 20G | 35% |\n| /root/autodl-tmp | 350G | 224G | 127G | 64% |\n\n**总结：cuda:1 空闲可用，Python/torch/vllm 环境就绪，FewNERD 数据和多个 Qwen checkpoint 已就位，磁盘充足。唯一缺失的是 run_esj.py 本身——需要创建或推送到服务器。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-esj-autodl5090c.md"
+}

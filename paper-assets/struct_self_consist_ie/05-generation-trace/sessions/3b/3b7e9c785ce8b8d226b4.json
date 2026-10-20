@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b7e9c785ce8b8d226b4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run 5090c t ablation",
+  "task_key": "worker_run_5090c_t_ablation_20260520T221637",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_5090c_t_ablation_20260520T221637_result.json",
+    "occurrence": 1,
+    "bytes": 515,
+    "sha256": "2566b219bc1073a86fbe169a2b9ebfd0c257e8e936fc0c427da0df3cf3ed1574"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**5090-c 当前状态：所有 GPU 被占用，T-ablation 无法启动。**\n\n正在运行的任务：\n- **Qwen2.5-32B QLoRA FewNERD 训练**（4-GPU 分布式，PID 804665-804668）\n- 进度：39050/41180 steps（**94.83%**）\n- 剩余时间：约 **2 小时**\n\n训练完成后 cuda:1-3 才会释放。建议：\n1. 等 ~2 小时训练完成后再启动 T-ablation\n2. 或者如果有其他空闲服务器可以用\n\n需要我设置定时检查，训练完成后自动启动 T-ablation 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-5090c-t-ablation.md"
+}

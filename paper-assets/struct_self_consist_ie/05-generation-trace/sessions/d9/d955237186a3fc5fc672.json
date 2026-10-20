@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d955237186a3fc5fc672",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "paper headroom auroc fix",
+  "task_key": "worker_paper_headroom-auroc-fix_20260523T203911",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_headroom-auroc-fix_20260523T203911.log",
+    "occurrence": 1,
+    "bytes": 598876,
+    "sha256": "ec485be355bdf777db6326c2daa449927204a57014f2f9bcd5811fd0af78509e"
+  },
+  "statistics": {
+    "messages": 157,
+    "user_turns": 0,
+    "tool_calls": 56,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 2,
+      "assistant": 38,
+      "tool_call": 56,
+      "tool_result": 56,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 157,
+      "chunks": [
+        {
+          "path": "d955237186a3fc5fc672-part-0001.json",
+          "message_count": 155
+        },
+        {
+          "path": "d955237186a3fc5fc672-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-headroom-auroc-fix.md"
+}

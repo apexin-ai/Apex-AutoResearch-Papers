@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8922c530c6e4fad2872",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code fewnerd fs pipeline completion",
+  "task_key": "worker_code_fewnerd-fs-pipeline-completion_20260519T231728",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fewnerd-fs-pipeline-completion_20260519T231728_result.json",
+    "occurrence": 1,
+    "bytes": 1021,
+    "sha256": "0240be7f38d048e43adf4d9040faf8ff748b21ee71f66ec4137e23d03e0a3ad0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认了：脚本对每个数据集跑 N=8 stochastic + 1 greedy。FewNERD stochastic (301184 prompts) 即将完成，之后还有 greedy pass (37648 prompts)。\n\n估算 greedy pass 参考 CoNLL (3453 prompts 用了 5:12, ~11 it/s): FewNERD greedy ≈ 37648/11 ≈ 57 分钟。\n\n**当前状态汇总：**\n\n### autodl-5090-b: 72B FewNERD 3-shot 推理\n- **Stochastic pass**: 98% (295664/301184), ETA ~6 分钟\n- **Greedy pass**: 尚未开始，预计 ~50-60 分钟\n- **总预计剩余**: ~60 分钟\n- 输出目录: `output/72b_fewshot/fewnerd/`（SciERC 和 CoNLL 已完成）\n\n### autodl-5090-c: 7B FewNERD QLoRA 训练\n- **进度**: 81% (16681/20590 steps), epoch 4.04/5\n- **Loss**: 0.0073, lr: 2.15e-05\n- **速度**: ~2.35s/it\n- **预计剩余**: ~2.5 小时\n- **Checkpoint**: 刚保存了 checkpoint-16000，删除了旧的 checkpoint-10000\n\nFewNERD FS 推理还没完成（greedy pass 需要约 1 小时），signal pipeline 暂时不能跑。需要我过一会儿再来检查吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fewnerd-fs-pipeline-completion.md"
+}

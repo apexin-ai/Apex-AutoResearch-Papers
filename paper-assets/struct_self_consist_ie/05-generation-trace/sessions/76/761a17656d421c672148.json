@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "761a17656d421c672148",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run exp backup1 het temp scierc",
+  "task_key": "worker_run_exp_backup1_het_temp_scierc_20260520T181112",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_exp_backup1_het_temp_scierc_20260520T181112_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "826cada543b38b19d1586ca5922a03bc729134e9d6bf867cc8d687de0521adcc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，registry 已更新为 DONE (negative)。\n\n**总结**: het_temp 实验 6 组全部跑完（~2 分钟 wall clock）。**Negative result** — 混合温度采样在 SciERC 上无法一致性提升 F1。所有 best mix 的 Δ 均在 ±0.005 以内且方向不一致。虽然混合有效降低 degeneracy（T=0.5 从 ~35% 降到 ~17%），但 diversity 的增加并不转化为更好的 construction F1。这进一步证实采样层面的干预不是当前瓶颈。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-exp-backup1-het-temp-scierc.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c8af23f169018fcd1578",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "run probe 5090c",
+  "task_key": "worker_run_probe_5090c_20260521T015651",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_probe_5090c_20260521T015651.log",
+    "occurrence": 1,
+    "bytes": 694373,
+    "sha256": "39138ae718e64706fa0031085dc6146d798417eb1a33c4306b5bade00033e091"
+  },
+  "statistics": {
+    "messages": 305,
+    "user_turns": 0,
+    "tool_calls": 116,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 69,
+      "tool_call": 116,
+      "tool_result": 116,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 305,
+      "chunks": [
+        {
+          "path": "c8af23f169018fcd1578-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c8af23f169018fcd1578-part-0002.json",
+          "message_count": 125
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-probe-5090c.md"
+}

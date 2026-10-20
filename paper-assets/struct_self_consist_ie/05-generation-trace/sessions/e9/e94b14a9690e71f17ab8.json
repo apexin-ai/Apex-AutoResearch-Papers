@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e94b14a9690e71f17ab8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh download fig10 oracle scaling",
+  "task_key": "worker_ssh_download-fig10-oracle-scaling_20260520T133635",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_download-fig10-oracle-scaling_20260520T133635_result.json",
+    "occurrence": 1,
+    "bytes": 103,
+    "sha256": "1afa8daf0d6f2ecb8cf25562addf91ab444d03b2bc99e9dc9cc9b5b5bfb28e9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`fig_oracle_scaling.pdf`（30,194 bytes）已下载到 `docs/paper/figures/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-download-fig10-oracle-scaling.md"
+}

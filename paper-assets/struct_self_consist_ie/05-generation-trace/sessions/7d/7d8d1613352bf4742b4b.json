@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7d8d1613352bf4742b4b",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "paper fix degen rate correction",
+  "task_key": "worker_paper-fix_degen_rate_correction_20260519T142219",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper-fix_degen_rate_correction_20260519T142219.log",
+    "occurrence": 1,
+    "bytes": 722481,
+    "sha256": "26c5d65d5f27b933ec1395cab943a2d2f56f8649b83992e711bd6d8637d68119"
+  },
+  "statistics": {
+    "messages": 46,
+    "user_turns": 0,
+    "tool_calls": 18,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 18,
+      "tool_result": 18,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 46,
+      "chunks": [
+        {
+          "path": "7d8d1613352bf4742b4b-part-0001.json",
+          "message_count": 38
+        },
+        {
+          "path": "7d8d1613352bf4742b4b-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-fix-degen-rate-correction.md"
+}

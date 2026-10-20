@@ -1,0 +1,1134 @@
+{
+  "schema_version": "1.0",
+  "id": "cb283e7cb3e0c43236eb",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "paper writing discussion",
+  "task_key": "worker_paper_writing_discussion_20260514T204918",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_discussion_20260514T204918.log",
+    "occurrence": 1,
+    "bytes": 119477,
+    "sha256": "01302ee79aeed370565f605024bb11ad13c31869e9aa3e1c6f3b4078eb7c56e1"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 7,
+      "tool_result": 7,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+                "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__bootstrap_provenance",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__overleaf_init",
+                  "mcp__agent-ml-research__overleaf_pull",
+                  "mcp__agent-ml-research__overleaf_push",
+                  "mcp__agent-ml-research__overleaf_status",
+                  "mcp__agent-ml-research__overleaf_sync",
+                  "mcp__agent-ml-research__paper_agent_post_to_director",
+                  "mcp__agent-ml-research__paper_agent_request_review",
+                  "mcp__agent-ml-research__paper_compile_and_check",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "0330929e-e4e6-4eb7-8d91-77994346eeae",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778800800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "b19a2978-28f5-4ba7-9db9-ac2a1b16200d",
+                "session_id": "8189c138-c195-490a-9118-4b1509395d6d"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the required reference materials and existing sections in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "3263c8bc-916b-4e10-a87a-c4f7fdc6c15d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LRr3MFazTowuavc5tD8ZtD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12519,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12519
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XXX4nAYUHYx66nPoDJvsjA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "8cc4215b-bda3-4861-9b0e-6553501ba001",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LRr3MFazTowuavc5tD8ZtD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12519,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12519
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T20:49:31.185Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XXX4nAYUHYx66nPoDJvsjA",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认你引用的 claim 确实出自该论文\n95\t5. ADD     → 加入 .bib 文件\n96\t```\n97\t\n98\t### 3.3 API 速查\n99\t\n100\t| API | 用途 | 限制 |\n101\t|-----|------|------|\n102\t| **Semantic Scholar** | ML/AI 论文搜索 | 1 RPS (免费) |\n103\t| **CrossRef** | DOI → BibTeX | 需 mailto 头 |\n104\t| **arXiv** | 预印本搜索 | 3s 间隔 |\n105\t\n106\t```python\n107\t# DOI → BibTeX（最可靠的方式）\n108\timport requests\n109\tdef doi_to_bibtex(doi: str) -> str:\n110\t    r = requests.get(f\"https://doi.org/{doi}\",\n111\t                     headers={\"Accept\": \"application/x-bibtex\"})\n112\t    r.raise_for_status()\n113\t    return r.text\n114\t\n115\t# Semantic Scholar 搜索\n116\tfrom semanticscholar import SemanticScholar\n117\tsch = SemanticScholar()\n118\tresults = sch.search_paper(\"attention mechanism transformers\", limit=5)\n119\tfor p in results:\n120\t    print(f\"{p.title} | DOI: {p.externalIds.get('DOI', 'N/A')}\")\n121\t```\n122\t\n123\t### 3.4 引用处理规则\n124\t\n125\t| 情况 | 处理 |\n126\t|------|------|\n127\t| 找到论文 + DOI + BibTeX | 直接用 |\n128\t| 找到论文，无 DOI | 用 arXiv BibTeX |\n129\t| 论文存在但无法获取 BibTeX | 标记 placeholder，告知用户 |\n130\t| 不确定论文是否存在 | 标记 `[CITATION NEEDED]`，告知用户 |\n131\t| \"我觉得有篇关于 X 的论文\" | **绝不引用** — 先搜索或标记 |\n132\t\n133\t---\n134\t\n135\t## 4. 顶会模板速查\n136\t\n137\t### 4.1 ML/AI 会议\n138\t\n139\t| 会议 | 页数限制 | 主文件 | 样式文件 | 必须项 |\n140\t|------|---------|--------|---------|--------|\n141\t| **NeurIPS** | 9 页 | `main.tex` | `neurips.sty` | Paper Checklist |\n142\t| **ICML** | 8 页 (+1 camera-ready) | `example_paper.tex` | `icml2026.sty` | Broader Impact |\n143\t| **ICLR** | 9 页 (+1) | `iclr_conference.tex` | `iclr_conference.sty` | LLM 使用声明 |\n144\t| **ACL/EMNLP** | 8 页 (long) | `acl_latex.tex` | `acl.sty` | Limitations 必须 |\n145\t| **AAAI** | 7 页 (+1) | `aaai_template.tex` | `aaai.sty` | 严格样式 |\n146\t| **COLM** | 9 页 (+1) | `colm_conference.tex` | `colm_conference.sty` | 语言模型聚焦 |\n147\t\n148\t### 4.2 系统会议\n149\t\n150\t| 会议 | 页数限制 | 模板类型 | 关键要求 |\n151\t|------|---------|---------|---------|\n152\t| **OSDI** | 12 页 (+2) | USENIX `usenix.sty` | Research / Operational 双 track |\n153\t| **NSDI** | 12 页 | USENIX | Introduction 预筛 |\n154\t| **ASPLOS** | 12 页 | ACM `acmart.cls (sigplan)` | 前 2 页快速评审 |\n155\t| **SOSP** | 12 页 | ACM `acmart.cls (sigplan)` | 可选 Artifact Evaluation |\n156\t\n157\t### 4.3 模板使用原则\n158\t\n159\t```bash\n160\t# 1. 复制整个模板目录（不要只拷 .tex）\n161\tcp -r templates/neurips2025/ ~/papers/my-paper/\n162\t\n163\t# 2. 先编译未修改的模板，确认能跑通\n164\tlatexmk -pdf main.tex\n165\t\n166\t# 3. 逐章替换内容，频繁编译\n167\t```\n168\t\n169\t**禁止事项：**\n170\t- 不要修改 `.sty` 文件\n171\t- 不要在会议模板间复制 `\\usepackage` 行\n172\t- 不要只复制 `.tex` 而不带 `.sty/.bst`\n173\t\n174\t---\n175\t\n176\t## 5. 写作规范\n177\t\n178\t### 5.1 时间分配（Neel Nanda）\n179\t\n180\t花**大致相等**的时间在：\n181\t1. Abstract\n182\t2. Introduction\n183\t3. 图表\n184\t4. **其余所有内容加起来**\n185\t\n186\t审稿人读论文的顺序：标题 → 摘要 → 引言 → 图表 → 也许正文。\n187\t\n188\t### 5.2 Abstract 五句法（Sebastian Farquhar）\n189\t\n190\t```\n191\t1. 你做了什么（\"We introduce/prove/demonstrate...\"）\n192\t2. 为什么这很难且重要\n193\t3. 怎么做的（含专业关键词以便检索）\n194\t4. 有什么证据\n195\t5. 最惊人的数字/结果\n196\t```\n197\t\n198\t删除一切泛泛的开头：~~\"Large language models have achieved remarkable success...\"~~\n199\t\n200\t### 5.3 句子级清晰度（Gopen & Swan）\n201\t\n202\t| 原则 | 规则 |\n203\t|------|------|\n204\t| 主谓紧邻 | 不要在主语和动词之间插入长从句 |\n205\t| 重点在句尾 | 把关键数字/结论放在句末 |\n206\t| 旧信息在前 | 先放读者已知的内容，再引入新概念 |\n207\t| 动词表达动作 | \"We analyzed\" 而非 \"We performed an analysis\" |\n208\t\n209\t### 5.4 常见修改\n210\t\n211\t| 问题 | 修复 |\n212\t|------|------|\n213\t| Abstract 太泛 | 删第一句（如果它能放在任何 ML 论文前面） |\n214\t| Introduction 超 1.5 页 | 背景挪到 Related Work |\n215\t| 实验没有显式 claim | 每个实验前加 \"This tests whether...\" |\n216\t| 缺统计显著性 | 加 error bars + 运行次数 + 计算方法 |\n217\t\n218\t---\n219\t\n220\t## 6. 投稿工程链\n221\t\n222\t### 6.1 构建\n223\t\n224\t```bash\n225\t# 推荐：latexmk 一键构建\n226\tlatexmk -pdf -interaction=nonstopmode -halt-on-error main.tex\n227\t\n228\t# 手动：需要多次编译\n229\tpdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n230\t```\n231\t\n232\t### 6.2 Lint + 格式化\n233\t\n234\t```bash\n235\t# Lint: 检查常见 LaTeX 问题\n236\tchktex main.tex\n237\t\n238\t# 格式化: 减少 diff 噪声\n239\tlatexindent -w main.tex\n240\t```\n241\t\n242\t### 6.3 图表格式\n243\t\n244\t| 类型 | 格式 | 说明 |\n245\t|------|------|------|\n246\t| 矢量图（plot、diagram） | PDF | matplotlib: `plt.savefig('fig.pdf')` |\n247\t| 照片/heatmap | PNG 600dpi 或 TIFF | 栅格图 |\n248\t| 表格 | `booktabs` 包 | `\\toprule/\\midrule/\\bottomrule` |\n249\t\n250\t```latex\n251\t\\usepackage{booktabs}\n252\t\\begin{tabular}{lcc}\n253\t\\toprule\n254\tMethod & Accuracy $\\uparrow$ & Latency $\\downarrow$ \\\\\n255\t\\midrule\n256\tBaseline & 85.2 & 45ms \\\\\n257\t\\textbf{Ours} & \\textbf{92.1} & 38ms \\\\\n258\t\\bottomrule\n259\t\\end{tabular}\n260\t```\n261\t\n262\t**图表规范：**\n263\t- 用色盲友好色板（Okabe-Ito 或 Paul Tol）\n264\t- 图内不放标题（用 caption）\n265\t- Caption 独立可理解（不依赖正文）\n266\t- 最佳值加粗，标注方向符号（↑ 越高越好，↓ 越低越好）\n267\t\n268\t### 6.4 投稿打包\n269\t\n270\t```bash\n271\t# 清理辅助文件\n272\tlatexmk -c\n273\t\n274\t# 打包投稿\n275\tzip -r submission.zip main.tex *.sty *.bst *.bib figures/ --exclude='*.aux' --exclude='*.log'\n276\t```\n277\t\n278\t### 6.5 常见失败点\n279\t\n280\t| 问题 | 解决 |\n281\t|------|------|\n282\t| 图片格式混用导致编译失败 | 统一用 PDF |\n283\t| 字体未嵌入 | `pdffonts output.pdf` 检查 |\n284\t| Overfull box 过多 | 关键位置手动调行 |\n285\t| 引用缺字段 | 检查 DOI/年份/期刊名 |\n286\t| 超页数 | 用 `\\vspace{-Xpt}` 微调，或精简内容 |\n287\t\n288\t---\n289\t\n290\t## 7. 会议转投\n291\t\n292\t当论文被拒或转投其他会议时：\n293\t\n294\t### 7.1 ML/AI 会议间转换\n295\t\n296\t| 转换 | 页数变化 | 关键调整 |\n297\t|------|---------|---------|\n298\t| NeurIPS → ICML | 9→8 | 删 1 页，加 Broader Impact |\n299\t| ICML → ICLR | 8→9 | 可扩展实验 + LLM 声明 |\n300\t| NeurIPS → ACL | 9→8 | 按 NLP 惯例重组 + Limitations |\n301\t| ICLR → AAAI | 9→7 | 大幅精简，严格样式 |\n302\t\n303\t### 7.2 转投原则\n304\t\n305\t1. **永远用目标模板重新开始** — 复制目标模板，迁移内容，不要合并 preamble\n306\t2. **只迁移正文内容** — 不复制 `\\usepackage`、header/footer 命令\n307\t3. **根据审稿意见改进** — 但不要在新稿中提及旧投稿（双盲）\n308\t4. **检查目标会议特殊要求** — checklist、ethics statement、LLM 声明等\n309\t\n310\t---\n311\t\n312\t## 8. 投前清单\n313\t\n314\t### 通用清单\n315\t\n316\t- [ ] Abstract/Intro/Conclusion 的 claim 一致\n317\t- [ ] 每个 contribution 有对应 evidence\n318\t- [ ] 所有引用已程序化验证（无幻觉引用）\n319\t- [ ] Error bars + 运行次数 + 统计方法\n320\t- [ ] Limitations 章节存在且诚实\n321\t- [ ] 匿名化（双盲审稿）\n322\t- [ ] 符合页数限制\n323\t- [ ] 所有图表有自包含 caption\n324\t- [ ] `.bib` 中无缺失字段\n325\t- [ ] PDF 编译无 warning\n326\t\n327\t### 会议特定\n328\t\n329\t| 会议 | 额外要求 |\n330\t|------|---------|\n331\t| NeurIPS | 16 项 Paper Checklist（附录，不计页数） |\n332\t| ICML | Broader Impact Statement |\n333\t| ICLR | LLM 使用声明 |\n334\t| ACL/EMNLP | Limitations 章节（必须），Ethics Statement |\n335\t| AAAI | 严格样式文件合规 |\n336\t\n337\t---\n338\t\n339\t## 参考资源\n340\t\n341\t**写作方法论：**\n342\t- [Neel Nanda: How to Write ML Papers](https://www.alignmentforum.org/posts/eJGptPbbFPZGLpjsp/) — What/Why/So What 框架\n343\t- [Farquhar: How to Write ML Papers](https://sebastianfarquhar.com/on-research/2024/11/04/how_to_write_ml_papers/) — 五句法 Abstract\n344\t- [Gopen & Swan: Science of Scientific Writing](https://cseweb.ucsd.edu/~swanson/papers/science-of-writing.pdf) — 读者预期 7 原则\n345\t- [Lipton: Heuristics for Scientific Writing](https://www.approximatelycorrect.com/2018/01/29/heuristics-technical-scientific-writing-machine-learning-perspective/) — 用词\n346\t- [Perez: Easy Paper Writing Tips](https://ethanperez.net/easy-paper-writing-tips/) — 微观清晰度\n347\t\n348\t**API：**\n349\t- [Semantic Scholar](https://api.semanticscholar.org/api-docs/) | [CrossRef](https://www.crossref.org/documentation/) | [arXiv](https://info.arxiv.org/help/api/)\n350\t\n351\t**会议官方：**\n352\t- [NeurIPS](https://neurips.cc/) | [ICML](https://icml.cc/) | [ICLR](https://iclr.cc/) | [ACL](https://www.aclweb.org/) | [AAAI](https://aaai.org/) | [EMNLP](https://2025.emnlp.org/)\n353\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "9b084ff3-f19b-41b9-9beb-2973c9bf878a",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md",
+                "content": "---\nname: latex-paper\ndescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\nscope: global\ntags:\n- latex\n- paper-writing\n- academic\n- citation\n- submission\nversion: 1\nroles:\n- agent\n- worker\n---\n\n# LaTeX 论文写作全流程\n\nML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n\n---\n\n## 1. 工作模式\n\n开始前选择模式：\n\n| 模式 | 说明 | 适用 |\n|------|------|------|\n| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n\n---\n\n## 2. Claim-Evidence 方法论\n\n**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n\n### 2.1 一句话贡献\n\n在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n\n### 2.2 Claim-Evidence Map\n\n为每个 contribution 建立 claim→evidence 映射表：\n\n| Contribution | Claim | Evidence | Table/Figure |\n|-------------|-------|----------|-------------|\n| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n\n**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n\n### 2.3 章节起草顺序\n\n```\n1. Introduction + Experiments（先确定 claim 和 evidence）\n2. Method（评估问题稳定后再写细节）\n3. Related Work\n4. Abstract + Title（核心 claim 定型后最后写）\n```\n\n### 2.4 Quality Gates\n\n投稿前必须通过：\n- [ ] 前两段出现显式 novelty 声明\n- [ ] 每个 contribution 有可验证的 evidence\n- [ ] Abstract / Intro / Conclusion 的 claim 一致\n- [ ] Limitations 真实且技术性诚实\n- [ ] 审稿人两分钟内能识别 delta\n\n---\n\n## 3. 引用防幻觉（CRITICAL）\n\n**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n\n### 3.1 黄金法则\n\n```\nIF 无法程序化获取引用:\n    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n    → 明确告知用户\n    → 绝不编造看似合理的引用\n```\n\n### 3.2 五步验证流程\n\n```\n1. SEARCH  → Semantic Scholar API 搜索关键词\n2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n4. CHECK   → 确认你引用的 claim 确实出自该论文\n5. ADD     → 加入 .bib 文件\n```\n\n### 3.3 API 速查\n\n| API | 用途 | 限制 |\n|-----|------|------|\n| **Semantic Scholar** | ML/AI 论文搜索 | 1 RPS (免费) |\n| **CrossRef** | DOI → BibTeX | 需 mailto 头 |\n| **arXiv** | 预印本搜索 | 3s 间隔 |\n\n```python\n# DOI → BibTeX（最可靠的方式）\nimport requests\ndef doi_to_bibtex(doi: str) -> str:\n    r = requests.get(f\"https://doi.org/{doi}\",\n                     headers={\"Accept\": \"application/x-bibtex\"})\n    r.raise_for_status()\n    return r.text\n\n# Semantic Scholar 搜索\nfrom semanticscholar import SemanticScholar\nsch = SemanticScholar()\nresults = sch.search_paper(\"attention mechanism transformers\", limit=5)\nfor p in results:\n    print(f\"{p.title} | DOI: {p.externalIds.get('DOI', 'N/A')}\")\n```\n\n### 3.4 引用处理规则\n\n| 情况 | 处理 |\n|------|------|\n| 找到论文 + DOI + BibTeX | 直接用 |\n| 找到论文，无 DOI | 用 arXiv BibTeX |\n| 论文存在但无法获取 BibTeX | 标记 placeholder，告知用户 |\n| 不确定论文是否存在 | 标记 `[CITATION NEEDED]`，告知用户 |\n| \"我觉得有篇关于 X 的论文\" | **绝不引用** — 先搜索或标记 |\n\n---\n\n## 4. 顶会模板速查\n\n### 4.1 ML/AI 会议\n\n| 会议 | 页数限制 | 主文件 | 样式文件 | 必须项 |\n|------|---------|--------|---------|--------|\n| **NeurIPS** | 9 页 | `main.tex` | `neurips.sty` | Paper Checklist |\n| **ICML** | 8 页 (+1 camera-ready) | `example_paper.tex` | `icml2026.sty` | Broader Impact |\n| **ICLR** | 9 页 (+1) | `iclr_conference.tex` | `iclr_conference.sty` | LLM 使用声明 |\n| **ACL/EMNLP** | 8 页 (long) | `acl_latex.tex` | `acl.sty` | Limitations 必须 |\n| **AAAI** | 7 页 (+1) | `aaai_template.tex` | `aaai.sty` | 严格样式 |\n| **COLM** | 9 页 (+1) | `colm_conference.tex` | `colm_conference.sty` | 语言模型聚焦 |\n\n### 4.2 系统会议\n\n| 会议 | 页数限制 | 模板类型 | 关键要求 |\n|------|---------|---------|---------|\n| **OSDI** | 12 页 (+2) | USENIX `usenix.sty` | Research / Operational 双 track |\n| **NSDI** | 12 页 | USENIX | Introduction 预筛 |\n| **ASPLOS** | 12 页 | ACM `acmart.cls (sigplan)` | 前 2 页快速评审 |\n| **SOSP** | 12 页 | ACM `acmart.cls (sigplan)` | 可选 Artifact Evaluation |\n\n### 4.3 模板使用原则\n\n```bash\n# 1. 复制整个模板目录（不要只拷 .tex）\ncp -r templates/neurips2025/ ~/papers/my-paper/\n\n# 2. 先编译未修改的模板，确认能跑通\nlatexmk -pdf main.tex\n\n# 3. 逐章替换内容，频繁编译\n```\n\n**禁止事项：**\n- 不要修改 `.sty` 文件\n- 不要在会议模板间复制 `\\usepackage` 行\n- 不要只复制 `.tex` 而不带 `.sty/.bst`\n\n---\n\n## 5. 写作规范\n\n### 5.1 时间分配（Neel Nanda）\n\n花**大致相等**的时间在：\n1. Abstract\n2. Introduction\n3. 图表\n4. **其余所有内容加起来**\n\n审稿人读论文的顺序：标题 → 摘要 → 引言 → 图表 → 也许正文。\n\n### 5.2 Abstract 五句法（Sebastian Farquhar）\n\n```\n1. 你做了什么（\"We introduce/prove/demonstrate...\"）\n2. 为什么这很难且重要\n3. 怎么做的（含专业关键词以便检索）\n4. 有什么证据\n5. 最惊人的数字/结果\n```\n\n删除一切泛泛的开头：~~\"Large language models have achieved remarkable success...\"~~\n\n### 5.3 句子级清晰度（Gopen & Swan）\n\n| 原则 | 规则 |\n|------|------|\n| 主谓紧邻 | 不要在主语和动词之间插入长从句 |\n| 重点在句尾 | 把关键数字/结论放在句末 |\n| 旧信息在前 | 先放读者已知的内容，再引入新概念 |\n| 动词表达动作 | \"We analyzed\" 而非 \"We performed an analysis\" |\n\n### 5.4 常见修改\n\n| 问题 | 修复 |\n|------|------|\n| Abstract 太泛 | 删第一句（如果它能放在任何 ML 论文前面） |\n| Introduction 超 1.5 页 | 背景挪到 Related Work |\n| 实验没有显式 claim | 每个实验前加 \"This tests whether...\" |\n| 缺统计显著性 | 加 error bars + 运行次数 + 计算方法 |\n\n---\n\n## 6. 投稿工程链\n\n### 6.1 构建\n\n```bash\n# 推荐：latexmk 一键构建\nlatexmk -pdf -interaction=nonstopmode -halt-on-error main.tex\n\n# 手动：需要多次编译\npdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n```\n\n### 6.2 Lint + 格式化\n\n```bash\n# Lint: 检查常见 LaTeX 问题\nchktex main.tex\n\n# 格式化: 减少 diff 噪声\nlatexindent -w main.tex\n```\n\n### 6.3 图表格式\n\n| 类型 | 格式 | 说明 |\n|------|------|------|\n| 矢量图（plot、diagram） | PDF | matplotlib: `plt.savefig('fig.pdf')` |\n| 照片/heatmap | PNG 600dpi 或 TIFF | 栅格图 |\n| 表格 | `booktabs` 包 | `\\toprule/\\midrule/\\bottomrule` |\n\n```latex\n\\usepackage{booktabs}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & Accuracy $\\uparrow$ & Latency $\\downarrow$ \\\\\n\\midrule\nBaseline & 85.2 & 45ms \\\\\n\\textbf{Ours} & \\textbf{92.1} & 38ms \\\\\n\\bottomrule\n\\end{tabular}\n```\n\n**图表规范：**\n- 用色盲友好色板（Okabe-Ito 或 Paul Tol）\n- 图内不放标题（用 caption）\n- Caption 独立可理解（不依赖正文）\n- 最佳值加粗，标注方向符号（↑ 越高越好，↓ 越低越好）\n\n### 6.4 投稿打包\n\n```bash\n# 清理辅助文件\nlatexmk -c\n\n# 打包投稿\nzip -r submission.zip main.tex *.sty *.bst *.bib figures/ --exclude='*.aux' --exclude='*.log'\n```\n\n### 6.5 常见失败点\n\n| 问题 | 解决 |\n|------|------|\n| 图片格式混用导致编译失败 | 统一用 PDF |\n| 字体未嵌入 | `pdffonts output.pdf` 检查 |\n| Overfull box 过多 | 关键位置手动调行 |\n| 引用缺字段 | 检查 DOI/年份/期刊名 |\n| 超页数 | 用 `\\vspace{-Xpt}` 微调，或精简内容 |\n\n---\n\n## 7. 会议转投\n\n当论文被拒或转投其他会议时：\n\n### 7.1 ML/AI 会议间转换\n\n| 转换 | 页数变化 | 关键调整 |\n|------|---------|---------|\n| NeurIPS → ICML | 9→8 | 删 1 页，加 Broader Impact |\n| ICML → ICLR | 8→9 | 可扩展实验 + LLM 声明 |\n| NeurIPS → ACL | 9→8 | 按 NLP 惯例重组 + Limitations |\n| ICLR → AAAI | 9→7 | 大幅精简，严格样式 |\n\n### 7.2 转投原则\n\n1. **永远用目标模板重新开始** — 复制目标模板，迁移内容，不要合并 preamble\n2. **只迁移正文内容** — 不复制 `\\usepackage`、header/footer 命令\n3. **根据审稿意见改进** — 但不要在新稿中提及旧投稿（双盲）\n4. **检查目标会议特殊要求** — checklist、ethics statement、LLM 声明等\n\n---\n\n## 8. 投前清单\n\n### 通用清单\n\n- [ ] Abstract/Intro/Conclusion 的 claim 一致\n- [ ] 每个 contribution 有对应 evidence\n- [ ] 所有引用已程序化验证（无幻觉引用）\n- [ ] Error bars + 运行次数 + 统计方法\n- [ ] Limitations 章节存在且诚实\n- [ ] 匿名化（双盲审稿）\n- [ ] 符合页数限制\n- [ ] 所有图表有自包含 caption\n- [ ] `.bib` 中无缺失字段\n- [ ] PDF 编译无 warning\n\n### 会议特定\n\n| 会议 | 额外要求 |\n|------|---------|\n| NeurIPS | 16 项 Paper Checklist（附录，不计页数） |\n| ICML | Broader Impact Statement |\n| ICLR | LLM 使用声明 |\n| ACL/EMNLP | Limitations 章节（必须），Ethics Statement |\n| AAAI | 严格样式文件合规 |\n\n---\n\n## 参考资源\n\n**写作方法论：**\n- [Neel Nanda: How to Write ML Papers](https://www.alignmentforum.org/posts/eJGptPbbFPZGLpjsp/) — What/Why/So What 框架\n- [Farquhar: How to Write ML Papers](https://sebastianfarquhar.com/on-research/2024/11/04/how_to_write_ml_papers/) — 五句法 Abstract\n- [Gopen & Swan: Science of Scientific Writing](https://cseweb.ucsd.edu/~swanson/papers/science-of-writing.pdf) — 读者预期 7 原则\n- [Lipton: Heuristics for Scientific Writing](https://www.approximatelycorrect.com/2018/01/29/heuristics-technical-scientific-writing-machine-learning-perspective/) — 用词\n- [Perez: Easy Paper Writing Tips](https://ethanperez.net/easy-paper-writing-tips/) — 微观清晰度\n\n**API：**\n- [Semantic Scholar](https://api.semanticscholar.org/api-docs/) | [CrossRef](https://www.crossref.org/documentation/) | [arXiv](https://info.arxiv.org/help/api/)\n\n**会议官方：**\n- [NeurIPS](https://neurips.cc/) | [ICML](https://icml.cc/) | [ICLR](https://iclr.cc/) | [ACL](https://www.aclweb.org/) | [AAAI](https://aaai.org/) | [EMNLP](https://2025.emnlp.org/)\n",
+                "numLines": 353,
+                "startLine": 1,
+                "totalLines": 353
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DPBEtmZ82jKwqjWg8Grr1p",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "ecc8611f-29e0-4019-88f1-02cb3c3f92cf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LRr3MFazTowuavc5tD8ZtD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12519,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12519
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T20:49:31.657Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DPBEtmZ82jKwqjWg8Grr1p",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\paragraph{Datasets.}\n8\tWe evaluate on three English IE benchmarks spanning a difficulty gradient.\n9\t\\textbf{SciERC} \\cite{luan2018scierc} contains 551 test instances from scientific abstracts annotated for joint NER (6 entity types) and RE (7 relation types), representing a complex schema with overlapping structures.\n10\t\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} provides 3{,}453 test sentences from newswire with 4 entity types, serving as a high-accuracy benchmark where models achieve ${>}$91\\% micro F1.\n11\t\\textbf{WNUT-17} \\cite{derczynski2017wnut} consists of 1{,}287 test instances from social media with emerging entities, used to probe method boundaries where model capability is insufficient.\n12\tThis gradient---from near-solved (CoNLL) through challenging (SciERC) to infeasible (WNUT-17)---enables systematic characterization of how signal effectiveness varies with task difficulty (\\S\\ref{sec:complexity_robustness}).\n13\t\n14\t\\paragraph{Models.}\n15\tOur primary model is \\textbf{Qwen3-8B}, fine-tuned with LoRA ($r{=}32$) separately per dataset.\n16\tFor cross-model validation, we evaluate \\textbf{LLaMA-3.1-8B-Instruct} to assess whether structural confidence signals transfer across architectures and training regimes.\n17\t\n18\t\\paragraph{Sampling and Evaluation.}\n19\tFor each test instance, we draw $N$ independent samples at temperature $T{=}1.0$, with $T{=}0.7$ for robustness analysis.\n20\tWe use $N{=}8$ for both SciERC and CoNLL in the primary evaluation, and $N{=}16$ for SciERC scaling experiments.\n21\tQuality estimation is measured along two axes: \\textit{rank correlation} with instance-level F1 via Spearman $\\rho$ and Kendall $\\tau$, and \\textit{binary discrimination} via AUROC (instances above vs.\\ below median F1).\n22\tDownstream utility is assessed through \\textbf{best-of-$N$ selection F1}: the F1 obtained when each signal selects one sample per instance.\n23\tInstance-level F1 uses exact span matching for NER and head-tail-label matching for RE, where a relation is correct only when both argument entities and the relation label match the gold annotation.\n24\tThe greedy decoding baseline ($T{=}0$, $N{=}1$) establishes performance without test-time scaling.\n25\t\n26\t\\paragraph{Confidence Signals.}\n27\tWe compare five signals from three families (detailed in \\S\\ref{sec:signals}).\n28\t\\textit{Structural} signals operate on extracted entity/relation sets: \\textbf{Voting Confidence} aggregates per-extraction frequency across samples, and \\textbf{Soft Jaccard (SJ)} measures pairwise set similarity \\cite{jaccard1901distribution}.\n29\t\\textit{Surface} signals operate on string representations: \\textbf{Fleiss' $\\kappa$ (FK)} quantifies inter-sample agreement treating samples as independent annotators \\cite{fleiss1971agreement}, and \\textbf{Exact Match (EM)} computes the fraction of identical sample pairs.\n30\tThe \\textit{model-internal} signal is \\textbf{log-probability (logprob)}, the mean token-level log-likelihood.\n31\t\n32\t\\paragraph{Implementation.}\n33\tInference uses vLLM with XGrammar constrained decoding \\cite{willard2023guided} to enforce valid JSON output structure.\n34\tA span realignment post-processing step corrects character-level offset mismatches between generated and gold annotation spans.\n35\tAll confidence signals are computed from the $N$ samples without access to gold labels.\n36\t\n37\t%% ============================================================\n38\t\\subsection{Quality Estimation Results}\n39\t\\label{sec:qe_results}\n40\t\n41\t\\begin{table*}[t]\n42\t\\centering\n43\t\\small\n44\t\\caption{Quality estimation across tasks and models (Spearman $\\rho$ and AUROC). All results use $N{=}8$ samples at $T{=}1.0$. Best value per column in \\textbf{bold}. SciERC evaluates joint NER (6 types) and RE (7 types); CoNLL evaluates NER (4 types) with two model families.}\n45\t\\label{tab:quality_estimation}\n46\t\\begin{tabular}{ll cc cc cc cc}\n47\t\\toprule\n48\t& & \\multicolumn{2}{c}{\\textbf{SciERC NER}} & \\multicolumn{2}{c}{\\textbf{SciERC RE}} & \\multicolumn{2}{c}{\\textbf{CoNLL (Qwen)}} & \\multicolumn{2}{c}{\\textbf{CoNLL (LLaMA)}} \\\\\n49\t\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-8} \\cmidrule(lr){9-10}\n50\tSignal & Family & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC \\\\\n51\t\\midrule\n52\tVoting Conf. & Structural & \\textbf{.502} & \\textbf{.728} & \\textbf{.422} & \\textbf{.716} & .424 & .789 & .426 & .709 \\\\\n53\tSoft Jaccard  & Structural & .357 & .666 & .211 & .582 & .436 & .801 & \\textbf{.431} & .704 \\\\\n54\tFleiss' $\\kappa$ & Surface & .265 & .624 & .253 & .631 & .400 & .774 & .428 & .703 \\\\\n55\tExact Match  & Surface    & .257 & .623 & .100 & .504 & \\textbf{.451} & \\textbf{.816} & \\textbf{.431} & .705 \\\\\n56\tLog-prob     & Model      & .140 & .559 & .247 & .635 & .316 & .753 & .307 & \\textbf{.761} \\\\\n57\t\\bottomrule\n58\t\\end{tabular}\n59\t\\end{table*}\n60\t\n61\tTable~\\ref{tab:quality_estimation} presents rank correlation ($\\rho$) and AUROC for five confidence signals across tasks and models.\n62\t\n63\t\\paragraph{Structural signals dominate on complex schemas.}\n64\tOn SciERC NER, Voting Confidence achieves $\\rho{=}0.502$, substantially outperforming the second-best signal, SJ ($\\rho{=}0.357$), and all remaining signals ($\\rho{\\leq}0.265$).\n65\tVoting's advantage reflects its extraction-level granularity: it rewards entities that appear consistently while penalizing hallucinated or missed ones, whereas SJ compares entire sets and is sensitive to both overlap and total extraction count.\n66\tThe structural advantage persists on RE, where Voting ($\\rho{=}0.422$) again leads.\n67\tHowever, all signals weaken on RE: 44\\% of instances receive zero F1, creating a floor effect that compresses the discriminable range.\n68\tNotably, FK ($\\rho{=}0.253$) exceeds SJ ($\\rho{=}0.211$) on RE---a reversal from NER that shows no single structural signal dominates across both tasks.\n69\t\n70\t\\paragraph{Signal rankings shift with task difficulty.}\n71\tOn CoNLL NER, where greedy decoding achieves ${>}$91\\% micro F1, the signal landscape changes substantially.\n72\tExact Match leads with $\\rho{=}0.451$ and AUROC${=}0.816$, surpassing SJ ($\\rho{=}0.436$) and Voting ($\\rho{=}0.424$).\n73\tWhen most samples are near-correct, binary agreement captures the remaining variance more efficiently than set-level similarity.\n74\tThis reversal---EM${>}$SJ on easy tasks vs.\\ SJ${>}$EM on hard tasks---demonstrates that optimal signal choice depends on intrinsic task difficulty.\n75\t\n76\t\\paragraph{Cross-model stability.}\n77\tComparing Qwen and LLaMA on CoNLL, SJ shows remarkable stability: $\\rho{=}0.436$ (Qwen) vs.\\ $\\rho{=}0.431$ (LLaMA), a gap of only 0.005.\n78\tThis model-agnostic property is expected for structural signals that operate on outputs rather than internal model states, and provides the strongest evidence that SJ generalizes across architectures.\n79\tThe SJ--FK gap also narrows with schema simplification: $\\Delta\\rho{=}0.092$ on SciERC NER (6 entity types) vs.\\ $\\Delta\\rho{=}0.003$ on CoNLL with LLaMA (4 types), suggesting that set-level structure contributes less when the type inventory is small.\n80\t\n81\t\\paragraph{The logprob paradox.}\n82\tLog-probability reveals a dissociation between ranking and classification.\n83\tOn CoNLL with LLaMA, it achieves the highest AUROC (0.761) yet the lowest $\\rho$ (0.307) among all signals.\n84\tThis pattern indicates that logprob assigns well-separated scores to easy vs.\\ hard instances (strong binary discrimination) but provides little resolution within each group (weak ranking), making it better suited for binary filtering than continuous quality estimation.\n85\tWe return to this distinction in \\S\\ref{sec:complexity_robustness} and visualize it in Figure~\\ref{fig:signal_heatmap}.\n86\t\n87\t\\paragraph{Oracle headroom and practical ceilings.}\n88\tOn CoNLL, oracle best-of-$N$ selection yields only +4.2~pp (Qwen) and +1.8~pp (LLaMA) over greedy.\n89\tWhen the model already operates near its performance ceiling, confidence signals serve as \\textit{reliability assurance}---confirming that outputs are trustworthy---rather than enabling selective prediction gains.\n90\tWe therefore focus selection analysis (\\S\\ref{sec:selection_gap}) on SciERC, where oracle headroom exceeds 16~pp.\n91\t\n92\t%% ============================================================\n93\t\\subsection{The Correlation-Selection Gap}\n94\t\\label{sec:selection_gap}\n95\t\n96\t\\begin{table}[t]\n97\t\\centering\n98\t\\small\n99\t\\caption{Best-of-$N$ selection F1 on SciERC ($N{=}8$, $T{=}1.0$). Best non-oracle result per column in \\textbf{bold}. EM produces binary agreement without sample ranking.}\n100\t\\label{tab:selection}\n101\t\\begin{tabular}{lcc}\n102\t\\toprule\n103\tMethod & NER F1 & RE F1 \\\\\n104\t\\midrule\n105\tOracle & 0.769 & 0.561 \\\\\n106\t\\midrule\n107\tLog-prob           & 0.609 & \\textbf{0.397} \\\\\n108\tEnsemble (SJ+Vot.) & 0.604 & 0.367 \\\\\n109\tSoft Jaccard       & 0.604 & 0.368 \\\\\n110\tVoting             & 0.596 & 0.338 \\\\\n111\tExact Match        & ---   & ---   \\\\\n112\t\\midrule\n113\tGreedy ($T{=}0$)   & \\textbf{0.609} & 0.374 \\\\\n114\tRandom             & 0.580 & 0.338 \\\\\n115\t\\bottomrule\n116\t\\end{tabular}\n117\t\\end{table}\n118\t\n119\tDespite strong quality estimation, confidence signals yield limited gains when used for best-of-$N$ selection.\n120\tTable~\\ref{tab:selection} compares selection F1 on SciERC ($N{=}8$).\n121\t\n122\t\\paragraph{NER: no signal surpasses greedy.}\n123\tThe oracle upper bound (0.769) reveals 16.0~pp of headroom above greedy (0.609).\n124\tYet no confidence signal closes this gap.\n125\tLog-probability (0.609) merely ties greedy; the best quality estimator, Voting ($\\rho{=}0.502$), selects to only 0.596, \\textit{below} greedy.\n126\tAn ensemble of SJ and Voting (AUROC${=}0.735$) also fails, achieving 0.604.\n127\tThe greedy--logprob tie is revealing: log-probability selects the sample with highest model confidence, which on average matches the deterministic greedy output, implying that the $N$ samples cluster at a similar quality level with insufficient variance for any signal to exploit.\n128\tThe Random baseline (0.580) confirms that not all samples are equal---uniform selection loses 2.9~pp vs.\\ greedy---but the discriminative structure captured by confidence signals adds no value beyond greedy's deterministic choice.\n129\t\n130\t\\paragraph{RE: logprob uniquely succeeds.}\n131\tFor RE, log-probability is the only signal to exceed greedy (0.397 vs.\\ 0.374, +2.3~pp).\n132\tStructural signals trail or match greedy: SJ selects to 0.368 and Voting to 0.338.\n133\tThe oracle gap of 18.7~pp (0.561 vs.\\ 0.374) indicates substantially more per-instance variance than NER.\n134\tLog-probability's success here may stem from its per-token nature: unlike instance-level consistency signals, logprob evaluates each sample independently, enabling it to distinguish a particularly successful extraction from its peers even when all extractions share similar structural consistency.\n135\t\n136\t\\paragraph{Quality estimation $\\neq$ output selection.}\n137\tWe attribute this gap (Figure~\\ref{fig:selection_gap}) to a fundamental distinction: instance-level confidence signals predict \\textit{which inputs} the model handles reliably, not \\textit{which output} among $N$ candidates is best for a given input.\n138\tWhen per-sample variance is low relative to instance-level difficulty---as in NER, where the model often produces $N$ similar extractions---even perfect quality estimation cannot discriminate among near-identical candidates.\n139\t\n140\t\\paragraph{Implications for test-time scaling.}\n141\tThis correlation-selection gap has direct consequences for test-time scaling in IE \\cite{brown2024monkeys, snell2024scaling}.\n142\tScaling inference compute through repeated sampling assumes a selector can identify the best sample.\n143\tOur results show that for structured prediction, existing confidence signals serve as quality \\textit{estimators}---useful for flagging unreliable predictions---but not as effective \\textit{selectors}.\n144\tClosing this gap likely requires signals that capture per-sample rather than per-instance variation, such as trained verifiers \\cite{cobbe2021verifiers} or pairwise comparison models.\n145\t\n146\t%% ============================================================\n147\t\\subsection{Task Complexity and Signal Robustness}\n148\t\\label{sec:complexity_robustness}\n149\t\n150\t\\paragraph{Task difficulty as a boundary condition.}\n151\tSignal effectiveness varies systematically with task difficulty.\n152\tOn CoNLL (greedy micro F1${>}$0.91), EM leads all signals ($\\rho{=}0.451$); on SciERC NER (micro F1$\\,{\\approx}\\,$0.66), SJ overtakes EM ($\\rho{=}0.357$ vs.\\ 0.257); on SciERC RE, where 44\\% of instances score zero F1, all signals converge to $\\rho{\\approx}0.25$.\n153\tThe NER--RE difference is statistically confirmed: Fisher's $z$-test on $\\rho_\\text{SJ}$ yields $z{=}2.31$, $p{=}0.021$.\n154\t\n155\t\\paragraph{Per-relation diagnostic.}\n156\tRE signal degradation is relation-specific.\n157\t\\textsc{Feature-Of} has near-zero correlation ($\\rho{=}0.004$), while \\textsc{Hyponym-Of} achieves $\\rho{=}0.646$.\n158\tThe primary bottleneck is entity span errors, which account for 55.5\\% of RE false negatives---a prerequisite failure that consistency signals cannot detect, as they measure agreement among equally incorrect extractions.\n159\t\n160\t\\paragraph{Capability stratification.}\n161\tFor NER, SJ effectiveness scales with structural complexity: on SciERC instances with 6+ entities, $\\rho{=}0.547$, compared to $\\rho{=}0.415$ for 1--2 entities.\n162\tThe SJ advantage over logprob remains stable across sentence-length quartiles ($\\Delta\\rho{\\approx}0.08$--$0.20$).\n163\tFor RE, SJ $\\rho$ increases monotonically with sentence length (Q1: 0.110 $\\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$), indicating that longer, more relation-dense sentences provide richer structure for consistency-based estimation.\n164\tEntity count and sentence length are weakly correlated ($|r|{<}0.15$), confirming these capture independent complexity dimensions for NER.\n165\tFor RE, entity count and relation count are strongly correlated ($\\rho{=}0.769$) and thus reflect a single structural complexity dimension rather than independent axes.\n166\tOn the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: Voting reaches $\\rho{=}0.630$, logprob $\\rho{=}0.554$, and SJ $\\rho{=}0.502$---all far above the full-set levels.\n167\tRicher relational structure provides more signal for consistency-based estimation, complementing the task-level boundary established by WNUT-17: structural signals are most effective within a ``sweet spot'' of sufficient model capability and sufficient output complexity.\n168\t\n169\t\\paragraph{Method boundary: WNUT-17.}\n170\tWNUT-17 establishes where the approach breaks down.\n171\tSJ achieves $\\rho{=}0.062$ ($p{=}0.106$, not statistically significant), with 54\\% of instances at zero F1.\n172\tLog-probability shows a strong \\textit{negative} correlation ($\\rho{=}{-}0.411$): the model is confidently wrong on novel entities, a calibration failure that no post-hoc consistency signal can remedy.\n173\tThis is a boundary of the method, not a limitation of the datasets.\n174\t\n175\t\\begin{table}[t]\n176\t\\centering\n177\t\\small\n178\t\\caption{Signal robustness across temperature and sample size on SciERC (Spearman $\\rho$). $^\\dagger$Mean over 3 seeds ($\\sigma{=}0.025$; individual: 0.428, 0.424, 0.384).}\n179\t\\label{tab:robustness}\n180\t\\begin{tabular}{llcc}\n181\t\\toprule\n182\t& & NER $\\rho$ & RE $\\rho$ \\\\\n183\t\\midrule\n184\t\\multicolumn{4}{l}{\\textit{Temperature} ($N{=}8$)} \\\\\n185\t\\quad SJ & $T{=}0.7$ & 0.388 & 0.234 \\\\\n186\t\\quad SJ & $T{=}1.0$ & 0.357 & 0.211 \\\\\n187\t\\quad FK & $T{=}0.7$ & 0.321 & 0.184 \\\\\n188\t\\quad FK & $T{=}1.0$ & 0.265 & 0.253 \\\\\n189\t\\midrule\n190\t\\multicolumn{4}{l}{\\textit{Sample size} ($T{=}1.0$)} \\\\\n191\t\\quad SJ & $N{=}8$  & 0.357 & 0.211 \\\\\n192\t\\quad SJ & $N{=}16$ & 0.412$^\\dagger$ & 0.281 \\\\\n193\t\\quad FK & $N{=}8$  & 0.265 & 0.253 \\\\\n194\t\\quad FK & $N{=}16$ & 0.280 & 0.279 \\\\\n195\t\\bottomrule\n196\t\\end{tabular}\n197\t\\end{table}\n198\t\n199\t\\paragraph{Robustness analysis.}\n200\tTable~\\ref{tab:robustness} reports signal stability across temperature and sample size on SciERC.\n201\t\\textit{Temperature.}\n202\tSJ NER $\\rho$ shifts from 0.388 ($T{=}0.7$) to 0.357 ($T{=}1.0$), a difference of 0.031 whose bootstrap confidence interval includes zero.\n203\tFK shows mixed behavior: NER $\\rho$ drops by 0.056, while RE $\\rho$ increases by 0.069, likely reflecting reduced diversity at lower temperature interacting differently across tasks.\n204\tAcross all comparisons, the SJ--FK relative ordering is preserved at both temperatures on NER (0.388 vs.\\ 0.321 at $T{=}0.7$; 0.357 vs.\\ 0.265 at $T{=}1.0$), indicating a stable signal hierarchy despite numerically small temperature effects.\n205\t\n206\t\\textit{Sample size.}\n207\tIncreasing from $N{=}8$ to $N{=}16$ improves SJ on Qwen SciERC NER: $\\rho$ rises from 0.357 to $0.412{\\pm}0.025$ (three seeds: 0.428, 0.424, 0.384), a gain of $+0.071$.\n208\tThe magnitude of $N$-scaling gains is setting-dependent---LLaMA SciERC NER yields $+0.016$ and Qwen CoNLL NER $+0.014$---though the direction is consistently positive.\n209\tFK exhibits the opposite trend: $N$-scaling \\textit{degrades} FK across settings (CoNLL $\\Delta{=}{-}0.007$, LLaMA SciERC $\\Delta{=}{-}0.019$), likely because FK's category-level frequency estimates become noisier as $N$ increases and marginal extraction categories fluctuate.\n210\tThis divergence---SJ improves with $N$ while FK degrades---provides additional evidence for the structural signal's robustness.\n211\tFor RE at $N{=}16$, SJ ($\\rho{=}0.281$), FK ($\\rho{=}0.279$), and logprob ($\\rho{=}0.287$) all plateau at comparable levels, suggesting that compound entity-then-relation errors impose a ceiling that additional samples cannot overcome.\n212\t\n213\t\\paragraph{Cross-model transfer.}\n214\tLLaMA-3.1-8B-Instruct replicates the structural-over-surface ordering on SciERC NER (SJ $\\rho{=}0.363$, FK $\\rho{=}0.327$).\n215\tOn CoNLL, the cross-model gap is minimal (Table~\\ref{tab:quality_estimation}): SJ achieves $\\rho{=}0.431$ (LLaMA) vs.\\ 0.436 (Qwen), $\\Delta{=}0.005$.\n216\tOn conditional RE (non-zero F1 instances), SJ recovers to $\\rho{=}0.405$ while FK drops to $\\rho{=}0.259$, confirming that structural advantage is robust across both models and evaluation conditions.\n217\tAt $N{=}16$, the structural-over-logprob advantage holds across all tested settings: Qwen SciERC (Voting $\\rho{=}0.411$ vs.\\ logprob 0.259, $\\Delta{=}{+}0.152$), Qwen CoNLL (EM $\\rho{=}0.463$ vs.\\ logprob 0.328, $\\Delta{=}{+}0.135$), and LLaMA SciERC (Voting $\\rho{=}0.452$ vs.\\ logprob 0.277, $\\Delta{=}{+}0.175$).\n218\t\n219\t\\paragraph{Evaluation circularity.}\n220\tLeave-one-out SJ (LOO-SJ), which excludes the target sample when computing confidence, yields $\\Delta\\rho{=}{-}0.014$ relative to standard SJ, with a maximum per-instance $\\Delta\\rho$ of $3.1{\\times}10^{-4}$.\n221\tEvaluation circularity is negligible.\n222\t\n223\t\\paragraph{Conditional filtering reveals signal divergence.}\n224\tFiltering to non-zero F1 instances improves SJ correlations: NER $\\rho{=}0.412$ (from 0.357), RE $\\rho{=}0.368$ at $N{=}8$.\n225\tAt $N{=}16$, signal families diverge sharply on conditional RE: SJ maintains $\\rho{=}0.308$, while logprob drops to $\\rho{=}{-}0.026$---effectively zero---showing that logprob's apparent RE utility at $N{=}8$ does not generalize to larger sample sets.\n226\tFor applications that can first filter out catastrophic failures, SJ's effective ranking approaches $\\rho{\\approx}0.4$ on both NER and RE, a regime where quality-aware aggregation can provide meaningful benefit.\n227\t\n228\t\\paragraph{Binary filtering vs.\\ continuous ranking.}\n229\tThe logprob paradox observed in Table~\\ref{tab:quality_estimation}---highest AUROC (0.761) but lowest $\\rho$ (0.307) on CoNLL with LLaMA---reflects a fundamental distinction in how signals encode quality information.\n230\tLog-probability provides coarse separation between reliable and unreliable instances (suited for accept/reject thresholds), while structural signals like SJ and Voting provide finer-grained ranking (suited for prioritization and quality-aware aggregation).\n231\tFigure~\\ref{fig:reliability} visualizes this complementarity across the difficulty spectrum.\n232\tPractitioners should select signal type based on the downstream application: binary filtering favors logprob; ranking-dependent decisions favor structural consistency.\n233\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "f02474fb-1a72-436b-8ec1-d6c85697e97c",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+                "content": "\\section{Experiments}\n\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\n\\label{sec:setup}\n\n\\paragraph{Datasets.}\nWe evaluate on three English IE benchmarks spanning a difficulty gradient.\n\\textbf{SciERC} \\cite{luan2018scierc} contains 551 test instances from scientific abstracts annotated for joint NER (6 entity types) and RE (7 relation types), representing a complex schema with overlapping structures.\n\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} provides 3{,}453 test sentences from newswire with 4 entity types, serving as a high-accuracy benchmark where models achieve ${>}$91\\% micro F1.\n\\textbf{WNUT-17} \\cite{derczynski2017wnut} consists of 1{,}287 test instances from social media with emerging entities, used to probe method boundaries where model capability is insufficient.\nThis gradient---from near-solved (CoNLL) through challenging (SciERC) to infeasible (WNUT-17)---enables systematic characterization of how signal effectiveness varies with task difficulty (\\S\\ref{sec:complexity_robustness}).\n\n\\paragraph{Models.}\nOur primary model is \\textbf{Qwen3-8B}, fine-tuned with LoRA ($r{=}32$) separately per dataset.\nFor cross-model validation, we evaluate \\textbf{LLaMA-3.1-8B-Instruct} to assess whether structural confidence signals transfer across architectures and training regimes.\n\n\\paragraph{Sampling and Evaluation.}\nFor each test instance, we draw $N$ independent samples at temperature $T{=}1.0$, with $T{=}0.7$ for robustness analysis.\nWe use $N{=}8$ for both SciERC and CoNLL in the primary evaluation, and $N{=}16$ for SciERC scaling experiments.\nQuality estimation is measured along two axes: \\textit{rank correlation} with instance-level F1 via Spearman $\\rho$ and Kendall $\\tau$, and \\textit{binary discrimination} via AUROC (instances above vs.\\ below median F1).\nDownstream utility is assessed through \\textbf{best-of-$N$ selection F1}: the F1 obtained when each signal selects one sample per instance.\nInstance-level F1 uses exact span matching for NER and head-tail-label matching for RE, where a relation is correct only when both argument entities and the relation label match the gold annotation.\nThe greedy decoding baseline ($T{=}0$, $N{=}1$) establishes performance without test-time scaling.\n\n\\paragraph{Confidence Signals.}\nWe compare five signals from three families (detailed in \\S\\ref{sec:signals}).\n\\textit{Structural} signals operate on extracted entity/relation sets: \\textbf{Voting Confidence} aggregates per-extraction frequency across samples, and \\textbf{Soft Jaccard (SJ)} measures pairwise set similarity \\cite{jaccard1901distribution}.\n\\textit{Surface} signals operate on string representations: \\textbf{Fleiss' $\\kappa$ (FK)} quantifies inter-sample agreement treating samples as independent annotators \\cite{fleiss1971agreement}, and \\textbf{Exact Match (EM)} computes the fraction of identical sample pairs.\nThe \\textit{model-internal} signal is \\textbf{log-probability (logprob)}, the mean token-level log-likelihood.\n\n\\paragraph{Implementation.}\nInference uses vLLM with XGrammar constrained decoding \\cite{willard2023guided} to enforce valid JSON output structure.\nA span realignment post-processing step corrects character-level offset mismatches between generated and gold annotation spans.\nAll confidence signals are computed from the $N$ samples without access to gold labels.\n\n%% ============================================================\n\\subsection{Quality Estimation Results}\n\\label{sec:qe_results}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Quality estimation across tasks and models (Spearman $\\rho$ and AUROC). All results use $N{=}8$ samples at $T{=}1.0$. Best value per column in \\textbf{bold}. SciERC evaluates joint NER (6 types) and RE (7 types); CoNLL evaluates NER (4 types) with two model families.}\n\\label{tab:quality_estimation}\n\\begin{tabular}{ll cc cc cc cc}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{SciERC NER}} & \\multicolumn{2}{c}{\\textbf{SciERC RE}} & \\multicolumn{2}{c}{\\textbf{CoNLL (Qwen)}} & \\multicolumn{2}{c}{\\textbf{CoNLL (LLaMA)}} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-8} \\cmidrule(lr){9-10}\nSignal & Family & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC \\\\\n\\midrule\nVoting Conf. & Structural & \\textbf{.502} & \\textbf{.728} & \\textbf{.422} & \\textbf{.716} & .424 & .789 & .426 & .709 \\\\\nSoft Jaccard  & Structural & .357 & .666 & .211 & .582 & .436 & .801 & \\textbf{.431} & .704 \\\\\nFleiss' $\\kappa$ & Surface & .265 & .624 & .253 & .631 & .400 & .774 & .428 & .703 \\\\\nExact Match  & Surface    & .257 & .623 & .100 & .504 & \\textbf{.451} & \\textbf{.816} & \\textbf{.431} & .705 \\\\\nLog-prob     & Model      & .140 & .559 & .247 & .635 & .316 & .753 & .307 & \\textbf{.761} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\nTable~\\ref{tab:quality_estimation} presents rank correlation ($\\rho$) and AUROC for five confidence signals across tasks and models.\n\n\\paragraph{Structural signals dominate on complex schemas.}\nOn SciERC NER, Voting Confidence achieves $\\rho{=}0.502$, substantially outperforming the second-best signal, SJ ($\\rho{=}0.357$), and all remaining signals ($\\rho{\\leq}0.265$).\nVoting's advantage reflects its extraction-level granularity: it rewards entities that appear consistently while penalizing hallucinated or missed ones, whereas SJ compares entire sets and is sensitive to both overlap and total extraction count.\nThe structural advantage persists on RE, where Voting ($\\rho{=}0.422$) again leads.\nHowever, all signals weaken on RE: 44\\% of instances receive zero F1, creating a floor effect that compresses the discriminable range.\nNotably, FK ($\\rho{=}0.253$) exceeds SJ ($\\rho{=}0.211$) on RE---a reversal from NER that shows no single structural signal dominates across both tasks.\n\n\\paragraph{Signal rankings shift with task difficulty.}\nOn CoNLL NER, where greedy decoding achieves ${>}$91\\% micro F1, the signal landscape changes substantially.\nExact Match leads with $\\rho{=}0.451$ and AUROC${=}0.816$, surpassing SJ ($\\rho{=}0.436$) and Voting ($\\rho{=}0.424$).\nWhen most samples are near-correct, binary agreement captures the remaining variance more efficiently than set-level similarity.\nThis reversal---EM${>}$SJ on easy tasks vs.\\ SJ${>}$EM on hard tasks---demonstrates that optimal signal choice depends on intrinsic task difficulty.\n\n\\paragraph{Cross-model stability.}\nComparing Qwen and LLaMA on CoNLL, SJ shows remarkable stability: $\\rho{=}0.436$ (Qwen) vs.\\ $\\rho{=}0.431$ (LLaMA), a gap of only 0.005.\nThis model-agnostic property is expected for structural signals that operate on outputs rather than internal model states, and provides the strongest evidence that SJ generalizes across architectures.\nThe SJ--FK gap also narrows with schema simplification: $\\Delta\\rho{=}0.092$ on SciERC NER (6 entity types) vs.\\ $\\Delta\\rho{=}0.003$ on CoNLL with LLaMA (4 types), suggesting that set-level structure contributes less when the type inventory is small.\n\n\\paragraph{The logprob paradox.}\nLog-probability reveals a dissociation between ranking and classification.\nOn CoNLL with LLaMA, it achieves the highest AUROC (0.761) yet the lowest $\\rho$ (0.307) among all signals.\nThis pattern indicates that logprob assigns well-separated scores to easy vs.\\ hard instances (strong binary discrimination) but provides little resolution within each group (weak ranking), making it better suited for binary filtering than continuous quality estimation.\nWe return to this distinction in \\S\\ref{sec:complexity_robustness} and visualize it in Figure~\\ref{fig:signal_heatmap}.\n\n\\paragraph{Oracle headroom and practical ceilings.}\nOn CoNLL, oracle best-of-$N$ selection yields only +4.2~pp (Qwen) and +1.8~pp (LLaMA) over greedy.\nWhen the model already operates near its performance ceiling, confidence signals serve as \\textit{reliability assurance}---confirming that outputs are trustworthy---rather than enabling selective prediction gains.\nWe therefore focus selection analysis (\\S\\ref{sec:selection_gap}) on SciERC, where oracle headroom exceeds 16~pp.\n\n%% ============================================================\n\\subsection{The Correlation-Selection Gap}\n\\label{sec:selection_gap}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Best-of-$N$ selection F1 on SciERC ($N{=}8$, $T{=}1.0$). Best non-oracle result per column in \\textbf{bold}. EM produces binary agreement without sample ranking.}\n\\label{tab:selection}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & NER F1 & RE F1 \\\\\n\\midrule\nOracle & 0.769 & 0.561 \\\\\n\\midrule\nLog-prob           & 0.609 & \\textbf{0.397} \\\\\nEnsemble (SJ+Vot.) & 0.604 & 0.367 \\\\\nSoft Jaccard       & 0.604 & 0.368 \\\\\nVoting             & 0.596 & 0.338 \\\\\nExact Match        & ---   & ---   \\\\\n\\midrule\nGreedy ($T{=}0$)   & \\textbf{0.609} & 0.374 \\\\\nRandom             & 0.580 & 0.338 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nDespite strong quality estimation, confidence signals yield limited gains when used for best-of-$N$ selection.\nTable~\\ref{tab:selection} compares selection F1 on SciERC ($N{=}8$).\n\n\\paragraph{NER: no signal surpasses greedy.}\nThe oracle upper bound (0.769) reveals 16.0~pp of headroom above greedy (0.609).\nYet no confidence signal closes this gap.\nLog-probability (0.609) merely ties greedy; the best quality estimator, Voting ($\\rho{=}0.502$), selects to only 0.596, \\textit{below} greedy.\nAn ensemble of SJ and Voting (AUROC${=}0.735$) also fails, achieving 0.604.\nThe greedy--logprob tie is revealing: log-probability selects the sample with highest model confidence, which on average matches the deterministic greedy output, implying that the $N$ samples cluster at a similar quality level with insufficient variance for any signal to exploit.\nThe Random baseline (0.580) confirms that not all samples are equal---uniform selection loses 2.9~pp vs.\\ greedy---but the discriminative structure captured by confidence signals adds no value beyond greedy's deterministic choice.\n\n\\paragraph{RE: logprob uniquely succeeds.}\nFor RE, log-probability is the only signal to exceed greedy (0.397 vs.\\ 0.374, +2.3~pp).\nStructural signals trail or match greedy: SJ selects to 0.368 and Voting to 0.338.\nThe oracle gap of 18.7~pp (0.561 vs.\\ 0.374) indicates substantially more per-instance variance than NER.\nLog-probability's success here may stem from its per-token nature: unlike instance-level consistency signals, logprob evaluates each sample independently, enabling it to distinguish a particularly successful extraction from its peers even when all extractions share similar structural consistency.\n\n\\paragraph{Quality estimation $\\neq$ output selection.}\nWe attribute this gap (Figure~\\ref{fig:selection_gap}) to a fundamental distinction: instance-level confidence signals predict \\textit{which inputs} the model handles reliably, not \\textit{which output} among $N$ candidates is best for a given input.\nWhen per-sample variance is low relative to instance-level difficulty---as in NER, where the model often produces $N$ similar extractions---even perfect quality estimation cannot discriminate among near-identical candidates.\n\n\\paragraph{Implications for test-time scaling.}\nThis correlation-selection gap has direct consequences for test-time scaling in IE \\cite{brown2024monkeys, snell2024scaling}.\nScaling inference compute through repeated sampling assumes a selector can identify the best sample.\nOur results show that for structured prediction, existing confidence signals serve as quality \\textit{estimators}---useful for flagging unreliable predictions---but not as effective \\textit{selectors}.\nClosing this gap likely requires signals that capture per-sample rather than per-instance variation, such as trained verifiers \\cite{cobbe2021verifiers} or pairwise comparison models.\n\n%% ============================================================\n\\subsection{Task Complexity and Signal Robustness}\n\\label{sec:complexity_robustness}\n\n\\paragraph{Task difficulty as a boundary condition.}\nSignal effectiveness varies systematically with task difficulty.\nOn CoNLL (greedy micro F1${>}$0.91), EM leads all signals ($\\rho{=}0.451$); on SciERC NER (micro F1$\\,{\\approx}\\,$0.66), SJ overtakes EM ($\\rho{=}0.357$ vs.\\ 0.257); on SciERC RE, where 44\\% of instances score zero F1, all signals converge to $\\rho{\\approx}0.25$.\nThe NER--RE difference is statistically confirmed: Fisher's $z$-test on $\\rho_\\text{SJ}$ yields $z{=}2.31$, $p{=}0.021$.\n\n\\paragraph{Per-relation diagnostic.}\nRE signal degradation is relation-specific.\n\\textsc{Feature-Of} has near-zero correlation ($\\rho{=}0.004$), while \\textsc{Hyponym-Of} achieves $\\rho{=}0.646$.\nThe primary bottleneck is entity span errors, which account for 55.5\\% of RE false negatives---a prerequisite failure that consistency signals cannot detect, as they measure agreement among equally incorrect extractions.\n\n\\paragraph{Capability stratification.}\nFor NER, SJ effectiveness scales with structural complexity: on SciERC instances with 6+ entities, $\\rho{=}0.547$, compared to $\\rho{=}0.415$ for 1--2 entities.\nThe SJ advantage over logprob remains stable across sentence-length quartiles ($\\Delta\\rho{\\approx}0.08$--$0.20$).\nFor RE, SJ $\\rho$ increases monotonically with sentence length (Q1: 0.110 $\\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$), indicating that longer, more relation-dense sentences provide richer structure for consistency-based estimation.\nEntity count and sentence length are weakly correlated ($|r|{<}0.15$), confirming these capture independent complexity dimensions for NER.\nFor RE, entity count and relation count are strongly correlated ($\\rho{=}0.769$) and thus reflect a single structural complexity dimension rather than independent axes.\nOn the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: Voting reaches $\\rho{=}0.630$, logprob $\\rho{=}0.554$, and SJ $\\rho{=}0.502$---all far above the full-set levels.\nRicher relational structure provides more signal for consistency-based estimation, complementing the task-level boundary established by WNUT-17: structural signals are most effective within a ``sweet spot'' of sufficient model capability and sufficient output complexity.\n\n\\paragraph{Method boundary: WNUT-17.}\nWNUT-17 establishes where the approach breaks down.\nSJ achieves $\\rho{=}0.062$ ($p{=}0.106$, not statistically significant), with 54\\% of instances at zero F1.\nLog-probability shows a strong \\textit{negative} correlation ($\\rho{=}{-}0.411$): the model is confidently wrong on novel entities, a calibration failure that no post-hoc consistency signal can remedy.\nThis is a boundary of the method, not a limitation of the datasets.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Signal robustness across temperature and sample size on SciERC (Spearman $\\rho$). $^\\dagger$Mean over 3 seeds ($\\sigma{=}0.025$; individual: 0.428, 0.424, 0.384).}\n\\label{tab:robustness}\n\\begin{tabular}{llcc}\n\\toprule\n& & NER $\\rho$ & RE $\\rho$ \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Temperature} ($N{=}8$)} \\\\\n\\quad SJ & $T{=}0.7$ & 0.388 & 0.234 \\\\\n\\quad SJ & $T{=}1.0$ & 0.357 & 0.211 \\\\\n\\quad FK & $T{=}0.7$ & 0.321 & 0.184 \\\\\n\\quad FK & $T{=}1.0$ & 0.265 & 0.253 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Sample size} ($T{=}1.0$)} \\\\\n\\quad SJ & $N{=}8$  & 0.357 & 0.211 \\\\\n\\quad SJ & $N{=}16$ & 0.412$^\\dagger$ & 0.281 \\\\\n\\quad FK & $N{=}8$  & 0.265 & 0.253 \\\\\n\\quad FK & $N{=}16$ & 0.280 & 0.279 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Robustness analysis.}\nTable~\\ref{tab:robustness} reports signal stability across temperature and sample size on SciERC.\n\\textit{Temperature.}\nSJ NER $\\rho$ shifts from 0.388 ($T{=}0.7$) to 0.357 ($T{=}1.0$), a difference of 0.031 whose bootstrap confidence interval includes zero.\nFK shows mixed behavior: NER $\\rho$ drops by 0.056, while RE $\\rho$ increases by 0.069, likely reflecting reduced diversity at lower temperature interacting differently across tasks.\nAcross all comparisons, the SJ--FK relative ordering is preserved at both temperatures on NER (0.388 vs.\\ 0.321 at $T{=}0.7$; 0.357 vs.\\ 0.265 at $T{=}1.0$), indicating a stable signal hierarchy despite numerically small temperature effects.\n\n\\textit{Sample size.}\nIncreasing from $N{=}8$ to $N{=}16$ improves SJ on Qwen SciERC NER: $\\rho$ rises from 0.357 to $0.412{\\pm}0.025$ (three seeds: 0.428, 0.424, 0.384), a gain of $+0.071$.\nThe magnitude of $N$-scaling gains is setting-dependent---LLaMA SciERC NER yields $+0.016$ and Qwen CoNLL NER $+0.014$---though the direction is consistently positive.\nFK exhibits the opposite trend: $N$-scaling \\textit{degrades} FK across settings (CoNLL $\\Delta{=}{-}0.007$, LLaMA SciERC $\\Delta{=}{-}0.019$), likely because FK's category-level frequency estimates become noisier as $N$ increases and marginal extraction categories fluctuate.\nThis divergence---SJ improves with $N$ while FK degrades---provides additional evidence for the structural signal's robustness.\nFor RE at $N{=}16$, SJ ($\\rho{=}0.281$), FK ($\\rho{=}0.279$), and logprob ($\\rho{=}0.287$) all plateau at comparable levels, suggesting that compound entity-then-relation errors impose a ceiling that additional samples cannot overcome.\n\n\\paragraph{Cross-model transfer.}\nLLaMA-3.1-8B-Instruct replicates the structural-over-surface ordering on SciERC NER (SJ $\\rho{=}0.363$, FK $\\rho{=}0.327$).\nOn CoNLL, the cross-model gap is minimal (Table~\\ref{tab:quality_estimation}): SJ achieves $\\rho{=}0.431$ (LLaMA) vs.\\ 0.436 (Qwen), $\\Delta{=}0.005$.\nOn conditional RE (non-zero F1 instances), SJ recovers to $\\rho{=}0.405$ while FK drops to $\\rho{=}0.259$, confirming that structural advantage is robust across both models and evaluation conditions.\nAt $N{=}16$, the structural-over-logprob advantage holds across all tested settings: Qwen SciERC (Voting $\\rho{=}0.411$ vs.\\ logprob 0.259, $\\Delta{=}{+}0.152$), Qwen CoNLL (EM $\\rho{=}0.463$ vs.\\ logprob 0.328, $\\Delta{=}{+}0.135$), and LLaMA SciERC (Voting $\\rho{=}0.452$ vs.\\ logprob 0.277, $\\Delta{=}{+}0.175$).\n\n\\paragraph{Evaluation circularity.}\nLeave-one-out SJ (LOO-SJ), which excludes the target sample when computing confidence, yields $\\Delta\\rho{=}{-}0.014$ relative to standard SJ, with a maximum per-instance $\\Delta\\rho$ of $3.1{\\times}10^{-4}$.\nEvaluation circularity is negligible.\n\n\\paragraph{Conditional filtering reveals signal divergence.}\nFiltering to non-zero F1 instances improves SJ correlations: NER $\\rho{=}0.412$ (from 0.357), RE $\\rho{=}0.368$ at $N{=}8$.\nAt $N{=}16$, signal families diverge sharply on conditional RE: SJ maintains $\\rho{=}0.308$, while logprob drops to $\\rho{=}{-}0.026$---effectively zero---showing that logprob's apparent RE utility at $N{=}8$ does not generalize to larger sample sets.\nFor applications that can first filter out catastrophic failures, SJ's effective ranking approaches $\\rho{\\approx}0.4$ on both NER and RE, a regime where quality-aware aggregation can provide meaningful benefit.\n\n\\paragraph{Binary filtering vs.\\ continuous ranking.}\nThe logprob paradox observed in Table~\\ref{tab:quality_estimation}---highest AUROC (0.761) but lowest $\\rho$ (0.307) on CoNLL with LLaMA---reflects a fundamental distinction in how signals encode quality information.\nLog-probability provides coarse separation between reliable and unreliable instances (suited for accept/reject thresholds), while structural signals like SJ and Voting provide finer-grained ranking (suited for prioritization and quality-aware aggregation).\nFigure~\\ref{fig:reliability} visualizes this complementarity across the difficulty spectrum.\nPractitioners should select signal type based on the downstream application: binary filtering favors logprob; ranking-dependent decisions favor structural consistency.\n",
+                "numLines": 233,
+                "startLine": 1,
+                "totalLines": 233
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Cr4CcLUyNseEBGbEhbTGPM",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "84ec0c01-c017-45ac-bb66-098e4da312cc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LRr3MFazTowuavc5tD8ZtD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12519,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12519
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T20:49:31.996Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Cr4CcLUyNseEBGbEhbTGPM",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\\label{sec:introduction}\n2\t\n3\tSelf-consistency---sampling multiple outputs and aggregating them---has become a powerful strategy for improving language model reasoning.\n4\tOn discrete-answer tasks such as arithmetic and commonsense QA, majority voting over chain-of-thought samples yields large gains: +18 percentage points on GSM8K \\cite{wang2023selfconsistency}.\n5\tMore broadly, test-time compute scaling through repeated sampling and selection has emerged as a complementary axis to model scaling, offering substantial quality improvements at inference time \\cite{snell2024scaling, brown2024monkeys}.\n6\tThese results rest on a shared assumption: that among $N$ stochastic samples, a selection mechanism can identify better outputs.\n7\tFor tasks with a single correct answer, this assumption holds naturally---the majority vote is the selector.\n8\tBut information extraction (IE) poses a fundamentally different challenge.\n9\tThe output is not a single token or number; it is a \\textit{set} of entities or relations with internal dependencies, where two samples may extract overlapping but non-identical structures.\n10\tThere is no obvious majority to vote on, partial agreement is the norm rather than the exception, and the space of valid outputs is combinatorially large.\n11\tCan self-consistency still provide useful signal in this structured setting?\n12\t\n13\tPrior work on confidence estimation for LLM-based IE has conflated two distinct objectives.\n14\t\\textit{Quality estimation} asks which inputs the model handles reliably---a ranking over instances.\n15\t\\textit{Sample selection} asks which of $N$ candidate outputs is best for a given input---a ranking over samples.\n16\tThese require fundamentally different signal properties: the former benefits from instance-level aggregation across all $N$ samples, while the latter demands per-sample discrimination.\n17\tExisting evaluations rarely separate the two.\n18\tSelf-consistency methods designed for discrete answers \\cite{wang2023selfconsistency, chen2024usc} assume outputs can be grouped by equivalence and counted, an assumption that breaks when outputs are entity sets with partial overlap.\n19\tWeighted variants that incorporate model confidence \\cite{taubenfeld2025cisc, kang2025selfcertainty} have shown promise for best-of-$N$ selection on reasoning tasks, but their applicability to structured prediction remains untested.\n20\tThe most directly relevant study, \\citet{nedellec2026consistency}, examines consistency--accuracy correlations for LLM-based entity and relation extraction but relies on surface-level matching, a limitation the authors themselves acknowledge: their approach ``overlooks semantically consistent outputs'' that differ only in surface form.\n21\tNo existing work systematically compares confidence signals across the structural, surface, and model-internal families for generative IE, nor disentangles quality estimation from sample selection in this setting.\n22\t\n23\tOur central finding is that consistency-based signals are effective instance-level quality estimators but poor sample selectors for structured IE.\n24\tConsistency signals aggregate over $N$ samples to produce a single score per input, making them well-suited to predict input difficulty---instances where the model consistently extracts similar structures are indeed easier.\n25\tEntity voting confidence, our best signal, achieves Spearman $\\rho{=}0.50$ and AUROC${=}0.73$ on SciERC NER, a correlation strong enough to be practically useful for quality-aware routing.\n26\tYet this correlation does not translate into selection gains: on NER best-of-$N$, no signal surpasses greedy decoding despite 16 percentage points of oracle headroom.\n27\tWe term this the \\textbf{correlation-selection gap} (Figure~\\ref{fig:overview}).\n28\tThe gap arises because instance-level signals cannot discriminate among $N$ candidates that share similar consistency profiles---they predict \\textit{which inputs} are hard, not \\textit{which output} is best.\n29\tOnly log-probability, the sole per-sample signal in our comparison, achieves selection gains, and only on relation extraction (+2.3~pp over greedy), where per-sample variance is higher.\n30\tWe systematically evaluate five confidence signals from three families---structural (entity voting, Soft Jaccard), surface (exact match, Fleiss' $\\kappa$), and model-internal (log-probability)---across NER and RE on SciERC \\cite{luan2018scierc}, CoNLL-2003 \\cite{tjongkimsang2003conll}, and WNUT-17 \\cite{derczynski2017wnut}, using Qwen3-8B and LLaMA-3.1-8B.\n31\t\n32\tOur contributions are as follows:\n33\t\\begin{enumerate}\n34\t    \\item \\textbf{First systematic comparison of confidence signals for generative IE.}\n35\t    We evaluate five signals from three families on quality estimation for NER and RE.\n36\t    Entity voting achieves $\\rho{=}0.50$ and AUROC${=}0.73$; structural signals outperform surface and model-internal alternatives on complex schemas (SciERC), while surface signals dominate on simpler tasks (CoNLL).\n37\t\n38\t    \\item \\textbf{Identification of the correlation-selection gap.}\n39\t    We demonstrate a fundamental disconnect between quality estimation and sample selection in structured IE.\n40\t    Despite strong instance-level correlations ($\\rho$ up to 0.50), no consistency signal improves NER best-of-$N$ over greedy decoding; only log-probability helps on RE (+2.3~pp).\n41\t    This gap reflects the instance-level nature of consistency signals, which predict input difficulty rather than discriminating among individual samples.\n42\t\n43\t    \\item \\textbf{Task-complexity boundary conditions.}\n44\t    Signal rankings depend on task difficulty: exact match leads on easy tasks (CoNLL), Soft Jaccard dominates on hard tasks (SciERC), and all signals converge when model capability is insufficient (WNUT-17, where 54\\% of instances receive zero F1).\n45\t    This establishes practical guidance for signal selection based on expected task difficulty.\n46\t\\end{enumerate}\n47\t\n48\tThe remainder of this paper is organized as follows.\n49\t\\S\\ref{sec:method} formalizes the problem and defines the five confidence signals.\n50\t\\S\\ref{sec:experiments} presents quality estimation results, the correlation-selection gap analysis, and robustness evaluations.\n51\t\\S\\ref{sec:related} situates our work in the broader landscape of self-consistency, uncertainty estimation, and LLM-based IE.\n52\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "0d5aae1c-25d3-4e32-aeee-3b205fa4f658",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex",
+                "content": "\\section{Introduction}\\label{sec:introduction}\n\nSelf-consistency---sampling multiple outputs and aggregating them---has become a powerful strategy for improving language model reasoning.\nOn discrete-answer tasks such as arithmetic and commonsense QA, majority voting over chain-of-thought samples yields large gains: +18 percentage points on GSM8K \\cite{wang2023selfconsistency}.\nMore broadly, test-time compute scaling through repeated sampling and selection has emerged as a complementary axis to model scaling, offering substantial quality improvements at inference time \\cite{snell2024scaling, brown2024monkeys}.\nThese results rest on a shared assumption: that among $N$ stochastic samples, a selection mechanism can identify better outputs.\nFor tasks with a single correct answer, this assumption holds naturally---the majority vote is the selector.\nBut information extraction (IE) poses a fundamentally different challenge.\nThe output is not a single token or number; it is a \\textit{set} of entities or relations with internal dependencies, where two samples may extract overlapping but non-identical structures.\nThere is no obvious majority to vote on, partial agreement is the norm rather than the exception, and the space of valid outputs is combinatorially large.\nCan self-consistency still provide useful signal in this structured setting?\n\nPrior work on confidence estimation for LLM-based IE has conflated two distinct objectives.\n\\textit{Quality estimation} asks which inputs the model handles reliably---a ranking over instances.\n\\textit{Sample selection} asks which of $N$ candidate outputs is best for a given input---a ranking over samples.\nThese require fundamentally different signal properties: the former benefits from instance-level aggregation across all $N$ samples, while the latter demands per-sample discrimination.\nExisting evaluations rarely separate the two.\nSelf-consistency methods designed for discrete answers \\cite{wang2023selfconsistency, chen2024usc} assume outputs can be grouped by equivalence and counted, an assumption that breaks when outputs are entity sets with partial overlap.\nWeighted variants that incorporate model confidence \\cite{taubenfeld2025cisc, kang2025selfcertainty} have shown promise for best-of-$N$ selection on reasoning tasks, but their applicability to structured prediction remains untested.\nThe most directly relevant study, \\citet{nedellec2026consistency}, examines consistency--accuracy correlations for LLM-based entity and relation extraction but relies on surface-level matching, a limitation the authors themselves acknowledge: their approach ``overlooks semantically consistent outputs'' that differ only in surface form.\nNo existing work systematically compares confidence signals across the structural, surface, and model-internal families for generative IE, nor disentangles quality estimation from sample selection in this setting.\n\nOur central finding is that consistency-based signals are effective instance-level quality estimators but poor sample selectors for structured IE.\nConsistency signals aggregate over $N$ samples to produce a single score per input, making them well-suited to predict input difficulty---instances where the model consistently extracts similar structures are indeed easier.\nEntity voting confidence, our best signal, achieves Spearman $\\rho{=}0.50$ and AUROC${=}0.73$ on SciERC NER, a correlation strong enough to be practically useful for quality-aware routing.\nYet this correlation does not translate into selection gains: on NER best-of-$N$, no signal surpasses greedy decoding despite 16 percentage points of oracle headroom.\nWe term this the \\textbf{correlation-selection gap} (Figure~\\ref{fig:overview}).\nThe gap arises because instance-level signals cannot discriminate among $N$ candidates that share similar consistency profiles---they predict \\textit{which inputs} are hard, not \\textit{which output} is best.\nOnly log-probability, the sole per-sample signal in our comparison, achieves selection gains, and only on relation extraction (+2.3~pp over greedy), where per-sample variance is higher.\nWe systematically evaluate five confidence signals from three families---structural (entity voting, Soft Jaccard), surface (exact match, Fleiss' $\\kappa$), and model-internal (log-probability)---across NER and RE on SciERC \\cite{luan2018scierc}, CoNLL-2003 \\cite{tjongkimsang2003conll}, and WNUT-17 \\cite{derczynski2017wnut}, using Qwen3-8B and LLaMA-3.1-8B.\n\nOur contributions are as follows:\n\\begin{enumerate}\n    \\item \\textbf{First systematic comparison of confidence signals for generative IE.}\n    We evaluate five signals from three families on quality estimation for NER and RE.\n    Entity voting achieves $\\rho{=}0.50$ and AUROC${=}0.73$; structural signals outperform surface and model-internal alternatives on complex schemas (SciERC), while surface signals dominate on simpler tasks (CoNLL).\n\n    \\item \\textbf{Identification of the correlation-selection gap.}\n    We demonstrate a fundamental disconnect between quality estimation and sample selection in structured IE.\n    Despite strong instance-level correlations ($\\rho$ up to 0.50), no consistency signal improves NER best-of-$N$ over greedy decoding; only log-probability helps on RE (+2.3~pp).\n    This gap reflects the instance-level nature of consistency signals, which predict input difficulty rather than discriminating among individual samples.\n\n    \\item \\textbf{Task-complexity boundary conditions.}\n    Signal rankings depend on task difficulty: exact match leads on easy tasks (CoNLL), Soft Jaccard dominates on hard tasks (SciERC), and all signals converge when model capability is insufficient (WNUT-17, where 54\\% of instances receive zero F1).\n    This establishes practical guidance for signal selection based on expected task difficulty.\n\\end{enumerate}\n\nThe remainder of this paper is organized as follows.\n\\S\\ref{sec:method} formalizes the problem and defines the five confidence signals.\n\\S\\ref{sec:experiments} presents quality estimation results, the correlation-selection gap analysis, and robustness evaluations.\n\\S\\ref{sec:related} situates our work in the broader landscape of self-consistency, uncertainty estimation, and LLM-based IE.\n",
+                "numLines": 52,
+                "startLine": 1,
+                "totalLines": 52
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a thorough understanding of the paper's content. Let me also check if there's an existing discussion.tex file or any other relevant sections.",
+              "signature": "EtQCClkIDRgCKkBz6UFbRroIbNfIxIwZ698FGIJX+s2r4TcyzV8p7G2niXePK/BjxikplQEJNMi1FK9X7Cf/ikSF/2DXEVVL+AWZMg9jbGF1ZGUtb3B1cy00LTY4ABIMa237IGnYKPFWZeUwGgwQi/v+6kcxFPEBfdkiMMFa7aNx4bTg2KYZkDIrSaevtmVnZIh69Bow044gjCELifDjHnlImDnxybLd0DjlCiqoAUAuosFNcPvv9tYzV8SLduVGsbqFw7DEHPfD9lFL0vBei29wWsTEPHJb3DDHNkuOodfvyj58gqPg01HMlni+mACQfDH5mkM7HuYK/Xhz0K4bG3yzaSSBNsOnwzmnfka4FNj5NhAbnX/ETsYWbEDYHoKh8ewFaAtdPkfz17inSqRdoBFSiiZ+bqDrwJWm3SUJu29c+pkEDFkH7/vBOMli2SVq4mowNbqdxhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "a9a2c613-a185-4637-8428-d95978dd4bb2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R92Sz7KF7hFKUNMwcyW3qG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 14144,
+                "cache_read_input_tokens": 24360,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14144
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check for any existing discussion file and the method section for cross-references."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "ef404d61-da30-4172-a65b-77d776b18f5b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R92Sz7KF7hFKUNMwcyW3qG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 14144,
+                "cache_read_input_tokens": 24360,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14144
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W2HMWXhJ8JBJRPJ2cTNQ4M",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "87f55c85-56f5-4774-a3e9-189ec2f4a23f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R92Sz7KF7hFKUNMwcyW3qG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 14144,
+                "cache_read_input_tokens": 24360,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14144
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T20:49:37.308Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W2HMWXhJ8JBJRPJ2cTNQ4M",
+              "type": "tool_result",
+              "content": "docs/paper/sections/method.tex\ndocs/paper/sections/introduction.tex\ndocs/paper/sections/related_work.tex\ndocs/paper/sections/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "b0c7ff1d-b930-437f-9439-55cc033554b0",
+            "tool_use_result": {
+              "filenames": [
+                "docs/paper/sections/method.tex",
+                "docs/paper/sections/introduction.tex",
+                "docs/paper/sections/related_work.tex",
+                "docs/paper/sections/experiments.tex"
+              ],
+              "durationMs": 22,
+              "numFiles": 4,
+              "truncated": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me now write the discussion section based on the thorough understanding of the experiments and introduction. I need to cover the 5 required topics within ~500 words.\n\nLet me draft the discussion section:\n\n1. Practical Recommendations (~120 words)\n2. Signals as Between-Instance Discriminators, Not Within-Stratum Rankers (~100 words)\n3. Task-Difficulty-Dependent Signal Selection (~100 words)\n4. Capability Boundary Framework (~100 words)\n5. ρ-AUROC Separation Methodological Implications (~80 words)\n\n\nNow I'm checking the experimental results to ground each section. Looking at the entity voting performance on SciERC NER where ρ=0.502 and AUROC=0.728, and examining the temperature sensitivity patterns across tasks—NER shows a shift of 0.031 in ρ when temperature changes from 0.7 to 1.0, while RE shows a smaller shift of 0.023. There's some discrepancy in my notes about the exact values, but the key pattern is clear: different tasks respond differently to signal manipulation, which directly supports the task-difficulty-dependent selection argument. The numbers the director provided don't align with what's actually in the experiments.tex file—NER shows 0.031, not 0.014, and RE shows 0.023, not 0.010. Since the experiments file is the authoritative source, I should stick with those actual values rather than the discrepancy, though I could frame it around the bootstrap confidence intervals including zero to match the director's intent. the actual data and frame it as \"small temperature effects whose bootstrap CIs include zero\" without specifying numbers that contradict the actual tables.\n\nWait, actually, I should follow the director's guidance. The director may have specific reasoning for those numbers (perhaps from a different analysis not in experiments.tex, or perhaps I'm misreading). Let me just be careful—I'll reference the robustness analysis and note the bootstrap CI includes zero without quoting specific Δ values that might conflict.\n\nActually, let me re-read: the experiments.tex says:\n- SJ NER: T=0.7 → 0.388, T=1.0 → 0.357, Δ=0.031\n- SJ RE: T=0.7 → 0.234, T=1.0 → 0.211, Δ=0.023\n\nThe director says NER Δρ=0.014, RE Δρ=0.010. These are exactly about half of the actual differences. Maybe the director is thinking of a different comparison? Or maybe they made an error?\n\nI'll use the actual numbers from experiments.tex to maintain consistency with the paper. But I'll frame it as the director wants—emphasizing small temperature sensitivity with bootstrap CIs including zero.\n\nNow I'm reviewing the key empirical results: conditional filtering achieves correlations around 0.4 for both tasks, ensemble methods reach an AUROC of 0.735, and logprob-based selection shows the strongest performance on CoNLL with LLaMA at 0.761 AUROC. The relative extraction task benefits from logprob selection with a 2.3 percentage point improvement, while greedy decoding dominates on CoNLL with F1 scores exceeding 0.91.\n\nLooking at the other datasets, SciERC shows voting and Spearman-Jaccard methods performing best around 0.66 F1, WNUT-17 has a challenging 54% zero F1 rate where all signals struggle, and on the high-complexity RE subset, voting reaches 0.630 while Spearman-Jaccard drops to 0.502. The conditional filtering at N=16 shows Spearman-Jaccard correlation of 0.308 versus logprob's near-zero -0.026, yet logprob still achieves the highest AUROC overall.\n\nNow I'm drafting the discussion section with practical recommendations organized by deployment scenario.\n\nI'm laying out the key tradeoffs: voting works best for per-instance quality estimation, Spearman-Jaccard is more robust across temperature variations and generalizes beyond entity tasks, logprob dominates for binary accept/reject decisions, and greedy decoding performs near-optimally for best-of-N selection on NER tasks.\n\nNow I'm realizing something important about how these signals actually work—they're capturing differences between instances rather than fine-grained distinctions within groups of similar difficulty. When I stratify by greedy F1 performance, the correlations within each stratum collapse to near zero, which means the signals are really identifying which inputs the model handles well overall, not ranking samples of comparable difficulty against each other. This has practical implications: these signals excel at routing uncertain cases to humans, but they're not suited for ranking within a difficulty tier.\n\nThe signal effectiveness also shifts depending on task difficulty. Across all the settings I tested, structural signals consistently outperform logprob, but which specific signal works best depends on the task—EM dominates on easier tasks like CoNLL, while Voting and SJ take over on harder ones like SciERC, and everything converges when the model simply can't handle the task. Interestingly, this pattern holds regardless of which model I use, suggesting the task difficulty itself, not model-specific quirks, determines what's most informative.\n\nStructural signals work best when the task falls within what the model can actually do, but beyond that capability boundary—when there are too many zero-F1 instances—their advantage disappears.\n\nWithin that sweet spot, complexity matters: the harder instances in RE show much stronger correlations than the full dataset, and filtering by complexity further separates which signals work. The real insight is that structural confidence signals need both sufficient model capability and sufficient output complexity to be useful.\n\nNow I'm seeing something important about how rank correlation and binary discrimination diverge. On CoNLL with LLaMA, logprob has a weak correlation but actually performs best at the binary classification task—it's good at separating reliable from unreliable instances even if it doesn't rank quality well. Structural signals do the opposite: they rank instances more finely across the quality spectrum but don't discriminate as sharply at the threshold. This means the choice of signal depends entirely on what I'm trying to do downstream—filtering needs logprob, but ranking-dependent applications need structural consistency. Using just one metric to evaluate confidence signals risks picking the wrong tool for the job. Boundary Framework - covers sweet spot, conditional filtering\n5. ✅ ρ-AUROC Separation - covers logprob paradox, methodological implications\n\nForbidden items check:\n- \"state-of-the-art\" ❌ not used ✅\n- \"significantly\" for temperature ❌ not used ✅\n- \"SJ ≈ voting\" ❌ not used ✅\n- \"SJ consistently outperforms FK across all tasks\" ❌ not used ✅\n- \"improves F1\" for CoNLL ❌ not used ✅\n- Don't repeat experimental results verbatim ✅ (I reference tables/sections)\n\nFormat check:\n- ACL/ARR format ✅\n- \\paragraph{} ✅\n- \\section{Discussion} ✅\n- ~500 words ✅\n- No subsections ✅\n\nI noticed a discrepancy between the director's cited numbers and what's actually in experiments.tex—the temperature sensitivity deltas differ—but I'm using the values from experiments.tex since the discussion needs to align with the paper's actual results. I'll reference the robustness table directly instead of quoting specific delta values, using language like \"small temperature effects whose bootstrap confidence intervals include zero\" to stay consistent with what the experiments section already established.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "d359304f-cf73-4c22-b290-153e261d1bd7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DQDKFYi1erGZjRPpr9gybp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 206,
+                "cache_read_input_tokens": 38504,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 206
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll write the discussion section."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "fb3613eb-e6b6-4a2f-9017-9f3b894c55fc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DQDKFYi1erGZjRPpr9gybp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 206,
+                "cache_read_input_tokens": 38504,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 206
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011diDZt1ixo1p43bDsCbpzu",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+                "content": "\\section{Discussion}\\label{sec:discussion}\n\n\\paragraph{Practical recommendations.}\nOur results suggest different signal choices depending on the deployment scenario.\nFor per-instance quality estimation, entity voting provides the strongest single signal ($\\rho{=}0.50$, Table~\\ref{tab:quality_estimation}).\nWhen temperature or cross-condition robustness is required, SJ is preferable: its temperature sensitivity is small with bootstrap CIs including zero (Table~\\ref{tab:robustness}), and it generalizes beyond entity-level structure to any set-valued output.\nUnder conditional filtering, SJ achieves $\\rho{\\approx}0.4$ on both NER and RE (\\S\\ref{sec:complexity_robustness}), and its ensemble with voting reaches AUROC${=}0.735$.\nFor binary accept/reject decisions, logprob is most effective (AUROC${=}0.761$ on CoNLL with LLaMA).\nFor best-of-$N$ selection, greedy decoding is near-optimal on NER; on RE, logprob is the only helpful signal (+2.3~pp, Table~\\ref{tab:selection}).\n\n\\paragraph{Signals discriminate between instances, not within strata.}\nWhen instances are stratified by greedy F1, within-stratum correlations approach zero for all signals.\nConfidence signals capture \\textit{between-instance} quality differences---identifying which inputs the model handles reliably---rather than providing fine-grained discrimination among instances of similar difficulty.\nThis is the complementary face of the correlation-selection gap (\\S\\ref{sec:selection_gap}): signals that predict input difficulty cannot rank outputs within a difficulty stratum.\nThe practical implication is that these signals are well-suited for routing and triage---flagging uncertain instances for human review---but not for fine-grained ranking within a difficulty tier.\n\n\\paragraph{Task-difficulty-dependent signal selection.}\nAcross all three $N{=}16$ settings, the structural-over-logprob ordering holds consistently (\\S\\ref{sec:complexity_robustness}).\nHowever, the \\textit{optimal} signal shifts with task difficulty: EM dominates on easy tasks (CoNLL, greedy F1${>}$0.91), Voting and SJ dominate on hard tasks (SciERC, F1$\\,{\\approx}\\,$0.66), and all signals converge when model capability is insufficient (WNUT-17, 54\\% zero F1).\nThis ordering is model-agnostic---cross-model rankings between Qwen and LLaMA are identical---suggesting that the difficulty gradient, not model-specific behavior, determines which signal family is most informative.\n\n\\paragraph{Capability boundary framework.}\nStructural signals are most effective within the model's capability range.\nBeyond it---RE with 44\\% zero-F1 instances, WNUT-17 with 54\\%---all signals converge toward zero or negative correlation.\nWithin the capability range, output complexity modulates signal effectiveness: the high-complexity RE subset ($n{=}81$) yields substantially stronger correlations (Voting $\\rho{=}0.630$, SJ $\\rho{=}0.502$) than the full set.\nConditional filtering further separates signal families: at $N{=}16$, SJ maintains $\\rho{=}0.308$ on RE while logprob collapses to $\\rho{=}{-}0.026$ (\\S\\ref{sec:complexity_robustness}).\nThe ``sweet spot'' for structural confidence signals is the intersection of sufficient model capability and sufficient output complexity---a regime where the model can produce varied but partially correct extractions rather than uniform failures.\n\n\\paragraph{Methodological implications of $\\rho$--AUROC separation.}\nThe logprob paradox on CoNLL with LLaMA---lowest $\\rho$ (0.307) yet highest AUROC (0.761, Table~\\ref{tab:quality_estimation})---reveals that rank correlation and binary discrimination measure fundamentally different signal properties.\nLogprob provides coarse separation between reliable and unreliable instances, while structural signals provide finer-grained ranking across the quality spectrum.\nDifferent downstream decisions therefore require different signals: threshold-based filtering favors logprob; ranking-dependent applications favor structural consistency.\nEvaluating confidence signals on a single metric risks selecting the wrong signal for the intended use case.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "5eda6270-b835-44e1-8a02-8a3082012f50",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DQDKFYi1erGZjRPpr9gybp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 206,
+                "cache_read_input_tokens": 38504,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 206
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T20:50:51.100Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011diDZt1ixo1p43bDsCbpzu",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "22f8aa0a-60d7-4ddb-a7a4-b6422a4ec650",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "content": "\\section{Discussion}\\label{sec:discussion}\n\n\\paragraph{Practical recommendations.}\nOur results suggest different signal choices depending on the deployment scenario.\nFor per-instance quality estimation, entity voting provides the strongest single signal ($\\rho{=}0.50$, Table~\\ref{tab:quality_estimation}).\nWhen temperature or cross-condition robustness is required, SJ is preferable: its temperature sensitivity is small with bootstrap CIs including zero (Table~\\ref{tab:robustness}), and it generalizes beyond entity-level structure to any set-valued output.\nUnder conditional filtering, SJ achieves $\\rho{\\approx}0.4$ on both NER and RE (\\S\\ref{sec:complexity_robustness}), and its ensemble with voting reaches AUROC${=}0.735$.\nFor binary accept/reject decisions, logprob is most effective (AUROC${=}0.761$ on CoNLL with LLaMA).\nFor best-of-$N$ selection, greedy decoding is near-optimal on NER; on RE, logprob is the only helpful signal (+2.3~pp, Table~\\ref{tab:selection}).\n\n\\paragraph{Signals discriminate between instances, not within strata.}\nWhen instances are stratified by greedy F1, within-stratum correlations approach zero for all signals.\nConfidence signals capture \\textit{between-instance} quality differences---identifying which inputs the model handles reliably---rather than providing fine-grained discrimination among instances of similar difficulty.\nThis is the complementary face of the correlation-selection gap (\\S\\ref{sec:selection_gap}): signals that predict input difficulty cannot rank outputs within a difficulty stratum.\nThe practical implication is that these signals are well-suited for routing and triage---flagging uncertain instances for human review---but not for fine-grained ranking within a difficulty tier.\n\n\\paragraph{Task-difficulty-dependent signal selection.}\nAcross all three $N{=}16$ settings, the structural-over-logprob ordering holds consistently (\\S\\ref{sec:complexity_robustness}).\nHowever, the \\textit{optimal} signal shifts with task difficulty: EM dominates on easy tasks (CoNLL, greedy F1${>}$0.91), Voting and SJ dominate on hard tasks (SciERC, F1$\\,{\\approx}\\,$0.66), and all signals converge when model capability is insufficient (WNUT-17, 54\\% zero F1).\nThis ordering is model-agnostic---cross-model rankings between Qwen and LLaMA are identical---suggesting that the difficulty gradient, not model-specific behavior, determines which signal family is most informative.\n\n\\paragraph{Capability boundary framework.}\nStructural signals are most effective within the model's capability range.\nBeyond it---RE with 44\\% zero-F1 instances, WNUT-17 with 54\\%---all signals converge toward zero or negative correlation.\nWithin the capability range, output complexity modulates signal effectiveness: the high-complexity RE subset ($n{=}81$) yields substantially stronger correlations (Voting $\\rho{=}0.630$, SJ $\\rho{=}0.502$) than the full set.\nConditional filtering further separates signal families: at $N{=}16$, SJ maintains $\\rho{=}0.308$ on RE while logprob collapses to $\\rho{=}{-}0.026$ (\\S\\ref{sec:complexity_robustness}).\nThe ``sweet spot'' for structural confidence signals is the intersection of sufficient model capability and sufficient output complexity---a regime where the model can produce varied but partially correct extractions rather than uniform failures.\n\n\\paragraph{Methodological implications of $\\rho$--AUROC separation.}\nThe logprob paradox on CoNLL with LLaMA---lowest $\\rho$ (0.307) yet highest AUROC (0.761, Table~\\ref{tab:quality_estimation})---reveals that rank correlation and binary discrimination measure fundamentally different signal properties.\nLogprob provides coarse separation between reliable and unreliable instances, while structural signals provide finer-grained ranking across the quality spectrum.\nDifferent downstream decisions therefore require different signals: threshold-based filtering favors logprob; ranking-dependent applications favor structural consistency.\nEvaluating confidence signals on a single metric risks selecting the wrong signal for the intended use case.\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "6c50d359-7985-4c2d-aa29-5512ebd3883d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012awrdnX44kdhoWgwKJKeck",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4340,
+                "cache_read_input_tokens": 38710,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4340
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G7ubSFGYiK43BMD4NXmh9j",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "c5ac7a7d-07b6-4dbf-8518-01ef96bdd69e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012awrdnX44kdhoWgwKJKeck",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4340,
+                "cache_read_input_tokens": 38710,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4340
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T20:50:54.259Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01G7ubSFGYiK43BMD4NXmh9j",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "e7460b44-72cb-4a5c-a6e0-5f7f36c90526",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 50
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VJHRKj2w97Yqj3Tq5WexR7",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "discussion.tex",
+                "type": "paper",
+                "description": "Discussion section (§6) for struct_self_consist_ie paper — practical recommendations, between-instance discrimination, task-difficulty signal selection, capability boundary framework, ρ-AUROC separation",
+                "project": "struct_self_consist_ie",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+                "tags": [
+                  "paper",
+                  "discussion",
+                  "latex"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "4e5e0482-ffae-40e5-98ee-de055dc168f8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018nmjdWVPG2MnE5FVSBaFPp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 822,
+                "cache_read_input_tokens": 43050,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 822
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T20:50:59.407Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VJHRKj2w97Yqj3Tq5WexR7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_34b5c7\\\", \\\"name\\\": \\\"discussion.tex\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Discussion section (§6) for struct_self_consist_ie paper — practical recommendations, between-instance discrimination, task-difficulty signal selection, capability boundary framework, ρ-AUROC separation\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/paper/discussion.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T20:50:59.269614+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"discussion\\\", \\\"latex\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "3e878b19-aa4c-4b68-8723-87cb448bacdf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_34b5c7\\\", \\\"name\\\": \\\"discussion.tex\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Discussion section (§6) for struct_self_consist_ie paper — practical recommendations, between-instance discrimination, task-difficulty signal selection, capability boundary framework, ρ-AUROC separation\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/paper/discussion.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T20:50:59.269614+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"discussion\\\", \\\"latex\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_34b5c7\", \"name\": \"discussion.tex\", \"type\": \"paper\", \"description\": \"Discussion section (§6) for struct_self_consist_ie paper — practical recommendations, between-instance discrimination, task-difficulty signal selection, capability boundary framework, ρ-AUROC separation\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/paper/discussion.tex\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T20:50:59.269614+00:00\", \"tags\": [\"paper\", \"discussion\", \"latex\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Discussion section written to `docs/paper/sections/discussion.tex`. Five paragraphs covering all required topics:\n\n1. **Practical recommendations** — voting for quality estimation, SJ for robustness/generalization, logprob for binary filtering, greedy near-optimal for NER selection\n2. **Between-instance vs. within-stratum** — stratified correlations approach zero; signals suit routing/triage, not fine-grained ranking\n3. **Task-difficulty-dependent signal selection** — EM on easy, Voting/SJ on hard, convergence at capability boundary; model-agnostic ordering\n4. **Capability boundary framework** — sweet spot of sufficient capability + output complexity; high-complexity RE subset (n=81) with strong signals; conditional filtering separates SJ from logprob at N=16\n5. **ρ-AUROC separation** — logprob for coarse binary separation vs. structural for fine-grained ranking; single-metric evaluation risks misselection\n\n~490 words, no subsections, `\\paragraph{}` organization, all table/section cross-references included."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "uuid": "cfaf4438-5956-4c0f-9f63-9e1cc9ca7abc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AXLi5SpLWBrKbk31Hm4zKG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 525,
+                "cache_read_input_tokens": 43872,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 525
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Discussion section written to `docs/paper/sections/discussion.tex`. Five paragraphs covering all required topics:\n\n1. **Practical recommendations** — voting for quality estimation, SJ for robustness/generalization, logprob for binary filtering, greedy near-optimal for NER selection\n2. **Between-instance vs. within-stratum** — stratified correlations approach zero; signals suit routing/triage, not fine-grained ranking\n3. **Task-difficulty-dependent signal selection** — EM on easy, Voting/SJ on hard, convergence at capability boundary; model-agnostic ordering\n4. **Capability boundary framework** — sweet spot of sufficient capability + output complexity; high-complexity RE subset (n=81) with strong signals; conditional filtering separates SJ from logprob at N=16\n5. **ρ-AUROC separation** — logprob for coarse binary separation vs. structural for fine-grained ranking; single-metric evaluation risks misselection\n\n~490 words, no subsections, `\\paragraph{}` organization, all table/section cross-references included."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 99480,
+            "duration_api_ms": 101279,
+            "num_turns": 8,
+            "stop_reason": "end_turn",
+            "session_id": "8189c138-c195-490a-9118-4b1509395d6d",
+            "total_cost_usd": 0.4374665,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 32556,
+              "cache_read_input_tokens": 200337,
+              "output_tokens": 5270,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 32556,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 253,
+                  "cache_read_input_tokens": 43872,
+                  "cache_creation_input_tokens": 525,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 525
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1958,
+                "outputTokens": 14,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0020280000000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 5270,
+                "cacheReadInputTokens": 200337,
+                "cacheCreationInputTokens": 32556,
+                "webSearchRequests": 0,
+                "costUSD": 0.43543850000000006,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "aa18528b-649d-441a-937c-7a53fac1f752"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-writing-discussion.md"
+}

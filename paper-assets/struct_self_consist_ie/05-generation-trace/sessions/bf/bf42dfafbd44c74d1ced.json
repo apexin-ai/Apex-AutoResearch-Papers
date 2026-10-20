@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf42dfafbd44c74d1ced",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis em selection f1",
+  "task_key": "worker_analysis_em_selection_f1_20260515T044818",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_em_selection_f1_20260515T044818_result.json",
+    "occurrence": 1,
+    "bytes": 1156,
+    "sha256": "1f658179792f322a1b4e7f7c2c33da4e4d85448c3dbf404fe4c705726cb11813"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n## Qwen SciERC N=8 — EM Selection F1\n\n### NER (n=529)\n\n| Method | Selection F1 |\n|---|---|\n| Greedy | 0.6439 |\n| Oracle | 0.7758 |\n| LP-Best | 0.6501 |\n| SJ-Best | 0.6450 |\n| Ensemble-Best | 0.6450 |\n| **EM-Best** | **0.6362** |\n| Voting-Best | 0.6337 |\n| Random-Avg | 0.6077 |\n\nSign test (EM vs Greedy): Wins=56, Losses=65, Ties=408, Δ=-0.0077\n\n### RE (n=397)\n\n| Method | Selection F1 |\n|---|---|\n| Greedy | 0.4042 |\n| Oracle | 0.5850 |\n| LP-Best | 0.3948 |\n| SJ-Best | 0.3855 |\n| Ensemble-Best | 0.3855 |\n| **EM-Best** | **0.3718** |\n| Voting-Best | 0.3592 |\n| Random-Avg | 0.3544 |\n\nSign test (EM vs Greedy): Wins=27, Losses=63, Ties=307, Δ=-0.0324\n\n### 结论\n\nEM selection 在 NER 和 RE 上都**低于 greedy baseline**（NER -0.8pp, RE -3.2pp），排名倒数第二（仅高于 Voting-Best/Random-Avg）。Sign test 中 losses 显著多于 wins。EM 作为 selection signal 表现最差，这符合预期——exact match 在结构化输出中过于严格，大多数 instance 的 8 个 sample 几乎没有完全一致的输出，导致 plurality vote 基本退化为随机选择。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-em-selection-f1.md"
+}

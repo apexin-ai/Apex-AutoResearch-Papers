@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f48675619d77330e2a1a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis p1 review supplementary computations",
+  "task_key": "worker_analysis_p1_review_supplementary_computations_20260518T144406",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_p1_review_supplementary_computations_20260518T144406_result.json",
+    "occurrence": 1,
+    "bytes": 993,
+    "sha256": "55523e22e9e6669d6147b7a5c94bc0ad608cb21c0cd2b47540437346c01f7bd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个任务全部完成。产出文件在 `artifacts/p1_review_computations/`：\n\n**Q1 — 3-epoch within-instance ρ**: 3-epoch median ρ=0.3192 vs 5-epoch 0.2624 (+0.057)。alignment 提升但仍低于 Few-NERD 的~0.5 阈值，LP selection 仍失败（-1.24pp）。constant-F1 实例从 94 降到 34，与 degeneracy 降低一致。\n\n**Q5 — DALS LOO ε sensitivity**: 最优 τ 跨数据集差 2 个量级（Few-NERD 0.001, SciERC 0.05, CoNLL 0.10）。LOO regret 0.51-1.21pp。论文的 τ=0.05 是最佳 cross-dataset mean（+0.19pp），但 LOO transfer 较差。\n\n**W5 — LP ρ 审计**: 0.205 出现 11 处（experiments.tex 3处 + appendix.tex 8处），0.215 未出现。论文内部一致（mean_LP 定义）。D132 的 max_LP 变更未应用。\n\n**Q3 — p-value**: n=8 时 t-approx p=0.0038（论文报 0.004 匹配），exact permutation p=0.0046。若 effective df=4（n=6），exact p=0.033，仍 α=0.05 显著但非 α=0.01。论文 caveat 合理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-p1-review-supplementary-computations.md"
+}

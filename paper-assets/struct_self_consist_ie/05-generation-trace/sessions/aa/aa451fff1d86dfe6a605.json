@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa451fff1d86dfe6a605",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp a3 ace05 re",
+  "task_key": "worker_code_exp_a3_ace05_re_20260520T181651",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_a3_ace05_re_20260520T181651_result.json",
+    "occurrence": 1,
+    "bytes": 1205,
+    "sha256": "f460ad6aee5c00f081851dc2b2ae9454d2ac5bab36e26b54906c4a379143b7c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。交付物汇总：\n\n**数据决策**: ACE05 因 LDC 限制不可用，改用 **SciERC test split**（公开、已集成、与 NER 实验共享数据源便于 cross-task 对比）。\n\n**4 个文件已创建**（均在 `artifacts/experiments/ace05_re/`）:\n\n| 文件 | 内容 |\n|------|------|\n| `spec.md` | 实验 spec：SciERC RE 数据、prompt template、UIE JSON schema、F1-F4 failure mode 定义、pipeline 复用分析 |\n| `prepare_re_data.py` | 数据准备：加载 SciERC → 过滤有 relation 的实例 → 构建 few-shot prompt → 输出 JSONL |\n| `run_re_sc.py` | 推理+评估框架：VLLMSampler 采样、`consensus_construct_re()` LP 加权聚合、`is_degenerate_re()`、F1-F4 分类、paired bootstrap |\n| `report.md` | 产出报告：数据可用性、推荐数据集、pipeline 复用率 85%、无 blocker |\n\n**Registry**: `exp_a3_ace05_re` 已注册为 QUEUED，3 个 artifact 已注册。\n\nPipeline 复用率 ~85%——`sampling.py`、`consistency.py`、`evaluation.py` 中的 RE 支持已全部就位，仅 consensus construction 和 degeneracy detection 需要从 entity key 改为 relation key（已在 `run_re_sc.py` 中实现）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-a3-ace05-re.md"
+}

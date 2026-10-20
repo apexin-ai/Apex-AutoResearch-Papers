@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "8727cf1c2a688bfd992f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix d132 cascade items 2to5",
+  "task_key": "worker_fix_d132_cascade_items_2to5_20260518T052015",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_d132_cascade_items_2to5_20260518T052015_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "4250c0ea4e4a343ccde459e766511ad5b58ddf7039888ce5e77cd200bf5f209a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: {\"type\":\"error\",\"error\":{\"details\":null,\"type\":\"overloaded_error\",\"message\":\"Overloaded\"},\"request_id\":\"req_011Cb9UipS6R6HzNsY9SADpc\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "details": null,
+                "type": "overloaded_error",
+                "message": "Overloaded"
+              },
+              "request_id": "req_011Cb9UipS6R6HzNsY9SADpc"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d132-cascade-items-2to5.md"
+}

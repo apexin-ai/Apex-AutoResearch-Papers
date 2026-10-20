@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2dc280be0321bc1bdb59",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu conll n16 s123 launch",
+  "task_key": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_conll_n16_s123_launch_20260521T120112_result.json",
+    "occurrence": 1,
+    "bytes": 555,
+    "sha256": "7b8dad5a1cf7757defd49d00ee4685087a60839176289f1482738e8f22d6d84c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动完成。\n\n**结果汇总：**\n- **PID**: 316620 (vLLM EngineCore PID: 316916)\n- **GPU**: cuda:2 on autodl-5090-c — 16,399 MiB 占用，正在加载模型\n- **数据**: 3453 test instances loaded from conll2003\n- **日志**: `~/runs/struct_self_consist_ie/exp_conll_n16_s123.log`\n- **状态**: 模型 checkpoint shards 加载中 (75% completed at last check)，vLLM v0.18.1 初始化正常，FLASH_ATTN v2 backend\n\n上次在 autodl-5090 的 tokenizer 问题未复现，说明 autodl-5090-c 上的 checkpoint 是完整的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-conll-n16-s123-launch.md"
+}

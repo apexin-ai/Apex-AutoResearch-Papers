@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "63d8f05e1a596ce29adc",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "paper tex fix misc",
+  "task_key": "worker_paper_tex-fix-misc_20260525T202131",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_tex-fix-misc_20260525T202131.log",
+    "occurrence": 1,
+    "bytes": 1171252,
+    "sha256": "01659df5c6a6cda68e4f48432f867793233814af487a24c64e65b4d65fbabe57"
+  },
+  "statistics": {
+    "messages": 255,
+    "user_turns": 1,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 45,
+      "record": 2,
+      "assistant": 24,
+      "tool_call": 91,
+      "tool_result": 91,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 126,
+      "chunks": [
+        {
+          "path": "63d8f05e1a596ce29adc-part-0001.json",
+          "message_count": 37
+        },
+        {
+          "path": "63d8f05e1a596ce29adc-part-0002.json",
+          "message_count": 89
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 129,
+      "chunks": [
+        {
+          "path": "63d8f05e1a596ce29adc-part-0002.json",
+          "message_count": 91
+        },
+        {
+          "path": "63d8f05e1a596ce29adc-part-0003.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-tex-fix-misc.md"
+}

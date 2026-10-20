@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34f1864a660dc951a365",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix figure2 degeneracy scatter",
+  "task_key": "worker_fix_figure2_degeneracy_scatter_20260518T050009",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_figure2_degeneracy_scatter_20260518T050009_result.json",
+    "occurrence": 1,
+    "bytes": 852,
+    "sha256": "a48a91425dae6de27cc4ace1c4c446a5eaed3276d1b3933afa0298ccf4a13aa8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成，数据点位置正确：\n\n- **CoNLL**: x≈59.1%, y≈-1.05pp（右下方，低于 Greedy Baseline 线）\n- **SciERC**: x≈17.8%, y≈+0.61pp\n- **Few-NERD**: x≈13.8%, y≈+1.36pp\n\nPer-type 三角点和标注均未改动。\n\nSpearman 相关性（更新后）：\n- 11-point: ρ = -0.5182, p = 0.1025\n- Per-type (n=8): ρ = -0.3810, p = 0.3518\n- Dataset-level (n=3): ρ = -1.0000, p = 0.0000（完美负相关，三点单调递减）\n\n### 产出\n\n| 项目 | 路径 |\n|------|------|\n| 更新后脚本 | `/root/autodl-tmp/struct_self_consist_ie/output/figures/plot_degeneracy_lp.py` |\n| PDF | `output/figures/fig_degeneracy_lp_scatter.pdf` + `docs/paper/figures/fig_degeneracy_lp_scatter.pdf` |\n| PNG | `output/figures/fig_degeneracy_lp_scatter.png` + `docs/paper/figures/fig_degeneracy_lp_scatter.png` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-figure2-degeneracy-scatter.md"
+}

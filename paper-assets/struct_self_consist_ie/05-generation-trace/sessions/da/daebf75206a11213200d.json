@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "daebf75206a11213200d",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_18_1779595164.md",
+  "task_key": "loop_18_1779595164",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_18_1779595164.md",
+    "occurrence": 1,
+    "bytes": 4274,
+    "sha256": "ad4fa7d9fd62760c61ee6ecef4daf15cd407a078bb956717769bd95483509d57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-23T03:40:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 cuda:0-3, autodl-5090-c cuda:0-3（共 8 卡）\n- **EMNLP 2026 DDL = 2026-05-25**，剩 ~2 天，n32 是最后一个实验，完成后立即整合提交 R41\n- vLLM Unicode surrogate fix (`errors='replace'`) 已部署到 autodl-5090（n32_v2 用的是修复后代码），autodl-5090-c 也已修复。若需在任一服务器跑新实验，确认 `sampling.py:673` 有 `errors='replace'`\n- **D243 决策：研究已收敛，不追加主要实验。** n32 之后只做整合+提交，不要自作主张开新实验方向\n- 论文主文严格 ≤ 8 页（EMNLP 2026 硬限）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090 / autodl-5090-c，账户 root\n- 工作目录：`/root/autodl-tmp/struct_self_consist_ie`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型路径：`/root/autodl-tmp/models/Qwen2.5-7B-Instruct`（pretrained，无 finetuning）\n- 数据路径：`data/fewnerd/`（37,648 instances）\n- 活跃进程：**exp_fewnerd_pretrained_n32_s42_v2** — PID 157469, autodl-5090 cuda:3, cron 监控中（reconcile 确认 still running）\n- 输出目录：`output/fewnerd_pretrained_n32_seed42/`\n- Log：`~/runs/struct_self_consist_ie/exp_fewnerd_pretrained_n32_s42_v2.log`\n- W&B：未配置（本项目用本地 metrics）\n- n32 整合模板已备：`artifacts/n32_integration_templates.md`（A=plateau / B=continued growth / C=decline 三种场景）\n\n### 3. 📊 当前状态\n**刚完成**：R41 全部 14 项修复 + n16 分析整合 + 数值修正 + 最终编译验证（46p, 0 errors, 0 undef, 主文 ≤8p）。Response letter 已定稿。\n\n**RUNNING**：\n- `exp_fewnerd_pretrained_n32_s42_v2`：Pretrained N-scaling FewNERD N=32 T=1.0 seed=42。上次 ROADMAP 记录 ~37%, ETA ~6h（写于 2026-05-23 01:45 UTC）。Cron 监控活跃。\n\n**PREPARING（待定/搁置）**：\n- `exp_fewnerd_mf4v2_s123_v4` 等数个 finetuned regeneration 实验 — D243 决策后不再追加\n- `exp_a1_spider_sql_sc`, `exp_b2_*` 系列 — 未来方向，本轮不跑\n\n**Worker 池**：0 个活跃 Worker。n32 完成前无需额外 Worker。\n\n### 4. 📋 待办（条件触发式）\n- **n32 cron 回调到达** → spawn Worker 分析结果：计算 MV delta, degeneracy, capture rate, sj_rho → 与 N=8 (+3.9pp) / N=16 (+4.06pp) 对比 → 判断属于 A(plateau)/B(growth)/C(decline) 哪种场景\n- **n32 分析完成** → 按 `artifacts/n32_integration_templates.md` 对应模板整合论文：Table 44 补 N=32 行 + ρ_SJ 列，Discussion 更新 N-scaling 叙事\n- **论文整合完成** → 最终编译验证（主文 ≤8p, 0 errors）→ 汇报 Director → 提交 R41\n- **n32 如果 failed/killed**（如再次 UnicodeEncodeError）→ 检查 fix 是否生效，决定是否 v3 重试（DDL 紧迫，与 Director 协商是否不等 n32 直接提交）\n\n### 5. 🎯 战略上下文\n**项目核心结论**：Self-Consistency for NER 存在 Correlation-Selection Gap — 样本间 agreement（尤其 Soft Jaccard）与 correctness 显著相关，但 Majority Voting 无法利用这一相关性。Pretrained model MV 正向（+3.9pp FewNERD），finetuned model MV 负向（-2.74pp → -0.36pp 随 epoch 增加）。\n\n**决策链**：D241（R40 Action Matrix）→ D242（指标透明度修复）→ D243（研究收敛，等 n16/n32 后提交）。\n\n**n32 是最后一个数据点**，填充 pretrained N-scaling 曲线的 N=32 位置。预期：\n- N=8 +3.9pp → N=16 +4.06pp（plateau）→ N=32 预期 plateau 或小幅增长\n- 如果 N=32 MV delta 大幅下降（scenario C），需在 Discussion 解释 diminishing returns\n\n**易错点**：\n- 不要把 unified baseline 和 per-run baseline 混淆——论文用 unified baseline（N=8 greedy 固定为所有 N 的 baseline），差异会导致非单调假象\n- SciERC finetuned MV 方差极大（σ > |μ|），属 noise regime，不要过度解读单 seed 结果\n- 3-epoch vs 5-epoch 的 degeneracy 非单调（8.8% → 26.2%），叙事需处理这个非单调性\n- n32 integration 模板已写好三种场景，**不要自由发挥**，按模板走\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1779595164.md"
+}

@@ -1,0 +1,1692 @@
+{
+  "schema_version": "1.0",
+  "id": "d99cbd3630d855565188",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "check frontier sc progress",
+  "task_key": "worker_check_frontier_sc_progress_20260521T065741",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_check_frontier_sc_progress_20260521T065741.jsonl",
+    "occurrence": 1,
+    "bytes": 56885,
+    "sha256": "c6ff429eba2953049734d7d42a06bd61d59a8d63b0592ea02a943d05ffb9395f"
+  },
+  "statistics": {
+    "messages": 83,
+    "user_turns": 0,
+    "tool_calls": 41,
+    "roles": {
+      "tool_call": 41,
+      "tool_result": 41,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T07:00:05.556735+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T07:00:05.557217+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T07:00:05.557544+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ps aux | grep run_frontier_sc | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T07:00:05.557806+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T07:00:05.558052+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps aux | grep run_frontier_sc | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T07:00:05.558294+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T07:00:05.558513+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_gpt55_fewnerd_v2/results.jsonl 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T07:00:05.558730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T07:00:05.558942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_gemini25pro/results.jsonl 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T07:00:05.559176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T07:00:05.559397+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_deepseek/results.jsonl 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T07:00:05.560608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T07:00:05.560862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_claude_sonnet4/results.jsonl 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T07:00:05.561085+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T07:00:05.561325+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T07:00:05.561536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T07:00:05.561800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "grep -r \"run_frontier_sc\" /proc/*/cmdline 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T07:00:05.562035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T07:00:05.562317+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /proc/6302/cmdline",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T07:00:05.564400+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/proc/6302/cmdline\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T07:00:05.564636+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_gpt55_fewnerd_v2/results.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T07:00:05.564868+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_gemini25pro/results.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T07:00:05.565083+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_deepseek/results.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T07:00:05.565644+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_claude_sonnet4/results.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T07:00:05.565873+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"wc: /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_gpt55_fewnerd_v2/results.jsonl: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.05}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T07:00:05.566111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "nvidia-smi",
+              "account": "root"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T07:00:05.566440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"wc: /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_gemini25pro/results.jsonl: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T07:00:05.566663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"wc: /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_deepseek/results.jsonl: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T07:00:05.566877+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"wc: /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_claude_sonnet4/results.jsonl: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T07:00:05.567149+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Thu May 21 14:58:18 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:38:00.0 Off |                  N/A |\\\\n| 42%   35C    P8             15W /  575W |       0MiB /  32607MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA GeForce RTX 5090        On  |   00000000:49:00.0 Off |                  N/A |\\\\n| 43%   37C    P8             19W /  575W |       0MiB /  32607MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA GeForce RTX 5090        On  |   00000000:5A:00.0 Off |                  N/A |\\\\n| 43%   35C    P8             16W /  575W |       0MiB /  32607MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA GeForce RTX 5090        On  |   00000000:B8:00.0 Off |                  N/A |\\\\n| 42%   36C    P8             \n…[truncated 1017 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T07:00:05.567481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T07:00:05.567821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+              "account": "root"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T07:00:05.568079+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"14b_base_inference\\\\n14b_final_inference\\\\n7b_ft_signals\\\\nconll_n16_s42\\\\ndocred_re_sc\\\\nentity_probe_auroc\\\\nentity_probe_auroc_groupkfold\\\\nentity_probe_fulldata\\\\nexp_002_conll_n16\\\\nexp_012_rerun_1024\\\\nexp_021_inference\\\\nexp_b3_prompted_diversity\\\\nexp_conll_seed789\\\\nexp_conll_seed789.log\\\\nexp_conll_t05_seed123\\\\nexp_conll_t05_seed123.log\\\\nexp_conll_t05_seed42\\\\nexp_conll_t05_seed42.log\\\\nexp_conll_t05_seed456\\\\nexp_conll_t05_seed456.log\\\\nexp_conll_t08_seed123\\\\nexp_conll_t08_seed123.log\\\\nexp_conll_t08_seed42\\\\nexp_conll_t08_seed42.log\\\\nexp_conll_t08_seed456\\\\nexp_conll_t08_seed456.log\\\\nexp_conll_t10_seed42\\\\nexp_conll_t12_seed123\\\\nexp_conll_t12_seed123.log\\\\nexp_conll_t12_seed42\\\\nexp_conll_t12_seed42.log\\\\nexp_conll_t12_seed456\\\\nexp_conll_t12_seed456.log\\\\nexp_esj_entity_self_judgment\\\\nexp_esj_entity_self_judgment.log\\\\nexp_esj_entity_self_judgment_dryrun\\\\nexp_fewnerd_seed456\\\\nexp_fewnerd_seed789\\\\nexp_fewnerd_seed789.log\\\\nexp_llama_scierc_seed123\\\\nexp_lsc_latent_sc\\\\nexp_lsc_latent_sc.log\\\\nexp_lsc_latent_sc_dryrun\\\\nexp_mrsc_multi_round\\\\nexp_mrsc_multi_round.log\\\\nexp_scierc_8b_t08_s42\\\\nexp_scierc_seed789_5090c\\\\nexp_scierc_seed789_5090c.log\\\\nexp_scierc_t12_seed456\\\\nexp_scierc_t12_seed456.log\\\\nexp_tlow_fewnerd_t05_s42\\\\nexp_tlow_fewnerd_t05_s42.log\\\\nfewnerd_14b_ckpt36000\\\\nfewnerd_7b\\\\nfewnerd_7b_n16_seed42\\\\nfewnerd_n16_seed456\\\\nfewrel_re_sc\\\\nfrontier_sc_deepseek\\\\nfrontier_sc_gemini25pro\\\\nfrontier_sc_gpt55_fewnerd\\\\nfrontier_sc_gpt55_fewnerd_dryrun2\\\\nre_sc\\\\nscierc_t08_s123\\\\nscierc_t12_s456\\\\nwnut17\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T07:00:05.568532+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"adalp_analysis_results.json\\\\nadaptive_temperature_results.json\\\\nanalysis_epsilon_sweep\\\\nanalysis_fk_bootstrap_ci.json\\\\nanalysis_fk_bootstrap_per_instance.json\\\\nanalysis_lp_range_cdf.json\\\\nanalysis_lp_range_cdf_n16_3seed.json\\\\nanalysis_mbr_selection.json\\\\nanalysis_multiseed_selection_f1.json\\\\nanalysis_round8\\\\nanalysis_scierc_n16_3seed_selection_f1.json\\\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\\\nanalysis_unified_rho_full.json\\\\nanalyze_s789_rerun.log\\\\nb5_cross_model_construction.py\\\\nb5_cross_model_results.json\\\\nb7_adaptive_budget\\\\nbootstrap_ci_nscaling\\\\nbootstrap_ci_summary.json\\\\nbootstrap_ci_tables.tex\\\\ncalibration_baseline_results.json\\\\nccs_selection_report.md\\\\nccs_selection_results.json\\\\nclaim_audit\\\\nconditional_filter_diagnosis.json\\\\nconll_mf4_seed123\\\\nconll_mf4_seed456\\\\nconll_n16_s123\\\\nconll_n16_s456\\\\nconll_n16_seed123_v2\\\\nconll_n16_seed456_v2\\\\nconstruction_variants\\\\nd108_greedy_f1\\\\nd108_lp_vc_combination\\\\nd108_mbr_within_rho\\\\nd108_q4q5\\\\nd110_4b_degeneracy\\\\nd112_disk_cleanup\\\\nd112_hybrid_strategy\\\\nd112_mf3_random_single\\\\nd112_table2_fix\\\\nd114_auroc_investigation\\\\nd140_oracle_gated\\\\nd141_conditional_decomp\\\\nd141_degeneracy_scatter\\\\nd141_entity_merge\\\\ndals_analysis.json\\\\ndals_cross_model.json\\\\ndals_hardening_results.json\\\\ndeberta_verifier\\\\ndeberta_verifier_5fold\\\\ndebug_sj_variance.log\\\\ndebug_sj_variance_results.json\\\\ndecomposition_regression\\\\ndev_set_lp_probe\\\\ndgs_epoch_rank_analysis.json\\\\ndgs_selection_results.json\\\\ndiagnostic_calibration\\\\ndiagnostic_calibration_results.json\\\\ndistill_verifier\\\\ne2_pretrained_conll\\\\ne2_pretrained_fewnerd\\\\ne2v2_regime_weights\\\\ne_theta_v1_logreg_results.json\\\\ne_theta_v3_no_dataset_results.json\\\\ne_theta_v4_no_model_results.json\\\\nentity_consensus_report.md\\\\nentity_consensus_results.json\\\\nentity_construction\\\\nentity_construction_fair\\\\nentity_construction_fa\n…[truncated 6864 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T07:00:05.568803+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"*.jsonl\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T07:00:05.569028+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"*.jsonl\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T07:00:05.569341+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_fewnerd_seed789/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed789/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_b3_prompted_diversity/single_template_samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_b3_prompted_diversity/template_A_standard_samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_b3_prompted_diversity/template_B_expert_samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_b3_prompted_diversity/template_C_descriptive_samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_b3_prompted_diversity/template_D_recall_samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_b3_prompted_diversity/multi_template_samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/fewnerd_n1/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/conll2003_n1/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n1/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n4/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n8/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/conll2003_n2/samples.jsonl\\\\n/root/autodl-tmp/s\n…[truncated 3073 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T07:00:05.569717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/gate0_all_predictions.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_realigned_predictions.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/samples.jsonl\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/samples.jsonl\\\\n/root/autodl-tmp/struct_self\n…[truncated 6391 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T07:00:05.569985+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/logs/ -name \"frontier_sc*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T07:00:05.570249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/logs/ -name \"frontier_sc*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T07:00:05.570478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/logs/frontier_sc_gpt55_fewnerd.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/frontier_sc_gemini25pro.log\\\\n/root/autodl-tmp/struct_self_consist_ie/logs/frontier_sc_deepseek.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T07:00:05.570696+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /proc/6302/cmdline",
+              "account": "root"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T07:00:05.570911+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/logs/frontier_sc_claude_sonnet4.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T07:00:05.571159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bash\\\\u0000-c\\\\u0000cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python -u code/run_frontier_sc.py --model \\\\\\\"anthropic/claude-sonnet-4\\\\\\\" --base_url \\\\\\\"http://47.94.22.126/v1\\\\\\\" --api_key \\\\\\\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\" --dataset fewnerd --data_dir data/fewnerd/ --n_instances 200 --n_samples 8 --temperature 1.0 --output_dir output/frontier_sc_claude_sonnet4/ --max_tokens 4096 > logs/frontier_sc_claude_sonnet4.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-21T07:00:05.571446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_gpt55_fewnerd/results.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-21T07:00:05.571675+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_gpt55_fewnerd/checkpoint.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-21T07:00:05.571894+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"200 /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_gpt55_fewnerd/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-21T07:00:05.572104+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_gemini25pro/checkpoint.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-21T07:00:05.572348+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"200 /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_gpt55_fewnerd/checkpoint.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-21T07:00:05.572564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_deepseek/checkpoint.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-21T07:00:05.572779+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_claude_sonnet4/checkpoint.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-21T07:00:05.572997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"11 /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_gemini25pro/checkpoint.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-21T07:00:05.573232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"23 /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_deepseek/checkpoint.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.23}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-21T07:00:05.573450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/frontier_sc_gpt55_fewnerd.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-21T07:00:05.573664+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/frontier_sc_gemini25pro.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-21T07:00:05.573893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"132 /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_claude_sonnet4/checkpoint.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-21T07:00:05.574161+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  [197/200] 6050s ETA=92s g=1.000 mv=1.000 orc=1.000 agree=1.000 degen=Y\\\\n  [198/200] 6060s ETA=61s g=1.000 mv=1.000 orc=1.000 agree=1.000 degen=Y\\\\n  [199/200] 6106s ETA=31s g=0.800 mv=0.800 orc=0.800 agree=1.000 degen=Y\\\\n  [200/200] 6126s ETA=0s g=0.667 mv=0.667 orc=0.667 agree=1.000 degen=Y\\\\n\\\\n============================================================\\\\nFrontier SC: gpt-5.5 on fewnerd\\\\n============================================================\\\\nN=200, samples=8, T=1.0\\\\nElapsed: 6125.6s, API calls: 1600, Parse fails: 161\\\\n\\\\nMetrics:\\\\n  greedy_f1:       0.6382\\\\n  mv_f1:           0.6521 (D=+0.0139)\\\\n  oracle_f1:       0.7203\\\\n  degeneracy_rate: 0.5000 (100/200)\\\\n  selection_gap:   0.0682\\\\n\\\\nCorrelations:\\\\n  Agreement: rho=0.3551 (p=2.4792e-07)\\\\n  FK:        rho=0.3515 (p=3.3391e-07)\\\\n  SJ:        rho=0.3461 (p=5.1600e-07)\\\\n\\\\nFailure modes:\\\\n  F1_sc_hurts: 11 (5.5%)\\\\n  F2_sc_helps: 6 (3.0%)\\\\n  F3_both_good: 137 (68.5%)\\\\n  F4_both_bad: 46 (23.0%)\\\\n\\\\nSaved to output/frontier_sc_gpt55_fewnerd/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-21T07:00:05.574398+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/frontier_sc_deepseek.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-21T07:00:05.574616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/logs/frontier_sc_claude_sonnet4.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-21T07:00:05.574847+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 200 instances from data/fewnerd/test.json\\\\n  [1/200] 67s ETA=13373s g=0.667 mv=0.750 orc=0.889 agree=0.389 degen=N\\\\n  [2/200] 103s ETA=10195s g=1.000 mv=1.000 orc=1.000 agree=0.357 degen=N\\\\n  [3/200] 140s ETA=9175s g=0.000 mv=0.000 orc=0.000 agree=1.000 degen=Y\\\\n  [4/200] 167s ETA=8169s g=0.500 mv=0.500 orc=1.000 agree=0.833 degen=N\\\\n  [5/200] 196s ETA=7643s g=1.000 mv=1.000 orc=1.000 agree=0.875 degen=N\\\\n  [6/200] 247s ETA=7990s g=1.000 mv=0.667 orc=1.000 agree=0.619 degen=N\\\\n  [7/200] 295s ETA=8122s g=0.600 mv=0.444 orc=0.600 agree=0.576 degen=N\\\\n  [8/200] 324s ETA=7776s g=0.824 mv=0.824 orc=0.824 agree=1.000 degen=Y\\\\n  [9/200] 346s ETA=7351s g=1.000 mv=1.000 orc=1.000 agree=1.000 degen=Y\\\\n  [10/200] 403s ETA=7653s g=0.308 mv=0.333 orc=0.462 agree=0.883 degen=N\\\\n  [11/200] 436s ETA=7487s g=0.333 mv=0.400 orc=0.400 agree=0.804 degen=N\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-21T07:00:05.575110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 200 instances from data/fewnerd/test.json\\\\n  [1/200] 22s ETA=4364s g=0.667 mv=0.750 orc=1.000 agree=0.698 degen=N\\\\n  [2/200] 43s ETA=4212s g=0.000 mv=0.000 orc=0.000 agree=0.429 degen=N\\\\n  [3/200] 56s ETA=3691s g=0.000 mv=0.000 orc=0.000 agree=0.429 degen=N\\\\n  [4/200] 72s ETA=3552s g=0.000 mv=0.500 orc=0.500 agree=0.464 degen=N\\\\n  [5/200] 87s ETA=3392s g=0.000 mv=0.000 orc=1.000 agree=0.321 degen=N\\\\n  [6/200] 99s ETA=3216s g=0.667 mv=0.667 orc=0.667 agree=0.571 degen=N\\\\n  [7/200] 125s ETA=3445s g=0.222 mv=0.500 orc=0.571 agree=0.402 degen=N\\\\n  [8/200] 165s ETA=3970s g=0.000 mv=0.000 orc=0.824 agree=0.429 degen=N\\\\n  [9/200] 181s ETA=3847s g=1.000 mv=0.000 orc=1.000 agree=0.429 degen=N\\\\n  [10/200] 214s ETA=4061s g=0.400 mv=0.000 orc=0.462 agree=0.377 degen=N\\\\n  [11/200] 235s ETA=4045s g=0.286 mv=0.333 orc=0.333 agree=0.514 degen=N\\\\n  [12/200] 258s ETA=4049s g=1.000 mv=1.000 orc=1.000 agree=0.571 degen=N\\\\n  [13/200] 281s ETA=4045s g=0.000 mv=0.000 orc=0.000 agree=0.464 degen=N\\\\n  [14/200] 300s ETA=3980s g=0.000 mv=0.000 orc=1.000 agree=0.357 degen=N\\\\n  [15/200] 311s ETA=3831s g=1.000 mv=1.000 orc=1.000 agree=0.750 degen=N\\\\n  [16/200] 327s ETA=3765s g=1.000 mv=1.000 orc=1.000 agree=0.333 degen=N\\\\n  [17/200] 343s ETA=3697s g=1.000 mv=1.000 orc=1.000 agree=0.407 degen=N\\\\n  [18/200] 362s ETA=3664s g=0.000 mv=0.000 orc=1.000 agree=0.367 degen=N\\\\n  [19/200] 384s ETA=3657s g=0.857 mv=1.000 orc=0.857 agree=0.393 degen=N\\\\n  [20/200] 398s ETA=3585s g=0.000 mv=1.000 orc=1.000 agree=0.220 degen=N\\\\n  [21/200] 427s ETA=3640s g=0.500 mv=0.571 orc=0.500 agree=0.326 degen=N\\\\n  [22/200] 442s ETA=3577s g=0.000 mv=0.000 orc=0.667 agree=0.429 degen=N\\\\n  [23/200] 457s ETA=3518s g=0.000 mv=0.000 orc=0.800 agree=0.371 degen=N\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-21T07:00:05.575470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 200 instances from data/fewnerd/test.json\\\\n  [10/200] elapsed=243s ETA=4626s greedy=0.545 mv=0.545 oracle=0.545\\\\n  [20/200] elapsed=542s ETA=4875s greedy=0.000 mv=0.000 oracle=0.000\\\\n  [30/200] elapsed=944s ETA=5350s greedy=1.000 mv=1.000 oracle=1.000\\\\n  [40/200] elapsed=1194s ETA=4775s greedy=1.000 mv=1.000 oracle=1.000\\\\n  [50/200] elapsed=1454s ETA=4361s greedy=0.909 mv=0.909 oracle=0.909\\\\n  [60/200] elapsed=1737s ETA=4053s greedy=1.000 mv=1.000 oracle=1.000\\\\n  [70/200] elapsed=1940s ETA=3603s greedy=0.000 mv=0.000 oracle=0.000\\\\n  [80/200] elapsed=2178s ETA=3268s greedy=0.000 mv=0.000 oracle=0.000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-21T07:00:05.575762+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "find /proc -maxdepth 2 -name cmdline -path \"*/cmdline\" -newer /root/autodl-tmp/struct_self_consist_ie/logs/frontier_sc_gemini25pro.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-21T07:00:05.575988+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "grep -rl \"run_frontier_sc\" /proc/*/cmdline",
+              "account": "root"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-21T07:00:05.576237+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/proc/291655/cmdline\\\\n/proc/291801/cmdline\\\\n/proc/291890/cmdline\\\\n/proc/291920/cmdline\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-21T07:00:05.576551+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "stat /root/autodl-tmp/struct_self_consist_ie/logs/frontier_sc_gemini25pro.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-21T07:00:05.576775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/proc/290779/cmdline\\\\n/proc/290785/cmdline\\\\n/proc/290980/cmdline\\\\n/proc/290986/cmdline\\\\n/proc/291923/cmdline\\\\n/proc/self/cmdline\\\\n/proc/thread-self/cmdline\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-21T07:00:05.576994+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "stat /root/autodl-tmp/struct_self_consist_ie/logs/frontier_sc_deepseek.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-21T07:00:05.577246+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/autodl-tmp/struct_self_consist_ie/logs/frontier_sc_gemini25pro.log\\\\n  Size: 844       \\\\tBlocks: 8          IO Block: 4096   regular file\\\\nDevice: 900h/2304d\\\\tInode: 17189125124  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-21 14:58:51.140760166 +0800\\\\nModify: 2026-05-21 14:57:52.566375973 +0800\\\\nChange: 2026-05-21 14:57:52.566375973 +0800\\\\n Birth: 2026-05-21 14:50:35.805655909 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-21T07:00:05.577470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "stat /root/autodl-tmp/struct_self_consist_ie/logs/frontier_sc_claude_sonnet4.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-21T07:00:05.577688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "stat /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_gemini25pro/checkpoint.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-21T07:00:05.577912+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/autodl-tmp/struct_self_consist_ie/logs/frontier_sc_deepseek.log\\\\n  Size: 1713      \\\\tBlocks: 8          IO Block: 4096   regular file\\\\nDevice: 900h/2304d\\\\tInode: 17189125125  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-21 14:58:52.728717370 +0800\\\\nModify: 2026-05-21 14:58:45.624909223 +0800\\\\nChange: 2026-05-21 14:58:45.624909223 +0800\\\\n Birth: 2026-05-21 14:51:07.536287681 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-21T07:00:05.578177+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "stat /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_deepseek/checkpoint.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-21T07:00:05.578414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/autodl-tmp/struct_self_consist_ie/logs/frontier_sc_claude_sonnet4.log\\\\n  Size: 606       \\\\tBlocks: 8          IO Block: 4096   regular file\\\\nDevice: 900h/2304d\\\\tInode: 3230233767  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-21 14:58:53.571084194 +0800\\\\nModify: 2026-05-21 14:56:46.992769018 +0800\\\\nChange: 2026-05-21 14:56:46.992769018 +0800\\\\n Birth: 2026-05-21 14:19:38.200344016 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-21T07:00:05.578641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_gemini25pro/checkpoint.jsonl\\\\n  Size: 3736      \\\\tBlocks: 8          IO Block: 4096   regular file\\\\nDevice: 900h/2304d\\\\tInode: 10738628604  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-21 14:58:46.952873278 +0800\\\\nModify: 2026-05-21 14:57:52.566375973 +0800\\\\nChange: 2026-05-21 14:57:52.566375973 +0800\\\\n Birth: 2026-05-21 14:51:43.998777792 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-21T07:00:05.578867+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_deepseek/checkpoint.jsonl\\\\n  Size: 8159      \\\\tBlocks: 16         IO Block: 4096   regular file\\\\nDevice: 900h/2304d\\\\tInode: 11820787527  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-21 14:58:48.184839967 +0800\\\\nModify: 2026-05-21 14:59:13.388165182 +0800\\\\nChange: 2026-05-21 14:59:13.388165182 +0800\\\\n Birth: 2026-05-21 14:51:30.447331438 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-21T07:00:05.579191+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -5 /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_claude_sonnet4/checkpoint.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-21T07:00:05.579497+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"fewnerd_test_00064\\\\\\\", \\\\\\\"n_gold_entities\\\\\\\": 1, \\\\\\\"greedy_f1\\\\\\\": 0.6667, \\\\\\\"mv_f1\\\\\\\": 0.6667, \\\\\\\"oracle_f1\\\\\\\": 0.6667, \\\\\\\"agreement\\\\\\\": 1.0, \\\\\\\"fleiss_kappa\\\\\\\": 1.0, \\\\\\\"soft_jaccard\\\\\\\": 0.8181, \\\\\\\"is_degenerate\\\\\\\": true, \\\\\\\"failure_mode\\\\\\\": \\\\\\\"F3_both_good\\\\\\\", \\\\\\\"sample_f1s\\\\\\\": [0.6667, 0.6667, 0.6667, 0.6667, 0.6667, 0.6667, 0.6667, 0.6667], \\\\\\\"n_entities_per_sample\\\\\\\": [2, 2, 2, 2, 2, 2, 2, 2]}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"fewnerd_test_00086\\\\\\\", \\\\\\\"n_gold_entities\\\\\\\": 0, \\\\\\\"greedy_f1\\\\\\\": 1.0, \\\\\\\"mv_f1\\\\\\\": 1.0, \\\\\\\"oracle_f1\\\\\\\": 1.0, \\\\\\\"agreement\\\\\\\": 1.0, \\\\\\\"fleiss_kappa\\\\\\\": 1.0, \\\\\\\"soft_jaccard\\\\\\\": 1.0, \\\\\\\"is_degenerate\\\\\\\": true, \\\\\\\"failure_mode\\\\\\\": \\\\\\\"F3_both_good\\\\\\\", \\\\\\\"sample_f1s\\\\\\\": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0], \\\\\\\"n_entities_per_sample\\\\\\\": [0, 0, 0, 0, 0, 0, 0, 0]}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"fewnerd_test_00087\\\\\\\", \\\\\\\"n_gold_entities\\\\\\\": 0, \\\\\\\"greedy_f1\\\\\\\": 1.0, \\\\\\\"mv_f1\\\\\\\": 1.0, \\\\\\\"oracle_f1\\\\\\\": 1.0, \\\\\\\"agreement\\\\\\\": 1.0, \\\\\\\"fleiss_kappa\\\\\\\": 1.0, \\\\\\\"soft_jaccard\\\\\\\": 1.0, \\\\\\\"is_degenerate\\\\\\\": true, \\\\\\\"failure_mode\\\\\\\": \\\\\\\"F3_both_good\\\\\\\", \\\\\\\"sample_f1s\\\\\\\": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0], \\\\\\\"n_entities_per_sample\\\\\\\": [0, 0, 0, 0, 0, 0, 0, 0]}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"fewnerd_test_00065\\\\\\\", \\\\\\\"n_gold_entities\\\\\\\": 3, \\\\\\\"greedy_f1\\\\\\\": 1.0, \\\\\\\"mv_f1\\\\\\\": 1.0, \\\\\\\"oracle_f1\\\\\\\": 1.0, \\\\\\\"agreement\\\\\\\": 1.0, \\\\\\\"fleiss_kappa\\\\\\\": 1.0, \\\\\\\"soft_jaccard\\\\\\\": 0.773, \\\\\\\"is_degenerate\\\\\\\": true, \\\\\\\"failure_mode\\\\\\\": \\\\\\\"F3_both_good\\\\\\\", \\\\\\\"sample_f1s\\\\\\\": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0], \\\\\\\"n_entities_per_sample\\\\\\\": [3, 3, 3, 3, 3, 3, 3, 3]}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"fewnerd_test_00066\\\\\\\", \\\\\\\"n_gold_entities\\\\\\\": 2, \\\\\\\"greedy_f1\\\\\\\": 1.0, \\\\\\\"mv_f1\\\\\\\": 1.0, \\\\\\\"oracle_f1\\\\\\\": 1.0, \\\\\\\"agreement\\\\\\\": 1.0, \\\\\\\"fleiss_kappa\\\\\\\": 1.0, \\\\\\\"soft_jaccard\\\\\\\": 0.8562, \\\\\\\"is_degenerate\\\\\\\": true, \\\\\\\"failure_mode\\\\\\\": \\\n…[truncated 246 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-21T07:00:05.579757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "tail -3 /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_deepseek/checkpoint.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-21T07:00:05.579972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "tail -3 /root/autodl-tmp/struct_self_consist_ie/output/frontier_sc_gemini25pro/checkpoint.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-21T07:00:05.580251+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"fewnerd_test_00021\\\\\\\", \\\\\\\"n_gold_entities\\\\\\\": 1, \\\\\\\"greedy_f1\\\\\\\": 0.0, \\\\\\\"mv_f1\\\\\\\": 0.0, \\\\\\\"oracle_f1\\\\\\\": 0.6667, \\\\\\\"agreement\\\\\\\": 0.4286, \\\\\\\"fleiss_kappa\\\\\\\": -0.1429, \\\\\\\"soft_jaccard\\\\\\\": 0.4286, \\\\\\\"is_degenerate\\\\\\\": false, \\\\\\\"failure_mode\\\\\\\": \\\\\\\"F4_both_bad\\\\\\\", \\\\\\\"sample_f1s\\\\\\\": [0.0, 0.0, 0.6667, 0.6667, 0.0, 0.0, 0.6667, 0.6667], \\\\\\\"n_entities_per_sample\\\\\\\": [0, 0, 2, 2, 0, 0, 2, 2]}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"fewnerd_test_00022\\\\\\\", \\\\\\\"n_gold_entities\\\\\\\": 3, \\\\\\\"greedy_f1\\\\\\\": 0.0, \\\\\\\"mv_f1\\\\\\\": 0.0, \\\\\\\"oracle_f1\\\\\\\": 0.8, \\\\\\\"agreement\\\\\\\": 0.3714, \\\\\\\"fleiss_kappa\\\\\\\": -0.1143, \\\\\\\"soft_jaccard\\\\\\\": 0.3714, \\\\\\\"is_degenerate\\\\\\\": false, \\\\\\\"failure_mode\\\\\\\": \\\\\\\"F4_both_bad\\\\\\\", \\\\\\\"sample_f1s\\\\\\\": [0.0, 0.0, 0.0, 0.0, 0.8, 0.5, 0.0, 0.0], \\\\\\\"n_entities_per_sample\\\\\\\": [0, 0, 1, 0, 2, 5, 0, 0]}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"fewnerd_test_00023\\\\\\\", \\\\\\\"n_gold_entities\\\\\\\": 5, \\\\\\\"greedy_f1\\\\\\\": 0.8, \\\\\\\"mv_f1\\\\\\\": 0.8, \\\\\\\"oracle_f1\\\\\\\": 0.8, \\\\\\\"agreement\\\\\\\": 0.7071, \\\\\\\"fleiss_kappa\\\\\\\": -0.1429, \\\\\\\"soft_jaccard\\\\\\\": 0.7071, \\\\\\\"is_degenerate\\\\\\\": false, \\\\\\\"failure_mode\\\\\\\": \\\\\\\"F3_both_good\\\\\\\", \\\\\\\"sample_f1s\\\\\\\": [0.8, 0.8, 0.0, 0.8, 0.6667, 0.8, 0.8, 0.8], \\\\\\\"n_entities_per_sample\\\\\\\": [5, 5, 0, 5, 4, 5, 5, 5]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-21T07:00:05.580542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"fewnerd_test_00008\\\\\\\", \\\\\\\"n_gold_entities\\\\\\\": 1, \\\\\\\"greedy_f1\\\\\\\": 1.0, \\\\\\\"mv_f1\\\\\\\": 1.0, \\\\\\\"oracle_f1\\\\\\\": 1.0, \\\\\\\"agreement\\\\\\\": 1.0, \\\\\\\"fleiss_kappa\\\\\\\": 1.0, \\\\\\\"soft_jaccard\\\\\\\": 1.0, \\\\\\\"is_degenerate\\\\\\\": true, \\\\\\\"failure_mode\\\\\\\": \\\\\\\"F3_both_good\\\\\\\", \\\\\\\"sample_f1s\\\\\\\": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0], \\\\\\\"n_entities_per_sample\\\\\\\": [1, 1, 1, 1, 1, 1, 1, 1]}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"fewnerd_test_00009\\\\\\\", \\\\\\\"n_gold_entities\\\\\\\": 5, \\\\\\\"greedy_f1\\\\\\\": 0.3077, \\\\\\\"mv_f1\\\\\\\": 0.3333, \\\\\\\"oracle_f1\\\\\\\": 0.4615, \\\\\\\"agreement\\\\\\\": 0.8829, \\\\\\\"fleiss_kappa\\\\\\\": 0.6847, \\\\\\\"soft_jaccard\\\\\\\": 0.8829, \\\\\\\"is_degenerate\\\\\\\": false, \\\\\\\"failure_mode\\\\\\\": \\\\\\\"F2_sc_helps\\\\\\\", \\\\\\\"sample_f1s\\\\\\\": [0.3077, 0.4615, 0.4615, 0.4615, 0.4615, 0.3333, 0.3077, 0.3333], \\\\\\\"n_entities_per_sample\\\\\\\": [8, 8, 8, 8, 8, 7, 8, 7]}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"fewnerd_test_00010\\\\\\\", \\\\\\\"n_gold_entities\\\\\\\": 2, \\\\\\\"greedy_f1\\\\\\\": 0.3333, \\\\\\\"mv_f1\\\\\\\": 0.4, \\\\\\\"oracle_f1\\\\\\\": 0.4, \\\\\\\"agreement\\\\\\\": 0.8036, \\\\\\\"fleiss_kappa\\\\\\\": 0.3553, \\\\\\\"soft_jaccard\\\\\\\": 0.8333, \\\\\\\"is_degenerate\\\\\\\": false, \\\\\\\"failure_mode\\\\\\\": \\\\\\\"F2_sc_helps\\\\\\\", \\\\\\\"sample_f1s\\\\\\\": [0.3333, 0.3333, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4], \\\\\\\"n_entities_per_sample\\\\\\\": [4, 4, 3, 3, 3, 3, 3, 3]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.23}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-21T07:00:05.580875+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Frontier SC 实验进度汇总\n\n| 实验 | 服务器 | 进程 | 进度 | 速率 | 预计完成 |\n|------|--------|------|------|------|---------|\n| **GPT-5.5** | 5090-c | **已完成** | **200/200** ✅ | ~31s/inst | 已完成 (6126s) |\n| **Claude Sonnet 4** | 5090 | PID 6302 alive | **132/200** (66%) | ~17s/inst | ~15:18 CST (~19min) |\n| **DeepSeek Chat** | 5090-c | alive | **23/200** (11.5%) | ~21s/inst | ~16:00 CST (~1h) |\n| **Gemini 2.5 Pro** | 5090-c | alive | **11/200** (5.5%) | ~43s/inst | ~17:14 CST (~2h15m) |\n\n### GPT-5.5 最终结果\n- greedy_f1 = **0.6382**, mv_f1 = **0.6521** (Δ=+1.4%), oracle_f1 = **0.7203**\n- degeneracy_rate = **50%** (100/200)\n- Agreement rho = 0.3551, FK rho = 0.3515, SJ rho = 0.3461\n- Parse fails: 161 (10.1% of 1600 API calls)\n- F1_sc_hurts: 5.5%, F2_sc_helps: 3.0%\n\n### 5090-c GPU 状态\n全部 4 块 RTX 5090 空闲（0MiB），**cuda:1 已释放**。这些是纯 API 实验，不占 GPU。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_frontier_sc_progress_20260521T065741"
+          },
+          "id": "event-000083"
+        }
+      ],
+      "message_count": 83
+    }
+  ],
+  "readable_path": "readable/conversations/check-frontier-sc-progress.md"
+}

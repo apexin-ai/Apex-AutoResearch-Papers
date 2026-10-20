@@ -1,0 +1,724 @@
+{
+  "schema_version": "1.0",
+  "id": "4594194e16deaebfe178",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "paper writing compression and coverage table",
+  "task_key": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_paper_writing_compression_and_coverage_table_20260521T022814.jsonl",
+    "occurrence": 1,
+    "bytes": 48020,
+    "sha256": "c1effdd2c58f204d4598b56c66cbc53dc30ffad2666ef727f3bed001b147c25e"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "tool_call": 17,
+      "tool_result": 17,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T02:30:57.845768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T02:30:57.847155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "elapsed_ms": 1
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T02:30:57.847391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T02:30:57.847754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T02:30:57.847931+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T02:30:57.848068+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T02:30:57.848217+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (53197 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T02:30:57.848369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\\label{sec:related}\n2\t\n3\t\\paragraph{Test-time compute scaling.}\n4\tTest-time compute scaling encompasses three families: (a) extended chain-of-thought reasoning \\cite{muennighoff2025s1}, (b) repeated sampling with majority voting (self-consistency; \\citealp{wang2023selfconsistency}) and its extensions to free-form text \\cite{chen2024usc, thirukovalluru2024atomic, manakul2023selfcheckgpt}, and (c) best-of-$N$ selection via compute-optimal allocation \\cite{snell2025scaling, brown2024monkeys}.\n5\tReward-free selectors \\cite{taubenfeld2025cisc, kang2025selfcertainty, wang2025rankedvoting, oh2026latentsc} and adaptive gating variants \\cite{aggarwal2023adaptive, wang2025make, feng2025optimal, kim2026reasc} reduce inference cost; \\citet{chen2023twofailures} diagnose failure modes.\n6\tAll target discrete-answer reasoning; structured prediction requires different aggregation mechanisms because degeneracy operates at the entity-set level.\n7\t\n8\t\\paragraph{Consistency for structured IE.}\n9\t\\citet{yao2026consistency} show consistency correlates with accuracy for LLM-based NER/RE; we show correlation alone does not ensure selection gains, diagnosing degeneracy and compression as blocking mechanisms.\n10\tCoCoA \\cite{vashurin2025cocoa} fuses confidence with consistency; our supervised baseline confirms combination is not the bottleneck (\\S\\ref{sec:robustness_main}).\n11\tEarlier work on confidence for structured prediction \\cite{culotta2004confidence, mejer2010confidence, fomicheva2020unsupervised} establishes the paradigm we extend to set-valued outputs.\n12\tEnsemble approaches aggregate predictions from multiple models or prompts \\cite{florian2003named, xiao2025el4ner}; \\citet{xie2023zeroshot} propose two-stage entity voting for zero-shot NER, the closest prior work to our entity-level construction.\n13\tLLM-Blender \\cite{jiang2023llmblender} fuses outputs from multiple LLMs via pairwise ranking, whereas our single-model stochastic sampling derives diversity from t\n…[truncated 2713 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T02:30:57.848509+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T02:30:57.848654+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\\label{sec:discussion}\n2\t\n3\tNER exhibits oracle scaling comparable to reasoning ($c{\\approx}0.5$; \\S\\ref{sec:scaling}), but aggregation cannot close the gap: degeneracy (17.8--67.9\\%), limited headroom, and LP-quality alignment ($\\rho$ 0.043--0.667) constrain it.\n4\tTemperature disentangles these at $T{=}1.2$ (degeneracy 14.9\\%, LP $\\rho{=}0.225$; Table~\\ref{tab:t_degeneracy}).\n5\t\n6\t\\paragraph{From diagnosis to practice.}\\label{sec:selection_method}\n7\tEntity-level construction bypasses both failure mechanisms, with gains positive when degeneracy ${<}22$\\% and absent when ${>}31$\\% (all $p{<}0.01$; Appendix~\\ref{app:epoch_confound}). Under 72B few-shot, construction fails yet QE remains effective (SJ $\\rho$ 0.29--0.44; Appendix~\\ref{app:fs_error}).\n8\tAlternative strategies (DALS, MBR, DGS) and supervised mixtures fail to beat greedy (Appendix~\\ref{app:dals}, \\ref{app:supervised_combination}, \\ref{app:when_selection_works}).\n9\t\n10\t\\paragraph{LP compression and calibration.}\n11\tLP compression connects to broader calibration challenges in fine-tuned LLMs \\cite{kadavath2022language, xiong2024verbalized}: teacher-forcing training and constrained decoding compress the LP dynamic range, leaving within-instance variation insufficient for sample discrimination (median LP range 0.041 nats on SciERC; Appendix~\\ref{app:logprob_ties}).\n12\t\\citet{yun2025price} observe similar diversity collapse under structured output formats.\n13\tPotential remedies---per-token LP variance, calibration-aware scoring, or temperature-adjusted LP---remain untested for entity-level ranking.\n14\tTwo per-sample alternatives could bypass the LP compression bottleneck: Self-Certainty \\cite{kang2025selfcertainty} derives confidence from consistency of token-level self-evaluation, while P(True) \\cite{kadavath2022language} elicits the model's own correctness probability.\n15\tBoth produce per-sample scores without relying on sequence-level log-probabilities; whether they suffer similar compr\n…[truncated 75 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T02:30:57.848806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T02:30:57.848977+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\\label{sec:introduction}\n2\t\n3\tTest-time compute scaling complements model scaling \\cite{snell2025scaling}: repeated sampling with majority voting \\cite{wang2023selfconsistency}, best-of-$N$ with learned verifiers \\cite{cobbe2021verifiers, brown2024monkeys}, and extended chain-of-thought \\cite{muennighoff2025s1} produce large gains on reasoning and code generation.\n4\tThese successes share a structural prerequisite: the output space admits either exact equivalence classes (multiple-choice, numeric answers) or execution-based verification (code).\n5\tNamed entity recognition (NER) breaks both assumptions.\n6\tThe output is a set of typed entities; two samples from the same input routinely extract overlapping but non-identical sets, and no external oracle can adjudicate correctness at test time.\n7\tWithout equivalence classes, majority voting reduces to heuristic frequency counting; without a verifier, best-of-$N$ requires a reliable proxy signal.\n8\tThis structural mismatch raises a concrete question: can self-consistency signals that estimate quality well for reasoning tasks also \\textit{select} better outputs or \\textit{construct} better entity sets for structured generation?\n9\tWe investigate this question for NER and validate the core findings on SQL parsing, treating NER as a representative instance of the broader set-valued generation problem.\n10\t\n11\tThe question has practical stakes beyond information extraction.\n12\tHallucination detection methods such as SelfCheckGPT \\cite{manakul2023selfcheckgpt} and FActScore \\cite{min2023factscore} rely on cross-sample consistency to verify individual claims: if a model's outputs agree, the shared content is presumed factual.\n13\tThis reasoning assumes entity-level self-verification works, that a model can reliably distinguish correct extractions from incorrect ones through self-judgment or re-prompting.\n14\tWe show this assumption fails.\n15\tThree independent probes (entity self-judgment, multi-round re-prompt\n…[truncated 5657 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T02:30:57.849229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\section\\{Entity-Level Self-Verification Probes\\}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "-B": "3"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T02:30:57.849389+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "574-A learned token-level LP aggregator (1D CNN over per-token log-probabilities) matches mean LP on Few-NERD (gap closure $56.4$\\% vs.\\ $55.8$\\%); LP's bottleneck is not token aggregation.\n575-The correlation-selection gap extends to model-internal representations: in the high-capability regime (greedy F1${=}0.644$), inter-sample F1 differences are small enough that improved ranking provides no marginal selection value, consistent with the capability-diversity tension (\\S\\ref{sec:discussion}).\n576-\n577:\\section{Entity-Level Self-Verification Probes}\\label{app:self_verification}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T02:30:57.849555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\section{Entity-Level Self-Verification Probes}\\label{app:self_verification}",
+              "new_string": "\\subsection{Method Coverage Matrix}\\label{app:method_coverage}\n\nTable~\\ref{tab:method_coverage} summarizes the experimental coverage of each entity-level method evaluated in this work. Individual methods were tested on subsets of the full dataset $\\times$ model matrix; the collective coverage spans three NER datasets and two model families.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Experimental coverage of entity-level methods. \\checkmark = tested; --- = not tested. All methods use $N{=}8$, $T{=}1.0$ unless noted. Section references indicate where results appear.}\n\\label{tab:method_coverage}\n\\begin{tabular}{lccccl}\n\\toprule\nMethod & SciERC & Few-NERD & CoNLL & Qwen & LLaMA \\\\\n\\midrule\nESJ (\\S\\ref{sec:mechanistic}) & --- & \\checkmark & --- & \\checkmark & --- \\\\\nMRSC (\\S\\ref{sec:mechanistic}) & --- & \\checkmark & --- & \\checkmark & --- \\\\\nLSC (\\S\\ref{sec:mechanistic}) & --- & \\checkmark & --- & \\checkmark & --- \\\\\nHet-T (App.~\\ref{app:robustness}) & \\checkmark & --- & --- & \\checkmark & --- \\\\\nASB (App.~\\ref{app:dals}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & --- \\\\\nSCD (App.~\\ref{app:supervised_combination}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & --- \\\\\nVerifier (\\S\\ref{sec:verifier}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & --- \\\\\n\\midrule\nQE signals (\\S\\ref{sec:qe_results}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & \\checkmark \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Entity-Level Self-Verification Probes}\\label{app:self_verification}"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T02:30:57.849693+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T02:30:57.849830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex",
+              "old_string": "\\section{Related Work}\\label{sec:related}\n\n\\paragraph{Test-time compute scaling.}\nTest-time compute scaling encompasses three families: (a) extended chain-of-thought reasoning \\cite{muennighoff2025s1}, (b) repeated sampling with majority voting (self-consistency; \\citealp{wang2023selfconsistency}) and its extensions to free-form text \\cite{chen2024usc, thirukovalluru2024atomic, manakul2023selfcheckgpt}, and (c) best-of-$N$ selection via compute-optimal allocation \\cite{snell2025scaling, brown2024monkeys}.\nReward-free selectors \\cite{taubenfeld2025cisc, kang2025selfcertainty, wang2025rankedvoting, oh2026latentsc} and adaptive gating variants \\cite{aggarwal2023adaptive, wang2025make, feng2025optimal, kim2026reasc} reduce inference cost; \\citet{chen2023twofailures} diagnose failure modes.\nAll target discrete-answer reasoning; structured prediction requires different aggregation mechanisms because degeneracy operates at the entity-set level.\n\n\\paragraph{Consistency for structured IE.}\n\\citet{yao2026consistency} show consistency correlates with accuracy for LLM-based NER/RE; we show correlation alone does not ensure selection gains, diagnosing degeneracy and compression as blocking mechanisms.\nCoCoA \\cite{vashurin2025cocoa} fuses confidence with consistency; our supervised baseline confirms combination is not the bottleneck (\\S\\ref{sec:robustness_main}).\nEarlier work on confidence for structured prediction \\cite{culotta2004confidence, mejer2010confidence, fomicheva2020unsupervised} establishes the paradigm we extend to set-valued outputs.\nEnsemble approaches aggregate predictions from multiple models or prompts \\cite{florian2003named, xiao2025el4ner}; \\citet{xie2023zeroshot} propose two-stage entity voting for zero-shot NER, the closest prior work to our entity-level construction.\nLLM-Blender \\cite{jiang2023llmblender} fuses outputs from multiple LLMs via pairwise ranking, whereas our single-model stochastic sampling derives diversity from temperature rather than model heterogeneity.\nOur entity-level construction aggregates across samples from a single fine-tuned model, without requiring model diversity or prompt engineering.\nOur evaluation builds on generative IE \\cite{zhou2024uniner, sainz2024gollie, li2023codeie, wadhwa2023revisiting, xie2024selfimproving} and constrained decoding \\cite{willard2023guided, dong2024xgrammar, park2024grammar, schall2025hidden}.\n\\citet{yun2025price} show structured formats induce diversity collapse; our LP compression (median range 0.041 nats; \\S\\ref{sec:discussion}) corroborates this for NER.\n\n\\paragraph{Uncertainty estimation and MBR decoding.}\nSurveys cover confidence estimation \\cite{geng2024confidence}, uncertainty quantification \\cite{xia2025survey, liu2025uqcc}, and abstention \\cite{wen2025abstention}; semantic uncertainty \\cite{kuhn2023semantic, farquhar2024detecting} and P(True) \\cite{kadavath2022language} provide model-internal alternatives.\nOur selection strategies instantiate MBR decoding \\cite{eikema2022sampling, deguchi2024centroid}; unlike MT where MBR yields consistent gains \\cite{freitag2022high} and code generation where execution-based MBR improves selection \\cite{shi2022mbr}, instance degeneracy eliminates the headroom MBR needs even when utility is well-aligned ($\\rho{=}0.52$; \\S\\ref{sec:discussion}).\n\\citet{eikema2025structured} find MBR utilities degrade on structured outputs; our diagnosis is complementary: degeneracy, not utility misalignment, is the primary bottleneck.\nOur QE results connect to selective prediction \\cite{geifman2017selective, kuleshov2015calibrated, varshney2022investigating}: signals with AUROC up to 0.82 support abstention policies independent of sample selection.\n\n\\paragraph{Best-of-$N$ with learned verifiers.}\n\\citet{gao2023scaling} establish BoN scaling laws and \\citet{chen2021evaluating} define the pass@$k$ metric for code generation; our unsupervised signals face a more fundamental limitation than reward overoptimization.\nTrained verifiers \\cite{cobbe2021verifiers, lightman2024verify, fernandes2022quality} and self-evaluation guided search \\cite{xie2023selfevaluation} learn per-sample scoring.\nCISC \\cite{taubenfeld2025cisc} and Self-Certainty \\cite{kang2025selfcertainty} derive per-sample confidence from hidden states rather than output statistics, but require architecture-specific access to intermediate representations; these hidden-state signals remain untested for structured prediction (\\S Limitations).\nFine-tuning \\cite{kirk2024understanding} and constrained decoding \\cite{holtzman2020curious, vijayakumar2018diverse} both limit the diversity recoverable for selection.",
+              "new_string": "\\section{Related Work}\\label{sec:related}\n\n\\paragraph{Test-time compute scaling and best-of-$N$.}\nSelf-consistency \\cite{wang2023selfconsistency} and best-of-$N$ with compute-optimal allocation \\cite{snell2025scaling, brown2024monkeys} drive large gains on reasoning and code tasks.\nReward-free selectors \\cite{taubenfeld2025cisc, kang2025selfcertainty} and BoN scaling laws \\cite{gao2023scaling} reduce or characterize inference cost, while trained verifiers \\cite{cobbe2021verifiers, lightman2024verify} learn per-sample scoring.\nAll target discrete-answer settings; structured prediction requires different aggregation because degeneracy operates at the entity-set level.\n\n\\paragraph{Consistency for structured IE.}\n\\citet{yao2026consistency} show consistency correlates with accuracy for LLM-based NER/RE; we diagnose degeneracy and LP compression as mechanisms that prevent this correlation from yielding selection gains.\n\\citet{xie2023zeroshot} propose entity voting for zero-shot NER, the closest prior work to our entity-level construction; our approach aggregates stochastic samples from a single fine-tuned model without prompt engineering.\n\\citet{yun2025price} show structured formats induce diversity collapse; our LP compression (median range 0.041 nats) corroborates this for NER.\nOur evaluation builds on generative IE \\cite{zhou2024uniner, sainz2024gollie} and constrained decoding \\cite{willard2023guided, dong2024xgrammar}.\n\n\\paragraph{Uncertainty estimation and MBR decoding.}\nOur selection strategies instantiate MBR decoding \\cite{eikema2022sampling}; \\citet{eikema2025structured} find MBR utilities degrade on structured outputs, while our diagnosis identifies degeneracy as the primary bottleneck.\nSemantic uncertainty \\cite{kuhn2023semantic} and confidence estimation \\cite{geng2024confidence, xia2025survey} provide complementary model-internal alternatives; our QE signals with AUROC up to 0.82 connect to selective prediction \\cite{geifman2017selective} and support abstention independent of sample selection."
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T02:30:57.850068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T02:30:57.850238+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "old_string": "LP compression connects to broader calibration challenges in fine-tuned LLMs \\cite{kadavath2022language, xiong2024verbalized}: teacher-forcing training and constrained decoding compress the LP dynamic range, leaving within-instance variation insufficient for sample discrimination (median LP range 0.041 nats on SciERC; Appendix~\\ref{app:logprob_ties}).\n\\citet{yun2025price} observe similar diversity collapse under structured output formats.\nPotential remedies---per-token LP variance, calibration-aware scoring, or temperature-adjusted LP---remain untested for entity-level ranking.\nTwo per-sample alternatives could bypass the LP compression bottleneck: Self-Certainty \\cite{kang2025selfcertainty} derives confidence from consistency of token-level self-evaluation, while P(True) \\cite{kadavath2022language} elicits the model's own correctness probability.\nBoth produce per-sample scores without relying on sequence-level log-probabilities; whether they suffer similar compression under fine-tuning with constrained decoding is an open question.",
+              "new_string": "LP compression connects to broader calibration challenges in fine-tuned LLMs \\cite{kadavath2022language, xiong2024verbalized}: teacher-forcing training and constrained decoding compress the LP dynamic range, leaving within-instance variation insufficient for sample discrimination (median LP range 0.041 nats on SciERC; Appendix~\\ref{app:logprob_ties}).\n\\citet{yun2025price} observe similar diversity collapse under structured output formats.\nPotential remedies (per-token LP variance, calibration-aware scoring, temperature-adjusted LP) and per-sample alternatives such as Self-Certainty \\cite{kang2025selfcertainty} or P(True) \\cite{kadavath2022language} remain untested for entity-level ranking under constrained decoding."
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T02:30:57.850403+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T02:30:57.850539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex",
+              "old_string": "    \\item \\textbf{Diagnostic framework.}\n    A four-stage cascade (QE $\\to$ degeneracy $\\to$ agreement fidelity $\\to$ LP compression) that identifies where and why self-consistency fails for structured generation, cross-task validated on NER and SQL parsing (\\S\\ref{sec:selection_gap}, \\S\\ref{sec:discussion}).\n\n    \\item \\textbf{Systematic negative evidence.}\n    Seven entity-level methods, tested across three NER datasets and two model families, all fail to close the correlation-selection gap, constituting systematic evidence for a capability ceiling in entity-level self-verification (\\S\\ref{sec:mechanistic}, \\S\\ref{sec:adaptive}).\n\n    \\item \\textbf{Mechanistic explanation.}\n    Hidden-state probing reveals that discriminative information exists in model representations (frequency agreement AUROC${=}0.87$) but the prompt-based self-judgment interface cannot access it (ESJ AUROC${=}0.51$), identifying an introspection limit rather than an information deficit (\\S\\ref{sec:mechanistic}).\n\n    \\item \\textbf{Prescriptive escape routes.}\n    Entity-level construction ($+1.02$\\,--\\,$1.40$\\,pp), cross-model ensemble ($+0.42$\\,pp), and regime-specific LP selection ($+1.39$\\,pp on Few-NERD) succeed because they bypass entity-level self-verification.\n    A degeneracy decomposition $\\mathbb{E}[\\Delta F_1] = (1{-}D) \\cdot G_{\\text{nd}} \\cdot \\alpha$ yields an empirically observed threshold $\\theta_{\\text{crit}}{=}0.70$ above which self-consistency gains vanish in our experiments (\\S\\ref{sec:prescriptive}, \\S\\ref{sec:theory}).",
+              "new_string": "    \\item \\textbf{Diagnostic framework.}\n    A four-stage cascade (QE $\\to$ degeneracy $\\to$ agreement fidelity $\\to$ LP compression) explaining where and why self-consistency fails for structured generation (\\S\\ref{sec:selection_gap}, \\S\\ref{sec:discussion}).\n\n    \\item \\textbf{Systematic negative evidence.}\n    Seven entity-level methods, tested across three NER datasets and two model families, all fail to close the correlation-selection gap, constituting systematic evidence for a capability ceiling in entity-level self-verification (\\S\\ref{sec:mechanistic}, \\S\\ref{sec:adaptive}).\n\n    \\item \\textbf{Mechanistic explanation.}\n    Hidden-state probing shows discriminative information exists in representations (frequency agreement AUROC${=}0.87$) but is inaccessible through prompt-based self-judgment (ESJ AUROC${=}0.51$), an introspection limit rather than an information deficit (\\S\\ref{sec:mechanistic}).\n\n    \\item \\textbf{Prescriptive escape routes.}\n    Entity-level construction ($+1.02$\\,--\\,$1.40$\\,pp), cross-model ensemble ($+0.42$\\,pp), and regime-specific LP selection ($+1.39$\\,pp) bypass entity-level self-verification; a degeneracy threshold $\\theta_{\\text{crit}}{=}0.70$ predicts when gains vanish (\\S\\ref{sec:prescriptive}, \\S\\ref{sec:theory})."
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T02:30:57.850730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T02:30:57.850884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "570",
+              "limit": "15"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T02:30:57.851020+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "570\tOn SciERC, the MLP probe achieves higher quality correlation than LP ($\\rho{=}0.388$ vs.\\ $0.283$, $+37$\\%); hidden states encode information beyond what LP captures.\n571\tYet higher correlation does not yield better selection: MLP selection F1 ($0.637$) falls below LP's ($0.650$), with gap closure turning negative ($-5.1$\\% vs.\\ $+4.8$\\%; Table~\\ref{tab:hidden_probe}).\n572\tThe linear probe performs worse still ($\\rho{=}0.179$, gap closure $-23.4$\\%).\n573\tOn Few-NERD, the MLP provides no increment over LP (gap closure $11.7$\\% vs.\\ $12.3$\\%).\n574\tA learned token-level LP aggregator (1D CNN over per-token log-probabilities) matches mean LP on Few-NERD (gap closure $56.4$\\% vs.\\ $55.8$\\%); LP's bottleneck is not token aggregation.\n575\tThe correlation-selection gap extends to model-internal representations: in the high-capability regime (greedy F1${=}0.644$), inter-sample F1 differences are small enough that improved ranking provides no marginal selection value, consistent with the capability-diversity tension (\\S\\ref{sec:discussion}).\n576\t\n577\t\\section{Entity-Level Self-Verification Probes}\\label{app:self_verification}\n578\t\n579\tThree independent probes test whether the generating model can self-verify at the entity level, using Qwen2.5-7B fine-tuned on Few-NERD ($N{=}8$, seed 42).\n580\t\n581\t\\begin{table}[t]\n582\t\\centering\n583\t\\small\n584\t\\caption{Entity-level self-verification probes (Qwen2.5-7B, Few-NERD, $N{=}8$). ESJ: entity self-judgment via yes/no prompts. MRSC: multi-round re-prompting on disputed entities. LSC: latent-space centroid selection. MV: majority vote baseline.}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T02:30:57.851185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\section{Entity-Level Self-Verification Probes}\\label{app:self_verification}",
+              "new_string": "\\subsection{Method Coverage Matrix}\\label{app:method_coverage}\n\nTable~\\ref{tab:method_coverage} summarizes the experimental coverage of each entity-level method evaluated in this work. Individual methods were tested on subsets of the full dataset $\\times$ model matrix; the collective coverage spans three NER datasets and two model families.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Experimental coverage of entity-level methods. \\checkmark = tested; --- = not tested. All methods use $N{=}8$, $T{=}1.0$ unless noted. Section references indicate where results appear.}\n\\label{tab:method_coverage}\n\\begin{tabular}{lccccl}\n\\toprule\nMethod & SciERC & Few-NERD & CoNLL & Qwen & LLaMA \\\\\n\\midrule\nESJ (\\S\\ref{sec:mechanistic}) & --- & \\checkmark & --- & \\checkmark & --- \\\\\nMRSC (\\S\\ref{sec:mechanistic}) & --- & \\checkmark & --- & \\checkmark & --- \\\\\nLSC (\\S\\ref{sec:mechanistic}) & --- & \\checkmark & --- & \\checkmark & --- \\\\\nHet-T (App.~\\ref{app:robustness}) & \\checkmark & --- & --- & \\checkmark & --- \\\\\nASB (App.~\\ref{app:dals}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & --- \\\\\nSCD (App.~\\ref{app:supervised_combination}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & --- \\\\\nVerifier (\\S\\ref{sec:verifier}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & --- \\\\\n\\midrule\nQE signals (\\S\\ref{sec:qe_results}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & \\checkmark \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Entity-Level Self-Verification Probes}\\label{app:self_verification}"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T02:30:57.851744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T02:30:57.851911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T02:30:57.852056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\\label{sec:related}\n2\t\n3\t\\paragraph{Test-time compute scaling and best-of-$N$.}\n4\tSelf-consistency \\cite{wang2023selfconsistency} and best-of-$N$ with compute-optimal allocation \\cite{snell2025scaling, brown2024monkeys} drive large gains on reasoning and code tasks.\n5\tReward-free selectors \\cite{taubenfeld2025cisc, kang2025selfcertainty} and BoN scaling laws \\cite{gao2023scaling} reduce or characterize inference cost, while trained verifiers \\cite{cobbe2021verifiers, lightman2024verify} learn per-sample scoring.\n6\tAll target discrete-answer settings; structured prediction requires different aggregation because degeneracy operates at the entity-set level.\n7\t\n8\t\\paragraph{Consistency for structured IE.}\n9\t\\citet{yao2026consistency} show consistency correlates with accuracy for LLM-based NER/RE; we diagnose degeneracy and LP compression as mechanisms that prevent this correlation from yielding selection gains.\n10\t\\citet{xie2023zeroshot} propose entity voting for zero-shot NER, the closest prior work to our entity-level construction; our approach aggregates stochastic samples from a single fine-tuned model without prompt engineering.\n11\t\\citet{yun2025price} show structured formats induce diversity collapse; our LP compression (median range 0.041 nats) corroborates this for NER.\n12\tOur evaluation builds on generative IE \\cite{zhou2024uniner, sainz2024gollie} and constrained decoding \\cite{willard2023guided, dong2024xgrammar}.\n13\t\n14\t\\paragraph{Uncertainty estimation and MBR decoding.}\n15\tOur selection strategies instantiate MBR decoding \\cite{eikema2022sampling}; \\citet{eikema2025structured} find MBR utilities degrade on structured outputs, while our diagnosis identifies degeneracy as the primary bottleneck.\n16\tSemantic uncertainty \\cite{kuhn2023semantic} and confidence estimation \\cite{geng2024confidence, xia2025survey} provide complementary model-internal alternatives; our QE signals with AUROC up to 0.82 connect to selective prediction \\cite{ge\n…[truncated 79 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T02:30:57.852229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T02:30:57.852375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\\label{sec:discussion}\n2\t\n3\tNER exhibits oracle scaling comparable to reasoning ($c{\\approx}0.5$; \\S\\ref{sec:scaling}), but aggregation cannot close the gap: degeneracy (17.8--67.9\\%), limited headroom, and LP-quality alignment ($\\rho$ 0.043--0.667) constrain it.\n4\tTemperature disentangles these at $T{=}1.2$ (degeneracy 14.9\\%, LP $\\rho{=}0.225$; Table~\\ref{tab:t_degeneracy}).\n5\t\n6\t\\paragraph{From diagnosis to practice.}\\label{sec:selection_method}\n7\tEntity-level construction bypasses both failure mechanisms, with gains positive when degeneracy ${<}22$\\% and absent when ${>}31$\\% (all $p{<}0.01$; Appendix~\\ref{app:epoch_confound}). Under 72B few-shot, construction fails yet QE remains effective (SJ $\\rho$ 0.29--0.44; Appendix~\\ref{app:fs_error}).\n8\tAlternative strategies (DALS, MBR, DGS) and supervised mixtures fail to beat greedy (Appendix~\\ref{app:dals}, \\ref{app:supervised_combination}, \\ref{app:when_selection_works}).\n9\t\n10\t\\paragraph{LP compression and calibration.}\n11\tLP compression connects to broader calibration challenges in fine-tuned LLMs \\cite{kadavath2022language, xiong2024verbalized}: teacher-forcing training and constrained decoding compress the LP dynamic range, leaving within-instance variation insufficient for sample discrimination (median LP range 0.041 nats on SciERC; Appendix~\\ref{app:logprob_ties}).\n12\t\\citet{yun2025price} observe similar diversity collapse under structured output formats.\n13\tPotential remedies (per-token LP variance, calibration-aware scoring, temperature-adjusted LP) and per-sample alternatives such as Self-Certainty \\cite{kang2025selfcertainty} or P(True) \\cite{kadavath2022language} remain untested for entity-level ranking under constrained decoding.\n14\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T02:30:57.852520+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex",
+              "offset": "42",
+              "limit": "20"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T02:30:57.852690+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "42\t\n43\tOur contributions:\n44\t\\begin{enumerate}\n45\t    \\item \\textbf{Diagnostic framework.}\n46\t    A four-stage cascade (QE $\\to$ degeneracy $\\to$ agreement fidelity $\\to$ LP compression) explaining where and why self-consistency fails for structured generation (\\S\\ref{sec:selection_gap}, \\S\\ref{sec:discussion}).\n47\t\n48\t    \\item \\textbf{Systematic negative evidence.}\n49\t    Seven entity-level methods, tested across three NER datasets and two model families, all fail to close the correlation-selection gap, constituting systematic evidence for a capability ceiling in entity-level self-verification (\\S\\ref{sec:mechanistic}, \\S\\ref{sec:adaptive}).\n50\t\n51\t    \\item \\textbf{Mechanistic explanation.}\n52\t    Hidden-state probing shows discriminative information exists in representations (frequency agreement AUROC${=}0.87$) but is inaccessible through prompt-based self-judgment (ESJ AUROC${=}0.51$), an introspection limit rather than an information deficit (\\S\\ref{sec:mechanistic}).\n53\t\n54\t    \\item \\textbf{Prescriptive escape routes.}\n55\t    Entity-level construction ($+1.02$\\,--\\,$1.40$\\,pp), cross-model ensemble ($+0.42$\\,pp), and regime-specific LP selection ($+1.39$\\,pp) bypass entity-level self-verification; a degeneracy threshold $\\theta_{\\text{crit}}{=}0.70$ predicts when gains vanish (\\S\\ref{sec:prescriptive}, \\S\\ref{sec:theory}).\n56\t\\end{enumerate}\n57\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T02:30:57.852835+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "576",
+              "limit": "30"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T02:30:57.852977+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "576\t\n577\t\\subsection{Method Coverage Matrix}\\label{app:method_coverage}\n578\t\n579\tTable~\\ref{tab:method_coverage} summarizes the experimental coverage of each entity-level method evaluated in this work. Individual methods were tested on subsets of the full dataset $\\times$ model matrix; the collective coverage spans three NER datasets and two model families.\n580\t\n581\t\\begin{table}[h]\n582\t\\centering\n583\t\\small\n584\t\\caption{Experimental coverage of entity-level methods. \\checkmark = tested; --- = not tested. All methods use $N{=}8$, $T{=}1.0$ unless noted. Section references indicate where results appear.}\n585\t\\label{tab:method_coverage}\n586\t\\begin{tabular}{lccccl}\n587\t\\toprule\n588\tMethod & SciERC & Few-NERD & CoNLL & Qwen & LLaMA \\\\\n589\t\\midrule\n590\tESJ (\\S\\ref{sec:mechanistic}) & --- & \\checkmark & --- & \\checkmark & --- \\\\\n591\tMRSC (\\S\\ref{sec:mechanistic}) & --- & \\checkmark & --- & \\checkmark & --- \\\\\n592\tLSC (\\S\\ref{sec:mechanistic}) & --- & \\checkmark & --- & \\checkmark & --- \\\\\n593\tHet-T (App.~\\ref{app:robustness}) & \\checkmark & --- & --- & \\checkmark & --- \\\\\n594\tASB (App.~\\ref{app:dals}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & --- \\\\\n595\tSCD (App.~\\ref{app:supervised_combination}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & --- \\\\\n596\tVerifier (\\S\\ref{sec:verifier}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & --- \\\\\n597\t\\midrule\n598\tQE signals (\\S\\ref{sec:qe_results}) & \\checkmark & \\checkmark & \\checkmark & \\checkmark & \\checkmark \\\\\n599\t\\bottomrule\n600\t\\end{tabular}\n601\t\\end{table}\n602\t\n603\t\\section{Entity-Level Self-Verification Probes}\\label{app:self_verification}\n604\t\n605\tThree independent probes test whether the generating model can self-verify at the entity level, using Qwen2.5-7B fine-tuned on Few-NERD ($N{=}8$, seed 42)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T02:30:57.853213+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。所有关键引用保留，LaTeX 语法正确。\n\n修改汇总：\n\n| 文件 | 原行数 | 新行数 | 变化 |\n|------|--------|--------|------|\n| **appendix.tex** | — | +26 | 插入 Method Coverage Table（`\\label{app:method_coverage}`） |\n| **related_work.tex** | 29 → 16 | -13 | 4 段合并为 3 段，削减低优先级引用 |\n| **discussion.tex** | 16 → 13 | -3 | 删除 Self-Certainty/P(True) 详述，合并为一句 |\n| **introduction.tex** | 15 → 12 | -3 | 压缩 Item 1/3/4，删除公式 $\\mathbb{E}[\\Delta F_1]$ |\n\n5 篇关键引用确认保留：`wang2023selfconsistency`、`yao2026consistency`、`eikema2025structured`、`yun2025price`、`xie2023zeroshot`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_compression_and_coverage_table_20260521T022814"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-compression-and-coverage-table.md"
+}

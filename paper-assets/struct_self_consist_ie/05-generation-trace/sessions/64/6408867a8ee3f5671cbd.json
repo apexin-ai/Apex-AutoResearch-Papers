@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6408867a8ee3f5671cbd",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis selection f1 table2",
+  "task_key": "worker_analysis_selection_f1_table2_20260515T152953",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_selection_f1_table2_20260515T152953_result.json",
+    "occurrence": 1,
+    "bytes": 1358,
+    "sha256": "c8ae3ab014e57176d7d8cc18ecfafe4c74c39436cf2f4867ead0c87cf2840016"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。完整结果 JSON 已保存到服务器 `output/review_round2/selection_f1_table2.json`。\n\n## SciERC NER Selection F1 (N=8, T=1.0, Unified Pipeline)\n\n| Method | seed42 F1 | seed123 F1 | Mean ± σ | ΔF1 vs Greedy | p-value |\n|--------|-----------|------------|----------|---------------|---------|\n| Greedy | 0.6439 | 0.6457 | 0.6448 ± 0.0013 | — | — |\n| Random | 0.6077 | 0.6125 | 0.6101 ± 0.0034 | -3.5 pp | — |\n| LP | 0.6501 | 0.6436 | 0.6468 ± 0.0046 | +0.2 pp | 0.289 |\n| SJ | 0.6450 | 0.6475 | 0.6462 ± 0.0017 | +0.1 pp | 0.675 |\n| EM | 0.6362 | 0.6381 | 0.6371 ± 0.0013 | -0.8 pp | 0.450 |\n| VC | 0.6256 | 0.6204 | 0.6230 ± 0.0037 | -2.2 pp | 0.259 |\n| FK | 0.6448 | 0.6468 | 0.6458 ± 0.0014 | +0.1 pp | 0.793 |\n| Oracle | 0.7758 | 0.7805 | 0.7781 ± 0.0033 | +13.3 pp | — |\n\n**关键发现：** 没有信号在 instance-level sign test 下显著优于 greedy（所有 p > 0.05）。大量 ties（~75-80% 实例 signal 选择和 greedy 给出相同 F1），导致有效比较样本量很小。LP 是最佳信号（+0.2 pp），但方差最大。Oracle 显示 +13.3 pp 的理论上限空间。\n\n**验证点：** n_valid=529（551-22 gold-empty）✓，per_instance_f1 via evaluation.py ✓，FK/SJ via consistency.py ✓。p-value 用 Fisher's method 合并两个 seed 的 binomial sign test。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-selection-f1-table2.md"
+}

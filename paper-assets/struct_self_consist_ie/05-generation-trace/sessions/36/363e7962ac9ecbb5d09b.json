@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "363e7962ac9ecbb5d09b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper d113 table2 narrative fix",
+  "task_key": "worker_paper_d113_table2_narrative_fix_20260516T100628",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_d113_table2_narrative_fix_20260516T100628_result.json",
+    "occurrence": 1,
+    "bytes": 563,
+    "sha256": "33996819e486111617f14079a35cbb6539337c07c71ff01df1bd1442519e917a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。所有 11 处已修复：\n\n- 全部 `0.663`（micro F1）已删除，替换为 macro 值 0.645\n- \"surpasses all\" / \"fails to outperform\" → \"approximately matches greedy...without significant improvement\"\n- LP delta 统一为 +0.2pp（LP 0.647 - Greedy 0.645）\n- C3 contribution 改为 \"Selection recovers T=1.0 degradation but fails to close the 13.3pp oracle gap\"\n- limitations 和 discussion 的 combination delta 统一为 +0.2pp\n\n验证 grep 确认无遗漏。Changelog 已注册为 artifact `art_20260516_f3e434`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d113-table2-narrative-fix.md"
+}

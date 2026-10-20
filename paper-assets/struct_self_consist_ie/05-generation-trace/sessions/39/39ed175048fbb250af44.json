@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39ed175048fbb250af44",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "reviewer / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_8.md",
+    "occurrence": 1,
+    "bytes": 4091,
+    "sha256": "7567f3a4971158c385c266a1978c5963696ccad2785f31c9fef5768b0bb10e52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_wall_time\nupdated: '2026-05-15T19:30:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3（autodl-5090 全部 4 张 5090）\n- SciERC 4B finetune 已崩溃 3 次（v1 step 10, v2 step 10, v3 OOM on cuda:2）。v4 在 cuda:0 首次成功跑过 step 70+。如果 v4 又崩，排查根因再重试，不要盲目换 GPU 重提\n- CoNLL 4B resume 训练（PID 224639, GPU 1, train_config_conll2003_4b_resume.yaml）**未在 registry 注册**——我已报 warning，补注册或等它完成后标 DONE\n- 论文 related_work.tex line 10 有 **p>0.39 与 Table 3 p=.29 的内部不一致**——Round 9 review 已报 warning，Paper Agent 尚未修复\n\n### 2. 🖥️ 基础设施快照\n- 服务器: autodl-5090(root)，工作目录 `/root/autodl-tmp/struct_self_consist_ie`\n- Python: `/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- 本地 workspace: `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/`\n- 论文 LaTeX: `docs/paper/sections/` (experiments.tex, discussion.tex, appendix.tex 等)\n- 模型路径: `checkpoints/qwen3-8b-*-merged*`, `checkpoints/qwen3-4b-conll2003-merged`, `checkpoints/qwen3-4b-scierc-lora/`（4B SciERC 尚未 merge）\n- 数据集: `data/scierc/`, `data/conll2003/`\n- 无 W&B（report_to: none）\n- 活跃进程（截至 handoff）:\n  - PID 227128, GPU 0: SciERC 4B finetune v4 (step ~70/585, ~18min remaining)\n  - PID 224639, GPU 1: CoNLL 4B resume (step ~4200/4390, <1min remaining, 未注册)\n  - GPU 2-3: 空闲\n\n### 3. 📊 当前状态\n**刚完成**: Round 9 全文写作评审（已 post，Overall 7/10，8 个 Round 8 Critical 全部 resolved，3 个 warning 待修复）+ 4B CoNLL 推理审查（PASS）+ 3-seed freeform integration 审查（PASS）+ GPU 状态多轮监控。\n\n**Registry 活跃实验**:\n- `exp_qwen3_4b_scierc_finetune_v4`: PREPARING→应为 RUNNING, GPU 0, 训练中\n- `exp_freeform_seed789_v3`: PREPARING, 推理已完成(samples.jsonl 存在), 缺 ablation_report\n- `exp_freeform_seed123`: ANALYZING, metrics 已填充但未标 DONE\n- `exp_qwen3_4b_scierc_finetune_v3`: PREPARING/failed\n\n**等待中**: Paper Agent 可能基于 Round 9 review 提交修订版或 Round 10 审查请求。\n\n### 4. 📋 待办（条件触发式）\n- SciERC 4B v4 训练完成 → 验证 checkpoint、审查 merge + inference 流程、核对 GPU 合规\n- CoNLL 4B resume 完成 → 确认 full 5-epoch model 是否改善推理指标 vs checkpoint-3800 merged（greedy_f1=0.9251 基线）\n- Paper Agent 提交 Round 10 审查 → 重点验证: (a) related_work p 值已统一 (b) Table 3 的 2-seed σ 处理 (c) 3-seed freeform 数据是否纳入 appendix\n- exp_freeform_seed789_v3 analysis 完成 → 与 v1 metrics 交叉验证一致性\n- 任何新实验提交 → 必查 GPU 边界 + registry 注册\n\n### 5. 🎯 战略上下文\n- **核心结论**: correlation-selection gap——5 个 confidence signal 都能做 QE（ρ 最高 0.45）但全部无法做 selection（所有 p>0.05）。Gap 有两层原因: instance-level signals 定义上无法 rank candidates；LP 是唯一 per-sample signal 但 within-instance 压缩严重（median range 0.041 nats）\n- **D096 scale ablation**: 4B CoNLL 推理已完成，结果 MARGINAL（SJ-FK gap 仅 0.84pp vs 8B 的 3.6pp）。4B SciERC 训练是瓶颈——v4 首次跑过 step 10，成功则补全 scale ablation 证据\n- **论文状态**: DDL 2026-05-25。Paper Agent Round 9 修订中。主要剩余弱点: (1) RE 只有 SciERC 一个 benchmark (2) 只有 8B 模型（4B ablation 进行中）(3) free-form ablation 单数据集\n- **易错点**: \n  - provenance 中的 p 值 (0.39, 3-seed bootstrap) 与论文 Table 3 (0.29, 2-seed Fisher) 是**不同统计方法**，不是数据错误——但论文内部必须统一\n  - RE \"40% zero F1\" 来自 N=8 (159/397)，provenance 的 44.3% 来自 N=16——不同 N 值，不矛盾\n  - exp_freeform_seed789 (v1, DONE) 和 v3 是同一 seed 的重复运行（v3 用 rm -rf 清了旧数据重跑），注意不要当成两个独立 seed\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-copy-3.md"
+}

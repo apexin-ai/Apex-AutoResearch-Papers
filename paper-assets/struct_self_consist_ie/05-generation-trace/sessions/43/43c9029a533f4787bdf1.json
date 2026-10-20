@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "43c9029a533f4787bdf1",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh fewnerd n32 unified recompute",
+  "task_key": "worker_ssh_fewnerd_n32_unified_recompute_20260522T101609",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_fewnerd_n32_unified_recompute_20260522T101609.log",
+    "occurrence": 1,
+    "bytes": 1137444,
+    "sha256": "392b3756bc8bab3bc43f00c996f0384556c611143f17f2024afdebba1a01816a"
+  },
+  "statistics": {
+    "messages": 218,
+    "user_turns": 0,
+    "tool_calls": 78,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 57,
+      "tool_call": 78,
+      "tool_result": 78,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 218,
+      "chunks": [
+        {
+          "path": "43c9029a533f4787bdf1-part-0001.json",
+          "message_count": 138
+        },
+        {
+          "path": "43c9029a533f4787bdf1-part-0002.json",
+          "message_count": 56
+        },
+        {
+          "path": "43c9029a533f4787bdf1-part-0003.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-fewnerd-n32-unified-recompute.md"
+}

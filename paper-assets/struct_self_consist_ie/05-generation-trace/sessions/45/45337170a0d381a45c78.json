@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45337170a0d381a45c78",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check autodl 5090 gpu recovery",
+  "task_key": "worker_check_autodl_5090_gpu_recovery_20260514T132531",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_autodl_5090_gpu_recovery_20260514T132531_result.json",
+    "occurrence": 1,
+    "bytes": 1799,
+    "sha256": "11530d7e46c4b85a09cb52e272a16a2aea9249ae95f24f6bd5f2d7c6c7fa50be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇报如下：\n\n---\n\n## 诊断结果\n\n### 1. GPU 占用情况\n\n| GPU | 显存 | 利用率 | 实验 | PID |\n|-----|------|--------|------|-----|\n| cuda:0 | 16428/32607 MiB | 14% | **exp_001_seed456_t10_full** (刚启动) | 67261 |\n| cuda:1 | 2/32607 MiB | 0% | **空闲** — WNUT LoRA 训练已完成 | — |\n| cuda:2 | 16428/32607 MiB | 14% | **exp_001_seed123_t10_full** (刚启动) | 67399 |\n| cuda:3 | 加载中 | 0% | **exp_008_re_n16_t10_full** (刚启动，模型加载中) | 67663 |\n\n### 2. 新提交实验\n\n| exp_id | GPU | seed | tmux session |\n|--------|-----|------|-------------|\n| exp_001_seed456_t10_full | cuda:0 | 456 | `exp001_seed456` |\n| exp_001_seed123_t10_full | cuda:2 | 123 | `exp001_seed123` |\n| exp_008_re_n16_t10_full | cuda:3 | 42 | `exp008_re` |\n\n### 3. exp_001_ner_n16_seed123 (pid 63407) 状态\n\n**已完成。** 输出在 `output/exp001_n16_seed123/`：\n- `samples.jsonl`: 551 条（全集）\n- `report.json`: verdict=**FAIL**\n- NER: greedy_f1=0.663, oracle_f1=0.809, headroom=14.6pp, ρ_sj=0.423 (conditional), ρ_fk=0.260\n- RE: greedy_f1=0.419, oracle_f1=0.625, headroom=20.6pp, ρ_sj=0.364 (conditional), ρ_fk=0.331\n- RE ρ_sj < 0.40 且 structural 未 beat surface → FAIL\n- 警告：RE >30% samples F1=0\n\n### 4. Conditional filtering 确认\n\n`run_mvp_pilot.py` 第 253 行：`cond_mask = [nonempty_mask[i] and instance_f1s[i] > 0 ...]` — **正确**（greedy_f1 > 0）。\n\n### 5. --num_test 默认值\n\n第 59 行：`default=99999` — **已修复**，无需更改。\n\n### 6. WNUT LoRA 训练（cuda:1 已完成）\n\n`checkpoints/qwen3-8b-wnut17-lora/` 有完整 adapter（349MB），5 epochs, 1065 steps, eval_loss=0.077。**cuda:1 可用于 LoRA merge + WNUT pilot inference。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-autodl-5090-gpu-recovery.md"
+}

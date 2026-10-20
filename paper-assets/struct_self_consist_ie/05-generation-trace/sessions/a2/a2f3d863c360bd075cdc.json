@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2f3d863c360bd075cdc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis mbr selection",
+  "task_key": "worker_analysis_mbr_selection_20260518T162305",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mbr_selection_20260518T162305_result.json",
+    "occurrence": 1,
+    "bytes": 898,
+    "sha256": "255ffff4125895e06799e11155e9b6656f5f86b39bf546e7c72f12ea5443cebd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已写入 `artifacts/mbr_selection/mbr_selection_results.md`，脚本在 `code/analysis_mbr_selection.py`。\n\n**核心发现：MBR selection 在 NER 上全面失败。**\n\n| Dataset | Greedy | LP Sel | **MBR Sel** | Oracle |\n|---------|--------|--------|-------------|--------|\n| SciERC  | 0.6439 | 0.6501 | **0.6449**  | 0.7758 |\n| CoNLL   | 0.9087 | 0.8985 | **0.9045**  | 0.9520 |\n| FewNERD | 0.7713 | 0.7800 | **0.7511**  | 0.8831 |\n\nMBR 仅在 SciERC 上微超 Greedy (+0.001)，在 FewNERD 上大幅落后 (-0.020 vs Greedy, -0.029 vs LP)。\n\n原因：MBR 选\"最接近中心\"的 sample，在 NER 中这倾向于选只预测\"简单共识 entity\"的 sample（高 precision、低 recall），遗漏了部分 sample 正确识别的难 entity。NER 的离散集合结构与 NMT 的连续相似性结构不同，pairwise consensus 不是 quality 的好 proxy。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mbr-selection.md"
+}

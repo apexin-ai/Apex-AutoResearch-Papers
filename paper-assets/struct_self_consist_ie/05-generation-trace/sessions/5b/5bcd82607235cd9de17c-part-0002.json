@@ -1,0 +1,567 @@
+{
+  "schema_version": "1.0",
+  "session_id": "5bcd82607235cd9de17c",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-23T16:56:43.004Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0114rYLAX8cyWEt4FvrPjpAJ",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "72bf4408-a79c-4eb5-86b8-c04e34d3afba",
+            "uuid": "20452c48-8737-4aaf-b88d-f07a912aab50",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+              "oldString": "@inproceedings{he2024uncertainty,\n  title = {Uncertainty Estimation on Sequential Labeling via Uncertainty Transmission},\n  author = {He, Jianfeng and Yu, Linlin and Lei, Shuo and Lu, Chang-Tien and Chen, Feng},\n  booktitle = {Findings of the Association for Computational Linguistics: NAACL 2024},\n  year = {2024},\n  url = {https://arxiv.org/abs/2311.08726}\n}\n\n",
+              "newString": "\n",
+              "originalFile": "% Auto-generated from literature_map.yaml — do not edit manually\n\n@article{landesberg2026bon,\n  title = {When {LLM} Judge Scores Look Good but Best-of-{N} Decisions Fail},\n  author = {Landesberg, Eddie},\n  journal = {arXiv preprint arXiv:2603.12520},\n  year = {2026},\n}\n\n\n@article{holm1979simple,\n  title = {A Simple Sequentially Rejective Multiple Test Procedure},\n  author = {Holm, Sture},\n  journal = {Scandinavian Journal of Statistics},\n  volume = {6},\n  number = {2},\n  pages = {65--70},\n  year = {1979},\n}\n\n\n@article{brown2024monkeys,\n  title = {Large Language Monkeys: Scaling Inference Compute with Repeated Sampling},\n  author = {Brown, Bradley and Juravsky, Jordan and Ehrlich, Ryan and Clark, Ronald and Le, Quoc V. and Ré, Christopher and Mirhoseini, Azalia},\n  journal = {arXiv preprint arXiv:2407.21787},\n  year = {2024},\n  url = {https://arxiv.org/abs/2407.21787}\n}\n\n@inproceedings{chen2024usc,\n  title = {Universal Self-Consistency for Large Language Model Generation},\n  author = {Chen, Xinyun and Aksitov, Renat and Alon, Uri and Ren, Jie and Xiao, Kefan and Yin, Pengcheng and Prakash, Sushant and Sutton, Charles and Wang, Xuezhi and Zhou, Denny},\n  booktitle = {ICML 2024 Workshop on In-Context Learning},\n  year = {2024},\n  url = {https://arxiv.org/abs/2311.17311}\n}\n\n@article{cobbe2021verifiers,\n  title = {Training Verifiers to Solve Math Word Problems},\n  author = {Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},\n  journal = {arXiv preprint arXiv:2110.14168},\n  year = {2021},\n  url = {https://arxiv.org/abs/2110.14168}\n}\n\n@inproceedings{derczynski2017wnut,\n  title = {Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition},\n  author = {Derczynski, Leon and Nichols, Eric and Erp, Marieke van and Limsopatham, Nut},\n  booktitle = {Proceedings of the 3rd Workshop on Noisy User-generated Text (W-NUT 2017)},\n  year = {2017},\n  url = {https://aclanthology.org/W17-4418/}\n}\n\n@inproceedings{ding2021fewnerd,\n  title = {Few-{NERD}: A Few-shot Named Entity Recognition Dataset},\n  author = {Ding, Ning and Xu, Guangwei and Chen, Yulin and Wang, Xiaobin and Han, Xu and Xie, Pengjun and Zheng, Hai-Tao and Liu, Zhiyuan},\n  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)},\n  pages = {3198--3213},\n  year = {2021},\n  doi = {10.18653/v1/2021.acl-long.248}\n}\n\n@inproceedings{eikema2022sampling,\n  title = {Sampling-Based Approximations to Minimum {B}ayes Risk Decoding for Neural Machine Translation},\n  author = {Eikema, Bryan and Aziz, Wilker},\n  booktitle = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing},\n  year = {2022},\n  pages = {10978--10993},\n  doi = {10.18653/v1/2022.emnlp-main.754}\n}\n\n@article{freitag2022high,\n  title = {High Quality Rather than High Model Probability: Minimum {B}ayes Risk Decoding with Neural Metrics},\n  author = {Freitag, Markus and Grangier, David and Tan, Qijun and Liang, Bowen},\n  journal = {Transactions of the Association for Computational Linguistics},\n  volume = {10},\n  year = {2022},\n  pages = {811--825},\n  doi = {10.1162/tacl_a_00491}\n}\n\n@article{fleiss1971agreement,\n  title = {Measuring nominal scale agreement among many raters.},\n  author = {Fleiss, Joseph L.},\n  journal = {Psychological Bulletin},\n  year = {1971},\n  doi = {10.1037/h0031619},\n  url = {http://dx.doi.org/10.1037/h0031619}\n}\n\n@inproceedings{geng2024confidence,\n  title = {A Survey of Confidence Estimation and Calibration in Large Language Models},\n  author = {Geng, Jiahui and Cai, Fengyu and Wang, Yuxia and Koeppl, Heinz and Nakov, Preslav and Gurevych, Iryna},\n  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)},\n  year = {2024},\n  doi = {10.18653/v1/2024.naacl-long.366},\n  url = {http://dx.doi.org/10.18653/v1/2024.naacl-long.366}\n}\n\n\n@article{kadavath2022language,\n  title = {Language Models (Mostly) Know What They Know},\n  author = {Kadavath, Saurav and Conerly, Tom and Askell, Amanda and Henighan, Tom and Drain, Dawn and Perez, Ethan and Schiefer, Nicholas and Hatfield-Dodds, Zac and DasSarma, Nova and Tran-Johnson, Eli and Johnston, Scott and El-Showk, Sheer and Jones, Andy and Elhage, Nelson and Hume, Tristan and Chen, Anna and Bai, Yuntao and Bowman, Sam and Fort, Stanislav and Ganguli, Deep and Hernandez, Danny and Jacobson, Josh and Kernion, Jackson and Kravec, Shauna and Lovitt, Liane and Ndousse, Kamal and Olsson, Catherine and Ringer, Sam and Amodei, Dario and Brown, Tom and Clark, Jack and Joseph, Nicholas and Mann, Ben and McCandlish, Sam and Olah, Chris and Kaplan, Jared},\n  journal = {arXiv preprint arXiv:2207.05221},\n  year = {2022},\n  url = {https://arxiv.org/abs/2207.05221}\n}\n\n@inproceedings{kang2025selfcertainty,\n  title = {Scalable Best-of-N Selection for Large Language Models via Self-Certainty},\n  author = {Kang, Zhewei and Zhao, Xuandong and Song, Dawn},\n  booktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS)},\n  year = {2025},\n  url = {https://arxiv.org/abs/2502.18581}\n}\n\n@inproceedings{kuhn2023semantic,\n  title = {Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation},\n  author = {Kuhn, Lorenz and Gal, Yarin and Farquhar, Sebastian},\n  booktitle = {Proceedings of the Eleventh International Conference on Learning Representations (ICLR 2023)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2302.09664}\n}\n\n@inproceedings{lightman2024verify,\n  title = {Let's Verify Step by Step},\n  author = {Lightman, Hunter and Kosaraju, Vineet and Burda, Yura and Edwards, Harri and Baker, Bowen and Lee, Teddy and Leike, Jan and Schulman, John and Sutskever, Ilya and Cobbe, Karl},\n  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR 2024)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2305.20050}\n}\n\n@inproceedings{luan2018scierc,\n  title = {Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction},\n  author = {Luan, Yi and He, Luheng and Ostendorf, Mari and Hajishirzi, Hannaneh},\n  booktitle = {Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing},\n  year = {2018},\n  doi = {10.18653/v1/D18-1360},\n  url = {http://dx.doi.org/10.18653/v1/D18-1360}\n}\n\n\n@article{yao2026consistency,\n  title = {Consistency–accuracy correlation in hard-prompted LLMs for entity and relation extraction: empirical findings from plant-health data},\n  author = {Yao, Xinzhi and Nédellec, Claire and Xia, Jingbo and Bossy, Robert},\n  journal = {Genomics \\& Informatics},\n  year = {2026},\n  doi = {10.1186/s44342-025-00063-2},\n  url = {http://dx.doi.org/10.1186/s44342-025-00063-2}\n}\n\n@inproceedings{sainz2024gollie,\n  title = {{GoLLIE}: Annotation Guidelines improve Zero-Shot Information-Extraction},\n  author = {Sainz, Oscar and García-Ferrero, Iker and Agerri, Rodrigo and Lacalle, Oier Lopez de and Rigau, German and Agirre, Eneko},\n  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR 2024)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2310.03668}\n}\n\n@inproceedings{snell2025scaling,\n  title = {Scaling {LLM} Test-Time Compute Optimally can be More Effective than Scaling Model Parameters},\n  author = {Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},\n  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year = {2025},\n  url = {https://arxiv.org/abs/2408.03314}\n}\n\n@inproceedings{taubenfeld2025cisc,\n  title = {Confidence Improves Self-Consistency in LLMs},\n  author = {Taubenfeld, Amir and Sheffer, Tom and Ofek, Eran and Feder, Amir and Goldstein, Ariel and Gekhman, Zorik and Yona, Gal},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n  year = {2025},\n  doi = {10.18653/v1/2025.findings-acl.1030},\n  url = {http://dx.doi.org/10.18653/v1/2025.findings-acl.1030}\n}\n\n@inproceedings{thirukovalluru2024atomic,\n  title = {Atomic Self-Consistency for Better Long Form Generations},\n  author = {Thirukovalluru, Raghuveer and Huang, Yukun and Dhingra, Bhuwan},\n  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},\n  year = {2024},\n  doi = {10.18653/v1/2024.emnlp-main.706},\n  url = {http://dx.doi.org/10.18653/v1/2024.emnlp-main.706}\n}\n\n@inproceedings{tjongkimsang2003conll,\n  title = {Introduction to the {CoNLL}-2003 Shared Task: Language-Independent Named Entity Recognition},\n  author = {Sang, Erik F. Tjong Kim and Meulder, Fien De},\n  booktitle = {Proceedings of the Seventh Conference on Computational Natural Language Learning (CoNLL 2003)},\n  year = {2003},\n  url = {https://aclanthology.org/W03-0419/}\n}\n\n@inproceedings{wang2023selfconsistency,\n  title = {Self-Consistency Improves Chain of Thought Reasoning in Language Models},\n  author = {Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc and Chi, Ed and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny},\n  booktitle = {Proceedings of the Eleventh International Conference on Learning Representations (ICLR 2023)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2203.11171}\n}\n\n@article{willard2023guided,\n  title = {Efficient Guided Generation for Large Language Models},\n  author = {Willard, Brandon T. and Louf, Rémi},\n  journal = {arXiv preprint arXiv:2307.09702},\n  year = {2023},\n  url = {https://arxiv.org/abs/2307.09702}\n}\n\n@inproceedings{xia2025survey,\n  title = {A Survey of Uncertainty Estimation Methods on Large Language Models},\n  author = {Xia, Zhiqiu and Xu, Jinxuan and Zhang, Yuqian and Liu, Hang},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n  year = {2025},\n  url = {https://aclanthology.org/2025.findings-acl.1101/}\n}\n\n@inproceedings{zheng2024llamafactory,\n  title = {{L}lama{F}actory: Unified Efficient Fine-Tuning of 100+ Language Models},\n  author = {Zheng, Yaowei and Zhang, Richong and Zhang, Junhao and Ye, Yanhan and Luo, Zheyan},\n  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 3: System Demonstrations)},\n  year = {2024},\n  pages = {400--410},\n  doi = {10.18653/v1/2024.acl-demos.38}\n}\n\n@inproceedings{zhou2024uniner,\n  title = {{UniversalNER}: Targeted Distillation from Large Language Models for Open Named Entity Recognition},\n  author = {Zhou, Wenxuan and Zhang, Sheng and Gu, Yu and Chen, Muhao and Poon, Hoifung},\n  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2308.03279}\n}\n\n@inproceedings{muller2021understanding,\n  title = {Understanding the Properties of Minimum {Bayes} Risk Decoding in Neural Machine Translation},\n  author = {M{\\\"u}ller, Mathias and Sennrich, Rico},\n  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year = {2021},\n  url = {https://arxiv.org/abs/2105.08504}\n}\n\n@inproceedings{eikema2025structured,\n  title = {Structure-Conditional Minimum {B}ayes Risk Decoding},\n  author = {Eikema, Bryan and Rutkiewicz, Anna and Giulianelli, Mario},\n  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing},\n  year = {2025},\n  url = {https://arxiv.org/abs/2510.20700}\n}\n\n@inproceedings{jinnai2024mbr,\n  title = {Model-Based Minimum {B}ayes Risk Decoding for Text Generation},\n  author = {Jinnai, Yuu and Morimura, Tetsuro and Honda, Ukyo and Ariu, Kaito and Abe, Kenshi},\n  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2311.05263}\n}\n\n@inproceedings{ratinov2009design,\n  title = {Design Challenges and Misconceptions in Named Entity Recognition},\n  author = {Ratinov, Lev and Roth, Dan},\n  booktitle = {Proceedings of the Thirteenth Conference on Computational Natural Language Learning (CoNLL)},\n  year = {2009},\n  pages = {147--155},\n  publisher = {Association for Computational Linguistics}\n}\n\n@inproceedings{bergkirkpatrick2012empirical,\n  title = {An Empirical Investigation of Statistical Significance in {NLP}},\n  author = {Berg-Kirkpatrick, Taylor and Burkett, David and Klein, Dan},\n  booktitle = {Proceedings of the 2012 Joint Conference on Empirical Methods in Natural Language Processing and Computational Natural Language Learning (EMNLP-CoNLL)},\n  year = {2012},\n  pages = {995--1005},\n  publisher = {Association for Computational Linguistics}\n}\n\n@inproceedings{tian2023calibration,\n  title = {Just Ask for Calibration: Strategies for Eliciting Calibrated Confidence Scores from Language Models Fine-Tuned with Human Feedback},\n  author = {Tian, Katherine and Mitchell, Eric and Zhou, Allan and Sharma, Archit and Rafailov, Rafael and Yao, Huaxiu and Finn, Chelsea and Manning, Christopher D.},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year = {2023},\n  pages = {5433--5442},\n  publisher = {Association for Computational Linguistics}\n}\n\n@inproceedings{yun2025price,\n  title = {The Price of Format: Diversity Collapse in {LLMs}},\n  author = {Yun, Longfei and An, Chenyang and Wang, Zilong and Peng, Letian and Shang, Jingbo},\n  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2025},\n  year = {2025},\n  url = {https://aclanthology.org/2025.findings-emnlp.836/}\n}\n\n@inproceedings{gao2023scaling,\n  title = {Scaling Laws for Reward Model Overoptimization},\n  author = {Gao, Leo and Schulman, John and Hilton, Jacob},\n  booktitle = {Proceedings of the 40th International Conference on Machine Learning (ICML)},\n  year = {2023},\n  url = {https://proceedings.mlr.press/v202/gao23h.html}\n}\n\n\n@inproceedings{platt1999probabilistic,\n  title = {Probabilistic Outputs for Support Vector Machines and Comparisons to Regularized Likelihood Methods},\n  author = {Platt, John C.},\n  booktitle = {Advances in Large Margin Classifiers},\n  pages = {61--74},\n  year = {1999},\n  publisher = {MIT Press}\n}\n\n@inproceedings{guo2017calibration,\n  title = {On Calibration of Modern Neural Networks},\n  author = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},\n  booktitle = {Proceedings of the 34th International Conference on Machine Learning},\n  pages = {1321--1330},\n  year = {2017}\n}\n\n@inproceedings{geifman2017selective,\n  title = {Selective Classification for Deep Neural Networks},\n  author = {Geifman, Yonatan and El-Yaniv, Ran},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume = {30},\n  year = {2017},\n  url = {https://arxiv.org/abs/1705.08500}\n}\n\n@article{dong2024xgrammar,\n  title = {{XGrammar}: Flexible and Efficient Structured Generation Engine for Large Language Models},\n  author = {Dong, Yixin and Ruan, Charlie F. and Cai, Yaxing and Lai, Ruihang and Xu, Ziyi and Zhao, Yilong and Chen, Tianqi},\n  journal = {arXiv preprint arXiv:2411.15100},\n  year = {2024},\n  url = {https://arxiv.org/abs/2411.15100}\n}\n\n@article{lin2022teaching,\n  title = {Teaching Models to Express Their Uncertainty in Words},\n  author = {Lin, Stephanie and Hilton, Jacob and Evans, Owain},\n  journal = {Transactions on Machine Learning Research},\n  year = {2022},\n  url = {https://arxiv.org/abs/2205.14334}\n}\n\n@article{farquhar2024detecting,\n  title = {Detecting hallucinations in large language models using semantic entropy},\n  author = {Farquhar, Sebastian and Kossen, Jannik and Kuhn, Lorenz and Gal, Yarin},\n  journal = {Nature},\n  volume = {630},\n  pages = {625--630},\n  year = {2024},\n  doi = {10.1038/s41586-024-07421-0}\n}\n\n@article{chen2023twofailures,\n  title = {Two Failures of Self-Consistency in the Multi-Step Reasoning of {LLMs}},\n  author = {Chen, Angelica and Phang, Jason and Parrish, Alicia and Padmakumar, Vishakh and Zhao, Chen and Bowman, Samuel R. and Cho, Kyunghyun},\n  journal = {Transactions on Machine Learning Research},\n  year = {2024},\n  url = {https://arxiv.org/abs/2305.14279}\n}\n\n@inproceedings{aggarwal2023adaptive,\n  title = {Let's Sample Step by Step: Adaptive-Consistency for Efficient Reasoning and Coding with {LLMs}},\n  author = {Aggarwal, Pranjal and Madaan, Aman and Yang, Yiming and Mausam},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP 2023)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2305.11860}\n}\n\n@inproceedings{xie2023zeroshot,\n  title = {Empirical Study of Zero-Shot {NER} with {ChatGPT}},\n  author = {Xie, Tingyu and Li, Qi and Zhang, Jian and Zhang, Yan and Liu, Zuozhu and Wang, Hongwei},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  pages = {7935--7956},\n  year = {2023},\n  publisher = {Association for Computational Linguistics},\n  doi = {10.18653/v1/2023.emnlp-main.493},\n  url = {https://aclanthology.org/2023.emnlp-main.493/}\n}\n\n@inproceedings{muennighoff2025s1,\n  title = {s1: Simple Test-Time Scaling},\n  author = {Muennighoff, Niklas and Yang, Zitong and Shi, Weijia and Li, Xiang Lisa and Fei-Fei, Li and Hajishirzi, Hannaneh and Zettlemoyer, Luke and Liang, Percy and Cand{\\`e}s, Emmanuel and Hashimoto, Tatsunori},\n  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year = {2025},\n  url = {https://arxiv.org/abs/2501.19393}\n}\n\n@inproceedings{eikema2020map,\n  title = {Is {MAP} Decoding All You Need? {T}he Inadequacy of the Mode in Neural Machine Translation},\n  author = {Eikema, Bryan and Aziz, Wilker},\n  booktitle = {Proceedings of the 28th International Conference on Computational Linguistics (COLING)},\n  pages = {4506--4520},\n  year = {2020},\n  url = {https://aclanthology.org/2020.coling-main.398/}\n}\n\n@inproceedings{kumar2004minimum,\n  title = {Minimum {B}ayes-Risk Decoding for Statistical Machine Translation},\n  author = {Kumar, Shankar and Byrne, William},\n  booktitle = {Proceedings of the Human Language Technology Conference of the North American Chapter of the Association for Computational Linguistics (HLT-NAACL)},\n  pages = {169--176},\n  year = {2004},\n  url = {https://aclanthology.org/N04-1022/}\n}\n\n@inproceedings{dembczynski2011exact,\n  title = {An Exact Algorithm for {F}-Measure Maximization},\n  author = {Dembczy{\\'n}ski, Krzysztof and Waegeman, Willem and Cheng, Weiwei and H{\\\"u}llermeier, Eyke},\n  booktitle = {Advances in Neural Information Processing Systems 24 (NeurIPS)},\n  year = {2011},\n  url = {https://proceedings.neurips.cc/paper/2011/hash/71ad16ad2c4d81f348082ff6c4b20768-Abstract.html}\n}\n\n@inproceedings{denero2009fast,\n  title = {Fast Consensus Decoding over Translation Forests},\n  author = {DeNero, John and Chiang, David and Knight, Kevin},\n  booktitle = {Proceedings of the Joint Conference of the 47th Annual Meeting of the ACL and the 4th International Joint Conference on Natural Language Processing of the AFNLP (ACL-IJCNLP)},\n  pages = {567--575},\n  year = {2009},\n  url = {https://aclanthology.org/P09-1064/}\n}\n\n@inproceedings{desai2020calibration,\n  title = {Calibration of Pre-trained Transformers},\n  author = {Desai, Shrey and Durrett, Greg},\n  booktitle = {Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  pages = {295--302},\n  year = {2020},\n  url = {https://aclanthology.org/2020.emnlp-main.21/}\n}\n\n@inproceedings{huang2024large,\n  title = {Large Language Models Cannot Self-Correct Reasoning Yet},\n  author = {Huang, Jie and Chen, Xinyun and Mishra, Swaroop and Zheng, Huaixiu Steven and Yu, Adams Wei and Song, Xinying and Zhou, Denny},\n  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR)},\n  year = {2024},\n  url = {https://openreview.net/forum?id=IkmD3fKBPQ}\n}\n\n@inproceedings{li2024simple,\n  title = {A Simple but Effective Approach to Improve Structured Language Model Output for Information Extraction},\n  author = {Li, Yinghao and Ramprasad, Rampi and Zhang, Chao},\n  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2024},\n  year = {2024},\n  url = {https://arxiv.org/abs/2402.13364}\n}\n\n@inproceedings{xie2024selfimproving,\n  title = {Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models},\n  author = {Xie, Tingyu and Li, Qi and Zhang, Yan and Liu, Zuozhu and Wang, Hongwei},\n  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},\n  year = {2024}\n}\n\n@inproceedings{madaan2023selfrefine,\n  title = {Self-Refine: Iterative Refinement with Self-Feedback},\n  author = {Madaan, Aman and Tandon, Niket and Gupta, Prakhar and Hallinan, Skyler and Gao, Luyu and Wiegreffe, Sarah and Alon, Uri and Dziri, Nouha and Prabhumoye, Shrimai and Yang, Yiming and Gupta, Shashank and Majumder, Bodhisattwa Prasad and Hermann, Katherine and Welleck, Sean and Yazdanbakhsh, Amir and Clark, Peter},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year = {2023}\n}\n\n\n\n@article{angelopoulos2023conformal,\n  title = {Conformal Prediction: A Gentle Introduction},\n  author = {Angelopoulos, Anastasios N. and Bates, Stephen},\n  journal = {Foundations and Trends in Machine Learning},\n  volume = {16},\n  number = {4},\n  pages = {494--591},\n  year = {2023}\n}\n\n@inproceedings{malinin2021uncertainty,\n  title = {Uncertainty Estimation in Autoregressive Structured Prediction},\n  author = {Malinin, Andrey and Gales, Mark},\n  booktitle = {Proceedings of the Ninth International Conference on Learning Representations},\n  year = {2021}\n}\n\n\n\n\n@inproceedings{yee2019noisy,\n  title = {Simple and Effective Noisy Channel Modeling for Neural Machine Translation},\n  author = {Yee, Kyra and Dauphin, Yann and Auli, Michael},\n  booktitle = {Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)},\n  year = {2019},\n  url = {https://arxiv.org/abs/1908.05731}\n}\n\n@inproceedings{li2023stepaware,\n  title = {Making Large Language Models Better Reasoners with Step-Aware Verifier},\n  author = {Li, Yifei and Lin, Zeqi and Zhang, Shizhuo and Fu, Qiang and Chen, Bei and Lou, Jian-Guang and Chen, Weizhu},\n  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2206.02336}\n}\n\n\n@inproceedings{he2024uncertainty,\n  title = {Uncertainty Estimation on Sequential Labeling via Uncertainty Transmission},\n  author = {He, Jianfeng and Yu, Linlin and Lei, Shuo and Lu, Chang-Tien and Chen, Feng},\n  booktitle = {Findings of the Association for Computational Linguistics: NAACL 2024},\n  year = {2024},\n  url = {https://arxiv.org/abs/2311.08726}\n}\n\n@inproceedings{xiao2022uncertainty,\n  title = {Uncertainty Quantification with Pre-trained Language Models: A Large-Scale Empirical Analysis},\n  author = {Xiao, Yuxin and Liang, Paul Pu and Bhatt, Umang and Neiswanger, Willie and Salakhutdinov, Ruslan and Morency, Louis-Philippe},\n  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2022},\n  year = {2022},\n}\n\n@article{li2026rewardtail,\n  title = {Predicting and Improving Test-Time Scaling Laws via Reward Tail-Guided Search},\n  author = {Li, Muheng and Qian, Jian and Mou, Wenlong},\n  journal = {arXiv preprint arXiv:2602.01485},\n  year = {2026},\n}\n\n@inproceedings{shinn2023reflexion,\n  title = {Reflexion: Language Agents with Verbal Reinforcement Learning},\n  author = {Shinn, Noah and Cassano, Federico and Berman, Edward and Gopinath, Ashwin and Narasimhan, Karthik and Yao, Shunyu},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year = {2023}\n}\n\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 500,
+                  "oldLines": 13,
+                  "newStart": 500,
+                  "newLines": 6,
+                  "lines": [
+                    " }",
+                    " ",
+                    " ",
+                    "-@inproceedings{he2024uncertainty,",
+                    "-  title = {Uncertainty Estimation on Sequential Labeling via Uncertainty Transmission},",
+                    "-  author = {He, Jianfeng and Yu, Linlin and Lei, Shuo and Lu, Chang-Tien and Chen, Feng},",
+                    "-  booktitle = {Findings of the Association for Computational Linguistics: NAACL 2024},",
+                    "-  year = {2024},",
+                    "-  url = {https://arxiv.org/abs/2311.08726}",
+                    "-}",
+                    " ",
+                    " @inproceedings{xiao2022uncertainty,",
+                    "   title = {Uncertainty Quantification with Pre-trained Language Models: A Large-Scale Empirical Analysis},"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NuFwvkxFefFp3cmBwKz4NL",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+                "old_string": "@inproceedings{denero2009fast,\n  title = {Fast Consensus Decoding over Translation Forests},\n  author = {DeNero, John and Chiang, David and Knight, Kevin},\n  booktitle = {Proceedings of the Joint Conference of the 47th Annual Meeting of the ACL and the 4th International Joint Conference on Natural Language Processing of the AFNLP (ACL-IJCNLP)},\n  pages = {567--575},\n  year = {2009},\n  url = {https://aclanthology.org/P09-1064/}\n}\n\n",
+                "new_string": "\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "72bf4408-a79c-4eb5-86b8-c04e34d3afba",
+            "uuid": "f975775a-f73c-4be7-89f3-1e3a7345cec1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017sBxkQDZRQJKvFcWkDLUPG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2094,
+                "cache_read_input_tokens": 63200,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2094
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-23T16:56:45.770Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NuFwvkxFefFp3cmBwKz4NL",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "72bf4408-a79c-4eb5-86b8-c04e34d3afba",
+            "uuid": "a085d8fa-8dc6-4666-b6f8-4aac240620ee",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+              "oldString": "@inproceedings{denero2009fast,\n  title = {Fast Consensus Decoding over Translation Forests},\n  author = {DeNero, John and Chiang, David and Knight, Kevin},\n  booktitle = {Proceedings of the Joint Conference of the 47th Annual Meeting of the ACL and the 4th International Joint Conference on Natural Language Processing of the AFNLP (ACL-IJCNLP)},\n  pages = {567--575},\n  year = {2009},\n  url = {https://aclanthology.org/P09-1064/}\n}\n\n",
+              "newString": "\n",
+              "originalFile": "% Auto-generated from literature_map.yaml — do not edit manually\n\n@article{landesberg2026bon,\n  title = {When {LLM} Judge Scores Look Good but Best-of-{N} Decisions Fail},\n  author = {Landesberg, Eddie},\n  journal = {arXiv preprint arXiv:2603.12520},\n  year = {2026},\n}\n\n\n@article{holm1979simple,\n  title = {A Simple Sequentially Rejective Multiple Test Procedure},\n  author = {Holm, Sture},\n  journal = {Scandinavian Journal of Statistics},\n  volume = {6},\n  number = {2},\n  pages = {65--70},\n  year = {1979},\n}\n\n\n@article{brown2024monkeys,\n  title = {Large Language Monkeys: Scaling Inference Compute with Repeated Sampling},\n  author = {Brown, Bradley and Juravsky, Jordan and Ehrlich, Ryan and Clark, Ronald and Le, Quoc V. and Ré, Christopher and Mirhoseini, Azalia},\n  journal = {arXiv preprint arXiv:2407.21787},\n  year = {2024},\n  url = {https://arxiv.org/abs/2407.21787}\n}\n\n@inproceedings{chen2024usc,\n  title = {Universal Self-Consistency for Large Language Model Generation},\n  author = {Chen, Xinyun and Aksitov, Renat and Alon, Uri and Ren, Jie and Xiao, Kefan and Yin, Pengcheng and Prakash, Sushant and Sutton, Charles and Wang, Xuezhi and Zhou, Denny},\n  booktitle = {ICML 2024 Workshop on In-Context Learning},\n  year = {2024},\n  url = {https://arxiv.org/abs/2311.17311}\n}\n\n@article{cobbe2021verifiers,\n  title = {Training Verifiers to Solve Math Word Problems},\n  author = {Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},\n  journal = {arXiv preprint arXiv:2110.14168},\n  year = {2021},\n  url = {https://arxiv.org/abs/2110.14168}\n}\n\n@inproceedings{derczynski2017wnut,\n  title = {Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition},\n  author = {Derczynski, Leon and Nichols, Eric and Erp, Marieke van and Limsopatham, Nut},\n  booktitle = {Proceedings of the 3rd Workshop on Noisy User-generated Text (W-NUT 2017)},\n  year = {2017},\n  url = {https://aclanthology.org/W17-4418/}\n}\n\n@inproceedings{ding2021fewnerd,\n  title = {Few-{NERD}: A Few-shot Named Entity Recognition Dataset},\n  author = {Ding, Ning and Xu, Guangwei and Chen, Yulin and Wang, Xiaobin and Han, Xu and Xie, Pengjun and Zheng, Hai-Tao and Liu, Zhiyuan},\n  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)},\n  pages = {3198--3213},\n  year = {2021},\n  doi = {10.18653/v1/2021.acl-long.248}\n}\n\n@inproceedings{eikema2022sampling,\n  title = {Sampling-Based Approximations to Minimum {B}ayes Risk Decoding for Neural Machine Translation},\n  author = {Eikema, Bryan and Aziz, Wilker},\n  booktitle = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing},\n  year = {2022},\n  pages = {10978--10993},\n  doi = {10.18653/v1/2022.emnlp-main.754}\n}\n\n@article{freitag2022high,\n  title = {High Quality Rather than High Model Probability: Minimum {B}ayes Risk Decoding with Neural Metrics},\n  author = {Freitag, Markus and Grangier, David and Tan, Qijun and Liang, Bowen},\n  journal = {Transactions of the Association for Computational Linguistics},\n  volume = {10},\n  year = {2022},\n  pages = {811--825},\n  doi = {10.1162/tacl_a_00491}\n}\n\n@article{fleiss1971agreement,\n  title = {Measuring nominal scale agreement among many raters.},\n  author = {Fleiss, Joseph L.},\n  journal = {Psychological Bulletin},\n  year = {1971},\n  doi = {10.1037/h0031619},\n  url = {http://dx.doi.org/10.1037/h0031619}\n}\n\n@inproceedings{geng2024confidence,\n  title = {A Survey of Confidence Estimation and Calibration in Large Language Models},\n  author = {Geng, Jiahui and Cai, Fengyu and Wang, Yuxia and Koeppl, Heinz and Nakov, Preslav and Gurevych, Iryna},\n  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)},\n  year = {2024},\n  doi = {10.18653/v1/2024.naacl-long.366},\n  url = {http://dx.doi.org/10.18653/v1/2024.naacl-long.366}\n}\n\n\n@article{kadavath2022language,\n  title = {Language Models (Mostly) Know What They Know},\n  author = {Kadavath, Saurav and Conerly, Tom and Askell, Amanda and Henighan, Tom and Drain, Dawn and Perez, Ethan and Schiefer, Nicholas and Hatfield-Dodds, Zac and DasSarma, Nova and Tran-Johnson, Eli and Johnston, Scott and El-Showk, Sheer and Jones, Andy and Elhage, Nelson and Hume, Tristan and Chen, Anna and Bai, Yuntao and Bowman, Sam and Fort, Stanislav and Ganguli, Deep and Hernandez, Danny and Jacobson, Josh and Kernion, Jackson and Kravec, Shauna and Lovitt, Liane and Ndousse, Kamal and Olsson, Catherine and Ringer, Sam and Amodei, Dario and Brown, Tom and Clark, Jack and Joseph, Nicholas and Mann, Ben and McCandlish, Sam and Olah, Chris and Kaplan, Jared},\n  journal = {arXiv preprint arXiv:2207.05221},\n  year = {2022},\n  url = {https://arxiv.org/abs/2207.05221}\n}\n\n@inproceedings{kang2025selfcertainty,\n  title = {Scalable Best-of-N Selection for Large Language Models via Self-Certainty},\n  author = {Kang, Zhewei and Zhao, Xuandong and Song, Dawn},\n  booktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS)},\n  year = {2025},\n  url = {https://arxiv.org/abs/2502.18581}\n}\n\n@inproceedings{kuhn2023semantic,\n  title = {Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation},\n  author = {Kuhn, Lorenz and Gal, Yarin and Farquhar, Sebastian},\n  booktitle = {Proceedings of the Eleventh International Conference on Learning Representations (ICLR 2023)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2302.09664}\n}\n\n@inproceedings{lightman2024verify,\n  title = {Let's Verify Step by Step},\n  author = {Lightman, Hunter and Kosaraju, Vineet and Burda, Yura and Edwards, Harri and Baker, Bowen and Lee, Teddy and Leike, Jan and Schulman, John and Sutskever, Ilya and Cobbe, Karl},\n  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR 2024)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2305.20050}\n}\n\n@inproceedings{luan2018scierc,\n  title = {Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction},\n  author = {Luan, Yi and He, Luheng and Ostendorf, Mari and Hajishirzi, Hannaneh},\n  booktitle = {Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing},\n  year = {2018},\n  doi = {10.18653/v1/D18-1360},\n  url = {http://dx.doi.org/10.18653/v1/D18-1360}\n}\n\n\n@article{yao2026consistency,\n  title = {Consistency–accuracy correlation in hard-prompted LLMs for entity and relation extraction: empirical findings from plant-health data},\n  author = {Yao, Xinzhi and Nédellec, Claire and Xia, Jingbo and Bossy, Robert},\n  journal = {Genomics \\& Informatics},\n  year = {2026},\n  doi = {10.1186/s44342-025-00063-2},\n  url = {http://dx.doi.org/10.1186/s44342-025-00063-2}\n}\n\n@inproceedings{sainz2024gollie,\n  title = {{GoLLIE}: Annotation Guidelines improve Zero-Shot Information-Extraction},\n  author = {Sainz, Oscar and García-Ferrero, Iker and Agerri, Rodrigo and Lacalle, Oier Lopez de and Rigau, German and Agirre, Eneko},\n  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR 2024)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2310.03668}\n}\n\n@inproceedings{snell2025scaling,\n  title = {Scaling {LLM} Test-Time Compute Optimally can be More Effective than Scaling Model Parameters},\n  author = {Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},\n  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year = {2025},\n  url = {https://arxiv.org/abs/2408.03314}\n}\n\n@inproceedings{taubenfeld2025cisc,\n  title = {Confidence Improves Self-Consistency in LLMs},\n  author = {Taubenfeld, Amir and Sheffer, Tom and Ofek, Eran and Feder, Amir and Goldstein, Ariel and Gekhman, Zorik and Yona, Gal},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n  year = {2025},\n  doi = {10.18653/v1/2025.findings-acl.1030},\n  url = {http://dx.doi.org/10.18653/v1/2025.findings-acl.1030}\n}\n\n@inproceedings{thirukovalluru2024atomic,\n  title = {Atomic Self-Consistency for Better Long Form Generations},\n  author = {Thirukovalluru, Raghuveer and Huang, Yukun and Dhingra, Bhuwan},\n  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},\n  year = {2024},\n  doi = {10.18653/v1/2024.emnlp-main.706},\n  url = {http://dx.doi.org/10.18653/v1/2024.emnlp-main.706}\n}\n\n@inproceedings{tjongkimsang2003conll,\n  title = {Introduction to the {CoNLL}-2003 Shared Task: Language-Independent Named Entity Recognition},\n  author = {Sang, Erik F. Tjong Kim and Meulder, Fien De},\n  booktitle = {Proceedings of the Seventh Conference on Computational Natural Language Learning (CoNLL 2003)},\n  year = {2003},\n  url = {https://aclanthology.org/W03-0419/}\n}\n\n@inproceedings{wang2023selfconsistency,\n  title = {Self-Consistency Improves Chain of Thought Reasoning in Language Models},\n  author = {Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc and Chi, Ed and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny},\n  booktitle = {Proceedings of the Eleventh International Conference on Learning Representations (ICLR 2023)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2203.11171}\n}\n\n@article{willard2023guided,\n  title = {Efficient Guided Generation for Large Language Models},\n  author = {Willard, Brandon T. and Louf, Rémi},\n  journal = {arXiv preprint arXiv:2307.09702},\n  year = {2023},\n  url = {https://arxiv.org/abs/2307.09702}\n}\n\n@inproceedings{xia2025survey,\n  title = {A Survey of Uncertainty Estimation Methods on Large Language Models},\n  author = {Xia, Zhiqiu and Xu, Jinxuan and Zhang, Yuqian and Liu, Hang},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n  year = {2025},\n  url = {https://aclanthology.org/2025.findings-acl.1101/}\n}\n\n@inproceedings{zheng2024llamafactory,\n  title = {{L}lama{F}actory: Unified Efficient Fine-Tuning of 100+ Language Models},\n  author = {Zheng, Yaowei and Zhang, Richong and Zhang, Junhao and Ye, Yanhan and Luo, Zheyan},\n  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 3: System Demonstrations)},\n  year = {2024},\n  pages = {400--410},\n  doi = {10.18653/v1/2024.acl-demos.38}\n}\n\n@inproceedings{zhou2024uniner,\n  title = {{UniversalNER}: Targeted Distillation from Large Language Models for Open Named Entity Recognition},\n  author = {Zhou, Wenxuan and Zhang, Sheng and Gu, Yu and Chen, Muhao and Poon, Hoifung},\n  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2308.03279}\n}\n\n@inproceedings{muller2021understanding,\n  title = {Understanding the Properties of Minimum {Bayes} Risk Decoding in Neural Machine Translation},\n  author = {M{\\\"u}ller, Mathias and Sennrich, Rico},\n  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year = {2021},\n  url = {https://arxiv.org/abs/2105.08504}\n}\n\n@inproceedings{eikema2025structured,\n  title = {Structure-Conditional Minimum {B}ayes Risk Decoding},\n  author = {Eikema, Bryan and Rutkiewicz, Anna and Giulianelli, Mario},\n  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing},\n  year = {2025},\n  url = {https://arxiv.org/abs/2510.20700}\n}\n\n@inproceedings{jinnai2024mbr,\n  title = {Model-Based Minimum {B}ayes Risk Decoding for Text Generation},\n  author = {Jinnai, Yuu and Morimura, Tetsuro and Honda, Ukyo and Ariu, Kaito and Abe, Kenshi},\n  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2311.05263}\n}\n\n@inproceedings{ratinov2009design,\n  title = {Design Challenges and Misconceptions in Named Entity Recognition},\n  author = {Ratinov, Lev and Roth, Dan},\n  booktitle = {Proceedings of the Thirteenth Conference on Computational Natural Language Learning (CoNLL)},\n  year = {2009},\n  pages = {147--155},\n  publisher = {Association for Computational Linguistics}\n}\n\n@inproceedings{bergkirkpatrick2012empirical,\n  title = {An Empirical Investigation of Statistical Significance in {NLP}},\n  author = {Berg-Kirkpatrick, Taylor and Burkett, David and Klein, Dan},\n  booktitle = {Proceedings of the 2012 Joint Conference on Empirical Methods in Natural Language Processing and Computational Natural Language Learning (EMNLP-CoNLL)},\n  year = {2012},\n  pages = {995--1005},\n  publisher = {Association for Computational Linguistics}\n}\n\n@inproceedings{tian2023calibration,\n  title = {Just Ask for Calibration: Strategies for Eliciting Calibrated Confidence Scores from Language Models Fine-Tuned with Human Feedback},\n  author = {Tian, Katherine and Mitchell, Eric and Zhou, Allan and Sharma, Archit and Rafailov, Rafael and Yao, Huaxiu and Finn, Chelsea and Manning, Christopher D.},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year = {2023},\n  pages = {5433--5442},\n  publisher = {Association for Computational Linguistics}\n}\n\n@inproceedings{yun2025price,\n  title = {The Price of Format: Diversity Collapse in {LLMs}},\n  author = {Yun, Longfei and An, Chenyang and Wang, Zilong and Peng, Letian and Shang, Jingbo},\n  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2025},\n  year = {2025},\n  url = {https://aclanthology.org/2025.findings-emnlp.836/}\n}\n\n@inproceedings{gao2023scaling,\n  title = {Scaling Laws for Reward Model Overoptimization},\n  author = {Gao, Leo and Schulman, John and Hilton, Jacob},\n  booktitle = {Proceedings of the 40th International Conference on Machine Learning (ICML)},\n  year = {2023},\n  url = {https://proceedings.mlr.press/v202/gao23h.html}\n}\n\n\n@inproceedings{platt1999probabilistic,\n  title = {Probabilistic Outputs for Support Vector Machines and Comparisons to Regularized Likelihood Methods},\n  author = {Platt, John C.},\n  booktitle = {Advances in Large Margin Classifiers},\n  pages = {61--74},\n  year = {1999},\n  publisher = {MIT Press}\n}\n\n@inproceedings{guo2017calibration,\n  title = {On Calibration of Modern Neural Networks},\n  author = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},\n  booktitle = {Proceedings of the 34th International Conference on Machine Learning},\n  pages = {1321--1330},\n  year = {2017}\n}\n\n@inproceedings{geifman2017selective,\n  title = {Selective Classification for Deep Neural Networks},\n  author = {Geifman, Yonatan and El-Yaniv, Ran},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume = {30},\n  year = {2017},\n  url = {https://arxiv.org/abs/1705.08500}\n}\n\n@article{dong2024xgrammar,\n  title = {{XGrammar}: Flexible and Efficient Structured Generation Engine for Large Language Models},\n  author = {Dong, Yixin and Ruan, Charlie F. and Cai, Yaxing and Lai, Ruihang and Xu, Ziyi and Zhao, Yilong and Chen, Tianqi},\n  journal = {arXiv preprint arXiv:2411.15100},\n  year = {2024},\n  url = {https://arxiv.org/abs/2411.15100}\n}\n\n@article{lin2022teaching,\n  title = {Teaching Models to Express Their Uncertainty in Words},\n  author = {Lin, Stephanie and Hilton, Jacob and Evans, Owain},\n  journal = {Transactions on Machine Learning Research},\n  year = {2022},\n  url = {https://arxiv.org/abs/2205.14334}\n}\n\n@article{farquhar2024detecting,\n  title = {Detecting hallucinations in large language models using semantic entropy},\n  author = {Farquhar, Sebastian and Kossen, Jannik and Kuhn, Lorenz and Gal, Yarin},\n  journal = {Nature},\n  volume = {630},\n  pages = {625--630},\n  year = {2024},\n  doi = {10.1038/s41586-024-07421-0}\n}\n\n@article{chen2023twofailures,\n  title = {Two Failures of Self-Consistency in the Multi-Step Reasoning of {LLMs}},\n  author = {Chen, Angelica and Phang, Jason and Parrish, Alicia and Padmakumar, Vishakh and Zhao, Chen and Bowman, Samuel R. and Cho, Kyunghyun},\n  journal = {Transactions on Machine Learning Research},\n  year = {2024},\n  url = {https://arxiv.org/abs/2305.14279}\n}\n\n@inproceedings{aggarwal2023adaptive,\n  title = {Let's Sample Step by Step: Adaptive-Consistency for Efficient Reasoning and Coding with {LLMs}},\n  author = {Aggarwal, Pranjal and Madaan, Aman and Yang, Yiming and Mausam},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP 2023)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2305.11860}\n}\n\n@inproceedings{xie2023zeroshot,\n  title = {Empirical Study of Zero-Shot {NER} with {ChatGPT}},\n  author = {Xie, Tingyu and Li, Qi and Zhang, Jian and Zhang, Yan and Liu, Zuozhu and Wang, Hongwei},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  pages = {7935--7956},\n  year = {2023},\n  publisher = {Association for Computational Linguistics},\n  doi = {10.18653/v1/2023.emnlp-main.493},\n  url = {https://aclanthology.org/2023.emnlp-main.493/}\n}\n\n@inproceedings{muennighoff2025s1,\n  title = {s1: Simple Test-Time Scaling},\n  author = {Muennighoff, Niklas and Yang, Zitong and Shi, Weijia and Li, Xiang Lisa and Fei-Fei, Li and Hajishirzi, Hannaneh and Zettlemoyer, Luke and Liang, Percy and Cand{\\`e}s, Emmanuel and Hashimoto, Tatsunori},\n  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year = {2025},\n  url = {https://arxiv.org/abs/2501.19393}\n}\n\n@inproceedings{eikema2020map,\n  title = {Is {MAP} Decoding All You Need? {T}he Inadequacy of the Mode in Neural Machine Translation},\n  author = {Eikema, Bryan and Aziz, Wilker},\n  booktitle = {Proceedings of the 28th International Conference on Computational Linguistics (COLING)},\n  pages = {4506--4520},\n  year = {2020},\n  url = {https://aclanthology.org/2020.coling-main.398/}\n}\n\n@inproceedings{kumar2004minimum,\n  title = {Minimum {B}ayes-Risk Decoding for Statistical Machine Translation},\n  author = {Kumar, Shankar and Byrne, William},\n  booktitle = {Proceedings of the Human Language Technology Conference of the North American Chapter of the Association for Computational Linguistics (HLT-NAACL)},\n  pages = {169--176},\n  year = {2004},\n  url = {https://aclanthology.org/N04-1022/}\n}\n\n@inproceedings{dembczynski2011exact,\n  title = {An Exact Algorithm for {F}-Measure Maximization},\n  author = {Dembczy{\\'n}ski, Krzysztof and Waegeman, Willem and Cheng, Weiwei and H{\\\"u}llermeier, Eyke},\n  booktitle = {Advances in Neural Information Processing Systems 24 (NeurIPS)},\n  year = {2011},\n  url = {https://proceedings.neurips.cc/paper/2011/hash/71ad16ad2c4d81f348082ff6c4b20768-Abstract.html}\n}\n\n@inproceedings{denero2009fast,\n  title = {Fast Consensus Decoding over Translation Forests},\n  author = {DeNero, John and Chiang, David and Knight, Kevin},\n  booktitle = {Proceedings of the Joint Conference of the 47th Annual Meeting of the ACL and the 4th International Joint Conference on Natural Language Processing of the AFNLP (ACL-IJCNLP)},\n  pages = {567--575},\n  year = {2009},\n  url = {https://aclanthology.org/P09-1064/}\n}\n\n@inproceedings{desai2020calibration,\n  title = {Calibration of Pre-trained Transformers},\n  author = {Desai, Shrey and Durrett, Greg},\n  booktitle = {Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  pages = {295--302},\n  year = {2020},\n  url = {https://aclanthology.org/2020.emnlp-main.21/}\n}\n\n@inproceedings{huang2024large,\n  title = {Large Language Models Cannot Self-Correct Reasoning Yet},\n  author = {Huang, Jie and Chen, Xinyun and Mishra, Swaroop and Zheng, Huaixiu Steven and Yu, Adams Wei and Song, Xinying and Zhou, Denny},\n  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR)},\n  year = {2024},\n  url = {https://openreview.net/forum?id=IkmD3fKBPQ}\n}\n\n@inproceedings{li2024simple,\n  title = {A Simple but Effective Approach to Improve Structured Language Model Output for Information Extraction},\n  author = {Li, Yinghao and Ramprasad, Rampi and Zhang, Chao},\n  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2024},\n  year = {2024},\n  url = {https://arxiv.org/abs/2402.13364}\n}\n\n@inproceedings{xie2024selfimproving,\n  title = {Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models},\n  author = {Xie, Tingyu and Li, Qi and Zhang, Yan and Liu, Zuozhu and Wang, Hongwei},\n  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},\n  year = {2024}\n}\n\n@inproceedings{madaan2023selfrefine,\n  title = {Self-Refine: Iterative Refinement with Self-Feedback},\n  author = {Madaan, Aman and Tandon, Niket and Gupta, Prakhar and Hallinan, Skyler and Gao, Luyu and Wiegreffe, Sarah and Alon, Uri and Dziri, Nouha and Prabhumoye, Shrimai and Yang, Yiming and Gupta, Shashank and Majumder, Bodhisattwa Prasad and Hermann, Katherine and Welleck, Sean and Yazdanbakhsh, Amir and Clark, Peter},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year = {2023}\n}\n\n\n\n@article{angelopoulos2023conformal,\n  title = {Conformal Prediction: A Gentle Introduction},\n  author = {Angelopoulos, Anastasios N. and Bates, Stephen},\n  journal = {Foundations and Trends in Machine Learning},\n  volume = {16},\n  number = {4},\n  pages = {494--591},\n  year = {2023}\n}\n\n@inproceedings{malinin2021uncertainty,\n  title = {Uncertainty Estimation in Autoregressive Structured Prediction},\n  author = {Malinin, Andrey and Gales, Mark},\n  booktitle = {Proceedings of the Ninth International Conference on Learning Representations},\n  year = {2021}\n}\n\n\n\n\n@inproceedings{yee2019noisy,\n  title = {Simple and Effective Noisy Channel Modeling for Neural Machine Translation},\n  author = {Yee, Kyra and Dauphin, Yann and Auli, Michael},\n  booktitle = {Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)},\n  year = {2019},\n  url = {https://arxiv.org/abs/1908.05731}\n}\n\n@inproceedings{li2023stepaware,\n  title = {Making Large Language Models Better Reasoners with Step-Aware Verifier},\n  author = {Li, Yifei and Lin, Zeqi and Zhang, Shizhuo and Fu, Qiang and Chen, Bei and Lou, Jian-Guang and Chen, Weizhu},\n  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year = {2023},\n  url = {https://arxiv.org/abs/2206.02336}\n}\n\n\n\n@inproceedings{xiao2022uncertainty,\n  title = {Uncertainty Quantification with Pre-trained Language Models: A Large-Scale Empirical Analysis},\n  author = {Xiao, Yuxin and Liang, Paul Pu and Bhatt, Umang and Neiswanger, Willie and Salakhutdinov, Ruslan and Morency, Louis-Philippe},\n  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2022},\n  year = {2022},\n}\n\n@article{li2026rewardtail,\n  title = {Predicting and Improving Test-Time Scaling Laws via Reward Tail-Guided Search},\n  author = {Li, Muheng and Qian, Jian and Mou, Wenlong},\n  journal = {arXiv preprint arXiv:2602.01485},\n  year = {2026},\n}\n\n@inproceedings{shinn2023reflexion,\n  title = {Reflexion: Language Agents with Verbal Reinforcement Learning},\n  author = {Shinn, Noah and Cassano, Federico and Berman, Edward and Gopinath, Ashwin and Narasimhan, Karthik and Yao, Shunyu},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year = {2023}\n}\n\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 413,
+                  "oldLines": 14,
+                  "newStart": 413,
+                  "newLines": 6,
+                  "lines": [
+                    "   url = {https://proceedings.neurips.cc/paper/2011/hash/71ad16ad2c4d81f348082ff6c4b20768-Abstract.html}",
+                    " }",
+                    " ",
+                    "-@inproceedings{denero2009fast,",
+                    "-  title = {Fast Consensus Decoding over Translation Forests},",
+                    "-  author = {DeNero, John and Chiang, David and Knight, Kevin},",
+                    "-  booktitle = {Proceedings of the Joint Conference of the 47th Annual Meeting of the ACL and the 4th International Joint Conference on Natural Language Processing of the AFNLP (ACL-IJCNLP)},",
+                    "-  pages = {567--575},",
+                    "-  year = {2009},",
+                    "-  url = {https://aclanthology.org/P09-1064/}",
+                    "-}",
+                    " ",
+                    " @inproceedings{desai2020calibration,",
+                    "   title = {Calibration of Pre-trained Transformers},"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits applied. Now compiling to verify."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "72bf4408-a79c-4eb5-86b8-c04e34d3afba",
+            "uuid": "141a5aec-149a-4926-8f9e-1f09440c0d70",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Sq2UfCC6vcoJryCaN9rV85",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2142,
+                "cache_read_input_tokens": 65294,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2142
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01USSd4kaASDtm4k7jzaFiYh",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5 && bibtex main 2>&1 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5",
+                "description": "Compile LaTeX with bibtex to verify no warnings",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "72bf4408-a79c-4eb5-86b8-c04e34d3afba",
+            "uuid": "3249f5e4-884e-4354-8b2e-5f4ccabb3ca2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Sq2UfCC6vcoJryCaN9rV85",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2142,
+                "cache_read_input_tokens": 65294,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2142
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "b86oo1091",
+                "tool_use_id": "toolu_01USSd4kaASDtm4k7jzaFiYh",
+                "description": "Compile LaTeX with bibtex to verify no warnings",
+                "task_type": "local_bash",
+                "uuid": "64e6f2ad-3738-452f-b473-66b1388e9246",
+                "session_id": "72bf4408-a79c-4eb5-86b8-c04e34d3afba"
+              }
+            }
+          ],
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "b86oo1091",
+                "tool_use_id": "toolu_01USSd4kaASDtm4k7jzaFiYh",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Compile LaTeX with bibtex to verify no warnings",
+                "uuid": "2e0df6b4-2c6e-4338-a812-44d6ad2732ad",
+                "session_id": "72bf4408-a79c-4eb5-86b8-c04e34d3afba"
+              }
+            }
+          ],
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-23T16:56:56.941Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01USSd4kaASDtm4k7jzaFiYh",
+              "type": "tool_result",
+              "content": "e/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/t\nimes/utmri8a.pfb>\nOutput written on main.pdf (46 pages, 956819 bytes).\nTranscript written on main.log.\nThis is BibTeX, Version 0.99d (TeX Live 2025/Debian)\nThe top-level auxiliary file: main.aux\nThe style file: acl_natbib.bst\nDatabase file #1: references.bib\ne/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/t\nimes/utmri8a.pfb>\nOutput written on main.pdf (46 pages, 956830 bytes).\nTranscript written on main.log.\ne/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/t\nimes/utmri8a.pfb>\nOutput written on main.pdf (46 pages, 956830 bytes).\nTranscript written on main.log.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "72bf4408-a79c-4eb5-86b8-c04e34d3afba",
+            "uuid": "cea89764-8579-4579-9cb9-db6385b2ff47",
+            "tool_use_result": {
+              "stdout": "e/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/t\nimes/utmri8a.pfb>\nOutput written on main.pdf (46 pages, 956819 bytes).\nTranscript written on main.log.\nThis is BibTeX, Version 0.99d (TeX Live 2025/Debian)\nThe top-level auxiliary file: main.aux\nThe style file: acl_natbib.bst\nDatabase file #1: references.bib\ne/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/t\nimes/utmri8a.pfb>\nOutput written on main.pdf (46 pages, 956830 bytes).\nTranscript written on main.log.\ne/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/t\nimes/utmri8a.pfb>\nOutput written on main.pdf (46 pages, 956830 bytes).\nTranscript written on main.log.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The bibtex output doesn't show any warnings. Let me verify by checking the bibtex output more carefully - it only shows 3 lines of output, which is good (no warnings). Let me also check the .blg file for any warnings.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "72bf4408-a79c-4eb5-86b8-c04e34d3afba",
+            "uuid": "2a711c63-3e5e-4dd5-bd76-e878501c5480",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YRpMRpYexyQgxzhcf9RMrB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 677,
+                "cache_read_input_tokens": 67436,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 677
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Whb8JQ3S9TRdXmHGjNUWuW",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.blg",
+                "description": "Check bibtex log for warnings"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "72bf4408-a79c-4eb5-86b8-c04e34d3afba",
+            "uuid": "a4479ebd-c14f-422d-a60d-2ec4170292af",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YRpMRpYexyQgxzhcf9RMrB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 677,
+                "cache_read_input_tokens": 67436,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 677
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-23T16:57:01.633Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Whb8JQ3S9TRdXmHGjNUWuW",
+              "type": "tool_result",
+              "content": "This is BibTeX, Version 0.99d (TeX Live 2025/Debian)\nCapacity: max_strings=200000, hash_size=200000, hash_prime=170003\nThe top-level auxiliary file: main.aux\nThe style file: acl_natbib.bst\nReallocated glb_str_ptr (elt_size=4) to 20 items from 10.\nReallocated global_strs (elt_size=200001) to 20 items from 10.\nReallocated glb_str_end (elt_size=4) to 20 items from 10.\nReallocated singl_function (elt_size=4) to 100 items from 50.\nReallocated singl_function (elt_size=4) to 100 items from 50.\nReallocated wiz_functions (elt_size=4) to 6000 items from 3000.\nDatabase file #1: references.bib\nYou've used 55 entries,\n            3764 wiz_defined-function locations,\n            1037 strings with 21086 characters,\nand the built_in function-call counts, 46140 in all, are:\n= -- 3762\n> -- 2748\n< -- 30\n+ -- 1126\n- -- 847\n* -- 3217\n:= -- 6796\nadd.period$ -- 225\ncall.type$ -- 55\nchange.case$ -- 642\nchr.to.int$ -- 58\ncite$ -- 55\nduplicate$ -- 2725\nempty$ -- 3062\nformat.name$ -- 1024\nif$ -- 9908\nint.to.chr$ -- 2\nint.to.str$ -- 2\nmissing$ -- 648\nnewline$ -- 279\nnum.names$ -- 220\npop$ -- 1805\npreamble$ -- 1\npurify$ -- 507\nquote$ -- 0\nskip$ -- 2333\nstack$ -- 0\nsubstring$ -- 1155\nswap$ -- 1495\ntext.length$ -- 24\ntext.prefix$ -- 0\ntop$ -- 0\ntype$ -- 495\nwarning$ -- 0\nwhile$ -- 209\nwidth$ -- 0\nwrite$ -- 685",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "72bf4408-a79c-4eb5-86b8-c04e34d3afba",
+            "uuid": "d6adb8c3-f77a-45dd-95c2-2dba7e391564",
+            "tool_use_result": {
+              "stdout": "This is BibTeX, Version 0.99d (TeX Live 2025/Debian)\nCapacity: max_strings=200000, hash_size=200000, hash_prime=170003\nThe top-level auxiliary file: main.aux\nThe style file: acl_natbib.bst\nReallocated glb_str_ptr (elt_size=4) to 20 items from 10.\nReallocated global_strs (elt_size=200001) to 20 items from 10.\nReallocated glb_str_end (elt_size=4) to 20 items from 10.\nReallocated singl_function (elt_size=4) to 100 items from 50.\nReallocated singl_function (elt_size=4) to 100 items from 50.\nReallocated wiz_functions (elt_size=4) to 6000 items from 3000.\nDatabase file #1: references.bib\nYou've used 55 entries,\n            3764 wiz_defined-function locations,\n            1037 strings with 21086 characters,\nand the built_in function-call counts, 46140 in all, are:\n= -- 3762\n> -- 2748\n< -- 30\n+ -- 1126\n- -- 847\n* -- 3217\n:= -- 6796\nadd.period$ -- 225\ncall.type$ -- 55\nchange.case$ -- 642\nchr.to.int$ -- 58\ncite$ -- 55\nduplicate$ -- 2725\nempty$ -- 3062\nformat.name$ -- 1024\nif$ -- 9908\nint.to.chr$ -- 2\nint.to.str$ -- 2\nmissing$ -- 648\nnewline$ -- 279\nnum.names$ -- 220\npop$ -- 1805\npreamble$ -- 1\npurify$ -- 507\nquote$ -- 0\nskip$ -- 2333\nstack$ -- 0\nsubstring$ -- 1155\nswap$ -- 1495\ntext.length$ -- 24\ntext.prefix$ -- 0\ntop$ -- 0\ntype$ -- 495\nwarning$ -- 0\nwhile$ -- 209\nwidth$ -- 0\nwrite$ -- 685",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "0 warnings, 55 entries used. 编译完全通过。\n\n---\n\n## 报告\n\n### 1. 六条 BibTeX 条目核对结果\n\n| Key | 修正内容 |\n|-----|---------|\n| `muller2021understanding` | 无需修改 |\n| `kumar2004minimum` | 无需修改 |\n| `dembczynski2011exact` | URL hash 修正：`03e0704b...` → `71ad16ad...` |\n| `madaan2023selfrefine` | author 修正：`Gupta, Shyam` → `Gupta, Shashank` |\n| `kuleshov2022calibrated` | 孤立条目，已删除（该条目元数据错误：标题和作者混合了 Kuleshov-Liang 2015 和 Kuleshov-Deshpande 2022 两篇不同论文） |\n| `shinn2023reflexion` | author 补全：添加缺失作者 `Berman, Edward`（位于 Cassano 和 Gopinath 之间） |\n\n### 2. 孤立条目（12 条，已全部删除）\n\n| Key | 论文 |\n|-----|------|\n| `min2023factscore` | FActScore (EMNLP 2023) |\n| `xiong2024verbalized` | Can LLMs Express Their Uncertainty? (ICLR 2024) |\n| `manakul2023selfcheckgpt` | SelfCheckGPT (EMNLP 2023) |\n| `kuleshov2015calibrated` | Calibrated Structured Prediction (NeurIPS 2015) |\n| `kuleshov2022calibrated` | Calibrated Structured Prediction (错误条目) |\n| `chen2021codex` | Evaluating LLMs Trained on Code |\n| `fisch2021conformal` | Few-Shot Conformal Prediction (ICML 2021) |\n| `varshney2022selective` | Investigating Selective Prediction (ACL 2022 Findings) |\n| `vazhentsev2022uncertainty` | Uncertainty Estimation of Transformer Predictions (ACL 2022) |\n| `zhang2023ener` | E-NER (ACL 2023 Findings) |\n| `he2024uncertainty` | Uncertainty Estimation on Sequential Labeling (NAACL 2024 Findings) |\n| `denero2009fast` | Fast Consensus Decoding (ACL-IJCNLP 2009) |\n\n### 3. 编译结果\n\n- bibtex: **0 warnings**，55 entries used\n- pdflatex: 编译成功，46 页输出"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "72bf4408-a79c-4eb5-86b8-c04e34d3afba",
+            "uuid": "3e465704-e9a0-44b7-ba7b-fe00ac842430",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016Nk6Cbnd9rXdjb4KHSxSUR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 753,
+                "cache_read_input_tokens": 68113,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 753
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0 warnings, 55 entries used. 编译完全通过。\n\n---\n\n## 报告\n\n### 1. 六条 BibTeX 条目核对结果\n\n| Key | 修正内容 |\n|-----|---------|\n| `muller2021understanding` | 无需修改 |\n| `kumar2004minimum` | 无需修改 |\n| `dembczynski2011exact` | URL hash 修正：`03e0704b...` → `71ad16ad...` |\n| `madaan2023selfrefine` | author 修正：`Gupta, Shyam` → `Gupta, Shashank` |\n| `kuleshov2022calibrated` | 孤立条目，已删除（该条目元数据错误：标题和作者混合了 Kuleshov-Liang 2015 和 Kuleshov-Deshpande 2022 两篇不同论文） |\n| `shinn2023reflexion` | author 补全：添加缺失作者 `Berman, Edward`（位于 Cassano 和 Gopinath 之间） |\n\n### 2. 孤立条目（12 条，已全部删除）\n\n| Key | 论文 |\n|-----|------|\n| `min2023factscore` | FActScore (EMNLP 2023) |\n| `xiong2024verbalized` | Can LLMs Express Their Uncertainty? (ICLR 2024) |\n| `manakul2023selfcheckgpt` | SelfCheckGPT (EMNLP 2023) |\n| `kuleshov2015calibrated` | Calibrated Structured Prediction (NeurIPS 2015) |\n| `kuleshov2022calibrated` | Calibrated Structured Prediction (错误条目) |\n| `chen2021codex` | Evaluating LLMs Trained on Code |\n| `fisch2021conformal` | Few-Shot Conformal Prediction (ICML 2021) |\n| `varshney2022selective` | Investigating Selective Prediction (ACL 2022 Findings) |\n| `vazhentsev2022uncertainty` | Uncertainty Estimation of Transformer Predictions (ACL 2022) |\n| `zhang2023ener` | E-NER (ACL 2023 Findings) |\n| `he2024uncertainty` | Uncertainty Estimation on Sequential Labeling (NAACL 2024 Findings) |\n| `denero2009fast` | Fast Consensus Decoding (ACL-IJCNLP 2009) |\n\n### 3. 编译结果\n\n- bibtex: **0 warnings**，55 entries used\n- pdflatex: 编译成功，46 页输出"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 311777,
+            "duration_api_ms": 348306,
+            "num_turns": 33,
+            "stop_reason": "end_turn",
+            "session_id": "72bf4408-a79c-4eb5-86b8-c04e34d3afba",
+            "total_cost_usd": 1.2730022499999998,
+            "usage": {
+              "input_tokens": 2440,
+              "cache_creation_input_tokens": 57025,
+              "cache_read_input_tokens": 548746,
+              "output_tokens": 15912,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 57025,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 716,
+                  "cache_read_input_tokens": 68113,
+                  "cache_creation_input_tokens": 753,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 753
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 115378,
+                "outputTokens": 3369,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 10,
+                "costUSD": 0.232223,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 2440,
+                "outputTokens": 15912,
+                "cacheReadInputTokens": 548746,
+                "cacheCreationInputTokens": 57025,
+                "webSearchRequests": 0,
+                "costUSD": 1.04077925,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "ffe24b82-201c-4f7d-ab0e-99b8d3e666ff"
+          },
+          "id": "event-000086"
+        }
+      ]
+    }
+  ]
+}

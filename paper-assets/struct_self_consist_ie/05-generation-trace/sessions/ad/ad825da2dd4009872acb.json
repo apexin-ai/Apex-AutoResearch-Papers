@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad825da2dd4009872acb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code scaling curve script",
+  "task_key": "worker_code_scaling-curve-script_20260519T170619",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_scaling-curve-script_20260519T170619_result.json",
+    "occurrence": 1,
+    "bytes": 695,
+    "sha256": "34d7e2012b3d66521e0e9fad184c4bee0348913370f404e6f4dd5d9ad449974d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本和草图已就绪。\n\n**产出：**\n- 脚本：`artifacts/plot_scaling_curve.py`\n- 草图：`artifacts/scaling_curve_draft.pdf` / `.png`（+ 单独的 `scaling_signal_rho`、`scaling_degeneracy`、`scaling_construction_delta`）\n\n**布局：**\n- Row 1：3 个 subplot，每个 dataset 一幅 signal ρ vs model size（LP/SJ/VC 三条线，FT solid / ZS dashed）\n- Row 2 左：degeneracy rate，右：greedy F1（bonus 参考）\n- Row 3：construction ΔF1，绿色/红色背景区分正负\n\n**填入新数据的方式：** 修改脚本顶部 `DATA` dict 中对应 `(size, regime, dataset)` 的 `None` 值即可，重新 `python3 plot_scaling_curve.py` 生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scaling-curve-script-copy-2.md"
+}

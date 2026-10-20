@@ -1,0 +1,801 @@
+{
+  "schema_version": "1.0",
+  "session_id": "4144ce7fda74a7163218",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-18T23:18:19.320Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EWsAkxRDPADAGXDuqvSttk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewnerd_s789_n8\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T23:17:34.011Z\\\", \\\"updated_at\\\": \\\"2026-05-18T23:18:17.902Z\\\", \\\"hypothesis\\\": \\\"FewNERD seed789 (4th seed) for statistical CI strengthening: 4-seed protocol provides tighter confidence intervals on LP selection gain and DGS effectiveness in low-degeneracy regime.\\\", \\\"parent\\\": \\\"exp_029a\\\", \\\"spec\\\": {\\\"command\\\": \\\"python code/analyze_fewnerd_s789.py\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/samples.jsonl\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"Qwen3-8B (ft_002_v2)\\\", \\\"seed\\\": 789, \\\"checkpoint_source\\\": \\\"exp_021 shards\\\", \\\"eval_data\\\": \\\"FewNERD test (37648 instances, 32565 gold-filtered)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/run.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T23:18:17.902Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.9023}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37426bd1-4129-4964-a9fe-2d1218d5e2c8",
+            "uuid": "6846c48d-0261-4eef-925d-e62b859135c1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewnerd_s789_n8\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T23:17:34.011Z\\\", \\\"updated_at\\\": \\\"2026-05-18T23:18:17.902Z\\\", \\\"hypothesis\\\": \\\"FewNERD seed789 (4th seed) for statistical CI strengthening: 4-seed protocol provides tighter confidence intervals on LP selection gain and DGS effectiveness in low-degeneracy regime.\\\", \\\"parent\\\": \\\"exp_029a\\\", \\\"spec\\\": {\\\"command\\\": \\\"python code/analyze_fewnerd_s789.py\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/samples.jsonl\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"Qwen3-8B (ft_002_v2)\\\", \\\"seed\\\": 789, \\\"checkpoint_source\\\": \\\"exp_021 shards\\\", \\\"eval_data\\\": \\\"FewNERD test (37648 instances, 32565 gold-filtered)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/run.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T23:18:17.902Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.9023}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_fewnerd_s789_n8\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T23:17:34.011Z\", \"updated_at\": \"2026-05-18T23:18:17.902Z\", \"hypothesis\": \"FewNERD seed789 (4th seed) for statistical CI strengthening: 4-seed protocol provides tighter confidence intervals on LP selection gain and DGS effectiveness in low-degeneracy regime.\", \"parent\": \"exp_029a\", \"spec\": {\"command\": \"python code/analyze_fewnerd_s789.py\", \"server\": \"autodl-5090\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/samples.jsonl\", \"data_count\": 37648, \"model_name\": \"Qwen3-8B (ft_002_v2)\", \"seed\": 789, \"checkpoint_source\": \"exp_021 shards\", \"eval_data\": \"FewNERD test (37648 instances, 32565 gold-filtered)\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/run.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T23:18:17.902Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.9023}}"
+              }
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DMwpKJJnNF7bhofLG8MCjm",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_fewnerd_s789_n8",
+                "field": "metrics",
+                "value": {
+                  "greedy_f1": 0.7478,
+                  "oracle_f1": 0.8714,
+                  "headroom_pp": 12.37,
+                  "degen_rate": 0.1177,
+                  "degen_rate_source": "unified_metrics_constant_f1_gold_filtered",
+                  "instance_count": 37648,
+                  "n_valid": 32565,
+                  "lp_sel_f1": 0.7614,
+                  "lp_delta_pp": 1.36,
+                  "lp_rho_global": 0.1788,
+                  "lp_rho_cond": 0.176,
+                  "dgs_f1": 0.7621,
+                  "dgs_delta_pp": 1.43,
+                  "dgs_vs_lp_pp": 0.07,
+                  "best_signal": "LP",
+                  "four_seed_mean_greedy": 0.7481,
+                  "four_seed_mean_lp_delta_pp": 1.38,
+                  "four_seed_lp_delta_ci95": [
+                    1.32,
+                    1.44
+                  ]
+                },
+                "project": "struct_self_consist_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37426bd1-4129-4964-a9fe-2d1218d5e2c8",
+            "uuid": "e9508723-c4c4-49b8-af5b-58908f611c14",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018AUyWYCwx4mBZqGaaXsJcJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 580,
+                "cache_read_input_tokens": 114252,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 580
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-18T23:18:28.405Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DMwpKJJnNF7bhofLG8MCjm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewnerd_s789_n8\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T23:17:34.011Z\\\", \\\"updated_at\\\": \\\"2026-05-18T23:18:28.125Z\\\", \\\"hypothesis\\\": \\\"FewNERD seed789 (4th seed) for statistical CI strengthening: 4-seed protocol provides tighter confidence intervals on LP selection gain and DGS effectiveness in low-degeneracy regime.\\\", \\\"parent\\\": \\\"exp_029a\\\", \\\"spec\\\": {\\\"command\\\": \\\"python code/analyze_fewnerd_s789.py\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/samples.jsonl\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"Qwen3-8B (ft_002_v2)\\\", \\\"seed\\\": 789, \\\"checkpoint_source\\\": \\\"exp_021 shards\\\", \\\"eval_data\\\": \\\"FewNERD test (37648 instances, 32565 gold-filtered)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/run.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T23:18:17.902Z\\\", \\\"metrics\\\": {\\\"greedy_f1\\\": 0.7478, \\\"oracle_f1\\\": 0.8714, \\\"headroom_pp\\\": 12.37, \\\"degen_rate\\\": 0.1177, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\", \\\"instance_count\\\": 37648, \\\"n_valid\\\": 32565, \\\"lp_sel_f1\\\": 0.7614, \\\"lp_delta_pp\\\": 1.36, \\\"lp_rho_global\\\": 0.1788, \\\"lp_rho_cond\\\": 0.176, \\\"dgs_f1\\\": 0.7621, \\\"dgs_delta_pp\\\": 1.43, \\\"dgs_vs_lp_pp\\\": 0.07, \\\"best_signal\\\": \\\"LP\\\", \\\"four_seed_mean_greedy\\\": 0.7481, \\\"four_seed_mean_lp_delta_pp\\\": 1.38, \\\"four_seed_lp_delta_ci95\\\": [1.32, 1.44]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7116}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37426bd1-4129-4964-a9fe-2d1218d5e2c8",
+            "uuid": "f05cbe55-b131-4aed-8f26-544d75e7786d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewnerd_s789_n8\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T23:17:34.011Z\\\", \\\"updated_at\\\": \\\"2026-05-18T23:18:28.125Z\\\", \\\"hypothesis\\\": \\\"FewNERD seed789 (4th seed) for statistical CI strengthening: 4-seed protocol provides tighter confidence intervals on LP selection gain and DGS effectiveness in low-degeneracy regime.\\\", \\\"parent\\\": \\\"exp_029a\\\", \\\"spec\\\": {\\\"command\\\": \\\"python code/analyze_fewnerd_s789.py\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/samples.jsonl\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"Qwen3-8B (ft_002_v2)\\\", \\\"seed\\\": 789, \\\"checkpoint_source\\\": \\\"exp_021 shards\\\", \\\"eval_data\\\": \\\"FewNERD test (37648 instances, 32565 gold-filtered)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/run.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T23:18:17.902Z\\\", \\\"metrics\\\": {\\\"greedy_f1\\\": 0.7478, \\\"oracle_f1\\\": 0.8714, \\\"headroom_pp\\\": 12.37, \\\"degen_rate\\\": 0.1177, \\\"degen_rate_source\\\": \\\"unified_metrics_constant_f1_gold_filtered\\\", \\\"instance_count\\\": 37648, \\\"n_valid\\\": 32565, \\\"lp_sel_f1\\\": 0.7614, \\\"lp_delta_pp\\\": 1.36, \\\"lp_rho_global\\\": 0.1788, \\\"lp_rho_cond\\\": 0.176, \\\"dgs_f1\\\": 0.7621, \\\"dgs_delta_pp\\\": 1.43, \\\"dgs_vs_lp_pp\\\": 0.07, \\\"best_signal\\\": \\\"LP\\\", \\\"four_seed_mean_greedy\\\": 0.7481, \\\"four_seed_mean_lp_delta_pp\\\": 1.38, \\\"four_seed_lp_delta_ci95\\\": [1.32, 1.44]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7116}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_fewnerd_s789_n8\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T23:17:34.011Z\", \"updated_at\": \"2026-05-18T23:18:28.125Z\", \"hypothesis\": \"FewNERD seed789 (4th seed) for statistical CI strengthening: 4-seed protocol provides tighter confidence intervals on LP selection gain and DGS effectiveness in low-degeneracy regime.\", \"parent\": \"exp_029a\", \"spec\": {\"command\": \"python code/analyze_fewnerd_s789.py\", \"server\": \"autodl-5090\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/samples.jsonl\", \"data_count\": 37648, \"model_name\": \"Qwen3-8B (ft_002_v2)\", \"seed\": 789, \"checkpoint_source\": \"exp_021 shards\", \"eval_data\": \"FewNERD test (37648 instances, 32565 gold-filtered)\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/run.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T23:18:17.902Z\", \"metrics\": {\"greedy_f1\": 0.7478, \"oracle_f1\": 0.8714, \"headroom_pp\": 12.37, \"degen_rate\": 0.1177, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"instance_count\": 37648, \"n_valid\": 32565, \"lp_sel_f1\": 0.7614, \"lp_delta_pp\": 1.36, \"lp_rho_global\": 0.1788, \"lp_rho_cond\": 0.176, \"dgs_f1\": 0.7621, \"dgs_delta_pp\": 1.43, \"dgs_vs_lp_pp\": 0.07, \"best_signal\": \"LP\", \"four_seed_mean_greedy\": 0.7481, \"four_seed_mean_lp_delta_pp\": 1.38, \"four_seed_lp_delta_ci95\": [1.32, 1.44]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7116}}"
+              }
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。注册产出文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37426bd1-4129-4964-a9fe-2d1218d5e2c8",
+            "uuid": "3ba3bea3-cda5-4634-83c3-ae41d0d6b115",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DB7b8YR2vevW6dnUfwxYho",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1782,
+                "cache_read_input_tokens": 114832,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1782
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WDVgCiyZsqwQ7WBnFSgcyy",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "fewnerd_seed789_analysis",
+                "type": "data",
+                "description": "FewNERD seed789 full 5-signal unified analysis: greedy/oracle F1, degeneracy, LP/SJ/FK/EM/VC selection F1, DGS, bootstrap CI",
+                "project": "struct_self_consist_ie",
+                "exp_id": "exp_fewnerd_s789_n8",
+                "source_path": "/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/analysis.json",
+                "tags": [
+                  "fewnerd",
+                  "seed789",
+                  "unified_metrics",
+                  "5signal",
+                  "dgs"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37426bd1-4129-4964-a9fe-2d1218d5e2c8",
+            "uuid": "52fa6b72-aae2-4baa-b9b7-96fa1ef2f678",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DB7b8YR2vevW6dnUfwxYho",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1782,
+                "cache_read_input_tokens": 114832,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1782
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-18T23:18:37.100Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WDVgCiyZsqwQ7WBnFSgcyy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/analysis.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37426bd1-4129-4964-a9fe-2d1218d5e2c8",
+            "uuid": "40ea2694-b874-4c73-92d1-548837a9e953",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/analysis.json\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/analysis.json\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UopEAQPedU6pVjAnporSLg",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "fewnerd_4seed_summary",
+                "type": "data",
+                "description": "4-seed FewNERD summary (42/123/456/789): per-seed metrics + mean/std/95% CI for greedy, oracle, LP delta, LP rho, degeneracy",
+                "project": "struct_self_consist_ie",
+                "exp_id": "exp_fewnerd_s789_n8",
+                "source_path": "/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/four_seed_summary.json",
+                "tags": [
+                  "fewnerd",
+                  "4seed",
+                  "ci",
+                  "statistical_hardening"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37426bd1-4129-4964-a9fe-2d1218d5e2c8",
+            "uuid": "db8b351a-cfbe-4a6f-986c-efdbca89a88a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DB7b8YR2vevW6dnUfwxYho",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1782,
+                "cache_read_input_tokens": 114832,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1782
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-18T23:18:38.449Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UopEAQPedU6pVjAnporSLg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/four_seed_summary.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37426bd1-4129-4964-a9fe-2d1218d5e2c8",
+            "uuid": "61aa4b70-f035-46de-a09f-af685f5c2f9f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/four_seed_summary.json\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/four_seed_summary.json\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The `register_artifact` can't find the files because they're on the remote server, not locally. I need to use the `content` parameter instead to register the content directly. Let me read the files from the remote server and pass them as content.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37426bd1-4129-4964-a9fe-2d1218d5e2c8",
+            "uuid": "926b5c68-d3ae-4c01-9084-6a0560545917",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014dzjEG1SKxrM9rNnoJJU97",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 788,
+                "cache_read_input_tokens": 116614,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 788
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "远程文件路径不可直接注册，改用 content 方式。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37426bd1-4129-4964-a9fe-2d1218d5e2c8",
+            "uuid": "b5f23f5d-b33c-451b-a901-326aad2d6afc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014dzjEG1SKxrM9rNnoJJU97",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 788,
+                "cache_read_input_tokens": 116614,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 788
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UcQS2zgnaT3Dw6ijijQSae",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/four_seed_summary.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37426bd1-4129-4964-a9fe-2d1218d5e2c8",
+            "uuid": "72437408-7063-4f98-b984-f52e31c3d56e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014dzjEG1SKxrM9rNnoJJU97",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 788,
+                "cache_read_input_tokens": 116614,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 788
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-18T23:18:44.378Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UcQS2zgnaT3Dw6ijijQSae",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_seed\\\\\\\": {\\\\n    \\\\\\\"seed42\\\\\\\": {\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.7478465965854552,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.8718523412957434,\\\\n      \\\\\\\"headroom_pp\\\\\\\": 12.400574471028825,\\\\n      \\\\\\\"degen_rate\\\\\\\": 13.754030400736989,\\\\n      \\\\\\\"lp_sel_f1\\\\\\\": 0.7614,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": 1.3551,\\\\n      \\\\\\\"lp_rho_global\\\\\\\": 0.2217,\\\\n      \\\\\\\"lp_rho_cond\\\\\\\": 0.1906\\\\n    },\\\\n    \\\\\\\"seed123\\\\\\\": {\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.7480463604385982,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.8772023271351918,\\\\n      \\\\\\\"headroom_pp\\\\\\\": 12.915596669659358,\\\\n      \\\\\\\"degen_rate\\\\\\\": 13.118378627360663,\\\\n      \\\\\\\"lp_sel_f1\\\\\\\": 0.7624,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": 1.4375,\\\\n      \\\\\\\"lp_rho_global\\\\\\\": 0.2217,\\\\n      \\\\\\\"lp_rho_cond\\\\\\\": 0.1714\\\\n    },\\\\n    \\\\\\\"seed456\\\\\\\": {\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.7486020812401402,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.8751113568975637,\\\\n      \\\\\\\"headroom_pp\\\\\\\": 12.650927565742354,\\\\n      \\\\\\\"degen_rate\\\\\\\": 12.120374635344696,\\\\n      \\\\\\\"lp_sel_f1\\\\\\\": 0.7623,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": 1.3729,\\\\n      \\\\\\\"lp_rho_global\\\\\\\": 0.2443,\\\\n      \\\\\\\"lp_rho_cond\\\\\\\": 0.2292\\\\n    },\\\\n    \\\\\\\"seed789\\\\\\\": {\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.7477603920094339,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.8714430391776531,\\\\n      \\\\\\\"headroom_pp\\\\\\\": 12.368264716821919,\\\\n      \\\\\\\"degen_rate\\\\\\\": 11.773376324274528,\\\\n      \\\\\\\"lp_sel_f1\\\\\\\": 0.7614,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": 1.3647,\\\\n      \\\\\\\"lp_rho_global\\\\\\\": 0.1788,\\\\n      \\\\\\\"lp_rho_cond\\\\\\\": 0.176,\\\\n      \\\\\\\"dgs_f1\\\\\\\": 0.7621,\\\\n      \\\\\\\"dgs_delta_pp\\\\\\\": 1.4329\\\\n    }\\\\n  },\\\\n  \\\\\\\"four_seed_stats\\\\\\\": {\\\\n    \\\\\\\"greedy_f1\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        0.7478,\\\\n        0.748,\\\\n        0.7486,\\\\n        0.7478\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 0.7481,\\\\n      \\\\\\\"std\\\\\\\": 0.0004,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.7475,\\\\n        0.7487\\\\n      ]\\\\n    },\\\\n    \\\\\\\"oracle_f1\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        0.8719,\\\\n        0.8772,\\\\n        0.8751,\\\\n        0.8714\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 0.8739,\\\\n      \\\\\\\"std\\\\\\\": 0.0027,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.8695,\\\\n        0.8783\\\\n      ]\\\\n    },\\\\n    \\\\\\\"headroom_pp\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        12.4006,\\\\n        12.9156,\\\\n        12.6509,\\\\n        12.3683\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 12.5838,\\\\n      \\\\\\\"std\\\\\\\": 0.2547,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        12.1786,\\\\n        12.9891\\\\n      ]\\\\n    },\\\\n    \\\\\\\"degen_rate\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        13.754,\\\\n        13.1184,\\\\n        12.1204,\\\\n        11.7734\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 12.6915,\\\\n      \\\\\\\"std\\\\\\\": 0.9093,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        11.2447,\\\\n        14.1384\\\\n      ]\\\\n    },\\\\n    \\\\\\\"lp_sel_f1\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        0.7614,\\\\n        0.7624,\\\\n        0.7623,\\\\n        0.7614\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 0.7619,\\\\n      \\\\\\\"std\\\\\\\": 0.0006,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.761,\\\\n        0.7628\\\\n      ]\\\\n    },\\\\n    \\\\\\\"lp_delta_pp\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        1.3551,\\\\n        1.4375,\\\\n        1.3729,\\\\n        1.3647\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 1.3825,\\\\n      \\\\\\\"std\\\\\\\": 0.0373,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        1.3231,\\\\n        1.442\\\\n      ]\\\\n    },\\\\n    \\\\\\\"lp_rho_global\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        0.2217,\\\\n        0.2217,\\\\n        0.2443,\\\\n        0.1788\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 0.2166,\\\\n      \\\\\\\"std\\\\\\\": 0.0274,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.1731,\\\\n        0.2602\\\\n      ]\\\\n    },\\\\n    \\\\\\\"lp_rho_cond\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        0.1906,\\\\n        0.1714,\\\\n        0.2292,\\\\n        0.176\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 0.1918,\\\\n      \\\\\\\"std\\\\\\\": 0.0262,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.15,\\\\n        0.2336\\\\n      ]\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37426bd1-4129-4964-a9fe-2d1218d5e2c8",
+            "uuid": "95c3302c-5eba-4b92-9a2e-6dc99ed2f28c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_seed\\\\\\\": {\\\\n    \\\\\\\"seed42\\\\\\\": {\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.7478465965854552,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.8718523412957434,\\\\n      \\\\\\\"headroom_pp\\\\\\\": 12.400574471028825,\\\\n      \\\\\\\"degen_rate\\\\\\\": 13.754030400736989,\\\\n      \\\\\\\"lp_sel_f1\\\\\\\": 0.7614,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": 1.3551,\\\\n      \\\\\\\"lp_rho_global\\\\\\\": 0.2217,\\\\n      \\\\\\\"lp_rho_cond\\\\\\\": 0.1906\\\\n    },\\\\n    \\\\\\\"seed123\\\\\\\": {\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.7480463604385982,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.8772023271351918,\\\\n      \\\\\\\"headroom_pp\\\\\\\": 12.915596669659358,\\\\n      \\\\\\\"degen_rate\\\\\\\": 13.118378627360663,\\\\n      \\\\\\\"lp_sel_f1\\\\\\\": 0.7624,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": 1.4375,\\\\n      \\\\\\\"lp_rho_global\\\\\\\": 0.2217,\\\\n      \\\\\\\"lp_rho_cond\\\\\\\": 0.1714\\\\n    },\\\\n    \\\\\\\"seed456\\\\\\\": {\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.7486020812401402,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.8751113568975637,\\\\n      \\\\\\\"headroom_pp\\\\\\\": 12.650927565742354,\\\\n      \\\\\\\"degen_rate\\\\\\\": 12.120374635344696,\\\\n      \\\\\\\"lp_sel_f1\\\\\\\": 0.7623,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": 1.3729,\\\\n      \\\\\\\"lp_rho_global\\\\\\\": 0.2443,\\\\n      \\\\\\\"lp_rho_cond\\\\\\\": 0.2292\\\\n    },\\\\n    \\\\\\\"seed789\\\\\\\": {\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.7477603920094339,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.8714430391776531,\\\\n      \\\\\\\"headroom_pp\\\\\\\": 12.368264716821919,\\\\n      \\\\\\\"degen_rate\\\\\\\": 11.773376324274528,\\\\n      \\\\\\\"lp_sel_f1\\\\\\\": 0.7614,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": 1.3647,\\\\n      \\\\\\\"lp_rho_global\\\\\\\": 0.1788,\\\\n      \\\\\\\"lp_rho_cond\\\\\\\": 0.176,\\\\n      \\\\\\\"dgs_f1\\\\\\\": 0.7621,\\\\n      \\\\\\\"dgs_delta_pp\\\\\\\": 1.4329\\\\n    }\\\\n  },\\\\n  \\\\\\\"four_seed_stats\\\\\\\": {\\\\n    \\\\\\\"greedy_f1\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        0.7478,\\\\n        0.748,\\\\n        0.7486,\\\\n        0.7478\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 0.7481,\\\\n      \\\\\\\"std\\\\\\\": 0.0004,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.7475,\\\\n        0.7487\\\\n      ]\\\\n    },\\\\n    \\\\\\\"oracle_f1\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        0.8719,\\\\n        0.8772,\\\\n        0.8751,\\\\n        0.8714\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 0.8739,\\\\n      \\\\\\\"std\\\\\\\": 0.0027,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.8695,\\\\n        0.8783\\\\n      ]\\\\n    },\\\\n    \\\\\\\"headroom_pp\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        12.4006,\\\\n        12.9156,\\\\n        12.6509,\\\\n        12.3683\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 12.5838,\\\\n      \\\\\\\"std\\\\\\\": 0.2547,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        12.1786,\\\\n        12.9891\\\\n      ]\\\\n    },\\\\n    \\\\\\\"degen_rate\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        13.754,\\\\n        13.1184,\\\\n        12.1204,\\\\n        11.7734\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 12.6915,\\\\n      \\\\\\\"std\\\\\\\": 0.9093,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        11.2447,\\\\n        14.1384\\\\n      ]\\\\n    },\\\\n    \\\\\\\"lp_sel_f1\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        0.7614,\\\\n        0.7624,\\\\n        0.7623,\\\\n        0.7614\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 0.7619,\\\\n      \\\\\\\"std\\\\\\\": 0.0006,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.761,\\\\n        0.7628\\\\n      ]\\\\n    },\\\\n    \\\\\\\"lp_delta_pp\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        1.3551,\\\\n        1.4375,\\\\n        1.3729,\\\\n        1.3647\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 1.3825,\\\\n      \\\\\\\"std\\\\\\\": 0.0373,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        1.3231,\\\\n        1.442\\\\n      ]\\\\n    },\\\\n    \\\\\\\"lp_rho_global\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        0.2217,\\\\n        0.2217,\\\\n        0.2443,\\\\n        0.1788\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 0.2166,\\\\n      \\\\\\\"std\\\\\\\": 0.0274,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.1731,\\\\n        0.2602\\\\n      ]\\\\n    },\\\\n    \\\\\\\"lp_rho_cond\\\\\\\": {\\\\n      \\\\\\\"values\\\\\\\": [\\\\n        0.1906,\\\\n        0.1714,\\\\n        0.2292,\\\\n        0.176\\\\n      ],\\\\n      \\\\\\\"mean\\\\\\\": 0.1918,\\\\n      \\\\\\\"std\\\\\\\": 0.0262,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.15,\\\\n        0.2336\\\\n      ]\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_seed\\\": {\\n    \\\"seed42\\\": {\\n      \\\"greedy_f1\\\": 0.7478465965854552,\\n      \\\"oracle_f1\\\": 0.8718523412957434,\\n      \\\"headroom_pp\\\": 12.400574471028825,\\n      \\\"degen_rate\\\": 13.754030400736989,\\n      \\\"lp_sel_f1\\\": 0.7614,\\n      \\\"lp_delta_pp\\\": 1.3551,\\n      \\\"lp_rho_global\\\": 0.2217,\\n      \\\"lp_rho_cond\\\": 0.1906\\n    },\\n    \\\"seed123\\\": {\\n      \\\"greedy_f1\\\": 0.7480463604385982,\\n      \\\"oracle_f1\\\": 0.8772023271351918,\\n      \\\"headroom_pp\\\": 12.915596669659358,\\n      \\\"degen_rate\\\": 13.118378627360663,\\n      \\\"lp_sel_f1\\\": 0.7624,\\n      \\\"lp_delta_pp\\\": 1.4375,\\n      \\\"lp_rho_global\\\": 0.2217,\\n      \\\"lp_rho_cond\\\": 0.1714\\n    },\\n    \\\"seed456\\\": {\\n      \\\"greedy_f1\\\": 0.7486020812401402,\\n      \\\"oracle_f1\\\": 0.8751113568975637,\\n      \\\"headroom_pp\\\": 12.650927565742354,\\n      \\\"degen_rate\\\": 12.120374635344696,\\n      \\\"lp_sel_f1\\\": 0.7623,\\n      \\\"lp_delta_pp\\\": 1.3729,\\n      \\\"lp_rho_global\\\": 0.2443,\\n      \\\"lp_rho_cond\\\": 0.2292\\n    },\\n    \\\"seed789\\\": {\\n      \\\"greedy_f1\\\": 0.7477603920094339,\\n      \\\"oracle_f1\\\": 0.8714430391776531,\\n      \\\"headroom_pp\\\": 12.368264716821919,\\n      \\\"degen_rate\\\": 11.773376324274528,\\n      \\\"lp_sel_f1\\\": 0.7614,\\n      \\\"lp_delta_pp\\\": 1.3647,\\n      \\\"lp_rho_global\\\": 0.1788,\\n      \\\"lp_rho_cond\\\": 0.176,\\n      \\\"dgs_f1\\\": 0.7621,\\n      \\\"dgs_delta_pp\\\": 1.4329\\n    }\\n  },\\n  \\\"four_seed_stats\\\": {\\n    \\\"greedy_f1\\\": {\\n      \\\"values\\\": [\\n        0.7478,\\n        0.748,\\n        0.7486,\\n        0.7478\\n      ],\\n      \\\"mean\\\": 0.7481,\\n      \\\"std\\\": 0.0004,\\n      \\\"ci_95\\\": [\\n        0.7475,\\n        0.7487\\n      ]\\n    },\\n    \\\"oracle_f1\\\": {\\n      \\\"values\\\": [\\n        0.8719,\\n        0.8772,\\n        0.8751,\\n        0.8714\\n      ],\\n      \\\"mean\\\": 0.8739,\\n      \\\"std\\\": 0.0027,\\n      \\\"ci_95\\\": [\\n        0.8695,\\n        0.8783\\n      ]\\n    },\\n    \\\"headroom_pp\\\": {\\n      \\\"values\\\": [\\n        12.4006,\\n        12.9156,\\n        12.6509,\\n        12.3683\\n      ],\\n      \\\"mean\\\": 12.5838,\\n      \\\"std\\\": 0.2547,\\n      \\\"ci_95\\\": [\\n        12.1786,\\n        12.9891\\n      ]\\n    },\\n    \\\"degen_rate\\\": {\\n      \\\"values\\\": [\\n        13.754,\\n        13.1184,\\n        12.1204,\\n        11.7734\\n      ],\\n      \\\"mean\\\": 12.6915,\\n      \\\"std\\\": 0.9093,\\n      \\\"ci_95\\\": [\\n        11.2447,\\n        14.1384\\n      ]\\n    },\\n    \\\"lp_sel_f1\\\": {\\n      \\\"values\\\": [\\n        0.7614,\\n        0.7624,\\n        0.7623,\\n        0.7614\\n      ],\\n      \\\"mean\\\": 0.7619,\\n      \\\"std\\\": 0.0006,\\n      \\\"ci_95\\\": [\\n        0.761,\\n        0.7628\\n      ]\\n    },\\n    \\\"lp_delta_pp\\\": {\\n      \\\"values\\\": [\\n        1.3551,\\n        1.4375,\\n        1.3729,\\n        1.3647\\n      ],\\n      \\\"mean\\\": 1.3825,\\n      \\\"std\\\": 0.0373,\\n      \\\"ci_95\\\": [\\n        1.3231,\\n        1.442\\n      ]\\n    },\\n    \\\"lp_rho_global\\\": {\\n      \\\"values\\\": [\\n        0.2217,\\n        0.2217,\\n        0.2443,\\n        0.1788\\n      ],\\n      \\\"mean\\\": 0.2166,\\n      \\\"std\\\": 0.0274,\\n      \\\"ci_95\\\": [\\n        0.1731,\\n        0.2602\\n      ]\\n    },\\n    \\\"lp_rho_cond\\\": {\\n      \\\"values\\\": [\\n        0.1906,\\n        0.1714,\\n        0.2292,\\n        0.176\\n      ],\\n      \\\"mean\\\": 0.1918,\\n      \\\"std\\\": 0.0262,\\n      \\\"ci_95\\\": [\\n        0.15,\\n        0.2336\\n      ]\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KcyXBjSVjX39ED3t3DUrsb",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "fewnerd_seed789_analysis",
+                "type": "data",
+                "description": "FewNERD seed789 full 5-signal unified analysis: greedy/oracle F1, degeneracy, LP/SJ/FK/EM/VC selection F1, DGS, bootstrap CI",
+                "project": "struct_self_consist_ie",
+                "exp_id": "exp_fewnerd_s789_n8",
+                "content": "Remote path: /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/analysis.json",
+                "content_filename": "fewnerd_seed789_analysis_pointer.txt",
+                "tags": [
+                  "fewnerd",
+                  "seed789",
+                  "unified_metrics",
+                  "5signal",
+                  "dgs"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37426bd1-4129-4964-a9fe-2d1218d5e2c8",
+            "uuid": "137dfef1-c653-4023-80bf-2ec736853064",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T6aFBn4KFue4nyuXEM844D",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2185,
+                "cache_read_input_tokens": 117402,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2185
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-18T23:18:49.744Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KcyXBjSVjX39ED3t3DUrsb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_b731fe\\\", \\\"name\\\": \\\"fewnerd_seed789_analysis\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"FewNERD seed789 full 5-signal unified analysis: greedy/oracle F1, degeneracy, LP/SJ/FK/EM/VC selection F1, DGS, bootstrap CI\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/exp_fewnerd_s789_n8/data/fewnerd_seed789_analysis_pointer.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": \\\"exp_fewnerd_s789_n8\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T23:18:49.365619+00:00\\\", \\\"tags\\\": [\\\"fewnerd\\\", \\\"seed789\\\", \\\"unified_metrics\\\", \\\"5signal\\\", \\\"dgs\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37426bd1-4129-4964-a9fe-2d1218d5e2c8",
+            "uuid": "2dc24e68-4f0c-446b-8ed6-1aacf2d11cc7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_b731fe\\\", \\\"name\\\": \\\"fewnerd_seed789_analysis\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"FewNERD seed789 full 5-signal unified analysis: greedy/oracle F1, degeneracy, LP/SJ/FK/EM/VC selection F1, DGS, bootstrap CI\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/exp_fewnerd_s789_n8/data/fewnerd_seed789_analysis_pointer.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": \\\"exp_fewnerd_s789_n8\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T23:18:49.365619+00:00\\\", \\\"tags\\\": [\\\"fewnerd\\\", \\\"seed789\\\", \\\"unified_metrics\\\", \\\"5signal\\\", \\\"dgs\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_b731fe\", \"name\": \"fewnerd_seed789_analysis\", \"type\": \"data\", \"description\": \"FewNERD seed789 full 5-signal unified analysis: greedy/oracle F1, degeneracy, LP/SJ/FK/EM/VC selection F1, DGS, bootstrap CI\", \"path\": \"projects/struct_self_consist_ie/artifacts/exp_fewnerd_s789_n8/data/fewnerd_seed789_analysis_pointer.txt\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": \"exp_fewnerd_s789_n8\", \"skill\": \"\", \"created_at\": \"2026-05-18T23:18:49.365619+00:00\", \"tags\": [\"fewnerd\", \"seed789\", \"unified_metrics\", \"5signal\", \"dgs\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017aBj7aFvPMKUpDm58veMLs",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "fewnerd_4seed_summary",
+                "type": "data",
+                "description": "4-seed FewNERD summary (42/123/456/789): per-seed metrics + mean/std/95% CI for greedy, oracle, LP delta, LP rho, degeneracy",
+                "project": "struct_self_consist_ie",
+                "exp_id": "exp_fewnerd_s789_n8",
+                "content": "Remote path: /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/four_seed_summary.json",
+                "content_filename": "fewnerd_4seed_summary_pointer.txt",
+                "tags": [
+                  "fewnerd",
+                  "4seed",
+                  "ci",
+                  "statistical_hardening"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37426bd1-4129-4964-a9fe-2d1218d5e2c8",
+            "uuid": "e1f2a87d-1755-4c39-aadf-48ea4d01856f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T6aFBn4KFue4nyuXEM844D",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2185,
+                "cache_read_input_tokens": 117402,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2185
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-18T23:18:51.893Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017aBj7aFvPMKUpDm58veMLs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_ff7c85\\\", \\\"name\\\": \\\"fewnerd_4seed_summary\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"4-seed FewNERD summary (42/123/456/789): per-seed metrics + mean/std/95% CI for greedy, oracle, LP delta, LP rho, degeneracy\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/exp_fewnerd_s789_n8/data/fewnerd_4seed_summary_pointer.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": \\\"exp_fewnerd_s789_n8\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T23:18:51.507302+00:00\\\", \\\"tags\\\": [\\\"fewnerd\\\", \\\"4seed\\\", \\\"ci\\\", \\\"statistical_hardening\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37426bd1-4129-4964-a9fe-2d1218d5e2c8",
+            "uuid": "75faca7d-435e-448b-8d4b-872c6141a894",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_ff7c85\\\", \\\"name\\\": \\\"fewnerd_4seed_summary\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"4-seed FewNERD summary (42/123/456/789): per-seed metrics + mean/std/95% CI for greedy, oracle, LP delta, LP rho, degeneracy\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/exp_fewnerd_s789_n8/data/fewnerd_4seed_summary_pointer.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": \\\"exp_fewnerd_s789_n8\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T23:18:51.507302+00:00\\\", \\\"tags\\\": [\\\"fewnerd\\\", \\\"4seed\\\", \\\"ci\\\", \\\"statistical_hardening\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_ff7c85\", \"name\": \"fewnerd_4seed_summary\", \"type\": \"data\", \"description\": \"4-seed FewNERD summary (42/123/456/789): per-seed metrics + mean/std/95% CI for greedy, oracle, LP delta, LP rho, degeneracy\", \"path\": \"projects/struct_self_consist_ie/artifacts/exp_fewnerd_s789_n8/data/fewnerd_4seed_summary_pointer.txt\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": \"exp_fewnerd_s789_n8\", \"skill\": \"\", \"created_at\": \"2026-05-18T23:18:51.507302+00:00\", \"tags\": [\"fewnerd\", \"4seed\", \"ci\", \"statistical_hardening\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n## 产出汇总\n\n### 合并数据\n- **路径**: `/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/samples.jsonl`\n- 3 分片 (12549 + 12549 + 12550) = **37648 行** ✓\n\n### Seed789 分析结果 (`analysis.json`)\n\n| 指标 | 值 |\n|------|------|\n| Greedy F1 | 0.7478 |\n| Oracle F1 | 0.8714 |\n| Headroom | 12.37pp |\n| Degeneracy | 11.77% |\n| LP Selection F1 | 0.7614 (+1.36pp) |\n| DGS F1 | 0.7621 (+1.43pp vs greedy, +0.07pp vs LP) |\n| LP Bootstrap 95% CI | [+1.19, +1.54]pp |\n\n### 4-Seed 汇总 (42/123/456/789)\n\n| 指标 | Mean | 95% CI |\n|------|------|--------|\n| Greedy F1 | 0.7481 | [0.7475, 0.7487] |\n| Oracle F1 | 0.8739 | [0.8695, 0.8783] |\n| LP Δ (pp) | **+1.38** | **[+1.32, +1.44]** |\n| Degeneracy | 12.69% | [11.24%, 14.14%] |\n| LP ρ_global | 0.217 | [0.173, 0.260] |\n\nLP selection gain 在 4 seeds 上高度稳定（std=0.037pp），95% CI 完全在正区间，确认 FewNERD 上 LP selection 的统计显著性。\n\n### Registry\n- `exp_fewnerd_s789_n8` → DONE (success)\n- Artifacts 已注册"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37426bd1-4129-4964-a9fe-2d1218d5e2c8",
+            "uuid": "c4bf2b0a-4b2d-4fa6-8d04-b49a4a1304a4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TfVg7AcZzZ1NZu832oFacN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1442,
+                "cache_read_input_tokens": 119587,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1442
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n## 产出汇总\n\n### 合并数据\n- **路径**: `/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/samples.jsonl`\n- 3 分片 (12549 + 12549 + 12550) = **37648 行** ✓\n\n### Seed789 分析结果 (`analysis.json`)\n\n| 指标 | 值 |\n|------|------|\n| Greedy F1 | 0.7478 |\n| Oracle F1 | 0.8714 |\n| Headroom | 12.37pp |\n| Degeneracy | 11.77% |\n| LP Selection F1 | 0.7614 (+1.36pp) |\n| DGS F1 | 0.7621 (+1.43pp vs greedy, +0.07pp vs LP) |\n| LP Bootstrap 95% CI | [+1.19, +1.54]pp |\n\n### 4-Seed 汇总 (42/123/456/789)\n\n| 指标 | Mean | 95% CI |\n|------|------|--------|\n| Greedy F1 | 0.7481 | [0.7475, 0.7487] |\n| Oracle F1 | 0.8739 | [0.8695, 0.8783] |\n| LP Δ (pp) | **+1.38** | **[+1.32, +1.44]** |\n| Degeneracy | 12.69% | [11.24%, 14.14%] |\n| LP ρ_global | 0.217 | [0.173, 0.260] |\n\nLP selection gain 在 4 seeds 上高度稳定（std=0.037pp），95% CI 完全在正区间，确认 FewNERD 上 LP selection 的统计显著性。\n\n### Registry\n- `exp_fewnerd_s789_n8` → DONE (success)\n- Artifacts 已注册"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 591512,
+            "duration_api_ms": 516032,
+            "num_turns": 69,
+            "stop_reason": "end_turn",
+            "session_id": "37426bd1-4129-4964-a9fe-2d1218d5e2c8",
+            "total_cost_usd": 2.8782834999999998,
+            "usage": {
+              "input_tokens": 41,
+              "cache_creation_input_tokens": 109328,
+              "cache_read_input_tokens": 2884549,
+              "output_tokens": 30034,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 109328,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 535,
+                  "cache_read_input_tokens": 119587,
+                  "cache_creation_input_tokens": 1442,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1442
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1534,
+                "outputTokens": 24,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001654,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 41,
+                "outputTokens": 30034,
+                "cacheReadInputTokens": 2884549,
+                "cacheCreationInputTokens": 109328,
+                "webSearchRequests": 0,
+                "costUSD": 2.8766295,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "0a41fba5-b723-44ba-88ed-0f5f23d25d67"
+          },
+          "id": "event-000181"
+        }
+      ]
+    }
+  ]
+}

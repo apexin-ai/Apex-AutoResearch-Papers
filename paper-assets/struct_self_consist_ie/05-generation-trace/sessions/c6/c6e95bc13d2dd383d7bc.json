@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6e95bc13d2dd383d7bc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "figure length logprob scatter",
+  "task_key": "worker_figure_length_logprob_scatter_20260515T022113",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_length_logprob_scatter_20260515T022113_result.json",
+    "occurrence": 1,
+    "bytes": 682,
+    "sha256": "7e56fcb0da960f064d27b315a4aa9f653a072f9d4db589b89c9ce37fe319e82c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**数据量**\n- NER: 4232 个数据点（529 instances × 8 samples）\n- RE: 3176 个数据点（397 instances × 8 samples）\n\n**Length-Logprob 相关性**\n- NER: Spearman ρ = **+0.386** (p = 9.3e-151)\n- RE: Spearman ρ = **+0.326** (p = 2.8e-79)\n\n**结论：不存在审稿人担心的 length bias。** 相关性是**正的**——更长的输出反而有略高的 mean logprob（更接近 0）。这意味着 logprob-based selection 不会系统性地惩罚长输出。OLS 回归线也呈上升趋势。\n\n图表已保存至：\n- `artifacts/figures/fig_length_logprob_scatter.pdf`\n- `artifacts/figures/fig_length_logprob_scatter.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-length-logprob-scatter.md"
+}

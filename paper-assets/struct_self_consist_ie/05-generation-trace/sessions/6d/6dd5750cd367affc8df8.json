@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6dd5750cd367affc8df8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "cpu e4 deepseek parse filter",
+  "task_key": "worker_cpu_e4_deepseek_parse_filter_20260521T122251",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cpu_e4_deepseek_parse_filter_20260521T122251_result.json",
+    "occurrence": 1,
+    "bytes": 1080,
+    "sha256": "f421cd44592ae6f87daebcc12b4af042755255030ed8b05d67fcb45387b1ae91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**\"正交性\"是 parse failure 伪信号。** 关键证据：\n\n| 条件 | DeepSeek vs 其他3模型 Pearson r |\n|------|------|\n| 全集 (n=200) | 0.23–0.28 |\n| DS parse-success (n=99) | 0.15–0.24（反降，因为去掉了 both-zero 锚点）|\n| **所有模型 F1>0 (n=81)** | **0.60–0.70** |\n\n- DeepSeek 50.5% 的 zero-F1 率（vs 其他模型 18-22%）产生了双峰分布，系统性压低 Pearson r\n- 在所有模型都有有效输出的 81 个实例上，DeepSeek 与其他模型的相关性 r≈0.60-0.70，与三强模型之间的互相关（0.69-0.82）处于可比范围\n- DeepSeek 的 ensemble 边际收益在 filtered 子集上加倍（+0.049→+0.099），说明它在成功 parse 时确实有价值，但这是 **error pattern diversity**（不同实例上失败），不是 capability orthogonality\n- **Conclusion 3 需要重写**：应表述为\"互补的失败模式\"而非\"正交的抽取能力\"\n\n报告已注册为 `e4_deepseek_parse_filter.md`（artifact ID: `art_20260521_58e9b0`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-e4-deepseek-parse-filter.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bc880e29b284636a4b2",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code hidden state probe prep",
+  "task_key": "worker_code_hidden_state_probe_prep_20260518T181756",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_hidden_state_probe_prep_20260518T181756_result.json",
+    "occurrence": 1,
+    "bytes": 1288,
+    "sha256": "50e1c29833d1b98606d1c3d0713d51233e398c25f594ee7d58a48aadc220b98d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-028 完成。结果摘要：\n\n### exp_028_entity_token_lp 结果\n\n| LP Variant | W-Range | W-Rho | G-Rho | Sel.F1 | ΔGreedy |\n|---|---|---|---|---|---|\n| **full** | 0.040 | 0.094 | 0.297 | **0.647** | +0.004 |\n| entity_text | 0.086 | 0.000 | 0.351 | 0.626 | -0.017 |\n| entity_type | 0.156 | 0.053 | 0.324 | 0.638 | -0.005 |\n| **entity_text_type** | 0.135 | 0.109 | **0.440** | 0.636 | -0.007 |\n| entity_all | 0.187 | 0.000 | 0.140 | 0.613 | -0.030 |\n| schema_only | 0.009 | 0.000 | 0.318 | 0.614 | -0.029 |\n\n**结论（negative）**：假设部分成立，部分不成立。\n\n- **Cross-instance**: 格式 token 确实稀释了 LP 信号。entity_text_type LP 的 global ρ = 0.440，比 full LP 的 0.297 高 48%（32% dilution ratio）。\n- **Within-instance**: selection F1 几乎无差异（0.647 vs 0.636）。原因是 schema tokens 的 within-instance range 极低（median 0.009），跨 sample 几乎不变，因此不影响 within-instance ranking。\n- **关键发现**: entity_span tokens（start/end 数字）的 global ρ 被 entity_all 拉低到 0.140，说明 span offset tokens 是纯噪声。最优分解是 entity_text + entity_type。\n- LP compression 是 **cross-instance format-diluted** 但 **within-instance model-intrinsic**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-hidden-state-probe-prep.md"
+}

@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0",
+  "id": "3a5f1eb5f0b24f360715",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis multiseed inverse scaling",
+  "task_key": "worker_analysis_multiseed-inverse-scaling_20260523T185422",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_multiseed-inverse-scaling_20260523T185422.log",
+    "occurrence": 1,
+    "bytes": 2423181,
+    "sha256": "8d137390448dc74dc76a1e4b5590b4189395ba7c13ed1c9c1f4b1e58296d5b49"
+  },
+  "statistics": {
+    "messages": 1220,
+    "user_turns": 3,
+    "tool_calls": 515,
+    "roles": {
+      "log": 1,
+      "system": 56,
+      "record": 6,
+      "assistant": 123,
+      "tool_call": 515,
+      "tool_result": 515,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "3a5f1eb5f0b24f360715-part-0001.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 109,
+      "chunks": [
+        {
+          "path": "3a5f1eb5f0b24f360715-part-0001.json",
+          "message_count": 53
+        },
+        {
+          "path": "3a5f1eb5f0b24f360715-part-0002.json",
+          "message_count": 56
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 642,
+      "chunks": [
+        {
+          "path": "3a5f1eb5f0b24f360715-part-0002.json",
+          "message_count": 123
+        },
+        {
+          "path": "3a5f1eb5f0b24f360715-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3a5f1eb5f0b24f360715-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "3a5f1eb5f0b24f360715-part-0005.json",
+          "message_count": 159
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 457,
+      "chunks": [
+        {
+          "path": "3a5f1eb5f0b24f360715-part-0005.json",
+          "message_count": 21
+        },
+        {
+          "path": "3a5f1eb5f0b24f360715-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "3a5f1eb5f0b24f360715-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "3a5f1eb5f0b24f360715-part-0008.json",
+          "message_count": 76
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-multiseed-inverse-scaling.md"
+}

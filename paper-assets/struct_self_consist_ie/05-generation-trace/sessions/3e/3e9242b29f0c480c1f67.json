@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "3e9242b29f0c480c1f67",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "exp d054 rerun gpu2",
+  "task_key": "worker_exp_d054_rerun_gpu2_20260514T222007",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_d054_rerun_gpu2_20260514T222007.log",
+    "occurrence": 1,
+    "bytes": 922805,
+    "sha256": "15cdadb84cb67ac29fba731f531bf2dd20b70fba018614a40c91633f93a86af9"
+  },
+  "statistics": {
+    "messages": 223,
+    "user_turns": 0,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 70,
+      "tool_call": 75,
+      "tool_result": 75
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 223,
+      "chunks": [
+        {
+          "path": "3e9242b29f0c480c1f67-part-0001.json",
+          "message_count": 134
+        },
+        {
+          "path": "3e9242b29f0c480c1f67-part-0002.json",
+          "message_count": 89
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-d054-rerun-gpu2.md"
+}

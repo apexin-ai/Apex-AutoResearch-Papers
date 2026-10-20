@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5f5c615fbaed8c5b40f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper scaling section dual narrative",
+  "task_key": "worker_paper_scaling-section-dual-narrative_20260519T200611",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_scaling-section-dual-narrative_20260519T200611_result.json",
+    "occurrence": 1,
+    "bytes": 704,
+    "sha256": "82d3c1b922c246cbae32e150302d88cc481e7290c7c6c3edd811b847db6fe050"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两版已写入 artifacts/：\n\n- **Version A**（单调）：degeneracy 随 scale 单调上升 → \"selection window narrows\" 叙事，与 epoch/family 两维证据汇合，三维一致性支撑 degeneracy 作为 robust diagnostic。\n- **Version B**（非单调）：degeneracy 不随 scale 单调变化 → 重新定位 degeneracy 为 post-hoc diagnostic 而非 scaling 的可预测结果，弱化 \"narrows with scale\" 说法，转向 \"practitioners should measure rather than predict\"。\n\n两版共享同一套 `\\newcommand` placeholder，数据到位后替换即可。每版约 5-6 句，匹配现有 `zeroshot_scaling_draft.tex` 的 `\\paragraph{}` 风格和数据密度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-scaling-section-dual-narrative.md"
+}

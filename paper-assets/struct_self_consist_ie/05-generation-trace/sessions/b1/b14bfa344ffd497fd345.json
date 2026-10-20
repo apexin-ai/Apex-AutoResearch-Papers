@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b14bfa344ffd497fd345",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper research lit batch1",
+  "task_key": "worker_paper_research_lit_batch1_20260514T174854",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_research_lit_batch1_20260514T174854_result.json",
+    "occurrence": 1,
+    "bytes": 941,
+    "sha256": "aa6e923a98a6facc78381c7ada903ed6d0bccf250f863d15b0f5ce9a14b1f890"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。13 篇论文全部添加到 `literature_map.yaml`，总数从 8 → 21。\n\n各 cluster 完成情况：\n\n| Cluster | 目标 | 实际添加 | 论文 |\n|---------|------|---------|------|\n| consistency_structured_ie | 3 | 3 | nedellec2026consistency, vashurin2025cocoa, hobelsberger2025systematic |\n| confidence_surveys | 2+2 | 4 | geng2024confidence, wen2025know, xia2025survey, liu2025uqcalibration |\n| uncertainty_calibration | 6 | 6 | kuhn2023semantic, kadavath2022language, guo2017calibration, desai2020calibration, kossen2024semantic, xiong2024verbalized |\n\n两点注意：\n- arXiv 2510.20460 的实际第一作者是 **Hobelsberger** 而非 Vashurin（WebSearch 确认），bibtex_key 已相应调整\n- \"Feng et al. TACL 2025\" 的实际第一作者是 **Bingbing Wen**（Shangbin Feng 是第三作者），bibtex_key 用 `wen2025know`\n\n全部 13 篇均经 WebSearch 验证，`verified: true`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-lit-batch1.md"
+}

@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0",
+  "id": "f9fe8a0c1fa5c0d24d18",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "ssh mf4 s123 diagnose resubmit",
+  "task_key": "worker_ssh_mf4_s123_diagnose_resubmit_20260522T103847",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_ssh_mf4_s123_diagnose_resubmit_20260522T103847.jsonl",
+    "occurrence": 1,
+    "bytes": 6949,
+    "sha256": "110605cb1290372a54a00b6a9846b42fb4d0d6a29d63f12fac755b9e40b43c0e"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T10:39:36.237696+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_mf4_s123_diagnose_resubmit_20260522T103847",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T10:39:36.238139+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_mf4_s123_diagnose_resubmit_20260522T103847",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T10:39:36.238383+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_mf4_s123_diagnose_resubmit_20260522T103847",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -50 /root/runs/struct_self_consist_ie/exp_fewnerd_mf4_s123.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T10:39:36.238579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_mf4_s123_diagnose_resubmit_20260522T103847",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T10:39:36.238852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"(EngineCore pid=132912)   File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/executor/uniproc_executor.py\\\\\\\", line 49, in _init_executor\\\\n(EngineCore pid=132912)     self.driver_worker.init_device()\\\\n(EngineCore pid=132912)   File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/worker/worker_base.py\\\\\\\", line 312, in init_device\\\\n(EngineCore pid=132912)     self.worker.init_device()  # type: ignore\\\\n(EngineCore pid=132912)     ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n(EngineCore pid=132912)   File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vllm/tracing/otel.py\\\\\\\", line 178, in sync_wrapper\\\\n(EngineCore pid=132912)     return func(*args, **kwargs)\\\\n(EngineCore pid=132912)            ^^^^^^^^^^^^^^^^^^^^^\\\\n(EngineCore pid=132912)   File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/worker/gpu_worker.py\\\\\\\", line 283, in init_device\\\\n(EngineCore pid=132912)     self.requested_memory = request_memory(init_snapshot, self.cache_config)\\\\n(EngineCore pid=132912)                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n(EngineCore pid=132912)   File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/worker/utils.py\\\\\\\", line 413, in request_memory\\\\n(EngineCore pid=132912)     raise ValueError(\\\\n(EngineCore pid=132912) ValueError: Free memory on device cuda:0 (1.44/31.36 GiB) on startup is less than desired GPU memory utilization (0.9, 28.22 GiB). Decrease GPU memory utilization or reduce GPU memory used by other processes.\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py\\\\\\\", line 365, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py\\\\\\\", line 187, in main\\\\n    sampler = VLLMSampler(\\\\n              ^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/code/sampling.py\\\\\\\", line 114, in __init__\\\\n    self.llm = LLM(\\\\n       \n…[truncated 1957 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_mf4_s123_diagnose_resubmit_20260522T103847",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T10:39:36.239118+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16013168\\\\ndrwx------  3 root root       4096 May 22 05:04 .\\\\ndrwxr-xr-x 14 root root       4096 May 22 01:55 ..\\\\n-rw-r--r--  1 root root        707 May 19 03:03 added_tokens.json\\\\n-rw-r--r--  1 root root       4168 May 19 03:03 chat_template.jinja\\\\n-rw-r--r--  1 root root       1538 May 19 03:03 config.json\\\\n-rw-r--r--  1 root root        214 May 19 03:03 generation_config.json\\\\n-rw-r--r--  1 root root    1671853 May 19 03:03 merges.txt\\\\n-rw-r--r--  1 root root 4902257696 May 19 03:03 model-00001-of-00004.safetensors\\\\n-rw-r--r--  1 root root 4915960368 May 19 03:03 model-00002-of-00004.safetensors\\\\n-rw-r--r--  1 root root 4983068496 May 22 05:04 model-00003-of-00004.safetensors\\\\n-rw-r--r--  1 root root 1580230264 May 22 05:04 model-00004-of-00004.safetensors\\\\n-rw-r--r--  1 root root      32914 May 22 05:04 model.safetensors.index.json\\\\ndrwx------  2 root root       4096 May 21 13:41 qwen3-8b-fewnerd-exp021-merged\\\\n-rw-r--r--  1 root root        613 May 22 05:04 special_tokens_map.json\\\\n-rw-r--r--  1 root root   11422654 May 22 05:04 tokenizer.json\\\\n-rw-r--r--  1 root root       5404 May 22 05:04 tokenizer_config.json\\\\n-rw-r--r--  1 root root    2776833 May 22 05:04 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_mf4_s123_diagnose_resubmit_20260522T103847",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T10:39:36.239437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_mf4_s123_diagnose_resubmit_20260522T103847",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T10:39:36.239654+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA GeForce RTX 5090, 30134 MiB, 32607 MiB, 80 %\\\\n1, NVIDIA GeForce RTX 5090, 29984 MiB, 32607 MiB, 78 %\\\\n2, NVIDIA GeForce RTX 5090, 30134 MiB, 32607 MiB, 78 %\\\\n3, NVIDIA GeForce RTX 5090, 30134 MiB, 32607 MiB, 84 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_mf4_s123_diagnose_resubmit_20260522T103847",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T10:39:36.239931+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "autodl-5090 四张卡全部占满（~30GB/32GB），没有空闲卡。\n\n```\n失败原因: GPU 显存不足。任务尝试在 cuda:0 上启动 vLLM，但该卡仅剩 1.44/31.36 GiB 空闲（被其他进程占用）。\n         不是模型缺失问题。\n模型状态: 已存在于 autodl-5090:/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged/\nautodl-5090 空闲卡: 无（4卡全部占用 ~30GB/32GB）\n建议: 等当前任务完成释放 GPU 后，在 autodl-5090 空闲卡上重新提交。\n      提交时需确保 CUDA_VISIBLE_DEVICES 指向空闲卡。\n```"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_mf4_s123_diagnose_resubmit_20260522T103847"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-mf4-s123-diagnose-resubmit.md"
+}

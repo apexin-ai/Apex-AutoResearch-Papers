@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2705dd04589f6a9b32b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp qwen25 72b zeroshot",
+  "task_key": "worker_code_exp_qwen25_72b_zeroshot_20260519T075045",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_qwen25_72b_zeroshot_20260519T075045_result.json",
+    "occurrence": 1,
+    "bytes": 176,
+    "sha256": "7b7115f76d9b4fc36a1f4e09796b9f2bb350ac000779884c28f06415a0d62e9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CoNLL-2003 inference is ~41% through stochastic sampling (11.4K/27.6K prompts). Estimated completion in ~12 min. I'll check back in ~4 min to catch it finishing."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-qwen25-72b-zeroshot.md"
+}

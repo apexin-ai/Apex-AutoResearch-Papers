@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5bbee310ab3294045d6",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis n32 greedy consistency",
+  "task_key": "worker_analysis_n32_greedy_consistency_20260516T143116",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_n32_greedy_consistency_20260516T143116_result.json",
+    "occurrence": 1,
+    "bytes": 1751,
+    "sha256": "fc6499652f8d26ae0ae26998ca6de3ae1982503202d0b04a42794f5d8258181d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调查结论\n\n### 根因（两个 bug 叠加）\n\n1. **`analyze_n32.py` 用 `samples[0]`（T=1.0 随机 sample）冒充 greedy**，而非读取数据中的 `\"greedy\"` 字段。这导致 Greedy_F1 被低估为 0.5880（实际 greedy = 0.6141）。\n\n2. **两个数据源的 greedy decode 不同**：exp_001_seed42_v2（N=2~16）和 exp_025_n32（N=32）中 29/551 实例的 greedy 不一致（推理时浮点非确定性），导致即使修正 bug1 后仍有 3pp 差异。\n\n### 修复\n\n用 exp_025_n32 数据统一计算 N={2,4,8,16,32}（subsample + 同一 greedy），结果保存在 `output/exp_025_n32/unified_results.json`。\n\n### 修正后统一表格\n\n| N  | Degen% | Greedy_F1 | Oracle_F1 | Oracle_gap | LP_Δ   | SJ_Δ   | FK_Δ   | EM_Δ   | VC_Δ   |\n|----|--------|-----------|-----------|------------|--------|--------|--------|--------|--------|\n| 2  | 44.1%  | 0.6141    | 0.6579    | 0.0438     | -0.75  | -2.54  | -2.54  | -2.54  | -2.27  |\n| 4  | 22.4%  | 0.6141    | 0.7122    | 0.0980     | -0.01  | -0.61  | -0.50  | -1.27  | -1.30  |\n| 8  | 12.4%  | 0.6141    | 0.7522    | 0.1381     | **+0.42** | +0.03 | +0.11 | -0.33  | -1.82  |\n| 16 | 6.8%   | 0.6141    | 0.7813    | 0.1672     | **+0.63** | +0.26 | +0.43 | -0.15  | -2.91  |\n| 32 | 4.0%   | 0.6141    | 0.8061    | 0.1919     | **+0.91** | +0.33 | **+0.62** | +0.21 | -4.18  |\n\n### 结论\n\n- Selection delta 为正（LP 从 N=8 开始超 greedy，至 N=32 达 +0.91pp）\n- 趋势 monotonic：更多 sample → 更好 selection\n- N=32 时 4/5 信号为正（LP/SJ/FK/EM），仅 VC 失败\n- **论文 narrative \"selection at sufficient N succeeds\" 成立**，但幅度比 buggy 版本小（+0.91pp vs 之前声称的 +3.53pp）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-n32-greedy-consistency.md"
+}

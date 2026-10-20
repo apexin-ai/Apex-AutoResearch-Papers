@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd733722da076d61f73e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis d042 re rerun",
+  "task_key": "worker_analysis_d042_re_rerun_20260514T185144",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_d042_re_rerun_20260514T185144_result.json",
+    "occurrence": 1,
+    "bytes": 907,
+    "sha256": "35d439902d3719825c29e2c9d258dbd63836eadf8d74c8e50abffb56a289a16c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果：\n\n**过滤效果**：551 → 397 实例（移除 154 个空 gold relation，占 28%）\n\n**Proxy 独立性修复**：过滤后所有 proxy 都变独立了\n- `ent_count` |ρ|: 0.512 → **0.011** （彻底修复，之前的高相关完全由空 gold 实例驱动）\n- `sent_len` |ρ|: 0.124 → 0.023\n- `type_diversity` |ρ|: 0.481 → 0.071\n- `rel_count`（新增）|ρ|=0.131\n\n**Global Signal ρ 变化**（过滤前 → 后）：\n- SJ: 0.063 → **0.281** — 从无信号变成有信号\n- FK: 0.226 → 0.279\n- logprob: 0.400 → 0.287\n- voting_conf: 0.220 → **0.322**\n- EM: -0.132 → **+0.165** — 翻正\n\n**Sentence Length 分层**（Q1→Q4 信号递增）：SJ 从 0.110 到 0.473（Q1 vs Q4 Fisher z p=0.004*），表明较长句子中一致性信号更强。\n\n结果、registry、artifact 均已保存在 `output/exp_009_v2_re_rerun/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d042-re-rerun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0768801cbe853545dba",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "inference qwen scierc seed456",
+  "task_key": "worker_inference_qwen_scierc_seed456_20260515T050627",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_inference_qwen_scierc_seed456_20260515T050627_result.json",
+    "occurrence": 1,
+    "bytes": 719,
+    "sha256": "1ecab7444662ef730d6383cc4002ed9a6d0e3a5cc37b0ca216b3de6c6918412b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_018_qwen_scierc_seed456 完成，结果如下：\n\n**输出验证**: `samples.jsonl` = 551 行 × 8 samples ✓\n\n**NER 结果**:\n- Greedy F1: 0.6627, Oracle F1: 0.7766 (headroom +11.4pp)\n- ρ(SJ, F1) full: +0.3445, conditional: +0.3062\n- Structural > Surface: **YES** (advantage +0.113)\n\n**RE 结果**:\n- Greedy F1: 0.4195, Oracle F1: 0.5858 (headroom +16.6pp)\n- ρ(SJ, F1) full: +0.2466, conditional: +0.2862\n- Structural > Surface: **NO** (delta -0.058)\n- 44.5% samples F1=0\n\n**Verdict: FAIL** — RE 的 ρ_sj (0.2466) 未达到 0.40 阈值，且 structural 未胜过 surface。日志建议降温到 T=0.7 重跑（>30% RE samples F1=0 表明 T=1.0 下 RE 输出质量不稳定）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/inference-qwen-scierc-seed456.md"
+}

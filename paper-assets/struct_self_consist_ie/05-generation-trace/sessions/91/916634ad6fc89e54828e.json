@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "916634ad6fc89e54828e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analyze mf4 fewnerd s42 s456",
+  "task_key": "worker_analyze_mf4_fewnerd_s42_s456_20260522T124524",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_mf4_fewnerd_s42_s456_20260522T124524_result.json",
+    "occurrence": 1,
+    "bytes": 3620,
+    "sha256": "c6a54a7c5ba4666e4e48a356f7549a9201ce1650d357ac596c9f2c66491ba408"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均正常完成（EXIT_CODE=0）。注意：当前 `run_mvp_pilot.py` 输出中**没有** `mv_strict_f1`、`lp_best_f1`、`degeneracy_rate` 这三个指标，report.json 里也没有。以下是所有可用指标。\n\n```\n============================================================\nexp_fewnerd_mf4_s42 (seed=42)\n============================================================\n  greedy_f1:           0.7885\n  oracle_f1:           0.8787\n  oracle_headroom:     +0.0902\n  verdict:             FAIL\n\n  Agreement:\n    fleiss_kappa_mean:   0.3537\n    soft_jaccard_mean:   0.6751\n\n  Sample quality:\n    sample_f1_mean:      0.6130\n    sample_f1_std:       0.3910\n    sample_f1_pct_zero:  23.0%\n\n  Filtering:\n    gold_empty_filtered:       5083\n    all_samples_f1_zero:       3874\n\n  Correlation (full, n=32565):\n    ρ(κ, F1):   +0.0510   p=3.30e-20\n    ρ(SJ, F1):  +0.1648   p=5.23e-197\n  Correlation (cond, n=28691):\n    ρ(κ, F1):   -0.0301   p=3.49e-07\n    ρ(SJ, F1):  +0.1989   p=8.73e-254\n  Structural > Surface: YES  (Δ=+0.1138)\n\n  Logprob (full, n=32565):\n    ρ=+0.1561  τ=+0.1163  AUROC=0.5776\n  Logprob (cond, n=28691):\n    ρ=+0.1638  τ=+0.1228  AUROC=0.5766\n\n  checkpoint: checkpoints/qwen3-8b-fewnerd-exp021-merged\n  log: ~/runs/struct_self_consist_ie/exp_fewnerd_mf4_s42.log\n  output: /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4_seed42/\n\n============================================================\nexp_fewnerd_mf4_s456 (seed=456)\n============================================================\n  greedy_f1:           0.7883\n  oracle_f1:           0.8810\n  oracle_headroom:     +0.0927\n  verdict:             MARGINAL\n\n  Agreement:\n    fleiss_kappa_mean:   0.3555\n    soft_jaccard_mean:   0.6845\n\n  Sample quality:\n    sample_f1_mean:      0.6430\n    sample_f1_std:       0.3771\n    sample_f1_pct_zero:  19.4%\n\n  Filtering:\n    gold_empty_filtered:       5083\n    all_samples_f1_zero:       3883\n\n  Correlation (full, n=32565):\n    ρ(κ, F1):   +0.1643   p=6.54e-196\n    ρ(SJ, F1):  +0.3122   p=0.0\n  Correlation (cond, n=28682):\n    ρ(κ, F1):   +0.0143   p=1.53e-02\n    ρ(SJ, F1):  +0.2559   p=0.0\n  Structural > Surface: YES  (Δ=+0.1479)\n\n  Logprob (full, n=32565):\n    ρ=+0.2439  τ=+0.1812  AUROC=0.6280\n  Logprob (cond, n=28682):\n    ρ=+0.2366  τ=+0.1773  AUROC=0.6215\n\n  checkpoint: checkpoints/qwen3-8b-fewnerd-exp021-merged\n  log: ~/runs/struct_self_consist_ie/exp_fewnerd_mf4_s456.log\n  output: /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4_seed456/\n```\n\n**跨 seed 对比：**\n\n| 指标 | seed=42 | seed=456 | Δ |\n|------|---------|----------|---|\n| greedy_f1 | 0.7885 | 0.7883 | -0.0002 |\n| oracle_f1 | 0.8787 | 0.8810 | +0.0023 |\n| oracle_headroom | +0.0902 | +0.0927 | +0.0025 |\n| soft_jaccard_mean | 0.6751 | 0.6845 | +0.0094 |\n| ρ(SJ, F1) full | +0.1648 | +0.3122 | **+0.1474** |\n| ρ(SJ, F1) cond | +0.1989 | +0.2559 | +0.0570 |\n| logprob AUROC (full) | 0.5776 | 0.6280 | **+0.0504** |\n| sample_f1_pct_zero | 23.0% | 19.4% | -3.6pp |\n| verdict | FAIL | MARGINAL | — |\n\n**关键发现：**\n1. Greedy F1 跨 seed 非常稳定（~0.788），符合预期\n2. seed=456 在所有信号质量指标上显著优于 seed=42：ρ(SJ,F1) 高出 0.15，logprob AUROC 高出 0.05，sample 退化率低 3.6pp\n3. `mv_strict_f1`、`lp_best_f1`、`degeneracy_rate` 当前 pipeline 未输出——如果需要这些指标，需要在 `run_mvp_pilot.py` 中增加 MV/LP selection 的 aggregation 逻辑\n4. 无 W&B run ID（未使用 wandb logging）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-mf4-fewnerd-s42-s456.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "abd31535f82fd96b228f",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "cpu failure gallery",
+  "task_key": "worker_cpu_failure_gallery_20260521T071429",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cpu_failure_gallery_20260521T071429.log",
+    "occurrence": 1,
+    "bytes": 606257,
+    "sha256": "efec665174e1d385b956d5f9af81c48a48f5a9ee42671ebec9ed7c3538da04c6"
+  },
+  "statistics": {
+    "messages": 179,
+    "user_turns": 0,
+    "tool_calls": 66,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 66,
+      "tool_result": 66,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 179,
+      "chunks": [
+        {
+          "path": "abd31535f82fd96b228f-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "abd31535f82fd96b228f-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/cpu-failure-gallery.md"
+}

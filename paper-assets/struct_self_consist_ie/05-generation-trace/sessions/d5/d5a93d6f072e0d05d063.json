@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5a93d6f072e0d05d063",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh persist 5epoch recompute",
+  "task_key": "worker_ssh_persist_5epoch_recompute_20260521T220030",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_persist_5epoch_recompute_20260521T220030_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "72d77eb115472cf891288db47e165ee97722f8ca39ad7c105336d0024e9e6e48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 持久化完成\n- `fewnerd_5epoch_s42/recompute_mv_results.txt`: 902 bytes\n- `fewnerd_5epoch_s123/recompute_mv_results.txt`: 905 bytes\n- `fewnerd_5epoch_s456/recompute_mv_results.txt`: 已存在（904 bytes，在 autodl-5090-c 上）\n\n关键数值摘要：\n\n| seed | greedy_f1 | mv_strict_f1 | mv_incl_f1 | oracle_f1 | Δ_SC strict | Δ_SC incl | α_crit |\n|------|-----------|--------------|------------|-----------|-------------|-----------|--------|\n| 42   | 0.7980    | 0.7935       | 0.7968     | 0.8781    | -0.45pp     | -0.12pp   | 0.399  |\n| 123  | 0.7976    | 0.7941       | 0.7984     | 0.8814    | -0.35pp     | +0.08pp   | 0.399  |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-persist-5epoch-recompute.md"
+}

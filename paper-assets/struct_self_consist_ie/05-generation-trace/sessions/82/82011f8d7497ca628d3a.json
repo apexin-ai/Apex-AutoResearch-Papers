@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82011f8d7497ca628d3a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper research bib sync",
+  "task_key": "worker_paper_research_bib_sync_20260514T190937",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_research_bib_sync_20260514T190937_result.json",
+    "occurrence": 1,
+    "bytes": 356,
+    "sha256": "ce82d636500b645087931d8ca72631cc33f3c9a092d58490db5f19ef0b52b6a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成完毕。\n\n- **输出**: `docs/paper/references.bib`，51 条 entry（46 正文 + 5 supplementary 带注释标注）\n- **跳过**: 1 条 unverified（`zhou2024uniner`）\n- **DOI 查询**: 17/18 成功，`fisch2021conformal` 的 DOI 解析失败，手动构建\n- 按 `bibtex_key` 字母序排列，entry 数量与 YAML 完全匹配"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-bib-sync.md"
+}

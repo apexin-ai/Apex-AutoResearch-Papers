@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c67272c4a17043942baa",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "paper critical text fixes",
+  "task_key": "worker_paper_critical-text-fixes_20260522T184546",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_critical-text-fixes_20260522T184546.log",
+    "occurrence": 1,
+    "bytes": 962770,
+    "sha256": "40d38fb986c915eea073c62ea55f1fd80df315b7b138f6d3696f923771bdb221"
+  },
+  "statistics": {
+    "messages": 123,
+    "user_turns": 0,
+    "tool_calls": 47,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 25,
+      "tool_call": 47,
+      "tool_result": 47,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 123,
+      "chunks": [
+        {
+          "path": "c67272c4a17043942baa-part-0001.json",
+          "message_count": 96
+        },
+        {
+          "path": "c67272c4a17043942baa-part-0002.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-critical-text-fixes.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afab97aa5f7336e6c3e4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops kill orphan processes",
+  "task_key": "worker_ops_kill_orphan_processes_20260524T233340",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill_orphan_processes_20260524T233340_result.json",
+    "occurrence": 1,
+    "bytes": 88,
+    "sha256": "3ea0992a6871bd8959ffa94ad2031edea7b8b97141c3b28d1db32a9dfd417d06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个孤儿进程已清除，无残留 `micro_f1_recompute.py` 进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-orphan-processes.md"
+}

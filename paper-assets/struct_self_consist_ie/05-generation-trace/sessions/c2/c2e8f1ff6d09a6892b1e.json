@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c2e8f1ff6d09a6892b1e",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis auroc nan and sj variance",
+  "task_key": "worker_analysis_auroc_nan_and_sj_variance_20260518T232350",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_auroc_nan_and_sj_variance_20260518T232350.log",
+    "occurrence": 1,
+    "bytes": 845910,
+    "sha256": "b23b9f8517252e4ddef27729eaf0213cc86b0d8702867a5fddd942e041e05dc6"
+  },
+  "statistics": {
+    "messages": 302,
+    "user_turns": 0,
+    "tool_calls": 109,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 80,
+      "tool_call": 109,
+      "tool_result": 109,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 302,
+      "chunks": [
+        {
+          "path": "c2e8f1ff6d09a6892b1e-part-0001.json",
+          "message_count": 175
+        },
+        {
+          "path": "c2e8f1ff6d09a6892b1e-part-0002.json",
+          "message_count": 127
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-auroc-nan-and-sj-variance.md"
+}

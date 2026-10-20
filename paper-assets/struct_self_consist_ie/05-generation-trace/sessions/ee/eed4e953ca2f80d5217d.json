@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eed4e953ca2f80d5217d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnostic gpu process check",
+  "task_key": "worker_diagnostic_gpu_process_check_20260515T154231",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnostic_gpu_process_check_20260515T154231_result.json",
+    "occurrence": 1,
+    "bytes": 2007,
+    "sha256": "f9665d21796b67e51beb307f6eab68ef994107b37a1b78e9fff4047f27ce6e9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 进程排查报告\n\n### 1. GPU 全景 (nvidia-smi)\n\n| GPU | 显存 | 利用率 | 进程 |\n|-----|------|--------|------|\n| 0 | 2MiB / 32607MiB | 0% | **空闲** |\n| 1 | 2MiB / 32607MiB | 0% | **空闲** |\n| 2 | 30230MiB / 32607MiB | 81% | PID 199584 (VLLM::EngineCore) |\n| 3 | 30280MiB / 32607MiB | 83% | PID 199733 (VLLM::EngineCore) |\n\n### 2. PID 197287 身份确认\n\n**已不存在。** `ps -p 197287` 返回 exit code 1。该进程已自然退出。\n\n### 3. 旧实验状态\n\n| 实验 | PID | 状态 |\n|------|-----|------|\n| exp_017_llama_conll_n8_t07 | 195927 (cuda:0) | **已结束** |\n| exp_lp_scierc_t07 | 196993 (cuda:1) | **已结束** |\n| exp_re_scierc_seed123 | 199021 (cuda:2) | **运行中** |\n| exp_re_scierc_seed456 | 199161 (cuda:3) | **运行中** |\n\n### 4. GPU 2/3 进程链（已确认合法）\n\n**GPU 2:**\n```\nPID 199021 (bash wrapper, exp_re_scierc_seed123)\n → PID 199026 (python run_mvp_pilot.py --seed 123)\n   → PID 199584 (VLLM::EngineCore, 30220MiB)\n```\n\n**GPU 3:**\n```\nPID 199161 (bash wrapper, exp_re_scierc_seed456)\n → PID 199166 (python run_mvp_pilot.py --seed 456)\n   → PID 199733 (VLLM::EngineCore, 30270MiB)\n```\n\n两个 vLLM 进程均为实验脚本 `run_mvp_pilot.py` 的子进程，完全合法。\n\n### 5. tmux sessions\n\n```\nexp_011_ood_conll_to_scierc      (19:48) — 无 GPU 进程\nexp_017_llama_conll_n16_r1024    (18:38) — 无 GPU 进程\nexp_017_llama_conll_n16_s456_r1024 (18:38) — 无 GPU 进程\nexp_re_scierc_seed123            (23:40) — 活跃, GPU 2\nexp_re_scierc_seed456            (23:40) — 活跃, GPU 3\n```\n\n原先报告的 `exp_017_llama_conll_n8_t07` 和 `exp_lp_scierc_t07` tmux session 已不存在。\n\n### 6. 结论\n\n**PID 197287 大概率是 exp_lp_scierc_t07 (PID 196993) 在 cuda:1 上的 vLLM 子进程。** 该实验已结束，子进程随之自然退出。不是孤立进程，无需处理。\n\n当前服务器无异常进程。GPU 0/1 空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnostic-gpu-process-check.md"
+}

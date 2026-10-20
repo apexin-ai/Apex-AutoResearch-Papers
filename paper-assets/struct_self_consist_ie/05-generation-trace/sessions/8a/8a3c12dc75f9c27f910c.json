@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a3c12dc75f9c27f910c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnosis exp 029b status",
+  "task_key": "worker_diagnosis_exp_029b_status_20260518T014159",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnosis_exp_029b_status_20260518T014159_result.json",
+    "occurrence": 1,
+    "bytes": 970,
+    "sha256": "258f519d8f7aa28e90ee2212247c157c634dde54114a667ec273f8ea4ab3462c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_029b 状态：正在训练中\n\n**旧日志 (exp_029b.log)**：之前的启动因 OOM 失败（Process 416808 占用 GPU 0 显存 29.52 GiB），模型加载阶段就崩溃了。\n\n**当前状态**：已成功重启，正在正常训练。\n\n| 项目 | 详情 |\n|---|---|\n| PID | 441471 (GPU 1) |\n| 启动时间 | 09:37 (今天) |\n| 总步数 | 1170 |\n| 当前进度 | ~100 steps / 1170 (8.55%), epoch ≈ 0.86 |\n| Loss | 0.83 → 0.11 (快速下降，正常) |\n| 预计剩余 | ~50 分钟 |\n| GPU | cuda:1, 30128MiB/32607MiB, 100% util |\n| 磁盘 | 136G 可用，无问题 |\n\n**同时运行**：exp_029a (3-epoch) 在 GPU 0 上 (PID 441469)，两个实验并行。\n\n**Checkpoint 目录**：目前只有 `trainer_log.jsonl`，尚未保存模型 checkpoint（训练还在早期阶段）。\n\n**结论**：exp_029b 从未成功启动的旧进程已失败，但已被重新启动并正在正常训练，预计约 50 分钟后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-exp-029b-status.md"
+}

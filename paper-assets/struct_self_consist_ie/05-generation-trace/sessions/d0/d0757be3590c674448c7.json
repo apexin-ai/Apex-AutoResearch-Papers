@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0757be3590c674448c7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh theta crit sweep",
+  "task_key": "worker_ssh_theta_crit_sweep_20260522T082613",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_theta_crit_sweep_20260522T082613_result.json",
+    "occurrence": 1,
+    "bytes": 928,
+    "sha256": "4b691472d1e21f64c281d26805ede5722fc6e17bf62d9e485b3a498f92a3de03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved. Here's the summary:\n\n**θ_crit = 0.70 is robust.** The sweep across θ ∈ {0.60, 0.65, 0.70, 0.75, 0.80} shows:\n\n- **Only CoNLL configs are sensitive** — they cluster at D = 0.63–0.70, so lowering θ to 0.60 reclassifies them as FAIL. SciERC (D ≈ 0.12–0.21) and FewNERD (D ≈ 0.12–0.46) are always classified as \"pass\" across the entire sweep range.\n\n- **No conclusion changes**: α ≈ 0.068 (signal alignment) is the binding constraint, not degeneracy. The bound is loose by a factor of 8–33×. Whether θ is 0.60 or 0.80, the same methods fail for the same reasons.\n\n- **Entity construction is independent of θ_crit**: It operates at entity-level (frequency threshold θ = 2/N = 0.25), not sample-level. FewNERD: +1.40pp, SciERC: +0.32pp, CoNLL: −0.39pp — none change with θ_crit.\n\nScript: `code/theta_crit_sweep.py`\nOutput: `output/theta_crit_sweep_results.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-theta-crit-sweep.md"
+}

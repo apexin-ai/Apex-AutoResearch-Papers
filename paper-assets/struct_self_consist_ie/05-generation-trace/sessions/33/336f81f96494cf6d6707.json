@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "336f81f96494cf6d6707",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp docred re sc",
+  "task_key": "worker_code_exp_docred_re_sc_20260520T192023",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_docred_re_sc_20260520T192023_result.json",
+    "occurrence": 1,
+    "bytes": 2352,
+    "sha256": "31cc1cea25b4de7246fc91c2cdb39f0fb2953e781327133a1c5a1b3420fbea6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。提交报告：\n\n---\n\n## DocRED RE SC Pilot — 完成报告\n\n### 代码路径\n\n| 位置 | 路径 |\n|------|------|\n| 本地脚本 | `artifacts/experiments/docred_re/prepare_docred_data.py` |\n| 本地脚本 | `artifacts/experiments/docred_re/run_docred_re_sc.py` |\n| 服务器脚本 | `/root/autodl-tmp/struct_self_consist_ie/experiments/docred_re/` |\n| 服务器数据 | `/root/autodl-tmp/struct_self_consist_ie/data/docred_re_instances.jsonl` |\n| Schema hint | `/root/autodl-tmp/struct_self_consist_ie/data/docred_schema.json` |\n| 模型 | `/root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct` |\n\n### 数据概况\n\n- **数据集**: DocRED validation split (原始 998 文档，985 有效)\n- **采样**: 200 instances (seed=42)\n- **金标关系总数**: 2306\n- **关系类型**: 88 种 (全集 96 种)\n- **平均每文档**: ~11.5 个关系\n- **文本长度**: 平均 1079 chars (最短 572, 最长 2873)\n- **实体类型**: PER, ORG, LOC, TIME, NUM, MISC\n\n### 运行命令\n\n```bash\ncd /root/autodl-tmp/struct_self_consist_ie\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\nCUDA_VISIBLE_DEVICES=3 python3 experiments/docred_re/run_docred_re_sc.py \\\n    --model-path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct \\\n    --data data/docred_re_instances.jsonl \\\n    --schema data/docred_schema.json \\\n    --output-dir output/docred_re_sc\n```\n\n### 预计时长\n\n- 200 instances × 9 passes (8 stochastic + 1 greedy) ≈ 1800 prompts\n- DocRED 文档比 SciERC 长 (平均 1079 vs ~150 chars)，prompt 含 88 种关系类型的 schema hint (~1465 chars)\n- 预计 **25-35 分钟**（比 SciERC 的 15 分钟更长，因为更长的 context）\n\n### 关键设计决策\n\n1. **使用 validation split**（test split 无标注）\n2. **关系类型用 human-readable names**（从 `rel_info.json` 映射 Wikidata property IDs）\n3. **Entity coreference 取第一个 mention** 作为代表，strict span matching 评估\n4. **Schema hint 包含全部 88 种关系类型**（采样后的覆盖数）\n5. **`use_train_format=False`** — 使用 `_RE_TEMPLATE`（纯 RE 模式）\n\n### GPU 状态\n\n- cuda:3 空闲 (0 MiB / 32607 MiB, 0% utilization)\n- cuda:0 和 cuda:2 正在运行其他 vLLM 任务\n\n### Registry\n\n- `exp_docred_re_sc` — status: PREPARING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-docred-re-sc.md"
+}

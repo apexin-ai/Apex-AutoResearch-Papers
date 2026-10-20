@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "55384bcde130df595368",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "audit scs pipeline consistency",
+  "task_key": "worker_audit_scs_pipeline_consistency_20260518T030739",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_scs_pipeline_consistency_20260518T030739.log",
+    "occurrence": 1,
+    "bytes": 647520,
+    "sha256": "b988e07b46668324f6f19257c045aaed0a46ccc5e40693d17e35aed0f1728013"
+  },
+  "statistics": {
+    "messages": 174,
+    "user_turns": 0,
+    "tool_calls": 65,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 65,
+      "tool_result": 65,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 174,
+      "chunks": [
+        {
+          "path": "55384bcde130df595368-part-0001.json",
+          "message_count": 152
+        },
+        {
+          "path": "55384bcde130df595368-part-0002.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-scs-pipeline-consistency.md"
+}

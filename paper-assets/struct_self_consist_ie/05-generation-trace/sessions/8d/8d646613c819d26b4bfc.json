@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d646613c819d26b4bfc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "train ft 002",
+  "task_key": "worker_train_ft_002_20260514T074046",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_ft_002_20260514T074046_result.json",
+    "occurrence": 1,
+    "bytes": 639,
+    "sha256": "239fabf122928fcc35c671c39671a339ae71216152c80068be2e83babea0d1ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**ft_002 训练已启动。**\n\n| 项目 | 值 |\n|------|-----|\n| 服务器 | autodl-5090, cuda:1 |\n| PID | 19666 |\n| 日志 | `/root/autodl-tmp/struct_self_consist_ie/ft_002_train.log` |\n| 总步数 | 585 steps (5 epochs × 117 steps/epoch) |\n| 速度 | ~3.0s/step |\n| 预估时间 | ~29 分钟 |\n| Checkpoint 路径 | `/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2` |\n\n**ft_002 vs ft_001 改动**:\n- LoRA r=32, alpha=64（trainable params 43M → 87.3M）\n- 5 epochs（原 3）\n- Prompt 增加 relation direction hint\n- 原始数据已备份为 `llmfactory_{train,dev}_v1.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-ft-002.md"
+}

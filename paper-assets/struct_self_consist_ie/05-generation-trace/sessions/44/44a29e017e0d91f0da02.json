@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44a29e017e0d91f0da02",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp027 mlp verifier v2",
+  "task_key": "worker_analysis_exp027_mlp_verifier_v2_20260518T162244",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp027_mlp_verifier_v2_20260518T162244_result.json",
+    "occurrence": 1,
+    "bytes": 721,
+    "sha256": "f6dfa206c270f980d3fb7687ee107a94d8064c765cbfae2b253113266b4a2a6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**Feature bottleneck 结论完全稳定：**\n\n| 模型 | AUROC (3-seed) | Selection F1 |\n|------|---------------|-------------|\n| LR_5 | **0.6681** | **0.6406** |\n| MLP_5 | 0.6579 | 0.6367 |\n| RF_5 | 0.6101 | 0.6140 |\n| MLP_20 | 0.6633 | 0.6329 |\n| Greedy | -- | 0.6441 |\n| Best unsup (FK) | -- | 0.6469 |\n\n关键发现：\n- **LR > MLP > RF**（AUROC 排序不变）\n- **所有 supervised models < greedy selection F1**（0.6406 < 0.6441）\n- **20-feat interactions 无帮助**\n- `early_stopping=True` 缩小了 MLP 与 LR 的差距（-0.0102 vs 原版 -0.0129），但不改变结论\n\n报告已注册：`artifacts/exp_027_mlp_v2/report/mlp_verifier_results.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp027-mlp-verifier-v2.md"
+}

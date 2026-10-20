@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b46a9444bd205130b05e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check n32 quick",
+  "task_key": "worker_check_n32_quick_20260523T092035",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_n32_quick_20260523T092035_result.json",
+    "occurrence": 1,
+    "bytes": 295,
+    "sha256": "69529aac277e314ea4dcc9f40ca8d1c0ba7b20aac909a346629b656450376e17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **进程**: ALIVE，已运行 17h05m\n- **进度**: 122,560 / 301,184 prompts = **40.7%**\n- **速度**: ~60 it/s，~8000 toks/s input\n- **GPU 3**: 84% 利用率，29.8 GB 显存占用\n- **ETA**: 已跑 42 分钟处理 122K prompts，剩余 179K → 约 **62 分钟**后完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-n32-quick.md"
+}

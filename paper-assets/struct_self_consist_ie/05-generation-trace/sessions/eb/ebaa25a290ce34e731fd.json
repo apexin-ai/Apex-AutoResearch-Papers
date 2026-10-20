@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "ebaa25a290ce34e731fd",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "knowledge 7b post pipeline prep",
+  "task_key": "worker_knowledge_7b-post-pipeline-prep_20260520T003320",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_knowledge_7b-post-pipeline-prep_20260520T003320.log",
+    "occurrence": 1,
+    "bytes": 538187,
+    "sha256": "14e56b2b2c072bfb5678e0de78b9f4c32303aafea785a6178505b634c9a78099"
+  },
+  "statistics": {
+    "messages": 313,
+    "user_turns": 1,
+    "tool_calls": 105,
+    "roles": {
+      "log": 1,
+      "system": 85,
+      "record": 1,
+      "assistant": 14,
+      "tool_call": 105,
+      "tool_result": 105,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 61,
+      "chunks": [
+        {
+          "path": "ebaa25a290ce34e731fd-part-0001.json",
+          "message_count": 61
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 252,
+      "chunks": [
+        {
+          "path": "ebaa25a290ce34e731fd-part-0001.json",
+          "message_count": 119
+        },
+        {
+          "path": "ebaa25a290ce34e731fd-part-0002.json",
+          "message_count": 133
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/knowledge-7b-post-pipeline-prep.md"
+}

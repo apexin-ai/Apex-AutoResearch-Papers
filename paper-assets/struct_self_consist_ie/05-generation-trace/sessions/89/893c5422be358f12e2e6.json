@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "893c5422be358f12e2e6",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh a2 degen capability regression",
+  "task_key": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_a2-degen-capability-regression_20260520T090113_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "38ceb58bf860c1218ceb68a9b23041209069a6ecd084b1fc096689e43e141875"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。30 个数据点（6 个 model-regime 组合 × 3 个数据集）的回归分析结果：\n\n| 方法 | R² | 备注 |\n|------|------|------|\n| Linear | 0.414 | degen = 129.5 × F1 − 56.9, p=1.3e-4 |\n| Quadratic | 0.592 | U 型曲线，高 F1 端陡升 |\n| Spearman ρ | 0.519 | p=3.3e-3 |\n\n关键发现：degeneracy 与 F1 正相关，但主要由**数据集难度**驱动——CoNLL（简单任务，F1>0.90）degeneracy 极高（58-90%），SciERC（难任务，F1~0.64）degeneracy 低（10-27%）。同一数据集内不同模型的 degeneracy 差异较小，说明 degeneracy 更多反映的是任务本身的 entropy ceiling 而非模型能力。\n\n输出文件：\n- `artifacts/a2_degen_regression/degen_capability_scatter.png` / `.pdf`\n- `artifacts/a2_degen_regression/regression_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-a2-degen-capability-regression.md"
+}

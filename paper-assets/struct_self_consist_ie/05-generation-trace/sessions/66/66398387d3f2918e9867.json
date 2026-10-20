@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66398387d3f2918e9867",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis holm bonferroni 5seed",
+  "task_key": "worker_analysis_holm-bonferroni-5seed_20260522T184852",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_holm-bonferroni-5seed_20260522T184852_result.json",
+    "occurrence": 1,
+    "bytes": 606,
+    "sha256": "d91d7a83aea688228871044ec962de98610c0cc9d0bd9672d471f5483e40d86c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**R39 W4 resolved。**\n\n5-seed Holm-Bonferroni 结果：\n\n| | 3-seed (旧) | 5-seed (新) |\n|---|---|---|\n| Max adjusted p | 0.055 | **0.013** |\n| 显著 (α=0.05)? | 否 | **是** |\n\n核心数据：\n- ρ_SJ = 0.356 ± 0.014，ρ_LP = 0.205 ± 0.015\n- ρ_advantage = 0.151 ± 0.006（5个seed高度一致）\n- 所有5个seed的 Holm-Bonferroni adjusted p ≤ 0.013\n\n论文需更新位置：\n1. 统计显著性声明：p=0.055 → p=0.013\n2. Seed数量：3 → 5\n3. 汇总统计量：ρ_SJ=0.356±0.014, ρ_advantage=0.151±0.006\n\nArtifact 已注册：`art_20260522_70d316`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-holm-bonferroni-5seed.md"
+}

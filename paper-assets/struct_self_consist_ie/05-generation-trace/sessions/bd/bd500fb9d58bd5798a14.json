@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd500fb9d58bd5798a14",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix worker result output norm",
+  "task_key": "worker_fix_worker-result-output-norm_20260519T200624",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_worker-result-output-norm_20260519T200624_result.json",
+    "occurrence": 1,
+    "bytes": 565,
+    "sha256": "93f0fc244fd1c7b65cada6639839e3ad2848b179234b416436dd6d013a9ed804"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**根因确认**：Worker 在 Line 239 输出了完整结果汇总（1136 chars），但随后在 Line 240 调用了 `TodoWrite`，导致最后一个 assistant turn 只有 tool_use 没有 text。Claude Code 的 result event 从最后一个 turn 取文本，得到空字符串。\n\n**产出**：\n- `artifacts/worker_output_guidelines.md` — 包含根因分析、Worker 输出规范（最后一条消息必须是纯文本）、示例格式、框架改进建议（`worker.py:600` 增加 `extract_last_assistant_text` fallback）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-worker-result-output-norm.md"
+}

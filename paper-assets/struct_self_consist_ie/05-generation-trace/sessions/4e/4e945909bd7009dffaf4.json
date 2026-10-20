@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e945909bd7009dffaf4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis fig selection gap n8 fix std",
+  "task_key": "worker_analysis_fig_selection_gap_n8_fix_std_20260515T144609",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_fig_selection_gap_n8_fix_std_20260515T144609_result.json",
+    "occurrence": 1,
+    "bytes": 350,
+    "sha256": "bca522b4fc68fddccc0757541c6bc31039e7e74c0c89f317907df34417fe5d94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改内容：\n\n- `ner_std`: `[0.877, 1.026, 0.966, 0.734, 0.500]` → `[0.842, 0.985, 0.927, 0.705, 0.480]`（统一为 n=551）\n- delta 均值未变：VC -2.540, SJ -0.433, FK -0.438, EM -1.145, LP +0.038\n- 其他参数（颜色、字体、布局、参考线）均未动\n- PDF/PNG 已覆盖本地 `docs/paper/figures/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fig-selection-gap-n8-fix-std.md"
+}

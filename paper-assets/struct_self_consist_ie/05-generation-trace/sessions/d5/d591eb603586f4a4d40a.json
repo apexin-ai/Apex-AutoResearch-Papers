@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "d591eb603586f4a4d40a",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh b2 v2 multi domain joint",
+  "task_key": "worker_ssh_b2-v2-multi-domain-joint_20260520T113822",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_b2-v2-multi-domain-joint_20260520T113822.log",
+    "occurrence": 1,
+    "bytes": 624691,
+    "sha256": "e445e6abb9a528b738468806b6239915a001bdd7c7fd6e3860b7de096976a03f"
+  },
+  "statistics": {
+    "messages": 210,
+    "user_turns": 1,
+    "tool_calls": 71,
+    "roles": {
+      "log": 1,
+      "system": 33,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 71,
+      "user": 1,
+      "tool_result": 71,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "d591eb603586f4a4d40a-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 204,
+      "chunks": [
+        {
+          "path": "d591eb603586f4a4d40a-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "d591eb603586f4a4d40a-part-0002.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-b2-v2-multi-domain-joint.md"
+}

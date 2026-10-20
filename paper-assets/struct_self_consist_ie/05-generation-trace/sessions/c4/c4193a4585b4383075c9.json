@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4193a4585b4383075c9",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run frontier sc gemini",
+  "task_key": "worker_run_frontier_sc_gemini_20260521T063042",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_frontier_sc_gemini_20260521T063042_result.json",
+    "occurrence": 1,
+    "bytes": 421,
+    "sha256": "b9f23cf6762617e5fee71a5ec51b1aa6083bc7ca6f0007376301f393edeca0be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已启动并注册为 RUNNING：\n\n| 实验 | PID | 进度 | ETA |\n|------|-----|------|-----|\n| **exp_frontier_sc_gemini25pro** (Gemini 2.5 Pro) | 290779 | 1/200 | ~3.7h |\n| **exp_frontier_sc_deepseek** (DeepSeek Chat) | 290980 | 1/200 | ~1.2h |\n\n注意：脚本参数是 `--model`（非 `--model_id`），`--max_workers` 已设为 4。两个进程均正常产出日志，无报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-frontier-sc-gemini.md"
+}

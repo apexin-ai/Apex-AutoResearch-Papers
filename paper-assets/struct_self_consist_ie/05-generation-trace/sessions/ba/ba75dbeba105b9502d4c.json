@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba75dbeba105b9502d4c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5090c check n16 data exists",
+  "task_key": "worker_ssh_5090c_check_n16_data_exists_20260521T144452",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090c_check_n16_data_exists_20260521T144452_result.json",
+    "occurrence": 1,
+    "bytes": 1080,
+    "sha256": "ca0c032f4d8bf44a88e469cc7846672e599e89fcf233d6d835a18025805d915c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. FewNERD N=16 s456\n\n**autodl-5090-c** — **存在** ✓\n\n| 项 | 值 |\n|---|---|\n| 路径 | `output/fewnerd_n16_seed456_v2/` |\n| samples.jsonl | 1.28 GB, 37648 行, May 21 19:01 |\n| report.json | 1.6 KB, May 21 19:02 |\n| greedy_f1 | 0.7883 |\n| oracle_f1 | 0.9058 |\n| soft_jaccard rho (full) | 0.2851 |\n| verdict | FAIL |\n\n**autodl-5090** — 不存在（无 fewnerd n16 s456 匹配）\n\n### 2. SciERC N=16 s42\n\n**autodl-5090-c** — **存在** ✓\n\n| 项 | 值 |\n|---|---|\n| 路径 | `output/scierc_n16_s42/` |\n| samples.jsonl | 37.3 MB, 551 行, May 21 19:46 |\n| report.json | 1.7 KB, May 21 19:46 |\n| greedy_f1 | 0.6631 |\n| oracle_f1 | 0.8086 |\n| soft_jaccard rho (full) | 0.3695 |\n| verdict | MARGINAL |\n\n**autodl-5090** — 不存在（无 scierc n16 s42 匹配；有 `scierc_n16_s456` 是另一个 seed）\n\n### 结论\n\n两个实验数据**都在 autodl-5090-c 上完好存在**，不需要重跑。附带注意：`fewnerd_n16_s123` 目录在 autodl-5090-c 上是空的（仅创建了目录，无文件）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5090c-check-n16-data-exists.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "944ac1619ea11c4567b7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis r21 w5 lp rho audit",
+  "task_key": "worker_analysis_r21_w5_lp_rho_audit_20260518T133538",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_r21_w5_lp_rho_audit_20260518T133538_result.json",
+    "occurrence": 1,
+    "bytes": 763,
+    "sha256": "b99546b654542548789d4ff2bbb28dc1cfd00073f9909cfc8a51b620151a8eb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `output/r21_w5_lp_rho_audit/audit_report.md`。\n\n**根因**: Table 1 和 Table 3 使用了不同的 LP 聚合方式。\n\n| | Table 1 (ρ=0.205) | Table 3 (ρ=0.215) |\n|---|---|---|\n| 脚本 | `analyze_exp012_rerun_5signal.py` | `unified_tab_fewnerd_metrics.py` |\n| 数据源 | `exp_012_rerun_1024/samples.jsonl` | 同一文件 |\n| LP 聚合 | **mean** of N=8 sample LPs | **max** of N=8 sample LPs |\n| 精确值 | 0.20517 | 0.21489 |\n\n两表的 seed、N、gold-filter、Spearman 计算方式完全相同，差异 100% 来自 `mean` vs `max` 聚合。\n\n**建议**: 统一为 mean LP (0.205)，与 Table 1 的 QE signal 定义一致。需修改 `experiments.tex` L109 和 `analyze_fewnerd_results.py` L29。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r21-w5-lp-rho-audit.md"
+}

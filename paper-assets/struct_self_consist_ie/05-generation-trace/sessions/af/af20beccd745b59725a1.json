@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af20beccd745b59725a1",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_2.md",
+    "occurrence": 1,
+    "bytes": 4702,
+    "sha256": "7695573017373b6cc57271035cc4e26aec1dfe74eca8864edf240e5c01c381d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-14T17:39:05+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- autodl-5090 gpu_ids=[cuda:0, cuda:1, cuda:2, cuda:3]，gpu-5090-4x-2 也是 4 卡，共 8 GPU\n- autodl-5090 用 conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要创建 venv\n- WNUT17 训练刚完成但尚未分析——exp_003_ner_wnut17 卡在 ANALYZING，必须优先处理\n- 多个 PREPARING 实验有 PID 但无 cron 监控（reconcile 返回 0），可能是 orphan 进程，需逐一排查\n- exp_002 CoNLL 已验证 SJ vs logprob 显著（Δρ=0.12, p<0.05），这是论文核心证据，不可丢失\n\n### 2. 🖥️ 基础设施快照\n- **autodl-5090**: 工作目录 `/root/autodl-tmp/struct_self_consist_ie`，Python `/root/miniconda3/bin/python`，conda base 环境\n- **gpu-5090-4x-2**: 同上路径布局，同 conda base\n- 模型路径：`checkpoints/qwen3-8b-scierc-merged-v2`（SciERC）、`checkpoints/qwen3-8b-conll2003-merged`（CoNLL）、WNUT17 LoRA checkpoint 待确认（刚训完，应在 checkpoints/ 下某处，由 wnut17_lora.yaml 配置决定）\n- 数据：`data/scierc/processed_data`、`data/conll2003`、WNUT17 数据路径待确认\n- 推理脚本：`code/run_mvp_pilot.py`（支持 --dataset、--subtask、--collect_logprobs）\n- exp_003 训练日志：`~/runs/struct_self_consist_ie/exp_003_ner_wnut17.log`\n- 活跃进程：exp_001_ner_n16_seed123 PID 63407 (autodl-5090 cuda:3)，exp_001_n16_seed123_full PID 61812 (gpu-5090-4x-2 cuda:0)，exp_001_n16_seed456_full PID 62170 (gpu-5090-4x-2 cuda:1)，exp_008_re_n16_full PID 62585 (gpu-5090-4x-2 cuda:2)——全部状态 PREPARING，无 cron，需确认存活\n\n### 3. 📊 当前状态\n收到 exp_003_ner_wnut17 完成回调（训练 1.16h），状态 ANALYZING。我完成了 session-start 初始化（read_registry、reconcile_crons、读 report.md 和 ROADMAP），正准备 spawn Worker 去 autodl-5090 分析训练结果。**还未实际 spawn Worker，被 WRITE HANDOFF 中断**。\n\nRegistry 关键状态：\n- **ANALYZING**: exp_003_ner_wnut17（WNUT17 LoRA 训练完成，等分析）\n- **PREPARING（有 PID，无 cron）**: exp_001_ner_n16_seed123、exp_001_n16_seed123_full、exp_001_n16_seed456_full、exp_008_re_n16_full、exp_002_merge_conll2003、exp008_re_n16、exp001_seed456、exp001_seed123——共 8 个，可能是 orphan\n- **DONE 重要**: exp_002 CoNLL pilot SUCCESS（SJ ρ=0.436, AUROC=0.80, SJ>logprob Δ=0.12 显著）；exp_001_ner_n16_scierc 全集 551 实例完成；exp_016 ensemble 分析完成\n\n无等待中的 Worker 回调。无活跃 cron（reconcile=0）。\n\n### 4. 📋 待办（条件触发式）\n- **立即**: spawn Worker → SSH autodl-5090 → 检查 exp_003 训练日志 → 若 loss 正常则 merge LoRA → Gate 0 eval → 若 NER F1≥55% 则跑 `run_mvp_pilot.py --dataset wnut17 --collect_logprobs --n_samples 8 --temperature 1.0`\n- **立即**: 排查 8 个 PREPARING 实验——SSH 各服务器 `ps -p PID`，存活的注册 cron，死掉的标 failed\n- exp_003 pilot 完成 → 分析 SJ/FK/logprob/EM/voting 5 信号 → update_registry(DONE) → 与 exp_002 CoNLL 对比 → 汇报 Director（三数据集 SciERC/CoNLL/WNUT 跨域验证完整性）\n- 三数据集 pilot 全部 DONE → spawn Worker 做跨数据集汇总分析（exp-006 selection curves）→ 这是论文 Table 1 的数据源\n- exp_007 LLaMA 训练需重启（之前 killed），等 GPU 空出来\n- Director 审批 Framing 后 → read framing-reaudit skill → 全文 re-audit\n\n### 5. 🎯 战略上下文\n- **DDL: 2026-05-25 ARR May（距今 11 天）**，时间紧迫\n- 核心叙事已转向（D019）：从 \"TTS improvement via structural consistency\" → \"diagnostic framework comparing 5 confidence signals for structured IE\"\n- **关键发现链**: SJ >> logprob on NER（ρ 0.38 vs 0.14, AUROC 0.69 vs 0.59）✅ | voting_conf ≈ SJ on NER ✅ | SJ 温度鲁棒 ✅ | CoNLL 跨数据集 SJ>logprob 显著 ✅ | RE 仍是弱点（full ρ<0.40）但 conditional 有信号\n- **易错点**:\n  - 之前 N-scaling \"突破\"是 200 实例 + T=0.7 的 artifact（D015），全集 551 实例 T=1.0 后结论不同——不要引用旧 200 实例数据\n  - exp_001 partial runs（200实例）和 full runs（551实例）同时存在，注意区分\n  - RE conditional filtering 有两种定义不一致（ROADMAP 紧急修复项），分析 RE 时必须用统一定义\n  - PREPARING 实验可能已经完成但状态未更新（无 cron 监控），直接假设它们在跑会导致 GPU 浪费\n  - Dream 2 评审指出问题是 presentation 层（novelty framing / refs / figures），不是更多 GPU 实验——Paper Agent 是提分关键路径\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-copy-2.md"
+}

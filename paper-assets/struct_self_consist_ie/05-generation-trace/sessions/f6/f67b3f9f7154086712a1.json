@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f67b3f9f7154086712a1",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "gpu exp lsc latent sc",
+  "task_key": "worker_gpu_exp_lsc_latent_sc_20260520T163017",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp_lsc_latent_sc_20260520T163017.log",
+    "occurrence": 1,
+    "bytes": 539191,
+    "sha256": "fd083a0ebed9ca081d2029d56626c00e25b92da140553113b85ec7d704c8a47e"
+  },
+  "statistics": {
+    "messages": 244,
+    "user_turns": 0,
+    "tool_calls": 96,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 96,
+      "tool_result": 96,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 244,
+      "chunks": [
+        {
+          "path": "f67b3f9f7154086712a1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f67b3f9f7154086712a1-part-0002.json",
+          "message_count": 64
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-exp-lsc-latent-sc.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d2dcfd7d3fb80c22cf0",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code cleanup and download 32b",
+  "task_key": "worker_code_cleanup_and_download_32b_20260519T063858",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_cleanup_and_download_32b_20260519T063858_result.json",
+    "occurrence": 1,
+    "bytes": 1401,
+    "sha256": "75a3201a7ab473771303413d98406e9a29f9671b38da58bd5c6d4f612f01a153"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载在继续（1.1G，有多个 .incomplete 文件在写入中）。32B 模型约 65GB，预计需要较长时间。\n\n---\n\n## 汇报\n\n### 磁盘清理\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| 已用 | 203G | 142G |\n| 可用 | 48G | 109G |\n| 使用率 | 81% | 57% |\n\n**释放空间：~61GB**（4 个 merged model 目录）\n\n已删除：\n- `qwen3-8b-scierc-3epoch-merged` (16G)\n- `qwen3-8b-scierc-10epoch-merged` (16G)\n- `llama3.1-8b-scierc-merged` (15G)\n- `qwen3-8b-conll2003-merged` (16G)\n\nLoRA adapter 全部保留。\n\n### 模型下载\n\n- **状态**：后台下载中（PID 764902/764903）\n- **模型**：`Qwen/Qwen2.5-32B-Instruct`（~65GB）\n- **下载路径**：`/root/autodl-tmp/.hf_cache/models--Qwen--Qwen2.5-32B-Instruct/`\n- **镜像**：hf-mirror.com（huggingface.co 不可达）\n- **进度**：已下载约 1.1GB，27 个文件中正在并行下载多个 shard\n- **监控**：`tail -f /root/autodl-tmp/qwen25_download.log` 或 `du -sh /root/autodl-tmp/.hf_cache/models--Qwen--Qwen2.5-32B-Instruct/`\n\n### 训练环境\n\n| 包 | 版本 |\n|----|------|\n| torch | 2.10.0+cu128 |\n| transformers | 4.57.1 |\n| peft | 0.17.1 |\n| trl | 0.24.0 |\n| accelerate | 1.11.0 |\n| bitsandbytes | 0.49.2 |\n| GPU | 4× RTX 5090 (31.4GB each, 共 125.6GB) |\n\n环境版本均较新，可直接用于 QLoRA 训练 32B 模型。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cleanup-and-download-32b.md"
+}

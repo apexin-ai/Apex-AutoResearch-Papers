@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbc56e135e832413fe34",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp exp 023 lora rank8",
+  "task_key": "worker_exp_exp_023_lora_rank8_20260516T102605",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_exp_023_lora_rank8_20260516T102605_result.json",
+    "occurrence": 1,
+    "bytes": 508,
+    "sha256": "d3b4835df74ee2a9ee2d7e02d71e05a1cd6df61b8c4c01e23176e8c0277d811f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training is running on cuda:2 (PID 288382), step ~42/585. Analysis script is prepared. I'll check back in ~4 min.\n\n**Status so far:**\n- Config created: `train_config_rank8.yaml` (rank=8, alpha=16, 5 epochs)\n- Training launched: cuda:2, 21.8M trainable params (vs 87.3M at rank=32)\n- Export config ready: `export_config_rank8.yaml`\n- Analysis script ready: `code/analyze_exp023_rank8.py`\n- Registry: `exp_023_lora_rank8` → RUNNING\n- Rank=32 baseline captured from `exp_012_rerun_1024`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp-023-lora-rank8.md"
+}

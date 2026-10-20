@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5fe2754052155df9dfc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu exp 002 merge and pilot",
+  "task_key": "worker_gpu_exp_002_merge_and_pilot_20260514T122323",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp_002_merge_and_pilot_20260514T122323_result.json",
+    "occurrence": 1,
+    "bytes": 600,
+    "sha256": "fb84106b358719ba7fab5ee80a3f8554b31c77cc41a58792c02aa1333354792a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-002 全部完成。总结：\n\n**exp-002: CoNLL-2003 Cross-Dataset Validation — SUCCESS**\n\n| Signal | ρ (full) | AUROC |\n|--------|----------|-------|\n| **SJ** | **0.436** | **0.801** |\n| FK | 0.400 | 0.774 |\n| LogProb | 0.316 | 0.753 |\n| EM | 0.451 | 0.816 |\n| EV | 0.424 | 0.789 |\n\n- **SJ vs LogProb: Δρ=+0.12, 95% CI [+0.088, +0.154], bootstrap显著** → Claim 1 validated\n- EM略胜SJ（Δρ=+0.015），但两者都是structural signal，互不矛盾\n- F1: greedy=0.912, voting=0.914, oracle=0.954\n- Registry 已更新为 DONE/success，artifact 已注册"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-002-merge-and-pilot.md"
+}

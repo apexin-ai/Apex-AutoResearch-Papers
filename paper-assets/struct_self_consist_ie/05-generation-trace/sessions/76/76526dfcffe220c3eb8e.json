@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "76526dfcffe220c3eb8e",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "exp qwen fewnerd seed123 infer",
+  "task_key": "worker_exp_qwen_fewnerd_seed123_infer_20260518T082904",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_qwen_fewnerd_seed123_infer_20260518T082904.log",
+    "occurrence": 1,
+    "bytes": 1108540,
+    "sha256": "1aa3158729785954f43bf79de0bfd404f6d84a2156a6ec68ad39eebe20ad192d"
+  },
+  "statistics": {
+    "messages": 322,
+    "user_turns": 1,
+    "tool_calls": 112,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 90,
+      "tool_call": 112,
+      "tool_result": 112,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 307,
+      "chunks": [
+        {
+          "path": "76526dfcffe220c3eb8e-part-0001.json",
+          "message_count": 158
+        },
+        {
+          "path": "76526dfcffe220c3eb8e-part-0002.json",
+          "message_count": 149
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "76526dfcffe220c3eb8e-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-qwen-fewnerd-seed123-infer.md"
+}

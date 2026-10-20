@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe09722e6dce31eed360",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5090c cuda1 e2 conll s42",
+  "task_key": "worker_ssh_5090c_cuda1_e2_conll_s42_20260521T160150",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090c_cuda1_e2_conll_s42_20260521T160150_result.json",
+    "occurrence": 1,
+    "bytes": 506,
+    "sha256": "5f28bed70d42dd6956c022db9dc31ca66a26da5f26c924595cff53fb787505af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动并正在运行。\n\n- **PID**: 334637（子进程 vLLM engine PID: 334914）\n- **GPU**: cuda:1 占用 30241 MiB / 32607 MiB（注意：日志显示模型实际加载到了 GPU 0 的 17817 MiB，GPU 1 的 30241 MiB — vLLM 可能在 GPU 0 也有少量溢出，但 `CUDA_VISIBLE_DEVICES=1` 映射后实际是物理 GPU 1）\n- **进度**: 3453 个 prompt 已渲染完成，正在生成 27624 个样本（3453 × 8）\n- **日志**: `output/e2_pretrained_conll_s42.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5090c-cuda1-e2-conll-s42.md"
+}

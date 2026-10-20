@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "319943907db5855db6ad",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh pertype fewnerd analysis",
+  "task_key": "worker_ssh_pertype_fewnerd_analysis_20260521T194724",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_pertype_fewnerd_analysis_20260521T194724_result.json",
+    "occurrence": 1,
+    "bytes": 1537,
+    "sha256": "85a1984fc7d019debfff14f3602ea2d1bcc07a5056b39640789c910bcf218ec6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 seed 全部完成。汇总结果：\n\n## Per-Type MV 分析结果 (FewNERD finetuned, N=8, strict>4)\n\n### Seed 42 / 123 / 456 平均\n\n| Type | N | Greedy F1 | MV F1 | MV Δ | Oracle F1 |\n|------|---|-----------|-------|------|-----------|\n| person | ~7200 | 0.820 | 0.772 | **-0.04** | 0.911 |\n| location | ~8800 | 0.797 | 0.740 | -0.06 | 0.896 |\n| art | ~1250 | 0.755 | 0.703 | -0.05 | 0.845 |\n| organization | ~6700 | 0.725 | 0.633 | -0.09 | 0.853 |\n| building | ~1540 | 0.696 | 0.597 | -0.10 | 0.839 |\n| product | ~2260 | 0.657 | 0.549 | -0.11 | 0.810 |\n| event | ~1315 | 0.645 | 0.544 | -0.10 | 0.806 |\n| other | ~3485 | 0.639 | 0.506 | **-0.13** | 0.857 |\n\n### Correlation(greedy_f1, MV_delta)\n\n| Seed | Unweighted r | Weighted r |\n|------|-------------|------------|\n| 42 | +0.878 | +0.938 |\n| 123 | +0.896 | +0.949 |\n| 456 | +0.920 | +0.910 |\n\n### 结论\n\n**相关性是强正值（~0.90），不是负值。** 这意味着：\n\n- **High-F1 types (person, location) MV 损失最小**（Δ ≈ -0.04 ~ -0.06）\n- **Low-F1 types (other, product, event) MV 损失最大**（Δ ≈ -0.10 ~ -0.17）\n\n这与 \"high-F1 type 的 MV 更差\" 假设**相反**。MV 的伤害集中在本身就难的 entity type 上——低 baseline quality 的 type，模型 sample 间一致性也更差，strict MV 的高阈值过滤掉了更多正确 entity。\n\n不存在 \"high-F1 type 的 MV confound\" 问题。真正的 pattern 是：**harder types → lower agreement → bigger MV penalty**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-pertype-fewnerd-analysis.md"
+}

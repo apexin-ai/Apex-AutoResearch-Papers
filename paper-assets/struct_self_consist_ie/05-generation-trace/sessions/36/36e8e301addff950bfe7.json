@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36e8e301addff950bfe7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose exp 008 re seed123",
+  "task_key": "worker_diagnose_exp_008_re_seed123_20260514T152030",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp_008_re_seed123_20260514T152030_result.json",
+    "occurrence": 1,
+    "bytes": 452,
+    "sha256": "45681127848acd0a72443de6543c6ed89c341f006e13856c3c67188957386828"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：negative（正常完成但未达标）**\n\n实验 551 个 RE 实例全部处理完毕，关键指标：\n- Greedy F1 = 0.4229，Oracle F1 = 0.6244（headroom +0.2015）\n- 44.1% 样本 F1=0（过高）\n- Structural > Surface = NO（κ 相关性不如 Soft Jaccard）\n- Verdict = FAIL\n\nRegistry 已更新为 DONE/negative，metrics 已写入。CRON 监控不存在（可能已被其他流程清除）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-008-re-seed123.md"
+}

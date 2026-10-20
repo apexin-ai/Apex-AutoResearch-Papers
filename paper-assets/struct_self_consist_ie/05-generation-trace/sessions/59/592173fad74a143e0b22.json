@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "592173fad74a143e0b22",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code 5090b multiseed batch2",
+  "task_key": "worker_code_5090b_multiseed_batch2_20260518T192212",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_5090b_multiseed_batch2_20260518T192212_result.json",
+    "occurrence": 1,
+    "bytes": 860,
+    "sha256": "a96acb50ac37e8e03a402a9fa129b5c940c711b4ac58910acdbf5278c5e31252"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个推理任务都在运行。汇报如下：\n\n## 汇报\n\n### 已启动的推理任务\n\n| GPU | 任务 | 状态 | 备注 |\n|-----|------|------|------|\n| cuda:0 | FewNERD seed=456 | ✅ 已启动 | PID=16662, 30224MiB, 正在渲染 prompts |\n| cuda:3 | FewNERD seed=123 | 🔄 运行中 | 14% (42,680/301,184), ~1.7h 剩余 |\n\n### 无需启动的任务\n\n- **SciERC seed=456**: 已完成（`output/exp_scierc_seed456/`，551 instances, n=8, 含 report.json + full_signal_analysis.json）\n\n### 说明\n\n- 推理脚本是 `code/run_mvp_pilot.py`（非 `inference_n16.py`），实际 n_samples=8（非 16）\n- FewNERD 测试集有 37,648 instances × 8 samples = 301,184 prompts，单 GPU 预计 ~2 小时\n- cuda:1 和 cuda:2 仍空闲\n- tmux 未安装，使用 nohup 后台运行，日志在 `/tmp/infer_gpu0_fewnerd_s456.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-5090b-multiseed-batch2.md"
+}

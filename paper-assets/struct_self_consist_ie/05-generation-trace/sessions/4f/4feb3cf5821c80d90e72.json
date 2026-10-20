@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4feb3cf5821c80d90e72",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5epoch s42 cron check4",
+  "task_key": "worker_ssh_5epoch_s42_cron_check4_20260521T181623",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5epoch_s42_cron_check4_20260521T181623_result.json",
+    "occurrence": 1,
+    "bytes": 464,
+    "sha256": "8e71a2842f6e9730c9736c6200d68949bafb1d57306f1e462ecdc8a06104b0d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务仍在运行，输出文件尚未生成。Cron 报的进程退出是误报。\n\n进度：\n- **s42**: 44,240 / 301,184 = **14.7%** (17m43s elapsed, ETA ~1h35m)\n- **s123**: 43,080 / 301,184 = **14.3%** (17m40s elapsed, ETA ~1h45m)\n\n上次检查 (~5分钟前) 是 s42=10.2%, s123=9.8%，现在各推进约 4.5 个百分点，速度正常 (~6,850 toks/s input)。\n\n预计完成时间约 **1.5-2 小时后**。不做 registry 更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5epoch-s42-cron-check4.md"
+}

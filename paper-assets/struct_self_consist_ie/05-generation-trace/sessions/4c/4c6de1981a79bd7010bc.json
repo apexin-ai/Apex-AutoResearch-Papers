@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c6de1981a79bd7010bc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper figure fig overview",
+  "task_key": "worker_paper_figure_fig_overview_20260514T133527",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig_overview_20260514T133527_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "52ce305133354afb39554bcd402f5311b1349bfe712c459f39f388355e71ee0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成并注册。\n\n**输出**: `/figures/paper/fig_overview.pdf` (45KB, 矢量 PDF)\n\n**布局**:\n- **左面板 (绿色)** — Quality Estimation: Input → N samples → Consistency Score，High S_J → High F1 / Low S_J → Low F1，底部 AUROC ≈ 0.70, ρ ≈ 0.39\n- **右面板 (红色)** — Sample Selection: 同一 input 的 y₁/y₂/y₃ 得到相同 S_J 分数，无法区分最佳样本，best-of-N ≤ greedy\n- **中间** — Correlation–Selection Gap 标签\n\n生成脚本在 `/tmp/gen_fig_overview.py`，可随时调整细节重新运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-overview.md"
+}

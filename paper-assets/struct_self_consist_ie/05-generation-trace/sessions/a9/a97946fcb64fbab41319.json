@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a97946fcb64fbab41319",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code 72b fs signal pipeline",
+  "task_key": "worker_code_72b-fs-signal-pipeline_20260519T224957",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_72b-fs-signal-pipeline_20260519T224957_result.json",
+    "occurrence": 1,
+    "bytes": 2425,
+    "sha256": "48a34e4e51c9bd8e217da6b279cb55b7573a29a9bfa7f202b583804fb33d37c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All pipeline steps done for SciERC and CoNLL. FewNERD at 91% (~30 min remaining).\n\n---\n\n## 72B Few-Shot Signal Results\n\n### Full Signal Reports\n\n#### SciERC (FS, N=8, 529 instances)\n| Signal | ρ |\n|--------|------|\n| LP | 0.060 |\n| SJ | 0.293 |\n| FK | 0.301 |\n| VC | 0.258 |\n| EM | 0.205 |\n\n- Greedy F1: 0.461 [0.435, 0.487]\n- LP Selection F1: 0.448\n- Majority Vote F1: 0.455\n- Consensus LP-wt F1: 0.461\n- Oracle F1: 0.604\n- Degeneracy: 16.6% (constant-F1), 6.0% (entity-set)\n- Construction Δ: **-0.08pp** (p=0.54, not significant)\n\n#### CoNLL (FS, N=8, 2756 instances)\n| Signal | ρ |\n|--------|------|\n| LP | 0.106 |\n| SJ | 0.442 |\n| FK | 0.451 |\n| VC | 0.426 |\n| EM | 0.403 |\n\n- Greedy F1: 0.745 [0.731, 0.759]\n- LP Selection F1: 0.747\n- Majority Vote F1: 0.743\n- Consensus LP-wt F1: 0.745\n- Oracle F1: 0.796\n- Degeneracy: 70.0% (constant-F1), 61.6% (entity-set)\n- Construction Δ: **+0.03pp** (p=0.42, not significant)\n\n---\n\n### ZS vs FS Comparison\n\n| Dataset | Metric | ZS | FS | Δ (FS−ZS) |\n|---------|--------|----|----|-----------|\n| **SciERC** | LP ρ | 0.081 | 0.060 | **-0.021** |\n| | Degen% | 21.0% | 16.6% | **-4.4pp** (better) |\n| | Construction Δ | +1.53pp | -0.08pp | **lost** |\n| **CoNLL** | LP ρ | -0.002 | 0.106 | **+0.108** |\n| | Degen% | 67.7% | 70.0% | +2.3pp |\n| | Construction Δ | -0.37pp | +0.03pp | +0.40pp |\n\n**Key findings:**\n- **CoNLL LP ρ jumps from ~0 to 0.106** — few-shot examples make log-prob discriminative where ZS had zero signal\n- SciERC LP ρ slightly decreases (0.081→0.060), and the ZS construction gain (+1.53pp) vanishes in FS\n- SJ/FK/VC are all strong in FS for both datasets (0.26–0.45), same pattern as ZS\n- Degeneracy is largely unchanged between regimes\n\n---\n\n### DATA dict entries (copy-paste ready)\n\n```python\n    # ── Qwen3-72B FS ──\n    (72, \"fs\", \"SciERC\")          : {\"lp_rho\": 0.06, \"sj_rho\": 0.293, \"vc_rho\": 0.258, \"degen\": 16.6, \"construction_lp_delta\": -0.08, \"greedy_f1\": 0.461, \"oracle_f1\": 0.604},\n    (72, \"fs\", \"CoNLL\")           : {\"lp_rho\": 0.106, \"sj_rho\": 0.442, \"vc_rho\": 0.426, \"degen\": 70.0, \"construction_lp_delta\": 0.03, \"greedy_f1\": 0.745, \"oracle_f1\": 0.796},\n```\n\n---\n\n### FewNERD Status\n91% done (273256/301184 prompts), ETA ~30 min. Will need a follow-up run of the same pipeline once it completes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-72b-fs-signal-pipeline.md"
+}

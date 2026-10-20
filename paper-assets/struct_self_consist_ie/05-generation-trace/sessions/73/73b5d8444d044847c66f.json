@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73b5d8444d044847c66f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check n32 progress v2",
+  "task_key": "worker_check_n32_progress_v2_20260523T054158",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_n32_progress_v2_20260523T054158_result.json",
+    "occurrence": 1,
+    "bytes": 1139,
+    "sha256": "c14c7e9ceba5e5c7127ceb2814e61fffe0cb9e97a0c69bbb1c562ebba6af523c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**进程状态**：运行中，已运行 ~13h28m\n- PID 157197 (python run_mvp_pilot.py)，PID 157469 (VLLM::EngineCore)\n- 仅使用 **GPU 3**（`CUDA_VISIBLE_DEVICES=3`），**不是** 4 卡并行\n\n**进度**：**73%** — 881,344 / 1,204,736 prompts\n- 已用时：13h26m\n- 当前速度：~13-35 it/s（波动大），input ~3302 toks/s, output ~4922 toks/s\n\n**GPU 利用率**：\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 0% | 2 MiB / 32607 MiB |\n| 1 | 0% | 2 MiB / 32607 MiB |\n| 2 | 0% | 2 MiB / 32607 MiB |\n| **3** | **77%** | **29844 MiB / 32607 MiB** |\n\n**ETA**：按当前速率（~18.2 it/s 平均），剩余 323,392 prompts ≈ **~5h** 剩余，预计 **~18:30 (今天下午)** 完成。\n\n**输出目录**：`output/fewnerd_pretrained_n32_seed42/` 当前为空，脚本应在全部推理完成后统一写入。\n\n**注意**：之前提到的 shard0-3 日志是 05-22 18:23 的旧运行（PID 不同），与当前任务无关。当前是单 GPU 运行，总 prompt 数 1,204,736 = 9412 instances × 32 samples × 4（可能是 4 轮 temperature 或其他参数）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-n32-progress-v2.md"
+}

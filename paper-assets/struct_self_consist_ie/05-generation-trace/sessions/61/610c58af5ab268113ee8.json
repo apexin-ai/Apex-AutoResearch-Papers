@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "610c58af5ab268113ee8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "verify raw data files",
+  "task_key": "worker_verify_raw_data_files_20260515T030412",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_raw_data_files_20260515T030412_result.json",
+    "occurrence": 1,
+    "bytes": 1608,
+    "sha256": "85dd3ac6b5320a2a4260b37894e4a90694ed9f83c9b385028562d8aa0512d3ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n## 文件检查汇总\n\n| Task | 文件路径 | 状态 | 大小 | 行数 | 备注 |\n|------|---------|------|------|------|------|\n| **A1** LLaMA SciERC N=8 | `exp007_llama_inference/samples.jsonl` | ✅ 存在 | 3.6M | 551 | 注意实际目录名无下划线：`exp007_llama_inference` 而非 `exp_007_llama_inference` |\n| **A2** LLaMA SciERC N=16 | `exp_007_llama_n16/samples.jsonl` | ✅ 存在 | 6.4M | 551 | |\n| **A3** Qwen CoNLL N=8 | `exp002_conll2003/samples.jsonl` | ✅ 存在 | 9.4M | 3453 | 实际目录名 `exp002_conll2003`（无下划线） |\n| **A4** LLaMA CoNLL N=8 | `exp_017_llama_conll_infer/samples.jsonl` | ✅ 存在 | 9.1M | 3453 | |\n| **B** WNUT-17 | `exp003_wnut17_eval/samples.jsonl` | ✅ 存在 | 4.6M | 1287 | 目录还含 `report.json` (1.8K) |\n| **C** Qwen SciERC N=8 seed=42 | `exp_012_rerun_1024/samples.jsonl` | ✅ 存在 | 3.7M | 551 | `exp_001_seed42_v2/samples.jsonl` 也存在 (6.5M, 551行) |\n| **D** exp_016 RE selection | `exp_016_rerun_1024/` | ✅ 存在 | ~192K | — | 含 6 个 JSON 文件 + summary.md，**无 samples.jsonl**（这是分析结果目录） |\n| **E1** 代码目录 | `code/` | ✅ 存在 | — | — | 47 个 .py 文件，含 `consistency.py`, `evaluation.py`, `sampling.py` 等核心模块。无 `src/` 目录 |\n\n**关键发现：**\n- 所有 raw sample 文件均存在，无缺失\n- 命名不一致：旧实验用 `expNNN`（无下划线），新实验用 `exp_NNN`\n- CoNLL 数据集 (3453行) 远大于 SciERC (551行)\n- `exp_016_rerun_1024` 是 RE selection 分析结果，不含 raw samples"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-raw-data-files.md"
+}

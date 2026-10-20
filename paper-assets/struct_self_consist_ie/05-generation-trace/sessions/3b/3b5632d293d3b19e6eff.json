@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "3b5632d293d3b19e6eff",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis auroc threshold investigation",
+  "task_key": "worker_analysis_auroc_threshold_investigation_20260516T111512",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_auroc_threshold_investigation_20260516T111512.log",
+    "occurrence": 1,
+    "bytes": 1001462,
+    "sha256": "3b5cd5cb414990ccf0d4d0f66b9b4318634667f86aaba797408a4348dc19fb4c"
+  },
+  "statistics": {
+    "messages": 307,
+    "user_turns": 0,
+    "tool_calls": 111,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 111,
+      "tool_result": 111,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 307,
+      "chunks": [
+        {
+          "path": "3b5632d293d3b19e6eff-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3b5632d293d3b19e6eff-part-0002.json",
+          "message_count": 127
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-auroc-threshold-investigation.md"
+}

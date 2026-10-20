@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9d0d1ba00b7bbee9a5a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp llama3b phase3",
+  "task_key": "worker_exp_llama3b_phase3_20260516T035207",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_llama3b_phase3_20260516T035207_result.json",
+    "occurrence": 1,
+    "bytes": 1037,
+    "sha256": "3ef5560a8b1343a09e3697700cb2000ce2e2ed95f1f879bfda907454b6836a8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 3 全部完成。总结：\n\n## LLaMA-3.2-3B SciERC NER — 结果\n\n**训练**: 5 epochs, 585 steps, train_loss=0.091, eval_loss=0.116\n\n**F1**: greedy=0.627 (8B: 0.646), oracle=0.763 (8B: 0.775)\n\n**5-Signal ρ (FULL split)** — 3B 所有信号都高于 8B：\n\n| Signal | 8B ρ | 3B ρ | Δ |\n|--------|------|------|-----|\n| VC | 0.405 | **0.460** | +0.055 |\n| SJ | 0.310 | **0.375** | +0.066 |\n| EM | 0.259 | **0.334** | +0.075 |\n| FK | 0.235 | **0.268** | +0.032 |\n| LP | 0.150 | **0.266** | +0.116 |\n\n**Selection F1**: SJ 在 3B 上 +0.006 vs greedy (p=0.175, 趋势正但不显著)\n\n**关键发现**:\n1. 小模型信号相关性更高（模型越弱，信号越 informative）\n2. SJ > FK ordering 在两个 scale 都成立（3B gap=0.108 > 8B gap=0.074）\n3. LP 提升最大（+0.116），表明 3B 的 logprob 校准与 8B 差异显著\n4. correlation-selection gap 依然存在\n\n产出文件在 `output/review_round9_experiments/llama3b_scierc/`，registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-llama3b-phase3.md"
+}

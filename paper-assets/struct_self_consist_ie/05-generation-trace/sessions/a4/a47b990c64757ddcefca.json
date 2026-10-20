@@ -1,0 +1,547 @@
+{
+  "schema_version": "1.0",
+  "id": "a47b990c64757ddcefca",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "cron hook exp fewnerd mf4 s123 v2",
+  "task_key": "cron_hook_exp_fewnerd_mf4_s123_v2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/cron_hook_exp_fewnerd_mf4_s123_v2.jsonl",
+    "occurrence": 1,
+    "bytes": 23441,
+    "sha256": "1e157d32e598648f292ce17a06a70b2f51abeabb96c3703dbf09ebd131230e9e"
+  },
+  "statistics": {
+    "messages": 26,
+    "user_turns": 1,
+    "tool_calls": 13,
+    "roles": {
+      "user": 1,
+      "tool_call": 13,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T13:38:58.023940+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: exp_fewnerd_mf4_s123_v2\n- project: struct_self_consist_ie\n- server: autodl-5090\n- log_path: ~/runs/struct_self_consist_ie/exp_fewnerd_mf4_s123_v2.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T13:39:11.150333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "8"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T13:39:11.201119+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T13:39:15.569696+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T13:39:16.071838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T13:39:16.576264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T13:39:16.627367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T13:39:17.488966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (508,736 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-agent-51ee217a/fb1c578e-62af-4d4b-9ff4-46c46ae383e0/tool-results/mcp-agent-ml-research-read_registry-1779457157420.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-agent-51ee217a/fb1c578e-62af-4d4b-9ff4-46c46ae383e0/tool-results/mcp-agent-ml-research-read_registry-1779457157420.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-agent-51ee217a/fb1c578e-62af-4d4b-9ff4-46c46ae383e0/tool-results/mcp-agent-ml-research-read_registry-1779457157420.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1919
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T13:39:17.539745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 1467
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T13:39:17.540528+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-22T13:38:55Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 323 个实验 — ANALYZING 3, DONE 297, PREPARING 18, RUNNING 5\\\\n**DONE 分布**: failed 13, killed 35, negative 53, success 196\\\\n\\\\n### GPU 占用\\\\n- **分配**: 8 张 — autodl-5090:cuda:0, autodl-5090:cuda:1, autodl-5090:cuda:2, autodl-5090:cuda:3, autodl-5090-c:cuda:0, autodl-5090-c:cuda:1, autodl-5090-c:cuda:2, autodl-5090-c:cuda:3\\\\n- **实际运行**: 3 张 — autodl-5090-c:cuda:3(exp_fewnerd_pretrained_n32_s42), autodl-5090-c:cuda:1(exp_fewnerd_pretrained_n16_s42), autodl-5090:cuda:3(exp_fewnerd_5epoch_lp_s42)\\\\n- **空闲（分配了没跑）**: autodl-5090:cuda:1, autodl-5090:cuda:2, autodl-5090-c:cuda:0, autodl-5090-c:cuda:2\\\\n\\\\n### 💾 磁盘余量\\\\n- **autodl-5090**:\\\\n  - `/autodl-pub`: 8.6T/14T 可用（已用 39%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 813G/879G 可用（已用 3%）\\\\n- **autodl-5090-c**:\\\\n  - `/autodl-pub`: 6.4T/14T 可用（已用 55%）\\\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\\\n  - `/usr/bin/nvidia-smi`: 813G/879G 可用（已用 3%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `exp_fewnerd_pretrained_n32_s42` | autodl-5090-c | cuda:3 | 387491 | `…s/struct_self_consist_ie/exp_fewnerd_pretrained_n32_s42.log` |\\\\n| `exp_fewnerd_pretrained_n16_s42` | autodl-5090-c | cuda:1 | 392445 | `…s/struct_self_consist_ie/exp_fewnerd_pretrained_n16_s42.log` |\\\\n| `exp_conll_freeform_n8_s42` | autodl-5090 | ? | ? | `—` |\\\\n| `exp_fewnerd_freeform_n8_s42` | autodl-5090 | ? | ? | `—` |\\\\n| `exp_fewnerd_5epoch_lp_s42` | autodl-5090 | cuda:3 | 137895 | `/tmp/exp_fewnerd_5epoch_lp_s42.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `exp_scierc_n8_s456` [success] — 2026-05-22T12:34:08\\\\n- `exp_scierc_n8_s123` [success] — 2026-05-22T12:34:03\\\\n\n…[truncated 7425 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 964
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T13:39:17.591195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md\\\", \\\"content\\\": \\\"# struct_self_consist_ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-22 01:58 UTC | 更新原因: R34 综合修复全部完成，更新任务状态\\\\n\\\\n## 核心方向\\\\n**Self-Consistency for NER: Correlation-Selection Gap 诊断与分析**。详见 paper_framing.md。\\\\n\\\\n## 当前阶段\\\\n**🔴 DDL Sprint — EMNLP 2026 DDL 2026-05-25 (~3 days)**\\\\n\\\\n## 目标校准（D225）\\\\n- **Realistic target: 3.5-4.0 (Borderline Conference → Conference)**\\\\n\\\\n## 实验程序状态：全部完成 ✅\\\\n\\\\n### 核心实验（全部 DONE）\\\\n- [x] FewNERD finetuned MV 3-seed: Δ = −2.74±0.54pp\\\\n- [x] CoNLL finetuned MV 3-seed: Δ = −0.04±0.15pp (non-negative)\\\\n- [x] SciERC finetuned MV 3-seed: Δ = −0.74±0.57pp\\\\n- [x] Pretrained MV 3-dataset 3-seed: CoNLL +9.2pp, FewNERD +3.90±0.22pp, SciERC +1.54±0.48pp\\\\n- [x] Per-type MV analysis: 7/8 types flip direction (pretrained→finetuned), ρ=0.90\\\\n- [x] N=16 scaling: FewNERD MV Δ −1.65±0.61pp, degen 4.0%\\\\n- [x] 5-epoch confound: 3-seed, degen 26.2%, MV Δ −0.36±0.09pp\\\\n- [x] Provenance D234: v3 mean −2.71±0.51pp ≈ 原始 −2.74±0.54pp\\\\n- [x] ε sensitivity: ε=0.05 at elbow, LP-best +4.6pp vs compressed\\\\n- [x] Sequence entropy vs LP: mean LP +4.62pp vs cumulative (length normalization justified)\\\\n\\\\n## 论文状态\\\\n\\\\n### R30 Weakness 全部修复 ✅\\\\n- [x] W1 SciERC 3-seed\\\\n- [x] W2 RE/SQL 降级 preliminary exploration\\\\n- [x] W3 Prop 1 → diagnostic decomposition\\\\n- [x] W4 α→0 突出为核心洞察\\\\n- [x] W5 5-epoch confound\\\\n- [x] W6 Abstract 精简\\\\n- [x] W7 Limitations 扩展\\\\n\\\\n### R34 修复（Fresh Review 3.0）— 全部完成 ✅\\\\n- [x] C1: Capability ceiling formal definition + N-dependence acknowledgment\\\\n- [x] M2: LP framing balance (agreement vs model-internal 区分)\\\\n- [x] M3: Yao et al. differentiation (§8)\\\\n- [x] M4: RE/SQL 降级确认\\\\n- [x] M5: §9+§10 合并，Table 5 移 Appendix\\\\n- [x] M6: 因果语言系统扫描\\\\n- [x] M7: 统计效力标注\\\\n- [x] M8: Sequence entropy comparison (Appendix + main text)\\\\n- [x] Missing refs: 4 条已加入\\\\n- [x] Minor bundle (m1-m7)\\\\n\\\\n\n…[truncated 1868 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 963
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T13:39:23.613266+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "filters": "{'exp_id': 'exp_fewnerd_mf4_s123_v2'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T13:39:24.569294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T13:39:24.871672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "filters": "{'status': 'ANALYZING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T13:39:25.122795+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4905}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1509
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T13:39:25.977505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_conll_freeform_n8_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T09:09:24.843Z\\\", \\\"updated_at\\\": \\\"2026-05-22T13:04:49.852Z\\\", \\\"hypothesis\\\": \\\"Free-form decoding ablation: CoNLL N=8 T=1.0 seed=42 with use_grammar=False. Tests whether removing XGrammar constrained decoding degrades extraction quality and consistency scores, quantifying the contribution of grammar constraints to the structured self-consistency pipeline.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --use_grammar false --collect_logprobs --output_dir output/conll_freeform_n8_seed42\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/conll2003\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 42}}, \\\"exp_fewnerd_freeform_n8_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:59:53.518Z\\\", \\\"updated_at\\\": \\\"2026-05-22T13:04:46.402Z\\\", \\\"hypothesis\\\": \\\"R35-W6 free-form decoding ablation: FewNERD N=8 T=1.0 seed=42 without grammar constraints. FewNERD has lowest degeneracy (12% at N=8). If free-form degeneracy remains low (~12%), confirms degeneracy is model-intrinsic, not a constrained decoding artifact. Complements CoNLL free-form ablation (59.3% vs 56.7% constrained).\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --use_grammar false --collect_logprobs --output_dir output/fewnerd_freeform_n8_seed42\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/fewnerd\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"qwen3-8b-fewnerd-exp021-merged\\\", \\\"seed\\\": 42}}, \\\"exp_fewnerd_5\n…[truncated 3693 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1408
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T13:39:26.830662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_fewnerd_mf4_s123_v2\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T11:03:20.521Z\\\", \\\"updated_at\\\": \\\"2026-05-22T13:38:49.830Z\\\", \\\"hypothesis\\\": \\\"MF4 pipeline fix retry: FewNERD N=8 T=1.0 seed=123 using run_mvp_pilot.py (micro-F1). Replaces exp_fewnerd_mf4_s123 which failed due to GPU contention on autodl-5090. Required for 3-seed statistical power with unified pipeline.\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4_seed123_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"136358\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_fewnerd_mf4_s123_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T11:27:59.925Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"136358\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_fewnerd_mf4_s123_v2.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4_seed123_v2/\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-22T13:38:48.328Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T13:38:57.181792+00:00\\\"}]}}, \\\"exp_fewnerd_mf4_s456\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\":\n…[truncated 4543 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1958
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T13:39:47.938277+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_project_resource_usage",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T13:39:47.938708+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T13:40:01.769331+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analyze:exp_fewnerd_mf4_s123_v2",
+              "project": "struct_self_consist_ie",
+              "task_prompt": "## 任务：分析 exp_fewnerd_mf4_s123_v2 实验结果\n\n### 背景\n实验 exp_fewnerd_mf4_s123_v2 刚在 autodl-5090 完成。这是 FewNERD MF4 统一 pipeline (run_mvp_pilot.py) 的 seed=123 跑，用于完成 3-seed 统计。\n\n- server: autodl-5090\n- log: ~/runs/struct_self_consist_ie/exp_fewnerd_mf4_s123_v2.log\n- output_dir: output/fewnerd_mf4_seed123_v2/\n- 项目路径: /root/autodl-tmp/struct_self_consist_ie\n\n同系列已完成的两个 seed 的 metrics（供对比）：\n- s42: greedy_f1=0.7885, oracle_f1=0.8787, oracle_headroom=9.02pp, fleiss_kappa=0.3537, soft_jaccard=0.6751, sample_f1_pct_zero=23%\n- s456: greedy_f1=0.7883, oracle_f1=0.881, oracle_headroom=9.27pp, fleiss_kappa=0.3555, soft_jaccard=0.6845, sample_f1_pct_zero=19.4%\n\n### 具体步骤\n\n1. SSH 到 autodl-5090，读取日志尾部（最后 100 行），确认实验正常完成（没有 error/traceback）\n\n2. 读取 output 目录下的结果文件：\n   ```\n   ls /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_mf4_seed123_v2/\n   ```\n   找 metrics.json / results.json / summary 等文件，读取完整 metrics\n\n3. 提取以下关键指标（与 s42/s456 对齐）：\n   - greedy_f1\n   - oracle_f1\n   - oracle_headroom_pp\n   - fleiss_kappa_mean\n   - soft_jaccard_mean\n   - rho_sj_full / rho_sj_cond\n   - logprob_auroc_full\n   - sample_f1_pct_zero\n   - mv_strict_f1（如有）\n   - lp_best_f1（如有）\n   - degeneracy_rate（如有）\n\n4. 检查是否有 MV/LP selection 相关的 metrics（前两个 seed 标注了\"MV/LP selection metrics not computed by pipeline\"）\n\n5. 计算 3-seed 均值和标准差（结合 s42 和 s456 的数据）：\n   - greedy_f1 mean±std\n   - oracle_f1 mean±std\n   - oracle_headroom mean±std\n\n6. 将所有发现写入产出文件，用 save_project_file 保存到 `artifacts/exp_fewnerd_mf4_s123_v2_analysis.md`\n\n7. 最后用 update_registry 更新 exp_fewnerd_mf4_s123_v2 的 metrics 和 conclusion（如正常完成则 conclusion=success）\n\n### 注意\n- 只用 ssh_read_only 读日志和结果，不要执行任何修改命令\n- 如果发现异常（空输出、metrics 缺失），详细报告问题而非猜测",
+              "tool_groups": "['ssh', 'registry', 'knowledge']"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T13:40:04.922331+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analyze_exp_fewnerd_mf4_s123_v2_20260522T134002\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analyze_exp_fewnerd_mf4_s123_v2_20260522T134002.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analyze_exp_fewnerd_mf4_s123_v2_20260522T134002 started. Use get_worker_status('worker_analyze_exp_fewnerd_mf4_s123_v2_20260522T134002') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3152
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T13:40:23.306367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_fewnerd_mf4_s42",
+              "field": "status",
+              "value": "DONE",
+              "project": "struct_self_consist_ie",
+              "spec": "{'checkpoint_path': 'output/fewnerd_mf4_seed42/', 'log_path': '~/runs/struct_self_consist_ie/exp_fewnerd_mf4_s42.log'}"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T13:40:24.562346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_fewnerd_mf4_s456",
+              "field": "status",
+              "value": "DONE",
+              "project": "struct_self_consist_ie",
+              "spec": "{'checkpoint_path': 'output/fewnerd_mf4_seed456/', 'log_path': '~/runs/struct_self_consist_ie/exp_fewnerd_mf4_s456.log'}"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T13:40:24.713239+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T13:40:27.925484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewnerd_mf4_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:08:56.774Z\\\", \\\"updated_at\\\": \\\"2026-05-22T13:40:24.973Z\\\", \\\"hypothesis\\\": \\\"MF4 pipeline fix: FewNERD N=8 T=1.0 seed=42 using run_mvp_pilot.py (greedy_f1/micro-F1). Replaces exp_021 which used incompatible greedy_macro_f1 metric. Required for 3-seed statistical power with unified pipeline.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_mf4_seed42/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"426032\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_fewnerd_mf4_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T10:36:09.271Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"output/fewnerd_mf4_seed42/\\\", \\\"wall_clock_seconds\\\": 11055.7, \\\"gpu_hours\\\": 3.07}, \\\"pid\\\": \\\"426032\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_fewnerd_mf4_s42.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_mf4_seed42/\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-22T12:43:03.188Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"\n…[truncated 579 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 4619
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T13:58:58.454399+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派出分析 exp_fewnerd_mf4_s123_v2。同时注意到 exp_fewnerd_mf4_s42 和 exp_fewnerd_mf4_s456 也在 ANALYZING 但已有 conclusion=success，需要推进到 DONE。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_fewnerd_mf4_s123_v2"
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 26
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-exp-fewnerd-mf4-s123-v2.md"
+}

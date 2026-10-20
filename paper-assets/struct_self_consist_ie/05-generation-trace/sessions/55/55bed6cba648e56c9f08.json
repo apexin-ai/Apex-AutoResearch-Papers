@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55bed6cba648e56c9f08",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "research reference verification r27",
+  "task_key": "worker_research_reference_verification_r27_20260521T120017",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_reference_verification_r27_20260521T120017_result.json",
+    "occurrence": 1,
+    "bytes": 829,
+    "sha256": "06068a2135b11eef787d29d3f6fbdc2af3d7d867592cb77657ce46ff671787fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成，artifact 已注册（`art_20260521_002dd8`）。\n\n**结果汇总：**\n\n| # | Reviewer 引用 | 状态 | 正确引用 | Venue |\n|---|-------------|------|---------|-------|\n| 1 | DeNero et al. 2009 | ✅ | DeNero, Chiang & Knight | ACL-IJCNLP 2009 |\n| 2 | Desai & Durrett 2020 | ✅ | Desai & Durrett | EMNLP 2020 |\n| 3 | Huang et al. 2024 | ✅ | Huang et al. | ICLR 2024 |\n| 4 | \"Aronica et al. 2024\" | ⚠️ 作者名错误 | **Li, Ramprasad & Zhang 2024** | Findings of EMNLP 2024 |\n\n**关键发现**：第 4 篇 \"Aronica et al. 2024\" 是 Reviewer 2 的 AI 幻觉——实际论文是 Li et al. \"A Simple but Effective Approach to Improve Structured Language Model Output for Information Extraction\"（arXiv: 2402.13364），作者中无 Aronica。补引时需用正确作者。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-reference-verification-r27.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5896ab19d528d4ac107",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix hidden probe goldfilter details",
+  "task_key": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_hidden_probe_goldfilter_details_20260518T105341_result.json",
+    "occurrence": 1,
+    "bytes": 1716,
+    "sha256": "8dbfeb94d8e9f7386388c735b8aca060c1220f2bba343a09bf9919a808532d37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成汇总\n\n### 关键发现：评估本已正确\n\n原始 probe 代码 (`hidden_state_probe.py`) **已经在 evaluation 阶段 gold-filter 了** — `load_instance_data()` 跳过 `gold_entities == []` 的 instance。`results.json` 显示的 `n_instances: 529` 是正确的。3 seeds [42, 123, 456] × 5-fold CV 也已完成。\n\n本次新增：overfitting 追踪 + 综合 `results_goldfiltered.json`。\n\n### 实验细节\n\n| 项目 | 值 |\n|---|---|\n| **Hidden state 来源** | Qwen3-8B + SciERC LoRA merged (v2), last hidden layer, mean-pool over output tokens |\n| **Hidden dim** | 4096 |\n| **Linear probe** | Ridge (α=1.0), StandardScaler |\n| **MLP 架构** | 4096→256→64→1, ReLU, Dropout=0.1 |\n| **MLP 训练** | Adam (lr=1e-3, wd=1e-4), batch=256, max 100 epochs, early stopping patience=15 |\n| **评估** | 5-fold CV × 3 seeds (42, 123, 456), instance-level split |\n\n### Overfitting\n\n- **Linear**: 严重过拟合 (train MSE=0.0004, val MSE=0.565) — 4096 features vs ~3400 training samples\n- **MLP**: 适度 (train MSE=0.042, val MSE=0.078, gap=0.036), early stopping 有效 (avg best epoch=9.4)\n\n### 最终结果表 (gold-filtered 529 instances, 3-seed mean±std)\n\n| Method | Dim | Spearman ρ | Selection F1 | Gap Closure |\n|--------|-----|-----------|-------------|-------------|\n| LP (mean logprob) | 1 | 0.2207 | 0.6087 | -0.4% |\n| Hidden Linear | 4096 | 0.2346±0.020 | 0.6206±0.005 | 7.0% |\n| Hidden MLP | 4096 | 0.4611±0.020 | 0.6317±0.004 | 13.9% |\n| Oracle | — | — | 0.7692 | 100% |\n\n结果文件:\n- 服务器: `output/hidden_state_probe/results_goldfiltered.json`\n- 本地: `artifacts/hidden_state_probe/results_goldfiltered.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-hidden-probe-goldfilter-details.md"
+}

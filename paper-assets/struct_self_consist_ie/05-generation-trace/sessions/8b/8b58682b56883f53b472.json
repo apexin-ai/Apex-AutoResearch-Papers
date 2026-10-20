@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b58682b56883f53b472",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 015 v2",
+  "task_key": "worker_code_exp_015_v2_20260514T152014",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_015_v2_20260514T152014_result.json",
+    "occurrence": 1,
+    "bytes": 1388,
+    "sha256": "ca27df9aae901259c86a11b3208f660880b713e1224862df63f5f8b6a5ceb4ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结如下：\n\n## exp-015 v2 结果\n\n**覆盖范围**: 5 信号 × 10 数据集 × 2 subtask(NER/RE) = 18 组合 × 4 指标 = 360 个指标点，全部附带 bootstrap 95% CI\n\n### AUROC 关键发现\n\n| 数据集组 | SJ | FK | logprob | EM | voting_conf |\n|---|---|---|---|---|---|\n| CoNLL NER | 0.80 | 0.77 | 0.75 | **0.82** | 0.79 |\n| SciERC NER (avg) | 0.73 | 0.62 | 0.59 | **0.79** | 0.74 |\n| SciERC RE (avg) | 0.68 | 0.59 | 0.58 | **0.72** | 0.72 |\n| LLaMA NER (avg) | 0.70 | 0.65 | 0.56 | **0.75** | 0.72 |\n| LLaMA RE (avg) | 0.71 | 0.68 | 0.65 | **0.76** | 0.75 |\n| WNUT NER | 0.58 | 0.58 | 0.36 | 0.57 | **0.87** |\n\n### 排名\n\n- **AUROC**: EM 在绝大多数数据集上最强 (12/18)；voting_conf 在 WNUT 上大幅领先 (0.87)\n- **Spearman ρ**: voting_conf 在 15/18 组合上最高（rank correlation 与 F1 的关联最强）\n- **Kendall τ**: voting_conf 同样领先\n- **ECE**: voting_conf 在 RE 上校准最好 (ECE < 0.20)；EM 在 NER 上校准最好\n\n### LOO-SJ Robustness\n\n所有 18 个组合的 |Δρ| < 0.001，LOO-SJ 与 full SJ 相关系数 ≥ 0.9999。**无循环性问题**。\n\n### 产出\n\n- JSON 结果: `autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json` (82KB)\n- Registry: `exp_015_v2` → DONE/success\n- Artifact: `art_20260514_adacf4` 已注册"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-015-v2.md"
+}

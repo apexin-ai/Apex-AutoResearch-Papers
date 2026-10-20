@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c73cee83ef642dc6e76",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "eval mvp pilot 003",
+  "task_key": "worker_eval_mvp_pilot_003_20260514T080934",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_mvp_pilot_003_20260514T080934_result.json",
+    "occurrence": 1,
+    "bytes": 2540,
+    "sha256": "7235d44a5a2e485fe800f7f728e419bbe8945a42ec792fb5b92a92e8282c5bd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the full **mvp_pilot_003** report:\n\n---\n\n## mvp_pilot_003 Results — SciERC Joint (NER+RE), N=8, T=1.0, 551 instances\n\n### Fixes applied vs mvp_pilot_002\n- Merged model (not LoRA adapter) — loaded successfully\n- max_tokens=1024 (up from 512) — **0 parse failures** (was 164/4408 stochastic + 29/551 greedy)\n- XGrammar constrained JSON decoding working correctly\n\n### NER\n\n| Metric | Value |\n|--------|-------|\n| Greedy F1 | 0.6362 |\n| Oracle F1 | 0.7920 |\n| Oracle headroom | **+15.6pp** |\n| Fleiss κ mean | 0.2488 |\n| Soft Jaccard mean | 0.5066 |\n| Full ρ(κ,F1) | +0.3362 (p=1.93e-15, n=529) |\n| Full ρ(SJ,F1) | **+0.3808** (p=1.07e-19, n=529) |\n| Cond ρ(κ,F1) | +0.3187 (p=1.33e-13, n=514) |\n| Cond ρ(SJ,F1) | **+0.3836** (p=1.83e-19, n=514) |\n| SJ > κ | **YES** (delta=+0.0446) |\n| Sample F1 mean/std | 0.515 / 0.333 |\n| Sample F1=0 | 19.9% |\n| Gold-empty filtered | 22 |\n| All-samples-F1=0 filtered | 15 |\n\n### RE\n\n| Metric | Value |\n|--------|-------|\n| Greedy F1 | 0.3774 |\n| Oracle F1 | 0.5939 |\n| Oracle headroom | **+21.7pp** |\n| Fleiss κ mean | 0.0879 |\n| Soft Jaccard mean | 0.3958 |\n| Full ρ(κ,F1) | +0.2221 (p=7.92e-06, n=397) |\n| Full ρ(SJ,F1) | **+0.2367** (p=1.85e-06, n=397) |\n| Cond ρ(κ,F1) | +0.2374 (p=1.19e-05, n=333) |\n| Cond ρ(SJ,F1) | **+0.3004** (p=2.25e-08, n=333) |\n| SJ > κ | **YES** (delta=+0.0146) |\n| Sample F1 mean/std | 0.198 / 0.325 |\n| Sample F1=0 | **67.6%** |\n| Gold-empty filtered | 154 |\n| All-samples-F1=0 filtered | 64 |\n\n### Verdict: **FAIL**\n\nRE full ρ_sj = 0.2367 < 0.40 threshold. Warning: >30% samples F1=0 on RE.\n\n### Key observations vs mvp_pilot_001\n\n- **Parse failures eliminated** (0 vs 193) — max_tokens=1024 + XGrammar working\n- **NER improved slightly**: greedy F1 0.636 vs 0.611, ρ_sj 0.381 vs 0.362\n- **RE improved slightly**: greedy F1 0.377 vs 0.355, oracle 0.594 vs 0.572\n- **RE SJ now beats FK on full set** (was false in 001, now true) — delta +0.0146\n- **RE conditional ρ_sj = 0.30** — approaching MARGINAL territory (0.30 threshold)\n- **RE sample F1=0 at 67.6%** is the core problem — most RE samples produce garbage, crushing the correlation signal. The 154 gold-empty instances (28%) + 64 all-zero instances further reduce effective n.\n\nThe structural consistency signal exists (all p-values highly significant, SJ consistently beats κ) but RE is too noisy at T=1.0 with the current model quality. The warning recommends T=0.7 as next step."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mvp-pilot-003.md"
+}

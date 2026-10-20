@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "id": "bdca2b3cd3311675b997",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "fix tab fewnerd unified gf maxlp",
+  "task_key": "worker_fix_tab_fewnerd_unified_gf_maxlp_20260518T043607",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_tab_fewnerd_unified_gf_maxlp_20260518T043607.log",
+    "occurrence": 1,
+    "bytes": 728770,
+    "sha256": "92d6be1018ef44c9e0e5f452484d83d1f0803af9ad63ddaa1dd9e98e5580abda"
+  },
+  "statistics": {
+    "messages": 326,
+    "user_turns": 3,
+    "tool_calls": 105,
+    "roles": {
+      "log": 1,
+      "system": 81,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 105,
+      "user": 3,
+      "tool_result": 105,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "bdca2b3cd3311675b997-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 101,
+      "chunks": [
+        {
+          "path": "bdca2b3cd3311675b997-part-0001.json",
+          "message_count": 101
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "bdca2b3cd3311675b997-part-0001.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 203,
+      "chunks": [
+        {
+          "path": "bdca2b3cd3311675b997-part-0001.json",
+          "message_count": 57
+        },
+        {
+          "path": "bdca2b3cd3311675b997-part-0002.json",
+          "message_count": 146
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-tab-fewnerd-unified-gf-maxlp.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f3a3c95e60f5e7de592",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh fewnerd mf4v2 s123 v4",
+  "task_key": "worker_ssh_fewnerd-mf4v2-s123-v4_20260524T062113",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_fewnerd-mf4v2-s123-v4_20260524T062113_result.json",
+    "occurrence": 1,
+    "bytes": 470,
+    "sha256": "52f54edf74d6bab64eef5bd74abe85dc5cdb3cc4b04373c13dea6b70a48e78ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理任务已提交并运行中：\n\n- **实验 ID**: exp_fewnerd_mf4v2_s123_v4\n- **服务器**: autodl-5090, GPU 0 (RTX 5090, 29.8GB VRAM 已用)\n- **进度**: 模型已加载，prompts 渲染中 (37648 个样本)\n- **tmux 会话**: `exp_fewnerd_mf4v2_s123_v4`\n- **Registry**: RUNNING\n- **监控**: 每 15 分钟自动检查进度\n\n预计 2-3 小时完成。完成后自动进入 Step 3 (unified MV recompute for 3-seed mean±σ)。等待中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fewnerd-mf4v2-s123-v4.md"
+}

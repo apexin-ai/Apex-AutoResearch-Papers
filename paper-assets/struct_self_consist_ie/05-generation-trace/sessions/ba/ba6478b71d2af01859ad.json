@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba6478b71d2af01859ad",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops git sync check",
+  "task_key": "worker_ops_git-sync-check_20260526T121341",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_git-sync-check_20260526T121341_result.json",
+    "occurrence": 1,
+    "bytes": 1598,
+    "sha256": "32f0485dc2f48858bdb9a17f69659a18fea5510d666c501a983ee08402139f43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有三个 SSH 端点都无法连接。\n\n## 报告\n\n### 1. 远程服务器 git 仓库状态\n**无法连接。** 三个 SSH 端点均连接失败：\n- `autodl-5090` (bjb1:21071) — 连接被拒\n- `bjb2-11496` (bjb2:11496) — 连接被拒\n- `westb-25965` (westb:25965) — 连接被拒\n\nAutoDL 实例可能已关机或重启导致端口变更。**需要去 AutoDL 控制台确认实例状态，如果已重启请更新 `~/.ssh/config` 中的端口号。**\n\n### 2. 最新 commit hash\n无法获取（服务器不可达）。\n\n### 3. 本地 code/ 目录状态\n- 路径：`/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code/`\n- **不是 git 仓库**\n- 包含 14 个文件（13 个 .py + 1 个 .tex + 1 个 .csv + 1 个 .json + 图表文件），关键实验脚本：\n  - `exp_b3_prompted_diversity.py` — prompted diversity 实验\n  - `run_spider_sc.py` — Spider SC 实验\n  - `theta_crit_sweep.py` — theta 临界值扫描\n  - `aggregate_scaling_results.py` / `plot_scaling_curve.py` — scaling 分析\n  - `analysis_mbr_selection.py` / `ner_lp_f1_correlation.py` — 结果分析\n  - `zeroshot_prompts.py` — zero-shot prompts\n\n### 4. 本地项目根目录\n项目根目录有完整的结构（docs/, artifacts/, checkpoints/, anon_repo/ 等），但 code/ 子目录未纳入 git 管理。\n\n### 5. 执行的同步操作\n无——服务器不可达，未能执行任何 commit/push 操作。\n\n**下一步**：请到 AutoDL 控制台检查 autodl-5090 实例是否在线，如果端口已变更请告知新端口。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-git-sync-check.md"
+}

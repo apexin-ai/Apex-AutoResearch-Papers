@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fffae70655f8d18cdbc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5epoch s42 postmortem",
+  "task_key": "worker_ssh_5epoch_s42_postmortem_20260521T180111",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5epoch_s42_postmortem_20260521T180111_result.json",
+    "occurrence": 1,
+    "bytes": 1043,
+    "sha256": "d0a4266d567b1ccc0255d813fd7f2d93eb6da608f792ad78eb1542b1215d07f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都仍在运行，尚未完成。\n\n## 状态汇总\n\n### exp_fewnerd_5epoch_s42\n- **状态**: 运行中，1.2% (3592/301184 prompts)\n- **预计剩余**: ~1h50m（当前速度 ~51 it/s, ~3850 toks/s input）\n- **输出目录**: 已创建，但 samples.jsonl 尚未生成（推理未完成时不会写入）\n- **启动时间**: 05-22 01:57\n\n### exp_fewnerd_5epoch_s123\n- **状态**: 运行中，1.0% (3048/301184 prompts)\n- **预计剩余**: ~2h（当前速度 ~50 it/s, ~3300 toks/s input）\n- **输出目录**: 已创建，但 samples.jsonl 尚未生成\n- **启动时间**: 05-22 01:57\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 87% | 30.2/32.6 GB |\n| 1 | 90% | 30.2/32.6 GB |\n| 2 | 79% | 30.2/32.6 GB |\n| 3 | 57% | 29.9/32.6 GB |\n\n4 卡都在工作（seed=42 用 2 卡，seed=123 用 2 卡）。301184 = 37648 × 8（8 次 self-consistency 采样）。按当前速度，两个实验预计约 2 小时后完成。不更新 registry，不删除 cron。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5epoch-s42-postmortem.md"
+}

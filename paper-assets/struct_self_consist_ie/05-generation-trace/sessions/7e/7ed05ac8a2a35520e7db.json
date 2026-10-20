@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ed05ac8a2a35520e7db",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis n16 mv delta",
+  "task_key": "worker_analysis_n16_mv_delta_20260523T002046",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_n16_mv_delta_20260523T002046_result.json",
+    "occurrence": 1,
+    "bytes": 1462,
+    "sha256": "0567f0f801aa2a08b37d8a3c58573263a83c3d7ba7f0c2f82533f7f5d6f7dc32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果出来了：\n\n```\n=== FewNERD Pretrained N=16 (seed=42) ===\ngreedy_f1: 0.5109\nmv_f1:     0.5538\nmv_delta:  +4.28pp\nlp_f1:     0.4995\nlp_delta:  -1.14pp\noracle_f1: 0.6433\ndegeneracy_rate: 7.5%  (2831/37648)\nsj_rho: 0.453\nlp_rho: 0.192\n\n=== N=8 vs N=16 对比 ===\n| Metric          |    N=8 |   N=16 | Trend    |\n|-----------------|--------|--------|----------|\n| greedy_f1       | 0.5116 | 0.5109 | ~same    |\n| mv_f1           | 0.5552 | 0.5538 | ~same    |\n| mv_delta_pp     | +4.36  | +4.28  | -0.07    |\n| lp_f1           | 0.5016 | 0.4995 | ~same    |\n| degeneracy_%    | 12.2%  |  7.5%  | -4.68pp  |\n| oracle_f1       | 0.6169 | 0.6433 | +2.6pp   |\n| oracle_headroom | 0.1053 | 0.1324 | +2.7pp   |\n| sj_rho          | 0.436  | 0.453  | +1.7pp   |\n| lp_rho          | 0.188  | 0.192  | +0.4pp   |\n```\n\n关键发现：\n- **MV F1 = 0.5538**，比 greedy +4.28pp，与 N=8 的 +4.36pp 基本持平\n- **LP selection 无效**：lp_f1 < greedy_f1（-1.14pp），选最高 logprob 的样本反而更差\n- **degeneracy 显著下降**：N=8→N=16 从 12.2% 降到 7.5%（更多采样 → 更多多样性）\n- **oracle headroom 增大**：N=16 的 oracle_f1 比 N=8 高 2.6pp，但 MV 没能利用这些额外多样性——MV F1 几乎没变\n- 结论：N=8→N=16 加倍采样后，diversity 提升了（degeneracy↓, oracle↑），但 MV construction 没有受益，说明 MV 的天花板不在采样数量上"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-n16-mv-delta.md"
+}

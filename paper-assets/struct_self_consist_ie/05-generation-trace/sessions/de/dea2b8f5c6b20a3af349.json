@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dea2b8f5c6b20a3af349",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5090 n16 s42 postmortem and fill",
+  "task_key": "worker_ssh_5090_n16_s42_postmortem_and_fill_20260521T151645",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090_n16_s42_postmortem_and_fill_20260521T151645_result.json",
+    "occurrence": 1,
+    "bytes": 1022,
+    "sha256": "887fcc422475e98c32bd28ce5d3caddec4042a463323404ccbb7b928469e63fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### exp_fewnerd_n16_s42_v2\n- **结果**: 完成（verdict=FAIL，但数据采集和 report 生成成功）\n- **samples.jsonl**: 存在，37648 行（完整）\n- **关键指标**:\n  - greedy_f1=0.7885, oracle_f1=0.9059, oracle_headroom=0.1173\n  - rho_FK_cond=**-0.019**（基本为零）, rho_SJ_cond=0.213, logprob_rho_cond=0.176\n  - structural_beats_surface=true, sample_f1_pct_zero=25.15%\n- **注意**: FK_cond 在 N=16 时降到接近零，与 N=8 的模式可能不同，值得对比分析\n- **registry**: 已更新 → DONE/success\n\n### cuda:0 状态\n- **GPU 0: 空闲**（0% util, 2 MiB）\n- GPU 1-3: 忙（86%/74%/57% util, 各 ~30GB）\n\n### 建议下一个实验\nPREPARING 队列中优先级最高的 N=16 实验：\n1. **exp_fewnerd_n16_s456_v2** — 完成 FewNERD N=16 三种子集（s42 已完成，s123 在 ANALYZING，差 s456）\n2. **exp_scierc_n16_s42** — SciERC N=16 扩展\n\n建议在 cuda:0 启动 **exp_fewnerd_n16_s456_v2**，补齐 FewNERD N=16 的第三颗种子。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5090-n16-s42-postmortem-and-fill.md"
+}

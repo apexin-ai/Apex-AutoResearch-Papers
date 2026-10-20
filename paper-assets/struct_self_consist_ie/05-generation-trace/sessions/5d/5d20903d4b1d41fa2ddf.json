@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "5d20903d4b1d41fa2ddf",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis freeform 3seed integration",
+  "task_key": "worker_analysis_freeform_3seed_integration_20260515T184905",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_freeform_3seed_integration_20260515T184905.log",
+    "occurrence": 1,
+    "bytes": 1536727,
+    "sha256": "1e6b93d5962746d639e372560b195c10f8b15a9bc9de5195e9ad1726de513efb"
+  },
+  "statistics": {
+    "messages": 739,
+    "user_turns": 1,
+    "tool_calls": 309,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 113,
+      "tool_call": 309,
+      "tool_result": 309,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 527,
+      "chunks": [
+        {
+          "path": "5d20903d4b1d41fa2ddf-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5d20903d4b1d41fa2ddf-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5d20903d4b1d41fa2ddf-part-0003.json",
+          "message_count": 167
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 212,
+      "chunks": [
+        {
+          "path": "5d20903d4b1d41fa2ddf-part-0003.json",
+          "message_count": 13
+        },
+        {
+          "path": "5d20903d4b1d41fa2ddf-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "5d20903d4b1d41fa2ddf-part-0005.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-freeform-3seed-integration.md"
+}

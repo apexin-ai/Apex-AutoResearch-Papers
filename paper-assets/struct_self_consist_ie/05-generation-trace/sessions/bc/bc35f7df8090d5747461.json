@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc35f7df8090d5747461",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run probe 5090c",
+  "task_key": "worker_run_probe_5090c_20260521T015651",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_probe_5090c_20260521T015651_result.json",
+    "occurrence": 1,
+    "bytes": 1436,
+    "sha256": "f3162d95c10c9715b0bcd0505c42af87d68356e36c9502a68ce7063cd684ff78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tasks complete. Summary:\n\n---\n\n### 子任务 A: CoNLL s456 Registry — Done\n\n三个实验已更新为 DONE/success：\n\n| Experiment | greedy_F1 | oracle_F1 | rho_SJ_F1 | degeneracy | verdict |\n|---|---|---|---|---|---|\n| exp_conll_t05_s456 | 0.9075 | 0.9338 | 0.455 | 5.6% | PASS |\n| exp_conll_t08_s456 | 0.9064 | 0.9407 | 0.488 | 6.3% | PASS |\n| exp_conll_t12_s456 | 0.9071 | 0.9452 | 0.455 | 8.3% | PASS |\n\nT=0.8 仍然是 rho_SJ_F1 最高的 sweet-spot（seed=456 确认）。\n\n### 子任务 B: Hidden State Probe — Done\n\n| Method | AUROC | Notes |\n|---|---|---|\n| **Probe (FewNERD)** | **0.9872 ± 0.0007** | 10508 entities, 500 inst |\n| **Probe (CoNLL)** | **0.9796 ± 0.0036** | 7849 entities, 500 inst |\n| MV Agreement | 0.87 | Multi-sample baseline |\n| ESJ Self-Judgment | 0.51 | Prompt-based baseline |\n\n**关键结论**：Linear probe on last-layer hidden states achieves **AUROC ~0.98**，远超 MV (0.87) 和 ESJ (0.51)。模型的 hidden representation 中编码了极高保真度的 entity 正确性信息，但 prompt-based 读取完全失败。这是 **prompt interface failure**，不是信息缺失。\n\n- 代码：`code/hidden_state_probe.py` (340 行)\n- 数据：`output/entity_probe_auroc/` (FewNERD + CoNLL hidden states + AUROC results)\n- Registry：`exp_hidden_state_probe` → DONE/success\n- SciERC 未跑（服务器上无 8B 模型对应的 samples 数据）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-probe-5090c.md"
+}

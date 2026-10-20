@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f1abdf23baf4466a8a0",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "cpu e3 mbr multiseed fix",
+  "task_key": "worker_cpu_e3_mbr_multiseed_fix_20260521T115507",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cpu_e3_mbr_multiseed_fix_20260521T115507_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "0d06e0dd738319faf16a6378724315aa1464ee90862e81689938c18aa1611e86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n**数据源验证**：exp_002 是旧 MF4 的 N=16 数据，CoNLL MBR 已改用 MF4v2 N=8 数据重算。\n\n**已完成计算**（5 组）：SciERC ×3 seeds, CoNLL ×1, FewNERD ×1。**Pending**（4 组）：CoNLL seed123/456（未生成），FewNERD seed42/123（运行中）。\n\n**核心发现**：MBR 在所有 5 组实验中均 ≤ Greedy（−0.06% ~ −0.77%）。MV 表现不一：SciERC seed123/456 和 CoNLL 上略优于 Greedy，其余略差。Oracle gap 8~12pp 说明 sample pool 有潜力，但 pairwise-F1 consensus 无法利用。\n\n脚本已部署到两台服务器 `code/e3_mbr_multiseed.py`，待 FewNERD seed42/123 和 CoNLL seed123/456 数据就绪后可直接重跑补全。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-e3-mbr-multiseed-fix.md"
+}

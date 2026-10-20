@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c649fafa736d4f5fd5e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh diagnose resubmit conll freeform",
+  "task_key": "worker_ssh_diagnose_resubmit_conll_freeform_20260522T132002",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_diagnose_resubmit_conll_freeform_20260522T132002_result.json",
+    "occurrence": 1,
+    "bytes": 427,
+    "sha256": "ccda83fd8f8d5c358fc71c6f945c5d1bbd2a642ac707e7e3359434eedfa9d322"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment successfully restarted and running:\n\n- **GPU**: cuda:1, PID 147205, using 30,254 MiB\n- **VLLM engine**: initialized in 11.89s, KV cache 87,136 tokens\n- **Progress**: processing prompts at ~8,300 toks/s input, ~3,600 toks/s output (928/27,624 prompts done, ~3%)\n- **Crash cause was**: transient OOM — another process had ~17GB on the GPU during previous startup attempt. GPU was clean this time."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-resubmit-conll-freeform.md"
+}

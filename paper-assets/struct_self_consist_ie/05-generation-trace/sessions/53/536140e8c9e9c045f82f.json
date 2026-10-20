@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "536140e8c9e9c045f82f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix nscaling table gf maxlp",
+  "task_key": "worker_fix_nscaling_table_gf_maxlp_20260518T053259",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_nscaling_table_gf_maxlp_20260518T053259_result.json",
+    "occurrence": 1,
+    "bytes": 2060,
+    "sha256": "df42ef2bd3c5ee6b6a32131001fa47d69ef7cd1632abafaea723af7e0af1f75c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Full-set greedy = 0.6141 matches the footnote's 0.614. Gold-filtered greedy = 0.6397.\n\nNow let me produce the final output. Here are the current (old) vs new values side by side:\n\n## N-scaling 表重算 (SciERC NER, gold-filtered, max_LP)\n\n### 数据源\n| N | Samples 文件 | Gold-filtered n |\n|---|-------------|-----------------|\n| 2 | exp_025_n32/samples.jsonl (first 2) | 529 |\n| 4 | exp_025_n32/samples.jsonl (first 4) | 529 |\n| 8 | exp_025_n32/samples.jsonl (first 8) | 529 |\n| 16 | exp_025_n32/samples.jsonl (first 16) | 529 |\n| 32 | exp_025_n32/samples.jsonl (all 32) | 529 |\n\n### LP Δ 新旧对比\n| N | 旧 LP Δ (full-set, n=551) | 新 LP Δ (gf, max_LP, n=529) |\n|---|--------------------------|----------------------------|\n| 2 | −0.75 | −0.89 |\n| 4 | −0.01 | +0.03 |\n| 8 | +0.42 | +0.39 |\n| 16 | +0.63 | +0.78 |\n| 32 | +0.91 | +0.95 |\n\n### 完整 N-scaling 指标（供 Paper Agent 用）\n| N | n_gf | greedy | oracle | headroom | degen% | LP Δ | SJ Δ | FK Δ | EM Δ | VC Δ | Best Δ |\n|---|------|--------|--------|----------|--------|------|------|------|------|------|--------|\n| 2 | 529 | 0.6397 | 0.6832 | +4.4 | 42.7% | −0.89 | −2.72 | −2.72 | −2.72 | −2.66 | −0.89 |\n| 4 | 529 | 0.6397 | 0.7421 | +10.2 | 21.0% | +0.03 | −0.31 | −0.40 | −0.74 | −2.16 | +0.03 |\n| 8 | 529 | 0.6397 | 0.7848 | +14.5 | 11.0% | +0.39 | +0.20 | +0.15 | −0.77 | −2.87 | +0.39 |\n| 16 | 529 | 0.6397 | 0.8169 | +17.7 | 7.4% | +0.78 | +0.24 | −0.02 | −0.06 | −3.95 | +0.78 |\n| 32 | 529 | 0.6397 | 0.8396 | +20.0 | 4.0% | +0.95 | +0.35 | +0.65 | +0.22 | −4.35 | +0.95 |\n\n### 关键变化\n- Greedy F1: 0.614 (full-set) → 0.640 (gold-filtered)\n- Oracle headroom 略增（移除 22 个无 gold 实例后信息密度更高）\n- LP Δ 趋势不变：N≥4 时 LP 为最优信号，N=2 时所有信号均为负\n- 脚注需要更新：n=551 → n=529, greedy F1 0.614 → 0.640\n\nJSON 结果已保存: `/root/autodl-tmp/struct_self_consist_ie/output/n_scaling_gf_maxlp.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-nscaling-table-gf-maxlp.md"
+}

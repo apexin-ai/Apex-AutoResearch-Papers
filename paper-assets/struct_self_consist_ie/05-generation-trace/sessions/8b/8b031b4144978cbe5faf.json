@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b031b4144978cbe5faf",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis fewnerd seed consistency",
+  "task_key": "worker_analysis_fewnerd_seed_consistency_20260518T204335",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_fewnerd_seed_consistency_20260518T204335_result.json",
+    "occurrence": 1,
+    "bytes": 2370,
+    "sha256": "f522c6e3eca5a3ca0c1288445b7a5d7d9fef19a3d6ba6f78a37fc914b2369c49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。以下是完整结果。\n\n---\n\n## 诊断结果\n\n### 1. 各 seed 精确配置对比\n\n| 实验 | 数据文件 | 总实例 | Gold-filter 后 | N | Seed | 模型 |\n|---|---|---|---|---|---|---|\n| `exp_027_fewnerd_n16` | `data/fewnerd_n16_subset/test.json` | 5000 | **4351** | **16** | 42 (default) | exp_021 adapter |\n| `exp_021_inference` | `data/fewnerd/test.json` | 37648 | **32565** | **8** | 42 (default) | exp_021 adapter |\n| `exp_021_fewnerd_n8_seed123` | `data/fewnerd/test.json` | 37648 | **32565** | **8** | 123 | exp_021 adapter |\n| `exp_021_fewnerd_n8_seed456` | `data/fewnerd/test.json` | 37648 | **32565** | **8** | 456 | exp_021 merged |\n\n### 2. 不一致根因\n\n**两个独立差异叠加**：\n\n1. **测试集不同**: `exp_027` 用的是 `fewnerd_n16_subset`（从全集 37648 中随机采样的 5000 条，ID 乱序），seed=123/456 用的是全集 `fewnerd/test.json`（37648 条）\n2. **N 不同**: `exp_027` 用 N=16（当时做 N scaling 实验），seed=123/456 用 N=8\n\nGold-filter 逻辑一致（去除 entities 为空的实例），所以：\n- 5000 - 649 gold-empty = 4351\n- 37648 - 5083 gold-empty = 32565\n\n### 3. 推荐方案\n\n**方案 B 已可直接实施**：seed=42 的 N=8 全集数据已存在于 `exp_021_inference`（37648 实例，32565 gold-filtered，N=8，seed=42 default）。\n\n三个可比的 seed=42/123/456 数据集：\n\n| 目录 | Seed | N | Gold-filtered | Greedy F1 |\n|---|---|---|---|---|\n| `exp_021_inference` | 42 | 8 | 32565 | ~0.789* |\n| `exp_021_fewnerd_n8_seed123` | 123 | 8 | 32565 | 0.7885 |\n| `exp_021_fewnerd_n8_seed456` | 456 | 8 | 32565 | 0.7888 |\n\n*（exp_021_inference 的 results.json 中未直接存 greedy_f1，但 paired_n8_baseline.json 显示在 5000 子集上 greedy_f1=0.7478，与 exp_027 的 0.7478 一致，说明模型相同）\n\n**实施步骤**：\n1. 对 `exp_021_inference` 用与 seed=123/456 相同的 `analyze_fewnerd_results.py` 生成统一格式的 report.json\n2. 三组数据全部基于 `data/fewnerd/test.json` 全集、N=8、gold-filter=5083，直接可比\n3. `exp_027_fewnerd_n16` 的 4351 实例数据可保留用于 N=8 vs N=16 scaling 分析（已有 `paired_n8_baseline.json`），但不参与 multi-seed 对比\n\n补充：`exp_021_fewnerd_n8_seed789` 目录存在但为空，如需第四个 seed 可补跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fewnerd-seed-consistency.md"
+}

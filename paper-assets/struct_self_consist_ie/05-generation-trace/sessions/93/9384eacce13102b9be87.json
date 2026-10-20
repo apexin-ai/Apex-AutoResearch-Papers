@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9384eacce13102b9be87",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code verify s789 data",
+  "task_key": "worker_code_verify_s789_data_20260518T220851",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_verify_s789_data_20260518T220851_result.json",
+    "occurrence": 1,
+    "bytes": 788,
+    "sha256": "e9b5712bc25ee56a035d84860db581589feeb2320fc9dacb5cea5954b7c2ec41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n| 服务器 | 路径 | 状态 |\n|--------|------|------|\n| **autodl-5090-b** | `output/exp_fewnerd_seed789/` | 完整：`samples.jsonl` 37648 行 (642MB) + `report.json` |\n| **autodl-5090-c** | `output/exp_fewnerd_seed789/` | 空目录，log 显示推理在 83% 处（可能中断或仍在运行） |\n| **autodl-5090 (主)** | `output/exp_021_fewnerd_n8_seed789_shard{0,1,2}/` | 3 个分片共 37648 行 (12549+12549+12550)，每个分片均含 `report.json` |\n\n**结论：FewNERD seed789 数据已在 autodl-5090 主服务器落盘。** 3 个分片合计 37648 样本，与 5090-b 的完整文件行数一致。无需 SCP 传输。\n\n5090-c 的推理任务看起来未完成（目录为空），但因主服务器已有完整数据，不影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-s789-data.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6c1da87204569b12fc9",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp exp 023 rank8 inference",
+  "task_key": "worker_exp_exp_023_rank8_inference_20260516T111332",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_exp_023_rank8_inference_20260516T111332_result.json",
+    "occurrence": 1,
+    "bytes": 1228,
+    "sha256": "7b6ebbcce71e1a23872836ad1bb8894053669081d4723cfdecb9fba267df5195"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Summary:\n\n**exp_023 LoRA rank=8 完成**\n\n| | NER (n=529) | RE (n=397) |\n|---|---|---|\n| **Greedy F1** | 0.640 (r16: 0.643, Δ=-0.003) | 0.371 (r16: 0.391, Δ=-0.020) |\n| **Oracle F1** | 0.800 (headroom 0.160) | 0.609 (headroom 0.238) |\n| **Degeneracy** | 7.2% | 21.7% |\n\n**Correlation (ρ) vs r16 baseline:**\n- NER: VC 0.394 (+0.015), SJ 0.365 (+0.005), FK 0.284 (+0.017) — correlation structure preserved\n- RE: VC 0.362 (+0.012), FK 0.345 (+0.070), LP 0.274 (+0.008) — FK notably improved\n\n**Selection F1:** No signal beats greedy for NER (LP closest at -0.005). RE: only VC marginally matches greedy (+0.0003).\n\n**Key finding:** Reducing LoRA rank from 16→8 preserves the correlation signal hierarchy (structural > surface for NER) with negligible changes in ρ (|Δ| < 0.04 for most signals), despite slight greedy F1 drop. The correlation-selection gap persists at rank=8 — selection F1 still fails to leverage the correlation signal to outperform greedy.\n\nOutputs:\n- Merged model: `checkpoints/qwen3-8b-scierc-merged-rank8/`\n- Inference: `output/exp_023_rank8_inference/` (samples.jsonl, all_signals_5signal.json, comparison.md)\n- Registry: exp_023_lora_rank8 → DONE"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp-023-rank8-inference.md"
+}

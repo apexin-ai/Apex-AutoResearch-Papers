@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7af3b91ecb43336a8051",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "audit table value consistency",
+  "task_key": "worker_audit_table-value-consistency_20260519T181739",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_table-value-consistency_20260519T181739_result.json",
+    "occurrence": 1,
+    "bytes": 1940,
+    "sha256": "f4ea515a8ad4c8f3616800caa8c13b25eb81a3e67f8b39f2bc683f82c51ac2e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Audit complete. Here are the findings:\n\n---\n\n## 审计结果\n\n### 确认的不一致\n\n| 文件 | 表格/位置 | 指标 | 当前值 | 应为值 | 数据源 |\n|------|-----------|------|--------|--------|--------|\n| appendix.tex:231 | inline (cross\\_selection分析段落) | Qwen FewNERD degen | 12.7% | 13.0% | tab:fewnerd, tab:scale\\_comparison, 以及所有其他引用均为13.0% |\n| appendix.tex:231 | inline (同上) | LLaMA-Qwen degen差值 | +10.7pp | +10.4pp | 23.4% - 13.0% = 10.4% |\n\n### 需要确认的潜在不一致\n\n| 文件 | 表格/位置 | 指标 | 当前值 | 其他表值 | 说明 |\n|------|-----------|------|--------|----------|------|\n| appendix.tex:1369 | tab:calibration | Few-NERD greedy F1 | .771 | .748 (tab:fewnerd等) | 差2.3pp，无法用seed/rounding解释，caption未说明原因 |\n| appendix.tex:1368 | tab:calibration | CoNLL greedy F1 | .909 | .908 (tab:fewnerd等) | 0.1pp差异，可能是rounding或non-gold-filtered |\n\n### 全部通过的核心数值\n\n- **Degen rates**: SciERC 17.8%、CoNLL 61.7%、72B ZS (21.0%/46.2%/67.7%) — 所有表格和正文引用一致\n- **Construction deltas**: SciERC +1.02pp、FewNERD +1.40pp、CoNLL -0.39pp、72B ZS +1.53pp — abstract/intro/experiments/discussion/conclusion 全部一致\n- **Signal ρ**: tab:quality\\_estimation 数值与正文inline引用、appendix表格交叉引用均一致\n- **AUROC**: \"up to 0.82\" = .816 rounded，一致\n- **旧错误值(48.4%, 49%)**: 未在任何tex文件中发现\n- **CoNLL degen 符号**: -0.39pp 为负，正确\n\n### 修复建议\n\nappendix.tex 第231行，将：\n```\nQwen ($12.7$\\%)\n```\n改为：\n```\nQwen ($13.0$\\%)\n```\n\n同行将 `$+10.7$~pp` 改为 `$+10.4$~pp`。\n\ntab:calibration 的 Few-NERD greedy=.771 建议在caption中补充说明其与主表.748差异的原因（不同checkpoint/subsample/protocol）。\n\n需要我直接执行修复吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-table-value-consistency.md"
+}

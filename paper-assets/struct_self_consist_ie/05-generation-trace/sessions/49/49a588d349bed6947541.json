@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49a588d349bed6947541",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp 017 llama conll",
+  "task_key": "worker_exp_017_llama_conll_20260514T143640",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_017_llama_conll_20260514T143640_result.json",
+    "occurrence": 1,
+    "bytes": 392,
+    "sha256": "b22e35f63c89c90e15acd022c72571c36cd51e849fc704fbe825db4e3eced5eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动并正常运行：\n- **模型**: LLaMA-3.1-8B-Instruct + LoRA (r=32, alpha=64, all linear layers)\n- **数据**: CoNLL-2003 train 14,041 条\n- **配置**: 5 epochs, lr=2e-4, effective batch=16, 4,390 total steps\n- **速度**: ~1.55 s/step, 预计约 1.9 小时完成\n- **输出**: `checkpoints/llama3.1-8b-conll2003-lora`\n\n20 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-017-llama-conll-copy-2.md"
+}

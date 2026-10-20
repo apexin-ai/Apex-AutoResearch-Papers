@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "913b32139aa966482581",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "research e4 dataset survey",
+  "task_key": "worker_research_e4_dataset_survey_20260514T092619",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_e4_dataset_survey_20260514T092619_result.json",
+    "occurrence": 1,
+    "bytes": 855,
+    "sha256": "6df16dcf2ff7d14c9e2125cf5993dab14cba6f66c26cd771e30583fffc504850"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `memory.md`。核心结论：\n\n**推荐方案：SciERC + CoNLL-2003 + WNUT-17**\n\n- **CoNLL-2003**（新闻，4 types，3.4K test）— NER 标杆数据集，免费，HF 用 `BramVanroy/conll2003`\n- **WNUT-17**（社交媒体，6 types，1.3K test）— 噪声文本+新兴实体，SJ 在此设定有效则说服力极强\n\n三个数据集覆盖科学/新闻/社交媒体三个领域，entity types 完全不同。\n\n**关键发现**：\n- 现有 `entity_strict_match` 完全通用，无需改\n- 无现成 char-offset JSON 转换器（调研了 6 个项目），需自写 ~50 行/数据集\n- Per-dataset fine-tune 是唯一合理策略（entity types 不重叠）\n- **总工时 ~2-3 天**，DDL 前可完成\n\n**风险**：CoNLL 训练集 14K 条偏大（可 subsample）；OntoNotes 有许可风险不推荐。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-e4-dataset-survey.md"
+}

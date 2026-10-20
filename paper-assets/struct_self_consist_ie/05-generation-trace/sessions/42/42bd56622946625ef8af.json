@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42bd56622946625ef8af",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp e2 pretrained fewnerd",
+  "task_key": "worker_analysis_exp_e2_pretrained_fewnerd_20260521T123620",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_e2_pretrained_fewnerd_20260521T123620_result.json",
+    "occurrence": 1,
+    "bytes": 1512,
+    "sha256": "b4061525ab3e2a71710c115cc00679c545516e340b4faa7c43ee021a59673619"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。以下是结果汇总：\n\n## exp_e2_pretrained_fewnerd — 结果分析\n\n### 核心 Metrics\n\n| Metric | FewNERD (本实验) | CoNLL (对照) |\n|--------|:---:|:---:|\n| Greedy F1 | 0.512 | 0.539 |\n| Oracle F1 | 0.618 | 0.628 |\n| **Oracle headroom** | **+0.105** | +0.089 |\n| Fleiss κ | 0.450 | 0.547 |\n| Soft Jaccard | 0.688 | 0.776 |\n| ρ(SJ, F1) full | +0.433 | +0.392 |\n| ρ(SJ, F1) cond | +0.440 | +0.467 |\n| Structural > Surface | YES (+0.050) | YES (+0.015) |\n| LP full ρ | +0.189 | -0.020 (ns) |\n| LP full AUROC | 0.596 | 0.538 |\n| Verdict | **PASS** | MARGINAL |\n\n### Conclusion: **SUCCESS**\n\nCorrelation-selection gap 在未微调的 Qwen2.5-7B-Instruct 上明确存在：\n1. **Gap 大**: Oracle F1 超 Greedy F1 达 10.5pp — 8 个样本中蕴含大量未被利用的选择潜力\n2. **Agreement 正相关但不够用**: ρ(SJ,F1)=+0.43，agreement 确实预测 correctness，但 naive aggregation 仍无法逼近 oracle — 典型 correlation-selection gap\n3. **Structural > Surface**: Soft Jaccard 比 Fleiss κ 多 +0.05 的相关性优势，跨数据集一致\n4. **Logprob 弱**: FewNERD LP ρ=0.19（显著但弱），CoNLL full LP 甚至不显著 — 单靠 log-probability 不足以做 selection\n5. **跨数据集复现**: FewNERD (37.6K) 比 CoNLL (3.5K) headroom 更大、structural advantage 更强\n\n**核心含义**: Gap 是 model-intrinsic 而非 fine-tuning artifact，motivates learned selection/weighting approaches。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-e2-pretrained-fewnerd.md"
+}

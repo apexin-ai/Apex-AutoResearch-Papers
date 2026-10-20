@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f6867ed83cdd07bd506",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnostic probe failure investigation",
+  "task_key": "worker_diagnostic_probe_failure_investigation_20260518T123802",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnostic_probe_failure_investigation_20260518T123802_result.json",
+    "occurrence": 1,
+    "bytes": 2101,
+    "sha256": "50c33c3b3251ec61af7f882bc4036b515135b5f495cf0e25a776f362528edbaf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**失败根因：实验在 PREPARING 阶段就失败了，Worker 未能完成准备工作。** 具体缺失如下：\n\n### 缺失的前置条件\n\n1. **没有 CoNLL 版本的 hidden state 提取脚本**\n   - 现有提取脚本只有 SciERC (`extract_hidden_states.py`)、FewNERD (`extract_hidden_states_fewnerd.py`) 和 exp016 版\n   - 没有 `extract_hidden_states_conll.py`\n\n2. **没有 CoNLL 版本的探针脚本**\n   - `hidden_state_probe_v2.py` 硬编码指向 SciERC 数据：\n     - `DATA_DIR = \".../output/hidden_state_probe\"` (SciERC)\n     - `SAMPLES_PATH = \".../output/exp_012_logprob/samples_with_logprobs.jsonl\"` (SciERC)\n   - 没有 `hidden_state_probe_conll_v2.py`\n\n3. **没有 CoNLL 的 merged checkpoint**\n   - 存在 `qwen3-8b-conll2003-lora`（LoRA adapter）\n   - 但没有 `*conll*merged*` 目录，hidden state 提取需要 merged 模型\n\n4. **没有 CoNLL hidden states 输出目录**\n   - 只有 `output/hidden_state_probe/`（SciERC）、`hidden_state_probe_fewnerd/`、`hidden_state_probe_exp016/`\n\n5. **Registry 记录本身不完整** — 没有 spec、server、log_path、error_msg 字段，说明 Worker 在写入这些元数据前就崩溃了\n\n### 数据可用性\n\nCoNLL 的 `samples.jsonl`（如 `exp_002_conll_n16/samples.jsonl`）已经**自带 `mean_logprob` 和 `cumulative_logprob` 字段**，探针代码的 `load_instance_data()` 可以直接使用。所以数据源不是问题。\n\n### 修复建议\n\n要运行这个实验，需要按顺序完成：\n\n1. **Merge CoNLL LoRA** — 将 `checkpoints/qwen3-8b-conll2003-lora` merge 成完整模型\n2. **创建 `extract_hidden_states_conll.py`** — 基于 `extract_hidden_states.py` 改写，指向 CoNLL 的 samples.jsonl 和 merged checkpoint\n3. **运行提取** — 生成 `output/hidden_state_probe_conll/hidden_states.pt`\n4. **创建 `hidden_state_probe_conll_v2.py`** — 基于 `hidden_state_probe_v2.py`，修改 `DATA_DIR` 和 `SAMPLES_PATH` 指向 CoNLL 数据\n5. **运行探针训练+评估**\n\n需要我执行这些修复步骤吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnostic-probe-failure-investigation.md"
+}

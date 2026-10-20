@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "c7e58facf8b06179952d",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "gpu 5090 n16 s456 dual launch",
+  "task_key": "worker_gpu_5090_n16_s456_dual_launch_20260521T123213",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_5090_n16_s456_dual_launch_20260521T123213.log",
+    "occurrence": 1,
+    "bytes": 1186414,
+    "sha256": "f4554bd97e0fc3ff1f5d43acb4cd2c46435023c19b5c045439db3086a0ea9c6d"
+  },
+  "statistics": {
+    "messages": 588,
+    "user_turns": 1,
+    "tool_calls": 205,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 170,
+      "tool_call": 205,
+      "tool_result": 205,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 525,
+      "chunks": [
+        {
+          "path": "c7e58facf8b06179952d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c7e58facf8b06179952d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c7e58facf8b06179952d-part-0003.json",
+          "message_count": 165
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 63,
+      "chunks": [
+        {
+          "path": "c7e58facf8b06179952d-part-0003.json",
+          "message_count": 15
+        },
+        {
+          "path": "c7e58facf8b06179952d-part-0004.json",
+          "message_count": 48
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-5090-n16-s456-dual-launch.md"
+}

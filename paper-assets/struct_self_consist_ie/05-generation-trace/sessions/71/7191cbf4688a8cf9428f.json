@@ -1,0 +1,542 @@
+{
+  "schema_version": "1.0",
+  "id": "7191cbf4688a8cf9428f",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "gpu conll n16 s123 launch",
+  "task_key": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_gpu_conll_n16_s123_launch_20260521T120112.jsonl",
+    "occurrence": 1,
+    "bytes": 27787,
+    "sha256": "052cd9402dc7c8db8e022ed67e7c7dd4ad064220dcdf4cd0f8f74372b79dbfaa"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "tool_call": 12,
+      "tool_result": 12,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T12:03:08.982009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__detect_image",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T12:03:08.982369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T12:03:08.982556+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "nvidia-smi",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T12:03:08.982689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ps aux | grep -E \"run_mvp_pilot|vllm|python\" | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T12:03:08.982848+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Thu May 21 20:01:34 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:38:00.0 Off |                  N/A |\\\\n| 59%   66C    P1            451W /  575W |   30131MiB /  32607MiB |     84%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA GeForce RTX 5090        On  |   00000000:49:00.0 Off |                  N/A |\\\\n| 42%   32C    P8             18W /  575W |       0MiB /  32607MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA GeForce RTX 5090        On  |   00000000:5A:00.0 Off |                  N/A |\\\\n| 42%   32C    P8             17W /  575W |       0MiB /  32607MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA GeForce RTX 5090        On  |   00000000:B8:00.0 Off |                  N/A |\\\\n| 64%   68C    P1            4\n…[truncated 1111 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T12:03:08.983000+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T12:03:08.983162+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s123",
+              "field": "hypothesis",
+              "value": "CoNLL N=16 seed=123: second seed for 3-seed N=16 coverage. Tests N-scaling consistency — whether oracle headroom increase from N=8→N=16 is reproducible across seeds.",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T12:03:08.983317+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s123",
+              "field": "parent",
+              "value": "exp_conll_n16_s42",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T12:03:08.983487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:30:48.660Z\\\", \\\"updated_at\\\": \\\"2026-05-21T12:01:43.380Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 seed=123: second seed for 3-seed N=16 coverage. Tests N-scaling consistency — whether oracle headroom increase from N=8→N=16 is reproducible across seeds.\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie/ && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_s123/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"995788\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T04:50:56.582Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 36.3, \\\"gpu_hours\\\": 0.01}, \\\"pid\\\": \\\"995788\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s123.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie/ && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_s123/\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-21T04:51:29.216Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-21T04:51:32.929Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T04:51:39.166251+00\n…[truncated 292 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T12:03:08.983669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:30:48.660Z\\\", \\\"updated_at\\\": \\\"2026-05-21T12:01:44.681Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 seed=123: second seed for 3-seed N=16 coverage. Tests N-scaling consistency — whether oracle headroom increase from N=8→N=16 is reproducible across seeds.\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie/ && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_s123/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"995788\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T04:50:56.582Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 36.3, \\\"gpu_hours\\\": 0.01}, \\\"pid\\\": \\\"995788\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s123.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie/ && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_s123/\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-21T04:51:29.216Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-21T04:51:32.929Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T04:51:39.166251+00\n…[truncated 327 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T12:03:08.983853+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s123",
+              "field": "status",
+              "value": "PREPARING",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T12:03:08.984011+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T04:30:48.660Z\\\", \\\"updated_at\\\": \\\"2026-05-21T12:01:53.684Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 seed=123: second seed for 3-seed N=16 coverage. Tests N-scaling consistency — whether oracle headroom increase from N=8→N=16 is reproducible across seeds.\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie/ && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_s123/\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-21T04:51:29.216Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"completed_at\\\": \\\"2026-05-21T04:51:32.929Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T04:51:39.166251+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"失败原因: tokenizer vocab_file=None — checkpoints/qwen3-8b-conll2003-merged 缺少 vocab.json，vLLM 初始化 tokenizer 时 TypeError。与 exp_conll_n16_s456 同根因。| 已有成果: 无（启动即崩溃）| 建议: 修复 merged checkpoint tokenizer 文件后重跑\\\"}}, \\\"notes\\\": \\\"失败原因: tokenizer vocab_file=None — checkpoints/qwen3-8b-conll2003-merged 缺少 vocab.json，vLLM 初始化 tokenizer 时 TypeError。与 exp_conll_n16_s456 同根因。| 已有成果: 无（启动即崩溃）| 建议: 修复 merged checkpoint tokenizer 文件后重跑\\\", \\\"parent\\\": \\\"exp_conll_n16_s42\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.3233}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T12:03:08.984176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s123",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T12:03:08.984338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T04:30:48.660Z\\\", \\\"updated_at\\\": \\\"2026-05-21T12:02:07.925Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 seed=123: second seed for 3-seed N=16 coverage. Tests N-scaling consistency — whether oracle headroom increase from N=8→N=16 is reproducible across seeds.\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie/ && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_s123/\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-21T04:51:29.216Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"completed_at\\\": \\\"2026-05-21T04:51:32.929Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T04:51:39.166251+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"失败原因: tokenizer vocab_file=None — checkpoints/qwen3-8b-conll2003-merged 缺少 vocab.json，vLLM 初始化 tokenizer 时 TypeError。与 exp_conll_n16_s456 同根因。| 已有成果: 无（启动即崩溃）| 建议: 修复 merged checkpoint tokenizer 文件后重跑\\\"}}, \\\"notes\\\": \\\"失败原因: tokenizer vocab_file=None — checkpoints/qwen3-8b-conll2003-merged 缺少 vocab.json，vLLM 初始化 tokenizer 时 TypeError。与 exp_conll_n16_s456 同根因。| 已有成果: 无（启动即崩溃）| 建议: 修复 merged checkpoint tokenizer 文件后重跑\\\", \\\"parent\\\": \\\"exp_conll_n16_s42\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.1798}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T12:03:08.984481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s123",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T12:03:08.984631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T04:30:48.660Z\\\", \\\"updated_at\\\": \\\"2026-05-21T12:02:13.203Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 seed=123: second seed for 3-seed N=16 coverage. Tests N-scaling consistency — whether oracle headroom increase from N=8→N=16 is reproducible across seeds.\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie/ && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_s123/\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-21T04:51:29.216Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"completed_at\\\": \\\"2026-05-21T04:51:32.929Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T04:51:39.166251+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"失败原因: tokenizer vocab_file=None — checkpoints/qwen3-8b-conll2003-merged 缺少 vocab.json，vLLM 初始化 tokenizer 时 TypeError。与 exp_conll_n16_s456 同根因。| 已有成果: 无（启动即崩溃）| 建议: 修复 merged checkpoint tokenizer 文件后重跑\\\"}}, \\\"notes\\\": \\\"失败原因: tokenizer vocab_file=None — checkpoints/qwen3-8b-conll2003-merged 缺少 vocab.json，vLLM 初始化 tokenizer 时 TypeError。与 exp_conll_n16_s456 同根因。| 已有成果: 无（启动即崩溃）| 建议: 修复 merged checkpoint tokenizer 文件后重跑\\\", \\\"parent\\\": \\\"exp_conll_n16_s42\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.3266}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T12:03:08.984794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "gpu_ids": "['cuda:2']",
+              "exp_id": "exp_conll_n16_s123",
+              "project": "struct_self_consist_ie",
+              "account": "root",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_s123/\""
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T12:03:08.984937+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"316620\\\", \\\"log_file\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s123.log\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"server\\\": \\\"autodl-5090-c\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"2\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp_conll_n16_s123\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T12:03:08.985074+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "nvidia-smi",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T12:03:08.985216+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "tail -20 ~/runs/struct_self_consist_ie/exp_conll_n16_s123.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T12:03:08.985365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Thu May 21 20:02:38 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:38:00.0 Off |                  N/A |\\\\n| 59%   63C    P1            458W /  575W |   30131MiB /  32607MiB |     92%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA GeForce RTX 5090        On  |   00000000:49:00.0 Off |                  N/A |\\\\n| 42%   32C    P8             17W /  575W |       0MiB /  32607MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA GeForce RTX 5090        On  |   00000000:5A:00.0 Off |                  N/A |\\\\n| 42%   34C    P1             71W /  575W |   16399MiB /  32607MiB |     11%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA GeForce RTX 5090        On  |   00000000:B8:00.0 Off |                  N/A |\\\\n| 64%   70C    P1            4\n…[truncated 1205 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T12:03:08.985545+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 3453 test instances from conll2003 [index 0:None]\\\\nINFO 05-21 20:02:33 [utils.py:233] non-default args: {'max_model_len': 4096, 'disable_log_stats': True, 'model': 'checkpoints/qwen3-8b-conll2003-merged'}\\\\nINFO 05-21 20:02:33 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\\\nINFO 05-21 20:02:33 [model.py:1582] Using max model len 4096\\\\nINFO 05-21 20:02:33 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=8192.\\\\nINFO 05-21 20:02:33 [vllm.py:775] Asynchronous scheduling is enabled.\\\\n(EngineCore pid=316916) INFO 05-21 20:02:34 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='checkpoints/qwen3-8b-conll2003-merged', speculative_config=None, tokenizer='checkpoints/qwen3-8b-conll2003-merged', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=checkpoints/qwen3-8b-conll2003-merged, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilatio\n…[truncated 3570 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T12:03:08.985713+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s123",
+              "field": "spec",
+              "value": "updated",
+              "project": "struct_self_consist_ie",
+              "spec": "{'data_path': 'data/conll2003/', 'data_count': 3453, 'model_name': 'qwen3-8b-conll2003-merged', 'seed': 123}"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T12:03:08.985876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T04:30:48.660Z\\\", \\\"updated_at\\\": \\\"2026-05-21T12:02:46.562Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 seed=123: second seed for 3-seed N=16 coverage. Tests N-scaling consistency — whether oracle headroom increase from N=8→N=16 is reproducible across seeds.\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie/ && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_s123/\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-21T04:51:29.216Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"completed_at\\\": \\\"2026-05-21T04:51:32.929Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T04:51:39.166251+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"失败原因: tokenizer vocab_file=None — checkpoints/qwen3-8b-conll2003-merged 缺少 vocab.json，vLLM 初始化 tokenizer 时 TypeError。与 exp_conll_n16_s456 同根因。| 已有成果: 无（启动即崩溃）| 建议: 修复 merged checkpoint tokenizer 文件后重跑\\\"}}, \\\"notes\\\": \\\"失败原因: tokenizer vocab_file=None — checkpoints/qwen3-8b-conll2003-merged 缺少 vocab.json，vLLM 初始化 tokenizer 时 TypeError。与 exp_conll_n16_s456 同根因。| 已有成果: 无（启动即崩溃）| 建议: 修复 merged checkpoint tokenizer 文件后重跑\\\", \\\"parent\\\": \\\"exp_conll_n16_s42\\\", \\\"spec\\\": \\\"updated\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.374}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T12:03:08.986091+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动完成。\n\n**结果汇总：**\n- **PID**: 316620 (vLLM EngineCore PID: 316916)\n- **GPU**: cuda:2 on autodl-5090-c — 16,399 MiB 占用，正在加载模型\n- **数据**: 3453 test instances loaded from conll2003\n- **日志**: `~/runs/struct_self_consist_ie/exp_conll_n16_s123.log`\n- **状态**: 模型 checkpoint shards 加载中 (75% completed at last check)，vLLM v0.18.1 初始化正常，FLASH_ATTN v2 backend\n\n上次在 autodl-5090 的 tokenizer 问题未复现，说明 autodl-5090-c 上的 checkpoint 是完整的。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_conll_n16_s123_launch_20260521T120112"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/conversations/gpu-conll-n16-s123-launch.md"
+}

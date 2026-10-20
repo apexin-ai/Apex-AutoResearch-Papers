@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c5bab4154db008c632a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp qwen25 72b zeroshot followup",
+  "task_key": "worker_code_exp_qwen25_72b_zeroshot_followup_20260519T081354",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_qwen25_72b_zeroshot_followup_20260519T081354_result.json",
+    "occurrence": 1,
+    "bytes": 58,
+    "sha256": "7f41ffb149a963cf78a6a18f2ea0387282e9fae517a466f4d6a8d0e443506e6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "等待推理进展，4.5 分钟后检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-qwen25-72b-zeroshot-followup.md"
+}

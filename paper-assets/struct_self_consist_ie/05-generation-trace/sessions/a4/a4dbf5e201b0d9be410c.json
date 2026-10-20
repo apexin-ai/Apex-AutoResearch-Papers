@@ -1,0 +1,329 @@
+{
+  "schema_version": "1.0",
+  "id": "a4dbf5e201b0d9be410c",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "paper scaling placeholder into experiments",
+  "task_key": "worker_paper_scaling-placeholder-into-experiments_20260519T220841",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_paper_scaling-placeholder-into-experiments_20260519T220841.jsonl",
+    "occurrence": 1,
+    "bytes": 20118,
+    "sha256": "6f2a5376730d2864fddfd2b3fa157a070adcaf04601e378548267be887c2a0d0"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T22:10:22.911520+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-placeholder-into-experiments_20260519T220841",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T22:10:22.911948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\paragraph{Datasets.}\n8\tWe evaluate on four English NER benchmarks spanning a difficulty gradient, each serving a distinct role.\n9\t\\textbf{SciERC} \\cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed where models achieve ${\\approx}$65\\% F1.\n10\t\\textbf{Few-NERD} \\cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\\approx}$75\\% F1) provides a low-degeneracy contrast where LP selection succeeds (\\S\\ref{sec:fewnerd}).\n11\t\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control where limited oracle headroom constrains selection gains.\n12\t\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 51\\% zero F1) probes the signal-collapse boundary where model capability is insufficient.\n13\t\n14\t\\paragraph{Models and sampling.}\n15\t\\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are LoRA fine-tuned using LLaMA Factory \\cite{zheng2024llamafactory} (training details in Appendix~\\ref{app:training}; Few-NERD uses 3 epochs vs.\\ 5 for others due to earlier convergence; Appendix~\\ref{app:epoch_confound}).\n16\tWe draw $N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \\cite{willard2023guided}, with $N{=}16$ for scaling experiments (Appendix~\\ref{app:n_scaling}).\n17\t\n18\t%% ============================================================\n19\t\\subsection{Quality Estimation Results}\n20\t\\label{sec:qe_results}\n21\t\n22\t\\begin{table*}[t]\n23\t\\centering\n24\t\\small\n25\t\\caption{NER quality estimation ($\\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 3-seed $\\sigma{\\leq}0.026$ in Table~\\ref{tab:multiseed}). AUROC binarizes at per-dataset median F1. Best in \\textbf{bold}. RE in Appendix~\\ref{app:re_extension}; $N{=}16$ in Table~\\ref{tab:robustness}.}\n26\t\\label{tab:quality_estimation}\n27\t\\begin{tabula\n…[truncated 18482 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-placeholder-into-experiments_20260519T220841",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T22:10:22.912155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-placeholder-into-experiments_20260519T220841",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/scaling_narrative_A_monotonic.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T22:10:22.912343+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t%% Version A: Monotonic scaling narrative (7B < 14B < 32B degeneracy)\n2\t%% Use condition: Qwen2.5 FT results show degeneracy rising monotonically with scale.\n3\t%% Status: Placeholder framework — fill numbers when exp results arrive.\n4\t\n5\t%% ---- Placeholder commands (replace with actual values) ----\n6\t\\newcommand{\\scaleSevenDegen}{XX.X}    % 7B degeneracy %\n7\t\\newcommand{\\scaleFourteenDegen}{XX.X} % 14B degeneracy %\n8\t\\newcommand{\\scaleThirtytwoDegen}{XX.X}% 32B degeneracy %\n9\t\\newcommand{\\scaleSevenGreedy}{.XXX}   % 7B greedy F1\n10\t\\newcommand{\\scaleFourteenGreedy}{.XXX}% 14B greedy F1\n11\t\\newcommand{\\scaleThirtytwoGreedy}{.XXX}% 32B greedy F1\n12\t\\newcommand{\\scaleSevenConstr}{X.XX}   % 7B construction Δ (pp)\n13\t\\newcommand{\\scaleFourteenConstr}{X.XX}% 14B construction Δ (pp)\n14\t\\newcommand{\\scaleThirtytwoConstr}{X.XX}% 32B construction Δ (pp)\n15\t\\newcommand{\\scaleSevenLP}{.XXX}       % 7B LP ρ\n16\t\\newcommand{\\scaleFourteenLP}{.XXX}    % 14B LP ρ\n17\t\\newcommand{\\scaleThirtytwoLP}{.XXX}   % 32B LP ρ\n18\t\n19\t%% ---- Narrative ----\n20\t\n21\t\\paragraph{Degeneracy rises with scale within a model family.}\n22\tTo examine how model scale affects the capability--diversity tradeoff, we fine-tune Qwen2.5 at three scales (7B, 14B, 32B) with an identical QLoRA recipe on Few-NERD ($N{=}8$, $T{=}1.0$).\n23\tDegeneracy increases monotonically with parameter count: $\\scaleSevenDegen\\%\\to\\scaleFourteenDegen\\%\\to\\scaleThirtytwoDegen\\%$ (Figure~\\ref{fig:scaling_curve}a).\n24\tGreedy F1 also rises ($\\scaleSevenGreedy\\to\\scaleFourteenGreedy\\to\\scaleThirtytwoGreedy$), confirming that larger models are more capable but less diverse in their sampled outputs.\n25\tLP-weighted construction $\\Delta$F1 inversely tracks degeneracy ($\\scaleSevenConstr\\to\\scaleFourteenConstr\\to\\scaleThirtytwoConstr$\\,pp), consistent with the gating hypothesis from \\S\\ref{sec:fewnerd}: the selection window narrows as stronger greedy performance comes at the cost of reduced output diversity.\n26\t\n27\tThis within-family trend\n…[truncated 695 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-placeholder-into-experiments_20260519T220841",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T22:10:22.912504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-placeholder-into-experiments_20260519T220841",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper/sections/zeroshot_scaling_draft.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T22:10:22.912664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t%% Draft: Zero-shot / Scaling paragraph for \\S5.5 (Scaling Behavior)\n2\t%% Exp ID: exp_qwen25_72b_zeroshot (all 72B ZS numbers)\n3\t%% Status: Draft for Paper Agent integration. Replaces current \\S5.5 content.\n4\t%% Pending: 7B/14B/32B FT results for full scaling curve; 72B FT for regime disentanglement.\n5\t\n6\t\\subsection{Scaling Behavior}\n7\t\\label{sec:scaling}\n8\t\n9\tTo test whether the correlation-selection gap is specific to fine-tuned models, we evaluate Qwen2.5-72B-Instruct (AWQ 4-bit) in a zero-shot setting across all three primary datasets ($N{=}8$, $T{=}1.0$, no task-specific training).\n10\t\n11\t\\begin{table}[t]\n12\t\\centering\n13\t\\small\n14\t\\caption{Fine-tuned 8B vs.\\ zero-shot 72B: QE correlations and entity construction ($N{=}8$, $T{=}1.0$). Degen.\\ = instance degeneracy (\\%). Constr.\\ = LP-weighted entity construction $\\Delta$F1 vs.\\ greedy (pp). $^\\dagger$Majority voting (uniform weights).}\n15\t\\label{tab:zs_72b}\n16\t\\resizebox{\\columnwidth}{!}{%\n17\t\\begin{tabular}{@{}llcccccr@{}}\n18\t\\toprule\n19\tDataset & Regime & Greedy & Degen. & LP $\\rho$ & SJ $\\rho$ & VC $\\rho$ & Constr. \\\\\n20\t\\midrule\n21\tSciERC & 8B FT  & .645 & 17.8\\% & .205 & .360 & .379 & $+$1.02 \\\\\n22\t       & 72B ZS & .399 & 21.0\\% & .081 & .217 & .277 & $+$1.53 \\\\\n23\t\\midrule\n24\tFew-NERD & 8B FT & .748 & 13.0\\% & .220 & .380 & --- & $+$1.40 \\\\\n25\t         & 72B ZS & .628 & 46.2\\% & .119 & .345 & .416 & $-$0.20 \\\\\n26\t\\midrule\n27\tCoNLL  & 8B FT  & .908 & 61.7\\% & .302 & .436 & .424 & $-$0.39 \\\\\n28\t       & 72B ZS & .712 & 67.7\\% & $-$.002 & .304 & .297 & $-$0.37 \\\\\n29\t\\bottomrule\n30\t\\end{tabular}}\n31\t\\end{table}\n32\t\n33\t\\paragraph{LP requires fine-tuning calibration.}\n34\tTable~\\ref{tab:zs_72b} compares QE correlations between regimes.\n35\tLP $\\rho$ drops to near zero in the zero-shot setting: from $0.205$ to $0.081$ on SciERC, $0.220$ to $0.119$ on Few-NERD, and $0.302$ to $-0.002$ on CoNLL.\n36\tFine-tuning calibrates the model's token-level confidence to task-specific quality gradients; without this calibrat\n…[truncated 2836 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-placeholder-into-experiments_20260519T220841",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T22:10:22.912861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-placeholder-into-experiments_20260519T220841",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "old_string": "%% ============================================================\n\\subsection{Scaling Behavior}\n\\label{sec:scaling}",
+              "new_string": "%% ============================================================\n\\subsection{Scaling Behavior}\n\\label{sec:scaling}\n\n%% ---- Scaling placeholder commands (replace with actual values) ----\n\\newcommand{\\scaleSevenDegen}{XX.X}    % 7B degeneracy %\n\\newcommand{\\scaleFourteenDegen}{XX.X} % 14B degeneracy %\n\\newcommand{\\scaleThirtytwoDegen}{XX.X}% 32B degeneracy %\n\\newcommand{\\scaleSevenGreedy}{.XXX}   % 7B greedy F1\n\\newcommand{\\scaleFourteenGreedy}{.XXX}% 14B greedy F1\n\\newcommand{\\scaleThirtytwoGreedy}{.XXX}% 32B greedy F1\n\\newcommand{\\scaleSevenConstr}{X.XX}   % 7B construction Δ (pp)\n\\newcommand{\\scaleFourteenConstr}{X.XX}% 14B construction Δ (pp)\n\\newcommand{\\scaleThirtytwoConstr}{X.XX}% 32B construction Δ (pp)\n\\newcommand{\\scaleSevenLP}{.XXX}       % 7B LP ρ\n\\newcommand{\\scaleFourteenLP}{.XXX}    % 14B LP ρ\n\\newcommand{\\scaleThirtytwoLP}{.XXX}   % 32B LP ρ"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T22:10:22.913144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-placeholder-into-experiments_20260519T220841",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T22:10:22.913317+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-placeholder-into-experiments_20260519T220841",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "old_string": "This comparison simultaneously varies model family (Qwen3$\\to$Qwen2.5), training regime (fine-tuned$\\to$zero-shot), and quantization (FP16$\\to$AWQ 4-bit); while the consistency of structural signal rankings across these changes suggests the gap is robust, we cannot fully disentangle these factors.\nLP-weighted construction yields $+1.53$\\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]; $d{=}0.10$), recovering $10.2$\\% of headroom (FT: $7.8$\\% SciERC, $11.3$\\% Few-NERD). Majority vote also succeeds ($+1.39$\\,pp); LP-weighting adds $+0.14$\\,pp. Construction fails on Few-NERD 72B ZS ($-0.20$\\,pp) and CoNLL ($-0.37$\\,pp), where degeneracy exceeds $46$\\%---consistent with the degeneracy-gating pattern in the fine-tuned regime ($n{=}3$ datasets).\n\n%% ============================================================\n\\subsection{Prescriptive Results}",
+              "new_string": "This comparison simultaneously varies model family (Qwen3$\\to$Qwen2.5), training regime (fine-tuned$\\to$zero-shot), and quantization (FP16$\\to$AWQ 4-bit); while the consistency of structural signal rankings across these changes suggests the gap is robust, we cannot fully disentangle these factors.\nLP-weighted construction yields $+1.53$\\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]; $d{=}0.10$), recovering $10.2$\\% of headroom (FT: $7.8$\\% SciERC, $11.3$\\% Few-NERD). Majority vote also succeeds ($+1.39$\\,pp); LP-weighting adds $+0.14$\\,pp. Construction fails on Few-NERD 72B ZS ($-0.20$\\,pp) and CoNLL ($-0.37$\\,pp), where degeneracy exceeds $46$\\%---consistent with the degeneracy-gating pattern in the fine-tuned regime ($n{=}3$ datasets).\n\n\\paragraph{Degeneracy rises with scale within a model family.}\nTo examine how model scale affects the capability--diversity tradeoff, we fine-tune Qwen2.5 at three scales (7B, 14B, 32B) with an identical QLoRA recipe on Few-NERD ($N{=}8$, $T{=}1.0$).\nDegeneracy increases monotonically with parameter count: $\\scaleSevenDegen\\%\\to\\scaleFourteenDegen\\%\\to\\scaleThirtytwoDegen\\%$ (Figure~\\ref{fig:scaling_curve}a).\nGreedy F1 also rises ($\\scaleSevenGreedy\\to\\scaleFourteenGreedy\\to\\scaleThirtytwoGreedy$), confirming that larger models are more capable but less diverse in their sampled outputs.\nLP-weighted construction $\\Delta$F1 inversely tracks degeneracy ($\\scaleSevenConstr\\to\\scaleFourteenConstr\\to\\scaleThirtytwoConstr$\\,pp), consistent with the gating hypothesis from \\S\\ref{sec:fewnerd}: the selection window narrows as stronger greedy performance comes at the cost of reduced output diversity.\n\nThis within-family trend converges with two independent dimensions of evidence.\nAlong the \\emph{epoch} dimension, extending Qwen3-8B training from 3 to 5 epochs on Few-NERD raises degeneracy from 11.1\\% to 31.3\\% (\\S\\ref{sec:fewnerd}), mirroring the effect of added parameters.\nAlong the \\emph{family} dimension, Qwen3-8B FT (13.0\\% degeneracy, $+1.40$\\,pp construction) and Qwen2.5-72B ZS (46.2\\%, $-0.20$\\,pp) bracket the trade-off from opposite ends.\nAcross all three dimensions---scale, training duration, and model family---higher degeneracy consistently predicts smaller or negative construction gains, supporting degeneracy as a robust diagnostic for when self-consistency aggregation can add value.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Scaling analysis: Qwen2.5 fine-tuned on FewNERD ($N{=}8$, $T{=}1.0$, 3-seed mean). 8B row from Qwen3-8B (Table~\\ref{tab:fewnerd}).}\n\\label{tab:scaling_ft}\n\\begin{tabular}{lcccccc}\n\\toprule\nScale & Degen\\% & LP $\\rho$ & SJ $\\rho$ & Greedy & Constr.\\ $\\Delta$ & $p$ \\\\\n\\midrule\n7B  & \\scaleSevenDegen & \\scaleSevenLP & --- & \\scaleSevenGreedy & \\scaleSevenConstr & --- \\\\\n8B  & 13.0 & .220 & .380 & .748 & $+$1.40 & ${<}.001$ \\\\\n14B & \\scaleFourteenDegen & \\scaleFourteenLP & --- & \\scaleFourteenGreedy & \\scaleFourteenConstr & --- \\\\\n32B & \\scaleThirtytwoDegen & \\scaleThirtytwoLP & --- & \\scaleThirtytwoGreedy & \\scaleThirtytwoConstr & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n%\\includegraphics[width=\\columnwidth]{figures/scaling_curve.pdf}\n\\caption{Degeneracy and LP-weighted construction $\\Delta$F1 across model scales (FewNERD, $N{=}8$). Placeholder --- data pending.}\n\\label{fig:scaling_curve}\n\\end{figure}\n\n% NOTE: Version B (non-monotonic narrative) available at artifacts/scaling_narrative_B_nonmonotonic.tex\n\n%% ============================================================\n\\subsection{Prescriptive Results}"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T22:10:22.913615+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-placeholder-into-experiments_20260519T220841",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T22:10:22.913771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-placeholder-into-experiments_20260519T220841",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "offset": "179",
+              "limit": "80"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T22:10:22.913947+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "179\t%% ============================================================\n180\t\\subsection{Scaling Behavior}\n181\t\\label{sec:scaling}\n182\t\n183\t%% ---- Scaling placeholder commands (replace with actual values) ----\n184\t\\newcommand{\\scaleSevenDegen}{XX.X}    % 7B degeneracy %\n185\t\\newcommand{\\scaleFourteenDegen}{XX.X} % 14B degeneracy %\n186\t\\newcommand{\\scaleThirtytwoDegen}{XX.X}% 32B degeneracy %\n187\t\\newcommand{\\scaleSevenGreedy}{.XXX}   % 7B greedy F1\n188\t\\newcommand{\\scaleFourteenGreedy}{.XXX}% 14B greedy F1\n189\t\\newcommand{\\scaleThirtytwoGreedy}{.XXX}% 32B greedy F1\n190\t\\newcommand{\\scaleSevenConstr}{X.XX}   % 7B construction Δ (pp)\n191\t\\newcommand{\\scaleFourteenConstr}{X.XX}% 14B construction Δ (pp)\n192\t\\newcommand{\\scaleThirtytwoConstr}{X.XX}% 32B construction Δ (pp)\n193\t\\newcommand{\\scaleSevenLP}{.XXX}       % 7B LP ρ\n194\t\\newcommand{\\scaleFourteenLP}{.XXX}    % 14B LP ρ\n195\t\\newcommand{\\scaleThirtytwoLP}{.XXX}   % 32B LP ρ\n196\t\n197\tWe evaluate Qwen2.5-72B-Instruct in a zero-shot setting to test whether the gap persists at larger scale without fine-tuning.\n198\t\n199\t\\begin{table}[t]\n200\t\\centering\n201\t\\small\n202\t\\caption{Fine-tuned 8B vs.\\ zero-shot 72B ($N{=}8$, $T{=}1.0$). Hdr.\\ = oracle $-$ greedy (pp). Degen.: instance degeneracy (\\%).}\n203\t\\label{tab:scale_comparison}\n204\t\\resizebox{\\columnwidth}{!}{%\n205\t\\begin{tabular}{@{}llccccccc@{}}\n206\t\\toprule\n207\tDataset & Regime & Greedy & Hdr. & Degen. & VC & SJ & FK & LP \\\\\n208\t\\midrule\n209\tSciERC & 8B FT  & .644 & 13.0 & 17.8 & .379 & .360 & .267 & .205 \\\\\n210\t       & 72B ZS & .399 & 15.0 & 21.0 & .277 & .217 & .227 & .081 \\\\\n211\t\\midrule\n212\tFew-NERD & 8B FT & .748 & 12.4 & 13.0 & --- & --- & --- & .220 \\\\\n213\t         & 72B ZS & .628 & --- & 46.2 & .416 & .345 & --- & .119 \\\\\n214\t\\midrule\n215\tCoNLL  & 8B FT  & .908 & ${\\approx}$4 & 61.7 & .424 & .436 & .400 & .302 \\\\\n216\t       & 72B ZS & .712 & 5.3 & 67.7 & .297 & .304 & .302 & $-$.002 \\\\\n217\t\\bottomrule\n218\t\\end{tabular}}\n219\t\\end{table}\n220\t\n221\tLP $\\rho$ drops s\n…[truncated 3802 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-placeholder-into-experiments_20260519T220841",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T22:10:22.914102+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-placeholder-into-experiments_20260519T220841",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "offset": "258",
+              "limit": "10"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T22:10:22.914254+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "258\t\\end{figure}\n259\t\n260\t% NOTE: Version B (non-monotonic narrative) available at artifacts/scaling_narrative_B_nonmonotonic.tex\n261\t\n262\t%% ============================================================\n263\t\\subsection{Prescriptive Results}\n264\t\\label{sec:prescriptive}\n265\t\n266\tThe preceding sections establish that instance-level selection fails for structured IE. We now present two approaches that extract value from multi-sample generation without relying on sample ranking.\n267\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-placeholder-into-experiments_20260519T220841",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T22:10:22.914422+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。experiments.tex 中新增内容位于 §5.5 Scaling Behavior：\n\n**插入位置和内容：**\n- **L183–195**: 12 个 `\\newcommand` placeholder（7B/14B/32B 的 degen、greedy、constr、LP）\n- **L225–234**: Version A 叙事段落 — \"Degeneracy rises with scale within a model family\"，含三维证据收敛（scale/epoch/family）\n- **L236–251**: Table `tab:scaling_ft` — 7B/14B/32B/8B 对比表，8B 行填入已知值\n- **L253–258**: Figure `fig:scaling_curve` placeholder（`\\includegraphics` 已注释）\n- **L260**: Version B 备选注释\n\n**待填 placeholder 清单（12 个）：**\n\n| 命令 | 含义 |\n|------|------|\n| `\\scaleSevenDegen` | 7B degeneracy % |\n| `\\scaleFourteenDegen` | 14B degeneracy % |\n| `\\scaleThirtytwoDegen` | 32B degeneracy % |\n| `\\scaleSevenGreedy` | 7B greedy F1 |\n| `\\scaleFourteenGreedy` | 14B greedy F1 |\n| `\\scaleThirtytwoGreedy` | 32B greedy F1 |\n| `\\scaleSevenConstr` | 7B construction Δ (pp) |\n| `\\scaleFourteenConstr` | 14B construction Δ (pp) |\n| `\\scaleThirtytwoConstr` | 32B construction Δ (pp) |\n| `\\scaleSevenLP` | 7B LP ρ |\n| `\\scaleFourteenLP` | 14B LP ρ |\n| `\\scaleThirtytwoLP` | 32B LP ρ |\n\nTable 中 SJ ρ 列 7B/14B/32B 也为 `---`，待实验数据补充。Figure 的 `scaling_curve.pdf` 待生成。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-placeholder-into-experiments_20260519T220841"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/paper-scaling-placeholder-into-experiments.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6467c4497f29a65fc61",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code d146 revert span based rerun merge",
+  "task_key": "worker_code_d146_revert_span_based_rerun_merge_20260518T145639",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_d146_revert_span_based_rerun_merge_20260518T145639_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "9e0113820ba4f7c8172ac21f6adb65370d4fa311075b8a01e4ad7741790ff261"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "执行完成。总结：\n\n1. **evaluation.py 已恢复 span-based** — `entity_strict_match` 现在用 `(start, end, type)` 匹配\n2. **conditional_decomp 自动继承** — 它 import 了 `entity_strict_match`，无需改动，已有 span-based 结果不需重跑\n3. **entity merge 已重跑** — 三个数据集结果与 text-based 完全一致（delta = 0），因为 merge 脚本内部按 `(text, type)` 分组投票，同一句内 text+type 和 start+end+type 是一一映射的\n4. **结果报告** 已写入 `artifacts/d146_span_revert/d146_entity_merge_span_results.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-revert-span-based-rerun-merge.md"
+}

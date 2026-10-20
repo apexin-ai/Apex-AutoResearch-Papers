@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3a5335c87ee0f785b9c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "knowledge scaling section placeholder audit",
+  "task_key": "worker_knowledge_scaling-section-placeholder-audit_20260520T003309",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_knowledge_scaling-section-placeholder-audit_20260520T003309_result.json",
+    "occurrence": 1,
+    "bytes": 3868,
+    "sha256": "c33a68a3d78b862037f1c71347d46a1288416f2a64df8a36ab406af00dd96fad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。以下是完整的 placeholder 清单。\n\n---\n\n## Placeholder 审计报告\n\n### 1. `docs/paper/sections/experiments.tex` — §5.5 Scaling (L174-210)\n\n**当前状态：§5.5 已基本写完，使用硬编码数值，无 \\newcommand placeholder。**\n\n**Table `tab:scale_comparison` (L185-198) 中的 \"---\" 数据缺口：**\n\n| 行 | 位置 | 缺失值 | 对应实验 |\n|----|------|--------|----------|\n| L192 | Few-NERD 8B FT | VC, SJ, FK（3个信号相关性） | 8B FT signal 计算 |\n| L193 | Few-NERD 72B ZS | Hdr（headroom）, FK（1个信号相关性） | 72B ZS signal 计算 |\n\n**注释掉的元素：**\n- L209: `fig:scaling_curve` — 整个图被注释掉（`% Figure: scaling_curve (pending data)`）\n- L210: 指向 Version B narrative 的注释\n\n**重要发现：within-family scaling（7B/14B/32B）实验的内容完全不在编译版本中。** §5.5 当前只包含 8B FT vs 72B ZS 对比 + few-shot 分析，没有使用任何 scaling narrative。\n\n---\n\n### 2. `artifacts/scaling_narrative_A_monotonic.tex` — 12 个 placeholder\n\n全部未填（XX.X 格式），依赖 **Qwen2.5 7B/14B/32B FT on Few-NERD** 实验：\n\n| 行 | 命令 | 含义 | 当前值 |\n|----|------|------|--------|\n| 6 | `\\scaleSevenDegen` | 7B degeneracy % | XX.X |\n| 7 | `\\scaleFourteenDegen` | 14B degeneracy % | XX.X |\n| 8 | `\\scaleThirtytwoDegen` | 32B degeneracy % | XX.X |\n| 9 | `\\scaleSevenGreedy` | 7B greedy F1 | .XXX |\n| 10 | `\\scaleFourteenGreedy` | 14B greedy F1 | .XXX |\n| 11 | `\\scaleThirtytwoGreedy` | 32B greedy F1 | .XXX |\n| 12 | `\\scaleSevenConstr` | 7B construction Δ pp | X.XX |\n| 13 | `\\scaleFourteenConstr` | 14B construction Δ pp | X.XX |\n| 14 | `\\scaleThirtytwoConstr` | 32B construction Δ pp | X.XX |\n| 15 | `\\scaleSevenLP` | 7B LP ρ | .XXX |\n| 16 | `\\scaleFourteenLP` | 14B LP ρ | .XXX |\n| 17 | `\\scaleThirtytwoLP` | 32B LP ρ | .XXX |\n\nNarrative（L21-30）引用全部 12 个命令。\n\n---\n\n### 3. `artifacts/scaling_narrative_B_nonmonotonic.tex` — 12 个 placeholder\n\n与 Version A 完全相同的 12 个 `\\newcommand`，不同的叙事框架（非单调趋势）。实验结果决定选 A 还是 B。\n\n---\n\n### 4. `artifacts/zs_vs_fs_comparison_draft.tex` — 5 个 placeholder\n\n依赖 **72B few-shot on Few-NERD** 实验：\n\n| 行 | 命令 | 含义 | 当前值 |\n|----|------|------|--------|\n| 6 | `\\fsFewnerdLP` | Few-NERD FS LP ρ | --- (gray) |\n| 7 | `\\fsFewnerdDegen` | Few-NERD FS degeneracy | --- (gray) |\n| 8 | `\\fsFewnerdConstr` | Few-NERD FS construction Δ | --- (gray) |\n| 9 | `\\fsFewnerdGreedy` | Few-NERD FS greedy F1 | --- (gray) |\n| 10 | `\\fsFewnerdOracle` | Few-NERD FS oracle F1 | --- (gray) |\n\nTable L28 的 Few-NERD Few-shot 行使用这 5 个命令。\n\n---\n\n### 写入完成路径\n\n| 实验 | 完成后可填 | 文件 |\n|------|-----------|------|\n| **Qwen2.5 7B/14B/32B FT on Few-NERD** | 12 个 scale* 命令 + 选择 narrative A or B + 启用 fig:scaling_curve + 将 narrative 插入 experiments.tex §5.5 | `scaling_narrative_A/B.tex` → `experiments.tex` |\n| **72B few-shot on Few-NERD** | 5 个 fsFewnerd* 命令 | `zs_vs_fs_comparison_draft.tex` |\n| **Few-NERD 8B FT signal 补算** | tab:scale_comparison 中 VC, SJ, FK 三个 \"---\" | `experiments.tex` L192 |\n| **Few-NERD 72B ZS signal 补算** | tab:scale_comparison 中 Hdr, FK 两个 \"---\" | `experiments.tex` L193 |\n\n**关键路径：** within-family scaling 实验（7B/14B/32B）是最大的缺口——12 个 placeholder + 1 个图 + 1 段 narrative 全部等它的结果。这个实验同时决定用 Version A（单调）还是 Version B（非单调）叙事。ZS vs FS 的 Few-NERD 缺口是次要的（5 个值）。tab:scale_comparison 的 \"---\" 可能是有意省略（信号未计算），优先级最低。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-scaling-section-placeholder-audit.md"
+}

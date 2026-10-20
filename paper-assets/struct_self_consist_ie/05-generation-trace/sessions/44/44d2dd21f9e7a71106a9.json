@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44d2dd21f9e7a71106a9",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "bugfix auroc binarization",
+  "task_key": "worker_bugfix_auroc_binarization_20260514T142457",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_bugfix_auroc_binarization_20260514T142457_result.json",
+    "occurrence": 1,
+    "bytes": 941,
+    "sha256": "8847362f401ddab30ed14c79b81a24c05ce016a1654272bac5580c4acb0c34b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。总结：\n\n**Bug 根因**：`compute_auroc` 用 `f > median` 做二值化，WNUT-17 条件集 67.1% 样本 F1=1.0 导致 median=1.0，strict `>` 产生空 pos 集，AUROC 直接返回 0.5。\n\n**修复**：当 `> median` 产生退化分割时，回退到 `>= median` vs `< median`。修改了 4 个文件：`evaluation.py`、`analyze_logprob_baseline.py`、`analyze_exact_match_voting.py`、`analyze_entity_voting.py`。\n\n**修复前后对比**：\n- WNUT-17 conditional logprob AUROC: **0.5000 → 0.7092**（唯一受影响的数字）\n- WNUT-17 full 和 SciERC 全部不变\n\n**关键发现**：修复后 logprob 在 WNUT-17 条件集上 AUROC=0.7092，高于 SJ 的 0.6535——logprob baseline 在 WNUT-17 上比结构一致性更强，不是随机水平。exp-003 的 `report.json` 中 `logprob_baseline.conditional.auroc` 需更新。\n\n诊断报告已写入 `artifacts/auroc_bug_diagnosis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/bugfix-auroc-binarization.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbe31ba7a346adcfb326",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp qwen25 32b fewnerd train",
+  "task_key": "worker_code_exp_qwen25_32b_fewnerd_train_20260519T093136",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_qwen25_32b_fewnerd_train_20260519T093136_result.json",
+    "occurrence": 1,
+    "bytes": 753,
+    "sha256": "db98def72eec2729280dfdd6f4fe62a743a0c1c365657382a74841df0315f180"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 GPU 全部在跑，显存 25.6-26.3GB / 32GB，利用率 79-100%。\n\n**训练状态总结**:\n\n| 项目 | 值 |\n|---|---|\n| 实验 | exp_qwen25_32b_fewnerd |\n| 模型 | Qwen2.5-32B-Instruct |\n| 方法 | QLoRA 4-bit nf4 (rank=32, alpha=64, all linear) |\n| 数据 | FewNERD 131,767 train / 18,824 dev |\n| GPU | 4× RTX 5090, ~26GB/32GB used |\n| 总步数 | 41,180 steps (5 epochs) |\n| 速度 | ~2.5s/step |\n| 预计时长 | ~28h |\n| 日志 | `/root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_32b_fewnerd_s42.log` |\n| 输出 | `checkpoints/qwen25-32b-fewnerd-qlora-s42` |\n| Registry | RUNNING |\n\n训练后续 pipeline（N=8 inference → signal computation → entity construction）等训练完成后再触发。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-qwen25-32b-fewnerd-train.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "590a5747271ab4071eda",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh prepare 14b inference v2",
+  "task_key": "worker_ssh_prepare-14b-inference-v2_20260520T070610",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_prepare-14b-inference-v2_20260520T070610_result.json",
+    "occurrence": 1,
+    "bytes": 1891,
+    "sha256": "b2031bc5a4107bc3c5bc36e07bcf1c027c382a30c916b75c0ad6e241bc8b6721"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入并验证。汇总：\n\n---\n\n## 写入的文件\n\n| 文件 | 路径 |\n|------|------|\n| Export 配置 | `/root/autodl-tmp/struct_self_consist_ie/export_config_qwen25_14b_fewnerd.yaml` |\n| Inference 脚本 | `/root/autodl-tmp/struct_self_consist_ie/run_14b_fewnerd_inference.sh` |\n\n## 14B Adapter 路径\n`/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-14b-fewnerd-qlora-s42/` (4.7GB)\n\n## 磁盘空间\n- `/root/autodl-tmp/`: **183GB 可用** (350G 总 / 168G 已用 / 48%)\n- checkpoints 目录: 86GB\n- 14B merged 需 ~28GB → **空间充足**\n\n## 14B 训练进度\n- **31973 / 41180** = **77.6%**，epoch 3.88/5.0\n- 速度: ~2.2s/step\n- 剩余: 9207 steps × 2.2s ≈ **5.6 小时** (日志显示 ETA ~5:25)\n- loss=0.0138, grad_norm=0.30\n- 预计完成时间: 约 **今天 ~凌晨 4:30** (基于当前 23:00 + 5.5h)\n\n## Inference 预估耗时\n7B 参考: FewNERD 37648 instances × N=8, 单卡 vLLM。14B 模型吞吐约为 7B 的 40-50%，预估单 seed 约 **3-5 小时**（取决于 5090 显存带宽）。3 seeds 并行在 2-3 张卡上可 5 小时内全部完成。\n\n## Post-Completion Checklist\n\n```\n1. Export:\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n   cd /root/autodl-tmp/struct_self_consist_ie\n   llamafactory-cli export export_config_qwen25_14b_fewnerd.yaml\n\n2. 验证 merged 模型:\n   du -sh checkpoints/qwen25-14b-fewnerd-merged/  # 预期 ~28GB\n\n3. SCP merged 模型到 5090-b:\n   scp -r checkpoints/qwen25-14b-fewnerd-merged/ autodl-5090-b:/root/autodl-tmp/struct_self_consist_ie/checkpoints/\n\n4. 启动 inference (5090-b):\n   GPU 0: nohup bash run_14b_fewnerd_inference.sh 42 0 &\n   GPU 1: nohup bash run_14b_fewnerd_inference.sh 123 1 &\n   GPU 2: nohup bash run_14b_fewnerd_inference.sh 456 2 &  (可选)\n\n5. 监控: tail -f logs/14b_fewnerd_seed*.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-prepare-14b-inference-v2.md"
+}

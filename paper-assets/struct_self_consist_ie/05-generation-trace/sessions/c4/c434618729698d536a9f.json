@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c434618729698d536a9f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh check s456 completion and recompute",
+  "task_key": "worker_ssh_check_s456_completion_and_recompute_20260521T190118",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check_s456_completion_and_recompute_20260521T190118_result.json",
+    "occurrence": 1,
+    "bytes": 930,
+    "sha256": "cb2acd1ef5e827ba19ed4707f57917cb5f074fda8601b93704da342ee789050a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## e2_pretrained_fewnerd_s456 结果\n\n| 指标 | 值 |\n|------|-----|\n| **greedy_f1** | 0.5373 |\n| **mv_strict_f1** | 0.5738 |\n| **mv_incl_f1** | 0.5611 |\n| **oracle_f1** | 0.6460 |\n| **mv_delta_strict_pp** | **+3.65pp** |\n| **degeneracy_rate** | 11.8% |\n| **alpha_crit_eff (strict)** | 0.3047 |\n| **mv_capture_rate** | (0.5738 - 0.5373) / (0.6460 - 0.5373) = **33.6%** |\n| **gold_nonempty** | 32565 ✓ |\n\n### 三 seed 对比\n\n| seed | greedy_f1 | mv_strict_f1 | Δ (pp) | degen | capture_rate |\n|------|-----------|-------------|--------|-------|-------------|\n| 42 | 0.5384 | 0.5788 | +4.03 | 12.2% | 37.6% |\n| 123 | 0.5381 | 0.5783 | +4.02 | 11.2% | 36.8% |\n| **456** | **0.5373** | **0.5738** | **+3.65** | **11.8%** | **33.6%** |\n\ns456 的 MV gain 略低于其他两个 seed（+3.65 vs ~+4.0pp），greedy baseline 也略低。三 seed 均值：Δ_strict ≈ +3.90pp，degen ≈ 11.7%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-s456-completion-and-recompute.md"
+}

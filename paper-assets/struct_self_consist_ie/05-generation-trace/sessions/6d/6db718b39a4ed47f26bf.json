@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6db718b39a4ed47f26bf",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "eval exp b1 scd fewnerd curriculum q",
+  "task_key": "worker_eval_exp_b1_scd_fewnerd_curriculum_q_20260520T192617",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp_b1_scd_fewnerd_curriculum_q_20260520T192617.log",
+    "occurrence": 1,
+    "bytes": 672963,
+    "sha256": "47378dcb0ecad0405c20d5c9fc485aa6f2c2bbb67310a348dd9dd091f9618e46"
+  },
+  "statistics": {
+    "messages": 115,
+    "user_turns": 0,
+    "tool_calls": 32,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 32,
+      "tool_result": 32,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 115,
+      "chunks": [
+        {
+          "path": "6db718b39a4ed47f26bf-part-0001.json",
+          "message_count": 101
+        },
+        {
+          "path": "6db718b39a4ed47f26bf-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-exp-b1-scd-fewnerd-curriculum-q.md"
+}

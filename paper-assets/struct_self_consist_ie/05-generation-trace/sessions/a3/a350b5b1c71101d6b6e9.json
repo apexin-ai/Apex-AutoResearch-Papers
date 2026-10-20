@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a350b5b1c71101d6b6e9",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_6_1778848220.md",
+  "task_key": "loop_6_1778848220",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_6_1778848220.md",
+    "occurrence": 1,
+    "bytes": 4517,
+    "sha256": "f0a359cc74a89fdb6234cd9dc4a4fa40d190c2797201e5cf76df729c265917b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-15T09:28:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 上 cuda:0/1/2/3（config 已确认），其他设备号 push back\n- **论文数据源必须来自 `_rerun_1024` 或本身 max_tokens=1024 的实验**。exp_012 用了 max_tokens=512 导致 voting_conf ρ 虚高（0.502→0.379），这个坑已经踩过一次\n- LLaMA 分析脚本与 report.json 的 EM/VC 值有系统性差异（如 seed42 VC: 脚本 0.373 vs report.json 0.405）。论文统一使用分析脚本输出，不从 registry metrics 直接引用 EM/VC\n- 9 个 PREPARING 实验（exp_017_llama_conll_n16_s456_r1024 等）实质已废弃，状态机限制无法推进到 DONE，忽略它们\n- DDL 2026-05-25（距今 10 天），所有行动围绕这个死线\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090（4× RTX 5090 32GB），工作目录 `/root/autodl-tmp/struct_self_consist_ie/`\n- Python：`/root/miniconda3/`，环境初始化：`source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 基座模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n- ft_002_v2 merged checkpoint：`checkpoints/qwen3-8b-scierc-merged-v2/`\n- vLLM 0.18.1, LLaMA Factory 0.9.4\n- 活跃进程：无。所有 4 GPU 空闲，无活跃 cron，无运行中 Worker\n\n### 3. 📊 当前状态\nRegistry: 70 DONE（42 success / 18 killed / 9 PREPARING 废弃 / 1 failed），无 RUNNING。\n\n**刚完成的工作**：\n- D070 三项 CPU 计算任务全部完成：(1) TOST breakpoint δ* 分析 (worker_analysis_d070_tost_breakpoint)，(2) Qwen3 thinking 训练日志确认 (worker_analysis_d070_qwen3_thinking)，(3) VC ρ 两种实现差值 (worker_analysis_d070_vc_rho_diff)\n- D071 决策已记录：论文根本性重定位——从 \"gap finding\" 到 \"regime-specific bottleneck with controlled ablation\"\n- exp_018 LLaMA 3-seed 全系列完成（seed42_r1024 / seed123 / seed456_r1024），NER 信号排名 6/6 稳定：VC > SJ > EM > FK > LP\n- paper_framing.md 已按 D071 重写（C1=regime-specific bottleneck, C2=QE methodology, C3=task complexity）\n\n**等待中**：\n- 无 Worker 回调\n- 无 Cron\n- D070 的 Paper Agent 修订（21+ 项）状态不明——上一轮可能已派出但不在当前 Worker 列表（可能在其他 session）\n- **exp_freeform_ablation 尚未创建/提交**——这是 D071 的关键突破实验\n\n### 4. 📋 待办（条件触发式）\n- **立即**：检查 Paper Agent 修订状态（可能在别的 session 派出），确认 D070 三项计算结果是否已交付给 Paper Agent。如未交付 → spawn Worker 整合结果并更新论文\n- **立即**：创建并提交 exp_freeform_ablation（free-form decoding 消融实验，< 4h GPU）——D071 的核心突破实验，4 GPU 全空闲是失职\n- exp_freeform_ablation 完成 → 若 logprob variance 恢复 + selection 改善 → 强化 C1 \"regime-specific bottleneck\" narrative；若未恢复 → 更强结论 \"inherent IE limitation\"，无论哪种都让论文更强\n- 论文修订全部完成 → 提交 Reviewer 验证 → Round 7 目标 3.5+\n- **DDL 前 3 天（2026-05-22）**：最终提交准备（camera-ready 格式、引用审计、PDF 视觉检查）\n\n### 5. 🎯 战略上下文\n**核心决策链**：D001(MVP: SJ vs FK) → D011(Dream 1 暴露缺 baseline) → D013(signal family framing) → D062-D069(6 轮审稿迭代,每轮 3.0/5) → D070(narrative restructure) → D071(根本重定位: regime-specific bottleneck + free-form ablation)\n\n**最关键判断**：6 轮 3.0/5 plateau 的根因是 **content ceiling 非 framing ceiling**（Reviewer 诊断）。论文 80% 内容是定义性推论（4/5 信号 by construction 无法 rank），缺少 \"so what\" 实证时刻。Free-form ablation 是打破 ceiling 的唯一低成本高 impact 手段。\n\n**易踩的坑**：\n1. 不要把 \"定义性事实\"（4/5 信号是 instance-level aggregate）包装成\"实证发现\"——这是 Round 6 被批的核心问题\n2. Selection claim（logprob vs greedy）是 null result（bootstrap p=0.39, Cohen's d=0.038），论文已 pivot 为\"correlation-selection gap analysis\"，不要再试图证明 selection 有效\n3. RE 数据只有 SciERC 一个 benchmark，论文中必须标注 \"preliminary\"，不能写 \"consistently\"\n4. exp_freeform_ablation 还只是计划，尚无实验代码——需要 Worker 先实现 free-form generation pipeline（去掉 Outlines/grammar constraint，改用 free-form + post-hoc JSON parsing）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778848220.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46341889de36ba4498ea",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis lp alignment gated selection",
+  "task_key": "worker_analysis_lp_alignment_gated_selection_20260519T011937",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_lp_alignment_gated_selection_20260519T011937_result.json",
+    "occurrence": 1,
+    "bytes": 1738,
+    "sha256": "176b5b0a1221e1cb84e3355060573c717cc6a6a37488feb10279832650859dd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment complete. Here are the results:\n\n## LP-Alignment-Gated Selection Results\n\n### Core Finding: Adjusted Score = mean_rho × valid_ratio\n\nRaw `mean_rho` fails on CoNLL (0.32 passes threshold despite LP being harmful) because only 51.6% of instances have computable rho (high degeneracy). Multiplying by `valid_ratio` fixes this.\n\n### Summary (adjusted score, threshold=0.3) — all 3 datasets correct\n\n| Dataset | mean_rho | Valid% | adj_score | Decision | Greedy | LP | Gated |\n|---------|----------|--------|-----------|----------|--------|----|-------|\n| SciERC  | 0.178    | 88.5%  | 0.158     | greedy   | 64.42  | 64.65 | 64.42 |\n| CoNLL   | 0.322    | 51.6%  | 0.166     | greedy   | **90.70** | 89.60 | **90.70** |\n| FewNERD | 0.503    | 92.9%  | 0.468     | LP       | 74.78  | **76.66** | **76.66** |\n\n### Threshold Robustness (adjusted score)\n- **thr=0.2, 0.3, 0.4**: all 3 datasets correct\n- thr=0.1: SciERC/CoNLL incorrectly pick LP\n- thr=0.5: FewNERD incorrectly picks greedy\n\n### Probe Size Sensitivity (threshold=0.3, adjusted)\n100% consistency across 10 random seeds for all probe sizes (50–all), all 3 datasets. Even 50 probes suffice for a stable decision.\n\n### Key Insight\nCoNLL's high degeneracy rate (48.4% of instances have constant F1 across all 16 samples) inflates raw rho by only averaging over the non-degenerate half. The adjusted score naturally down-weights this, making it a reliable gating signal.\n\n### Outputs\n- Script: `/root/autodl-tmp/struct_self_consist_ie/code/lp_alignment_gated_selection.py`\n- Results JSON: `/root/autodl-tmp/struct_self_consist_ie/output/prescriptive_analysis/lp_alignment_gated.json`\n- LaTeX table included in the log output"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lp-alignment-gated-selection.md"
+}

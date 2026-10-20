@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbc6461a101cafdb3754",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 027 fewnerd n16",
+  "task_key": "worker_code_exp_027_fewnerd_n16_20260517T052936",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_027_fewnerd_n16_20260517T052936_result.json",
+    "occurrence": 1,
+    "bytes": 503,
+    "sha256": "48facbf39a448e4c01591e8412599ce0d1c46be778144ed80ebbd53ac14024b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成全部提交：\n\n- **数据**: 从 Few-NERD test set (37648条) 随机采样 5000 条 (seed=42)，entity type 分布保持一致\n- **推理**: 4 个 tmux session (`exp027_shard0` ~ `exp027_shard3`)，每个 1250 instances × 16 samples，分别绑定 GPU 0-3\n- **模型**: `qwen3-8b-fewnerd-exp021-merged`\n- **Registry**: `exp_027_fewnerd_n16` 已更新为 RUNNING\n\n当前推理速度 ~70 it/s/GPU，预计 5-8 分钟全部完成。tmux session 名: `exp027_shard{0-3}`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-027-fewnerd-n16.md"
+}

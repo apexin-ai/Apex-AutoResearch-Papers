@@ -1,0 +1,1274 @@
+{
+  "schema_version": "1.0",
+  "id": "3241e4307e7f23eaad3a",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "gpu 5090 launch 3exp",
+  "task_key": "worker_gpu_5090_launch_3exp_20260521T065726",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_gpu_5090_launch_3exp_20260521T065726.jsonl",
+    "occurrence": 1,
+    "bytes": 43388,
+    "sha256": "0783098606ea697d78f66e7d8b927ea36642f55ddea6f29d79dac106305d0ba8"
+  },
+  "statistics": {
+    "messages": 61,
+    "user_turns": 0,
+    "tool_calls": 30,
+    "roles": {
+      "tool_call": 30,
+      "tool_result": 30,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T07:00:49.796673+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T07:00:49.797008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T07:00:49.797197+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "nvidia-smi",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T07:00:49.797351+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/checkpoints/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T07:00:49.797513+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Thu May 21 14:57:44 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:38:00.0 Off |                  N/A |\\\\n| 72%   75C    P1            501W /  575W |   30170MiB /  32607MiB |     80%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA GeForce RTX 5090        On  |   00000000:49:00.0 Off |                  N/A |\\\\n| 68%   75C    P1            439W /  575W |   30080MiB /  32607MiB |     72%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA GeForce RTX 5090        On  |   00000000:5A:00.0 Off |                  N/A |\\\\n| 42%   29C    P8             12W /  575W |       2MiB /  32607MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA GeForce RTX 5090        On  |   00000000:98:00.0 Off |                  N/A |\\\\n| 39%   28C    P8             \n…[truncated 1111 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T07:00:49.797664+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "filters": "{'status': 'PREPARING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T07:00:49.797807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4124\\\\ndrwxr-xr-x 12 root root    4096 May 21 12:36 .\\\\ndrwxr-xr-x 17 root root    8192 May 21 13:13 ..\\\\n-rw-r--r--  1 root root 1102123 May 15 01:03 exp017_train.log\\\\n-rw-r--r--  1 root root 2848354 May 17 00:30 fewnerd_train.log\\\\n-rw-r--r--  1 root root   84498 May 14 14:27 ft_001_train.log\\\\n-rw-r--r--  1 root root   32426 May 18 16:36 llama_fewnerd_train.log\\\\n-rw-r--r--  1 root root   64907 May 18 16:38 llama_fewnerd_train_4gpu.log\\\\ndrwxr-xr-x  2 root root    4096 May 21 08:19 qwen25-32b-fewnerd-merged\\\\ndrwxr-xr-x  5 root root    4096 May 16 03:47 qwen3-4b-scierc-lora\\\\ndrwxr-xr-x  4 root root      91 May 14 20:04 qwen3-8b-conll2003-lora\\\\ndrwx------  2 root root    4096 May 21 13:31 qwen3-8b-conll2003-merged\\\\ndrwxr-xr-x  5 root root    4096 May 18 04:04 qwen3-8b-fewnerd-5epoch-lora\\\\ndrwx------  3 root root    4096 May 21 13:31 qwen3-8b-fewnerd-exp021-merged\\\\ndrwxr-xr-x  3 root root    4096 May 18 10:35 qwen3-8b-scierc-10epoch-lora\\\\ndrwxr-xr-x  3 root root    4096 May 18 09:54 qwen3-8b-scierc-3epoch-lora\\\\ndrwxr-xr-x  5 root root    4096 May 16 18:58 qwen3-8b-scierc-lora-rank8\\\\ndrwxr-xr-x  5 root root    4096 May 14 16:39 qwen3-8b-scierc-lora-v2\\\\n-rw-r--r--  1 root root   26855 May 14 20:11 wnut17_train.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T07:00:49.798243+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_e2_pretrained_conll\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:52:08.180Z\\\", \\\"updated_at\\\": \\\"2026-05-21T05:53:27.266Z\\\", \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on CoNLL SC pipeline N=8 T=1.0. Cross-dataset validation of pre-trained baseline. Together with FewNERD baseline, shows whether fine-tuning modulates the gap magnitude.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2.5-7B-Instruct --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_conll/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"2746\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_conll.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T05:53:26.602Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp_e2_pretrained_fewnerd\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:52:06.559Z\\\", \\\"updated_at\\\": \\\"2026-05-21T05:53:24.800Z\\\", \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on FewNERD SC pipeline N=8 T=1.0. Tests whether correlation-selection gap exists without task-specific fine-tuning. If gap persists → phenomenon is model-intrinsic, not fine-tuning artifact.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --tempera\n…[truncated 18537 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T07:00:49.798477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps -p 2463,2604,2746 -o pid,stat,cmd 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T07:00:49.798625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T07:00:49.798754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps -p 3308,3470 -o pid,stat,cmd",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T07:00:49.798880+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT CMD\\\\n  3308 Rl   VLLM::EngineCore\\\\n  3470 Sl   VLLM::EngineCore\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T07:00:49.799001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/ -maxdepth 3 -name \"config.json\" -path \"*qwen*\" -path \"*7b*\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T07:00:49.799122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T07:00:49.799267+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/.hf_cache/hub/ 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T07:00:49.799385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T07:00:49.799500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tmux list-sessions 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T07:00:49.799614+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T07:00:49.799757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/ -maxdepth 3 -name \"config.json\" -path \"*qwen*7b*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T07:00:49.800017+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T07:00:49.800173+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/.hf_cache/hub/",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T07:00:49.800316+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/.hf_cache/hub/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T07:00:49.800507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tmux list-sessions",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T07:00:49.800650+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T07:00:49.800771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/ -maxdepth 4 -name \"config.json\" -path \"*Qwen2.5*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T07:00:49.800889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T07:00:49.801002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/models/",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T07:00:49.801119+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-7B-Instruct\\\\nQwen3-4B\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T07:00:49.801311+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/models/Qwen2.5-7B-Instruct/",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T07:00:49.801446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T07:00:49.801619+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/models/Qwen2.5-7B-Instruct -name \"config.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T07:00:49.801755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct/config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T07:00:49.801914+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct/",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T07:00:49.802060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LICENSE\\\\nREADME.md\\\\nconfig.json\\\\nconfiguration.json\\\\ngeneration_config.json\\\\nmerges.txt\\\\nmodel-00001-of-00004.safetensors\\\\nmodel-00002-of-00004.safetensors\\\\nmodel-00003-of-00004.safetensors\\\\nmodel-00004-of-00004.safetensors\\\\nmodel.safetensors.index.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T07:00:49.802274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "autodl-5090",
+              "gpu_ids": "['cuda:2']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_conll/\"",
+              "exp_id": "exp_e2_pretrained_conll",
+              "account": "root",
+              "project": "struct_self_consist_ie",
+              "timeout_hours": "24"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T07:00:49.802420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "autodl-5090",
+              "gpu_ids": "['cuda:3']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_fewnerd/\"",
+              "exp_id": "exp_e2_pretrained_fewnerd",
+              "account": "root",
+              "project": "struct_self_consist_ie",
+              "timeout_hours": "24"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T07:00:49.802564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"7939\\\", \\\"log_file\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_conll.log\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"server\\\": \\\"autodl-5090\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"2\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp_e2_pretrained_conll\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T07:00:49.802688+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Failed to submit job: duplicate session: exp_e2_pretrained_fewnerd\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T07:00:49.802839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__kill_job",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T07:00:49.802962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T07:00:49.803077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__kill_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__kill_job",
+            "tool_args": {
+              "server": "autodl-5090",
+              "pid": "exp_e2_pretrained_fewnerd",
+              "reason": "Stale tmux session from previous failed launch; re-launching on cuda:3",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T07:00:49.803221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"exp_e2_pretrained_fewnerd\\\", \\\"reason\\\": \\\"Stale tmux session from previous failed launch; re-launching on cuda:3\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__kill_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T07:00:49.803342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "autodl-5090",
+              "gpu_ids": "['cuda:3']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_fewnerd/\"",
+              "exp_id": "exp_e2_pretrained_fewnerd",
+              "account": "root",
+              "project": "struct_self_consist_ie",
+              "timeout_hours": "24"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T07:00:49.803473+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"8406\\\", \\\"log_file\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_fewnerd.log\\\", \\\"gpu_ids\\\": [\\\"cuda:3\\\"], \\\"server\\\": \\\"autodl-5090\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"3\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp_e2_pretrained_fewnerd\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-21T07:00:49.803620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -20 /root/runs/struct_self_consist_ie/exp_e2_pretrained_conll.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-21T07:00:49.803744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -20 /root/runs/struct_self_consist_ie/exp_e2_pretrained_fewnerd.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-21T07:00:49.803890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"(EngineCore pid=8220) INFO 05-21 14:59:23 [parallel_state.py:1395] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://172.17.0.3:57947 backend=nccl\\\\n(EngineCore pid=8220) INFO 05-21 14:59:24 [parallel_state.py:1717] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A\\\\n(EngineCore pid=8220) INFO 05-21 14:59:24 [gpu_model_runner.py:4481] Starting to load model /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct...\\\\n(EngineCore pid=8220) INFO 05-21 14:59:25 [cuda.py:317] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].\\\\n(EngineCore pid=8220) INFO 05-21 14:59:25 [flash_attn.py:598] Using FlashAttention version 2\\\\n(EngineCore pid=8220) <frozen importlib._bootstrap_external>:1297: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.\\\\n(EngineCore pid=8220) <frozen importlib._bootstrap_external>:1297: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.\\\\n(EngineCore pid=8220) \\\\rLoading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]\\\\n(EngineCore pid=8220) \\\\rLoading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:02,  1.18it/s]\\\\n(EngineCore pid=8220) \\\\rLoading safetensors checkpoint shards:  50% Completed | 2/4 [00:01<00:01,  1.05it/s]\\\\n(EngineCore pid=8220) \\\\rLoading safetensors checkpoint shards:  75% Completed | 3/4 [00:02<00:00,  1.01it/s]\\\\n(EngineCore pid=8220) \\\\rLoading safetensors checkpoint shards: 100% Completed | 4/4 [00:03<00:00,  1.03it/s]\\\\n(EngineCore pid=8220) \\\\rLoading safetensors checkpoint shards: 100% Completed | 4/4 [00:03<00:00,  1.04it/s]\\\\n(EngineCore pid=8220) \\\\n(EngineCore pid=8220)\n…[truncated 832 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-21T07:00:49.804903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 37648 test instances from fewnerd [index 0:None]\\\\n\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u\n…[truncated 36776 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-21T07:00:49.805181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_e2_pretrained_conll",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_conll/\"', 'server': 'autodl-5090', 'gpu': ['cuda:2'], 'pid': '7939', 'log_path': '~/runs/struct_self_consist_ie/exp_e2_pretrained_conll.log', 'data_path': 'data/conll2003/', 'data_count': 3453, 'model_name': 'Qwen2.5-7B-Instruct', 'seed': 42, 'checkpoint_source': 'pretrained_base', 'eval_data': 'conll2003'}"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-21T07:00:49.805360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6862}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-21T07:00:49.805503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_e2_pretrained_fewnerd",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_fewnerd/\"', 'server': 'autodl-5090', 'gpu': ['cuda:3'], 'pid': '8406', 'log_path': '~/runs/struct_self_consist_ie/exp_e2_pretrained_fewnerd.log', 'data_path': 'data/fewnerd/', 'data_count': 37648, 'model_name': 'Qwen2.5-7B-Instruct', 'seed': 42, 'checkpoint_source': 'pretrained_base', 'eval_data': 'fewnerd'}"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-21T07:00:49.805656+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7124}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-21T07:00:49.805817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_e2_pretrained_conll",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-21T07:00:49.805941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_e2_pretrained_fewnerd",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-21T07:00:49.806104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_conll\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:52:08.180Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:00:22.161Z\\\", \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on CoNLL SC pipeline N=8 T=1.0. Cross-dataset validation of pre-trained baseline. Together with FewNERD baseline, shows whether fine-tuning modulates the gap magnitude.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_conll/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"7939\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_conll.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T06:59:13.431Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.789}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-21T07:00:49.806286+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_fewnerd\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:52:06.559Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:00:24.997Z\\\", \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on FewNERD SC pipeline N=8 T=1.0. Tests whether correlation-selection gap exists without task-specific fine-tuning. If gap persists → phenomenon is model-intrinsic, not fine-tuning artifact.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_fewnerd/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"8406\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_fewnerd.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T06:59:29.791Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.9231}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-21T07:00:49.806439+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_e2_pretrained_conll",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_conll/\"', 'server': 'autodl-5090', 'gpu': ['cuda:2'], 'pid': '7939', 'log_path': '~/runs/struct_self_consist_ie/exp_e2_pretrained_conll.log', 'data_path': 'data/conll2003/', 'data_count': 3453, 'model_name': 'Qwen2.5-7B-Instruct', 'seed': 42, 'checkpoint_source': 'pretrained_base', 'eval_data': 'conll2003'}"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-21T07:00:49.806587+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_e2_pretrained_fewnerd",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_fewnerd/\"', 'server': 'autodl-5090', 'gpu': ['cuda:3'], 'pid': '8406', 'log_path': '~/runs/struct_self_consist_ie/exp_e2_pretrained_fewnerd.log', 'data_path': 'data/fewnerd/', 'data_count': 37648, 'model_name': 'Qwen2.5-7B-Instruct', 'seed': 42, 'checkpoint_source': 'pretrained_base', 'eval_data': 'fewnerd'}"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-21T07:00:49.806746+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_conll\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:52:08.180Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:00:33.996Z\\\", \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on CoNLL SC pipeline N=8 T=1.0. Cross-dataset validation of pre-trained baseline. Together with FewNERD baseline, shows whether fine-tuning modulates the gap magnitude.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_conll/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"7939\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_conll.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T06:59:13.431Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained_base\\\", \\\"eval_data\\\": \\\"conll2003\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2447}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-21T07:00:49.806911+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_fewnerd\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:52:06.559Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:00:36.991Z\\\", \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on FewNERD SC pipeline N=8 T=1.0. Tests whether correlation-selection gap exists without task-specific fine-tuning. If gap persists → phenomenon is model-intrinsic, not fine-tuning artifact.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_fewnerd/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"8406\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_fewnerd.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T06:59:29.791Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/fewnerd/\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained_base\\\", \\\"eval_data\\\": \\\"fewnerd\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.7169}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-21T07:00:49.807090+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完毕。汇总：\n\n### GPU 状态 & 启动结果\n\n| GPU | 状态 | 实验 | 备注 |\n|-----|------|------|------|\n| cuda:0 | **占用** | VLLM PID 3308 (30170MiB) | 无法启动 exp_fewnerd_mf4_v2_s456 |\n| cuda:1 | **占用** | VLLM PID 3470 (30080MiB) | 无法启动（原计划 exp_e2_pretrained_fewnerd） |\n| cuda:2 | **已启动** | exp_e2_pretrained_conll (PID 7939) | Qwen2.5-7B-Instruct base, CoNLL, 模型加载中 |\n| cuda:3 | **已启动** | exp_e2_pretrained_fewnerd (PID 8406) | Qwen2.5-7B-Instruct base, FewNERD, 21% 进度 |\n\n### 关键发现\n- **模型路径修正**: 实际路径是 `.../Qwen2___5-7B-Instruct`（ModelScope 用 `___` 替代 `.`），之前 registry 中的路径 `Qwen2.5-7B-Instruct` 可能导致了上次启动失败\n- **exp_fewnerd_mf4_v2_s456** 无法启动 — cuda:0 被 VLLM 占用，需等 VLLM 释放或手动 kill 后再启动"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090_launch_3exp_20260521T065726"
+          },
+          "id": "event-000061"
+        }
+      ],
+      "message_count": 61
+    }
+  ],
+  "readable_path": "readable/conversations/gpu-5090-launch-3exp.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cff5b485dad6baaf7a7c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code 4b conll scs inference prep",
+  "task_key": "worker_code_4b_conll_scs_inference_prep_20260515T190423",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_4b_conll_scs_inference_prep_20260515T190423_result.json",
+    "occurrence": 1,
+    "bytes": 130,
+    "sha256": "9ff485ba502614c88cd557ce9a96e691b35397b5be2d992b0269081dfa2ebe48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志最后一条只到 89.29%，但进程已退出。等待 adapter 检查结果，可能需要进一步排查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-4b-conll-scs-inference-prep.md"
+}

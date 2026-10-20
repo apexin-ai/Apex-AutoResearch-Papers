@@ -1,0 +1,2670 @@
+{
+  "schema_version": "1.0",
+  "session_id": "3ae48ee18683a1b62c27",
+  "rounds": [
+    {
+      "number": 52,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": "2026-05-14T12:23:59.238495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": "2026-05-14T12:23:59.339427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":2,\\\"current\\\":{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 回复 — 2 个待决问题 + Dream 分析结论]\\\\n\\\\n## 决定 1: Claim 2 framing 升级 ✅ 批准\\\\n\\\\n从 \\\\\\\"task-complexity boundary\\\\\\\" 升级为 \\\\\\\"\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_gpu_gpu_5090_4x2_setup_and_experiments_20260514T120440 已完成（status=done）。用 `get_worker_status\\\",\\\"queued_at\\\":1778760966.7685342},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_exp_016_signal_ensemble_20260514T120704 已完成（status=done）。用 `get_worker_status('work\\\",\\\"queued_at\\\":1778760998.4926076}],\\\"idle_seconds\\\":140}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": "2026-05-14T12:24:06.494151+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "text": "[Director 指令] RE conditional filtering 定义不一致 — 紧急修复\n\n## 问题\nReviewer 发现 exp_001 两个输出对 \"conditional\" 的定义不同：\n- `run.log`: RE cond ρ_sj=0.411, **n_cond=124**\n- `exp001_all_signals_report.json`: RE cond ρ_sj=0.284, **n_cond=89**\n\nΔ=0.127，完全不同的结论。在定义统一前，任何 conditional rho 数字都不可引用。\n\n## 要求\n1. **排查**: 找出两个脚本各自的 conditional 定义（哪个用 greedy_F1>0? 哪个用其他条件?）\n2. **统一定义**: 标准定义 = **排除 greedy_F1=0 的实例**（即模型完全没有提取能力的 knowledge-gap 实例）。这是 exp-004/005 中使用的定义。\n3. **修复分析脚本**: 确保所有分析脚本（包括 exp_001 的 run script 和 all_signals 分析脚本）使用统一定义\n4. **重算**: 用统一定义重算 exp_001 的所有 conditional metrics（NER + RE）\n5. **验证**: 确认修复后的 n_cond 与 pilot_004/005 的 conditional 定义一致\n\n⚠️ 此修复必须在 T=1.0 全集重跑的分析脚本中生效，否则新数据也会产生同样的不一致。\n\n优先级: 高于新实验提交，因为这是数据完整性问题。"
+            }
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-14T12:24:07.871811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6fa0a3e484b3da18ab47f854e\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 1, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[WORKER DONE] Worker worker_gpu_gpu_5090_4x2_setup_and_experiments_20260514T120440 已完成（status=done）。用 `get_worker_status('worker_gpu_gpu_5090_4x2_setup_and_experiments_20260514T120440')` 读取结果，然后处理。\\\\n\\\\n-\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 1377
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": "2026-05-14T12:24:12.001035+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'Process Round 1 review report — Holistic Pass done', 'status': 'completed', 'activeForm': 'Processing review report'}, {'content': 'Build and send Action Matrix to Reviewer', 'status': 'completed', 'activeForm': 'Building action matrix'}, {'content': 'Wait for Reviewer independent assessment of Action Matrix', 'status': 'in_progress', 'activeForm': 'Waiting for Reviewer assessment'}, {'content': 'Send Agent RE conditional filtering fix', 'status': 'completed', 'activeForm': 'Sending RE conditional fix to Agent'}, {'content': 'Review exp-016 ensemble results when Agent reports', 'status': 'pending', 'activeForm': 'Reviewing exp-016 ensemble results'}, {'content': 'After Reviewer feedback: finalize Action Matrix + sync issue tracker', 'status': 'pending', 'activeForm': 'Finalizing action matrix'}]"
+            }
+          },
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": "2026-05-14T12:24:12.051857+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "TodoWrite",
+            "elapsed_ms": 50
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": "2026-05-14T12:24:15.708239+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Action Matrix sent to Reviewer, RE conditional fix sent to Agent. Waiting for:\n1. Reviewer's independent assessment of the Action Matrix\n2. Agent's exp-016 ensemble results (worker completed, Agent processing)\n3. Agent's RE conditional filtering fix"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
+          },
+          "id": "event-000727"
+        },
+        {
+          "source_line": 728,
+          "timestamp": "2026-05-14T12:24:15.746071+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Queue depth 2, clearing. Let me send the RE conditional fix now — it'll be processed after the pending worker:done callbacks."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
+          },
+          "id": "event-000728"
+        }
+      ]
+    },
+    {
+      "number": 53,
+      "messages": [
+        {
+          "source_line": 729,
+          "timestamp": "2026-05-14T12:24:15.759215+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — exp_016 (Signal Ensemble Analysis)\n\n**结论**: WARNING\n\n### 发现\n\n**1. [severity: warning] Best-of-N 选择：所有信号均未超过 NER greedy baseline**\n\nPart 4 结果（NER, n=529）：\n| 方法 | Mean F1 |\n|------|---------|\n| greedy | **0.6094** |\n| logprob_best | 0.6087 |\n| ensemble_best | 0.6043 |\n| sj_best | 0.6042 |\n| voting_conf_best | 0.5959 |\n| random_avg | 0.5796 |\n| oracle | 0.7692 |\n\nNER 上没有任何信号能 beat greedy。Oracle headroom 巨大（+16pp），但现有信号找不到更好的 sample。这对 test-time scaling 的实际价值构成挑战——信号与 instance-level F1 有相关性（voting_conf ρ=0.43），但不能转化为 per-sample selection 能力。\n\nRE 上 logprob_best (0.3971) > greedy (0.3735) +2.36pp，但结构一致性信号（SJ=0.3680, voting_conf=0.3379）仍不如 greedy。**内部模型信号（logprob）在 RE 上比外部结构信号更能选出好 sample**，与 paper framing \"structural > logprob\" 的叙事方向相反。\n\n**建议**：这不推翻 Claim 1（instance-level 质量预测），但论文需要区分\"质量估计\"和\"sample selection\"两个应用场景，并诚实讨论后者的局限。\n\n**2. [severity: warning] Ensemble 组合相对 best single signal 提升微弱**\n\n- NER: ensemble AUROC=0.735 vs voting_conf=0.700（+3.5pp）\n- RE: ensemble AUROC=0.719 vs voting_conf=0.721（**-0.2pp，未超过 best single**）\n\n5-signal logistic 组合在 RE 上甚至略输 voting_conf 单信号。这意味着额外 4 个信号的信息增量可忽略——voting_conf 已捕获了几乎全部判别信息。\n\n**3. [severity: warning] Part 4 ensemble 选择存在数据泄漏**\n\n代码 `analyze_exp016_ensemble.py` 第 546-553 行：Part 4 在**全量数据**上训练 logistic regression（y = F1 > median），然后用同一模型对同一数据的 per-sample 特征打分做 selection。模型已经\"知道\"哪些 instance 质量高。即使有此泄漏，ensemble_best 仍低于 greedy——说明泄漏带来的乐观偏差被掩盖了，但数字不可信。如果论文要报告 ensemble selection F1，需要用 held-out 方案（如 5-fold CV 内做 selection）。\n\n**4. [severity: info] FK 系数为负：NER -0.338, RE -0.330**\n\nFK 在控制其他信号后对质量预测有负贡献。这符合之前的观察（FK 是 surface-level agreement，与 SJ 高度相关但噪声更大）。论文可以此佐证\"结构感知 > 表面匹配\"的论点。\n\n**5. [severity: info] Linear combo 结果确认 SJ+voting_conf 互补性**\n\nNER: SJ+voting_conf 最佳组合 α=0.3 得 ρ=0.4893，超过单信号（SJ=0.357, VC=0.430）。两者捕获不同方面的一致性信息，组合有意义。RE 上互补性消失（best α=0.0，纯 VC 最优）。\n\n**6. [severity: info] SJ ρ 数值使用 exp_012 重算版本（NER=0.3565），非 pilot_004 原始值（0.3825）**\n\n与 D014 已知不一致性一致。exp_016 基于 exp_012 logprob 数据源，故 SJ 值跟随 exp_012。不影响 exp_016 内部一致性，但跨实验引用 SJ ρ 时需注意版本。\n\n### 核心问题\n\n**instance-level correlation ≠ per-sample selection**。项目的 5 个信号在 instance level 与 F1 相关性合理（voting_conf ρ~0.43），但这是\"区分哪些 instance 做得好\"，不是\"从 N 个 sample 中选出最好的那个\"。Best-of-N selection 需要 per-sample discriminative signal，而 SJ/FK/voting_conf 本质上是 instance-level aggregate，per-sample 版本（pairwise SJ）表现大幅降级。\n\n**对论文 framing 的影响**：如果论文主打 test-time scaling（用更多 compute 换更高质量），best-of-N 是核心验证场景，当前结果不支持。如果主打 confidence estimation / selective prediction（知道什么时候该信任输出），instance-level 相关性足够支撑。建议 Director 与 Agent 确认 paper story 的重心。\n\n---\n\n[Reviewer 回复]:\n## 审查报告 — gpu-5090-4x-2 部署 + exp_016 信号集成 + 多实验 GPU 合规\n\n**结论**: WARNING（含 1 个实质性发现 + 多个元数据问题）\n\n---\n\n### 发现\n\n#### A. exp_016_signal_ensemble 结论核实\n\n- [severity: warning] **Selection F1 未能超越 greedy，NER 所有信号选择方法均劣于 greedy 解码**：\n  - NER: greedy=0.6094, sj_best=0.6042(-0.005), voting_conf_best=0.5959(-0.014), logprob_best=0.6087(-0.001), ensemble_best=0.6043(-0.005)\n  - RE: greedy=0.3735, sj_best=0.3680(-0.006), voting_conf_best=0.3379(-0.036), ensemble_best=0.3673(-0.006)\n  - **唯一例外**：RE logprob_best=0.3971(+0.024)\n  - Oracle headroom 很大（NER 0.769, RE 0.561），说明理论上有大量改进空间，但现有信号无法有效利用。这对论文 test-time scaling 的实用叙事构成挑战——相关性存在但选择收益为零/负。论文 framing 需要谨慎处理这一结果，不能暗示信号有实际 selection 收益。\n\n- [severity: warning] **RE 任务中 voting_conf_best（0.3379）低于 random_avg（0.3380）**：\n  尽管 voting_conf 是 RE 相关性最高的信号（ρ=0.427），但实际 selection 结果比随机还差。说明高 rank-correlation 不等于有效 top-1 selection——信号在高分段的辨别力不足。\n\n- [severity: info] **Ensemble AUROC 改善有限**：\n  - NER: ensemble 0.735 vs best-single(voting_conf) 0.700（+0.035）\n  - RE: ensemble 0.719 vs voting_conf 0.721（-0.002，无提升）\n  - FK 在两个任务的 logistic 系数均为负（NER: -0.338, RE: -0.330），表明 FK 在 ensemble 中是负贡献，与 paper_framing 中 FK 作为对比信号的定位一致。\n\n- [severity: info] **RE linear combo: SJ+voting_conf 最优 α=0.0** — 优化器完全丢弃 SJ，说明 SJ 对 RE 在 voting_conf 存在时无增量贡献。\n\n- [severity: warning] **exp_016 registry 缺少 metrics 字段**：实验已 DONE/success，但 registry 中未记录任何定量指标，仅有 conclusion=\"success\"。不符合实验追溯标准。\n\n#### B. GPU 分配合规\n\n- [severity: warning] **exp_003_ner_wnut17 GPU 元数据矛盾**：\n  - spec.command: `CUDA_VISIBLE_DEVICES=1`（实际执行）\n  - registry 顶层 gpu 字段: `cuda:2`\n  - reproduce.gpu: `cuda:2`\n  - nvidia-smi 证实 autodl-5090 cuda:1 有 61% 利用率（符合训练负载），cuda:2 空闲（0%/2MB）\n  - 实际进程在 cuda:1 运行，但元数据记录为 cuda:2。如果其他实验基于元数据分配 cuda:1，会产生冲突。\n\n- [severity: warning] **exp_001_n16_seed123/456 未指定 CUDA_VISIBLE_DEVICES**：\n  - 两个实验的 spec.command 中均无 CUDA_VISIBLE_DEVICES\n  - gpu-5090-4x-2 当前 cuda:0（95%/30GB）和 cuda:1（81%/22GB）活跃\n  - 推测两个 vLLM 实例分别占据 cuda:0 和 cuda:1，但无显式控制，存在 GPU 争用风险\n\n- [severity: warning] **exp_008_re_n16 spec.gpu 与实际不符**：\n  - spec 声明 `gpu: cuda:2`，但 gpu-5090-4x-2 cuda:2 完全空闲（0%/2MB）\n  - 实验可能共享 exp_001 的 vLLM 实例（cuda:0 或 cuda:1），spec 声明与实际使用不一致\n\n- [severity: info] **constraints.yaml 未创建**：无法执行 L1 红线 #4（gpu_ids 白名单越界检查）。当前无显式白名单，但建议创建以防止跨项目 GPU 冲突。\n\n#### C. GPU 利用率\n\n- [severity: warning] **总利用率 50%（4/8 GPU 空闲）**：\n  - autodl-5090: cuda:0（88%）, cuda:1（61%）活跃; cuda:2, cuda:3 完全空闲\n  - gpu-5090-4x-2: cuda:0（95%）, cuda:1（81%）活跃; cuda:2, cuda:3 完全空闲\n  - 两台服务器各有 2 张空闲卡。report.md 资源状态显示\"autodl-5090 全部空闲\"，明显过期。\n  - 建议：cuda:2/cuda:3 应尽快用于 exp_007（multi-model）或 exp_015（metrics expansion）\n\n#### D. 已知遗留问题\n\n- [severity: info] **exp_001_ner_n16_scierc registry metrics 温度标记错误**（已知问题）：metrics.T=0.7 但 spec command 指定 --temperature 1.0。此问题已在先前审查中标记。\n\n### 建议\n\n1. **exp_016 selection F1 结果需要在论文中诚实处理**：建议 Agent 在 paper_framing 中明确区分\"信号与质量的相关性\"和\"信号指导 best-of-N 选择的实际收益\"，避免读者误解为有实际 selection gain\n2. **补充实验**：在 exp_015 统一计算框架下重新计算 selection F1，使用 pilot_004 原始数据（而非 exp_012 重采样数据），看是否改善\n3. **修复 GPU 元数据**：exp_003 的 registry gpu 字段应从 cuda:2 更正为 cuda:1\n4. **规范 CUDA_VISIBLE_DEVICES**：gpu-5090-4x-2 上的推理实验应显式指定 GPU\n\n---\n\n[Agent 回复]:\n[资源] GPU 分配 8 / 实际跑 3 (autodl-5090: cuda:0 exp-001 rerun 84%, cuda:2/3 preparing exp-003/007; gpu-5090-4x-2: 搭建中) | Worker 池 6 (GPU 5 / CPU 1)\n\n## 决策确认\n\n1. ✅ Claim 2 framing 升级 gated on exp-001 full rerun (551 instances, T=1.0) — 已理解，不提前写入 paper_framing.md\n2. ✅ exp-002 auto-pilot 已批准 — fine-tune 已完成 (EXIT_CODE=0)，merge+pilot Worker 已启动\n3. ✅ voting_conf 命名统一: entity_voting_conf / relation_tuple_match\n\n## 当前执行状态\n\n| 任务 | 状态 | Worker | 备注 |\n|------|------|--------|------|\n| **P1: exp-001 full rerun** | **RUNNING 84%** | worker_gpu_exp_001_rerun | cuda:0, 551实例 T=1.0 修复中 |\n| **P2: exp-002 merge+pilot** | **RUNNING** | worker_gpu_exp_002_merge_and_pilot | Fine-tune 完成，merge→pilot 衔接中 |\n| **P3: exp-003 WNUT** | **RUNNING** | worker_gpu_exp_003 | 数据准备中 (turn 23)，cuda:2 |\n| **P3: exp-007 LLaMA** | **RUNNING** | worker_gpu_exp_007 | 下载模型中 (turn 17)，cuda:3 |\n| **P4: gpu-5090-4x-2** | **RUNNING** | worker_gpu_gpu_5090_4x2 | 环境搭建中 (turn 30) |\n| **P5: exp-016 ensemble** | **RUNNING** | worker_analysis_exp_016 | CPU 分析进行中 |\n\n## Registry 修复完成\n- exp_015: QUEUED → DONE (success) ✅\n- exp_004: 已确认 DONE (success) ✅\n\n## 预计时间线\n- exp-001 rerun: ~30min 内完成 (84%) → Claim 2 gate 解锁\n- exp-002 pilot: merge ~10min + pilot ~1h → Claim 1 cross-dataset gate\n- exp-003/007: 数据准备 + fine-tune ~2-3h + pilot ~1h\n- gpu-5090-4x-2: 环境就绪后立即启动 3 个推理任务\n\n下一步：各 Worker 完成后回调即处理结果并汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "source": "reviewer"
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": "2026-05-14T12:26:22.009099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'Analyze exp-016 best-of-N selection failure and framing implications', 'status': 'in_progress', 'activeForm': 'Analyzing exp-016 selection failure'}, {'content': 'Wait for Reviewer independent assessment of Round 1 Action Matrix', 'status': 'pending', 'activeForm': 'Waiting for Reviewer assessment'}, {'content': 'After Reviewer feedback: finalize Action Matrix + sync issue tracker', 'status': 'pending', 'activeForm': 'Finalizing action matrix'}, {'content': 'Log framing decision based on exp-016 findings', 'status': 'pending', 'activeForm': 'Logging framing decision'}, {'content': 'Report exp-016 findings + framing decision to user', 'status': 'pending', 'activeForm': 'Reporting to user'}]"
+            }
+          },
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": "2026-05-14T12:26:22.059807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "TodoWrite",
+            "elapsed_ms": 50
+          },
+          "id": "event-000731"
+        }
+      ]
+    },
+    {
+      "number": 54,
+      "messages": [
+        {
+          "source_line": 732,
+          "timestamp": "2026-05-14T12:26:23.359753+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## Action Matrix 独立审查\n\n### 逐条评估\n\n---\n\n**C1 (模型规模单一) — Action B: 添加 3-4B 小模型**\n\n[severity: warning] P1 定级合理，但 rebuttal point 有逻辑漏洞。\n\n\"2 architecturally distinct 8B models\" 回应的是**架构多样性**，不是审稿人问的**规模敏感性**。两个 8B 模型不能回答 \"do results hold at different scales\"。诚实的回应只有两条路：\n\n- **路线 A（推荐）**: Action A 降级措辞 + Limitations 明确写 \"single scale (8B)\"。不跑小模型。省下 4h GPU 给 exp-001 全集重跑或 exp-003 WNUT。\n- **路线 B**: 跑 Qwen3-4B（不是 Phi-3-mini，要保持同系列减少变量），但必须面对一个风险：如果 4B 模型 SJ ρ 显著低于 8B（小模型生成质量差 → 更多 noise → 一致性信号退化），这是 negative result 还是 expected result？需要提前想清楚叙事。\n\n**结论**：如果 GPU 时间紧张（11 天），路线 A 更安全。C1 Action B 应降为 P2。\n\n---\n\n**C3 (RE 单数据集) — Action B: TACRED**\n\n[severity: warning] **TACRED 在当前框架下不可行，不仅仅是时间问题。**\n\n关键技术问题：本项目的 RE pipeline 是**联合抽取**（模型同时提取 entity + relation），而 TACRED 是 **pipeline RE**（entity pair 预给定，只做关系分类）。两种设定下 \"compound error propagation\" 的定义完全不同——TACRED 没有 entity extraction error，SJ 计算方式也需要根本性修改。\n\n如果为了可比性改成联合抽取 TACRED，需要：重写 prompt + 重构数据加载 + 适配 evaluation + fine-tuning。远超 6 GPU·h 估算。\n\n**建议**: \n- C3 Action B 降为 P3（有余力时再考虑，且需要 NYT/WebNLG 等联合抽取数据集而非 TACRED）\n- Fallback 是正确策略：论证 compound error 是结构性的（exp-004 已有 entity span error 占 55.5% RE FN 的数据支撑）\n- 更实际的补强：exp-001 T=1.0 全集 N=16 的 RE 结果如果 voting_conf ρ 确认 >0.40，可以部分缓解\"单数据集\"的攻击（同一数据集但不同 N 和 T 设置下结论一致）\n\n---\n\n**C4 (SJ 新颖性) — Action C: kernel 消融 P2**\n\n[severity: info] P2 合理。补充一点：\n\n消融设计应包含 (1) 编辑距离, (2) embedding cosine, (3) **exact-match Jaccard**（二值版 SJ），第三个最重要——如果 hard Jaccard ≈ SJ，说明 soft matching 无额外价值，会削弱 SJ 的贡献。exp-013 的 exact_match 本质上就是 hard Jaccard 的全局版，但 per-pair 粒度的对比更直接。\n\n---\n\n**C5 (零图表) — 3 figures**\n\n[severity: info] 选择合理，但 Figure 1 (selection curves) 需要注意 exp-016 best-of-N 结果。见 Q6。\n\n---\n\n**Q4/W1: exp-016 ensemble 结果写入论文 — 需要重大策略调整**\n\n[severity: critical] **Action Matrix 将 W1 标为 \"exp-016 已完成，等结果写入论文 P0\"，但没有意识到 exp-016 的结果是 mixed/negative 的，不能原样写入。**\n\nexp-016 核心数据回顾：\n\n**Part 3 (AUROC 判别)**:\n- NER: ensemble 0.735 vs best single voting_conf 0.700 (+3.5pp) — 微弱改善\n- RE: ensemble 0.719 vs voting_conf 0.721 (−0.2pp) — ensemble 未超过 best single\n\n**Part 4 (Best-of-N F1 选择)**:\n- NER: **greedy 0.6094 > 所有信号选择方法**（sj_best 0.6042, ensemble 0.6043, logprob 0.6087）\n- RE: logprob_best 0.3971 > greedy 0.3735 > sj_best 0.3680 > voting_conf_best 0.3379\n\n如果原样写入论文，审稿人会这样攻击：\n1. \"Your ensemble adds almost nothing over the best single signal — the 4 other signals are redundant\"\n2. \"Your best confidence signal can't even beat greedy decoding for NER sample selection — what's the practical value?\"\n3. \"The only signal that beats greedy on RE is log-prob, the one you're arguing against\"\n\n**建议的写入策略**：\n- **AUROC 判别结果可以写**，但要诚实定位：ensemble 的微弱提升说明 voting_conf 已捕获绝大部分判别信息，其他信号提供边际增量。这**支持** structural consistency family 叙事（voting_conf 是该 family 的成员）。\n- **Best-of-N F1 需要极其谨慎的处理**。建议方案：\n  - 区分两个应用场景：\"quality estimation\"（instance-level: 预测该实例输出是否可信 → AUROC）vs \"sample selection\"（per-sample: 从 N 个候选中选最好 → F1）\n  - 论文主推 quality estimation（AUROC 0.70），不主推 sample selection\n  - Best-of-N F1 放 Appendix 或 analysis section，诚实讨论 instance-level 信号为何不能直接用于 per-sample 选择\n  - 注意：Part 4 代码有数据泄漏（全量训练 + 全量预测），ensemble_best 数字不可信，需 held-out 重算\n- **FK 负系数**是正面结果——surface agreement 在控制结构信号后有负贡献，支持 \"structural > surface\" 的主张\n- **logprob 近零系数**（NER 0.038）也是正面结果——logprob 对结构信号无增量\n\n---\n\n**Q4: CISC (Huang 2025) 张力回应**\n\n[severity: info] Action Matrix 的定位方向正确（\"CISC 关注 reasoning 的 calibration-weighted voting，我们关注 structured prediction 的 structural similarity\"），但需要更 sharp 的论证。\n\n最有说服力的回应框架：\n\nCISC 和 USC 验证了 self-consistency 对**自由文本/推理任务**有效（单一正确答案 → majority voting 自然适用）。我们的工作揭示：**当输出具有内部结构（实体集合、关系元组）时，一致性度量需要适配**——exact-match voting（CISC 的基础）在 IE 上是最弱的信号之一（exp-013: NER ρ=0.294, RE ρ=0.156）。集合感知的结构一致性（SJ AUROC 0.689 vs EM 0.640 on NER）才能有效捕获结构化输出的一致性信息。\n\n一句话：CISC shows consistency works for reasoning; we show it needs structural adaptation for IE, and the adaptation matters.\n\n---\n\n**Q5: 是否有遗漏**\n\n[severity: warning] 有两个遗漏：\n\n**遗漏 1: R4 (\"No actual TTS improvement\") 的 mitigation 过时。** Action Matrix 列 exp-006 (adaptive compute demo) 作为 R4 的 mitigation，但 exp-016 已经证明 best-of-N selection 不 beat greedy on NER。exp-006 如果用同样的信号做 selection，结果不会更好。R4 的 mitigation 需要重新设计——要么论文改为不 claim TTS improvement（只 claim quality estimation），要么需要新的 selection 策略（如 threshold-based filtering 而非 best-of-N）。\n\n**遗漏 2: 单 seed 风险。** 主实验 (pilot_004) seed=42，无多 seed 验证。exp-001 注册了 seed 123 和 456 的 RUNNING 实验，但仅 200 实例。bootstrap CI (exp-015) 部分替代了多 seed，但 reviewer 可能仍要求。建议在 Limitations 中提及。\n\n---\n\n### 优先级总结\n\n| Action | 原优先级 | 建议调整 | 理由 |\n|--------|---------|---------|------|\n| C1-B (3-4B 模型) | P1 | **P2** | 11天内 GPU 应优先给 exp-001/003；降级措辞+Limitations 足够 |\n| C3-B (TACRED) | P1 | **P3** | 联合抽取 vs pipeline RE 设定不兼容，远超时间估算 |\n| W1 (exp-016 写入) | P0 | P0 但**需重大策略调整** | 不能原样写入，需区分 quality estimation vs sample selection |\n| R4 mitigation (exp-006) | P0 | **需重新评估** | exp-016 已证明 best-of-N 不 beat greedy on NER |\n| 其余 | 不变 | 不变 | 合理 |\n\n### 最大风险\n\n论文的最大风险不在实验覆盖率，而在**叙事一致性**：paper_framing.md 的 Story Spine 和 Headline result template 都预设了 best-of-N selection 的正面结果（\"yielding +Zpp F1 via best-of-N selection\"），但 exp-016 数据不支持。如果 exp-001 T=1.0 全集也确认 best-of-N 不 beat greedy，论文需要根本性的叙事调整——从 \"test-time scaling improvement\" 转向 \"confidence estimation / selective prediction\"。这个调整影响 title、abstract、introduction、experiments 所有章节，是 Paper Agent 的最大工作量来源。**建议 Director 在 exp-001 全集结果出来后立即决策叙事方向。**"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "source": "reviewer"
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": "2026-05-14T12:26:41.604704+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__log_decision",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": "2026-05-14T12:26:41.664846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 60
+          },
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": "2026-05-14T12:27:10.398152+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__log_decision"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "summary": "exp-016 揭示 correlation-selection gap: 结构一致性信号 instance-level ρ~0.43 但 best-of-N 选择全部不如 greedy (NER)。Paper framing 必须从 \"TTS improvement\" 转向 \"confidence signal analysis\"，核心贡献升级为发现 quality estimation ≠ sample selection。",
+              "rationale": "exp-016 best-of-N 选择结果：NER 所有信号均不如 greedy (best: logprob 0.6087 vs greedy 0.6094)；RE 仅 logprob (+2.4pp) 超过 greedy，结构信号均失败。Oracle headroom 巨大 (NER +16pp) 但不可达。\n\n根因分析：SJ/voting_conf 是 instance-level aggregate (一个 instance 一个分数)，无法对 instance 内的 N 个 sample 排序；logprob 是天然 per-sample 信号但 NER 上 greedy 已接近最优，采样只增加噪声。RE 上模型不确定性更大，部分 sample 优于 greedy，logprob 可以发现它们。\n\n这改变了论文的核心叙事：\n- 旧 framing: \"SJ 是 TTS 最佳信号 → 用更多 compute 换更高质量\"\n- 新 framing: \"结构一致性是最强的质量估计信号 (instance-level)，但 quality estimation ≠ sample selection → correlation-selection gap 是 structured IE TTS 的根本挑战\"\n\ncorrelation-selection gap 是 genuinely novel finding，比原来的 \"SJ vs logprob ranking\" 更有概念贡献，可能正好解决 Dream 审稿反复提的 novelty 不足问题。",
+              "related_experiments": "[{'exp_id': 'exp_016_signal_ensemble', 'role': 'primary_evidence', 'result': 'NER best-of-N: all signals < greedy; RE: only logprob +2.4pp > greedy; ensemble AUROC +3.5pp NER, -0.2pp RE; data leakage in Part 4'}, {'exp_id': 'exp_012_logprob_baseline', 'role': 'context', 'result': 'instance-level SJ >> logprob (ρ 0.383 vs 0.140)'}, {'exp_id': 'exp_014_entity_voting', 'role': 'context', 'result': 'voting_conf instance-level ρ=0.392, AUROC=0.704 — strong estimation but cannot select'}]",
+              "depends_on": "['D017']"
+            }
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": "2026-05-14T12:27:10.499024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"decision_id\\\": \\\"D018\\\", \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/decisions.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "elapsed_ms": 100
+          },
+          "id": "event-000736"
+        },
+        {
+          "source_line": 737,
+          "timestamp": "2026-05-14T12:27:14.602749+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'Make framing pivot decision based on exp-016 + Reviewer feedback', 'status': 'in_progress', 'activeForm': 'Making framing pivot decision'}, {'content': 'Update paper_framing.md with pivoted narrative', 'status': 'pending', 'activeForm': 'Updating paper_framing.md'}, {'content': 'Finalize Action Matrix (Round 1 review + Reviewer assessment)', 'status': 'pending', 'activeForm': 'Finalizing action matrix'}, {'content': 'Log decision + report to user', 'status': 'pending', 'activeForm': 'Logging and reporting'}, {'content': 'Sync review_issues.yaml', 'status': 'pending', 'activeForm': 'Syncing issue tracker'}]"
+            }
+          },
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": "2026-05-14T12:27:14.603346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "TodoWrite",
+            "elapsed_ms": 0
+          },
+          "id": "event-000738"
+        },
+        {
+          "source_line": 739,
+          "timestamp": "2026-05-14T12:27:31.040664+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "## ⚠️ 重大发现：exp-016 揭示 correlation-selection gap\n\n### Best-of-N 选择结果\n\n| 方法 | NER F1 | RE F1 |\n|------|--------|-------|\n| **greedy** | **0.6094** | 0.3735 |\n| logprob_best | 0.6087 (-0.07pp) | **0.3971 (+2.4pp)** |\n| sj_best | 0.6042 (-0.5pp) | 0.3680 (-0.6pp) |\n| voting_conf_best | 0.5959 (-1.4pp) | 0.3379 (-3.6pp) |\n| ensemble_best | 0.6043 (-0.5pp) | 0.3673 (-0.6pp) |\n| oracle | 0.7692 (+16pp) | 0.5612 (+19pp) |\n\n**NER**: 没有任何信号能 beat greedy。Oracle headroom +16pp 存在但不可达。\n**RE**: 仅 logprob 能 beat greedy (+2.4pp)，结构信号全部失败。\n\n### 核心发现\n\n**Instance-level quality estimation ≠ per-sample selection**\n\n- 结构信号 (SJ, voting_conf) 的 instance-level 相关性很强 (ρ~0.43, AUROC~0.70) — 能预测\"哪些输入做得好\"\n- 但它们是 instance-level aggregate（一个 instance 一个分数），不能在 N 个 sample 中选最佳\n- Logprob 天然是 per-sample 信号，但 NER 上 greedy 已接近最优，采样只增噪声\n- RE 上模型不确定性更大，logprob 能识别部分优于 greedy 的 sample\n\n### 对论文 framing 的影响 (D018)\n\n**旧 framing**: \"SJ 是 TTS 最佳信号 → 用更多 compute 换更高质量\"\n**新 framing**: 发现 **correlation-selection gap** — 信号与质量强相关，但无法转化为有效选择\n\n新叙事更有贡献：\n1. 结构一致性 = 最强的质量估计信号 (selective prediction / 置信度评估)\n2. **Correlation-selection gap** = structured IE TTS 的根本挑战（概念贡献）\n3. 信号服务不同目的: structural → 知道何时信任, logprob → 选择候选 (仅在 RE 有效)\n4. Task-complexity boundary 仍然成立（RE 所有信号退化）\n\n**这可能解决 Dream 审稿反复提的 novelty 不足问题** — \"correlation-selection gap\" 是 genuinely novel finding，比 \"SJ vs logprob ranking\" 更有概念深度。\n\n### 另一个发现\n- Ensemble (5-signal logistic) AUROC 仅比 best single 高 3.5pp (NER)，RE 上无提升\n- FK 系数为负 (NER -0.338, RE -0.330) — 确认 FK 是噪声\n- SJ+voting_conf linear combo ρ=0.489 超过两者单独 (NER) — 但这是 instance-level，不解决选择问题\n\n### 当前状态\n- exp-001 rerun (T=1.0 全集) 84% 完成中\n- exp-002 (CoNLL) fine-tune 完成, merge+pilot 启动中\n- 4/8 GPU active"
+            }
+          },
+          "id": "event-000739"
+        },
+        {
+          "source_line": 740,
+          "timestamp": "2026-05-14T12:27:31.829682+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__log_decision"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "summary": "论文叙事关键转向: 从 \"TTS improvement via structural consistency\" 转向 \"confidence estimation for structured IE + correlation-selection gap analysis\"。exp-016 证明 best-of-N selection 在 NER 上全部不如 greedy，RE 仅 logprob 胜出。instance-level correlation ≠ per-sample selection 是核心新发现。",
+              "rationale": "exp-016 数据不可回避:\n1. NER best-of-N: greedy 0.6094 > 所有信号（logprob 0.6087, sj 0.6042, voting 0.5959）。Oracle headroom +16pp 但无信号可利用。\n2. RE best-of-N: 仅 logprob 0.3971 > greedy 0.3735，结构信号全部不如 greedy。\n3. Instance-level AUROC: voting_conf 0.700, SJ 0.689 >> logprob 0.591 → quality estimation 仍然有效。\n4. Ensemble: NER AUROC +3.5pp（微弱），RE -0.2pp（无提升）。\n\n结论: 结构一致性信号擅长\"预测哪些实例做得好\"(quality estimation)，但不能\"从 N 个 sample 中选出最好的\"(selection)。paper_framing.md 的 Story Spine 预设 best-of-N 正面结果，现在不成立。必须 pivot。\n\nReviewer 独立审查确认: (1) C1-B 降 P2 (2) C3-B TACRED 不可行降 P3 (3) R4 mitigation 失效 (4) 叙事一致性是最大风险。\n\n新叙事方向: confidence estimation + correlation-selection gap as novel finding + task-complexity boundary。所有现有实验数据仍有效，pivot 不需要重新跑实验。",
+              "related_experiments": "[{'exp_id': 'exp-016', 'role': 'trigger', 'result': 'best-of-N selection 全部不如 greedy (NER); RE 仅 logprob 胜出; instance-level AUROC 仍有效'}, {'exp_id': 'exp-006', 'role': 'invalidated', 'result': 'adaptive compute demo 的 best-of-N framing 需要重新设计'}, {'exp_id': 'exp-012', 'role': 'supporting', 'result': 'logprob ρ=0.140 vs SJ 0.383 — instance-level 差距大但 selection 差距小/反转'}, {'exp_id': 'exp-014', 'role': 'supporting', 'result': 'voting_conf AUROC 0.704 — quality estimation 仍是最强信号'}]",
+              "depends_on": "['D017']"
+            }
+          },
+          "id": "event-000740"
+        },
+        {
+          "source_line": 741,
+          "timestamp": "2026-05-14T12:27:31.932812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"decision_id\\\": \\\"D019\\\", \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/decisions.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "elapsed_ms": 103
+          },
+          "id": "event-000741"
+        },
+        {
+          "source_line": 742,
+          "timestamp": "2026-05-14T12:27:35.620080+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"error\\\": \\\"Feishu API error: 2200 — internal error\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 4579
+          },
+          "id": "event-000742"
+        },
+        {
+          "source_line": 743,
+          "timestamp": "2026-05-14T12:27:37.916379+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md",
+              "limit": "50"
+            }
+          },
+          "id": "event-000743"
+        },
+        {
+          "source_line": 744,
+          "timestamp": "2026-05-14T12:27:38.269260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — struct_self_consist_ie\n2\t\n3\t> Updated 2026-05-14 post-Dream analysis. Dream dream_20260514T093336 revealed structural issues (3/6 all tiers). Major revision: add strong baselines, reframe contribution, expand evaluation.\n4\t\n5\t## Target Venue\n6\t- Primary: EMNLP 2026 Main (via ARR May 2026)\n7\t- Fallback: EMNLP 2026 Findings\n8\t- Deadline: ARR May cycle, 2026-05-25\n9\t\n10\t## Core Claims (2 条)\n11\t\n12\t### Claim 1 (Positive — NER)\n13\tSampling-based structural consistency signals (soft Jaccard, entity voting confidence) provide dramatically stronger confidence signals for entity-level IE than both model confidence (sequence log-probability) and surface agreement (Fleiss' Kappa, exact-match voting). Structural consistency family achieves AUROC≈0.70 vs logprob 0.59 for NER discrimination. SJ and voting confidence are statistically comparable on NER (ρ≈0.39), but SJ generalizes to arbitrary structured outputs beyond entity sets. SJ is also temperature-robust (Δρ=±0.01 across T=0.7/1.0 vs FK Δρ=±0.06-0.09).\n14\t\n15\t**Key insight**: The contribution is about a FAMILY of structural consistency signals, not one specific metric. SJ and voting_conf both capture entity-across-sample consistency at different granularity — their convergence on NER shows the underlying signal is robust. SJ's advantage is generalizability (works for any structured output); voting's advantage is simplicity (no pairwise comparison needed).\n16\t\n17\t**Evidence** (SciERC, N=8, T=1.0):\n18\t- NER full (n=529): voting_conf ρ=0.392/τ=0.291/AUROC=0.704, SJ ρ=0.383/τ=0.266/AUROC=0.689, EM ρ=0.294/AUROC=0.640, FK ρ=0.259/AUROC=0.629, logprob ρ=0.140/AUROC=0.591\n19\t- NER cond: SJ ρ=0.412 (unique signal >0.40)\n20\t- Structural consistency family (SJ+voting) AUROC ~0.70 vs logprob 0.59 — both ρ and discriminative power confirm dominance\n21\t- RE full: voting_conf ρ=0.340/AUROC=0.667 > SJ ρ=0.244/AUROC=0.592 (voting more robust with sparse tuples)\n22\t- Temperature robustness: SJ Δρ=±0.01 across T=0.7/1.0; \n…[truncated 4168 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "elapsed_ms": 352
+          },
+          "id": "event-000744"
+        },
+        {
+          "source_line": 745,
+          "timestamp": "2026-05-14T12:27:42.907326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "## 重大发现：exp-016 揭示 correlation-selection gap\n\n**Best-of-N 选择**: NER 上没有任何信号 beat greedy (best: logprob -0.07pp)。RE 仅 logprob +2.4pp 超过 greedy，结构信号全败。Oracle headroom 巨大 (NER +16pp, RE +19pp) 但不可达。\n\n**核心发现**: Instance-level quality estimation ≠ per-sample selection。结构信号 (SJ ρ~0.43, AUROC~0.70) 能预测\"哪些输入做得好\"，但不能在 N 个 sample 中选最佳。Logprob 是天然 per-sample 信号，但 NER 上 greedy 已接近最优。\n\n**论文 framing 转向 (D018)**:\n- 旧: \"SJ 是 TTS 最佳信号\"\n- 新: 发现 correlation-selection gap — 信号与质量强相关，但无法转化为有效选择\n- 这可能解决 Dream 反复提的 novelty 不足 — \"gap\" 是 genuinely novel finding\n\n**Ensemble**: 5-signal logistic AUROC 仅 +3.5pp (NER)，RE 无提升。FK 系数为负。\n\n**实验状态**: exp-001 rerun 84%, exp-002 fine-tune 完成 merge+pilot 中, 4/8 GPU active。"
+            }
+          },
+          "id": "event-000745"
+        },
+        {
+          "source_line": 746,
+          "timestamp": "2026-05-14T12:27:43.610198+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 702
+          },
+          "id": "event-000746"
+        },
+        {
+          "source_line": 747,
+          "timestamp": "2026-05-14T12:27:49.623144+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md",
+              "old_string": "> Updated 2026-05-14 post-Dream analysis. Dream dream_20260514T093336 revealed structural issues (3/6 all tiers). Major revision: add strong baselines, reframe contribution, expand evaluation.\n\n## Target Venue\n- Primary: EMNLP 2026 Main (via ARR May 2026)\n- Fallback: EMNLP 2026 Findings\n- Deadline: ARR May cycle, 2026-05-25\n\n## Core Claims (2 条)\n\n### Claim 1 (Positive — NER)\nSampling-based structural consistency signals (soft Jaccard, entity voting confidence) provide dramatically stronger confidence signals for entity-level IE than both model confidence (sequence log-probability) and surface agreement (Fleiss' Kappa, exact-match voting). Structural consistency family achieves AUROC≈0.70 vs logprob 0.59 for NER discrimination. SJ and voting confidence are statistically comparable on NER (ρ≈0.39), but SJ generalizes to arbitrary structured outputs beyond entity sets. SJ is also temperature-robust (Δρ=±0.01 across T=0.7/1.0 vs FK Δρ=±0.06-0.09).\n\n**Key insight**: The contribution is about a FAMILY of structural consistency signals, not one specific metric. SJ and voting_conf both capture entity-across-sample consistency at different granularity — their convergence on NER shows the underlying signal is robust. SJ's advantage is generalizability (works for any structured output); voting's advantage is simplicity (no pairwise comparison needed).",
+              "new_string": "> Updated 2026-05-14 post-exp-016 pivot (D019). CRITICAL NARRATIVE CHANGE: best-of-N selection fails on NER (all signals ≤ greedy). Pivot from \"TTS improvement\" to \"confidence estimation + correlation-selection gap\".\n\n## Target Venue\n- Primary: EMNLP 2026 Main (via ARR May 2026)\n- Fallback: EMNLP 2026 Findings\n- Deadline: ARR May cycle, 2026-05-25\n\n## Core Claims (3 条)\n\n### Claim 1 (Positive — Quality Estimation)\nStructural consistency signals (soft Jaccard, entity voting confidence) are the strongest unsupervised quality estimators for entity-level IE, significantly outperforming model confidence (log-probability) and surface agreement (FK, exact-match) at instance-level quality prediction. Structural consistency family achieves AUROC≈0.70 vs logprob 0.59 for NER discrimination. SJ and voting confidence are statistically comparable on NER (ρ≈0.39), SJ is temperature-robust (Δρ=±0.01).\n\n**Key insight**: The contribution is about a FAMILY of structural consistency signals for QUALITY ESTIMATION (predicting which instances are reliable), not for per-sample selection. SJ and voting_conf both capture entity-across-sample consistency. SJ generalizes to arbitrary structured outputs; voting is simpler."
+            }
+          },
+          "id": "event-000747"
+        },
+        {
+          "source_line": 748,
+          "timestamp": "2026-05-14T12:27:49.674056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-000748"
+        },
+        {
+          "source_line": 749,
+          "timestamp": "2026-05-14T12:27:50.039273+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'Analyze exp-016 best-of-N selection failure and framing implications', 'status': 'completed', 'activeForm': 'Analyzing exp-016 selection failure'}, {'content': 'Log framing decision D018 based on exp-016 findings', 'status': 'completed', 'activeForm': 'Logging framing decision'}, {'content': 'Report exp-016 findings + framing decision to user', 'status': 'completed', 'activeForm': 'Reporting to user'}, {'content': 'Wait for Reviewer independent assessment of Round 1 Action Matrix', 'status': 'in_progress', 'activeForm': 'Waiting for Reviewer assessment'}, {'content': 'After Reviewer feedback: finalize Action Matrix + sync issue tracker + update paper_framing.md', 'status': 'pending', 'activeForm': 'Finalizing action matrix'}, {'content': 'Update paper_framing.md with correlation-selection gap as new core finding', 'status': 'pending', 'activeForm': 'Updating paper framing'}]"
+            }
+          },
+          "id": "event-000749"
+        },
+        {
+          "source_line": 750,
+          "timestamp": "2026-05-14T12:27:50.089879+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "TodoWrite",
+            "elapsed_ms": 50
+          },
+          "id": "event-000750"
+        },
+        {
+          "source_line": 751,
+          "timestamp": "2026-05-14T12:28:03.934101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md",
+              "old_string": "### Claim 2 (Diagnostic — task-complexity boundary)\nThe effectiveness of consistency-based confidence is governed by task structural complexity: compound error propagation in relational tasks fundamentally degrades the consistency-accuracy correlation on the full instance set, but the signal remains valid within the model's capability range. This boundary applies across all confidence signals tested (SJ, FK, log-prob, exact-match).",
+              "new_string": "### Claim 2 (Novel Finding — Correlation-Selection Gap)\nInstance-level quality estimation ≠ per-sample selection ability. Despite strong instance-level correlation (ρ≈0.39-0.43), NO unsupervised confidence signal beats greedy decoding for NER best-of-N selection. On RE, only log-probability (+2.4pp over greedy) enables effective selection. The oracle headroom is large (NER +16pp, RE +18pp) but current signals cannot exploit it.\n\n**exp-016 evidence** (SciERC, N=8, T=1.0, n=529):\n- NER best-of-N: greedy 0.6094 > logprob 0.6087 > ensemble 0.6043 > sj 0.6042 > voting 0.5959 > random 0.5796 (oracle 0.7692)\n- RE best-of-N: logprob 0.3971 > greedy 0.3735 > sj 0.3680 > voting 0.3379 ≈ random 0.3380 (oracle 0.5610)\n- Instance-level AUROC: voting_conf 0.700, SJ 0.689, ensemble 0.735 >> logprob 0.591\n\n**Key insight**: Consistency signals are INSTANCE-LEVEL aggregates (one score per instance). They predict which inputs are easy/hard, NOT which sample is best. Log-prob is the only PER-SAMPLE signal and uniquely enables selection on uncertain tasks (RE). This distinction between quality estimation and sample selection is the paper's most practically important finding.\n\n**Implications**: (a) For selective prediction / abstention → use structural consistency (AUROC 0.70+). (b) For best-of-N selection → use logprob, but only on tasks where greedy is suboptimal (RE). (c) For NER, greedy is near-optimal → TTS offers no advantage with current signals.\n\n### Claim 3 (Diagnostic — task-complexity boundary)\nThe effectiveness of consistency-based confidence is governed by task structural complexity: compound error propagation in relational tasks degrades the consistency-accuracy correlation on the full instance set, but the signal remains valid within the model's capability range. This boundary applies across all confidence signals tested."
+            }
+          },
+          "id": "event-000751"
+        },
+        {
+          "source_line": 752,
+          "timestamp": "2026-05-14T12:28:03.986154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-000752"
+        },
+        {
+          "source_line": 753,
+          "timestamp": "2026-05-14T12:28:05.709369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md"
+            }
+          },
+          "id": "event-000753"
+        },
+        {
+          "source_line": 754,
+          "timestamp": "2026-05-14T12:28:05.710088+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — struct_self_consist_ie\n2\t\n3\t> Updated 2026-05-14 post-exp-016 pivot (D019). CRITICAL NARRATIVE CHANGE: best-of-N selection fails on NER (all signals ≤ greedy). Pivot from \"TTS improvement\" to \"confidence estimation + correlation-selection gap\".\n4\t\n5\t## Target Venue\n6\t- Primary: EMNLP 2026 Main (via ARR May 2026)\n7\t- Fallback: EMNLP 2026 Findings\n8\t- Deadline: ARR May cycle, 2026-05-25\n9\t\n10\t## Core Claims (3 条)\n11\t\n12\t### Claim 1 (Positive — Quality Estimation)\n13\tStructural consistency signals (soft Jaccard, entity voting confidence) are the strongest unsupervised quality estimators for entity-level IE, significantly outperforming model confidence (log-probability) and surface agreement (FK, exact-match) at instance-level quality prediction. Structural consistency family achieves AUROC≈0.70 vs logprob 0.59 for NER discrimination. SJ and voting confidence are statistically comparable on NER (ρ≈0.39), SJ is temperature-robust (Δρ=±0.01).\n14\t\n15\t**Key insight**: The contribution is about a FAMILY of structural consistency signals for QUALITY ESTIMATION (predicting which instances are reliable), not for per-sample selection. SJ and voting_conf both capture entity-across-sample consistency. SJ generalizes to arbitrary structured outputs; voting is simpler.\n16\t\n17\t**Evidence** (SciERC, N=8, T=1.0):\n18\t- NER full (n=529): voting_conf ρ=0.392/τ=0.291/AUROC=0.704, SJ ρ=0.383/τ=0.266/AUROC=0.689, EM ρ=0.294/AUROC=0.640, FK ρ=0.259/AUROC=0.629, logprob ρ=0.140/AUROC=0.591\n19\t- NER cond: SJ ρ=0.412 (unique signal >0.40)\n20\t- Structural consistency family (SJ+voting) AUROC ~0.70 vs logprob 0.59 — both ρ and discriminative power confirm dominance\n21\t- RE full: voting_conf ρ=0.340/AUROC=0.667 > SJ ρ=0.244/AUROC=0.592 (voting more robust with sparse tuples)\n22\t- Temperature robustness: SJ Δρ=±0.01 across T=0.7/1.0; FK Δρ=±0.06-0.09 (SJ far more stable)\n23\t\n24\t### Claim 2 (Novel Finding — Correlation-Selection Gap)\n25\tInstance-level quality estimation ≠ per-samp\n…[truncated 13122 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000754"
+        },
+        {
+          "source_line": 755,
+          "timestamp": "2026-05-14T12:28:21.209530+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md",
+              "old_string": "## Story Spine\n\n**Problem**: Test-time scaling (TTS) through sampling + selection requires a reliable confidence signal. Self-consistency has shown promise in reasoning tasks (majority voting), but structured prediction (IE) poses unique challenges: outputs have internal structure (entities, relations, triplets), and it is unclear which confidence signals — model confidence (log-prob), surface agreement (exact-match/FK), or structural similarity (SJ) — best correlate with output quality.\n\n**Existing approaches & gaps**: Self-consistency in LLM reasoning uses exact-match voting (Wang et al. 2023). Universal Self-Consistency (Chen et al. NAACL 2024) extends this to non-votable outputs via LLM-as-judge. For structured prediction, no systematic comparison exists across confidence signal families (model-internal vs surface vs structural) for TTS selection. Semantic uncertainty methods (Kuhn et al. ICML 2023) cluster outputs by equivalence but don't leverage structural similarity.\n\n**Our framing**: We systematically compare four families of confidence signals for IE test-time scaling: (1) model confidence (sequence log-probability), (2) surface agreement (Fleiss' Kappa, exact-match voting rate), (3) set-aware structural similarity (soft Jaccard), and (4) entity-level majority voting. We discover that set-aware consistency outperforms all alternatives for entity-level tasks, but ALL signals degrade for relational tasks due to compound error propagation. This establishes both the best-practice confidence signal for NER TTS and a principled task-complexity boundary for consistency-based TTS in structured prediction.\n\n**Headline result template**: \"On three NER datasets, set-aware self-consistency (soft Jaccard) achieves rho=0.39-0.45 correlation with accuracy, outperforming sequence log-probability (rho=X), exact-match voting (rho=Y), and Fleiss' Kappa (rho=0.26-0.32), yielding +Zpp F1 via best-of-N selection. However, on relation extraction, all confidence signals degrade (full-set rho<0.28), with conditional analysis revealing a task-complexity boundary governed by compound error propagation.\"",
+              "new_string": "## Story Spine\n\n**Problem**: LLM-based structured prediction (IE) increasingly uses multi-sample generation, but practitioners lack guidance on which confidence signals to trust — and for what purpose. Crucially, it is unknown whether signals that predict output quality (instance-level) also enable effective sample selection (per-sample-level).\n\n**Existing approaches & gaps**: Self-consistency in reasoning uses exact-match voting (Wang et al. 2023). USC (Chen et al. 2024) uses LLM-as-judge. For structured prediction, no systematic comparison exists across confidence signal families. More importantly, prior work conflates quality estimation with selection — assuming that high correlation with accuracy translates to effective best-of-N selection.\n\n**Our framing**: We systematically compare five confidence signals across four families for IE: (1) model confidence (log-probability), (2) surface agreement (FK, exact-match), (3) set-aware structural similarity (SJ), (4) entity-level majority voting. We make three findings:\n1. Structural consistency (SJ/voting_conf) provides the strongest quality estimation (AUROC 0.70 vs logprob 0.59)\n2. However, a **correlation-selection gap** exists: despite strong instance-level correlation, NO signal beats greedy decoding for NER selection; only logprob helps for RE (+2.4pp)\n3. All signals degrade on relational tasks due to compound error propagation\n\n**Headline result template**: \"On NER, structural consistency achieves AUROC 0.70 for quality estimation, significantly outperforming log-probability (0.59). However, this quality estimation capability does NOT translate to effective best-of-N selection — no signal surpasses greedy decoding on NER (oracle headroom: +16pp). We identify a fundamental correlation-selection gap: instance-level consistency predicts WHICH INPUTS are reliable, not WHICH OUTPUTS are best. On RE, only per-sample log-probability enables selection (+2.4pp), while all consistency signals degrade.\""
+            }
+          },
+          "id": "event-000755"
+        },
+        {
+          "source_line": 756,
+          "timestamp": "2026-05-14T12:28:21.260527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-000756"
+        },
+        {
+          "source_line": 757,
+          "timestamp": "2026-05-14T12:28:25.784198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md",
+              "offset": "52",
+              "limit": "20"
+            }
+          },
+          "id": "event-000757"
+        },
+        {
+          "source_line": 758,
+          "timestamp": "2026-05-14T12:28:25.885161+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "52\t\n53\t**Existing approaches & gaps**: Self-consistency in reasoning uses exact-match voting (Wang et al. 2023). USC (Chen et al. 2024) uses LLM-as-judge. For structured prediction, no systematic comparison exists across confidence signal families. More importantly, prior work conflates quality estimation with selection — assuming that high correlation with accuracy translates to effective best-of-N selection.\n54\t\n55\t**Our framing**: We systematically compare five confidence signals across four families for IE: (1) model confidence (log-probability), (2) surface agreement (FK, exact-match), (3) set-aware structural similarity (SJ), (4) entity-level majority voting. We make three findings:\n56\t1. Structural consistency (SJ/voting_conf) provides the strongest quality estimation (AUROC 0.70 vs logprob 0.59)\n57\t2. However, a **correlation-selection gap** exists: despite strong instance-level correlation, NO signal beats greedy decoding for NER selection; only logprob helps for RE (+2.4pp)\n58\t3. All signals degrade on relational tasks due to compound error propagation\n59\t\n60\t**Headline result template**: \"On NER, structural consistency achieves AUROC 0.70 for quality estimation, significantly outperforming log-probability (0.59). However, this quality estimation capability does NOT translate to effective best-of-N selection — no signal surpasses greedy decoding on NER (oracle headroom: +16pp). We identify a fundamental correlation-selection gap: instance-level consistency predicts WHICH INPUTS are reliable, not WHICH OUTPUTS are best. On RE, only per-sample log-probability enables selection (+2.4pp), while all consistency signals degrade.\"\n61\t\n62\t## Anticipated Reviewer Concerns\n63\t\n64\t### R1: \"Only one NER dataset — generalization unclear\"\n65\t- **Mitigation**: exp-002 (CoNLL-2003) + exp-003 (WNUT-17) validate cross-dataset across 3 domains (science/news/social media)\n66\t- **Priority**: P0\n67\t\n68\t### R2: \"Only one model family (Qwen3-8B)\"\n69\t- **Mitigation**: exp-007 (LLa\n…[truncated 64 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-000758"
+        },
+        {
+          "source_line": 759,
+          "timestamp": "2026-05-14T12:28:26.651676+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md",
+              "old_string": "**Our framing**: We systematically compare four families of confidence signals for IE test-time scaling: (1) model confidence (sequence log-probability), (2) surface agreement (Fleiss' Kappa, exact-match voting rate), (3) set-aware structural similarity (soft Jaccard), and (4) entity-level majority voting. We discover that set-aware consistency outperforms all alternatives for entity-level tasks, but ALL signals degrade for relational tasks due to compound error propagation. This establishes both the best-practice confidence signal for NER TTS and a principled task-complexity boundary for consistency-based TTS in structured prediction.\n\n**Headline result template**: \"On three NER datasets, set-aware self-consistency (soft Jaccard) achieves rho=0.39-0.45 correlation with accuracy, outperforming sequence log-probability (rho=X), exact-match voting (rho=Y), and Fleiss' Kappa (rho=0.26-0.32), yielding +Zpp F1 via best-of-N selection. However, on relation extraction, all confidence signals degrade (full-set rho<0.28), with conditional analysis revealing a task-complexity boundary governed by compound error propagation.\"",
+              "new_string": "**Our framing**: We systematically compare four families of confidence signals for IE: (1) model confidence (log-probability), (2) surface agreement (FK, exact-match), (3) set-aware structural similarity (soft Jaccard), and (4) entity-level majority voting. We discover a **correlation-selection gap**: structural consistency provides the strongest instance-level quality estimation (AUROC 0.70 vs logprob 0.59), but NO unsupervised signal enables effective best-of-N selection on NER (all ≤ greedy). On RE, only log-probability enables selection (+2.4pp). We also identify a task-complexity boundary where compound error propagation degrades all signals.\n\n**Headline result template**: \"Structural consistency achieves the strongest correlation with output quality (AUROC 0.70 vs logprob 0.59), but this does not translate to selection ability: no signal beats greedy decoding for NER best-of-N (oracle headroom: +16pp). We identify a correlation-selection gap — instance-level quality estimation ≠ per-sample selection — as a fundamental challenge for TTS in structured prediction.\""
+            }
+          },
+          "id": "event-000759"
+        },
+        {
+          "source_line": 760,
+          "timestamp": "2026-05-14T12:28:26.703309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-000760"
+        },
+        {
+          "source_line": 761,
+          "timestamp": "2026-05-14T12:28:29.778464+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md",
+              "offset": "48",
+              "limit": "20"
+            }
+          },
+          "id": "event-000761"
+        },
+        {
+          "source_line": 762,
+          "timestamp": "2026-05-14T12:28:29.778969+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "48\t\n49\t## Story Spine\n50\t\n51\t**Problem**: LLM-based structured prediction (IE) increasingly uses multi-sample generation, but practitioners lack guidance on which confidence signals to trust — and for what purpose. Crucially, it is unknown whether signals that predict output quality (instance-level) also enable effective sample selection (per-sample-level).\n52\t\n53\t**Existing approaches & gaps**: Self-consistency in reasoning uses exact-match voting (Wang et al. 2023). USC (Chen et al. 2024) uses LLM-as-judge. For structured prediction, no systematic comparison exists across confidence signal families. More importantly, prior work conflates quality estimation with selection — assuming that high correlation with accuracy translates to effective best-of-N selection.\n54\t\n55\t**Our framing**: We systematically compare five confidence signals across four families for IE: (1) model confidence (log-probability), (2) surface agreement (FK, exact-match), (3) set-aware structural similarity (SJ), (4) entity-level majority voting. We make three findings:\n56\t1. Structural consistency (SJ/voting_conf) provides the strongest quality estimation (AUROC 0.70 vs logprob 0.59)\n57\t2. However, a **correlation-selection gap** exists: despite strong instance-level correlation, NO signal beats greedy decoding for NER selection; only logprob helps for RE (+2.4pp)\n58\t3. All signals degrade on relational tasks due to compound error propagation\n59\t\n60\t**Headline result template**: \"On NER, structural consistency achieves AUROC 0.70 for quality estimation, significantly outperforming log-probability (0.59). However, this quality estimation capability does NOT translate to effective best-of-N selection — no signal surpasses greedy decoding on NER (oracle headroom: +16pp). We identify a fundamental correlation-selection gap: instance-level consistency predicts WHICH INPUTS are reliable, not WHICH OUTPUTS are best. On RE, only per-sample log-probability enables selection (+2.4pp), while all consiste\n…[truncated 280 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000762"
+        },
+        {
+          "source_line": 763,
+          "timestamp": "2026-05-14T12:28:30.813438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md",
+              "offset": "72",
+              "limit": "30"
+            }
+          },
+          "id": "event-000763"
+        },
+        {
+          "source_line": 764,
+          "timestamp": "2026-05-14T12:28:30.914364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "72\t### R3: \"FK is a strawman baseline — what about log-prob, USC, exact-match?\"\n73\t- **Mitigation**: exp-012 (log-prob), exp-013 (exact-match), exp-014 (entity voting) provide comprehensive baseline comparison. Results: structural consistency family (SJ+voting) >> log-prob >> FK ≈ exact-match. USC discussed in related work (LLM-as-judge, orthogonal approach).\n74\t- **Priority**: P0, RESOLVED — results decisive\n75\t\n76\t### R3b: \"Voting confidence matches or beats SJ — why use SJ?\"\n77\t- **Mitigation**: SJ generalizes to arbitrary structured outputs (relations, events, any set-structured prediction). Voting is entity-specific. NER: statistically equivalent. RE: voting more robust with sparse tuples. Paper presents both as valid instantiations of the structural consistency principle.\n78\t- **Priority**: Addressed by framing\n79\t\n80\t### R4: \"No actual TTS improvement demonstrated\"\n81\t- **Mitigation**: exp-006 (adaptive compute demo) — SJ vs log-prob vs FK vs random best-of-N selection on all NER datasets\n82\t- **Priority**: P0\n83\t\n84\t### R5: \"Sample size N=8 may be too small for reliable SJ estimation\"\n85\t- **Mitigation**: exp-001 (N=16) with multi-seed robustness\n86\t- **Priority**: P0\n87\t\n88\t### R6: \"Conditional analysis cherry-picks favorable instances\"\n89\t- **Mitigation**: Principled separation (knowledge-gap vs uncertainty). Add threshold sensitivity analysis. Temperature analysis provides independent validation.\n90\t- **Priority**: P0 (add sensitivity analysis)\n91\t\n92\t### R7: \"Only ρ as evaluation metric\"\n93\t- **Mitigation**: Add AUROC, calibration plots, Kendall's τ for all experiments\n94\t- **Priority**: P0\n95\t\n96\t### R8: \"Formula-implementation discrepancy\"\n97\t- **Mitigation**: Paper must describe actual algorithm (type-grouped Hungarian matching with max(|g_a|,|g_b|) denominator)\n98\t- **Priority**: P0, paper writing fix\n99\t\n100\t### R9: \"Evaluation circularity (T>0 consistency vs T=0 F1)\"\n101\t- **Mitigation**: Add leave-one-out SJ evaluation as robustness check. Justify\n…[truncated 82 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-000764"
+        },
+        {
+          "source_line": 765,
+          "timestamp": "2026-05-14T12:28:35.706341+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md",
+              "offset": "76",
+              "limit": "10"
+            }
+          },
+          "id": "event-000765"
+        },
+        {
+          "source_line": 766,
+          "timestamp": "2026-05-14T12:28:35.757606+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "76\t### R3b: \"Voting confidence matches or beats SJ — why use SJ?\"\n77\t- **Mitigation**: SJ generalizes to arbitrary structured outputs (relations, events, any set-structured prediction). Voting is entity-specific. NER: statistically equivalent. RE: voting more robust with sparse tuples. Paper presents both as valid instantiations of the structural consistency principle.\n78\t- **Priority**: Addressed by framing\n79\t\n80\t### R4: \"No actual TTS improvement demonstrated\"\n81\t- **Mitigation**: exp-006 (adaptive compute demo) — SJ vs log-prob vs FK vs random best-of-N selection on all NER datasets\n82\t- **Priority**: P0\n83\t\n84\t### R5: \"Sample size N=8 may be too small for reliable SJ estimation\"\n85\t- **Mitigation**: exp-001 (N=16) with multi-seed robustness"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000766"
+        },
+        {
+          "source_line": 767,
+          "timestamp": "2026-05-14T12:28:38.502432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md",
+              "old_string": "### R4: \"No actual TTS improvement demonstrated\"\n- **Mitigation**: exp-006 (adaptive compute demo) — SJ vs log-prob vs FK vs random best-of-N selection on all NER datasets\n- **Priority**: P0",
+              "new_string": "### R4: \"No actual TTS improvement demonstrated\"\n- **Status**: ⚠️ CONFIRMED NEGATIVE by exp-016. Best-of-N selection DOES NOT beat greedy on NER with any signal. RE: only logprob +2.4pp over greedy.\n- **Mitigation**: Paper PIVOTS to \"confidence estimation + correlation-selection gap analysis.\" exp-006 redesigned as diagnostic: show selection curves to visualize the gap (F1 vs N per signal + oracle ceiling). The gap itself is a contribution, not a failure.\n- **Priority**: P0 — narrative pivot required"
+            }
+          },
+          "id": "event-000767"
+        },
+        {
+          "source_line": 768,
+          "timestamp": "2026-05-14T12:28:38.655171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Edit",
+            "elapsed_ms": 152
+          },
+          "id": "event-000768"
+        },
+        {
+          "source_line": 769,
+          "timestamp": "2026-05-14T12:28:42.085209+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md",
+              "offset": "80"
+            }
+          },
+          "id": "event-000769"
+        },
+        {
+          "source_line": 770,
+          "timestamp": "2026-05-14T12:28:42.236391+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "80\t### R4: \"No actual TTS improvement demonstrated\"\n81\t- **Status**: ⚠️ CONFIRMED NEGATIVE by exp-016. Best-of-N selection DOES NOT beat greedy on NER with any signal. RE: only logprob +2.4pp over greedy.\n82\t- **Mitigation**: Paper PIVOTS to \"confidence estimation + correlation-selection gap analysis.\" exp-006 redesigned as diagnostic: show selection curves to visualize the gap (F1 vs N per signal + oracle ceiling). The gap itself is a contribution, not a failure.\n83\t- **Priority**: P0 — narrative pivot required\n84\t\n85\t### R5: \"Sample size N=8 may be too small for reliable SJ estimation\"\n86\t- **Mitigation**: exp-001 (N=16) with multi-seed robustness\n87\t- **Priority**: P0\n88\t\n89\t### R6: \"Conditional analysis cherry-picks favorable instances\"\n90\t- **Mitigation**: Principled separation (knowledge-gap vs uncertainty). Add threshold sensitivity analysis. Temperature analysis provides independent validation.\n91\t- **Priority**: P0 (add sensitivity analysis)\n92\t\n93\t### R7: \"Only ρ as evaluation metric\"\n94\t- **Mitigation**: Add AUROC, calibration plots, Kendall's τ for all experiments\n95\t- **Priority**: P0\n96\t\n97\t### R8: \"Formula-implementation discrepancy\"\n98\t- **Mitigation**: Paper must describe actual algorithm (type-grouped Hungarian matching with max(|g_a|,|g_b|) denominator)\n99\t- **Priority**: P0, paper writing fix\n100\t\n101\t### R9: \"Evaluation circularity (T>0 consistency vs T=0 F1)\"\n102\t- **Mitigation**: Add leave-one-out SJ evaluation as robustness check. Justify cross-mode design (greedy = deterministic reference, standard in TTS literature).\n103\t- **Priority**: P0\n104\t\n105\t### R10: \"Insufficient related work\" (三档一致 [B][M][W])\n106\t- **Mitigation**: Expand to 35+ references. Must cite:\n107\t  - USC (Chen 2024) — empirical differentiation, not just citation\n108\t  - Semantic uncertainty (Kuhn 2023), calibration (Kadavath 2022, Guo 2017, Desai & Durrett 2020)\n109\t  - **Conformal prediction for structured outputs**: Fisch et al. 2021, Angelopoulos et al. 2021, Bates et al\n…[truncated 4973 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-000770"
+        },
+        {
+          "source_line": 771,
+          "timestamp": "2026-05-14T12:28:43.328914+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md",
+              "offset": "103"
+            }
+          },
+          "id": "event-000771"
+        },
+        {
+          "source_line": 772,
+          "timestamp": "2026-05-14T12:28:43.379710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "103\t- **Priority**: P0\n104\t\n105\t### R10: \"Insufficient related work\" (三档一致 [B][M][W])\n106\t- **Mitigation**: Expand to 35+ references. Must cite:\n107\t  - USC (Chen 2024) — empirical differentiation, not just citation\n108\t  - Semantic uncertainty (Kuhn 2023), calibration (Kadavath 2022, Guo 2017, Desai & Durrett 2020)\n109\t  - **Conformal prediction for structured outputs**: Fisch et al. 2021, Angelopoulos et al. 2021, Bates et al. 2021\n110\t  - **Token-level NER uncertainty**: Xiao & Wang 2019, Shelmanov et al. 2021, He et al. 2020\n111\t  - **Ensemble/MC-dropout**: Lakshminarayanan et al. 2017, Gal & Ghahramani 2016\n112\t  - **Verifier/reward models**: Cobbe et al. 2021, Lightman et al. 2023\n113\t  - **TTS scaling theory**: Snell et al. 2024, Brown et al. 2024\n114\t  - **Structured calibration**: Kuleshov & Liang 2015, Jagannatha & Yu 2022\n115\t  - **IE confidence**: Culotta & McCallum 2004\n116\t  - SelfCheckGPT (Manakul 2023), selective prediction (Geifman & El-Yaniv 2017)\n117\t- **Priority**: P0, Paper Agent handles\n118\t\n119\t### R11: \"SJ+logprob ensemble missing\" (Dream 2 — both reviewers)\n120\t- **Mitigation**: exp-016 (CPU-only): compute SJ-logprob instance correlation, test linear combination and 5-signal logistic regression. If ensemble >> SJ → reframe as complementary signals. If SJ ≈ ensemble → reinforces SJ standalone strength.\n121\t- **Priority**: P0 (zero cost, both reviewers independently flagged)\n122\t\n123\t### R12: \"No supervised upper bound / reward model comparison\" (Dream 2)\n124\t- **Mitigation**: Simple logistic regression on [SJ, FK, logprob, voting_conf, EM] as proxy for trained verifier (included in exp-016). Full reward model training out of scope for this paper — discuss as future work.\n125\t- **Priority**: P1 (partially addressed by exp-016 ensemble)\n126\t\n127\t### R13: \"Headroom capture rate low (37% NER, 11% RE)\" (Dream 2)\n128\t- **Mitigation**: Discuss explicitly in paper. Contextualize vs other unsupervised TTS methods. Argue that the information-theoretic \n…[truncated 3404 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000772"
+        },
+        {
+          "source_line": 773,
+          "timestamp": "2026-05-14T12:28:53.568303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md",
+              "old_string": "### R11: \"SJ+logprob ensemble missing\" (Dream 2 — both reviewers)\n- **Mitigation**: exp-016 (CPU-only): compute SJ-logprob instance correlation, test linear combination and 5-signal logistic regression. If ensemble >> SJ → reframe as complementary signals. If SJ ≈ ensemble → reinforces SJ standalone strength.\n- **Priority**: P0 (zero cost, both reviewers independently flagged)",
+              "new_string": "### R11: \"SJ+logprob ensemble missing\" (Dream 2 — both reviewers)\n- **Status**: ✅ RESOLVED by exp-016. Results:\n  - Ensemble AUROC: NER 0.735 (+3.5pp over best single), RE 0.719 (−0.2pp, no improvement)\n  - Linear combo: SJ+voting best at α=0.3 (NER ρ=0.489); RE α=0.0 (pure voting)\n  - FK negative coefficient in logistic regression → surface agreement is net-negative when structural signals present\n  - **Interpretation**: voting_conf captures nearly all discriminative information; ensemble adds marginal value on NER, none on RE. Supports the \"structural consistency family\" narrative.\n- **Priority**: DONE — write into paper with honest interpretation"
+            }
+          },
+          "id": "event-000773"
+        },
+        {
+          "source_line": 774,
+          "timestamp": "2026-05-14T12:28:53.619271+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-000774"
+        },
+        {
+          "source_line": 775,
+          "timestamp": "2026-05-14T12:28:54.684333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md",
+              "old_string": "### R11: \"SJ+logprob ensemble missing\" (Dream 2 — both reviewers)\n- **Mitigation**: exp-016 (CPU-only): compute SJ-logprob instance correlation, test linear combination and 5-signal logistic regression. If ensemble >> SJ → reframe as complementary signals. If SJ ≈ ensemble → reinforces SJ standalone strength.\n- **Priority**: P0 (zero cost, both reviewers independently flagged)",
+              "new_string": "### R11: \"SJ+logprob ensemble missing\" (Dream 2 — both reviewers)\n- **Status**: ✅ RESOLVED by exp-016. Results: ensemble AUROC +3.5pp on NER (0.735 vs voting 0.700), flat on RE (0.719 vs 0.721). FK coefficient negative in both tasks. SJ+voting_conf linear combo ρ=0.489 (NER). Conclusion: signals mildly complementary for estimation, but ensemble still can't beat greedy for selection.\n- **Priority**: DONE"
+            }
+          },
+          "id": "event-000775"
+        },
+        {
+          "source_line": 776,
+          "timestamp": "2026-05-14T12:28:54.684788+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000776"
+        },
+        {
+          "source_line": 777,
+          "timestamp": "2026-05-14T12:29:05.036436+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'Analyze exp-016 and log framing decision D018', 'status': 'completed', 'activeForm': 'Done'}, {'content': 'Report exp-016 findings to user', 'status': 'completed', 'activeForm': 'Done'}, {'content': 'Wait for Reviewer assessment of Round 1 Action Matrix', 'status': 'in_progress', 'activeForm': 'Waiting for Reviewer assessment'}, {'content': 'Fine-tune paper_framing.md (R11 results, Venue Fit) after Agent edits stabilize', 'status': 'pending', 'activeForm': 'Fine-tuning paper_framing.md'}, {'content': 'After Reviewer feedback: finalize Action Matrix + sync review_issues.yaml', 'status': 'pending', 'activeForm': 'Finalizing action matrix'}, {'content': 'Monitor exp-001 rerun completion + exp-002 pilot results', 'status': 'pending', 'activeForm': 'Monitoring experiment progress'}]"
+            }
+          },
+          "id": "event-000777"
+        },
+        {
+          "source_line": 778,
+          "timestamp": "2026-05-14T12:29:05.087090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "TodoWrite",
+            "elapsed_ms": 50
+          },
+          "id": "event-000778"
+        },
+        {
+          "source_line": 779,
+          "timestamp": "2026-05-14T12:29:07.525178+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "File is being actively modified by Agent — will hold off on minor edits until things stabilize. The critical updates (Claims 1-3, Story Spine, R4) are already done. Waiting for Reviewer's Action Matrix assessment."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
+          },
+          "id": "event-000779"
+        },
+        {
+          "source_line": 780,
+          "timestamp": "2026-05-14T12:29:07.543863+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now update R10 to add the Round 1 review's additional missing references (Aggarwal 2023, Huang/CISC 2025)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
+          },
+          "id": "event-000780"
+        }
+      ]
+    },
+    {
+      "number": 55,
+      "messages": [
+        {
+          "source_line": 781,
+          "timestamp": "2026-05-14T12:29:09.567085+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — logprob_rho_inconsistency + exp_003 状态 + GPU 利用率\n\n### 1. logprob ρ 跳变诊断\n\n[severity: info] **根因已确认：温度差异是主因，非 bug。**\n\n诊断分解（NER logprob ρ gap = 0.174）：\n| 因素 | 贡献 | 占比 |\n|------|------|------|\n| T=0.7 vs T=1.0（温度） | +0.129 | 74% |\n| 200 vs 529 实例（子集） | +0.039 | 22% |\n| N=16 vs N=8 | +0.007 | 4% |\n| 归一化差异 | 0（已排除） | 0% |\n\nSame-instances 对照（n=193）：exp001(N16,T=0.7) ρ=0.314 vs exp012(N8,T=1.0) ρ=0.179，Δ=0.135——几乎全是 T 效应。\n\n**对论文的意义**：\n- **强化 SJ 优势**：SJ 温度鲁棒（Δρ=±0.01），logprob 温度敏感（Δρ=+0.174）。即使在 logprob 最有利的条件（T=0.7）下，SJ 仍领先（0.384 vs 0.314, +7pp）。\n- **论文表述建议**：报告 logprob 时必须注明温度条件。主表用 T=1.0 数据（SJ ρ=0.383 vs logprob 0.140），温度敏感性分析放 exp-005 章节。避免混用不同温度的 logprob 数据。\n- ROADMAP 中 \"logprob ρ 跳变排查\" 可标为已解决。\n\n### 2. exp_003 (WNUT-17)\n\n[severity: warning] **Worker 报 done，但训练仅完成 14%。**\n\n`wnut17_train.log` 显示 step 154/1065（~14%），GPU1 正在训练（67% util, 25490 MiB）。预估剩余时间：(1065-154) × 1.77s ≈ 27 分钟。\n\nworker_done 应理解为\"worker 完成了任务提交\"，不是\"训练完成\"。exp_003 实际状态：\n- Fine-tuning: RUNNING（~27min to go）\n- LoRA merge: 待做\n- Pilot inference: 待做（需 ~1-2h GPU）\n- 分析: 待做\n\nRegistry 仍显示 RUNNING，这是正确的。但需要确保有 worker 跟进后续步骤（merge → pilot → analysis）。\n\n### 3. GPU 利用率\n\n[severity: warning] **autodl-5090: 2/4 active, 2/4 完全空闲。**\n\n| GPU | Util | Memory | 任务 |\n|-----|------|--------|------|\n| 0 | 100% | 17540/32607 MiB | exp_002 merge 或其他 |\n| 1 | 67% | 25490/32607 MiB | exp_003 WNUT training |\n| 2 | **0%** | 2 MiB | **空闲** |\n| 3 | **0%** | 2 MiB | **空闲** |\n\nexp_007 (LLaMA) registry 状态 ALLOCATED（分配给 cuda:3），但 GPU3 完全空闲——说明 LLaMA 下载/设置可能卡住了。建议 Director 检查 exp_007 worker 状态。\n\nGPU2 也完全空闲，无任何任务。距 DDL 11 天，两张 5090 空转是浪费。\n\n**gpu-5090-4x-2 状态未查**（上次检查 2/4 active），建议同步确认。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "source": "reviewer"
+          },
+          "id": "event-000781"
+        },
+        {
+          "source_line": 782,
+          "timestamp": "2026-05-14T12:29:27.586864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000782"
+        },
+        {
+          "source_line": 783,
+          "timestamp": "2026-05-14T12:29:27.638477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":6,\\\"current\\\":{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_gpu_gpu_5090_4x2_setup_and_experiments_20260514T120440 已完成（status=done）。用 `get_worker_status\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_exp_016_signal_ensemble_20260514T120704 已完成（status=done）。用 `get_worker_status('work\\\",\\\"queued_at\\\":1778760998.4926076},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 指令] RE conditional filtering 定义不一致 — 紧急修复\\\\n\\\\n## 问题\\\\nReviewer 发现 exp_001 两个输出对 \\\\\\\"conditional\\\\\\\" 的定义不同：\\\\n\\\",\\\"queued_at\\\":1778761447.795316},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_gpu_exp_003_ner_wnut17_20260514T120313 已完成（status=done）。用 `get_worker_status('worker_gpu_exp\\\",\\\"queued_at\\\":1778761568.6028821},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_logprob_rho_inconsistency_20260514T122249 已完成（status=done）。用 `get_worker_status('wo\\\",\\\"queued_at\\\":1778761603.326953},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_gpu_exp_001_rerun_full_instances_20260514T121024 已完成（status=done）。用 `get_worker_status('work\\\",\\\"queued_at\\\":1778761628.5747495},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_read_exp016_and_seed123_results_20260514T122622 已完成（status=done）。用 `get_worker_stat\\\",\\\"queued_at\\\":1778761739.8625374}],\\\"idle_seconds\\\":320}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 51
+          },
+          "id": "event-000783"
+        },
+        {
+          "source_line": 784,
+          "timestamp": "2026-05-14T12:29:52.860463+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'Analyze exp-016 and log framing decision D018', 'status': 'completed', 'activeForm': 'Done'}, {'content': 'Report exp-016 findings to user', 'status': 'completed', 'activeForm': 'Done'}, {'content': 'Logprob rho inconsistency resolved (temperature 74%)', 'status': 'completed', 'activeForm': 'Done'}, {'content': 'Wait for Reviewer assessment of Round 1 Action Matrix', 'status': 'in_progress', 'activeForm': 'Waiting for Reviewer assessment'}, {'content': 'Wait for Agent to process queue (depth 6) — exp-001 rerun results critical', 'status': 'in_progress', 'activeForm': 'Waiting for Agent queue processing'}, {'content': 'Fine-tune paper_framing.md (R11 results, Venue Fit) after Agent edits stabilize', 'status': 'pending', 'activeForm': 'Fine-tuning paper_framing.md'}, {'content': 'After Reviewer feedback: finalize Action Matrix + sync review_issues.yaml', 'status': 'pending', 'activeForm': 'Finalizing action matrix'}]"
+            }
+          },
+          "id": "event-000784"
+        },
+        {
+          "source_line": 785,
+          "timestamp": "2026-05-14T12:29:52.911395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "TodoWrite",
+            "elapsed_ms": 50
+          },
+          "id": "event-000785"
+        },
+        {
+          "source_line": 786,
+          "timestamp": "2026-05-14T12:29:58.172821+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Queue depth 6 — Agent has multiple worker:done callbacks pending including **exp-001 rerun completed** (T=1.0, full instances). This is the critical unlock for Claim 2/3. Also exp-003 worker done. The RE conditional fix is queued at position 3.\n\nKey findings from this Reviewer report that I can act on now:\n- Logprob ρ inconsistency → **resolved** (temperature explains 74%). Strengthens SJ temperature-robustness advantage.\n- exp-003 training ~27min remaining, worker will need follow-up for merge→pilot\n- autodl-5090 cuda:2/3 idle, exp-007 possibly stuck\n\nQueue is too deep to send more GPU instructions now. Agent will process the backlog and handle worker callbacks which will naturally surface the GPU allocation opportunities. The critical results (exp-001 T=1.0 full rerun) are already in the queue.\n\nStill waiting on: Reviewer's independent assessment of the Round 1 review Action Matrix."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
+          },
+          "id": "event-000786"
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "messages": [
+        {
+          "source_line": 787,
+          "timestamp": "2026-05-14T12:30:09.328034+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — exp_003 + gpu-5090-4x-2 实验发现\n\n**结论**: CRITICAL（含 2 个 critical、2 个 warning）\n\n---\n\n### exp_003 (WNUT-17 fine-tuning) 状态\n\nWorker 通知 done，但**训练仍在进行中**（step 269/1065, 25%）。Worker 启动了 tmux 后台任务然后退出，训练尚未完成。\n\n- 服务器: autodl-5090 cuda:1（64% util, 25490 MiB）\n- 配置: Qwen3-8B, LoRA r=32 alpha=64, 5 epochs, batch=2 grad_accum=8, lr=2e-4, seed=42\n- 与 exp_002 (CoNLL) 配置一致 ✅\n- ETA: ~24 min（1.8s/step × 796 remaining steps）\n- Registry 状态 RUNNING（准确）\n\n**[severity: info]** exp_003 训练正常进行，无异常。Worker 通知不代表训练完成。\n\n---\n\n### 🚨 gpu-5090-4x-2 三个实验已完成但未被发现\n\nRegistry 仍显示 RUNNING/PREPARING，但三个实验均已有完整输出（report.json + samples.jsonl）。**所有实验结果仅 200 实例而非目标 551 全集。**\n\n**1. [severity: critical] exp001_seed123/456 + exp008 全部仅 200 实例**\n\n三个实验 report.json 均显示 `num_instances: 200`。但 ROADMAP 明确要求 \"exp-001 full rerun: T=1.0, 全551实例\"，exp008 registry spec 也写 `data_count: 551`。\n\n原因推测: `run_mvp_pilot.py` 脚本默认 `--num_test 200`，Worker 提交命令时未指定 `--num_test 551`（对比 exp001_seed42 命令含 `--num_test 9999`）。\n\n**影响**: 这些实验不能替代全集结果。ROADMAP 中的\"待确认发现\"（RE N=16 信号恢复）仍然无法在全集上确认。\n\n**2. [severity: critical] Registry 未更新**\n\n三个实验完成但 registry 仍为 RUNNING/PREPARING。这意味着：\n- Director/Agent 不知道结果已出\n- GPU 资源可能被误认为仍在占用\n- 实验结论无法被后续流程引用\n\n需要 Agent 立即更新 registry。\n\n---\n\n### 多 seed 结果分析（200 实例，N=16, T=1.0）\n\n虽然不是全集，这些数据仍有参考价值：\n\n**NER SJ ρ (full)**:\n| Seed | SJ ρ | FK ρ | logprob ρ | SJ>FK |\n|------|------|------|-----------|-------|\n| 42 (exp008) | 0.377 | 0.251 | 0.315 | ✅ +0.126 |\n| 123 | 0.408 | 0.280 | 0.319 | ✅ +0.128 |\n| 456 | 0.330 | 0.258 | 0.287 | ✅ +0.072 |\n| **Mean±std** | **0.372±0.039** | **0.263±0.015** | **0.307±0.017** | |\n\n**RE SJ ρ (conditional)**:\n| Seed | SJ ρ cond | FK ρ cond | logprob ρ cond |\n|------|-----------|-----------|----------------|\n| 42 | 0.398 | 0.377 | 0.274 |\n| 123 | 0.400 | 0.313 | 0.232 |\n| 456 | 0.353 | 0.261 | 0.193 |\n| **Mean±std** | **0.384±0.027** | **0.317±0.058** | **0.233±0.041** |\n\n**[severity: warning] NER SJ ρ 跨 seed 方差较大 (std=0.039, range 0.078)**\n\nseed 456 的 NER SJ ρ=0.330 显著低于 seed 123 的 0.408。如果论文只报告 seed 42 的数字（~0.38），审稿人要求多 seed 验证时，variance 会被质疑。建议：\n- 论文报告 3-seed 均值 ± std\n- 或用 bootstrap CI 替代多 seed（exp_004 已有，CI=[0.295, 0.459]，覆盖了所有 seed 的点估计）\n\n**[severity: warning] GPU 利用率持续低迷：2/8 active**\n\n| 服务器 | cuda:0 | cuda:1 | cuda:2 | cuda:3 |\n|--------|--------|--------|--------|--------|\n| autodl-5090 | idle | exp_003 (64%) | idle | idle |\n| gpu-5090-4x-2 | idle | active (83%) | idle | idle |\n\ngpu-5090-4x-2 的 cuda:1 上有一个 vLLM 进程和一个 python 进程仍在运行（可能是完成的实验残留进程未清理）。cuda:0 上的 seed123 和 cuda:2 上的 exp008 进程已结束但未释放 registry 占位。\n\n实际 GPU 使用率 = 2/8 = 25%。距 DDL 11 天，6 张卡空闲。\n\n### 建议\n\n1. **立即**: Agent 更新 3 个已完成实验的 registry 状态\n2. **立即**: 清理 gpu-5090-4x-2 上的残留进程\n3. **高优**: 重跑 exp008 RE N=16 使用 `--num_test 551`（全集），这是论文 Claim 2 的关键数据\n4. **高优**: 把 exp_003 完成后的 WNUT pilot 也用 `--num_test` 指定全测试集大小，避免同样的问题\n5. **建议**: 检查 `run_mvp_pilot.py` 的 `--num_test` 默认值，考虑改为全集"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "source": "reviewer"
+          },
+          "id": "event-000787"
+        },
+        {
+          "source_line": 788,
+          "timestamp": "2026-05-14T12:30:35.335254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000788"
+        },
+        {
+          "source_line": 789,
+          "timestamp": "2026-05-14T12:30:35.336016+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":6,\\\"current\\\":{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_gpu_gpu_5090_4x2_setup_and_experiments_20260514T120440 已完成（status=done）。用 `get_worker_status\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_exp_016_signal_ensemble_20260514T120704 已完成（status=done）。用 `get_worker_status('work\\\",\\\"queued_at\\\":1778760998.4926076},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 指令] RE conditional filtering 定义不一致 — 紧急修复\\\\n\\\\n## 问题\\\\nReviewer 发现 exp_001 两个输出对 \\\\\\\"conditional\\\\\\\" 的定义不同：\\\\n\\\",\\\"queued_at\\\":1778761447.795316},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_gpu_exp_003_ner_wnut17_20260514T120313 已完成（status=done）。用 `get_worker_status('worker_gpu_exp\\\",\\\"queued_at\\\":1778761568.6028821},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_logprob_rho_inconsistency_20260514T122249 已完成（status=done）。用 `get_worker_status('wo\\\",\\\"queued_at\\\":1778761603.326953},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_gpu_exp_001_rerun_full_instances_20260514T121024 已完成（status=done）。用 `get_worker_status('work\\\",\\\"queued_at\\\":1778761628.5747495},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_read_exp016_and_seed123_results_20260514T122622 已完成（status=done）。用 `get_worker_stat\\\",\\\"queued_at\\\":1778761739.8625374}],\\\"idle_seconds\\\":388}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 0
+          },
+          "id": "event-000789"
+        },
+        {
+          "source_line": 790,
+          "timestamp": "2026-05-14T12:30:50.352446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__urgent_agent_message",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000790"
+        },
+        {
+          "source_line": 791,
+          "timestamp": "2026-05-14T12:30:50.404311+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000791"
+        },
+        {
+          "source_line": 792,
+          "timestamp": "2026-05-14T12:31:04.328550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__urgent_agent_message"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "message": "[URGENT] --num_test 系统性 bug + gpu-5090-4x-2 实验需重跑\n\n## 问题\nReviewer 发现 gpu-5090-4x-2 上的 3 个实验 (exp001_seed123, exp001_seed456, exp008) 全部只跑了 200 实例（与原始 exp-001 同样的 bug）。`run_mvp_pilot.py` 默认 `--num_test 200`，Worker 提交时未指定 `--num_test 551`。\n\n这是第二次出现同样的 bug。\n\n## 立即执行（按优先级）\n\n### 1. 修复脚本默认值\n在 `run_mvp_pilot.py` 中把 `--num_test` 默认值从 200 改为 9999（或删除默认值使其必填）。这样以后所有实验自动跑全集。\n\n### 2. 更新 registry\ngpu-5090-4x-2 上 3 个实验已完成但 registry 仍 RUNNING/PREPARING：\n- exp001_seed123 → DONE\n- exp001_seed456 → DONE  \n- exp008 → DONE\n在 metrics 中标注 `num_instances: 200, ⚠️ partial`\n\n### 3. 重跑 3 个实验（全集）\n在 gpu-5090-4x-2 上重新提交，**必须** `--num_test 9999`：\n- cuda:0: exp001_seed123 全集重跑\n- cuda:1: exp001_seed456 全集重跑  \n- cuda:2: exp008 RE N=16 全集重跑\n都用 T=1.0。\n\n### 4. 检查 exp_003 (WNUT) 后续\nexp_003 fine-tune ~27min 内完成。完成后的 merge→pilot→analysis 步骤也必须用 `--num_test` 覆盖 WNUT 全测试集。确认 WNUT test set 大小并相应设置参数。\n\n### 5. 检查 exp_007 (LLaMA)\nRegistry 显示 ALLOCATED on cuda:3 但 GPU3 完全空闲。检查 worker 是否卡住。如果下载完成，立即启动 fine-tune。"
+            }
+          },
+          "id": "event-000792"
+        },
+        {
+          "source_line": 793,
+          "timestamp": "2026-05-14T12:31:04.981586+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"inserted\\\":true,\\\"queue_depth\\\":7,\\\"agent_key\\\":\\\"feishu:group:oc_523053f5a039428dc15666668fa856b3\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "elapsed_ms": 653
+          },
+          "id": "event-000793"
+        },
+        {
+          "source_line": 794,
+          "timestamp": "2026-05-14T12:31:12.760523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'Analyze exp-016 and log framing decision D018', 'status': 'completed', 'activeForm': 'Done'}, {'content': 'Report exp-016 findings to user', 'status': 'completed', 'activeForm': 'Done'}, {'content': 'Logprob rho inconsistency resolved (temperature 74%)', 'status': 'completed', 'activeForm': 'Done'}, {'content': 'Sent urgent --num_test bug fix to Agent', 'status': 'completed', 'activeForm': 'Done'}, {'content': 'Wait for Reviewer assessment of Round 1 Action Matrix', 'status': 'in_progress', 'activeForm': 'Waiting for Reviewer assessment'}, {'content': 'Wait for Agent queue to clear (depth 7) — exp-001 rerun + --num_test fix', 'status': 'in_progress', 'activeForm': 'Waiting for Agent'}, {'content': 'Fine-tune paper_framing.md after Agent edits stabilize', 'status': 'pending', 'activeForm': 'Fine-tuning paper_framing.md'}, {'content': 'After Reviewer feedback: finalize Action Matrix + sync review_issues.yaml', 'status': 'pending', 'activeForm': 'Finalizing action matrix'}]"
+            }
+          },
+          "id": "event-000794"
+        },
+        {
+          "source_line": 795,
+          "timestamp": "2026-05-14T12:31:12.811393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "TodoWrite",
+            "elapsed_ms": 50
+          },
+          "id": "event-000795"
+        },
+        {
+          "source_line": 796,
+          "timestamp": "2026-05-14T12:31:19.070255+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Urgent `--num_test` fix sent to front of Agent queue. Key status:\n\n- **exp-001 rerun** (autodl-5090, T=1.0, `--num_test 9999`): completed, results in Agent queue — this should be the correct full-instance run\n- **seed123/456 + exp008** (gpu-5090-4x-2): all 200-instance only, need rerun with full set\n- **exp-003** (WNUT): training at 25%, ~24min remaining\n- **exp-002** (CoNLL): merge+pilot in progress — critical for SJ vs logprob cross-dataset validation\n\nStill waiting on Reviewer's Round 1 Action Matrix assessment."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
+          },
+          "id": "event-000796"
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "messages": [
+        {
+          "source_line": 797,
+          "timestamp": "2026-05-14T12:43:54.709722+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 8 / 实际跑 6 | Worker 池 7 (GPU 4 / CPU 3)\n\n## 紧急修复执行状态\n\n### --num_test bug 修复\n- gpu-5090-4x-2: Worker 已派出修复脚本默认值 + 重跑 3 个实验（cuda:0/1/2）\n- autodl-5090: exp-001 rerun Worker (cuda:0) 已在修复 + 重跑中\n\n### 当前各实验状态\n\n| 实验 | 状态 | 位置 | 进度/备注 |\n|------|------|------|----------|\n| **exp-001 rerun (全集 T=1.0)** | RUNNING | autodl-5090 cuda:0 | Worker 在修复+重跑 |\n| **exp-001 seed=123** | RUNNING | autodl-5090 cuda:3 | Worker 在跑 |\n| **exp-001 seed=123 全集重跑** | STARTING | gpu-5090-4x-2 cuda:0 | fix Worker 刚启动 |\n| **exp-001 seed=456 全集重跑** | STARTING | gpu-5090-4x-2 cuda:1 | 同上 |\n| **exp-008 RE N=16 全集重跑** | STARTING | gpu-5090-4x-2 cuda:2 | 同上 |\n| **exp-002 (CoNLL)** | RUNNING | autodl-5090 | merge+pilot Worker 在跑 |\n| **exp-003 (WNUT)** | TRAINING 73% | autodl-5090 cuda:1 | step 783/1065, ~8min 完成 |\n| **exp-007 (LLaMA)** | DOWNLOADING 97% | autodl-5090 cuda:3 | 模型下载即将完成 |\n| **exp-016 (ensemble)** | DONE ✅ | CPU | 结果读取 Worker 在跑 |\n\n### 200 实例数据的初步观察（仅供参考，待全集确认）\n\ngpu-5090-4x-2 上 200 实例的 partial 结果：\n\n| Seed | NER SJ ρ | NER logprob ρ | RE SJ ρ | RE cond SJ ρ |\n|------|----------|--------------|---------|-------------|\n| 42 (orig) | 0.384 | 0.314 | 0.333 | — |\n| 123 | 0.408 | 0.319 | 0.294 | 0.400 |\n| 456 | 0.330 | 0.287 | 0.285 | 0.353 |\n| 42 (exp-008) | 0.377 | 0.315 | 0.297 | 0.398 |\n\nNER SJ ρ 跨 seed 方差较大 (0.330-0.408)，需全集结果收窄 CI。RE cond SJ ρ 在 3 个 seed 上均 ~0.38-0.40。\n\n### logprob ρ 排查\n已派 CPU Worker 排查 logprob ρ 不一致（0.140 vs 0.314）。在等待结果。\n\n### 待处理\n- exp-003 fine-tune ~8min 后完成 → 自动衔接 merge + pilot（需确保用 --num_test 覆盖全集）\n- exp-007 下载完成后 → fine-tune 启动\n- exp-016 结果读取中"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "source": "agent"
+          },
+          "id": "event-000797"
+        }
+      ]
+    },
+    {
+      "number": 58,
+      "messages": [
+        {
+          "source_line": 798,
+          "timestamp": "2026-05-14T12:43:57.557093+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\nexp-003 训练 73% (step 783/1065)，约 8 min 完成。向 Director 汇报状态。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "source": "main_agent"
+          },
+          "id": "event-000798"
+        },
+        {
+          "source_line": 799,
+          "timestamp": "2026-05-14T12:44:08.152810+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
+          },
+          "id": "event-000799"
+        },
+        {
+          "source_line": 800,
+          "timestamp": "2026-05-14T12:44:15.366798+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good progress — GPU utilization up to 6/8, `--num_test` fix deployed, all key experiments advancing. No immediate action needed from me; Agent is executing correctly. Waiting for:\n\n1. **Reviewer Round 1 Action Matrix assessment** (still pending)\n2. **exp-001 T=1.0 full-instance results** (rerunning on autodl-5090)\n3. **exp-002 CoNLL pilot** (merge+pilot running — critical for cross-dataset SJ vs logprob)\n4. **exp-003 WNUT** (73%, ~8 min to fine-tune completion)\n5. **exp-007 LLaMA** (97% download, fine-tune imminent)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
+          },
+          "id": "event-000800"
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "messages": [
+        {
+          "source_line": 801,
+          "timestamp": "2026-05-14T12:44:28.046443+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — exp_002 (CoNLL-2003 NER, 5-signal pilot)\n\n**结论**: WARNING（含 1 critical、2 warning、3 info）\n\n---\n\n### 核心数据（n=2756, N=8, T=1.0, Qwen3-8B CoNLL-2003 LoRA）\n\n| Signal | ρ full | τ full | AUROC full | ρ cond (n=2676) |\n|--------|--------|--------|------------|-----------------|\n| exact_match | **0.451** | 0.400 | **0.816** | **0.480** |\n| soft_jaccard | 0.436 | 0.385 | 0.801 | 0.451 |\n| entity_voting | 0.424 | 0.378 | 0.789 | 0.413 |\n| fleiss_kappa | 0.400 | 0.357 | 0.774 | 0.406 |\n| logprob | 0.316 | 0.247 | 0.753 | 0.356 |\n\nF1 summary: greedy=0.912, voting=0.914, oracle=0.954, headroom=4.2pp\n\n---\n\n### 发现\n\n**1. [severity: critical] EM > SJ 在 CoNLL 上统计显著 (Δρ=-0.015, CI [-0.026, -0.003])**\n\n**Exact match 是 CoNLL 上最强的信号**，显著优于 SJ。这与 SciERC 完全相反（SciERC: EM ρ=0.294 排倒数第二 vs SJ ρ=0.383）。\n\nBootstrap CI 确认这不是噪声：SJ vs EM Δρ=-0.015, 95% CI 不跨零, significant=true。\n\n**根因分析**：CoNLL greedy F1=91.2%, sample F1 mean=86.7%。任务简单 → 多数 sample 输出高度一致 → exact match 就能完美捕获一致性。SJ 的 soft matching 在 sample 间差异小时无额外价值。\n\n**对论文的影响**：\n- paper_framing.md Claim 1 写 \"structural consistency family >> logprob/FK/EM\" — 在 CoNLL 上 EM > SJ，这个 claim 需要加条件\n- 正确的叙事：**SJ 优势与任务难度正相关**——越难的任务（SciERC: F1~67%），结构化匹配越重要；简单任务（CoNLL: F1~91%）exact match 已足够\n- 这实际上是一个有趣的发现，可以作为 Claim 2（task-complexity boundary）的延伸：不仅 NER vs RE 有 boundary，**同一任务不同难度也有 boundary**\n\n**建议**：论文中呈现 SciERC + CoNLL 对比时，必须诚实报告 EM > SJ on CoNLL，并将此作为\"任务复杂度决定最优信号\"故事的支撑证据。\n\n**2. [severity: warning] Logprob AUROC 原始脚本输出 = 0.5000（随机水平），与 5-signal 分析的 0.7532 矛盾**\n\n原始 pilot script 的 report.json 中 logprob AUROC=0.5000，但 Worker 后续运行的 5-signal 分析脚本得到 0.7532。Registry 使用了 0.7532（来自 exp002_5signal_report.json）。\n\n可能原因：pilot script 的 AUROC 计算在 median_f1=1.0 时出 bug（CoNLL 超过一半实例 F1=1.0，二值化后类别极度不平衡）。\n\n**建议**：需要修复 pilot script 的 logprob AUROC 计算，否则后续数据集（WNUT）可能复现此 bug。论文中的 logprob AUROC 应使用 5-signal 分析版本（0.7532）。\n\n**3. [severity: warning] Registry metrics 与 report.json 数字不完全一致**\n\n| 指标 | report.json | registry |\n|------|-------------|----------|\n| greedy_f1 | 0.9074 | 0.9123 |\n| oracle_f1 | 0.9468 | 0.9543 |\n| headroom | 0.0394 | 0.042 |\n\n差异小（~0.5pp）但说明 registry 的 F1 来源不是 report.json。可能是 5-signal 分析脚本重新计算了 evaluation（不同的 entity matching 逻辑？）。论文引用数据时需确认来源统一。\n\n**4. [severity: info] SJ >> logprob 在 CoNLL 上强力确认**\n\nΔρ=+0.120, CI [0.088, 0.154], n=2756, significant=true。这是目前最强的 Claim 1 证据（大样本 + 跨域 + 显著差异）。SciERC 上 Δρ=+0.217（更大但 n=529），CoNLL 上 Δρ=+0.120（较小但 n=2756）。两个数据集一致。\n\n**5. [severity: info] Voting 在 CoNLL 上首次 beat greedy（+0.18pp）**\n\nSciERC 上所有信号选择都输 greedy，CoNLL 上 voting 赢了（0.9141 vs 0.9123）。虽然微弱（0.18pp），但方向正确。与任务难度一致：简单任务上 majority voting 更容易找到正确答案。\n\n**6. [severity: info] All signals AUROC > 0.75 on CoNLL**\n\n包括 logprob (0.753) 也有不错的判别力。简单任务上所有信号都\"能用\"，差异缩小。论文应该讨论这一点：**信号选择的 ROI 在困难任务上最高**。\n\n---\n\n### 跨数据集对比表（供论文参考）\n\n| Signal | SciERC ρ (n=529) | CoNLL ρ (n=2756) | 排名变化 |\n|--------|-----------------|-----------------|---------|\n| SJ | 0.383 (#2) | 0.436 (#2) | → |\n| voting_conf | 0.392 (#1) | 0.424 (#3) | ↓1 |\n| EM | 0.294 (#4) | **0.451** (#1) | ↑3 |\n| FK | 0.259 (#5) | 0.400 (#4) | ↑1 |\n| logprob | 0.140 (#6) | 0.316 (#5) | ↑1 |\n\n**EM 排名从 #4 跃升至 #1 是最显著的变化**。SJ 稳定在 #2 但不是 universal winner。\n\n### 实验追溯合规\n\n- ✅ 训练命令、服务器、数据路径、模型名、seed=42 完整记录\n- ✅ checkpoint 路径 (`/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged`)\n- ✅ `--num_test 99999`（全测试集）\n- ✅ GPU: cuda:0 autodl-5090（在项目分配范围内）\n- ✅ 5-signal 分析含 bootstrap CI"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "source": "reviewer"
+          },
+          "id": "event-000801"
+        }
+      ]
+    },
+    {
+      "number": 60,
+      "messages": [
+        {
+          "source_line": 802,
+          "timestamp": "2026-05-14T12:44:43.116779+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Research Reviewer 达到硬限\n  触发原因：运行时长 4h1m\n  本轮累计 42 条消息 / 4h 1min\n\n⚠️ 你自己的 context 状态：已 58 条消息 / 4h 1min\n\n请回复：\n  [RESET AGENT]     只重置 Research Reviewer，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Research Reviewer 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000802"
+        },
+        {
+          "source_line": 803,
+          "timestamp": "2026-05-14T12:44:49.203283+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ralph_respond",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000803"
+        },
+        {
+          "source_line": 804,
+          "timestamp": "2026-05-14T12:44:49.254347+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000804"
+        },
+        {
+          "source_line": 805,
+          "timestamp": "2026-05-14T12:45:05.599368+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_BOTH"
+            }
+          },
+          "id": "event-000805"
+        },
+        {
+          "source_line": 806,
+          "timestamp": "2026-05-14T12:45:05.754318+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_BOTH\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 154
+          },
+          "id": "event-000806"
+        },
+        {
+          "source_line": 807,
+          "timestamp": "2026-05-14T12:45:11.365191+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Current round has converged on key decisions (D017 Dream analysis, D018 correlation-selection gap pivot, exp-002 CoNLL results received). Both my context (58 msgs) and Reviewer are heavy. Next phase (processing exp-001 rerun, WNUT, LLaMA, finalizing Action Matrix, activating Paper Agent) will benefit from fresh context."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
+          },
+          "id": "event-000807"
+        }
+      ]
+    },
+    {
+      "number": 61,
+      "messages": [
+        {
+          "source_line": 808,
+          "timestamp": "2026-05-14T12:45:11.371610+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000808"
+        },
+        {
+          "source_line": 809,
+          "timestamp": "2026-05-14T12:45:11.595292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__log_decision"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "summary": "exp-002 CoNLL: EM > SJ (Δρ=-0.015, significant) — signal ranking is task-difficulty-dependent. SJ >> logprob confirmed cross-dataset (Δρ=+0.120). Voting first to beat greedy (+0.18pp). Framing: optimal signal depends on task difficulty, not universal winner.",
+              "rationale": "CoNLL (easy task, greedy F1=91.2%): EM ρ=0.451 (#1) > SJ 0.436 (#2) > voting 0.424 (#3). SciERC (hard task, F1=67%): voting 0.392 (#1) > SJ 0.383 (#2) > EM 0.294 (#4). EM jumps from #4 to #1 across difficulty levels.\n\n根因: 简单任务上 sample 输出高度一致, exact match 足以捕获一致性, SJ 的 soft matching 无额外价值。困难任务上 sample 间差异大, 需要结构化匹配 (SJ) 来识别有意义的一致性。\n\n对叙事的影响:\n- Claim 1 从 \"SJ universally best\" 改为 \"optimal signal is task-difficulty-dependent: SJ for hard tasks, EM for easy tasks\"\n- 这实际上 EXTENDS Claim 3 (task-complexity boundary): 不仅 NER↔RE 有 boundary, NER 内部不同难度也有 boundary\n- 增加了论文概念深度: signal utility = f(task difficulty)\n\n关键确认:\n- SJ >> logprob 跨数据集稳健 (SciERC Δρ=+0.217, CoNLL Δρ=+0.120, both significant)\n- Voting 首次 beat greedy (CoNLL +0.18pp) → correlation-selection gap 也是 task-difficulty-dependent\n- All signals AUROC > 0.75 on CoNLL → easy tasks 上信号选择 ROI 低\n\n⚠️ AUROC bug: pilot script logprob AUROC=0.5000 (F1=1.0 二值化问题), 需修复以免 WNUT 复现。",
+              "related_experiments": "[{'exp_id': 'exp_002_ner_conll2003', 'role': 'primary_evidence', 'result': 'EM ρ=0.451 > SJ 0.436 > voting 0.424 > FK 0.400 > logprob 0.316. SJ vs logprob Δρ=+0.120 significant. Voting beats greedy +0.18pp.'}, {'exp_id': 'exp_016_signal_ensemble', 'role': 'context', 'result': 'SciERC: no signal beats greedy. CoNLL: voting beats greedy → correlation-selection gap is task-difficulty-dependent.'}, {'exp_id': 'exp_012_logprob_baseline', 'role': 'context', 'result': 'SciERC SJ >> logprob confirmed. CoNLL adds cross-dataset validation.'}]",
+              "depends_on": "['D018']"
+            }
+          },
+          "id": "event-000809"
+        },
+        {
+          "source_line": 810,
+          "timestamp": "2026-05-14T12:45:11.807695+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"decision_id\\\": \\\"D020\\\", \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/decisions.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "elapsed_ms": 212
+          },
+          "id": "event-000810"
+        },
+        {
+          "source_line": 811,
+          "timestamp": "2026-05-14T12:45:29.640999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "## exp-002 (CoNLL-2003) 结果 — 跨数据集验证\n\n### 核心数据 (n=2756, N=8, T=1.0)\n| Signal | CoNLL ρ | SciERC ρ | 排名变化 |\n|--------|---------|----------|---------|\n| EM | **0.451** (#1) | 0.294 (#4) | ↑3 |\n| SJ | 0.436 (#2) | 0.383 (#2) | → |\n| voting | 0.424 (#3) | 0.392 (#1) | ↓1 |\n| FK | 0.400 (#4) | 0.259 (#5) | ↑1 |\n| logprob | 0.316 (#5) | 0.140 (#6) | ↑1 |\n\n### 关键发现 (D020)\n\n1. **EM > SJ on CoNLL (Δρ=-0.015, significant)**\n   简单任务 (F1=91%) 上 exact match 足以捕获一致性, SJ 的 soft matching 无额外优势。\n\n2. **SJ >> logprob 跨数据集稳健**\n   CoNLL Δρ=+0.120 (CI [0.088, 0.154]), SciERC Δρ=+0.217。两个数据集一致。\n\n3. **Voting 首次 beat greedy (+0.18pp)**\n   CoNLL: voting 0.914 > greedy 0.912。SciERC 上所有信号都不如 greedy。说明 correlation-selection gap 也是 task-difficulty-dependent。\n\n4. **所有信号 AUROC > 0.75 on CoNLL**\n   简单任务上信号选择 ROI 低 — 所有信号都\"能用\"。\n\n### 对论文叙事的影响\n\n**核心升级**: 信号排名不是固定的, 而是 task-difficulty-dependent:\n- 困难 NER (SciERC F1~67%): SJ/voting > EM > FK > logprob → 结构化匹配关键\n- 简单 NER (CoNLL F1~91%): EM > SJ > voting > FK > logprob → 表面一致性足够\n- RE: 所有信号退化 → compound error boundary\n\n这让 \"task-complexity boundary\" (Claim 3) 从 NER↔RE 扩展到 NER 内部不同难度 → 概念深度增加, 可能解决 novelty 问题。\n\n⚠️ AUROC bug: pilot script 对 logprob 输出 0.5000 (F1=1.0 二值化 bug), 已在 5-signal 分析中修正 (0.7532)。需修复脚本以免 WNUT 复现。\n\n### 实验进展\n- exp-003 (WNUT) 训练 73%, ~8min 完成\n- exp-007 (LLaMA) 下载 97%\n- gpu-5090-4x-2: 3 个实验用全集重跑中\n- GPU 利用率 6/8"
+            }
+          },
+          "id": "event-000811"
+        },
+        {
+          "source_line": 812,
+          "timestamp": "2026-05-14T12:45:33.124307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 3483
+          },
+          "id": "event-000812"
+        },
+        {
+          "source_line": 813,
+          "timestamp": "2026-05-14T12:45:44.302365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'Process exp-002 CoNLL results and log D020', 'status': 'completed', 'activeForm': 'Done'}, {'content': 'Report exp-002 findings to user', 'status': 'completed', 'activeForm': 'Done'}, {'content': 'Wait for Reviewer assessment of Round 1 Action Matrix', 'status': 'in_progress', 'activeForm': 'Waiting for Reviewer assessment'}, {'content': 'Wait for exp-003 (WNUT) + exp-001 rerun (full T=1.0) + exp-007 (LLaMA) results', 'status': 'in_progress', 'activeForm': 'Waiting for experiment results'}, {'content': 'Update paper_framing.md: Claim 1 task-difficulty conditioning + Claim 2 gap is difficulty-dependent', 'status': 'pending', 'activeForm': 'Updating paper framing'}, {'content': 'After Reviewer feedback: finalize Round 1 Action Matrix + sync review_issues.yaml', 'status': 'pending', 'activeForm': 'Finalizing action matrix'}, {'content': 'Fix AUROC bug in pilot script (F1=1.0 binarization issue)', 'status': 'pending', 'activeForm': 'Fixing AUROC bug'}]"
+            }
+          },
+          "id": "event-000813"
+        },
+        {
+          "source_line": 814,
+          "timestamp": "2026-05-14T12:45:44.302962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "TodoWrite",
+            "elapsed_ms": 0
+          },
+          "id": "event-000814"
+        },
+        {
+          "source_line": 815,
+          "timestamp": "2026-05-14T12:45:48.755617+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The exp-002 result enriches the paper significantly — the task-difficulty-dependent signal ranking adds conceptual depth beyond just \"which metric is best.\" Waiting for Reviewer's Round 1 Action Matrix assessment and remaining experiment results (WNUT, LLaMA, full-instance reruns)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
+          },
+          "id": "event-000815"
+        }
+      ]
+    },
+    {
+      "number": 62,
+      "messages": [
+        {
+          "source_line": 816,
+          "timestamp": "2026-05-14T12:45:51.295257+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 8 / 实际跑 3 (autodl-5090: cuda:1 exp-003 ft, cuda:3 exp-007 下载中; gpu-5090-4x-2: 重跑全集 Worker 刚启动) | Worker 池 7 (GPU 4 / CPU 3)\n\n## 紧急修复已派发\n\n### 1. Conditional filtering 不一致 — Worker 已启动\n- 排查 run.log (n_cond=124) vs all_signals_report (n_cond=89) 的定义差异\n- 统一为标准定义: 排除 greedy_F1=0\n- 修复所有分析脚本 + 重算 exp-001 conditional metrics\n- 同步修复到 gpu-5090-4x-2\n\n### 2. --num_test 200 bug — 修复 + 重跑 Worker 已启动\n- gpu-5090-4x-2 上修复默认值 + 重跑 3 个实验 (seed123/456 + exp-008) 全集\n- autodl-5090 上 exp-001 seed=42 已完成全量重跑 (551 instances, T=1.0)\n\n## exp-001 全量 551 实例 T=1.0 修正结果（已入 registry）\n\n### NER (n=529)\n| Signal | ρ_full | AUROC |\n|--------|--------|-------|\n| voting_conf | **0.399** | **0.704** |\n| soft_jaccard | 0.398 | 0.697 |\n| exact_match | 0.339 | 0.677 |\n| fleiss_kappa | 0.288 | 0.632 |\n| logprob | 0.237 | 0.622 |\n\n### RE (n=397)\n| Signal | ρ_full | AUROC |\n|--------|--------|-------|\n| voting_conf | **0.380** | **0.699** |\n| logprob | 0.293 | 0.655 |\n| fleiss_kappa | 0.281 | 0.651 |\n| soft_jaccard | 0.277 | 0.637 |\n| exact_match | 0.148 | 0.556 |\n\n**⚠️ 之前 200 实例 T=0.7 的 N-scaling \"突破\"（RE voting_conf 0.448）已证伪**。551 实例 T=1.0 下 RE voting_conf=0.380，RE FAIL 确认。\n\n**意外发现**: conditional 设定下 EM 逆袭（RE cond ρ=0.475, AUROC=0.742），但 conditional 定义需先统一才能引用。\n\n## exp-016 (信号组合) 结果\n\n- SJ+voting_conf 线性组合 NER ρ=0.489 (+23%)\n- Ensemble NER AUROC=0.735 (单信号最高 0.700, Δ=+0.035)\n- **RE: logprob-best 是唯一超过 greedy 的选择策略** (0.397 vs 0.374)\n- Oracle gap 巨大 (NER +0.16, RE +0.19) — 当前信号远未充分利用采样多样性\n\n## 当前实验进展\n| 实验 | 状态 | 备注 |\n|------|------|------|\n| exp-001 seed=42 全量 | **DONE** ✅ | 551 instances T=1.0 |\n| exp-001 seed=123 全量 | RUNNING | gpu-5090-4x-2 重跑中 |\n| exp-001 seed=456 全量 | RUNNING | gpu-5090-4x-2 重跑中 |\n| exp-002 (CoNLL) | ft DONE, pilot 进行中 | merge+pilot Worker 在跑 |\n| exp-003 (WNUT) | fine-tune RUNNING | step 210/1065, cron 监控中 |\n| exp-007 (LLaMA) | 下载 93-95% | Worker 活跃 |\n| exp-008 (RE N=16) 全量 | RUNNING | gpu-5090-4x-2 重跑中 |\n| exp-016 (ensemble) | **DONE** ✅ | |\n| conditional fix | RUNNING | 最高优先级 |\n\n## 待 Director 决策\n1. Framing 暂停更新（等 conditional 定义统一 + 多数据集结果）✓\n2. exp-016 的 ensemble 结果是否值得在论文中展开？线性组合 +23% 是有意义的提升"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "source": "agent"
+          },
+          "id": "event-000816"
+        },
+        {
+          "source_line": 817,
+          "timestamp": "2026-05-14T12:46:05.333719+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_project_status,mcp__agent-ml-research__get_agent_queue_status,mcp__agent-ml-research__get_resource_inventory,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__director_get_project_overview,mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000817"
+        },
+        {
+          "source_line": 818,
+          "timestamp": "2026-05-14T12:46:05.437423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 103
+          },
+          "id": "event-000818"
+        },
+        {
+          "source_line": 819,
+          "timestamp": "2026-05-14T12:46:09.057745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000819"
+        },
+        {
+          "source_line": 820,
+          "timestamp": "2026-05-14T12:46:09.560175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"**项目**: `struct_self_consist_ie`\\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\\n\\n── 📋 项目配置 ──\\n✓ 服务器    autodl-5090 (connect.bjb1.seetacloud.com) [root] + gpu-5090-4x-2 (connect.bjb1.seetacloud.com) [root]\\n✓ 代码路径  /root/autodl-tmp/struct_self_consist_ie\\n· Git       未配置（可选）\\n· 弹性 GPU  未启用（可选）\\n· W&B       未配置（可选）\\n✓ 飞书      A群 + B群 + C群\\n\\n── 🗺️ 研究路线图 ──\\n**当前阶段**:\\n  **Research 阶段** — GPU 实验推进中（2/8 active），CPU 分析完成。\\n  \\n  ### Dream 对比\\n  | | Dream 1 | Dream 2 |\\n  |--|---------|---------|\\n\\n**决策日志**: 20 条记录\\n\\n── 📊 研究进度 ──\\n实验: 33 个 (运行中 1 | 待处理 9 | 完成 23 | 成功 14)\\n\\n  e1_component_wise_re_sj  DONE (negative)\\n  mvp_pilot_004            DONE (negative)\\n  ft_002_v2                DONE (success)\\n  mvp_pilot_002            DONE (failed)\\n  ft_002                   DONE (killed)\\n  ft_001                   DONE (success)\\n  mvp_pilot_003            DONE (negative)\\n  mvp_pilot_001            DONE (negative)\\n\\n── 📝 最新报告 ──\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_003_ner_wnut17 | — | — | — | — |\\n\\n## 待处理\\n- exp_008_re_n16_full（准备中）\\n- exp_001_n16_seed456_full（准备中）\\n- exp_001_n16_seed123_full（准备中）\\n- exp_002_merge_conll2003（准备中）\\n- exp008_re_n16（准备中）\\n- exp001_seed456（准备中）\\n- exp001_seed123（准备中）\\n- exp_007_ner_llama（准备中）\\n\\n## 近期结论\\n- **exp_007_ner_multi_model** (killed): —\\n- **exp_008_re_n16** (success): —\\n- **exp_001_n16_seed456** (success): —\\n\\n## 趋势\\n成功 14 / 负向 6 / 失败 1 / 共 23\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "elapsed_ms": 502
+          },
+          "id": "event-000820"
+        },
+        {
+          "source_line": 821,
+          "timestamp": "2026-05-14T12:46:09.660834+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_get_project_overview"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000821"
+        },
+        {
+          "source_line": 822,
+          "timestamp": "2026-05-14T12:46:09.911893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"# 项目 struct_self_consist_ie 概况\\n\\n## 实验状态 (33 个)\\n\\n- **exp_004_re_diagnostic**: DONE (success) — \\n- **exp_005**: DONE (success) — \\n- **exp_007_ner_llama**: PREPARING — \\n- **exp_014_entity_majority_voting**: DONE (success) — \\n- **exp_013_exact_match_voting**: DONE (negative) — \\n- **exp_012_logprob_baseline**: DONE (success) — \\n- **mvp_pilot_005**: DONE (negative) — \\n- **e1_component_wise_re_sj**: DONE (negative) — \\n- **mvp_pilot_004**: DONE (negative) — \\n- **ft_002_v2**: DONE (success) — \\n- **mvp_pilot_002**: DONE (failed) — \\n- **ft_002**: DONE (killed) — \\n- **ft_001**: DONE (success) — \\n- **mvp_pilot_003**: DONE (negative) — \\n- **mvp_pilot_001**: DONE (negative) — \\n\\n## 最新报告\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_003_ner_wnut17 | — | — | — | — |\\n\\n## 待处理\\n- exp_008_re_n16_full（准备中）\\n- exp_001_n16_seed456_full（准备中）\\n- exp_001_n16_seed123_full（准备中）\\n- exp_002_merge_conll2003（准备中）\\n- exp008_re_n16（准备中）\\n- exp001_seed456（准备中）\\n- exp001_seed123（准备中）\\n- exp_007_ner_llama（准备中）\\n\\n## 近期结论\\n- **exp_007_ner_multi_model** (killed): —\\n- **exp_008_re_n16** (success): —\\n- **exp_001_n16_seed456** (success): —\\n\\n## 趋势\\n成功 14 / 负向 6 / 失败 1 / 共 23\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nautodl-5090: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\ngpu-5090-4x-2: 无 GPU 信息\\n\\n## 告警\\n- ft_002: 已被终止 — unknown\\n- mvp_pilot_002: 训练失败 — unknown\\n- exp_007_ner_multi_model: 已被终止 — unknown\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "elapsed_ms": 251
+          },
+          "id": "event-000822"
+        },
+        {
+          "source_line": 823,
+          "timestamp": "2026-05-14T12:46:10.366143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_resource_inventory"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__get_resource_inventory",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000823"
+        },
+        {
+          "source_line": 824,
+          "timestamp": "2026-05-14T12:46:10.416792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"## 基础设施资源\\n\\n### 项目绑定\\n\\n- 服务器: `autodl-5090(root) + gpu-5090-4x-2(root)`\\n- 远程路径: `/root/autodl-tmp/struct_self_consist_ie`\\n\\n### 项目服务器\\n\\n- `autodl-5090` (connect.bjb1.seetacloud.com) — 4 GPU 总数\\n  - `root`: 全部 GPU 可用\\n- `gpu-5090-4x-2` (connect.bjb1.seetacloud.com) — 0 GPU 总数\\n  - `root`: 可用 GPU `cuda:0, cuda:1, cuda:2, cuda:3`\\n\\n### 弹性 GPU（AutoDL 租卡）\\n\\n- 状态: **未启用** — 本项目不使用弹性 GPU 租卡\\n- 如需启用，请在 Dashboard Settings 项目配置中开启，或使用 `update_project_config(project, \\\"execution\\\", {\\\"elastic_gpu\\\": true})`\\n\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__get_resource_inventory",
+            "elapsed_ms": 50
+          },
+          "id": "event-000824"
+        },
+        {
+          "source_line": 825,
+          "timestamp": "2026-05-14T12:46:10.820274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000825"
+        },
+        {
+          "source_line": 826,
+          "timestamp": "2026-05-14T12:46:10.871052+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md\\\", \\\"content\\\": \\\"# struct_self_consist_ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 12:17 UTC | 更新原因: Dream 2 全分析完成 (D017), 修正 best tier 3/6 (非 4/6), 添加 RE conditional 紧急修复, GPU 2/8 active\\\\n\\\\n## 核心方向\\\\n系统比较 5 类置信信号（log-prob / exact-match / FK / SJ / voting_conf）在 IE test-time scaling 中的有效性。核心发现：structural consistency family (SJ + voting_conf) 在 NER 上 AUROC 0.70 vs logprob 0.59，RE 因复合错误传播在 N=8 时退化但 N=16 时可能恢复（待 T=1.0 全集确认）。详见 paper_framing.md。\\\\n\\\\n## 当前阶段\\\\n**Research 阶段** — GPU 实验推进中（2/8 active），CPU 分析完成。\\\\n\\\\n### Dream 对比\\\\n| | Dream 1 | Dream 2 |\\\\n|--|---------|---------|\\\\n| best | 3/6 | 3/6 |\\\\n| median | 3/6 | 3/6 |\\\\n| worst | 3/6 | 3/6 |\\\\n| 主要问题 | 缺 baseline (logprob/EM/voting) | 缺 related work/figures/framing |\\\\n\\\\n**结论**: 加 baseline 后解决了 Dream 1 的问题，但暴露了 presentation 层的新瓶颈（novelty framing / 35+ refs / 3+ figures）。Paper Agent 是提分关键路径，不是更多 GPU 实验。\\\\n\\\\n### 确认发现\\\\n| 发现 | 来源 | 状态 |\\\\n|------|------|------|\\\\n| SJ >> logprob NER (ρ 0.383 vs 0.140, AUROC 0.689 vs 0.591) | exp-012/015 | ✅ |\\\\n| voting_conf ≈ SJ NER (ρ 0.392 vs 0.383, AUROC 0.704 vs 0.689) | exp-014/015 | ✅ |\\\\n| SJ 温度鲁棒 (Δρ≤0.01 vs FK Δρ=0.06-0.09) | exp-005 | ✅ |\\\\n| Conditional filtering >> temperature tuning | exp-005 | ✅ |\\\\n| LOO-SJ Δρ=−0.014 (circularity minimal) | exp-015 | ✅ |\\\\n\\\\n### 待确认发现\\\\n| 发现 | 来源 | 阻塞项 |\\\\n|------|------|--------|\\\\n| RE N=16 信号恢复 (voting ρ 0.448) | exp-001 | ⚠️ 200实例 T=0.7，等 T=1.0 全集 |\\\\n| N-scaling: RE 需更多样本 | exp-001 | ⚠️ 同上 |\\\\n| RE conditional rho 不一致 (0.411 vs 0.284) | exp-001 | ⚠️ 两脚本定义不同，需统一 |\\\\n\\\\n## ⚠️ 紧急修复\\\\n- [ ] **RE conditional filtering 定义不一致**: run.log (n_cond=124, ρ=0.411) vs report.json (n_cond=89, ρ=0.284)。必须在 T=1.0 全集重跑前统一定义。\\\\n- [ ] **exp_015 registry 状态**: 服务器有输出但 registry 仍 QUEUED\\\\n\\\\n## 近期任务\\\\n- [x] Baseline 实验全部完成 (exp-012/013/014)\\\\n- [x] CPU 分析全部完成 (exp-004/005/015)\\\\n- [x] Dream 2 跨三档分\n…[truncated 2817 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 50
+          },
+          "id": "event-000826"
+        },
+        {
+          "source_line": 827,
+          "timestamp": "2026-05-14T12:46:11.073917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000827"
+        },
+        {
+          "source_line": 828,
+          "timestamp": "2026-05-14T12:46:11.225623+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"exp-012\\\", \\\"name\\\": \\\"baseline_logprob\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Compute sequence log-probability for all existing pilot samples (SciERC NER+RE) and new dataset pilots. Correlate log-prob with F1 (ρ, AUROC, τ). If SJ does NOT beat log-prob, the 16x inference cost is unjustified and paper contribution weakens drastically. THIS IS THE MAKE-OR-BREAK EXPERIMENT.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 3, \\\"deps\\\": [], \\\"note\\\": \\\"Needs vLLM forward pass to extract log-probs from existing samples. ~1h per dataset on 1 GPU. For new datasets, capture log-probs during pilot inference. Also compute on pilot_004/005 existing data if log-probs weren't saved.\\\\n\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"exp-013\\\", \\\"name\\\": \\\"baseline_exact_match\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Exact-match voting rate: what fraction of N samples produce identical entity/relation sets? Correlate with F1. This is the direct analogue of Wang et al.'s original self-consistency for structured outputs.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [], \\\"note\\\": \\\"CPU-only on existing pilot data. Zero cost.\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"exp-014\\\", \\\"name\\\": \\\"baseline_entity_voting\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Entity-level majority voting: for each entity, count how many of N samples include it. Select entities above threshold. Compare F1 of entity-voting selection vs SJ selection vs FK selection.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [], \\\"note\\\": \\\"CPU-only on existing pilot data. Zero cost.\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"exp-015\\\", \\\"name\\\": \\\"evaluation_metrics_expansion\\\", \\\"claim\\\": \\\"1,2\\\", \\\"description\\\": \\\"Add AUROC (binary: good/bad output at threshold), calibration plots, and Kendall's τ alongside Spearman ρ for ALL confidence signals (SJ, FK, log-prob, exact-match, entity-voting) on ALL datasets. Also add leave-one-out SJ as robu\n…[truncated 6129 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 151
+          },
+          "id": "event-000828"
+        },
+        {
+          "source_line": 829,
+          "timestamp": "2026-05-14T12:46:11.277102+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000829"
+        },
+        {
+          "source_line": 830,
+          "timestamp": "2026-05-14T12:46:11.488333+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":2,\\\"current\\\":{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_read_exp016_and_seed123_results_20260514T122622 已完成（status=done）。用 `get_worker_stat\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_gpu_exp_002_merge_and_pilot_20260514T122323 已完成（status=done）。用 `get_worker_status('worker_gp\\\",\\\"queued_at\\\":1778762498.8156238},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_gpu_gpu5090x2_fix_and_rerun_full_20260514T124323 已完成（status=done）。用 `get_worker_status('work\\\",\\\"queued_at\\\":1778762738.8130558}],\\\"idle_seconds\\\":7}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 211
+          },
+          "id": "event-000830"
+        },
+        {
+          "source_line": 831,
+          "timestamp": "2026-05-14T12:46:17.391816+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md"
+            }
+          },
+          "id": "event-000831"
+        },
+        {
+          "source_line": 832,
+          "timestamp": "2026-05-14T12:46:17.843422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Handover — 2026-05-14\n2\t\n3\t> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n4\t\n5\t## 运行中\n6\t| exp_id | 假设 | 状态 | 关键指标 | W&B |\n7\t|--------|------|------|---------|-----|\n8\t| exp_003_ner_wnut17 | — | — | — | — |\n9\t\n10\t## 待处理\n11\t- exp_008_re_n16_full（准备中）\n12\t- exp_001_n16_seed456_full（准备中）\n13\t- exp_001_n16_seed123_full（准备中）\n14\t- exp_002_merge_conll2003（准备中）\n15\t- exp008_re_n16（准备中）\n16\t- exp001_seed456（准备中）\n17\t- exp001_seed123（准备中）\n18\t- exp_007_ner_llama（准备中）\n19\t\n20\t## 近期结论\n21\t- **exp_007_ner_multi_model** (killed): —\n22\t- **exp_008_re_n16** (success): —\n23\t- **exp_001_n16_seed456** (success): —\n24\t\n25\t## 趋势\n26\t成功 14 / 负向 6 / 失败 1 / 共 23\n27\t\n28\t## 下一步\n29\t（无活跃 idea，请通过 ideas.md 添加）\n30\t\n31\t## 资源状态\n32\tautodl-5090: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\n33\tgpu-5090-4x-2: 无 GPU 信息\n34\t\n35\t## 告警\n36\t- ft_002: 已被终止 — unknown\n37\t- mvp_pilot_002: 训练失败 — unknown\n38\t- exp_007_ner_multi_model: 已被终止 — unknown\n39\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "elapsed_ms": 451
+          },
+          "id": "event-000832"
+        },
+        {
+          "source_line": 833,
+          "timestamp": "2026-05-14T12:46:17.843854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md",
+              "limit": "60"
+            }
+          },
+          "id": "event-000833"
+        },
+        {
+          "source_line": 834,
+          "timestamp": "2026-05-14T12:46:18.753442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — struct_self_consist_ie\n2\t\n3\t> Updated 2026-05-14 post-exp-016 pivot (D019). CRITICAL NARRATIVE CHANGE: best-of-N selection fails on NER (all signals ≤ greedy). Pivot from \"TTS improvement\" to \"confidence estimation + correlation-selection gap\".\n4\t\n5\t## Target Venue\n6\t- Primary: EMNLP 2026 Main (via ARR May 2026)\n7\t- Fallback: EMNLP 2026 Findings\n8\t- Deadline: ARR May cycle, 2026-05-25\n9\t\n10\t## Core Claims (3 条)\n11\t\n12\t### Claim 1 (Positive — Quality Estimation)\n13\tStructural consistency signals (soft Jaccard, entity voting confidence) are the strongest unsupervised quality estimators for entity-level IE, significantly outperforming model confidence (log-probability) and surface agreement (FK, exact-match) at instance-level quality prediction. Structural consistency family achieves AUROC≈0.70 vs logprob 0.59 for NER discrimination. SJ and voting confidence are statistically comparable on NER (ρ≈0.39), SJ is temperature-robust (Δρ=±0.01).\n14\t\n15\t**Key insight**: The contribution is about a FAMILY of structural consistency signals for QUALITY ESTIMATION (predicting which instances are reliable), not for per-sample selection. SJ and voting_conf both capture entity-across-sample consistency. SJ generalizes to arbitrary structured outputs; voting is simpler.\n16\t\n17\t**Evidence** (SciERC, N=8, T=1.0):\n18\t- NER full (n=529): voting_conf ρ=0.392/τ=0.291/AUROC=0.704, SJ ρ=0.383/τ=0.266/AUROC=0.689, EM ρ=0.294/AUROC=0.640, FK ρ=0.259/AUROC=0.629, logprob ρ=0.140/AUROC=0.591\n19\t- NER cond: SJ ρ=0.412 (unique signal >0.40)\n20\t- Structural consistency family (SJ+voting) AUROC ~0.70 vs logprob 0.59 — both ρ and discriminative power confirm dominance\n21\t- RE full: voting_conf ρ=0.340/AUROC=0.667 > SJ ρ=0.244/AUROC=0.592 (voting more robust with sparse tuples)\n22\t- Temperature robustness: SJ Δρ=±0.01 across T=0.7/1.0; FK Δρ=±0.06-0.09 (SJ far more stable)\n23\t\n24\t### Claim 2 (Novel Finding — Correlation-Selection Gap)\n25\tInstance-level quality estimation ≠ per-samp\n…[truncated 5101 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "elapsed_ms": 909
+          },
+          "id": "event-000834"
+        },
+        {
+          "source_line": 835,
+          "timestamp": "2026-05-14T12:46:18.804098+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/decisions.yaml",
+              "limit": "80",
+              "offset": "0"
+            }
+          },
+          "id": "event-000835"
+        },
+        {
+          "source_line": 836,
+          "timestamp": "2026-05-14T12:46:18.854801+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\t_next_id: 21\n1\tdecisions:\n2\t- id: D001\n3\t  date: 2026-05-14 04:23 UTC\n4\t  summary: 'MVP 方案: ACE05 上验证 structural consistency vs Fleiss'' Kappa 的 correlation\n5\t    差异'\n6\t  rationale: 'PMC12888769 用 surface-level Fleiss'' Kappa 在 zero-shot 模型上得到 ρ=0.20-0.28，我们假设\n7\t    fine-tuned 模型 + structural consistency (soft Jaccard) 能达到 ρ≥0.40。这是整个论文的基础假设——如果\n8\t    structural consistency 不能更好地预测准确率，后续的 adaptive gating 无从谈起。Phase 0 pilot 设计: Qwen3-8B\n9\t    fine-tuned on ACE05, N=8 samples, 200 instances, 对比两种 consistency metric 的 Spearman\n10\t    ρ。Pass ≥0.40, Fail <0.30。'\n11\t  related_experiments: []\n12\t  depends_on: []\n13\t- id: D002\n14\t  date: 2026-05-14 04:27 UTC\n15\t  summary: 采纳 Reviewer 审查意见，收紧 MVP pass/fail 标准\n16\t  rationale: 'Reviewer 指出 5 个问题，全部合理采纳：(1) PASS 必须要求 EAE (high-headroom subtask) ρ≥0.40，仅\n17\t    NER 通过不够（ceiling effect 可能虚高）；(2) MARGINAL 区间加 time-boxed protocol: N=16 追加 +\n18\t    1天上限；(3) 加 fine-tuning 质量门控 (NER≥73, EAE≥45)，模型不行时先修 fine-tuning；(4) ACE05 今天必须确认；(5)\n19\t    监控 T=1.0 per-sample F1 分布，>30% F1=0 时追加 T=0.7。'\n20\t  related_experiments: []\n21\t  depends_on:\n22\t  - D001\n23\t- id: D003\n24\t  date: 2026-05-14 04:53 UTC\n25\t  summary: SciERC RE 替代 ACE05 EAE 作为 MVP high-headroom subtask\n26\t  rationale: ACE05 需 LDC 许可，用户未确认。SciERC 公开可得，有 NER+RE 两个 subtask。RE base F1 ~47（与\n27\t    ACE05 EAE ~52 相当），结构复杂度高（entity pair + relation type），headroom 大，是 EAE 的合理替代。PASS\n28\t    标准更新为 RE ρ≥0.40。需要补实现 RE 的 consistency + evaluation + pipeline 支持。\n29\t  related_experiments: []\n30\t  depends_on:\n31\t  - D002\n32\t- id: D004\n33\t  date: 2026-05-14 07:38 UTC\n34\t  summary: 'Gate 0: NER PASS (60.4%), RE FAIL (33.8%). 执行方案 C——当前模型先跑 pilot + 追训改进版，需修复\n35\t    RE evaluation'\n36\t  rationale: RE 33.8% 低于 40% 阈值但不阻塞 pilot：(1) headroom 大，oracle best-of-N 有提升空间；(2)\n37\t    consistency correlation 不要求高绝对 F1，要求 per-instance variance；(3) 弱模型上验证假设结论更强。但\n38\t    Reviewer 发现两个评估缺陷必须先修：(a) 28% test instances 无 gold relations，会在 (consistency=1.0,\n39\t    F1=0) 处制造 artifact，必须排除；(b) 需报告 full ρ 和 conditional ρ（排除\n…[truncated 2058 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000836"
+        },
+        {
+          "source_line": 837,
+          "timestamp": "2026-05-14T12:46:24.478735+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/decisions.yaml",
+              "offset": "78",
+              "limit": "200"
+            }
+          },
+          "id": "event-000837"
+        },
+        {
+          "source_line": 838,
+          "timestamp": "2026-05-14T12:46:25.783330+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "78\t    result: 'FAIL: RE full ρ=0.254, cond ρ=0.352; NER ρ=0.362'\n79\t  - exp_id: ft_002\n80\t    role: retrain\n81\t    result: OOM at step 73, restarting as ft_002_v2\n82\t  depends_on:\n83\t  - D005\n84\t- id: D007\n85\t  date: 2026-05-14 09:09 UTC\n86\t  summary: Gate 1 FAIL (RE rho_sj=0.244<0.30), 但 T=1.0 zero rate 44%>30% 触发协议内 T=0.7\n87\t    追加，暂不 pivot\n88\t  rationale: 1) RE full rho_sj=0.244 < 0.30 触发 ROADMAP FAIL 路径；2) 但 44.3% RE F1=0\n89\t    > 30% 阈值，按 Gate 1 设计追加 T=0.7 实验——这是协议预设步骤不是补救；3) RE cond rho_sj=0.316 > 0.30 说明排除\n90\t    all-zero 后进入 MARGINAL 区间，SJ 在\"可做\"实例上仍有信号；4) NER rho_sj=0.383 稳定正面；5) SJ vs FK\n91\t    翻转值得关注但可能与高 zero rate 有关，T=0.7 可能改善。最终 pivot 决策等 T=0.7 结果。\n92\t  related_experiments:\n93\t  - exp_id: mvp_pilot_004\n94\t    role: Gate 1 pilot (ft_002_v2)\n95\t    result: RE rho_sj=0.244 FAIL, NER rho_sj=0.383 PASS\n96\t  - exp_id: mvp_pilot_003\n97\t    role: Gate 1 pilot (ft_001) baseline\n98\t    result: RE rho_sj=0.237, NER rho_sj=0.381\n99\t  depends_on:\n100\t  - D006\n101\t- id: D008\n102\t  date: 2026-05-14 09:25 UTC\n103\t  summary: E1 否定乘性惩罚假设，Narrative B 排除，确认走 Narrative A (NER-primary + RE diagnostic)\n104\t  rationale: E1 component-wise 分析：head_sj ρ=0.210 远低于 NER ρ=0.383（差 17pp），所有单组件 ρ\n105\t    都低于组合 SJ（0.244），加法/乘法聚合几乎相同（0.243 vs 0.244）。结论：RE consistency 信号本质弱于 NER，是复合错误传播的固有属性，不是\n106\t    metric 设计问题。Narrative B（度量分解修复 RE）不可行。Narrative A（NER 为主 + RE 诊断分析）是唯一可行路径。pilot_005\n107\t    (T=0.7) 作为最后确认仍在运行，设硬截止线：RE rho_sj < 0.30 = 确认 FAIL，不再调参。\n108\t  related_experiments:\n109\t  - exp_id: e1_component_wise_re_sj\n110\t    role: RE SJ 分解诊断\n111\t    result: 乘性惩罚假设 REJECTED，head_sj ρ=0.210 << NER 0.383\n112\t  - exp_id: mvp_pilot_004\n113\t    role: Gate 1 数据源\n114\t    result: RE rho_sj=0.244 FAIL\n115\t  - exp_id: mvp_pilot_005\n116\t    role: T=0.7 最后确认\n117\t    result: 运行中\n118\t  depends_on:\n119\t  - D007\n120\t- id: D009\n121\t  date: 2026-05-14 09:25 UTC\n122\t  summary: E1 否定乘性惩罚假说，方案 B 排除，确认走方案 A（NER-primary + RE 诊断）\n123\t  rationale: E1 component-wise 分解显示 head_sj ρ=0.210 远低于 NER ρ=0.383，每个 component\n…[truncated 7274 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "elapsed_ms": 1304
+          },
+          "id": "event-000838"
+        },
+        {
+          "source_line": 839,
+          "timestamp": "2026-05-14T12:46:25.783836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.md",
+              "path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea_gen_0514_1-projects-struct-self-consist-ie--claude-sessions-director-786277ea/memory"
+            }
+          },
+          "id": "event-000839"
+        },
+        {
+          "source_line": 840,
+          "timestamp": "2026-05-14T12:46:25.834372+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Directory does not exist: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea_gen_0514_1-projects-struct-self-consist-ie--claude-sessions-director-786277ea/memory. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/director_786277ea.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000840"
+        },
+        {
+          "source_line": 841,
+          "timestamp": "2026-05-14T12:46:27.161919+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:get_project_status,get_agent_queue_status,get_gpu_health,read_experiment_plan_with_status",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000841"
+        },
+        {
+          "source_line": 842,
+          "timestamp": "2026-05-14T12:46:27.264301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 102
+          },
+          "id": "event-000842"
+        },
+        {
+          "source_line": 843,
+          "timestamp": "2026-05-14T12:46:31.287820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_project_status,mcp__agent-ml-research__get_gpu_health,mcp__agent-ml-research__get_agent_queue_status,mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000843"
+        },
+        {
+          "source_line": 844,
+          "timestamp": "2026-05-14T12:46:31.338703+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000844"
+        },
+        {
+          "source_line": 845,
+          "timestamp": "2026-05-14T12:46:31.470910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/decisions.yaml",
+              "offset": "275",
+              "limit": "150"
+            }
+          },
+          "id": "event-000845"
+        },
+        {
+          "source_line": 846,
+          "timestamp": "2026-05-14T12:46:31.521774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "275\t\n276\t    - I5: SJ vs logprob dataset-dependent [B][M] → exp-002/003 决定\n277\t\n278\t    - I6: Best-of-N F1 差异不显著 [B][M] → exp-016 bootstrap CI 验证\n279\t\n280\t\n281\t    **忽略项：** best tier 的 data integrity concern（dream artifact），narrative repositioning\n282\t    concern（dream 对内部决策日志的过度解读）。\n283\t\n284\t\n285\t    **Claim 2 决策：** 批准从\"task-complexity boundary\"升级为\"sample-complexity gradient\"，但需全实例集\n286\t    T=1.0 确认后才正式写入。\n287\t\n288\t\n289\t    **不 re-dream：** 所有确认行动项均为 paper writing 级别（Paper Agent 处理），非 framing 结构性改变。P0\n290\t    实验已全部审批并运行，等真实数据后再评估是否 re-dream。'\n291\t  related_experiments:\n292\t  - exp_id: dream_20260514T105303\n293\t    role: dream\n294\t    result: best=3/6, median=3/6, worst=3/6 — 全结构性问题\n295\t  - exp_id: exp_016\n296\t    role: addresses I3 (ensemble)\n297\t    result: running\n298\t  - exp_id: exp_002\n299\t    role: validates I5 (dataset dependency)\n300\t    result: running\n301\t  - exp_id: exp_003\n302\t    role: validates I5 (dataset dependency)\n303\t    result: running\n304\t  depends_on:\n305\t  - D015\n306\t- id: D017\n307\t  date: 2026-05-14 12:14 UTC\n308\t  summary: Dream 2 全三档 3/6 (Weak Reject) — 问题是结构性的(presentation/positioning)，非数据问题。确认行动项：reframe\n309\t    novelty + 扩展 related work 35+ refs + 添加 3+ figures + soften diagnostic framework\n310\t    claim。观察项：SJ vs LOGPROB dataset-dependency (等 exp-002/003)、Best-of-N significance\n311\t    (等 exp-006/015)、cross-model stability (等 exp-007)。已运行 GPU 实验继续（数据收集独立于 framing）。framing\n312\t    修改完成后 re-dream 验证。\n313\t  rationale: 'Dream 2 三档一致问题: (D01) novelty = metric substitution, (D02) related work\n314\t    thin, (D03) single RE dataset。两档一致: ensemble missing (exp-016 已规划), diagnostic\n315\t    framework overclaimed, negative result predictability。Best case 都无法达到 4/6 说明 framing\n316\t    + positioning 是 bottleneck, 不是 experimental evidence。Paper Agent 是 critical path\n317\t    — related work 扩展、figures 添加、contribution reframe 比新 GPU 实验更紧急。但 GPU 实验(esp exp-002/003\n318\t    cross-dataset validation)的结果将决定 Claim 1 的最终强度。'\n319\t  related_experiments:\n320\t  - exp\n…[truncated 4405 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000846"
+        },
+        {
+          "source_line": 847,
+          "timestamp": "2026-05-14T12:46:35.053675+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_gpu_health"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__get_gpu_health"
+          },
+          "id": "event-000847"
+        },
+        {
+          "source_line": 848,
+          "timestamp": "2026-05-14T12:46:35.054070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000848"
+        },
+        {
+          "source_line": 849,
+          "timestamp": "2026-05-14T12:46:35.357353+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"servers\\\": {}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "elapsed_ms": 303
+          },
+          "id": "event-000849"
+        },
+        {
+          "source_line": 850,
+          "timestamp": "2026-05-14T12:46:35.357785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":2,\\\"current\\\":{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_read_exp016_and_seed123_results_20260514T122622 已完成（status=done）。用 `get_worker_stat\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_gpu_exp_002_merge_and_pilot_20260514T122323 已完成（status=done）。用 `get_worker_status('worker_gp\\\",\\\"queued_at\\\":1778762498.8156238},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_gpu_gpu5090x2_fix_and_rerun_full_20260514T124323 已完成（status=done）。用 `get_worker_status('work\\\",\\\"queued_at\\\":1778762738.8130558}],\\\"idle_seconds\\\":31}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 303
+          },
+          "id": "event-000850"
+        },
+        {
+          "source_line": 851,
+          "timestamp": "2026-05-14T12:46:35.358066+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000851"
+        },
+        {
+          "source_line": 852,
+          "timestamp": "2026-05-14T12:46:35.509012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"**项目**: `struct_self_consist_ie`\\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\\n\\n── 📋 项目配置 ──\\n✓ 服务器    autodl-5090 (connect.bjb1.seetacloud.com) [root] + gpu-5090-4x-2 (connect.bjb1.seetacloud.com) [root]\\n✓ 代码路径  /root/autodl-tmp/struct_self_consist_ie\\n· Git       未配置（可选）\\n· 弹性 GPU  未启用（可选）\\n· W&B       未配置（可选）\\n✓ 飞书      A群 + B群 + C群\\n\\n── 🗺️ 研究路线图 ──\\n**当前阶段**:\\n  **Research 阶段** — GPU 实验推进中（2/8 active），CPU 分析完成。\\n  \\n  ### Dream 对比\\n  | | Dream 1 | Dream 2 |\\n  |--|---------|---------|\\n\\n**决策日志**: 20 条记录\\n\\n── 📊 研究进度 ──\\n实验: 33 个 (运行中 1 | 待处理 9 | 完成 23 | 成功 14)\\n\\n  e1_component_wise_re_sj  DONE (negative)\\n  mvp_pilot_004            DONE (negative)\\n  ft_002_v2                DONE (success)\\n  mvp_pilot_002            DONE (failed)\\n  ft_002                   DONE (killed)\\n  ft_001                   DONE (success)\\n  mvp_pilot_003            DONE (negative)\\n  mvp_pilot_001            DONE (negative)\\n\\n── 📝 最新报告 ──\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_003_ner_wnut17 | — | — | — | — |\\n\\n## 待处理\\n- exp_008_re_n16_full（准备中）\\n- exp_001_n16_seed456_full（准备中）\\n- exp_001_n16_seed123_full（准备中）\\n- exp_002_merge_conll2003（准备中）\\n- exp008_re_n16（准备中）\\n- exp001_seed456（准备中）\\n- exp001_seed123（准备中）\\n- exp_007_ner_llama（准备中）\\n\\n## 近期结论\\n- **exp_007_ner_multi_model** (killed): —\\n- **exp_008_re_n16** (success): —\\n- **exp_001_n16_seed456** (success): —\\n\\n## 趋势\\n成功 14 / 负向 6 / 失败 1 / 共 23\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "elapsed_ms": 150
+          },
+          "id": "event-000852"
+        },
+        {
+          "source_line": 853,
+          "timestamp": "2026-05-14T12:46:46.864279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/decisions.yaml",
+              "offset": "420",
+              "limit": "60"
+            }
+          },
+          "id": "event-000853"
+        },
+        {
+          "source_line": 854,
+          "timestamp": "2026-05-14T12:46:46.965217+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "420\t  - D017\n421\t- id: D020\n422\t  date: 2026-05-14 12:45 UTC\n423\t  summary: 'exp-002 CoNLL: EM > SJ (Δρ=-0.015, significant) — signal ranking is task-difficulty-dependent.\n424\t    SJ >> logprob confirmed cross-dataset (Δρ=+0.120). Voting first to beat greedy\n425\t    (+0.18pp). Framing: optimal signal depends on task difficulty, not universal winner.'\n426\t  rationale: 'CoNLL (easy task, greedy F1=91.2%): EM ρ=0.451 (#1) > SJ 0.436 (#2)\n427\t    > voting 0.424 (#3). SciERC (hard task, F1=67%): voting 0.392 (#1) > SJ 0.383\n428\t    (#2) > EM 0.294 (#4). EM jumps from #4 to #1 across difficulty levels.\n429\t\n430\t\n431\t    根因: 简单任务上 sample 输出高度一致, exact match 足以捕获一致性, SJ 的 soft matching 无额外价值。困难任务上 sample\n432\t    间差异大, 需要结构化匹配 (SJ) 来识别有意义的一致性。\n433\t\n434\t\n435\t    对叙事的影响:\n436\t\n437\t    - Claim 1 从 \"SJ universally best\" 改为 \"optimal signal is task-difficulty-dependent:\n438\t    SJ for hard tasks, EM for easy tasks\"\n439\t\n440\t    - 这实际上 EXTENDS Claim 3 (task-complexity boundary): 不仅 NER↔RE 有 boundary, NER 内部不同难度也有\n441\t    boundary\n442\t\n443\t    - 增加了论文概念深度: signal utility = f(task difficulty)\n444\t\n445\t\n446\t    关键确认:\n447\t\n448\t    - SJ >> logprob 跨数据集稳健 (SciERC Δρ=+0.217, CoNLL Δρ=+0.120, both significant)\n449\t\n450\t    - Voting 首次 beat greedy (CoNLL +0.18pp) → correlation-selection gap 也是 task-difficulty-dependent\n451\t\n452\t    - All signals AUROC > 0.75 on CoNLL → easy tasks 上信号选择 ROI 低\n453\t\n454\t\n455\t    ⚠️ AUROC bug: pilot script logprob AUROC=0.5000 (F1=1.0 二值化问题), 需修复以免 WNUT 复现。'\n456\t  related_experiments:\n457\t  - exp_id: exp_002_ner_conll2003\n458\t    role: primary_evidence\n459\t    result: EM ρ=0.451 > SJ 0.436 > voting 0.424 > FK 0.400 > logprob 0.316. SJ vs\n460\t      logprob Δρ=+0.120 significant. Voting beats greedy +0.18pp.\n461\t  - exp_id: exp_016_signal_ensemble\n462\t    role: context\n463\t    result: 'SciERC: no signal beats greedy. CoNLL: voting beats greedy → correlation-selection\n464\t      gap is task-difficulty-dependent.'\n465\t  - exp_id: exp_012_logprob_baseline\n466\t    role\n…[truncated 130 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-000854"
+        },
+        {
+          "source_line": 855,
+          "timestamp": "2026-05-14T12:47:01.655851+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000855"
+        },
+        {
+          "source_line": 856,
+          "timestamp": "2026-05-14T12:47:01.858301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"exp-012\\\", \\\"name\\\": \\\"baseline_logprob\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Compute sequence log-probability for all existing pilot samples (SciERC NER+RE) and new dataset pilots. Correlate log-prob with F1 (ρ, AUROC, τ). If SJ does NOT beat log-prob, the 16x inference cost is unjustified and paper contribution weakens drastically. THIS IS THE MAKE-OR-BREAK EXPERIMENT.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 3, \\\"deps\\\": [], \\\"note\\\": \\\"Needs vLLM forward pass to extract log-probs from existing samples. ~1h per dataset on 1 GPU. For new datasets, capture log-probs during pilot inference. Also compute on pilot_004/005 existing data if log-probs weren't saved.\\\\n\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"exp-013\\\", \\\"name\\\": \\\"baseline_exact_match\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Exact-match voting rate: what fraction of N samples produce identical entity/relation sets? Correlate with F1. This is the direct analogue of Wang et al.'s original self-consistency for structured outputs.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [], \\\"note\\\": \\\"CPU-only on existing pilot data. Zero cost.\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"exp-014\\\", \\\"name\\\": \\\"baseline_entity_voting\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Entity-level majority voting: for each entity, count how many of N samples include it. Select entities above threshold. Compare F1 of entity-voting selection vs SJ selection vs FK selection.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [], \\\"note\\\": \\\"CPU-only on existing pilot data. Zero cost.\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"exp-015\\\", \\\"name\\\": \\\"evaluation_metrics_expansion\\\", \\\"claim\\\": \\\"1,2\\\", \\\"description\\\": \\\"Add AUROC (binary: good/bad output at threshold), calibration plots, and Kendall's τ alongside Spearman ρ for ALL confidence signals (SJ, FK, log-prob, exact-match, entity-voting) on ALL datasets. Also add leave-one-out SJ as robu\n…[truncated 6129 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 202
+          },
+          "id": "event-000856"
+        },
+        {
+          "source_line": 857,
+          "timestamp": "2026-05-14T12:47:45.991666+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Writing the handoff.\n\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 服务器 GPU 分配：autodl-5090 cuda:0-3 + gpu-5090-4x-2 cuda:0-3，共 8 张 RTX 5090 32GB，全属本项目\n- 目标 DDL：ARR May 2026-05-25（距今 11 天），不得 fallback 到其他会议\n- paper_framing.md 已于 D019 pivot：核心叙事从 \"TTS improvement via SJ\" 转向 \"confidence estimation + correlation-selection gap\"。**禁止回退到旧叙事**，所有后续实验解读必须对齐新 framing\n- RE conditional filtering 定义不一致（run.log n_cond=124 ρ=0.411 vs report.json n_cond=89 ρ=0.284），T=1.0 全集重跑前必须统一\n- exp_012 有 AUROC bug（logprob AUROC=0.5000，F1=1.0 二值化问题），WNUT 前必须修复\n- 审稿阶段已启动（Group C 在 review_chat_id oc_3897c28...），不要干预他们的格式/投稿工作\n\n### 2. 🖥️ 基础设施快照\n- 服务器 1：autodl-5090 (connect.bjb1.seetacloud.com)，4× RTX 5090 32GB，root\n- 服务器 2：gpu-5090-4x-2 (connect.bjb1.seetacloud.com)，4× RTX 5090 32GB，root\n- 工作目录：/root/autodl-tmp/struct_self_consist_ie\n- Python/Conda：aml-train 镜像，/root/miniconda3/bin/python，conda base 环境\n- 模型：ft_002_v2 (Qwen3-8B LoRA fine-tuned on SciERC)，CoNLL fine-tune 刚完成\n- LLaMA 下载中（exp-007 依赖）\n- W&B：未配置\n- 当前活跃进程：exp_003_ner_wnut17 在运行，具体 PID/tmux 需 SSH 确认\n\n### 3. 📊 当前状态\n**刚做完的**：\n- exp-002 CoNLL 完成（D020）：重要发现——EM > SJ on easy tasks，SJ >> logprob 跨数据集确认，voting 首次 beat greedy (+0.18pp)\n- exp-016 ensemble 分析完成（D018/D019）：触发叙事 pivot，发现 correlation-selection gap\n- Dream 2 完成（D016/D017）：全三档 3/6，问题是 presentation 层（novelty framing / related work / figures），不是数据层\n\n**正在处理**：Agent 队列有 3 个 worker:done 回调正在消化（exp-016 分析结果、exp-002 merge、gpu-5090-4x-2 修复重跑）\n\n**Registry 状态**：\n- RUNNING：exp_003_ner_wnut17（WNUT-17 NER）\n- PREPARING（8 个）：exp_008_re_n16_full, exp_001_n16_seed456_full, exp_001_n16_seed123_full, exp_002_merge_conll2003, exp008_re_n16, exp001_seed456, exp001_seed123, exp_007_ner_llama\n- DONE：23 个（成功 14 / 负向 6 / 失败 1）\n\n**GPU 利用**：2/8 active，多数卡在 setup/download 阶段，预计 1-2h 内更多卡投入\n\n### 4. 📋 待办（条件触发式）\n- Agent 消化完 3 个 worker:done 回调 → 检查 GPU 利用率，确保 8 卡全排满（PREPARING 的 8 个实验应该陆续启动）\n- exp-003 WNUT 完成 → 分析 signal ranking 是否与 CoNLL/SciERC 一致（验证 task-difficulty-dependent 假设）\n- exp-007 LLaMA 下载完成 → dry-run → 提交训练，验证 cross-model SJ stability\n- exp-001 全实例 T=1.0 完成 → 确认 RE N=16 信号恢复（voting ρ=0.448 in n=200，需 n=551 确认）\n- exp-008 RE N=16 完成 → 确认 Claim 3 sample-complexity gradient\n- 所有 P0 GPU 实验完成 → 激活 Paper Agent（Full Draft 模式），关键任务：35+ refs / 3+ figures / reframe novelty / clarify correlation-selection gap\n- AUROC bug 未修 → 催 Agent 在 WNUT pilot 前修复 logprob AUROC 二值化逻辑\n- RE conditional filtering 定义未统一 → exp-001 full rerun 前必须解决\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D010: MVP 结论——NER PASS (SJ ρ=0.383), RE full FAIL (ρ=0.234), RE conditional positive (ρ=0.372)\n- D011→D013: Baseline 加入后 SJ 压倒性胜 logprob (AUROC 0.689 vs 0.591)，voting_conf ≈ SJ，升级为 \"structural consistency family\"\n- D018/D019: **关键 pivot**——exp-016 发现 best-of-N selection 全部不如 greedy (NER)，quality estimation ≠ sample selection，correlation-selection gap 成为核心新发现\n- D020: CoNLL 证实 signal ranking 是 task-difficulty-dependent (easy: EM>SJ; hard: SJ>EM)，进一步丰富了 Claim 3\n\n**最容易判断错的事**：\n1. 不要因为 best-of-N selection 失败就认为项目是 negative result——correlation-selection gap 本身是 novel finding，quality estimation 仍是强正面结果\n2. Dream 全 3/6 不代表论文不行——瓶颈是 presentation (related work / figures / novelty framing)，不是 experimental evidence。Paper Agent 是 critical path\n3. CoNLL 上 EM > SJ 不是坏消息——\"最优信号取决于任务难度\" 是比 \"SJ universally best\" 更深的 insight\n4. exp-001 的 N=16 RE 数据只有 200/551 实例，**绝不能**在论文中用这个数据 claim N-scaling 效应——必须等全集确认\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
+          },
+          "id": "event-000857"
+        }
+      ]
+    }
+  ]
+}

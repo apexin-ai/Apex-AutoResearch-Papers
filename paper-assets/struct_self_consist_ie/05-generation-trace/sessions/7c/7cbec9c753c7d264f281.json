@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7cbec9c753c7d264f281",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh gpu status check",
+  "task_key": "worker_ssh_gpu-status-check_20260514T170910",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_gpu-status-check_20260514T170910_result.json",
+    "occurrence": 1,
+    "bytes": 1677,
+    "sha256": "121806241a14de60a9a7b44a59028f20aa297fab2aca6166e056eb1d399214c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### GPU 状态\n| GPU | 型号 | 显存占用 | 利用率 | 温度 |\n|-----|------|---------|--------|------|\n| 0 | RTX 5090 | 2MiB / 32607MiB | 0% | 29°C |\n| 1 | RTX 5090 | 2MiB / 32607MiB | 0% | 29°C |\n| 2 | RTX 5090 | 2MiB / 32607MiB | 0% | 28°C |\n| 3 | RTX 5090 | 2MiB / 32607MiB | 0% | 27°C |\n\n**无任何 GPU 进程运行。4 张卡全部空闲。**\n\n---\n\n### 实验状态\n\n#### EXP_003 WNUT17 (PID 92215) — 已完成\n- 进程：**已退出**\n- 训练耗时：16分22秒，5 epochs\n- **最终 metrics：**\n  - train_loss = **0.105**\n  - eval_loss = **0.0836**\n  - train_samples/s = 8.33\n\n#### EXP_001_SEED456 — 已完成\n- 进程：**已退出**\n- 产出文件：`report.json` (3.3KB), `run.log` (105KB), `samples.jsonl` (6.5MB)\n- **最终 metrics：**\n  - Full ρ(κ,F1) = +0.3383, p=4.35e-12\n  - Full ρ(SJ,F1) = +0.2988, p=1.24e-09\n  - Cond ρ(κ,F1) = +0.2330, Cond ρ(SJ,F1) = +0.3245\n  - Structural > Surface: **NO** (delta=-0.0395)\n  - Logprob (full): ρ=+0.3405, AUROC=0.6694\n  - Logprob (cond): ρ=+0.0501, AUROC=0.5713\n  - **Verdict: FAIL** — >30% samples F1=0，建议 T=0.7 重跑；Joint mode 要求 RE ρ_sj ≥ 0.40 未达标\n\n#### EXP_017 LLAMA CONLL — 未找到\n- 进程：**未运行**\n- 日志：`logs/` 下未找到匹配 `*llama*conll*` 或 `*017*` 的文件\n- `output/exp_017*/` 目录不存在\n\n---\n\n### 其他\n- **Tmux：** 无活跃 session\n- **GPU 进程：** 无\n\n**结论：3 个实验均无存活进程，服务器完全空闲。EXP_003 和 EXP_001_SEED456 已跑完有结果，EXP_017 无任何痕迹（可能从未启动或路径/命名不同）。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-status-check-copy-2.md"
+}

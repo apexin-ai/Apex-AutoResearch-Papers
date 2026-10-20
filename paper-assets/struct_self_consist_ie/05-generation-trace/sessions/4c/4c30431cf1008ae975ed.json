@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c30431cf1008ae975ed",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check all servers gpu state",
+  "task_key": "worker_check_all_servers_gpu_state_20260521T090529",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_all_servers_gpu_state_20260521T090529_result.json",
+    "occurrence": 1,
+    "bytes": 2478,
+    "sha256": "e7158e66871699ff8ef61d318b86e8bb33705199684f0b9701e1857f21c3cad4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 个已完成实验的 registry 已更新。汇总如下：\n\n---\n\n## GPU 状态总览\n\n### 5090 (autodl-5090)\n| GPU | VRAM | Util | 实验 | 状态 |\n|-----|------|------|------|------|\n| 0 | 2 MiB | 0% | — | **空闲** |\n| 1 | 2 MiB | 0% | — | **空闲** |\n| 2 | 2 MiB | 0% | — | **空闲** |\n| 3 | 30 GB | 68% | e2_pretrained_fewnerd (PID 8411) | 43% (130K/301K prompts) |\n\n### 5090-b (bjb2-11496)\n| GPU | VRAM | Util | 实验 | 状态 |\n|-----|------|------|------|------|\n| 0 | 2 MiB | 0% | conll_mf4v2_s123 已完成 | **空闲** |\n| 1 | 2 MiB | 0% | conll_mf4v2_s456 已完成 | **空闲** |\n| 2 | 30 GB | 92% | fewnerd_mf4v2_s456 (PID 334428) | 运行中 |\n| 3 | 30 GB | 92% | scierc_mf4v2_s42 (PID 336946) | 运行中 |\n\n### 5090-c (autodl-5090-c)\n| GPU | VRAM | Util | 实验 | 状态 |\n|-----|------|------|------|------|\n| 0 | 30 GB | 92% | fewnerd_n16_s456_v2 (PID 293442) | 52% (315K/602K prompts) |\n| 1 | 0 MiB | 0% | conll_n16_s123_v2 已完成 | **空闲** |\n| 2 | 0 MiB | 0% | conll_n16_s456_v2 已完成 | **空闲** |\n| 3 | 0 MiB | 0% | e2_pretrained_scierc 已完成 | **空闲** |\n\nAPI 实验（无 GPU）：Gemini 193/200 运行中，DeepSeek 200/200 已完成\n\n**空闲 GPU：5090×3 + 5090-b×2 + 5090-c×3 = 8 块**\n\n---\n\n## 已完成实验 Metrics 汇总\n\n| 实验 | greedy_F1 | oracle_F1 | ρ(SJ) full | ρ(κ) full | verdict |\n|------|-----------|-----------|------------|-----------|---------|\n| **conll_mf4v2_s123** (N=8) | 0.908 | 0.953 | 0.463 | 0.446 | PASS |\n| **conll_mf4v2_s456** (N=8) | 0.907 | 0.943 | 0.480 | 0.464 | PASS |\n| **conll_n16_s123_v2** (N=16) | 0.907 | 0.963 | 0.457 | 0.447 | PASS |\n| **conll_n16_s456_v2** (N=16) | 0.908 | 0.955 | 0.479 | 0.470 | PASS |\n| **e2_pretrained_scierc** (N=8) | 0.242 | 0.389 | 0.219 | 0.252 | FAIL ⚠️ |\n| **frontier_sc_deepseek** (N=8) | 0.399 | 0.714 | — | — | success |\n\n| 实验 | 额外信息 |\n|------|---------|\n| e2_pretrained_scierc | 46% samples F1=0, structural_beats_surface=false |\n| frontier_sc_deepseek | mv_F1=0.424, selection_gap=0.290, degeneracy=5.5%, parse_fail=751/1600 |\n\n### 仍在运行\n- **e2_pretrained_fewnerd** (5090 GPU3): 43%, 预计还需 ~2.5h\n- **fewnerd_mf4v2_s456** (5090-b GPU2): 运行中\n- **scierc_mf4v2_s42** (5090-b GPU3): 运行中\n- **fewnerd_n16_s456_v2** (5090-c GPU0): 52%, 预计还需 ~1.7h\n- **frontier_sc_gemini25pro** (5090-c API): 193/200, 预计 ~8min"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-all-servers-gpu-state.md"
+}

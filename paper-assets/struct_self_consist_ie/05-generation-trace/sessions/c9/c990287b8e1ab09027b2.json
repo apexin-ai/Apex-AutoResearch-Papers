@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c990287b8e1ab09027b2",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code run ace05 tacred re",
+  "task_key": "worker_code_run_ace05_tacred_re_20260520T210436",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_run_ace05_tacred_re_20260520T210436_result.json",
+    "occurrence": 1,
+    "bytes": 1134,
+    "sha256": "7eec12f41edc5ad21b7b89232e69ab34ac86d755088ac3b2d51051c562a5a525"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，结果已注册。\n\n## 总结\n\n**FewRel RE SC 诊断实验** 在 5090-c cuda:1 完成（5090-b 全部 GPU 被 32B 训练占用，改用 5090-c）。\n\n### 关键结果\n\n| 指标 | 值 |\n|------|------|\n| Greedy micro-F1 | **0.075** |\n| Construction micro-F1 | **0.088** (+1.3pp) |\n| Majority Vote F1 | 0.059 |\n| Oracle F1 | 0.177 |\n| Fleiss' κ | 0.151 |\n| Degeneracy rate | 5.9% |\n| Bootstrap p-value | **0.757**（不显著） |\n\n### Failure Mode 分布\n- **F2_low_agreement: 75.8%** — 绝大多数实例模型采样间缺乏一致性\n- F3_high_agreement_low_quality: 15.2%\n- F1_degeneracy: 5.9%\n- F4_lp_quality_gap: 0.8%\n- None: 2.3%\n\n### 分析\n结论标记为 **negative**：零样本 Qwen2.5-7B-Instruct 在 FewRel（16 类关系、Wikipedia 域）上绝对 F1 很低（~7.5%），SC construction 无法显著提升。75.8% 的 F2_low_agreement 表明模型在该任务上采样一致性极低，符合 SC 诊断预期——当 agreement 不足时，consensus 无法产生增益。\n\n输出文件在 5090-c: `/root/autodl-tmp/struct_self_consist_ie/output/fewrel_re_sc/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-run-ace05-tacred-re.md"
+}

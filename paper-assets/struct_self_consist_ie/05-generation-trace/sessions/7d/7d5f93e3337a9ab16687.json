@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "7d5f93e3337a9ab16687",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis p1 review supplementary computations",
+  "task_key": "worker_analysis_p1_review_supplementary_computations_20260518T144406",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_p1_review_supplementary_computations_20260518T144406.log",
+    "occurrence": 1,
+    "bytes": 596299,
+    "sha256": "4606e4d094b61914fec803cae1a5a5a75fbaca6eea92c1d0c3ed589dc7ba81c1"
+  },
+  "statistics": {
+    "messages": 196,
+    "user_turns": 1,
+    "tool_calls": 69,
+    "roles": {
+      "log": 1,
+      "system": 23,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 69,
+      "tool_result": 69,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 51,
+      "chunks": [
+        {
+          "path": "7d5f93e3337a9ab16687-part-0001.json",
+          "message_count": 51
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 145,
+      "chunks": [
+        {
+          "path": "7d5f93e3337a9ab16687-part-0001.json",
+          "message_count": 129
+        },
+        {
+          "path": "7d5f93e3337a9ab16687-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-p1-review-supplementary-computations.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e38b1d0b85d3fa37cda1",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code download 14b server c",
+  "task_key": "worker_code_download_14b_server_c_20260519T064051",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_download_14b_server_c_20260519T064051_result.json",
+    "occurrence": 1,
+    "bytes": 531,
+    "sha256": "d2e51ca7d488f2a414e03bf6d5bd0d52ff298f8f40f2565f9d9563e45064f91b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **下载状态**：完成（通过 modelscope 下载，约 30 分钟）\n- **路径**：`/root/autodl-tmp/.hf_cache/modelscope_hub/Qwen/Qwen2___5-14B-Instruct`（符号链接 `/root/autodl-tmp/.hf_cache/modelscope_hub/Qwen/Qwen2.5-14B-Instruct`）\n- **Tokenizer 验证**：vocab_size=151643，加载正常\n- **模型大小**：28G（8 个 safetensors shard）\n- **磁盘**：350G 总量，115G 已用（33%），剩余 236G\n- 已清理 hf-mirror 不完整下载（836M）和 modelscope temp 目录"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-download-14b-server-c.md"
+}

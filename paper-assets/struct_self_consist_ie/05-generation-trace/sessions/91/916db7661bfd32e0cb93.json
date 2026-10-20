@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "916db7661bfd32e0cb93",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh b2 entity verifier",
+  "task_key": "worker_ssh_b2-entity-verifier_20260520T095520",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_b2-entity-verifier_20260520T095520_result.json",
+    "occurrence": 1,
+    "bytes": 2089,
+    "sha256": "f4b2f7a2ae2cda5eb1832b2016935636a52eee38d8bb99461941b2655b6ed1a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All artifacts registered. Here's the complete summary:\n\n---\n\n## B2 Entity-Level Verifier — Results\n\n**Setup**: 28,140 instances across 13 configs (4 CoNLL, 4 SciERC, 5 FewNERD). 122,984 entity candidates (51.4% positive). Train on CoNLL+SciERC (44,486 entities), test on FewNERD (78,498 entities).\n\n### Model Quality\n| Metric | XGBoost | LightGBM |\n|--------|---------|----------|\n| 5-fold CV AUC (train) | 0.9273 ± 0.0027 | 0.9254 ± 0.0029 |\n| Test AUC (FewNERD) | 0.8282 | 0.8335 |\n\nCross-dataset AUC drop (~0.10) is expected given different entity type distributions.\n\n### Feature Importance (XGBoost gain)\n1. **vc** (text-based vote count): 0.5296 — dominant feature\n2. **agreement_count** (span-based): 0.2504 — second strongest\n3. dataset_enc: 0.06, entity_type_enc: 0.027, lp_span: 0.025\n\nAs predicted, agreement/vote count features are by far the strongest signals.\n\n### Baselines vs Verifier Paths (FewNERD test, micro F1)\n\n| Method | Precision | Recall | F1 |\n|--------|-----------|--------|-----|\n| Greedy | 0.7185 | 0.7463 | **0.7321** |\n| MajVote(>50%) | 0.7652 | 0.6731 | 0.7162 |\n| MajVote(>25%) | 0.6944 | 0.7605 | 0.7259 |\n| **Path A (LGB, t=1.0)** | 0.7316 | 0.7356 | **0.7336** |\n| Path B (XGB, ft=0.1) | 0.7671 | 0.6715 | 0.7162 |\n\n### Key Findings\n- **Path A (LGB) slightly beats greedy** (0.7336 vs 0.7321 F1), the only method to do so\n- **Path B acts as a precision booster**: at ft=0.5 precision reaches 0.83 but recall drops to 0.46\n- On training data, Path B with XGB (ft=0.5) achieves F1=0.8122, significantly above greedy (0.776) and MV (0.783) — the verifier works well in-domain\n- The cross-dataset gap suggests the verifier learns some dataset-specific patterns\n\n### Recommendation\n- **Path A** is the recommended approach — it balances precision/recall and slightly exceeds greedy\n- **Path B** is useful when high precision is needed (e.g., ft=0.3 gives P=0.79 R=0.60 F1=0.68)\n- The verifier adds most value over greedy on 72B configs (ZS/FS), less on 7B FT where greedy is already strong"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-b2-entity-verifier.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a70e67319e52f57f843",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis fig3 redraw and paired degen",
+  "task_key": "worker_analysis_fig3_redraw_and_paired_degen_20260517T082657",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_fig3_redraw_and_paired_degen_20260517T082657_result.json",
+    "occurrence": 1,
+    "bytes": 1316,
+    "sha256": "8d9d2e0561587ed8f07bdbc5b41754169632ffa6f4732126f1ba1ea5ae199c0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个子任务完成。汇总：\n\n---\n\n### 子任务 1: Figure 3 重绘\n\n**X 轴更新 (Constant F1, gold-filtered degeneracy):**\n\n| | 旧值 | 新值 |\n|---|---|---|\n| CoNLL | 58.0% | 47.4% |\n| SciERC | 21.0% | 17.8% |\n| Few-NERD | 13.8% | 13.8% |\n\n**Per-type degeneracy (旧定义 → Constant F1 gold-filtered):**\n\n| Type | 旧 | 新 |\n|---|---|---|\n| organization | 6.74% | 10.89% |\n| other | 6.61% | 11.13% |\n| building | 7.18% | 12.35% |\n| event | 5.97% | 12.71% |\n| product | 8.17% | 14.32% |\n| location | 11.42% | 14.08% |\n| person | 13.42% | 15.28% |\n| art | 19.81% | 25.84% |\n\n**Y 轴不变。**\n\n**Spearman ρ:**\n- Per-type (n=8): ρ = −0.29, p = 0.49\n- Combined (n=11): ρ = −0.53, p = 0.096\n- Pearson (n=11): r = −0.60, p = 0.053\n\nPDF/PNG 已保存到 `output/figures/fig_degeneracy_lp_scatter.{pdf,png}` 和本地 artifacts。\n\n---\n\n### 子任务 2: Paired Degeneracy 确认\n\n旧值使用的不是 Constant F1 定义。用统一定义重算：\n\n```\nPaired degeneracy (Constant F1, gold-filtered, 4,351 matched instances):\nN=8:  14.6% (was 11.1%)\nN=16:  7.0% (was 4.5%)\n```\n\n论文 experiments.tex:175 的 \"11.1% → 4.5%\" 需更新为 **\"14.6% → 7.0%\"**。趋势不变（N 增加，degeneracy 减半），但绝对值偏高。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fig3-redraw-and-paired-degen.md"
+}

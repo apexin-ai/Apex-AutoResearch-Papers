@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bfa6a69f9aeac3e7e260",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu 5090 check and fill",
+  "task_key": "worker_gpu_5090_check_and_fill_20260521T071506",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_5090_check_and_fill_20260521T071506_result.json",
+    "occurrence": 1,
+    "bytes": 1738,
+    "sha256": "d38b980ec06cb4e2213d13690d67171c398943bbc7c9dbbda843a7401848386e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 5090 GPU 状态报告\n\n| GPU | VRAM | GPU Util | 实验 | 模型 | 进度 | ETA |\n|-----|------|----------|------|------|------|-----|\n| **cuda:0** | 30170/32607 MiB | 75% | FewNERD MF4v2 seed456 | `qwen3-8b-fewnerd-exp021-merged` (fine-tuned) | **76%** (228944/301184) | ~22 min |\n| **cuda:1** | 30080/32607 MiB | 69% | E2 pretrained FewNERD (seed42) | `Qwen2.5-7B-Instruct` (pretrained) | 运行中，与 cuda:3 重复 | ~数小时 |\n| **cuda:2** | **2 MiB** | **0%** | **空闲** | — | E2 pretrained CoNLL 已完成 (EXIT_CODE=0) | — |\n| **cuda:3** | 30044/32607 MiB | 63% | E2 pretrained FewNERD (seed42) | `Qwen2.5-7B-Instruct` (pretrained) | **27%** (82296/301184) | ~3h |\n\n### 关键发现\n\n1. **cuda:2 已空闲**，可立即使用。\n\n2. **cuda:1 和 cuda:3 运行重复实验**：同一命令（e2_pretrained_fewnerd, seed42, Qwen2.5-7B-Instruct），写入同一 output dir (`output/e2_pretrained_fewnerd/`)，共享同一日志文件。存在数据竞争/覆盖风险。output dir 目前为空（两者都在采样阶段）。\n\n3. **cuda:0 即将完成**（~22min），之后也会空闲。\n\n4. **E2 pretrained CoNLL 实验已完成**：report.json 显示 verdict=MARGINAL，greedy_f1=0.538，oracle_f1=0.628，结构化信号微弱优于表面信号（rho_advantage=0.012）。\n\n5. **CoNLL MF4 s123/s456 均失败**：VLLM engine core initialization error（因 GPU 被占满无法启动）。\n\n### 可用资源\n\n- **cuda:2**：立即可用\n- **cuda:0**：~22min 后可用\n- **可用模型**：FewNERD fine-tuned (`checkpoints/qwen3-8b-fewnerd-exp021-merged`)，pretrained Qwen2.5-7B-Instruct\n- **cuda:1/cuda:3 重复问题**需要决策：是否 kill 其中一个以释放 GPU"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-5090-check-and-fill.md"
+}

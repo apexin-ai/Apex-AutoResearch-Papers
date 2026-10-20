@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df20562e55040ed70291",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run frontier sc claude",
+  "task_key": "worker_run_frontier_sc_claude_20260521T061115",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_frontier_sc_claude_20260521T061115_result.json",
+    "occurrence": 1,
+    "bytes": 723,
+    "sha256": "c211e0729c54e62da588ebbb88542e7dbd3a990abb7361b1458dd94259bf1f18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动并运行正常。总结：\n\n- **脚本**: `run_frontier_sc.py` 部署到 `autodl-5090:/root/autodl-tmp/struct_self_consist_ie/code/`\n- **关键修复**: entity 匹配从 offset-based `(start, end, type)` 改为 text-based `(text.lower(), type)`，解决了 API 模型无法精确预测字符偏移的问题\n- **PID**: 6302\n- **Registry**: `exp_frontier_sc_claude_sonnet4` (RUNNING)\n- **进度**: 5/200 实例完成，数据质量已验证（fewnerd_test_00000 greedy_f1=0.8889）\n- **预估时间**: ~2h（200 instances × 8 samples × ~3-5s/call）\n\n监控命令：\n```bash\nwc -l output/frontier_sc_claude_sonnet4/checkpoint.jsonl\ntail -3 logs/frontier_sc_claude_sonnet4.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-frontier-sc-claude.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3a949edc9a11791ab20",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh prepare 14b inference",
+  "task_key": "worker_ssh_prepare-14b-inference_20260520T070045",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_prepare-14b-inference_20260520T070045_result.json",
+    "occurrence": 1,
+    "bytes": 1350,
+    "sha256": "b843e23e9e8d7cf2476edd5f8d3fb1e017492e75709fd4acf588120fbadb72fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件全部写入成功。\n\n---\n\n## 报告\n\n### 关键修正\n任务描述说的是 14B，但服务器上实际训练的是 **Qwen2.5-32B-Instruct QLoRA**（rank=32, alpha=64, 4-bit quant, 4 GPU torchrun）。所有脚本已按 32B 准备。\n\n### 准备好的文件\n\n| 文件 | 路径 |\n|------|------|\n| Export 配置 | `export_config_qwen25_32b_fewnerd.yaml` |\n| Inference 脚本 | `run_32b_fewnerd_inference.sh` |\n| 执行 checklist | `32b_post_completion_checklist.md` |\n\n### 训练状态\n- 进度: **56.2%** (step 23150 / 41180)\n- 已用时: 21h24m, 剩余: ~16h40m\n- **ETA: ~May 21 13:40 UTC**\n\n### ⚠️ 磁盘空间问题\n- 可用: **79GB**\n- Merged 32B 模型: **~62GB**\n- **必须在 export 前清理 ≥20GB**（旧 checkpoint 可回收 ~21GB: wnut17-lora 5.3G, 4b-conll 4.1G, scierc-v2 3.4G, llama 6.4G, smoke 1.7G）\n\n### 时间估算\n\n| 步骤 | 预计耗时 |\n|------|---------|\n| Export (merge) | ~15-20 min |\n| Inference 第一轮 (seed 42+123 并行, TP=2) | ~2-4h |\n| Inference 第二轮 (seed 456, TP=2) | ~2-4h |\n| **Export 后总计** | **~4.5-8.5h** |\n\n### Inference 分流方案（全在 autodl-5090）\n32B bf16 需要 TP=2（2x 5090 = 64GB）。4 卡可同时跑 2 个 seed：\n- GPU 0,1 → seed 42 | GPU 2,3 → seed 123（并行）\n- 任一完成后 → seed 456"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-prepare-14b-inference.md"
+}

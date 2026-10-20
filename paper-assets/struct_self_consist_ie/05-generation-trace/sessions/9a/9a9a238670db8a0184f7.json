@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a9a238670db8a0184f7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "eval mvp pilot 004",
+  "task_key": "worker_eval_mvp_pilot_004_20260514T085219",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_mvp_pilot_004_20260514T085219_result.json",
+    "occurrence": 1,
+    "bytes": 357,
+    "sha256": "2bf658b495bc54dd7ccdc69ac255dfa9654459e424751fee4d0ec95e2d03ce93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动：\n- **服务器**: autodl-5090, GPU 0\n- **PID**: 31041\n- **配置**: Qwen3-8B merged-v2, 551 instances, 8 samples, T=1.0, joint (NER+RE)\n- **数据路径修正**: `data/scierc/processed_data/`\n- **Bug fix 确认**: `compute_sample_f1_distribution` 只在 gold-nonempty 实例上计算\n\n3 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mvp-pilot-004.md"
+}

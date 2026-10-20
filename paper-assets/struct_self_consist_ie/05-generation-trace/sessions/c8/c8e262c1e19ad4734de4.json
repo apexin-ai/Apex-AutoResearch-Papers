@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8e262c1e19ad4734de4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis paper f1 audit table",
+  "task_key": "worker_analysis_paper_f1_audit_table_20260518T215058",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_paper_f1_audit_table_20260518T215058_result.json",
+    "occurrence": 1,
+    "bytes": 1737,
+    "sha256": "b68329fa5c4e66e3ffc739e547bc6453b92660fd99aa4bad2530f6f367f01bec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已保存（313 行）。结果汇总：\n\n**24/24 论文位置全部 verified，0 missing。**\n\n| Paper Location | Model | Greedy | Oracle | Headroom | Degen% | Old→New Delta |\n|---|---|---|---|---|---|---|\n| 4B SciERC | Qwen3-4B | 0.6622 | 0.7925 | 13.03pp | 10.4% | +0.85pp |\n| 4B CoNLL | Qwen3-4B | 0.9236 | 0.9394 | 1.58pp | — | -0.13pp |\n| rank=8 SciERC | Qwen3-8B r8 | 0.6397 | 0.7998 | 16.01pp | — | +0.61pp |\n| N=32 SciERC | Qwen3-8B | 0.6397 | 0.8396 | 19.99pp | — | +0.16pp |\n| N=16 SciERC seed42 | Qwen3-8B | 0.6442 | 0.8194 | 17.52pp | — | +0.44pp |\n| FewNERD N=8 seed42 | Qwen3-8B | 0.7478 | 0.8719 | 12.41pp | — | N/A |\n| FewNERD N=16 | Qwen3-8B | 0.7478 | 0.9020 | 15.42pp | 7.1% | N/A |\n| LLaMA SciERC s42/123/456 | LLaMA3.1-8B | 0.645-0.646 | 0.763-0.775 | 11.7-12.9pp | 25-27% | -0.3~-0.5pp |\n| LLaMA CoNLL s42/123/456 | LLaMA3.1-8B | 0.924 | 0.948-0.949 | 2.4-2.6pp | 86-87% | -0.04~-0.11pp |\n| CoNLL Qwen s42/123/456 | Qwen3-8B | 0.907 | 0.957-0.959 | 5.0-5.2pp | 47-55% | -0.48~+0.18pp |\n| 3-epoch SciERC | Qwen3-8B | 0.6501 | 0.7998 | 14.97pp | — | +0.52pp |\n| 10-epoch SciERC | Qwen3-8B | 0.6467 | 0.7331 | 8.64pp | — | -0.68pp |\n| T=0.5/0.8/1.2 SciERC | Qwen3-8B | 0.643-0.649 | 0.740-0.789 | 9.1-14.6pp | 15-41% | -0.28~+0.06pp |\n| SciERC canonical seed42 | Qwen3-8B | 0.6439 | 0.7758 | 13.19pp | 17.8% | -0.17pp |\n| SciERC seed123/456 | Qwen3-8B | 0.644 | 0.817-0.823 | 17.3-17.9pp | — | +0.44~+0.58pp |\n\n关键发现：\n- unified 与 old oracle 的 delta 绝大多数在 ±0.6pp 以内，数值一致性良好\n- 退化率最高的是 LLaMA CoNLL（86-87%）和 4B CoNLL（90.6%）\n- 产出文件：`output/paper_f1_audit/paper_f1_audit_table.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-paper-f1-audit-table.md"
+}

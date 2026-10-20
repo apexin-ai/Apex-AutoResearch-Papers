@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6df90c643fae84446bad",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis r7c1 re multiseed",
+  "task_key": "worker_analysis_r7c1_re_multiseed_20260515T224037",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_r7c1_re_multiseed_20260515T224037_result.json",
+    "occurrence": 1,
+    "bytes": 1720,
+    "sha256": "db35573db7b94ab591ffa865b4728b8c3d07c9d1af2362307c8b04c4d702156e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### Task A: RE Multi-seed Selection (R7-C1) — **数据完整，3-seed 全有**\n\n数据来源：`multiseed_selection_f1.json` (qwen_scierc_re_n16) + `r7c1_re_multiseed_selection.json`\n\n**过滤后 (n=397, 仅含 RE 标注的实例):**\n\n| Signal | Seed 42 | Seed 123 | Seed 456 | Mean±σ |\n|--------|---------|----------|----------|--------|\n| Greedy | 0.4046 | 0.4046 | 0.4042 | 0.4045±0.0002 |\n| **SJ** | 0.3827 | 0.3918 | 0.3964 | 0.3903±0.0070 |\n| **FK** | 0.3842 | 0.3979 | 0.3946 | 0.3922±0.0072 |\n| **LP** | 0.4066 | 0.4128 | 0.4245 | **0.4146±0.0091** |\n| Oracle | 0.6426 | 0.6509 | 0.6335 | 0.6423±0.0087 |\n\nLP 是唯一 delta_vs_greedy > 0 的信号 (+0.0102)，Fisher combined p=0.053（边际显著）。\n\n**全实例 (n=551):**\n\n| Signal | Seed 42 | Seed 123 | Seed 456 | Mean±σ |\n|--------|---------|----------|----------|--------|\n| Greedy | 0.2915 | 0.2915 | 0.2913 | 0.2914±0.0002 |\n| **SJ** | 0.2757 | 0.2823 | 0.2856 | 0.2812±0.0051 |\n| **FK** | 0.2768 | 0.2867 | 0.2843 | 0.2826±0.0052 |\n| **LP** | 0.2930 | 0.2974 | 0.3059 | **0.2988±0.0065** |\n| Oracle | 0.4630 | 0.4690 | 0.4564 | 0.4628±0.0063 |\n\n### Task B: N=8 Multi-seed QE (R8-W5) — **不完整**\n\n- Seed 42: 有 (4 configs × 5 signals)\n- Seed 123: 有 (3 configs: llama_conll, llama_scierc, qwen_scierc)\n- **Seed 456: 没有** — N=8 inference 从未对 seed=456 运行过\n\n结论：`\"N=8 QE data: only seed=42 and seed=123 available. Seed=456 N=8 inference was never run. Paper Agent has already written a design rationale footnote.\"`\n\n两个输出已保存到 `output/review_round8/r7c1_re_multiseed.json` 和 `output/review_round8/r8w5_n8_multiseed.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r7c1-re-multiseed.md"
+}

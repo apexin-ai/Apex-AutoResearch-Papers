@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7136d628f69e57fc1a9c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops gpu investigation",
+  "task_key": "worker_ops_gpu-investigation_20260522T171414",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_gpu-investigation_20260522T171414_result.json",
+    "occurrence": 1,
+    "bytes": 857,
+    "sha256": "df35611006fc325bc60cdbce88f22f8e114e6d02eb828d70a3331ff46f24e58a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存。核心发现：\n\n**3 个 vLLM 进程，全部是本项目实验：**\n\n| 服务器 | GPU | 实验 | 进度 | 状态 |\n|--------|-----|------|------|------|\n| autodl-5090 | cuda:3 | exp_fewnerd_pretrained_n32_s42_v2 | 4.6%, ETA ~13:00 UTC | ✅ 正常 |\n| autodl-5090-c | cuda:1 | exp_fewnerd_pretrained_n16_s42_v2 | 22%, ETA ~07:15 UTC | ⚠️ Registry 未更新（仍为 PREPARING） |\n| autodl-5090-c | cuda:3 | exp_fewnerd_pretrained_n32_s42 **v1 孤儿** | 81.5%, ETA ~04:10 UTC | ❌ 应 kill |\n\n**建议操作：**\n1. **P0**: Kill autodl-5090-c 上 PID 387495（v1 孤儿进程）— 使用旧代码，save 阶段会崩溃，白占 GPU\n2. **P1**: 更新 `exp_fewnerd_pretrained_n16_s42_v2` registry 为 RUNNING\n3. **P2**: `exp_fewnerd_mf4_s123_v2` 和 `exp_fewnerd_mf4_s456` 无残留进程，纯等分析"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-investigation.md"
+}

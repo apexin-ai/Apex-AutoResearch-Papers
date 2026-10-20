@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ac85ddf35b72aefd2df",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp fewnerd mf4 v2 s42",
+  "task_key": "worker_analysis_exp_fewnerd_mf4_v2_s42_20260521T074321",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_fewnerd_mf4_v2_s42_20260521T074321_result.json",
+    "occurrence": 1,
+    "bytes": 679,
+    "sha256": "2d0f2ec4cb3f2e69252f516b17e4e9455754a71565102e5905f9b3e8ff367edf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`exp_fewnerd_mf4_v2_s42` 已推进到 DONE (conclusion=negative)。\n\n**s42 vs s123 对比：**\n\n| 指标 | s42 | s123 |\n|------|-----|------|\n| greedy_f1 | 0.7883 | 0.7883 |\n| oracle_f1 | 0.8783 | 0.8891 |\n| oracle_headroom | 0.090 | 0.101 |\n| rho_SJ_full | **0.163** | **0.307** |\n| rho_kappa_full | 0.048 | 0.159 |\n| rho_SJ_cond | 0.199 | 0.197 |\n| rho_kappa_cond | -0.033 | 0.003 |\n| logprob_rho_full | 0.154 | 0.219 |\n| logprob_auroc_full | 0.577 | 0.606 |\n| verdict | **FAIL** | **MARGINAL** |\n\ns42 的 full-set 相关性指标全面低于 s123，尤其 rho_SJ_full 几乎腰斩（0.163 vs 0.307）。seed 间方差很大，信号不稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-fewnerd-mf4-v2-s42.md"
+}

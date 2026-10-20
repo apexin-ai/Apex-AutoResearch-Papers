@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8272353eecdf2a82015c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5090c cuda2 e2 scierc s42",
+  "task_key": "worker_ssh_5090c_cuda2_e2_scierc_s42_20260521T162119",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090c_cuda2_e2_scierc_s42_20260521T162119_result.json",
+    "occurrence": 1,
+    "bytes": 399,
+    "sha256": "1b5a8cdb37bd55e2ec4c0cc7396713aa419c0378d39a42956a67ee7b437d63e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已在 GPU 2 上正常运行：\n\n- **PID**: 337787\n- **GPU 2**: 90% 利用率，30445 MiB / 32607 MiB\n- **进度**: 正在推理中，4408 prompts（551 instances × 8 samples），当前 ~2.36 it/s\n- **输出目录**: `output/e2_pretrained_scierc_s42_v2`\n\n注意 GPU 3 也有 30GB 占用（可能是之前的进程），GPU 2 是本次实验。预计 ~30 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5090c-cuda2-e2-scierc-s42.md"
+}

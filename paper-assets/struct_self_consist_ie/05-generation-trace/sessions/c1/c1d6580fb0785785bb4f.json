@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1d6580fb0785785bb4f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis thinking token lp dilution",
+  "task_key": "worker_analysis_thinking_token_lp_dilution_20260515T164811",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_thinking_token_lp_dilution_20260515T164811_result.json",
+    "occurrence": 1,
+    "bytes": 1395,
+    "sha256": "5c9c61ac92daa94d72e7dcd2da6a07ca76d37b4c8d9c8529eec854c4f5a21efc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。脚本已在服务器上执行，结果保存到 `output/analysis_round8/thinking_token_lp_dilution.json`。\n\n**核心结论**：\n\n| 指标 | 数值 |\n|------|------|\n| SciERC 响应 token 数 | median=164, mean=200, range=[14, 512] |\n| 5 个 thinking tokens 的 LP 偏移量 | median=0.001075 nats |\n| 偏移量 / median LP range | **2.68%** |\n| LP range 变化量（50 实例验证） | mean=0.0058, max=0.096 nats |\n\n**三重论证**：\n\n1. **稀释幅度极小**：5 个 thinking tokens 在 median 164 tokens 的响应中，LP shift 仅 0.001 nats，是 LP range (0.041) 的 2.68%。\n\n2. **LP range 近似不变**：LP range = max(mean\\_lp) - min(mean\\_lp)，同一 instance 的所有 sample 共享相同 thinking prefix，shift 近似常数，range 几乎不变。\n\n3. **自然对照组决定性反驳**：CoNLL（**无** thinking tokens）LP compression 远强于 SciERC（**有** thinking tokens）：\n   - CoNLL T=0.7: tied fraction = **95.8%**\n   - CoNLL T=1.0: tied fraction = **86.8%**\n   - SciERC: tied fraction = **60.3%**\n\n   如果 thinking tokens 是 LP compression 的原因，没有 thinking tokens 的 CoNLL 不应出现更强的 compression。事实相反。\n\n**Verdict**: Thinking token 稀释效应可忽略。LP compression 是 fine-tuned structured output 模型的固有特性，非 thinking tokens 的 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-thinking-token-lp-dilution.md"
+}

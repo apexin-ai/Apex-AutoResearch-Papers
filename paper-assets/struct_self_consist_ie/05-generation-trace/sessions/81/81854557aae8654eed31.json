@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81854557aae8654eed31",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code check 32b download",
+  "task_key": "worker_code_check_32b_download_20260519T075130",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_check_32b_download_20260519T075130_result.json",
+    "occurrence": 1,
+    "bytes": 217,
+    "sha256": "15a95b449217cb2d4b05a85d5b98d0a92138880f42f368ff25c4d7c241bc3cbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n**结论**：Qwen2.5-32B-Instruct 下载约 40% 完成（26GB/~65GB），进程仍在运行，预计 1-2 小时后完成。下载完成后再准备训练代码和提交任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-32b-download.md"
+}

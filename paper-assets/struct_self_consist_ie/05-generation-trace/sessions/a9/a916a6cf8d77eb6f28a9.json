@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a916a6cf8d77eb6f28a9",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose gpu status all servers",
+  "task_key": "worker_diagnose_gpu_status_all_servers_20260521T111429",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_gpu_status_all_servers_20260521T111429_result.json",
+    "occurrence": 1,
+    "bytes": 2244,
+    "sha256": "ea6152fba2fb71ee32e610ab40b3d81e372f0f0548d4bf892728ac9bfb4b7486"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。\n\n## GPU 实际状态\n\n### autodl-5090\n| GPU | 显存 | 利用率 | 状态 | 进程 |\n|-----|------|--------|------|------|\n| cuda:0 | 2 MiB / 32607 MiB | 0% | **空闲** | 无 |\n| cuda:1 | 30214 MiB / 32607 MiB | 76% | 占用 | VLLM PID 27074 → `exp_fewnerd_mf4v2_s42` (qwen3-8b-fewnerd-exp021-merged, seed=42) |\n| cuda:2 | 30256 MiB / 32607 MiB | 84% | 占用 | VLLM PID 27228 → `exp_fewnerd_mf4v2_s123` (qwen3-8b-fewnerd-exp021-merged, seed=123) |\n| cuda:3 | 30044 MiB / 32607 MiB | 83% | 占用 | VLLM PID 8696 → `exp_e2_pretrained_fewnerd` (Qwen2.5-7B-Instruct pretrained, seed=42) |\n\n### autodl-5090-c\n| GPU | 显存 | 利用率 | 状态 | 进程 |\n|-----|------|--------|------|------|\n| cuda:0 | 0 MiB / 32607 MiB | 0% | **空闲** | 无（exp_fewnerd_n16_s456_v2 已完成） |\n| cuda:1 | 0 MiB / 32607 MiB | 0% | **空闲** | 无 |\n| cuda:2 | 0 MiB / 32607 MiB | 0% | **空闲** | 无 |\n| cuda:3 | 30295 MiB / 32607 MiB | 84% | 占用 | VLLM PID 306642 → `exp_e2_pretrained_fewnerd_s123` (Qwen2.5-7B-Instruct pretrained, seed=123) |\n\n## Stale 实验诊断\n\n**exp_14b_inference_conll_v2**: **已完成（FAIL）** — `output/14b_conll_v2_run.log` 显示 report 已保存，engine 于 19:03:12 正常 shutdown。结果：RE 信号反向（ρ 为负），>30% samples F1=0，verdict=FAIL。\n\n**exp_e2_pretrained_fewnerd_s123**: **仍在跑** — 5090-c cuda:3，PID 306642，`run_mvp_pilot.py --model_path Qwen2.5-7B-Instruct --dataset fewnerd --seed 123 --n_samples 8 --output_dir output/e2_pretrained_fewnerd_s123/`。输出目录暂空，正在推理中。\n\n## 额外发现\n\n**exp_fewnerd_n16_s456_v2**（原报告为 5090-c cuda:0 在跑）：**已完成** — `output/fewnerd_n16_seed456_v2/` 已有 report.json (19:02) 和 samples.jsonl (1.2GB, 19:01)，GPU 已释放。\n\n## 可用 GPU 汇总\n\n| 服务器 | GPU | 备注 |\n|--------|-----|------|\n| autodl-5090 | cuda:0 | 完全空闲 |\n| autodl-5090-c | cuda:0 | 刚释放（n16_s456_v2 完成） |\n| autodl-5090-c | cuda:1 | 完全空闲 |\n| autodl-5090-c | cuda:2 | 完全空闲 |\n\n共 **4 GPU 可用**（5090×1 + 5090-c×3）。5090-c cuda:3 被 exp_e2_pretrained_fewnerd_s123 占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-status-all-servers.md"
+}

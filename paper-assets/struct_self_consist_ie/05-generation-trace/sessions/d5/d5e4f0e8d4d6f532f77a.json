@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d5e4f0e8d4d6f532f77a",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis bootstrap voting conf fix",
+  "task_key": "worker_analysis_bootstrap_voting_conf_fix_20260514T215616",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_bootstrap_voting_conf_fix_20260514T215616.log",
+    "occurrence": 1,
+    "bytes": 674753,
+    "sha256": "4443e33569421fc9862cf3e8e310368d413e6032033a3dd93f831a769bc7e758"
+  },
+  "statistics": {
+    "messages": 257,
+    "user_turns": 0,
+    "tool_calls": 90,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 72,
+      "tool_call": 90,
+      "tool_result": 90,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 257,
+      "chunks": [
+        {
+          "path": "d5e4f0e8d4d6f532f77a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d5e4f0e8d4d6f532f77a-part-0002.json",
+          "message_count": 77
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-bootstrap-voting-conf-fix.md"
+}

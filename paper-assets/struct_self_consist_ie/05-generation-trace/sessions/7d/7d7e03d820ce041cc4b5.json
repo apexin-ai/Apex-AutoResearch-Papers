@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d7e03d820ce041cc4b5",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix appendix degen consistency",
+  "task_key": "worker_fix_appendix_degen_consistency_20260519T143858",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_appendix_degen_consistency_20260519T143858_result.json",
+    "occurrence": 1,
+    "bytes": 737,
+    "sha256": "74c6d27d6a1be71f87f1e6f2b112622d2b90594d3e55547992015b4991fd616c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Diff 摘要：\n\n| 行 | 修改 | 原值 | 新值 |\n|---|---|---|---|\n| L360 | 表头 CoNLL 8B 列 N 值 | `$N{=}16$` | `$N{=}8$` |\n| L687 | 正文 Qwen valid fraction | `41\\%` | `38\\%` (匹配 100% − 61.7% 3-seed 均值) |\n| L693 | within_rho 表 caption | — | 末尾追加 \"Counts are from the primary seed (seed 42); text references use 3-seed mean degeneracy rates.\" |\n\n一致性确认：\n- L360 三列表头现在全部为 N=8\n- L687 的 38% 与 L362 的 degeneracy 61.7% 互补（100−61.7≈38）\n- L702-703 表格数据不变（仍为 seed 42 实际计算值 41%/11%），caption 已注明数据来源\n- LLaMA 11% 无需改动（LLaMA 只有单种子推理数据，与 3-seed 均值无矛盾）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-appendix-degen-consistency.md"
+}

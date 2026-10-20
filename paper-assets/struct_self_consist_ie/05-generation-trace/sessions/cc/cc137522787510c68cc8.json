@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc137522787510c68cc8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper writing discussion",
+  "task_key": "worker_paper_writing_discussion_20260514T204918",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_discussion_20260514T204918_result.json",
+    "occurrence": 1,
+    "bytes": 1057,
+    "sha256": "e3ae6404dfbe461c87f0b0d0bb9a0fa4a9e6750bd294378695cc59b42ecbe3e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Discussion section written to `docs/paper/sections/discussion.tex`. Five paragraphs covering all required topics:\n\n1. **Practical recommendations** — voting for quality estimation, SJ for robustness/generalization, logprob for binary filtering, greedy near-optimal for NER selection\n2. **Between-instance vs. within-stratum** — stratified correlations approach zero; signals suit routing/triage, not fine-grained ranking\n3. **Task-difficulty-dependent signal selection** — EM on easy, Voting/SJ on hard, convergence at capability boundary; model-agnostic ordering\n4. **Capability boundary framework** — sweet spot of sufficient capability + output complexity; high-complexity RE subset (n=81) with strong signals; conditional filtering separates SJ from logprob at N=16\n5. **ρ-AUROC separation** — logprob for coarse binary separation vs. structural for fine-grained ranking; single-metric evaluation risks misselection\n\n~490 words, no subsections, `\\paragraph{}` organization, all table/section cross-references included."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-discussion.md"
+}

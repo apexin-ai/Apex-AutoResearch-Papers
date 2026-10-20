@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46e8f5dfbf13c5d38afd",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "urgent exp029 full pipeline",
+  "task_key": "worker_urgent_exp029_full_pipeline_20260518T005118",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_urgent_exp029_full_pipeline_20260518T005118_result.json",
+    "occurrence": 1,
+    "bytes": 1075,
+    "sha256": "14bead8d61acff748471d2152ead8962b8d51f1d414c1b8d3edbed67b73ec2d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练均正常运行，无报错。\n\n## 汇报\n\n### 1. 磁盘\n- 无需清理（使用率 40%，可用 151GB）\n\n### 2. nvidia-smi\n| GPU | 状态 | 显存 | 利用率 |\n|-----|------|------|--------|\n| 0 (RTX 5090) | exp_029a (3-epoch) | 24472/32607 MiB | 100% |\n| 1 (RTX 5090) | exp_029b (10-epoch) | 24462/32607 MiB | 87% |\n| 2 (RTX 5090) | 空闲 | 2 MiB | 0% |\n| 3 (RTX 5090) | 空闲 | 2 MiB | 0% |\n\n### 3. 训练进程\n| 实验 | PID | tmux session | 状态 | 总步数 | 速度 |\n|------|-----|---|---|---|---|\n| exp_029a (3-epoch) | 436761 | exp_029a | 训练中 17/351 steps | 351 steps | ~2.8s/it |\n| exp_029b (10-epoch) | 436916 | exp_029b | 训练中 12/1170 steps | 1170 steps | ~2.9s/it |\n\n### 4. 预估完成时间\n- exp_029a: ~351 steps × 2.8s ≈ **16 分钟**\n- exp_029b: ~1170 steps × 2.9s ≈ **57 分钟**\n\n### 5. 关键修复\n- 原问题：LlamaFactory 默认 torchrun 4卡。已用 `FORCE_TORCHRUN=0` + `CUDA_VISIBLE_DEVICES` 强制单卡模式，成功各占一张 GPU。\n- 无任何错误或异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-exp029-full-pipeline.md"
+}

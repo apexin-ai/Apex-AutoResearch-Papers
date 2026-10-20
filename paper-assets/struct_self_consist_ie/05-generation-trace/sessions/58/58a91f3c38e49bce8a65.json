@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58a91f3c38e49bce8a65",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp hidden probe fewnerd",
+  "task_key": "worker_exp_hidden_probe_fewnerd_20260518T105429",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_hidden_probe_fewnerd_20260518T105429_result.json",
+    "occurrence": 1,
+    "bytes": 1484,
+    "sha256": "3744e778f7f315523c7004fc8f3055550d272e7566ae3d43b25ba56069881f3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Probe training completed. Results:\n\n## Few-NERD Hidden State Probe Results (2000 instances, gold-filtered, 5-fold CV × 3 seeds)\n\n| Method | Dim | Spearman ρ | Selection F1 | Gap Closure |\n|--------|-----|-----------|-------------|-------------|\n| LP (mean pool) | 1 | 0.6062 | 0.7635 | 12.3% |\n| Hidden Linear (Ridge) | 4096 | 0.2684±0.0165 | 0.6758 | **-57.9%** |\n| Hidden MLP | 4096 | 0.6285±0.0074 | 0.7628 | 11.7% |\n| Oracle | -- | -- | 0.8731 | 100.0% |\n\n**Key findings:**\n\n1. **MLP probe**: ρ=0.629, slightly higher than LP baseline ρ=0.606 (+0.023), but **Selection F1 and Gap Closure are essentially identical** (MLP 11.7% vs LP 12.3%). The MLP probe does NOT meaningfully outperform LP on Few-NERD.\n\n2. **Linear probe**: Catastrophically bad — ρ=0.268, gap closure **-57.9%** (worse than greedy). The 4096-dim hidden states with a linear model severely overfits or the signal isn't linearly separable.\n\n3. **Contrast with SciERC**: On SciERC, MLP probe achieved ρ=0.461 (2× LP ρ=0.217), +13.9% gap closure vs LP's negative closure. On Few-NERD, LP baseline is already strong (ρ=0.606) and hidden states provide no additional advantage.\n\n4. **Interpretation**: Few-NERD's LP signal is already highly predictive of quality. The hidden state representation doesn't add meaningful information beyond what log-probabilities already capture. This contrasts with SciERC where LP was weak and hidden states provided a genuine advantage."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-hidden-probe-fewnerd.md"
+}

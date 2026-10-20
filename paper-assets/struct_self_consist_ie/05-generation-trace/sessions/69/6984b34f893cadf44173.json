@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6984b34f893cadf44173",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh scierc n32 results mv",
+  "task_key": "worker_ssh_scierc_n32_results_mv_20260522T040555",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_scierc_n32_results_mv_20260522T040555_result.json",
+    "occurrence": 1,
+    "bytes": 1035,
+    "sha256": "21c7cfb87f1eb536fe2be66273e7759b6f58326325b35c5696614415b7ea5e74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three SciERC N-scaling recomputes done. Complete results (all strict MV, gold-nonempty filtered):\n\n### SciERC N-scaling (seed42, NER, strict MV)\n\n| Metric | N=8 | N=16 | N=32 |\n|---|---|---|---|\n| **greedy_f1** | 0.6683 | 0.6651 | 0.6629 |\n| **mv_strict_f1** | 0.6558 | 0.6622 | 0.6706 |\n| **Δ_SC strict (pp)** | -1.24 | -0.29 | +0.78 |\n| **mv_incl_f1** | 0.6640 | 0.6782 | 0.6708 |\n| **oracle_f1** | 0.7840 | 0.8179 | 0.8399 |\n| **degeneracy_rate** | 13.4% | 7.6% | 3.6% |\n| **α_crit_eff_strict** | 0.3859 | 0.3597 | 0.3438 |\n\nKey observations:\n- Strict MV only becomes positive at N=32 (+0.78pp); N=8 and N=16 are negative\n- Degeneracy rate drops monotonically: 13.4% → 7.6% → 3.6%\n- Oracle headroom grows with N: 0.78 → 0.82 → 0.84\n- The N=16 greedy_f1 differs slightly across runs (0.6651 vs report.json 0.6621) because recompute filters gold-empty instances\n\nData sources:\n- N=8: `output/scierc_mf4v2_seed42/`\n- N=16: `output/exp_001_seed42_v2/`\n- N=32: `output/scierc_n32_s42/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-scierc-n32-results-mv.md"
+}

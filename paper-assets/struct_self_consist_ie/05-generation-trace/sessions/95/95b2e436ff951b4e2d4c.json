@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95b2e436ff951b4e2d4c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code llama conll finetune prep",
+  "task_key": "worker_code_llama_conll_finetune_prep_20260518T164458",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_llama_conll_finetune_prep_20260518T164458_result.json",
+    "occurrence": 1,
+    "bytes": 543,
+    "sha256": "0cefa2efefa67085411453983f36cd788e3641ca330f457caa20215d70848469"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已在 cuda:0 上正常运行。\n\n**汇总：**\n- 配置：`train_config_llama_conll2003_3ep.yaml`，与 FewNERD 训练完全对齐（LoRA r=32, α=64, lr=2e-4, 3 epochs, batch 2×8）\n- 模型：Meta-Llama-3.1-8B-Instruct\n- 数据：CoNLL-2003 NER（conll2003_uie_train/dev）\n- 总步数：2,634 steps，预估 ~67 分钟（~1.53s/step）\n- 输出：`checkpoints/llama3.1-8b-conll2003-lora-3ep`\n- Registry：`exp_017_llama_conll_finetune` → RUNNING\n- GPU 0 占用 19.9 GB，GPU 1 FewNERD 训练并行运行中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-conll-finetune-prep.md"
+}

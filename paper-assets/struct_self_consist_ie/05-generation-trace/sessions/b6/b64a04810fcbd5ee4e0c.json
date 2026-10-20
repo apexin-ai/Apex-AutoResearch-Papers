@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b64a04810fcbd5ee4e0c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "infra bjb1 21071 gpu check",
+  "task_key": "worker_infra_bjb1_21071_gpu_check_20260514T134621",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_bjb1_21071_gpu_check_20260514T134621_result.json",
+    "occurrence": 1,
+    "bytes": 1208,
+    "sha256": "fbc47b502d2639c82b9e8e3ac27b30db0591ae7fe844ac932735b49707083e8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查完成，汇总如下：\n\n## GPU 状态\n\n| GPU | 型号 | 显存总量 | 已占用 | 利用率 | 状态 |\n|-----|------|---------|--------|--------|------|\n| 0 | RTX 5090 | 32607 MiB | 2 MiB | 0% | 空闲 |\n| 1 | RTX 5090 | 32607 MiB | 2 MiB | 0% | 空闲 |\n| 2 | RTX 5090 | 32607 MiB | 2 MiB | 0% | 空闲 |\n| 3 | RTX 5090 | 32607 MiB | 2 MiB | 0% | 空闲 |\n\n## 遗留进程\n无。`nvidia-smi` 查询无 GPU 计算进程。\n\n## LLaMA Checkpoint\n**完整。** `llama3.1-8b-scierc-lora/` 包含：\n- `adapter_model.safetensors` (335MB)\n- `adapter_config.json`、tokenizer 文件、训练日志\n- 3 个中间 checkpoint（400/500/585 步）\n- `all_results.json`、`eval_results.json`、`train_results.json`\n\n此外 checkpoints 目录下还有多个 Qwen3 模型（conll2003/scierc/wnut17 的 lora 和 merged 版本）。\n\n## 代码版本\n项目目录 `/root/autodl-tmp/struct_self_consist_ie/` 不是 git 仓库（无 `.git` 目录），无法查看 git log。代码可能是直接复制上去的，不受版本控制。\n\n**结论：4 张 RTX 5090 全部空闲可用，无遗留进程，checkpoint 完整。如需 git 管理代码需重新初始化或 clone。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-bjb1-21071-gpu-check.md"
+}

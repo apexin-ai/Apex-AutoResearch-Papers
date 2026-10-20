@@ -1,0 +1,946 @@
+{
+  "schema_version": "1.0",
+  "id": "a85e03d1d9029c0f6a9d",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code server a disk cleanup",
+  "task_key": "worker_code_server_a_disk_cleanup_20260519T084135",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_server_a_disk_cleanup_20260519T084135.log",
+    "occurrence": 1,
+    "bytes": 94317,
+    "sha256": "5192d92b347b65ed8eefcb37561072b4730b523225070cf68b7e69620144e3f0"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+                "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "fa90584b-f079-432a-8b39-b9a64a54ee89",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779193800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "f75b5be9-b2bc-41dc-adba-3bd78f9788d3",
+                "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "我来执行磁盘清理。先检查当前磁盘状态和 checkpoint 目录。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6",
+            "uuid": "f2f1ddcf-4806-4b07-a344-bd2d14c0c5a0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LpzXeo3TGNzDF5dXYuwzue",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13195,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13195
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016jYY8uuE3Sonsz1F2FTMbQ",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6",
+            "uuid": "c5d2eb03-dcb2-4d01-bf14-498b9c1e4d40",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LpzXeo3TGNzDF5dXYuwzue",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13195,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13195
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T08:41:48.339Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_016jYY8uuE3Sonsz1F2FTMbQ",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6",
+            "uuid": "3c0321fa-8bc9-4e0b-82d0-575a59e614cb",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__read_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me run the disk check commands and registry check in parallel.",
+              "signature": "Ev0BClkIDRgCKkBULI/e6kgUhQiZh5EnlRSeJwVuHlHKPYNTnWotef/IsfAyKWcu7O7zMgxA0EMk+8tCP+YVscNNKvtc2YcMevwrMg9jbGF1ZGUtb3B1cy00LTY4ABIMT+jSO5SAYNdUMMKYGgw0wIR7Z512S2CNngAiMKKftmUzehEgQ8TX7zIx6tG9YKT4eyZsRLvmvQ5NCKPN7O/F94LgF69OoYWnhb2YKCpSnsx+3qqUpa+phhwGmgiOyZkwk7unV/pJGR7Dqj/sYV3wujdYfF60iIHyq5BTSDngayh/M6VAaqu947Bli+d3gvNrbQQOcJ0DlfN53E0Rk9+4BhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6",
+            "uuid": "69a21489-d8e5-4bba-98a7-3d2354fd6aab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CvkkapLe6ce1MsfjVtHpB1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 723,
+                "cache_read_input_tokens": 25036,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 723
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GwQ4gcY91fGF4ZzYd9NCyb",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "df -h /root/autodl-tmp/ && echo \"---\" && du -sh /root/autodl-tmp/struct_self_consist_ie/checkpoints/* 2>/dev/null | sort -rh",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6",
+            "uuid": "5da39a8d-c756-4288-8800-dfcf3976721c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CvkkapLe6ce1MsfjVtHpB1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 723,
+                "cache_read_input_tokens": 25036,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 723
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T08:41:53.744Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GwQ4gcY91fGF4ZzYd9NCyb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  195G   56G  78% /root/autodl-tmp\\\\n---\\\\n16G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2\\\\n16G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged\\\\n5.3G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora\\\\n5.1G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora\\\\n4.1G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora\\\\n3.4G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2\\\\n3.4G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-5epoch-lora\\\\n3.2G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora\\\\n3.2G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora\\\\n3.2G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora-3ep\\\\n2.6G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-scierc-lora\\\\n2.0G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora\\\\n1.9G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.2-3b-scierc-lora\\\\n1.7G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke\\\\n1.4G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora\\\\n1.4G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora\\\\n895M\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-rank8\\\\n2.8M\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/fewnerd_train.log\\\\n1.1M\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/exp017_train.log\\\\n84K\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_001_train.log\\\\n64K\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train_4gpu.log\\\\n32K\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train.log\\\\n28K\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6",
+            "uuid": "1b1dd89f-9acc-45bf-9552-0a36b3c1a5ab",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  195G   56G  78% /root/autodl-tmp\\\\n---\\\\n16G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2\\\\n16G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged\\\\n5.3G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora\\\\n5.1G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora\\\\n4.1G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora\\\\n3.4G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2\\\\n3.4G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-5epoch-lora\\\\n3.2G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora\\\\n3.2G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora\\\\n3.2G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora-3ep\\\\n2.6G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-scierc-lora\\\\n2.0G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora\\\\n1.9G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.2-3b-scierc-lora\\\\n1.7G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke\\\\n1.4G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora\\\\n1.4G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora\\\\n895M\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-rank8\\\\n2.8M\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/fewnerd_train.log\\\\n1.1M\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/exp017_train.log\\\\n84K\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_001_train.log\\\\n64K\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train_4gpu.log\\\\n32K\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train.log\\\\n28K\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G  195G   56G  78% /root/autodl-tmp\\n---\\n16G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2\\n16G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged\\n5.3G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora\\n5.1G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora\\n4.1G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora\\n3.4G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2\\n3.4G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-5epoch-lora\\n3.2G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora\\n3.2G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora\\n3.2G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora-3ep\\n2.6G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-scierc-lora\\n2.0G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora\\n1.9G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.2-3b-scierc-lora\\n1.7G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke\\n1.4G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora\\n1.4G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora\\n895M\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-rank8\\n2.8M\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/fewnerd_train.log\\n1.1M\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/exp017_train.log\\n84K\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_001_train.log\\n64K\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train_4gpu.log\\n32K\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train.log\\n28K\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wz9V5QGPhqPbqDcG1wUVxR",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "ls -lhd /root/autodl-tmp/struct_self_consist_ie/checkpoints/*llama* /root/autodl-tmp/struct_self_consist_ie/checkpoints/*LLaMA* /root/autodl-tmp/struct_self_consist_ie/checkpoints/*Llama* 2>/dev/null; echo \"---\"; ls -lhd /root/autodl-tmp/struct_self_consist_ie/checkpoints/*merged* 2>/dev/null",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6",
+            "uuid": "658efbc3-baa9-41f2-9c93-8cf4966e46f2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CvkkapLe6ce1MsfjVtHpB1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 723,
+                "cache_read_input_tokens": 25036,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 723
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T08:41:55.216Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Wz9V5QGPhqPbqDcG1wUVxR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"drwxr-xr-x 7 root root 4.0K May 15 01:03 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora\\\\ndrwxr-xr-x 5 root root 4.0K May 19 02:00 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora-3ep\\\\ndrwxr-xr-x 5 root root 4.0K May 19 09:02 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora\\\\ndrwxr-xr-x 5 root root 4.0K May 14 21:08 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora\\\\ndrwxr-xr-x 5 root root 4.0K May 16 11:45 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.2-3b-scierc-lora\\\\n-rw-r--r-- 1 root root  32K May 18 16:36 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train.log\\\\n-rw-r--r-- 1 root root  64K May 18 16:38 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train_4gpu.log\\\\n---\\\\ndrwxr-xr-x 2 root root 4.0K May 18 16:37 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged\\\\ndrwxr-xr-x 2 root root 4.0K May 14 16:44 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6",
+            "uuid": "68954296-c525-472f-b1d0-f49c436ae444",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"drwxr-xr-x 7 root root 4.0K May 15 01:03 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora\\\\ndrwxr-xr-x 5 root root 4.0K May 19 02:00 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora-3ep\\\\ndrwxr-xr-x 5 root root 4.0K May 19 09:02 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora\\\\ndrwxr-xr-x 5 root root 4.0K May 14 21:08 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora\\\\ndrwxr-xr-x 5 root root 4.0K May 16 11:45 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.2-3b-scierc-lora\\\\n-rw-r--r-- 1 root root  32K May 18 16:36 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train.log\\\\n-rw-r--r-- 1 root root  64K May 18 16:38 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train_4gpu.log\\\\n---\\\\ndrwxr-xr-x 2 root root 4.0K May 18 16:37 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged\\\\ndrwxr-xr-x 2 root root 4.0K May 14 16:44 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"drwxr-xr-x 7 root root 4.0K May 15 01:03 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora\\ndrwxr-xr-x 5 root root 4.0K May 19 02:00 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora-3ep\\ndrwxr-xr-x 5 root root 4.0K May 19 09:02 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora\\ndrwxr-xr-x 5 root root 4.0K May 14 21:08 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora\\ndrwxr-xr-x 5 root root 4.0K May 16 11:45 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.2-3b-scierc-lora\\n-rw-r--r-- 1 root root  32K May 18 16:36 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train.log\\n-rw-r--r-- 1 root root  64K May 18 16:38 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train_4gpu.log\\n---\\ndrwxr-xr-x 2 root root 4.0K May 18 16:37 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged\\ndrwxr-xr-x 2 root root 4.0K May 14 16:44 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ACpceXRatQ5fyLB5eY9KTi",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "struct_self_consist_ie",
+                "fields": [
+                  "exp_id",
+                  "status",
+                  "conclusion",
+                  "checkpoint_path",
+                  "model"
+                ],
+                "limit": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6",
+            "uuid": "e772544c-7655-4ce3-94d3-da2372aeb03d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CvkkapLe6ce1MsfjVtHpB1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 723,
+                "cache_read_input_tokens": 25036,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 723
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T08:41:55.899Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ACpceXRatQ5fyLB5eY9KTi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_wnut17_qwen25_7b\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_qwen25_14b_fewnerd\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_qwen25_7b_fewnerd\\\": {\\\"status\\\": \\\"QUEUED\\\"}, \\\"exp_qwen25_32b_fewnerd\\\": {\\\"status\\\": \\\"ALLOCATED\\\"}, \\\"exp_qwen25_72b_zeroshot\\\": {\\\"status\\\": \\\"ALLOCATED\\\"}, \\\"exp_llama_fewnerd_inference\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_entity_construction\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_lp_alignment_gating\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_selective_prediction\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_llama_fewnerd_lora\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"hidden_state_probe_conll_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"hidden_state_probe_conll_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_031_fewnerd_t12\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_030_conll_t12\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mbr_pilot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"dgs_pilot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_fewnerd_s789_n8\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t12_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t12_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t10_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t10_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t10_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t08_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t08_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t05_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t05_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_029b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_029a\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_021_fewnerd_n8_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_021_fewnerd_n8_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_002_conll_n16_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_002_conll_n16_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_017_llama_conll_n16_s456_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (inference-only)\\\"}, \\\"exp_017_llama_conll_n16_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (inference-only)\\\"}, \\\"exp_018_llama_scierc_seed456_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_018_llama_scierc_seed42_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_002_conll_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"output/exp_002_conll_n16/samples.jsonl\\\"}, \\\"exp_012_rerun_1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_llama_scierc_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_007_llama_scierc_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_qwen3_4b_conll_scs_inference\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_qwen3_4b_conll_scs_inference_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_qwen3_4b_scierc_scs_inference\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"checkpoints/qwen3-4b-scierc-merged/\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_027_fewnerd_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t12\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t08\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t05\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_T12\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_T08\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_T05\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_017_llama_conll_n16_s123_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_018_llama_scierc_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_018_qwen_scierc_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_018_qwen_scierc_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_epoch_dgs_analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/struct_self_consist_ie/output/epoch_dgs_analysis_results.json\\\"}, \\\"exp_diagnostic_calibration\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/struct_self_consist_ie/output/diagnostic_calibration_results.json\\\"}, \\\"exp_adaptive_temperature\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/struct_self_consist_ie/output/adaptive_temperature_results.json\\\"}, \\\"exp_entity_consensus\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/struct_self_consist_ie/output/entity_consensus_results.json\\\"}, \\\"exp_ccs_selection\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/struct_self_consist_ie/output/ccs_selection_results.json\\\"}, \\\"exp_017_llama_conll\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_017_llama_conll_finetune\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_028_entity_token_lp\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_026_t12_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t08_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t05_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_027_mlp_verifier\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_028_fewnerd_5epoch\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_028\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_024_claim_audit\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_016_rerun_1024_bootstrap\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_verbalized_confidence\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_entity_token_lp\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_freeform_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"N/A (inference-only experiment)\\\"}, \\\"exp_008_re_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A\\\"}, \\\"exp_001_ner_n16_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_007_ner_multi_model\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora\\\"}, \\\"exp_003_ner_wnut17\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-merged\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_001_seed456_t10_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_001_seed123_t10_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_008_re_n16_t10_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_007_llama_inference\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_003_wnut17_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_010_selection_curves\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (analysis only)\\\"}, \\\"exp_007_llama_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/\\\"}, \\\"exp_007_llama_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_008_re_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"N/A\\\"}, \\\"exp_001_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (inference)\\\"}, \\\"exp_001_seed123_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (inference)\\\"}, \\\"exp_008_re_n16_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"N/A (inference)\\\"}, \\\"exp_005_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_006_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"output/exp_006_v2/exp_006_v2_results.json\\\"}, \\\"exp_004_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_009_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"output/exp_009_v2/results.json\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_016_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_seed456_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_017_llama_conll_infer\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_003_wnut17_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_001_seed456_v2_ner\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_009_v2_re_rerun\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_007_llama_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"output/exp_007_llama_n16/samples.jsonl\\\"}, \\\"exp_017_llama_conll_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_015_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_n16_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (inference-only)\\\"}, \\\"exp_011_ood_scierc_to_conll\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"output/exp_011_ood_scierc_to_conll/samples.jsonl\\\"}, \\\"exp_qwen3_4b_scierc_finetune_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"checkpoints/qwen3-4b-scierc-merged/\\\"}, \\\"exp_011_ood_conll_to_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"output/exp_011_ood_conll_to_scierc/samples.jsonl\\\"}, \\\"exp_freeform_seed789_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_freeform_seed789\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_freeform_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_freeform_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_009_capability_stratification\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"output/exp009_stratification_results.json\\\"}, \\\"exp_023_lora_rank8\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_022_seed789\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_025_n32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_021_fewnerd_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_015_metrics_expansion\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_020_fewnerd_smoke\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_vc_lp_cascade_selection\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_tacred_re_benchmark\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_vc_quartile_analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"artifacts/vc_quartile_analysis/results.json\\\"}, \\\"exp_llama3b_scierc_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_freeform_conll_4seed\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"N/A (inference-only experiment)\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_qwen3_4b_conll_merge_inference_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"N/A - duplicate\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_qwen3_4b_scierc_merge_inference\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"N/A - superseded\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_qwen3_4b_scierc_finetune_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_qwen3_4b_conll_finetune_resume\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_qwen3_4b_scierc_finetune_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_qwen3_4b_conll_finetune\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_freeform_seed789_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_qwen3_4b_scierc_finetune\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_lp_t07_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_lp_scierc_t07\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_re_scierc_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_re_scierc_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_017_llama_conll_n8_t07\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (inference-only)\\\"}, \\\"exp008_re_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp001_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp001_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_001_n16_seed456_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_001_n16_seed123_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_007_ner_llama\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_002_merge_conll2003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_019_supervised_verifier\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_018_llama_scierc_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_002_conll_n16_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_007_llama_n16_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_001_seed123_v2_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_001_seed456_v2_ner_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_001_seed42_v2_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"checkpoint_path\\\": \\\"output/exp_001_seed42_v2_r1024\\\"}, \\\"exp_017_llama_conll_n16_s456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"output/exp_017_llama_conll_n16_s456/samples.jsonl\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_017_llama_conll_n16_s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"output/exp_017_llama_conll_n16_s123/samples.jsonl\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_008_re_n16_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_001_n16_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A\\\"}, \\\"exp_016_signal_ensemble\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_ner_n16_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_002_ner_conll2003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora\\\"}, \\\"exp_004_re_diagnostic\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_005\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_014_entity_majority_voting\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_013_exact_match_voting\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_012_logprob_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_pilot_005\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"e1_component_wise_re_sj\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"mvp_pilot_004\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"ft_002_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_pilot_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"ft_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"ft_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_pilot_003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"mvp_pilot_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}}, \\\"count\\\": 171, \\\"total\\\": 171, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4474}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6",
+            "uuid": "e80a2e03-e4f5-407f-abf9-ae35beb12845",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_wnut17_qwen25_7b\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_qwen25_14b_fewnerd\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_qwen25_7b_fewnerd\\\": {\\\"status\\\": \\\"QUEUED\\\"}, \\\"exp_qwen25_32b_fewnerd\\\": {\\\"status\\\": \\\"ALLOCATED\\\"}, \\\"exp_qwen25_72b_zeroshot\\\": {\\\"status\\\": \\\"ALLOCATED\\\"}, \\\"exp_llama_fewnerd_inference\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_entity_construction\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_lp_alignment_gating\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_selective_prediction\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_llama_fewnerd_lora\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"hidden_state_probe_conll_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"hidden_state_probe_conll_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_031_fewnerd_t12\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_030_conll_t12\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mbr_pilot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"dgs_pilot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_fewnerd_s789_n8\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t12_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t12_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t10_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t10_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t10_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t08_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t08_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t05_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t05_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_029b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_029a\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_021_fewnerd_n8_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_021_fewnerd_n8_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_002_conll_n16_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_002_conll_n16_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_017_llama_conll_n16_s456_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (inference-only)\\\"}, \\\"exp_017_llama_conll_n16_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (inference-only)\\\"}, \\\"exp_018_llama_scierc_seed456_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_018_llama_scierc_seed42_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_002_conll_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"output/exp_002_conll_n16/samples.jsonl\\\"}, \\\"exp_012_rerun_1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_llama_scierc_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_007_llama_scierc_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_qwen3_4b_conll_scs_inference\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_qwen3_4b_conll_scs_inference_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_qwen3_4b_scierc_scs_inference\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"checkpoints/qwen3-4b-scierc-merged/\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_027_fewnerd_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t12\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t08\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t05\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_T12\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_T08\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_T05\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_017_llama_conll_n16_s123_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_018_llama_scierc_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_018_qwen_scierc_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_018_qwen_scierc_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_epoch_dgs_analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/struct_self_consist_ie/output/epoch_dgs_analysis_results.json\\\"}, \\\"exp_diagnostic_calibration\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/struct_self_consist_ie/output/diagnostic_calibration_results.json\\\"}, \\\"exp_adaptive_temperature\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/struct_self_consist_ie/output/adaptive_temperature_results.json\\\"}, \\\"exp_entity_consensus\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/struct_self_consist_ie/output/entity_consensus_results.json\\\"}, \\\"exp_ccs_selection\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/struct_self_consist_ie/output/ccs_selection_results.json\\\"}, \\\"exp_017_llama_conll\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_017_llama_conll_finetune\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_028_entity_token_lp\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_026_t12_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t08_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_t05_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_027_mlp_verifier\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_028_fewnerd_5epoch\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_028\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_024_claim_audit\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_016_rerun_1024_bootstrap\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_verbalized_confidence\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_entity_token_lp\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_freeform_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"N/A (inference-only experiment)\\\"}, \\\"exp_008_re_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A\\\"}, \\\"exp_001_ner_n16_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_007_ner_multi_model\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora\\\"}, \\\"exp_003_ner_wnut17\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-merged\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_001_seed456_t10_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_001_seed123_t10_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_008_re_n16_t10_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_007_llama_inference\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_003_wnut17_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_010_selection_curves\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (analysis only)\\\"}, \\\"exp_007_llama_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/\\\"}, \\\"exp_007_llama_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_008_re_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"N/A\\\"}, \\\"exp_001_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (inference)\\\"}, \\\"exp_001_seed123_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (inference)\\\"}, \\\"exp_008_re_n16_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"N/A (inference)\\\"}, \\\"exp_005_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_006_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"output/exp_006_v2/exp_006_v2_results.json\\\"}, \\\"exp_004_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_009_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"output/exp_009_v2/results.json\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_016_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_seed456_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_017_llama_conll_infer\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_003_wnut17_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_001_seed456_v2_ner\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_009_v2_re_rerun\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_007_llama_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"output/exp_007_llama_n16/samples.jsonl\\\"}, \\\"exp_017_llama_conll_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_015_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_n16_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (inference-only)\\\"}, \\\"exp_011_ood_scierc_to_conll\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"output/exp_011_ood_scierc_to_conll/samples.jsonl\\\"}, \\\"exp_qwen3_4b_scierc_finetune_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"checkpoints/qwen3-4b-scierc-merged/\\\"}, \\\"exp_011_ood_conll_to_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"output/exp_011_ood_conll_to_scierc/samples.jsonl\\\"}, \\\"exp_freeform_seed789_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_freeform_seed789\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_freeform_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_freeform_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_009_capability_stratification\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"output/exp009_stratification_results.json\\\"}, \\\"exp_023_lora_rank8\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_022_seed789\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_025_n32\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_021_fewnerd_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_015_metrics_expansion\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_020_fewnerd_smoke\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_vc_lp_cascade_selection\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_tacred_re_benchmark\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_vc_quartile_analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"artifacts/vc_quartile_analysis/results.json\\\"}, \\\"exp_llama3b_scierc_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_freeform_conll_4seed\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"N/A (inference-only experiment)\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_qwen3_4b_conll_merge_inference_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"N/A - duplicate\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_qwen3_4b_scierc_merge_inference\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"N/A - superseded\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_qwen3_4b_scierc_finetune_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_qwen3_4b_conll_finetune_resume\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_qwen3_4b_scierc_finetune_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_qwen3_4b_conll_finetune\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_freeform_seed789_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_qwen3_4b_scierc_finetune\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_lp_t07_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_lp_scierc_t07\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_re_scierc_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_re_scierc_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_017_llama_conll_n8_t07\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (inference-only)\\\"}, \\\"exp008_re_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp001_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp001_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_001_n16_seed456_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_001_n16_seed123_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_007_ner_llama\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_002_merge_conll2003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_019_supervised_verifier\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_018_llama_scierc_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_002_conll_n16_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_007_llama_n16_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_001_seed123_v2_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_001_seed456_v2_ner_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_001_seed42_v2_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"checkpoint_path\\\": \\\"output/exp_001_seed42_v2_r1024\\\"}, \\\"exp_017_llama_conll_n16_s456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"output/exp_017_llama_conll_n16_s456/samples.jsonl\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_017_llama_conll_n16_s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"output/exp_017_llama_conll_n16_s123/samples.jsonl\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_008_re_n16_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_001_n16_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A\\\"}, \\\"exp_016_signal_ensemble\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_ner_n16_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_002_ner_conll2003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora\\\"}, \\\"exp_004_re_diagnostic\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_005\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_014_entity_majority_voting\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_013_exact_match_voting\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_012_logprob_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_pilot_005\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"e1_component_wise_re_sj\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"mvp_pilot_004\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"ft_002_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_pilot_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"ft_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"ft_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_pilot_003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"mvp_pilot_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}}, \\\"count\\\": 171, \\\"total\\\": 171, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4474}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_wnut17_qwen25_7b\": {\"status\": \"RUNNING\"}, \"exp_qwen25_14b_fewnerd\": {\"status\": \"RUNNING\"}, \"exp_qwen25_7b_fewnerd\": {\"status\": \"QUEUED\"}, \"exp_qwen25_32b_fewnerd\": {\"status\": \"ALLOCATED\"}, \"exp_qwen25_72b_zeroshot\": {\"status\": \"ALLOCATED\"}, \"exp_llama_fewnerd_inference\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_entity_construction\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_lp_alignment_gating\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_selective_prediction\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_llama_fewnerd_lora\": {\"status\": \"DONE\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora\", \"conclusion\": \"success\"}, \"hidden_state_probe_conll_full\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"hidden_state_probe_conll_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_031_fewnerd_t12\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_030_conll_t12\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mbr_pilot\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"dgs_pilot\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_fewnerd_s789_n8\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_026_t12_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_026_t12_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_026_t10_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_026_t10_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_026_t10_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_026_t08_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_026_t08_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_026_t05_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_026_t05_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_029b\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_029a\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_021_fewnerd_n8_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_021_fewnerd_n8_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_002_conll_n16_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_002_conll_n16_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_017_llama_conll_n16_s456_r1024\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (inference-only)\"}, \"exp_017_llama_conll_n16_r1024\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (inference-only)\"}, \"exp_018_llama_scierc_seed456_r1024\": {\"status\": \"DONE\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024\", \"conclusion\": \"success\"}, \"exp_018_llama_scierc_seed42_r1024\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_002_conll_n16\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"checkpoint_path\": \"output/exp_002_conll_n16/samples.jsonl\"}, \"exp_012_rerun_1024\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_llama_scierc_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_007_llama_scierc_seed123\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_qwen3_4b_conll_scs_inference\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_qwen3_4b_conll_scs_inference_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_qwen3_4b_scierc_scs_inference\": {\"status\": \"DONE\", \"checkpoint_path\": \"checkpoints/qwen3-4b-scierc-merged/\", \"conclusion\": \"success\"}, \"exp_027_fewnerd_n16\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_026_t12\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_026_t08\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_026_t05\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_026_T12\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_026_T08\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_026_T05\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_017_llama_conll_n16_s123_r1024\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_018_llama_scierc_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_018_qwen_scierc_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_018_qwen_scierc_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_epoch_dgs_analysis\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/struct_self_consist_ie/output/epoch_dgs_analysis_results.json\"}, \"exp_diagnostic_calibration\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/struct_self_consist_ie/output/diagnostic_calibration_results.json\"}, \"exp_adaptive_temperature\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/struct_self_consist_ie/output/adaptive_temperature_results.json\"}, \"exp_entity_consensus\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/struct_self_consist_ie/output/entity_consensus_results.json\"}, \"exp_ccs_selection\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/struct_self_consist_ie/output/ccs_selection_results.json\"}, \"exp_017_llama_conll\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_017_llama_conll_finetune\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_028_entity_token_lp\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_026_t12_scierc\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_026_t08_scierc\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_026_t05_scierc\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_027_mlp_verifier\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_028_fewnerd_5epoch\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_028\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_024_claim_audit\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_016_rerun_1024_bootstrap\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_verbalized_confidence\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_entity_token_lp\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_freeform_ablation\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"checkpoint_path\": \"N/A (inference-only experiment)\"}, \"exp_008_re_n16\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"checkpoint_path\": \"N/A\"}, \"exp_001_ner_n16_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_007_ner_multi_model\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora\"}, \"exp_003_ner_wnut17\": {\"status\": \"DONE\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-merged\", \"conclusion\": \"negative\"}, \"exp_001_seed456_t10_full\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_001_seed123_t10_full\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_008_re_n16_t10_full\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_007_llama_inference\": {\"status\": \"DONE\", \"checkpoint_path\": \"N/A\", \"conclusion\": \"success\"}, \"exp_003_wnut17_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_010_selection_curves\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (analysis only)\"}, \"exp_007_llama_seed456\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/\"}, \"exp_007_llama_seed123\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_008_re_seed123\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"checkpoint_path\": \"N/A\"}, \"exp_001_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (inference)\"}, \"exp_001_seed123_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (inference)\"}, \"exp_008_re_n16_v2\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"checkpoint_path\": \"N/A (inference)\"}, \"exp_005_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_006_v2\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"checkpoint_path\": \"output/exp_006_v2/exp_006_v2_results.json\"}, \"exp_004_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_009_v2\": {\"status\": \"DONE\", \"checkpoint_path\": \"output/exp_009_v2/results.json\", \"conclusion\": \"success\"}, \"exp_016_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_001_seed456_v2\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_017_llama_conll_infer\": {\"status\": \"DONE\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\", \"conclusion\": \"success\"}, \"exp_003_wnut17_v2\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_001_seed456_v2_ner\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_009_v2_re_rerun\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_007_llama_n16\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"checkpoint_path\": \"output/exp_007_llama_n16/samples.jsonl\"}, \"exp_017_llama_conll_n16\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_015_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_001_n16_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (inference-only)\"}, \"exp_011_ood_scierc_to_conll\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"checkpoint_path\": \"output/exp_011_ood_scierc_to_conll/samples.jsonl\"}, \"exp_qwen3_4b_scierc_finetune_v4\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"checkpoint_path\": \"checkpoints/qwen3-4b-scierc-merged/\"}, \"exp_011_ood_conll_to_scierc\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"checkpoint_path\": \"output/exp_011_ood_conll_to_scierc/samples.jsonl\"}, \"exp_freeform_seed789_v3\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_freeform_seed789\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_freeform_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_freeform_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_009_capability_stratification\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"checkpoint_path\": \"output/exp009_stratification_results.json\"}, \"exp_023_lora_rank8\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_022_seed789\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_025_n32\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_021_fewnerd_full\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_015_metrics_expansion\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_020_fewnerd_smoke\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_vc_lp_cascade_selection\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_tacred_re_benchmark\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_vc_quartile_analysis\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"checkpoint_path\": \"artifacts/vc_quartile_analysis/results.json\"}, \"exp_llama3b_scierc_ablation\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_freeform_conll_4seed\": {\"status\": \"DONE\", \"checkpoint_path\": \"N/A (inference-only experiment)\", \"conclusion\": \"success\"}, \"exp_qwen3_4b_conll_merge_inference_v2\": {\"status\": \"DONE\", \"checkpoint_path\": \"N/A - duplicate\", \"conclusion\": \"killed\"}, \"exp_qwen3_4b_scierc_merge_inference\": {\"status\": \"DONE\", \"checkpoint_path\": \"N/A - superseded\", \"conclusion\": \"killed\"}, \"exp_qwen3_4b_scierc_finetune_v3\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_qwen3_4b_conll_finetune_resume\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_qwen3_4b_scierc_finetune_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_qwen3_4b_conll_finetune\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_freeform_seed789_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_qwen3_4b_scierc_finetune\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_lp_t07_scierc\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_lp_scierc_t07\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_re_scierc_seed456\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_re_scierc_seed123\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_017_llama_conll_n8_t07\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (inference-only)\"}, \"exp008_re_n16\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp001_seed456\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp001_seed123\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_001_n16_seed456_full\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_001_n16_seed123_full\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_007_ner_llama\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_002_merge_conll2003\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_019_supervised_verifier\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_018_llama_scierc_seed456\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_002_conll_n16_r1024\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_007_llama_n16_r1024\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_001_seed123_v2_r1024\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_001_seed456_v2_ner_r1024\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_001_seed42_v2_r1024\": {\"status\": \"DONE\", \"conclusion\": \"killed\", \"checkpoint_path\": \"output/exp_001_seed42_v2_r1024\"}, \"exp_017_llama_conll_n16_s456\": {\"status\": \"DONE\", \"checkpoint_path\": \"output/exp_017_llama_conll_n16_s456/samples.jsonl\", \"conclusion\": \"success\"}, \"exp_017_llama_conll_n16_s123\": {\"status\": \"DONE\", \"checkpoint_path\": \"output/exp_017_llama_conll_n16_s123/samples.jsonl\", \"conclusion\": \"success\"}, \"exp_008_re_n16_full\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_001_n16_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"checkpoint_path\": \"N/A\"}, \"exp_016_signal_ensemble\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_001_ner_n16_scierc\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_002\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_002_ner_conll2003\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora\"}, \"exp_004_re_diagnostic\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_005\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_014_entity_majority_voting\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_013_exact_match_voting\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_012_logprob_baseline\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"mvp_pilot_005\": {\"status\": \"DONE\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005\", \"conclusion\": \"negative\"}, \"e1_component_wise_re_sj\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"mvp_pilot_004\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"ft_002_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"mvp_pilot_002\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"ft_002\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"ft_001\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"mvp_pilot_003\": {\"status\": \"DONE\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003\", \"conclusion\": \"negative\"}, \"mvp_pilot_001\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}}, \"count\": 171, \"total\": 171, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4474}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me analyze the data:\n\n**Current disk state:**\n- 250G total, 195G used, 56G available (78% used)\n\n**Checkpoints to potentially delete (Director approved):**\n\n1. `qwen3-8b-fewnerd-exp021-merged` — 16GB\n2. `qwen3-8b-scierc-merged-v2` — 16GB\n3. LLaMA checkpoints:\n   - `llama3.1-8b-conll2003-lora` — 5.1GB\n   - `llama3.1-8b-conll2003-lora-3ep` — 3.2GB\n   - `llama3.1-8b-fewnerd-lora` — 3.2GB\n   - `llama3.1-8b-scierc-lora` — 3.2GB\n   - `llama3.2-3b-scierc-lora` — 1.9GB\n   - Total LLaMA: ~16.6GB\n\nNow I need to verify the registry to make sure these checkpoints aren't actively referenced. Looking at the experiment configs, `exp_llama_fewnerd_lora` is marked as done and points to `llama3.1-8b-fewnerd-lora`, so I need to check if that's still in use before deleting it.\n\nThe running experiments are `exp_wnut17_qwen25_7b` and `exp_qwen25_14b_fewnerd`, while `exp_qwen25_32b_fewnerd` and `exp_qwen25_72b_z` are allocated but not yet started. None of these reference the LLaMA checkpoints I'm planning to remove, so it's safe to proceed. The two merged Qwen checkpoints alone total 32GB, which already exceeds the 25GB target the Director set, so I'll delete those first. Since all the LLaMA experiments are completed and none of the active experiments use them, those should be safe to delete as well—but I need to be careful not to remove anything still referenced in the registry.\n\nLooking at the constraint more closely: I shouldn't delete files that checkpoint_path points to in the registry unless the experiment conclusion is failed. The two LLaMA checkpoints are both referenced by successful experiments, so I can't delete those even though they're from completed work. I can only safely remove the two merged Qwen files to bring the storage down. I've confirmed none of these checkpoints are referenced in the registry, so I can safely delete all five: the two Qwen merged models at 16GB each, and the three LLaMA LoRA variants totaling around 5GB. I'll go ahead and delete all the safe candidates—the merged Qwen models and the unreferenced LLaMA ones, since the Director confirmed those can go too.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6",
+            "uuid": "ebf4ddc6-ad4b-4835-9728-224b7edb3a9a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X2HY8yEhpybgRE5VHx4Vdf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8630,
+                "cache_read_input_tokens": 25759,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8630
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：250G 总量，56G 可用。\n\n安全检查结果：\n- **无 RUNNING 实验引用这些 checkpoint**（RUNNING 的是 qwen25 系列）\n- `qwen3-8b-fewnerd-exp021-merged` (16G) — 无 registry checkpoint_path 引用 ✓\n- `qwen3-8b-scierc-merged-v2` (16G) — 无 registry checkpoint_path 引用 ✓\n- `llama3.1-8b-conll2003-lora` (5.1G) — 无 registry checkpoint_path 引用 ✓\n- `llama3.1-8b-conll2003-lora-3ep` (3.2G) — 无 registry checkpoint_path 引用 ✓\n- `llama3.2-3b-scierc-lora` (1.9G) — 无 registry checkpoint_path 引用 ✓\n\n**不删除**（registry checkpoint_path 引用且 conclusion=success）：\n- `llama3.1-8b-fewnerd-lora` (3.2G) — `exp_llama_fewnerd_lora`\n- `llama3.1-8b-scierc-lora` (3.2G) — `exp_007_ner_multi_model`\n\n预计释放：~42.2GB。执行删除。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6",
+            "uuid": "b21950e3-12c8-4a59-ae48-d049395bd9a8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X2HY8yEhpybgRE5VHx4Vdf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8630,
+                "cache_read_input_tokens": 25759,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8630
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Cap6ar8wx56kZi4ySSbk6q",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "rm -rf /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora-3ep /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.2-3b-scierc-lora && echo \"DELETE OK\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6",
+            "uuid": "9c2d2654-d171-45bc-a1c3-5822156658ca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X2HY8yEhpybgRE5VHx4Vdf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8630,
+                "cache_read_input_tokens": 25759,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8630
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T08:42:37.432Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Cap6ar8wx56kZi4ySSbk6q",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DELETE OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6",
+            "uuid": "3d7c3e3e-36fb-4499-b07c-b345467daad3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DELETE OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.11}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"DELETE OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.11}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UjF3W5HbRYnGyBdLhmqUKp",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "df -h /root/autodl-tmp/ && echo \"---\" && du -sh /root/autodl-tmp/struct_self_consist_ie/checkpoints/* 2>/dev/null | sort -rh",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6",
+            "uuid": "56beb76f-bffd-4ac2-8ad4-4094ba9e961b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EsnLGwF4WsXQbW1cK4KLVv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2591,
+                "cache_read_input_tokens": 34389,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2591
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T08:42:41.323Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UjF3W5HbRYnGyBdLhmqUKp",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  154G   97G  62% /root/autodl-tmp\\\\n---\\\\n5.3G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora\\\\n4.1G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora\\\\n3.4G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2\\\\n3.4G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-5epoch-lora\\\\n3.2G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora\\\\n3.2G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora\\\\n2.6G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-scierc-lora\\\\n2.0G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora\\\\n1.7G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke\\\\n1.4G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora\\\\n1.4G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora\\\\n895M\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-rank8\\\\n2.8M\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/fewnerd_train.log\\\\n1.1M\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/exp017_train.log\\\\n84K\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_001_train.log\\\\n64K\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train_4gpu.log\\\\n32K\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train.log\\\\n28K\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6",
+            "uuid": "a85c1cbc-a540-49e4-bf55-27869e2f721a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  154G   97G  62% /root/autodl-tmp\\\\n---\\\\n5.3G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora\\\\n4.1G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora\\\\n3.4G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2\\\\n3.4G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-5epoch-lora\\\\n3.2G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora\\\\n3.2G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora\\\\n2.6G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-scierc-lora\\\\n2.0G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora\\\\n1.7G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke\\\\n1.4G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora\\\\n1.4G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora\\\\n895M\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-rank8\\\\n2.8M\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/fewnerd_train.log\\\\n1.1M\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/exp017_train.log\\\\n84K\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_001_train.log\\\\n64K\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train_4gpu.log\\\\n32K\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train.log\\\\n28K\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G  154G   97G  62% /root/autodl-tmp\\n---\\n5.3G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora\\n4.1G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora\\n3.4G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2\\n3.4G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-5epoch-lora\\n3.2G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora\\n3.2G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora\\n2.6G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-scierc-lora\\n2.0G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora\\n1.7G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke\\n1.4G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora\\n1.4G\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora\\n895M\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-rank8\\n2.8M\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/fewnerd_train.log\\n1.1M\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/exp017_train.log\\n84K\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_001_train.log\\n64K\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train_4gpu.log\\n32K\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train.log\\n28K\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n| | 清理前 | 清理后 |\n|---|---|---|\n| 已用 | 195G | 154G |\n| 可用 | 56G | **97G** |\n| 释放 | — | **~41G** |\n\n删除了 5 个目录：\n- `qwen3-8b-fewnerd-exp021-merged` (16G)\n- `qwen3-8b-scierc-merged-v2` (16G)\n- `llama3.1-8b-conll2003-lora` (5.1G)\n- `llama3.1-8b-conll2003-lora-3ep` (3.2G)\n- `llama3.2-3b-scierc-lora` (1.9G)\n\n保留了 registry 引用的 `llama3.1-8b-fewnerd-lora` 和 `llama3.1-8b-scierc-lora`。97G 可用空间远超 32B LoRA merge 所需的 ~65GB。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6",
+            "uuid": "b20f77a2-f617-4b0e-96bd-42e6ef866b77",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015gRRRMfW5itz6e98bQN3xU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 964,
+                "cache_read_input_tokens": 36980,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 964
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n| | 清理前 | 清理后 |\n|---|---|---|\n| 已用 | 195G | 154G |\n| 可用 | 56G | **97G** |\n| 释放 | — | **~41G** |\n\n删除了 5 个目录：\n- `qwen3-8b-fewnerd-exp021-merged` (16G)\n- `qwen3-8b-scierc-merged-v2` (16G)\n- `llama3.1-8b-conll2003-lora` (5.1G)\n- `llama3.1-8b-conll2003-lora-3ep` (3.2G)\n- `llama3.2-3b-scierc-lora` (1.9G)\n\n保留了 registry 引用的 `llama3.1-8b-fewnerd-lora` 和 `llama3.1-8b-scierc-lora`。97G 可用空间远超 32B LoRA merge 所需的 ~65GB。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 63224,
+            "duration_api_ms": 61747,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "ae160791-8b8e-4e2a-a39b-03a9cbc3c5f6",
+            "total_cost_usd": 0.32076325,
+            "usage": {
+              "input_tokens": 8,
+              "cache_creation_input_tokens": 26103,
+              "cache_read_input_tokens": 134005,
+              "output_tokens": 3561,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 26103,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 285,
+                  "cache_read_input_tokens": 36980,
+                  "cache_creation_input_tokens": 964,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 964
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1452,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001552,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 8,
+                "outputTokens": 3561,
+                "cacheReadInputTokens": 134005,
+                "cacheCreationInputTokens": 26103,
+                "webSearchRequests": 0,
+                "costUSD": 0.31921125,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "e3b8fe2f-b91c-48fd-90f8-ceefc46eabe0"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-server-a-disk-cleanup.md"
+}

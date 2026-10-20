@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba719d606338646cebea",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh mf4 s123 diagnose resubmit",
+  "task_key": "worker_ssh_mf4_s123_diagnose_resubmit_20260522T103847",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_mf4_s123_diagnose_resubmit_20260522T103847_result.json",
+    "occurrence": 1,
+    "bytes": 619,
+    "sha256": "b2a2f17be3b60328e3ca727fde521c71b5b2fa1631cfd8b63583b2f532316441"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "autodl-5090 四张卡全部占满（~30GB/32GB），没有空闲卡。\n\n```\n失败原因: GPU 显存不足。任务尝试在 cuda:0 上启动 vLLM，但该卡仅剩 1.44/31.36 GiB 空闲（被其他进程占用）。\n         不是模型缺失问题。\n模型状态: 已存在于 autodl-5090:/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-exp021-merged/\nautodl-5090 空闲卡: 无（4卡全部占用 ~30GB/32GB）\n建议: 等当前任务完成释放 GPU 后，在 autodl-5090 空闲卡上重新提交。\n      提交时需确保 CUDA_VISIBLE_DEVICES 指向空闲卡。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mf4-s123-diagnose-resubmit.md"
+}

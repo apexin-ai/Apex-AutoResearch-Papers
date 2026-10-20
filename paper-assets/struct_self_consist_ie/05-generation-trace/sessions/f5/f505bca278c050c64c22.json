@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "f505bca278c050c64c22",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose exp fewnerd mf4 s123",
+  "task_key": "worker_diagnose_exp_fewnerd_mf4_s123_20260522T103817",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp_fewnerd_mf4_s123_20260522T103817_result.json",
+    "occurrence": 1,
+    "bytes": 2139,
+    "sha256": "8c41eaa8ceded36a16ac35a65417678c58f9550011c7cd56c1a7b36c85b6c47a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 张 GPU 全被 `fewnerd_n32_s42` 的 4 个 shard 占满，每个 shard 各占一张 GPU。exp_fewnerd_mf4_s123 没有可用 GPU。\n\n```json\n{\n  \"root_cause\": \"ValueError: Free memory on device cuda:0 (1.44/31.36 GiB) on startup is less than desired GPU memory utilization (0.9, 28.22 GiB). 所有 4 张 RTX 5090 均被 fewnerd_n32_s42 的 4 个 shard 进程占满（每张 ~30GB/32GB），无空闲 GPU 可用。\",\n  \"error_type\": \"resource\",\n  \"fix_steps\": [\n    \"等待 fewnerd_n32_s42 四个 shard 跑完后重新提交 exp_fewnerd_mf4_s123\",\n    \"或者将 exp_fewnerd_mf4_s123 提交到有空闲 GPU 的其他服务器（如 autodl-5090-c）\",\n    \"提交时可通过 CUDA_VISIBLE_DEVICES 指定空闲 GPU，避免争抢\"\n  ],\n  \"can_auto_fix\": false,\n  \"full_log_tail\": \"ValueError: Free memory on device cuda:0 (1.44/31.36 GiB) on startup is less than desired GPU memory utilization (0.9, 28.22 GiB). Decrease GPU memory utilization or reduce GPU memory used by other processes.\\nRuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}\\nEXIT_CODE=1\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "ValueError: Free memory on device cuda:0 (1.44/31.36 GiB) on startup is less than desired GPU memory utilization (0.9, 28.22 GiB). 所有 4 张 RTX 5090 均被 fewnerd_n32_s42 的 4 个 shard 进程占满（每张 ~30GB/32GB），无空闲 GPU 可用。",
+              "error_type": "resource",
+              "fix_steps": [
+                "等待 fewnerd_n32_s42 四个 shard 跑完后重新提交 exp_fewnerd_mf4_s123",
+                "或者将 exp_fewnerd_mf4_s123 提交到有空闲 GPU 的其他服务器（如 autodl-5090-c）",
+                "提交时可通过 CUDA_VISIBLE_DEVICES 指定空闲 GPU，避免争抢"
+              ],
+              "can_auto_fix": false,
+              "full_log_tail": "ValueError: Free memory on device cuda:0 (1.44/31.36 GiB) on startup is less than desired GPU memory utilization (0.9, 28.22 GiB). Decrease GPU memory utilization or reduce GPU memory used by other processes.\nRuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}\nEXIT_CODE=1"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-fewnerd-mf4-s123.md"
+}

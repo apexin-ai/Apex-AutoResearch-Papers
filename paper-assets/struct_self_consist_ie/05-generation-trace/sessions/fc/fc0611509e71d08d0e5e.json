@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "fc0611509e71d08d0e5e",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh 7b urgent pipeline execution",
+  "task_key": "worker_ssh_7b-urgent-pipeline-execution_20260520T042302",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_7b-urgent-pipeline-execution_20260520T042302.log",
+    "occurrence": 1,
+    "bytes": 1179791,
+    "sha256": "c96d110c5bf1b195976774ddd0f39d483dd724076c0e6a61e5139d0079178fc5"
+  },
+  "statistics": {
+    "messages": 426,
+    "user_turns": 1,
+    "tool_calls": 125,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 168,
+      "tool_call": 125,
+      "tool_result": 125,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 384,
+      "chunks": [
+        {
+          "path": "fc0611509e71d08d0e5e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fc0611509e71d08d0e5e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fc0611509e71d08d0e5e-part-0003.json",
+          "message_count": 24
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 42,
+      "chunks": [
+        {
+          "path": "fc0611509e71d08d0e5e-part-0003.json",
+          "message_count": 42
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-7b-urgent-pipeline-execution.md"
+}

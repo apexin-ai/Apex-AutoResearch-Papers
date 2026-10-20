@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0d8ca053c1ffa8bc8a4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp021 merge scs",
+  "task_key": "worker_analysis_exp021_merge_scs_20260516T215554",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp021_merge_scs_20260516T215554_result.json",
+    "occurrence": 1,
+    "bytes": 3147,
+    "sha256": "a39172994ad534178f5a49db93fc9b707a5cd7cf5d910336d6cd4e47af2019e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "有足够数据了。下面输出完整结构化报告。\n\n---\n\n## EXP-021 Few-NERD 全量 SCS 分析报告\n\n### 基本信息\n| 指标 | 值 |\n|------|------|\n| 数据集 | Few-NERD |\n| 实例数 | 37,648 |\n| N (samples/instance) | 8 |\n| 模型 | Qwen (exp_021_fewnerd_full LoRA) |\n\n### 1. Greedy / Oracle F1\n\n| 指标 | Few-NERD | SciERC | 差异 |\n|------|----------|--------|------|\n| Greedy macro F1 | 0.6469 | 0.6633 | -0.0164 |\n| Oracle macro F1 | 0.7541 | 0.7775 | -0.0234 |\n| **Headroom** | **0.1073** | **0.1142** | -0.0070 |\n\n### 2. Zero-F1 率\n\n| 指标 | Few-NERD | SciERC |\n|------|----------|--------|\n| Zero-F1 rate | 0.1744 (6565/37648) | ~0.1259 (52+22 filtered / 551) |\n| F1>0 instances | 28,688 | 477 |\n\n### 3. 五信号 Global ρ 和 Conditional ρ\n\n| Signal | Few-NERD Global ρ | Few-NERD Cond ρ | SciERC Global ρ | SciERC Cond ρ |\n|--------|-------------------|-----------------|-----------------|---------------|\n| LP | **-0.0897** | **0.2299** | 0.2052 | 0.1538 |\n| SJ | -0.0079 | **0.2619** | 0.3599 | 0.3113 |\n| FK | -0.0418 | 0.0551 | 0.2665 | 0.1761 |\n| EM | -0.0620 | **0.4412** | 0.2945 | 0.3596 |\n| VC | **0.5200** | 0.0897 | 0.3792 | 0.3000 |\n\n### 4. Selection Delta (选择后 F1 - Greedy F1)\n\n| Signal | Few-NERD Sel F1 | Few-NERD Δ | SciERC Δ (N=16, 3seed mean) |\n|--------|----------------|-----------|------------------------------|\n| LP | 0.6586 | **+0.0117** | -- |\n| SJ | 0.6273 | -0.0195 | -0.0005 |\n| FK | 0.6136 | -0.0333 | +0.0015 |\n| EM | 0.6136 | -0.0333 | -- |\n| VC | 0.6314 | -0.0154 | -0.0309 |\n\n### 5. Bootstrap CI for LP Delta\n\n| 指标 | 值 |\n|------|------|\n| LP delta mean | +0.0118 |\n| 95% CI | **[+0.0102, +0.0134]** |\n\nCI 不含零，LP selection 在 Few-NERD 上**显著**优于 greedy (p < 0.025)。\n\n### 6. Scenario 判定\n\n**判定：Scenario B — Headroom 大但信号弱/反转**\n\n理由：\n- Headroom = 0.1073，与 SciERC 相当（0.1142），说明上限充足\n- 但 5 个信号中仅 LP 实现 selection > greedy (+0.0117)，其余 4 个**负 delta**\n- Global ρ 全面崩坏：SJ/FK/EM 为负或接近零，仅 VC 保持正 (0.52) 但 selection 仍为负\n- Conditional ρ 信号相对保留（LP 0.23, SJ 0.26, EM 0.44），但无法转化为有效选择\n- 核心矛盾：高 zero-F1 率 (17.4%) 导致 global ρ 被\"一致错误\"的高信号实例拉向负方向——模型 confident 地生成一致但完全错误的输出\n\n### 7. 关键发现\n\n1. **LP 是 Few-NERD 上唯一有效的 selection 信号**，delta = +0.0117 且统计显著\n2. **VC 的 global ρ 极高 (0.52) 但 selection delta 为负**——因为 VC 高的实例往往是模型反复犯同一个错误\n3. **EM conditional ρ = 0.4412 是所有信号中最高**——但 EM mode selection 选的 majority 答案恰好不如 greedy\n4. Few-NERD 的细粒度类型体系导致模型更容易一致性地错误分类（如 building vs location），高一致性 ≠ 高质量\n5. 与 SciERC 对比：所有结构一致性信号 (SJ/FK/EM) 的 global ρ 从正变负，说明信号有效性**不跨数据集泛化**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp021-merge-scs.md"
+}

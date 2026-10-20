@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af5e002e6518ad26bb63",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp hidden probe exp016",
+  "task_key": "worker_exp_hidden_probe_exp016_20260518T113602",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_hidden_probe_exp016_20260518T113602_result.json",
+    "occurrence": 1,
+    "bytes": 1524,
+    "sha256": "7872c1048052284211701ff5fcb9311286a705953b588ba330f966838c79b32a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。结果如下：\n\n## Hidden State Probe — exp_016 数据结果\n\n**数据**: `exp_012_rerun_1024/samples_with_logprobs.jsonl` (551 instances → gold-filtered 529, 8 samples/instance)\n\n| Method | Spearman ρ | Selection F1 | Gap Closure |\n|--------|-----------|-------------|-------------|\n| Greedy | — | 0.644 | — |\n| LP (mean logprob) | 0.283 | 0.650 | 4.8% |\n| Hidden Linear | 0.179±0.019 | 0.613±0.002 | -23.4% |\n| Hidden MLP | 0.388±0.013 | 0.637±0.003 | -5.1% |\n| Oracle | — | 0.776 | 100% |\n\n### 与 exp_012 probe 对比\n\n| | exp_012 (greedy=0.610) | exp_016 (greedy=0.644) |\n|---|---|---|\n| LP gap closure | -0.7% | **+4.8%** |\n| MLP ρ | 0.454 | 0.388 |\n| MLP gap closure | +15.6% | **-5.1%** |\n\n### 关键发现\n\n1. **Greedy F1=0.644** 与主表一致，数据源确认正确\n2. **Hidden state probes 在 exp_016 数据上表现显著退化**：MLP 的 selection F1 (0.637) 低于 greedy (0.644)，gap closure 为负\n3. **LP 反而成为最佳方法**：selection F1=0.650，gap closure=4.8%\n4. **线性 probe 严重过拟合**：train loss=0.0005 vs val loss=0.697\n5. MLP 过拟合可控（train=0.070, val=0.081, best epoch=15.4）\n\n可能原因：rerun_1024 数据的样本分布与 exp_012_logprob 不同（更长的 max tokens），导致 hidden state 的质量信号结构改变。greedy baseline 已经较高（0.644 vs 0.610），留给 probe 改进的空间更小。\n\n结果保存在：`output/hidden_state_probe_exp016/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-hidden-probe-exp016.md"
+}

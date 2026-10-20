@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ac00180b3dbc380343f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exec llama 3seed recompute",
+  "task_key": "worker_exec_llama_3seed_recompute_20260515T063216",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exec_llama_3seed_recompute_20260515T063216_result.json",
+    "occurrence": 1,
+    "bytes": 465,
+    "sha256": "f1ce7426cee732a0d55f7303439d0a74a62006768e803a4a00d26d9b4d05f69d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n- **seed42 NER SJ ρ = 0.3096** — 与 registry 值完全一致\n- seed42 FK ρ = 0.2352, LP ρ = 0.1503 — 均符合预期\n- JSON 时间戳：2026-05-15 14:32，刚生成\n\n注意输出文件名是 `llama_scierc_3seed_fresh_summary.json`（带 `_fresh` 后缀），不是 `llama_scierc_3seed_summary.json`。如果下游需要读 `llama_scierc_3seed_summary.json`，需要确认是否要重命名或更新引用路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-llama-3seed-recompute.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3273fe807199940697a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check exp 028 progress",
+  "task_key": "worker_check_exp_028_progress_20260517T143605",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_exp_028_progress_20260517T143605_result.json",
+    "occurrence": 1,
+    "bytes": 482,
+    "sha256": "9ff79f957c93dab16dbd384fb34acfaf7fd838bd01264394747d29855402ab2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_028 训练状态\n\n| 指标 | 值 |\n|---|---|\n| 当前 step | 16,452 / 41,180 (40%) |\n| Epoch | 2.0 / 5 |\n| Loss | 0.0353 → 0.0374 (step 16400-16450) |\n| 速度 | ~1.77 it/s |\n| GPU | 4× RTX 5090, 100% util, 60-71°C |\n| 显存 | ~28-29 GB / 32 GB |\n| 已运行 | 2h 02min (从 step 7000 resume) |\n| 剩余 | ~3h 53min (24,728 steps) |\n| **ETA** | **2026-05-18 02:30 UTC** |\n\n训练正常，loss 稳定在 0.03-0.04 区间，GPU 温度健康。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-028-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8aa1173a67728ae7014",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code write 3seed aggregation script",
+  "task_key": "worker_code_write-3seed-aggregation-script_20260520T035301",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_write-3seed-aggregation-script_20260520T035301_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "dbaaea3b1e9d037338c6a5e529b30b7024304f0599888c6b3aa5181e0c29878d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写好并验证可运行。\n\n`artifacts/aggregate_seeds.py` 功能：\n- 读取 N 个 `full_signal_report.json`，按 dataset key 提取 7 个 scaling 指标（lp_rho, sj_rho, vc_rho, degen, construction_lp_delta, greedy_f1, oracle_f1）\n- 计算 mean/std（sample std），stdout 输出可直接 paste 到 `plot_scaling_curve.py` 的 DATA dict\n- 写 JSON 文件包含 mean、std、per-seed 原始值\n- `--per-instance` 选项聚合多 seed 的 per-instance JSON（每个 instance 取均值 F1），degenerate 标记取多数投票，输出兼容 `bootstrap_construction.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-write-3seed-aggregation-script.md"
+}

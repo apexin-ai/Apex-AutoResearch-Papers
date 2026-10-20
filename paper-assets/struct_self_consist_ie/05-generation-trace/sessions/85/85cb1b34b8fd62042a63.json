@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "85cb1b34b8fd62042a63",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper figures core 3figures",
+  "task_key": "worker_paper_figures_core_3figures_20260514T210514",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figures_core_3figures_20260514T210514_result.json",
+    "occurrence": 1,
+    "bytes": 2266283,
+    "sha256": "d0ac540c8f374b03df2fafa304cda7afaaacd2069c9c60920e51df3e45841119"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2266303,
+                "serialized_sha256": "8e596f2a7be306efd713eb40c80d9b4bf40aa639959de8e70c8bdbc958550077",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figures-core-3figures.md"
+}

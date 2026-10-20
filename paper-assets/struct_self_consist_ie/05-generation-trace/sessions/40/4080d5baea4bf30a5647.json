@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4080d5baea4bf30a5647",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh batch mv recompute 3exp",
+  "task_key": "worker_ssh_batch_mv_recompute_3exp_20260522T044904",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_batch_mv_recompute_3exp_20260522T044904_result.json",
+    "occurrence": 1,
+    "bytes": 1192,
+    "sha256": "1453f9ec0031d55b1a125f6d7b358e82e11f7fcf79477eecc3f64e50240caafa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n## 实验结果汇总\n\n| 指标 | exp1: N=32 s123 (finetuned) | exp2: N=64 s42 (finetuned) | exp3: N=32 s42 (pretrained) |\n|---|---|---|---|\n| **greedy_f1** | 0.6663 | 0.6673 | 0.2446 |\n| **mv_strict_f1** | 0.6675 | 0.6735 | 0.2643 |\n| **mv_delta_pp** | +0.12 | +0.63 | +1.97 |\n| **mv_incl_f1** | 0.6722 | 0.6725 | 0.2668 |\n| **oracle_f1** | 0.8404 | 0.8626 | 0.4729 |\n| **degeneracy_rate** | 5.1% | 2.1% | 0.2% |\n| **alpha_crit_eff_strict** | 0.3511 | 0.3407 | 0.1526 |\n| **verdict** | PASS | PASS | FAIL |\n| **SJ ρ (full)** | +0.454 | +0.423 | +0.247 |\n| **κ ρ (full)** | +0.330 | +0.322 | +0.246 |\n\n**Pretrained 模型**: 存在于 `/root/autodl-tmp/models/Qwen2.5-7B-Instruct` (autodl-5090)\n\n### 要点\n\n- **Finetuned (exp1, exp2)**: 两个 PASS，N=64 的 mv_delta 更大 (+0.63pp vs +0.12pp)，degeneracy 更低 (2.1% vs 5.1%)，oracle 更高 (0.8626 vs 0.8404)\n- **Pretrained (exp3)**: FAIL，greedy_f1 仅 0.24，46.5% 样本 F1=0，但 mv_delta 反而最大 (+1.97pp)——因为 baseline 极低，MV 相对提升空间大。α_crit_eff 仅 0.15，远低于 finetuned 的 ~0.35\n- exp3 日志建议 T=0.7 重跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-batch-mv-recompute-3exp.md"
+}

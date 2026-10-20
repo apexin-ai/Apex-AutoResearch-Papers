@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4deb1c64adebf2b2a795",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis calibration baseline",
+  "task_key": "worker_analysis_calibration_baseline_20260517T141557",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_calibration_baseline_20260517T141557_result.json",
+    "occurrence": 1,
+    "bytes": 2356,
+    "sha256": "9780370875856ef30cc1d4e67ad2fda15983767927598cff1b145e5a74cb73bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Here's the report:\n\n## Summary Table\n\n| Dataset | Greedy | Raw LP | Platt LP | MF-Platt | TempScale | Oracle |\n|---------|--------|--------|----------|----------|-----------|--------|\n| SciERC  | 0.6436 | 0.6495 | 0.6495   | 0.6386   | 0.6495    | 0.7775 |\n| CoNLL   | 0.9087 | 0.8975 | 0.8975   | 0.9007   | 0.8975    | 0.9614 |\n| Few-NERD| 0.7712 | 0.7845 | 0.7845   | 0.7782   | 0.7845    | 0.9134 |\n\n## Key Finding\n\n**Standard Platt/TempScale cannot improve LP-based selection.** Both are monotonic transforms of LP, so argmax is preserved. They improve *calibration quality* (ECE drops from 0.26-0.39 → 0.01-0.08) but cannot change which sample is selected.\n\n## Multi-feature Platt (LP + n_tokens + n_entities)\n\nThis non-monotonic variant *can* change selection but shows no significant improvement:\n- SciERC: -0.011 (p=0.72)\n- CoNLL: +0.003 (p=0.31)  \n- Few-NERD: -0.006 (p=0.83)\n\nNone reach statistical significance. On CoNLL it shows a marginal improvement (+0.32pp) but still well short of significance.\n\n## Calibration Quality (ECE)\n\n| Dataset | Raw LP | Platt | MF-Platt | TempScale |\n|---------|--------|-------|----------|-----------|\n| SciERC  | 0.260  | 0.048 | 0.024    | 0.288     |\n| CoNLL   | 0.392  | 0.012 | 0.006    | 0.423     |\n| Few-NERD| 0.262  | 0.080 | 0.064    | 0.300     |\n\nPlatt dramatically improves probability estimates (ECE), just not selection.\n\n## Learned Parameters\n\n- **Platt slopes** are large (7.6 - 31.2), reflecting that LP has very narrow range\n- **MF-Platt coefs**: LP is dominant (0.88-1.73), n_entities has negative weight (-0.20 to -0.86, penalizing over-generation), n_tokens effect is mixed\n- **TempScale τ**: hits boundary on SciERC/CoNLL (148.4), meaningful only on Few-NERD (1.20)\n\n## Conclusion for the paper\n\nCalibration is a natural baseline but fundamentally limited for sample selection: since LP-based selection uses within-instance argmax, any monotonic calibration is equivalent to raw LP. Even multi-feature calibration that breaks monotonicity provides no significant gain, confirming that the challenge is not about probability calibration but about the weak correlation between LP ranking and quality ranking within instances.\n\n**Outputs:**\n- `scripts/calibration_baseline.py`\n- `output/calibration_baseline_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-calibration-baseline.md"
+}

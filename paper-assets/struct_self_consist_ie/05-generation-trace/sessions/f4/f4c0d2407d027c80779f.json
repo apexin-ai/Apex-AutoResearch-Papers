@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "id": "f4c0d2407d027c80779f",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis e4 ensemble scaling",
+  "task_key": "worker_analysis_e4_ensemble_scaling_20260521T113230",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_e4_ensemble_scaling_20260521T113230.log",
+    "occurrence": 1,
+    "bytes": 1048577,
+    "sha256": "e1f7ab62af4b98f7f86ef807321074230a467168650456d4229613e58dd4cb3a"
+  },
+  "statistics": {
+    "messages": 399,
+    "user_turns": 3,
+    "tool_calls": 139,
+    "roles": {
+      "log": 1,
+      "system": 46,
+      "record": 3,
+      "assistant": 67,
+      "tool_call": 139,
+      "tool_result": 139,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 27,
+      "chunks": [
+        {
+          "path": "f4c0d2407d027c80779f-part-0001.json",
+          "message_count": 27
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 113,
+      "chunks": [
+        {
+          "path": "f4c0d2407d027c80779f-part-0001.json",
+          "message_count": 113
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 250,
+      "chunks": [
+        {
+          "path": "f4c0d2407d027c80779f-part-0001.json",
+          "message_count": 40
+        },
+        {
+          "path": "f4c0d2407d027c80779f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f4c0d2407d027c80779f-part-0003.json",
+          "message_count": 30
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "f4c0d2407d027c80779f-part-0003.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-e4-ensemble-scaling.md"
+}

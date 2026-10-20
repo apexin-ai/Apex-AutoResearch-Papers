@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bedd5e7fdd1dbfe5cac",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis sj union normalizer",
+  "task_key": "worker_analysis_sj_union_normalizer_20260515T201939",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_sj_union_normalizer_20260515T201939_result.json",
+    "occurrence": 1,
+    "bytes": 863,
+    "sha256": "65e0ff3d27052f756f862ada17f07c054ae2f609ad18bbe518936a923cb8d436"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## SJ Normalizer Comparison (R8-W3)\n\n| Dataset | Model | n | ρ(SJ_max) | ρ(SJ_union) | Δρ |\n|---------|-------|---|-----------|-------------|-----|\n| CoNLL NER | Qwen3-8B | 8 | 0.1222 | 0.1223 | -0.0001 |\n| CoNLL NER | Qwen3-4B | 8 | 0.1597 | 0.1593 | +0.0004 |\n| SciERC NER | Qwen3-8B | 8 | 0.3658 | 0.3694 | -0.0036 |\n| SciERC NER | Qwen3-4B | 8 | 0.4269 | 0.4263 | +0.0006 |\n| CoNLL NER | LLaMA-8B | 8 | 0.1752 | 0.1752 | -0.0000 |\n| SciERC NER | LLaMA-8B | 8 | 0.3013 | 0.3040 | -0.0027 |\n\n**Conclusion**: All |Δρ| < 0.01 (max = 0.0036). The choice of normalizer does not affect the ranking conclusion.\n\n两种 normalizer 的 Spearman ρ 差异极小（最大 |Δρ| = 0.0036，出现在 SciERC/Qwen3-8B），6 组实验全部 < 0.004。结果和 JSON 已保存到 `output/review_round8/r8w3_sj_normalizer_comparison.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sj-union-normalizer.md"
+}

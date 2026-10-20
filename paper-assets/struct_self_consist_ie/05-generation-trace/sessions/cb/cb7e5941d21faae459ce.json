@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb7e5941d21faae459ce",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "setup 5090b 32b inference prep",
+  "task_key": "worker_setup_5090b_32b_inference_prep_20260520T210456",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_setup_5090b_32b_inference_prep_20260520T210456_result.json",
+    "occurrence": 1,
+    "bytes": 1720,
+    "sha256": "4913f5e3d54e4fb208fcd284fe69171b8e9e61c54847d13615b7f0ef2f2eb77e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部检查和部署完成。汇报：\n\n---\n\n## 汇报\n\n### 1. 5090-b 环境就绪状态\n\n| 项目 | 状态 |\n|------|------|\n| GPU | 4× RTX 5090 (32GB) ✓ |\n| RAM | 754G (689G 可用) ✓ |\n| 磁盘 | 350G 总量, 95G 可用 |\n| torch | 2.10.0+cu128, CUDA ✓ |\n| vLLM | 0.18.1 ✓ |\n| peft | 0.17.1 ✓ |\n| transformers | 4.57.1 ✓ |\n| accelerate | 1.11.0 ✓ |\n| `run_mvp_pilot.py` | 已存在 ✓ |\n\n**环境完全就绪，无需额外安装。**\n\n### 2. 32B base model\n\n5090-b 上**没有** Qwen2.5-32B-Instruct（cache 里只有 7B、72B-AWQ、Qwen3-8B）。如需在 5090-b 做 merge/inference，需下载 ~60GB base model。\n\n### 3. 5090 磁盘能否做 merge\n\n- 5090 磁盘：250G 总量，154G 已用，**97G 可用**\n- Merge 产出 ~60G → 剩余 ~37G\n- base model 已在 HF cache 中，无需额外下载\n- **够用。**\n\n### 4. 建议：在 5090 上做 merge + inference\n\n理由：\n- 5090 已有 32B base model 缓存，97G 磁盘够 merge\n- 训练完成后 4 卡释放，可直接跑 vLLM inference\n- 省去跨机器传输 ~60G merged model 的时间\n- 5090-b 作为备选：如果 5090 磁盘不够或出问题，5090-b 环境已就绪，只需下载 base model\n\n### 5. 部署的脚本路径\n\n- **5090**: `/root/autodl-tmp/struct_self_consist_ie/scripts/merge_32b_lora.py` ✓\n- **5090-b**: `/root/autodl-tmp/struct_self_consist_ie/scripts/merge_32b_lora.py` ✓\n\n用法：\n```bash\ncd /root/autodl-tmp/struct_self_consist_ie\npython scripts/merge_32b_lora.py checkpoints/qwen25-32b-fewnerd-qlora-s42 checkpoints/qwen25-32b-fewnerd-merged\n```\n\n### 训练进度\n\n38000/41180 steps (92.28%)，预计剩余 ~3h，约 08:00 UTC 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-5090b-32b-inference-prep.md"
+}

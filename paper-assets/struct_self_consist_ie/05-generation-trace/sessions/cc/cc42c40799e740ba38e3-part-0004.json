@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "session_id": "cc42c40799e740ba38e3",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 511,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CoNLL-2003 inference is ~41% through stochastic sampling (11.4K/27.6K prompts). Estimated completion in ~12 min. I'll check back in ~4 min to catch it finishing."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1314625,
+            "duration_api_ms": 1085143,
+            "num_turns": 223,
+            "stop_reason": "end_turn",
+            "session_id": "7adc8808-b4b3-4793-b6d8-cc9d8e57e2c9",
+            "total_cost_usd": 14.65360150000001,
+            "usage": {
+              "input_tokens": 203,
+              "cache_creation_input_tokens": 180475,
+              "cache_read_input_tokens": 24496442,
+              "output_tokens": 42286,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 180475,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 56,
+                  "cache_read_input_tokens": 33023,
+                  "cache_creation_input_tokens": 797,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 797
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1986,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002091,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 1638,
+                "outputTokens": 47313,
+                "cacheReadInputTokens": 24663341,
+                "cacheCreationInputTokens": 180612,
+                "webSearchRequests": 0,
+                "costUSD": 14.65151050000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "d1dd49ce-e68b-4448-ad64-280b0e51ba34"
+          },
+          "id": "event-000511"
+        }
+      ]
+    }
+  ]
+}

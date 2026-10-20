@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2b8d72745afd918600d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix conll oracle headroom global",
+  "task_key": "worker_fix_conll-oracle-headroom-global_20260519T185016",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_conll-oracle-headroom-global_20260519T185016_result.json",
+    "occurrence": 1,
+    "bytes": 753,
+    "sha256": "f0034384aaf44f017b5fe47eec4fb99b2bedcb4ade5b223a1fbaa50ec1c54bab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修正已到位，grep 确认无遗漏。\n\n### 修改清单\n\n| # | 文件 | 行号 | 修改前 | 修改后 |\n|---|------|------|--------|--------|\n| 1 | appendix.tex | L248 | `.957` | `.948` |\n| 2 | experiments.tex | L102 | `CoNLL ${\\approx}5$\\,pp` | `CoNLL ${\\approx}4$\\,pp` |\n| 3 | appendix.tex | L932 | `5.0~pp at $N{=}8$` | `4.0~pp at $N{=}8$` |\n| 4 | experiments.tex L201 (Table 5) | — | 已为 `${\\approx}$4` | 无需修改 |\n\n### grep 确认\n\n- `.957` → **0 matches** (已清除)\n- `4.9` → 5 matches，均为 temperature degeneracy `14.9%` 和 Few-NERD headroom `14.9pp`，与 CoNLL 无关\n- `≈5` / `\\approx 5` → **0 matches**\n- `5.0` → 2 matches，均为 SciERC `15.0` pp，与 CoNLL 无关"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-conll-oracle-headroom-global.md"
+}

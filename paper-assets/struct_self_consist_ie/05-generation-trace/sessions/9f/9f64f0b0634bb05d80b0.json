@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "9f64f0b0634bb05d80b0",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh 5090 full sweep and fill",
+  "task_key": "worker_ssh_5090_full_sweep_and_fill_20260521T141630",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090_full_sweep_and_fill_20260521T141630.log",
+    "occurrence": 1,
+    "bytes": 724141,
+    "sha256": "892d596eb59b46df0b86c698df12bf7570c67dce8efe9b07408ac1c281419b44"
+  },
+  "statistics": {
+    "messages": 235,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 48,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 235,
+      "chunks": [
+        {
+          "path": "9f64f0b0634bb05d80b0-part-0001.json",
+          "message_count": 179
+        },
+        {
+          "path": "9f64f0b0634bb05d80b0-part-0002.json",
+          "message_count": 56
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-5090-full-sweep-and-fill.md"
+}

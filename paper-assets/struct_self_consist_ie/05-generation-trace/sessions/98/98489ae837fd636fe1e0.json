@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98489ae837fd636fe1e0",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu status check",
+  "task_key": "worker_gpu-status-check_20260515T161813",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu-status-check_20260515T161813_result.json",
+    "occurrence": 1,
+    "bytes": 1406,
+    "sha256": "42b1887f8e1d94594edb162947356bfcbd679c23b60122659b8110da76f8836f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## autodl-5090 服务器状态汇总\n\n### GPU 状态（4× RTX 5090 32GB）\n\n| GPU | 显存占用 | GPU 利用率 | 状态 |\n|-----|---------|-----------|------|\n| cuda:0 | 2 MiB / 32607 MiB | 0% | **空闲** |\n| cuda:1 | 2 MiB / 32607 MiB | 0% | **空闲** |\n| cuda:2 | 2 MiB / 32607 MiB | 0% | **空闲** |\n| cuda:3 | 2 MiB / 32607 MiB | 0% | **空闲** |\n\n### 训练进程\n\n**无活跃训练进程。** 只有系统服务在运行（supervisord、sshd、tensorboard、jupyter-lab、autopanel）。\n\n有一个 tmux session `exp_001_n16_seed456` 残留，但其中的 Python 进程已结束（ps 中无对应 python 进程）。\n\n### 实验输出目录\n\n| 实验 | 最后修改时间 | 文件 | 状态 |\n|------|------------|------|------|\n| `exp_017_llama_conll_n8_t07` | May 15 23:38 | report.json (1.7K) + samples.jsonl (9.1M) | **已完成** |\n| `exp_lp_scierc_t07` | May 15 23:40 | report.json (1.7K) + samples.jsonl (3.7M) | **已完成** |\n| `exp_re_scierc_seed123` | May 15 23:45 | report.json (3.4K) + samples.jsonl (3.6M) | **已完成** |\n| `exp_re_scierc_seed456` | May 15 23:45 | report.json (3.4K) + samples.jsonl (3.6M) | **已完成** |\n\n### 磁盘\n\n数据盘 `/root/autodl-tmp/`: 159G / 250G 已用（64%），剩余 92G。\n\n**结论**：4 张 GPU 全部空闲，4 个实验均已完成（输出文件齐全），服务器可用于新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-status-check.md"
+}

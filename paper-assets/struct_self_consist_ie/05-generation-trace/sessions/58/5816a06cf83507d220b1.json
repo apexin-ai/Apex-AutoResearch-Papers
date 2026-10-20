@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5816a06cf83507d220b1",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_12.md",
+  "task_key": "loop_12",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_12.md",
+    "occurrence": 1,
+    "bytes": 3874,
+    "sha256": "687bdb2569a76b06bb358e0a440cd37220dbe136062ba0c5ed400f71025b94a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T04:12:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 上 cuda:0/1/2/3，不得用其他服务器的 GPU（历史服务器 autodl-4x5090, gpu-5090-4x-2 已过期）\n- **论文 ρ 值只能来自 gold-filtered 管道**（`rho_audit.py` 或 bootstrap CI 脚本），禁止直接引用 registry metrics（report.json 的 EM/VC 值与分析脚本存在系统性差异，D066 已确认）\n- SciERC 数据集 **551 全集为 canonical**（无选择偏差），529 交集仅作参考不进论文\n- exp_012 是唯一 max_tokens=512 的实验，voting_conf ρ 虚高——论文数据必须来自 _rerun_1024 或本身就用 1024 的实验\n- 20% gold-empty 实例曾导致 FK ρ 膨胀 0.48→0.81、SJ ρ 压低——**永远排除 gold-empty**\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090（别名 bjb1-21071），4× RTX 5090 32GB，**全部空闲**\n- 工作目录：`/root/autodl-tmp/struct_self_consist_ie/`\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 网络加速：`source /etc/network_turbo`（pip/HF 前必须执行）\n- 基座模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n- ft merged checkpoint：`checkpoints/qwen3-8b-scierc-merged-v2/`\n- Canonical 分析数据：`artifacts/analysis_unified_rho.json`\n- 活跃进程：无（0 running workers, 0 active crons, 0 tmux sessions）\n\n### 3. 📊 当前状态\n全部 107 个实验已完成（success 60 / negative 23 / failed 4 / killed 20）。无 RUNNING/PREPARING 实验。\n\n**刚完成的最后一批**（2026-05-16）：\n- `exp_llama3b_scierc_ablation` — success, LLaMA 3.2-3B cross-family gap 确认，2 family × 2 scale 矩阵完整\n- `exp_verbalized_confidence` — negative（有价值），overconfident 8.58/10，强化 compression-is-general 论点\n- `exp_freeform_conll_4seed` — success, LP 压缩跨数据集确认（median=0.058）\n\n**当前关键路径**：Paper Agent 正在整合这 3 组实验数据进论文 → Round 10 审稿 → Final polish → 提交（DDL: 2026-05-25, 9 天）。Round 9 审稿 19 issues 中 15 resolved, 4 in_progress（orphan bib + 3 minor formatting）。\n\n无等待中的 Worker 回调 / Cron / Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- Paper Agent 整合完成 → 提交 Round 10 审稿（continue mode）\n- Round 10 审稿反馈到达 → 按 issue 分派 Worker 处理，预计 1-2d\n- Round 10 要求补充实验 → autodl-5090 4 卡待命，可立即启动\n- DDL 前 2 天（2026-05-23）→ final polish + 格式检查 + reference-audit\n- 如果 Paper Agent 未在今天内完成整合 → 升级给 Director\n\n### 5. 🎯 战略上下文\n**核心结论**：universal correlation-selection gap——结构一致性信号（SJ/FK/VC）与质量高度相关但选择效果差，LP 相关弱但选择效果最稳定。Controlled ablation（free-form + VerbConf + temperature + scale）证明 score compression 是 model/task intrinsic，非 decoding artifact。\n\n**决策链关键节点**：\n- D066: LLaMA fresh rerun，修正了 σ 5× 增大的 seed 变异\n- D098: 4B scale ablation 完成，gap 与 model capacity 无关\n- D100: Table 4 SciERC 8B 统一为 v2 checkpoint\n- D103: 撤回 D102，Table 4 CoNLL 4B 原值确认正确\n\n**易踩的坑**：\n- 不要把 registry metrics 的 EM/VC 值直接写进论文（LLaMA 数据 report.json 与分析脚本有系统差异）\n- RE 上所有结构信号 selection F1 低于 greedy，这是 feature 不是 bug——强化 gap-is-universal 论点\n- Verbalized confidence 是 negative 但已被 paper_framing 吸收为 \"compression is general\" 的证据，不需要 framing 调整\n- Round 9 的 \"by construction\" reframe 是核心叙事策略——instance-level failure 不是 weakness 而是 definitional consequence\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f70fcee84d99c5e3b4c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "infra install tmux 5090b",
+  "task_key": "worker_infra_install-tmux-5090b_20260519T162433",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_install-tmux-5090b_20260519T162433_result.json",
+    "occurrence": 1,
+    "bytes": 46,
+    "sha256": "60e3ef1b5bf2ad96618239e961e3d6175fddcf7f40ee9336e6bc00f6534b6525"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux 3.2a 已安装，可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-install-tmux-5090b.md"
+}

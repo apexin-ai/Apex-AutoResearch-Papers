@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7652060cdf8358c04327",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check n32 progress",
+  "task_key": "worker_check_n32_progress_20260523T034532",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_n32_progress_20260523T034532_result.json",
+    "occurrence": 1,
+    "bytes": 856,
+    "sha256": "df8d4493a989fa5737f15b64e8206fd3acb3805c6ca8f19d94bf453e5b35c35e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp_fewnerd_pretrained_n32_s42_v2 状态：Running**\n\n| | 进度 | 已处理/总量 | 耗时 |\n|---|---|---|---|\n| shard0 (GPU 0) | **41%** | 122,560 / 301,184 | ~42 min |\n| shard1 (GPU 1) | **40%** | 120,352 / 301,184 | ~41 min |\n| shard2 (GPU 2) | **39%** | 116,736 / 301,184 | ~41 min |\n| shard3 (GPU 3) | **39%** | 117,024 / 301,184 | ~40 min |\n\n- **父进程**: PID 157197, 运行 11h 31m, 命令: `run_mvp_pilot.py --model_path Qwen2.5-7B-Instruct --n_samples 32 --seed 42 --collect_logprobs`\n- **GPU 3**: 68% 利用率, 29.8 GB 显存占用\n- **推理速度**: ~8k input toks/s, ~4k output toks/s (每 shard ~60-80 it/s)\n- **预估剩余**: 各 shard 还剩 ~60% (~180k prompts)，按当前速度约需 **60-65 分钟**完成\n\n4 个 shard 并行跑 4 张 GPU，进度接近同步。整体预计约 1 小时后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-n32-progress-copy-2.md"
+}

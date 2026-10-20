@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "963fcb30835413a4f335",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 001 seed456 ner rerun",
+  "task_key": "worker_code_exp_001_seed456_ner_rerun_20260514T171238",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_001_seed456_ner_rerun_20260514T171238_result.json",
+    "occurrence": 1,
+    "bytes": 320,
+    "sha256": "e8d4f3dd4f971c6a8861b0e3fcdda5fce842a4a592eb3d0389db9a589b42c4ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **Registry**: `exp_001_seed456_v2_ner` 已创建，状态 RUNNING\n- **任务**: PID 96161，cuda:2，`--subtask ner`，551 条数据 × 16 samples = 8816 次推理\n- **日志**: `output/exp_001_seed456_v2_ner.log`\n- **进度**: prompts 已全部 render，推理进行中（~64/8816）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-001-seed456-ner-rerun.md"
+}

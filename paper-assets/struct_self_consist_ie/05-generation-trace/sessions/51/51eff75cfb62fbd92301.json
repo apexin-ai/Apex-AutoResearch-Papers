@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51eff75cfb62fbd92301",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code 72b status check v2",
+  "task_key": "worker_code_72b_status_check_v2_20260519T085211",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_72b_status_check_v2_20260519T085211_result.json",
+    "occurrence": 1,
+    "bytes": 1137,
+    "sha256": "8a1f48e9cc569c8c37882cbc070519244f908928baf002e47f6a5533bc45dbad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n## Server B 72B 推理状态\n\n**GPU**: 4× RTX 5090 全部 100% 负载，vLLM TP=4 运行中\n\n**已完成**:\n| 数据集 | samples.jsonl 行数 | 预期 | 状态 |\n|---------|-------------------|------|------|\n| SciERC | 551 | 551 | **完成** (每行含8个sample) |\n| CoNLL2003 | 3,453 | 3,453 | **完成** |\n\n**Signal 分析**: `full_signal_report.json` 已生成，包含 scierc + conll2003 两个数据集的 signal (SJ/FK/LP/EM/VC) 和 baseline 结果。\n\n**FewNERD**: 正在推理中，**尚无输出目录**（fewnerd 目录未创建，说明还在内存中处理）。\n- 日志显示进度: **28,536 / 301,184** ≈ **9.5%**\n- 速度: ~7,120 toks/s input, ~1,810 toks/s output\n- 预估 ETA: ~4-5 小时（日志显示 est. 3h46m-6h35m 波动）\n- 进程启动时间: 15:58，已运行约 55 分钟\n\n**总结**:\n- CoNLL 推理 **已完成**，signal 计算 **已完成**\n- FewNERD 推理 **已开始**，进度约 9.5%，预计还需 ~4-5 小时\n- Entity construction 尚未进行（需等 FewNERD 完成后 signal report 更新）\n- 进程稳定运行中，无中断迹象"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-72b-status-check-v2.md"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "8380c97eaa2a16e31f51",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix appendix overfull hbox",
+  "task_key": "worker_fix_appendix-overfull-hbox_20260519T214823",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_appendix-overfull-hbox_20260519T214823_result.json",
+    "occurrence": 1,
+    "bytes": 2231071,
+    "sha256": "0415fddbf34dc8ae9273ccdaa029fadeae7460b72895617cd043a01650cc1659"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2231091,
+                "serialized_sha256": "023faf9a29013ffca76910856a5fd61dd993f9b7bec834ee0c9285f7cb37b607",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-appendix-overfull-hbox.md"
+}

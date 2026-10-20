@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62b55af14c7c1e9c8250",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code 72b fewshot prepare",
+  "task_key": "worker_code_72b_fewshot_prepare_20260519T152058",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_72b_fewshot_prepare_20260519T152058_result.json",
+    "occurrence": 1,
+    "bytes": 2293,
+    "sha256": "3c24a29508bb16cca92a413bbc4fe9a8e126f1614e719f95c2e44e4c0f67b4d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n## 72B 3-shot Few-shot NER 推理实验准备完毕\n\n### 基础设施状态\n- **服务器**: autodl-5090-b，4× RTX 5090（32GB），GPU 空闲\n- **模型**: `/root/autodl-tmp/.hf_cache/models--Qwen--Qwen2.5-72B-Instruct-AWQ/snapshots/698703eae6604af048a3d2f509995dc302088217`\n- **vLLM**: v0.18.1，tensor_parallel_size=4\n- **磁盘**: 246GB 可用\n\n### 脚本路径\n`/root/autodl-tmp/struct_self_consist_ie/code/fewshot_inference_72b.py`\n\n### 选取的 3-shot Examples\n\n**CoNLL-2003**（覆盖全部 4 类：PER, ORG, LOC, MISC）:\n- `train_00101`: \"He will be replaced by Eliahu Ben-Elissar...\" (4 entities)\n- `train_05664`: \"Belgian international Luc Nilis scored...\" (5 entities)\n- `train_00474`: \"Ireland midfielder Roy Keane has signed...\" (5 entities)\n\n**FewNERD**（覆盖全部 8 类：person, org, loc, building, art, product, event, other）:\n- `train_24370`: Taeyeon/Naver/V (art, person, event, org, product)\n- `train_61323`: Classical BRIT Awards/Royal Albert Hall (other, building, loc, person)\n- `train_01908`: Răducioiu/FIFA World Cup/Stadio San Nicola (person, event, org, building, loc)\n\n**SciERC**（覆盖全部 6 类：Generic, Material, Method, Metric, OtherScientificTerm, Task）:\n- `CVPR_2012_18_abs_sent003`: fluorescence/computer vision (5 types, 6 entities)\n- `NIPS_2002_10_abs_sent007`: citation data sets/citation matching (4 types)\n- `H89-1027_sent002`: features/decision strategies/speech data (4 types)\n\n### Dry-run 结果（5 instances/dataset）\n| 数据集 | Parse Rate | 时间 | Prompt 长度 |\n|--------|-----------|------|------------|\n| SciERC | 100% | 7.9s | ~6300 chars |\n| CoNLL | 100% | 4.9s | ~5760 chars |\n| FewNERD | 100% | 6.2s | ~6400 chars |\n\n### 全量 ETA 估算\n| 数据集 | 实例数 | 线性估算 | 实际估算（vLLM 批处理加速） |\n|--------|-------|---------|---------------------------|\n| SciERC | 551 | ~15min | ~5-10min |\n| CoNLL | 3,453 | ~57min | ~20-30min |\n| FewNERD | 37,648 | ~13h | ~4-7h |\n| **总计** | **41,652** | | **~5-8h** |\n\n### 启动命令\n```bash\nCUDA_VISIBLE_DEVICES=0,1,2,3 python code/fewshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_fewshot --seed 42\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-72b-fewshot-prepare.md"
+}

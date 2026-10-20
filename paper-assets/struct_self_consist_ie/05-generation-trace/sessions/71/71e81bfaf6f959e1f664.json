@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71e81bfaf6f959e1f664",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops 14b kill after n8",
+  "task_key": "worker_ops_14b_kill_after_n8_20260520T183707",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_14b_kill_after_n8_20260520T183707_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "b575eccac0bf83922e20d436e669e49f176bc96a437972f8c40791f8dd824586"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "监控脚本已部署并运行。\n\n**汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| 当前进度 | N=2 推理中，84% (63352/75296) |\n| 调度脚本 PID | 200995 (`bash run_14b_fewnerd.sh`) |\n| 监控脚本 PID | 224789 (`kill_after_n8.sh`) |\n| 触发条件 | 日志出现 `=== FewNERD N=8 finished` 后 kill 整个进程树 |\n| 每 15 秒检查一次 | 日志写到 `/tmp/kill_after_n8.log` |\n\n**时间估算：**\n- N=1 耗时 ~2.5h，N=2 已跑 ~1.6h 剩 ~16%（约 20min）\n- N=4 约 5h，N=8 约 10h\n- 预计 N=8 完成时间：约 5/21 18:00-20:00 CST"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-14b-kill-after-n8.md"
+}

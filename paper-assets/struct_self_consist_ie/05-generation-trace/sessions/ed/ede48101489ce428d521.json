@@ -1,0 +1,1455 @@
+{
+  "schema_version": "1.0",
+  "id": "ede48101489ce428d521",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "diagnose a3 scierc re done",
+  "task_key": "worker_diagnose_a3_scierc_re_done_20260520T210241",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_a3_scierc_re_done_20260520T210241.log",
+    "occurrence": 1,
+    "bytes": 113333,
+    "sha256": "e207a74cf7f4c2feaeedae87884e4c36db5ddfb8d6b807a64af0928fa3143c38"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 11,
+      "tool_result": 11,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+                "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__delete_cron",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "5a19f079-725e-47b8-91ce-32cc5239b546",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779328200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "f161e0fb-3fb8-4d81-9f47-8663c2192987",
+                "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Looking at the task, I need to check the status of the exp_a3_ace05_re experiment on autodl-5090-c."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "43e3f5d4-ca21-492a-915c-20309422a167",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YBioJrSEBaqu8HkuBmsQxh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12082,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12082
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QfVo65ri7opjf1ad2jdWft",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__delete_cron",
+                "max_results": 4
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "4853dac9-642a-4564-8365-5bd412d7ea9c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YBioJrSEBaqu8HkuBmsQxh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12082,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12082
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T21:02:54.968Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01QfVo65ri7opjf1ad2jdWft",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__delete_cron"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "c3c7b8c5-8d05-4b0b-8be0-b71d43e6156d",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__read_registry",
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__delete_cron"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__delete_cron",
+              "total_deferred_tools": 27
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the experiment logs and output files on the server.",
+              "signature": "EoUCCmMIDRgCKkB1HwKrycARLwrbrH1ZDWB8QTPPg+c2xNuvJOQ8As6uM9cqBhXXJem10yjukZH1IOv0Exsf6sl6WfAQTHitBwDJMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDPCXJFUE9D+N2NCvBxoMSQ1lwKKCitaXR1uYIjB4dvginbB1445DEKDrlTHOmnVVVj0xEGEOtP+9P5WHxXtvOWoPV6rfkwz4KVvf604qUHO7JBVqdM5dBMJFJGf/L949cumoWuMi1MRfDHmdMdfaJxWSr0cbs3vOcXjWp0UTeVX7G5hHObdPSIMsK6HWlrLAzxwaSBHryoUeu+/4dHORGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "40525440-3f8f-41d0-8abd-56cdd91ea46c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KCG4uCvUbnGXNnqA8vuVt5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1419,
+                "cache_read_input_tokens": 23923,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1419
+                },
+                "output_tokens": 17,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014DFRimGngmsPaMVSCrRgdx",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090-c",
+                "command": "tail -50 /root/autodl-tmp/struct_self_consist_ie/logs/re_sc.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "97243960-6b78-4909-8137-bf3d8ab814da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KCG4uCvUbnGXNnqA8vuVt5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1419,
+                "cache_read_input_tokens": 23923,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1419
+                },
+                "output_tokens": 17,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019VDdk7yXENoS7VbJVTaVqT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090-c",
+                "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/re_sc/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "deecad2b-d559-498e-88cd-43bfb5965f05",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KCG4uCvUbnGXNnqA8vuVt5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1419,
+                "cache_read_input_tokens": 23923,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1419
+                },
+                "output_tokens": 17,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T21:03:02.978Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014DFRimGngmsPaMVSCrRgdx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"(EngineCore pid=233892) INFO 05-21 04:37:57 [monitor.py:76] Initial profiling/warmup run took 0.16 s\\\\n(EngineCore pid=233892) INFO 05-21 04:37:58 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\\\n(EngineCore pid=233892) INFO 05-21 04:37:58 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\\\n(EngineCore pid=233892) INFO 05-21 04:37:59 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.38 GiB total\\\\n(EngineCore pid=233892) INFO 05-21 04:37:59 [gpu_worker.py:456] Available KV cache memory: 12.74 GiB\\\\n(EngineCore pid=233892) INFO 05-21 04:37:59 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9122 to maintain the same effective KV cache size.\\\\n(EngineCore pid=233892) INFO 05-21 04:37:59 [kv_cache_utils.py:1316] GPU KV cache size: 238,624 tokens\\\\n(EngineCore pid=233892) INFO 05-21 04:37:59 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 58.26x\\\\n(EngineCore pid=233892) \\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:03, 14.54it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  10%|▉         | 5/51 [00:00<00:02, 18.40it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:00<00:02, 19.27it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  22%|██▏       | 11/51 [00:00<00:01, 20.44it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  27%|██▋       | 14/51 [00:00<00:01, 21.54it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  33%|███▎      | 17/51 [00:00<00:01, 22.95it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:00<00:01, 25.49it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  49%|████▉     | 25/51 [00:01<00:00, 27.11it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  57%|█████▋    | 29/51 [00:01<00:00, 28.07it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  63%|██████▎   | 32/51 [00:01<00:00, 26.84it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  71%|███████   | 36/51 [00:01<00:00, 28.03it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  78%|███████▊  | 40/51 [00:01<00:00, 28.75it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  86%|████████▋ | 44/51 [00:01<00:00, 29.21it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  94%|█████████▍| 48/51 [00:01<00:00, 31.17it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:01<00:00, 26.40it/s]\\\\n(EngineCore pid=233892) \\\\rCapturing CUDA graphs (decode, FULL):   0%|          | 0/35 [00:00<?, ?it/s]\\\\rCapturing CUDA graphs (decode, FULL):  11%|█▏        | 4/35 [00:00<00:00, 32.56it/s]\\\\rCapturing CUDA graphs (decode, FULL):  23%|██▎       | 8/35 [00:00<00:00, 32.74it/s]\\\\rCapturing CUDA graphs (decode, FULL):  34%|███▍      | 12/35 [00:00<00:00, 33.96it/s]\\\\rCapturing CUDA graphs (decode, FULL):  46%|████▌     | 16/35 [00:00<00:00, 34.60it/s]\\\\rCapturing CUDA graphs (decode, FULL):  57%|█████▋    | 20/35 [00:00<00:00, 35.54it/s]\\\\rCapturing CUDA graphs (decode, FULL):  69%|██████▊   | 24/35 [00:00<00:00, 35.56it/s]\\\\rCapturing CUDA graphs (decode, FULL):  80%|████████  | 28/35 [00:00<00:00, 36.50it/s]\\\\rCapturing CUDA graphs (decode, FULL):  94%|█████████▍| 33/35 [00:00<00:00, 40.13it/s]\\\\rCapturing CUDA graphs (decode, FULL): 100%|██████████| 35/35 [00:00<00:00, 37.45it/s]\\\\n(EngineCore pid=233892) INFO 05-21 04:38:03 [gpu_model_runner.py:5746] Graph capturing finished in 4 secs, took 0.35 GiB\\\\n(EngineCore pid=233892) INFO 05-21 04:38:03 [gpu_worker.py:617]\\\\n\\\\n... [截断: 输出过长，省略 49909 字符] ...\\\\n\\\\nut: 3595.34 toks/s, output: 3795.32 toks/s]\\\\rProcessed prompts:  80%|███████▉  | 317/397 [00:17<00:02, 33.19it/s, est. speed input: 3781.45 toks/s, output: 4101.27 toks/s]\\\\rProcessed prompts:  82%|████████▏ | 324/397 [00:17<00:02, 30.91it/s, est. speed input: 3806.86 toks/s, output: 4175.88 toks/s]\\\\rProcessed prompts:  83%|████████▎ | 330/397 [00:17<00:02, 26.69it/s, est. speed input: 3810.58 toks/s, output: 4218.33 toks/s]\\\\rProcessed prompts:  84%|████████▍ | 335/397 [00:18<00:02, 22.01it/s, est. speed input: 3792.22 toks/s, output: 4232.12 toks/s]\\\\rProcessed prompts:  86%|████████▌ | 341/397 [00:18<00:02, 26.50it/s, est. speed input: 3838.23 toks/s, output: 4309.15 toks/s]\\\\rProcessed prompts:  87%|████████▋ | 346/397 [00:18<00:01, 26.86it/s, est. speed input: 3860.58 toks/s, output: 4365.57 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 350/397 [00:18<00:02, 23.03it/s, est. speed input: 3852.07 toks/s, output: 4383.08 toks/s]\\\\rProcessed prompts:  89%|████████▉ | 355/397 [00:18<00:01, 26.43it/s, est. speed input: 3887.75 toks/s, output: 4470.27 toks/s]\\\\rProcessed prompts:  91%|█████████ | 360/397 [00:18<00:01, 27.92it/s, est. speed input: 3914.03 toks/s, output: 4557.47 toks/s]\\\\rProcessed prompts:  92%|█████████▏| 364/397 [00:19<00:01, 28.41it/s, est. speed input: 3932.06 toks/s, output: 4606.13 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 368/397 [00:19<00:00, 30.63it/s, est. speed input: 3956.14 toks/s, output: 4672.74 toks/s]\\\\rProcessed prompts:  94%|█████████▎| 372/397 [00:19<00:01, 20.86it/s, est. speed input: 3927.92 toks/s, output: 4673.55 toks/s]\\\\rProcessed prompts:  94%|█████████▍| 375/397 [00:19<00:01, 21.04it/s, est. speed input: 3936.22 toks/s, output: 4712.05 toks/s]\\\\rProcessed prompts:  95%|█████████▌| 379/397 [00:19<00:00, 22.83it/s, est. speed input: 3958.10 toks/s, output: 4786.69 toks/s]\\\\rProcessed prompts:  96%|█████████▌| 382/397 [00:20<00:00, 17.99it/s, est. speed input: 3936.90 toks/s, output: 4809.22 toks/s]\\\\rProcessed prompts:  97%|█████████▋| 385/397 [00:20<00:00, 16.16it/s, est. speed input: 3921.47 toks/s, output: 4829.55 toks/s]\\\\rProcessed prompts:  97%|█████████▋| 387/397 [00:20<00:00, 14.59it/s, est. speed input: 3906.12 toks/s, output: 4835.05 toks/s]\\\\rProcessed prompts:  98%|█████████▊| 390/397 [00:20<00:00, 14.33it/s, est. speed input: 3898.09 toks/s, output: 4853.79 toks/s]\\\\rProcessed prompts:  99%|██��██████▊| 392/397 [00:20<00:00, 12.83it/s, est. speed input: 3881.37 toks/s, output: 4861.63 toks/s]\\\\rProcessed prompts:  99%|█████████▉| 394/397 [00:21<00:00, 10.70it/s, est. speed input: 3851.19 toks/s, output: 4847.57 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 396/397 [00:21<00:00,  9.40it/s, est. speed input: 3818.93 toks/s, output: 4836.02 toks/s]\\\\rProcessed prompts: 100%|██████████| 397/397 [00:21<00:00,  9.40it/s, est. speed input: 3793.29 toks/s, output: 4816.42 toks/s]\\\\rProcessed prompts: 100%|██████████| 397/397 [00:21<00:00, 18.29it/s, est. speed input: 3793.29 toks/s, output: 4816.42 toks/s]\\\\n(EngineCore pid=233892) INFO 05-21 04:40:54 [core.py:1201] Shutdown initiated (timeout=0)\\\\n(EngineCore pid=233892) INFO 05-21 04:40:54 [core.py:1224] Shutdown complete\\\\nSampled 397 instances × 8 samples\\\\n\\\\n============================================================\\\\n  RE Self-Consistency Diagnostic — 397 instances\\\\n============================================================\\\\nGreedy F1 (mean):         0.0777\\\\nConstruction F1 (mean):   0.0599\\\\nMajority Vote F1 (mean):  0.0491\\\\nOracle F1 (mean):         0.1567\\\\nFleiss' κ (mean):         -0.0021\\\\nSoft Jaccard (mean):      0.2425\\\\nDegeneracy rate:          0.76% (3/397)\\\\n\\\\nMicro-avg greedy:         P=0.0698 R=0.0678 F1=0.0688\\\\nMicro-avg construction:   P=0.1057 R=0.0421 F1=0.0602\\\\n\\\\nNon-degen greedy F1:      0.0758\\\\nNon-degen construction:   0.0578\\\\nNon-degen diff:           -0.0179\\\\n\\\\nFailure mode distribution:\\\\n  F1_degeneracy: 0.8%\\\\n  F2_low_agreement: 93.5%\\\\n  F3_high_agreement_low_quality: 4.5%\\\\n  none: 1.3%\\\\n\\\\nBootstrap (B=10000):\\\\n  Diff: -0.0178\\\\n  95% CI: [-0.0334, -0.0024]\\\\n  p-value: 0.9890\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "84e13419-b703-45be-84b9-c3456436d26b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"(EngineCore pid=233892) INFO 05-21 04:37:57 [monitor.py:76] Initial profiling/warmup run took 0.16 s\\\\n(EngineCore pid=233892) INFO 05-21 04:37:58 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\\\n(EngineCore pid=233892) INFO 05-21 04:37:58 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\\\n(EngineCore pid=233892) INFO 05-21 04:37:59 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.38 GiB total\\\\n(EngineCore pid=233892) INFO 05-21 04:37:59 [gpu_worker.py:456] Available KV cache memory: 12.74 GiB\\\\n(EngineCore pid=233892) INFO 05-21 04:37:59 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9122 to maintain the same effective KV cache size.\\\\n(EngineCore pid=233892) INFO 05-21 04:37:59 [kv_cache_utils.py:1316] GPU KV cache size: 238,624 tokens\\\\n(EngineCore pid=233892) INFO 05-21 04:37:59 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 58.26x\\\\n(EngineCore pid=233892) \\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:03, 14.54it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  10%|▉         | 5/51 [00:00<00:02, 18.40it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:00<00:02, 19.27it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  22%|██▏       | 11/51 [00:00<00:01, 20.44it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  27%|██▋       | 14/51 [00:00<00:01, 21.54it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  33%|███▎      | 17/51 [00:00<00:01, 22.95it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:00<00:01, 25.49it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  49%|████▉     | 25/51 [00:01<00:00, 27.11it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  57%|█████▋    | 29/51 [00:01<00:00, 28.07it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  63%|██████▎   | 32/51 [00:01<00:00, 26.84it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  71%|███████   | 36/51 [00:01<00:00, 28.03it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  78%|███████▊  | 40/51 [00:01<00:00, 28.75it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  86%|████████▋ | 44/51 [00:01<00:00, 29.21it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  94%|█████████▍| 48/51 [00:01<00:00, 31.17it/s]\\\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:01<00:00, 26.40it/s]\\\\n(EngineCore pid=233892) \\\\rCapturing CUDA graphs (decode, FULL):   0%|          | 0/35 [00:00<?, ?it/s]\\\\rCapturing CUDA graphs (decode, FULL):  11%|█▏        | 4/35 [00:00<00:00, 32.56it/s]\\\\rCapturing CUDA graphs (decode, FULL):  23%|██▎       | 8/35 [00:00<00:00, 32.74it/s]\\\\rCapturing CUDA graphs (decode, FULL):  34%|███▍      | 12/35 [00:00<00:00, 33.96it/s]\\\\rCapturing CUDA graphs (decode, FULL):  46%|████▌     | 16/35 [00:00<00:00, 34.60it/s]\\\\rCapturing CUDA graphs (decode, FULL):  57%|█████▋    | 20/35 [00:00<00:00, 35.54it/s]\\\\rCapturing CUDA graphs (decode, FULL):  69%|██████▊   | 24/35 [00:00<00:00, 35.56it/s]\\\\rCapturing CUDA graphs (decode, FULL):  80%|████████  | 28/35 [00:00<00:00, 36.50it/s]\\\\rCapturing CUDA graphs (decode, FULL):  94%|█████████▍| 33/35 [00:00<00:00, 40.13it/s]\\\\rCapturing CUDA graphs (decode, FULL): 100%|██████████| 35/35 [00:00<00:00, 37.45it/s]\\\\n(EngineCore pid=233892) INFO 05-21 04:38:03 [gpu_model_runner.py:5746] Graph capturing finished in 4 secs, took 0.35 GiB\\\\n(EngineCore pid=233892) INFO 05-21 04:38:03 [gpu_worker.py:617]\\\\n\\\\n... [截断: 输出过长，省略 49909 字符] ...\\\\n\\\\nut: 3595.34 toks/s, output: 3795.32 toks/s]\\\\rProcessed prompts:  80%|███████▉  | 317/397 [00:17<00:02, 33.19it/s, est. speed input: 3781.45 toks/s, output: 4101.27 toks/s]\\\\rProcessed prompts:  82%|████████▏ | 324/397 [00:17<00:02, 30.91it/s, est. speed input: 3806.86 toks/s, output: 4175.88 toks/s]\\\\rProcessed prompts:  83%|████████▎ | 330/397 [00:17<00:02, 26.69it/s, est. speed input: 3810.58 toks/s, output: 4218.33 toks/s]\\\\rProcessed prompts:  84%|████████▍ | 335/397 [00:18<00:02, 22.01it/s, est. speed input: 3792.22 toks/s, output: 4232.12 toks/s]\\\\rProcessed prompts:  86%|████████▌ | 341/397 [00:18<00:02, 26.50it/s, est. speed input: 3838.23 toks/s, output: 4309.15 toks/s]\\\\rProcessed prompts:  87%|████████▋ | 346/397 [00:18<00:01, 26.86it/s, est. speed input: 3860.58 toks/s, output: 4365.57 toks/s]\\\\rProcessed prompts:  88%|████████▊ | 350/397 [00:18<00:02, 23.03it/s, est. speed input: 3852.07 toks/s, output: 4383.08 toks/s]\\\\rProcessed prompts:  89%|████████▉ | 355/397 [00:18<00:01, 26.43it/s, est. speed input: 3887.75 toks/s, output: 4470.27 toks/s]\\\\rProcessed prompts:  91%|█████████ | 360/397 [00:18<00:01, 27.92it/s, est. speed input: 3914.03 toks/s, output: 4557.47 toks/s]\\\\rProcessed prompts:  92%|█████████▏| 364/397 [00:19<00:01, 28.41it/s, est. speed input: 3932.06 toks/s, output: 4606.13 toks/s]\\\\rProcessed prompts:  93%|█████████▎| 368/397 [00:19<00:00, 30.63it/s, est. speed input: 3956.14 toks/s, output: 4672.74 toks/s]\\\\rProcessed prompts:  94%|█████████▎| 372/397 [00:19<00:01, 20.86it/s, est. speed input: 3927.92 toks/s, output: 4673.55 toks/s]\\\\rProcessed prompts:  94%|█████████▍| 375/397 [00:19<00:01, 21.04it/s, est. speed input: 3936.22 toks/s, output: 4712.05 toks/s]\\\\rProcessed prompts:  95%|█████████▌| 379/397 [00:19<00:00, 22.83it/s, est. speed input: 3958.10 toks/s, output: 4786.69 toks/s]\\\\rProcessed prompts:  96%|█████████▌| 382/397 [00:20<00:00, 17.99it/s, est. speed input: 3936.90 toks/s, output: 4809.22 toks/s]\\\\rProcessed prompts:  97%|█████████▋| 385/397 [00:20<00:00, 16.16it/s, est. speed input: 3921.47 toks/s, output: 4829.55 toks/s]\\\\rProcessed prompts:  97%|█████████▋| 387/397 [00:20<00:00, 14.59it/s, est. speed input: 3906.12 toks/s, output: 4835.05 toks/s]\\\\rProcessed prompts:  98%|█████████▊| 390/397 [00:20<00:00, 14.33it/s, est. speed input: 3898.09 toks/s, output: 4853.79 toks/s]\\\\rProcessed prompts:  99%|██��██████▊| 392/397 [00:20<00:00, 12.83it/s, est. speed input: 3881.37 toks/s, output: 4861.63 toks/s]\\\\rProcessed prompts:  99%|█████████▉| 394/397 [00:21<00:00, 10.70it/s, est. speed input: 3851.19 toks/s, output: 4847.57 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 396/397 [00:21<00:00,  9.40it/s, est. speed input: 3818.93 toks/s, output: 4836.02 toks/s]\\\\rProcessed prompts: 100%|██████████| 397/397 [00:21<00:00,  9.40it/s, est. speed input: 3793.29 toks/s, output: 4816.42 toks/s]\\\\rProcessed prompts: 100%|██████████| 397/397 [00:21<00:00, 18.29it/s, est. speed input: 3793.29 toks/s, output: 4816.42 toks/s]\\\\n(EngineCore pid=233892) INFO 05-21 04:40:54 [core.py:1201] Shutdown initiated (timeout=0)\\\\n(EngineCore pid=233892) INFO 05-21 04:40:54 [core.py:1224] Shutdown complete\\\\nSampled 397 instances × 8 samples\\\\n\\\\n============================================================\\\\n  RE Self-Consistency Diagnostic — 397 instances\\\\n============================================================\\\\nGreedy F1 (mean):         0.0777\\\\nConstruction F1 (mean):   0.0599\\\\nMajority Vote F1 (mean):  0.0491\\\\nOracle F1 (mean):         0.1567\\\\nFleiss' κ (mean):         -0.0021\\\\nSoft Jaccard (mean):      0.2425\\\\nDegeneracy rate:          0.76% (3/397)\\\\n\\\\nMicro-avg greedy:         P=0.0698 R=0.0678 F1=0.0688\\\\nMicro-avg construction:   P=0.1057 R=0.0421 F1=0.0602\\\\n\\\\nNon-degen greedy F1:      0.0758\\\\nNon-degen construction:   0.0578\\\\nNon-degen diff:           -0.0179\\\\n\\\\nFailure mode distribution:\\\\n  F1_degeneracy: 0.8%\\\\n  F2_low_agreement: 93.5%\\\\n  F3_high_agreement_low_quality: 4.5%\\\\n  none: 1.3%\\\\n\\\\nBootstrap (B=10000):\\\\n  Diff: -0.0178\\\\n  95% CI: [-0.0334, -0.0024]\\\\n  p-value: 0.9890\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.91}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=233892) INFO 05-21 04:37:57 [monitor.py:76] Initial profiling/warmup run took 0.16 s\\n(EngineCore pid=233892) INFO 05-21 04:37:58 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\n(EngineCore pid=233892) INFO 05-21 04:37:58 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\n(EngineCore pid=233892) INFO 05-21 04:37:59 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.38 GiB total\\n(EngineCore pid=233892) INFO 05-21 04:37:59 [gpu_worker.py:456] Available KV cache memory: 12.74 GiB\\n(EngineCore pid=233892) INFO 05-21 04:37:59 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9122 to maintain the same effective KV cache size.\\n(EngineCore pid=233892) INFO 05-21 04:37:59 [kv_cache_utils.py:1316] GPU KV cache size: 238,624 tokens\\n(EngineCore pid=233892) INFO 05-21 04:37:59 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 58.26x\\n(EngineCore pid=233892) \\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/51 [00:00<00:03, 14.54it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  10%|▉         | 5/51 [00:00<00:02, 18.40it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/51 [00:00<00:02, 19.27it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  22%|██▏       | 11/51 [00:00<00:01, 20.44it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  27%|██▋       | 14/51 [00:00<00:01, 21.54it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  33%|███▎      | 17/51 [00:00<00:01, 22.95it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 21/51 [00:00<00:01, 25.49it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  49%|████▉     | 25/51 [00:01<00:00, 27.11it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  57%|█████▋    | 29/51 [00:01<00:00, 28.07it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  63%|██████▎   | 32/51 [00:01<00:00, 26.84it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  71%|███████   | 36/51 [00:01<00:00, 28.03it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  78%|███████▊  | 40/51 [00:01<00:00, 28.75it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  86%|████████▋ | 44/51 [00:01<00:00, 29.21it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  94%|█████████▍| 48/51 [00:01<00:00, 31.17it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:01<00:00, 26.40it/s]\\n(EngineCore pid=233892) \\rCapturing CUDA graphs (decode, FULL):   0%|          | 0/35 [00:00<?, ?it/s]\\rCapturing CUDA graphs (decode, FULL):  11%|█▏        | 4/35 [00:00<00:00, 32.56it/s]\\rCapturing CUDA graphs (decode, FULL):  23%|██▎       | 8/35 [00:00<00:00, 32.74it/s]\\rCapturing CUDA graphs (decode, FULL):  34%|███▍      | 12/35 [00:00<00:00, 33.96it/s]\\rCapturing CUDA graphs (decode, FULL):  46%|████▌     | 16/35 [00:00<00:00, 34.60it/s]\\rCapturing CUDA graphs (decode, FULL):  57%|█████▋    | 20/35 [00:00<00:00, 35.54it/s]\\rCapturing CUDA graphs (decode, FULL):  69%|██████▊   | 24/35 [00:00<00:00, 35.56it/s]\\rCapturing CUDA graphs (decode, FULL):  80%|████████  | 28/35 [00:00<00:00, 36.50it/s]\\rCapturing CUDA graphs (decode, FULL):  94%|█████████▍| 33/35 [00:00<00:00, 40.13it/s]\\rCapturing CUDA graphs (decode, FULL): 100%|██████████| 35/35 [00:00<00:00, 37.45it/s]\\n(EngineCore pid=233892) INFO 05-21 04:38:03 [gpu_model_runner.py:5746] Graph capturing finished in 4 secs, took 0.35 GiB\\n(EngineCore pid=233892) INFO 05-21 04:38:03 [gpu_worker.py:617]\\n\\n... [截断: 输出过长，省略 49909 字符] ...\\n\\nut: 3595.34 toks/s, output: 3795.32 toks/s]\\rProcessed prompts:  80%|███████▉  | 317/397 [00:17<00:02, 33.19it/s, est. speed input: 3781.45 toks/s, output: 4101.27 toks/s]\\rProcessed prompts:  82%|████████▏ | 324/397 [00:17<00:02, 30.91it/s, est. speed input: 3806.86 toks/s, output: 4175.88 toks/s]\\rProcessed prompts:  83%|████████▎ | 330/397 [00:17<00:02, 26.69it/s, est. speed input: 3810.58 toks/s, output: 4218.33 toks/s]\\rProcessed prompts:  84%|████████▍ | 335/397 [00:18<00:02, 22.01it/s, est. speed input: 3792.22 toks/s, output: 4232.12 toks/s]\\rProcessed prompts:  86%|████████▌ | 341/397 [00:18<00:02, 26.50it/s, est. speed input: 3838.23 toks/s, output: 4309.15 toks/s]\\rProcessed prompts:  87%|████████▋ | 346/397 [00:18<00:01, 26.86it/s, est. speed input: 3860.58 toks/s, output: 4365.57 toks/s]\\rProcessed prompts:  88%|████████▊ | 350/397 [00:18<00:02, 23.03it/s, est. speed input: 3852.07 toks/s, output: 4383.08 toks/s]\\rProcessed prompts:  89%|████████▉ | 355/397 [00:18<00:01, 26.43it/s, est. speed input: 3887.75 toks/s, output: 4470.27 toks/s]\\rProcessed prompts:  91%|█████████ | 360/397 [00:18<00:01, 27.92it/s, est. speed input: 3914.03 toks/s, output: 4557.47 toks/s]\\rProcessed prompts:  92%|█████████▏| 364/397 [00:19<00:01, 28.41it/s, est. speed input: 3932.06 toks/s, output: 4606.13 toks/s]\\rProcessed prompts:  93%|█████████▎| 368/397 [00:19<00:00, 30.63it/s, est. speed input: 3956.14 toks/s, output: 4672.74 toks/s]\\rProcessed prompts:  94%|█████████▎| 372/397 [00:19<00:01, 20.86it/s, est. speed input: 3927.92 toks/s, output: 4673.55 toks/s]\\rProcessed prompts:  94%|█████████▍| 375/397 [00:19<00:01, 21.04it/s, est. speed input: 3936.22 toks/s, output: 4712.05 toks/s]\\rProcessed prompts:  95%|█████████▌| 379/397 [00:19<00:00, 22.83it/s, est. speed input: 3958.10 toks/s, output: 4786.69 toks/s]\\rProcessed prompts:  96%|█████████▌| 382/397 [00:20<00:00, 17.99it/s, est. speed input: 3936.90 toks/s, output: 4809.22 toks/s]\\rProcessed prompts:  97%|█████████▋| 385/397 [00:20<00:00, 16.16it/s, est. speed input: 3921.47 toks/s, output: 4829.55 toks/s]\\rProcessed prompts:  97%|█████████▋| 387/397 [00:20<00:00, 14.59it/s, est. speed input: 3906.12 toks/s, output: 4835.05 toks/s]\\rProcessed prompts:  98%|█████████▊| 390/397 [00:20<00:00, 14.33it/s, est. speed input: 3898.09 toks/s, output: 4853.79 toks/s]\\rProcessed prompts:  99%|██��██████▊| 392/397 [00:20<00:00, 12.83it/s, est. speed input: 3881.37 toks/s, output: 4861.63 toks/s]\\rProcessed prompts:  99%|█████████▉| 394/397 [00:21<00:00, 10.70it/s, est. speed input: 3851.19 toks/s, output: 4847.57 toks/s]\\rProcessed prompts: 100%|█████████▉| 396/397 [00:21<00:00,  9.40it/s, est. speed input: 3818.93 toks/s, output: 4836.02 toks/s]\\rProcessed prompts: 100%|██████████| 397/397 [00:21<00:00,  9.40it/s, est. speed input: 3793.29 toks/s, output: 4816.42 toks/s]\\rProcessed prompts: 100%|██████████| 397/397 [00:21<00:00, 18.29it/s, est. speed input: 3793.29 toks/s, output: 4816.42 toks/s]\\n(EngineCore pid=233892) INFO 05-21 04:40:54 [core.py:1201] Shutdown initiated (timeout=0)\\n(EngineCore pid=233892) INFO 05-21 04:40:54 [core.py:1224] Shutdown complete\\nSampled 397 instances × 8 samples\\n\\n============================================================\\n  RE Self-Consistency Diagnostic — 397 instances\\n============================================================\\nGreedy F1 (mean):         0.0777\\nConstruction F1 (mean):   0.0599\\nMajority Vote F1 (mean):  0.0491\\nOracle F1 (mean):         0.1567\\nFleiss' κ (mean):         -0.0021\\nSoft Jaccard (mean):      0.2425\\nDegeneracy rate:          0.76% (3/397)\\n\\nMicro-avg greedy:         P=0.0698 R=0.0678 F1=0.0688\\nMicro-avg construction:   P=0.1057 R=0.0421 F1=0.0602\\n\\nNon-degen greedy F1:      0.0758\\nNon-degen construction:   0.0578\\nNon-degen diff:           -0.0179\\n\\nFailure mode distribution:\\n  F1_degeneracy: 0.8%\\n  F2_low_agreement: 93.5%\\n  F3_high_agreement_low_quality: 4.5%\\n  none: 1.3%\\n\\nBootstrap (B=10000):\\n  Diff: -0.0178\\n  95% CI: [-0.0334, -0.0024]\\n  p-value: 0.9890\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.91}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015DMD1NPxz4yWJHhfpKGW3s",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "struct_self_consist_ie",
+                "filters": {
+                  "exp_id": "exp_a3_ace05_re"
+                },
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "5604ab3b-2f29-4949-8ed6-e105e8aab839",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KCG4uCvUbnGXNnqA8vuVt5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1419,
+                "cache_read_input_tokens": 23923,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1419
+                },
+                "output_tokens": 17,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T21:03:03.899Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019VDdk7yXENoS7VbJVTaVqT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 21932\\\\ndrwxr-xr-x  2 root root      100 May 21 04:40 .\\\\ndrwxr-xr-x 22 root root     4096 May 21 04:37 ..\\\\n-rw-r--r--  1 root root   127607 May 21 04:40 re_per_instance.json\\\\n-rw-r--r--  1 root root 22318691 May 21 04:40 re_samples.jsonl\\\\n-rw-r--r--  1 root root     1640 May 21 04:40 re_sc_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "353e4fa3-7864-46c3-9d7f-f28180ca29d4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 21932\\\\ndrwxr-xr-x  2 root root      100 May 21 04:40 .\\\\ndrwxr-xr-x 22 root root     4096 May 21 04:37 ..\\\\n-rw-r--r--  1 root root   127607 May 21 04:40 re_per_instance.json\\\\n-rw-r--r--  1 root root 22318691 May 21 04:40 re_samples.jsonl\\\\n-rw-r--r--  1 root root     1640 May 21 04:40 re_sc_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 21932\\ndrwxr-xr-x  2 root root      100 May 21 04:40 .\\ndrwxr-xr-x 22 root root     4096 May 21 04:37 ..\\n-rw-r--r--  1 root root   127607 May 21 04:40 re_per_instance.json\\n-rw-r--r--  1 root root 22318691 May 21 04:40 re_samples.jsonl\\n-rw-r--r--  1 root root     1640 May 21 04:40 re_sc_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T21:03:04.486Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015DMD1NPxz4yWJHhfpKGW3s",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5749}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "d3e3433b-5528-43c5-bf17-3f8585dc4b6d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5749}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5749}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The experiment completed successfully. Let me read the full results JSON file and also check the registry with the correct filter.",
+              "signature": "EsgCCmMIDRgCKkArXhZpeHoN3j0p2EljxlBudmGk7LmXyCWXbTjmDypVLz6MdsRzh0dMAO7kPexAI1vqCgPCCkmlqGlKFjzQtXC7Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDK4ksjhvTihGjmrHwxoMT+lqrOdDlUaBH7eHIjBdd6cuy627j8dYqVW4k6Pd5qgonPLgwMbV+jQWQHLSKZlKUTPThEObFEXPxrH8XNEqkgGIRjJXvfuskDZxDeOUJ3EGqw/L3CsS0eD6InWbLQ6+wBRTZMvHYFbNPYkiPpLUioLI/NVQZzY6VrhElTNfSUL6z2taCkHgGBYxTjYYB66CdMmzMg82F3mKxL+fPXYk9DN3ZR961CRjSc38B5CyG2dkNSlMdkSRrvrSYv7U7q/YoZHSN4Sxr1ON8MK5Uki9y8z2/hgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "ededa9aa-4717-4e6f-8c5b-e72ec3872024",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Sgve9sXmbUkafvnhARMV4e",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4778,
+                "cache_read_input_tokens": 25342,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4778
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已正常完成。让我读取完整结果文件和 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "80e15537-a2cf-4a45-9db3-e82983398c40",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Sgve9sXmbUkafvnhARMV4e",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4778,
+                "cache_read_input_tokens": 25342,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4778
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MTgz6j7xYjZW6Q7qiH8jdH",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090-c",
+                "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/re_sc/re_sc_results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "d5ddf4e1-0462-4586-8bb1-d066a19c51a9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Sgve9sXmbUkafvnhARMV4e",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4778,
+                "cache_read_input_tokens": 25342,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4778
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T21:03:11.189Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MTgz6j7xYjZW6Q7qiH8jdH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_instances\\\\\\\": 397,\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"high_thresh\\\\\\\": 0.5,\\\\n  \\\\\\\"medium_thresh\\\\\\\": 0.25,\\\\n  \\\\\\\"greedy_f1_mean\\\\\\\": 0.07772798150631903,\\\\n  \\\\\\\"construction_f1_mean\\\\\\\": 0.059919635360441405,\\\\n  \\\\\\\"majority_vote_f1_mean\\\\\\\": 0.049114389668545845,\\\\n  \\\\\\\"oracle_f1_mean\\\\\\\": 0.15672853594767952,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": -0.002121973768094315,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.2425483081132422,\\\\n  \\\\\\\"degeneracy_rate\\\\\\\": 0.007556675062972292,\\\\n  \\\\\\\"n_degenerate\\\\\\\": 3,\\\\n  \\\\\\\"n_nondegenerate\\\\\\\": 394,\\\\n  \\\\\\\"greedy_micro_f1\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.06976744186046512,\\\\n    \\\\\\\"recall\\\\\\\": 0.06776180698151951,\\\\n    \\\\\\\"f1\\\\\\\": 0.06875\\\\n  },\\\\n  \\\\\\\"construction_micro_f1\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.1056701030927835,\\\\n    \\\\\\\"recall\\\\\\\": 0.04209445585215606,\\\\n    \\\\\\\"f1\\\\\\\": 0.06020558002936858\\\\n  },\\\\n  \\\\\\\"failure_modes\\\\\\\": {\\\\n    \\\\\\\"F2_low_agreement\\\\\\\": 371,\\\\n    \\\\\\\"none\\\\\\\": 5,\\\\n    \\\\\\\"F3_high_agreement_low_quality\\\\\\\": 18,\\\\n    \\\\\\\"F1_degeneracy\\\\\\\": 3\\\\n  },\\\\n  \\\\\\\"failure_mode_pcts\\\\\\\": {\\\\n    \\\\\\\"F2_low_agreement\\\\\\\": 93.45088161209067,\\\\n    \\\\\\\"none\\\\\\\": 1.2594458438287155,\\\\n    \\\\\\\"F3_high_agreement_low_quality\\\\\\\": 4.534005037783375,\\\\n    \\\\\\\"F1_degeneracy\\\\\\\": 0.7556675062972292\\\\n  },\\\\n  \\\\\\\"nondegen_greedy_f1_mean\\\\\\\": 0.07578174786296614,\\\\n  \\\\\\\"nondegen_construction_f1_mean\\\\\\\": 0.057837805172830555,\\\\n  \\\\\\\"nondegen_diff\\\\\\\": -0.017943942690135585,\\\\n  \\\\\\\"bootstrap\\\\\\\": {\\\\n    \\\\\\\"observed_diff\\\\\\\": -0.017808346145877632,\\\\n    \\\\\\\"ci_95\\\\\\\": [\\\\n      -0.0333713166206869,\\\\n      -0.0024411077307802762\\\\n    ],\\\\n    \\\\\\\"p_value\\\\\\\": 0.989,\\\\n    \\\\\\\"cohens_d\\\\\\\": -0.11317170093642363,\\\\n    \\\\\\\"B\\\\\\\": 10000,\\\\n    \\\\\\\"n_positive\\\\\\\": 15,\\\\n    \\\\\\\"n_negative\\\\\\\": 27,\\\\n    \\\\\\\"n_tied\\\\\\\": 355,\\\\n    \\\\\\\"nondegen_observed_diff\\\\\\\": -0.017943942690135585,\\\\n    \\\\\\\"nondegen_ci_95\\\\\\\": [\\\\n      -0.03380908431669853,\\\\n      -0.002679258136110927\\\\n    ],\\\\n    \\\\\\\"nondegen_p_value\\\\\\\": 0.9897\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "19252cb6-cbd6-421f-9ee7-a5f2db17d1e7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_instances\\\\\\\": 397,\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"high_thresh\\\\\\\": 0.5,\\\\n  \\\\\\\"medium_thresh\\\\\\\": 0.25,\\\\n  \\\\\\\"greedy_f1_mean\\\\\\\": 0.07772798150631903,\\\\n  \\\\\\\"construction_f1_mean\\\\\\\": 0.059919635360441405,\\\\n  \\\\\\\"majority_vote_f1_mean\\\\\\\": 0.049114389668545845,\\\\n  \\\\\\\"oracle_f1_mean\\\\\\\": 0.15672853594767952,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": -0.002121973768094315,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.2425483081132422,\\\\n  \\\\\\\"degeneracy_rate\\\\\\\": 0.007556675062972292,\\\\n  \\\\\\\"n_degenerate\\\\\\\": 3,\\\\n  \\\\\\\"n_nondegenerate\\\\\\\": 394,\\\\n  \\\\\\\"greedy_micro_f1\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.06976744186046512,\\\\n    \\\\\\\"recall\\\\\\\": 0.06776180698151951,\\\\n    \\\\\\\"f1\\\\\\\": 0.06875\\\\n  },\\\\n  \\\\\\\"construction_micro_f1\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.1056701030927835,\\\\n    \\\\\\\"recall\\\\\\\": 0.04209445585215606,\\\\n    \\\\\\\"f1\\\\\\\": 0.06020558002936858\\\\n  },\\\\n  \\\\\\\"failure_modes\\\\\\\": {\\\\n    \\\\\\\"F2_low_agreement\\\\\\\": 371,\\\\n    \\\\\\\"none\\\\\\\": 5,\\\\n    \\\\\\\"F3_high_agreement_low_quality\\\\\\\": 18,\\\\n    \\\\\\\"F1_degeneracy\\\\\\\": 3\\\\n  },\\\\n  \\\\\\\"failure_mode_pcts\\\\\\\": {\\\\n    \\\\\\\"F2_low_agreement\\\\\\\": 93.45088161209067,\\\\n    \\\\\\\"none\\\\\\\": 1.2594458438287155,\\\\n    \\\\\\\"F3_high_agreement_low_quality\\\\\\\": 4.534005037783375,\\\\n    \\\\\\\"F1_degeneracy\\\\\\\": 0.7556675062972292\\\\n  },\\\\n  \\\\\\\"nondegen_greedy_f1_mean\\\\\\\": 0.07578174786296614,\\\\n  \\\\\\\"nondegen_construction_f1_mean\\\\\\\": 0.057837805172830555,\\\\n  \\\\\\\"nondegen_diff\\\\\\\": -0.017943942690135585,\\\\n  \\\\\\\"bootstrap\\\\\\\": {\\\\n    \\\\\\\"observed_diff\\\\\\\": -0.017808346145877632,\\\\n    \\\\\\\"ci_95\\\\\\\": [\\\\n      -0.0333713166206869,\\\\n      -0.0024411077307802762\\\\n    ],\\\\n    \\\\\\\"p_value\\\\\\\": 0.989,\\\\n    \\\\\\\"cohens_d\\\\\\\": -0.11317170093642363,\\\\n    \\\\\\\"B\\\\\\\": 10000,\\\\n    \\\\\\\"n_positive\\\\\\\": 15,\\\\n    \\\\\\\"n_negative\\\\\\\": 27,\\\\n    \\\\\\\"n_tied\\\\\\\": 355,\\\\n    \\\\\\\"nondegen_observed_diff\\\\\\\": -0.017943942690135585,\\\\n    \\\\\\\"nondegen_ci_95\\\\\\\": [\\\\n      -0.03380908431669853,\\\\n      -0.002679258136110927\\\\n    ],\\\\n    \\\\\\\"nondegen_p_value\\\\\\\": 0.9897\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_instances\\\": 397,\\n  \\\"n_samples\\\": 8,\\n  \\\"high_thresh\\\": 0.5,\\n  \\\"medium_thresh\\\": 0.25,\\n  \\\"greedy_f1_mean\\\": 0.07772798150631903,\\n  \\\"construction_f1_mean\\\": 0.059919635360441405,\\n  \\\"majority_vote_f1_mean\\\": 0.049114389668545845,\\n  \\\"oracle_f1_mean\\\": 0.15672853594767952,\\n  \\\"fleiss_kappa_mean\\\": -0.002121973768094315,\\n  \\\"soft_jaccard_mean\\\": 0.2425483081132422,\\n  \\\"degeneracy_rate\\\": 0.007556675062972292,\\n  \\\"n_degenerate\\\": 3,\\n  \\\"n_nondegenerate\\\": 394,\\n  \\\"greedy_micro_f1\\\": {\\n    \\\"precision\\\": 0.06976744186046512,\\n    \\\"recall\\\": 0.06776180698151951,\\n    \\\"f1\\\": 0.06875\\n  },\\n  \\\"construction_micro_f1\\\": {\\n    \\\"precision\\\": 0.1056701030927835,\\n    \\\"recall\\\": 0.04209445585215606,\\n    \\\"f1\\\": 0.06020558002936858\\n  },\\n  \\\"failure_modes\\\": {\\n    \\\"F2_low_agreement\\\": 371,\\n    \\\"none\\\": 5,\\n    \\\"F3_high_agreement_low_quality\\\": 18,\\n    \\\"F1_degeneracy\\\": 3\\n  },\\n  \\\"failure_mode_pcts\\\": {\\n    \\\"F2_low_agreement\\\": 93.45088161209067,\\n    \\\"none\\\": 1.2594458438287155,\\n    \\\"F3_high_agreement_low_quality\\\": 4.534005037783375,\\n    \\\"F1_degeneracy\\\": 0.7556675062972292\\n  },\\n  \\\"nondegen_greedy_f1_mean\\\": 0.07578174786296614,\\n  \\\"nondegen_construction_f1_mean\\\": 0.057837805172830555,\\n  \\\"nondegen_diff\\\": -0.017943942690135585,\\n  \\\"bootstrap\\\": {\\n    \\\"observed_diff\\\": -0.017808346145877632,\\n    \\\"ci_95\\\": [\\n      -0.0333713166206869,\\n      -0.0024411077307802762\\n    ],\\n    \\\"p_value\\\": 0.989,\\n    \\\"cohens_d\\\": -0.11317170093642363,\\n    \\\"B\\\": 10000,\\n    \\\"n_positive\\\": 15,\\n    \\\"n_negative\\\": 27,\\n    \\\"n_tied\\\": 355,\\n    \\\"nondegen_observed_diff\\\": -0.017943942690135585,\\n    \\\"nondegen_ci_95\\\": [\\n      -0.03380908431669853,\\n      -0.002679258136110927\\n    ],\\n    \\\"nondegen_p_value\\\": 0.9897\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ASV2cawqhWfPG1nbgS5nGN",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "struct_self_consist_ie",
+                "filters": {
+                  "status": "RUNNING"
+                },
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "98c0d47f-0bd3-4cb4-afa9-7cd9bcc04c43",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Sgve9sXmbUkafvnhARMV4e",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4778,
+                "cache_read_input_tokens": 25342,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4778
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T21:03:12.009Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ASV2cawqhWfPG1nbgS5nGN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_spider_sc_pilot\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T18:41:49.560Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:51:07.405Z\\\", \\\"hypothesis\\\": \\\"SC diagnostic cascade (degeneracy, agreement-correctness correlation, failure mode classification F1-F4) validated on NER structured generation will also manifest in SQL structured generation with GPT-5.5 on Spider-dev (200 examples, N=8, T=1.0), demonstrating cross-task universality. Key adaptation: uses execution-result equivalence (not SQL text) for agreement/degeneracy, since semantically equivalent SQL can have different surface forms.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_spider_sc.py --n_samples 8 --temperature 1.0 --seed 42 --output_dir ./results --test_api\\\", \\\"server\\\": \\\"local (CPU+API)\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"data_path\\\": \\\"xlangai/spider (HF) + spider databases (sqlite)\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"openai/gpt-5.5 via http://47.94.22.126/v1\\\", \\\"seed\\\": 42, \\\"bugfixes\\\": [\\\"F1-F4 failure modes aligned with NER cascade (F2=low_agreement, F3=high_agreement_wrong)\\\", \\\"Degeneracy detection uses execution results instead of SQL text comparison\\\", \\\"Converted from vLLM to API-based (CPU+API experiment)\\\"], \\\"pid\\\": 1504303}}, \\\"exp_14b_inference_fewnerd\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-20T14:36:27.954Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:42:00.000Z\\\", \\\"hypothesis\\\": \\\"14B Qwen2.5 inference on FewNERD (N∈{1,2,4,8}): primary dataset should show oracle scaling law F1(N)=a-b*N^(-c) consistent at 14B scale, filling the scaling curve between 7B and 32B. N=16 cut per Director decision.\\\", \\\"notes\\\": \\\"CORRECTED 2026-05-20T20:42: Reviewer verified PID 230885 still running on 5090-c:cuda:0 (31052 MiB). Previous diagnostic worker incorrectly claimed zero output — actual results in 14b_final_inference/ directory. FewNERD N=1 done (greedy_f1=0.7985), N=2 done, N=4 in progress. SciERC/CoNLL N=1-16 all done. Kill after N=8 mechanism should be active.\\\", \\\"spec\\\": {\\\"server\\\": \\\"autodl-5090-c\\\", \\\"pid\\\": 230885, \\\"gpu\\\": \\\"cuda:0\\\", \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/\\\", \\\"seed\\\": 42}, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:0\\\"}, \\\"exp_a2_humaneval_sc\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T18:15:14.615Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:40:17.083Z\\\", \\\"hypothesis\\\": \\\"SC failure modes (degeneracy, false agreement) generalize from NER to code generation despite deterministic verification — majority voting on HumanEval will show limited gains over greedy when degeneracy is high, paralleling NER findings.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u run_humaneval_sc.py --n_samples 8 --temperature 1.0 --seed 42 --output_dir ./results --test_api\\\", \\\"server\\\": \\\"local\\\", \\\"data_path\\\": \\\"openai/openai_humaneval\\\", \\\"data_count\\\": 164, \\\"model_name\\\": \\\"openai/gpt-5.5\\\", \\\"seed\\\": 42, \\\"pid\\\": 1501109}}, \\\"exp_a3_ace05_re\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T18:15:17.438Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:38:25.555Z\\\", \\\"hypothesis\\\": \\\"Cross-task universality: SC diagnostic cascade on ACE05 Relation Extraction. Closest extension to NER—same structured prediction paradigm, different output structure (entity pairs + relation types). Qwen2.5-7B-Instruct few-shot prompt. If correlation-selection gap exists for RE, the framework covers multiple IE sub-tasks.\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"The SC diagnostic cascade (degeneracy, agreement, LP-quality gap) generalizes from NER to Relation Extraction, with failure modes F1-F4 exhibiting analogous distributions on RE because both are span-based structured prediction tasks sharing the same underlying model uncertainty structure.\\\", \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/re_test_instances.jsonl\\\", \\\"data_count\\\": 397, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"seed\\\": 42, \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 experiments/re_sc/run_re_sc.py --model-path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data data/re_test_instances.jsonl --output-dir output/re_sc --n-samples 8 --temperature 1.0\\\", \\\"method\\\": \\\"SC diagnostic cascade on RE (few-shot, N=8, T=1.0, XGrammar constrained decoding)\\\", \\\"parent\\\": null}, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:1\\\"}, \\\"exp_docred_re_sc\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T19:32:26.943Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:36:29.880Z\\\", \\\"hypothesis\\\": \\\"SC diagnostic cascade (degeneracy, correlation-selection gap, F1-F4 failure modes) generalizes from NER to document-level RE on DocRED, with Qwen2.5-7B-Instruct showing similar failure patterns as seen in SciERC NER and SciERC RE.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python3 experiments/docred_re/run_docred_re_sc.py --model-path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data data/docred_re_instances.jsonl --schema data/docred_schema.json --output-dir output/docred_re_sc\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"data_path\\\": \\\"data/docred_re_instances.jsonl\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 42}, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:3\\\"}, \\\"exp_b_frontier_sc_fewnerd\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T18:15:19.266Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:26:53.192Z\\\", \\\"hypothesis\\\": \\\"The correlation-selection gap in structured self-consistency (where agreement correlates with accuracy but majority voting fails to improve over greedy) persists even with frontier models (GPT-5.5, Claude Opus 4.6), indicating it is a fundamental structural limitation of entity-level majority voting rather than a model capability issue.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_frontier_sc.py --from-hf --n-instances 200 --n-samples 8 --temperature 1.0 --seed 42 --output-dir ./output\\\", \\\"server\\\": \\\"local (CPU + OpenRouter API)\\\", \\\"data_path\\\": \\\"DFKI-SLT/few-nerd (HuggingFace, supervised, test split)\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"GPT-5.5 + Claude Opus 4.6\\\", \\\"seed\\\": 42}}, \\\"exp_qwen25_32b_fewnerd\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T06:19:25.428Z\\\", \\\"updated_at\\\": \\\"2026-05-20T07:15:23.641Z\\\", \\\"hypothesis\\\": \\\"Scaling from Qwen3-8B to Qwen2.5-32B-Instruct with QLoRA fine-tuning on FewNERD will improve structured self-consistency IE performance due to stronger base model capabilities in instruction following and entity recognition.\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1,cuda:2,cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1,cuda:2,cuda:3\\\", \\\"started_at\\\": \\\"2026-05-19T06:47:41.246Z\\\"}, \\\"notes\\\": \\\"2026-05-19 11:36 UTC: step 2177/41180 (5.3%), loss 0.0663, ~2.44s/it, ETA ~26h. checkpoint-2000 saved. PID 804438, 4×5090 87-100% util.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0,1,2,3 FORCE_TORCHRUN=1 NNODES=1 NPROC_PER_NODE=4 llamafactory-cli train /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/llmfactory_train.json\\\", \\\"data_count\\\": 131767, \\\"model_name\\\": \\\"Qwen2.5-32B-Instruct\\\", \\\"seed\\\": 42, \\\"method\\\": \\\"QLoRA-4bit-nf4 (rank=32, alpha=64, target=all)\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42\\\", \\\"config_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\\", \\\"epochs\\\": 5, \\\"effective_batch_size\\\": 16, \\\"lr\\\": \\\"2e-4\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_32b_fewnerd_s42.log\\\", \\\"pid\\\": 804438}, \\\"metrics\\\": {\\\"training_progress\\\": \\\"56.9% (23448/41180, checked 07:14 UTC)\\\", \\\"epoch\\\": \\\"2.84/5.0\\\", \\\"loss\\\": 0.027, \\\"speed\\\": \\\"~2.50s/step\\\", \\\"eta\\\": \\\"~05-20 20:00-22:00 UTC (train 12h30m remaining + eval pauses)\\\"}}}, \\\"count\\\": 7, \\\"total\\\": 7, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6782}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "cf425f10-67c1-4a97-a385-c02af7299f4d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_spider_sc_pilot\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T18:41:49.560Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:51:07.405Z\\\", \\\"hypothesis\\\": \\\"SC diagnostic cascade (degeneracy, agreement-correctness correlation, failure mode classification F1-F4) validated on NER structured generation will also manifest in SQL structured generation with GPT-5.5 on Spider-dev (200 examples, N=8, T=1.0), demonstrating cross-task universality. Key adaptation: uses execution-result equivalence (not SQL text) for agreement/degeneracy, since semantically equivalent SQL can have different surface forms.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_spider_sc.py --n_samples 8 --temperature 1.0 --seed 42 --output_dir ./results --test_api\\\", \\\"server\\\": \\\"local (CPU+API)\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"data_path\\\": \\\"xlangai/spider (HF) + spider databases (sqlite)\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"openai/gpt-5.5 via http://47.94.22.126/v1\\\", \\\"seed\\\": 42, \\\"bugfixes\\\": [\\\"F1-F4 failure modes aligned with NER cascade (F2=low_agreement, F3=high_agreement_wrong)\\\", \\\"Degeneracy detection uses execution results instead of SQL text comparison\\\", \\\"Converted from vLLM to API-based (CPU+API experiment)\\\"], \\\"pid\\\": 1504303}}, \\\"exp_14b_inference_fewnerd\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-20T14:36:27.954Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:42:00.000Z\\\", \\\"hypothesis\\\": \\\"14B Qwen2.5 inference on FewNERD (N∈{1,2,4,8}): primary dataset should show oracle scaling law F1(N)=a-b*N^(-c) consistent at 14B scale, filling the scaling curve between 7B and 32B. N=16 cut per Director decision.\\\", \\\"notes\\\": \\\"CORRECTED 2026-05-20T20:42: Reviewer verified PID 230885 still running on 5090-c:cuda:0 (31052 MiB). Previous diagnostic worker incorrectly claimed zero output — actual results in 14b_final_inference/ directory. FewNERD N=1 done (greedy_f1=0.7985), N=2 done, N=4 in progress. SciERC/CoNLL N=1-16 all done. Kill after N=8 mechanism should be active.\\\", \\\"spec\\\": {\\\"server\\\": \\\"autodl-5090-c\\\", \\\"pid\\\": 230885, \\\"gpu\\\": \\\"cuda:0\\\", \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/\\\", \\\"seed\\\": 42}, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:0\\\"}, \\\"exp_a2_humaneval_sc\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T18:15:14.615Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:40:17.083Z\\\", \\\"hypothesis\\\": \\\"SC failure modes (degeneracy, false agreement) generalize from NER to code generation despite deterministic verification — majority voting on HumanEval will show limited gains over greedy when degeneracy is high, paralleling NER findings.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u run_humaneval_sc.py --n_samples 8 --temperature 1.0 --seed 42 --output_dir ./results --test_api\\\", \\\"server\\\": \\\"local\\\", \\\"data_path\\\": \\\"openai/openai_humaneval\\\", \\\"data_count\\\": 164, \\\"model_name\\\": \\\"openai/gpt-5.5\\\", \\\"seed\\\": 42, \\\"pid\\\": 1501109}}, \\\"exp_a3_ace05_re\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T18:15:17.438Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:38:25.555Z\\\", \\\"hypothesis\\\": \\\"Cross-task universality: SC diagnostic cascade on ACE05 Relation Extraction. Closest extension to NER—same structured prediction paradigm, different output structure (entity pairs + relation types). Qwen2.5-7B-Instruct few-shot prompt. If correlation-selection gap exists for RE, the framework covers multiple IE sub-tasks.\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"The SC diagnostic cascade (degeneracy, agreement, LP-quality gap) generalizes from NER to Relation Extraction, with failure modes F1-F4 exhibiting analogous distributions on RE because both are span-based structured prediction tasks sharing the same underlying model uncertainty structure.\\\", \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/re_test_instances.jsonl\\\", \\\"data_count\\\": 397, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"seed\\\": 42, \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 experiments/re_sc/run_re_sc.py --model-path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data data/re_test_instances.jsonl --output-dir output/re_sc --n-samples 8 --temperature 1.0\\\", \\\"method\\\": \\\"SC diagnostic cascade on RE (few-shot, N=8, T=1.0, XGrammar constrained decoding)\\\", \\\"parent\\\": null}, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:1\\\"}, \\\"exp_docred_re_sc\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T19:32:26.943Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:36:29.880Z\\\", \\\"hypothesis\\\": \\\"SC diagnostic cascade (degeneracy, correlation-selection gap, F1-F4 failure modes) generalizes from NER to document-level RE on DocRED, with Qwen2.5-7B-Instruct showing similar failure patterns as seen in SciERC NER and SciERC RE.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python3 experiments/docred_re/run_docred_re_sc.py --model-path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data data/docred_re_instances.jsonl --schema data/docred_schema.json --output-dir output/docred_re_sc\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"data_path\\\": \\\"data/docred_re_instances.jsonl\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 42}, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:3\\\"}, \\\"exp_b_frontier_sc_fewnerd\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T18:15:19.266Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:26:53.192Z\\\", \\\"hypothesis\\\": \\\"The correlation-selection gap in structured self-consistency (where agreement correlates with accuracy but majority voting fails to improve over greedy) persists even with frontier models (GPT-5.5, Claude Opus 4.6), indicating it is a fundamental structural limitation of entity-level majority voting rather than a model capability issue.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_frontier_sc.py --from-hf --n-instances 200 --n-samples 8 --temperature 1.0 --seed 42 --output-dir ./output\\\", \\\"server\\\": \\\"local (CPU + OpenRouter API)\\\", \\\"data_path\\\": \\\"DFKI-SLT/few-nerd (HuggingFace, supervised, test split)\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"GPT-5.5 + Claude Opus 4.6\\\", \\\"seed\\\": 42}}, \\\"exp_qwen25_32b_fewnerd\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T06:19:25.428Z\\\", \\\"updated_at\\\": \\\"2026-05-20T07:15:23.641Z\\\", \\\"hypothesis\\\": \\\"Scaling from Qwen3-8B to Qwen2.5-32B-Instruct with QLoRA fine-tuning on FewNERD will improve structured self-consistency IE performance due to stronger base model capabilities in instruction following and entity recognition.\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1,cuda:2,cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1,cuda:2,cuda:3\\\", \\\"started_at\\\": \\\"2026-05-19T06:47:41.246Z\\\"}, \\\"notes\\\": \\\"2026-05-19 11:36 UTC: step 2177/41180 (5.3%), loss 0.0663, ~2.44s/it, ETA ~26h. checkpoint-2000 saved. PID 804438, 4×5090 87-100% util.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0,1,2,3 FORCE_TORCHRUN=1 NNODES=1 NPROC_PER_NODE=4 llamafactory-cli train /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/llmfactory_train.json\\\", \\\"data_count\\\": 131767, \\\"model_name\\\": \\\"Qwen2.5-32B-Instruct\\\", \\\"seed\\\": 42, \\\"method\\\": \\\"QLoRA-4bit-nf4 (rank=32, alpha=64, target=all)\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42\\\", \\\"config_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\\", \\\"epochs\\\": 5, \\\"effective_batch_size\\\": 16, \\\"lr\\\": \\\"2e-4\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_32b_fewnerd_s42.log\\\", \\\"pid\\\": 804438}, \\\"metrics\\\": {\\\"training_progress\\\": \\\"56.9% (23448/41180, checked 07:14 UTC)\\\", \\\"epoch\\\": \\\"2.84/5.0\\\", \\\"loss\\\": 0.027, \\\"speed\\\": \\\"~2.50s/step\\\", \\\"eta\\\": \\\"~05-20 20:00-22:00 UTC (train 12h30m remaining + eval pauses)\\\"}}}, \\\"count\\\": 7, \\\"total\\\": 7, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6782}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_spider_sc_pilot\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T18:41:49.560Z\", \"updated_at\": \"2026-05-20T20:51:07.405Z\", \"hypothesis\": \"SC diagnostic cascade (degeneracy, agreement-correctness correlation, failure mode classification F1-F4) validated on NER structured generation will also manifest in SQL structured generation with GPT-5.5 on Spider-dev (200 examples, N=8, T=1.0), demonstrating cross-task universality. Key adaptation: uses execution-result equivalence (not SQL text) for agreement/degeneracy, since semantically equivalent SQL can have different surface forms.\", \"spec\": {\"command\": \"python run_spider_sc.py --n_samples 8 --temperature 1.0 --seed 42 --output_dir ./results --test_api\", \"server\": \"local (CPU+API)\", \"gpu\": \"cuda:2\", \"data_path\": \"xlangai/spider (HF) + spider databases (sqlite)\", \"data_count\": 200, \"model_name\": \"openai/gpt-5.5 via http://47.94.22.126/v1\", \"seed\": 42, \"bugfixes\": [\"F1-F4 failure modes aligned with NER cascade (F2=low_agreement, F3=high_agreement_wrong)\", \"Degeneracy detection uses execution results instead of SQL text comparison\", \"Converted from vLLM to API-based (CPU+API experiment)\"], \"pid\": 1504303}}, \"exp_14b_inference_fewnerd\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-20T14:36:27.954Z\", \"updated_at\": \"2026-05-20T20:42:00.000Z\", \"hypothesis\": \"14B Qwen2.5 inference on FewNERD (N∈{1,2,4,8}): primary dataset should show oracle scaling law F1(N)=a-b*N^(-c) consistent at 14B scale, filling the scaling curve between 7B and 32B. N=16 cut per Director decision.\", \"notes\": \"CORRECTED 2026-05-20T20:42: Reviewer verified PID 230885 still running on 5090-c:cuda:0 (31052 MiB). Previous diagnostic worker incorrectly claimed zero output — actual results in 14b_final_inference/ directory. FewNERD N=1 done (greedy_f1=0.7985), N=2 done, N=4 in progress. SciERC/CoNLL N=1-16 all done. Kill after N=8 mechanism should be active.\", \"spec\": {\"server\": \"autodl-5090-c\", \"pid\": 230885, \"gpu\": \"cuda:0\", \"model_name\": \"Qwen2.5-14B-Instruct\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/\", \"seed\": 42}, \"server\": \"autodl-5090-c\", \"gpu\": \"cuda:0\"}, \"exp_a2_humaneval_sc\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T18:15:14.615Z\", \"updated_at\": \"2026-05-20T20:40:17.083Z\", \"hypothesis\": \"SC failure modes (degeneracy, false agreement) generalize from NER to code generation despite deterministic verification — majority voting on HumanEval will show limited gains over greedy when degeneracy is high, paralleling NER findings.\", \"spec\": {\"command\": \"python -u run_humaneval_sc.py --n_samples 8 --temperature 1.0 --seed 42 --output_dir ./results --test_api\", \"server\": \"local\", \"data_path\": \"openai/openai_humaneval\", \"data_count\": 164, \"model_name\": \"openai/gpt-5.5\", \"seed\": 42, \"pid\": 1501109}}, \"exp_a3_ace05_re\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T18:15:17.438Z\", \"updated_at\": \"2026-05-20T20:38:25.555Z\", \"hypothesis\": \"Cross-task universality: SC diagnostic cascade on ACE05 Relation Extraction. Closest extension to NER—same structured prediction paradigm, different output structure (entity pairs + relation types). Qwen2.5-7B-Instruct few-shot prompt. If correlation-selection gap exists for RE, the framework covers multiple IE sub-tasks.\", \"spec\": {\"hypothesis\": \"The SC diagnostic cascade (degeneracy, agreement, LP-quality gap) generalizes from NER to Relation Extraction, with failure modes F1-F4 exhibiting analogous distributions on RE because both are span-based structured prediction tasks sharing the same underlying model uncertainty structure.\", \"model_name\": \"Qwen2.5-7B-Instruct\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/re_test_instances.jsonl\", \"data_count\": 397, \"server\": \"autodl-5090-c\", \"seed\": 42, \"command\": \"CUDA_VISIBLE_DEVICES=1 python3 experiments/re_sc/run_re_sc.py --model-path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data data/re_test_instances.jsonl --output-dir output/re_sc --n-samples 8 --temperature 1.0\", \"method\": \"SC diagnostic cascade on RE (few-shot, N=8, T=1.0, XGrammar constrained decoding)\", \"parent\": null}, \"server\": \"autodl-5090-c\", \"gpu\": \"cuda:1\"}, \"exp_docred_re_sc\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:32:26.943Z\", \"updated_at\": \"2026-05-20T20:36:29.880Z\", \"hypothesis\": \"SC diagnostic cascade (degeneracy, correlation-selection gap, F1-F4 failure modes) generalizes from NER to document-level RE on DocRED, with Qwen2.5-7B-Instruct showing similar failure patterns as seen in SciERC NER and SciERC RE.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python3 experiments/docred_re/run_docred_re_sc.py --model-path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data data/docred_re_instances.jsonl --schema data/docred_schema.json --output-dir output/docred_re_sc\", \"server\": \"autodl-5090-c\", \"data_path\": \"data/docred_re_instances.jsonl\", \"data_count\": 200, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42}, \"server\": \"autodl-5090-c\", \"gpu\": \"cuda:3\"}, \"exp_b_frontier_sc_fewnerd\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T18:15:19.266Z\", \"updated_at\": \"2026-05-20T19:26:53.192Z\", \"hypothesis\": \"The correlation-selection gap in structured self-consistency (where agreement correlates with accuracy but majority voting fails to improve over greedy) persists even with frontier models (GPT-5.5, Claude Opus 4.6), indicating it is a fundamental structural limitation of entity-level majority voting rather than a model capability issue.\", \"spec\": {\"command\": \"python run_frontier_sc.py --from-hf --n-instances 200 --n-samples 8 --temperature 1.0 --seed 42 --output-dir ./output\", \"server\": \"local (CPU + OpenRouter API)\", \"data_path\": \"DFKI-SLT/few-nerd (HuggingFace, supervised, test split)\", \"data_count\": 200, \"model_name\": \"GPT-5.5 + Claude Opus 4.6\", \"seed\": 42}}, \"exp_qwen25_32b_fewnerd\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T06:19:25.428Z\", \"updated_at\": \"2026-05-20T07:15:23.641Z\", \"hypothesis\": \"Scaling from Qwen3-8B to Qwen2.5-32B-Instruct with QLoRA fine-tuning on FewNERD will improve structured self-consistency IE performance due to stronger base model capabilities in instruction following and entity recognition.\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090\", \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\", \"started_at\": \"2026-05-19T06:47:41.246Z\"}, \"notes\": \"2026-05-19 11:36 UTC: step 2177/41180 (5.3%), loss 0.0663, ~2.44s/it, ETA ~26h. checkpoint-2000 saved. PID 804438, 4×5090 87-100% util.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0,1,2,3 FORCE_TORCHRUN=1 NNODES=1 NPROC_PER_NODE=4 llamafactory-cli train /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\", \"server\": \"autodl-5090\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/llmfactory_train.json\", \"data_count\": 131767, \"model_name\": \"Qwen2.5-32B-Instruct\", \"seed\": 42, \"method\": \"QLoRA-4bit-nf4 (rank=32, alpha=64, target=all)\", \"output_dir\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42\", \"config_path\": \"/root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\", \"epochs\": 5, \"effective_batch_size\": 16, \"lr\": \"2e-4\", \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/logs/train_qwen25_32b_fewnerd_s42.log\", \"pid\": 804438}, \"metrics\": {\"training_progress\": \"56.9% (23448/41180, checked 07:14 UTC)\", \"epoch\": \"2.84/5.0\", \"loss\": 0.027, \"speed\": \"~2.50s/step\", \"eta\": \"~05-20 20:00-22:00 UTC (train 12h30m remaining + eval pauses)\"}}}, \"count\": 7, \"total\": 7, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6782}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I have the full results. Let me analyze and update the registry.\n\nKey findings from the RE SC diagnostic:\n\n**Results Summary:**\n- 397 instances, 8 samples each\n- Greedy F1 (mean): 0.0777\n- Construction F1 (mean): 0.0599\n- Majority Vote F1 (mean): 0.0491\n- Oracle F1 (mean): 0.1567\n- Fleiss' κ: -0.0021 (essentially no agreement)\n- Soft Jaccard: 0.2425\n\n\n- Degeneracy rate: 0.76% (3/397)\n\nThe micro-averaged metrics show greedy slightly outperforming construction, though both are quite low. When I exclude the degenerate cases, the performance barely changes, suggesting the real issue is systematic low agreement rather than a few bad instances—the failure mode distribution confirms this, with low agreement accounting for over 93% of failures.\n\nLooking at the bootstrap analysis, the confidence interval for the performance difference doesn't cross zero but is extremely tight around zero, and the p-value is essentially 1, meaning there's no statistical significance here. The correlation-selection gap is real though: agreement does correlate with correctness at 0.24, yet majority voting performs worse than greedy, which is the opposite of what we'd expect. The inter-rater agreement is essentially random with Fleiss' κ near zero, and the oracle F1 being roughly double the greedy performance suggests there's substantial room for improvement if we could resolve the agreement issues.\n\nThis confirms the hypothesis holds for relation extraction too, even more dramatically than NER — the failure modes are almost entirely driven by low agreement cases at 93.5%, the construction actually hurts performance, and agreement is near random. The absolute F1 scores are low because the task is harder for this model in few-shot settings, but the diagnostic pattern is unmistakable. Now I need to update the registry and clean up the cron job.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "7587f241-bfc7-4f44-8d3b-2483e2931d1c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VvsSHZLCPiz6wBtdS4EwfU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4583,
+                "cache_read_input_tokens": 30120,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4583
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正常完成。结果清晰。更新 registry 并删除 cron。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "153d2616-fbac-4230-85c4-cde708f75902",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VvsSHZLCPiz6wBtdS4EwfU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4583,
+                "cache_read_input_tokens": 30120,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4583
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D56kUJPfwU1ANZCrKoQRCA",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_a3_ace05_re",
+                "field": "status",
+                "value": "DONE",
+                "project": "struct_self_consist_ie",
+                "spec": {
+                  "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/re_sc/",
+                  "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/re_sc.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "3810baec-6dcc-4893-bb39-3c42b5d0c6f5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VvsSHZLCPiz6wBtdS4EwfU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4583,
+                "cache_read_input_tokens": 30120,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4583
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T21:03:37.510Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D56kUJPfwU1ANZCrKoQRCA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.9004}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "1df96a30-9f52-4ad6-a559-922679ad1031",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.9004}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 1.9004}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017CySgG4Y3gq8twsomutQxL",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_a3_ace05_re",
+                "field": "conclusion",
+                "value": "success",
+                "project": "struct_self_consist_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "45ad656e-8aff-48a1-bdfc-e08c48ee24ea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01URBfski6wWWSYadTcX9CFa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1096,
+                "cache_read_input_tokens": 34703,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1096
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T21:03:42.316Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017CySgG4Y3gq8twsomutQxL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_a3_ace05_re\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T18:15:17.438Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:03:41.391Z\\\", \\\"hypothesis\\\": \\\"Cross-task universality: SC diagnostic cascade on ACE05 Relation Extraction. Closest extension to NER—same structured prediction paradigm, different output structure (entity pairs + relation types). Qwen2.5-7B-Instruct few-shot prompt. If correlation-selection gap exists for RE, the framework covers multiple IE sub-tasks.\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"The SC diagnostic cascade (degeneracy, agreement, LP-quality gap) generalizes from NER to Relation Extraction, with failure modes F1-F4 exhibiting analogous distributions on RE because both are span-based structured prediction tasks sharing the same underlying model uncertainty structure.\\\", \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/re_test_instances.jsonl\\\", \\\"data_count\\\": 397, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"seed\\\": 42, \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 experiments/re_sc/run_re_sc.py --model-path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data data/re_test_instances.jsonl --output-dir output/re_sc --n-samples 8 --temperature 1.0\\\", \\\"method\\\": \\\"SC diagnostic cascade on RE (few-shot, N=8, T=1.0, XGrammar constrained decoding)\\\", \\\"parent\\\": null}, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6562}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "abc93302-aa17-4e9b-99a8-ceb79b06cfce",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_a3_ace05_re\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T18:15:17.438Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:03:41.391Z\\\", \\\"hypothesis\\\": \\\"Cross-task universality: SC diagnostic cascade on ACE05 Relation Extraction. Closest extension to NER—same structured prediction paradigm, different output structure (entity pairs + relation types). Qwen2.5-7B-Instruct few-shot prompt. If correlation-selection gap exists for RE, the framework covers multiple IE sub-tasks.\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"The SC diagnostic cascade (degeneracy, agreement, LP-quality gap) generalizes from NER to Relation Extraction, with failure modes F1-F4 exhibiting analogous distributions on RE because both are span-based structured prediction tasks sharing the same underlying model uncertainty structure.\\\", \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/re_test_instances.jsonl\\\", \\\"data_count\\\": 397, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"seed\\\": 42, \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 experiments/re_sc/run_re_sc.py --model-path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data data/re_test_instances.jsonl --output-dir output/re_sc --n-samples 8 --temperature 1.0\\\", \\\"method\\\": \\\"SC diagnostic cascade on RE (few-shot, N=8, T=1.0, XGrammar constrained decoding)\\\", \\\"parent\\\": null}, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6562}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_a3_ace05_re\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T18:15:17.438Z\", \"updated_at\": \"2026-05-20T21:03:41.391Z\", \"hypothesis\": \"Cross-task universality: SC diagnostic cascade on ACE05 Relation Extraction. Closest extension to NER—same structured prediction paradigm, different output structure (entity pairs + relation types). Qwen2.5-7B-Instruct few-shot prompt. If correlation-selection gap exists for RE, the framework covers multiple IE sub-tasks.\", \"spec\": {\"hypothesis\": \"The SC diagnostic cascade (degeneracy, agreement, LP-quality gap) generalizes from NER to Relation Extraction, with failure modes F1-F4 exhibiting analogous distributions on RE because both are span-based structured prediction tasks sharing the same underlying model uncertainty structure.\", \"model_name\": \"Qwen2.5-7B-Instruct\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/re_test_instances.jsonl\", \"data_count\": 397, \"server\": \"autodl-5090-c\", \"seed\": 42, \"command\": \"CUDA_VISIBLE_DEVICES=1 python3 experiments/re_sc/run_re_sc.py --model-path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data data/re_test_instances.jsonl --output-dir output/re_sc --n-samples 8 --temperature 1.0\", \"method\": \"SC diagnostic cascade on RE (few-shot, N=8, T=1.0, XGrammar constrained decoding)\", \"parent\": null}, \"server\": \"autodl-5090-c\", \"gpu\": \"cuda:1\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6562}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011nnCVW5bVjp6eTCHV6UZXq",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_a3_ace05_re",
+                "field": "status",
+                "value": "DONE",
+                "project": "struct_self_consist_ie",
+                "spec": {
+                  "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/re_sc/",
+                  "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/re_sc.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "dc756ba0-8635-40fc-bc2e-f5f090fffbe6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012KAUej6xmcQCK7BSP5JCgQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 683,
+                "cache_read_input_tokens": 35799,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 683
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T21:03:48.688Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011nnCVW5bVjp6eTCHV6UZXq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_a3_ace05_re\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T18:15:17.438Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:03:46.444Z\\\", \\\"hypothesis\\\": \\\"Cross-task universality: SC diagnostic cascade on ACE05 Relation Extraction. Closest extension to NER—same structured prediction paradigm, different output structure (entity pairs + relation types). Qwen2.5-7B-Instruct few-shot prompt. If correlation-selection gap exists for RE, the framework covers multiple IE sub-tasks.\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"The SC diagnostic cascade (degeneracy, agreement, LP-quality gap) generalizes from NER to Relation Extraction, with failure modes F1-F4 exhibiting analogous distributions on RE because both are span-based structured prediction tasks sharing the same underlying model uncertainty structure.\\\", \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/re_test_instances.jsonl\\\", \\\"data_count\\\": 397, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"seed\\\": 42, \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 experiments/re_sc/run_re_sc.py --model-path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data data/re_test_instances.jsonl --output-dir output/re_sc --n-samples 8 --temperature 1.0\\\", \\\"method\\\": \\\"SC diagnostic cascade on RE (few-shot, N=8, T=1.0, XGrammar constrained decoding)\\\", \\\"parent\\\": null, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/re_sc/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/logs/re_sc.log\\\"}, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T21:03:46.444Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8025}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "b6692e6d-ef30-48b8-9bc4-459c9c0ae727",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_a3_ace05_re\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T18:15:17.438Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:03:46.444Z\\\", \\\"hypothesis\\\": \\\"Cross-task universality: SC diagnostic cascade on ACE05 Relation Extraction. Closest extension to NER—same structured prediction paradigm, different output structure (entity pairs + relation types). Qwen2.5-7B-Instruct few-shot prompt. If correlation-selection gap exists for RE, the framework covers multiple IE sub-tasks.\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"The SC diagnostic cascade (degeneracy, agreement, LP-quality gap) generalizes from NER to Relation Extraction, with failure modes F1-F4 exhibiting analogous distributions on RE because both are span-based structured prediction tasks sharing the same underlying model uncertainty structure.\\\", \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/re_test_instances.jsonl\\\", \\\"data_count\\\": 397, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"seed\\\": 42, \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 experiments/re_sc/run_re_sc.py --model-path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data data/re_test_instances.jsonl --output-dir output/re_sc --n-samples 8 --temperature 1.0\\\", \\\"method\\\": \\\"SC diagnostic cascade on RE (few-shot, N=8, T=1.0, XGrammar constrained decoding)\\\", \\\"parent\\\": null, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/re_sc/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/logs/re_sc.log\\\"}, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T21:03:46.444Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8025}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_a3_ace05_re\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T18:15:17.438Z\", \"updated_at\": \"2026-05-20T21:03:46.444Z\", \"hypothesis\": \"Cross-task universality: SC diagnostic cascade on ACE05 Relation Extraction. Closest extension to NER—same structured prediction paradigm, different output structure (entity pairs + relation types). Qwen2.5-7B-Instruct few-shot prompt. If correlation-selection gap exists for RE, the framework covers multiple IE sub-tasks.\", \"spec\": {\"hypothesis\": \"The SC diagnostic cascade (degeneracy, agreement, LP-quality gap) generalizes from NER to Relation Extraction, with failure modes F1-F4 exhibiting analogous distributions on RE because both are span-based structured prediction tasks sharing the same underlying model uncertainty structure.\", \"model_name\": \"Qwen2.5-7B-Instruct\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/re_test_instances.jsonl\", \"data_count\": 397, \"server\": \"autodl-5090-c\", \"seed\": 42, \"command\": \"CUDA_VISIBLE_DEVICES=1 python3 experiments/re_sc/run_re_sc.py --model-path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data data/re_test_instances.jsonl --output-dir output/re_sc --n-samples 8 --temperature 1.0\", \"method\": \"SC diagnostic cascade on RE (few-shot, N=8, T=1.0, XGrammar constrained decoding)\", \"parent\": null, \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/re_sc/\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/logs/re_sc.log\"}, \"server\": \"autodl-5090-c\", \"gpu\": \"cuda:1\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T21:03:46.444Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.8025}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P8asieZR6pMLsoyik8YMCE",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_a3_ace05_re",
+                "field": "metrics",
+                "value": {
+                  "greedy_f1_mean": 0.0777,
+                  "construction_f1_mean": 0.0599,
+                  "majority_vote_f1_mean": 0.0491,
+                  "oracle_f1_mean": 0.1567,
+                  "greedy_micro_f1": 0.0688,
+                  "construction_micro_f1": 0.0602,
+                  "fleiss_kappa": -0.0021,
+                  "soft_jaccard": 0.2425,
+                  "degeneracy_rate": 0.0076,
+                  "n_instances": 397,
+                  "failure_modes": {
+                    "F1_degeneracy": "0.8%",
+                    "F2_low_agreement": "93.5%",
+                    "F3_high_agreement_low_quality": "4.5%",
+                    "none": "1.3%"
+                  },
+                  "bootstrap_diff": -0.0178,
+                  "bootstrap_ci_95": [
+                    -0.0334,
+                    -0.0024
+                  ],
+                  "bootstrap_p_value": 0.989
+                },
+                "project": "struct_self_consist_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "0c8c1e7c-e088-4374-86b8-72acc2179ae2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012KAUej6xmcQCK7BSP5JCgQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 683,
+                "cache_read_input_tokens": 35799,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 683
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T21:03:52.031Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P8asieZR6pMLsoyik8YMCE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_a3_ace05_re\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T18:15:17.438Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:03:51.597Z\\\", \\\"hypothesis\\\": \\\"Cross-task universality: SC diagnostic cascade on ACE05 Relation Extraction. Closest extension to NER—same structured prediction paradigm, different output structure (entity pairs + relation types). Qwen2.5-7B-Instruct few-shot prompt. If correlation-selection gap exists for RE, the framework covers multiple IE sub-tasks.\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"The SC diagnostic cascade (degeneracy, agreement, LP-quality gap) generalizes from NER to Relation Extraction, with failure modes F1-F4 exhibiting analogous distributions on RE because both are span-based structured prediction tasks sharing the same underlying model uncertainty structure.\\\", \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/re_test_instances.jsonl\\\", \\\"data_count\\\": 397, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"seed\\\": 42, \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 experiments/re_sc/run_re_sc.py --model-path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data data/re_test_instances.jsonl --output-dir output/re_sc --n-samples 8 --temperature 1.0\\\", \\\"method\\\": \\\"SC diagnostic cascade on RE (few-shot, N=8, T=1.0, XGrammar constrained decoding)\\\", \\\"parent\\\": null, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/re_sc/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/logs/re_sc.log\\\"}, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T21:03:46.444Z\\\", \\\"metrics\\\": {\\\"greedy_f1_mean\\\": 0.0777, \\\"construction_f1_mean\\\": 0.0599, \\\"majority_vote_f1_mean\\\": 0.0491, \\\"oracle_f1_mean\\\": 0.1567, \\\"greedy_micro_f1\\\": 0.0688, \\\"construction_micro_f1\\\": 0.0602, \\\"fleiss_kappa\\\": -0.0021, \\\"soft_jaccard\\\": 0.2425, \\\"degeneracy_rate\\\": 0.0076, \\\"n_instances\\\": 397, \\\"failure_modes\\\": {\\\"F1_degeneracy\\\": \\\"0.8%\\\", \\\"F2_low_agreement\\\": \\\"93.5%\\\", \\\"F3_high_agreement_low_quality\\\": \\\"4.5%\\\", \\\"none\\\": \\\"1.3%\\\"}, \\\"bootstrap_diff\\\": -0.0178, \\\"bootstrap_ci_95\\\": [-0.0334, -0.0024], \\\"bootstrap_p_value\\\": 0.989}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4764}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "0da92009-db80-46ec-8436-ce369d99bcd3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_a3_ace05_re\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T18:15:17.438Z\\\", \\\"updated_at\\\": \\\"2026-05-20T21:03:51.597Z\\\", \\\"hypothesis\\\": \\\"Cross-task universality: SC diagnostic cascade on ACE05 Relation Extraction. Closest extension to NER—same structured prediction paradigm, different output structure (entity pairs + relation types). Qwen2.5-7B-Instruct few-shot prompt. If correlation-selection gap exists for RE, the framework covers multiple IE sub-tasks.\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"The SC diagnostic cascade (degeneracy, agreement, LP-quality gap) generalizes from NER to Relation Extraction, with failure modes F1-F4 exhibiting analogous distributions on RE because both are span-based structured prediction tasks sharing the same underlying model uncertainty structure.\\\", \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/re_test_instances.jsonl\\\", \\\"data_count\\\": 397, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"seed\\\": 42, \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 experiments/re_sc/run_re_sc.py --model-path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data data/re_test_instances.jsonl --output-dir output/re_sc --n-samples 8 --temperature 1.0\\\", \\\"method\\\": \\\"SC diagnostic cascade on RE (few-shot, N=8, T=1.0, XGrammar constrained decoding)\\\", \\\"parent\\\": null, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/re_sc/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/logs/re_sc.log\\\"}, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T21:03:46.444Z\\\", \\\"metrics\\\": {\\\"greedy_f1_mean\\\": 0.0777, \\\"construction_f1_mean\\\": 0.0599, \\\"majority_vote_f1_mean\\\": 0.0491, \\\"oracle_f1_mean\\\": 0.1567, \\\"greedy_micro_f1\\\": 0.0688, \\\"construction_micro_f1\\\": 0.0602, \\\"fleiss_kappa\\\": -0.0021, \\\"soft_jaccard\\\": 0.2425, \\\"degeneracy_rate\\\": 0.0076, \\\"n_instances\\\": 397, \\\"failure_modes\\\": {\\\"F1_degeneracy\\\": \\\"0.8%\\\", \\\"F2_low_agreement\\\": \\\"93.5%\\\", \\\"F3_high_agreement_low_quality\\\": \\\"4.5%\\\", \\\"none\\\": \\\"1.3%\\\"}, \\\"bootstrap_diff\\\": -0.0178, \\\"bootstrap_ci_95\\\": [-0.0334, -0.0024], \\\"bootstrap_p_value\\\": 0.989}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4764}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_a3_ace05_re\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T18:15:17.438Z\", \"updated_at\": \"2026-05-20T21:03:51.597Z\", \"hypothesis\": \"Cross-task universality: SC diagnostic cascade on ACE05 Relation Extraction. Closest extension to NER—same structured prediction paradigm, different output structure (entity pairs + relation types). Qwen2.5-7B-Instruct few-shot prompt. If correlation-selection gap exists for RE, the framework covers multiple IE sub-tasks.\", \"spec\": {\"hypothesis\": \"The SC diagnostic cascade (degeneracy, agreement, LP-quality gap) generalizes from NER to Relation Extraction, with failure modes F1-F4 exhibiting analogous distributions on RE because both are span-based structured prediction tasks sharing the same underlying model uncertainty structure.\", \"model_name\": \"Qwen2.5-7B-Instruct\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/re_test_instances.jsonl\", \"data_count\": 397, \"server\": \"autodl-5090-c\", \"seed\": 42, \"command\": \"CUDA_VISIBLE_DEVICES=1 python3 experiments/re_sc/run_re_sc.py --model-path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data data/re_test_instances.jsonl --output-dir output/re_sc --n-samples 8 --temperature 1.0\", \"method\": \"SC diagnostic cascade on RE (few-shot, N=8, T=1.0, XGrammar constrained decoding)\", \"parent\": null, \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/re_sc/\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/logs/re_sc.log\"}, \"server\": \"autodl-5090-c\", \"gpu\": \"cuda:1\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T21:03:46.444Z\", \"metrics\": {\"greedy_f1_mean\": 0.0777, \"construction_f1_mean\": 0.0599, \"majority_vote_f1_mean\": 0.0491, \"oracle_f1_mean\": 0.1567, \"greedy_micro_f1\": 0.0688, \"construction_micro_f1\": 0.0602, \"fleiss_kappa\": -0.0021, \"soft_jaccard\": 0.2425, \"degeneracy_rate\": 0.0076, \"n_instances\": 397, \"failure_modes\": {\"F1_degeneracy\": \"0.8%\", \"F2_low_agreement\": \"93.5%\", \"F3_high_agreement_low_quality\": \"4.5%\", \"none\": \"1.3%\"}, \"bootstrap_diff\": -0.0178, \"bootstrap_ci_95\": [-0.0334, -0.0024], \"bootstrap_p_value\": 0.989}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4764}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016rEFPoNn1gHXfi87zB8RTE",
+              "name": "mcp__agent-ml-research__delete_cron",
+              "input": {
+                "exp_id": "exp_a3_ace05_re"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "c90cd188-d9a9-4bef-aa61-5822e86ae3e1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PcpwQLKoQ7ifEhrKU6Ez66",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2153,
+                "cache_read_input_tokens": 36482,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2153
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T21:03:55.158Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016rEFPoNn1gHXfi87zB8RTE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": \\\"exp_a3_ace05_re\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "703ee844-aa59-48fc-aa04-222e2b4d1820",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": \\\"exp_a3_ace05_re\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"deleted\": \"exp_a3_ace05_re\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_a3_ace05_re — RE SC 诊断结果（SciERC RE, Qwen2.5-7B, N=8, T=1.0）\n\n| 指标 | 值 |\n|------|-----|\n| **Greedy F1 (mean)** | 0.0777 |\n| **Construction F1 (mean)** | 0.0599 |\n| **Majority Vote F1 (mean)** | 0.0491 |\n| **Oracle F1 (mean)** | 0.1567 |\n| **Greedy Micro F1** | 0.0688 |\n| **Construction Micro F1** | 0.0602 |\n| **Fleiss' κ** | -0.0021 |\n| **Soft Jaccard** | 0.2425 |\n| **Degeneracy rate** | 0.76% (3/397) |\n\n### Failure Mode 分布\n\n| Mode | 占比 |\n|------|------|\n| F1 (degeneracy) | 0.8% |\n| **F2 (low agreement)** | **93.5%** |\n| F3 (high agreement, low quality) | 4.5% |\n| None (SC works) | 1.3% |\n\n### Bootstrap\n\n- Diff (construction - greedy): **-0.0178**\n- 95% CI: [-0.0334, -0.0024] — 不过零，显著为负\n- p-value: 0.989\n\n### 结论：**success**\n\nSC 诊断 cascade 从 NER 成功推广到 RE，且表现更极端：\n\n1. **Correlation-selection gap 确认**：agreement 与 correctness 弱正相关（soft Jaccard=0.24），但 MV (0.049) 显著劣于 greedy (0.078)，construction 也劣于 greedy。Voting 不仅没帮上忙，反而伤害了性能。\n2. **F2 压倒性主导**（93.5%）：比 NER 还极端。模型在 RE 上的 8 次采样之间几乎没有一致性（κ ≈ 0），导致投票无法汇聚。\n3. **Oracle gap 巨大**：Oracle F1 (0.157) 是 greedy 的 2 倍，说明正确答案存在于样本中，但 MV 无法选出。\n4. 低绝对 F1 反映 Qwen2.5-7B 在 few-shot RE 上的基础能力较弱，但诊断 pattern 与 NER 一致——这正是 cross-task universality 的证据。\n\nRegistry 已更新为 DONE/success，cron 已删除。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "uuid": "77cc53b8-2071-4d99-a787-452cbc74c71c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DKSxrrvczdi7zmpWuq1ZGq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 128,
+                "cache_read_input_tokens": 38635,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 128
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_a3_ace05_re — RE SC 诊断结果（SciERC RE, Qwen2.5-7B, N=8, T=1.0）\n\n| 指标 | 值 |\n|------|-----|\n| **Greedy F1 (mean)** | 0.0777 |\n| **Construction F1 (mean)** | 0.0599 |\n| **Majority Vote F1 (mean)** | 0.0491 |\n| **Oracle F1 (mean)** | 0.1567 |\n| **Greedy Micro F1** | 0.0688 |\n| **Construction Micro F1** | 0.0602 |\n| **Fleiss' κ** | -0.0021 |\n| **Soft Jaccard** | 0.2425 |\n| **Degeneracy rate** | 0.76% (3/397) |\n\n### Failure Mode 分布\n\n| Mode | 占比 |\n|------|------|\n| F1 (degeneracy) | 0.8% |\n| **F2 (low agreement)** | **93.5%** |\n| F3 (high agreement, low quality) | 4.5% |\n| None (SC works) | 1.3% |\n\n### Bootstrap\n\n- Diff (construction - greedy): **-0.0178**\n- 95% CI: [-0.0334, -0.0024] — 不过零，显著为负\n- p-value: 0.989\n\n### 结论：**success**\n\nSC 诊断 cascade 从 NER 成功推广到 RE，且表现更极端：\n\n1. **Correlation-selection gap 确认**：agreement 与 correctness 弱正相关（soft Jaccard=0.24），但 MV (0.049) 显著劣于 greedy (0.078)，construction 也劣于 greedy。Voting 不仅没帮上忙，反而伤害了性能。\n2. **F2 压倒性主导**（93.5%）：比 NER 还极端。模型在 RE 上的 8 次采样之间几乎没有一致性（κ ≈ 0），导致投票无法汇聚。\n3. **Oracle gap 巨大**：Oracle F1 (0.157) 是 greedy 的 2 倍，说明正确答案存在于样本中，但 MV 无法选出。\n4. 低绝对 F1 反映 Qwen2.5-7B 在 few-shot RE 上的基础能力较弱，但诊断 pattern 与 NER 一致——这正是 cross-task universality 的证据。\n\nRegistry 已更新为 DONE/success，cron 已删除。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 82268,
+            "duration_api_ms": 76497,
+            "num_turns": 12,
+            "stop_reason": "end_turn",
+            "session_id": "56d1f0e2-6e56-4fd0-865c-e29b9ba1710c",
+            "total_cost_usd": 0.37030500000000005,
+            "usage": {
+              "input_tokens": 12,
+              "cache_creation_input_tokens": 26922,
+              "cache_read_input_tokens": 236845,
+              "output_tokens": 3282,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 26922,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 742,
+                  "cache_read_input_tokens": 38635,
+                  "cache_creation_input_tokens": 128,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 128
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1415,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00151,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 12,
+                "outputTokens": 3282,
+                "cacheReadInputTokens": 236845,
+                "cacheCreationInputTokens": 26922,
+                "webSearchRequests": 0,
+                "costUSD": 0.36879500000000004,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "40004e58-866b-425a-add7-6ab1c8f78f79"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-a3-scierc-re-done.md"
+}

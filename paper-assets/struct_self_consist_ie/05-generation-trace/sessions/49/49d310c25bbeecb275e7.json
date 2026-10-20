@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49d310c25bbeecb275e7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "eval gate0 ft002v2",
+  "task_key": "worker_eval_gate0_ft002v2_20260514T084152",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_gate0_ft002v2_20260514T084152_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "2bb31b8b4301b6ff84db00d7523d06549ec1472bf9eaa66e76897a7d21da0c85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Gate 0 评测结果：ft_002_v2 **PASS**\n\n| 指标 | ft_002_v2 | ft_001 | 门槛 | 判定 |\n|------|-----------|--------|------|------|\n| NER greedy F1 | **66.15%** | 60.4% | ≥56% | PASS (+5.75pp vs ft_001) |\n| RE greedy F1 | **41.77%** | 33.8% | ≥40% | PASS (+7.97pp vs ft_001) |\n| Parse failures | 0 | - | - | - |\n\n**Gate 0 通过。** 两项指标均超过门槛，且相比 ft_001 有显著提升：NER +5.75pp，RE +7.97pp。\n\n注意：report 的 `verdict` 字段显示 FAIL，但那是 pilot 的 consistency 判定标准（要求 rho_sj ≥ 0.40 等），不适用于 Gate 0 的绝对 F1 门槛判定。按 Gate 0 标准（NER F1 ≥ 56%, RE F1 ≥ 40%），两项均通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gate0-ft002v2.md"
+}

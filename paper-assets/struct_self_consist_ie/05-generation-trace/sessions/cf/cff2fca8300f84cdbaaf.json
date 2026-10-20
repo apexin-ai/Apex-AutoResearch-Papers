@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cff2fca8300f84cdbaaf",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh mf4v2 completion monitor recompute",
+  "task_key": "worker_ssh_mf4v2_completion_monitor_recompute_20260521T214237",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_mf4v2_completion_monitor_recompute_20260521T214237_result.json",
+    "occurrence": 1,
+    "bytes": 204,
+    "sha256": "161d4e5484c354409dc894e2c68ef6da477dc3aa4a7ef321f1467bddef58b8a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "270 秒后回来检查。当前进度：\n- s123_v3: 62.6% (5090-c)，约 7 分钟完成\n- s456_v3: 63.8% (5090-c)，约 7 分钟完成\n- s42_v3: 19.8% (5090)，约 1.5 小时才能完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mf4v2-completion-monitor-recompute.md"
+}

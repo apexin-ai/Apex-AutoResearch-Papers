@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9408f0b03c0870012d9",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "submit exp 029b retry",
+  "task_key": "worker_submit_exp_029b_retry_20260518T004331",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_submit_exp_029b_retry_20260518T004331_result.json",
+    "occurrence": 1,
+    "bytes": 1135,
+    "sha256": "3eb7af071fdc52ca574236997ff0b83b48bacaed8e3f636a12a3580f3c44189c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "磁盘 100% 满，**无法启动训练**。`checkpoints/` 占 199G，其中大量 merged 模型（每个 ~16G）。\n\n需要你决定清理哪些 checkpoint。当前占用大户：\n\n| 目录 | 大小 | 类型 |\n|------|------|------|\n| `qwen3-8b-wnut17-merged` | 16G | merged |\n| `qwen3-8b-scierc-merged-v2` | 16G | merged |\n| `qwen3-8b-scierc-merged-rank8` | 16G | merged |\n| `qwen3-8b-fewnerd-merged` | 16G | merged |\n| `qwen3-8b-fewnerd-exp021-merged` | 16G | merged |\n| `qwen3-8b-fewnerd-5epoch-merged` | 16G | merged |\n| `qwen3-8b-conll2003-merged` | 16G | merged |\n| `llama3.1-8b-scierc-merged` | 15G | merged |\n| `llama3.1-8b-conll2003-merged` | 15G | merged |\n| `qwen3-4b-*-merged` (×3) | 23G | merged |\n| `llama3.2-3b-scierc-merged` | 6G | merged |\n| 各 lora 目录 | ~20G 合计 | lora adapter |\n\nexp_029b 是 SciERC 10-epoch LoRA 训练，训练本身 + checkpoint 估计需要至少 **20-30G** 空闲空间。\n\n**建议**：删除不再需要的 merged 模型（merged 可以从 base + lora 重新生成）。请告知哪些可以删除，或者是否可以删除所有 merged 模型。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-029b-retry.md"
+}

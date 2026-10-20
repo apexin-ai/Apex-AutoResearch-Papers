@@ -1,0 +1,729 @@
+{
+  "schema_version": "1.0",
+  "id": "536ddc5c7301459fac62",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "analysis output mbr selection",
+  "task_key": "worker_analysis_output_mbr_selection_20260518T162549",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analysis_output_mbr_selection_20260518T162549.jsonl",
+    "occurrence": 1,
+    "bytes": 64596,
+    "sha256": "8a4480656d0e18f7354720b121a513c4f28e134cf78218ff9834d42ae91aee8f"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "tool_call": 17,
+      "tool_result": 17,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T16:31:39.845159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T16:31:39.845500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T16:31:39.845689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T16:31:39.846023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"\n…[truncated 8656 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T16:31:39.846219+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T16:31:39.846505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"conll2003_test_00000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -4.9488675847250505, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.07386369529440374}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.3127497540126996, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.034518653044965666}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"DEF\\\\\\\", \\\\\\\"head_start\\\\\\\": 9, \\\\\\\"head_end\\\\\\\": 14, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 36}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -8.493769360864384, \\\\\\\"n_tokens\\\\\\\": 118, \\\\\\\"mean_logprob\\\\\\\": -0.07198109627851174}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cum\n…[truncated 5559 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T16:31:39.846665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T16:31:39.847012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"fewnerd_test_07296\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"The musical played the Dominion Theatre in 2014 in a limited engagement and starred Aled Jones , Tom Chambers , Rachel Stanley , Louise Bowden , and Wendi Peters .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Dominion Theatre\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"building\\\\\\\", \\\\\\\"start\\\\\\\": 23, \\\\\\\"end\\\\\\\": 39}, {\\\\\\\"text\\\\\\\": \\\\\\\"Aled Jones\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"person\\\\\\\", \\\\\\\"start\\\\\\\": 84, \\\\\\\"end\\\\\\\": 94}, {\\\\\\\"text\\\\\\\": \\\\\\\"Tom Chambers\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"person\\\\\\\", \\\\\\\"start\\\\\\\": 97, \\\\\\\"end\\\\\\\": 109}, {\\\\\\\"text\\\\\\\": \\\\\\\"Rachel Stanley\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"person\\\\\\\", \\\\\\\"start\\\\\\\": 112, \\\\\\\"end\\\\\\\": 126}, {\\\\\\\"text\\\\\\\": \\\\\\\"Louise Bowden\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"person\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 142}, {\\\\\\\"text\\\\\\\": \\\\\\\"Wendi Peters\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"person\\\\\\\", \\\\\\\"start\\\\\\\": 149, \\\\\\\"end\\\\\\\": 161}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Dominion Theatre\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"building\\\\\\\", \\\\\\\"start\\\\\\\": 23, \\\\\\\"end\\\\\\\": 39}, {\\\\\\\"text\\\\\\\": \\\\\\\"Aled Jones\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"person\\\\\\\", \\\\\\\"start\\\\\\\": 84, \\\\\\\"end\\\\\\\": 94}, {\\\\\\\"text\\\\\\\": \\\\\\\"Tom Chambers\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"person\\\\\\\", \\\\\\\"start\\\\\\\": 97, \\\\\\\"end\\\\\\\": 109}, {\\\\\\\"text\\\\\\\": \\\\\\\"Rachel Stanley\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"person\\\\\\\", \\\\\\\"start\\\\\\\": 112, \\\\\\\"end\\\\\\\": 126}, {\\\\\\\"text\\\\\\\": \\\\\\\"Louise Bowden\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"person\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 142}, {\\\\\\\"text\\\\\\\": \\\\\\\"Wendi Peters\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"person\\\\\\\", \\\\\\\"start\\\\\\\": 149, \\\\\\\"end\\\\\\\": 161}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.1988895523322185, \\\\\\\"n_tokens\\\\\\\": 187, \\\\\\\"mean_logprob\\\\\\\": -0.001063580493755179, \\\\\\\"token_logprobs\\\\\\\": [0.0, 0.0, 0.0, -0.011052576825022697, 0.0, 0.0, -6.437094270950183e-05, -0.1224166750907898, 0.0, -0.0004345426568761468, -0.001297942479\n…[truncated 9000 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T16:31:39.847247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/code/analysis*.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T16:31:39.847398+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/code/analysis_d140_oracle_gated.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_degen_gated_selection.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_mbr_selection.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_n16_selection.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analysis_scierc_re_n16_selection.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T16:31:39.847554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/analysis_mbr_selection.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T16:31:39.847750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\n\\\\ndef load_data(path, max_samples=8, gold_filter=False):\\\\n    instances = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            obj = json.loads(line)\\\\n            if gold_filter and len(obj[\\\\\\\"gold\\\\\\\"][\\\\\\\"entities\\\\\\\"]) == 0:\\\\n                continue\\\\n            samples = obj[\\\\\\\"samples\\\\\\\"][:max_samples]\\\\n            instances.append({\\\\n                \\\\\\\"id\\\\\\\": obj[\\\\\\\"id\\\\\\\"],\\\\n                \\\\\\\"gold\\\\\\\": obj[\\\\\\\"gold\\\\\\\"],\\\\n                \\\\\\\"samples\\\\\\\": samples,\\\\n                \\\\\\\"greedy\\\\\\\": obj[\\\\\\\"greedy\\\\\\\"],\\\\n                \\\\\\\"logprobs\\\\\\\": obj.get(\\\\\\\"logprobs\\\\\\\", [])[:max_samples],\\\\n            })\\\\n    return instances\\\\n\\\\ndef entity_set(sample):\\\\n    return set((e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in sample.get(\\\\\\\"entities\\\\\\\", []))\\\\n\\\\ndef entity_overlap(s1, s2):\\\\n    e1 = entity_set(s1)\\\\n    e2 = entity_set(s2)\\\\n    if len(e1) == 0 and len(e2) == 0:\\\\n        return 1.0\\\\n    if len(e1) == 0 or len(e2) == 0:\\\\n        return 0.0\\\\n    intersection = len(e1 & e2)\\\\n    return 2 * intersection / (len(e1) + len(e2))\\\\n\\\\ndef mbr_scores(samples):\\\\n    n = len(samples)\\\\n    scores = []\\\\n    for i in range(n):\\\\n        total = 0.0\\\\n        for j in range(n):\\\\n            if i == j:\\\\n                continue\\\\n            total += entity_overlap(samples[i], samples[j])\\\\n        scores.append(total / (n - 1))\\\\n    return scores\\\\n\\\\ndef entity_f1(pred_sample, gold):\\\\n    pred = entity_set(pred_sample)\\\\n    gold_set = entity_set(gold)\\\\n    if len(pred) == 0 and len(gold_set) == 0:\\\\n        return 1.0\\\\n    if len(pred) == 0 or len(gold_set) == 0:\\\\n        return 0.0\\\\n    tp = len(pred & gold_set)\\\\n    p = tp / len(pred)\\\\n    r = tp / len(gold_set)\\\\n    if p + r == 0:\\\\n        return 0.0\\\\n    return 2 * p * r / (p + r)\\\\n\\\\ndef evaluate_dataset(path, name, max_samples=8, gold_filter=False):\\\\n    in\n…[truncated 2931 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T16:31:39.847904+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/analysis_multiseed_selection_f1.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T16:31:39.848196+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Multi-seed Selection F1 analysis for reviewer C2 response.\\\\n\\\\nFor each instance, score each sample with 5 signals (VC/SJ/FK/EM/LP),\\\\nselect the top-scoring sample, compute its F1 vs gold.\\\\nReport mean±std over 3 seeds with bootstrap p-value vs greedy.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\\\nfrom consistency import (\\\\n    _ner_soft_jaccard_pair,\\\\n    _re_soft_jaccard_pair,\\\\n    _extract_surface_keys,\\\\n)\\\\nfrom evaluation import per_instance_f1\\\\n\\\\nBASE = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie\\\\\\\"\\\\n\\\\nEXPERIMENT_GROUPS = {\\\\n    \\\\\\\"qwen_scierc_ner_n8\\\\\\\": {\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"seeds\\\\\\\": {\\\\n            42: f\\\\\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\\\\\",\\\\n            123: f\\\\\\\"{BASE}/output/exp_018_qwen_scierc_seed123/samples.jsonl\\\\\\\",\\\\n            456: f\\\\\\\"{BASE}/output/exp_018_qwen_scierc_seed456/samples.jsonl\\\\\\\",\\\\n        },\\\\n    },\\\\n    \\\\\\\"llama_scierc_ner_n8\\\\\\\": {\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"seeds\\\\\\\": {\\\\n            42: f\\\\\\\"{BASE}/output/exp_018_llama_scierc_seed42_r1024/samples.jsonl\\\\\\\",\\\\n            123: f\\\\\\\"{BASE}/output/exp_018_llama_scierc_seed123/samples.jsonl\\\\\\\",\\\\n            456: f\\\\\\\"{BASE}/output/exp_018_llama_scierc_seed456/samples.jsonl\\\\\\\",\\\\n        },\\\\n    },\\\\n    \\\\\\\"llama_conll_ner_n16\\\\\\\": {\\\\n        \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n        \\\\\\\"seeds\\\\\\\": {\\\\n            42: f\\\\\\\"{BASE}/output/exp_017_llama_conll_n16_r1024/samples.jsonl\\\\\\\",\\\\n            123: f\\\\\\\"{BASE}/output/exp_017_llama_conll_n16_s123_r1024/samples.jsonl\\\\\\\",\\\\n            456: f\\\\\\\"{BASE}/output/exp_017_llama_conll_n16_s456_r1024/samples.jsonl\\\\\\\",\\\\n        },\\\\n    },\\\\n}\\\\n\\\\nN_BOOTSTRAP = 10000\\\\nBOOTSTRAP_SEED = \n…[truncated 7242 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T16:31:39.848447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code/analysis_mbr_selection.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"MBR (Minimum Bayes Risk) selection for NER: select sample with highest\naverage entity-set Jaccard overlap with other samples.\"\"\"\n\nimport json\nimport sys\nfrom collections import defaultdict\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\n\nDATASETS = {\n    \"SciERC\": {\n        \"path\": f\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\",\n        \"max_samples\": 8,\n        \"gold_filter\": True,\n    },\n    \"CoNLL\": {\n        \"path\": f\"{BASE}/output/exp_002_conll_n16_r1024/samples.jsonl\",\n        \"max_samples\": 8,\n        \"gold_filter\": False,\n    },\n    \"FewNERD\": {\n        \"path\": f\"{BASE}/output/exp_027_fewnerd_n16/samples.jsonl\",\n        \"max_samples\": 8,\n        \"gold_filter\": True,\n    },\n}\n\n\ndef load_data(path, max_samples=8, gold_filter=False):\n    instances = []\n    with open(path) as f:\n        for line in f:\n            obj = json.loads(line)\n            if gold_filter and len(obj[\"gold\"][\"entities\"]) == 0:\n                continue\n            samples = obj[\"samples\"][:max_samples]\n            instances.append({\n                \"id\": obj[\"id\"],\n                \"gold\": obj[\"gold\"],\n                \"samples\": samples,\n                \"greedy\": obj[\"greedy\"],\n                \"logprobs\": obj.get(\"logprobs\", [])[:max_samples],\n            })\n    return instances\n\n\ndef text_type_set(sample):\n    \"\"\"Entity set as {(text, type)} for MBR overlap computation.\"\"\"\n    return frozenset((e[\"text\"], e[\"type\"]) for e in sample.get(\"entities\", []))\n\n\ndef span_set(sample):\n    \"\"\"Entity set as {(start, end, type)} for F1 evaluation.\"\"\"\n    return set((e[\"start\"], e[\"end\"], e[\"type\"]) for e in sample.get(\"entities\", []))\n\n\ndef jaccard(set_a, set_b):\n    if len(set_a) == 0 and len(set_b) == 0:\n        return 1.0\n    union = len(set_a | set_b)\n    if union == 0:\n        return 1.0\n    return len(set_a & set_b) / union\n\n\ndef mbr_scores(samples):\n    n = len(samples)\n    sets = [text_type_set(s) for s in samples]\n    scores = []\n    for i in range(n):\n        total = sum(jaccard(sets[i], sets[j]) for j in range(n) if j != i)\n        scores.append(total / (n - 1))\n    return scores\n\n\ndef entity_f1(pred_sample, gold):\n    pred = span_set(pred_sample)\n    gold_s = span_set(gold)\n    if len(pred) == 0 and len(gold_s) == 0:\n        return 1.0\n    if len(pred) == 0 or len(gold_s) == 0:\n        return 0.0\n    tp = len(pred & gold_s)\n    p = tp / len(pred)\n    r = tp / len(gold_s)\n    if p + r == 0:\n        return 0.0\n    return 2 * p * r / (p + r)\n\n\ndef degeneracy_ratio(samples):\n    \"\"\"Fraction of unique (text,type) entity sets among N samples.\n    1/N = fully degenerate (all identical), 1.0 = all distinct.\"\"\"\n    sets = [text_type_set(s) for s in samples]\n    n_unique = len(set(sets))\n    return n_unique / len(samples)\n\n\ndef evaluate_dataset(name, cfg):\n    instances = load_data(cfg[\"path\"], cfg[\"max_samples\"], cfg[\"gold_filter\"])\n    n = len(instances)\n\n    greedy_f1s, lp_f1s, mbr_f1s, oracle_f1s = [], [], [], []\n    degen_ratios = []\n\n    for inst in instances:\n        gold = inst[\"gold\"]\n        samples = inst[\"samples\"]\n        logprobs = inst[\"logprobs\"]\n\n        greedy_f1s.append(entity_f1(inst[\"greedy\"], gold))\n\n        if len(logprobs) == len(samples):\n            lp_idx = max(range(len(logprobs)), key=lambda i: logprobs[i])\n        else:\n            lp_idx = 0\n        lp_f1s.append(entity_f1(samples[lp_idx], gold))\n\n        scores = mbr_scores(samples)\n        mbr_idx = scores.index(max(scores))\n        mbr_f1s.append(entity_f1(samples[mbr_idx], gold))\n\n        best_f1 = max(entity_f1(s, gold) for s in samples)\n        oracle_f1s.append(best_f1)\n\n        degen_ratios.append(degeneracy_ratio(samples))\n\n    greedy_avg = sum(greedy_f1s) / n\n    lp_avg = sum(lp_f1s) / n\n    mbr_avg = sum(mbr_f1s) / n\n    oracle_avg = sum(oracle_f1s) / n\n\n    # Degeneracy-grouped analysis\n    # Low diversity: unique_ratio <= 0.25 (1-2 unique sets out of 8)\n    # Medium: 0.25 < ratio <= 0.625 (3-5 unique)\n    # High: ratio > 0.625 (6-8 unique)\n    degen_groups = {\"low_diversity\": [], \"medium\": [], \"high_diversity\": []}\n    for i, dr in enumerate(degen_ratios):\n        if dr <= 0.25:\n            degen_groups[\"low_diversity\"].append(i)\n        elif dr <= 0.625:\n            degen_groups[\"medium\"].append(i)\n        else:\n            degen_groups[\"high_diversity\"].append(i)\n\n    degen_results = {}\n    for group_name, indices in degen_groups.items():\n        if not indices:\n            degen_results[group_name] = None\n            continue\n        gn = len(indices)\n        degen_results[group_name] = {\n            \"count\": gn,\n            \"greedy\": sum(greedy_f1s[i] for i in indices) / gn,\n            \"lp\": sum(lp_f1s[i] for i in indices) / gn,\n            \"mbr\": sum(mbr_f1s[i] for i in indices) / gn,\n            \"oracle\": sum(oracle_f1s[i] for i in indices) / gn,\n        }\n\n    return {\n        \"name\": name, \"n\": n,\n        \"greedy\": greedy_avg, \"lp\": lp_avg,\n        \"mbr\": mbr_avg, \"oracle\": oracle_avg,\n        \"degen\": degen_results,\n    }\n\n\ndef main():\n    results = []\n    for name, cfg in DATASETS.items():\n        r = evaluate_dataset(name, cfg)\n        results.append(r)\n        print(f\"\\n{'='*60}\")\n        print(f\"Dataset: {r['name']} ({r['n']} instances, N={cfg['max_samples']})\")\n        print(f\"{'='*60}\")\n        print(f\"  Greedy F1:        {r['greedy']:.4f}\")\n        print(f\"  LP Selection F1:  {r['lp']:.4f}\")\n        print(f\"  MBR Selection F1: {r['mbr']:.4f}\")\n        print(f\"  Oracle F1:        {r['oracle']:.4f}\")\n        print(f\"  Delta (MBR-Greedy): {r['mbr'] - r['greedy']:+.4f}\")\n        print(f\"  Delta (MBR-LP):     {r['mbr'] - r['lp']:+.4f}\")\n\n        print(f\"\\n  Degeneracy breakdown:\")\n        for gname in [\"low_diversity\", \"medium\", \"high_diversity\"]:\n            d = r[\"degen\"][gname]\n            if d is None:\n                print(f\"    {gname}: (no instances)\")\n            else:\n                print(f\"    {gname} ({d['count']} inst): \"\n                      f\"Greedy={d['greedy']:.4f}  LP={d['lp']:.4f}  \"\n                      f\"MBR={d['mbr']:.4f}  Oracle={d['oracle']:.4f}  \"\n                      f\"MBR-Grd={d['mbr']-d['greedy']:+.4f}\")\n\n    print(f\"\\n\\n{'='*70}\")\n    print(\"Summary Table\")\n    print(f\"{'='*70}\")\n    print(f\"{'Dataset':<12} {'Greedy':>8} {'LP Sel':>8} {'MBR Sel':>8} {'Oracle':>8} {'MBR-Grd':>8} {'MBR-LP':>8}\")\n    print(f\"{'-'*12} {'-'*8} {'-'*8} {'-'*8} {'-'*8} {'-'*8} {'-'*8}\")\n    for r in results:\n        print(f\"{r['name']:<12} {r['greedy']:>8.4f} {r['lp']:>8.4f} {r['mbr']:>8.4f} \"\n              f\"{r['oracle']:>8.4f} {r['mbr']-r['greedy']:>+8.4f} {r['mbr']-r['lp']:>+8.4f}\")\n\n    # JSON output\n    out_path = f\"{BASE}/output/analysis_mbr_selection.json\"\n    out = {}\n    for r in results:\n        out[r[\"name\"]] = {\n            \"n\": r[\"n\"],\n            \"greedy_f1\": round(r[\"greedy\"], 5),\n            \"lp_f1\": round(r[\"lp\"], 5),\n            \"mbr_f1\": round(r[\"mbr\"], 5),\n            \"oracle_f1\": round(r[\"oracle\"], 5),\n            \"degeneracy\": {\n                k: {kk: round(vv, 5) if isinstance(vv, float) else vv\n                    for kk, vv in v.items()} if v else None\n                for k, v in r[\"degen\"].items()\n            },\n        }\n    with open(out_path, \"w\") as f:\n        json.dump(out, f, indent=2)\n    print(f\"\\nSaved JSON: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T16:31:39.848681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code/analysis_mbr_selection.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T16:31:39.848855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/analysis_mbr_selection.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"MBR (Minimum Bayes Risk) selection for NER: select sample with highest\naverage entity-set Jaccard overlap with other samples.\"\"\"\n\nimport json\nimport sys\nfrom collections import defaultdict\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\n\nDATASETS = {\n    \"SciERC\": {\n        \"path\": f\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\",\n        \"max_samples\": 8,\n        \"gold_filter\": True,\n    },\n    \"CoNLL\": {\n        \"path\": f\"{BASE}/output/exp_002_conll_n16_r1024/samples.jsonl\",\n        \"max_samples\": 8,\n        \"gold_filter\": False,\n    },\n    \"FewNERD\": {\n        \"path\": f\"{BASE}/output/exp_027_fewnerd_n16/samples.jsonl\",\n        \"max_samples\": 8,\n        \"gold_filter\": True,\n    },\n}\n\n\ndef load_data(path, max_samples=8, gold_filter=False):\n    instances = []\n    with open(path) as f:\n        for line in f:\n            obj = json.loads(line)\n            if gold_filter and len(obj[\"gold\"][\"entities\"]) == 0:\n                continue\n            samples = obj[\"samples\"][:max_samples]\n            instances.append({\n                \"id\": obj[\"id\"],\n                \"gold\": obj[\"gold\"],\n                \"samples\": samples,\n                \"greedy\": obj[\"greedy\"],\n                \"logprobs\": obj.get(\"logprobs\", [])[:max_samples],\n            })\n    return instances\n\n\ndef text_type_set(sample):\n    \"\"\"Entity set as {(text, type)} for MBR overlap computation.\"\"\"\n    return frozenset((e[\"text\"], e[\"type\"]) for e in sample.get(\"entities\", []))\n\n\ndef span_set(sample):\n    \"\"\"Entity set as {(start, end, type)} for F1 evaluation.\"\"\"\n    return set((e[\"start\"], e[\"end\"], e[\"type\"]) for e in sample.get(\"entities\", []))\n\n\ndef jaccard(set_a, set_b):\n    if len(set_a) == 0 and len(set_b) == 0:\n        return 1.0\n    union = len(set_a | set_b)\n    if union == 0:\n        return 1.0\n    return len(set_a & set_b) / union\n\n\ndef mbr_scores(samples):\n    n = len(samples)\n    sets = [text_type_set(s) for s in samples]\n    scores = []\n    for i in range(n):\n        total = sum(jaccard(sets[i], sets[j]) for j in range(n) if j != i)\n        scores.append(total / (n - 1))\n    return scores\n\n\ndef entity_f1(pred_sample, gold):\n    pred = span_set(pred_sample)\n    gold_s = span_set(gold)\n    if len(pred) == 0 and len(gold_s) == 0:\n        return 1.0\n    if len(pred) == 0 or len(gold_s) == 0:\n        return 0.0\n    tp = len(pred & gold_s)\n    p = tp / len(pred)\n    r = tp / len(gold_s)\n    if p + r == 0:\n        return 0.0\n    return 2 * p * r / (p + r)\n\n\ndef degeneracy_ratio(samples):\n    sets = [text_type_set(s) for s in samples]\n    n_unique = len(set(sets))\n    return n_unique / len(samples)\n\n\ndef evaluate_dataset(name, cfg):\n    instances = load_data(cfg[\"path\"], cfg[\"max_samples\"], cfg[\"gold_filter\"])\n    n = len(instances)\n\n    greedy_f1s, lp_f1s, mbr_f1s, oracle_f1s = [], [], [], []\n    degen_ratios = []\n\n    for inst in instances:\n        gold = inst[\"gold\"]\n        samples = inst[\"samples\"]\n        logprobs = inst[\"logprobs\"]\n\n        greedy_f1s.append(entity_f1(inst[\"greedy\"], gold))\n\n        if len(logprobs) == len(samples):\n            lp_idx = max(range(len(logprobs)), key=lambda i: logprobs[i])\n        else:\n            lp_idx = 0\n        lp_f1s.append(entity_f1(samples[lp_idx], gold))\n\n        scores = mbr_scores(samples)\n        mbr_idx = scores.index(max(scores))\n        mbr_f1s.append(entity_f1(samples[mbr_idx], gold))\n\n        best_f1 = max(entity_f1(s, gold) for s in samples)\n        oracle_f1s.append(best_f1)\n\n        degen_ratios.append(degeneracy_ratio(samples))\n\n    greedy_avg = sum(greedy_f1s) / n\n    lp_avg = sum(lp_f1s) / n\n    mbr_avg = sum(mbr_f1s) / n\n    oracle_avg = sum(oracle_f1s) / n\n\n    degen_groups = {\"low_diversity\": [], \"medium\": [], \"high_diversity\": []}\n    for i, dr in enumerate(degen_ratios):\n        if dr <= 0.25:\n            degen_groups[\"low_diversity\"].append(i)\n        elif dr <= 0.625:\n            degen_groups[\"medium\"].append(i)\n        else:\n            degen_groups[\"high_diversity\"].append(i)\n\n    degen_results = {}\n    for group_name, indices in degen_groups.items():\n        if not indices:\n            degen_results[group_name] = None\n            continue\n        gn = len(indices)\n        degen_results[group_name] = {\n            \"count\": gn,\n            \"greedy\": sum(greedy_f1s[i] for i in indices) / gn,\n            \"lp\": sum(lp_f1s[i] for i in indices) / gn,\n            \"mbr\": sum(mbr_f1s[i] for i in indices) / gn,\n            \"oracle\": sum(oracle_f1s[i] for i in indices) / gn,\n        }\n\n    return {\n        \"name\": name, \"n\": n,\n        \"greedy\": greedy_avg, \"lp\": lp_avg,\n        \"mbr\": mbr_avg, \"oracle\": oracle_avg,\n        \"degen\": degen_results,\n    }\n\n\ndef main():\n    results = []\n    for name, cfg in DATASETS.items():\n        r = evaluate_dataset(name, cfg)\n        results.append(r)\n        print(f\"\\n{'='*60}\")\n        print(f\"Dataset: {r['name']} ({r['n']} instances, N={cfg['max_samples']})\")\n        print(f\"{'='*60}\")\n        print(f\"  Greedy F1:        {r['greedy']:.4f}\")\n        print(f\"  LP Selection F1:  {r['lp']:.4f}\")\n        print(f\"  MBR Selection F1: {r['mbr']:.4f}\")\n        print(f\"  Oracle F1:        {r['oracle']:.4f}\")\n        print(f\"  Delta (MBR-Greedy): {r['mbr'] - r['greedy']:+.4f}\")\n        print(f\"  Delta (MBR-LP):     {r['mbr'] - r['lp']:+.4f}\")\n\n        print(f\"\\n  Degeneracy breakdown:\")\n        for gname in [\"low_diversity\", \"medium\", \"high_diversity\"]:\n            d = r[\"degen\"][gname]\n            if d is None:\n                print(f\"    {gname}: (no instances)\")\n            else:\n                print(f\"    {gname} ({d['count']} inst): \"\n                      f\"Greedy={d['greedy']:.4f}  LP={d['lp']:.4f}  \"\n                      f\"MBR={d['mbr']:.4f}  Oracle={d['oracle']:.4f}  \"\n                      f\"MBR-Grd={d['mbr']-d['greedy']:+.4f}\")\n\n    print(f\"\\n\\n{'='*70}\")\n    print(\"Summary Table\")\n    print(f\"{'='*70}\")\n    print(f\"{'Dataset':<12} {'Greedy':>8} {'LP Sel':>8} {'MBR Sel':>8} {'Oracle':>8} {'MBR-Grd':>8} {'MBR-LP':>8}\")\n    print(f\"{'-'*12} {'-'*8} {'-'*8} {'-'*8} {'-'*8} {'-'*8} {'-'*8}\")\n    for r in results:\n        print(f\"{r['name']:<12} {r['greedy']:>8.4f} {r['lp']:>8.4f} {r['mbr']:>8.4f} \"\n              f\"{r['oracle']:>8.4f} {r['mbr']-r['greedy']:>+8.4f} {r['mbr']-r['lp']:>+8.4f}\")\n\n    out_path = f\"{BASE}/output/analysis_mbr_selection.json\"\n    out = {}\n    for r in results:\n        out[r[\"name\"]] = {\n            \"n\": r[\"n\"],\n            \"greedy_f1\": round(r[\"greedy\"], 5),\n            \"lp_f1\": round(r[\"lp\"], 5),\n            \"mbr_f1\": round(r[\"mbr\"], 5),\n            \"oracle_f1\": round(r[\"oracle\"], 5),\n            \"degeneracy\": {\n                k: {kk: round(vv, 5) if isinstance(vv, float) else vv\n                    for kk, vv in v.items()} if v else None\n                for k, v in r[\"degen\"].items()\n            },\n        }\n    with open(out_path, \"w\") as f:\n        json.dump(out, f, indent=2)\n    print(f\"\\nSaved JSON: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\npython3 /root/autodl-tmp/struct_self_consist_ie/code/analysis_mbr_selection.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T16:31:39.849210+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cat > /root/autodl-tmp/struct_self_consist_ie/code/analysis_mbr_selection.py << \\\\\\\\'SCRIPT_EOF\\\\\\\\'\\\\\\\\n#!/usr/bin/env python3\\\\\\\\n\\\\\\\"\\\\\\\"\\\\\\\"MBR (Minimum Bayes Risk) selection for NER: select sample with highest\\\\\\\\naverage entity-set Jaccard overlap with other samples.\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n\\\\\\\\nimport json\\\\\\\\nimport sys\\\\\\\\nfrom collections import defaultdict\\\\\\\\n\\\\\\\\nBASE = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie\\\\\\\"\\\\\\\\n\\\\\\\\nDATASETS = {\\\\\\\\n    \\\\\\\"SciERC\\\\\\\": {\\\\\\\\n        \\\\\\\"path\\\\\\\": f\\\\\\\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\\\\\\\",\\\\\\\\n        \\\\\\\"max_samples\\\\\\\": 8,\\\\\\\\n        \\\\\\\"gold_filter\\\\\\\": True,\\\\\\\\n    },\\\\\\\\n    \\\\\\\"CoNLL\\\\\\\": {\\\\\\\\n        \\\\\\\"path\\\\\\\": f\\\\\\\"{BASE}/output/exp_002_conll_n16_r1024/samples.jsonl\\\\\\\",\\\\\\\\n        \\\\\\\"max_samples\\\\\\\": 8,\\\\\\\\n        \\\\\\\"gold_filter\\\\\\\": False,\\\\\\\\n    },\\\\\\\\n    \\\\\\\"FewNERD\\\\\\\": {\\\\\\\\n        \\\\\\\"path\\\\\\\": f\\\\\\\"{BASE}/output/exp_027_fewnerd_n16/samples.jsonl\\\\\\\",\\\\\\\\n        \\\\\\\"max_samples\\\\\\\": 8,\\\\\\\\n        \\\\\\\"gold_filter\\\\\\\": True,\\\\\\\\n    },\\\\\\\\n}\\\\\\\\n\\\\\\\\n\\\\\\\\ndef load_data(path, max_samples=8, gold_filter=False):\\\\\\\\n    instances = []\\\\\\\\n    with open(path) as f:\\\\\\\\n        for line in f:\\\\\\\\n            obj = json.loads(line)\\\\\\\\n            if gold_filter and len(obj[\\\\\\\"gold\\\\\\\"][\\\\\\\"entities\\\\\\\"]) == 0:\\\\\\\\n                continue\\\\\\\\n            samples = obj[\\\\\\\"samples\\\\\\\"][:max_samples]\\\\\\\\n            instances.append({\\\\\\\\n                \\\\\\\"id\\\\\\\": obj[\\\\\\\"id\\\\\\\"],\\\\\\\\n                \\\\\\\"gold\\\\\\\": obj[\\\\\\\"gold\\\\\\\"],\\\\\\\\n                \\\\\\\"samples\\\\\\\": samples,\\\\\\\\n                \\\\\\\"greedy\\\\\\\": obj[\\\\\\\"greedy\\\\\\\"],\\\\\\\\n                \\\\\\\"logprobs\\\\\\\": obj.get(\\\\\\\"logprobs\\\\\\\", [])[:max_samples],\\\\\\\\n            })\\\\\\\\n    return instances\\\\\\\\n\\\\\\\\n\\\\\\\\ndef text_type_set(sample):\\\\\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Entity set as {(text, type)} for MBR overlap computatio\n…[truncated 7409 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T16:31:39.849420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /usr/bin/python*",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T16:31:39.849556+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/usr/bin/python*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T16:31:39.849678+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root -name \"python*\" -type f -maxdepth 5",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T16:31:39.849811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python3.12\\\\n/root/miniconda3/bin/python3.12-config\\\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\\\n/root/miniconda3/include/python3.12/cpython/pythonrun.h\\\\n/root/miniconda3/include/python3.12/pythonrun.h\\\\n/root/miniconda3/lib/pkgconfig/python-3.12-embed.pc\\\\n/root/miniconda3/lib/pkgconfig/python-3.12.pc\\\\n/root/miniconda3/lib/python3.12/config-3.12-x86_64-linux-gnu/python-config.py\\\\n/root/miniconda3/lib/python3.12/config-3.12-x86_64-linux-gnu/python.o\\\\n/root/miniconda3/pkgs/python-3.12.3-h996f2a0_1/bin/python3.12\\\\n/root/miniconda3/pkgs/python-3.12.3-h996f2a0_1/bin/python3.12-config\\\\n/root/miniconda3/pkgs/python-3.12.3-h996f2a0_1.conda\\\\n/root/miniconda3/share/man/man1/python3.12.1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T16:31:39.849935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code/analysis_mbr_selection.py | base64 -w0",
+              "description": "Base64 encode the script for transfer"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T16:31:39.850079+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "IyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwoiIiJNQlIgKE1pbmltdW0gQmF5ZXMgUmlzaykgc2VsZWN0aW9uIGZvciBORVI6IHNlbGVjdCBzYW1wbGUgd2l0aCBoaWdoZXN0CmF2ZXJhZ2UgZW50aXR5LXNldCBKYWNjYXJkIG92ZXJsYXAgd2l0aCBvdGhlciBzYW1wbGVzLiIiIgoKaW1wb3J0IGpzb24KaW1wb3J0IHN5cwpmcm9tIGNvbGxlY3Rpb25zIGltcG9ydCBkZWZhdWx0ZGljdAoKQkFTRSA9ICIvcm9vdC9hdXRvZGwtdG1wL3N0cnVjdF9zZWxmX2NvbnNpc3RfaWUiCgpEQVRBU0VUUyA9IHsKICAgICJTY2lFUkMiOiB7CiAgICAgICAgInBhdGgiOiBmIntCQVNFfS9vdXRwdXQvZXhwXzAxMl9yZXJ1bl8xMDI0L3NhbXBsZXMuanNvbmwiLAogICAgICAgICJtYXhfc2FtcGxlcyI6IDgsCiAgICAgICAgImdvbGRfZmlsdGVyIjogVHJ1ZSwKICAgIH0sCiAgICAiQ29OTEwiOiB7CiAgICAgICAgInBhdGgiOiBmIntCQVNFfS9vdXRwdXQvZXhwXzAwMl9jb25sbF9uMTZfcjEwMjQvc2FtcGxlcy5qc29ubCIsCiAgICAgICAgIm1heF9zYW1wbGVzIjogOCwKICAgICAgICAiZ29sZF9maWx0ZXIiOiBGYWxzZSwKICAgIH0sCiAgICAiRmV3TkVSRCI6IHsKICAgICAgICAicGF0aCI6IGYie0JBU0V9L291dHB1dC9leHBfMDI3X2Zld25lcmRfbjE2L3NhbXBsZXMuanNvbmwiLAogICAgICAgICJtYXhfc2FtcGxlcyI6IDgsCiAgICAgICAgImdvbGRfZmlsdGVyIjogVHJ1ZSwKICAgIH0sCn0KCgpkZWYgbG9hZF9kYXRhKHBhdGgsIG1heF9zYW1wbGVzPTgsIGdvbGRfZmlsdGVyPUZhbHNlKToKICAgIGluc3RhbmNlcyA9IFtdCiAgICB3aXRoIG9wZW4ocGF0aCkgYXMgZjoKICAgICAgICBmb3IgbGluZSBpbiBmOgogICAgICAgICAgICBvYmogPSBqc29uLmxvYWRzKGxpbmUpCiAgICAgICAgICAgIGlmIGdvbGRfZmlsdGVyIGFuZCBsZW4ob2JqWyJnb2xkIl1bImVudGl0aWVzIl0pID09IDA6CiAgICAgICAgICAgICAgICBjb250aW51ZQogICAgICAgICAgICBzYW1wbGVzID0gb2JqWyJzYW1wbGVzIl1bOm1heF9zYW1wbGVzXQogICAgICAgICAgICBpbnN0YW5jZXMuYXBwZW5kKHsKICAgICAgICAgICAgICAgICJpZCI6IG9ialsiaWQiXSwKICAgICAgICAgICAgICAgICJnb2xkIjogb2JqWyJnb2xkIl0sCiAgICAgICAgICAgICAgICAic2FtcGxlcyI6IHNhbXBsZXMsCiAgICAgICAgICAgICAgICAiZ3JlZWR5Ijogb2JqWyJncmVlZHkiXSwKICAgICAgICAgICAgICAgICJsb2dwcm9icyI6IG9iai5nZXQoImxvZ3Byb2JzIiwgW10pWzptYXhfc2FtcGxlc10sCiAgICAgICAgICAgIH0pCiAgICByZXR1cm4gaW5zdGFuY2VzCgoKZGVmIHRleHRfdHlwZV9zZXQoc2FtcGxlKToKICAgICIiIkVudGl0eSBzZXQgYXMgeyh0ZXh0LCB0eXBlKX0gZm9yIE1CUiBvdmVybGFwIGNvbXB1dGF0aW9uLiIiIgogICAgcmV0dXJuIGZyb3plbnNldCgoZVsidGV4dCJdLCBlWyJ0eXBlIl0pIGZvciBlIGluIHNhbXBsZS5nZXQoImVudGl0aWVzIiwgW10pKQoKCmRlZiBzcGFuX3NldChz\n…[truncated 7796 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T16:31:39.850256+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "echo 'IyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwoiIiJNQlIgKE1pbmltdW0gQmF5ZXMgUmlzaykgc2VsZWN0aW9uIGZvciBORVI6IHNlbGVjdCBzYW1wbGUgd2l0aCBoaWdoZXN0CmF2ZXJhZ2UgZW50aXR5LXNldCBKYWNjYXJkIG92ZXJsYXAgd2l0aCBvdGhlciBzYW1wbGVzLiIiIgoKaW1wb3J0IGpzb24KaW1wb3J0IHN5cwpmcm9tIGNvbGxlY3Rpb25zIGltcG9ydCBkZWZhdWx0ZGljdAoKQkFTRSA9ICIvcm9vdC9hdXRvZGwtdG1wL3N0cnVjdF9zZWxmX2NvbnNpc3RfaWUiCgpEQVRBU0VUUyA9IHsKICAgICJTY2lFUkMiOiB7CiAgICAgICAgInBhdGgiOiBmIntCQVNFfS9vdXRwdXQvZXhwXzAxMl9yZXJ1bl8xMDI0L3NhbXBsZXMuanNvbmwiLAogICAgICAgICJtYXhfc2FtcGxlcyI6IDgsCiAgICAgICAgImdvbGRfZmlsdGVyIjogVHJ1ZSwKICAgIH0sCiAgICAiQ29OTEwiOiB7CiAgICAgICAgInBhdGgiOiBmIntCQVNFfS9vdXRwdXQvZXhwXzAwMl9jb25sbF9uMTZfcjEwMjQvc2FtcGxlcy5qc29ubCIsCiAgICAgICAgIm1heF9zYW1wbGVzIjogOCwKICAgICAgICAiZ29sZF9maWx0ZXIiOiBGYWxzZSwKICAgIH0sCiAgICAiRmV3TkVSRCI6IHsKICAgICAgICAicGF0aCI6IGYie0JBU0V9L291dHB1dC9leHBfMDI3X2Zld25lcmRfbjE2L3NhbXBsZXMuanNvbmwiLAogICAgICAgICJtYXhfc2FtcGxlcyI6IDgsCiAgICAgICAgImdvbGRfZmlsdGVyIjogVHJ1ZSwKICAgIH0sCn0KCgpkZWYgbG9hZF9kYXRhKHBhdGgsIG1heF9zYW1wbGVzPTgsIGdvbGRfZmlsdGVyPUZhbHNlKToKICAgIGluc3RhbmNlcyA9IFtdCiAgICB3aXRoIG9wZW4ocGF0aCkgYXMgZjoKICAgICAgICBmb3IgbGluZSBpbiBmOgogICAgICAgICAgICBvYmogPSBqc29uLmxvYWRzKGxpbmUpCiAgICAgICAgICAgIGlmIGdvbGRfZmlsdGVyIGFuZCBsZW4ob2JqWyJnb2xkIl1bImVudGl0aWVzIl0pID09IDA6CiAgICAgICAgICAgICAgICBjb250aW51ZQogICAgICAgICAgICBzYW1wbGVzID0gb2JqWyJzYW1wbGVzIl1bOm1heF9zYW1wbGVzXQogICAgICAgICAgICBpbnN0YW5jZXMuYXBwZW5kKHsKICAgICAgICAgICAgICAgICJpZCI6IG9ialsiaWQiXSwKICAgICAgICAgICAgICAgICJnb2xkIjogb2JqWyJnb2xkIl0sCiAgICAgICAgICAgICAgICAic2FtcGxlcyI6IHNhbXBsZXMsCiAgICAgICAgICAgICAgICAiZ3JlZWR5Ijogb2JqWyJncmVlZHkiXSwKICAgICAgICAgICAgICAgICJsb2dwcm9icyI6IG9iai5nZXQoImxvZ3Byb2JzIiwgW10pWzptYXhfc2FtcGxlc10sCiAgICAgICAgICAgIH0pCiAgICByZXR1cm4gaW5zdGFuY2VzCgoKZGVmIHRleHRfdHlwZV9zZXQoc2FtcGxlKToKICAgICIiIkVudGl0eSBzZXQgYXMgeyh0ZXh0LCB0eXBlKX0gZm9yIE1CUiBvdmVybGFwIGNvbXB1dGF0aW9uLiIiIgogICAgcmV0dXJuIGZyb3plbnNldCgoZVsidGV4dCJdLCBlWyJ0eXBlIl0pIGZvciBlIGluIHNhbXBsZS5nZXQoImVudGl0aWVzIiwgW10pKQoKCmRlZiBzcGFuX3NldChzYW1wbGUpOgogICAgIiIiRW50aXR5IHNldCBhcyB7KHN0YXJ0LCBlbmQsIHR5cGUpfSBmb3IgRjEgZXZhbHVhdGlvbi4iIiIKICAgIHJldHVybiBzZXQoKGVbInN0YXJ0Il0sIGVbImVuZCJdLCBlWyJ0eXBlIl0pIGZvciBlIGluIHNhbXBsZS5nZXQoImVudGl0aWVzIiwgW10pKQoKCmRlZiBqYWNjYXJkKHNldF9hLCBzZXRfYik6CiAgICBpZiBsZW4oc2V0X2EpID09IDAgYW5kIGxlbihzZXRfYikgPT0gMDoKICAgICAgICByZXR1cm4gMS4wCiAgICB1bmlvbiA9IGxlbihzZXRfYSB8IHNldF9iKQogICAgaWYgdW5pb24gPT0gMDoKICAgICAgICByZXR1cm4gMS4wCiAgICByZXR1cm4gbGVuKHNldF9hICYgc2V0X2IpIC8gdW5pb24KCgpkZWYgbWJyX3Njb3JlcyhzYW1wbGVzKToKICAgIG4gPSBsZW4oc2FtcGxlcykKICAgIHNldHMgPSBbdGV4dF90eXBlX3NldChzKSBmb3IgcyBpbiBzYW1wbGVzXQogICAgc2NvcmVzID0gW10KICAgIGZvciBpIGluIHJhbmdlKG4pOgogICAgICAgIHRvdGFsID0gc3VtKGphY2NhcmQoc2V0c1tpXSwgc2V0c1tqXSkgZm9yIGogaW4gcmFuZ2UobikgaWYgaiAhPSBpKQogICAgICAgIHNjb3Jlcy5hcHBlbmQodG90YWwgLyAobiAtIDEpKQogICAgcmV0dXJuIHNjb3JlcwoKCmRlZiBlbnRpdHlfZjEocHJlZF9zYW1wbGUsIGdvbGQpOgogICAgcHJlZCA9IHNwYW5fc2V0KHByZWRfc2FtcGxlKQogICAgZ29sZF9zID0gc3Bhbl9zZXQoZ29sZCkKICAgIGlmIGxlbihwcmVkKSA9PSAwIGFuZCBsZW4oZ29sZF9zKSA9PSAwOgogICAgICAgIHJldHVybiAxLjAKICAgIGlmIGxlbihwcmVkKSA9PSAwIG9yIGxlbihnb2xkX3MpID09IDA6CiAgICAgICAgcmV0dXJuIDAuMAogICAgdHAgPSBsZW4ocHJlZCAmIGdvbGRfcykKICAgIHAgPSB0cCAvIGxlbihwcmVkKQogICAgciA9IHRwIC8gbGVuKGdvbGRfcykKICAgIGlmIHAgKyByID09IDA6CiAgICAgICAgcmV0dXJuIDAuMAogICAgcmV0dXJuIDIgKiBwICogciAvIChwICsgcikKCgpkZWYgZGVnZW5lcmFjeV9yYXRpbyhzYW1wbGVzKToKICAgIHNldHMgPSBbdGV4dF90eXBlX3NldChzKSBmb3IgcyBpbiBzYW1wbGVzXQogICAgbl91bmlxdWUgPSBsZW4oc2V0KHNldHMpKQogICAgcmV0dXJuIG5fdW5pcXVlIC8gbGVuKHNhbXBsZXMpCgoKZGVmIGV2YWx1YXRlX2RhdGFzZXQobmFtZSwgY2ZnKToKICAgIGluc3RhbmNlcyA9IGxvYWRfZGF0YShjZmdbInBhdGgiXSwgY2ZnWyJtYXhfc2FtcGxlcyJdLCBjZmdbImdvbGRfZmlsdGVyIl0pCiAgICBuID0gbGVuKGluc3RhbmNlcykKCiAgICBncmVlZHlfZjFzLCBscF9mMXMsIG1icl9mMXMsIG9yYWNsZV9mMXMgPSBbXSwgW10sIFtdLCBbXQogICAgZGVnZW5fcmF0aW9zID0gW10KCiAgICBmb3IgaW5zdCBpbiBpbnN0YW5jZXM6CiAgICAgICAgZ29sZCA9IGluc3RbImdvbGQiXQogICAgICAgIHNhbXBsZXMgPSBpbnN0WyJzYW1wbGVzIl0KICAgICAgICBsb2dwcm9icyA9IGluc3RbImxvZ3Byb2JzIl0KCiAgICAgICAgZ3JlZWR5X2Yxcy5hcHBlbmQoZW50aXR5X2YxKGluc3RbImdyZWVkeSJdLCBnb2xkKSkKCiAgICAgICAgaWYgbGVuKGxvZ3Byb2JzKSA9PSBsZW4oc2FtcGxlcyk6CiAgICAgICAgICAgIGxwX2lkeCA9IG1heChyYW5nZShsZW4obG9ncHJvYnMpKSwga2V5PWxhbWJkYSBpOiBsb2dwcm9ic1tpXSkKICAgICAgICBlbHNlOgogICAgICAgICAgICBscF9pZHggPSAwCiAgICAgICAgbHBfZjFzLmFwcGVuZChlbnRpdHlfZjEoc2FtcGxlc1tscF9pZHhdLCBnb2xkKSkKCiAgICAgICAgc2NvcmVzID0gbWJyX3Njb3JlcyhzYW1wbGVzKQogICAgICAgIG1icl9pZHggPSBzY29yZXMuaW5kZXgobWF4KHNjb3JlcykpCiAgICAgICAgbWJyX2Yxcy5hcHBlbmQoZW50aXR5X2YxKHNhbXBsZXNbbWJyX2lkeF0sIGdvbGQpKQoKICAgICAgICBiZXN0X2YxID0gbWF4KGVudGl0eV9mMShzLCBnb2xkKSBmb3IgcyBpbiBzYW1wbGVzKQogICAgICAgIG9yYWNsZV9mMXMuYXBwZW5kKGJlc3RfZjEpCgogICAgICAgIGRlZ2VuX3JhdGlvcy5hcHBlbmQoZGVnZW5lcmFjeV9yYXRpbyhzYW1wbGVzKSkKCiAgICBncmVlZHlfYXZnID0gc3VtKGdyZWVkeV9mMXMpIC8gbgogICAgbHBfYXZnID0gc3VtKGxwX2YxcykgLyBuCiAgICBtYnJfYXZnID0gc3VtKG1icl9mMXMpIC8gbgogICAgb3JhY2xlX2F2ZyA9IHN1bShvcmFjbGVfZjFzKSAvIG4KCiAgICBkZWdlbl9ncm91cHMgPSB7Imxvd19kaXZlcnNpdHkiOiBbXSwgIm1lZGl1bSI6IFtdLCAiaGlnaF9kaXZlcnNpdHkiOiBbXX0KICAgIGZvciBpLCBkciBpbiBlbnVtZXJhdGUoZGVnZW5fcmF0aW9zKToKICAgICAgICBpZiBkciA8PSAwLjI1OgogICAgICAgICAgICBkZWdlbl9ncm91cHNbImxvd19kaXZlcnNpdHkiXS5hcHBlbmQoaSkKICAgICAgICBlbGlmIGRyIDw9IDAuNjI1OgogICAgICAgICAgICBkZWdlbl9ncm91cHNbIm1lZGl1bSJdLmFwcGVuZChpKQogICAgICAgIGVsc2U6CiAgICAgICAgICAgIGRlZ2VuX2dyb3Vwc1siaGlnaF9kaXZlcnNpdHkiXS5hcHBlbmQoaSkKCiAgICBkZWdlbl9yZXN1bHRzID0ge30KICAgIGZvciBncm91cF9uYW1lLCBpbmRpY2VzIGluIGRlZ2VuX2dyb3Vwcy5pdGVtcygpOgogICAgICAgIGlmIG5vdCBpbmRpY2VzOgogICAgICAgICAgICBkZWdlbl9yZXN1bHRzW2dyb3VwX25hbWVdID0gTm9uZQogICAgICAgICAgICBjb250aW51ZQogICAgICAgIGduID0gbGVuKGluZGljZXMpCiAgICAgICAgZGVnZW5fcmVzdWx0c1tncm91cF9uYW1lXSA9IHsKICAgICAgICAgICAgImNvdW50IjogZ24sCiAgICAgICAgICAgICJncmVlZHkiOiBzdW0oZ3JlZWR5X2Yxc1tpXSBmb3IgaSBpbiBpbmRpY2VzKSAvIGduLAogICAgICAgICAgICAibHAiOiBzdW0obHBfZjFzW2ldIGZvciBpIGluIGluZGljZXMpIC8gZ24sCiAgICAgICAgICAgICJtYnIiOiBzdW0obWJyX2Yxc1tpXSBmb3IgaSBpbiBpbmRpY2VzKSAvIGduLAogICAgICAgICAgICAib3JhY2xlIjogc3VtKG9yYWNsZV9mMXNbaV0gZm9yIGkgaW4gaW5kaWNlcykgLyBnbiwKICAgICAgICB9CgogICAgcmV0dXJuIHsKICAgICAgICAibmFtZSI6IG5hbWUsICJuIjogbiwKICAgICAgICAiZ3JlZWR5IjogZ3JlZWR5X2F2ZywgImxwIjogbHBfYXZnLAogICAgICAgICJtYnIiOiBtYnJfYXZnLCAib3JhY2xlIjogb3JhY2xlX2F2ZywKICAgICAgICAiZGVnZW4iOiBkZWdlbl9yZXN1bHRzLAogICAgfQoKCmRlZiBtYWluKCk6CiAgICByZXN1bHRzID0gW10KICAgIGZvciBuYW1lLCBjZmcgaW4gREFUQVNFVFMuaXRlbXMoKToKICAgICAgICByID0gZXZhbHVhdGVfZGF0YXNldChuYW1lLCBjZmcpCiAgICAgICAgcmVzdWx0cy5hcHBlbmQocikKICAgICAgICBwcmludChmIlxueyc9Jyo2MH0iKQogICAgICAgIHByaW50KGYiRGF0YXNldDoge3JbJ25hbWUnXX0gKHtyWyduJ119IGluc3RhbmNlcywgTj17Y2ZnWydtYXhfc2FtcGxlcyddfSkiKQogICAgICAgIHByaW50KGYieyc9Jyo2MH0iKQogICAgICAgIHByaW50KGYiICBHcmVlZHkgRjE6ICAgICAgICB7clsnZ3JlZWR5J106LjRmfSIpCiAgICAgICAgcHJpbnQoZiIgIExQIFNlbGVjdGlvbiBGMTogIHtyWydscCddOi40Zn0iKQogICAgICAgIHByaW50KGYiICBNQlIgU2VsZWN0aW9uIEYxOiB7clsnbWJyJ106LjRmfSIpCiAgICAgICAgcHJpbnQoZiIgIE9yYWNsZSBGMTogICAgICAgIHtyWydvcmFjbGUnXTouNGZ9IikKICAgICAgICBwcmludChmIiAgRGVsdGEgKE1CUi1HcmVlZHkpOiB7clsnbWJyJ10gLSByWydncmVlZHknXTorLjRmfSIpCiAgICAgICAgcHJpbnQoZiIgIERlbHRhIChNQlItTFApOiAgICAge3JbJ21iciddIC0gclsnbHAnXTorLjRmfSIpCgogICAgICAgIHByaW50KGYiXG4gIERlZ2VuZXJhY3kgYnJlYWtkb3duOiIpCiAgICAgICAgZm9yIGduYW1lIGluIFsibG93X2RpdmVyc2l0eSIsICJtZWRpdW0iLCAiaGlnaF9kaXZlcnNpdHkiXToKICAgICAgICAgICAgZCA9IHJbImRlZ2VuIl1bZ25hbWVdCiAgICAgICAgICAgIGlmIGQgaXMgTm9uZToKICAgICAgICAgICAgICAgIHByaW50KGYiICAgIHtnbmFtZX06IChubyBpbnN0YW5jZXMpIikKICAgICAgICAgICAgZWxzZToKICAgICAgICAgICAgICAgIHByaW50KGYiICAgIHtnbmFtZX0gKHtkWydjb3VudCddfSBpbnN0KTogIgogICAgICAgICAgICAgICAgICAgICAgZiJHcmVlZHk9e2RbJ2dyZWVkeSddOi40Zn0gIExQPXtkWydscCddOi40Zn0gICIKICAgICAgICAgICAgICAgICAgICAgIGYiTUJSPXtkWydtYnInXTouNGZ9ICBPcmFjbGU9e2RbJ29yYWNsZSddOi40Zn0gICIKICAgICAgICAgICAgICAgICAgICAgIGYiTUJSLUdyZD17ZFsnbWJyJ10tZFsnZ3JlZWR5J106Ky40Zn0iKQoKICAgIHByaW50KGYiXG5cbnsnPScqNzB9IikKICAgIHByaW50KCJTdW1tYXJ5IFRhYmxlIikKICAgIHByaW50KGYieyc9Jyo3MH0iKQogICAgcHJpbnQoZiJ7J0RhdGFzZXQnOjwxMn0geydHcmVlZHknOj44fSB7J0xQIFNlbCc6Pjh9IHsnTUJSIFNlbCc6Pjh9IHsnT3JhY2xlJzo+OH0geydNQlItR3JkJzo+OH0geydNQlItTFAnOj44fSIpCiAgICBwcmludChmInsnLScqMTJ9IHsnLScqOH0geyctJyo4fSB7Jy0nKjh9IHsnLScqOH0geyctJyo4fSB7Jy0nKjh9IikKICAgIGZvciByIGluIHJlc3VsdHM6CiAgICAgICAgcHJpbnQoZiJ7clsnbmFtZSddOjwxMn0ge3JbJ2dyZWVkeSddOj44LjRmfSB7clsnbHAnXTo+OC40Zn0ge3JbJ21iciddOj44LjRmfSAiCiAgICAgICAgICAgICAgZiJ7clsnb3JhY2xlJ106PjguNGZ9IHtyWydtYnInXS1yWydncmVlZHknXTo+KzguNGZ9IHtyWydtYnInXS1yWydscCddOj4rOC40Zn0iKQoKICAgICMgSlNPTiBvdXRwdXQKICAgIG91dF9wYXRoID0gZiJ7QkFTRX0vb3V0cHV0L2FuYWx5c2lzX21icl9zZWxlY3Rpb24uanNvbiIKICAgIG91dCA9IHt9CiAgICBmb3IgciBpbiByZXN1bHRzOgogICAgICAgIG91dFtyWyJuYW1lIl1dID0gewogICAgICAgICAgICAibiI6IHJbIm4iXSwKICAgICAgICAgICAgImdyZWVkeV9mMSI6IHJvdW5kKHJbImdyZWVkeSJdLCA1KSwKICAgICAgICAgICAgImxwX2YxIjogcm91bmQoclsibHAiXSwgNSksCiAgICAgICAgICAgICJtYnJfZjEiOiByb3VuZChyWyJtYnIiXSwgNSksCiAgICAgICAgICAgICJvcmFjbGVfZjEiOiByb3VuZChyWyJvcmFjbGUiXSwgNSksCiAgICAgICAgICAgICJkZWdlbmVyYWN5IjogewogICAgICAgICAgICAgICAgazoge2trOiByb3VuZCh2diwgNSkgaWYgaXNpbnN0YW5jZSh2diwgZmxvYXQpIGVsc2UgdnYKICAgICAgICAgICAgICAgICAgICBmb3Iga2ssIHZ2IGluIHYuaXRlbXMoKX0gaWYgdiBlbHNlIE5vbmUKICAgICAgICAgICAgICAgIGZvciBrLCB2IGluIHJbImRlZ2VuIl0uaXRlbXMoKQogICAgICAgICAgICB9LAogICAgICAgIH0KICAgIHdpdGggb3BlbihvdXRfcGF0aCwgInciKSBhcyBmOgogICAgICAgIGpzb24uZHVtcChvdXQsIGYsIGluZGVudD0yKQogICAgcHJpbnQoZiJcblNhdmVkIEpTT046IHtvdXRfcGF0aH0iKQoKCmlmIF9fbmFtZV9fID09ICJfX21haW5fXyI6CiAgICBtYWluKCkK' | base64 -d > /root/autodl-tmp/struct_self_consist_ie/code/analysis_mbr_selection.py && /root/miniconda3/bin/python /root/autodl-tmp/struct_self_consist_ie/code/analysis_mbr_selection.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T16:31:39.850464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nDataset: SciERC (529 instances, N=8)\\\\n============================================================\\\\n  Greedy F1:        0.6439\\\\n  LP Selection F1:  0.6501\\\\n  MBR Selection F1: 0.6444\\\\n  Oracle F1:        0.7758\\\\n  Delta (MBR-Greedy): +0.0005\\\\n  Delta (MBR-LP):     -0.0057\\\\n\\\\n  Degeneracy breakdown:\\\\n    low_diversity (186 inst): Greedy=0.7110  LP=0.7101  MBR=0.7011  Oracle=0.8031  MBR-Grd=-0.0099\\\\n    medium (280 inst): Greedy=0.6235  LP=0.6359  MBR=0.6268  Oracle=0.7684  MBR-Grd=+0.0033\\\\n    high_diversity (63 inst): Greedy=0.5366  LP=0.5358  MBR=0.5549  Oracle=0.7281  MBR-Grd=+0.0183\\\\n\\\\n============================================================\\\\nDataset: CoNLL (3453 instances, N=8)\\\\n============================================================\\\\n  Greedy F1:        0.9087\\\\n  LP Selection F1:  0.8985\\\\n  MBR Selection F1: 0.9043\\\\n  Oracle F1:        0.9520\\\\n  Delta (MBR-Greedy): -0.0043\\\\n  Delta (MBR-LP):     +0.0059\\\\n\\\\n  Degeneracy breakdown:\\\\n    low_diversity (2764 inst): Greedy=0.9502  LP=0.9448  MBR=0.9470  Oracle=0.9640  MBR-Grd=-0.0032\\\\n    medium (626 inst): Greedy=0.7495  LP=0.7252  MBR=0.7430  Oracle=0.9127  MBR-Grd=-0.0065\\\\n    high_diversity (63 inst): Greedy=0.6676  LP=0.5860  MBR=0.6345  Oracle=0.8184  MBR-Grd=-0.0331\\\\n\\\\n============================================================\\\\nDataset: FewNERD (4351 instances, N=8)\\\\n============================================================\\\\n  Greedy F1:        0.7478\\\\n  LP Selection F1:  0.7610\\\\n  MBR Selection F1: 0.7208\\\\n  Oracle F1:        0.8686\\\\n  Delta (MBR-Greedy): -0.0269\\\\n  Delta (MBR-LP):     -0.0402\\\\n\\\\n  Degeneracy breakdown:\\\\n    low_diversity (1436 inst): Greedy=0.7949  LP=0.8211  MBR=0.7871  Oracle=0.8699  MBR-Grd=-0.0077\\\\n    medium (2197 inst): Greedy=0.7464  LP=0.7587  MBR=0.7071  Oracle=0.8831  MBR-Grd=-0.0393\\\\n    high_diversity (7\n…[truncated 790 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T16:31:39.850651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/mbr_selection/ 2>/dev/null || echo \"dir not found\"",
+              "description": "Check if artifacts dir exists"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T16:31:39.850777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "mbr_selection_results.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T16:31:39.850893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/mbr_selection/mbr_selection_results.md"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T16:31:39.851034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# MBR Selection for NER: Results\n2\t\n3\t## Method\n4\t\n5\tMinimum Bayes Risk (MBR) selection picks the sample whose entity set is most consistent with all other samples. For each instance with N=8 samples:\n6\t\n7\t```\n8\tMBR_score(si) = mean_{j!=i} entity_overlap(si, sj)\n9\t```\n10\t\n11\twhere `entity_overlap(si, sj) = 2 * |E(si) ∩ E(sj)| / (|E(si)| + |E(sj)|)` using span-based matching `(start, end, type)`. Empty-set pairs score 1.0. Ties broken by index.\n12\t\n13\t## Results\n14\t\n15\t| Dataset | Greedy | LP Sel | MBR Sel | Oracle | MBR-Greedy | MBR-LP |\n16\t|---------|--------|--------|---------|--------|------------|--------|\n17\t| SciERC  | 0.6439 | 0.6501 | 0.6449  | 0.7758 | +0.0010    | -0.0052 |\n18\t| CoNLL   | 0.9087 | 0.8985 | 0.9045  | 0.9520 | -0.0042    | +0.0060 |\n19\t| FewNERD | 0.7713 | 0.7800 | 0.7511  | 0.8831 | -0.0202    | -0.0289 |\n20\t\n21\tInstance counts: SciERC=529 (gold-filtered), CoNLL=3453, FewNERD=5000. All use first 8 samples per instance.\n22\t\n23\t## Analysis\n24\t\n25\t**MBR selection underperforms both Greedy and LP selection in most cases.**\n26\t\n27\t1. **SciERC**: MBR marginally above Greedy (+0.001) but below LP (-0.005). The gain is negligible.\n28\t\n29\t2. **CoNLL**: MBR below Greedy (-0.004) but above LP (+0.006). On this high-accuracy dataset, samples are already very consistent (most samples agree on entities), so MBR tends to pick a \"consensus\" sample that may smooth away correct minority predictions present in greedy.\n30\t\n31\t3. **FewNERD**: MBR significantly underperforms both Greedy (-0.020) and LP (-0.029). This is the worst case for MBR.\n32\t\n33\t**Why MBR fails for NER (vs. its success in NMT):**\n34\t\n35\t- In NMT, MBR works because translations vary smoothly and the \"central\" translation is often high quality. In NER, entity sets are discrete and sparse. A sample with a common subset of entities scores high on pairwise overlap, but it may be the one that *omits* a harder-to-detect entity that some samples correctly identify.\n36\t- MBR favors high-precision,\n…[truncated 768 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-18T16:31:39.851230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/mbr_selection/mbr_selection_results.md",
+              "content": "# MBR Selection for NER: Results\n\n## Method\n\nMinimum Bayes Risk (MBR) selection picks the sample whose entity set has highest average overlap with all other samples. For each instance with N=8 samples:\n\n```\nMBR_score(si) = mean_{j!=i} Jaccard(E(si), E(sj))\n```\n\nwhere `Jaccard(A, B) = |A ∩ B| / |A ∪ B|` over entity sets `E = {(text, type)}`. Empty-set pairs score 1.0.\n\nF1 evaluation uses span-based matching `(start, end, type)` against gold.\n\n## Results\n\n| Dataset | Greedy | LP Sel | MBR Sel | Oracle | MBR-Greedy | MBR-LP |\n|---------|--------|--------|---------|--------|------------|--------|\n| SciERC  | 0.6439 | 0.6501 | 0.6444  | 0.7758 | +0.0005    | -0.0057 |\n| CoNLL   | 0.9087 | 0.8985 | 0.9043  | 0.9520 | -0.0043    | +0.0059 |\n| FewNERD | 0.7478 | 0.7610 | 0.7208  | 0.8686 | -0.0269    | -0.0402 |\n\nInstance counts: SciERC=529 (gold-filtered), CoNLL=3453, FewNERD=4351 (gold-filtered). All use first 8 samples per instance.\n\n## MBR vs LP Comparison\n\n- **SciERC**: MBR marginally above Greedy (+0.0005) but below LP (-0.0057). Negligible difference.\n- **CoNLL**: MBR below Greedy (-0.0043) but above LP (+0.0059). On this high-accuracy dataset, LP sometimes picks a confident but incorrect outlier.\n- **FewNERD**: MBR significantly underperforms both Greedy (-0.0269) and LP (-0.0402). Worst case for MBR.\n\n## Degeneracy-Grouped MBR Performance\n\nInstances grouped by sample diversity (unique (text,type) entity sets / N):\n- **Low diversity** (1-2 unique sets out of 8): near-degenerate, all samples agree\n- **Medium** (3-5 unique): moderate variation\n- **High diversity** (6-8 unique): high disagreement across samples\n\n### SciERC\n\n| Group | Count | Greedy | LP | MBR | Oracle | MBR-Greedy |\n|-------|-------|--------|----|-----|--------|------------|\n| Low diversity | 186 | 0.7110 | 0.7101 | 0.7011 | 0.8031 | -0.0099 |\n| Medium | 280 | 0.6235 | 0.6359 | 0.6268 | 0.7684 | +0.0033 |\n| High diversity | 63 | 0.5366 | 0.5358 | 0.5549 | 0.7281 | +0.0183 |\n\nMBR helps most on high-diversity instances (+0.0183), where consensus selection has informative signal.\n\n### CoNLL\n\n| Group | Count | Greedy | LP | MBR | Oracle | MBR-Greedy |\n|-------|-------|--------|----|-----|--------|------------|\n| Low diversity | 2764 | 0.9502 | 0.9448 | 0.9470 | 0.9640 | -0.0032 |\n| Medium | 626 | 0.7495 | 0.7252 | 0.7430 | 0.9127 | -0.0065 |\n| High diversity | 63 | 0.6676 | 0.5860 | 0.6345 | 0.8184 | -0.0331 |\n\nMBR consistently below Greedy across all groups. On high-diversity instances, MBR beats LP (+0.05) but still loses to Greedy.\n\n### FewNERD\n\n| Group | Count | Greedy | LP | MBR | Oracle | MBR-Greedy |\n|-------|-------|--------|----|-----|--------|------------|\n| Low diversity | 1436 | 0.7949 | 0.8211 | 0.7871 | 0.8699 | -0.0077 |\n| Medium | 2197 | 0.7464 | 0.7587 | 0.7071 | 0.8831 | -0.0393 |\n| High diversity | 718 | 0.6576 | 0.6478 | 0.6302 | 0.8219 | -0.0274 |\n\nMBR hurts across all groups, worst on medium-diversity (-0.0393).\n\n## Conclusion\n\nOutput-level MBR selection with entity-set Jaccard as the utility function is not effective for NER sample selection. MBR fails to improve over Greedy on 2/3 datasets and underperforms LP on 2/3 datasets.\n\nThe key failure mode: MBR with (text,type) Jaccard favors samples with common entity subsets, but this consensus signal does not reliably indicate higher quality. In NER, a sample that includes only \"easy\" entities (high consensus) may miss harder entities that fewer samples detect correctly. LP selection, which picks the most confident complete output, remains the stronger single-sample selection baseline.\n\nThe one scenario where MBR shows promise is SciERC high-diversity instances (+0.0183), where samples diverge significantly and consensus can filter noise. But this benefit is too small and narrow to justify MBR as a general strategy.\n"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-18T16:31:39.851453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/mbr_selection/mbr_selection_results.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-18T16:31:39.851590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "MBR Selection Results (Jaccard, text-type)",
+              "type": "report",
+              "description": "Output-level MBR selection evaluation on SciERC/CoNLL/FewNERD using entity-set Jaccard over (text,type) pairs. Includes degeneracy-grouped analysis.",
+              "project": "struct_self_consist_ie",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/mbr_selection/mbr_selection_results.md",
+              "tags": "['mbr', 'selection', 'ner', 'jaccard']"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-18T16:31:39.851736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_63a92b\\\", \\\"name\\\": \\\"MBR Selection Results (Jaccard, text-type)\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Output-level MBR selection evaluation on SciERC/CoNLL/FewNERD using entity-set Jaccard over (text,type) pairs. Includes degeneracy-grouped analysis.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/report/mbr_selection_results.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T16:31:28.430022+00:00\\\", \\\"tags\\\": [\\\"mbr\\\", \\\"selection\\\", \\\"ner\\\", \\\"jaccard\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-18T16:31:39.851899+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结论：\n\n**MBR selection（entity-set Jaccard over (text,type)）对 NER 无效。**\n\n| Dataset | Greedy | LP Sel | **MBR Sel** | Oracle | MBR-Grd | MBR-LP |\n|---------|--------|--------|-------------|--------|---------|--------|\n| SciERC  | 0.6439 | 0.6501 | **0.6444**  | 0.7758 | +0.0005 | -0.0057 |\n| CoNLL   | 0.9087 | 0.8985 | **0.9043**  | 0.9520 | -0.0043 | +0.0059 |\n| FewNERD | 0.7478 | 0.7610 | **0.7208**  | 0.8686 | -0.0269 | -0.0402 |\n\n- MBR 在 2/3 数据集上低于 Greedy，2/3 数据集上低于 LP\n- FewNERD 上 MBR 显著差于两个 baseline（-2.7% vs Greedy，-4.0% vs LP）\n- Degeneracy 分析：MBR 仅在 SciERC 高多样性 instances 上有微弱优势（+1.8%），其余全部为负\n\n失败原因：MBR 倾向选出只包含\"easy\"共识实体的 sample，遗漏少数 samples 正确检测到的难实体。LP selection 仍是更强的 single-sample selection baseline。\n\n产出：\n- 脚本：`code/analysis_mbr_selection.py`（服务器 + 本地）\n- 结果 JSON：服务器 `output/analysis_mbr_selection.json`\n- 报告：`artifacts/mbr_selection/mbr_selection_results.md`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_output_mbr_selection_20260518T162549"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-output-mbr-selection.md"
+}

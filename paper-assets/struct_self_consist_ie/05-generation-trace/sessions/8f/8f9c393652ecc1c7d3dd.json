@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f9c393652ecc1c7d3dd",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp tlow fewnerd inference",
+  "task_key": "worker_code_exp_tlow_fewnerd_inference_20260520T174228",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_tlow_fewnerd_inference_20260520T174228_result.json",
+    "occurrence": 1,
+    "bytes": 1132,
+    "sha256": "c28abbe9f71d68ae9c8a5462525750bbc5d49b99b1b501af0c47d86d69043a3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动并注册。中报告如下：\n\n---\n\n**exp_tlow_fewnerd_inference — 运行中**\n\n| 项 | 值 |\n|---|---|\n| 运行命令 | `CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/qwen25-7b-fewnerd-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 0.5 --seed 42 --collect_logprobs --output_dir output/exp_tlow_fewnerd_t05_s42/` |\n| Model | `checkpoints/qwen25-7b-fewnerd-merged` (Qwen2ForCausalLM, 14.25 GiB, loaded on GPU 2) |\n| Data | `data/fewnerd/test.json`, 37648 instances |\n| GPU | cuda:2 (RTX 5090, 30319/32607 MiB used) |\n| 输出 | `output/exp_tlow_fewnerd_t05_s42/` (samples.jsonl + report.json) |\n| 日志 | `output/exp_tlow_fewnerd_t05_s42.log` |\n| PID | 221493 |\n| 预计时长 | ~2 小时（参考 qwen3-8b FewNERD T=1.0 seed789 耗时约 2h） |\n| 生成量 | 37648 × N=8 = 301,184 stochastic + 37648 greedy = ~339K generations |\n\n脚本复用了 `code/run_mvp_pilot.py`（已有完整 FewNERD 支持），无需额外编写。vLLM 0.18.1 + XGrammar constrained decoding + logprobs 收集均已就绪。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-tlow-fewnerd-inference.md"
+}

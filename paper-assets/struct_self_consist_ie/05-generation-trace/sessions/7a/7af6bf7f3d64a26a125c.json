@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7af6bf7f3d64a26a125c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis 72b scierc bootstrap",
+  "task_key": "worker_analysis_72b_scierc_bootstrap_20260519T160000",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_72b_scierc_bootstrap_20260519T160000_result.json",
+    "occurrence": 1,
+    "bytes": 1129,
+    "sha256": "a921c95ef85d3d4e77b08d18256b7caa9ba9dafb5db2e2e6fa207d56f1f6f42f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n### Paired Bootstrap Test: Greedy vs LP-weighted Construction (72B ZS SciERC)\n\n| 指标 | 值 |\n|------|-----|\n| Greedy F1 | 0.3993 |\n| Construction F1 | 0.4146 |\n| Diff | **+1.53pp** |\n| **p-value** | **0.0082** |\n| 95% CI of diff | **[+0.0025, +0.0282]** |\n| Cohen's d | 0.1027 (small effect) |\n\n**结论：显著。** p=0.0082 < 0.05，且 95% CI 完全在零以上，不跨零。\n\n### Instance 分布 (n=529)\n\n| 类别 | 数量 | 占比 |\n|------|------|------|\n| Construction > Greedy | 119 | 22.5% |\n| Construction < Greedy | 72 | 13.6% |\n| Tied | 338 | 63.9% |\n\n### 非退化子集 (n=491, 92.8%)\n\n| 指标 | 值 |\n|------|-----|\n| Non-degen diff | +1.65pp |\n| Non-degen 95% CI | [+0.0031, +0.0306] |\n| Non-degen p-value | 0.0069 |\n| Positive/Negative/Tied | 119/72/300 |\n\n退化实例仅 38 个 (7.2%)，construction 与 greedy 完全一致（diff=0）。排除退化后增益反而更大（+1.65pp vs +1.53pp），p 值更小。\n\n**注意**：实际 gold-filtered 实例数 529（非 551），差异来自 22 个 gold entities 为空的实例被过滤。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-72b-scierc-bootstrap.md"
+}

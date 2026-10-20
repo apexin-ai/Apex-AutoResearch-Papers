@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9f21106c31e65e6a2c6",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix exp029a baseline bug",
+  "task_key": "worker_fix_exp029a_baseline_bug_20260518T020000",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_exp029a_baseline_bug_20260518T020000_result.json",
+    "occurrence": 1,
+    "bytes": 1293,
+    "sha256": "9d90875a33b1167563b72db839dc1b46b18df3ab0df5259493e8d0417d61a943"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。以下是修复前后对比表的差异：\n\n## 修复前后 baseline 值变化\n\n| 指标 | 修复前 (硬编码, 来自 Few-NERD) | 修复后 (从 exp-012 计算) | 差异 |\n|---|---|---|---|\n| **within_instance_median_rho** | **0.6667** | **0.2474** | **核心 bug，偏差 +0.4193** |\n| degeneracy_cf1_pct | 17.8% | 17.58% | 微调（精确计算 vs 取整） |\n| lp_sel_delta_pp | +0.42 | -0.07 | 5-epoch baseline 的 LP selection 实际是负的 |\n\n## 修复前后对比表差异\n\n| 指标 | 修复前 5-epoch ref | 修复后 5-epoch ref | 029a (3-epoch) |\n|---|---|---|---|\n| Within-inst median ρ | 0.6667 (错误) | 0.2474 (正确) | 0.3172 |\n| LP sel delta | +0.42 | -0.07 | -1.18 |\n| Degeneracy delta | -11.37pp | -11.15pp | — |\n| Greedy F1 | N/A | 0.6094 (新增) | 0.6501 |\n\n**关键影响**: 修复前，within-instance ρ 的 baseline 为 0.6667，看起来 3-epoch (0.3172) 大幅低于 5-epoch baseline。修复后 baseline 实为 0.2474，3-epoch 的 0.3172 **反而高于** 5-epoch baseline，说明 3-epoch 不仅降低了 degeneracy，LP-F1 相关性也有所改善。\n\n修复脚本已保存为 `scripts/exp_029a_postprocess/03_analyze_fixed.py`，输出为 `output/exp_029a_scierc_3epoch/comparison_report_fixed.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp029a-baseline-bug.md"
+}

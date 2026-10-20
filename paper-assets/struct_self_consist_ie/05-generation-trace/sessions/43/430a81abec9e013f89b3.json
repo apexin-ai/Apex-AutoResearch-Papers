@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "430a81abec9e013f89b3",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh b1 scd data prep",
+  "task_key": "worker_ssh_b1-scd-data-prep_20260520T095449",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_b1-scd-data-prep_20260520T095449.log",
+    "occurrence": 1,
+    "bytes": 709551,
+    "sha256": "a7ed100a33e90dd873b3c1bcab61e65898d9f267bd38708019d1c33793c293fd"
+  },
+  "statistics": {
+    "messages": 225,
+    "user_turns": 0,
+    "tool_calls": 92,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 92,
+      "tool_result": 92,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 225,
+      "chunks": [
+        {
+          "path": "430a81abec9e013f89b3-part-0001.json",
+          "message_count": 158
+        },
+        {
+          "path": "430a81abec9e013f89b3-part-0002.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-b1-scd-data-prep.md"
+}

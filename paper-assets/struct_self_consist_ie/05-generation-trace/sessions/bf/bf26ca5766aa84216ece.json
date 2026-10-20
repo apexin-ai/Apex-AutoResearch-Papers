@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "bf26ca5766aa84216ece",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code 5090c inference deploy 20260518T190521 retry1",
+  "task_key": "worker_code_5090c_inference_deploy_20260518T190521_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_5090c_inference_deploy_20260518T190521_retry1.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/code-5090c-inference-deploy-20260518t190521-retry1.md"
+}

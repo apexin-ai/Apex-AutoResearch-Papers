@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "793763b17cfc8593ec6b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp 016 signal ensemble",
+  "task_key": "worker_analysis_exp_016_signal_ensemble_20260514T120704",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_016_signal_ensemble_20260514T120704_result.json",
+    "occurrence": 1,
+    "bytes": 1444,
+    "sha256": "adfbc22f889ff1c9807e1fec78f9139a693a6e8050dcb8864df02c0b8148765f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-016 完成。核心结果：\n\n## Part 1: 信号相关性\n- SJ vs logprob 相关性中等（NER Pearson=0.57, RE=0.42），**有互补空间**\n- SJ vs exact_match 高度相关（NER 0.79, RE 0.86），冗余较大\n- logprob vs voting_confidence 低相关（NER 0.16, RE 0.48），互补性最强\n\n## Part 2: 线性组合\n- **NER**: SJ+voting_conf 最佳（α=0.3, ρ=0.489），优于两个单信号（SJ 0.357, VC 0.430）\n- **RE**: voting_conf+logprob 最佳（α=0.6, ρ=0.429），略优于单 VC（0.427）\n- SJ+logprob 在 RE 也有增益（ρ=0.287 vs SJ 0.211, logprob 0.247）\n\n## Part 3: Logistic Ensemble\n| | Ensemble | Best Single | Δ |\n|---|---|---|---|\n| NER AUROC | **0.735** | 0.700 (VC) | +0.035 |\n| RE AUROC | **0.719** | 0.721 (VC) | -0.002 |\n\n- 系数最大：voting_confidence（NER 0.86, RE 1.03），其次 exact_match（NER 0.65）\n- fleiss_kappa 系数为负（被其他信号包含的冗余信息）\n\n## Part 4: Best-of-N Selection F1\n| Method | NER | RE |\n|---|---|---|\n| greedy | 0.609 | 0.374 |\n| random | 0.580 | 0.338 |\n| SJ-best | 0.604 | 0.368 |\n| voting-conf-best | 0.596 | 0.338 |\n| **logprob-best** | **0.609** | **0.397** |\n| ensemble-best | 0.604 | 0.367 |\n| oracle | 0.769 | 0.561 |\n\nRE 中 logprob-best（0.397）是唯一超过 greedy 的方法。Oracle gap 依然很大（NER +0.16, RE +0.19），暗示当前信号远未充分利用采样多样性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-016-signal-ensemble.md"
+}

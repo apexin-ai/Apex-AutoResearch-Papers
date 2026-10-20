@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5962c1ff6775718229d3",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code llama scierc seed456 inference",
+  "task_key": "worker_code_llama_scierc_seed456_inference_20260518T191311",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_llama_scierc_seed456_inference_20260518T191311_result.json",
+    "occurrence": 1,
+    "bytes": 844,
+    "sha256": "2950e7e6aedada79574f9994e48390734b4cc6e77a32d641aae14e067e619fe0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**LLaMA-3.1-8B SciERC seed=456 — 5-signal + DGS 分析**\n\n| | Full (n=529) | Conditional (n=478) |\n|---|---|---|\n| Greedy F1 | 0.6457 | 0.7146 |\n| Oracle F1 | 0.7574 | 0.7999 |\n| Headroom | 0.1117 | 0.0853 |\n\n**5-Signal ρ (full split):**\n\n| Signal | ρ | AUROC |\n|---|---|---|\n| voting_conf | 0.4135 | 0.7113 |\n| SJ | 0.3663 | 0.7061 |\n| FK | 0.3115 | 0.6723 |\n| EM | 0.3088 | 0.7538 |\n| logprob | 0.1911 | 0.5636 |\n\n**DGS:** 27.6% degenerate (146/529)。DGS F1=0.6454，与 Greedy 持平（−0.03pp, CI crosses zero）。Non-degenerate subset 上 LP 选择也无增益（−0.05pp）。\n\n与 seed=42/123 一致：结构性信号（SJ/FK/voting_conf）稳定优于 logprob，DGS 在 LLaMA SciERC 上无显著 selection gain。Registry 已注册为 `exp_llama_scierc_seed456`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-scierc-seed456-inference.md"
+}

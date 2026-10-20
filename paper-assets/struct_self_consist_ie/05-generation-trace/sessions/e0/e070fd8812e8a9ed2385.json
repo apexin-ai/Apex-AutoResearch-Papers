@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e070fd8812e8a9ed2385",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "eval exp b1 scd fewnerd standard",
+  "task_key": "worker_eval_exp_b1_scd_fewnerd_standard_20260520T192035",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp_b1_scd_fewnerd_standard_20260520T192035_result.json",
+    "occurrence": 1,
+    "bytes": 948,
+    "sha256": "52470afda448bd4871c9d9d3e4efbd7b00f7527cab19541e127bf5d365805d14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果报告\n\n### 1. Checkpoint 验证\n**VALID** — `qwen3-8b-fewnerd-scd-lora` checkpoint 完整有效（adapter_model.safetensors 349MB, 2 epochs, train_loss=0.023, eval_loss=0.033）。LoRA merge 成功，生成 4-shard merged model (~16GB)。\n\n### 2. Greedy F1\n**Micro F1 = 0.7813** (P=0.7583, R=0.8057)\n\n### 3. 对比\n\n| 配置 | Micro F1 | 相对 baseline |\n|------|----------|--------------|\n| Baseline greedy (无 SCD) | 0.748 | — |\n| N=8 construction target | 0.764 | +1.6 |\n| **SCD greedy (本次)** | **0.781** | **+3.3** |\n\n### 4. 结论\n**Hypothesis 成立，且超出预期。** SCD greedy F1 (0.781) 不仅接近 N=8 construction F1 (0.764)，还超过了 +1.7 个点。相比 baseline greedy F1 (0.748)，SCD 带来了 +3.3 的提升。\n\n这说明 standard SCD 训练成功地将 self-consistency 集成的知识蒸馏到了单次 greedy 解码中，消除了推理时多次采样的开销。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-b1-scd-fewnerd-standard.md"
+}

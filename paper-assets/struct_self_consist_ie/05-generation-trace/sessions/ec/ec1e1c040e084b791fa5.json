@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec1e1c040e084b791fa5",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5090c fill and check",
+  "task_key": "worker_ssh_5090c_fill_and_check_20260521T145124",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090c_fill_and_check_20260521T145124_result.json",
+    "occurrence": 1,
+    "bytes": 1221,
+    "sha256": "7a2b5d9948ce4bbc5e03012543ef3c8f9a1f9c08aaf839a0f327e4ababd1d7aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。\n\n---\n\n### cuda:1: CoNLL MF4v2 s42 rerun\n- **状态**: 已启动\n- **PID**: 329610 (VLLM EngineCore: 329884)\n- **GPU 1**: 91%, 30235 MiB\n- **进度**: 模型已加载，正在推理 256/27624 (1%)，渲染完成\n- **参数**: `qwen3-8b-conll2003-merged`, n_samples=8, T=1.0, seed=42, collect_logprobs\n- **预计时间**: ~15-20 min\n\n### cuda:0: FewNERD N=16 s123\n- **进程**: 存活 (PID 311985 + VLLM 312685)，运行 3h28m\n- **进度**: 2798/37648 (7%)，~33 it/s，剩余 ~17 min\n- **模型**: qwen3-8b-fewnerd-exp021-merged, n_samples=16\n- **建议**: 继续等待，即将完成\n\n### cuda:2: 候选实验\nGPU 2 空闲 (0%, 0 MiB)。缺失实验：\n\n| 优先级 | 实验 | 模型 | 说明 |\n|--------|------|------|------|\n| 1 | **scierc_n16_s123** | qwen3-8b-scierc-merged-v2 | 目录存在但为空，需重跑 |\n| 2 | **scierc_n16_s456** | qwen3-8b-scierc-merged-v2 | 目录不存在，N16 第三个 seed |\n| 3 | **e2_pretrained_fewnerd_s456** | Qwen2.5-7B-Instruct | pretrained baseline，s123 在 GPU3 跑，s456 未做 |\n\n### cuda:3（附带信息）\n- e2_pretrained_fewnerd_s123 运行中 (PID 306365)，Qwen2.5-7B-Instruct，n=8, seed=123"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5090c-fill-and-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1cbcdb967119337cd2c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code dgs persistence fix",
+  "task_key": "worker_code_dgs_persistence_fix_20260518T164426",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_dgs_persistence_fix_20260518T164426_result.json",
+    "occurrence": 1,
+    "bytes": 1059,
+    "sha256": "4ef644da1d1e4b911842dd87c0984071a57c704097bb2b3dd0dd9e572f9403b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## DGS Results\n\nJSON persisted at `output/dgs_selection_results.json`. Key numbers:\n\n| Dataset | Greedy | LP-all | DGS | Oracle | DGS-Greedy | DGS-LP |\n|---------|--------|--------|-----|--------|------------|--------|\n| SciERC  | .6436  | .6495  | .6507 | .7775 | +0.71pp (n.s.) | +0.12pp (n.s.) |\n| CoNLL   | .9087  | .8985  | .8985 | .9520 | **-1.02pp (sig.)** | 0.00pp |\n| FewNERD | .7713  | .7800  | .7805 | .8831 | +0.92pp (sig.) | +0.04pp (n.s.) |\n\n**DGS is not a viable method contribution:**\n\n1. **CoNLL: DGS significantly worse than greedy** (-1.02pp, 95% CI [-1.41, -0.64]). LP is 2.69pp worse than greedy on non-degenerate instances, so gating to LP hurts.\n2. **SciERC: not significant** (CI crosses zero).\n3. **FewNERD: significant vs greedy, but DGS adds nothing over plain LP-all** (+0.04pp, n.s.). The gating mechanism itself has no value.\n4. **DGS vs LP-all is never significantly positive** across any dataset.\n\nThe paper stays pure diagnostic. Full report at `artifacts/dgs_results/dgs_selection_results.md`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dgs-persistence-fix.md"
+}

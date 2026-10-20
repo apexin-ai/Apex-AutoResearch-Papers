@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "fa7d89720dbf3c6055c9",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "run exp asb adaptive budget",
+  "task_key": "worker_run_exp_asb_adaptive_budget_20260520T175146",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_exp_asb_adaptive_budget_20260520T175146.log",
+    "occurrence": 1,
+    "bytes": 568055,
+    "sha256": "e162126f5ce9cddf7472b38bdaac4efacc99b9540716ca55a6d5352d00132d03"
+  },
+  "statistics": {
+    "messages": 263,
+    "user_turns": 0,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 100,
+      "tool_result": 100,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 263,
+      "chunks": [
+        {
+          "path": "fa7d89720dbf3c6055c9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa7d89720dbf3c6055c9-part-0002.json",
+          "message_count": 83
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-exp-asb-adaptive-budget.md"
+}

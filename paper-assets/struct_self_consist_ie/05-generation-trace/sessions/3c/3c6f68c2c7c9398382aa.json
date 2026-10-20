@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c6f68c2c7c9398382aa",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh v3 s42 recompute final",
+  "task_key": "worker_ssh_v3_s42_recompute_final_20260521T232846",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_v3_s42_recompute_final_20260521T232846_result.json",
+    "occurrence": 1,
+    "bytes": 554,
+    "sha256": "c12ef59eaf47d94dc33b4d8cf34bd521f66a305dda6bdf36f7416c8625caf0e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## mf4v2_s42_v3 结果\n\n| 指标 | 值 |\n|------|-----|\n| **samples.jsonl 行数** | 37,648 (完整) |\n| **Greedy F1** | 0.7911 |\n| **MV F1 (strict, ≥5/8)** | 0.7586 |\n| **MV Δ (pp)** | **−3.25pp** |\n| **Keyset degeneracy** | **9.1%** |\n| **α_crit_eff_strict** | **0.4352** |\n\n补充数据：\n- Gold-nonempty instances: 32,565 / 37,648\n- MV F1 (inclusive, ≥4/8): 0.7783 (Δ = −1.28pp)\n- Oracle F1: 0.8803\n- α_crit_strict: 0.3956\n\nMV strict 比 greedy 低 3.25pp，退化率 9.1%，α_crit_eff_strict = 0.4352。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-v3-s42-recompute-final.md"
+}

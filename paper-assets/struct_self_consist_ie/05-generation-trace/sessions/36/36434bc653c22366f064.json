@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36434bc653c22366f064",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis t ablation 3seed summary",
+  "task_key": "worker_analysis_t_ablation_3seed_summary_20260521T044117",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_t_ablation_3seed_summary_20260521T044117_result.json",
+    "occurrence": 1,
+    "bytes": 977,
+    "sha256": "ce585dd020ee0a7a7d62733cb1b7de645e37d861a0f2bc1d1e6068936a68e158"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已保存并注册：\n\n- **JSON**: `artifacts/t_ablation_3seed_summary.json` — 完整 mean±std 数据\n- **Table**: `artifacts/t_ablation_table.md` — 论文用表格\n\n**数据覆盖情况：**\n\n| 数据集 | 3-seed 完整 | 缺失 |\n|--------|------------|------|\n| FewNERD | T=0.8 ✓ | T=0.5/1.2 缺 s456（RUNNING）；T=1.0 仅1seed 且不同 pipeline |\n| CoNLL | T=0.5/0.8/1.2 ✓ | T=1.0 仅1seed |\n| SciERC | T=0.5/0.8/1.0/1.2 ✓ | s42 来自 exp_026 analysis（NER only），pipeline 略有差异 |\n\n**主要发现：**\n1. Greedy F1 对 T 不敏感（CoNLL≈0.907, SciERC≈0.663, FewNERD≈0.789）\n2. Oracle headroom 随 T 单调递增（更多多样性 → 更高理论上限）\n3. ρ(SJ,F1) 在 T=0.8 达到峰值（diversity-noise 最佳平衡点）\n4. ρ\\_advantage 随 T 递增：结构一致性相对表面一致性的优势在高 T 下更明显\n5. FewNERD T=1.0 数据需要等 `exp_fewnerd_n16_s*` 完成后补充"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-t-ablation-3seed-summary.md"
+}

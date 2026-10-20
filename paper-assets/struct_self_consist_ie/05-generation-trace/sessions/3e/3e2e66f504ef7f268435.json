@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "id": "3e2e66f504ef7f268435",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code exp qwen25 72b zeroshot monitor",
+  "task_key": "worker_code_exp_qwen25_72b_zeroshot_monitor_20260519T081836",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_qwen25_72b_zeroshot_monitor_20260519T081836.log",
+    "occurrence": 1,
+    "bytes": 1273301,
+    "sha256": "778bedfc1ae878dd28a3a0c9fe4f256bfbcd8c75de5f1a50305a87c327772dc6"
+  },
+  "statistics": {
+    "messages": 763,
+    "user_turns": 2,
+    "tool_calls": 327,
+    "roles": {
+      "log": 1,
+      "system": 32,
+      "record": 1,
+      "assistant": 72,
+      "tool_call": 327,
+      "tool_result": 327,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 36,
+      "chunks": [
+        {
+          "path": "3e2e66f504ef7f268435-part-0001.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 715,
+      "chunks": [
+        {
+          "path": "3e2e66f504ef7f268435-part-0001.json",
+          "message_count": 130
+        },
+        {
+          "path": "3e2e66f504ef7f268435-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e2e66f504ef7f268435-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e2e66f504ef7f268435-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e2e66f504ef7f268435-part-0005.json",
+          "message_count": 45
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "3e2e66f504ef7f268435-part-0005.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-qwen25-72b-zeroshot-monitor.md"
+}

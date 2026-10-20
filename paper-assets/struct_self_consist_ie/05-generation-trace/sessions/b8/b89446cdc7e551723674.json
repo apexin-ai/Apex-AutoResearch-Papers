@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b89446cdc7e551723674",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh kill 5090c dup s456",
+  "task_key": "worker_ssh_kill_5090c_dup_s456_20260521T183245",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_kill_5090c_dup_s456_20260521T183245_result.json",
+    "occurrence": 1,
+    "bytes": 271,
+    "sha256": "c07ca598e1c5b199583c65e263db412e07561094a33f4ff7d44752a35e3eb4a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:2 已完全释放（0%, 0 MiB）。\n\n最终状态：\n- cuda:0: 92%, 30259 MiB — fewnerd_5epoch_s456（正常运行）\n- cuda:1: 空闲\n- **cuda:2: 空闲**（已释放）\n- cuda:3: 82%, 30295 MiB — e2_pretrained_fewnerd_s42（正常运行）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-5090c-dup-s456.md"
+}

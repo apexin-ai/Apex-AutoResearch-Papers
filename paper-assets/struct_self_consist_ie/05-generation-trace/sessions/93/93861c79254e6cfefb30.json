@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93861c79254e6cfefb30",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh j calibration conformal",
+  "task_key": "worker_ssh_j-calibration-conformal_20260520T101503",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_j-calibration-conformal_20260520T101503_result.json",
+    "occurrence": 1,
+    "bytes": 1246,
+    "sha256": "a7801033bae6455428623b796a867a7fe30b60f814ee7de962489734e528ea16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifacts registered. Results summary:\n\n## Calibration (ECE)\n\n| Dataset | ECE | Interpretation |\n|---------|-----|----------------|\n| **SciERC** | 0.098 | Overconfident — entities with 8/8 agreement are only 82% correct |\n| **CoNLL** | 0.037 | Well-calibrated — 8/8 agreement entities are 97% correct |\n| **FewNERD** | 0.035 | Well-calibrated — monotonic confidence→accuracy relationship |\n\nSciERC's higher ECE is driven by the high-confidence bins (0.75–1.0) where accuracy lags 15–25pp behind confidence.\n\n## Conformal Prediction (α=0.1, target: coverage ≥ 0.9)\n\n| Dataset | Coverage | Threshold | Avg Set Size | Passes? |\n|---------|----------|-----------|-------------|---------|\n| **CoNLL** | 0.925 | 0.125 | 2.8 | ✓ |\n| **FewNERD** | 0.789 | 0.000 | 5.3 | ✗ |\n| **SciERC** | 0.566 | 0.000 | 5.4 | ✗ |\n\nFor SciERC and FewNERD, the threshold drops to 0.0 (include everything) yet coverage still fails — this means ~21% (FewNERD) and ~43% (SciERC) of instances have gold entities that never appear in any of the N=8 samples. This is a fundamental recall ceiling, not a thresholding issue. CoNLL passes comfortably because its entity types (PER/LOC/ORG) are more consistently generated."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-j-calibration-conformal.md"
+}

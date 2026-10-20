@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2fff96675bc370de547",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu autodl5090 batch",
+  "task_key": "worker_gpu_autodl5090_batch_20260514T143208",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_autodl5090_batch_20260514T143208_result.json",
+    "occurrence": 1,
+    "bytes": 794,
+    "sha256": "96ea16028a2f4161bb03ded7242e31b00ee8d676f7afa01c8536055873ef3dd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部成功启动并确认推理进行中。\n\n| 实验 | GPU | tmux session | PID | 任务 | 进度 |\n|------|-----|-------------|-----|------|------|\n| `exp_001_seed42_v2` | cuda:1 (29GB) | exp_001_seed42_v2 | 78728 | NER N=16 seed=42 | ~10% (848/8816 prompts) |\n| `exp_001_seed123_v2` | cuda:2 (29GB) | exp_001_seed123_v2 | 78733 | NER N=16 seed=123 | 运行中 |\n| `exp_008_re_n16_v2` | cuda:3 (29GB) | exp_008_re_n16_v2 | 78737 | RE N=16 seed=42 | 运行中 |\n\n关键确认：\n- 全部使用 `--collect_logprobs`，满足 exp-012 前置要求\n- 模型 `qwen3-8b-scierc-merged-v2` (ft_002_v2)\n- cuda:0 未动\n- 推理速度 ~2900 toks/s，8816 prompts (551 instances × 16 samples)，预计 ~15-20 分钟完成\n- 已设置每 7 分钟自动监控 cron"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-autodl5090-batch.md"
+}

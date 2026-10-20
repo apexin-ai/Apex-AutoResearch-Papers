@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "435a36b5b7f1dd6568ae",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops anon repo force push",
+  "task_key": "worker_ops_anon_repo_force_push_20260525T114515",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_anon_repo_force_push_20260525T114515_result.json",
+    "occurrence": 1,
+    "bytes": 388,
+    "sha256": "a8d5be1549679976ec803995d1b32046317a5b96ee07d4c35bb4d4984361222d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果汇总：**\n- **Push 状态**: 成功 (`b91180e..f3a74af main -> main`)\n- **变更规模**: 456 files changed, 37614 insertions(+), 7029 deletions(-)\n- **压缩包大小**: 4.7MB\n- **匿名性检查**: 通过（无姓名、邮箱、机构名、硬编码 token 泄露）\n- **Remote URL token**: 已清除\n- **完成时间**: 2026-05-25 19:48 UTC+8"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-anon-repo-force-push.md"
+}

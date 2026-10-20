@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5113d82825443abc5082",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "submit docred re",
+  "task_key": "worker_submit_docred_re_20260520T203431",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_submit_docred_re_20260520T203431_result.json",
+    "occurrence": 1,
+    "bytes": 324,
+    "sha256": "09081ca3a058d92801af9c5883d345d3c0845118485ce3136677c6818696bc32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并运行中：\n\n- **exp_id**: exp_docred_re_sc\n- **server**: autodl-5090-c, cuda:3\n- **PID**: 232745\n- **状态**: RUNNING，vLLM 引擎已初始化，正在处理 1600 prompts（200 instances × 8 sampled passes，日志显示已开始推理）\n- **Registry**: spec 和 status 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-docred-re.md"
+}

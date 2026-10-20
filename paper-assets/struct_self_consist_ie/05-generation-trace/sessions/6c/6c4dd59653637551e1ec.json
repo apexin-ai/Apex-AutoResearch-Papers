@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c4dd59653637551e1ec",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run frontier sc gpt55",
+  "task_key": "worker_run_frontier_sc_gpt55_20260521T044801",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_frontier_sc_gpt55_20260521T044801_result.json",
+    "occurrence": 1,
+    "bytes": 1542,
+    "sha256": "516eb75944e19bb6976204775d1d2a0859a725886e7eb520de7bce371999713b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment running stably. 8/200 instances done in 301s (avg 37.6s/instance). ETA ~2 hours.\n\n**Status summary:**\n- Script: `code/run_frontier_sc.py` on autodl-5090-c\n- PID: 282842\n- Log: `logs/frontier_sc_gpt55_fewnerd.log`\n- Checkpoint: `output/frontier_sc_gpt55_fewnerd/checkpoint.jsonl` (allows resume)\n- Registry: `exp_frontier_sc_gpt55_fewnerd_v2` → RUNNING\n\n**Key findings from first 8 instances:**\n| # | greedy | mv | oracle | agree | degen |\n|---|--------|-----|--------|-------|-------|\n| 1 | 0.800 | 0.800 | 0.889 | 0.878 | N |\n| 2 | 0.000 | 0.000 | 0.000 | 1.000 | Y |\n| 3 | 0.000 | 0.000 | 0.000 | 1.000 | Y |\n| 4 | 0.500 | 1.000 | 1.000 | 0.643 | N |\n| 5 | 1.000 | 1.000 | 1.000 | 1.000 | Y |\n| 6 | 0.667 | 0.500 | 0.667 | 0.786 | N |\n| 7 | 0.400 | 0.400 | 0.500 | 0.857 | N |\n| 8 | 0.824 | 0.824 | 0.824 | 1.000 | Y |\n\n**Early observations:**\n- High degeneracy rate (4/8 = 50%)\n- Instance 4: clear SC benefit (greedy=0.5 → mv=1.0)\n- Instance 6: SC hurts (greedy=0.667 → mv=0.500) — correlation-selection gap confirmed\n- Oracle > MV in non-degenerate cases → selection gap exists in frontier model\n- Instances 2&3: type taxonomy mismatch (model uses different entity types than FewNERD gold)\n\n**Technical notes:**\n- GPT-5.5 uses ~1024 reasoning tokens internally → max_tokens=4096 needed\n- ~22s per API call, 4 parallel workers → ~35s per instance\n- Offset correction applied (API models produce wrong char offsets)\n- Checkpoint enables resume on API credit exhaustion"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-frontier-sc-gpt55.md"
+}

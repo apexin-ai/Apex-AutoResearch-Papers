@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45408e008e18519e0f3a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh conll n16 mv recompute",
+  "task_key": "worker_ssh_conll_n16_mv_recompute_20260522T034320",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_conll_n16_mv_recompute_20260522T034320_result.json",
+    "occurrence": 1,
+    "bytes": 712,
+    "sha256": "d63c1a81d6a29b8a05ce660fadfde9512262f4bb57f4c7a4a2a059610f2b0bca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CoNLL N=16 (seed=42) MV recompute 完成。结果（gold-nonempty subset, n=2756）:\n\n| 指标 | 值 |\n|---|---|\n| greedy_f1 | 0.9128 |\n| **mv_strict_f1** | **0.9148** |\n| mv_incl_f1 | 0.9139 |\n| oracle_f1 | 0.9636 |\n| **mv_delta (strict)** | **+0.19pp** |\n| mv_delta (incl) | +0.10pp |\n| **degeneracy_rate** | **49.7%** |\n| **alpha_crit_eff_strict** | **1.6749** |\n| alpha_crit_eff_incl | 1.6719 |\n| alpha_crit_strict | 0.8429 |\n| capture_rate (Δ_SC / headroom) | 0.19pp / 5.08pp ≈ 3.8% |\n\n注：greedy_f1/oracle_f1 与原 report.json 的值略有不同（0.9128 vs 0.9080），因为 recompute 只看 gold-nonempty instances (2756)，而原报告包含所有 3453 instances。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-conll-n16-mv-recompute.md"
+}

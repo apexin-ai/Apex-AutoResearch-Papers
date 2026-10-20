@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c188fb6105d4fe257516",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis conll 2seed construction",
+  "task_key": "worker_analysis_conll-2seed-construction_20260524T073452",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_conll-2seed-construction_20260524T073452_result.json",
+    "occurrence": 1,
+    "bytes": 488,
+    "sha256": "fd23878a3ea64e9b0bb02f8754e12cce862a1e820d2b3aa3e6b58af002d4d55c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CoNLL 2-seed construction 分析完成。\n\n**核心结论**：Construction 在 CoNLL 上一致为负，与论文 seed-42 结果吻合：\n\n| 方法 | Mean Δ ± σ | Pooled p |\n|------|-----------|----------|\n| MV   | **-1.10 ± 0.11 pp** | 1.0000 |\n| LP   | **-0.59 ± 0.22 pp** | 1.0000 |\n\n60% 实例的 8 个 sample 完全相同（high degeneracy），construction 只能引入噪声，无法改善。报告已写入 `artifacts/rebuttal_construction_conll.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-conll-2seed-construction.md"
+}

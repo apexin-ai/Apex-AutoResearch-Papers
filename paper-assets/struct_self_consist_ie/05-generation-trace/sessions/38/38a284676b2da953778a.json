@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38a284676b2da953778a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh pretrained fewnerd s123 recompute",
+  "task_key": "worker_ssh_pretrained_fewnerd_s123_recompute_20260521T182610",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_pretrained_fewnerd_s123_recompute_20260521T182610_result.json",
+    "occurrence": 1,
+    "bytes": 988,
+    "sha256": "134e3a1e562e82b80ee3a39a6557e9eeab1a3c02f3fc5e1ac961a2c7e75591c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Recompute 完成。结果汇总：\n\n### Pretrained Qwen2.5-7B (FewNERD, N=8, T=1.0, seed=123)\n\n| 指标 | Pretrained | Finetuned 3-epoch | 对比 |\n|------|-----------|-------------------|------|\n| greedy_f1 | **0.5381** | 0.664 | -12.59pp |\n| mv_strict_f1 (>N/2) | **0.5783** | — | — |\n| mv_incl_f1 (≥N/2) | **0.5658** | — | — |\n| oracle_f1 | **0.6520** | — | — |\n| Δ_SC strict | **+4.02pp** | -2.74pp | pretrained SC gain 大幅优于 finetuned |\n| degeneracy | **11.2%** | ~13% | pretrained 略低 |\n| α_crit_eff (strict) | **0.4580** | — | — |\n| α_crit_eff (incl) | **0.4442** | — | — |\n| gold-nonempty | 32,565 / 37,648 | — | — |\n\n关键发现：\n- Pretrained 模型 greedy_f1 比 finetuned 低约 12.6pp，但 **SC 增益 +4.02pp 远大于 finetuned 的 -2.74pp**\n- degeneracy 11.2%，比 finetuned (~13%) 更低——pretrained 模型采样多样性更好\n- α_crit_eff ≈ 0.458，MV 在 pretrained 上的信号显著"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-pretrained-fewnerd-s123-recompute.md"
+}

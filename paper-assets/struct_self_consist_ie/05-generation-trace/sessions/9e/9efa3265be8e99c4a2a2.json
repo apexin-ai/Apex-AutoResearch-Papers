@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9efa3265be8e99c4a2a2",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu 5090c fill 4gpu",
+  "task_key": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_5090c_fill_4gpu_20260521T071406_result.json",
+    "occurrence": 1,
+    "bytes": 618,
+    "sha256": "b2511a057c928733a911a928c9fea0319a2165d873ed0d2021b761bdd89736a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 张 GPU 全部满载运行：\n\n| GPU | 实验 | 显存占用 | 利用率 |\n|-----|------|---------|--------|\n| cuda:0 | exp_fewnerd_n16_s456_v2 (FewNERD N=16 s456) | 30117 MiB | 27% |\n| cuda:1 | exp_conll_n16_s123_v2 (CoNLL N=16 s123) | 30149 MiB | 84% |\n| cuda:2 | exp_conll_n16_s456_v2 (CoNLL N=16 s456) | 30147 MiB | 91% |\n| cuda:3 | exp_e2_pretrained_scierc (SciERC E2 baseline) | 30349 MiB | 85% |\n\n过程中处理了：5090-c 没有 tmux（conda 安装 + symlink 到 /usr/local/bin）、两个僵尸 registry 记录（exp_14b_inference_fewnerd、exp_fewnerd_7b_n16_s42 标记 DONE）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-5090c-fill-4gpu.md"
+}

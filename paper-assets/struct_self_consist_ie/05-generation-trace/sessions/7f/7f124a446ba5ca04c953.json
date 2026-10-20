@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f124a446ba5ca04c953",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh b2 v2 multi domain joint",
+  "task_key": "worker_ssh_b2-v2-multi-domain-joint_20260520T113822",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_b2-v2-multi-domain-joint_20260520T113822_result.json",
+    "occurrence": 1,
+    "bytes": 1266,
+    "sha256": "f5687b5fa956ca4cc7ae8eb5dde017317cde99111b8bfe23ee66015306305bcb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。所有产出在 `artifacts/b2_v2_multi_domain/`。\n\n## 核心结果\n\n| Fold | Test Dataset | LGB AUC | ECE | F1 Δ vs Greedy |\n|------|-------------|---------|-----|----------------|\n| 1 | CoNLL | 0.9378 | 0.030 | +0.003 |\n| 2 | SciERC | 0.8006 | 0.127 | +0.005 |\n| 3 | **FewNERD** | **0.8477** | 0.136 | **-0.008** |\n| 4 | IID (upper bound) | 0.9313 | 0.007 | — |\n\n## vs B2 Original (Fold 3)\n\n- LGB AUC: 0.8335 → **0.8477 (+0.014)**, XGB: 0.8282 → **0.8603 (+0.032)**\n- 但 **F1 delta 仍为负** (-0.008)，AUC 提升未转化为下游收益\n- 原因：cross-domain ECE=0.136（IID 仅 0.007），预测概率严重 miscalibrated\n\n## Feature 稳定性核心发现\n\n- **最具判别力的 feature (agreement_count, vc, sj) 跨域稳定性最差** (std=0.12-0.14)\n- **最稳定的 feature (lp_span, lp_token)** 判别力中等 (r≈0.26-0.34, std≈0.01)\n- dataset_enc 在 Fold 3 占 XGB gain 的 9.4%，模型依赖数据集身份——跨域泛化的隐患\n\n## 结论\n\nJoint training 提升了 AUC，但 cross-domain calibration gap 未解决。verifier-weighted construction 在 FewNERD 上仍然是负迁移。需要 domain-specific calibration 或设计同时具备判别力和跨域稳定性的 feature。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-b2-v2-multi-domain-joint.md"
+}

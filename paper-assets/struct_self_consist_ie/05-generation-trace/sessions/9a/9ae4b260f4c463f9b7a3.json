@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ae4b260f4c463f9b7a3",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 029 configs",
+  "task_key": "worker_code_exp_029_configs_20260517T233240",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_029_configs_20260517T233240_result.json",
+    "occurrence": 1,
+    "bytes": 1148,
+    "sha256": "39a8ce8c3fca1208595e088e4e0bf3775bcb6774d1a558cccca91fb3c00d7eb5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## 产出汇报\n\n### 配置文件\n\n| 配置 | 路径 | epochs | output_dir |\n|------|------|--------|------------|\n| exp_029a (3-epoch) | `train_config_scierc_3ep.yaml` | 3.0 | `checkpoints/qwen3-8b-scierc-3epoch-lora` |\n| exp_029b (10-epoch) | `train_config_scierc_10ep.yaml` | 10.0 | `checkpoints/qwen3-8b-scierc-10epoch-lora` |\n\n### 与 ft_002_v2 的一致性确认\n\n以下参数完全一致：\n- 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`\n- 数据: `scierc_uie_train` / `scierc_uie_dev`\n- LoRA: r=32, alpha=64, target=all\n- 训练: batch=2, grad_accum=8, lr=2e-4, cosine scheduler, warmup=0.1\n- 其他: seed=42, cutoff_len=2048, bf16\n\n### 后处理工具链状态\n\n`scripts/exp_028_postprocess/` 提供完整 pipeline（merge → inference → analysis），结构为：\n1. `01_merge_lora.sh` — LoRA 合并\n2. `02_inference.sh` — N=8 采样推理\n3. `03_analyze.py` — 结果分析\n4. `run_all.sh` — 一键执行\n\n该工具链为 Few-NERD 设计，SciERC 复用时需修改数据集路径和 output 目录，但核心逻辑（merge → sample → analyze）可直接适配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-029-configs.md"
+}

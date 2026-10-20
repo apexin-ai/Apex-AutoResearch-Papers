@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d4739a78fb1c9b7d9858",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh dgec vc 8b qwen3 ft",
+  "task_key": "worker_ssh_dgec-vc-8b-qwen3-ft_20260520T085503",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_dgec-vc-8b-qwen3-ft_20260520T085503.log",
+    "occurrence": 1,
+    "bytes": 673241,
+    "sha256": "abc55522c691c067d905623b6cae15db9577f064b2b10d0c1f761aa278c7655d"
+  },
+  "statistics": {
+    "messages": 217,
+    "user_turns": 0,
+    "tool_calls": 77,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 77,
+      "tool_result": 77,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 217,
+      "chunks": [
+        {
+          "path": "d4739a78fb1c9b7d9858-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d4739a78fb1c9b7d9858-part-0002.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-dgec-vc-8b-qwen3-ft.md"
+}

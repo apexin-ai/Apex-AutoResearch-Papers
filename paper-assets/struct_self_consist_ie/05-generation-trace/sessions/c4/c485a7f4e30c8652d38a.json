@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "c485a7f4e30c8652d38a",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "audit d class numerical",
+  "task_key": "worker_audit_d_class_numerical_20260523T114056",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_d_class_numerical_20260523T114056.log",
+    "occurrence": 1,
+    "bytes": 1010915,
+    "sha256": "90b3f0ac7e810b5e267962d890d51992fe4004e03498649e89791dea257e9d67"
+  },
+  "statistics": {
+    "messages": 275,
+    "user_turns": 2,
+    "tool_calls": 96,
+    "roles": {
+      "log": 1,
+      "system": 33,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 96,
+      "tool_result": 96,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 132,
+      "chunks": [
+        {
+          "path": "c485a7f4e30c8652d38a-part-0001.json",
+          "message_count": 125
+        },
+        {
+          "path": "c485a7f4e30c8652d38a-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 65,
+      "chunks": [
+        {
+          "path": "c485a7f4e30c8652d38a-part-0002.json",
+          "message_count": 65
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 78,
+      "chunks": [
+        {
+          "path": "c485a7f4e30c8652d38a-part-0002.json",
+          "message_count": 78
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-d-class-numerical.md"
+}

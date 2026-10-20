@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59f948364dee35e16f75",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp conll s123 cuda2",
+  "task_key": "worker_exp_conll_s123_cuda2_20260518T094904",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_conll_s123_cuda2_20260518T094904_result.json",
+    "occurrence": 1,
+    "bytes": 133,
+    "sha256": "ba06b5c3599ffe34506fcc49936ecbb8bf0c2e40d39a55b490af16693af9068b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已就绪，等待 GPU 2 释放。`fewnerd_s456` 当前 15% 完成，预计 ~1.5h。4.5 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-conll-s123-cuda2.md"
+}

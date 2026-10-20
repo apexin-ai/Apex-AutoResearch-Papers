@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "fb62f360b836a5149f51",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis mlp verifier upgrade",
+  "task_key": "worker_analysis_mlp_verifier_upgrade_20260519T070159",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mlp_verifier_upgrade_20260519T070159.log",
+    "occurrence": 1,
+    "bytes": 597899,
+    "sha256": "fcda4fe98b013a81f4cc6be122f43a84694b10f7ad372c5fc325eca8532c1846"
+  },
+  "statistics": {
+    "messages": 161,
+    "user_turns": 0,
+    "tool_calls": 58,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 58,
+      "tool_result": 58,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 161,
+      "chunks": [
+        {
+          "path": "fb62f360b836a5149f51-part-0001.json",
+          "message_count": 159
+        },
+        {
+          "path": "fb62f360b836a5149f51-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-mlp-verifier-upgrade-copy-2.md"
+}

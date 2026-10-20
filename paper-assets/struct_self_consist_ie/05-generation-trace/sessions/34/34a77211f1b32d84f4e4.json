@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34a77211f1b32d84f4e4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "viz paperbanana fig1",
+  "task_key": "worker_viz_paperbanana_fig1_20260523T133615",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_viz_paperbanana_fig1_20260523T133615_result.json",
+    "occurrence": 1,
+    "bytes": 844,
+    "sha256": "fb0fd8deb5a4870d433fe837b95f0f40a6a80ef4cbd7c056815bb1b5995dd6e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果**：\n- PaperBanana 因 Gemini 模型 API 不兼容（`gemini-2.0-flash` 已弃用，`gemini-2.5-flash` 图像生成失败）无法使用，改用手写 matplotlib\n- 手写 1 轮调试 + 1 轮微调，共 2 次迭代\n- 最终图：16×5.6 英寸，300 DPI，三面板结构\n  - Panel 1（蓝）：Input x → N samples → S，High/Low S 相关性，AUROC/ρ 指标，✓ Effective Quality Estimation\n  - Panel 2（橙）：相同分数 S=0.73 的 bracket 标注，instance-level signal 解释，✗ Selection Fails\n  - Panel 3（绿）：PER/LOC/ORG 实体网格 + 频率行，θ=2/N 阈值线，+1.4 pp\n  - 顶部连接：红色 \"Correlation–Selection Gap\" banner + 绿色 \"Resolution\" banner\n- `fig_overview.png` (388KB) 和 `fig_overview.pdf` (57KB) 已覆盖原文件\n- LaTeX 编译通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-paperbanana-fig1.md"
+}

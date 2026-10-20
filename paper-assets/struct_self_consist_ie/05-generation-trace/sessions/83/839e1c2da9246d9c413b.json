@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "839e1c2da9246d9c413b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis ood baseline check and cleanup",
+  "task_key": "worker_analysis_ood_baseline_check_and_cleanup_20260515T130851",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_ood_baseline_check_and_cleanup_20260515T130851_result.json",
+    "occurrence": 1,
+    "bytes": 1734,
+    "sha256": "ce09e17d1b1a86523c981ba550ff1216ae76abd86cb717ab32d5a36772156b3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。\n\n## 报告\n\n### 子任务 A: \"0.335\" 溯源\n\n**论文现状**: \"0.335\" **不存在于**当前论文任何 tex 文件中（experiments.tex / discussion.tex / appendix.tex 均无匹配）。round_7_consistency review 已确认 \"PASS — 全文 grep 无匹配\"。此数字已被清除。\n\n**\"0.335\" 在数据文件中的出现**:\n- `3seed_ner_summary.md`: **EM NER seed42 N=16 ρ = 0.335**（单信号单种子值）\n- dream_reports 自动草稿中出现两次（freeform SJ → 0.335、RE conditional FK → 0.335），均为生成内容\n\n**用户要求的计算验证**:\n\n| 计算方式 | 公式 | 结果 |\n|---------|------|------|\n| 4 structural avg (N=8, seed42) | (SJ 0.3599 + FK 0.2665 + EM 0.2945 + VC 0.3792) / 4 | **0.325** |\n| 5 signal avg (N=8, seed42) | (0.3599 + 0.2665 + 0.2052 + 0.2945 + 0.3792) / 5 | **0.301** |\n| N=16 3-seed 5-signal mean (n-scaling table) | mean row | **0.336** |\n\n**最可能来源**: \"in-domain avg ρ=0.335\" 是 **EM NER seed42 N=16 的单信号值 (0.335)** 被误标为 \"avg ρ\"，或者是 N=16 全信号均值 0.336 的近似取整。无论哪种，都不是可引用的 \"in-domain average\"。\n\n**结论**: 论文中已无此数字，无需进一步修正。OOD section 现在使用逐信号列举（如 discussion.tex:46 的 \"VC ρ=0.469 OOD vs. 0.379 in-domain\"），溯源至 Table 1，是正确做法。\n\n### 子任务 B: 删除 discussion.tex\n\n`/root/autodl-tmp/struct_self_consist_ie/discussion.tex` **不存在**于远程服务器。`ls` 返回 \"No such file or directory\"。整个 paper/sections 目录也不存在于服务器——论文源文件仅在本地 `docs/paper/` 下。无需操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ood-baseline-check-and-cleanup.md"
+}

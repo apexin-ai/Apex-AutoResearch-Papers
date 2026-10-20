@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7eb3feb7966ea06bb2f6",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis provenance audit c032 c023 c021",
+  "task_key": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_provenance_audit_c032_c023_c021_20260516T045025_result.json",
+    "occurrence": 1,
+    "bytes": 1117,
+    "sha256": "791341dd3c906753c1320a37dee75f89d33539de6811a655dc0a913052de58dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/provenance_audit_c032_c023_c021.md`。\n\n**结论：三个不一致项全部是 provenance yaml / registry 过时，当前论文值均正确。**\n\n| 项 | Provenance/Registry 值 | 当前论文值 | 真实来源 | 状态 |\n|---|---|---|---|---|\n| c032 LP cond RE ρ | 0.002 / 0.1457 | **0.011** | exp_012_rerun_1024 (正确 filter, n=238) | 论文已修正 |\n| c023 RE SJ Q1/Q4 | Q1=0.447, Q4=0.540 | **Q1=0.110, Q4=0.473** | exp_009_v2_re_rerun (gold-filtered) | 论文正确，registry 未更新 |\n| c021 WNUT SJ ρ | 0.062 | **0.089** | exp003_wnut17_eval (n=689) | 论文已修正，0.062 无法追溯 |\n\n关键发现：\n- **c032**：registry 的 0.1457 来自 exp_015_metrics_expansion 使用了错误的 conditional filter（any sample F1>0 而非 greedy_f1>0），当前论文的 0.011 使用正确 filter\n- **c023**：registry 来自原始 exp_009（未做 gold-filtering），论文使用了 v2 rerun（gold-filtered 后 n=397）\n- **c021**：0.062 仅存在于 artifacts/_project/paper/ 旧版本中，在所有实验输出中无法追溯"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-provenance-audit-c032-c023-c021.md"
+}

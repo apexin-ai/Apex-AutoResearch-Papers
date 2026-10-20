@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d20b28b722581ee550a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 14b training check",
+  "task_key": "worker_ssh_14b-training-check_20260520T141049",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_14b-training-check_20260520T141049_result.json",
+    "occurrence": 1,
+    "bytes": 954,
+    "sha256": "d219f0d1a1af7fd5b777a13f1c92a4388a6f5f772f2f62217f88921c42b06b48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。当前 session 无活跃 cron（监控 cron 来自之前的 session，已自然失效）。\n\n## 结果汇总\n\n**训练成功完成** `exp_qwen25_14b_fewnerd`\n\n| 指标 | 值 |\n|------|-----|\n| 模型 | Qwen2.5-14B-Instruct QLoRA |\n| 总步数 | 41,180 (5 epochs) |\n| Train loss | 0.0348 |\n| Eval loss | 0.0323 |\n| 训练时长 | ~29.8h (2×5090) |\n\n**Checkpoint 位置：**\n- QLoRA adapter（最终）: `/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-14b-fewnerd-qlora-s42/` (5.2GB)\n- 已有 merged（早期 ckpt36000）: `/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-14b-fewnerd-merged-ckpt36000/` (28GB)\n\n**后续注意：** 最终 checkpoint 是 QLoRA adapter（step 41180），不是 merged 模型。已有的 merged 版本是 ckpt36000（早期），不是最终版。用于 N∈{1,2,4,8,16} inference 前需要先 merge 最终 adapter 到 base model。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-14b-training-check.md"
+}

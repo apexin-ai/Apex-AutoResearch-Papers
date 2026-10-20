@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7eaeb835f2811a154ad4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis n8 vs n16 appendix tables",
+  "task_key": "worker_analysis_n8_vs_n16_appendix_tables_20260515T120506",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_n8_vs_n16_appendix_tables_20260515T120506_result.json",
+    "occurrence": 1,
+    "bytes": 655,
+    "sha256": "88506ecbea41cee1709c923678ccef06fc99fef0af23440638975287235faa10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/n_scaling_appendix_tables.tex`，包含三个表格：\n\n- **Table 1** (`tab:n-scaling`): N=8 vs N=16 Spearman ρ 对比，5 signals + mean，所有 Δ 均为正（全部加粗）。NER 平均提升 +0.031，RE +0.025。\n- **Table 2** (`tab:ranking-stability`): 5 个 setting 的 Kendall's W。Qwen NER N=8 和 LLaMA NER N=8 达到 W=1.000（完美一致）；Qwen RE N=8 最低 W=0.822；N=16 后 NER/RE 均升至 0.956。\n- **Table 3** (`tab:sigma-comparison`): 跨种子 σ 对比。NER 均值 σ 从 0.0145 降至 0.0098，RE 从 0.0151 降至 0.0114。VC-NER 是唯一 σ 上升的例外（0.0187→0.0260）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-n8-vs-n16-appendix-tables.md"
+}

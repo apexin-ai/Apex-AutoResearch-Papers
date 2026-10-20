@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc6bcc00f938e7d4ff33",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check n32 progress",
+  "task_key": "worker_check_n32_progress_20260523T024335",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_n32_progress_20260523T024335_result.json",
+    "occurrence": 1,
+    "bytes": 244,
+    "sha256": "c6a052288c054ce84ab7043bcd58d4c9326d7a2fcc7def8c8aed01a919ce4ce4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/n32_progress_check.md`。\n\n**结论**: 实验健康运行中，56.5% 完成，无异常。总时长约 21.5h（远超原估 6h，因为 n=32 产生 120 万条 prompt）。预计今晚 ~21:30 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-n32-progress.md"
+}

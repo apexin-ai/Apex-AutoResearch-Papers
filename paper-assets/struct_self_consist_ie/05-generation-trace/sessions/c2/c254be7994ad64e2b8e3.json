@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c254be7994ad64e2b8e3",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_11_1778898766.md",
+  "task_key": "loop_11_1778898766",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_11_1778898766.md",
+    "occurrence": 1,
+    "bytes": 4406,
+    "sha256": "bfd0117d613a6672103c5fda41ee960d3353f88f5751381195a6ee6700acd3b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T01:08:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（autodl-5090），目前全部空闲，无需新 GPU 实验\n- 论文 ρ 值必须来自 gold-filtered 管道（排除 gold-empty 实例），不得从 registry metrics 直接引用 EM/VC 到论文（registry 来自 report.json，与分析脚本有系统性差异，见 memory.md D066）\n- 论文数据集：551 全集为 canonical，529 交集仅参考不进论文\n- exp_012 是唯一 max_tokens=512 实验，其 voting_conf ρ 虚高，论文数据必须来自 _rerun_1024 或本身用 1024 的实验\n- LLaMA SciERC 数据：unified_rho_full.json 已修复污染（D092-D094），旧值不可用\n- Selection claim 是 null result（bootstrap p=0.39），禁止写 \"significantly outperforms\"\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090（别名 bjb1-21071），4× RTX 5090 32GB，全部空闲\n- 工作目录：/root/autodl-tmp/struct_self_consist_ie/\n- Python：/root/miniconda3/bin/python（conda base 环境），激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 基座模型：/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\n- ft_002_v2 merged：checkpoints/qwen3-8b-scierc-merged-v2/\n- 分析产出：artifacts/analysis_unified_rho.json（canonical ρ 数据），analysis_round8/epsilon_sweep.csv\n- 活跃进程：无 GPU 训练进程，无活跃 cron\n- 活跃 Worker：worker_review_r9_data_integrity_20260516T010154（review:r9_data_integrity，started 01:01 UTC，仍在运行——等其回调）\n\n### 3. 📊 当前状态\nRegistry 104 实验全部 DONE（success 58 / negative 22 / killed 20 / failed 4）。无 RUNNING/PREPARING 实验。Cron reconcile 0 条。\n\n上一轮完成了：\n- 4B scale ablation 2×2 矩阵全部完成（D098），证明 gap 与 model capacity 无关\n- Round 8 审稿问题大部分已解决：页数超限（压缩中）、ε justification（D095 ✅）、RE preliminary（D095 ✅）、LP T=0.7（D095 ✅）\n- Paper Agent 已收到 4B data patch + 页数压缩 + 标题/Abstract 修复指令\n- Table 1 vs Table 4 ρ 不一致问题已分析（worker done）\n- Round 9 审稿已启动：narrative coherence review 已完成，**data integrity review 仍在运行**（等回调）\n\n等待中：\n- worker_review_r9_data_integrity 回调 → 处理审稿反馈\n- Paper Agent 完成全部修复（4B table + 压缩 + Phase 2-5）→ 可能需要更多 Round 9 审稿迭代\n\n### 4. 📋 待办（条件触发式）\n- worker_review_r9_data_integrity 回调到达 → 读取审稿结果，汇总 R9 两个 reviewer 的 findings，向 Director 汇报并建议修复优先级\n- R9 审稿发现需要补充实验 → 用空闲 GPU 立即跑（cuda:0-3 全部可用）\n- R9 审稿发现数据/数字不一致 → 派 Worker 修复论文对应 section\n- Paper Agent 全部修复完成 → 启动 Round 10 final review（focus: 页数合规 + 数字一致性）\n- Final review 通过 → 向 Director 报告可提交，等 Director 确认后做 final polish + 提交\n\n### 5. 🎯 战略上下文\n- **核心结论**：IE test-time scaling 中存在 universal correlation-selection gap。5 类置信信号能预测质量（AUROC 0.75）但无法从多个样本中选出更好的。Free-form ablation + 4B scale ablation 两条独立证据线证明 gap 是 model/task intrinsic，非 artifact。\n- **决策链**：D054-D060 数据修正 → D066 LLaMA fresh rerun → D072 ablation proves universality → D073 RE task-dependent framing → D092-D094 数据污染修复 → D095 ε + RE 确认 → D098 4B scale ablation 完成 → D099-D100 Table 数据统一\n- **DDL**：EMNLP 2026 Findings via ARR May，**2026-05-25**（9 天）。关键路径是 Paper Agent 写作修复（2-3d）→ 审稿迭代（1-2 轮）→ final polish → 提交\n- **最容易判断错的事**：\n  1. 不要把 registry metrics 当论文数据源——必须用分析脚本输出（gold-filtered pipeline）\n  2. CoNLL 4B headroom 只有 1.70pp，selection 全部 ≤0.1pp 是 MARGINAL 不是 negative——不要当 negative 处理\n  3. RE signal ranking 与 NER 反转（LP > SJ > FK），这是 task-dependent 特性已纳入 framing（D073），不需要 framing 调整\n  4. 当前阶段是写作修复+审稿，不是跑新实验——GPU 空闲是正常的，除非审稿发现需要补实验\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778898766.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be4e8aa43f5b34c4949d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check exp 028 status",
+  "task_key": "worker_check_exp_028_status_20260517T132531",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_exp_028_status_20260517T132531_result.json",
+    "occurrence": 1,
+    "bytes": 823,
+    "sha256": "6f0b8dddc2a5da61294aa9449d974ede49274fad5a4ab52df8f29ff4250a1516"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_028 状态报告\n\n**状态：正常训练中**\n\n| 指标 | 值 |\n|------|------|\n| 当前 step | 11,000 / 41,180 (27%) |\n| Epoch | 1.34 / 5.0 |\n| Loss | 0.0474 |\n| Learning rate | 1.83e-4 |\n| 训练速度 | ~1.65 it/s (波动 1.3-1.9) |\n\n**GPU 状态**：4x RTX 5090 全部正常，利用率 93-96%，显存 26-28 GB/32 GB。\n\n**已保存 checkpoints**：\n- checkpoint-8000, checkpoint-9000, checkpoint-10000（最新，21:13 保存）\n\n**后处理脚本**：已就绪（`01_merge_lora.sh`, `02_inference.sh`, `03_analyze.py`, `run_all.sh`）\n\n**预计完成时间**：剩余 30,180 steps，按 ~1.65 it/s 计算约 5.1 小时，预计 **UTC 05/18 ~02:30**。比原预期（17:30 UTC）晚约 9 小时，原因是从 checkpoint-7000 resume 后实际速度 ~1.65 it/s 低于预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-028-status-copy-2.md"
+}

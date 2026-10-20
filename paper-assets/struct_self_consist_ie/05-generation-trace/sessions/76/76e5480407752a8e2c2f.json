@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76e5480407752a8e2c2f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh conll s42 pipeline verify",
+  "task_key": "worker_ssh_conll_s42_pipeline_verify_20260521T144628",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_conll_s42_pipeline_verify_20260521T144628_result.json",
+    "occurrence": 1,
+    "bytes": 1040,
+    "sha256": "ff700496d2e95ab41d0d85c3cea26cbed95614d9243a43241836e7049ea31ba0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 seed 的数据完全一致。验证完成。\n\n### CoNLL s42 Pipeline 验证\n\n- **数据源**: 5090-c `output/conll_mf4v2_seed42/samples.jsonl`\n- **JSON 结构**: **MF4v2 格式确认**\n  - Top-level keys: `['gold', 'greedy', 'id', 'logprobs', 'samples', 'text']`\n  - 8 samples/instance，每个 sample 含: `['cumulative_logprob', 'entities', 'events', 'mean_logprob', 'n_tokens', 'relations', 'token_logprobs', 'token_texts']`\n- **关键证据**:\n  - 有 per-token logprobs (`token_logprobs`, `cumulative_logprob`, `mean_logprob`) ✓\n  - N samples = 8 ✓\n  - 文件大小 57MB (59,695,496 bytes)，3453 行 ✓\n  - report.json 显示 `n_samples=8`, `greedy_f1=0.907`, `verdict=PASS` ✓\n- **与 s123/s456 结构一致**: **是**\n  - s123: 同结构，3453行，55.8MB\n  - s456: 同结构，3453行，55.4MB\n  - 三个 seed 的 top-level keys 和 sample keys 完全相同\n- **结论**: **数据有效，无需 rerun**。s42 数据确实是 MF4v2 pipeline 输出，结构与 s123/s456 完全一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-conll-s42-pipeline-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a08cbaab49d05f509429",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp 029a",
+  "task_key": "worker_analysis_exp_029a_20260518T005854",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_029a_20260518T005854_result.json",
+    "occurrence": 1,
+    "bytes": 1445,
+    "sha256": "2740ca23b3c85e28d5176c96b8a0a039e5b710bfb306174530b569e933309b35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 steps complete. Registry updated, artifact registered.\n\n---\n\n## exp_029a Results Summary\n\n**Verdict: SUCCESS** — Hypothesis confirmed. SciERC 3-epoch degeneracy (6.4%) is dramatically lower than 5-epoch baseline (17.8%), a −11.4pp reduction.\n\n| Metric | 5-epoch (baseline) | 3-epoch (exp_029a) | Delta |\n|---|---|---|---|\n| Degeneracy (CF1%) | 17.8% | **6.4%** | **−11.4pp** |\n| Greedy F1 | — | 0.6501 | |\n| Oracle F1 | — | 0.7998 | |\n| Headroom | — | 14.97pp | |\n| LP sel delta | +0.42pp | −1.18pp | −1.60pp |\n| Within-inst median ρ | 0.6667 | 0.3172 | |\n\n**QE Signals (AUROC / global ρ):**\n\n| Signal | AUROC | ρ | Selection F1 | Δ vs greedy |\n|---|---|---|---|---|\n| LP | 0.664 | 0.355 | 0.638 | −1.18pp |\n| SJ | 0.744 | 0.516 | 0.621 | −2.93pp |\n| FK | **0.752** | **0.530** | 0.622 | −2.82pp |\n| EM | 0.634 | 0.335 | 0.585 | −6.54pp |\n| VC | 0.736 | 0.507 | 0.585 | −6.49pp |\n\n**Key observations:**\n1. Epoch-degeneracy relationship generalizes from Few-NERD to SciERC — fewer epochs → substantially lower degeneracy\n2. LP selection now hurts (−1.18pp vs +0.42pp at 5-epoch), consistent with lower LP discriminability at lower degeneracy\n3. Within-instance ρ dropped (0.32 vs 0.67), also consistent — with less degenerate outputs, LP has less variance to exploit\n4. FK remains the best QE signal by AUROC (0.752), followed by SJ (0.744) and VC (0.736)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-029a.md"
+}

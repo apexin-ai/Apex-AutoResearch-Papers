@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "8383f7e28cdad37e497b",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "postprocess exp 028 v2",
+  "task_key": "worker_postprocess_exp_028_v2_20260517T194451",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_postprocess_exp_028_v2_20260517T194451.log",
+    "occurrence": 1,
+    "bytes": 1142874,
+    "sha256": "ea0ea2af21e349adf0d85adacca501035b9ef4431f15d41e834d54959b8eba92"
+  },
+  "statistics": {
+    "messages": 650,
+    "user_turns": 1,
+    "tool_calls": 270,
+    "roles": {
+      "log": 1,
+      "system": 16,
+      "record": 1,
+      "assistant": 89,
+      "tool_call": 270,
+      "tool_result": 270,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 634,
+      "chunks": [
+        {
+          "path": "8383f7e28cdad37e497b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8383f7e28cdad37e497b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8383f7e28cdad37e497b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "8383f7e28cdad37e497b-part-0004.json",
+          "message_count": 94
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "8383f7e28cdad37e497b-part-0004.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/postprocess-exp-028-v2.md"
+}

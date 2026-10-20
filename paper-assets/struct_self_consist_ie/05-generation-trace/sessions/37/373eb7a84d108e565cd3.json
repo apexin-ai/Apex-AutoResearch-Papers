@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "373eb7a84d108e565cd3",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run 5090c conll t ablation",
+  "task_key": "worker_run_5090c_conll_t_ablation_20260520T223840",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_5090c_conll_t_ablation_20260520T223840_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "6e3b872eb1267428f70af4c482063a19ced9b089446bf5b583d19ed6988d5ae3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 CoNLL T-ablation 实验全部启动成功，registry 已更新为 RUNNING。\n\n**汇总：**\n\n| 实验 | GPU | PID | 温度 | Registry ID |\n|------|-----|-----|------|-------------|\n| T=0.5 | cuda:1 (30GB) | 242197 | 0.5 | `exp_conll_t_ablation_t05` |\n| T=0.8 | cuda:2 (30GB) | 242682 | 0.8 | `exp_conll_t_ablation_t08` |\n| T=1.2 | cuda:3 (30GB) | 243594 | 1.2 | `exp_conll_t_ablation_t12` |\n\n- cuda:0 未触碰（14B 推理 PID 230885 正常运行，31GB/98%）\n- 模型：`qwen3-8b-conll2003-merged`，N=8，seed=42\n- 总 prompts：27624（3453 test instances × 8 samples），推理速度 ~5500 toks/s，预计 ~30-50 分钟完成\n- 日志路径：`/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t{05,08,12}_seed42.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-5090c-conll-t-ablation.md"
+}

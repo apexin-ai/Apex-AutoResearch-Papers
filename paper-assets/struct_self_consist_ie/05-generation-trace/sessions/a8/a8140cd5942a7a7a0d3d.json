@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "a8140cd5942a7a7a0d3d",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis bootstrap ci nscaling",
+  "task_key": "worker_analysis_bootstrap_ci_nscaling_20260514T192015",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_bootstrap_ci_nscaling_20260514T192015.log",
+    "occurrence": 1,
+    "bytes": 673554,
+    "sha256": "ad45c84daa9ebee1de7f1e82fd992854cbea32a50538200575b7eb726cab7f2a"
+  },
+  "statistics": {
+    "messages": 259,
+    "user_turns": 1,
+    "tool_calls": 86,
+    "roles": {
+      "log": 1,
+      "system": 36,
+      "record": 3,
+      "assistant": 45,
+      "tool_call": 86,
+      "user": 1,
+      "tool_result": 86,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "a8140cd5942a7a7a0d3d-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 253,
+      "chunks": [
+        {
+          "path": "a8140cd5942a7a7a0d3d-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "a8140cd5942a7a7a0d3d-part-0002.json",
+          "message_count": 79
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-bootstrap-ci-nscaling.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47f79975341febbbd6ca",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp017 lp range",
+  "task_key": "worker_analysis_exp017_lp_range_20260515T154349",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp017_lp_range_20260515T154349_result.json",
+    "occurrence": 1,
+    "bytes": 1676,
+    "sha256": "014ad9e50926fca9a81ada480dee6c1c3234a16cbaf31f43c278fa9233b2191f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。Registry 已更新，artifact 已注册。\n\n---\n\n## 结果汇总\n\n### Part 1: LP Range — T=0.7 vs T=1.0\n\n| 统计量 | T=0.7 | T=1.0 |\n|--------|------:|------:|\n| median | 1.15e-05 | 2.28e-04 |\n| IQR | [~0, 0.0181] | [~0, 0.0317] |\n| mean | 0.0111 | 0.0198 |\n| **tied_fraction(ε=0.05)** | **95.79%** | **86.76%** |\n\n**T=0.7 的 LP tied fraction 比 T=1.0 高 9 个百分点**（95.8% vs 86.8%）。低温进一步压缩 LP range，强化 \"LP compression is intrinsic to structured output\" 的 claim — 即使在更集中的采样分布下，logprob 仍然无法区分样本。\n\n### Part 2: 5-signal ρ + AUROC\n\n| Signal | T=0.7 ρ | T=1.0 ρ | T=0.7 AUROC | T=1.0 AUROC |\n|--------|--------:|--------:|------------:|------------:|\n| SJ | 0.3934 | 0.4314 | 0.6506 | 0.7039 |\n| FK | 0.3879 | 0.4277 | 0.6488 | 0.7026 |\n| VC | 0.3750 | 0.4256 | 0.6551 | 0.7088 |\n| EM | 0.3888 | 0.4306 | 0.6494 | 0.7046 |\n| LP | 0.2951 | 0.3072 | 0.7509 | 0.7610 |\n\n所有信号在 T=0.7 下 ρ 和 AUROC 均下降（低温减少多样性 → 信号区分力降低），但 LP 的 AUROC 仍然最高（0.7509），LP 的 ρ 仍然最低（0.2951）— correlation-AUROC dissociation 依然成立。\n\n### Part 3: Selection F1\n\n| Method | F1 | Δ greedy |\n|--------|---:|--------:|\n| Greedy | 0.9242 | — |\n| Oracle | 0.9391 | +1.49 pp |\n| SJ | 0.9247 | +0.05 pp |\n| FK | 0.9254 | +0.12 pp |\n| **VC** | **0.9264** | **+0.22 pp** |\n| EM | 0.9255 | +0.13 pp |\n| LP | 0.9248 | +0.06 pp |\n\nOracle headroom 只有 1.49 pp（T=1.0 下约 1.41 pp），所有信号的 selection gain 微弱但为正。VC 仍然表现最好。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp017-lp-range.md"
+}

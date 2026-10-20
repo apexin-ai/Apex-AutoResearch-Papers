@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a9ce949a6a86543ea87",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu exp 001 ner n16 scierc",
+  "task_key": "worker_gpu_exp_001_ner_n16_scierc_20260514T114538",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp_001_ner_n16_scierc_20260514T114538_result.json",
+    "occurrence": 1,
+    "bytes": 1307,
+    "sha256": "dd0023a87bcc730fbf9a1e0b8d294fed6beb3d9e507d59c73be87685c99aec44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 `exp_001_ner_n16_scierc` 全部完成。\n\n## 结果汇总\n\n**配置:** ft_002_v2 merged model, SciERC test, N=16, T=0.7, seed=42, 200 instances, logprobs=yes\n\n### 5 类 Confidence Signal 排名\n\n**NER (n=193):**\n\n| Signal | ρ_spearman | τ_kendall | AUROC |\n|---|---|---|---|\n| voting_confidence | **+0.401** | +0.301 | 0.675 |\n| soft_jaccard | +0.384 | +0.287 | 0.671 |\n| exact_match_rate | +0.362 | +0.267 | 0.666 |\n| logprob | +0.314 | +0.227 | 0.639 |\n| fleiss_kappa | +0.306 | +0.229 | 0.670 |\n\n**RE (n=155):**\n\n| Signal | ρ_spearman | τ_kendall | AUROC |\n|---|---|---|---|\n| voting_confidence | **+0.448** | +0.336 | **0.730** |\n| soft_jaccard | +0.333 | +0.256 | 0.684 |\n| logprob | +0.310 | +0.227 | 0.658 |\n| fleiss_kappa | +0.286 | +0.232 | 0.680 |\n| exact_match_rate | +0.225 | +0.171 | 0.611 |\n\n### N-scaling (N=8 → N=16)\n\n- **RE:** 全部信号显著提升 Δρ = +0.07 ~ +0.10（N=16 明显更好）\n- **NER:** 基本持平（N=8 已饱和）\n\n### 结论\n- **voting_confidence** 是最强信号（NER/RE 均排第一）\n- 所有结构化 consistency 信号优于 logprob baseline\n- RE 任务从增大 N 中获益更多，NER 更早饱和\n- Verdict = MARGINAL（RE ρ_sj=0.333 < 0.40 阈值，但 voting_confidence 已达 0.448）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-001-ner-n16-scierc.md"
+}

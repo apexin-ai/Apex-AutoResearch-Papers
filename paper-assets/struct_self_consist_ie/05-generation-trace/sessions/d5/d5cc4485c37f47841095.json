@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5cc4485c37f47841095",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis lp range cdf n529",
+  "task_key": "worker_analysis_lp_range_cdf_n529_20260515T131311",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_lp_range_cdf_n529_20260515T131311_result.json",
+    "occurrence": 1,
+    "bytes": 931,
+    "sha256": "3c6f8cd4cb72f776eee625f6904cad100a305d3db877ffaa042af0325d9aae77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件均已更新完成。数值变化汇总：\n\n### `analysis_lp_range_cdf.json`（N=8）\n\n| 指标 | n=551（旧） | n=529（新） |\n|------|------------|------------|\n| n_instances | 551 | 529 |\n| eps_0.05 tied fraction | **59.7%** | **60.3%** |\n| eps_0.01 | 2.0% | 1.1% |\n| eps_0.10 | 83.7% | 83.9% |\n| median LP range | 0.0413 | 0.0401 |\n| mean LP range | 0.0623 | 0.0622 |\n| min LP range | 0.0 | 9.57e-05 |\n\n### `analysis_lp_range_cdf_n16_3seed.json`（N=16×3seed）\n\n| 指标 | n=1653（旧） | n=1587（新） |\n|------|-------------|-------------|\n| n_instances | 1653 (551×3) | 1587 (529×3) |\n| pooled eps_0.05 | 42.6% | 43.6% |\n| pooled median | 0.0586 | 0.0563 |\n\n关键变化：过滤掉 22 个空 gold 标注样本后，eps=0.05 的 tied fraction 从 59.7% 升至 60.3%，符合预期。min LP range 从 0.0 变为 9.57e-05（之前的 0.0 来自空 gold 实例）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lp-range-cdf-n529.md"
+}

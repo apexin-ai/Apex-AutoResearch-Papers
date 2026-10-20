@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c08e7154b93fbfe08567",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis wnut17 full signal report",
+  "task_key": "worker_analysis_wnut17_full_signal_report_20260519T112628",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_wnut17_full_signal_report_20260519T112628_result.json",
+    "occurrence": 1,
+    "bytes": 3831,
+    "sha256": "8afdac3a64a650e1a7dd1af2b80ee2ecc335619907ddca1cbffa069b4130d4be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集。以下是 WNUT-17 完整 signal 分析报告。\n\n---\n\n## WNUT-17 Signal 分析报告 (Qwen2.5-7B, n=8)\n\n**数据规模**: 1287 total, 689 after gold-empty filtering, 8 samples/instance\n\n### 1. Basic Metrics (per-seed)\n\n| Metric | Seed 42 | Seed 123 | Seed 456 | Mean |\n|--------|---------|----------|----------|------|\n| Greedy F1 | 0.4524 | 0.4518 | 0.4526 | 0.4523 |\n| Oracle F1 | 0.5154 | 0.5438 | 0.5351 | 0.5315 |\n| Headroom (pp) | +6.30 | +9.21 | +8.25 | +7.92 |\n| Zero-F1 rate | 47.75% | 47.75% | 47.75% | 47.75% |\n| **Degeneracy rate** | **70.54%** | **66.91%** | **66.18%** | **67.88%** |\n| LP range (median) | 0.0454 | 0.0529 | 0.0532 | 0.0505 |\n\n### 2. Signal Quality: Spearman ρ\n\n**Global ρ (instance-level signal vs F1):**\n\n| Signal | Seed 42 | Seed 123 | Seed 456 | Mean |\n|--------|---------|----------|----------|------|\n| LP | **-0.487** | **-0.403** | **-0.448** | **-0.446** |\n| SJ | -0.096 | +0.039 | +0.002 | -0.018 |\n| FK | -0.085 | +0.054 | +0.010 | -0.007 |\n| EM | -0.097 | +0.031 | -0.016 | -0.027 |\n| VC | +0.733 | +0.733 | +0.724 | +0.730 |\n\n**Within-instance ρ (conditional, non-degenerate only):**\n\n| Signal | Seed 42 | Seed 123 | Seed 456 | Mean |\n|--------|---------|----------|----------|------|\n| **LP** | **0.079** (p=0.26) | **0.036** (p=0.59) | **0.014** (p=0.83) | **0.043 (n.s.)** |\n| SJ | 0.170 (p=0.015) | 0.412 (p=0.0) | 0.354 (p=0.0) | 0.312 |\n| FK | 0.180 (p=0.010) | 0.428 (p=0.0) | 0.365 (p=0.0) | 0.324 |\n| EM | 0.203 (p=0.004) | 0.406 (p=0.0) | 0.326 (p=0.0) | 0.312 |\n| VC | 0.196 (p=0.005) | 0.465 (p=0.0) | 0.433 (p=0.0) | 0.365 |\n\n### 3. Selection Δ vs Greedy (pp)\n\n| Signal | Seed 42 | Seed 123 | Seed 456 | Mean |\n|--------|---------|----------|----------|------|\n| LP | -0.90 | +0.03 | -0.47 | -0.44 |\n| SJ | -1.73 | -0.35 | +0.30 | -0.59 |\n| FK | -1.90 | -0.43 | +0.19 | -0.71 |\n| EM | -2.30 | -0.91 | -0.37 | -1.20 |\n| **VC** | **+0.75** | **+2.64*** | **+2.54*** | **+1.98** |\n\n(\\* = p < 0.05 bootstrap significant)\n\n### 4. Entity Construction (θ=0.25)\n\n| Method | Seed 42 | Seed 123 | Seed 456 | Mean |\n|--------|---------|----------|----------|------|\n| Greedy | 0.4524 | 0.4518 | 0.4526 | 0.4523 |\n| LP Selection | 0.4434 (-0.90) | 0.4521 (+0.03) | 0.4480 (-0.47) | 0.4478 (-0.45) |\n| MV (0.5) | 0.4356 (-1.68) | 0.4574 (+0.56) | 0.4542 (+0.15) | 0.4491 (-0.32) |\n| **Construction** | **0.4439 (-0.84)** | **0.4579 (+0.61)** | **0.4583 (+0.57)** | **0.4534 (+0.11)** |\n| Oracle | 0.5154 (+6.30) | 0.5438 (+9.21) | 0.5351 (+8.25) | 0.5315 (+7.92) |\n\n**Bootstrap p-values (construction vs greedy):** 0.954, 0.077, 0.120 — **全部不显著**\n\n### 5. Cross-dataset 对比 (SciERC 作为参照)\n\n| Metric | SciERC | WNUT-17 (mean) | CoNLL |\n|--------|--------|----------------|-------|\n| Degeneracy | 17.8% | **67.9%** | 59.1% |\n| LP global ρ | +0.205 | **-0.446** | +0.302 |\n| LP within-inst ρ | ~0.2+ | **0.043 (n.s.)** | — |\n| LP Δ (pp) | +0.61 | -0.44 | -1.05 |\n| Headroom (pp) | +13.2 | +7.9 | +4.0 |\n\n---\n\n### 关键诊断结论\n\n**Construction 不显著的根本原因是 LP signal 在 WNUT-17 上完全失效：**\n\n1. **LP global ρ = -0.45**：LP 与 F1 呈强负相关（高 LP → 低 F1），方向完全反转。SciERC 上是 +0.21。\n2. **LP within-instance ρ ≈ 0.04 (n.s.)**：在非退化实例内部，LP 完全无法区分好坏 sample，p 值均 >0.2。这意味着 LP-weighted construction 等价于随机加权。\n3. **Degeneracy = 68%**：近七成实例所有 sample 的 F1 相同，LP 无从发挥。SciERC 仅 17.8%。\n4. **VC 是唯一有效 signal**：VC global ρ = 0.73，selection Δ = +2.0pp (2/3 seeds significant)。但 VC 是 instance-level ranking signal，无法用于 within-instance construction。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-wnut17-full-signal-report.md"
+}

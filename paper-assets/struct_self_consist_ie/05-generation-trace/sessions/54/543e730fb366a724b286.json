@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "id": "543e730fb366a724b286",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "cpu matching method memory",
+  "task_key": "worker_cpu_matching_method_memory_20260521T101142",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_cpu_matching_method_memory_20260521T101142.jsonl",
+    "occurrence": 1,
+    "bytes": 18754,
+    "sha256": "16f5ed330b73e23176674dbfb2bf3db7030d08f70c97868f6cb164471237bf13"
+  },
+  "statistics": {
+    "messages": 7,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "tool_call": 3,
+      "tool_result": 3,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T10:14:58.901771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_matching_method_memory_20260521T101142",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T10:14:58.902147+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_matching_method_memory_20260521T101142",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T10:14:58.902330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_matching_method_memory_20260521T101142",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T10:14:58.902571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## CoNLL N=16 s123/s456 实验失败诊断（2026-05-21）\\\\n\\\\n**根因：checkpoint 文件传输未完成，实验提前启动。**\\\\n\\\\n两个实验（exp_conll_n16_s123, exp_conll_n16_s456）于 12:51 启动，但 `qwen3-8b-conll2003-merged` checkpoint 正通过 rsync 从另一台 AutoDL 实例传输中（PID 995204），当时仅传输 ~4.1GB / ~16GB。\\\\n\\\\n**具体错误**：tokenizer 缺少 `vocab.json` → `TypeError: expected str, bytes or os.PathLike object, not NoneType`（tokenization_qwen2.py:172）\\\\n\\\\n**当前状态**（截至 12:55 CST）：\\\\n- rsync 仍在运行（PID 995203 fewnerd, 995204 conll2003）\\\\n- `/tmp/auto_launch_conll.sh`（PID 995478）正确等待 rsync 完成后会自动重启实验（cuda:2 s123, cuda:3 s456）\\\\n- 另有 scp 进程（PID 994963, 994964）同时在跑，导致 checkpoint 目录内有嵌套子目录（rsync 的 trailing slash 应能正确覆盖）\\\\n\\\\n**结论**：无需代码修复。等 rsync 完成后 launcher 脚本会自动重跑。若 launcher 的 size check (<15GB) 失败，需手动检查嵌套目录问题并清理。\\\\n\\\\n## exp_qwen25_72b_fewshot 完整结果（2026-05-20）\\\\n\\\\n实验于 2026-05-20 08:47 完成。模型：Qwen2.5-72B-Instruct-AWQ, 3-shot, N=8 samples, seed=42。\\\\n\\\\n### ZS vs FS 完整对比表\\\\n\\\\n| Dataset  | Regime | N inst | Degen% | LP ρ   | SJ ρ  | FK ρ  | VC ρ  | EM ρ  | Greedy F1 | Oracle F1 | LP-wt F1 | LP Δ (pp) | p-value |\\\\n|----------|--------|--------|--------|--------|-------|-------|-------|-------|-----------|-----------|----------|-----------|---------|\\\\n| SciERC   | ZS     | 529    | 21.0%  | 0.081  | 0.217 | 0.227 | 0.277 | 0.181 | 0.399     | 0.549     | 0.415    | +1.53     | 0.008** |\\\\n| SciERC   | FS     | 529    | 16.6%  | 0.060  | 0.293 | 0.301 | 0.258 | 0.205 | 0.461     | 0.604     | 0.461    | -0.08     | 0.544   |\\\\n| CoNLL    | ZS     | 2756   | 67.7%  | -0.002 | 0.304 | 0.302 | 0.297 | 0.281 | 0.712     | 0.765     | 0.708    | -0.37     | n/a     |\\\\n| CoNLL    | FS     | 2756   | 70.0%  | 0.106  | 0.442 | 0.451 | 0.426 | 0.403 | 0.745     | 0.796     | 0.745    | +0.03     | 0.417   |\\\\n| FewNERD  | ZS     | 32565  | 46.2%  | 0.119  | 0.345 | 0.321 | 0.416 \n…[truncated 9043 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_matching_method_memory_20260521T101142",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T10:14:58.902797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_matching_method_memory_20260521T101142",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "file": "memory.md",
+              "content": "# Memory\n\n## 实验设计备忘\n\n### Entity Matching 方法差异（Reviewer #45 Action 2）\n\n- **Local 实验**（run_mvp_pilot.py, Qwen3-8B-FT/14B 等）：使用 **offset matching** `(start, end, type)` —— 基于字符位置精确匹配，要求 span 边界完全一致\n- **Frontier SC 实验**（run_frontier_sc.py, GPT-5.5/Claude/Gemini/DeepSeek）：使用 **text matching** `(text.lower(), type)` —— 基于实体文本内容匹配（大小写不敏感），因为 API 模型的输出格式不包含 offset 信息\n- **影响**：text matching 更宽松（\"New York\" vs \"new york\" 会匹配），但也可能误匹配同名不同位置的实体。这个差异本身支持 span mismatch 机制的解释——即使用更宽松的匹配，Frontier 模型的 MV 仍 ≈ greedy\n- **论文写作注意**：Method section 或 Appendix 需说明两种 matching 方式及其理由\n\n## CoNLL N=16 s123/s456 实验失败诊断（2026-05-21）\n\n**根因：checkpoint 文件传输未完成，实验提前启动。**\n\n两个实验（exp_conll_n16_s123, exp_conll_n16_s456）于 12:51 启动，但 `qwen3-8b-conll2003-merged` checkpoint 正通过 rsync 从另一台 AutoDL 实例传输中（PID 995204），当时仅传输 ~4.1GB / ~16GB。\n\n**具体错误**：tokenizer 缺少 `vocab.json` → `TypeError: expected str, bytes or os.PathLike object, not NoneType`（tokenization_qwen2.py:172）\n\n**当前状态**（截至 12:55 CST）：\n- rsync 仍在运行（PID 995203 fewnerd, 995204 conll2003）\n- `/tmp/auto_launch_conll.sh`（PID 995478）正确等待 rsync 完成后会自动重启实验（cuda:2 s123, cuda:3 s456）\n- 另有 scp 进程（PID 994963, 994964）同时在跑，导致 checkpoint 目录内有嵌套子目录（rsync 的 trailing slash 应能正确覆盖）\n\n**结论**：无需代码修复。等 rsync 完成后 launcher 脚本会自动重跑。若 launcher 的 size check (<15GB) 失败，需手动检查嵌套目录问题并清理。\n\n## exp_qwen25_72b_fewshot 完整结果（2026-05-20）\n\n实验于 2026-05-20 08:47 完成。模型：Qwen2.5-72B-Instruct-AWQ, 3-shot, N=8 samples, seed=42。\n\n### ZS vs FS 完整对比表\n\n| Dataset  | Regime | N inst | Degen% | LP ρ   | SJ ρ  | FK ρ  | VC ρ  | EM ρ  | Greedy F1 | Oracle F1 | LP-wt F1 | LP Δ (pp) | p-value |\n|----------|--------|--------|--------|--------|-------|-------|-------|-------|-----------|-----------|----------|-----------|---------|\n| SciERC   | ZS     | 529    | 21.0%  | 0.081  | 0.217 | 0.227 | 0.277 | 0.181 | 0.399     | 0.549     | 0.415    | +1.53     | 0.008** |\n| SciERC   | FS     | 529    | 16.6%  | 0.060  | 0.293 | 0.301 | 0.258 | 0.205 | 0.461     | 0.604     | 0.461    | -0.08     | 0.544   |\n| CoNLL    | ZS     | 2756   | 67.7%  | -0.002 | 0.304 | 0.302 | 0.297 | 0.281 | 0.712     | 0.765     | 0.708    | -0.37     | n/a     |\n| CoNLL    | FS     | 2756   | 70.0%  | 0.106  | 0.442 | 0.451 | 0.426 | 0.403 | 0.745     | 0.796     | 0.745    | +0.03     | 0.417   |\n| FewNERD  | ZS     | 32565  | 46.2%  | 0.119  | 0.345 | 0.321 | 0.416 | 0.303 | 0.628     | 0.707     | 0.626    | -0.20     | n/a     |\n| FewNERD  | FS     | 32565  | 45.2%  | 0.161  | 0.345 | 0.327 | 0.410 | 0.302 | 0.619     | 0.702     | 0.619    | +0.02     | 0.401   |\n\n### Dual-gating hypothesis 评估\n\nDual-gating 在 FT+ZS regime 内成立（6/6 条件一致）。FS regime 引入独立失效因素（LP 退化），不构成对 dual-gating 的挑战。\n\n### Error Correlation 分析\n\n\"Demonstration-induced error correlation\" 假说缺乏实证支持（FS Jaccard ≈ ZS，CoNLL FS entropy 反而更高）。替代解释：LP signal 在 FS 下区分力退化是 construction 失效的直接原因。\n\n## F1 Scaling Law 写作约束（Director 2026-05-20）\n\n1. 不报 c 均值 — 分数据集：SciERC c≈0.35, FewNERD c≈0.61\n2. CoNLL 只报 a 和 b，不报 c（c_se 太大）\n3. 这是 oracle ceiling scaling，不是 achievable\n4. LLaMA/FewNERD 仅 4 点拟合 → appendix 注明过拟合风险\n5. N=1 低于 greedy 需解释（T=1 采样噪声 vs T=0 确定性）\n\n## CPU 分析实验汇总（2026-05-20）\n\n### E2 Mixture-of-Signals Ensemble\n- Selection: 5-signal ensemble +0.72pp (p=0.000 ✓); Construction: 无效\n- LP 占主导 (0.8), VC 为互补信号\n\n### E2v2 Per-Regime Ensemble Weights\n- FT (all): LP=0.9, VC=0.1 → +0.30pp; Qwen3-8B: LP=0.8, VC=0.2 (+0.64pp)\n- LOO 完全稳定 (10次权重不变)\n\n### I Diversity Predictor\n- Cross-model JSD 强预测 ΔF1（CoNLL ρ=-0.615, R²=0.74）\n- Within-model diversity 不显著\n\n### J Calibration + Conformal\n- ECE: SciERC 0.098 (overconfident), CoNLL/FewNERD well-calibrated\n- Conformal 仅 CoNLL 达标 (coverage=0.925)，失败因 recall ceiling\n\n## B2 Entity Verifier — D189 OOF 最终结论（2026-05-20）\n\n**原始 +3.62pp 中 91% 是 train-on-test 泄露。**\n\n| Method | F1 | vs Greedy |\n|--------|-----|-----------|\n| Greedy | 0.8216 | — |\n| Majority Vote | 0.8048 | -1.68pp |\n| OOF Path A | 0.8246 | **+0.30pp** (not significant) |\n| OOF Path B | 0.8059 | -1.57pp |\n\nPer-dataset: SciERC +1.28pp, CoNLL +0.55pp, FewNERD +0.02pp (≈0)。\n**B2 verifier 不适合论文 §5 main text。** Registry conclusion: negative.\n\n### B2-v2 Multi-Domain Joint Training（2026-05-20）\n- Joint training (CoNLL+SciERC→FewNERD): AUC 0.8335→0.8477 (+0.014)\n- **但 F1 delta 仍为负** (-0.008)，AUC 未转化为下游收益\n- 核心问题：cross-domain ECE=0.136 (IID 仅 0.007)，概率 miscalibrated\n- 最具判别力 features (vc, sj) 跨域稳定性最差 (std=0.12-0.14)\n\n## N Inverse Scaling — 数据验证完成（2026-05-20）\n\n- 58 inverse scaling transitions, 40 显著 (paired bootstrap)\n- 核心机制: θ=2/N 随 N 增大变过于宽松 → precision 崩塌\n- majority_vote (θ=0.5) 几乎完全免疫\n- **n=4351 验证通过**: exp_027_fewnerd_n16 是 5000 instance subset (4 shards × 1250)，gold_filter 后 4351。subset F1=0.7926 vs full F1=0.7913 (+0.13pp)，具有代表性。论文引用时注明 subset (n=4351/32565)。\n\n## K Robustness Reviewer 反馈（2026-05-20, sprint 后处理）\n\n1. 注册实验到 registry\n2. seed 789 路径命名不一致 — 确认来源\n3. dropout 非单调性补充 ceil 函数交互解释\n4. \"most robust = uniform\" 改 Pareto 分析\n5. 论文限定为 single config（Qwen 7B FT FewNERD）\n\n## [M046] SCD Metric Artifact — 关键教训（2026-05-20）\n\n**SCD +3.84pp 提升完全虚假。** Worker 独立验证确认：\n\n| 模型 | Micro-F1 | Instance-avg F1 | Δ micro vs Pre-SCD |\n|------|----------|----------------|-------------------|\n| Pre-SCD baseline | 0.7886 | 0.7719 | — |\n| Post-SCD standard | 0.7813 | 0.7703 | **-0.73pp** |\n| Post-SCD fallback | 0.7866 | 0.7809 | **-0.20pp** |\n\n**根因**：`eval_scd.py` 的 `load_pre_metrics()` 从 `full_signal_report.json` 读 baseline `baselines.greedy.mean = 0.7482`，这是 **instance-average F1（gold-filtered, n=32565）**。而 post-SCD 数字是 **micro-F1（full, n=37648）**。双重不可比（metric 类型 + eval 集大小）。\n\n**教训**：\n1. 所有 F1 对比必须统一口径（micro vs macro 明确标注）\n2. Eval 集大小必须一致（gold-filtered vs full）\n3. 从旧 report 读 baseline 时，必须确认 metric 计算方式\n4. SCD 不构成论文贡献\n\n## 14B 推理诊断教训（2026-05-21, 第5次误判后更新）\n\n### 硬约束诊断规则（Director 2026-05-21 强制）\n\n**推理实验存活判定必须同时检查两个信号，缺一不可：**\n1. `ps -p PID` 确认进程存活\n2. `nvidia-smi` 确认 GPU 活跃（util > 0% 或 memory > 0）\n3. **两者都否定** 才能标 failed\n4. **\"无输出文件\"单独不能判定失败** — vLLM 在 model loading + CUDA graph compilation 阶段（15-20 min）不产生输出，这是正常行为\n\n### 历史误判记录（5次）\n- M021, M037, M038: 早期 PID 变更导致误判\n- M047: 诊断 Worker 找不到预期路径就判 failed，实际 14b_final_inference/ 目录完好\n- M048 (2026-05-21): PID 252310 仍在运行（cuda:0 98% util, elapsed 16min），被 cron+Worker 误标 DONE/failed。Director 第二次手动恢复。\n\n### PID 监控误报根因\n注册的 PID 可能是中间进程（已退出），实际推理在新 PID 下继续。**教训：注册 spec.pid 时用主 python 进程 PID 或 bash wrapper PID。Worker 诊断时要搜索整个进程树。**\n\n### 14B 模型单卡 5090 KV cache 极度不足\n- 模型占 27.57 GiB / 32 GiB GPU，KV cache 仅 1.09 GiB（5920 tokens）\n- **建议：14B 推理用 tensor_parallel=2（2 卡），释放约 14 GiB 给 KV cache**\n\n### enforce_eager 修复 EngineDeadError\n14B 单卡推理必须 enforce_eager。\n\n## [失败模式] LLaMA-Factory 训练无 W&B → cron 误判 failed（2026-05-20）\n\n根因：LLaMA-Factory 训练未配置 W&B report_to，cron 监控依赖 W&B sentinel。**教训：LLaMA-Factory 训练配置中加 `report_to: wandb`。** 遇到 \"process dead + no W&B\" 失败时，优先检查日志尾部是否有正常完成的 train/eval metrics。\n\n## OpenRouter API 限制（2026-05-20）\n\n- TUM 代理 Base URL: `http://47.94.22.126/v1` — 2026-05-20 余额耗尽 (402)\n- TUM key (`tum_XXB3...`) 不是 OpenRouter 直连 key（`sk-or-` 格式），不能用于 `https://openrouter.ai/api/v1`\n- GPT-5.5 只支持 temperature=1.0，设 0.0 返回 HTTP 400\n- HumanEval greedy baseline 只能用 single-sample T=1.0，非真正 T=0 greedy\n- **受影响实验**：Frontier SC、Spider SQL (75/200 remaining)、HumanEval (140/164 remaining)\n\n## Frontier SC entity_set() Bug 教训（2026-05-20）\n\nrun_frontier_sc.py 中 `compute_instance_metrics()` 将 `parse_response()` 返回的完整 dict 传给 `entity_set()`，后者期望 `list[dict]`。3 处调用全错。**教训：parse_response 返回 `{\"entities\": [...]}` dict，不是 entity list。调用 entity_set 时必须 `.get(\"entities\", [])`。** 已修复。\n\n## Spider SQL SC 跨任务分析（2026-05-20）\n\nexp_spider_sc_pilot: GPT-5.5 on Spider-dev, N=8, T=1.0, 196/200 instances。\n\n**核心发现：SQL 与 NER 呈完全不同的失效模式分布。**\n\n| 指标 | Spider SQL | NER (FewNERD/SciERC) | NER (CoNLL) |\n|------|-----------|---------------------|-------------|\n| Degen% | **87.2%** | 10-27% | 85-89% |\n| Dominant FM | F1 (degeneracy) | F2 (low agreement) | F1 (degeneracy) |\n| MV gain | +0.51pp | varies | ~0 |\n| ρ (full) | 0.55* | 0.30-0.42 | 0.43-0.47 |\n| ρ (non-degen) | 0.13 | — | — |\n\n*ρ=0.55 是 ceiling artifact（87% instances at agreement=1.0）。\n\n**机制**：SQL 执行结果等价性将语法差异折叠为语义一致 → degeneracy 极高 → MV 无法利用多样性。与 CoNLL（高 baseline + 低 headroom）形成高 degeneracy 的两种不同来源。\n\n**论文定位**：Spider SQL 是 cross-task universality 的对比案例——同一 diagnostic cascade 正确诊断了不同任务上的不同瓶颈。\n\n## 32B QLoRA 训练完成（2026-05-21）\n\n- 41180 steps, best eval_loss=0.0334 @ step 32000, epoch 4-5 过拟合\n- LoRA merge: checkpoint-32000 → qwen25-32b-fewnerd-merged (14 shards, ~61GB bf16)\n- 32B inference 启动: PID 978386, 4×TP on 5090, 37648 instances, N=8 T=1.0 seed=42\n- 磁盘剩余 22GB (250G 盘 92% 已用) — 需监控\n\n## CoNLL T-ablation seed=123 完成（2026-05-21）\n\n| T | greedy_f1 | oracle_f1 | κ_mean | ρ(κ,F1) | ρ(SJ,F1) | Δ_struct | Verdict |\n|---|-----------|-----------|--------|---------|----------|----------|---------|\n| 0.5 | 0.9073 | 0.9351 | 0.894 | 0.453 | 0.460 | +0.007 | PASS |\n| 0.8 | 0.9068 | 0.9466 | 0.825 | 0.472 | 0.485 | +0.013 | PASS |\n| 1.2 | 0.9072 | 0.9550 | 0.668 | 0.409 | 0.435 | +0.027 | PASS |\n\nT=0.8 sweet-spot (highest ρ) replicated across seed=42 and seed=123. T=1.2 highest structural advantage but lowest absolute correlation.\n\n## FewNERD T-ablation seed=42 完成（2026-05-21）\n\n| Metric | T=0.5 | T=0.8 | T=1.2 |\n|--------|-------|-------|-------|\n| greedy_f1 | 0.788 | 0.788 | 0.789 |\n| oracle_f1 | 0.857 | 0.875 | 0.875 |\n| degeneracy_rate | 14.6% | 19.0% | 28.2% |\n| ρ(SJ,F1) full | **0.267** | 0.206 | 0.136 |\n| ρ(SJ,F1) cond | **0.299** | 0.225 | 0.213 |\n| LP_baseline ρ | 0.356 | 0.232 | 0.103 |\n\nFewNERD sweet-spot 在 T=0.5（最高 ρ），与 CoNLL 的 T=0.8 sweet-spot 不同。T↑ → degen↑, ρ↓ 趋势一致。\n\n## P0-1 Hidden State Probe — D215 GroupKFold 修正后最终结果（2026-05-21）\n\n**⚠️ 原始 StratifiedKFold AUROC (0.98-0.99) 存在严重 instance 信息泄露。GroupKFold 修正后结果：**\n\n| Dataset | Instances | Entities | GroupKFold AUROC | StratifiedKFold (leaky) | Leakage Δ | vs MV (0.87) |\n|---------|-----------|----------|-----------------|------------------------|-----------|-------------|\n| **CoNLL** | 850 | 14,777 | **0.8824 ± 0.0001** | 0.9786 | +0.096 | **> MV ✅** |\n| **FewNERD** | 1,698 | 41,096 | **0.6361 ± 0.0001** | 0.9802 | +0.344 | < MV ❌ |\n| **SciERC** | 539 | 13,188 | **0.6304 ± 0.0002** | 0.9763 | +0.346 | < MV ❌ |\n\nBaselines: MV Agreement AUROC = 0.87, ESJ = 0.51, Random = 0.50\n\n### 泄露原因\nEntity-level StratifiedKFold 将同一 instance 的不同 entity 分到 train/test → instance 级别信息泄露。GroupKFold(groups=instance_idx) 保证同一 instance 的所有 entity 在同一 fold。\n\n### 论文 Contribution #3 叙事影响\n- **原叙事** \"Probe >> MV → info exists but prompt fails\" **只对 CoNLL 成立**\n- CoNLL (0.882 > MV 0.87): 简单 NER 的 hidden states 编码了足够的实体质量信号\n- FewNERD/SciERC (0.63): 高于 random/ESJ 但远低于 MV → SC 的 multi-sample voting 创造了单次推理 representation 中不存在的额外信号\n- **泄露量化本身有方法论价值**：StratifiedKFold vs GroupKFold 差 0.34，揭示 entity-level probe 评估中 instance leakage 的严重性\n\n### 决策依据\n- 500-inst 子集与 full-data 高度一致（Δ < 0.02），确认子集结论稳健\n- LODO 近随机 (0.56-0.67) 与 GroupKFold 较低 AUROC 一致：跨 instance 泛化能力弱\n"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T10:14:58.903083+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_matching_method_memory_20260521T101142",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T10:14:58.903283+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入。在 memory.md 顶部新建了「实验设计备忘」段落，包含 Entity Matching 方法差异（Reviewer #45 Action 2）的完整记录，其余内容不变。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cpu_matching_method_memory_20260521T101142"
+          },
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    }
+  ],
+  "readable_path": "readable/conversations/cpu-matching-method-memory.md"
+}

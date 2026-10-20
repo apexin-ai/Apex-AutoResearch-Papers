@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4278bf0b6571ac6e4bd4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "research reference verification r22",
+  "task_key": "worker_research_reference_verification_r22_20260519T040634",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_reference_verification_r22_20260519T040634_result.json",
+    "occurrence": 1,
+    "bytes": 2990,
+    "sha256": "267c0485066dad1527a1805d5f435079aaf8d8153cbdf3f8fd79b7c8a32ebc90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "BibTeX entries 已追加。以下是完整汇报。\n\n---\n\n## Part A: 新引用查找结果\n\n### 1. Xie et al. 2023\n\n找到两篇匹配的论文，均相关：\n\n**主匹配（匹配 \"self-evaluation\" + \"beam search\"）：**\n- **Title**: Self-Evaluation Guided Beam Search for Reasoning\n- **Authors**: Xie, Yuxi et al.\n- **Venue**: NeurIPS 2023\n- **Year**: 2023\n- **BibKey**: `xie2023selfevaluation`\n\n**次匹配（匹配 \"self-consistency\" + \"NER\"，与项目主题直接相关）：**\n- **Title**: Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models\n- **Authors**: Xie, Tingyu et al.\n- **Venue**: NAACL 2024（arXiv preprint 2023.11）\n- **Year**: 2024\n- **BibKey**: `xie2024selfimproving`\n\n### 2. Wan et al. 2024 — IE survey\n\n**未找到。** 经多轮搜索（变换关键词、扩大范围），未找到以 \"Wan\" 为第一作者的 2024 年 IE survey。最接近的匹配：\n- Xu et al. 2024, \"Large Language Models for Generative Information Extraction: A Survey\" (arXiv:2312.17617, Frontiers of Computer Science 2024) — 第一作者是 Xu Derong，非 Wan\n- Wan et al. 2023, \"GPT-RE: In-context Learning for Relation Extraction\" (EMNLP 2023) — 2023 年且非 survey\n\n请确认作者名或提供更多线索。\n\n### 3. Ensemble-based NER methods（3 篇）\n\n| BibKey | Title | Authors | Venue | Year |\n|---|---|---|---|---|\n| `xiao2025el4ner` | EL4NER: Ensemble Learning for NER via Multiple Small-Parameter LLMs | Xiao, Yuzhen et al. | arXiv:2505.23038 | 2025 |\n| `sarcinelli2025local` | Local LLM Ensembles for Zero-shot Portuguese NER | Sarcinelli et al. | arXiv:2512.10043 | 2025 |\n| `naderi2021ensemble` | Ensemble of Deep Masked Language Models for Effective NER in Health and Life Science Corpora | Naderi, Nona et al. | Frontiers in Research Metrics and Analytics | 2021 |\n\n三篇均涉及多模型 + 实体级聚合/投票机制。EL4NER 最相关（两阶段 pipeline：span 提取 + 实体类型投票）。\n\n---\n\n## Part B: 9 条现有引用验证\n\n| # | BibKey | 当前 Year | 当前 Venue | 正确? | 备注 |\n|---|---|---|---|---|---|\n| 1 | `wang2023selfconsistency` | 2023 | ICLR 2023 | ✅ | — |\n| 2 | `cobbe2021verifiers` | 2021 | arXiv preprint | ✅ | 始终为 arXiv preprint，未正式发表于会议/期刊 |\n| 3 | `eikema2022sampling` | 2022 | EMNLP 2022 | ✅ | pages 10978–10993，DOI 正确 |\n| 4 | `venktesh2025trust` | 2025 | arXiv preprint | ✅ | arXiv:2508.16665 |\n| 5 | `snell2025scaling` | 2025 | ICLR 2025 | ✅ | — |\n| 6 | `willard2023guided` | 2023 | arXiv preprint | ✅ | 未正式发表于会议，arXiv:2307.09702 |\n| 7 | `zheng2024llamafactory` | 2024 | ACL 2024 System Demos | ✅ | pages 400–410，DOI 正确 |\n| 8 | `luan2018scierc` | 2018 | EMNLP 2018 | ✅ | DOI 正确 |\n| 9 | `derczynski2017wnut` | 2017 | W-NUT 2017 workshop | ✅ | — |\n\n**9 条引用全部验证通过，年份和 venue 均正确。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-reference-verification-r22.md"
+}

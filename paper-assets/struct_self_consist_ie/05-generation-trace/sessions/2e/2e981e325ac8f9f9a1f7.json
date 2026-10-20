@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e981e325ac8f9f9a1f7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 021 config",
+  "task_key": "worker_code_exp_021_config_20260516T142733",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_021_config_20260516T142733_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "639e8d756b46c12508e24c87703990e46e9576c1cb01bc1d3cf02f0764c0583c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Config 已就绪。\n\n**Config 文件**: `/root/autodl-tmp/struct_self_consist_ie/train_config_fewnerd_exp021.yaml`\n\n**exp-020 → exp-021 变更确认**:\n\n| 参数 | exp-020 | exp-021 |\n|------|---------|---------|\n| `lora_rank` | 16 | **32** |\n| `lora_alpha` | 32 | **64** |\n| `num_train_epochs` | 1.0 | **3.0** |\n| `output_dir` | `checkpoints/ft_fewnerd_smoke` | **`output/exp_021_fewnerd_full`** |\n\n其余参数（model、dataset、lr、batch size、seed 等）与 exp-020 一致。推理命令已写入 config 文件末尾注释。数据文件 `data/fewnerd/llmfactory_train.json` 已确认存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-021-config.md"
+}

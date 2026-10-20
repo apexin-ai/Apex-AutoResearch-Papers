@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "5bcd82607235cd9de17c",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "paper bib verification",
+  "task_key": "worker_paper_bib-verification_20260523T165159",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_bib-verification_20260523T165159.log",
+    "occurrence": 1,
+    "bytes": 661057,
+    "sha256": "62f57f02fd3a2ef9e8777b3b83743153be5481635951b109473684677059efa5"
+  },
+  "statistics": {
+    "messages": 86,
+    "user_turns": 0,
+    "tool_calls": 32,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 16,
+      "tool_call": 32,
+      "tool_result": 32,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 86,
+      "chunks": [
+        {
+          "path": "5bcd82607235cd9de17c-part-0001.json",
+          "message_count": 73
+        },
+        {
+          "path": "5bcd82607235cd9de17c-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-bib-verification.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1378fab29e96153cd37",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper headroom auroc fix",
+  "task_key": "worker_paper_headroom-auroc-fix_20260523T203911",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_headroom-auroc-fix_20260523T203911_result.json",
+    "occurrence": 1,
+    "bytes": 2080,
+    "sha256": "967f9926ed0cd311256dda44fa24e90a6961620e6e8506b70f40f2a35fada47c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n---\n\n## 追溯报告\n\n### 子任务 1: tab:selection headroom 不一致\n\n**数据来源追溯**:\n- **表体** (.775/.645 → 13.0pp): 来自 `exp_016_signal_ensemble` / `exp_016_rerun_1024_bootstrap` (provenance c013: Oracle=0.776, Greedy=0.644, headroom=13.2pp)。Selection Δ (LP +0.2pp, p=.29) 和所有 p 值均与此数据一致。\n- **旧 caption** (.781/.667 → 11.4pp): 来自 MF4v2 pipeline 重算，使用不同的 F1 计算方式（micro greedy=0.6617 vs per-instance=0.6453, decisions D153）。\n- **图**: 实际绿线标注 \"Oracle +13.1\"，与表体一致。旧 caption \"11.4pp\" 是错误覆盖。\n\n**修复方案**: Method B — 更新 caption 和正文以匹配表体（13.0pp），因为：\n1. 表体值与 selection Δ 和 p 值一致\n2. 图实际显示 +13.1pp\n3. provenance c013 确认 Oracle=0.776, Greedy=0.644\n\n**修改位置** (`single_signal.tex`):\n| 行 | 修改 |\n|---|---|\n| L12 | Caption: Oracle .781→.775, Greedy .667→.645 |\n| L35 | Figure caption: 11.4pp → 13.0pp |\n| L39 | 正文: 11.4pp → 13.0pp |\n| L47 | 正文: 11.4pp → 13.0pp |\n\n**残留不一致（需注意）**: appendix tab:scale_comparison (L1606) 仍有 SciERC Greedy=.667, Hdr=11.4。该表使用不同 seed/metric（s42 单 seed vs 多 seed 均值），与 tab:fewnerd SciERC Greedy=.663 也不同。属于独立 metric 一致性问题。\n\n### 子任务 2: AUROC 排名残留\n\n**无旧排名残留**。确认结果：\n- 主表 (tab:quality_estimation): SJ(.692) > VC(.684) > EM(.631) ✅ 已为新值\n- appendix L1927 \"EM > VC > SJ > FK > LP\": 描述 **LLaMA-3.2-3B** 实验（非 SciERC Qwen），与该模型的表格数据一致 ✅\n- experiments_main L52 \"EM leads CoNLL\": CoNLL 实验，EM AUROC=.816 正确 ✅\n- 无 .749 旧值残留\n- 无 rebuttal/response 文件\n\n### 产出\n1. ✅ 追溯报告（如上）\n2. ✅ 修正 `docs/paper/sections/single_signal.tex`（4 处修改）\n3. ✅ 编译通过：0 undefined refs, 8 pages main text, 46 pages total\n4. ✅ 匿名仓库 commit: `70ed395`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-headroom-auroc-fix.md"
+}

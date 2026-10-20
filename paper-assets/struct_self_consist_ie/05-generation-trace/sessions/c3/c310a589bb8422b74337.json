@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c310a589bb8422b74337",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops disk cleanup execute",
+  "task_key": "worker_ops_disk_cleanup_execute_20260516T111546",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_disk_cleanup_execute_20260516T111546_result.json",
+    "occurrence": 1,
+    "bytes": 1133,
+    "sha256": "8939cd72bd3d5bf01e05d50964a84c44131d7d27db3d2fc33a5c0892a8fc1af3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### Part 1: 磁盘清理\n\n已删除 3 个目录：\n- `checkpoints/qwen3-8b-scierc-merged/` (16GB)\n- `checkpoints/qwen3-8b-scierc-merged-v2-ckpt400/` (16GB)\n- `checkpoints/qwen3-8b-scierc-lora/` (1.7GB)\n\n**释放 ~32GB**，磁盘从 91% (24G free) 降至 78% (56G free)。\n\n### Part 2: 4B checkpoint 依赖验证\n\n**结论：`qwen3-4b-conll2003-merged-ckpt4200` 不可安全删除。**\n\n证据：\n1. 存在两个 4B merged model：`qwen3-4b-conll2003-merged`（来自 ckpt-3800）和 `qwen3-4b-conll2003-merged-ckpt4200`（来自 ckpt-4200）\n2. `exp_qwen3_4b_conll_scs_inference` (v1) 和 v2 的 greedy_f1 不同（0.9251 vs 0.9234），确认使用了不同模型\n3. v2 实验被论文分析脚本广泛引用（`analyze_q4q5.py`, `selection_f1_4b.py`, `r8w3_sj_union_v2.py` 等）\n4. `merge_4b_ckpt4200.py` 专门为生成该模型而编写，命名对应关系明确：v2 实验使用的是 ckpt4200 merged model\n\n**备注**：即使误删，可从 `checkpoints/qwen3-4b-conll2003-lora/checkpoint-4200` 重新 merge 恢复（LoRA adapter 仍在）。但无需冒险，保留即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-execute.md"
+}

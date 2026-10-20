@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efbbfb1736d1068f205d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp d054 rerun gpu3",
+  "task_key": "worker_exp_d054_rerun_gpu3_20260514T222014",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_d054_rerun_gpu3_20260514T222014_result.json",
+    "occurrence": 1,
+    "bytes": 155,
+    "sha256": "aa3b581831990f6271333d367d71370072e29f4ddd9996e3bd113b31d7999995"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 1 (seed=123) 正在推理，当前进度 64/55,248 prompts，速度 ~5 it/s，预计约 3 小时。4.5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-d054-rerun-gpu3.md"
+}

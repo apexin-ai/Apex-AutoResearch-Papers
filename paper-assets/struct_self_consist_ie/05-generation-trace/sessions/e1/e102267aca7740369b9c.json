@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e102267aca7740369b9c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh conll freeform diagnostic",
+  "task_key": "worker_ssh_conll_freeform_diagnostic_20260522T093133",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_conll_freeform_diagnostic_20260522T093133_result.json",
+    "occurrence": 1,
+    "bytes": 2071,
+    "sha256": "108f74be597e123355d7794c71a665f2f5f38493e90f819017d3dc195491e52a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n```\nCoNLL Constrained vs Free-Form Diagnostic (N=8, T=1.0)\nAll metrics on gold-nonempty instances (n=2756), entity-level micro-F1\n\n| Metric             | Constrained (s42) | Free-Form (4-seed mean±σ) | Δ      |\n|--------------------|-------------------|---------------------------|--------|\n| Degeneracy %       | 56.7              | 59.3±0.6                  | +2.6   |\n| MV Δ (pp)          | +0.20             | -0.00±0.23                | -0.21  |\n| LP-F1 ρ            | 0.402             | 0.392±0.004               | -0.010 |\n| LP-best Δ (pp)     | -1.62             | -1.45±0.20                | +0.17  |\n| Greedy F1          | 91.2              | 91.0±0.1                  | -0.2   |\n| Oracle F1          | 95.4              | 95.3±0.2                  | -0.2   |\n```\n\n**Per-seed detail:**\n\n| Seed | Degen% | MV Δ pp | LP-F1 ρ | LP-best Δ pp | Greedy F1 | Oracle F1 |\n|------|--------|---------|---------|-------------|-----------|-----------|\n| 42   | 59.6   | -0.29   | 0.391   | -1.60       | 90.94     | 95.32     |\n| 123  | 59.7   | +0.18   | 0.397   | -1.63       | 91.06     | 95.34     |\n| 456  | 59.7   | -0.10   | 0.392   | -1.33       | 91.01     | 94.97     |\n| 789  | 58.4   | +0.19   | 0.387   | -1.23       | 90.95     | 95.49     |\n\n关键发现：\n- **Degeneracy 略高** (+2.6pp)：free-form 比 constrained 退化更严重，可能因为无约束时 offset 抖动不改变 entity text/type，但 (text, type, start, end) 匹配下这些算不同 sample，所以实际效果可能更复杂\n- **MV Δ 几乎为零**：constrained 下 MV 带来 +0.20pp 提升，free-form 下 MV 增益消失\n- **LP-F1 ρ 略低**：0.392 vs 0.402，差异不大\n- **LP-best Δ 略好**：-1.45 vs -1.62，free-form 的 LP-best 劣化略小\n- **Greedy/Oracle F1** 整体低约 0.2pp，符合无 grammar 约束的预期\n\n注意：constrained LP-F1 ρ 用的是我在 exp002_conll2003 上一致计算的 0.402，与任务模板给的 0.411 略有差异（可能因计算口径不同）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-conll-freeform-diagnostic.md"
+}

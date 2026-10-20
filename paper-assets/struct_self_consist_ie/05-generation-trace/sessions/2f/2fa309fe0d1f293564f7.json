@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fa309fe0d1f293564f7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "cpu sql mde calculation",
+  "task_key": "worker_cpu_sql_mde_calculation_20260521T120032",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cpu_sql_mde_calculation_20260521T120032_result.json",
+    "occurrence": 1,
+    "bytes": 976,
+    "sha256": "75f782d6fcb0552f504820eb17b157ce05d8230fbaab1aa43b5209922b4f5c63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### MDE 计算\n\n**n=196, α=0.05, power=0.80:**\n\n| 框架 | σ_diff 假设 | MDE |\n|------|-----------|-----|\n| Paired t-test | σ=0.10 | **2.00pp** |\n| Paired t-test | σ=0.15 | **3.00pp** |\n| McNemar (binary) | p_disc=12.76% | **7.15pp** |\n\n### 与观察效应对比\n\n- Spider 观察到的 MV gain = **+0.51pp**，远低于 MDE (2-7pp)\n- 检测 0.51pp 效应的统计功效仅 **4-11%**（需要 80%）\n- 87% degeneracy 使有效样本仅 ~25 个，进一步恶化\n\n### 所需样本量（σ=0.125）\n\n| 目标效应 | 所需 n |\n|---------|--------|\n| 0.5pp | 4,906 |\n| 1.0pp | 1,227 |\n| 2.0pp | 307 |\n\n### 结论\n\nn=196 **严重 underpowered**。但对论文论证不致命——SQL 实验的价值在于证明框架跨任务适用性，方向性正结果 (+0.51pp) 与 NER 一致，即使单独不显著。Rebuttal 可承认 limitation 并指出需更大规模验证。\n\n报告已注册：`art_20260521_8caaeb`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-sql-mde-calculation.md"
+}

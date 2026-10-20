@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8141f7b6538f0937c516",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp exp 012 rerun 1024",
+  "task_key": "worker_exp_exp_012_rerun_1024_20260514T221211",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_exp_012_rerun_1024_20260514T221211_result.json",
+    "occurrence": 1,
+    "bytes": 969,
+    "sha256": "5a94d7002ed66737a848f96dd0e3b5c91751d0adcd047b19dbc92e83b72b017b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 信号分析完成。结果：\n\n| Signal | exp_012 (512) ρ | Rerun (1024) ρ | Δ |\n|--------|----------------|----------------|-------|\n| SJ | 0.357 | 0.360 | +0.003 |\n| FK | 0.265 | 0.267 | +0.001 |\n| EM | 0.257 | 0.295 | +0.038 |\n| Voting | 0.502 | 0.379 | **-0.123** |\n| Logprob | 0.140 | 0.205 | **+0.066** |\n\n关键发现：\n- **SJ / FK 几乎不变**（Δ < 0.01）：结构一致性信号在 max_tokens=512 vs 1024 下非常稳定\n- **Logprob 大幅提升**（+0.066）：max_tokens=1024 避免了截断导致的 logprob 失真\n- **EM 提升**（+0.038）：更完整的输出使精确匹配率更有区分度\n- **Voting confidence 大幅下降**（-0.123）：这是最大变化。max_tokens=512 截断输出导致实体偏少，人为压高了 voting confidence 的一致性（少实体 → 更容易投票一致），从而虚高了 voting_conf 的 ρ\n\n比较 JSON 已保存到 `output/exp_012_rerun_1024/comparison.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp-012-rerun-1024.md"
+}

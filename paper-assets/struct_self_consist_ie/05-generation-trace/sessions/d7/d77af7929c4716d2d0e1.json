@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d77af7929c4716d2d0e1",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix epsilon sweep model label",
+  "task_key": "worker_fix_epsilon_sweep_model_label_20260515T163650",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_epsilon_sweep_model_label_20260515T163650_result.json",
+    "occurrence": 1,
+    "bytes": 125,
+    "sha256": "70c778c9d46688f964cb106f79ef0e02007f8f2c4d582fe6eed74683dc7f71aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。line 314 已改为 `\"Qwen3-8B-CoNLL2003-merged\"`，文件中不再有任何 `\"Qwen2.5\"` 残留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-epsilon-sweep-model-label.md"
+}

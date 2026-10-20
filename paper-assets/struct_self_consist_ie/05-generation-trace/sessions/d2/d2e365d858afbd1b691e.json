@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d2e365d858afbd1b691e",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code result processing template",
+  "task_key": "worker_code_result-processing-template_20260519T181800",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_result-processing-template_20260519T181800.log",
+    "occurrence": 1,
+    "bytes": 743320,
+    "sha256": "84a568b83166779d0738e72f4578715b2e14aea8f93d8dfc0f0d7b42483a1f8b"
+  },
+  "statistics": {
+    "messages": 130,
+    "user_turns": 0,
+    "tool_calls": 47,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 47,
+      "tool_result": 47,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 130,
+      "chunks": [
+        {
+          "path": "d2e365d858afbd1b691e-part-0001.json",
+          "message_count": 100
+        },
+        {
+          "path": "d2e365d858afbd1b691e-part-0002.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-result-processing-template.md"
+}

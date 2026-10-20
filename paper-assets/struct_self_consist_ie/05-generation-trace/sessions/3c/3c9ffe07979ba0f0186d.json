@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c9ffe07979ba0f0186d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh degeneracy filtering construction",
+  "task_key": "worker_ssh_degeneracy_filtering_construction_20260522T093014",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_degeneracy_filtering_construction_20260522T093014_result.json",
+    "occurrence": 1,
+    "bytes": 2275,
+    "sha256": "6cb90b1026743c4950c3d1bcc01a863b33148667fbc1983874b85450c5cf0be3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。三个数据集结果汇总（micro-F1，θ=0.5）：\n\n```\nDataset    n_total  n_nondeg  n_deg(%)   Full Δ(pp)  NonDeg Δ(pp)  Deg Δ(pp)  Consistent\n─────────────────────────────────────────────────────────────────────────────────────────\nSciERC         551       473    78(14.2%)     +3.03        +3.36       0.00        Yes\nCoNLL         3453      1179  2274(65.9%)     +2.70        +5.18       0.00        Yes\nFewNERD      37648     30198  7450(19.8%)     +6.60        +7.08       0.00        Yes\n```\n\n详细 F1：\n```\nSciERC:   Greedy=0.6327  Constr=0.6630  (Full Δ=+3.03pp)\n          NonDeg: Greedy=0.6094  Constr=0.6430  (Δ=+3.36pp)\n          Deg:    Greedy=0.8305  Constr=0.8305  (Δ=0.00pp)\n\nCoNLL:    Greedy=0.8822  Constr=0.9092  (Full Δ=+2.70pp)\n          NonDeg: Greedy=0.7970  Constr=0.8488  (Δ=+5.18pp)\n          Deg:    Greedy=0.9708  Constr=0.9708  (Δ=0.00pp)\n\nFewNERD:  Greedy=0.7108  Constr=0.7768  (Full Δ=+6.60pp)\n          NonDeg: Greedy=0.7010  Constr=0.7718  (Δ=+7.08pp)\n          Deg:    Greedy=0.8415  Constr=0.8415  (Δ=0.00pp)\n```\n\n关键发现：\n\n1. **Degenerate construction == greedy 完全一致**（三个数据集均 Yes）——验证了理论预期。\n\n2. **非 degenerate 子集的 construction Δ 在所有 3 个数据集上都为正**，且大于全集 Δ：\n   - SciERC: +3.36 > +3.03 (放大 +0.33pp)\n   - CoNLL: +5.18 > +2.70 (放大 +2.48pp)\n   - FewNERD: +7.08 > +6.60 (放大 +0.48pp)\n\n3. **CoNLL 的 degeneracy 比例最高（65.9%）**，degenerate 稀释效应最显著——全集 +2.70pp 被稀释到远低于非 degenerate 子集的 +5.18pp。这解释了为什么 CoNLL 在之前的 macro-F1 分析中可能出现负 Δ（degenerate 的高 F1 baseline 拉低了 delta 的加权平均）。\n\n4. 关于与任务描述中数字（+1.40, +0.32, -0.39）的差异：之前的 `entity_construction_fair_n8` 使用 **instance-level mean F1**（macro），本分析使用的是任务要求的 **micro-F1**。两种度量下，filtering 非 degenerate 的方向性结论一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-degeneracy-filtering-construction.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b45678d764d8587be112",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh check gpu status",
+  "task_key": "worker_ssh_check_gpu_status_20260514T185550",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check_gpu_status_20260514T185550_result.json",
+    "occurrence": 1,
+    "bytes": 1592,
+    "sha256": "b3d85831268bd7bfcd4ebbc408290b10ac7eae14f33f20ce7c29db58cc33d785"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### GPU 使用情况\n| GPU | 状态 | 显存 | 利用率 |\n|-----|------|------|--------|\n| cuda:0 | **空闲** | 2MiB / 32607MiB | 0% |\n| cuda:1 | **运行中** | 29916MiB / 32607MiB | 79% |\n| cuda:2 | 空闲 | 2MiB / 32607MiB | 0% |\n| cuda:3 | 空闲 | 2MiB / 32607MiB | 0% |\n\n---\n\n### exp_002_conll_n16 (Qwen CoNLL N=16) — **已完成**\n\n- 进程已结束，cuda:0 已释放\n- 输出文件:\n  - `output/exp_002_conll_n16/report.json` (1.8K)\n  - `output/exp_002_conll_n16/samples.jsonl` (17M)\n  - `output/exp_002_conll_n16.log` (400K)\n\n**关键 metrics:**\n| 指标 | 值 |\n|------|-----|\n| Verdict | **PASS** |\n| Greedy F1 | 0.9075 |\n| Oracle F1 | 0.9566 |\n| Oracle headroom | +0.0492 |\n| Fleiss' κ (mean) | 0.7160 |\n| Soft Jaccard (mean) | 0.8770 |\n| ρ(κ, F1) full / cond | +0.3928 / +0.3494 |\n| ρ(SJ, F1) full / cond | +0.4496 / +0.4208 |\n| Structural > Surface | **YES** (Δ=+0.0568) |\n| Logprob AUROC full / cond | 0.7531 / 0.8259 |\n| 样本数 | 3453 instances, N=16 |\n\n---\n\n### exp_007_llama_n16 (LLaMA SciERC N=16) — **运行中**\n\n- PID 104278, 启动于 02:52, 运行约 4 分钟\n- VLLM EngineCore PID 104554 在 cuda:1, 占用 29906MiB\n- 进度: **~66% (5824/8816)**, 预计还需约 1-2 分钟\n- 吞吐: ~5200 tok/s input, ~4350 tok/s output\n- 已有部分输出:\n  - `output/exp_007_llama_n16/report.json` (1.7K)\n  - `output/exp_007_llama_n16/samples.jsonl` (6.5M)\n\n---\n\n### checkpoints/ — 无新产出\n\n最新是 `llama3.1-8b-conll2003-merged` (May 15 01:33), 之前已存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-gpu-status.md"
+}

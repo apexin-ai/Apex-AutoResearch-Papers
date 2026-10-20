@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79fb9c8e615c67df09a4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops gpu cleanup",
+  "task_key": "worker_ops_gpu_cleanup_20260515T103037",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_gpu_cleanup_20260515T103037_result.json",
+    "occurrence": 1,
+    "bytes": 383,
+    "sha256": "bd9767511447b65aadde6afeca629bc7b587a4b33ea5e9ec0d34f0c636932c68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n| 项目 | 结果 |\n|------|------|\n| PID 172541 | 已自行退出（not found） |\n| exp017_s123 tmux | 已关闭（进程 108044/108051 随之终止） |\n| GPU 0 | 2 MiB / 32607 MiB, 0% |\n| GPU 1 | 2 MiB / 32607 MiB, 0% |\n| GPU 2 | 2 MiB / 32607 MiB, 0% |\n| GPU 3 | 2 MiB / 32607 MiB, 0% |\n\n4 块 5090 全部空闲，可用于新实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-cleanup.md"
+}

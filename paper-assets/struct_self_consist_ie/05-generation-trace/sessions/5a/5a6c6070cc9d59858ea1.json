@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a6c6070cc9d59858ea1",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis fk excess agreement",
+  "task_key": "worker_analysis_fk_excess_agreement_20260515T121311",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_fk_excess_agreement_20260515T121311_result.json",
+    "occurrence": 1,
+    "bytes": 455,
+    "sha256": "60ab385a78ce0752756e059f68d7121f53b1ae186c9605703f4bfc541c68dc9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/fk_excess_agreement_all_configs.md` 并注册。\n\n核心结论：\n- **P_e 由数据集决定**：SciERC P_e 高（0.45–0.51），CoNLL P_e 低（0.07–0.31）\n- **LLaMA CoNLL excess 最高**（~0.90），SciERC excess 最低（0.24–0.31）——SciERC 的大量观察一致性来自 chance\n- RE 的 FK 系统性低于同数据集的 NER\n- N=8→16 对 FK 几乎无影响，但 P_e 随 N 增大而上升"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fk-excess-agreement.md"
+}

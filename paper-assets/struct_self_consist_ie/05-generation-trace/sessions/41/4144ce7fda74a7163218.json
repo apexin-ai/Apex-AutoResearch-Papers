@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "4144ce7fda74a7163218",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis fewnerd s789 unified",
+  "task_key": "worker_analysis_fewnerd_s789_unified_20260518T230903",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_fewnerd_s789_unified_20260518T230903.log",
+    "occurrence": 1,
+    "bytes": 636037,
+    "sha256": "4d03cb13639a99825d96b927d3c88b6c6c368ec509d4127e0ba01a60b9dae2af"
+  },
+  "statistics": {
+    "messages": 181,
+    "user_turns": 0,
+    "tool_calls": 68,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 68,
+      "tool_result": 68,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 181,
+      "chunks": [
+        {
+          "path": "4144ce7fda74a7163218-part-0001.json",
+          "message_count": 163
+        },
+        {
+          "path": "4144ce7fda74a7163218-part-0002.json",
+          "message_count": 18
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-fewnerd-s789-unified.md"
+}

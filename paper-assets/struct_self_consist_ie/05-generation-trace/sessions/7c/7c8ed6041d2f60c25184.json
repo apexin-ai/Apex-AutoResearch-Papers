@@ -1,0 +1,653 @@
+{
+  "schema_version": "1.0",
+  "id": "7c8ed6041d2f60c25184",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "analysis diversity quantification",
+  "task_key": "worker_analysis_diversity_quantification_20260515T042244",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analysis_diversity_quantification_20260515T042244.jsonl",
+    "occurrence": 1,
+    "bytes": 42140,
+    "sha256": "ea90a68dba95c44d51134ffa27503f6441bebfd41078930f09b2101a77c4268c"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "tool_call": 15,
+      "tool_result": 15,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T04:25:12.719453+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T04:25:12.719916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T04:25:12.720208+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -2 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T04:25:12.720412+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -50 /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T04:25:12.721083+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"\n…[truncated 9152 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T04:25:12.721457+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Consistency metrics for structured information extraction with self-consistency.\\\\n\\\\nImplements three complementary consistency measures over N sampled extractions:\\\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\\\n\\\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nfrom itertools import combinations\\\\nfrom typing import TYPE_CHECKING\\\\n\\\\nimport numpy as np\\\\nfrom scipy.optimize import linear_sum_assignment\\\\n\\\\nif TYPE_CHECKING:\\\\n    pass\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Type aliases (mirrors shared data format)\\\\n# ---------------------------------------------------------------------------\\\\nEntity = dict       # {\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"end\\\\\\\"}\\\\nRelation = dict     # {\\\\\\\"head\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"type\\\\\\\", ...}\\\\nEvent = dict        # {\\\\\\\"trigger\\\\\\\": {...}, \\\\\\\"arguments\\\\\\\": [...]}\\\\nExtraction = dict   # {\\\\\\\"entities\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"events\\\\\\\"}\\\\n\\\\n\\\\n# ===================================================================\\\\n# 1. Fleiss' Kappa — surface-level entity agreement\\\\n# ===================================================================\\\\n\\\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        return {(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in sample.get(\\\\\\\"entities\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"re\\\\\\\":\\\\n        return {(r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in sample.get(\\\\\\\"relations\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"eae\\\\\\\":\\\\n   \n…[truncated 520 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T04:25:12.721684+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -50 /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T04:25:12.721862+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Evaluation module for structured self-consistency IE experiments.\\\\n\\\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\\\ncorrelation analysis, and summary report generation.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport statistics\\\\nfrom typing import Any\\\\n\\\\nfrom scipy.stats import kendalltau, spearmanr\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# NER evaluation (strict match)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef entity_strict_match(\\\\n    pred_entities: list[dict],\\\\n    gold_entities: list[dict],\\\\n) -> tuple[int, int, int]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute strict entity match counts.\\\\n\\\\n    Strict match requires exact span (start, end) AND exact type.\\\\n\\\\n    Args:\\\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\\\n        gold_entities: Gold entity dicts with the same schema.\\\\n\\\\n    Returns:\\\\n        (tp, fp, fn) counts.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pred_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in pred_entities}\\\\n    gold_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in gold_entities}\\\\n    tp = len(pred_set & gold_set)\\\\n    fp = len(pred_set - gold_set)\\\\n    fn = len(gold_set - pred_set)\\\\n    return tp, fp, fn\\\\n\\\\n\\\\ndef compute_ner_f1(\\\\n    predictions: list[dict],\\\\n    golds: list[dict],\\\\n) -> dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute micro-averaged NER precision, recall, and F1.\\\\n\\\\n    Args:\\\\n        predictions: List of Extraction dicts (one per instance).\\\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T04:25:12.722040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"_ner_soft_jaccard_pair\\|def per_instance_f1\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T04:25:12.722205+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T04:25:12.722341+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"_ner_soft_jaccard_pair\" /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T04:25:12.722470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"134:def _ner_soft_jaccard_pair(entities_a: list[Entity], entities_b: list[Entity]) -> float:\\\\n309:        pair_fn = _ner_soft_jaccard_pair\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T04:25:12.722589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"per_instance_f1\" /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T04:25:12.722712+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"167:def per_instance_f1(\\\\n234:        f1s = [per_instance_f1(sample, gold, subtask) for sample in samples]\\\\n381:            instance_greedy_f1s.append(per_instance_f1(greedy, gold, subtask))\\\\n388:            best_sample = max(samples, key=lambda s: per_instance_f1(s, gold, subtask))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T04:25:12.722836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat -n /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T04:25:12.723092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t\\\\\\\"\\\\\\\"\\\\\\\"Consistency metrics for structured information extraction with self-consistency.\\\\n     2\\\\t\\\\n     3\\\\tImplements three complementary consistency measures over N sampled extractions:\\\\n     4\\\\t1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\\\n     5\\\\t2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\\\n     6\\\\t3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\\\n     7\\\\t\\\\n     8\\\\tKey dependencies: numpy, scipy (linear_sum_assignment).\\\\n     9\\\\t\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    10\\\\t\\\\n    11\\\\tfrom __future__ import annotations\\\\n    12\\\\t\\\\n    13\\\\tfrom itertools import combinations\\\\n    14\\\\tfrom typing import TYPE_CHECKING\\\\n    15\\\\t\\\\n    16\\\\timport numpy as np\\\\n    17\\\\tfrom scipy.optimize import linear_sum_assignment\\\\n    18\\\\t\\\\n    19\\\\tif TYPE_CHECKING:\\\\n    20\\\\t    pass\\\\n    21\\\\t\\\\n    22\\\\t# ---------------------------------------------------------------------------\\\\n    23\\\\t# Type aliases (mirrors shared data format)\\\\n    24\\\\t# ---------------------------------------------------------------------------\\\\n    25\\\\tEntity = dict       # {\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"end\\\\\\\"}\\\\n    26\\\\tRelation = dict     # {\\\\\\\"head\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"type\\\\\\\", ...}\\\\n    27\\\\tEvent = dict        # {\\\\\\\"trigger\\\\\\\": {...}, \\\\\\\"arguments\\\\\\\": [...]}\\\\n    28\\\\tExtraction = dict   # {\\\\\\\"entities\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"events\\\\\\\"}\\\\n    29\\\\t\\\\n    30\\\\t\\\\n    31\\\\t# ===================================================================\\\\n    32\\\\t# 1. Fleiss' Kappa — surface-level entity agreement\\\\n    33\\\\t# ===================================================================\\\\n    34\\\\t\\\\n    35\\\\tdef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\\\n    36\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\\\\\"\\\\\n…[truncated 7521 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T04:25:12.723299+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -220 /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T04:25:12.723577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Evaluation module for structured self-consistency IE experiments.\\\\n\\\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\\\ncorrelation analysis, and summary report generation.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport statistics\\\\nfrom typing import Any\\\\n\\\\nfrom scipy.stats import kendalltau, spearmanr\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# NER evaluation (strict match)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef entity_strict_match(\\\\n    pred_entities: list[dict],\\\\n    gold_entities: list[dict],\\\\n) -> tuple[int, int, int]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute strict entity match counts.\\\\n\\\\n    Strict match requires exact span (start, end) AND exact type.\\\\n\\\\n    Args:\\\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\\\n        gold_entities: Gold entity dicts with the same schema.\\\\n\\\\n    Returns:\\\\n        (tp, fp, fn) counts.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pred_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in pred_entities}\\\\n    gold_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in gold_entities}\\\\n    tp = len(pred_set & gold_set)\\\\n    fp = len(pred_set - gold_set)\\\\n    fn = len(gold_set - pred_set)\\\\n    return tp, fp, fn\\\\n\\\\n\\\\ndef compute_ner_f1(\\\\n    predictions: list[dict],\\\\n    golds: list[dict],\\\\n) -> dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute micro-averaged NER precision, recall, and F1.\\\\n\\\\n    Args:\\\\n        predictions: List of Extraction dicts (one per instance).\\\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\\\n\\\\n    Returns:\\\\n        Dict with keys \\\\\\\"precision\\\\\\\", \\\\\\\"recall\\\\\\\", \\\\\\\"f1\\\\\\\".\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    total_tp = total_fp = total_fn = 0\\\\n    for pred, gold in zip(predictions, golds):\\\\n        tp, fp, fn = entity_\n…[truncated 5963 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T04:25:12.723882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T04:25:12.724219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"conll2003_test_00000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"DEFEAT\\\\\\\", \\\\\\\"head_start\\\\\\\": 9, \\\\\\\"head_end\\\\\\\": 14, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 36}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -8.094252856627776, \\\\\\\"n_tokens\\\\\\\": 120, \\\\\\\"mean_logprob\\\\\\\": -0.0674521071385648}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -4.469490054730798, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.06670880678702684}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -12.203311816377365, \\\\\\\"n_tokens\\\\\\\": 67, \\\\\\\"mean_logprob\\\\\\\": -0.18213898233399053}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cum\n…[truncated 2260 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T04:25:12.724476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T04:25:12.724809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"wnut17_test_00000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"& gt ; * The soldier was killed when another avalanche hit an army barracks in the northern area of Sonmarg , said a military spokesman .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Sonmarg\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location\\\\\\\", \\\\\\\"start\\\\\\\": 100, \\\\\\\"end\\\\\\\": 107}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Sonmarg\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location\\\\\\\", \\\\\\\"start\\\\\\\": 100, \\\\\\\"end\\\\\\\": 107}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.8117975827624946, \\\\\\\"n_tokens\\\\\\\": 41, \\\\\\\"mean_logprob\\\\\\\": -0.06858042884786572}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Sonmarg\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location\\\\\\\", \\\\\\\"start\\\\\\\": 100, \\\\\\\"end\\\\\\\": 107}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.8036625876410355, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.06675387113431037}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Sonmarg\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location\\\\\\\", \\\\\\\"start\\\\\\\": 100, \\\\\\\"end\\\\\\\": 107}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.9294885393294976, \\\\\\\"n_tokens\\\\\\\": 42, \\\\\\\"mean_logprob\\\\\\\": -0.0697497271268928}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Sonmarg\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location\\\\\\\", \\\\\\\"start\\\\\\\": 100, \\\\\\\"end\\\\\\\": 107}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -3.6367713985114847, \\\\\\\"n_tokens\\\\\\\": 43, \\\\\\\"mean_logprob\\\\\\\": -0.08457607903515081}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Sonmarg\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location\\\\\\\", \\\\\\\"start\\\\\\\": 100, \\\\\\\"end\\\\\\\": 107}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -2.803462571783257, \\\\\\\"n_tokens\\\\\\\": 41, \\\\\\\"mean_logprob\\\\\\\": -0.06837713589715261}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Sonmarg\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"location\\\\\\\", \\\\\\\"start\\\\\\\": 100, \\\\\\\"end\\\\\\\": 107}], \\\\\\\"re\n…[truncated 3748 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T04:25:12.725119+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T04:25:12.725578+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese t\n…[truncated 8110 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T04:25:12.725818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T04:25:12.726150+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"conll2003_test_00000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.1943186740784668, \\\\\\\"n_tokens\\\\\\\": 64, \\\\\\\"mean_logprob\\\\\\\": -0.003036229282476044}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.1943186740784668, \\\\\\\"n_tokens\\\\\\\": 64, \\\\\\\"mean_logprob\\\\\\\": -0.003036229282476044}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.1943186740784668, \\\\\\\"n_tokens\\\\\\\": 64, \\\\\\\"mean_logprob\\\\\\\": -0.003036229282476044}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -0.1943186740784668, \\\\\\\"n_tokens\\\\\\\": 64, \\\\\\\"mean_logprob\\\\\\\": -0.003036229282476044}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \n…[truncated 2102 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T04:25:12.726444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/diversity_analysis.py << 'PYEOF'\nimport json\nimport sys\nimport os\nimport numpy as np\nfrom itertools import combinations\nfrom collections import Counter\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import _ner_soft_jaccard_pair\nfrom evaluation import per_instance_f1\n\nN = 8\nOUTPUT_DIR = '/root/autodl-tmp/struct_self_consist_ie/output'\n\nCONFIGS = {\n    'qwen_scierc_ner': f'{OUTPUT_DIR}/exp_012_rerun_1024/samples.jsonl',\n    'llama_scierc_ner': f'{OUTPUT_DIR}/exp007_llama_inference/samples.jsonl',\n    'qwen_conll_ner': f'{OUTPUT_DIR}/exp002_conll2003/samples.jsonl',\n    'llama_conll_ner': f'{OUTPUT_DIR}/exp_017_llama_conll_infer/samples.jsonl',\n    'wnut17_ner': f'{OUTPUT_DIR}/exp003_wnut17_eval/samples.jsonl',\n}\n\ndef entities_to_frozenset(entities):\n    return frozenset((e['text'], e['type'], e['start'], e['end']) for e in entities)\n\ndef analyze_dataset(path):\n    instances = []\n    with open(path) as f:\n        for line in f:\n            instances.append(json.loads(line))\n\n    valid = [inst for inst in instances if len(inst['gold'].get('entities', [])) > 0]\n\n    unique_counts = []\n    logprob_stds = []\n    f1_stds = []\n    pairwise_sj_means = []\n    has_logprobs = True\n\n    for inst in valid:\n        samples = inst['samples'][:N]\n        gold = inst['gold']\n\n        # (a) unique fraction\n        entity_sets = [entities_to_frozenset(s.get('entities', [])) for s in samples]\n        n_unique = len(set(entity_sets))\n        unique_counts.append(n_unique)\n\n        # (b) logprob std\n        logprobs = []\n        for s in samples:\n            lp = s.get('mean_logprob')\n            if lp is not None:\n                logprobs.append(lp)\n        if len(logprobs) == N:\n            logprob_stds.append(float(np.std(logprobs, ddof=0)))\n        else:\n            has_logprobs = False\n\n        # (c) F1 std\n        f1s = [per_instance_f1(s, gold, subtask='ner') for s in samples]\n        f1_stds.append(float(np.std(f1s, ddof=0)))\n\n        # (d) pairwise SJ\n        sj_scores = []\n        for i, j in combinations(range(N), 2):\n            sj = _ner_soft_jaccard_pair(\n                samples[i].get('entities', []),\n                samples[j].get('entities', [])\n            )\n            sj_scores.append(sj)\n        pairwise_sj_means.append(float(np.mean(sj_scores)))\n\n    # aggregate (a)\n    unique_arr = np.array(unique_counts)\n    unique_hist = Counter(unique_counts)\n    unique_histogram = {str(k): unique_hist.get(k, 0) for k in range(1, N+1)}\n\n    # aggregate (b)\n    if has_logprobs and logprob_stds:\n        lp_arr = np.array(logprob_stds)\n        logprob_result = {\n            'mean': round(float(np.mean(lp_arr)), 6),\n            'median': round(float(np.median(lp_arr)), 6),\n            'p25': round(float(np.percentile(lp_arr, 25)), 6),\n            'p75': round(float(np.percentile(lp_arr, 75)), 6),\n        }\n    else:\n        logprob_result = 'N/A'\n\n    # aggregate (c)\n    f1_arr = np.array(f1_stds)\n\n    # aggregate (d)\n    sj_arr = np.array(pairwise_sj_means)\n    sj_bins = {}\n    for lo in np.arange(0, 1.0, 0.1):\n        hi = lo + 0.1\n        label = f'{lo:.1f}-{hi:.1f}'\n        if lo >= 0.9:\n            count = int(np.sum((sj_arr >= lo) & (sj_arr <= hi)))\n        else:\n            count = int(np.sum((sj_arr >= lo) & (sj_arr < hi)))\n        sj_bins[label] = count\n\n    result = {\n        'n_valid': len(valid),\n        'n_total': len(instances),\n        'unique_fraction': {\n            'mean': round(float(np.mean(unique_arr / N)), 4),\n            'median': round(float(np.median(unique_arr / N)), 4),\n            'histogram': unique_histogram,\n        },\n        'logprob_std': logprob_result,\n        'f1_std': {\n            'mean': round(float(np.mean(f1_arr)), 4),\n            'median': round(float(np.median(f1_arr)), 4),\n        },\n        'pairwise_sj': {\n            'mean': round(float(np.mean(sj_arr)), 4),\n            'median': round(float(np.median(sj_arr)), 4),\n            'p25': round(float(np.percentile(sj_arr, 25)), 4),\n            'p75': round(float(np.percentile(sj_arr, 75)), 4),\n            'histogram': sj_bins,\n        },\n    }\n    return result\n\nif __name__ == '__main__':\n    os.makedirs(f'{OUTPUT_DIR}/review_round2', exist_ok=True)\n    \n    results = {}\n    for name, path in CONFIGS.items():\n        print(f'Processing {name}...', flush=True)\n        results[name] = analyze_dataset(path)\n        print(f'  n_valid={results[name][\"n_valid\"]}, unique_frac_mean={results[name][\"unique_fraction\"][\"mean\"]}, sj_mean={results[name][\"pairwise_sj\"][\"mean\"]}')\n\n    out_path = f'{OUTPUT_DIR}/review_round2/diversity_analysis.json'\n    with open(out_path, 'w') as f:\n        json.dump(results, f, indent=2, ensure_ascii=False)\n    \n    print(f'\\nSaved to {out_path}')\n    print('\\n' + json.dumps(results, indent=2, ensure_ascii=False))\nPYEOF\necho \"Script written.\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T04:25:12.726685+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T04:25:12.726825+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/diversity_analysis.py",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T04:25:12.727062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Processing qwen_scierc_ner...\\\\n  n_valid=529, unique_frac_mean=0.4327, sj_mean=0.7026\\\\nProcessing llama_scierc_ner...\\\\n  n_valid=529, unique_frac_mean=0.3885, sj_mean=0.7443\\\\nProcessing qwen_conll_ner...\\\\n  n_valid=2756, unique_frac_mean=0.2351, sj_mean=0.8688\\\\nProcessing llama_conll_ner...\\\\n  n_valid=2756, unique_frac_mean=0.1465, sj_mean=0.9718\\\\nProcessing wnut17_ner...\\\\n  n_valid=689, unique_frac_mean=0.2244, sj_mean=0.8227\\\\n\\\\nSaved to /root/autodl-tmp/struct_self_consist_ie/output/review_round2/diversity_analysis.json\\\\n\\\\n{\\\\n  \\\\\\\"qwen_scierc_ner\\\\\\\": {\\\\n    \\\\\\\"n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"unique_fraction\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.4327,\\\\n      \\\\\\\"median\\\\\\\": 0.375,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"1\\\\\\\": 59,\\\\n        \\\\\\\"2\\\\\\\": 126,\\\\n        \\\\\\\"3\\\\\\\": 112,\\\\n        \\\\\\\"4\\\\\\\": 94,\\\\n        \\\\\\\"5\\\\\\\": 72,\\\\n        \\\\\\\"6\\\\\\\": 32,\\\\n        \\\\\\\"7\\\\\\\": 16,\\\\n        \\\\\\\"8\\\\\\\": 18\\\\n      }\\\\n    },\\\\n    \\\\\\\"logprob_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.020484,\\\\n      \\\\\\\"median\\\\\\\": 0.013479,\\\\n      \\\\\\\"p25\\\\\\\": 0.008671,\\\\n      \\\\\\\"p75\\\\\\\": 0.022697\\\\n    },\\\\n    \\\\\\\"f1_std\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.1442,\\\\n      \\\\\\\"median\\\\\\\": 0.1308\\\\n    },\\\\n    \\\\\\\"pairwise_sj\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.7026,\\\\n      \\\\\\\"median\\\\\\\": 0.7143,\\\\n      \\\\\\\"p25\\\\\\\": 0.5674,\\\\n      \\\\\\\"p75\\\\\\\": 0.8661,\\\\n      \\\\\\\"histogram\\\\\\\": {\\\\n        \\\\\\\"0.0-0.1\\\\\\\": 0,\\\\n        \\\\\\\"0.1-0.2\\\\\\\": 1,\\\\n        \\\\\\\"0.2-0.3\\\\\\\": 11,\\\\n        \\\\\\\"0.3-0.4\\\\\\\": 26,\\\\n        \\\\\\\"0.4-0.5\\\\\\\": 52,\\\\n        \\\\\\\"0.5-0.6\\\\\\\": 67,\\\\n        \\\\\\\"0.6-0.7\\\\\\\": 91,\\\\n        \\\\\\\"0.7-0.8\\\\\\\": 109,\\\\n        \\\\\\\"0.8-0.9\\\\\\\": 65,\\\\n        \\\\\\\"0.9-1.0\\\\\\\": 107\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_scierc_ner\\\\\\\": {\\\\n    \\\\\\\"n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"unique_fraction\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.3885,\\\\n      \\\\\\\"median\\\\\\\": 0.375,\\\\n      \\\\\\\"his\n…[truncated 4673 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T04:25:12.727302+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已保存到 `/root/autodl-tmp/struct_self_consist_ie/output/review_round2/diversity_analysis.json`。\n\n关键发现：\n\n**Diversity 排序（高→低）：Qwen SciERC > LLaMA SciERC > WNUT-17 > Qwen CoNLL > LLaMA CoNLL**\n\n| Config | Unique Frac (mean) | F1 Std | Pairwise SJ (mean) | Logprob Std |\n|--------|-------------------|--------|---------------------|-------------|\n| Qwen SciERC | 0.433 | 0.144 | 0.703 | 0.0205 |\n| LLaMA SciERC | 0.389 | 0.127 | 0.744 | 0.0188 |\n| WNUT-17 (Qwen) | 0.224 | 0.100 | 0.823 | 0.0215 |\n| Qwen CoNLL | 0.235 | 0.092 | 0.869 | 0.0256 |\n| LLaMA CoNLL | 0.147 | 0.020 | 0.972 | 0.0069 |\n\n核心观察：\n1. **SciERC diversity 远高于 CoNLL/WNUT** — SciERC 实体边界模糊（科学术语），导致输出变化大；CoNLL/WNUT 是标准 NER（人名/地名），大部分 instance 8 个 sample 完全一致（unique=1 占 57%-88%）\n2. **LLaMA CoNLL 几乎无 diversity** — 88% instance 的 8 个 sample 完全相同（unique=1=2421/2756），pairwise SJ 中位数=1.0，constrained decoding 对简单 NER + 强模型的输出高度确定\n3. **Qwen 比 LLaMA 在同一数据集上 diversity 更高** — SciERC 上 0.433 vs 0.389，CoNLL 上 0.235 vs 0.147，说明 Qwen 在 constrained decoding 下产生更多样化的输出\n4. **WNUT-17 注意**：原始数据有 N=16 samples，这里截取前 8 个分析"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_diversity_quantification_20260515T042244"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-diversity-quantification.md"
+}

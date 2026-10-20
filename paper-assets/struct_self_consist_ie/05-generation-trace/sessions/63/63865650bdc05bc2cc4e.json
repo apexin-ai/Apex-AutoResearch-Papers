@@ -1,0 +1,1519 @@
+{
+  "schema_version": "1.0",
+  "id": "63865650bdc05bc2cc4e",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260514T200845",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_introduction_20260514T200845.log",
+    "occurrence": 1,
+    "bytes": 174447,
+    "sha256": "6f4bdf4c864360d6973b332ac8a7600f06db0ee42cd483c80b16013984ef67f9"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+                "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__bootstrap_provenance",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__overleaf_init",
+                  "mcp__agent-ml-research__overleaf_pull",
+                  "mcp__agent-ml-research__overleaf_push",
+                  "mcp__agent-ml-research__overleaf_status",
+                  "mcp__agent-ml-research__overleaf_sync",
+                  "mcp__agent-ml-research__paper_agent_post_to_director",
+                  "mcp__agent-ml-research__paper_agent_request_review",
+                  "mcp__agent-ml-research__paper_compile_and_check",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "db4580b9-6a3b-4be4-aebf-19c93791c700",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778800800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "6db958a0-71e8-4ac1-b865-7dafd7d4648d",
+                "session_id": "8597b770-a6ea-496b-a108-ba67492160e4"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me start by reading the skill files and existing sections to ensure consistency."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "5aa49bc0-494d-4f37-bf03-bd845039c6f6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gy8yrmKAsHsBwNz1a7huQm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13084,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13084
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GFytkaJE9TtpaFzKey4dJQ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "dfe65d85-21fb-460e-bdb6-c2398805e0f7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gy8yrmKAsHsBwNz1a7huQm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13084,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13084
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T20:08:55.038Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GFytkaJE9TtpaFzKey4dJQ",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认你引用的 claim 确实出自该论文\n95\t5. ADD     → 加入 .bib 文件\n96\t```\n97\t\n98\t### 3.3 API 速查\n99\t\n100\t| API | 用途 | 限制 |\n101\t|-----|------|------|\n102\t| **Semantic Scholar** | ML/AI 论文搜索 | 1 RPS (免费) |\n103\t| **CrossRef** | DOI → BibTeX | 需 mailto 头 |\n104\t| **arXiv** | 预印本搜索 | 3s 间隔 |\n105\t\n106\t```python\n107\t# DOI → BibTeX（最可靠的方式）\n108\timport requests\n109\tdef doi_to_bibtex(doi: str) -> str:\n110\t    r = requests.get(f\"https://doi.org/{doi}\",\n111\t                     headers={\"Accept\": \"application/x-bibtex\"})\n112\t    r.raise_for_status()\n113\t    return r.text\n114\t\n115\t# Semantic Scholar 搜索\n116\tfrom semanticscholar import SemanticScholar\n117\tsch = SemanticScholar()\n118\tresults = sch.search_paper(\"attention mechanism transformers\", limit=5)\n119\tfor p in results:\n120\t    print(f\"{p.title} | DOI: {p.externalIds.get('DOI', 'N/A')}\")\n121\t```\n122\t\n123\t### 3.4 引用处理规则\n124\t\n125\t| 情况 | 处理 |\n126\t|------|------|\n127\t| 找到论文 + DOI + BibTeX | 直接用 |\n128\t| 找到论文，无 DOI | 用 arXiv BibTeX |\n129\t| 论文存在但无法获取 BibTeX | 标记 placeholder，告知用户 |\n130\t| 不确定论文是否存在 | 标记 `[CITATION NEEDED]`，告知用户 |\n131\t| \"我觉得有篇关于 X 的论文\" | **绝不引用** — 先搜索或标记 |\n132\t\n133\t---\n134\t\n135\t## 4. 顶会模板速查\n136\t\n137\t### 4.1 ML/AI 会议\n138\t\n139\t| 会议 | 页数限制 | 主文件 | 样式文件 | 必须项 |\n140\t|------|---------|--------|---------|--------|\n141\t| **NeurIPS** | 9 页 | `main.tex` | `neurips.sty` | Paper Checklist |\n142\t| **ICML** | 8 页 (+1 camera-ready) | `example_paper.tex` | `icml2026.sty` | Broader Impact |\n143\t| **ICLR** | 9 页 (+1) | `iclr_conference.tex` | `iclr_conference.sty` | LLM 使用声明 |\n144\t| **ACL/EMNLP** | 8 页 (long) | `acl_latex.tex` | `acl.sty` | Limitations 必须 |\n145\t| **AAAI** | 7 页 (+1) | `aaai_template.tex` | `aaai.sty` | 严格样式 |\n146\t| **COLM** | 9 页 (+1) | `colm_conference.tex` | `colm_conference.sty` | 语言模型聚焦 |\n147\t\n148\t### 4.2 系统会议\n149\t\n150\t| 会议 | 页数限制 | 模板类型 | 关键要求 |\n151\t|------|---------|---------|---------|\n152\t| **OSDI** | 12 页 (+2) | USENIX `usenix.sty` | Research / Operational 双 track |\n153\t| **NSDI** | 12 页 | USENIX | Introduction 预筛 |\n154\t| **ASPLOS** | 12 页 | ACM `acmart.cls (sigplan)` | 前 2 页快速评审 |\n155\t| **SOSP** | 12 页 | ACM `acmart.cls (sigplan)` | 可选 Artifact Evaluation |\n156\t\n157\t### 4.3 模板使用原则\n158\t\n159\t```bash\n160\t# 1. 复制整个模板目录（不要只拷 .tex）\n161\tcp -r templates/neurips2025/ ~/papers/my-paper/\n162\t\n163\t# 2. 先编译未修改的模板，确认能跑通\n164\tlatexmk -pdf main.tex\n165\t\n166\t# 3. 逐章替换内容，频繁编译\n167\t```\n168\t\n169\t**禁止事项：**\n170\t- 不要修改 `.sty` 文件\n171\t- 不要在会议模板间复制 `\\usepackage` 行\n172\t- 不要只复制 `.tex` 而不带 `.sty/.bst`\n173\t\n174\t---\n175\t\n176\t## 5. 写作规范\n177\t\n178\t### 5.1 时间分配（Neel Nanda）\n179\t\n180\t花**大致相等**的时间在：\n181\t1. Abstract\n182\t2. Introduction\n183\t3. 图表\n184\t4. **其余所有内容加起来**\n185\t\n186\t审稿人读论文的顺序：标题 → 摘要 → 引言 → 图表 → 也许正文。\n187\t\n188\t### 5.2 Abstract 五句法（Sebastian Farquhar）\n189\t\n190\t```\n191\t1. 你做了什么（\"We introduce/prove/demonstrate...\"）\n192\t2. 为什么这很难且重要\n193\t3. 怎么做的（含专业关键词以便检索）\n194\t4. 有什么证据\n195\t5. 最惊人的数字/结果\n196\t```\n197\t\n198\t删除一切泛泛的开头：~~\"Large language models have achieved remarkable success...\"~~\n199\t\n200\t### 5.3 句子级清晰度（Gopen & Swan）\n201\t\n202\t| 原则 | 规则 |\n203\t|------|------|\n204\t| 主谓紧邻 | 不要在主语和动词之间插入长从句 |\n205\t| 重点在句尾 | 把关键数字/结论放在句末 |\n206\t| 旧信息在前 | 先放读者已知的内容，再引入新概念 |\n207\t| 动词表达动作 | \"We analyzed\" 而非 \"We performed an analysis\" |\n208\t\n209\t### 5.4 常见修改\n210\t\n211\t| 问题 | 修复 |\n212\t|------|------|\n213\t| Abstract 太泛 | 删第一句（如果它能放在任何 ML 论文前面） |\n214\t| Introduction 超 1.5 页 | 背景挪到 Related Work |\n215\t| 实验没有显式 claim | 每个实验前加 \"This tests whether...\" |\n216\t| 缺统计显著性 | 加 error bars + 运行次数 + 计算方法 |\n217\t\n218\t---\n219\t\n220\t## 6. 投稿工程链\n221\t\n222\t### 6.1 构建\n223\t\n224\t```bash\n225\t# 推荐：latexmk 一键构建\n226\tlatexmk -pdf -interaction=nonstopmode -halt-on-error main.tex\n227\t\n228\t# 手动：需要多次编译\n229\tpdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n230\t```\n231\t\n232\t### 6.2 Lint + 格式化\n233\t\n234\t```bash\n235\t# Lint: 检查常见 LaTeX 问题\n236\tchktex main.tex\n237\t\n238\t# 格式化: 减少 diff 噪声\n239\tlatexindent -w main.tex\n240\t```\n241\t\n242\t### 6.3 图表格式\n243\t\n244\t| 类型 | 格式 | 说明 |\n245\t|------|------|------|\n246\t| 矢量图（plot、diagram） | PDF | matplotlib: `plt.savefig('fig.pdf')` |\n247\t| 照片/heatmap | PNG 600dpi 或 TIFF | 栅格图 |\n248\t| 表格 | `booktabs` 包 | `\\toprule/\\midrule/\\bottomrule` |\n249\t\n250\t```latex\n251\t\\usepackage{booktabs}\n252\t\\begin{tabular}{lcc}\n253\t\\toprule\n254\tMethod & Accuracy $\\uparrow$ & Latency $\\downarrow$ \\\\\n255\t\\midrule\n256\tBaseline & 85.2 & 45ms \\\\\n257\t\\textbf{Ours} & \\textbf{92.1} & 38ms \\\\\n258\t\\bottomrule\n259\t\\end{tabular}\n260\t```\n261\t\n262\t**图表规范：**\n263\t- 用色盲友好色板（Okabe-Ito 或 Paul Tol）\n264\t- 图内不放标题（用 caption）\n265\t- Caption 独立可理解（不依赖正文）\n266\t- 最佳值加粗，标注方向符号（↑ 越高越好，↓ 越低越好）\n267\t\n268\t### 6.4 投稿打包\n269\t\n270\t```bash\n271\t# 清理辅助文件\n272\tlatexmk -c\n273\t\n274\t# 打包投稿\n275\tzip -r submission.zip main.tex *.sty *.bst *.bib figures/ --exclude='*.aux' --exclude='*.log'\n276\t```\n277\t\n278\t### 6.5 常见失败点\n279\t\n280\t| 问题 | 解决 |\n281\t|------|------|\n282\t| 图片格式混用导致编译失败 | 统一用 PDF |\n283\t| 字体未嵌入 | `pdffonts output.pdf` 检查 |\n284\t| Overfull box 过多 | 关键位置手动调行 |\n285\t| 引用缺字段 | 检查 DOI/年份/期刊名 |\n286\t| 超页数 | 用 `\\vspace{-Xpt}` 微调，或精简内容 |\n287\t\n288\t---\n289\t\n290\t## 7. 会议转投\n291\t\n292\t当论文被拒或转投其他会议时：\n293\t\n294\t### 7.1 ML/AI 会议间转换\n295\t\n296\t| 转换 | 页数变化 | 关键调整 |\n297\t|------|---------|---------|\n298\t| NeurIPS → ICML | 9→8 | 删 1 页，加 Broader Impact |\n299\t| ICML → ICLR | 8→9 | 可扩展实验 + LLM 声明 |\n300\t| NeurIPS → ACL | 9→8 | 按 NLP 惯例重组 + Limitations |\n301\t| ICLR → AAAI | 9→7 | 大幅精简，严格样式 |\n302\t\n303\t### 7.2 转投原则\n304\t\n305\t1. **永远用目标模板重新开始** — 复制目标模板，迁移内容，不要合并 preamble\n306\t2. **只迁移正文内容** — 不复制 `\\usepackage`、header/footer 命令\n307\t3. **根据审稿意见改进** — 但不要在新稿中提及旧投稿（双盲）\n308\t4. **检查目标会议特殊要求** — checklist、ethics statement、LLM 声明等\n309\t\n310\t---\n311\t\n312\t## 8. 投前清单\n313\t\n314\t### 通用清单\n315\t\n316\t- [ ] Abstract/Intro/Conclusion 的 claim 一致\n317\t- [ ] 每个 contribution 有对应 evidence\n318\t- [ ] 所有引用已程序化验证（无幻觉引用）\n319\t- [ ] Error bars + 运行次数 + 统计方法\n320\t- [ ] Limitations 章节存在且诚实\n321\t- [ ] 匿名化（双盲审稿）\n322\t- [ ] 符合页数限制\n323\t- [ ] 所有图表有自包含 caption\n324\t- [ ] `.bib` 中无缺失字段\n325\t- [ ] PDF 编译无 warning\n326\t\n327\t### 会议特定\n328\t\n329\t| 会议 | 额外要求 |\n330\t|------|---------|\n331\t| NeurIPS | 16 项 Paper Checklist（附录，不计页数） |\n332\t| ICML | Broader Impact Statement |\n333\t| ICLR | LLM 使用声明 |\n334\t| ACL/EMNLP | Limitations 章节（必须），Ethics Statement |\n335\t| AAAI | 严格样式文件合规 |\n336\t\n337\t---\n338\t\n339\t## 参考资源\n340\t\n341\t**写作方法论：**\n342\t- [Neel Nanda: How to Write ML Papers](https://www.alignmentforum.org/posts/eJGptPbbFPZGLpjsp/) — What/Why/So What 框架\n343\t- [Farquhar: How to Write ML Papers](https://sebastianfarquhar.com/on-research/2024/11/04/how_to_write_ml_papers/) — 五句法 Abstract\n344\t- [Gopen & Swan: Science of Scientific Writing](https://cseweb.ucsd.edu/~swanson/papers/science-of-writing.pdf) — 读者预期 7 原则\n345\t- [Lipton: Heuristics for Scientific Writing](https://www.approximatelycorrect.com/2018/01/29/heuristics-technical-scientific-writing-machine-learning-perspective/) — 用词\n346\t- [Perez: Easy Paper Writing Tips](https://ethanperez.net/easy-paper-writing-tips/) — 微观清晰度\n347\t\n348\t**API：**\n349\t- [Semantic Scholar](https://api.semanticscholar.org/api-docs/) | [CrossRef](https://www.crossref.org/documentation/) | [arXiv](https://info.arxiv.org/help/api/)\n350\t\n351\t**会议官方：**\n352\t- [NeurIPS](https://neurips.cc/) | [ICML](https://icml.cc/) | [ICLR](https://iclr.cc/) | [ACL](https://www.aclweb.org/) | [AAAI](https://aaai.org/) | [EMNLP](https://2025.emnlp.org/)\n353\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "7d74bd61-29bd-4cd2-8456-35cc8e365415",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md",
+                "content": "---\nname: latex-paper\ndescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\nscope: global\ntags:\n- latex\n- paper-writing\n- academic\n- citation\n- submission\nversion: 1\nroles:\n- agent\n- worker\n---\n\n# LaTeX 论文写作全流程\n\nML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n\n---\n\n## 1. 工作模式\n\n开始前选择模式：\n\n| 模式 | 说明 | 适用 |\n|------|------|------|\n| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n\n---\n\n## 2. Claim-Evidence 方法论\n\n**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n\n### 2.1 一句话贡献\n\n在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n\n### 2.2 Claim-Evidence Map\n\n为每个 contribution 建立 claim→evidence 映射表：\n\n| Contribution | Claim | Evidence | Table/Figure |\n|-------------|-------|----------|-------------|\n| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n\n**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n\n### 2.3 章节起草顺序\n\n```\n1. Introduction + Experiments（先确定 claim 和 evidence）\n2. Method（评估问题稳定后再写细节）\n3. Related Work\n4. Abstract + Title（核心 claim 定型后最后写）\n```\n\n### 2.4 Quality Gates\n\n投稿前必须通过：\n- [ ] 前两段出现显式 novelty 声明\n- [ ] 每个 contribution 有可验证的 evidence\n- [ ] Abstract / Intro / Conclusion 的 claim 一致\n- [ ] Limitations 真实且技术性诚实\n- [ ] 审稿人两分钟内能识别 delta\n\n---\n\n## 3. 引用防幻觉（CRITICAL）\n\n**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n\n### 3.1 黄金法则\n\n```\nIF 无法程序化获取引用:\n    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n    → 明确告知用户\n    → 绝不编造看似合理的引用\n```\n\n### 3.2 五步验证流程\n\n```\n1. SEARCH  → Semantic Scholar API 搜索关键词\n2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n4. CHECK   → 确认你引用的 claim 确实出自该论文\n5. ADD     → 加入 .bib 文件\n```\n\n### 3.3 API 速查\n\n| API | 用途 | 限制 |\n|-----|------|------|\n| **Semantic Scholar** | ML/AI 论文搜索 | 1 RPS (免费) |\n| **CrossRef** | DOI → BibTeX | 需 mailto 头 |\n| **arXiv** | 预印本搜索 | 3s 间隔 |\n\n```python\n# DOI → BibTeX（最可靠的方式）\nimport requests\ndef doi_to_bibtex(doi: str) -> str:\n    r = requests.get(f\"https://doi.org/{doi}\",\n                     headers={\"Accept\": \"application/x-bibtex\"})\n    r.raise_for_status()\n    return r.text\n\n# Semantic Scholar 搜索\nfrom semanticscholar import SemanticScholar\nsch = SemanticScholar()\nresults = sch.search_paper(\"attention mechanism transformers\", limit=5)\nfor p in results:\n    print(f\"{p.title} | DOI: {p.externalIds.get('DOI', 'N/A')}\")\n```\n\n### 3.4 引用处理规则\n\n| 情况 | 处理 |\n|------|------|\n| 找到论文 + DOI + BibTeX | 直接用 |\n| 找到论文，无 DOI | 用 arXiv BibTeX |\n| 论文存在但无法获取 BibTeX | 标记 placeholder，告知用户 |\n| 不确定论文是否存在 | 标记 `[CITATION NEEDED]`，告知用户 |\n| \"我觉得有篇关于 X 的论文\" | **绝不引用** — 先搜索或标记 |\n\n---\n\n## 4. 顶会模板速查\n\n### 4.1 ML/AI 会议\n\n| 会议 | 页数限制 | 主文件 | 样式文件 | 必须项 |\n|------|---------|--------|---------|--------|\n| **NeurIPS** | 9 页 | `main.tex` | `neurips.sty` | Paper Checklist |\n| **ICML** | 8 页 (+1 camera-ready) | `example_paper.tex` | `icml2026.sty` | Broader Impact |\n| **ICLR** | 9 页 (+1) | `iclr_conference.tex` | `iclr_conference.sty` | LLM 使用声明 |\n| **ACL/EMNLP** | 8 页 (long) | `acl_latex.tex` | `acl.sty` | Limitations 必须 |\n| **AAAI** | 7 页 (+1) | `aaai_template.tex` | `aaai.sty` | 严格样式 |\n| **COLM** | 9 页 (+1) | `colm_conference.tex` | `colm_conference.sty` | 语言模型聚焦 |\n\n### 4.2 系统会议\n\n| 会议 | 页数限制 | 模板类型 | 关键要求 |\n|------|---------|---------|---------|\n| **OSDI** | 12 页 (+2) | USENIX `usenix.sty` | Research / Operational 双 track |\n| **NSDI** | 12 页 | USENIX | Introduction 预筛 |\n| **ASPLOS** | 12 页 | ACM `acmart.cls (sigplan)` | 前 2 页快速评审 |\n| **SOSP** | 12 页 | ACM `acmart.cls (sigplan)` | 可选 Artifact Evaluation |\n\n### 4.3 模板使用原则\n\n```bash\n# 1. 复制整个模板目录（不要只拷 .tex）\ncp -r templates/neurips2025/ ~/papers/my-paper/\n\n# 2. 先编译未修改的模板，确认能跑通\nlatexmk -pdf main.tex\n\n# 3. 逐章替换内容，频繁编译\n```\n\n**禁止事项：**\n- 不要修改 `.sty` 文件\n- 不要在会议模板间复制 `\\usepackage` 行\n- 不要只复制 `.tex` 而不带 `.sty/.bst`\n\n---\n\n## 5. 写作规范\n\n### 5.1 时间分配（Neel Nanda）\n\n花**大致相等**的时间在：\n1. Abstract\n2. Introduction\n3. 图表\n4. **其余所有内容加起来**\n\n审稿人读论文的顺序：标题 → 摘要 → 引言 → 图表 → 也许正文。\n\n### 5.2 Abstract 五句法（Sebastian Farquhar）\n\n```\n1. 你做了什么（\"We introduce/prove/demonstrate...\"）\n2. 为什么这很难且重要\n3. 怎么做的（含专业关键词以便检索）\n4. 有什么证据\n5. 最惊人的数字/结果\n```\n\n删除一切泛泛的开头：~~\"Large language models have achieved remarkable success...\"~~\n\n### 5.3 句子级清晰度（Gopen & Swan）\n\n| 原则 | 规则 |\n|------|------|\n| 主谓紧邻 | 不要在主语和动词之间插入长从句 |\n| 重点在句尾 | 把关键数字/结论放在句末 |\n| 旧信息在前 | 先放读者已知的内容，再引入新概念 |\n| 动词表达动作 | \"We analyzed\" 而非 \"We performed an analysis\" |\n\n### 5.4 常见修改\n\n| 问题 | 修复 |\n|------|------|\n| Abstract 太泛 | 删第一句（如果它能放在任何 ML 论文前面） |\n| Introduction 超 1.5 页 | 背景挪到 Related Work |\n| 实验没有显式 claim | 每个实验前加 \"This tests whether...\" |\n| 缺统计显著性 | 加 error bars + 运行次数 + 计算方法 |\n\n---\n\n## 6. 投稿工程链\n\n### 6.1 构建\n\n```bash\n# 推荐：latexmk 一键构建\nlatexmk -pdf -interaction=nonstopmode -halt-on-error main.tex\n\n# 手动：需要多次编译\npdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n```\n\n### 6.2 Lint + 格式化\n\n```bash\n# Lint: 检查常见 LaTeX 问题\nchktex main.tex\n\n# 格式化: 减少 diff 噪声\nlatexindent -w main.tex\n```\n\n### 6.3 图表格式\n\n| 类型 | 格式 | 说明 |\n|------|------|------|\n| 矢量图（plot、diagram） | PDF | matplotlib: `plt.savefig('fig.pdf')` |\n| 照片/heatmap | PNG 600dpi 或 TIFF | 栅格图 |\n| 表格 | `booktabs` 包 | `\\toprule/\\midrule/\\bottomrule` |\n\n```latex\n\\usepackage{booktabs}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & Accuracy $\\uparrow$ & Latency $\\downarrow$ \\\\\n\\midrule\nBaseline & 85.2 & 45ms \\\\\n\\textbf{Ours} & \\textbf{92.1} & 38ms \\\\\n\\bottomrule\n\\end{tabular}\n```\n\n**图表规范：**\n- 用色盲友好色板（Okabe-Ito 或 Paul Tol）\n- 图内不放标题（用 caption）\n- Caption 独立可理解（不依赖正文）\n- 最佳值加粗，标注方向符号（↑ 越高越好，↓ 越低越好）\n\n### 6.4 投稿打包\n\n```bash\n# 清理辅助文件\nlatexmk -c\n\n# 打包投稿\nzip -r submission.zip main.tex *.sty *.bst *.bib figures/ --exclude='*.aux' --exclude='*.log'\n```\n\n### 6.5 常见失败点\n\n| 问题 | 解决 |\n|------|------|\n| 图片格式混用导致编译失败 | 统一用 PDF |\n| 字体未嵌入 | `pdffonts output.pdf` 检查 |\n| Overfull box 过多 | 关键位置手动调行 |\n| 引用缺字段 | 检查 DOI/年份/期刊名 |\n| 超页数 | 用 `\\vspace{-Xpt}` 微调，或精简内容 |\n\n---\n\n## 7. 会议转投\n\n当论文被拒或转投其他会议时：\n\n### 7.1 ML/AI 会议间转换\n\n| 转换 | 页数变化 | 关键调整 |\n|------|---------|---------|\n| NeurIPS → ICML | 9→8 | 删 1 页，加 Broader Impact |\n| ICML → ICLR | 8→9 | 可扩展实验 + LLM 声明 |\n| NeurIPS → ACL | 9→8 | 按 NLP 惯例重组 + Limitations |\n| ICLR → AAAI | 9→7 | 大幅精简，严格样式 |\n\n### 7.2 转投原则\n\n1. **永远用目标模板重新开始** — 复制目标模板，迁移内容，不要合并 preamble\n2. **只迁移正文内容** — 不复制 `\\usepackage`、header/footer 命令\n3. **根据审稿意见改进** — 但不要在新稿中提及旧投稿（双盲）\n4. **检查目标会议特殊要求** — checklist、ethics statement、LLM 声明等\n\n---\n\n## 8. 投前清单\n\n### 通用清单\n\n- [ ] Abstract/Intro/Conclusion 的 claim 一致\n- [ ] 每个 contribution 有对应 evidence\n- [ ] 所有引用已程序化验证（无幻觉引用）\n- [ ] Error bars + 运行次数 + 统计方法\n- [ ] Limitations 章节存在且诚实\n- [ ] 匿名化（双盲审稿）\n- [ ] 符合页数限制\n- [ ] 所有图表有自包含 caption\n- [ ] `.bib` 中无缺失字段\n- [ ] PDF 编译无 warning\n\n### 会议特定\n\n| 会议 | 额外要求 |\n|------|---------|\n| NeurIPS | 16 项 Paper Checklist（附录，不计页数） |\n| ICML | Broader Impact Statement |\n| ICLR | LLM 使用声明 |\n| ACL/EMNLP | Limitations 章节（必须），Ethics Statement |\n| AAAI | 严格样式文件合规 |\n\n---\n\n## 参考资源\n\n**写作方法论：**\n- [Neel Nanda: How to Write ML Papers](https://www.alignmentforum.org/posts/eJGptPbbFPZGLpjsp/) — What/Why/So What 框架\n- [Farquhar: How to Write ML Papers](https://sebastianfarquhar.com/on-research/2024/11/04/how_to_write_ml_papers/) — 五句法 Abstract\n- [Gopen & Swan: Science of Scientific Writing](https://cseweb.ucsd.edu/~swanson/papers/science-of-writing.pdf) — 读者预期 7 原则\n- [Lipton: Heuristics for Scientific Writing](https://www.approximatelycorrect.com/2018/01/29/heuristics-technical-scientific-writing-machine-learning-perspective/) — 用词\n- [Perez: Easy Paper Writing Tips](https://ethanperez.net/easy-paper-writing-tips/) — 微观清晰度\n\n**API：**\n- [Semantic Scholar](https://api.semanticscholar.org/api-docs/) | [CrossRef](https://www.crossref.org/documentation/) | [arXiv](https://info.arxiv.org/help/api/)\n\n**会议官方：**\n- [NeurIPS](https://neurips.cc/) | [ICML](https://icml.cc/) | [ICLR](https://iclr.cc/) | [ACL](https://www.aclweb.org/) | [AAAI](https://aaai.org/) | [EMNLP](https://2025.emnlp.org/)\n",
+                "numLines": 353,
+                "startLine": 1,
+                "totalLines": 353
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0163MPvotBF66qEHpujhDcPJ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/red-section.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "55c22fdc-4ee6-4d7c-8fcd-a91347021611",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gy8yrmKAsHsBwNz1a7huQm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13084,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13084
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T20:08:55.665Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0163MPvotBF66qEHpujhDcPJ",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: red-section\n3\tdescription: \"当实验结论为 negative / 审稿人指出 core claim 不成立 / 你要写或修改任何 paper/**/*.md 或 .tex 文件时,立即使用本 skill。提供 Framing 调整提案模板、写作规范、审稿攻击面预演。违反即被 Reviewer critical 打回。\"\n4\talways: true\n5\troles:\n6\t  - agent\n7\t---\n8\t\n9\t# Red Section — Narrative Re-framing\n10\t\n11\t## 什么时候用\n12\t- 实验 conclusion = negative\n13\t- 审稿人指出 core claim 不成立\n14\t- 写论文前（作为通用写作规范）\n15\t\n16\t## Negative 结果的正确心态\n17\t\"不是失败，是发现了 X\"。你的输出应该是 framing 调整提案，而不是 failure report。\n18\t\n19\t## 产出格式\n20\t\n21\t### Framing 调整提案模板\n22\t1. 原 claim：什么\n23\t2. 实验结果：什么（客观数字，不加修饰）\n24\t3. 重新审视：\n25\t   - 这个结果挑战了哪个 hypothesis？\n26\t   - 是否暴露了被忽略的变量？\n27\t   - 在新的 framing 下，哪些已做实验依然有效？哪些要补？\n28\t4. 新的 narrative 骨架（3 种备选，供 Director 选）\n29\t5. 对论文各章节的影响（abstract / intro / method / experiments / discussion / conclusion 逐一评估）\n30\t6. 建议下一步实验（必须至少 3 组备选，填新 framing 下的矩阵空格）\n31\t\n32\t### 写作规范（所有写作场景通用）\n33\t- 禁止 cherry-picking\n34\t- 所有数字必须追溯到 registry\n35\t- 强度与 evidence 匹配（1 个数据集 → 不能说 \"consistently\"）\n36\t- 每个定量 claim 必须附 exp_id\n37\t- 限制强度词（\"significantly\" 必须有统计检验）\n38\t\n39\t### 审稿攻击面预演\n40\t- 这个 section 最容易被审稿人攻击的点\n41\t- 预写 rebuttal 要点\n42\t\n43\t## 输出给谁\n44\t- Framing 调整提案 → Main Agent 向 Director 汇报\n45\t- 写作 skill 合规检查 → Reviewer 审查时验证\n46\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "4933f6ff-e0c2-4760-b9c1-a079528c5cc1",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/red-section.skill.md",
+                "content": "---\nname: red-section\ndescription: \"当实验结论为 negative / 审稿人指出 core claim 不成立 / 你要写或修改任何 paper/**/*.md 或 .tex 文件时,立即使用本 skill。提供 Framing 调整提案模板、写作规范、审稿攻击面预演。违反即被 Reviewer critical 打回。\"\nalways: true\nroles:\n  - agent\n---\n\n# Red Section — Narrative Re-framing\n\n## 什么时候用\n- 实验 conclusion = negative\n- 审稿人指出 core claim 不成立\n- 写论文前（作为通用写作规范）\n\n## Negative 结果的正确心态\n\"不是失败，是发现了 X\"。你的输出应该是 framing 调整提案，而不是 failure report。\n\n## 产出格式\n\n### Framing 调整提案模板\n1. 原 claim：什么\n2. 实验结果：什么（客观数字，不加修饰）\n3. 重新审视：\n   - 这个结果挑战了哪个 hypothesis？\n   - 是否暴露了被忽略的变量？\n   - 在新的 framing 下，哪些已做实验依然有效？哪些要补？\n4. 新的 narrative 骨架（3 种备选，供 Director 选）\n5. 对论文各章节的影响（abstract / intro / method / experiments / discussion / conclusion 逐一评估）\n6. 建议下一步实验（必须至少 3 组备选，填新 framing 下的矩阵空格）\n\n### 写作规范（所有写作场景通用）\n- 禁止 cherry-picking\n- 所有数字必须追溯到 registry\n- 强度与 evidence 匹配（1 个数据集 → 不能说 \"consistently\"）\n- 每个定量 claim 必须附 exp_id\n- 限制强度词（\"significantly\" 必须有统计检验）\n\n### 审稿攻击面预演\n- 这个 section 最容易被审稿人攻击的点\n- 预写 rebuttal 要点\n\n## 输出给谁\n- Framing 调整提案 → Main Agent 向 Director 汇报\n- 写作 skill 合规检查 → Reviewer 审查时验证\n",
+                "numLines": 46,
+                "startLine": 1,
+                "totalLines": 46
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014odUvYyxB9nNch4k8PKBJX",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "2224a604-edb4-4b69-934a-efeeb905450b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gy8yrmKAsHsBwNz1a7huQm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13084,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13084
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T20:08:55.979Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014odUvYyxB9nNch4k8PKBJX",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\paragraph{Datasets.}\n8\tWe evaluate on three English IE benchmarks spanning a difficulty gradient.\n9\t\\textbf{SciERC} \\cite{luan2018scierc} contains 551 test instances from scientific abstracts annotated for joint NER (6 entity types) and RE (7 relation types), representing a complex schema with overlapping structures.\n10\t\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} provides 3{,}453 test sentences from newswire with 4 entity types, serving as a high-accuracy benchmark where models achieve ${>}$91\\% micro F1.\n11\t\\textbf{WNUT-17} \\cite{derczynski2017wnut} consists of 1{,}287 test instances from social media with emerging entities, used to probe method boundaries where model capability is insufficient.\n12\tThis gradient---from near-solved (CoNLL) through challenging (SciERC) to infeasible (WNUT-17)---enables systematic characterization of how signal effectiveness varies with task difficulty (\\S\\ref{sec:complexity_robustness}).\n13\t\n14\t\\paragraph{Models.}\n15\tOur primary model is \\textbf{Qwen3-8B}, fine-tuned with LoRA ($r{=}32$) separately per dataset.\n16\tFor cross-model validation, we evaluate \\textbf{LLaMA-3.1-8B-Instruct} to assess whether structural confidence signals transfer across architectures and training regimes.\n17\t\n18\t\\paragraph{Sampling and Evaluation.}\n19\tFor each test instance, we draw $N$ independent samples at temperature $T{=}1.0$, with $T{=}0.7$ for robustness analysis.\n20\tWe use $N{=}8$ for both SciERC and CoNLL in the primary evaluation, and $N{=}16$ for SciERC scaling experiments.\n21\tQuality estimation is measured along two axes: \\textit{rank correlation} with instance-level F1 via Spearman $\\rho$ and Kendall $\\tau$, and \\textit{binary discrimination} via AUROC (instances above vs.\\ below median F1).\n22\tDownstream utility is assessed through \\textbf{best-of-$N$ selection F1}: the F1 obtained when each signal selects one sample per instance.\n23\tInstance-level F1 uses exact span matching for NER and head-tail-label matching for RE, where a relation is correct only when both argument entities and the relation label match the gold annotation.\n24\tThe greedy decoding baseline ($T{=}0$, $N{=}1$) establishes performance without test-time scaling.\n25\t\n26\t\\paragraph{Confidence Signals.}\n27\tWe compare five signals from three families (detailed in \\S\\ref{sec:signals}).\n28\t\\textit{Structural} signals operate on extracted entity/relation sets: \\textbf{Voting Confidence} aggregates per-extraction frequency across samples, and \\textbf{Soft Jaccard (SJ)} measures pairwise set similarity \\cite{jaccard1901distribution}.\n29\t\\textit{Surface} signals operate on string representations: \\textbf{Fleiss' $\\kappa$ (FK)} quantifies inter-sample agreement treating samples as independent annotators \\cite{fleiss1971agreement}, and \\textbf{Exact Match (EM)} computes the fraction of identical sample pairs.\n30\tThe \\textit{model-internal} signal is \\textbf{log-probability (logprob)}, the mean token-level log-likelihood.\n31\t\n32\t\\paragraph{Implementation.}\n33\tInference uses vLLM with XGrammar constrained decoding \\cite{willard2023guided} to enforce valid JSON output structure.\n34\tA span realignment post-processing step corrects character-level offset mismatches between generated and gold annotation spans.\n35\tAll confidence signals are computed from the $N$ samples without access to gold labels.\n36\t\n37\t%% ============================================================\n38\t\\subsection{Quality Estimation Results}\n39\t\\label{sec:qe_results}\n40\t\n41\t\\begin{table*}[t]\n42\t\\centering\n43\t\\small\n44\t\\caption{Quality estimation across tasks and models (Spearman $\\rho$ and AUROC). All results use $N{=}8$ samples at $T{=}1.0$. Best value per column in \\textbf{bold}. SciERC evaluates joint NER (6 types) and RE (7 types); CoNLL evaluates NER (4 types) with two model families.}\n45\t\\label{tab:quality_estimation}\n46\t\\begin{tabular}{ll cc cc cc cc}\n47\t\\toprule\n48\t& & \\multicolumn{2}{c}{\\textbf{SciERC NER}} & \\multicolumn{2}{c}{\\textbf{SciERC RE}} & \\multicolumn{2}{c}{\\textbf{CoNLL (Qwen)}} & \\multicolumn{2}{c}{\\textbf{CoNLL (LLaMA)}} \\\\\n49\t\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-8} \\cmidrule(lr){9-10}\n50\tSignal & Family & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC \\\\\n51\t\\midrule\n52\tVoting Conf. & Structural & \\textbf{.502} & \\textbf{.728} & \\textbf{.422} & \\textbf{.716} & .424 & .789 & .426 & .709 \\\\\n53\tSoft Jaccard  & Structural & .357 & .666 & .211 & .582 & .436 & .801 & \\textbf{.431} & .704 \\\\\n54\tFleiss' $\\kappa$ & Surface & .265 & .624 & .253 & .631 & .400 & .774 & .428 & .703 \\\\\n55\tExact Match  & Surface    & .257 & .623 & .100 & .504 & \\textbf{.451} & \\textbf{.816} & \\textbf{.431} & .705 \\\\\n56\tLog-prob     & Model      & .140 & .559 & .247 & .635 & .316 & .753 & .307 & \\textbf{.761} \\\\\n57\t\\bottomrule\n58\t\\end{tabular}\n59\t\\end{table*}\n60\t\n61\tTable~\\ref{tab:quality_estimation} presents rank correlation ($\\rho$) and AUROC for five confidence signals across tasks and models.\n62\t\n63\t\\paragraph{Structural signals dominate on complex schemas.}\n64\tOn SciERC NER, Voting Confidence achieves $\\rho{=}0.502$, substantially outperforming the second-best signal, SJ ($\\rho{=}0.357$), and all remaining signals ($\\rho{\\leq}0.265$).\n65\tVoting's advantage reflects its extraction-level granularity: it rewards entities that appear consistently while penalizing hallucinated or missed ones, whereas SJ compares entire sets and is sensitive to both overlap and total extraction count.\n66\tThe structural advantage persists on RE, where Voting ($\\rho{=}0.422$) again leads.\n67\tHowever, all signals weaken on RE: 44\\% of instances receive zero F1, creating a floor effect that compresses the discriminable range.\n68\tNotably, FK ($\\rho{=}0.253$) exceeds SJ ($\\rho{=}0.211$) on RE---a reversal from NER that shows no single structural signal dominates across both tasks.\n69\t\n70\t\\paragraph{Signal rankings shift with task difficulty.}\n71\tOn CoNLL NER, where greedy decoding achieves ${>}$91\\% micro F1, the signal landscape changes substantially.\n72\tExact Match leads with $\\rho{=}0.451$ and AUROC${=}0.816$, surpassing SJ ($\\rho{=}0.436$) and Voting ($\\rho{=}0.424$).\n73\tWhen most samples are near-correct, binary agreement captures the remaining variance more efficiently than set-level similarity.\n74\tThis reversal---EM${>}$SJ on easy tasks vs.\\ SJ${>}$EM on hard tasks---demonstrates that optimal signal choice depends on intrinsic task difficulty.\n75\t\n76\t\\paragraph{Cross-model stability.}\n77\tComparing Qwen and LLaMA on CoNLL, SJ shows remarkable stability: $\\rho{=}0.436$ (Qwen) vs.\\ $\\rho{=}0.431$ (LLaMA), a gap of only 0.005.\n78\tThis model-agnostic property is expected for structural signals that operate on outputs rather than internal model states, and provides the strongest evidence that SJ generalizes across architectures.\n79\tThe SJ--FK gap also narrows with schema simplification: $\\Delta\\rho{=}0.092$ on SciERC NER (6 entity types) vs.\\ $\\Delta\\rho{=}0.003$ on CoNLL with LLaMA (4 types), suggesting that set-level structure contributes less when the type inventory is small.\n80\t\n81\t\\paragraph{The logprob paradox.}\n82\tLog-probability reveals a dissociation between ranking and classification.\n83\tOn CoNLL with LLaMA, it achieves the highest AUROC (0.761) yet the lowest $\\rho$ (0.307) among all signals.\n84\tThis pattern indicates that logprob assigns well-separated scores to easy vs.\\ hard instances (strong binary discrimination) but provides little resolution within each group (weak ranking), making it better suited for binary filtering than continuous quality estimation.\n85\tWe return to this distinction in \\S\\ref{sec:complexity_robustness} and visualize it in Figure~\\ref{fig:signal_heatmap}.\n86\t\n87\t\\paragraph{Oracle headroom and practical ceilings.}\n88\tOn CoNLL, oracle best-of-$N$ selection yields only +4.2~pp (Qwen) and +1.8~pp (LLaMA) over greedy.\n89\tWhen the model already operates near its performance ceiling, confidence signals serve as \\textit{reliability assurance}---confirming that outputs are trustworthy---rather than enabling selective prediction gains.\n90\tWe therefore focus selection analysis (\\S\\ref{sec:selection_gap}) on SciERC, where oracle headroom exceeds 16~pp.\n91\t\n92\t%% ============================================================\n93\t\\subsection{The Correlation-Selection Gap}\n94\t\\label{sec:selection_gap}\n95\t\n96\t\\begin{table}[t]\n97\t\\centering\n98\t\\small\n99\t\\caption{Best-of-$N$ selection F1 on SciERC ($N{=}8$, $T{=}1.0$). Best non-oracle result per column in \\textbf{bold}. EM produces binary agreement without sample ranking.}\n100\t\\label{tab:selection}\n101\t\\begin{tabular}{lcc}\n102\t\\toprule\n103\tMethod & NER F1 & RE F1 \\\\\n104\t\\midrule\n105\tOracle & 0.769 & 0.561 \\\\\n106\t\\midrule\n107\tLog-prob           & 0.609 & \\textbf{0.397} \\\\\n108\tEnsemble (SJ+Vot.) & 0.604 & 0.367 \\\\\n109\tSoft Jaccard       & 0.604 & 0.368 \\\\\n110\tVoting             & 0.596 & 0.338 \\\\\n111\tExact Match        & ---   & ---   \\\\\n112\t\\midrule\n113\tGreedy ($T{=}0$)   & \\textbf{0.609} & 0.374 \\\\\n114\tRandom             & 0.580 & 0.338 \\\\\n115\t\\bottomrule\n116\t\\end{tabular}\n117\t\\end{table}\n118\t\n119\tDespite strong quality estimation, confidence signals yield limited gains when used for best-of-$N$ selection.\n120\tTable~\\ref{tab:selection} compares selection F1 on SciERC ($N{=}8$).\n121\t\n122\t\\paragraph{NER: no signal surpasses greedy.}\n123\tThe oracle upper bound (0.769) reveals 16.0~pp of headroom above greedy (0.609).\n124\tYet no confidence signal closes this gap.\n125\tLog-probability (0.609) merely ties greedy; the best quality estimator, Voting ($\\rho{=}0.502$), selects to only 0.596, \\textit{below} greedy.\n126\tAn ensemble of SJ and Voting (AUROC${=}0.735$) also fails, achieving 0.604.\n127\tThe greedy--logprob tie is revealing: log-probability selects the sample with highest model confidence, which on average matches the deterministic greedy output, implying that the $N$ samples cluster at a similar quality level with insufficient variance for any signal to exploit.\n128\tThe Random baseline (0.580) confirms that not all samples are equal---uniform selection loses 2.9~pp vs.\\ greedy---but the discriminative structure captured by confidence signals adds no value beyond greedy's deterministic choice.\n129\t\n130\t\\paragraph{RE: logprob uniquely succeeds.}\n131\tFor RE, log-probability is the only signal to exceed greedy (0.397 vs.\\ 0.374, +2.3~pp).\n132\tStructural signals trail or match greedy: SJ selects to 0.368 and Voting to 0.338.\n133\tThe oracle gap of 18.7~pp (0.561 vs.\\ 0.374) indicates substantially more per-instance variance than NER.\n134\tLog-probability's success here may stem from its per-token nature: unlike instance-level consistency signals, logprob evaluates each sample independently, enabling it to distinguish a particularly successful extraction from its peers even when all extractions share similar structural consistency.\n135\t\n136\t\\paragraph{Quality estimation $\\neq$ output selection.}\n137\tWe attribute this gap (Figure~\\ref{fig:selection_gap}) to a fundamental distinction: instance-level confidence signals predict \\textit{which inputs} the model handles reliably, not \\textit{which output} among $N$ candidates is best for a given input.\n138\tWhen per-sample variance is low relative to instance-level difficulty---as in NER, where the model often produces $N$ similar extractions---even perfect quality estimation cannot discriminate among near-identical candidates.\n139\t\n140\t\\paragraph{Implications for test-time scaling.}\n141\tThis correlation-selection gap has direct consequences for test-time scaling in IE \\cite{brown2024monkeys, snell2024scaling}.\n142\tScaling inference compute through repeated sampling assumes a selector can identify the best sample.\n143\tOur results show that for structured prediction, existing confidence signals serve as quality \\textit{estimators}---useful for flagging unreliable predictions---but not as effective \\textit{selectors}.\n144\tClosing this gap likely requires signals that capture per-sample rather than per-instance variation, such as trained verifiers \\cite{cobbe2021verifiers} or pairwise comparison models.\n145\t\n146\t%% ============================================================\n147\t\\subsection{Task Complexity and Signal Robustness}\n148\t\\label{sec:complexity_robustness}\n149\t\n150\t\\paragraph{Task difficulty as a boundary condition.}\n151\tSignal effectiveness varies systematically with task difficulty.\n152\tOn CoNLL (greedy micro F1${>}$0.91), EM leads all signals ($\\rho{=}0.451$); on SciERC NER (micro F1$\\,{\\approx}\\,$0.66), SJ overtakes EM ($\\rho{=}0.357$ vs.\\ 0.257); on SciERC RE, where 44\\% of instances score zero F1, all signals converge to $\\rho{\\approx}0.25$.\n153\tThe NER--RE difference is statistically confirmed: Fisher's $z$-test on $\\rho_\\text{SJ}$ yields $z{=}2.31$, $p{=}0.021$.\n154\t\n155\t\\paragraph{Per-relation diagnostic.}\n156\tRE signal degradation is relation-specific.\n157\t\\textsc{Feature-Of} has near-zero correlation ($\\rho{=}0.004$), while \\textsc{Hyponym-Of} achieves $\\rho{=}0.646$.\n158\tThe primary bottleneck is entity span errors, which account for 55.5\\% of RE false negatives---a prerequisite failure that consistency signals cannot detect, as they measure agreement among equally incorrect extractions.\n159\t\n160\t\\paragraph{Capability stratification.}\n161\tSJ effectiveness scales with structural complexity: on SciERC instances with 6+ entities, $\\rho{=}0.547$, compared to $\\rho{=}0.415$ for 1--2 entities.\n162\tThe SJ advantage over logprob remains stable across sentence-length quartiles ($\\Delta\\rho{\\approx}0.08$--$0.20$), and three independent complexity proxies (entity count, sentence length, relation density) show weak mutual correlation ($|r|{<}0.15$), indicating a genuinely multi-dimensional benefit rather than a single confound.\n163\t\n164\t\\paragraph{Method boundary: WNUT-17.}\n165\tWNUT-17 establishes where the approach breaks down.\n166\tSJ achieves $\\rho{=}0.062$ ($p{=}0.106$, not statistically significant), with 54\\% of instances at zero F1.\n167\tLog-probability shows a strong \\textit{negative} correlation ($\\rho{=}{-}0.411$): the model is confidently wrong on novel entities, a calibration failure that no post-hoc consistency signal can remedy.\n168\tThis is a boundary of the method, not a limitation of the datasets.\n169\t\n170\t\\begin{table}[t]\n171\t\\centering\n172\t\\small\n173\t\\caption{Signal robustness across temperature and sample size on SciERC (Spearman $\\rho$). $^\\dagger$Mean over 3 seeds ($\\sigma{=}0.025$; individual: 0.428, 0.424, 0.384).}\n174\t\\label{tab:robustness}\n175\t\\begin{tabular}{llcc}\n176\t\\toprule\n177\t& & NER $\\rho$ & RE $\\rho$ \\\\\n178\t\\midrule\n179\t\\multicolumn{4}{l}{\\textit{Temperature} ($N{=}8$)} \\\\\n180\t\\quad SJ & $T{=}0.7$ & 0.388 & 0.234 \\\\\n181\t\\quad SJ & $T{=}1.0$ & 0.357 & 0.211 \\\\\n182\t\\quad FK & $T{=}0.7$ & 0.321 & 0.184 \\\\\n183\t\\quad FK & $T{=}1.0$ & 0.265 & 0.253 \\\\\n184\t\\midrule\n185\t\\multicolumn{4}{l}{\\textit{Sample size} ($T{=}1.0$)} \\\\\n186\t\\quad SJ & $N{=}8$  & 0.357 & 0.211 \\\\\n187\t\\quad SJ & $N{=}16$ & 0.412$^\\dagger$ & 0.281 \\\\\n188\t\\quad FK & $N{=}8$  & 0.265 & 0.253 \\\\\n189\t\\quad FK & $N{=}16$ & 0.280 & 0.279 \\\\\n190\t\\bottomrule\n191\t\\end{tabular}\n192\t\\end{table}\n193\t\n194\t\\paragraph{Robustness analysis.}\n195\tTable~\\ref{tab:robustness} reports signal stability across temperature and sample size on SciERC.\n196\t\\textit{Temperature.}\n197\tSJ NER $\\rho$ shifts from 0.388 ($T{=}0.7$) to 0.357 ($T{=}1.0$), a difference of 0.031 whose bootstrap confidence interval includes zero.\n198\tFK shows mixed behavior: NER $\\rho$ drops by 0.056, while RE $\\rho$ increases by 0.069, likely reflecting reduced diversity at lower temperature interacting differently across tasks.\n199\tAcross all comparisons, the SJ--FK relative ordering is preserved at both temperatures on NER (0.388 vs.\\ 0.321 at $T{=}0.7$; 0.357 vs.\\ 0.265 at $T{=}1.0$), indicating a stable signal hierarchy despite numerically small temperature effects.\n200\t\n201\t\\textit{Sample size.}\n202\tIncreasing from $N{=}8$ to $N{=}16$ yields meaningful gains for SJ on NER: $\\rho$ improves from 0.357 to $0.412{\\pm}0.025$ (three seeds: 0.428, 0.424, 0.384).\n203\tFK benefits less ($\\rho{\\approx}0.280$ at $N{=}16$ vs.\\ 0.265 at $N{=}8$).\n204\tFor RE at $N{=}16$, SJ ($\\rho{=}0.281$), FK ($\\rho{=}0.279$), and logprob ($\\rho{=}0.287$) all plateau at comparable levels, suggesting that compound entity-then-relation errors impose a ceiling that additional samples cannot overcome.\n205\t\n206\t\\paragraph{Cross-model transfer.}\n207\tLLaMA-3.1-8B-Instruct replicates the structural-over-surface ordering on SciERC NER (SJ $\\rho{=}0.363$, FK $\\rho{=}0.327$).\n208\tOn CoNLL, the cross-model gap is minimal (Table~\\ref{tab:quality_estimation}): SJ achieves $\\rho{=}0.431$ (LLaMA) vs.\\ 0.436 (Qwen), $\\Delta{=}0.005$.\n209\tOn conditional RE (non-zero F1 instances), SJ recovers to $\\rho{=}0.405$ while FK drops to $\\rho{=}0.259$, confirming that structural advantage is robust across both models and evaluation conditions.\n210\t\n211\t\\paragraph{Evaluation circularity.}\n212\tLeave-one-out SJ (LOO-SJ), which excludes the target sample when computing confidence, yields $\\Delta\\rho{=}{-}0.014$ relative to standard SJ, with a maximum per-instance $\\Delta\\rho$ of $3.1{\\times}10^{-4}$.\n213\tEvaluation circularity is negligible.\n214\t\n215\t\\paragraph{Conditional filtering reveals signal divergence.}\n216\tFiltering to non-zero F1 instances improves SJ correlations: NER $\\rho{=}0.412$ (from 0.357), RE $\\rho{=}0.368$ at $N{=}8$.\n217\tAt $N{=}16$, signal families diverge sharply on conditional RE: SJ maintains $\\rho{=}0.308$, while logprob drops to $\\rho{=}{-}0.026$---effectively zero---showing that logprob's apparent RE utility at $N{=}8$ does not generalize to larger sample sets.\n218\tFor applications that can first filter out catastrophic failures, SJ's effective ranking approaches $\\rho{\\approx}0.4$ on both NER and RE, a regime where quality-aware aggregation can provide meaningful benefit.\n219\t\n220\t\\paragraph{Binary filtering vs.\\ continuous ranking.}\n221\tThe logprob paradox observed in Table~\\ref{tab:quality_estimation}---highest AUROC (0.761) but lowest $\\rho$ (0.307) on CoNLL with LLaMA---reflects a fundamental distinction in how signals encode quality information.\n222\tLog-probability provides coarse separation between reliable and unreliable instances (suited for accept/reject thresholds), while structural signals like SJ and Voting provide finer-grained ranking (suited for prioritization and quality-aware aggregation).\n223\tFigure~\\ref{fig:reliability} visualizes this complementarity across the difficulty spectrum.\n224\tPractitioners should select signal type based on the downstream application: binary filtering favors logprob; ranking-dependent decisions favor structural consistency.\n225\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "3cd7d642-2b39-4c27-9a14-facacec0c33c",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+                "content": "\\section{Experiments}\n\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\n\\label{sec:setup}\n\n\\paragraph{Datasets.}\nWe evaluate on three English IE benchmarks spanning a difficulty gradient.\n\\textbf{SciERC} \\cite{luan2018scierc} contains 551 test instances from scientific abstracts annotated for joint NER (6 entity types) and RE (7 relation types), representing a complex schema with overlapping structures.\n\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} provides 3{,}453 test sentences from newswire with 4 entity types, serving as a high-accuracy benchmark where models achieve ${>}$91\\% micro F1.\n\\textbf{WNUT-17} \\cite{derczynski2017wnut} consists of 1{,}287 test instances from social media with emerging entities, used to probe method boundaries where model capability is insufficient.\nThis gradient---from near-solved (CoNLL) through challenging (SciERC) to infeasible (WNUT-17)---enables systematic characterization of how signal effectiveness varies with task difficulty (\\S\\ref{sec:complexity_robustness}).\n\n\\paragraph{Models.}\nOur primary model is \\textbf{Qwen3-8B}, fine-tuned with LoRA ($r{=}32$) separately per dataset.\nFor cross-model validation, we evaluate \\textbf{LLaMA-3.1-8B-Instruct} to assess whether structural confidence signals transfer across architectures and training regimes.\n\n\\paragraph{Sampling and Evaluation.}\nFor each test instance, we draw $N$ independent samples at temperature $T{=}1.0$, with $T{=}0.7$ for robustness analysis.\nWe use $N{=}8$ for both SciERC and CoNLL in the primary evaluation, and $N{=}16$ for SciERC scaling experiments.\nQuality estimation is measured along two axes: \\textit{rank correlation} with instance-level F1 via Spearman $\\rho$ and Kendall $\\tau$, and \\textit{binary discrimination} via AUROC (instances above vs.\\ below median F1).\nDownstream utility is assessed through \\textbf{best-of-$N$ selection F1}: the F1 obtained when each signal selects one sample per instance.\nInstance-level F1 uses exact span matching for NER and head-tail-label matching for RE, where a relation is correct only when both argument entities and the relation label match the gold annotation.\nThe greedy decoding baseline ($T{=}0$, $N{=}1$) establishes performance without test-time scaling.\n\n\\paragraph{Confidence Signals.}\nWe compare five signals from three families (detailed in \\S\\ref{sec:signals}).\n\\textit{Structural} signals operate on extracted entity/relation sets: \\textbf{Voting Confidence} aggregates per-extraction frequency across samples, and \\textbf{Soft Jaccard (SJ)} measures pairwise set similarity \\cite{jaccard1901distribution}.\n\\textit{Surface} signals operate on string representations: \\textbf{Fleiss' $\\kappa$ (FK)} quantifies inter-sample agreement treating samples as independent annotators \\cite{fleiss1971agreement}, and \\textbf{Exact Match (EM)} computes the fraction of identical sample pairs.\nThe \\textit{model-internal} signal is \\textbf{log-probability (logprob)}, the mean token-level log-likelihood.\n\n\\paragraph{Implementation.}\nInference uses vLLM with XGrammar constrained decoding \\cite{willard2023guided} to enforce valid JSON output structure.\nA span realignment post-processing step corrects character-level offset mismatches between generated and gold annotation spans.\nAll confidence signals are computed from the $N$ samples without access to gold labels.\n\n%% ============================================================\n\\subsection{Quality Estimation Results}\n\\label{sec:qe_results}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Quality estimation across tasks and models (Spearman $\\rho$ and AUROC). All results use $N{=}8$ samples at $T{=}1.0$. Best value per column in \\textbf{bold}. SciERC evaluates joint NER (6 types) and RE (7 types); CoNLL evaluates NER (4 types) with two model families.}\n\\label{tab:quality_estimation}\n\\begin{tabular}{ll cc cc cc cc}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{SciERC NER}} & \\multicolumn{2}{c}{\\textbf{SciERC RE}} & \\multicolumn{2}{c}{\\textbf{CoNLL (Qwen)}} & \\multicolumn{2}{c}{\\textbf{CoNLL (LLaMA)}} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-8} \\cmidrule(lr){9-10}\nSignal & Family & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC \\\\\n\\midrule\nVoting Conf. & Structural & \\textbf{.502} & \\textbf{.728} & \\textbf{.422} & \\textbf{.716} & .424 & .789 & .426 & .709 \\\\\nSoft Jaccard  & Structural & .357 & .666 & .211 & .582 & .436 & .801 & \\textbf{.431} & .704 \\\\\nFleiss' $\\kappa$ & Surface & .265 & .624 & .253 & .631 & .400 & .774 & .428 & .703 \\\\\nExact Match  & Surface    & .257 & .623 & .100 & .504 & \\textbf{.451} & \\textbf{.816} & \\textbf{.431} & .705 \\\\\nLog-prob     & Model      & .140 & .559 & .247 & .635 & .316 & .753 & .307 & \\textbf{.761} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\nTable~\\ref{tab:quality_estimation} presents rank correlation ($\\rho$) and AUROC for five confidence signals across tasks and models.\n\n\\paragraph{Structural signals dominate on complex schemas.}\nOn SciERC NER, Voting Confidence achieves $\\rho{=}0.502$, substantially outperforming the second-best signal, SJ ($\\rho{=}0.357$), and all remaining signals ($\\rho{\\leq}0.265$).\nVoting's advantage reflects its extraction-level granularity: it rewards entities that appear consistently while penalizing hallucinated or missed ones, whereas SJ compares entire sets and is sensitive to both overlap and total extraction count.\nThe structural advantage persists on RE, where Voting ($\\rho{=}0.422$) again leads.\nHowever, all signals weaken on RE: 44\\% of instances receive zero F1, creating a floor effect that compresses the discriminable range.\nNotably, FK ($\\rho{=}0.253$) exceeds SJ ($\\rho{=}0.211$) on RE---a reversal from NER that shows no single structural signal dominates across both tasks.\n\n\\paragraph{Signal rankings shift with task difficulty.}\nOn CoNLL NER, where greedy decoding achieves ${>}$91\\% micro F1, the signal landscape changes substantially.\nExact Match leads with $\\rho{=}0.451$ and AUROC${=}0.816$, surpassing SJ ($\\rho{=}0.436$) and Voting ($\\rho{=}0.424$).\nWhen most samples are near-correct, binary agreement captures the remaining variance more efficiently than set-level similarity.\nThis reversal---EM${>}$SJ on easy tasks vs.\\ SJ${>}$EM on hard tasks---demonstrates that optimal signal choice depends on intrinsic task difficulty.\n\n\\paragraph{Cross-model stability.}\nComparing Qwen and LLaMA on CoNLL, SJ shows remarkable stability: $\\rho{=}0.436$ (Qwen) vs.\\ $\\rho{=}0.431$ (LLaMA), a gap of only 0.005.\nThis model-agnostic property is expected for structural signals that operate on outputs rather than internal model states, and provides the strongest evidence that SJ generalizes across architectures.\nThe SJ--FK gap also narrows with schema simplification: $\\Delta\\rho{=}0.092$ on SciERC NER (6 entity types) vs.\\ $\\Delta\\rho{=}0.003$ on CoNLL with LLaMA (4 types), suggesting that set-level structure contributes less when the type inventory is small.\n\n\\paragraph{The logprob paradox.}\nLog-probability reveals a dissociation between ranking and classification.\nOn CoNLL with LLaMA, it achieves the highest AUROC (0.761) yet the lowest $\\rho$ (0.307) among all signals.\nThis pattern indicates that logprob assigns well-separated scores to easy vs.\\ hard instances (strong binary discrimination) but provides little resolution within each group (weak ranking), making it better suited for binary filtering than continuous quality estimation.\nWe return to this distinction in \\S\\ref{sec:complexity_robustness} and visualize it in Figure~\\ref{fig:signal_heatmap}.\n\n\\paragraph{Oracle headroom and practical ceilings.}\nOn CoNLL, oracle best-of-$N$ selection yields only +4.2~pp (Qwen) and +1.8~pp (LLaMA) over greedy.\nWhen the model already operates near its performance ceiling, confidence signals serve as \\textit{reliability assurance}---confirming that outputs are trustworthy---rather than enabling selective prediction gains.\nWe therefore focus selection analysis (\\S\\ref{sec:selection_gap}) on SciERC, where oracle headroom exceeds 16~pp.\n\n%% ============================================================\n\\subsection{The Correlation-Selection Gap}\n\\label{sec:selection_gap}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Best-of-$N$ selection F1 on SciERC ($N{=}8$, $T{=}1.0$). Best non-oracle result per column in \\textbf{bold}. EM produces binary agreement without sample ranking.}\n\\label{tab:selection}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & NER F1 & RE F1 \\\\\n\\midrule\nOracle & 0.769 & 0.561 \\\\\n\\midrule\nLog-prob           & 0.609 & \\textbf{0.397} \\\\\nEnsemble (SJ+Vot.) & 0.604 & 0.367 \\\\\nSoft Jaccard       & 0.604 & 0.368 \\\\\nVoting             & 0.596 & 0.338 \\\\\nExact Match        & ---   & ---   \\\\\n\\midrule\nGreedy ($T{=}0$)   & \\textbf{0.609} & 0.374 \\\\\nRandom             & 0.580 & 0.338 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nDespite strong quality estimation, confidence signals yield limited gains when used for best-of-$N$ selection.\nTable~\\ref{tab:selection} compares selection F1 on SciERC ($N{=}8$).\n\n\\paragraph{NER: no signal surpasses greedy.}\nThe oracle upper bound (0.769) reveals 16.0~pp of headroom above greedy (0.609).\nYet no confidence signal closes this gap.\nLog-probability (0.609) merely ties greedy; the best quality estimator, Voting ($\\rho{=}0.502$), selects to only 0.596, \\textit{below} greedy.\nAn ensemble of SJ and Voting (AUROC${=}0.735$) also fails, achieving 0.604.\nThe greedy--logprob tie is revealing: log-probability selects the sample with highest model confidence, which on average matches the deterministic greedy output, implying that the $N$ samples cluster at a similar quality level with insufficient variance for any signal to exploit.\nThe Random baseline (0.580) confirms that not all samples are equal---uniform selection loses 2.9~pp vs.\\ greedy---but the discriminative structure captured by confidence signals adds no value beyond greedy's deterministic choice.\n\n\\paragraph{RE: logprob uniquely succeeds.}\nFor RE, log-probability is the only signal to exceed greedy (0.397 vs.\\ 0.374, +2.3~pp).\nStructural signals trail or match greedy: SJ selects to 0.368 and Voting to 0.338.\nThe oracle gap of 18.7~pp (0.561 vs.\\ 0.374) indicates substantially more per-instance variance than NER.\nLog-probability's success here may stem from its per-token nature: unlike instance-level consistency signals, logprob evaluates each sample independently, enabling it to distinguish a particularly successful extraction from its peers even when all extractions share similar structural consistency.\n\n\\paragraph{Quality estimation $\\neq$ output selection.}\nWe attribute this gap (Figure~\\ref{fig:selection_gap}) to a fundamental distinction: instance-level confidence signals predict \\textit{which inputs} the model handles reliably, not \\textit{which output} among $N$ candidates is best for a given input.\nWhen per-sample variance is low relative to instance-level difficulty---as in NER, where the model often produces $N$ similar extractions---even perfect quality estimation cannot discriminate among near-identical candidates.\n\n\\paragraph{Implications for test-time scaling.}\nThis correlation-selection gap has direct consequences for test-time scaling in IE \\cite{brown2024monkeys, snell2024scaling}.\nScaling inference compute through repeated sampling assumes a selector can identify the best sample.\nOur results show that for structured prediction, existing confidence signals serve as quality \\textit{estimators}---useful for flagging unreliable predictions---but not as effective \\textit{selectors}.\nClosing this gap likely requires signals that capture per-sample rather than per-instance variation, such as trained verifiers \\cite{cobbe2021verifiers} or pairwise comparison models.\n\n%% ============================================================\n\\subsection{Task Complexity and Signal Robustness}\n\\label{sec:complexity_robustness}\n\n\\paragraph{Task difficulty as a boundary condition.}\nSignal effectiveness varies systematically with task difficulty.\nOn CoNLL (greedy micro F1${>}$0.91), EM leads all signals ($\\rho{=}0.451$); on SciERC NER (micro F1$\\,{\\approx}\\,$0.66), SJ overtakes EM ($\\rho{=}0.357$ vs.\\ 0.257); on SciERC RE, where 44\\% of instances score zero F1, all signals converge to $\\rho{\\approx}0.25$.\nThe NER--RE difference is statistically confirmed: Fisher's $z$-test on $\\rho_\\text{SJ}$ yields $z{=}2.31$, $p{=}0.021$.\n\n\\paragraph{Per-relation diagnostic.}\nRE signal degradation is relation-specific.\n\\textsc{Feature-Of} has near-zero correlation ($\\rho{=}0.004$), while \\textsc{Hyponym-Of} achieves $\\rho{=}0.646$.\nThe primary bottleneck is entity span errors, which account for 55.5\\% of RE false negatives---a prerequisite failure that consistency signals cannot detect, as they measure agreement among equally incorrect extractions.\n\n\\paragraph{Capability stratification.}\nSJ effectiveness scales with structural complexity: on SciERC instances with 6+ entities, $\\rho{=}0.547$, compared to $\\rho{=}0.415$ for 1--2 entities.\nThe SJ advantage over logprob remains stable across sentence-length quartiles ($\\Delta\\rho{\\approx}0.08$--$0.20$), and three independent complexity proxies (entity count, sentence length, relation density) show weak mutual correlation ($|r|{<}0.15$), indicating a genuinely multi-dimensional benefit rather than a single confound.\n\n\\paragraph{Method boundary: WNUT-17.}\nWNUT-17 establishes where the approach breaks down.\nSJ achieves $\\rho{=}0.062$ ($p{=}0.106$, not statistically significant), with 54\\% of instances at zero F1.\nLog-probability shows a strong \\textit{negative} correlation ($\\rho{=}{-}0.411$): the model is confidently wrong on novel entities, a calibration failure that no post-hoc consistency signal can remedy.\nThis is a boundary of the method, not a limitation of the datasets.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Signal robustness across temperature and sample size on SciERC (Spearman $\\rho$). $^\\dagger$Mean over 3 seeds ($\\sigma{=}0.025$; individual: 0.428, 0.424, 0.384).}\n\\label{tab:robustness}\n\\begin{tabular}{llcc}\n\\toprule\n& & NER $\\rho$ & RE $\\rho$ \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Temperature} ($N{=}8$)} \\\\\n\\quad SJ & $T{=}0.7$ & 0.388 & 0.234 \\\\\n\\quad SJ & $T{=}1.0$ & 0.357 & 0.211 \\\\\n\\quad FK & $T{=}0.7$ & 0.321 & 0.184 \\\\\n\\quad FK & $T{=}1.0$ & 0.265 & 0.253 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Sample size} ($T{=}1.0$)} \\\\\n\\quad SJ & $N{=}8$  & 0.357 & 0.211 \\\\\n\\quad SJ & $N{=}16$ & 0.412$^\\dagger$ & 0.281 \\\\\n\\quad FK & $N{=}8$  & 0.265 & 0.253 \\\\\n\\quad FK & $N{=}16$ & 0.280 & 0.279 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Robustness analysis.}\nTable~\\ref{tab:robustness} reports signal stability across temperature and sample size on SciERC.\n\\textit{Temperature.}\nSJ NER $\\rho$ shifts from 0.388 ($T{=}0.7$) to 0.357 ($T{=}1.0$), a difference of 0.031 whose bootstrap confidence interval includes zero.\nFK shows mixed behavior: NER $\\rho$ drops by 0.056, while RE $\\rho$ increases by 0.069, likely reflecting reduced diversity at lower temperature interacting differently across tasks.\nAcross all comparisons, the SJ--FK relative ordering is preserved at both temperatures on NER (0.388 vs.\\ 0.321 at $T{=}0.7$; 0.357 vs.\\ 0.265 at $T{=}1.0$), indicating a stable signal hierarchy despite numerically small temperature effects.\n\n\\textit{Sample size.}\nIncreasing from $N{=}8$ to $N{=}16$ yields meaningful gains for SJ on NER: $\\rho$ improves from 0.357 to $0.412{\\pm}0.025$ (three seeds: 0.428, 0.424, 0.384).\nFK benefits less ($\\rho{\\approx}0.280$ at $N{=}16$ vs.\\ 0.265 at $N{=}8$).\nFor RE at $N{=}16$, SJ ($\\rho{=}0.281$), FK ($\\rho{=}0.279$), and logprob ($\\rho{=}0.287$) all plateau at comparable levels, suggesting that compound entity-then-relation errors impose a ceiling that additional samples cannot overcome.\n\n\\paragraph{Cross-model transfer.}\nLLaMA-3.1-8B-Instruct replicates the structural-over-surface ordering on SciERC NER (SJ $\\rho{=}0.363$, FK $\\rho{=}0.327$).\nOn CoNLL, the cross-model gap is minimal (Table~\\ref{tab:quality_estimation}): SJ achieves $\\rho{=}0.431$ (LLaMA) vs.\\ 0.436 (Qwen), $\\Delta{=}0.005$.\nOn conditional RE (non-zero F1 instances), SJ recovers to $\\rho{=}0.405$ while FK drops to $\\rho{=}0.259$, confirming that structural advantage is robust across both models and evaluation conditions.\n\n\\paragraph{Evaluation circularity.}\nLeave-one-out SJ (LOO-SJ), which excludes the target sample when computing confidence, yields $\\Delta\\rho{=}{-}0.014$ relative to standard SJ, with a maximum per-instance $\\Delta\\rho$ of $3.1{\\times}10^{-4}$.\nEvaluation circularity is negligible.\n\n\\paragraph{Conditional filtering reveals signal divergence.}\nFiltering to non-zero F1 instances improves SJ correlations: NER $\\rho{=}0.412$ (from 0.357), RE $\\rho{=}0.368$ at $N{=}8$.\nAt $N{=}16$, signal families diverge sharply on conditional RE: SJ maintains $\\rho{=}0.308$, while logprob drops to $\\rho{=}{-}0.026$---effectively zero---showing that logprob's apparent RE utility at $N{=}8$ does not generalize to larger sample sets.\nFor applications that can first filter out catastrophic failures, SJ's effective ranking approaches $\\rho{\\approx}0.4$ on both NER and RE, a regime where quality-aware aggregation can provide meaningful benefit.\n\n\\paragraph{Binary filtering vs.\\ continuous ranking.}\nThe logprob paradox observed in Table~\\ref{tab:quality_estimation}---highest AUROC (0.761) but lowest $\\rho$ (0.307) on CoNLL with LLaMA---reflects a fundamental distinction in how signals encode quality information.\nLog-probability provides coarse separation between reliable and unreliable instances (suited for accept/reject thresholds), while structural signals like SJ and Voting provide finer-grained ranking (suited for prioritization and quality-aware aggregation).\nFigure~\\ref{fig:reliability} visualizes this complementarity across the difficulty spectrum.\nPractitioners should select signal type based on the downstream application: binary filtering favors logprob; ranking-dependent decisions favor structural consistency.\n",
+                "numLines": 225,
+                "startLine": 1,
+                "totalLines": 225
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DSLPKpvkkzf7NV3HSo8FgQ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "f84de2ea-23c1-4d44-b8bb-fa9e6964e36d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gy8yrmKAsHsBwNz1a7huQm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13084,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13084
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T20:08:56.621Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DSLPKpvkkzf7NV3HSo8FgQ",
+              "type": "tool_result",
+              "content": "1\t\\section{Method}\\label{sec:method}\n2\t\n3\tWe present a framework for evaluating confidence signals in test-time scaling for information extraction.\n4\tThis section formalizes the problem (\\S\\ref{sec:formulation}), defines five confidence signals spanning three families (\\S\\ref{sec:signals}), and introduces the evaluation protocol (\\S\\ref{sec:evaluation}).\n5\t\n6\t\\subsection{Problem Formulation}\\label{sec:formulation}\n7\t\n8\tGiven a language model $\\mathcal{M}$ and an input instance $x$, we independently sample $N$ structured outputs $\\{y_1, \\ldots, y_N\\}$ at temperature $T > 0$.\n9\tEach $y_i$ is a structured extraction result---an entity set for NER or a relation set for RE---produced via constrained decoding \\cite{willard2023guided} to ensure valid output structure.\n10\tOur goal is to define a confidence signal $c$ that serves two purposes: (a) \\textit{quality estimation}---predicting which instances the model handles reliably, and (b) \\textit{sample selection}---identifying the best output among the $N$ candidates.\n11\t\n12\tA key distinction underlies this framework.\n13\tA \\textbf{per-sample signal} scores each $y_i$ independently, $c_{\\text{ps}}: (x, y_i) \\to \\mathbb{R}$, enabling direct ranking of the $N$ candidates.\n14\tAn \\textbf{instance-level signal} aggregates over all $N$ samples, $c_{\\text{il}}: (x, \\{y_i\\}_{i=1}^N) \\to \\mathbb{R}$, producing a single score per input.\n15\tInstance-level signals can estimate overall prediction reliability but do not inherently rank individual samples.\n16\tThis asymmetry---between predicting \\textit{which inputs} are easy and selecting \\textit{which output} is best---is central to the correlation-selection gap we investigate.\n17\t\n18\tTable~\\ref{tab:notation} summarizes our notation.\n19\t\n20\t\\begin{table}[h]\n21\t\\centering\n22\t\\small\n23\t\\begin{tabular}{cl}\n24\t\\toprule\n25\tSymbol & Meaning \\\\\n26\t\\midrule\n27\t$\\mathcal{M}$ & Language model \\\\\n28\t$x$ & Input instance \\\\\n29\t$y_i$ & $i$-th stochastic sample \\\\\n30\t$N$ & Number of samples \\\\\n31\t$T$ & Sampling temperature \\\\\n32\t$c(\\cdot)$ & Confidence signal \\\\\n33\tSJ & Soft Jaccard similarity \\\\\n34\tFK & Fleiss' $\\kappa$ \\\\\n35\tEM & Exact-match voting rate \\\\\n36\t\\bottomrule\n37\t\\end{tabular}\n38\t\\caption{Notation used throughout the paper.}\n39\t\\label{tab:notation}\n40\t\\end{table}\n41\t\n42\t\\subsection{Confidence Signals}\\label{sec:signals}\n43\t\n44\tWe compare five signals from three families: \\textit{model-internal} (log-probability), \\textit{surface} (exact match, Fleiss' $\\kappa$), and \\textit{structural} (Soft Jaccard, entity voting).\n45\t\n46\t\\paragraph{Log-probability (model-internal, per-sample).}\n47\tThe only per-sample signal in our comparison.\n48\tFor a sample $y_i$ consisting of tokens $t_1, \\ldots, t_{|y_i|}$, we define:\n49\t\\begin{equation}\\label{eq:logprob}\n50\tc_{\\text{lp}}(y_i) = \\frac{1}{|y_i|} \\sum_{j=1}^{|y_i|} \\log p_{\\mathcal{M}}(t_j \\mid t_{<j}, x)\n51\t\\end{equation}\n52\tThis is the length-normalized mean log-likelihood, reflecting the model's internal confidence in its generation.\n53\tBecause it scores each sample independently, it can directly rank the $N$ candidates for sample selection.\n54\t\n55\t\\paragraph{Exact match voting (surface, instance-level).}\n56\tFollowing self-consistency \\cite{wang2023selfconsistency}, we measure pairwise agreement across samples at the string level:\n57\t\\begin{equation}\\label{eq:em}\n58\tc_{\\text{em}}(x) = \\frac{1}{\\binom{N}{2}} \\sum_{i<j} \\mathbb{1}[y_i = y_j]\n59\t\\end{equation}\n60\tEquivalently, this can be expressed as the majority fraction $\\max_y |\\{i : y_i = y\\}| / N$.\n61\tEM treats entire outputs as atomic units: two samples either match exactly or not, with no notion of partial overlap.\n62\t\n63\t\\paragraph{Fleiss' $\\kappa$ (surface, instance-level).}\n64\tWe adapt the inter-rater agreement measure of \\citet{fleiss1971agreement} by treating the $N$ samples as independent annotators, token positions as items, and the token vocabulary as the set of categories:\n65\t\\begin{equation}\\label{eq:fk}\n66\t\\kappa = \\frac{\\bar{P} - \\bar{P}_e}{1 - \\bar{P}_e}\n67\t\\end{equation}\n68\twhere $\\bar{P}$ is the observed agreement rate across token positions and $\\bar{P}_e$ is the agreement expected by chance.\n69\tUnlike EM, FK captures partial agreement---two samples that share most tokens but differ in a few positions receive a high score.\n70\tHowever, FK operates at the string level and does not account for the structure of the extracted output.\n71\t\n72\t\\paragraph{Soft Jaccard (structural, instance-level).}\n73\tOur core structural signal extends Jaccard similarity \\cite{jaccard1901distribution} to operate on extracted entity or relation \\textit{sets} rather than raw strings.\n74\tFor two samples $y_i$ and $y_j$, we first group extractions by entity type.\n75\tWithin each group, we compute a bipartite matching using the Hungarian algorithm with span overlap as the similarity metric.\n76\tThe pairwise Soft Jaccard score is:\n77\t\\begin{equation}\\label{eq:sj}\n78\t\\text{SJ}(y_i, y_j) = \\frac{|M|}{\\max(|A_i|, |A_j|)}\n79\t\\end{equation}\n80\twhere $|M|$ is the number of matched extraction pairs and $|A_i|$, $|A_j|$ are the extraction counts of each sample.\n81\tThe instance-level signal averages over all sample pairs:\n82\t\\begin{equation}\\label{eq:sj_instance}\n83\tc_{\\text{sj}}(x) = \\frac{1}{\\binom{N}{2}} \\sum_{i<j} \\text{SJ}(y_i, y_j)\n84\t\\end{equation}\n85\tTwo design choices distinguish SJ from surface signals.\n86\tFirst, type-aware grouping prevents spurious matches between extractions of different entity types.\n87\tSecond, span-overlap matching tolerates near-synonym variations (e.g., ``machine learning'' vs.\\ ``ML''), which would be penalized by exact string comparison.\n88\t\n89\t\\paragraph{Entity voting confidence (structural, instance-level).}\n90\tWhile SJ compares entire extraction sets, entity voting operates at the granularity of individual extractions.\n91\tFor each entity $e$ appearing in the union $E_\\cup$ of all $N$ samples, we compute its frequency:\n92\t\\begin{equation}\\label{eq:freq}\n93\t\\text{freq}(e) = \\frac{|\\{i : e \\in y_i\\}|}{N}\n94\t\\end{equation}\n95\tThe instance-level confidence is the mean frequency across all observed entities:\n96\t\\begin{equation}\\label{eq:voting}\n97\tc_{\\text{vote}}(x) = \\frac{1}{|E_\\cup|} \\sum_{e \\in E_\\cup} \\text{freq}(e)\n98\t\\end{equation}\n99\tThis adapts majority voting \\cite{wang2023selfconsistency} from discrete answer selection to set-valued extraction.\n100\tEntities that appear consistently across samples contribute high frequency; hallucinated or idiosyncratic extractions that appear in only one or two samples pull the score down.\n101\tThis per-entity granularity enables the signal to distinguish instances where the model reliably extracts a core set of entities (high $c_{\\text{vote}}$) from those where extractions vary widely across samples (low $c_{\\text{vote}}$).\n102\t\n103\t\\subsection{Evaluation Framework}\\label{sec:evaluation}\n104\t\n105\tWe assess confidence signals along two complementary dimensions.\n106\t\n107\t\\paragraph{Quality estimation.}\n108\tQuality estimation asks: \\textit{for which instances does the model produce reliable outputs?}\n109\tWe measure rank correlation between the confidence signal and instance-level F1 via Spearman $\\rho$ and Kendall $\\tau$.\n110\tFor binary discrimination, we compute AUROC by classifying instances as above or below median F1.\n111\tThese metrics evaluate whether a signal can identify reliable vs.\\ unreliable predictions without access to gold labels.\n112\t\n113\t\\paragraph{Sample selection.}\n114\tSample selection asks: \\textit{given $N$ candidates for a single instance, which one is best?}\n115\tWe report best-of-$N$ F1: for each instance, the signal selects one sample, and we compute micro F1 over all instances.\n116\tWe compare against an \\textit{oracle} (which always selects the highest-F1 sample) and a \\textit{greedy baseline} ($T{=}0$, $N{=}1$).\n117\tPer-sample signals like log-probability directly rank the $N$ candidates.\n118\tInstance-level signals (SJ, FK, EM, Voting) produce a single score per instance and thus require an auxiliary strategy for sample selection---we select the sample closest to the consensus output, i.e., the one with highest average pairwise similarity to all other samples.\n119\t\n120\t\\paragraph{The two dimensions are complementary, not redundant.}\n121\tA signal with high rank correlation accurately predicts relative instance difficulty, making it useful for quality-aware routing or selective prediction.\n122\tHowever, high correlation does not guarantee effective sample selection: if per-sample variance is low---the model produces $N$ similar outputs for a given input---even a perfect quality estimator cannot distinguish among near-identical candidates.\n123\tWe investigate this decoupling empirically in \\S\\ref{sec:selection_gap}.\n124\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "0a5588ef-45cb-434f-af51-9bcb2a08fbac",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex",
+                "content": "\\section{Method}\\label{sec:method}\n\nWe present a framework for evaluating confidence signals in test-time scaling for information extraction.\nThis section formalizes the problem (\\S\\ref{sec:formulation}), defines five confidence signals spanning three families (\\S\\ref{sec:signals}), and introduces the evaluation protocol (\\S\\ref{sec:evaluation}).\n\n\\subsection{Problem Formulation}\\label{sec:formulation}\n\nGiven a language model $\\mathcal{M}$ and an input instance $x$, we independently sample $N$ structured outputs $\\{y_1, \\ldots, y_N\\}$ at temperature $T > 0$.\nEach $y_i$ is a structured extraction result---an entity set for NER or a relation set for RE---produced via constrained decoding \\cite{willard2023guided} to ensure valid output structure.\nOur goal is to define a confidence signal $c$ that serves two purposes: (a) \\textit{quality estimation}---predicting which instances the model handles reliably, and (b) \\textit{sample selection}---identifying the best output among the $N$ candidates.\n\nA key distinction underlies this framework.\nA \\textbf{per-sample signal} scores each $y_i$ independently, $c_{\\text{ps}}: (x, y_i) \\to \\mathbb{R}$, enabling direct ranking of the $N$ candidates.\nAn \\textbf{instance-level signal} aggregates over all $N$ samples, $c_{\\text{il}}: (x, \\{y_i\\}_{i=1}^N) \\to \\mathbb{R}$, producing a single score per input.\nInstance-level signals can estimate overall prediction reliability but do not inherently rank individual samples.\nThis asymmetry---between predicting \\textit{which inputs} are easy and selecting \\textit{which output} is best---is central to the correlation-selection gap we investigate.\n\nTable~\\ref{tab:notation} summarizes our notation.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{cl}\n\\toprule\nSymbol & Meaning \\\\\n\\midrule\n$\\mathcal{M}$ & Language model \\\\\n$x$ & Input instance \\\\\n$y_i$ & $i$-th stochastic sample \\\\\n$N$ & Number of samples \\\\\n$T$ & Sampling temperature \\\\\n$c(\\cdot)$ & Confidence signal \\\\\nSJ & Soft Jaccard similarity \\\\\nFK & Fleiss' $\\kappa$ \\\\\nEM & Exact-match voting rate \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Notation used throughout the paper.}\n\\label{tab:notation}\n\\end{table}\n\n\\subsection{Confidence Signals}\\label{sec:signals}\n\nWe compare five signals from three families: \\textit{model-internal} (log-probability), \\textit{surface} (exact match, Fleiss' $\\kappa$), and \\textit{structural} (Soft Jaccard, entity voting).\n\n\\paragraph{Log-probability (model-internal, per-sample).}\nThe only per-sample signal in our comparison.\nFor a sample $y_i$ consisting of tokens $t_1, \\ldots, t_{|y_i|}$, we define:\n\\begin{equation}\\label{eq:logprob}\nc_{\\text{lp}}(y_i) = \\frac{1}{|y_i|} \\sum_{j=1}^{|y_i|} \\log p_{\\mathcal{M}}(t_j \\mid t_{<j}, x)\n\\end{equation}\nThis is the length-normalized mean log-likelihood, reflecting the model's internal confidence in its generation.\nBecause it scores each sample independently, it can directly rank the $N$ candidates for sample selection.\n\n\\paragraph{Exact match voting (surface, instance-level).}\nFollowing self-consistency \\cite{wang2023selfconsistency}, we measure pairwise agreement across samples at the string level:\n\\begin{equation}\\label{eq:em}\nc_{\\text{em}}(x) = \\frac{1}{\\binom{N}{2}} \\sum_{i<j} \\mathbb{1}[y_i = y_j]\n\\end{equation}\nEquivalently, this can be expressed as the majority fraction $\\max_y |\\{i : y_i = y\\}| / N$.\nEM treats entire outputs as atomic units: two samples either match exactly or not, with no notion of partial overlap.\n\n\\paragraph{Fleiss' $\\kappa$ (surface, instance-level).}\nWe adapt the inter-rater agreement measure of \\citet{fleiss1971agreement} by treating the $N$ samples as independent annotators, token positions as items, and the token vocabulary as the set of categories:\n\\begin{equation}\\label{eq:fk}\n\\kappa = \\frac{\\bar{P} - \\bar{P}_e}{1 - \\bar{P}_e}\n\\end{equation}\nwhere $\\bar{P}$ is the observed agreement rate across token positions and $\\bar{P}_e$ is the agreement expected by chance.\nUnlike EM, FK captures partial agreement---two samples that share most tokens but differ in a few positions receive a high score.\nHowever, FK operates at the string level and does not account for the structure of the extracted output.\n\n\\paragraph{Soft Jaccard (structural, instance-level).}\nOur core structural signal extends Jaccard similarity \\cite{jaccard1901distribution} to operate on extracted entity or relation \\textit{sets} rather than raw strings.\nFor two samples $y_i$ and $y_j$, we first group extractions by entity type.\nWithin each group, we compute a bipartite matching using the Hungarian algorithm with span overlap as the similarity metric.\nThe pairwise Soft Jaccard score is:\n\\begin{equation}\\label{eq:sj}\n\\text{SJ}(y_i, y_j) = \\frac{|M|}{\\max(|A_i|, |A_j|)}\n\\end{equation}\nwhere $|M|$ is the number of matched extraction pairs and $|A_i|$, $|A_j|$ are the extraction counts of each sample.\nThe instance-level signal averages over all sample pairs:\n\\begin{equation}\\label{eq:sj_instance}\nc_{\\text{sj}}(x) = \\frac{1}{\\binom{N}{2}} \\sum_{i<j} \\text{SJ}(y_i, y_j)\n\\end{equation}\nTwo design choices distinguish SJ from surface signals.\nFirst, type-aware grouping prevents spurious matches between extractions of different entity types.\nSecond, span-overlap matching tolerates near-synonym variations (e.g., ``machine learning'' vs.\\ ``ML''), which would be penalized by exact string comparison.\n\n\\paragraph{Entity voting confidence (structural, instance-level).}\nWhile SJ compares entire extraction sets, entity voting operates at the granularity of individual extractions.\nFor each entity $e$ appearing in the union $E_\\cup$ of all $N$ samples, we compute its frequency:\n\\begin{equation}\\label{eq:freq}\n\\text{freq}(e) = \\frac{|\\{i : e \\in y_i\\}|}{N}\n\\end{equation}\nThe instance-level confidence is the mean frequency across all observed entities:\n\\begin{equation}\\label{eq:voting}\nc_{\\text{vote}}(x) = \\frac{1}{|E_\\cup|} \\sum_{e \\in E_\\cup} \\text{freq}(e)\n\\end{equation}\nThis adapts majority voting \\cite{wang2023selfconsistency} from discrete answer selection to set-valued extraction.\nEntities that appear consistently across samples contribute high frequency; hallucinated or idiosyncratic extractions that appear in only one or two samples pull the score down.\nThis per-entity granularity enables the signal to distinguish instances where the model reliably extracts a core set of entities (high $c_{\\text{vote}}$) from those where extractions vary widely across samples (low $c_{\\text{vote}}$).\n\n\\subsection{Evaluation Framework}\\label{sec:evaluation}\n\nWe assess confidence signals along two complementary dimensions.\n\n\\paragraph{Quality estimation.}\nQuality estimation asks: \\textit{for which instances does the model produce reliable outputs?}\nWe measure rank correlation between the confidence signal and instance-level F1 via Spearman $\\rho$ and Kendall $\\tau$.\nFor binary discrimination, we compute AUROC by classifying instances as above or below median F1.\nThese metrics evaluate whether a signal can identify reliable vs.\\ unreliable predictions without access to gold labels.\n\n\\paragraph{Sample selection.}\nSample selection asks: \\textit{given $N$ candidates for a single instance, which one is best?}\nWe report best-of-$N$ F1: for each instance, the signal selects one sample, and we compute micro F1 over all instances.\nWe compare against an \\textit{oracle} (which always selects the highest-F1 sample) and a \\textit{greedy baseline} ($T{=}0$, $N{=}1$).\nPer-sample signals like log-probability directly rank the $N$ candidates.\nInstance-level signals (SJ, FK, EM, Voting) produce a single score per instance and thus require an auxiliary strategy for sample selection---we select the sample closest to the consensus output, i.e., the one with highest average pairwise similarity to all other samples.\n\n\\paragraph{The two dimensions are complementary, not redundant.}\nA signal with high rank correlation accurately predicts relative instance difficulty, making it useful for quality-aware routing or selective prediction.\nHowever, high correlation does not guarantee effective sample selection: if per-sample variance is low---the model produces $N$ similar outputs for a given input---even a perfect quality estimator cannot distinguish among near-identical candidates.\nWe investigate this decoupling empirically in \\S\\ref{sec:selection_gap}.\n",
+                "numLines": 124,
+                "startLine": 1,
+                "totalLines": 124
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me check the references.bib to see what's available, and check if there's a figure overview file.",
+              "signature": "EqQCClkIDRgCKkB+aqQ2jtx/sG2D5qVO5FYjtBtgU7rrW/xNp+0gQ1MzHamqALQFSv00ZAImjpcKgwZCEhOGNUsR9aAnl3kcJwX6Mg9jbGF1ZGUtb3B1cy00LTY4ABIMeJDVNxLgzxcwk+h1GgyY6PgxhbvqLP+gD8wiMIOp5stnTysKgs3biDCxtM8gDdB4BM7e1FHLxFXDzXGV68NYoJq6tjpuUPm0cBd48Sp5HRbLTMbCxBa2CbxPbI46+e573G3Se3xHz1B7XXTeYOCRC7FdAJrtKNNJnaKKN6kFQmSl0UJjGPe1cnlUUTMVWinTfdBYHgpHNO1u+e4H/OvrjoUEe7DtlmF1xvw6iSfzYrbhDoZj+Bag45N4Y7qEIeCwu90mEh8v2BgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "04af5dc2-2fdc-49bf-a3d7-1a91f2eb647d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GRdC4jqwNPkcas9t8monDY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15552,
+                "cache_read_input_tokens": 24925,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15552
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the references.bib and any existing figure files."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "f9658f94-662f-45d0-8c96-443d8c127e42",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GRdC4jqwNPkcas9t8monDY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15552,
+                "cache_read_input_tokens": 24925,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15552
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JPqUs7Pv2BcDR7wLmkegZG",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/references.bib",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "7b984ff8-8d74-4e0b-a6a5-c6b2d32cfa04",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GRdC4jqwNPkcas9t8monDY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15552,
+                "cache_read_input_tokens": 24925,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15552
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T20:09:01.847Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JPqUs7Pv2BcDR7wLmkegZG",
+              "type": "tool_result",
+              "content": "docs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "648f4f83-aaba-4481-b607-b6c891f0eb9b",
+            "tool_use_result": {
+              "filenames": [
+                "docs/paper/references.bib"
+              ],
+              "durationMs": 8,
+              "numFiles": 1,
+              "truncated": false
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01118wQWKJLfeUAn5pBtUCoL",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.bib",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "2eb9267c-526c-403a-9c7d-8fd1b06dffcf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GRdC4jqwNPkcas9t8monDY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15552,
+                "cache_read_input_tokens": 24925,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15552
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T20:09:02.874Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01118wQWKJLfeUAn5pBtUCoL",
+              "type": "tool_result",
+              "content": "docs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "62adeab5-f6f6-4dde-85e8-9ebacc924edf",
+            "tool_use_result": {
+              "filenames": [
+                "docs/paper/references.bib"
+              ],
+              "durationMs": 6,
+              "numFiles": 1,
+              "truncated": false
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011u5a4DfhHP72yae7wWvKJz",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/fig_overview*",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "5dd4bc82-ef89-43f8-bf07-cef6cd315b85",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GRdC4jqwNPkcas9t8monDY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15552,
+                "cache_read_input_tokens": 24925,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15552
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T20:09:03.356Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011u5a4DfhHP72yae7wWvKJz",
+              "type": "tool_result",
+              "content": "docs/paper/figures/fig_overview.pdf"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "0935240e-8fda-4580-9ea9-130a4c2967b7",
+            "tool_use_result": {
+              "filenames": [
+                "docs/paper/figures/fig_overview.pdf"
+              ],
+              "durationMs": 10,
+              "numFiles": 1,
+              "truncated": false
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RzLHSEU35fCp2YP9Noattt",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "bb2407f3-f232-4510-89f6-f1ff9a87dd19",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YbAL1do7wu1guh9CubLDnu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 450,
+                "cache_read_input_tokens": 40477,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 450
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T20:09:05.944Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RzLHSEU35fCp2YP9Noattt",
+              "type": "tool_result",
+              "content": "1\t% Auto-generated from literature_map.yaml — do not edit manually\n2\t\n3\t@inproceedings{angelopoulos2021conformal,\n4\t  title = {Uncertainty Sets for Image Classifiers using Conformal Prediction},\n5\t  author = {Angelopoulos, Anastasios N. and Bates, Stephen and Malik, Jitendra and Jordan, Michael I.},\n6\t  booktitle = {ICLR 2021},\n7\t  year = {2021},\n8\t  url = {https://arxiv.org/abs/2009.14193}\n9\t}\n10\t\n11\t% SUPPLEMENTARY — not cited in main text\n12\t@article{bates2021rcps,\n13\t  title = {Distribution-free, Risk-controlling Prediction Sets},\n14\t  author = {Bates, Stephen and Angelopoulos, Anastasios and Lei, Lihua and Malik, Jitendra and Jordan, Michael},\n15\t  journal = {Journal of the ACM},\n16\t  year = {2021},\n17\t  doi = {10.1145/3478535},\n18\t  url = {http://dx.doi.org/10.1145/3478535}\n19\t}\n20\t\n21\t@article{brown2024monkeys,\n22\t  title = {Large Language Monkeys: Scaling Inference Compute with Repeated Sampling},\n23\t  author = {Brown, Bradley and Juravsky, Jordan and Ehrlich, Ryan and Clark, Ronald and Le, Quoc V. and Ré, Christopher and Mirhoseini, Azalia},\n24\t  journal = {arXiv preprint arXiv:2407.21787},\n25\t  year = {2024},\n26\t  url = {https://arxiv.org/abs/2407.21787}\n27\t}\n28\t\n29\t@inproceedings{chen2024usc,\n30\t  title = {Universal Self-Consistency for Large Language Model Generation},\n31\t  author = {Chen, Xinyun and Aksitov, Renat and Alon, Uri and Ren, Jie and Xiao, Kefan and Yin, Pengcheng and Prakash, Sushant and Sutton, Charles and Wang, Xuezhi and Zhou, Denny},\n32\t  booktitle = {arXiv preprint (ICML 2024 Workshop ICL)},\n33\t  year = {2024},\n34\t  url = {https://arxiv.org/abs/2311.17311}\n35\t}\n36\t\n37\t@article{cobbe2021verifiers,\n38\t  title = {Training Verifiers to Solve Math Word Problems},\n39\t  author = {Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},\n40\t  journal = {arXiv preprint arXiv:2110.14168},\n41\t  year = {2021},\n42\t  url = {https://arxiv.org/abs/2110.14168}\n43\t}\n44\t\n45\t@inproceedings{culotta2004confidence,\n46\t  title = {Confidence Estimation for Information Extraction},\n47\t  author = {Culotta, Aron and McCallum, Andrew},\n48\t  booktitle = {HLT-NAACL 2004},\n49\t  year = {2004},\n50\t  url = {https://aclanthology.org/N04-4028/}\n51\t}\n52\t\n53\t@inproceedings{derczynski2017wnut,\n54\t  title = {Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition},\n55\t  author = {Derczynski, Leon and Nichols, Eric and Erp, Marieke van and Limsopatham, Nut},\n56\t  booktitle = {W-NUT Workshop at EMNLP 2017},\n57\t  year = {2017},\n58\t  url = {https://aclanthology.org/W17-4418/}\n59\t}\n60\t\n61\t@inproceedings{desai2020calibration,\n62\t  title = {Calibration of Pre-trained Transformers},\n63\t  author = {Desai, Shrey and Durrett, Greg},\n64\t  booktitle = {Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n65\t  year = {2020},\n66\t  doi = {10.18653/v1/2020.emnlp-main.21},\n67\t  url = {http://dx.doi.org/10.18653/v1/2020.emnlp-main.21}\n68\t}\n69\t\n70\t% SUPPLEMENTARY — not cited in main text\n71\t@inproceedings{fisch2021conformal,\n72\t  title = {Few-Shot Conformal Prediction with Auxiliary Tasks},\n73\t  author = {Fisch, Adam and Schuster, Tal and Jaakkola, Tommi and Barzilay, Regina},\n74\t  booktitle = {ICML 2021},\n75\t  year = {2021},\n76\t  doi = {10.5555/3524938.3525234},\n77\t  url = {https://arxiv.org/abs/2102.08898}\n78\t}\n79\t\n80\t@article{fleiss1971agreement,\n81\t  title = {Measuring nominal scale agreement among many raters.},\n82\t  author = {Fleiss, Joseph L.},\n83\t  journal = {Psychological Bulletin},\n84\t  year = {1971},\n85\t  doi = {10.1037/h0031619},\n86\t  url = {http://dx.doi.org/10.1037/h0031619}\n87\t}\n88\t\n89\t@article{fomicheva2020unsupervised,\n90\t  title = {Unsupervised Quality Estimation for Neural Machine Translation},\n91\t  author = {Fomicheva, Marina and Sun, Shuo and Yankovskaya, Lisa and Blain, Frédéric and Guzmán, Francisco and Fishel, Mark and Aletras, Nikolaos and Chaudhary, Vishrav and Specia, Lucia},\n92\t  journal = {Transactions of the Association for Computational Linguistics},\n93\t  year = {2020},\n94\t  doi = {10.1162/tacl_a_00330},\n95\t  url = {http://dx.doi.org/10.1162/tacl_a_00330}\n96\t}\n97\t\n98\t@inproceedings{gal2016dropout,\n99\t  title = {Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning},\n100\t  author = {Gal, Yarin and Ghahramani, Zoubin},\n101\t  booktitle = {ICML 2016},\n102\t  year = {2016},\n103\t  url = {https://arxiv.org/abs/1506.02142}\n104\t}\n105\t\n106\t@inproceedings{geifman2017selective,\n107\t  title = {Selective Classification for Deep Neural Networks},\n108\t  author = {Geifman, Yonatan and El-Yaniv, Ran},\n109\t  booktitle = {NeurIPS 2017},\n110\t  year = {2017},\n111\t  url = {https://arxiv.org/abs/1705.08500}\n112\t}\n113\t\n114\t@inproceedings{geng2024confidence,\n115\t  title = {A Survey of Confidence Estimation and Calibration in Large Language Models},\n116\t  author = {Geng, Jiahui and Cai, Fengyu and Wang, Yuxia and Koeppl, Heinz and Nakov, Preslav and Gurevych, Iryna},\n117\t  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)},\n118\t  year = {2024},\n119\t  doi = {10.18653/v1/2024.naacl-long.366},\n120\t  url = {http://dx.doi.org/10.18653/v1/2024.naacl-long.366}\n121\t}\n122\t\n123\t@inproceedings{guo2017calibration,\n124\t  title = {On Calibration of Modern Neural Networks},\n125\t  author = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},\n126\t  booktitle = {ICML 2017},\n127\t  year = {2017},\n128\t  url = {https://arxiv.org/abs/1706.04599}\n129\t}\n130\t\n131\t@article{hobelsberger2025systematic,\n132\t  title = {Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models},\n133\t  author = {Hobelsberger, Christian and Winner, Theresa and Nawroth, Andreas and Mitevski, Oliver and Haensch, Anna-Carolina},\n134\t  journal = {arXiv preprint arXiv:2510.20460},\n135\t  year = {2025},\n136\t  url = {https://arxiv.org/abs/2510.20460}\n137\t}\n138\t\n139\t@article{jaccard1901distribution,\n140\t  title = {Étude comparative de la distribution florale dans une portion des Alpes et du Jura},\n141\t  author = {Jaccard, Paul},\n142\t  journal = {Bulletin de la Société Vaudoise des Sciences Naturelles},\n143\t  year = {1901},\n144\t  url = {https://www.researchgate.net/publication/225035806}\n145\t}\n146\t\n147\t@inproceedings{jagannatha2020calibrating,\n148\t  title = {Calibrating Structured Output Predictors for Natural Language Processing},\n149\t  author = {Jagannatha, Abhyuday and Yu, Hong},\n150\t  booktitle = {ACL 2020},\n151\t  year = {2020},\n152\t  url = {https://aclanthology.org/2020.acl-main.188/}\n153\t}\n154\t\n155\t@inproceedings{josifoski2022genie,\n156\t  title = {{GenIE}: Generative Information Extraction},\n157\t  author = {Josifoski, Martin and De Cao, Nicola and Peyrard, Maxime and Petroni, Fabio and West, Robert},\n158\t  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n159\t  year = {2022},\n160\t  doi = {10.18653/v1/2022.naacl-main.342},\n161\t  url = {https://arxiv.org/abs/2112.08340}\n162\t}\n163\t\n164\t@article{kadavath2022language,\n165\t  title = {Language Models (Mostly) Know What They Know},\n166\t  author = {Kadavath, Saurav and Conerly, Tom and Askell, Amanda and Henighan, Tom and Drain, Dawn and Perez, Ethan and Schiefer, Nicholas and Hatfield-Dodds, Zac and DasSarma, Nova and Tran-Johnson, Eli and Johnston, Scott and El-Showk, Sheer and Jones, Andy and Elhage, Nelson and Hume, Tristan and Chen, Anna and Bai, Yuntao and Bowman, Sam and Fort, Stanislav and Ganguli, Deep and Hernandez, Danny and Jacobson, Josh and Kernion, Jackson and Kravec, Shauna and Lovitt, Liane and Ndousse, Kamal and Olsson, Catherine and Ringer, Sam and Amodei, Dario and Brown, Tom and Clark, Jack and Joseph, Nicholas and Mann, Ben and McCandlish, Sam and Olah, Chris and Kaplan, Jared},\n167\t  journal = {arXiv preprint arXiv:2207.05221},\n168\t  year = {2022},\n169\t  url = {https://arxiv.org/abs/2207.05221}\n170\t}\n171\t\n172\t@inproceedings{kang2025selfcertainty,\n173\t  title = {Scalable Best-of-N Selection for Large Language Models via Self-Certainty},\n174\t  author = {Kang, Zhewei and Zhao, Xuandong and Song, Dawn},\n175\t  booktitle = {NeurIPS 2025},\n176\t  year = {2025},\n177\t  url = {https://arxiv.org/abs/2502.18581}\n178\t}\n179\t\n180\t@inproceedings{kim2026reasc,\n181\t  title = {Reliability-Aware Adaptive Self-Consistency for Efficient Sampling in {LLM} Reasoning},\n182\t  author = {Kim, Junseok and Yang, Nakyeong and Min, Kyungmin and Jung, Kyomin},\n183\t  booktitle = {ACL 2026},\n184\t  year = {2026},\n185\t  url = {https://arxiv.org/abs/2601.02970}\n186\t}\n187\t\n188\t@article{kossen2024semantic,\n189\t  title = {Semantic Entropy Probes: Robust and Cheap Hallucination Detection in {LLMs}},\n190\t  author = {Kossen, Jannik and Han, Jiatong and Razzak, Muhammed and Schut, Lisa and Malik, Shreshth and Gal, Yarin},\n191\t  journal = {arXiv preprint arXiv:2406.15927},\n192\t  year = {2024},\n193\t  url = {https://arxiv.org/abs/2406.15927}\n194\t}\n195\t\n196\t@inproceedings{kuhn2023semantic,\n197\t  title = {Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation},\n198\t  author = {Kuhn, Lorenz and Gal, Yarin and Farquhar, Sebastian},\n199\t  booktitle = {ICLR 2023},\n200\t  year = {2023},\n201\t  url = {https://arxiv.org/abs/2302.09664}\n202\t}\n203\t\n204\t@inproceedings{kuleshov2015calibrated,\n205\t  title = {Calibrated Structured Prediction},\n206\t  author = {Kuleshov, Volodymyr and Liang, Percy},\n207\t  booktitle = {NeurIPS 2015},\n208\t  year = {2015},\n209\t  url = {https://proceedings.neurips.cc/paper/2015/hash/52d2752b150f9c35ccb6869cbf074e48-Abstract.html}\n210\t}\n211\t\n212\t@inproceedings{lakshminarayanan2017ensembles,\n213\t  title = {Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles},\n214\t  author = {Lakshminarayanan, Balaji and Pritzel, Alexander and Blundell, Charles},\n215\t  booktitle = {NeurIPS 2017},\n216\t  year = {2017},\n217\t  url = {https://arxiv.org/abs/1612.01474}\n218\t}\n219\t\n220\t@inproceedings{li2023codeie,\n221\t  title = {{CodeIE}: Large Code Generation Models are Better Few-Shot Information Extractors},\n222\t  author = {Li, Peng and Sun, Tianxiang and Tang, Qiong and Yan, Hang and Wu, Yuanbin and Huang, Xuanjing and Qiu, Xipeng},\n223\t  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL)},\n224\t  year = {2023},\n225\t  doi = {10.18653/v1/2023.acl-long.855},\n226\t  url = {https://arxiv.org/abs/2305.05711}\n227\t}\n228\t\n229\t@inproceedings{lightman2024verify,\n230\t  title = {Let's Verify Step by Step},\n231\t  author = {Lightman, Hunter and Kosaraju, Vineet and Burda, Yura and Edwards, Harri and Baker, Bowen and Lee, Teddy and Leike, Jan and Schulman, John and Sutskever, Ilya and Cobbe, Karl},\n232\t  booktitle = {ICLR 2024},\n233\t  year = {2024},\n234\t  url = {https://arxiv.org/abs/2305.20050}\n235\t}\n236\t\n237\t% SUPPLEMENTARY — not cited in main text\n238\t@inproceedings{liu2025uqcalibration,\n239\t  title = {Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey},\n240\t  author = {Liu, Xiaoou and Chen, Tiejin and Da, Longchao and Chen, Chacha and Lin, Zhen and Wei, Hua},\n241\t  booktitle = {Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.2},\n242\t  year = {2025},\n243\t  doi = {10.1145/3711896.3736569},\n244\t  url = {http://dx.doi.org/10.1145/3711896.3736569}\n245\t}\n246\t\n247\t@inproceedings{luan2018scierc,\n248\t  title = {Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction},\n249\t  author = {Luan, Yi and He, Luheng and Ostendorf, Mari and Hajishirzi, Hannaneh},\n250\t  booktitle = {Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing},\n251\t  year = {2018},\n252\t  doi = {10.18653/v1/D18-1360},\n253\t  url = {http://dx.doi.org/10.18653/v1/D18-1360}\n254\t}\n255\t\n256\t@inproceedings{manakul2023selfcheckgpt,\n257\t  title = {SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models},\n258\t  author = {Manakul, Potsawee and Liusie, Adian and Gales, Mark},\n259\t  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing},\n260\t  year = {2023},\n261\t  doi = {10.18653/v1/2023.emnlp-main.557},\n262\t  url = {http://dx.doi.org/10.18653/v1/2023.emnlp-main.557}\n263\t}\n264\t\n265\t@article{nedellec2026consistency,\n266\t  title = {Consistency–accuracy correlation in hard-prompted LLMs for entity and relation extraction: empirical findings from plant-health data},\n267\t  author = {Yao, Xinzhi and Nédellec, Claire and Xia, Jingbo and Bossy, Robert},\n268\t  journal = {Genomics \\& Informatics},\n269\t  year = {2026},\n270\t  doi = {10.1186/s44342-025-00063-2},\n271\t  url = {http://dx.doi.org/10.1186/s44342-025-00063-2}\n272\t}\n273\t\n274\t@article{oh2025latentsc,\n275\t  title = {Latent Self-Consistency for Reliable Majority-Set Selection in Short- and Long-Answer Reasoning},\n276\t  author = {Oh, Jungsuk and Lee, Jay-Yoon},\n277\t  journal = {arXiv preprint arXiv:2508.18395},\n278\t  year = {2025},\n279\t  url = {https://arxiv.org/abs/2508.18395}\n280\t}\n281\t\n282\t@inproceedings{ren2023selfevaluation,\n283\t  title = {Self-Evaluation Improves Selective Generation in Large Language Models},\n284\t  author = {Ren, Jie and Zhao, Yao and Vu, Tu and Liu, Peter J. and Lakshminarayanan, Balaji},\n285\t  booktitle = {NeurIPS 2023 Workshop},\n286\t  year = {2023},\n287\t  url = {https://arxiv.org/abs/2312.09300}\n288\t}\n289\t\n290\t@inproceedings{sainz2024gollie,\n291\t  title = {{GoLLIE}: Annotation Guidelines improve Zero-Shot Information-Extraction},\n292\t  author = {Sainz, Oscar and García-Ferrero, Iker and Agerri, Rodrigo and Lacalle, Oier Lopez de and Rigau, German and Agirre, Eneko},\n293\t  booktitle = {ICLR 2024},\n294\t  year = {2024},\n295\t  url = {https://arxiv.org/abs/2310.03668}\n296\t}\n297\t\n298\t@inproceedings{shelmanov2021active,\n299\t  title = {Active Learning for Sequence Tagging with Deep Pre-trained Models and Bayesian Uncertainty Estimates},\n300\t  author = {Shelmanov, Artem and Puzyrev, Dmitri and Kupriyanova, Lyubov and Belyakov, Denis and Larionov, Daniil and Khromov, Nikita and Kozlova, Olga and Artemova, Ekaterina and Dylov, Dmitry V. and Panchenko, Alexander},\n301\t  booktitle = {Proceedings of the 16th Conference of the European Chapter of the Association for Computational Linguistics: Main Volume},\n302\t  year = {2021},\n303\t  doi = {10.18653/v1/2021.eacl-main.145},\n304\t  url = {http://dx.doi.org/10.18653/v1/2021.eacl-main.145}\n305\t}\n306\t\n307\t@inproceedings{snell2024scaling,\n308\t  title = {Scaling {LLM} Test-Time Compute Optimally can be More Effective than Scaling Model Parameters},\n309\t  author = {Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},\n310\t  booktitle = {ICLR 2025},\n311\t  year = {2024},\n312\t  url = {https://arxiv.org/abs/2408.03314}\n313\t}\n314\t\n315\t@inproceedings{taubenfeld2025cisc,\n316\t  title = {Confidence Improves Self-Consistency in LLMs},\n317\t  author = {Taubenfeld, Amir and Sheffer, Tom and Ofek, Eran and Feder, Amir and Goldstein, Ariel and Gekhman, Zorik and Yona, Gal},\n318\t  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n319\t  year = {2025},\n320\t  doi = {10.18653/v1/2025.findings-acl.1030},\n321\t  url = {http://dx.doi.org/10.18653/v1/2025.findings-acl.1030}\n322\t}\n323\t\n324\t@inproceedings{thirukovalluru2024atomic,\n325\t  title = {Atomic Self-Consistency for Better Long Form Generations},\n326\t  author = {Thirukovalluru, Raghuveer and Huang, Yukun and Dhingra, Bhuwan},\n327\t  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},\n328\t  year = {2024},\n329\t  doi = {10.18653/v1/2024.emnlp-main.706},\n330\t  url = {http://dx.doi.org/10.18653/v1/2024.emnlp-main.706}\n331\t}\n332\t\n333\t@inproceedings{tjongkimsang2003conll,\n334\t  title = {Introduction to the {CoNLL}-2003 Shared Task: Language-Independent Named Entity Recognition},\n335\t  author = {Sang, Erik F. Tjong Kim and Meulder, Fien De},\n336\t  booktitle = {CoNLL 2003},\n337\t  year = {2003},\n338\t  url = {https://aclanthology.org/W03-0419/}\n339\t}\n340\t\n341\t@inproceedings{vashurin2025cocoa,\n342\t  title = {Uncertainty Quantification for {LLMs} through Minimum Bayes Risk: Bridging Confidence and Consistency},\n343\t  author = {Vashurin, Roman and Goloburda, Maiya and Ilina, Albina and Rubashevskii, Aleksandr and Nakov, Preslav and Shelmanov, Artem and Panov, Maxim},\n344\t  booktitle = {NeurIPS 2025},\n345\t  year = {2025},\n346\t  url = {https://arxiv.org/abs/2502.04964}\n347\t}\n348\t\n349\t@inproceedings{wadhwa2023revisiting,\n350\t  title = {Revisiting Relation Extraction in the era of Large Language Models},\n351\t  author = {Wadhwa, Somin and Amir, Silvio and Wallace, Byron},\n352\t  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n353\t  year = {2023},\n354\t  doi = {10.18653/v1/2023.acl-long.868},\n355\t  url = {http://dx.doi.org/10.18653/v1/2023.acl-long.868}\n356\t}\n357\t\n358\t@inproceedings{wan2025rasc,\n359\t  title = {Reasoning Aware Self-Consistency: Leveraging Reasoning Paths for Efficient LLM Sampling},\n360\t  author = {Wan, Guangya and Wu, Yuqi and Chen, Jie and Li, Sheng},\n361\t  booktitle = {Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)},\n362\t  year = {2025},\n363\t  doi = {10.18653/v1/2025.naacl-long.184},\n364\t  url = {http://dx.doi.org/10.18653/v1/2025.naacl-long.184}\n365\t}\n366\t\n367\t@article{wang2023instructuie,\n368\t  title = {{InstructUIE}: Multi-task Instruction Tuning for Unified Information Extraction},\n369\t  author = {Wang, Xiao and Zhou, Weikang and Zu, Can and Xia, Han and Chen, Tianze and Zhang, Yuansen and Zheng, Rui and Ye, Junjie and Zhang, Qi and Gui, Tao and Kang, Jihua and Yang, Jingsheng and Li, Siyuan and Du, Chunsai},\n370\t  journal = {arXiv preprint arXiv:2304.08085},\n371\t  year = {2023},\n372\t  url = {https://arxiv.org/abs/2304.08085}\n373\t}\n374\t\n375\t@inproceedings{wang2023selfconsistency,\n376\t  title = {Self-Consistency Improves Chain of Thought Reasoning in Language Models},\n377\t  author = {Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc and Chi, Ed and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny},\n378\t  booktitle = {ICLR 2023},\n379\t  year = {2023},\n380\t  url = {https://arxiv.org/abs/2203.11171}\n381\t}\n382\t\n383\t@inproceedings{wang2024mathshepherd,\n384\t  title = {Math-Shepherd: Verify and Reinforce {LLMs} Step-by-step without Human Annotations},\n385\t  author = {Wang, Peiyi and Li, Lei and Shao, Zhihong and Xu, Runxin and Dai, Damai and Li, Yifei and Chen, Deli and Wu, Yu and Sui, Zhifang},\n386\t  booktitle = {ACL 2024},\n387\t  year = {2024},\n388\t  url = {https://arxiv.org/abs/2312.08935}\n389\t}\n390\t\n391\t@inproceedings{wang2025rankedvoting,\n392\t  title = {Ranked Voting based Self-Consistency of Large Language Models},\n393\t  author = {Wang, Weiqin and Wang, Yile and Huang, Hui},\n394\t  booktitle = {ACL Findings 2025},\n395\t  year = {2025},\n396\t  url = {https://arxiv.org/abs/2505.10772}\n397\t}\n398\t\n399\t% SUPPLEMENTARY — not cited in main text\n400\t@article{wen2025know,\n401\t  title = {Know Your Limits: A Survey of Abstention in Large Language Models},\n402\t  author = {Wen, Bingbing and Yao, Jihan and Feng, Shangbin and Xu, Chenjun and Tsvetkov, Yulia and Howe, Bill and Wang, Lucy Lu},\n403\t  journal = {Transactions of the Association for Computational Linguistics},\n404\t  year = {2025},\n405\t  doi = {10.1162/tacl_a_00754},\n406\t  url = {http://dx.doi.org/10.1162/tacl_a_00754}\n407\t}\n408\t\n409\t@article{willard2023guided,\n410\t  title = {Efficient Guided Generation for Large Language Models},\n411\t  author = {Willard, Brandon T. and Louf, Rémi},\n412\t  journal = {arXiv preprint arXiv:2307.09702},\n413\t  year = {2023},\n414\t  url = {https://arxiv.org/abs/2307.09702}\n415\t}\n416\t\n417\t@article{wu2024inference,\n418\t  title = {Inference Scaling Laws: An Empirical Analysis of Compute-Optimal Inference for Problem-Solving with Language Models},\n419\t  author = {Wu, Yangzhen and Sun, Zhiqing and Li, Shanda and Welleck, Sean and Yang, Yiming},\n420\t  journal = {arXiv preprint arXiv:2408.00724},\n421\t  year = {2024},\n422\t  url = {https://arxiv.org/abs/2408.00724}\n423\t}\n424\t\n425\t% SUPPLEMENTARY — not cited in main text\n426\t@inproceedings{xia2025survey,\n427\t  title = {A Survey of Uncertainty Estimation Methods on Large Language Models},\n428\t  author = {Xia, Zhiqiu and Xu, Jinxuan and Zhang, Yuqian and Liu, Hang},\n429\t  booktitle = {ACL Findings 2025},\n430\t  year = {2025},\n431\t  url = {https://aclanthology.org/2025.findings-acl.1101/}\n432\t}\n433\t\n434\t@article{xiao2019uncertainty,\n435\t  title = {Quantifying Uncertainties in Natural Language Processing Tasks},\n436\t  author = {Xiao, Yijun and Wang, William Yang},\n437\t  journal = {Proceedings of the AAAI Conference on Artificial Intelligence},\n438\t  year = {2019},\n439\t  doi = {10.1609/aaai.v33i01.33017322},\n440\t  url = {http://dx.doi.org/10.1609/aaai.v33i01.33017322}\n441\t}\n442\t\n443\t@inproceedings{xiong2024verbalized,\n444\t  title = {Can {LLMs} Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in {LLMs}},\n445\t  author = {Xiong, Miao and Hu, Zhiyuan and Lu, Xinyang and Li, Yifei and Fu, Jie and He, Junxian and Hooi, Bryan},\n446\t  booktitle = {ICLR 2024},\n447\t  year = {2024},\n448\t  url = {https://arxiv.org/abs/2306.13063}\n449\t}\n450\t\n451\t@inproceedings{zhang2023ener,\n452\t  title = {E-NER: Evidential Deep Learning for Trustworthy Named Entity Recognition},\n453\t  author = {Zhang, Zhen and Hu, Mengting and Zhao, Shiwan and Huang, Minlie and Wang, Haotian and Liu, Lemao and Zhang, Zhirui and Liu, Zhe and Wu, Bingzhe},\n454\t  booktitle = {Findings of the Association for Computational Linguistics: ACL 2023},\n455\t  year = {2023},\n456\t  doi = {10.18653/v1/2023.findings-acl.103},\n457\t  url = {http://dx.doi.org/10.18653/v1/2023.findings-acl.103}\n458\t}\n459\t\n460\t@inproceedings{zhou2024uniner,\n461\t  title = {{UniversalNER}: Targeted Distillation from Large Language Models for Open Named Entity Recognition},\n462\t  author = {Zhou, Wenxuan and Zhang, Sheng and Gu, Yu and Chen, Muhao and Poon, Hoifung},\n463\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n464\t  year = {2024},\n465\t  url = {https://arxiv.org/abs/2308.03279}\n466\t}\n467\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "8429d581-ceaa-468a-8773-f7e3c9bf1b03",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/references.bib",
+                "content": "% Auto-generated from literature_map.yaml — do not edit manually\n\n@inproceedings{angelopoulos2021conformal,\n  title = {Uncertainty Sets for Image Classifiers using Conformal Prediction},\n  author = {Angelopoulos, Anastasios N. and Bates, Stephen and Malik, Jitendra and Jordan, Michael I.},\n  booktitle = {ICLR 2021},\n  year = {2021},\n  url = {https://arxiv.org/abs/2009.14193}\n}\n\n% SUPPLEMENTARY — not cited in main text\n@article{bates2021rcps,\n  title = {Distribution-free, Risk-controlling Prediction Sets},\n  author = {Bates, Stephen and Angelopoulos, Anastasios and Lei, Lihua and Malik, Jitendra and Jordan, Michael},\n  journal = {Journal of the ACM},\n  year = {2021},\n  doi = {10.1145/3478535},\n  url = {http://dx.doi.org/10.1145/3478535}\n}\n\n@article{brown2024monkeys,\n  title = {Large Language Monkeys: Scaling Inference Compute with Repeated Sampling},\n  author = {Brown, Bradley and Juravsky, Jordan and Ehrlich, Ryan and Clark, Ronald and Le, Quoc V. and Ré, Christopher and Mirhoseini, Azalia},\n  journal = {arXiv preprint arXiv:2407.21787},\n  year = {2024},\n  url = {https://arxiv.org/abs/2407.21787}\n}\n\n@inproceedings{chen2024usc,\n  title = {Universal Self-Consistency for Large Language Model Generation},\n  author = {Chen, Xinyun and Aksitov, Renat and Alon, Uri and Ren, Jie and Xiao, Kefan and Yin, Pengcheng and Prakash, Sushant and Sutton, Charles and Wang, Xuezhi and Zhou, Denny},\n  booktitle = {arXiv preprint (ICML 2024 Workshop ICL)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2311.17311}\n}\n\n@article{cobbe2021verifiers,\n  title = {Training Verifiers to Solve Math Word Problems},\n  author = {Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},\n  journal = {arXiv preprint arXiv:2110.14168},\n  year = {2021},\n  url = {https://arxiv.org/abs/2110.14168}\n}\n\n@inproceedings{culotta2004confidence,\n  title = {Confidence Estimation for Information Extraction},\n  author = {Culotta, Aron and McCallum, Andrew},\n  booktitle = {HLT-NAACL 2004},\n  year = {2004},\n  url = {https://aclanthology.org/N04-4028/}\n}\n\n@inproceedings{derczynski2017wnut,\n  title = {Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition},\n  author = {Derczynski, Leon and Nichols, Eric and Erp, Marieke van and Limsopatham, Nut},\n  booktitle = {W-NUT Workshop at EMNLP 2017},\n  year = {2017},\n  url = {https://aclanthology.org/W17-4418/}\n}\n\n@inproceedings{desai2020calibration,\n  title = {Calibration of Pre-trained Transformers},\n  author = {Desai, Shrey and Durrett, Greg},\n  booktitle = {Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year = {2020},\n  doi = {10.18653/v1/2020.emnlp-main.21},\n  url = {http://dx.doi.org/10.18653/v1/2020.emnlp-main.21}\n}\n\n% SUPPLEMENTARY — not cited in main text\n@inproceedings{fisch2021conformal,\n  title = {Few-Shot Conformal Prediction with Auxiliary Tasks},\n  author = {Fisch, Adam and Schuster, Tal and Jaakkola, Tommi and Barzilay, Regina},\n  booktitle = {ICML 2021},\n  year = {2021},\n  doi = {10.5555/3524938.3525234},\n  url = {https://arxiv.org/abs/2102.08898}\n}\n\n@article{fleiss1971agreement,\n  title = {Measuring nominal scale agreement among many raters.},\n  author = {Fleiss, Joseph L.},\n  journal = {Psychological Bulletin},\n  year = {1971},\n  doi = {10.1037/h0031619},\n  url = {http://dx.doi.org/10.1037/h0031619}\n}\n\n@article{fomicheva2020unsupervised,\n  title = {Unsupervised Quality Estimation for Neural Machine Translation},\n  author = {Fomicheva, Marina and Sun, Shuo and Yankovskaya, Lisa and Blain, Frédéric and Guzmán, Francisco and Fishel, Mark and Aletras, Nikolaos and Chaudhary, Vishrav and Specia, Lucia},\n  journal = {Transactions of the Association for Computational Linguistics},\n  year = {2020},\n  doi = {10.1162/tacl_a_00330},\n  url = {http://dx.doi.org/10.1162/tacl_a_00330}\n}\n\n@inproceedings{gal2016dropout,\n  title = {Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning},\n  author = {Gal, Yarin and Ghahramani, Zoubin},\n  booktitle = {ICML 2016},\n  year = {2016},\n  url = {https://arxiv.org/abs/1506.02142}\n}\n\n@inproceedings{geifman2017selective,\n  title = {Selective Classification for Deep Neural Networks},\n  author = {Geifman, Yonatan and El-Yaniv, Ran},\n  booktitle = {NeurIPS 2017},\n  year = {2017},\n  url = {https://arxiv.org/abs/1705.08500}\n}\n\n@inproceedings{geng2024confidence,\n  title = {A Survey of Confidence Estimation and Calibration in Large Language Models},\n  author = {Geng, Jiahui and Cai, Fengyu and Wang, Yuxia and Koeppl, Heinz and Nakov, Preslav and Gurevych, Iryna},\n  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)},\n  year = {2024},\n  doi = {10.18653/v1/2024.naacl-long.366},\n  url = {http://dx.doi.org/10.18653/v1/2024.naacl-long.366}\n}\n\n@inproceedings{guo2017calibration,\n  title = {On Calibration of Modern Neural Networks},\n  author = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},\n  booktitle = {ICML 2017},\n  year = {2017},\n  url = {https://arxiv.org/abs/1706.04599}\n}\n\n@article{hobelsberger2025systematic,\n  title = {Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models},\n  author = {Hobelsberger, Christian and Winner, Theresa and Nawroth, Andreas and Mitevski, Oliver and Haensch, Anna-Carolina},\n  journal = {arXiv preprint arXiv:2510.20460},\n  year = {2025},\n  url = {https://arxiv.org/abs/2510.20460}\n}\n\n@article{jaccard1901distribution,\n  title = {Étude comparative de la distribution florale dans une portion des Alpes et du Jura},\n  author = {Jaccard, Paul},\n  journal = {Bulletin de la Société Vaudoise des Sciences Naturelles},\n  year = {1901},\n  url = {https://www.researchgate.net/publication/225035806}\n}\n\n@inproceedings{jagannatha2020calibrating,\n  title = {Calibrating Structured Output Predictors for Natural Language Processing},\n  author = {Jagannatha, Abhyuday and Yu, Hong},\n  booktitle = {ACL 2020},\n  year = {2020},\n  url = {https://aclanthology.org/2020.acl-main.188/}\n}\n\n@inproceedings{josifoski2022genie,\n  title = {{GenIE}: Generative Information Extraction},\n  author = {Josifoski, Martin and De Cao, Nicola and Peyrard, Maxime and Petroni, Fabio and West, Robert},\n  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n  year = {2022},\n  doi = {10.18653/v1/2022.naacl-main.342},\n  url = {https://arxiv.org/abs/2112.08340}\n}\n\n@article{kadavath2022language,\n  title = {Language Models (Mostly) Know What They Know},\n  author = {Kadavath, Saurav and Conerly, Tom and Askell, Amanda and Henighan, Tom and Drain, Dawn and Perez, Ethan and Schiefer, Nicholas and Hatfield-Dodds, Zac and DasSarma, Nova and Tran-Johnson, Eli and Johnston, Scott and El-Showk, Sheer and Jones, Andy and Elhage, Nelson and Hume, Tristan and Chen, Anna and Bai, Yuntao and Bowman, Sam and Fort, Stanislav and Ganguli, Deep and Hernandez, Danny and Jacobson, Josh and Kernion, Jackson and Kravec, Shauna and Lovitt, Liane and Ndousse, Kamal and Olsson, Catherine and Ringer, Sam and Amodei, Dario and Brown, Tom and Clark, Jack and Joseph, Nicholas and Mann, Ben and McCandlish, Sam and Olah, Chris and Kaplan, Jared},\n  journal = {arXiv preprint arXiv:2207.05221},\n  year = {2022},\n  url = {https://arxiv.org/abs/2207.05221}\n}\n\n@inproceedings{kang2025selfcertainty,\n  title = {Scalable Best-of-N Selection for Large Language Models via Self-Certainty},\n  author = {Kang, Zhewei and Zhao, Xuandong and Song, Dawn},\n  booktitle = {NeurIPS 2025},\n  year = {2025},\n  url = {https://arxiv.org/abs/2502.18581}\n}\n\n@inproceedings{kim2026reasc,\n  title = {Reliability-Aware Adaptive Self-Consistency for Efficient Sampling in {LLM} Reasoning},\n  author = {Kim, Junseok and Yang, Nakyeong and Min, Kyungmin and Jung, Kyomin},\n  booktitle = {ACL 2026},\n  year = {2026},\n  url = {https://arxiv.org/abs/2601.02970}\n}\n\n@article{kossen2024semantic,\n  title = {Semantic Entropy Probes: Robust and Cheap Hallucination Detection in {LLMs}},\n  author = {Kossen, Jannik and Han, Jiatong and Razzak, Muhammed and Schut, Lisa and Malik, Shreshth and Gal, Yarin},\n  journal = {arXiv preprint arXiv:2406.15927},\n  year = {2024},\n  url = {https://arxiv.org/abs/2406.15927}\n}\n\n@inproceedings{kuhn2023semantic,\n  title = {Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation},\n  author = {Kuhn, Lorenz and Gal, Yarin and Farquhar, Sebastian},\n  booktitle = {ICLR 2023},\n  year = {2023},\n  url = {https://arxiv.org/abs/2302.09664}\n}\n\n@inproceedings{kuleshov2015calibrated,\n  title = {Calibrated Structured Prediction},\n  author = {Kuleshov, Volodymyr and Liang, Percy},\n  booktitle = {NeurIPS 2015},\n  year = {2015},\n  url = {https://proceedings.neurips.cc/paper/2015/hash/52d2752b150f9c35ccb6869cbf074e48-Abstract.html}\n}\n\n@inproceedings{lakshminarayanan2017ensembles,\n  title = {Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles},\n  author = {Lakshminarayanan, Balaji and Pritzel, Alexander and Blundell, Charles},\n  booktitle = {NeurIPS 2017},\n  year = {2017},\n  url = {https://arxiv.org/abs/1612.01474}\n}\n\n@inproceedings{li2023codeie,\n  title = {{CodeIE}: Large Code Generation Models are Better Few-Shot Information Extractors},\n  author = {Li, Peng and Sun, Tianxiang and Tang, Qiong and Yan, Hang and Wu, Yuanbin and Huang, Xuanjing and Qiu, Xipeng},\n  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year = {2023},\n  doi = {10.18653/v1/2023.acl-long.855},\n  url = {https://arxiv.org/abs/2305.05711}\n}\n\n@inproceedings{lightman2024verify,\n  title = {Let's Verify Step by Step},\n  author = {Lightman, Hunter and Kosaraju, Vineet and Burda, Yura and Edwards, Harri and Baker, Bowen and Lee, Teddy and Leike, Jan and Schulman, John and Sutskever, Ilya and Cobbe, Karl},\n  booktitle = {ICLR 2024},\n  year = {2024},\n  url = {https://arxiv.org/abs/2305.20050}\n}\n\n% SUPPLEMENTARY — not cited in main text\n@inproceedings{liu2025uqcalibration,\n  title = {Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey},\n  author = {Liu, Xiaoou and Chen, Tiejin and Da, Longchao and Chen, Chacha and Lin, Zhen and Wei, Hua},\n  booktitle = {Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.2},\n  year = {2025},\n  doi = {10.1145/3711896.3736569},\n  url = {http://dx.doi.org/10.1145/3711896.3736569}\n}\n\n@inproceedings{luan2018scierc,\n  title = {Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction},\n  author = {Luan, Yi and He, Luheng and Ostendorf, Mari and Hajishirzi, Hannaneh},\n  booktitle = {Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing},\n  year = {2018},\n  doi = {10.18653/v1/D18-1360},\n  url = {http://dx.doi.org/10.18653/v1/D18-1360}\n}\n\n@inproceedings{manakul2023selfcheckgpt,\n  title = {SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models},\n  author = {Manakul, Potsawee and Liusie, Adian and Gales, Mark},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing},\n  year = {2023},\n  doi = {10.18653/v1/2023.emnlp-main.557},\n  url = {http://dx.doi.org/10.18653/v1/2023.emnlp-main.557}\n}\n\n@article{nedellec2026consistency,\n  title = {Consistency–accuracy correlation in hard-prompted LLMs for entity and relation extraction: empirical findings from plant-health data},\n  author = {Yao, Xinzhi and Nédellec, Claire and Xia, Jingbo and Bossy, Robert},\n  journal = {Genomics \\& Informatics},\n  year = {2026},\n  doi = {10.1186/s44342-025-00063-2},\n  url = {http://dx.doi.org/10.1186/s44342-025-00063-2}\n}\n\n@article{oh2025latentsc,\n  title = {Latent Self-Consistency for Reliable Majority-Set Selection in Short- and Long-Answer Reasoning},\n  author = {Oh, Jungsuk and Lee, Jay-Yoon},\n  journal = {arXiv preprint arXiv:2508.18395},\n  year = {2025},\n  url = {https://arxiv.org/abs/2508.18395}\n}\n\n@inproceedings{ren2023selfevaluation,\n  title = {Self-Evaluation Improves Selective Generation in Large Language Models},\n  author = {Ren, Jie and Zhao, Yao and Vu, Tu and Liu, Peter J. and Lakshminarayanan, Balaji},\n  booktitle = {NeurIPS 2023 Workshop},\n  year = {2023},\n  url = {https://arxiv.org/abs/2312.09300}\n}\n\n@inproceedings{sainz2024gollie,\n  title = {{GoLLIE}: Annotation Guidelines improve Zero-Shot Information-Extraction},\n  author = {Sainz, Oscar and García-Ferrero, Iker and Agerri, Rodrigo and Lacalle, Oier Lopez de and Rigau, German and Agirre, Eneko},\n  booktitle = {ICLR 2024},\n  year = {2024},\n  url = {https://arxiv.org/abs/2310.03668}\n}\n\n@inproceedings{shelmanov2021active,\n  title = {Active Learning for Sequence Tagging with Deep Pre-trained Models and Bayesian Uncertainty Estimates},\n  author = {Shelmanov, Artem and Puzyrev, Dmitri and Kupriyanova, Lyubov and Belyakov, Denis and Larionov, Daniil and Khromov, Nikita and Kozlova, Olga and Artemova, Ekaterina and Dylov, Dmitry V. and Panchenko, Alexander},\n  booktitle = {Proceedings of the 16th Conference of the European Chapter of the Association for Computational Linguistics: Main Volume},\n  year = {2021},\n  doi = {10.18653/v1/2021.eacl-main.145},\n  url = {http://dx.doi.org/10.18653/v1/2021.eacl-main.145}\n}\n\n@inproceedings{snell2024scaling,\n  title = {Scaling {LLM} Test-Time Compute Optimally can be More Effective than Scaling Model Parameters},\n  author = {Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},\n  booktitle = {ICLR 2025},\n  year = {2024},\n  url = {https://arxiv.org/abs/2408.03314}\n}\n\n@inproceedings{taubenfeld2025cisc,\n  title = {Confidence Improves Self-Consistency in LLMs},\n  author = {Taubenfeld, Amir and Sheffer, Tom and Ofek, Eran and Feder, Amir and Goldstein, Ariel and Gekhman, Zorik and Yona, Gal},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n  year = {2025},\n  doi = {10.18653/v1/2025.findings-acl.1030},\n  url = {http://dx.doi.org/10.18653/v1/2025.findings-acl.1030}\n}\n\n@inproceedings{thirukovalluru2024atomic,\n  title = {Atomic Self-Consistency for Better Long Form Generations},\n  author = {Thirukovalluru, Raghuveer and Huang, Yukun and Dhingra, Bhuwan},\n  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},\n  year = {2024},\n  doi = {10.18653/v1/2024.emnlp-main.706},\n  url = {http://dx.doi.org/10.18653/v1/2024.emnlp-main.706}\n}\n\n@inproceedings{tjongkimsang2003conll,\n  title = {Introduction to the {CoNLL}-2003 Shared Task: Language-Independent Named Entity Recognition},\n  author = {Sang, Erik F. Tjong Kim and Meulder, Fien De},\n  booktitle = {CoNLL 2003},\n  year = {2003},\n  url = {https://aclanthology.org/W03-0419/}\n}\n\n@inproceedings{vashurin2025cocoa,\n  title = {Uncertainty Quantification for {LLMs} through Minimum Bayes Risk: Bridging Confidence and Consistency},\n  author = {Vashurin, Roman and Goloburda, Maiya and Ilina, Albina and Rubashevskii, Aleksandr and Nakov, Preslav and Shelmanov, Artem and Panov, Maxim},\n  booktitle = {NeurIPS 2025},\n  year = {2025},\n  url = {https://arxiv.org/abs/2502.04964}\n}\n\n@inproceedings{wadhwa2023revisiting,\n  title = {Revisiting Relation Extraction in the era of Large Language Models},\n  author = {Wadhwa, Somin and Amir, Silvio and Wallace, Byron},\n  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n  year = {2023},\n  doi = {10.18653/v1/2023.acl-long.868},\n  url = {http://dx.doi.org/10.18653/v1/2023.acl-long.868}\n}\n\n@inproceedings{wan2025rasc,\n  title = {Reasoning Aware Self-Consistency: Leveraging Reasoning Paths for Efficient LLM Sampling},\n  author = {Wan, Guangya and Wu, Yuqi and Chen, Jie and Li, Sheng},\n  booktitle = {Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)},\n  year = {2025},\n  doi = {10.18653/v1/2025.naacl-long.184},\n  url = {http://dx.doi.org/10.18653/v1/2025.naacl-long.184}\n}\n\n@article{wang2023instructuie,\n  title = {{InstructUIE}: Multi-task Instruction Tuning for Unified Information Extraction},\n  author = {Wang, Xiao and Zhou, Weikang and Zu, Can and Xia, Han and Chen, Tianze and Zhang, Yuansen and Zheng, Rui and Ye, Junjie and Zhang, Qi and Gui, Tao and Kang, Jihua and Yang, Jingsheng and Li, Siyuan and Du, Chunsai},\n  journal = {arXiv preprint arXiv:2304.08085},\n  year = {2023},\n  url = {https://arxiv.org/abs/2304.08085}\n}\n\n@inproceedings{wang2023selfconsistency,\n  title = {Self-Consistency Improves Chain of Thought Reasoning in Language Models},\n  author = {Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc and Chi, Ed and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny},\n  booktitle = {ICLR 2023},\n  year = {2023},\n  url = {https://arxiv.org/abs/2203.11171}\n}\n\n@inproceedings{wang2024mathshepherd,\n  title = {Math-Shepherd: Verify and Reinforce {LLMs} Step-by-step without Human Annotations},\n  author = {Wang, Peiyi and Li, Lei and Shao, Zhihong and Xu, Runxin and Dai, Damai and Li, Yifei and Chen, Deli and Wu, Yu and Sui, Zhifang},\n  booktitle = {ACL 2024},\n  year = {2024},\n  url = {https://arxiv.org/abs/2312.08935}\n}\n\n@inproceedings{wang2025rankedvoting,\n  title = {Ranked Voting based Self-Consistency of Large Language Models},\n  author = {Wang, Weiqin and Wang, Yile and Huang, Hui},\n  booktitle = {ACL Findings 2025},\n  year = {2025},\n  url = {https://arxiv.org/abs/2505.10772}\n}\n\n% SUPPLEMENTARY — not cited in main text\n@article{wen2025know,\n  title = {Know Your Limits: A Survey of Abstention in Large Language Models},\n  author = {Wen, Bingbing and Yao, Jihan and Feng, Shangbin and Xu, Chenjun and Tsvetkov, Yulia and Howe, Bill and Wang, Lucy Lu},\n  journal = {Transactions of the Association for Computational Linguistics},\n  year = {2025},\n  doi = {10.1162/tacl_a_00754},\n  url = {http://dx.doi.org/10.1162/tacl_a_00754}\n}\n\n@article{willard2023guided,\n  title = {Efficient Guided Generation for Large Language Models},\n  author = {Willard, Brandon T. and Louf, Rémi},\n  journal = {arXiv preprint arXiv:2307.09702},\n  year = {2023},\n  url = {https://arxiv.org/abs/2307.09702}\n}\n\n@article{wu2024inference,\n  title = {Inference Scaling Laws: An Empirical Analysis of Compute-Optimal Inference for Problem-Solving with Language Models},\n  author = {Wu, Yangzhen and Sun, Zhiqing and Li, Shanda and Welleck, Sean and Yang, Yiming},\n  journal = {arXiv preprint arXiv:2408.00724},\n  year = {2024},\n  url = {https://arxiv.org/abs/2408.00724}\n}\n\n% SUPPLEMENTARY — not cited in main text\n@inproceedings{xia2025survey,\n  title = {A Survey of Uncertainty Estimation Methods on Large Language Models},\n  author = {Xia, Zhiqiu and Xu, Jinxuan and Zhang, Yuqian and Liu, Hang},\n  booktitle = {ACL Findings 2025},\n  year = {2025},\n  url = {https://aclanthology.org/2025.findings-acl.1101/}\n}\n\n@article{xiao2019uncertainty,\n  title = {Quantifying Uncertainties in Natural Language Processing Tasks},\n  author = {Xiao, Yijun and Wang, William Yang},\n  journal = {Proceedings of the AAAI Conference on Artificial Intelligence},\n  year = {2019},\n  doi = {10.1609/aaai.v33i01.33017322},\n  url = {http://dx.doi.org/10.1609/aaai.v33i01.33017322}\n}\n\n@inproceedings{xiong2024verbalized,\n  title = {Can {LLMs} Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in {LLMs}},\n  author = {Xiong, Miao and Hu, Zhiyuan and Lu, Xinyang and Li, Yifei and Fu, Jie and He, Junxian and Hooi, Bryan},\n  booktitle = {ICLR 2024},\n  year = {2024},\n  url = {https://arxiv.org/abs/2306.13063}\n}\n\n@inproceedings{zhang2023ener,\n  title = {E-NER: Evidential Deep Learning for Trustworthy Named Entity Recognition},\n  author = {Zhang, Zhen and Hu, Mengting and Zhao, Shiwan and Huang, Minlie and Wang, Haotian and Liu, Lemao and Zhang, Zhirui and Liu, Zhe and Wu, Bingzhe},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2023},\n  year = {2023},\n  doi = {10.18653/v1/2023.findings-acl.103},\n  url = {http://dx.doi.org/10.18653/v1/2023.findings-acl.103}\n}\n\n@inproceedings{zhou2024uniner,\n  title = {{UniversalNER}: Targeted Distillation from Large Language Models for Open Named Entity Recognition},\n  author = {Zhou, Wenxuan and Zhang, Sheng and Gu, Yu and Chen, Muhao and Poon, Hoifung},\n  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year = {2024},\n  url = {https://arxiv.org/abs/2308.03279}\n}\n",
+                "numLines": 467,
+                "startLine": 1,
+                "totalLines": 467
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the context I need. Let me write the introduction section based on the detailed requirements and consistent with the existing method.tex and experiments.tex sections.\n\nKey things to keep in mind:\n1. ~1200 words\n2. 4 paragraphs + contributions list + transition\n3. Use only citation keys from the provided list\n4. Match terminology with method.tex and experiments.tex\n5. Follow red-section skill: no cherry-picking, strength matches evidence\n6. Follow the FORBIDDEN rules\n7. Reference Figure~\\ref{fig:overview}\n\nLet me draft this carefully.\n\nKey numbers from experiments.tex:\n\n\n- Voting achieves ρ=0.502 and AUROC=0.728 on SciERC NER, while self-judging gets ρ=0.357\n- Expected max shows ρ=0.451 on CoNLL\n- For best-of-N selection, NER doesn't show improvement over greedy (0.609), but RE benefits from logprob with a +2.3pp gain\n- WNUT-17 results are weak with self-judging at ρ=0.062 and 54% zero-F1 cases\n- Self-judging outperforms expected max on SciERC but the reverse holds on CoNLL\n- Oracle analysis reveals 16 points of headroom on NER tasks and 18.7 points on RE\n\nNow I'm moving into writing the introduction.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "802536c4-34a2-466b-a3cf-7bde861c7ac4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VDoWnkMQWfejLv6VP6e9Ei",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9159,
+                "cache_read_input_tokens": 40927,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9159
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the context. Let me write the introduction."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "cf1ab2fb-2a13-491e-86c7-64e6e99e2330",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VDoWnkMQWfejLv6VP6e9Ei",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9159,
+                "cache_read_input_tokens": 40927,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9159
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013dPVR6CgvjrVmiTtrF5hpW",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/",
+                "description": "List existing section files"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "22b4e3c1-f821-44f0-bc13-70679245ea29",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VDoWnkMQWfejLv6VP6e9Ei",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9159,
+                "cache_read_input_tokens": 40927,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9159
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T20:09:19.599Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013dPVR6CgvjrVmiTtrF5hpW",
+              "type": "tool_result",
+              "content": "experiments.tex\nmethod.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "f3a38154-04e1-4bf6-a58c-1ec21d193702",
+            "tool_use_result": {
+              "stdout": "experiments.tex\nmethod.tex",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vgyeu7R5kry77oLdjpdtMD",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex",
+                "content": "\\section{Introduction}\\label{sec:introduction}\n\nSelf-consistency---sampling multiple outputs and aggregating them---has become a powerful strategy for improving language model reasoning.\nOn discrete-answer tasks such as arithmetic and commonsense QA, majority voting over chain-of-thought samples yields large gains: +18 percentage points on GSM8K \\cite{wang2023selfconsistency}.\nMore broadly, test-time compute scaling through repeated sampling and selection has emerged as a complementary axis to model scaling, offering substantial quality improvements at inference time \\cite{snell2024scaling, brown2024monkeys}.\nThese results rest on a shared assumption: that among $N$ stochastic samples, a selection mechanism can identify better outputs.\nFor tasks with a single correct answer, this assumption holds naturally---the majority vote is the selector.\nBut information extraction (IE) poses a fundamentally different challenge.\nThe output is not a single token or number; it is a \\textit{set} of entities or relations with internal dependencies, where two samples may extract overlapping but non-identical structures.\nThere is no obvious majority to vote on, partial agreement is the norm rather than the exception, and the space of valid outputs is combinatorially large.\nCan self-consistency still provide useful signal in this structured setting?\n\nPrior work on confidence estimation for LLM-based IE has conflated two distinct objectives.\n\\textit{Quality estimation} asks which inputs the model handles reliably---a ranking over instances.\n\\textit{Sample selection} asks which of $N$ candidate outputs is best for a given input---a ranking over samples.\nThese require fundamentally different signal properties: the former benefits from instance-level aggregation across all $N$ samples, while the latter demands per-sample discrimination.\nExisting evaluations rarely separate the two.\nSelf-consistency methods designed for discrete answers \\cite{wang2023selfconsistency, chen2024usc} assume outputs can be grouped by equivalence and counted, an assumption that breaks when outputs are entity sets with partial overlap.\nWeighted variants that incorporate model confidence \\cite{taubenfeld2025cisc, kang2025selfcertainty} have shown promise for best-of-$N$ selection on reasoning tasks, but their applicability to structured prediction remains untested.\nThe most directly relevant study, \\citet{nedellec2026consistency}, examines consistency--accuracy correlations for LLM-based entity and relation extraction but relies on surface-level matching, a limitation the authors themselves acknowledge: their approach ``overlooks semantically consistent outputs'' that differ only in surface form.\nNo existing work systematically compares confidence signals across the structural, surface, and model-internal families for generative IE, nor disentangles quality estimation from sample selection in this setting.\n\nOur central finding is that consistency-based signals are effective instance-level quality estimators but poor sample selectors for structured IE.\nConsistency signals aggregate over $N$ samples to produce a single score per input, making them well-suited to predict input difficulty---instances where the model consistently extracts similar structures are indeed easier.\nEntity voting confidence, our best signal, achieves Spearman $\\rho{=}0.50$ and AUROC${=}0.73$ on SciERC NER, a correlation strong enough to be practically useful for quality-aware routing.\nYet this correlation does not translate into selection gains: on NER best-of-$N$, no signal surpasses greedy decoding despite 16 percentage points of oracle headroom.\nWe term this the \\textbf{correlation-selection gap} (Figure~\\ref{fig:overview}).\nThe gap arises because instance-level signals cannot discriminate among $N$ candidates that share similar consistency profiles---they predict \\textit{which inputs} are hard, not \\textit{which output} is best.\nOnly log-probability, the sole per-sample signal in our comparison, achieves selection gains, and only on relation extraction (+2.3~pp over greedy), where per-sample variance is higher.\nWe systematically evaluate five confidence signals from three families---structural (entity voting, Soft Jaccard), surface (exact match, Fleiss' $\\kappa$), and model-internal (log-probability)---across NER and RE on SciERC \\cite{luan2018scierc}, CoNLL-2003 \\cite{tjongkimsang2003conll}, and WNUT-17 \\cite{derczynski2017wnut}, using Qwen3-8B and LLaMA-3.1-8B.\n\nOur contributions are as follows:\n\\begin{enumerate}\n    \\item \\textbf{First systematic comparison of confidence signals for generative IE.}\n    We evaluate five signals from three families on quality estimation for NER and RE.\n    Entity voting achieves $\\rho{=}0.50$ and AUROC${=}0.73$; structural signals outperform surface and model-internal alternatives on complex schemas (SciERC), while surface signals dominate on simpler tasks (CoNLL).\n\n    \\item \\textbf{Identification of the correlation-selection gap.}\n    We demonstrate a fundamental disconnect between quality estimation and sample selection in structured IE.\n    Despite strong instance-level correlations ($\\rho$ up to 0.50), no consistency signal improves NER best-of-$N$ over greedy decoding; only log-probability helps on RE (+2.3~pp).\n    This gap reflects the instance-level nature of consistency signals, which predict input difficulty rather than discriminating among individual samples.\n\n    \\item \\textbf{Task-complexity boundary conditions.}\n    Signal rankings depend on task difficulty: exact match leads on easy tasks (CoNLL), Soft Jaccard dominates on hard tasks (SciERC), and all signals converge when model capability is insufficient (WNUT-17, where 54\\% of instances receive zero F1).\n    This establishes practical guidance for signal selection based on expected task difficulty.\n\\end{enumerate}\n\nThe remainder of this paper is organized as follows.\n\\S\\ref{sec:method} formalizes the problem and defines the five confidence signals.\n\\S\\ref{sec:experiments} presents quality estimation results, the correlation-selection gap analysis, and robustness evaluations.\n\\S\\ref{sec:related} situates our work in the broader landscape of self-consistency, uncertainty estimation, and LLM-based IE.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "7e3dd49d-077f-458b-af2b-55bfa81b5deb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GMDpvz5Geq4q19gNxjYfAn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 482,
+                "cache_read_input_tokens": 50086,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 482
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T20:10:01.820Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vgyeu7R5kry77oLdjpdtMD",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "a14640f0-68de-4e73-bdff-4e2caf72392a",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex",
+              "content": "\\section{Introduction}\\label{sec:introduction}\n\nSelf-consistency---sampling multiple outputs and aggregating them---has become a powerful strategy for improving language model reasoning.\nOn discrete-answer tasks such as arithmetic and commonsense QA, majority voting over chain-of-thought samples yields large gains: +18 percentage points on GSM8K \\cite{wang2023selfconsistency}.\nMore broadly, test-time compute scaling through repeated sampling and selection has emerged as a complementary axis to model scaling, offering substantial quality improvements at inference time \\cite{snell2024scaling, brown2024monkeys}.\nThese results rest on a shared assumption: that among $N$ stochastic samples, a selection mechanism can identify better outputs.\nFor tasks with a single correct answer, this assumption holds naturally---the majority vote is the selector.\nBut information extraction (IE) poses a fundamentally different challenge.\nThe output is not a single token or number; it is a \\textit{set} of entities or relations with internal dependencies, where two samples may extract overlapping but non-identical structures.\nThere is no obvious majority to vote on, partial agreement is the norm rather than the exception, and the space of valid outputs is combinatorially large.\nCan self-consistency still provide useful signal in this structured setting?\n\nPrior work on confidence estimation for LLM-based IE has conflated two distinct objectives.\n\\textit{Quality estimation} asks which inputs the model handles reliably---a ranking over instances.\n\\textit{Sample selection} asks which of $N$ candidate outputs is best for a given input---a ranking over samples.\nThese require fundamentally different signal properties: the former benefits from instance-level aggregation across all $N$ samples, while the latter demands per-sample discrimination.\nExisting evaluations rarely separate the two.\nSelf-consistency methods designed for discrete answers \\cite{wang2023selfconsistency, chen2024usc} assume outputs can be grouped by equivalence and counted, an assumption that breaks when outputs are entity sets with partial overlap.\nWeighted variants that incorporate model confidence \\cite{taubenfeld2025cisc, kang2025selfcertainty} have shown promise for best-of-$N$ selection on reasoning tasks, but their applicability to structured prediction remains untested.\nThe most directly relevant study, \\citet{nedellec2026consistency}, examines consistency--accuracy correlations for LLM-based entity and relation extraction but relies on surface-level matching, a limitation the authors themselves acknowledge: their approach ``overlooks semantically consistent outputs'' that differ only in surface form.\nNo existing work systematically compares confidence signals across the structural, surface, and model-internal families for generative IE, nor disentangles quality estimation from sample selection in this setting.\n\nOur central finding is that consistency-based signals are effective instance-level quality estimators but poor sample selectors for structured IE.\nConsistency signals aggregate over $N$ samples to produce a single score per input, making them well-suited to predict input difficulty---instances where the model consistently extracts similar structures are indeed easier.\nEntity voting confidence, our best signal, achieves Spearman $\\rho{=}0.50$ and AUROC${=}0.73$ on SciERC NER, a correlation strong enough to be practically useful for quality-aware routing.\nYet this correlation does not translate into selection gains: on NER best-of-$N$, no signal surpasses greedy decoding despite 16 percentage points of oracle headroom.\nWe term this the \\textbf{correlation-selection gap} (Figure~\\ref{fig:overview}).\nThe gap arises because instance-level signals cannot discriminate among $N$ candidates that share similar consistency profiles---they predict \\textit{which inputs} are hard, not \\textit{which output} is best.\nOnly log-probability, the sole per-sample signal in our comparison, achieves selection gains, and only on relation extraction (+2.3~pp over greedy), where per-sample variance is higher.\nWe systematically evaluate five confidence signals from three families---structural (entity voting, Soft Jaccard), surface (exact match, Fleiss' $\\kappa$), and model-internal (log-probability)---across NER and RE on SciERC \\cite{luan2018scierc}, CoNLL-2003 \\cite{tjongkimsang2003conll}, and WNUT-17 \\cite{derczynski2017wnut}, using Qwen3-8B and LLaMA-3.1-8B.\n\nOur contributions are as follows:\n\\begin{enumerate}\n    \\item \\textbf{First systematic comparison of confidence signals for generative IE.}\n    We evaluate five signals from three families on quality estimation for NER and RE.\n    Entity voting achieves $\\rho{=}0.50$ and AUROC${=}0.73$; structural signals outperform surface and model-internal alternatives on complex schemas (SciERC), while surface signals dominate on simpler tasks (CoNLL).\n\n    \\item \\textbf{Identification of the correlation-selection gap.}\n    We demonstrate a fundamental disconnect between quality estimation and sample selection in structured IE.\n    Despite strong instance-level correlations ($\\rho$ up to 0.50), no consistency signal improves NER best-of-$N$ over greedy decoding; only log-probability helps on RE (+2.3~pp).\n    This gap reflects the instance-level nature of consistency signals, which predict input difficulty rather than discriminating among individual samples.\n\n    \\item \\textbf{Task-complexity boundary conditions.}\n    Signal rankings depend on task difficulty: exact match leads on easy tasks (CoNLL), Soft Jaccard dominates on hard tasks (SciERC), and all signals converge when model capability is insufficient (WNUT-17, where 54\\% of instances receive zero F1).\n    This establishes practical guidance for signal selection based on expected task difficulty.\n\\end{enumerate}\n\nThe remainder of this paper is organized as follows.\n\\S\\ref{sec:method} formalizes the problem and defines the five confidence signals.\n\\S\\ref{sec:experiments} presents quality estimation results, the correlation-selection gap analysis, and robustness evaluations.\n\\S\\ref{sec:related} situates our work in the broader landscape of self-consistency, uncertainty estimation, and LLM-based IE.\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "c4f84ba6-8950-4d30-b6d9-ff65dc9a3294",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JETdQzPp2gwHgRG7KwbQTo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1620,
+                "cache_read_input_tokens": 50568,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1620
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0126u1TdVgEnwbJmxtbQjFnB",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "dfe89540-66e0-4201-966a-d9f05316e1d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JETdQzPp2gwHgRG7KwbQTo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1620,
+                "cache_read_input_tokens": 50568,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1620
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T20:10:04.646Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_0126u1TdVgEnwbJmxtbQjFnB",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "41cd3f45-8865-42df-8a8b-682531d0ec7e",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 50
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SzxgfALJ5WMs5u5FAJMZZ3",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "introduction.tex",
+                "type": "paper",
+                "description": "Introduction section (§1) for struct_self_consist_ie paper. ~1200 words, 4 paragraphs + contributions list + transition. Covers hook (self-consistency for IE), gap (quality estimation vs sample selection conflation), our insight (correlation-selection gap), and 3 contributions.",
+                "project": "struct_self_consist_ie",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex",
+                "tags": [
+                  "paper",
+                  "introduction",
+                  "latex"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "ca0f183a-8db7-4bf5-8a48-2ea106585fb4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016p97ryawvEgayEYF9osDsD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 720,
+                "cache_read_input_tokens": 52188,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 720
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T20:10:09.624Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SzxgfALJ5WMs5u5FAJMZZ3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_eca6b9\\\", \\\"name\\\": \\\"introduction.tex\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Introduction section (§1) for struct_self_consist_ie paper. ~1200 words, 4 paragraphs + contributions list + transition. Covers hook (self-consistency for IE), gap (quality estimation vs sample selection conflation), our insight (correlation-selection gap), and 3 contributions.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/paper/introduction.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T20:10:09.517164+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"introduction\\\", \\\"latex\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "ea1a568b-215c-44be-96f0-9c946b92eb56",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_eca6b9\\\", \\\"name\\\": \\\"introduction.tex\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Introduction section (§1) for struct_self_consist_ie paper. ~1200 words, 4 paragraphs + contributions list + transition. Covers hook (self-consistency for IE), gap (quality estimation vs sample selection conflation), our insight (correlation-selection gap), and 3 contributions.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/paper/introduction.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T20:10:09.517164+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"introduction\\\", \\\"latex\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_eca6b9\", \"name\": \"introduction.tex\", \"type\": \"paper\", \"description\": \"Introduction section (§1) for struct_self_consist_ie paper. ~1200 words, 4 paragraphs + contributions list + transition. Covers hook (self-consistency for IE), gap (quality estimation vs sample selection conflation), our insight (correlation-selection gap), and 3 contributions.\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/paper/introduction.tex\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T20:10:09.517164+00:00\", \"tags\": [\"paper\", \"introduction\", \"latex\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction 已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex`。\n\n结构概要：\n- **段落1 (Hook)**: Self-consistency 在推理任务上的成功 → IE 的结构化输出本质不同 → 核心问题\n- **段落2 (Gap)**: Quality estimation vs sample selection 被混为一谈；Nédellec & Xia 2026 的 surface matching 局限；现有工作缺乏系统比较\n- **段落3 (Insight + Approach)**: Correlation-selection gap 核心发现预告；5 signals × 3 families × 3 datasets × 2 models；引用 Figure~\\ref{fig:overview}\n- **段落4 (Contributions)**: C1 首次系统比较 (ρ=0.50, AUROC=0.73)；C2 correlation-selection gap (NER 无信号超越 greedy，RE logprob +2.3pp)；C3 task-complexity boundary (EM>SJ easy tasks, SJ>EM hard tasks, 收敛于 WNUT-17)\n- **过渡**: 指向 §method, §experiments, §related\n\n所有数字与 experiments.tex 一致，引用仅使用 references.bib 中已有的 keys，未违反任何 FORBIDDEN 规则。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "uuid": "b3aab6f5-b53d-4653-afd9-248c0f22fbb3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Sa7HbHd7w1P6Xxrt1LCaGR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 575,
+                "cache_read_input_tokens": 52908,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 575
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction 已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex`。\n\n结构概要：\n- **段落1 (Hook)**: Self-consistency 在推理任务上的成功 → IE 的结构化输出本质不同 → 核心问题\n- **段落2 (Gap)**: Quality estimation vs sample selection 被混为一谈；Nédellec & Xia 2026 的 surface matching 局限；现有工作缺乏系统比较\n- **段落3 (Insight + Approach)**: Correlation-selection gap 核心发现预告；5 signals × 3 families × 3 datasets × 2 models；引用 Figure~\\ref{fig:overview}\n- **段落4 (Contributions)**: C1 首次系统比较 (ρ=0.50, AUROC=0.73)；C2 correlation-selection gap (NER 无信号超越 greedy，RE logprob +2.3pp)；C3 task-complexity boundary (EM>SJ easy tasks, SJ>EM hard tasks, 收敛于 WNUT-17)\n- **过渡**: 指向 §method, §experiments, §related\n\n所有数字与 experiments.tex 一致，引用仅使用 references.bib 中已有的 keys，未违反任何 FORBIDDEN 规则。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 88500,
+            "duration_api_ms": 89280,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "8597b770-a6ea-496b-a108-ba67492160e4",
+            "total_cost_usd": 0.5124205000000001,
+            "usage": {
+              "input_tokens": 11,
+              "cache_creation_input_tokens": 41642,
+              "cache_read_input_tokens": 323920,
+              "output_tokens": 3502,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 41642,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 388,
+                  "cache_read_input_tokens": 52908,
+                  "cache_creation_input_tokens": 575,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 575
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2523,
+                "outputTokens": 14,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0025930000000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 11,
+                "outputTokens": 3502,
+                "cacheReadInputTokens": 323920,
+                "cacheCreationInputTokens": 41642,
+                "webSearchRequests": 0,
+                "costUSD": 0.5098275000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "b2fd5f5b-2862-48ff-9d0e-c421369d95ba"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-writing-introduction.md"
+}

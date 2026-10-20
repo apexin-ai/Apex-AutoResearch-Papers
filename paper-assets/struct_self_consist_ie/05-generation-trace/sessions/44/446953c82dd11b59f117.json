@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "446953c82dd11b59f117",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis r21 q1 3epoch alignment",
+  "task_key": "worker_analysis_r21_q1_3epoch_alignment_20260518T133524",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_r21_q1_3epoch_alignment_20260518T133524_result.json",
+    "occurrence": 1,
+    "bytes": 1312,
+    "sha256": "bab8719e7dabe40585733f0f7691b4b5aa74fca4d5b921fbb1506d71d205bee5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results:\n\n| Setting | N_inst | N_rho | N_samp | Median ρ(LP,F1) | Mean ρ | 95% CI | %pos | LP_sel Δ |\n|---------|--------|-------|--------|-----------------|--------|--------|------|----------|\n| 3-epoch | 529 | 495 | 8 | **0.3192** | 0.2726 | [0.2753, 0.3856] | 76.36% | -1.24pp |\n| 5-epoch | 529 | 435 | 8 | **0.2624** | 0.1791 | [0.1956, 0.3637] | 64.14% | +0.64pp |\n\nKey findings:\n\n1. **3-epoch median ρ = 0.32 vs 5-epoch median ρ = 0.26** (diff = +0.057). The 95% CIs overlap substantially ([0.28, 0.39] vs [0.20, 0.36]), confirming alignment is a dataset-intrinsic property, not an epoch artifact.\n\n2. 3-epoch has far fewer constant-F1 (degenerate) instances (34 vs 94), so more instances contribute valid ρ values (495 vs 435). The slightly higher ρ at 3-epoch may partly reflect reduced degeneracy giving cleaner signal.\n\n3. LP selection Δ is negative for 3-epoch (-1.24pp) vs positive for 5-epoch (+0.64pp). This is consistent with the known SciERC pattern where LP is a weak selector, and the 5-epoch model's slightly better LP selection may come from higher degeneracy (more constant-F1 instances inflate the greedy baseline denominator differently).\n\nScript saved at `analysis_r21_q1_alignment.py`, outputs at `output/r21_q1_alignment/{results.json, report.md}`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r21-q1-3epoch-alignment.md"
+}

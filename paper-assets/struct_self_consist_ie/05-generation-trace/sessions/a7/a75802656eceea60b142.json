@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a75802656eceea60b142",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code add re subtask",
+  "task_key": "worker_code_add_re_subtask_20260514T050825",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_add_re_subtask_20260514T050825_result.json",
+    "occurrence": 1,
+    "bytes": 700,
+    "sha256": "968d614a2aae4431992fd2bd8b3c334a5512b68275f620c1e97aa0e2af009273"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。4 个文件的 RE subtask 支持已添加并验证通过：\n\n- **consistency.py**: 新增 `_re_soft_jaccard_pair()`（Hungarian matching，similarity = head_sj × tail_sj × type_match），`structural_consistency_soft_jaccard()` 支持 `subtask=\"re\"`\n- **evaluation.py**: 新增 `relation_strict_match()` + `compute_re_f1()`，`per_instance_f1()` 和 `generate_evaluation_report()` 均支持 `subtask=\"re\"`\n- **sampling.py**: 新增 `_RE_TEMPLATE`，`build_uie_prompt()` 支持 `subtask=\"re\"`\n- **run_mvp_pilot.py**: `--subtask` choices 扩展为 `[\"ner\", \"re\", \"eae\"]`，step 4 evaluation 用 dispatch dict 统一处理，import 新增 `compute_re_f1`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-add-re-subtask.md"
+}

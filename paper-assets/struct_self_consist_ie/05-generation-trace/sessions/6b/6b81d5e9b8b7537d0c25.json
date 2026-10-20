@@ -1,0 +1,1342 @@
+{
+  "schema_version": "1.0",
+  "id": "6b81d5e9b8b7537d0c25",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis wnut17 full signal report",
+  "task_key": "worker_analysis_wnut17_full_signal_report_20260519T112628",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_wnut17_full_signal_report_20260519T112628.log",
+    "occurrence": 1,
+    "bytes": 143352,
+    "sha256": "18f978b3ad045195df68646d631801c1df61fd4afeef740e6bb39353de5c3d65"
+  },
+  "statistics": {
+    "messages": 30,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+                "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "b183331a-bf75-4661-b594-706ee95d79aa",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779207000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "f755dfdc-16bd-4dc4-a7b6-121ccde22fc2",
+                "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The task is to SSH to autodl-5090-c (not autodl-5090) and read WNUT-17 signal analysis results. Let me start by finding and reading the relevant files on the server.",
+              "signature": "EuECClkIDRgCKkA/5ODHzOmhH6Q/l7Sac2NaODhwj3cs5hdFBxMFoI4KB7qkwTQqeke7ydEXYYoNZkoxRFOR1BgHXuoFQk4KpLWmMg9jbGF1ZGUtb3B1cy00LTY4ABIMh3yQ0o4YY5z58G21GgwzrcC+fNktsKIkvh0iMNZ75+IwABH8W2JgNuKcwOqNEl5jEYcoMox671yva2tGs0AY+CpC6dF4p6CsO7POTiq1AaanRt1q9+5yv+o17Zy24U3tnfBPYn60L0oBfMGGDC9DB6qNWarqreN/w/CQaf4g2uPLhD1LzXA8zdY1qO/gLoeg6mxuLMGre/jzxfDgUEPoGLqNA567WqCX51Itta5OIpyqgEjRGJXq92IzKDf1+NLW55AlljoUBxKAXmLYFNlipKWsuaRZ+ylONY5OTbe8xG7j65yMZTPPiAgNz+ZDIk0VE1ZDl6TFTdICel7IxOkpKvFs9a0YAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "5d2091fa-0646-405d-af84-6550ef33e023",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014ja7oD4feMids1NC137iBo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13202,
+                "cache_read_input_tokens": 11701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13202
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014KqqFzyqTNdmifEg5F8DdR",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "7cf9f0fa-1ea4-4de9-bbe7-4917cd72cb6e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014ja7oD4feMids1NC137iBo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13202,
+                "cache_read_input_tokens": 11701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13202
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T11:26:47.072Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_014KqqFzyqTNdmifEg5F8DdR",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "fca5670f-055b-4cc3-813f-ce2442b7fd7f",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "开始搜索 WNUT-17 输出文件和日志。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "e36b86af-5ad1-4ff6-b936-82df56f2c113",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MXHvapHz7mD4XogwdQHkpZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 732,
+                "cache_read_input_tokens": 24903,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 732
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BRP7WBcHXzzMTJnkGMtbD2",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090-c",
+                "command": "find /root/autodl-tmp/struct_self_consist_ie/output/wnut17/ -name \"*.json\" -ls",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "acc2196e-d5e0-4f05-8b21-e3a6d6940ed3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MXHvapHz7mD4XogwdQHkpZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 732,
+                "cache_read_input_tokens": 24903,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 732
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CvafBfdWpa7Xzp79N8TZpu",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090-c",
+                "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/wnut17/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "4fc5f90c-2a73-4f62-a996-730269b01347",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MXHvapHz7mD4XogwdQHkpZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 732,
+                "cache_read_input_tokens": 24903,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 732
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T11:26:58.873Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BRP7WBcHXzzMTJnkGMtbD2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"27927053323      4 -rw-r--r--   1 root     root         1798 May 19 18:19 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/report.json\\\\n27927053338      8 -rw-r--r--   1 root     root         4344 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/results.json\\\\n27927053336      4 -rw-r--r--   1 root     root          973 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/entity_construction.json\\\\n26859481123      4 -rw-r--r--   1 root     root         1797 May 19 18:21 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed123/report.json\\\\n26859481135      8 -rw-r--r--   1 root     root         4308 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed123/results.json\\\\n26859481133      4 -rw-r--r--   1 root     root          970 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed123/entity_construction.json\\\\n13966219121      4 -rw-r--r--   1 root     root         1794 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/report.json\\\\n13966219122      8 -rw-r--r--   1 root     root         4304 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/results.json\\\\n13966219123      4 -rw-r--r--   1 root     root          969 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/entity_construction.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.65}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "75171899-5b0b-4773-bda9-2376024bc1b9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"27927053323      4 -rw-r--r--   1 root     root         1798 May 19 18:19 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/report.json\\\\n27927053338      8 -rw-r--r--   1 root     root         4344 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/results.json\\\\n27927053336      4 -rw-r--r--   1 root     root          973 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/entity_construction.json\\\\n26859481123      4 -rw-r--r--   1 root     root         1797 May 19 18:21 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed123/report.json\\\\n26859481135      8 -rw-r--r--   1 root     root         4308 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed123/results.json\\\\n26859481133      4 -rw-r--r--   1 root     root          970 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed123/entity_construction.json\\\\n13966219121      4 -rw-r--r--   1 root     root         1794 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/report.json\\\\n13966219122      8 -rw-r--r--   1 root     root         4304 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/results.json\\\\n13966219123      4 -rw-r--r--   1 root     root          969 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/entity_construction.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.65}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"27927053323      4 -rw-r--r--   1 root     root         1798 May 19 18:19 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/report.json\\n27927053338      8 -rw-r--r--   1 root     root         4344 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/results.json\\n27927053336      4 -rw-r--r--   1 root     root          973 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/entity_construction.json\\n26859481123      4 -rw-r--r--   1 root     root         1797 May 19 18:21 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed123/report.json\\n26859481135      8 -rw-r--r--   1 root     root         4308 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed123/results.json\\n26859481133      4 -rw-r--r--   1 root     root          970 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed123/entity_construction.json\\n13966219121      4 -rw-r--r--   1 root     root         1794 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/report.json\\n13966219122      8 -rw-r--r--   1 root     root         4304 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/results.json\\n13966219123      4 -rw-r--r--   1 root     root          969 May 19 18:23 /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/entity_construction.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.65}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018zXTkaTHQhS6hzoGp4vQcn",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090-c",
+                "command": "tail -200 /root/autodl-tmp/struct_self_consist_ie/logs/exp_wnut17_7b_pipeline.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "595c1e79-7f50-4b11-adfb-502959b8d39e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MXHvapHz7mD4XogwdQHkpZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 732,
+                "cache_read_input_tokens": 24903,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 732
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T11:26:59.720Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CvafBfdWpa7Xzp79N8TZpu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 5 root root  105 May 19 18:21 .\\\\ndrwxr-xr-x 9 root root 4096 May 19 17:57 ..\\\\ndrwxr-xr-x 2 root root  118 May 19 18:23 qwen25_7b_n8_seed123\\\\ndrwxr-xr-x 2 root root  118 May 19 18:23 qwen25_7b_n8_seed42\\\\ndrwxr-xr-x 2 root root  118 May 19 18:23 qwen25_7b_n8_seed456\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "0a5bc61a-2de1-4186-8481-c6ff754fae04",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 5 root root  105 May 19 18:21 .\\\\ndrwxr-xr-x 9 root root 4096 May 19 17:57 ..\\\\ndrwxr-xr-x 2 root root  118 May 19 18:23 qwen25_7b_n8_seed123\\\\ndrwxr-xr-x 2 root root  118 May 19 18:23 qwen25_7b_n8_seed42\\\\ndrwxr-xr-x 2 root root  118 May 19 18:23 qwen25_7b_n8_seed456\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 5 root root  105 May 19 18:21 .\\ndrwxr-xr-x 9 root root 4096 May 19 17:57 ..\\ndrwxr-xr-x 2 root root  118 May 19 18:23 qwen25_7b_n8_seed123\\ndrwxr-xr-x 2 root root  118 May 19 18:23 qwen25_7b_n8_seed42\\ndrwxr-xr-x 2 root root  118 May 19 18:23 qwen25_7b_n8_seed456\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T11:27:00.610Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018zXTkaTHQhS6hzoGp4vQcn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Few-NERD   | 0.4524 | 0.5154 | +6.3pp | -0.487 | -0.90pp\\\\n  CoNLL      | 0.9079 | 0.9483 | +4.0pp | 0.302 | -1.05pp\\\\n\\\\n======================================================================\\\\n6. ENTITY TYPE GROUPED ANALYSIS\\\\n======================================================================\\\\n  Type                 |     N |  Greedy |  Oracle |  LP Sel |    LP Δ | Zero%\\\\n  ---------------------+-------+---------+---------+---------+---------+------\\\\n  person               |   330 | 0.5415 | 0.5855 | 0.5377 | -0.38pp | 36.7% <-\\\\n  location             |   125 | 0.5698 | 0.6592 | 0.5653 | -0.45pp | 31.2% <-\\\\n  creative-work        |   123 | 0.3798 | 0.4615 | 0.3721 | -0.77pp | 50.4% <-\\\\n  group                |   121 | 0.3829 | 0.4663 | 0.3691 | -1.38pp | 49.6% <-\\\\n  product              |    97 | 0.2935 | 0.3577 | 0.2809 | -1.26pp | 63.9% <-\\\\n  corporation          |    63 | 0.4870 | 0.5589 | 0.4556 | -3.15pp | 41.3% <-\\\\n\\\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/results.json\\\\n--- Analyzing seed 123 ---\\\\nLoaded 1287 instances, 689 after filtering gold-empty, 8 samples each\\\\n  Processed 200/689\\\\n  Processed 400/689\\\\n  Processed 600/689\\\\n\\\\n======================================================================\\\\n1. BASIC METRICS\\\\n======================================================================\\\\n  Greedy macro F1:   0.4518  (pilot ref: 0.804)\\\\n  Oracle macro F1:   0.5438\\\\n  Headroom:          9.21pp\\\\n  Zero-F1 rate:      47.8%  (pilot ref: 14.2%)\\\\n  Degeneracy rate:   66.9%\\\\n  LP range (median): 0.0529\\\\n\\\\n======================================================================\\\\n2. QE METRICS (AUROC [diagnostic only] & Spearman)\\\\n======================================================================\\\\n  Signal |   AUROC |  ρ (global) |   ρ (cond)\\\\n  -------+---------+-------------+-----------\\\\n  LP     |  0.4876 |     -0.4033 |     0.0357\\\\n  SJ     |  0.4976 |      0.0389 |     0.4122\\\\n  FK     |  0.4972 |      0.0538 |     0.4276\\\\n  EM     |  0.4963 |      0.0314 |     0.4055\\\\n  VC     |  0.5099 |      0.7326 |     0.4650\\\\n\\\\n======================================================================\\\\n3. SELECTION METRICS\\\\n======================================================================\\\\n  Signal |  Sel F1 |   Δ (pp)\\\\n  -------+---------+---------\\\\n  LP     | 0.4521 | +0.03pp\\\\n  SJ     | 0.4483 | -0.35pp\\\\n  FK     | 0.4475 | -0.43pp\\\\n  EM     | 0.4426 | -0.91pp\\\\n  VC     | 0.4782 | +2.64pp\\\\n\\\\n======================================================================\\\\n4. BOOTSTRAP CI (B=5000)\\\\n======================================================================\\\\n  Signal |   Mean Δ |             95% CI |    p-value | Sig?\\\\n  -------+----------+--------------------+------------+------\\\\n  LP     |  +0.0369 | [-0.7250, +0.8084] | 0.449400 | \\\\n  SJ     |  -0.3572 | [-1.2828, +0.5267] | 0.773600 | \\\\n  FK     |  -0.4188 | [-1.3728, +0.4826] | 0.805400 | \\\\n  EM     |  -0.9156 | [-1.9620, +0.0721] | 0.964400 | \\\\n  VC     |  +2.6409 | [+1.2555, +4.0834] | 0.000000 | ***\\\\n\\\\n======================================================================\\\\n5. CROSS-DATASET COMPARISON\\\\n======================================================================\\\\n  Dataset    |  Greedy |  Oracle |  Hdroom |   LP ρ |    LP Δ\\\\n  -----------+---------+---------+---------+--------+--------\\\\n  SciERC     | 0.6439 | 0.7758 | +13.2pp | 0.205 | +0.61pp\\\\n  Few-NERD   | 0.4518 | 0.5438 | +9.2pp | -0.403 | +0.03pp\\\\n  CoNLL      | 0.9079 | 0.9483 | +4.0pp | 0.302 | -1.05pp\\\\n\\\\n======================================================================\\\\n6. ENTITY TYPE GROUPED ANALYSIS\\\\n======================================================================\\\\n  Type                 |     N |  Greedy |  Oracle |  LP Sel |    LP Δ | Zero%\\\\n  ---------------------+-------+---------+---------+---------+---------+------\\\\n  person               |   330 | 0.5392 | 0.6098 | 0.5398 | +0.06pp | 37.0% <-\\\\n  location             |   125 | 0.5794 | 0.6872 | 0.5645 | -1.49pp | 30.4% <-\\\\n  creative-work        |   123 | 0.38\\\\n\\\\n... [截断: 输出过长，省略 1259 字符] ...\\\\n\\\\n|      0.0016 |     0.3542\\\\n  FK     |  0.4954 |      0.0101 |     0.3651\\\\n  EM     |  0.4935 |     -0.0155 |     0.3259\\\\n  VC     |  0.5174 |      0.7235 |     0.4331\\\\n\\\\n======================================================================\\\\n3. SELECTION METRICS\\\\n======================================================================\\\\n  Signal |  Sel F1 |   Δ (pp)\\\\n  -------+---------+---------\\\\n  LP     | 0.4480 | -0.47pp\\\\n  SJ     | 0.4557 | +0.30pp\\\\n  FK     | 0.4545 | +0.19pp\\\\n  EM     | 0.4489 | -0.37pp\\\\n  VC     | 0.4780 | +2.54pp\\\\n\\\\n======================================================================\\\\n4. BOOTSTRAP CI (B=5000)\\\\n======================================================================\\\\n  Signal |   Mean Δ |             95% CI |    p-value | Sig?\\\\n  -------+----------+--------------------+------------+------\\\\n  LP     |  -0.4666 | [-1.3601, +0.3632] | 0.859000 | \\\\n  SJ     |  +0.3126 | [-0.6353, +1.2762] | 0.259600 | \\\\n  FK     |  +0.1768 | [-0.7975, +1.1554] | 0.355800 | \\\\n  EM     |  -0.3715 | [-1.4815, +0.7110] | 0.741400 | \\\\n  VC     |  +2.5262 | [+1.0711, +4.0574] | 0.000400 | ***\\\\n\\\\n======================================================================\\\\n5. CROSS-DATASET COMPARISON\\\\n======================================================================\\\\n  Dataset    |  Greedy |  Oracle |  Hdroom |   LP ρ |    LP Δ\\\\n  -----------+---------+---------+---------+--------+--------\\\\n  SciERC     | 0.6439 | 0.7758 | +13.2pp | 0.205 | +0.61pp\\\\n  Few-NERD   | 0.4526 | 0.5351 | +8.2pp | -0.448 | -0.47pp\\\\n  CoNLL      | 0.9079 | 0.9483 | +4.0pp | 0.302 | -1.05pp\\\\n\\\\n======================================================================\\\\n6. ENTITY TYPE GROUPED ANALYSIS\\\\n======================================================================\\\\n  Type                 |     N |  Greedy |  Oracle |  LP Sel |    LP Δ | Zero%\\\\n  ---------------------+-------+---------+---------+---------+---------+------\\\\n  person               |   330 | 0.5420 | 0.5959 | 0.5393 | -0.27pp | 36.7% <-\\\\n  location             |   125 | 0.5794 | 0.6829 | 0.5699 | -0.95pp | 30.4% <-\\\\n  creative-work        |   123 | 0.3715 | 0.4840 | 0.3790 | +0.76pp | 51.2% <-\\\\n  group                |   121 | 0.3826 | 0.4798 | 0.3748 | -0.78pp | 49.6% <-\\\\n  product              |    97 | 0.2933 | 0.4077 | 0.2884 | -0.49pp | 63.9% <-\\\\n  corporation          |    63 | 0.4870 | 0.5980 | 0.4522 | -3.49pp | 41.3% <-\\\\n\\\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/results.json\\\\n=== Tue May 19 18:23:22 CST 2026 === Phase 5: Entity Construction ===\\\\n--- Entity construction seed 42 ---\\\\nLoaded 689 instances (gold-filtered), theta=0.250\\\\n\\\\nGreedy:       0.4524\\\\nLP Selection: 0.4434 (-0.90pp)\\\\nMV (0.5):     0.4356 (-1.68pp)\\\\nConstruction: 0.4439 (-0.84pp)\\\\nOracle:       0.5154 (+6.30pp)\\\\n\\\\nConstruction vs Greedy: -0.84pp [-1.91, +0.14] p=0.9539\\\\nLP Selection vs Greedy: -0.90pp [-1.86, -0.04] p=0.9801\\\\n\\\\nSaved to /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/entity_construction.json\\\\n--- Entity construction seed 123 ---\\\\nLoaded 689 instances (gold-filtered), theta=0.250\\\\n\\\\nGreedy:       0.4518\\\\nLP Selection: 0.4521 (+0.03pp)\\\\nMV (0.5):     0.4574 (+0.56pp)\\\\nConstruction: 0.4579 (+0.61pp)\\\\nOracle:       0.5438 (+9.21pp)\\\\n\\\\nConstruction vs Greedy: +0.61pp [-0.23, +1.47] p=0.0771\\\\nLP Selection vs Greedy: +0.03pp [-0.72, +0.80] p=0.4579\\\\n\\\\nSaved to /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed123/entity_construction.json\\\\n--- Entity construction seed 456 ---\\\\nLoaded 689 instances (gold-filtered), theta=0.250\\\\n\\\\nGreedy:       0.4526\\\\nLP Selection: 0.4480 (-0.47pp)\\\\nMV (0.5):     0.4542 (+0.15pp)\\\\nConstruction: 0.4583 (+0.57pp)\\\\nOracle:       0.5351 (+8.25pp)\\\\n\\\\nConstruction vs Greedy: +0.57pp [-0.39, +1.54] p=0.1204\\\\nLP Selection vs Greedy: -0.47pp [-1.36, +0.37] p=0.8556\\\\n\\\\nSaved to /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/entity_construction.json\\\\n=== Tue May 19 18:23:24 CST 2026 === ALL PHASES COMPLETE ===\\\\nPIPELINE_EXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "8ba637c1-761e-4137-80af-612d76a32afb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Few-NERD   | 0.4524 | 0.5154 | +6.3pp | -0.487 | -0.90pp\\\\n  CoNLL      | 0.9079 | 0.9483 | +4.0pp | 0.302 | -1.05pp\\\\n\\\\n======================================================================\\\\n6. ENTITY TYPE GROUPED ANALYSIS\\\\n======================================================================\\\\n  Type                 |     N |  Greedy |  Oracle |  LP Sel |    LP Δ | Zero%\\\\n  ---------------------+-------+---------+---------+---------+---------+------\\\\n  person               |   330 | 0.5415 | 0.5855 | 0.5377 | -0.38pp | 36.7% <-\\\\n  location             |   125 | 0.5698 | 0.6592 | 0.5653 | -0.45pp | 31.2% <-\\\\n  creative-work        |   123 | 0.3798 | 0.4615 | 0.3721 | -0.77pp | 50.4% <-\\\\n  group                |   121 | 0.3829 | 0.4663 | 0.3691 | -1.38pp | 49.6% <-\\\\n  product              |    97 | 0.2935 | 0.3577 | 0.2809 | -1.26pp | 63.9% <-\\\\n  corporation          |    63 | 0.4870 | 0.5589 | 0.4556 | -3.15pp | 41.3% <-\\\\n\\\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/results.json\\\\n--- Analyzing seed 123 ---\\\\nLoaded 1287 instances, 689 after filtering gold-empty, 8 samples each\\\\n  Processed 200/689\\\\n  Processed 400/689\\\\n  Processed 600/689\\\\n\\\\n======================================================================\\\\n1. BASIC METRICS\\\\n======================================================================\\\\n  Greedy macro F1:   0.4518  (pilot ref: 0.804)\\\\n  Oracle macro F1:   0.5438\\\\n  Headroom:          9.21pp\\\\n  Zero-F1 rate:      47.8%  (pilot ref: 14.2%)\\\\n  Degeneracy rate:   66.9%\\\\n  LP range (median): 0.0529\\\\n\\\\n======================================================================\\\\n2. QE METRICS (AUROC [diagnostic only] & Spearman)\\\\n======================================================================\\\\n  Signal |   AUROC |  ρ (global) |   ρ (cond)\\\\n  -------+---------+-------------+-----------\\\\n  LP     |  0.4876 |     -0.4033 |     0.0357\\\\n  SJ     |  0.4976 |      0.0389 |     0.4122\\\\n  FK     |  0.4972 |      0.0538 |     0.4276\\\\n  EM     |  0.4963 |      0.0314 |     0.4055\\\\n  VC     |  0.5099 |      0.7326 |     0.4650\\\\n\\\\n======================================================================\\\\n3. SELECTION METRICS\\\\n======================================================================\\\\n  Signal |  Sel F1 |   Δ (pp)\\\\n  -------+---------+---------\\\\n  LP     | 0.4521 | +0.03pp\\\\n  SJ     | 0.4483 | -0.35pp\\\\n  FK     | 0.4475 | -0.43pp\\\\n  EM     | 0.4426 | -0.91pp\\\\n  VC     | 0.4782 | +2.64pp\\\\n\\\\n======================================================================\\\\n4. BOOTSTRAP CI (B=5000)\\\\n======================================================================\\\\n  Signal |   Mean Δ |             95% CI |    p-value | Sig?\\\\n  -------+----------+--------------------+------------+------\\\\n  LP     |  +0.0369 | [-0.7250, +0.8084] | 0.449400 | \\\\n  SJ     |  -0.3572 | [-1.2828, +0.5267] | 0.773600 | \\\\n  FK     |  -0.4188 | [-1.3728, +0.4826] | 0.805400 | \\\\n  EM     |  -0.9156 | [-1.9620, +0.0721] | 0.964400 | \\\\n  VC     |  +2.6409 | [+1.2555, +4.0834] | 0.000000 | ***\\\\n\\\\n======================================================================\\\\n5. CROSS-DATASET COMPARISON\\\\n======================================================================\\\\n  Dataset    |  Greedy |  Oracle |  Hdroom |   LP ρ |    LP Δ\\\\n  -----------+---------+---------+---------+--------+--------\\\\n  SciERC     | 0.6439 | 0.7758 | +13.2pp | 0.205 | +0.61pp\\\\n  Few-NERD   | 0.4518 | 0.5438 | +9.2pp | -0.403 | +0.03pp\\\\n  CoNLL      | 0.9079 | 0.9483 | +4.0pp | 0.302 | -1.05pp\\\\n\\\\n======================================================================\\\\n6. ENTITY TYPE GROUPED ANALYSIS\\\\n======================================================================\\\\n  Type                 |     N |  Greedy |  Oracle |  LP Sel |    LP Δ | Zero%\\\\n  ---------------------+-------+---------+---------+---------+---------+------\\\\n  person               |   330 | 0.5392 | 0.6098 | 0.5398 | +0.06pp | 37.0% <-\\\\n  location             |   125 | 0.5794 | 0.6872 | 0.5645 | -1.49pp | 30.4% <-\\\\n  creative-work        |   123 | 0.38\\\\n\\\\n... [截断: 输出过长，省略 1259 字符] ...\\\\n\\\\n|      0.0016 |     0.3542\\\\n  FK     |  0.4954 |      0.0101 |     0.3651\\\\n  EM     |  0.4935 |     -0.0155 |     0.3259\\\\n  VC     |  0.5174 |      0.7235 |     0.4331\\\\n\\\\n======================================================================\\\\n3. SELECTION METRICS\\\\n======================================================================\\\\n  Signal |  Sel F1 |   Δ (pp)\\\\n  -------+---------+---------\\\\n  LP     | 0.4480 | -0.47pp\\\\n  SJ     | 0.4557 | +0.30pp\\\\n  FK     | 0.4545 | +0.19pp\\\\n  EM     | 0.4489 | -0.37pp\\\\n  VC     | 0.4780 | +2.54pp\\\\n\\\\n======================================================================\\\\n4. BOOTSTRAP CI (B=5000)\\\\n======================================================================\\\\n  Signal |   Mean Δ |             95% CI |    p-value | Sig?\\\\n  -------+----------+--------------------+------------+------\\\\n  LP     |  -0.4666 | [-1.3601, +0.3632] | 0.859000 | \\\\n  SJ     |  +0.3126 | [-0.6353, +1.2762] | 0.259600 | \\\\n  FK     |  +0.1768 | [-0.7975, +1.1554] | 0.355800 | \\\\n  EM     |  -0.3715 | [-1.4815, +0.7110] | 0.741400 | \\\\n  VC     |  +2.5262 | [+1.0711, +4.0574] | 0.000400 | ***\\\\n\\\\n======================================================================\\\\n5. CROSS-DATASET COMPARISON\\\\n======================================================================\\\\n  Dataset    |  Greedy |  Oracle |  Hdroom |   LP ρ |    LP Δ\\\\n  -----------+---------+---------+---------+--------+--------\\\\n  SciERC     | 0.6439 | 0.7758 | +13.2pp | 0.205 | +0.61pp\\\\n  Few-NERD   | 0.4526 | 0.5351 | +8.2pp | -0.448 | -0.47pp\\\\n  CoNLL      | 0.9079 | 0.9483 | +4.0pp | 0.302 | -1.05pp\\\\n\\\\n======================================================================\\\\n6. ENTITY TYPE GROUPED ANALYSIS\\\\n======================================================================\\\\n  Type                 |     N |  Greedy |  Oracle |  LP Sel |    LP Δ | Zero%\\\\n  ---------------------+-------+---------+---------+---------+---------+------\\\\n  person               |   330 | 0.5420 | 0.5959 | 0.5393 | -0.27pp | 36.7% <-\\\\n  location             |   125 | 0.5794 | 0.6829 | 0.5699 | -0.95pp | 30.4% <-\\\\n  creative-work        |   123 | 0.3715 | 0.4840 | 0.3790 | +0.76pp | 51.2% <-\\\\n  group                |   121 | 0.3826 | 0.4798 | 0.3748 | -0.78pp | 49.6% <-\\\\n  product              |    97 | 0.2933 | 0.4077 | 0.2884 | -0.49pp | 63.9% <-\\\\n  corporation          |    63 | 0.4870 | 0.5980 | 0.4522 | -3.49pp | 41.3% <-\\\\n\\\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/results.json\\\\n=== Tue May 19 18:23:22 CST 2026 === Phase 5: Entity Construction ===\\\\n--- Entity construction seed 42 ---\\\\nLoaded 689 instances (gold-filtered), theta=0.250\\\\n\\\\nGreedy:       0.4524\\\\nLP Selection: 0.4434 (-0.90pp)\\\\nMV (0.5):     0.4356 (-1.68pp)\\\\nConstruction: 0.4439 (-0.84pp)\\\\nOracle:       0.5154 (+6.30pp)\\\\n\\\\nConstruction vs Greedy: -0.84pp [-1.91, +0.14] p=0.9539\\\\nLP Selection vs Greedy: -0.90pp [-1.86, -0.04] p=0.9801\\\\n\\\\nSaved to /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/entity_construction.json\\\\n--- Entity construction seed 123 ---\\\\nLoaded 689 instances (gold-filtered), theta=0.250\\\\n\\\\nGreedy:       0.4518\\\\nLP Selection: 0.4521 (+0.03pp)\\\\nMV (0.5):     0.4574 (+0.56pp)\\\\nConstruction: 0.4579 (+0.61pp)\\\\nOracle:       0.5438 (+9.21pp)\\\\n\\\\nConstruction vs Greedy: +0.61pp [-0.23, +1.47] p=0.0771\\\\nLP Selection vs Greedy: +0.03pp [-0.72, +0.80] p=0.4579\\\\n\\\\nSaved to /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed123/entity_construction.json\\\\n--- Entity construction seed 456 ---\\\\nLoaded 689 instances (gold-filtered), theta=0.250\\\\n\\\\nGreedy:       0.4526\\\\nLP Selection: 0.4480 (-0.47pp)\\\\nMV (0.5):     0.4542 (+0.15pp)\\\\nConstruction: 0.4583 (+0.57pp)\\\\nOracle:       0.5351 (+8.25pp)\\\\n\\\\nConstruction vs Greedy: +0.57pp [-0.39, +1.54] p=0.1204\\\\nLP Selection vs Greedy: -0.47pp [-1.36, +0.37] p=0.8556\\\\n\\\\nSaved to /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/entity_construction.json\\\\n=== Tue May 19 18:23:24 CST 2026 === ALL PHASES COMPLETE ===\\\\nPIPELINE_EXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  Few-NERD   | 0.4524 | 0.5154 | +6.3pp | -0.487 | -0.90pp\\n  CoNLL      | 0.9079 | 0.9483 | +4.0pp | 0.302 | -1.05pp\\n\\n======================================================================\\n6. ENTITY TYPE GROUPED ANALYSIS\\n======================================================================\\n  Type                 |     N |  Greedy |  Oracle |  LP Sel |    LP Δ | Zero%\\n  ---------------------+-------+---------+---------+---------+---------+------\\n  person               |   330 | 0.5415 | 0.5855 | 0.5377 | -0.38pp | 36.7% <-\\n  location             |   125 | 0.5698 | 0.6592 | 0.5653 | -0.45pp | 31.2% <-\\n  creative-work        |   123 | 0.3798 | 0.4615 | 0.3721 | -0.77pp | 50.4% <-\\n  group                |   121 | 0.3829 | 0.4663 | 0.3691 | -1.38pp | 49.6% <-\\n  product              |    97 | 0.2935 | 0.3577 | 0.2809 | -1.26pp | 63.9% <-\\n  corporation          |    63 | 0.4870 | 0.5589 | 0.4556 | -3.15pp | 41.3% <-\\n\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/results.json\\n--- Analyzing seed 123 ---\\nLoaded 1287 instances, 689 after filtering gold-empty, 8 samples each\\n  Processed 200/689\\n  Processed 400/689\\n  Processed 600/689\\n\\n======================================================================\\n1. BASIC METRICS\\n======================================================================\\n  Greedy macro F1:   0.4518  (pilot ref: 0.804)\\n  Oracle macro F1:   0.5438\\n  Headroom:          9.21pp\\n  Zero-F1 rate:      47.8%  (pilot ref: 14.2%)\\n  Degeneracy rate:   66.9%\\n  LP range (median): 0.0529\\n\\n======================================================================\\n2. QE METRICS (AUROC [diagnostic only] & Spearman)\\n======================================================================\\n  Signal |   AUROC |  ρ (global) |   ρ (cond)\\n  -------+---------+-------------+-----------\\n  LP     |  0.4876 |     -0.4033 |     0.0357\\n  SJ     |  0.4976 |      0.0389 |     0.4122\\n  FK     |  0.4972 |      0.0538 |     0.4276\\n  EM     |  0.4963 |      0.0314 |     0.4055\\n  VC     |  0.5099 |      0.7326 |     0.4650\\n\\n======================================================================\\n3. SELECTION METRICS\\n======================================================================\\n  Signal |  Sel F1 |   Δ (pp)\\n  -------+---------+---------\\n  LP     | 0.4521 | +0.03pp\\n  SJ     | 0.4483 | -0.35pp\\n  FK     | 0.4475 | -0.43pp\\n  EM     | 0.4426 | -0.91pp\\n  VC     | 0.4782 | +2.64pp\\n\\n======================================================================\\n4. BOOTSTRAP CI (B=5000)\\n======================================================================\\n  Signal |   Mean Δ |             95% CI |    p-value | Sig?\\n  -------+----------+--------------------+------------+------\\n  LP     |  +0.0369 | [-0.7250, +0.8084] | 0.449400 | \\n  SJ     |  -0.3572 | [-1.2828, +0.5267] | 0.773600 | \\n  FK     |  -0.4188 | [-1.3728, +0.4826] | 0.805400 | \\n  EM     |  -0.9156 | [-1.9620, +0.0721] | 0.964400 | \\n  VC     |  +2.6409 | [+1.2555, +4.0834] | 0.000000 | ***\\n\\n======================================================================\\n5. CROSS-DATASET COMPARISON\\n======================================================================\\n  Dataset    |  Greedy |  Oracle |  Hdroom |   LP ρ |    LP Δ\\n  -----------+---------+---------+---------+--------+--------\\n  SciERC     | 0.6439 | 0.7758 | +13.2pp | 0.205 | +0.61pp\\n  Few-NERD   | 0.4518 | 0.5438 | +9.2pp | -0.403 | +0.03pp\\n  CoNLL      | 0.9079 | 0.9483 | +4.0pp | 0.302 | -1.05pp\\n\\n======================================================================\\n6. ENTITY TYPE GROUPED ANALYSIS\\n======================================================================\\n  Type                 |     N |  Greedy |  Oracle |  LP Sel |    LP Δ | Zero%\\n  ---------------------+-------+---------+---------+---------+---------+------\\n  person               |   330 | 0.5392 | 0.6098 | 0.5398 | +0.06pp | 37.0% <-\\n  location             |   125 | 0.5794 | 0.6872 | 0.5645 | -1.49pp | 30.4% <-\\n  creative-work        |   123 | 0.38\\n\\n... [截断: 输出过长，省略 1259 字符] ...\\n\\n|      0.0016 |     0.3542\\n  FK     |  0.4954 |      0.0101 |     0.3651\\n  EM     |  0.4935 |     -0.0155 |     0.3259\\n  VC     |  0.5174 |      0.7235 |     0.4331\\n\\n======================================================================\\n3. SELECTION METRICS\\n======================================================================\\n  Signal |  Sel F1 |   Δ (pp)\\n  -------+---------+---------\\n  LP     | 0.4480 | -0.47pp\\n  SJ     | 0.4557 | +0.30pp\\n  FK     | 0.4545 | +0.19pp\\n  EM     | 0.4489 | -0.37pp\\n  VC     | 0.4780 | +2.54pp\\n\\n======================================================================\\n4. BOOTSTRAP CI (B=5000)\\n======================================================================\\n  Signal |   Mean Δ |             95% CI |    p-value | Sig?\\n  -------+----------+--------------------+------------+------\\n  LP     |  -0.4666 | [-1.3601, +0.3632] | 0.859000 | \\n  SJ     |  +0.3126 | [-0.6353, +1.2762] | 0.259600 | \\n  FK     |  +0.1768 | [-0.7975, +1.1554] | 0.355800 | \\n  EM     |  -0.3715 | [-1.4815, +0.7110] | 0.741400 | \\n  VC     |  +2.5262 | [+1.0711, +4.0574] | 0.000400 | ***\\n\\n======================================================================\\n5. CROSS-DATASET COMPARISON\\n======================================================================\\n  Dataset    |  Greedy |  Oracle |  Hdroom |   LP ρ |    LP Δ\\n  -----------+---------+---------+---------+--------+--------\\n  SciERC     | 0.6439 | 0.7758 | +13.2pp | 0.205 | +0.61pp\\n  Few-NERD   | 0.4526 | 0.5351 | +8.2pp | -0.448 | -0.47pp\\n  CoNLL      | 0.9079 | 0.9483 | +4.0pp | 0.302 | -1.05pp\\n\\n======================================================================\\n6. ENTITY TYPE GROUPED ANALYSIS\\n======================================================================\\n  Type                 |     N |  Greedy |  Oracle |  LP Sel |    LP Δ | Zero%\\n  ---------------------+-------+---------+---------+---------+---------+------\\n  person               |   330 | 0.5420 | 0.5959 | 0.5393 | -0.27pp | 36.7% <-\\n  location             |   125 | 0.5794 | 0.6829 | 0.5699 | -0.95pp | 30.4% <-\\n  creative-work        |   123 | 0.3715 | 0.4840 | 0.3790 | +0.76pp | 51.2% <-\\n  group                |   121 | 0.3826 | 0.4798 | 0.3748 | -0.78pp | 49.6% <-\\n  product              |    97 | 0.2933 | 0.4077 | 0.2884 | -0.49pp | 63.9% <-\\n  corporation          |    63 | 0.4870 | 0.5980 | 0.4522 | -3.49pp | 41.3% <-\\n\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/results.json\\n=== Tue May 19 18:23:22 CST 2026 === Phase 5: Entity Construction ===\\n--- Entity construction seed 42 ---\\nLoaded 689 instances (gold-filtered), theta=0.250\\n\\nGreedy:       0.4524\\nLP Selection: 0.4434 (-0.90pp)\\nMV (0.5):     0.4356 (-1.68pp)\\nConstruction: 0.4439 (-0.84pp)\\nOracle:       0.5154 (+6.30pp)\\n\\nConstruction vs Greedy: -0.84pp [-1.91, +0.14] p=0.9539\\nLP Selection vs Greedy: -0.90pp [-1.86, -0.04] p=0.9801\\n\\nSaved to /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/entity_construction.json\\n--- Entity construction seed 123 ---\\nLoaded 689 instances (gold-filtered), theta=0.250\\n\\nGreedy:       0.4518\\nLP Selection: 0.4521 (+0.03pp)\\nMV (0.5):     0.4574 (+0.56pp)\\nConstruction: 0.4579 (+0.61pp)\\nOracle:       0.5438 (+9.21pp)\\n\\nConstruction vs Greedy: +0.61pp [-0.23, +1.47] p=0.0771\\nLP Selection vs Greedy: +0.03pp [-0.72, +0.80] p=0.4579\\n\\nSaved to /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed123/entity_construction.json\\n--- Entity construction seed 456 ---\\nLoaded 689 instances (gold-filtered), theta=0.250\\n\\nGreedy:       0.4526\\nLP Selection: 0.4480 (-0.47pp)\\nMV (0.5):     0.4542 (+0.15pp)\\nConstruction: 0.4583 (+0.57pp)\\nOracle:       0.5351 (+8.25pp)\\n\\nConstruction vs Greedy: +0.57pp [-0.39, +1.54] p=0.1204\\nLP Selection vs Greedy: -0.47pp [-1.36, +0.37] p=0.8556\\n\\nSaved to /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/entity_construction.json\\n=== Tue May 19 18:23:24 CST 2026 === ALL PHASES COMPLETE ===\\nPIPELINE_EXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, I have a lot of data already. Let me now read the individual results.json and report.json files for each seed to get the complete picture. I also need the seed 42 data which was partially visible in the log. Let me read all the JSON files.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "262545ff-9ef3-457b-b4b0-61ca15197b6c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175NPbACmPQhqssL73jVuvg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5642,
+                "cache_read_input_tokens": 24903,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5642
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "读取 3 个 seed 的完整 JSON 文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "43484ffe-2a2f-41cb-9ae3-f5fc679130d7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175NPbACmPQhqssL73jVuvg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5642,
+                "cache_read_input_tokens": 24903,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5642
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VDcqk1tdjFNyXybYZH7dJD",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090-c",
+                "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "5b35f28b-0bdb-40eb-9386-df9e8af21bab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175NPbACmPQhqssL73jVuvg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5642,
+                "cache_read_input_tokens": 24903,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5642
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T11:27:11.715Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VDcqk1tdjFNyXybYZH7dJD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"input\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/samples.jsonl\\\\\\\",\\\\n    \\\\\\\"n_total\\\\\\\": 1287,\\\\n    \\\\\\\"n_filtered\\\\\\\": 689,\\\\n    \\\\\\\"n_samples\\\\\\\": 8\\\\n  },\\\\n  \\\\\\\"basic\\\\\\\": {\\\\n    \\\\\\\"greedy_macro_f1\\\\\\\": 0.45239477503628445,\\\\n    \\\\\\\"oracle_macro_f1\\\\\\\": 0.5154444893922397,\\\\n    \\\\\\\"headroom_pp\\\\\\\": 6.3049714355955295,\\\\n    \\\\\\\"zero_f1_rate_pct\\\\\\\": 47.750362844702465,\\\\n    \\\\\\\"degeneracy_rate_pct\\\\\\\": 70.53701015965167,\\\\n    \\\\\\\"lp_range_median\\\\\\\": 0.04535666998566512\\\\n  },\\\\n  \\\\\\\"qe\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4998,\\\\n      \\\\\\\"spearman_global\\\\\\\": -0.4867,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.0,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.079,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.262812\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4979,\\\\n      \\\\\\\"spearman_global\\\\\\\": -0.0957,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.011997,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.1698,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.015456\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4971,\\\\n      \\\\\\\"spearman_global\\\\\\\": -0.0847,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.026184,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.1795,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.010413\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4957,\\\\n      \\\\\\\"spearman_global\\\\\\\": -0.097,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.010853,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.2025,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.003763\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.5142,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.7334,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.0,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.1959,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.005102\\\\n    }\\\\n  },\\\\n  \\\\\\\"selection\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4434,\\\\n      \\\\\\\"delta_pp\\\\\\\": -0.8958\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4351,\\\\n      \\\\\\\"delta_pp\\\\\\\": -1.7294\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4334,\\\\n      \\\\\\\"delta_pp\\\\\\\": -1.902\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4294,\\\\n      \\\\\\\"delta_pp\\\\\\\": -2.3015\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4599,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.749\\\\n    }\\\\n  },\\\\n  \\\\\\\"bootstrap\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -0.8887,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -1.8736,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": -0.0406,\\\\n      \\\\\\\"p_value\\\\\\\": 0.9788,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -1.7241,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -2.9605,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": -0.5484,\\\\n      \\\\\\\"p_value\\\\\\\": 0.9992,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -1.8847,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -3.1547,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": -0.6817,\\\\n      \\\\\\\"p_value\\\\\\\": 0.9994,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -2.3069,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -3.6933,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": -1.0828,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": 0.7443,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -0.4725,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 1.9651,\\\\n      \\\\\\\"p_value\\\\\\\": 0.1208,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_dataset\\\\\\\": {\\\\n    \\\\\\\"scierc\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"greedy\\\\\\\": 0.6439,\\\\n      \\\\\\\"oracle\\\\\\\": 0.7758,\\\\n      \\\\\\\"headroom\\\\\\\": 13.19,\\\\n      \\\\\\\"degen\\\\\\\": 17.8,\\\\n      \\\\\\\"lp_rho\\\\\\\": 0.205,\\\\n      \\\\\\\"lp_delta\\\\\\\": 0.61\\\\n    },\\\\n    \\\\\\\"fewnerd\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": 0.45239477503628445,\\\\n      \\\\\\\"oracle\\\\\\\": 0.5154444893922397,\\\\n      \\\\\\\"headroom\\\\\\\": 6.3049714355955295,\\\\n      \\\\\\\"lp_rho\\\\\\\": -0.4867,\\\\n      \\\\\\\"lp_delta\\\\\\\": -0.8958\\\\n    },\\\\n    \\\\\\\"conll\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2756,\\\\n      \\\\\\\"greedy\\\\\\\": 0.9079,\\\\n      \\\\\\\"oracle\\\\\\\": 0.9483,\\\\n      \\\\\\\"headroom\\\\\\\": 4.04,\\\\n      \\\\\\\"degen\\\\\\\": 59.1,\\\\n      \\\\\\\"lp_rho\\\\\\\": 0.302,\\\\n      \\\\\\\"lp_delta\\\\\\\": -1.05\\\\n    }\\\\n  },\\\\n  \\\\\\\"entity_types\\\\\\\": {\\\\n    \\\\\\\"corporation\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 63,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.487,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.5589,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.4556,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -3.1481,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 41.3\\\\n    },\\\\n    \\\\\\\"creative-work\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 123,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.3798,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.4615,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.3721,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -0.7666,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 50.4\\\\n    },\\\\n    \\\\\\\"group\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 121,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.3829,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.4663,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.3691,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -1.3765,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 49.6\\\\n    },\\\\n    \\\\\\\"location\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 125,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.5698,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.6592,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.5653,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -0.4533,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 31.2\\\\n    },\\\\n    \\\\\\\"person\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 330,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.5415,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.5855,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.5377,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -0.3818,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 36.7\\\\n    },\\\\n    \\\\\\\"product\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 97,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.2935,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.3577,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.2809,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -1.2641,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 63.9\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "bac810c7-7ac0-4483-ac1e-27144533d714",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"input\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/samples.jsonl\\\\\\\",\\\\n    \\\\\\\"n_total\\\\\\\": 1287,\\\\n    \\\\\\\"n_filtered\\\\\\\": 689,\\\\n    \\\\\\\"n_samples\\\\\\\": 8\\\\n  },\\\\n  \\\\\\\"basic\\\\\\\": {\\\\n    \\\\\\\"greedy_macro_f1\\\\\\\": 0.45239477503628445,\\\\n    \\\\\\\"oracle_macro_f1\\\\\\\": 0.5154444893922397,\\\\n    \\\\\\\"headroom_pp\\\\\\\": 6.3049714355955295,\\\\n    \\\\\\\"zero_f1_rate_pct\\\\\\\": 47.750362844702465,\\\\n    \\\\\\\"degeneracy_rate_pct\\\\\\\": 70.53701015965167,\\\\n    \\\\\\\"lp_range_median\\\\\\\": 0.04535666998566512\\\\n  },\\\\n  \\\\\\\"qe\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4998,\\\\n      \\\\\\\"spearman_global\\\\\\\": -0.4867,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.0,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.079,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.262812\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4979,\\\\n      \\\\\\\"spearman_global\\\\\\\": -0.0957,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.011997,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.1698,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.015456\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4971,\\\\n      \\\\\\\"spearman_global\\\\\\\": -0.0847,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.026184,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.1795,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.010413\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4957,\\\\n      \\\\\\\"spearman_global\\\\\\\": -0.097,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.010853,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.2025,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.003763\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.5142,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.7334,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.0,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.1959,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.005102\\\\n    }\\\\n  },\\\\n  \\\\\\\"selection\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4434,\\\\n      \\\\\\\"delta_pp\\\\\\\": -0.8958\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4351,\\\\n      \\\\\\\"delta_pp\\\\\\\": -1.7294\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4334,\\\\n      \\\\\\\"delta_pp\\\\\\\": -1.902\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4294,\\\\n      \\\\\\\"delta_pp\\\\\\\": -2.3015\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4599,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.749\\\\n    }\\\\n  },\\\\n  \\\\\\\"bootstrap\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -0.8887,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -1.8736,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": -0.0406,\\\\n      \\\\\\\"p_value\\\\\\\": 0.9788,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -1.7241,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -2.9605,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": -0.5484,\\\\n      \\\\\\\"p_value\\\\\\\": 0.9992,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -1.8847,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -3.1547,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": -0.6817,\\\\n      \\\\\\\"p_value\\\\\\\": 0.9994,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -2.3069,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -3.6933,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": -1.0828,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": 0.7443,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -0.4725,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 1.9651,\\\\n      \\\\\\\"p_value\\\\\\\": 0.1208,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_dataset\\\\\\\": {\\\\n    \\\\\\\"scierc\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"greedy\\\\\\\": 0.6439,\\\\n      \\\\\\\"oracle\\\\\\\": 0.7758,\\\\n      \\\\\\\"headroom\\\\\\\": 13.19,\\\\n      \\\\\\\"degen\\\\\\\": 17.8,\\\\n      \\\\\\\"lp_rho\\\\\\\": 0.205,\\\\n      \\\\\\\"lp_delta\\\\\\\": 0.61\\\\n    },\\\\n    \\\\\\\"fewnerd\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": 0.45239477503628445,\\\\n      \\\\\\\"oracle\\\\\\\": 0.5154444893922397,\\\\n      \\\\\\\"headroom\\\\\\\": 6.3049714355955295,\\\\n      \\\\\\\"lp_rho\\\\\\\": -0.4867,\\\\n      \\\\\\\"lp_delta\\\\\\\": -0.8958\\\\n    },\\\\n    \\\\\\\"conll\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2756,\\\\n      \\\\\\\"greedy\\\\\\\": 0.9079,\\\\n      \\\\\\\"oracle\\\\\\\": 0.9483,\\\\n      \\\\\\\"headroom\\\\\\\": 4.04,\\\\n      \\\\\\\"degen\\\\\\\": 59.1,\\\\n      \\\\\\\"lp_rho\\\\\\\": 0.302,\\\\n      \\\\\\\"lp_delta\\\\\\\": -1.05\\\\n    }\\\\n  },\\\\n  \\\\\\\"entity_types\\\\\\\": {\\\\n    \\\\\\\"corporation\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 63,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.487,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.5589,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.4556,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -3.1481,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 41.3\\\\n    },\\\\n    \\\\\\\"creative-work\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 123,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.3798,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.4615,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.3721,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -0.7666,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 50.4\\\\n    },\\\\n    \\\\\\\"group\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 121,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.3829,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.4663,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.3691,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -1.3765,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 49.6\\\\n    },\\\\n    \\\\\\\"location\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 125,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.5698,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.6592,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.5653,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -0.4533,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 31.2\\\\n    },\\\\n    \\\\\\\"person\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 330,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.5415,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.5855,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.5377,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -0.3818,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 36.7\\\\n    },\\\\n    \\\\\\\"product\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 97,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.2935,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.3577,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.2809,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -1.2641,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 63.9\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"input\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/samples.jsonl\\\",\\n    \\\"n_total\\\": 1287,\\n    \\\"n_filtered\\\": 689,\\n    \\\"n_samples\\\": 8\\n  },\\n  \\\"basic\\\": {\\n    \\\"greedy_macro_f1\\\": 0.45239477503628445,\\n    \\\"oracle_macro_f1\\\": 0.5154444893922397,\\n    \\\"headroom_pp\\\": 6.3049714355955295,\\n    \\\"zero_f1_rate_pct\\\": 47.750362844702465,\\n    \\\"degeneracy_rate_pct\\\": 70.53701015965167,\\n    \\\"lp_range_median\\\": 0.04535666998566512\\n  },\\n  \\\"qe\\\": {\\n    \\\"LP\\\": {\\n      \\\"auroc\\\": 0.4998,\\n      \\\"spearman_global\\\": -0.4867,\\n      \\\"spearman_global_p\\\": 0.0,\\n      \\\"spearman_conditional\\\": 0.079,\\n      \\\"spearman_conditional_p\\\": 0.262812\\n    },\\n    \\\"SJ\\\": {\\n      \\\"auroc\\\": 0.4979,\\n      \\\"spearman_global\\\": -0.0957,\\n      \\\"spearman_global_p\\\": 0.011997,\\n      \\\"spearman_conditional\\\": 0.1698,\\n      \\\"spearman_conditional_p\\\": 0.015456\\n    },\\n    \\\"FK\\\": {\\n      \\\"auroc\\\": 0.4971,\\n      \\\"spearman_global\\\": -0.0847,\\n      \\\"spearman_global_p\\\": 0.026184,\\n      \\\"spearman_conditional\\\": 0.1795,\\n      \\\"spearman_conditional_p\\\": 0.010413\\n    },\\n    \\\"EM\\\": {\\n      \\\"auroc\\\": 0.4957,\\n      \\\"spearman_global\\\": -0.097,\\n      \\\"spearman_global_p\\\": 0.010853,\\n      \\\"spearman_conditional\\\": 0.2025,\\n      \\\"spearman_conditional_p\\\": 0.003763\\n    },\\n    \\\"VC\\\": {\\n      \\\"auroc\\\": 0.5142,\\n      \\\"spearman_global\\\": 0.7334,\\n      \\\"spearman_global_p\\\": 0.0,\\n      \\\"spearman_conditional\\\": 0.1959,\\n      \\\"spearman_conditional_p\\\": 0.005102\\n    }\\n  },\\n  \\\"selection\\\": {\\n    \\\"LP\\\": {\\n      \\\"f1\\\": 0.4434,\\n      \\\"delta_pp\\\": -0.8958\\n    },\\n    \\\"SJ\\\": {\\n      \\\"f1\\\": 0.4351,\\n      \\\"delta_pp\\\": -1.7294\\n    },\\n    \\\"FK\\\": {\\n      \\\"f1\\\": 0.4334,\\n      \\\"delta_pp\\\": -1.902\\n    },\\n    \\\"EM\\\": {\\n      \\\"f1\\\": 0.4294,\\n      \\\"delta_pp\\\": -2.3015\\n    },\\n    \\\"VC\\\": {\\n      \\\"f1\\\": 0.4599,\\n      \\\"delta_pp\\\": 0.749\\n    }\\n  },\\n  \\\"bootstrap\\\": {\\n    \\\"LP\\\": {\\n      \\\"mean_delta_pp\\\": -0.8887,\\n      \\\"ci_95_lo_pp\\\": -1.8736,\\n      \\\"ci_95_hi_pp\\\": -0.0406,\\n      \\\"p_value\\\": 0.9788,\\n      \\\"significant_005\\\": false\\n    },\\n    \\\"SJ\\\": {\\n      \\\"mean_delta_pp\\\": -1.7241,\\n      \\\"ci_95_lo_pp\\\": -2.9605,\\n      \\\"ci_95_hi_pp\\\": -0.5484,\\n      \\\"p_value\\\": 0.9992,\\n      \\\"significant_005\\\": false\\n    },\\n    \\\"FK\\\": {\\n      \\\"mean_delta_pp\\\": -1.8847,\\n      \\\"ci_95_lo_pp\\\": -3.1547,\\n      \\\"ci_95_hi_pp\\\": -0.6817,\\n      \\\"p_value\\\": 0.9994,\\n      \\\"significant_005\\\": false\\n    },\\n    \\\"EM\\\": {\\n      \\\"mean_delta_pp\\\": -2.3069,\\n      \\\"ci_95_lo_pp\\\": -3.6933,\\n      \\\"ci_95_hi_pp\\\": -1.0828,\\n      \\\"p_value\\\": 1.0,\\n      \\\"significant_005\\\": false\\n    },\\n    \\\"VC\\\": {\\n      \\\"mean_delta_pp\\\": 0.7443,\\n      \\\"ci_95_lo_pp\\\": -0.4725,\\n      \\\"ci_95_hi_pp\\\": 1.9651,\\n      \\\"p_value\\\": 0.1208,\\n      \\\"significant_005\\\": false\\n    }\\n  },\\n  \\\"cross_dataset\\\": {\\n    \\\"scierc\\\": {\\n      \\\"n\\\": 529,\\n      \\\"greedy\\\": 0.6439,\\n      \\\"oracle\\\": 0.7758,\\n      \\\"headroom\\\": 13.19,\\n      \\\"degen\\\": 17.8,\\n      \\\"lp_rho\\\": 0.205,\\n      \\\"lp_delta\\\": 0.61\\n    },\\n    \\\"fewnerd\\\": {\\n      \\\"greedy\\\": 0.45239477503628445,\\n      \\\"oracle\\\": 0.5154444893922397,\\n      \\\"headroom\\\": 6.3049714355955295,\\n      \\\"lp_rho\\\": -0.4867,\\n      \\\"lp_delta\\\": -0.8958\\n    },\\n    \\\"conll\\\": {\\n      \\\"n\\\": 2756,\\n      \\\"greedy\\\": 0.9079,\\n      \\\"oracle\\\": 0.9483,\\n      \\\"headroom\\\": 4.04,\\n      \\\"degen\\\": 59.1,\\n      \\\"lp_rho\\\": 0.302,\\n      \\\"lp_delta\\\": -1.05\\n    }\\n  },\\n  \\\"entity_types\\\": {\\n    \\\"corporation\\\": {\\n      \\\"count\\\": 63,\\n      \\\"greedy_f1\\\": 0.487,\\n      \\\"oracle_f1\\\": 0.5589,\\n      \\\"lp_selection_f1\\\": 0.4556,\\n      \\\"lp_delta_pp\\\": -3.1481,\\n      \\\"zero_f1_rate\\\": 41.3\\n    },\\n    \\\"creative-work\\\": {\\n      \\\"count\\\": 123,\\n      \\\"greedy_f1\\\": 0.3798,\\n      \\\"oracle_f1\\\": 0.4615,\\n      \\\"lp_selection_f1\\\": 0.3721,\\n      \\\"lp_delta_pp\\\": -0.7666,\\n      \\\"zero_f1_rate\\\": 50.4\\n    },\\n    \\\"group\\\": {\\n      \\\"count\\\": 121,\\n      \\\"greedy_f1\\\": 0.3829,\\n      \\\"oracle_f1\\\": 0.4663,\\n      \\\"lp_selection_f1\\\": 0.3691,\\n      \\\"lp_delta_pp\\\": -1.3765,\\n      \\\"zero_f1_rate\\\": 49.6\\n    },\\n    \\\"location\\\": {\\n      \\\"count\\\": 125,\\n      \\\"greedy_f1\\\": 0.5698,\\n      \\\"oracle_f1\\\": 0.6592,\\n      \\\"lp_selection_f1\\\": 0.5653,\\n      \\\"lp_delta_pp\\\": -0.4533,\\n      \\\"zero_f1_rate\\\": 31.2\\n    },\\n    \\\"person\\\": {\\n      \\\"count\\\": 330,\\n      \\\"greedy_f1\\\": 0.5415,\\n      \\\"oracle_f1\\\": 0.5855,\\n      \\\"lp_selection_f1\\\": 0.5377,\\n      \\\"lp_delta_pp\\\": -0.3818,\\n      \\\"zero_f1_rate\\\": 36.7\\n    },\\n    \\\"product\\\": {\\n      \\\"count\\\": 97,\\n      \\\"greedy_f1\\\": 0.2935,\\n      \\\"oracle_f1\\\": 0.3577,\\n      \\\"lp_selection_f1\\\": 0.2809,\\n      \\\"lp_delta_pp\\\": -1.2641,\\n      \\\"zero_f1_rate\\\": 63.9\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AYi9gSiSpzb2kNm5vo3PKX",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090-c",
+                "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed123/results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "2d30db47-b8f6-4629-9e56-a5f1e45b711b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175NPbACmPQhqssL73jVuvg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5642,
+                "cache_read_input_tokens": 24903,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5642
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018RQsHHixfbCnqmJcy4szb7",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090-c",
+                "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "619faeb1-21c2-4c1e-9f54-3ccb1495ac92",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175NPbACmPQhqssL73jVuvg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5642,
+                "cache_read_input_tokens": 24903,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5642
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T11:27:12.715Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AYi9gSiSpzb2kNm5vo3PKX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"input\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed123/samples.jsonl\\\\\\\",\\\\n    \\\\\\\"n_total\\\\\\\": 1287,\\\\n    \\\\\\\"n_filtered\\\\\\\": 689,\\\\n    \\\\\\\"n_samples\\\\\\\": 8\\\\n  },\\\\n  \\\\\\\"basic\\\\\\\": {\\\\n    \\\\\\\"greedy_macro_f1\\\\\\\": 0.45178081876195086,\\\\n    \\\\\\\"oracle_macro_f1\\\\\\\": 0.5438432475442635,\\\\n    \\\\\\\"headroom_pp\\\\\\\": 9.206242878231263,\\\\n    \\\\\\\"zero_f1_rate_pct\\\\\\\": 47.750362844702465,\\\\n    \\\\\\\"degeneracy_rate_pct\\\\\\\": 66.90856313497822,\\\\n    \\\\\\\"lp_range_median\\\\\\\": 0.052874912398809495\\\\n  },\\\\n  \\\\\\\"qe\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4876,\\\\n      \\\\\\\"spearman_global\\\\\\\": -0.4033,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.0,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.0357,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.591883\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4976,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.0389,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.308061,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.4122,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4972,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.0538,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.158114,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.4276,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4963,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.0314,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.410616,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.4055,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.5099,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.7326,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.0,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.465,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"selection\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4521,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.0338\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4483,\\\\n      \\\\\\\"delta_pp\\\\\\\": -0.3505\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4475,\\\\n      \\\\\\\"delta_pp\\\\\\\": -0.4317\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4426,\\\\n      \\\\\\\"delta_pp\\\\\\\": -0.9148\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4782,\\\\n      \\\\\\\"delta_pp\\\\\\\": 2.6392\\\\n    }\\\\n  },\\\\n  \\\\\\\"bootstrap\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": 0.0369,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -0.725,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 0.8084,\\\\n      \\\\\\\"p_value\\\\\\\": 0.4494,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -0.3572,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -1.2828,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 0.5267,\\\\n      \\\\\\\"p_value\\\\\\\": 0.7736,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -0.4188,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -1.3728,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 0.4826,\\\\n      \\\\\\\"p_value\\\\\\\": 0.8054,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -0.9156,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -1.962,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 0.0721,\\\\n      \\\\\\\"p_value\\\\\\\": 0.9644,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": 2.6409,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": 1.2555,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 4.0834,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0,\\\\n      \\\\\\\"significant_005\\\\\\\": true\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_dataset\\\\\\\": {\\\\n    \\\\\\\"scierc\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"greedy\\\\\\\": 0.6439,\\\\n      \\\\\\\"oracle\\\\\\\": 0.7758,\\\\n      \\\\\\\"headroom\\\\\\\": 13.19,\\\\n      \\\\\\\"degen\\\\\\\": 17.8,\\\\n      \\\\\\\"lp_rho\\\\\\\": 0.205,\\\\n      \\\\\\\"lp_delta\\\\\\\": 0.61\\\\n    },\\\\n    \\\\\\\"fewnerd\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": 0.45178081876195086,\\\\n      \\\\\\\"oracle\\\\\\\": 0.5438432475442635,\\\\n      \\\\\\\"headroom\\\\\\\": 9.206242878231263,\\\\n      \\\\\\\"lp_rho\\\\\\\": -0.4033,\\\\n      \\\\\\\"lp_delta\\\\\\\": 0.0338\\\\n    },\\\\n    \\\\\\\"conll\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2756,\\\\n      \\\\\\\"greedy\\\\\\\": 0.9079,\\\\n      \\\\\\\"oracle\\\\\\\": 0.9483,\\\\n      \\\\\\\"headroom\\\\\\\": 4.04,\\\\n      \\\\\\\"degen\\\\\\\": 59.1,\\\\n      \\\\\\\"lp_rho\\\\\\\": 0.302,\\\\n      \\\\\\\"lp_delta\\\\\\\": -1.05\\\\n    }\\\\n  },\\\\n  \\\\\\\"entity_types\\\\\\\": {\\\\n    \\\\\\\"corporation\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 63,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.4923,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.5791,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.4722,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -2.0106,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 39.7\\\\n    },\\\\n    \\\\\\\"creative-work\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 123,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.3823,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.5131,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.3845,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": 0.2162,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 49.6\\\\n    },\\\\n    \\\\\\\"group\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 121,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.3708,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.4538,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.3748,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": 0.395,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 50.4\\\\n    },\\\\n    \\\\\\\"location\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 125,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.5794,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.6872,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.5645,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -1.4933,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 30.4\\\\n    },\\\\n    \\\\\\\"person\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 330,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.5392,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.6098,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.5398,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": 0.0604,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 37.0\\\\n    },\\\\n    \\\\\\\"product\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 97,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.2933,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.434,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.2996,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": 0.6349,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 63.9\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "b3ec97de-6867-4600-b2f8-78207f1c9288",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"input\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed123/samples.jsonl\\\\\\\",\\\\n    \\\\\\\"n_total\\\\\\\": 1287,\\\\n    \\\\\\\"n_filtered\\\\\\\": 689,\\\\n    \\\\\\\"n_samples\\\\\\\": 8\\\\n  },\\\\n  \\\\\\\"basic\\\\\\\": {\\\\n    \\\\\\\"greedy_macro_f1\\\\\\\": 0.45178081876195086,\\\\n    \\\\\\\"oracle_macro_f1\\\\\\\": 0.5438432475442635,\\\\n    \\\\\\\"headroom_pp\\\\\\\": 9.206242878231263,\\\\n    \\\\\\\"zero_f1_rate_pct\\\\\\\": 47.750362844702465,\\\\n    \\\\\\\"degeneracy_rate_pct\\\\\\\": 66.90856313497822,\\\\n    \\\\\\\"lp_range_median\\\\\\\": 0.052874912398809495\\\\n  },\\\\n  \\\\\\\"qe\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4876,\\\\n      \\\\\\\"spearman_global\\\\\\\": -0.4033,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.0,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.0357,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.591883\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4976,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.0389,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.308061,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.4122,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4972,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.0538,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.158114,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.4276,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4963,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.0314,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.410616,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.4055,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.5099,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.7326,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.0,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.465,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"selection\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4521,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.0338\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4483,\\\\n      \\\\\\\"delta_pp\\\\\\\": -0.3505\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4475,\\\\n      \\\\\\\"delta_pp\\\\\\\": -0.4317\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4426,\\\\n      \\\\\\\"delta_pp\\\\\\\": -0.9148\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4782,\\\\n      \\\\\\\"delta_pp\\\\\\\": 2.6392\\\\n    }\\\\n  },\\\\n  \\\\\\\"bootstrap\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": 0.0369,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -0.725,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 0.8084,\\\\n      \\\\\\\"p_value\\\\\\\": 0.4494,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -0.3572,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -1.2828,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 0.5267,\\\\n      \\\\\\\"p_value\\\\\\\": 0.7736,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -0.4188,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -1.3728,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 0.4826,\\\\n      \\\\\\\"p_value\\\\\\\": 0.8054,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -0.9156,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -1.962,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 0.0721,\\\\n      \\\\\\\"p_value\\\\\\\": 0.9644,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": 2.6409,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": 1.2555,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 4.0834,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0,\\\\n      \\\\\\\"significant_005\\\\\\\": true\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_dataset\\\\\\\": {\\\\n    \\\\\\\"scierc\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"greedy\\\\\\\": 0.6439,\\\\n      \\\\\\\"oracle\\\\\\\": 0.7758,\\\\n      \\\\\\\"headroom\\\\\\\": 13.19,\\\\n      \\\\\\\"degen\\\\\\\": 17.8,\\\\n      \\\\\\\"lp_rho\\\\\\\": 0.205,\\\\n      \\\\\\\"lp_delta\\\\\\\": 0.61\\\\n    },\\\\n    \\\\\\\"fewnerd\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": 0.45178081876195086,\\\\n      \\\\\\\"oracle\\\\\\\": 0.5438432475442635,\\\\n      \\\\\\\"headroom\\\\\\\": 9.206242878231263,\\\\n      \\\\\\\"lp_rho\\\\\\\": -0.4033,\\\\n      \\\\\\\"lp_delta\\\\\\\": 0.0338\\\\n    },\\\\n    \\\\\\\"conll\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2756,\\\\n      \\\\\\\"greedy\\\\\\\": 0.9079,\\\\n      \\\\\\\"oracle\\\\\\\": 0.9483,\\\\n      \\\\\\\"headroom\\\\\\\": 4.04,\\\\n      \\\\\\\"degen\\\\\\\": 59.1,\\\\n      \\\\\\\"lp_rho\\\\\\\": 0.302,\\\\n      \\\\\\\"lp_delta\\\\\\\": -1.05\\\\n    }\\\\n  },\\\\n  \\\\\\\"entity_types\\\\\\\": {\\\\n    \\\\\\\"corporation\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 63,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.4923,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.5791,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.4722,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -2.0106,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 39.7\\\\n    },\\\\n    \\\\\\\"creative-work\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 123,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.3823,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.5131,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.3845,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": 0.2162,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 49.6\\\\n    },\\\\n    \\\\\\\"group\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 121,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.3708,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.4538,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.3748,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": 0.395,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 50.4\\\\n    },\\\\n    \\\\\\\"location\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 125,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.5794,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.6872,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.5645,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -1.4933,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 30.4\\\\n    },\\\\n    \\\\\\\"person\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 330,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.5392,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.6098,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.5398,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": 0.0604,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 37.0\\\\n    },\\\\n    \\\\\\\"product\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 97,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.2933,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.434,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.2996,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": 0.6349,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 63.9\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"input\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed123/samples.jsonl\\\",\\n    \\\"n_total\\\": 1287,\\n    \\\"n_filtered\\\": 689,\\n    \\\"n_samples\\\": 8\\n  },\\n  \\\"basic\\\": {\\n    \\\"greedy_macro_f1\\\": 0.45178081876195086,\\n    \\\"oracle_macro_f1\\\": 0.5438432475442635,\\n    \\\"headroom_pp\\\": 9.206242878231263,\\n    \\\"zero_f1_rate_pct\\\": 47.750362844702465,\\n    \\\"degeneracy_rate_pct\\\": 66.90856313497822,\\n    \\\"lp_range_median\\\": 0.052874912398809495\\n  },\\n  \\\"qe\\\": {\\n    \\\"LP\\\": {\\n      \\\"auroc\\\": 0.4876,\\n      \\\"spearman_global\\\": -0.4033,\\n      \\\"spearman_global_p\\\": 0.0,\\n      \\\"spearman_conditional\\\": 0.0357,\\n      \\\"spearman_conditional_p\\\": 0.591883\\n    },\\n    \\\"SJ\\\": {\\n      \\\"auroc\\\": 0.4976,\\n      \\\"spearman_global\\\": 0.0389,\\n      \\\"spearman_global_p\\\": 0.308061,\\n      \\\"spearman_conditional\\\": 0.4122,\\n      \\\"spearman_conditional_p\\\": 0.0\\n    },\\n    \\\"FK\\\": {\\n      \\\"auroc\\\": 0.4972,\\n      \\\"spearman_global\\\": 0.0538,\\n      \\\"spearman_global_p\\\": 0.158114,\\n      \\\"spearman_conditional\\\": 0.4276,\\n      \\\"spearman_conditional_p\\\": 0.0\\n    },\\n    \\\"EM\\\": {\\n      \\\"auroc\\\": 0.4963,\\n      \\\"spearman_global\\\": 0.0314,\\n      \\\"spearman_global_p\\\": 0.410616,\\n      \\\"spearman_conditional\\\": 0.4055,\\n      \\\"spearman_conditional_p\\\": 0.0\\n    },\\n    \\\"VC\\\": {\\n      \\\"auroc\\\": 0.5099,\\n      \\\"spearman_global\\\": 0.7326,\\n      \\\"spearman_global_p\\\": 0.0,\\n      \\\"spearman_conditional\\\": 0.465,\\n      \\\"spearman_conditional_p\\\": 0.0\\n    }\\n  },\\n  \\\"selection\\\": {\\n    \\\"LP\\\": {\\n      \\\"f1\\\": 0.4521,\\n      \\\"delta_pp\\\": 0.0338\\n    },\\n    \\\"SJ\\\": {\\n      \\\"f1\\\": 0.4483,\\n      \\\"delta_pp\\\": -0.3505\\n    },\\n    \\\"FK\\\": {\\n      \\\"f1\\\": 0.4475,\\n      \\\"delta_pp\\\": -0.4317\\n    },\\n    \\\"EM\\\": {\\n      \\\"f1\\\": 0.4426,\\n      \\\"delta_pp\\\": -0.9148\\n    },\\n    \\\"VC\\\": {\\n      \\\"f1\\\": 0.4782,\\n      \\\"delta_pp\\\": 2.6392\\n    }\\n  },\\n  \\\"bootstrap\\\": {\\n    \\\"LP\\\": {\\n      \\\"mean_delta_pp\\\": 0.0369,\\n      \\\"ci_95_lo_pp\\\": -0.725,\\n      \\\"ci_95_hi_pp\\\": 0.8084,\\n      \\\"p_value\\\": 0.4494,\\n      \\\"significant_005\\\": false\\n    },\\n    \\\"SJ\\\": {\\n      \\\"mean_delta_pp\\\": -0.3572,\\n      \\\"ci_95_lo_pp\\\": -1.2828,\\n      \\\"ci_95_hi_pp\\\": 0.5267,\\n      \\\"p_value\\\": 0.7736,\\n      \\\"significant_005\\\": false\\n    },\\n    \\\"FK\\\": {\\n      \\\"mean_delta_pp\\\": -0.4188,\\n      \\\"ci_95_lo_pp\\\": -1.3728,\\n      \\\"ci_95_hi_pp\\\": 0.4826,\\n      \\\"p_value\\\": 0.8054,\\n      \\\"significant_005\\\": false\\n    },\\n    \\\"EM\\\": {\\n      \\\"mean_delta_pp\\\": -0.9156,\\n      \\\"ci_95_lo_pp\\\": -1.962,\\n      \\\"ci_95_hi_pp\\\": 0.0721,\\n      \\\"p_value\\\": 0.9644,\\n      \\\"significant_005\\\": false\\n    },\\n    \\\"VC\\\": {\\n      \\\"mean_delta_pp\\\": 2.6409,\\n      \\\"ci_95_lo_pp\\\": 1.2555,\\n      \\\"ci_95_hi_pp\\\": 4.0834,\\n      \\\"p_value\\\": 0.0,\\n      \\\"significant_005\\\": true\\n    }\\n  },\\n  \\\"cross_dataset\\\": {\\n    \\\"scierc\\\": {\\n      \\\"n\\\": 529,\\n      \\\"greedy\\\": 0.6439,\\n      \\\"oracle\\\": 0.7758,\\n      \\\"headroom\\\": 13.19,\\n      \\\"degen\\\": 17.8,\\n      \\\"lp_rho\\\": 0.205,\\n      \\\"lp_delta\\\": 0.61\\n    },\\n    \\\"fewnerd\\\": {\\n      \\\"greedy\\\": 0.45178081876195086,\\n      \\\"oracle\\\": 0.5438432475442635,\\n      \\\"headroom\\\": 9.206242878231263,\\n      \\\"lp_rho\\\": -0.4033,\\n      \\\"lp_delta\\\": 0.0338\\n    },\\n    \\\"conll\\\": {\\n      \\\"n\\\": 2756,\\n      \\\"greedy\\\": 0.9079,\\n      \\\"oracle\\\": 0.9483,\\n      \\\"headroom\\\": 4.04,\\n      \\\"degen\\\": 59.1,\\n      \\\"lp_rho\\\": 0.302,\\n      \\\"lp_delta\\\": -1.05\\n    }\\n  },\\n  \\\"entity_types\\\": {\\n    \\\"corporation\\\": {\\n      \\\"count\\\": 63,\\n      \\\"greedy_f1\\\": 0.4923,\\n      \\\"oracle_f1\\\": 0.5791,\\n      \\\"lp_selection_f1\\\": 0.4722,\\n      \\\"lp_delta_pp\\\": -2.0106,\\n      \\\"zero_f1_rate\\\": 39.7\\n    },\\n    \\\"creative-work\\\": {\\n      \\\"count\\\": 123,\\n      \\\"greedy_f1\\\": 0.3823,\\n      \\\"oracle_f1\\\": 0.5131,\\n      \\\"lp_selection_f1\\\": 0.3845,\\n      \\\"lp_delta_pp\\\": 0.2162,\\n      \\\"zero_f1_rate\\\": 49.6\\n    },\\n    \\\"group\\\": {\\n      \\\"count\\\": 121,\\n      \\\"greedy_f1\\\": 0.3708,\\n      \\\"oracle_f1\\\": 0.4538,\\n      \\\"lp_selection_f1\\\": 0.3748,\\n      \\\"lp_delta_pp\\\": 0.395,\\n      \\\"zero_f1_rate\\\": 50.4\\n    },\\n    \\\"location\\\": {\\n      \\\"count\\\": 125,\\n      \\\"greedy_f1\\\": 0.5794,\\n      \\\"oracle_f1\\\": 0.6872,\\n      \\\"lp_selection_f1\\\": 0.5645,\\n      \\\"lp_delta_pp\\\": -1.4933,\\n      \\\"zero_f1_rate\\\": 30.4\\n    },\\n    \\\"person\\\": {\\n      \\\"count\\\": 330,\\n      \\\"greedy_f1\\\": 0.5392,\\n      \\\"oracle_f1\\\": 0.6098,\\n      \\\"lp_selection_f1\\\": 0.5398,\\n      \\\"lp_delta_pp\\\": 0.0604,\\n      \\\"zero_f1_rate\\\": 37.0\\n    },\\n    \\\"product\\\": {\\n      \\\"count\\\": 97,\\n      \\\"greedy_f1\\\": 0.2933,\\n      \\\"oracle_f1\\\": 0.434,\\n      \\\"lp_selection_f1\\\": 0.2996,\\n      \\\"lp_delta_pp\\\": 0.6349,\\n      \\\"zero_f1_rate\\\": 63.9\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T11:27:13.614Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018RQsHHixfbCnqmJcy4szb7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"input\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/samples.jsonl\\\\\\\",\\\\n    \\\\\\\"n_total\\\\\\\": 1287,\\\\n    \\\\\\\"n_filtered\\\\\\\": 689,\\\\n    \\\\\\\"n_samples\\\\\\\": 8\\\\n  },\\\\n  \\\\\\\"basic\\\\\\\": {\\\\n    \\\\\\\"greedy_macro_f1\\\\\\\": 0.4526447347202064,\\\\n    \\\\\\\"oracle_macro_f1\\\\\\\": 0.5351225898758555,\\\\n    \\\\\\\"headroom_pp\\\\\\\": 8.24778551556491,\\\\n    \\\\\\\"zero_f1_rate_pct\\\\\\\": 47.750362844702465,\\\\n    \\\\\\\"degeneracy_rate_pct\\\\\\\": 66.18287373004354,\\\\n    \\\\\\\"lp_range_median\\\\\\\": 0.053159490927495064\\\\n  },\\\\n  \\\\\\\"qe\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4648,\\\\n      \\\\\\\"spearman_global\\\\\\\": -0.4484,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.0,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.0142,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.829103\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4957,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.0016,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.965607,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.3542,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4954,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.0101,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.791904,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.3651,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4935,\\\\n      \\\\\\\"spearman_global\\\\\\\": -0.0155,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.684236,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.3259,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.5174,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.7235,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.0,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.4331,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"selection\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.448,\\\\n      \\\\\\\"delta_pp\\\\\\\": -0.466\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4557,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.3049\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4545,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.1891\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4489,\\\\n      \\\\\\\"delta_pp\\\\\\\": -0.3732\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.478,\\\\n      \\\\\\\"delta_pp\\\\\\\": 2.5372\\\\n    }\\\\n  },\\\\n  \\\\\\\"bootstrap\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -0.4666,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -1.3601,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 0.3632,\\\\n      \\\\\\\"p_value\\\\\\\": 0.859,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": 0.3126,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -0.6353,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 1.2762,\\\\n      \\\\\\\"p_value\\\\\\\": 0.2596,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": 0.1768,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -0.7975,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 1.1554,\\\\n      \\\\\\\"p_value\\\\\\\": 0.3558,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -0.3715,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -1.4815,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 0.711,\\\\n      \\\\\\\"p_value\\\\\\\": 0.7414,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": 2.5262,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": 1.0711,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 4.0574,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0004,\\\\n      \\\\\\\"significant_005\\\\\\\": true\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_dataset\\\\\\\": {\\\\n    \\\\\\\"scierc\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"greedy\\\\\\\": 0.6439,\\\\n      \\\\\\\"oracle\\\\\\\": 0.7758,\\\\n      \\\\\\\"headroom\\\\\\\": 13.19,\\\\n      \\\\\\\"degen\\\\\\\": 17.8,\\\\n      \\\\\\\"lp_rho\\\\\\\": 0.205,\\\\n      \\\\\\\"lp_delta\\\\\\\": 0.61\\\\n    },\\\\n    \\\\\\\"fewnerd\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": 0.4526447347202064,\\\\n      \\\\\\\"oracle\\\\\\\": 0.5351225898758555,\\\\n      \\\\\\\"headroom\\\\\\\": 8.24778551556491,\\\\n      \\\\\\\"lp_rho\\\\\\\": -0.4484,\\\\n      \\\\\\\"lp_delta\\\\\\\": -0.466\\\\n    },\\\\n    \\\\\\\"conll\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2756,\\\\n      \\\\\\\"greedy\\\\\\\": 0.9079,\\\\n      \\\\\\\"oracle\\\\\\\": 0.9483,\\\\n      \\\\\\\"headroom\\\\\\\": 4.04,\\\\n      \\\\\\\"degen\\\\\\\": 59.1,\\\\n      \\\\\\\"lp_rho\\\\\\\": 0.302,\\\\n      \\\\\\\"lp_delta\\\\\\\": -1.05\\\\n    }\\\\n  },\\\\n  \\\\\\\"entity_types\\\\\\\": {\\\\n    \\\\\\\"corporation\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 63,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.487,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.598,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.4522,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -3.4883,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 41.3\\\\n    },\\\\n    \\\\\\\"creative-work\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 123,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.3715,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.484,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.379,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": 0.7562,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 51.2\\\\n    },\\\\n    \\\\\\\"group\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 121,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.3826,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.4798,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.3748,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -0.7788,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 49.6\\\\n    },\\\\n    \\\\\\\"location\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 125,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.5794,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.6829,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.5699,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -0.9524,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 30.4\\\\n    },\\\\n    \\\\\\\"person\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 330,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.542,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.5959,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.5393,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -0.2702,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 36.7\\\\n    },\\\\n    \\\\\\\"product\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 97,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.2933,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.4077,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.2884,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -0.4868,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 63.9\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "a8fa45e3-d9df-41b0-8910-a31fb21d62fc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"input\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/samples.jsonl\\\\\\\",\\\\n    \\\\\\\"n_total\\\\\\\": 1287,\\\\n    \\\\\\\"n_filtered\\\\\\\": 689,\\\\n    \\\\\\\"n_samples\\\\\\\": 8\\\\n  },\\\\n  \\\\\\\"basic\\\\\\\": {\\\\n    \\\\\\\"greedy_macro_f1\\\\\\\": 0.4526447347202064,\\\\n    \\\\\\\"oracle_macro_f1\\\\\\\": 0.5351225898758555,\\\\n    \\\\\\\"headroom_pp\\\\\\\": 8.24778551556491,\\\\n    \\\\\\\"zero_f1_rate_pct\\\\\\\": 47.750362844702465,\\\\n    \\\\\\\"degeneracy_rate_pct\\\\\\\": 66.18287373004354,\\\\n    \\\\\\\"lp_range_median\\\\\\\": 0.053159490927495064\\\\n  },\\\\n  \\\\\\\"qe\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4648,\\\\n      \\\\\\\"spearman_global\\\\\\\": -0.4484,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.0,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.0142,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.829103\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4957,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.0016,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.965607,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.3542,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4954,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.0101,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.791904,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.3651,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.4935,\\\\n      \\\\\\\"spearman_global\\\\\\\": -0.0155,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.684236,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.3259,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"auroc\\\\\\\": 0.5174,\\\\n      \\\\\\\"spearman_global\\\\\\\": 0.7235,\\\\n      \\\\\\\"spearman_global_p\\\\\\\": 0.0,\\\\n      \\\\\\\"spearman_conditional\\\\\\\": 0.4331,\\\\n      \\\\\\\"spearman_conditional_p\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"selection\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.448,\\\\n      \\\\\\\"delta_pp\\\\\\\": -0.466\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4557,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.3049\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4545,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.1891\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.4489,\\\\n      \\\\\\\"delta_pp\\\\\\\": -0.3732\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.478,\\\\n      \\\\\\\"delta_pp\\\\\\\": 2.5372\\\\n    }\\\\n  },\\\\n  \\\\\\\"bootstrap\\\\\\\": {\\\\n    \\\\\\\"LP\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -0.4666,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -1.3601,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 0.3632,\\\\n      \\\\\\\"p_value\\\\\\\": 0.859,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"SJ\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": 0.3126,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -0.6353,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 1.2762,\\\\n      \\\\\\\"p_value\\\\\\\": 0.2596,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"FK\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": 0.1768,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -0.7975,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 1.1554,\\\\n      \\\\\\\"p_value\\\\\\\": 0.3558,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"EM\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -0.3715,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": -1.4815,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 0.711,\\\\n      \\\\\\\"p_value\\\\\\\": 0.7414,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"VC\\\\\\\": {\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": 2.5262,\\\\n      \\\\\\\"ci_95_lo_pp\\\\\\\": 1.0711,\\\\n      \\\\\\\"ci_95_hi_pp\\\\\\\": 4.0574,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0004,\\\\n      \\\\\\\"significant_005\\\\\\\": true\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_dataset\\\\\\\": {\\\\n    \\\\\\\"scierc\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 529,\\\\n      \\\\\\\"greedy\\\\\\\": 0.6439,\\\\n      \\\\\\\"oracle\\\\\\\": 0.7758,\\\\n      \\\\\\\"headroom\\\\\\\": 13.19,\\\\n      \\\\\\\"degen\\\\\\\": 17.8,\\\\n      \\\\\\\"lp_rho\\\\\\\": 0.205,\\\\n      \\\\\\\"lp_delta\\\\\\\": 0.61\\\\n    },\\\\n    \\\\\\\"fewnerd\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": 0.4526447347202064,\\\\n      \\\\\\\"oracle\\\\\\\": 0.5351225898758555,\\\\n      \\\\\\\"headroom\\\\\\\": 8.24778551556491,\\\\n      \\\\\\\"lp_rho\\\\\\\": -0.4484,\\\\n      \\\\\\\"lp_delta\\\\\\\": -0.466\\\\n    },\\\\n    \\\\\\\"conll\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2756,\\\\n      \\\\\\\"greedy\\\\\\\": 0.9079,\\\\n      \\\\\\\"oracle\\\\\\\": 0.9483,\\\\n      \\\\\\\"headroom\\\\\\\": 4.04,\\\\n      \\\\\\\"degen\\\\\\\": 59.1,\\\\n      \\\\\\\"lp_rho\\\\\\\": 0.302,\\\\n      \\\\\\\"lp_delta\\\\\\\": -1.05\\\\n    }\\\\n  },\\\\n  \\\\\\\"entity_types\\\\\\\": {\\\\n    \\\\\\\"corporation\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 63,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.487,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.598,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.4522,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -3.4883,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 41.3\\\\n    },\\\\n    \\\\\\\"creative-work\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 123,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.3715,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.484,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.379,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": 0.7562,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 51.2\\\\n    },\\\\n    \\\\\\\"group\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 121,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.3826,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.4798,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.3748,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -0.7788,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 49.6\\\\n    },\\\\n    \\\\\\\"location\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 125,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.5794,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.6829,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.5699,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -0.9524,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 30.4\\\\n    },\\\\n    \\\\\\\"person\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 330,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.542,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.5959,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.5393,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -0.2702,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 36.7\\\\n    },\\\\n    \\\\\\\"product\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 97,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.2933,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.4077,\\\\n      \\\\\\\"lp_selection_f1\\\\\\\": 0.2884,\\\\n      \\\\\\\"lp_delta_pp\\\\\\\": -0.4868,\\\\n      \\\\\\\"zero_f1_rate\\\\\\\": 63.9\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"input\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/samples.jsonl\\\",\\n    \\\"n_total\\\": 1287,\\n    \\\"n_filtered\\\": 689,\\n    \\\"n_samples\\\": 8\\n  },\\n  \\\"basic\\\": {\\n    \\\"greedy_macro_f1\\\": 0.4526447347202064,\\n    \\\"oracle_macro_f1\\\": 0.5351225898758555,\\n    \\\"headroom_pp\\\": 8.24778551556491,\\n    \\\"zero_f1_rate_pct\\\": 47.750362844702465,\\n    \\\"degeneracy_rate_pct\\\": 66.18287373004354,\\n    \\\"lp_range_median\\\": 0.053159490927495064\\n  },\\n  \\\"qe\\\": {\\n    \\\"LP\\\": {\\n      \\\"auroc\\\": 0.4648,\\n      \\\"spearman_global\\\": -0.4484,\\n      \\\"spearman_global_p\\\": 0.0,\\n      \\\"spearman_conditional\\\": 0.0142,\\n      \\\"spearman_conditional_p\\\": 0.829103\\n    },\\n    \\\"SJ\\\": {\\n      \\\"auroc\\\": 0.4957,\\n      \\\"spearman_global\\\": 0.0016,\\n      \\\"spearman_global_p\\\": 0.965607,\\n      \\\"spearman_conditional\\\": 0.3542,\\n      \\\"spearman_conditional_p\\\": 0.0\\n    },\\n    \\\"FK\\\": {\\n      \\\"auroc\\\": 0.4954,\\n      \\\"spearman_global\\\": 0.0101,\\n      \\\"spearman_global_p\\\": 0.791904,\\n      \\\"spearman_conditional\\\": 0.3651,\\n      \\\"spearman_conditional_p\\\": 0.0\\n    },\\n    \\\"EM\\\": {\\n      \\\"auroc\\\": 0.4935,\\n      \\\"spearman_global\\\": -0.0155,\\n      \\\"spearman_global_p\\\": 0.684236,\\n      \\\"spearman_conditional\\\": 0.3259,\\n      \\\"spearman_conditional_p\\\": 0.0\\n    },\\n    \\\"VC\\\": {\\n      \\\"auroc\\\": 0.5174,\\n      \\\"spearman_global\\\": 0.7235,\\n      \\\"spearman_global_p\\\": 0.0,\\n      \\\"spearman_conditional\\\": 0.4331,\\n      \\\"spearman_conditional_p\\\": 0.0\\n    }\\n  },\\n  \\\"selection\\\": {\\n    \\\"LP\\\": {\\n      \\\"f1\\\": 0.448,\\n      \\\"delta_pp\\\": -0.466\\n    },\\n    \\\"SJ\\\": {\\n      \\\"f1\\\": 0.4557,\\n      \\\"delta_pp\\\": 0.3049\\n    },\\n    \\\"FK\\\": {\\n      \\\"f1\\\": 0.4545,\\n      \\\"delta_pp\\\": 0.1891\\n    },\\n    \\\"EM\\\": {\\n      \\\"f1\\\": 0.4489,\\n      \\\"delta_pp\\\": -0.3732\\n    },\\n    \\\"VC\\\": {\\n      \\\"f1\\\": 0.478,\\n      \\\"delta_pp\\\": 2.5372\\n    }\\n  },\\n  \\\"bootstrap\\\": {\\n    \\\"LP\\\": {\\n      \\\"mean_delta_pp\\\": -0.4666,\\n      \\\"ci_95_lo_pp\\\": -1.3601,\\n      \\\"ci_95_hi_pp\\\": 0.3632,\\n      \\\"p_value\\\": 0.859,\\n      \\\"significant_005\\\": false\\n    },\\n    \\\"SJ\\\": {\\n      \\\"mean_delta_pp\\\": 0.3126,\\n      \\\"ci_95_lo_pp\\\": -0.6353,\\n      \\\"ci_95_hi_pp\\\": 1.2762,\\n      \\\"p_value\\\": 0.2596,\\n      \\\"significant_005\\\": false\\n    },\\n    \\\"FK\\\": {\\n      \\\"mean_delta_pp\\\": 0.1768,\\n      \\\"ci_95_lo_pp\\\": -0.7975,\\n      \\\"ci_95_hi_pp\\\": 1.1554,\\n      \\\"p_value\\\": 0.3558,\\n      \\\"significant_005\\\": false\\n    },\\n    \\\"EM\\\": {\\n      \\\"mean_delta_pp\\\": -0.3715,\\n      \\\"ci_95_lo_pp\\\": -1.4815,\\n      \\\"ci_95_hi_pp\\\": 0.711,\\n      \\\"p_value\\\": 0.7414,\\n      \\\"significant_005\\\": false\\n    },\\n    \\\"VC\\\": {\\n      \\\"mean_delta_pp\\\": 2.5262,\\n      \\\"ci_95_lo_pp\\\": 1.0711,\\n      \\\"ci_95_hi_pp\\\": 4.0574,\\n      \\\"p_value\\\": 0.0004,\\n      \\\"significant_005\\\": true\\n    }\\n  },\\n  \\\"cross_dataset\\\": {\\n    \\\"scierc\\\": {\\n      \\\"n\\\": 529,\\n      \\\"greedy\\\": 0.6439,\\n      \\\"oracle\\\": 0.7758,\\n      \\\"headroom\\\": 13.19,\\n      \\\"degen\\\": 17.8,\\n      \\\"lp_rho\\\": 0.205,\\n      \\\"lp_delta\\\": 0.61\\n    },\\n    \\\"fewnerd\\\": {\\n      \\\"greedy\\\": 0.4526447347202064,\\n      \\\"oracle\\\": 0.5351225898758555,\\n      \\\"headroom\\\": 8.24778551556491,\\n      \\\"lp_rho\\\": -0.4484,\\n      \\\"lp_delta\\\": -0.466\\n    },\\n    \\\"conll\\\": {\\n      \\\"n\\\": 2756,\\n      \\\"greedy\\\": 0.9079,\\n      \\\"oracle\\\": 0.9483,\\n      \\\"headroom\\\": 4.04,\\n      \\\"degen\\\": 59.1,\\n      \\\"lp_rho\\\": 0.302,\\n      \\\"lp_delta\\\": -1.05\\n    }\\n  },\\n  \\\"entity_types\\\": {\\n    \\\"corporation\\\": {\\n      \\\"count\\\": 63,\\n      \\\"greedy_f1\\\": 0.487,\\n      \\\"oracle_f1\\\": 0.598,\\n      \\\"lp_selection_f1\\\": 0.4522,\\n      \\\"lp_delta_pp\\\": -3.4883,\\n      \\\"zero_f1_rate\\\": 41.3\\n    },\\n    \\\"creative-work\\\": {\\n      \\\"count\\\": 123,\\n      \\\"greedy_f1\\\": 0.3715,\\n      \\\"oracle_f1\\\": 0.484,\\n      \\\"lp_selection_f1\\\": 0.379,\\n      \\\"lp_delta_pp\\\": 0.7562,\\n      \\\"zero_f1_rate\\\": 51.2\\n    },\\n    \\\"group\\\": {\\n      \\\"count\\\": 121,\\n      \\\"greedy_f1\\\": 0.3826,\\n      \\\"oracle_f1\\\": 0.4798,\\n      \\\"lp_selection_f1\\\": 0.3748,\\n      \\\"lp_delta_pp\\\": -0.7788,\\n      \\\"zero_f1_rate\\\": 49.6\\n    },\\n    \\\"location\\\": {\\n      \\\"count\\\": 125,\\n      \\\"greedy_f1\\\": 0.5794,\\n      \\\"oracle_f1\\\": 0.6829,\\n      \\\"lp_selection_f1\\\": 0.5699,\\n      \\\"lp_delta_pp\\\": -0.9524,\\n      \\\"zero_f1_rate\\\": 30.4\\n    },\\n    \\\"person\\\": {\\n      \\\"count\\\": 330,\\n      \\\"greedy_f1\\\": 0.542,\\n      \\\"oracle_f1\\\": 0.5959,\\n      \\\"lp_selection_f1\\\": 0.5393,\\n      \\\"lp_delta_pp\\\": -0.2702,\\n      \\\"zero_f1_rate\\\": 36.7\\n    },\\n    \\\"product\\\": {\\n      \\\"count\\\": 97,\\n      \\\"greedy_f1\\\": 0.2933,\\n      \\\"oracle_f1\\\": 0.4077,\\n      \\\"lp_selection_f1\\\": 0.2884,\\n      \\\"lp_delta_pp\\\": -0.4868,\\n      \\\"zero_f1_rate\\\": 63.9\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G7F3EQinELgZorREvHvcSQ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090-c",
+                "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed42/entity_construction.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "252363a0-d610-46fa-8e2e-8610d6083c91",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175NPbACmPQhqssL73jVuvg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5642,
+                "cache_read_input_tokens": 24903,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5642
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B2U24yE4JqS4ubM7ttihCu",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090-c",
+                "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed123/entity_construction.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "ce68da1e-3ba4-4c89-90cc-8746437eea6c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175NPbACmPQhqssL73jVuvg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5642,
+                "cache_read_input_tokens": 24903,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5642
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T11:27:14.637Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G7F3EQinELgZorREvHvcSQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"n_instances\\\\\\\": 689,\\\\n    \\\\\\\"n_samples\\\\\\\": 8,\\\\n    \\\\\\\"theta\\\\\\\": 0.25\\\\n  },\\\\n  \\\\\\\"baselines\\\\\\\": {\\\\n    \\\\\\\"greedy\\\\\\\": 0.45239477503628445,\\\\n    \\\\\\\"lp_selection\\\\\\\": 0.443436985526971,\\\\n    \\\\\\\"majority_vote\\\\\\\": 0.4356247526058847,\\\\n    \\\\\\\"oracle\\\\\\\": 0.5154444893922397\\\\n  },\\\\n  \\\\\\\"construction\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.4439474571550043,\\\\n    \\\\\\\"delta_vs_greedy_pp\\\\\\\": -0.844731788128017,\\\\n    \\\\\\\"bootstrap\\\\\\\": {\\\\n      \\\\\\\"mean_delta\\\\\\\": -0.008447317881280145,\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -0.8447317881280145,\\\\n      \\\\\\\"ci_lo_pp\\\\\\\": -1.9055891697401133,\\\\n      \\\\\\\"ci_hi_pp\\\\\\\": 0.13615315502107964,\\\\n      \\\\\\\"p_value\\\\\\\": 0.9539\\\\n    }\\\\n  },\\\\n  \\\\\\\"lp_bootstrap\\\\\\\": {\\\\n    \\\\\\\"mean_delta\\\\\\\": -0.008957789509313457,\\\\n    \\\\\\\"mean_delta_pp\\\\\\\": -0.8957789509313456,\\\\n    \\\\\\\"ci_lo_pp\\\\\\\": -1.8635243163545048,\\\\n    \\\\\\\"ci_hi_pp\\\\\\\": -0.0428502315294768,\\\\n    \\\\\\\"p_value\\\\\\\": 0.9801\\\\n  },\\\\n  \\\\\\\"mv_bootstrap\\\\\\\": {\\\\n    \\\\\\\"mean_delta\\\\\\\": -0.016770022430399788,\\\\n    \\\\\\\"mean_delta_pp\\\\\\\": -1.6770022430399787,\\\\n    \\\\\\\"ci_lo_pp\\\\\\\": -2.893856667441573,\\\\n    \\\\\\\"ci_hi_pp\\\\\\\": -0.5286013776579814,\\\\n    \\\\\\\"p_value\\\\\\\": 0.9982\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "6045dae7-b21c-4245-a66f-a23d01bb2e96",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"n_instances\\\\\\\": 689,\\\\n    \\\\\\\"n_samples\\\\\\\": 8,\\\\n    \\\\\\\"theta\\\\\\\": 0.25\\\\n  },\\\\n  \\\\\\\"baselines\\\\\\\": {\\\\n    \\\\\\\"greedy\\\\\\\": 0.45239477503628445,\\\\n    \\\\\\\"lp_selection\\\\\\\": 0.443436985526971,\\\\n    \\\\\\\"majority_vote\\\\\\\": 0.4356247526058847,\\\\n    \\\\\\\"oracle\\\\\\\": 0.5154444893922397\\\\n  },\\\\n  \\\\\\\"construction\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.4439474571550043,\\\\n    \\\\\\\"delta_vs_greedy_pp\\\\\\\": -0.844731788128017,\\\\n    \\\\\\\"bootstrap\\\\\\\": {\\\\n      \\\\\\\"mean_delta\\\\\\\": -0.008447317881280145,\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": -0.8447317881280145,\\\\n      \\\\\\\"ci_lo_pp\\\\\\\": -1.9055891697401133,\\\\n      \\\\\\\"ci_hi_pp\\\\\\\": 0.13615315502107964,\\\\n      \\\\\\\"p_value\\\\\\\": 0.9539\\\\n    }\\\\n  },\\\\n  \\\\\\\"lp_bootstrap\\\\\\\": {\\\\n    \\\\\\\"mean_delta\\\\\\\": -0.008957789509313457,\\\\n    \\\\\\\"mean_delta_pp\\\\\\\": -0.8957789509313456,\\\\n    \\\\\\\"ci_lo_pp\\\\\\\": -1.8635243163545048,\\\\n    \\\\\\\"ci_hi_pp\\\\\\\": -0.0428502315294768,\\\\n    \\\\\\\"p_value\\\\\\\": 0.9801\\\\n  },\\\\n  \\\\\\\"mv_bootstrap\\\\\\\": {\\\\n    \\\\\\\"mean_delta\\\\\\\": -0.016770022430399788,\\\\n    \\\\\\\"mean_delta_pp\\\\\\\": -1.6770022430399787,\\\\n    \\\\\\\"ci_lo_pp\\\\\\\": -2.893856667441573,\\\\n    \\\\\\\"ci_hi_pp\\\\\\\": -0.5286013776579814,\\\\n    \\\\\\\"p_value\\\\\\\": 0.9982\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"n_instances\\\": 689,\\n    \\\"n_samples\\\": 8,\\n    \\\"theta\\\": 0.25\\n  },\\n  \\\"baselines\\\": {\\n    \\\"greedy\\\": 0.45239477503628445,\\n    \\\"lp_selection\\\": 0.443436985526971,\\n    \\\"majority_vote\\\": 0.4356247526058847,\\n    \\\"oracle\\\": 0.5154444893922397\\n  },\\n  \\\"construction\\\": {\\n    \\\"f1\\\": 0.4439474571550043,\\n    \\\"delta_vs_greedy_pp\\\": -0.844731788128017,\\n    \\\"bootstrap\\\": {\\n      \\\"mean_delta\\\": -0.008447317881280145,\\n      \\\"mean_delta_pp\\\": -0.8447317881280145,\\n      \\\"ci_lo_pp\\\": -1.9055891697401133,\\n      \\\"ci_hi_pp\\\": 0.13615315502107964,\\n      \\\"p_value\\\": 0.9539\\n    }\\n  },\\n  \\\"lp_bootstrap\\\": {\\n    \\\"mean_delta\\\": -0.008957789509313457,\\n    \\\"mean_delta_pp\\\": -0.8957789509313456,\\n    \\\"ci_lo_pp\\\": -1.8635243163545048,\\n    \\\"ci_hi_pp\\\": -0.0428502315294768,\\n    \\\"p_value\\\": 0.9801\\n  },\\n  \\\"mv_bootstrap\\\": {\\n    \\\"mean_delta\\\": -0.016770022430399788,\\n    \\\"mean_delta_pp\\\": -1.6770022430399787,\\n    \\\"ci_lo_pp\\\": -2.893856667441573,\\n    \\\"ci_hi_pp\\\": -0.5286013776579814,\\n    \\\"p_value\\\": 0.9982\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XQbrVX6dAnp6ifhFPAU5u3",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090-c",
+                "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/wnut17/qwen25_7b_n8_seed456/entity_construction.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "8ee2762c-8ee0-4a7e-94dc-eea58a269f91",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175NPbACmPQhqssL73jVuvg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5642,
+                "cache_read_input_tokens": 24903,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5642
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T11:27:15.519Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B2U24yE4JqS4ubM7ttihCu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"n_instances\\\\\\\": 689,\\\\n    \\\\\\\"n_samples\\\\\\\": 8,\\\\n    \\\\\\\"theta\\\\\\\": 0.25\\\\n  },\\\\n  \\\\\\\"baselines\\\\\\\": {\\\\n    \\\\\\\"greedy\\\\\\\": 0.45178081876195086,\\\\n    \\\\\\\"lp_selection\\\\\\\": 0.4521186360809002,\\\\n    \\\\\\\"majority_vote\\\\\\\": 0.4573888375775168,\\\\n    \\\\\\\"oracle\\\\\\\": 0.5438432475442635\\\\n  },\\\\n  \\\\\\\"construction\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.45791148055298997,\\\\n    \\\\\\\"delta_vs_greedy_pp\\\\\\\": 0.6130661791039105,\\\\n    \\\\\\\"bootstrap\\\\\\\": {\\\\n      \\\\\\\"mean_delta\\\\\\\": 0.006130661791039149,\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": 0.6130661791039149,\\\\n      \\\\\\\"ci_lo_pp\\\\\\\": -0.23215777932759055,\\\\n      \\\\\\\"ci_hi_pp\\\\\\\": 1.4703849609509987,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0771\\\\n    }\\\\n  },\\\\n  \\\\\\\"lp_bootstrap\\\\\\\": {\\\\n    \\\\\\\"mean_delta\\\\\\\": 0.00033781731894939453,\\\\n    \\\\\\\"mean_delta_pp\\\\\\\": 0.03378173189493945,\\\\n    \\\\\\\"ci_lo_pp\\\\\\\": -0.720443078933645,\\\\n    \\\\\\\"ci_hi_pp\\\\\\\": 0.7955252294874936,\\\\n    \\\\\\\"p_value\\\\\\\": 0.4579\\\\n  },\\\\n  \\\\\\\"mv_bootstrap\\\\\\\": {\\\\n    \\\\\\\"mean_delta\\\\\\\": 0.005608018815565985,\\\\n    \\\\\\\"mean_delta_pp\\\\\\\": 0.5608018815565985,\\\\n    \\\\\\\"ci_lo_pp\\\\\\\": -0.3731488637149014,\\\\n    \\\\\\\"ci_hi_pp\\\\\\\": 1.4845531826663905,\\\\n    \\\\\\\"p_value\\\\\\\": 0.1165\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "4a14cb99-0750-4bae-aac6-96faee0e4334",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"n_instances\\\\\\\": 689,\\\\n    \\\\\\\"n_samples\\\\\\\": 8,\\\\n    \\\\\\\"theta\\\\\\\": 0.25\\\\n  },\\\\n  \\\\\\\"baselines\\\\\\\": {\\\\n    \\\\\\\"greedy\\\\\\\": 0.45178081876195086,\\\\n    \\\\\\\"lp_selection\\\\\\\": 0.4521186360809002,\\\\n    \\\\\\\"majority_vote\\\\\\\": 0.4573888375775168,\\\\n    \\\\\\\"oracle\\\\\\\": 0.5438432475442635\\\\n  },\\\\n  \\\\\\\"construction\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.45791148055298997,\\\\n    \\\\\\\"delta_vs_greedy_pp\\\\\\\": 0.6130661791039105,\\\\n    \\\\\\\"bootstrap\\\\\\\": {\\\\n      \\\\\\\"mean_delta\\\\\\\": 0.006130661791039149,\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": 0.6130661791039149,\\\\n      \\\\\\\"ci_lo_pp\\\\\\\": -0.23215777932759055,\\\\n      \\\\\\\"ci_hi_pp\\\\\\\": 1.4703849609509987,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0771\\\\n    }\\\\n  },\\\\n  \\\\\\\"lp_bootstrap\\\\\\\": {\\\\n    \\\\\\\"mean_delta\\\\\\\": 0.00033781731894939453,\\\\n    \\\\\\\"mean_delta_pp\\\\\\\": 0.03378173189493945,\\\\n    \\\\\\\"ci_lo_pp\\\\\\\": -0.720443078933645,\\\\n    \\\\\\\"ci_hi_pp\\\\\\\": 0.7955252294874936,\\\\n    \\\\\\\"p_value\\\\\\\": 0.4579\\\\n  },\\\\n  \\\\\\\"mv_bootstrap\\\\\\\": {\\\\n    \\\\\\\"mean_delta\\\\\\\": 0.005608018815565985,\\\\n    \\\\\\\"mean_delta_pp\\\\\\\": 0.5608018815565985,\\\\n    \\\\\\\"ci_lo_pp\\\\\\\": -0.3731488637149014,\\\\n    \\\\\\\"ci_hi_pp\\\\\\\": 1.4845531826663905,\\\\n    \\\\\\\"p_value\\\\\\\": 0.1165\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"n_instances\\\": 689,\\n    \\\"n_samples\\\": 8,\\n    \\\"theta\\\": 0.25\\n  },\\n  \\\"baselines\\\": {\\n    \\\"greedy\\\": 0.45178081876195086,\\n    \\\"lp_selection\\\": 0.4521186360809002,\\n    \\\"majority_vote\\\": 0.4573888375775168,\\n    \\\"oracle\\\": 0.5438432475442635\\n  },\\n  \\\"construction\\\": {\\n    \\\"f1\\\": 0.45791148055298997,\\n    \\\"delta_vs_greedy_pp\\\": 0.6130661791039105,\\n    \\\"bootstrap\\\": {\\n      \\\"mean_delta\\\": 0.006130661791039149,\\n      \\\"mean_delta_pp\\\": 0.6130661791039149,\\n      \\\"ci_lo_pp\\\": -0.23215777932759055,\\n      \\\"ci_hi_pp\\\": 1.4703849609509987,\\n      \\\"p_value\\\": 0.0771\\n    }\\n  },\\n  \\\"lp_bootstrap\\\": {\\n    \\\"mean_delta\\\": 0.00033781731894939453,\\n    \\\"mean_delta_pp\\\": 0.03378173189493945,\\n    \\\"ci_lo_pp\\\": -0.720443078933645,\\n    \\\"ci_hi_pp\\\": 0.7955252294874936,\\n    \\\"p_value\\\": 0.4579\\n  },\\n  \\\"mv_bootstrap\\\": {\\n    \\\"mean_delta\\\": 0.005608018815565985,\\n    \\\"mean_delta_pp\\\": 0.5608018815565985,\\n    \\\"ci_lo_pp\\\": -0.3731488637149014,\\n    \\\"ci_hi_pp\\\": 1.4845531826663905,\\n    \\\"p_value\\\": 0.1165\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T11:27:16.392Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XQbrVX6dAnp6ifhFPAU5u3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"n_instances\\\\\\\": 689,\\\\n    \\\\\\\"n_samples\\\\\\\": 8,\\\\n    \\\\\\\"theta\\\\\\\": 0.25\\\\n  },\\\\n  \\\\\\\"baselines\\\\\\\": {\\\\n    \\\\\\\"greedy\\\\\\\": 0.4526447347202064,\\\\n    \\\\\\\"lp_selection\\\\\\\": 0.4479849532824859,\\\\n    \\\\\\\"majority_vote\\\\\\\": 0.4541871690638018,\\\\n    \\\\\\\"oracle\\\\\\\": 0.5351225898758555\\\\n  },\\\\n  \\\\\\\"construction\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.45834862605544757,\\\\n    \\\\\\\"delta_vs_greedy_pp\\\\\\\": 0.5703891335241185,\\\\n    \\\\\\\"bootstrap\\\\\\\": {\\\\n      \\\\\\\"mean_delta\\\\\\\": 0.005703891335241117,\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": 0.5703891335241117,\\\\n      \\\\\\\"ci_lo_pp\\\\\\\": -0.391672510685573,\\\\n      \\\\\\\"ci_hi_pp\\\\\\\": 1.5371372700835693,\\\\n      \\\\\\\"p_value\\\\\\\": 0.1204\\\\n    }\\\\n  },\\\\n  \\\\\\\"lp_bootstrap\\\\\\\": {\\\\n    \\\\\\\"mean_delta\\\\\\\": -0.004659781437720479,\\\\n    \\\\\\\"mean_delta_pp\\\\\\\": -0.4659781437720479,\\\\n    \\\\\\\"ci_lo_pp\\\\\\\": -1.357861619109805,\\\\n    \\\\\\\"ci_hi_pp\\\\\\\": 0.37102793996843353,\\\\n    \\\\\\\"p_value\\\\\\\": 0.8556\\\\n  },\\\\n  \\\\\\\"mv_bootstrap\\\\\\\": {\\\\n    \\\\\\\"mean_delta\\\\\\\": 0.0015424343435954469,\\\\n    \\\\\\\"mean_delta_pp\\\\\\\": 0.15424343435954468,\\\\n    \\\\\\\"ci_lo_pp\\\\\\\": -0.9110177034705337,\\\\n    \\\\\\\"ci_hi_pp\\\\\\\": 1.1709045671309823,\\\\n    \\\\\\\"p_value\\\\\\\": 0.3825\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "3a1f84cf-d01d-4f91-ac09-1e97f58da37f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"n_instances\\\\\\\": 689,\\\\n    \\\\\\\"n_samples\\\\\\\": 8,\\\\n    \\\\\\\"theta\\\\\\\": 0.25\\\\n  },\\\\n  \\\\\\\"baselines\\\\\\\": {\\\\n    \\\\\\\"greedy\\\\\\\": 0.4526447347202064,\\\\n    \\\\\\\"lp_selection\\\\\\\": 0.4479849532824859,\\\\n    \\\\\\\"majority_vote\\\\\\\": 0.4541871690638018,\\\\n    \\\\\\\"oracle\\\\\\\": 0.5351225898758555\\\\n  },\\\\n  \\\\\\\"construction\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.45834862605544757,\\\\n    \\\\\\\"delta_vs_greedy_pp\\\\\\\": 0.5703891335241185,\\\\n    \\\\\\\"bootstrap\\\\\\\": {\\\\n      \\\\\\\"mean_delta\\\\\\\": 0.005703891335241117,\\\\n      \\\\\\\"mean_delta_pp\\\\\\\": 0.5703891335241117,\\\\n      \\\\\\\"ci_lo_pp\\\\\\\": -0.391672510685573,\\\\n      \\\\\\\"ci_hi_pp\\\\\\\": 1.5371372700835693,\\\\n      \\\\\\\"p_value\\\\\\\": 0.1204\\\\n    }\\\\n  },\\\\n  \\\\\\\"lp_bootstrap\\\\\\\": {\\\\n    \\\\\\\"mean_delta\\\\\\\": -0.004659781437720479,\\\\n    \\\\\\\"mean_delta_pp\\\\\\\": -0.4659781437720479,\\\\n    \\\\\\\"ci_lo_pp\\\\\\\": -1.357861619109805,\\\\n    \\\\\\\"ci_hi_pp\\\\\\\": 0.37102793996843353,\\\\n    \\\\\\\"p_value\\\\\\\": 0.8556\\\\n  },\\\\n  \\\\\\\"mv_bootstrap\\\\\\\": {\\\\n    \\\\\\\"mean_delta\\\\\\\": 0.0015424343435954469,\\\\n    \\\\\\\"mean_delta_pp\\\\\\\": 0.15424343435954468,\\\\n    \\\\\\\"ci_lo_pp\\\\\\\": -0.9110177034705337,\\\\n    \\\\\\\"ci_hi_pp\\\\\\\": 1.1709045671309823,\\\\n    \\\\\\\"p_value\\\\\\\": 0.3825\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"n_instances\\\": 689,\\n    \\\"n_samples\\\": 8,\\n    \\\"theta\\\": 0.25\\n  },\\n  \\\"baselines\\\": {\\n    \\\"greedy\\\": 0.4526447347202064,\\n    \\\"lp_selection\\\": 0.4479849532824859,\\n    \\\"majority_vote\\\": 0.4541871690638018,\\n    \\\"oracle\\\": 0.5351225898758555\\n  },\\n  \\\"construction\\\": {\\n    \\\"f1\\\": 0.45834862605544757,\\n    \\\"delta_vs_greedy_pp\\\": 0.5703891335241185,\\n    \\\"bootstrap\\\": {\\n      \\\"mean_delta\\\": 0.005703891335241117,\\n      \\\"mean_delta_pp\\\": 0.5703891335241117,\\n      \\\"ci_lo_pp\\\": -0.391672510685573,\\n      \\\"ci_hi_pp\\\": 1.5371372700835693,\\n      \\\"p_value\\\": 0.1204\\n    }\\n  },\\n  \\\"lp_bootstrap\\\": {\\n    \\\"mean_delta\\\": -0.004659781437720479,\\n    \\\"mean_delta_pp\\\": -0.4659781437720479,\\n    \\\"ci_lo_pp\\\": -1.357861619109805,\\n    \\\"ci_hi_pp\\\": 0.37102793996843353,\\n    \\\"p_value\\\": 0.8556\\n  },\\n  \\\"mv_bootstrap\\\": {\\n    \\\"mean_delta\\\": 0.0015424343435954469,\\n    \\\"mean_delta_pp\\\": 0.15424343435954468,\\n    \\\"ci_lo_pp\\\": -0.9110177034705337,\\n    \\\"ci_hi_pp\\\": 1.1709045671309823,\\n    \\\"p_value\\\": 0.3825\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the data. Let me also check for the report.json files and see if there's a within-instance LP-F1 alignment metric. The \"spearman_conditional\" in the QE section seems to be the within-instance correlation (conditional on non-degenerate instances). Let me also check the report.json files for any additional info.\n\nLet me also check seed 42's log output that was cut off - I need to see seed 42's full results. Actually I have all the JSON files now with complete data. Let me compile the report.\n\nLet me organize the data:\n\n**Seed 42:**\n- Greedy F1: 0.4524\n\n\n- Oracle F1: 0.5154\n- Headroom: 6.30pp\n- Degeneracy rate: 70.54%\n- LP range median: 0.0454\n- Zero F1 rate: 47.75%\n\nFor the query expansion metrics, I'm looking at the global and conditional Spearman correlations across the different methods. LP shows a weak negative global correlation but nearly zero conditional correlation, while SJ has a slightly negative global correlation but a weak positive conditional correlation that's statistically significant at p=0.015. FK's results appear to be cut off.\n\nNow I'm examining the rest of the correlation data. FK shows a small negative global correlation with a weak positive conditional correlation at p=0.010. EM follows a similar pattern with a slightly stronger conditional correlation at p=0.004. VC stands out with a strong positive global correlation of 0.733, though its conditional correlation is weaker at p=0.005.\n\nLooking at the selection performance, VC performs best with an F1 of 0.4599 and actually improves over the oracle by 0.75 percentage points, while the other methods all show degradation ranging from 0.90pp to 2.30pp below the oracle baseline.\n\nFor entity construction with θ=0.25, the results are fairly consistent with selection performance—Construction F1 is 0.4439 with minimal degradation of 0.84pp and no statistical significance. Across seed 123, I'm seeing a greedy F1 of 0.4518 against an oracle of 0.5438, leaving about 9.21 percentage points of headroom, with a concerning 66.91% degeneracy rate and nearly half the instances producing zero F1 scores. The QE correlations show LP with a non-significant global correlation of -0.403 and weak conditional correlation, while SJ's conditional correlation appears to be cut off in the data.\n\nLooking at the rest of the QE metrics, SJ, FK, and EM all show strong conditional correlations around 0.4 with p-values near zero, while VC stands out with a notably higher global correlation of 0.733 and conditional correlation of 0.465. In the selection phase, VC performs best with a gain of 2.64pp reaching 0.4782, while LP and SJ show minimal changes, and EM shows the largest degradation at 0.91pp. Looking at the correlation patterns for the remaining estimators, I see that VC shows the strongest global correlation at 0.724 with conditional correlation of 0.433, while the others have weaker or negative global correlations. Across the selection methods, VC substantially outperforms with a 2.54pp improvement, whereas LP and EM actually degrade performance slightly. The entity construction results show modest gains of 0.57pp.\n\nNow examining LP more closely, the global correlation is consistently negative across all seeds, indicating that LP scores move inversely with F1 at the instance level. However, the within-instance conditional correlation is near zero and statistically insignificant across all three seeds, suggesting LP fails to capture meaningful alignment even when controlling for other factors. The degeneracy rate appears to be extremely high.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "f91cc17a-d52d-40fc-abb5-889e0d69350c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TPHK9vv6LSQyVRL7mnUqYZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12036,
+                "cache_read_input_tokens": 30545,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12036
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集。以下是 WNUT-17 完整 signal 分析报告。\n\n---\n\n## WNUT-17 Signal 分析报告 (Qwen2.5-7B, n=8)\n\n**数据规模**: 1287 total, 689 after gold-empty filtering, 8 samples/instance\n\n### 1. Basic Metrics (per-seed)\n\n| Metric | Seed 42 | Seed 123 | Seed 456 | Mean |\n|--------|---------|----------|----------|------|\n| Greedy F1 | 0.4524 | 0.4518 | 0.4526 | 0.4523 |\n| Oracle F1 | 0.5154 | 0.5438 | 0.5351 | 0.5315 |\n| Headroom (pp) | +6.30 | +9.21 | +8.25 | +7.92 |\n| Zero-F1 rate | 47.75% | 47.75% | 47.75% | 47.75% |\n| **Degeneracy rate** | **70.54%** | **66.91%** | **66.18%** | **67.88%** |\n| LP range (median) | 0.0454 | 0.0529 | 0.0532 | 0.0505 |\n\n### 2. Signal Quality: Spearman ρ\n\n**Global ρ (instance-level signal vs F1):**\n\n| Signal | Seed 42 | Seed 123 | Seed 456 | Mean |\n|--------|---------|----------|----------|------|\n| LP | **-0.487** | **-0.403** | **-0.448** | **-0.446** |\n| SJ | -0.096 | +0.039 | +0.002 | -0.018 |\n| FK | -0.085 | +0.054 | +0.010 | -0.007 |\n| EM | -0.097 | +0.031 | -0.016 | -0.027 |\n| VC | +0.733 | +0.733 | +0.724 | +0.730 |\n\n**Within-instance ρ (conditional, non-degenerate only):**\n\n| Signal | Seed 42 | Seed 123 | Seed 456 | Mean |\n|--------|---------|----------|----------|------|\n| **LP** | **0.079** (p=0.26) | **0.036** (p=0.59) | **0.014** (p=0.83) | **0.043 (n.s.)** |\n| SJ | 0.170 (p=0.015) | 0.412 (p=0.0) | 0.354 (p=0.0) | 0.312 |\n| FK | 0.180 (p=0.010) | 0.428 (p=0.0) | 0.365 (p=0.0) | 0.324 |\n| EM | 0.203 (p=0.004) | 0.406 (p=0.0) | 0.326 (p=0.0) | 0.312 |\n| VC | 0.196 (p=0.005) | 0.465 (p=0.0) | 0.433 (p=0.0) | 0.365 |\n\n### 3. Selection Δ vs Greedy (pp)\n\n| Signal | Seed 42 | Seed 123 | Seed 456 | Mean |\n|--------|---------|----------|----------|------|\n| LP | -0.90 | +0.03 | -0.47 | -0.44 |\n| SJ | -1.73 | -0.35 | +0.30 | -0.59 |\n| FK | -1.90 | -0.43 | +0.19 | -0.71 |\n| EM | -2.30 | -0.91 | -0.37 | -1.20 |\n| **VC** | **+0.75** | **+2.64*** | **+2.54*** | **+1.98** |\n\n(\\* = p < 0.05 bootstrap significant)\n\n### 4. Entity Construction (θ=0.25)\n\n| Method | Seed 42 | Seed 123 | Seed 456 | Mean |\n|--------|---------|----------|----------|------|\n| Greedy | 0.4524 | 0.4518 | 0.4526 | 0.4523 |\n| LP Selection | 0.4434 (-0.90) | 0.4521 (+0.03) | 0.4480 (-0.47) | 0.4478 (-0.45) |\n| MV (0.5) | 0.4356 (-1.68) | 0.4574 (+0.56) | 0.4542 (+0.15) | 0.4491 (-0.32) |\n| **Construction** | **0.4439 (-0.84)** | **0.4579 (+0.61)** | **0.4583 (+0.57)** | **0.4534 (+0.11)** |\n| Oracle | 0.5154 (+6.30) | 0.5438 (+9.21) | 0.5351 (+8.25) | 0.5315 (+7.92) |\n\n**Bootstrap p-values (construction vs greedy):** 0.954, 0.077, 0.120 — **全部不显著**\n\n### 5. Cross-dataset 对比 (SciERC 作为参照)\n\n| Metric | SciERC | WNUT-17 (mean) | CoNLL |\n|--------|--------|----------------|-------|\n| Degeneracy | 17.8% | **67.9%** | 59.1% |\n| LP global ρ | +0.205 | **-0.446** | +0.302 |\n| LP within-inst ρ | ~0.2+ | **0.043 (n.s.)** | — |\n| LP Δ (pp) | +0.61 | -0.44 | -1.05 |\n| Headroom (pp) | +13.2 | +7.9 | +4.0 |\n\n---\n\n### 关键诊断结论\n\n**Construction 不显著的根本原因是 LP signal 在 WNUT-17 上完全失效：**\n\n1. **LP global ρ = -0.45**：LP 与 F1 呈强负相关（高 LP → 低 F1），方向完全反转。SciERC 上是 +0.21。\n2. **LP within-instance ρ ≈ 0.04 (n.s.)**：在非退化实例内部，LP 完全无法区分好坏 sample，p 值均 >0.2。这意味着 LP-weighted construction 等价于随机加权。\n3. **Degeneracy = 68%**：近七成实例所有 sample 的 F1 相同，LP 无从发挥。SciERC 仅 17.8%。\n4. **VC 是唯一有效 signal**：VC global ρ = 0.73，selection Δ = +2.0pp (2/3 seeds significant)。但 VC 是 instance-level ranking signal，无法用于 within-instance construction。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "uuid": "0e350b45-6114-4c21-9261-da4a0d794349",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TPHK9vv6LSQyVRL7mnUqYZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12036,
+                "cache_read_input_tokens": 30545,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12036
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集。以下是 WNUT-17 完整 signal 分析报告。\n\n---\n\n## WNUT-17 Signal 分析报告 (Qwen2.5-7B, n=8)\n\n**数据规模**: 1287 total, 689 after gold-empty filtering, 8 samples/instance\n\n### 1. Basic Metrics (per-seed)\n\n| Metric | Seed 42 | Seed 123 | Seed 456 | Mean |\n|--------|---------|----------|----------|------|\n| Greedy F1 | 0.4524 | 0.4518 | 0.4526 | 0.4523 |\n| Oracle F1 | 0.5154 | 0.5438 | 0.5351 | 0.5315 |\n| Headroom (pp) | +6.30 | +9.21 | +8.25 | +7.92 |\n| Zero-F1 rate | 47.75% | 47.75% | 47.75% | 47.75% |\n| **Degeneracy rate** | **70.54%** | **66.91%** | **66.18%** | **67.88%** |\n| LP range (median) | 0.0454 | 0.0529 | 0.0532 | 0.0505 |\n\n### 2. Signal Quality: Spearman ρ\n\n**Global ρ (instance-level signal vs F1):**\n\n| Signal | Seed 42 | Seed 123 | Seed 456 | Mean |\n|--------|---------|----------|----------|------|\n| LP | **-0.487** | **-0.403** | **-0.448** | **-0.446** |\n| SJ | -0.096 | +0.039 | +0.002 | -0.018 |\n| FK | -0.085 | +0.054 | +0.010 | -0.007 |\n| EM | -0.097 | +0.031 | -0.016 | -0.027 |\n| VC | +0.733 | +0.733 | +0.724 | +0.730 |\n\n**Within-instance ρ (conditional, non-degenerate only):**\n\n| Signal | Seed 42 | Seed 123 | Seed 456 | Mean |\n|--------|---------|----------|----------|------|\n| **LP** | **0.079** (p=0.26) | **0.036** (p=0.59) | **0.014** (p=0.83) | **0.043 (n.s.)** |\n| SJ | 0.170 (p=0.015) | 0.412 (p=0.0) | 0.354 (p=0.0) | 0.312 |\n| FK | 0.180 (p=0.010) | 0.428 (p=0.0) | 0.365 (p=0.0) | 0.324 |\n| EM | 0.203 (p=0.004) | 0.406 (p=0.0) | 0.326 (p=0.0) | 0.312 |\n| VC | 0.196 (p=0.005) | 0.465 (p=0.0) | 0.433 (p=0.0) | 0.365 |\n\n### 3. Selection Δ vs Greedy (pp)\n\n| Signal | Seed 42 | Seed 123 | Seed 456 | Mean |\n|--------|---------|----------|----------|------|\n| LP | -0.90 | +0.03 | -0.47 | -0.44 |\n| SJ | -1.73 | -0.35 | +0.30 | -0.59 |\n| FK | -1.90 | -0.43 | +0.19 | -0.71 |\n| EM | -2.30 | -0.91 | -0.37 | -1.20 |\n| **VC** | **+0.75** | **+2.64*** | **+2.54*** | **+1.98** |\n\n(\\* = p < 0.05 bootstrap significant)\n\n### 4. Entity Construction (θ=0.25)\n\n| Method | Seed 42 | Seed 123 | Seed 456 | Mean |\n|--------|---------|----------|----------|------|\n| Greedy | 0.4524 | 0.4518 | 0.4526 | 0.4523 |\n| LP Selection | 0.4434 (-0.90) | 0.4521 (+0.03) | 0.4480 (-0.47) | 0.4478 (-0.45) |\n| MV (0.5) | 0.4356 (-1.68) | 0.4574 (+0.56) | 0.4542 (+0.15) | 0.4491 (-0.32) |\n| **Construction** | **0.4439 (-0.84)** | **0.4579 (+0.61)** | **0.4583 (+0.57)** | **0.4534 (+0.11)** |\n| Oracle | 0.5154 (+6.30) | 0.5438 (+9.21) | 0.5351 (+8.25) | 0.5315 (+7.92) |\n\n**Bootstrap p-values (construction vs greedy):** 0.954, 0.077, 0.120 — **全部不显著**\n\n### 5. Cross-dataset 对比 (SciERC 作为参照)\n\n| Metric | SciERC | WNUT-17 (mean) | CoNLL |\n|--------|--------|----------------|-------|\n| Degeneracy | 17.8% | **67.9%** | 59.1% |\n| LP global ρ | +0.205 | **-0.446** | +0.302 |\n| LP within-inst ρ | ~0.2+ | **0.043 (n.s.)** | — |\n| LP Δ (pp) | +0.61 | -0.44 | -1.05 |\n| Headroom (pp) | +13.2 | +7.9 | +4.0 |\n\n---\n\n### 关键诊断结论\n\n**Construction 不显著的根本原因是 LP signal 在 WNUT-17 上完全失效：**\n\n1. **LP global ρ = -0.45**：LP 与 F1 呈强负相关（高 LP → 低 F1），方向完全反转。SciERC 上是 +0.21。\n2. **LP within-instance ρ ≈ 0.04 (n.s.)**：在非退化实例内部，LP 完全无法区分好坏 sample，p 值均 >0.2。这意味着 LP-weighted construction 等价于随机加权。\n3. **Degeneracy = 68%**：近七成实例所有 sample 的 F1 相同，LP 无从发挥。SciERC 仅 17.8%。\n4. **VC 是唯一有效 signal**：VC global ρ = 0.73，selection Δ = +2.0pp (2/3 seeds significant)。但 VC 是 instance-level ranking signal，无法用于 within-instance construction。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 100559,
+            "duration_api_ms": 98783,
+            "num_turns": 11,
+            "stop_reason": "end_turn",
+            "session_id": "6800dcd1-2aab-4f9a-9d8d-48eb8bbdcdb8",
+            "total_cost_usd": 0.37356900000000004,
+            "usage": {
+              "input_tokens": 7,
+              "cache_creation_input_tokens": 31612,
+              "cache_read_input_tokens": 92052,
+              "output_tokens": 5135,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 31612,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 3720,
+                  "cache_read_input_tokens": 30545,
+                  "cache_creation_input_tokens": 12036,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 12036
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1468,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001558,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 7,
+                "outputTokens": 5135,
+                "cacheReadInputTokens": 92052,
+                "cacheCreationInputTokens": 31612,
+                "webSearchRequests": 0,
+                "costUSD": 0.37201100000000004,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "e955f17a-a484-432d-b4c5-a1478bcee952"
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 30
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-wnut17-full-signal-report.md"
+}

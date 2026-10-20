@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dab3234b60431adbe913",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_7_1778870358.md",
+  "task_key": "loop_7_1778870358",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_7_1778870358.md",
+    "occurrence": 1,
+    "bytes": 4784,
+    "sha256": "219e7376c339f2cd57e478c5df7f80177f302efec5f1408ba6fc068c00f8b043"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_wall_time\nupdated: '2026-05-15T18:33:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（autodl-5090）。白名单外的 GPU 即使 Director 指令也必须 push back\n- AutoDL 下载必须先 `source /etc/network_turbo` + 设 SSL 证书环境变量，否则 504/SSL 错误\n- HF 下载设 `HF_HUB_DISABLE_XET=1`，大模型优先 ModelScope CDN\n- 根分区只有 ~30GB，所有大文件放 `/root/autodl-tmp/`，HF_HOME 设到数据盘\n- submit_training_job 命令必须自带环境激活（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），GPU 编号始终从 0 开始\n- Qwen3 SciERC 训练有 thinking token confound（enable_thinking 默认 True），CoNLL/WNUT 已关闭。新实验必须显式设 `enable_thinking: false`\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090 (4× RTX 5090 32GB)，账户 root\n- 工作目录：`/root/autodl-tmp/struct_self_consist_ie/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 模型路径：\n  - Qwen3-8B SciERC merged-v2: `checkpoints/qwen3-8b-scierc-merged-v2/`\n  - Qwen3-8B CoNLL merged: `checkpoints/qwen3-8b-conll2003-merged/`\n  - Qwen3-4B base: `/root/autodl-tmp/models/Qwen3-4B/Qwen/Qwen3-4B`（7.6GB, 刚下载）\n  - Qwen3-4B CoNLL LoRA 训练中: `checkpoints/qwen3-4b-conll2003-lora/`（未完成）\n- 数据集：`data/conll2003/`, `data/scierc/processed_data/`, `data/wnut17/`\n- 磁盘：250GB 总量，已用 166GB，剩余 85GB\n- 活跃进程：\n  - exp_qwen3_4b_conll_finetune: cuda:0, LLaMA Factory 训练, 4390 steps ~2.25h, Worker 在 Monitor 等待中\n  - exp_freeform_seed123: cuda:1, tmux=exp_freeform_seed123, PID 207084\n  - exp_freeform_seed456: cuda:2, tmux=exp_freeform_seed456, PID 207157\n\n### 3. 📊 当前状态\n**刚做完**：\n- 模型标签修复 4 处（epsilon_sweep_summary.json + registry 3 条 Qwen2.5→Qwen3）\n- 3 项 CPU 分析全部完成：SJ normalizer 等价 / seed456 LP range 一致 / thinking token LP 稀释可忽略（2.68%，CoNLL 对照反驳）\n- Qwen3-4B 模型下载并验证\n\n**RUNNING 实验**：\n| exp_id | GPU | 内容 | 预计完成 |\n|--------|-----|------|---------|\n| exp_qwen3_4b_conll_finetune | cuda:0 | 4B CoNLL LoRA fine-tune (D096) | ~19:00 UTC |\n| exp_freeform_seed123 | cuda:1 | Free-form ablation seed=123 | ~18:00 UTC |\n| exp_freeform_seed456 | cuda:2 | Free-form ablation seed=456 | ~18:00 UTC |\n\n**等待中**：\n- Worker `worker_code_qwen3_4b_conll_finetune_20260515T164745` 仍 running（收到 30min 无更新告警，但 Worker 在 Monitor 等训练完成，属正常）\n- Freeform seed123/456 由 cron 监控，完成后会回调\n- cuda:3 空闲，Director 知晓，暂无任务分配\n\n### 4. 📋 待办（条件触发式）\n- exp_freeform_seed123 cron 回调 → 派 Worker 分析 constrained vs free-form 指标，即时报 Director（不等 seed456）\n- exp_freeform_seed456 cron 回调 → 同上分析，两 seed 都完成后汇总 3-seed mean±σ 对比表\n- 3-seed freeform 汇总完成 → 重点看：(a) RE LP 翻转是否 3 seed 一致 (b) NER gap 稳定性 (c) 3-seed mean±σ\n- exp_qwen3_4b_conll_finetune Worker 完成 → Worker 内含全流程（merge→推理→分析），检查 registry metrics，与 8B 并排对比报 Director\n- 如果 Worker 30min 告警第 3 次仍无更新 → SSH 检查训练进程是否存活，必要时取消 Worker 重新提交\n- 所有 GPU 实验完成后 → 更新 ROADMAP.md，评估是否需要额外实验（如 4B freeform 交叉）\n\n### 5. 🎯 战略上下文\n- **项目核心**：系统比较 5 类置信信号在 IE test-time scaling 中的有效性。核心发现：universal correlation-selection gap（controlled ablation 证明 score compression 是 model/task intrinsic）\n- **审稿状态**：Round 8 borderline (R1=3.5, R2=2.5)，DDL 2026-05-25（10 天）。关键路径是 Paper Agent 写作修复\n- **当前新实验动机**：\n  - Qwen3-4B scale ablation (D096)：回应 R3-R8 \"cross-model = cross-architecture at fixed 8B\" 质疑\n  - Freeform 多种子 (R7-C3 critical)：验证 RE LP 翻转和 NER gap 稳定性\n- **易错点**：\n  - exp_freeform_ablation seed=42 结论是 **negative**（free-form 未恢复 LP variance），但 RE selection gap 在 free-form 下翻正——多种子验证的重点是这个翻转是否稳定\n  - LP compression 已有三重论证（理论+实证+CoNLL 对照），不要再花时间论证，直接引用 `thinking_token_lp_dilution.json`\n  - Registry 中 Qwen2.5 标签已全部清除，但如果新建实验涉及 SciERC 旧数据，注意源数据的 model_name 是否正确\n  - 4B fine-tune Worker 用了 Monitor 等待训练完成，会触发 30min 无日志更新告警，这是正常的（训练 2.25h）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778870358.md"
+}

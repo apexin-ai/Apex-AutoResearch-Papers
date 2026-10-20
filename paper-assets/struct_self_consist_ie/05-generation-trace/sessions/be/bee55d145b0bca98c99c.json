@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bee55d145b0bca98c99c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code conll2003 data prep",
+  "task_key": "worker_code_conll2003_data_prep_20260514T100814",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_conll2003_data_prep_20260514T100814_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "3140b88c08a211a579b0e32a5535995253cb1d7c4f7843d4bf4d7903c36a021f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出汇总：\n\n**生成文件：**\n- `data/conll2003/train.json` — 14,041 instances, 23,499 entities\n- `data/conll2003/dev.json` — 3,250 instances, 5,942 entities\n- `data/conll2003/test.json` — 3,453 instances, 5,648 entities\n- `data/conll2003/llmfactory_train.json` — 14,041 sharegpt 训练样本\n- `code/convert_conll2003.py` — 转换脚本\n\n**Entity type 分布（全量）：**\n\n| Type | Train | Dev | Test |\n|------|-------|-----|------|\n| PER | 6,600 | 1,842 | 1,617 |\n| ORG | 6,321 | 1,341 | 1,661 |\n| LOC | 7,140 | 1,837 | 1,668 |\n| MISC | 3,438 | 922 | 702 |\n\n**验证：** 10 条抽样全部 `text[start:end] == entity[\"text\"]` 通过。\n\n**CoNLL-2003 Schema hint：**\n```\nEntity types: PER, ORG, LOC, MISC\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-conll2003-data-prep.md"
+}

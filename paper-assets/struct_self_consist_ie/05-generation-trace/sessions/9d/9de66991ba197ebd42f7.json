@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9de66991ba197ebd42f7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check exp 020 022 025",
+  "task_key": "worker_check_exp_020_022_025_20260516T140557",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_exp_020_022_025_20260516T140557_result.json",
+    "occurrence": 1,
+    "bytes": 2081,
+    "sha256": "5d3ee3a8ce5ad5048d7aa8b3972ac0a8f47140672663f962fc5c9f1f6d567ed2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验产出报告\n\n### 1. exp-020 Few-NERD smoke test (LoRA training)\n\n**状态：still_running** (61%, step 5028/8236)\n\n| 项目 | 详情 |\n|------|------|\n| Checkpoint 路径 | `/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/` |\n| 已保存 checkpoints | checkpoint-3000, checkpoint-4000, checkpoint-5000 |\n| 当前进度 | 61% (step ~5028), elapsed 3h35m, 剩余约 1h45m |\n| Loss | 0.041 (step 5000), eval_loss 0.0426 |\n| Adapter weights | `checkpoint-5000/adapter_model.safetensors` (167MB) |\n| 训练日志 | `/root/autodl-tmp/struct_self_consist_ie/checkpoints/fewnerd_train.log` |\n\n**结论**：训练仍在进行，预计还需约 1h45m 完成。尚无 merged model，需等训练结束后 merge。\n\n---\n\n### 2. exp-022 seed789 SciERC inference (N=8, T=1.0)\n\n**状态：completed**\n\n| 项目 | 详情 |\n|------|------|\n| 产出路径 | `/root/autodl-tmp/struct_self_consist_ie/output/exp_022_seed789/` |\n| samples.jsonl | 551 行, 19.2MB |\n| report.json | 3.3KB |\n| NER greedy F1 | 0.666, oracle F1 0.786, headroom 11.9pp |\n| NER ρ(soft_jaccard, F1) | 0.384 (full), 0.337 (conditional) |\n| RE greedy F1 | 0.419, oracle F1 0.588, headroom 16.9pp |\n| Verdict | FAIL (RE ρ_sj=0.224 < 0.40 阈值) |\n\n---\n\n### 3. exp-025 N=32 SciERC inference\n\n**状态：completed**\n\n| 项目 | 详情 |\n|------|------|\n| 产出路径 | `/root/autodl-tmp/struct_self_consist_ie/output/exp_025_n32/` |\n| samples.jsonl | 551 行, 69MB |\n| report.json | 3.4KB |\n| NER greedy F1 | 0.658, oracle F1 0.838, headroom **18.0pp** |\n| NER ρ(soft_jaccard, F1) | **0.440** (full), **0.395** (conditional) |\n| NER Fleiss κ mean | 0.499 |\n| RE greedy F1 | 0.423, oracle F1 0.673, headroom **25.0pp** |\n| RE ρ(Fleiss, F1) | 0.353 (full), RE ρ(soft_jaccard) 0.348 (conditional) |\n| Verdict | FAIL (RE ρ_sj=0.300 < 0.40 阈值) |\n\n**N=32 vs N=8 改善**：NER oracle headroom +6pp, NER ρ_sj full 从 0.384→0.440，RE oracle headroom +8pp。信号明显随 N 增大增强，但 RE conditional 仍未达标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-020-022-025.md"
+}

@@ -1,0 +1,2732 @@
+{
+  "schema_version": "1.0",
+  "id": "aade9a064e54559b1c35",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "gpu 5090c fill 4gpu",
+  "task_key": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_gpu_5090c_fill_4gpu_20260521T071406.jsonl",
+    "occurrence": 1,
+    "bytes": 90002,
+    "sha256": "93e17425d23fbcf9b23f40082038b4b6fb64080c272635cc59790f116e878649"
+  },
+  "statistics": {
+    "messages": 131,
+    "user_turns": 0,
+    "tool_calls": 65,
+    "roles": {
+      "tool_call": 65,
+      "tool_result": 65,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T07:19:40.721521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T07:19:40.721844+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T07:19:40.722018+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T07:19:40.722193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/checkpoints/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T07:19:40.722340+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/data/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T07:19:40.722474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 MiB, 0 %\\\\n1, 0 MiB, 0 %\\\\n2, 0 MiB, 0 %\\\\n3, 0 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.85}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T07:19:40.722611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"llama3.1-8b-scierc-lora\\\\nllama3.1-8b-scierc-merged\\\\nqwen25-14b-fewnerd-merged-ckpt36000\\\\nqwen25-14b-fewnerd-merged-final\\\\nqwen25-14b-fewnerd-qlora-s42\\\\nqwen25-7b-fewnerd-merged\\\\nqwen25-7b-fewnerd-qlora-s42\\\\nqwen25-7b-wnut17-merged\\\\nqwen25-7b-wnut17-qlora-s42\\\\nqwen3-8b-conll2003-merged\\\\nqwen3-8b-fewnerd-exp021-lora\\\\nqwen3-8b-fewnerd-exp021-merged\\\\nqwen3-8b-scierc-merged-v2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T07:19:40.722747+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"conll2003\\\\ndataset_info.json\\\\ndev.jsonl\\\\ndocred_dev.json\\\\ndocred_re_instances.jsonl\\\\ndocred_rel_info.json\\\\ndocred_schema.json\\\\nfewnerd\\\\nfewnerd_n16_subset\\\\nfewrel\\\\nfewrel_re_test_instances.jsonl\\\\nllmfactory_dev.json\\\\nllmfactory_dev_v1.json\\\\nllmfactory_train.json\\\\nllmfactory_train_v1.json\\\\nre_test_instances.jsonl\\\\nretacred_raw\\\\nscierc\\\\ntest.jsonl\\\\ntrain.jsonl\\\\nwnut17\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T07:19:40.722890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "find /root/autodl-tmp/ -maxdepth 3 -name \"config.json\" -path \"*Qwen*7B*Instruct*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T07:19:40.723029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T07:19:40.723181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/data/scierc/test.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T07:19:40.723322+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/data/fewnerd/test.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T07:19:40.723447+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"wc: /root/autodl-tmp/struct_self_consist_ie/data/scierc/test.jsonl: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T07:19:40.723570+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"wc: /root/autodl-tmp/struct_self_consist_ie/data/fewnerd/test.jsonl: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T07:19:40.723704+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/data/scierc/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T07:19:40.723823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/data/fewnerd/",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T07:19:40.723945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"processed_data\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T07:19:40.724063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/data/conll2003/",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T07:19:40.724208+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\n_intra_backup\\\\ndev.json\\\\nllmfactory_dev.json\\\\nllmfactory_train.json\\\\ntest.json\\\\ntrain.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T07:19:40.724341+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"dev.json\\\\nllmfactory_dev.json\\\\nllmfactory_train.json\\\\ntest.json\\\\ntrain.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T07:19:40.724461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/data/scierc/processed_data/",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T07:19:40.724580+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"dev.json\\\\ntest.json\\\\ntrain.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T07:19:40.724694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/data/fewnerd/test.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T07:19:40.724806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/data/conll2003/test.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T07:19:40.724925+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"37648 /root/autodl-tmp/struct_self_consist_ie/data/fewnerd/test.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T07:19:40.725041+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3453 /root/autodl-tmp/struct_self_consist_ie/data/conll2003/test.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T07:19:40.725175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/data/scierc/processed_data/test.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T07:19:40.725299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"100 /root/autodl-tmp/struct_self_consist_ie/data/scierc/processed_data/test.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T07:19:40.725440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "head -50 /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T07:19:40.725591+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"MVP pilot experiment script for structured self-consistency IE.\\\\n\\\\nIntegrates data loading, vLLM sampling, consistency scoring, and evaluation\\\\ninto a single CLI-driven pipeline. Outputs a verdict (PASS/MARGINAL/FAIL)\\\\nbased on the correlation between structural consistency and per-instance F1.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport random\\\\nimport sys\\\\n\\\\nimport numpy as np\\\\n\\\\nfrom data_utils import load_scierc, load_ace05, load_conll2003, load_wnut17, load_fewnerd\\\\nfrom sampling import (\\\\n    VLLMSampler,\\\\n    run_sampling_pipeline,\\\\n    save_sampled_results,\\\\n    load_sampled_results,\\\\n    realign_spans,\\\\n    SCIERC_SCHEMA_HINT,\\\\n    CONLL2003_SCHEMA_HINT,\\\\n    WNUT17_SCHEMA_HINT,\\\\n    FEWNERD_SCHEMA_HINT,\\\\n)\\\\nfrom consistency import compute_all_consistency_scores\\\\nfrom evaluation import (\\\\n    per_instance_f1,\\\\n    compute_ner_f1,\\\\n    compute_re_f1,\\\\n    compute_eae_f1,\\\\n    spearman_correlation,\\\\n    kendall_correlation,\\\\n    compute_auroc,\\\\n    compute_sample_f1_distribution,\\\\n)\\\\n\\\\n\\\\ndef parse_args() -> argparse.Namespace:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Parse command-line arguments.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"MVP pilot for structured self-consistency IE\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, required=True, help=\\\\\\\"Path to the fine-tuned model\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--data_dir\\\\\\\", type=str, required=True, help=\\\\\\\"Dataset directory (SciERC or ACE05)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dataset\\\\\\\", type=str, default=\\\\\\\"scierc\\\\\\\", choices=[\\\\\\\"scierc\\\\\\\", \\\\\\\"ace05\\\\\\\", \\\\\\\"conll2003\\\\\\\", \\\\\\\"wnut17\\\\\\\", \\\\\\\"fewnerd\\\\\\\"],\\\\n                   help=\\\\\\\"Dataset name (default: scierc)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--subtask\\\\\\\", type=str, default=\\\\\\\"ner\\\\\\\", choices=[\\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\", \\\\\\\"eae\\\\\\\", \\\\\\\"joint\\\\\\\"],\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"re\n…[truncated 78 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T07:19:40.725733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "grep -n \"load_scierc\" /root/autodl-tmp/struct_self_consist_ie/code/data_utils.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T07:19:40.725859+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"157:def load_scierc(data_dir: str) -> dict[str, list[Instance]]:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T07:19:40.725976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "head -180 /root/autodl-tmp/struct_self_consist_ie/code/data_utils.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T07:19:40.726200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Data processing utilities for structured self-consistency IE experiments.\\\\n\\\\nHandles loading, converting, and splitting datasets into the unified UIE JSON format.\\\\nSupported datasets: SciERC (fully implemented), ACE05 (interface only).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport json\\\\nimport os\\\\nimport random\\\\nfrom typing import Any, TypedDict\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Shared type definitions (UIE JSON format)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\nclass Entity(TypedDict):\\\\n    text: str\\\\n    type: str\\\\n    start: int\\\\n    end: int\\\\n\\\\n\\\\nclass Relation(TypedDict):\\\\n    head: str\\\\n    tail: str\\\\n    type: str\\\\n    head_start: int\\\\n    head_end: int\\\\n    tail_start: int\\\\n    tail_end: int\\\\n\\\\n\\\\nclass EventArgument(TypedDict):\\\\n    text: str\\\\n    role: str\\\\n    start: int\\\\n    end: int\\\\n\\\\n\\\\nclass Trigger(TypedDict):\\\\n    text: str\\\\n    type: str\\\\n    start: int\\\\n    end: int\\\\n\\\\n\\\\nclass Event(TypedDict):\\\\n    trigger: Trigger\\\\n    arguments: list[EventArgument]\\\\n\\\\n\\\\nclass Extraction(TypedDict, total=False):\\\\n    entities: list[Entity]\\\\n    relations: list[Relation]\\\\n    events: list[Event]\\\\n\\\\n\\\\nclass Instance(TypedDict, total=False):\\\\n    id: str\\\\n    text: str\\\\n    entities: list[Entity]\\\\n    relations: list[Relation]\\\\n    events: list[Event]\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# SciERC\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef _token_offsets(tokens: list[str]) -> list[tuple[int, int]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute (char_start, char_end) for each token when joined by single spaces.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    offsets = []\\\\n    pos = 0\\\\n    for tok in tokens:\\\\n        offsets.append((pos, pos + len(tok)))\\\\n        pos += len(tok) + 1 \n…[truncated 4026 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T07:19:40.726382+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "gpu_ids": "['cuda:0']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/fewnerd_n16_seed456_v2/\"",
+              "exp_id": "exp_fewnerd_n16_s456_v2",
+              "account": "root",
+              "project": "struct_self_consist_ie",
+              "timeout_hours": "24"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T07:19:40.726521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"GPU cuda:0 is occupied by experiment 'exp_14b_inference_fewnerd' (project: struct_self_consist_ie). Available: ['cuda:1', 'cuda:2', 'cuda:3']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T07:19:40.726645+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "gpu_ids": "['cuda:1']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_seed123_v2/\"",
+              "exp_id": "exp_conll_n16_s123_v2",
+              "account": "root",
+              "project": "struct_self_consist_ie",
+              "timeout_hours": "24"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T07:19:40.726781+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Failed to submit job: bash: line 1: tmux: command not found\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T07:19:40.726904+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "gpu_ids": "['cuda:2']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n16_seed456_v2/\"",
+              "exp_id": "exp_conll_n16_s456_v2",
+              "account": "root",
+              "project": "struct_self_consist_ie",
+              "timeout_hours": "24"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T07:19:40.727031+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Failed to submit job: bash: line 1: tmux: command not found\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T07:19:40.727166+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "gpu_ids": "['cuda:3']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/ --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_scierc/\"",
+              "exp_id": "exp_e2_pretrained_scierc",
+              "account": "root",
+              "project": "struct_self_consist_ie",
+              "timeout_hours": "24"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T07:19:40.727298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Failed to submit job: bash: line 1: tmux: command not found\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T07:19:40.727434+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "apt-get install -y tmux",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T07:19:40.727584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'apt-get install -y tmux'\\\\n\\\\nExit code: 100\\\\n\\\\nStdout:\\\\n\\\\nReading package lists...\\\\nBuilding dependency tree...\\\\nReading state information...\\\\n\\\\nStderr:\\\\n\\\\nE: Unable to locate package tmux\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-21T07:19:40.727744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__kill_job",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-21T07:19:40.727868+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-21T07:19:40.728015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && conda install -y -c conda-forge tmux\"",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-21T07:19:40.728165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp_14b_inference_fewnerd'}",
+              "project": "struct_self_consist_ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-21T07:19:40.728650+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && conda install -y -c conda-forge tmux\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nChannels:\\\\n - conda-forge\\\\n - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main\\\\n - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free\\\\n - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch\\\\n - defaults\\\\nPlatform: linux-64\\\\nCollecting package metadata (repodata.json): ...working... \\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-21T07:19:40.728895+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6585}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-21T07:19:40.729111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup conda install -y -c conda-forge tmux > /tmp/tmux_install.log 2>&1 &\"",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-21T07:19:40.729340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup conda install -y -c conda-forge tmux > /tmp/tmux_install.log 2>&1 &\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-21T07:19:40.729555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "nohup /root/miniconda3/bin/conda install -y -c conda-forge tmux > /tmp/tmux_install.log 2>&1 &",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-21T07:19:40.729754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-21T07:19:40.729952+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "5090-c",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1",
+              "glob": "**/resources.yaml",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-21T07:19:40.730161+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 1 file\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/config/resources.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-21T07:19:40.730343+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/config/resources.yaml"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-21T07:19:40.730576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tdefault_model: claude-opus-4-6\n2\tdefault_model_claude_code: claude-opus-4-6\n3\tidea_model: claude-opus-4-6\n4\tservers:\n5\t  autodl-5090:\n6\t    accounts:\n7\t    - env_activate: ''\n8\t      user: root\n9\t      work_dir: /root/autodl-tmp\n10\t    detected_image:\n11\t      detected: false\n12\t      image: ''\n13\t      status: unknown\n14\t      version: ''\n15\t    gpus:\n16\t    - available: true\n17\t      id: cuda:0\n18\t      vram_gb: 32\n19\t    - available: true\n20\t      id: cuda:1\n21\t      vram_gb: 32\n22\t    - available: true\n23\t      id: cuda:2\n24\t      vram_gb: 32\n25\t    - available: true\n26\t      id: cuda:3\n27\t      vram_gb: 32\n28\t    hardware:\n29\t      cpu_cores: 0\n30\t      disk_avail_gb: 0\n31\t      disk_total_gb: 0\n32\t      probed_at: '2026-05-14T04:46:16.427Z'\n33\t      ram_total_gb: 0\n34\t    host: connect.bjb1.seetacloud.com\n35\t    port: 21071\n36\t  autodl-5090-b:\n37\t    accounts:\n38\t    - env_activate: ''\n39\t      user: root\n40\t      work_dir: '~'\n41\t    gpus:\n42\t    - available: true\n43\t      id: cuda:0\n44\t      vram_gb: 32\n45\t    - available: true\n46\t      id: cuda:1\n47\t      vram_gb: 32\n48\t    - available: true\n49\t      id: cuda:2\n50\t      vram_gb: 32\n51\t    - available: true\n52\t      id: cuda:3\n53\t      vram_gb: 32\n54\t    hardware:\n55\t      cpu_cores: 0\n56\t      disk_avail_gb: 0\n57\t      disk_total_gb: 0\n58\t      probed_at: '2026-05-18T15:48:55.409Z'\n59\t      ram_total_gb: 0\n60\t    host: connect.bjb2.seetacloud.com\n61\t    port: 11496\n62\t  autodl-5090-c:\n63\t    accounts:\n64\t    - env_activate: ''\n65\t      user: root\n66\t      work_dir: '~'\n67\t    gpus:\n68\t    - available: true\n69\t      id: cuda:0\n70\t      vram_gb: 32\n71\t    - available: true\n72\t      id: cuda:1\n73\t      vram_gb: 32\n74\t    - available: true\n75\t      id: cuda:2\n76\t      vram_gb: 32\n77\t    - available: true\n78\t      id: cuda:3\n79\t      vram_gb: 32\n80\t    hardware:\n81\t      cpu_cores: 0\n82\t      disk_avail_gb: 0\n83\t      disk_total_gb: 0\n84\t      probed_at: '2026-05-18T15:48:57.349Z'\n85\t      ram_total_gb: 0\n86\t \n…[truncated 1979 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-21T07:19:40.730811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "struct_self_consist_ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-21T07:19:40.730965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "tail -20 /tmp/tmux_install.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-21T07:19:40.731310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_frontier_sc_gpt55_fewnerd_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:48:24.698Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:13:36.012Z\\\", \\\"hypothesis\\\": \\\"Frontier model GPT-5.5 on FewNERD SC (200 instances, N=8, T=1.0): if correlation-selection gap persists in frontier models, the finding is fundamental and not a model capability limitation. Previous attempt failed due to API credit exhaustion.\\\", \\\"parent\\\": \\\"exp_b_frontier_sc_fewnerd\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u code/run_frontier_sc.py --model gpt-5.5 --base_url http://47.94.22.126/v1 --n_instances 200 --n_samples 8 --temperature 1.0 --seed 42 --max_workers 4\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"data_path\\\": \\\"data/fewnerd/test.json\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"gpt-5.5\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"openai/gpt-5.5 (API)\\\", \\\"eval_data\\\": \\\"fewnerd test set (200 instances)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_14b_inference_fewnerd\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-20T14:36:27.954Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:13:34.921Z\\\", \\\"hypothesis\\\": \\\"14B Qwen2.5 inference on FewNERD (N∈{1,2,4,8}): primary dataset should show oracle scaling law F1(N)=a-b*N^(-c) consistent at 14B scale, filling the scaling curve between 7B and 32B. N=16 cut per Director decision.\\\", \\\"notes\\\": \\\"2026-05-21T00:50 RESTORED to RUNNING per Director. PID 252310 confirmed alive by Reviewer (cuda:0 98% util, elapsed 16min). 5th false-negative misdiagnosis. N=1 greedy_f1=0.7985, N=2 greedy_f1=0.7985/oracle=0.8086, N=4 greedy_f1=0.7984/oracle=0.8544. kill_after_n8.sh active (PID 224789).\\\", \\\"spec\\\": {\\\"server\\\": \\\"autodl-5090-c\\\", \\\"pid\\\": 252310, \\\"gpu\\\": \\\"cuda:0\\\", \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/\\\", \\\"seed\\\": 42}, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"extra\\\": {\\\"hook_even\n…[truncated 12336 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-21T07:19:40.731499+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  libgcc             conda-forge/linux-64::libgcc-15.2.0-he0feb66_19 \\\\n  python_abi         anaconda/pkgs/main/linux-64::python_abi-3.12-3_cp312 \\\\n  tmux               conda-forge/linux-64::tmux-3.6a-hb764a82_0 \\\\n\\\\nThe following packages will be UPDATED:\\\\n\\\\n  ca-certificates    pkgs/main/linux-64::ca-certificates-2~ --> conda-forge/noarch::ca-certificates-2026.5.20-hbd8a1cb_0 \\\\n  certifi            pkgs/main/linux-64::certifi-2024.2.2-~ --> conda-forge/noarch::certifi-2026.5.20-pyhd8ed1ab_0 \\\\n  conda              pkgs/main::conda-24.4.0-py312h06a4308~ --> conda-forge::conda-24.11.3-py312h7900ff3_0 \\\\n  libgcc-ng          pkgs/main::libgcc-ng-11.2.0-h1234567_1 --> conda-forge::libgcc-ng-15.2.0-h69a702a_19 \\\\n  libgomp              pkgs/main::libgomp-11.2.0-h1234567_1 --> conda-forge::libgomp-15.2.0-he0feb66_19 \\\\n  ncurses                 pkgs/main::ncurses-6.4-h6a678d5_0 --> conda-forge::ncurses-6.6-hdb14827_0 \\\\n  openssl              pkgs/main::openssl-3.0.13-h7f8727e_1 --> conda-forge::openssl-3.6.2-h35e630c_0 \\\\n\\\\n\\\\n\\\\nDownloading and Extracting Packages: ...working... done\\\\nPreparing transaction: ...working... done\\\\nVerifying transaction: ...working... done\\\\nExecuting transaction: ...working... done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-21T07:19:40.731664+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ps -p 252310 -o pid,cmd --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-21T07:19:40.731793+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/14b_fewnerd_n8/",
+              "account": "root"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-21T07:19:40.731922+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-21T07:19:40.732044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/struct_self_consist_ie/output/14b_fewnerd_n8/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-21T07:19:40.732214+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ps -p 264869 -o pid,cmd --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-21T07:19:40.732354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-21T07:19:40.732492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_14b_inference_fewnerd",
+              "field": "status",
+              "value": "DONE",
+              "project": "struct_self_consist_ie",
+              "spec": "{'checkpoint_path': 'N/A', 'log_path': 'N/A'}"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-21T07:19:40.732617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_fewnerd_7b_n16_s42",
+              "field": "status",
+              "value": "DONE",
+              "project": "struct_self_consist_ie",
+              "spec": "{'checkpoint_path': 'N/A', 'log_path': 'N/A'}"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-21T07:19:40.732786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_14b_inference_fewnerd\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-20T14:36:27.954Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:17:21.744Z\\\", \\\"hypothesis\\\": \\\"14B Qwen2.5 inference on FewNERD (N∈{1,2,4,8}): primary dataset should show oracle scaling law F1(N)=a-b*N^(-c) consistent at 14B scale, filling the scaling curve between 7B and 32B. N=16 cut per Director decision.\\\", \\\"notes\\\": \\\"2026-05-21T00:50 RESTORED to RUNNING per Director. PID 252310 confirmed alive by Reviewer (cuda:0 98% util, elapsed 16min). 5th false-negative misdiagnosis. N=1 greedy_f1=0.7985, N=2 greedy_f1=0.7985/oracle=0.8086, N=4 greedy_f1=0.7984/oracle=0.8544. kill_after_n8.sh active (PID 224789).\\\", \\\"spec\\\": {\\\"server\\\": \\\"autodl-5090-c\\\", \\\"pid\\\": 252310, \\\"gpu\\\": \\\"cuda:0\\\", \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"N/A\\\"}, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T00:46:56.565632+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:17:12.232308+00:00\\\"}]}, \\\"conclusion\\\": \\\"failed\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T07:17:01.438Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"completed_at\\\": \\\"2026-05-21T07:17:05.380Z\\\"}, \\\"hint\\\": \\\"💡 建议将故障原因写入 memory.md（如何避免再犯）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.8521}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-21T07:19:40.732942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.29}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-21T07:19:40.733067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_fewnerd_7b_n16_s42",
+              "field": "conclusion",
+              "value": "failed",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-21T07:19:40.733229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewnerd_7b_n16_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T02:32:29.897Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:17:30.922Z\\\", \\\"hypothesis\\\": \\\"FewNERD N=16 with Qwen2.5-7B: extending N-scaling curve to N=16 for 7B model. At N=8 the 7B model shows diminishing oracle gains; N=16 tests whether the plateau continues or breaks, providing a critical data point for the N-scaling law F1(N)=a-b*N^(-c) at the 7B scale.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen25-7b-fewnerd-merged --data_dir data/fewnerd/ --dataset fewnerd --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_7b_n16_seed42/\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/test.json\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"qwen25-7b-fewnerd-merged\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 264869, \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/logs/fewnerd_7b_n16_seed42.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b_n16_seed42/\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-merged\\\", \\\"eval_data\\\": \\\"fewnerd test set (37648 instances, N=16)\\\"}, \\\"conclusion\\\": \\\"failed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1715}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-21T07:19:40.733370+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_fewnerd_7b_n16_s42",
+              "field": "status",
+              "value": "DONE",
+              "project": "struct_self_consist_ie",
+              "spec": "{'checkpoint_path': 'N/A', 'log_path': 'N/A'}"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-21T07:19:40.733535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewnerd_7b_n16_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T02:32:29.897Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:17:35.321Z\\\", \\\"hypothesis\\\": \\\"FewNERD N=16 with Qwen2.5-7B: extending N-scaling curve to N=16 for 7B model. At N=8 the 7B model shows diminishing oracle gains; N=16 tests whether the plateau continues or breaks, providing a critical data point for the N-scaling law F1(N)=a-b*N^(-c) at the 7B scale.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen25-7b-fewnerd-merged --data_dir data/fewnerd/ --dataset fewnerd --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_7b_n16_seed42/\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/test.json\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"qwen25-7b-fewnerd-merged\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 264869, \\\"log_path\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-merged\\\", \\\"eval_data\\\": \\\"fewnerd test set (37648 instances, N=16)\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-21T07:17:35.321Z\\\"}, \\\"hint\\\": \\\"💡 建议将故障原因写入 memory.md（如何避免再犯）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.1044}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-21T07:19:40.733700+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "gpu_ids": "['cuda:0']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/fewnerd_n16_seed456_v2/\"",
+              "exp_id": "exp_fewnerd_n16_s456_v2",
+              "account": "root",
+              "project": "struct_self_consist_ie",
+              "timeout_hours": "24"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-21T07:19:40.733836+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Failed to submit job: bash: line 1: tmux: command not found\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-21T07:19:40.733960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "gpu_ids": "['cuda:1']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_seed123_v2/\"",
+              "exp_id": "exp_conll_n16_s123_v2",
+              "account": "root",
+              "project": "struct_self_consist_ie",
+              "timeout_hours": "24"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-21T07:19:40.734123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Failed to submit job: bash: line 1: tmux: command not found\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-21T07:19:40.734271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "gpu_ids": "['cuda:2']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n16_seed456_v2/\"",
+              "exp_id": "exp_conll_n16_s456_v2",
+              "account": "root",
+              "project": "struct_self_consist_ie",
+              "timeout_hours": "24"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-21T07:19:40.734399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Failed to submit job: bash: line 1: tmux: command not found\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-21T07:19:40.734518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "gpu_ids": "['cuda:3']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/ --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_scierc/\"",
+              "exp_id": "exp_e2_pretrained_scierc",
+              "account": "root",
+              "project": "struct_self_consist_ie",
+              "timeout_hours": "24"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-21T07:19:40.734642+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Failed to submit job: bash: line 1: tmux: command not found\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-21T07:19:40.734776+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "find /root/miniconda3 -name \"tmux\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-21T07:19:40.734960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/tmux\\\\n/root/miniconda3/pkgs/ncurses-6.4-h6a678d5_0/share/terminfo/t/tmux\\\\n/root/miniconda3/pkgs/tmux-3.6a-hb764a82_0/bin/tmux\\\\n/root/miniconda3/pkgs/ncurses-6.6-hdb14827_0/share/terminfo/74/tmux\\\\n/root/miniconda3/share/terminfo/74/tmux\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-21T07:19:40.735190+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ln -sf /root/miniconda3/bin/tmux /usr/local/bin/tmux && which tmux && tmux -V",
+              "account": "root"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-21T07:19:40.735397+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/usr/local/bin/tmux\\\\ntmux 3.6a\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-21T07:19:40.735694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "gpu_ids": "['cuda:0']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/fewnerd_n16_seed456_v2/\"",
+              "exp_id": "exp_fewnerd_n16_s456_v2",
+              "account": "root",
+              "project": "struct_self_consist_ie",
+              "timeout_hours": "24"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-21T07:19:40.735883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "gpu_ids": "['cuda:1']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_seed123_v2/\"",
+              "exp_id": "exp_conll_n16_s123_v2",
+              "account": "root",
+              "project": "struct_self_consist_ie",
+              "timeout_hours": "24"
+            }
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-21T07:19:40.736107+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"293438\\\", \\\"log_file\\\": \\\"~/runs/struct_self_consist_ie/exp_fewnerd_n16_s456_v2.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"autodl-5090-c\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp_fewnerd_n16_s456_v2\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-21T07:19:40.736328+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "gpu_ids": "['cuda:2']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n16_seed456_v2/\"",
+              "exp_id": "exp_conll_n16_s456_v2",
+              "account": "root",
+              "project": "struct_self_consist_ie",
+              "timeout_hours": "24"
+            }
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-21T07:19:40.736545+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"293577\\\", \\\"log_file\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"server\\\": \\\"autodl-5090-c\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp_conll_n16_s123_v2\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-21T07:19:40.736738+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "gpu_ids": "['cuda:3']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/ --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_scierc/\"",
+              "exp_id": "exp_e2_pretrained_scierc",
+              "account": "root",
+              "project": "struct_self_consist_ie",
+              "timeout_hours": "24"
+            }
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-21T07:19:40.736939+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"293990\\\", \\\"log_file\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"server\\\": \\\"autodl-5090-c\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"2\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp_conll_n16_s456_v2\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-21T07:19:40.737149+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"294269\\\", \\\"log_file\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log\\\", \\\"gpu_ids\\\": [\\\"cuda:3\\\"], \\\"server\\\": \\\"autodl-5090-c\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"3\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp_e2_pretrained_scierc\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-21T07:19:40.737363+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_fewnerd_n16_s456_v2",
+              "field": "hypothesis",
+              "value": "FewNERD N=16 (seed=456, v2 rerun): data lost in previous run. Extending N-scaling curve to N=16 for Qwen3-8B-FT, critical for F1(N)=a-b*N^(-c) scaling law. Third seed for 3-seed statistical power.",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-21T07:19:40.737577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewnerd_n16_s456_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:18:11.587Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:18:29.699Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/fewnerd_n16_seed456_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"293438\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_fewnerd_n16_s456_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:10.938Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"FewNERD N=16 (seed=456, v2 rerun): data lost in previous run. Extending N-scaling curve to N=16 for Qwen3-8B-FT, critical for F1(N)=a-b*N^(-c) scaling law. Third seed for 3-seed statistical power.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6372}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-21T07:19:40.737794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s123_v2",
+              "field": "hypothesis",
+              "value": "CoNLL N=16 (seed=123, v2): retry after previous failure on 5090 (damaged checkpoint). Extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003.",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-21T07:19:40.738003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:03.921Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:18:31.348Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=123, v2): retry after previous failure on 5090 (damaged checkpoint). Extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003.\\\", \\\"parent\\\": \\\"exp_conll_n16_s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_seed123_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"293577\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:14.095Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2055}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-21T07:19:40.738227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s456_v2",
+              "field": "hypothesis",
+              "value": "CoNLL N=16 (seed=456, v2): retry after previous failure on 5090. Third seed for 3-seed statistical power on CoNLL-2003 N=16.",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-21T07:19:40.738386+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s456_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:07.022Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:18:32.661Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=456, v2): retry after previous failure on 5090. Third seed for 3-seed statistical power on CoNLL-2003 N=16.\\\", \\\"parent\\\": \\\"exp_conll_n16_s456\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n16_seed456_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"293990\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:17.355Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1573}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-21T07:19:40.738528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_e2_pretrained_scierc",
+              "field": "hypothesis",
+              "value": "E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third dataset for E2 baseline, validates whether correlation-selection gap exists without task-specific fine-tuning across all 3 NER benchmarks.",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-21T07:19:40.738674+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_scierc\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:18:21.189Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:18:34.967Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/ --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_scierc/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294269\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:20.538Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third dataset for E2 baseline, validates whether correlation-selection gap exists without task-specific fine-tuning across all 3 NER benchmarks.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1064}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-21T07:19:40.738826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_fewnerd_n16_s456_v2",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'data_path': 'data/fewnerd/', 'data_count': 37648, 'model_name': 'qwen3-8b-fewnerd-exp021-merged', 'seed': 456, 'checkpoint_source': 'checkpoints/qwen3-8b-fewnerd-exp021-merged', 'eval_data': 'fewnerd test set (37648 instances, N=16)'}"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-21T07:19:40.738966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6995}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-21T07:19:40.739100+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s123_v2",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'data_path': 'data/conll2003/', 'data_count': 3453, 'model_name': 'qwen3-8b-conll2003-merged', 'seed': 123, 'checkpoint_source': 'checkpoints/qwen3-8b-conll2003-merged', 'eval_data': 'conll2003 test set (3453 instances, N=16)'}"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-21T07:19:40.739279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7095}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-21T07:19:40.739412+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s456_v2",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'data_path': 'data/conll2003/', 'data_count': 3453, 'model_name': 'qwen3-8b-conll2003-merged', 'seed': 456, 'checkpoint_source': 'checkpoints/qwen3-8b-conll2003-merged', 'eval_data': 'conll2003 test set (3453 instances, N=16)'}"
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-21T07:19:40.739548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6524}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-21T07:19:40.739678+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_e2_pretrained_scierc",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'data_path': 'data/scierc/processed_data/', 'data_count': 100, 'model_name': 'Qwen2.5-7B-Instruct', 'seed': 42, 'checkpoint_source': 'pretrained_base', 'eval_data': 'scierc test set (100 instances, N=8)'}"
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-21T07:19:40.739812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6861}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-21T07:19:40.739950+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_fewnerd_n16_s456_v2",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-21T07:19:40.740070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s123_v2",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-21T07:19:40.740209+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s456_v2",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-21T07:19:40.740335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_e2_pretrained_scierc",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-21T07:19:40.740473+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewnerd_n16_s456_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:18:11.587Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:18:51.466Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/fewnerd_n16_seed456_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"293438\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_fewnerd_n16_s456_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:10.938Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"FewNERD N=16 (seed=456, v2 rerun): data lost in previous run. Extending N-scaling curve to N=16 for Qwen3-8B-FT, critical for F1(N)=a-b*N^(-c) scaling law. Third seed for 3-seed statistical power.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.4346}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-21T07:19:40.740616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:03.921Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:18:54.965Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=123, v2): retry after previous failure on 5090 (damaged checkpoint). Extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003.\\\", \\\"parent\\\": \\\"exp_conll_n16_s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_seed123_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"293577\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:14.095Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.1957}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-21T07:19:40.740756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s456_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:07.022Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:18:58.692Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=456, v2): retry after previous failure on 5090. Third seed for 3-seed statistical power on CoNLL-2003 N=16.\\\", \\\"parent\\\": \\\"exp_conll_n16_s456\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n16_seed456_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"293990\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:17.355Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0231}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-21T07:19:40.740902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_scierc\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:18:21.189Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:19:01.661Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/ --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_scierc/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294269\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:20.538Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third dataset for E2 baseline, validates whether correlation-selection gap exists without task-specific fine-tuning across all 3 NER benchmarks.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.9516}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-21T07:19:40.741033+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_fewnerd_n16_s456_v2",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'data_path': 'data/fewnerd/', 'data_count': 37648, 'model_name': 'qwen3-8b-fewnerd-exp021-merged', 'seed': 456, 'checkpoint_source': 'checkpoints/qwen3-8b-fewnerd-exp021-merged', 'eval_data': 'fewnerd test set (37648 instances, N=16)'}"
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-21T07:19:40.741180+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s123_v2",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'data_path': 'data/conll2003/', 'data_count': 3453, 'model_name': 'qwen3-8b-conll2003-merged', 'seed': 123, 'checkpoint_source': 'checkpoints/qwen3-8b-conll2003-merged', 'eval_data': 'conll2003 test set (3453 instances, N=16)'}"
+            }
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-21T07:19:40.741330+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_fewnerd_n16_s456_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:18:11.587Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:19:10.627Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/fewnerd_n16_seed456_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"293438\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_fewnerd_n16_s456_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:10.938Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/fewnerd/\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"qwen3-8b-fewnerd-exp021-merged\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-fewnerd-exp021-merged\\\", \\\"eval_data\\\": \\\"fewnerd test set (37648 instances, N=16)\\\"}, \\\"hypothesis\\\": \\\"FewNERD N=16 (seed=456, v2 rerun): data lost in previous run. Extending N-scaling curve to N=16 for Qwen3-8B-FT, critical for F1(N)=a-b*N^(-c) scaling law. Third seed for 3-seed statistical power.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2541}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-21T07:19:40.741468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_n16_s456_v2",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'data_path': 'data/conll2003/', 'data_count': 3453, 'model_name': 'qwen3-8b-conll2003-merged', 'seed': 456, 'checkpoint_source': 'checkpoints/qwen3-8b-conll2003-merged', 'eval_data': 'conll2003 test set (3453 instances, N=16)'}"
+            }
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-21T07:19:40.741598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_e2_pretrained_scierc",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'data_path': 'data/scierc/processed_data/', 'data_count': 100, 'model_name': 'Qwen2.5-7B-Instruct', 'seed': 42, 'checkpoint_source': 'pretrained_base', 'eval_data': 'scierc test set (100 instances, N=8)'}"
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-21T07:19:40.741743+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:03.921Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:19:14.199Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=123, v2): retry after previous failure on 5090 (damaged checkpoint). Extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003.\\\", \\\"parent\\\": \\\"exp_conll_n16_s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_seed123_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"293577\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:14.095Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.3146}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-21T07:19:40.741896+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s456_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:07.022Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:19:18.884Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=456, v2): retry after previous failure on 5090. Third seed for 3-seed statistical power on CoNLL-2003 N=16.\\\", \\\"parent\\\": \\\"exp_conll_n16_s456\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n16_seed456_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"293990\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:17.355Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.4551}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-21T07:19:40.742086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_scierc\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:18:21.189Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:19:22.540Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/ --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_scierc/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294269\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:20.538Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data/\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained_base\\\", \\\"eval_data\\\": \\\"scierc test set (100 instances, N=8)\\\"}, \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third dataset for E2 baseline, validates whether correlation-selection gap exists without task-specific fine-tuning across all 3 NER benchmarks.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.3514}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-21T07:19:40.742298+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-21T07:19:40.742438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 30117 MiB, 27 %\\\\n1, 30149 MiB, 84 %\\\\n2, 30147 MiB, 91 %\\\\n3, 30349 MiB, 85 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-21T07:19:40.742600+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 张 GPU 全部满载运行：\n\n| GPU | 实验 | 显存占用 | 利用率 |\n|-----|------|---------|--------|\n| cuda:0 | exp_fewnerd_n16_s456_v2 (FewNERD N=16 s456) | 30117 MiB | 27% |\n| cuda:1 | exp_conll_n16_s123_v2 (CoNLL N=16 s123) | 30149 MiB | 84% |\n| cuda:2 | exp_conll_n16_s456_v2 (CoNLL N=16 s456) | 30147 MiB | 91% |\n| cuda:3 | exp_e2_pretrained_scierc (SciERC E2 baseline) | 30349 MiB | 85% |\n\n过程中处理了：5090-c 没有 tmux（conda 安装 + symlink 到 /usr/local/bin）、两个僵尸 registry 记录（exp_14b_inference_fewnerd、exp_fewnerd_7b_n16_s42 标记 DONE）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_5090c_fill_4gpu_20260521T071406"
+          },
+          "id": "event-000131"
+        }
+      ],
+      "message_count": 131
+    }
+  ],
+  "readable_path": "readable/conversations/gpu-5090c-fill-4gpu.md"
+}

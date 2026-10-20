@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff070ece45c1da8eba95",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_11_1778898797.md",
+  "task_key": "loop_11_1778898797",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_11_1778898797.md",
+    "occurrence": 1,
+    "bytes": 4403,
+    "sha256": "35a5a48c5f0db04885235424b343b45e2896a6283acdf77b9db65c403151a33a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: max_messages\nupdated: '2026-05-16T02:32:46+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3 (autodl-5090)，无其他服务器\n- **DDL 2026-05-25** (ARR May cycle)，距今 9 天。关键路径全在 Paper Agent 写作上，不是 GPU 实验\n- 论文 ρ 值必须来自 gold-filtered 管道（排除 gold-empty 实例），CoNLL n=2756, SciERC n=551。**不要从 registry metrics 直接引用 EM/VC 到论文**（registry 用 report.json，论文用分析脚本输出）\n- unified_rho_full.json LLaMA SciERC 数据已做污染修复（D092-D094），旧值不可用\n- 551 全集为 canonical（无选择偏差），529 交集仅参考不进论文\n- exp_019 supervised verifier 已 SKIPPED（scope creep），不要重启\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: autodl-5090 (别名 bjb1-21071), 4× RTX 5090 32GB，全部空闲\n- **工作目录**: /root/autodl-tmp/struct_self_consist_ie/\n- **Python**: /root/miniconda3/bin/python（conda base 环境，不是 venv）\n- **环境激活**: `source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **基座模型**: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\n- **ft_002_v2 merged**: checkpoints/qwen3-8b-scierc-merged-v2/\n- **Canonical 数据**: artifacts/analysis_unified_rho.json, analysis_round8/epsilon_sweep.csv\n- **活跃进程**: 无。0 Worker, 0 Cron, 0 tmux session（所有 104 实验均 DONE）\n\n### 3. 📊 当前状态\n**所有实验已完成**（104 total: 58 success / 22 negative / 4 failed / 20 killed）。无 RUNNING/PREPARING 实验。\n\n上一轮我完成了：\n- 4B scale ablation 2×2 矩阵全部跑完并分析（D098）：gap 与 model capacity 无关，task difficulty 是主驱动\n- SciERC 4B selection 分析：所有信号 worse than greedy（尽管 13pp oracle headroom）— 完美展示 4B correlation-selection gap\n- Table 4 数据统一为 Table 1 的 v2 checkpoint 值（D100）\n- Paper Agent 已收到 Patch 指令（4B compact table + 页数压缩 + 标题/Abstract overclaim 修复）\n- Registry desync 清理进行中（9 个 PREPARING+killed 实验因状态机限制无法推到 DONE）\n\n**等待中**：\n- Paper Agent 完成 Phase 1-5 写作修复（这是外部进程，非本 session Worker）\n- Round 9 审稿（Paper Agent 完成后触发）\n- 无 Worker 回调、无 Cron 回调、无 Director 决策阻塞\n\n### 4. 📋 待办（条件触发式）\n- Paper Agent 写作完成 → 启动 Round 9 审稿（continue mode），检查 4B table 是否正确写入、页数 ≤8 页\n- Round 9 审稿发现问题 → 按问题类型派 Worker 修复（写作类直接改，数据类查 registry/artifacts 核实）\n- Round 9 审稿通过 → Final polish → 提交前做 reference-audit + paper-visual-review\n- Director 要求补充实验 → GPU 全部空闲可立即开跑，但注意 DDL 仅 9 天，慎开新实验\n- Registry 9 个 PREPARING+killed 实验 → 如有工具支持强制状态推进则清理，否则标注在 memory.md 留档\n\n### 5. 🎯 战略上下文\n**核心论点**: Universal correlation-selection gap — 置信信号能预测质量（AUROC 0.75）但不能选更好的候选。Free-form ablation 证明这是 model/task intrinsic（非 constrained decoding artifact），4B scale ablation 证明与 model capacity 无关。\n\n**决策链关键节点**:\n- D001-D009: MVP 验证 → RE FAIL → 确认 NER-primary + RE diagnostic narrative\n- D054-D060: 数据修正链（max_tokens 512 污染、gold-empty 膨胀），**论文数据全部重跑过**\n- D066: LLaMA fresh rerun 统一\n- D072-D073: Framing 更新为 \"task-dependent signal effectiveness\"\n- D095: ε=0.05 robustness confirmed, RE 3-seed confirmed\n- D098: 4B scale ablation 完成，R14 RESOLVED\n\n**易踩的坑**:\n1. **不要把 GC4-par 和 GC4-seq 直接对比**（不同 decode 策略）\n2. **分析脚本 vs report.json 存在系统性 EM/VC 差异**（seed42 VC: 脚本 0.373 vs report.json 0.405）。论文必须用分析脚本输出\n3. CoNLL 4B headroom 只有 1.70pp（vs 8B 4.20pp），selection 结果 ≤0.1pp 是 MARGINAL 不是 negative — 不要过度解读\n4. RE LP > SJ/FK 排名反转是真实的（3-seed confirmed），因为 43-45% zero-F1 导致 binary dominance\n5. 当前瓶颈 100% 在 Paper Agent 写作，不要开新 GPU 实验分散注意力（除非 Round 9 审稿明确要求）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778898797.md"
+}

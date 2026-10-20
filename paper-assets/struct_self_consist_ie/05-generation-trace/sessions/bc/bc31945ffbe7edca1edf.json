@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc31945ffbe7edca1edf",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 006 v2",
+  "task_key": "worker_code_exp_006_v2_20260514T152631",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_006_v2_20260514T152631_result.json",
+    "occurrence": 1,
+    "bytes": 1300,
+    "sha256": "3c9fa231102af58ddebb93ff09e67e4e613703afef120d8c50aac12960614a62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-006 v2 完成。\n\n## 结果总结\n\n**没有任何信号在任何任务上显著超过 greedy（p<0.05）。**\n\n### NER SciERC (N=16, 551 instances)\n| Signal | seed42 F1 | seed123 F1 | Δ greedy |\n|--------|-----------|------------|----------|\n| greedy | 0.618 | 0.618 | — |\n| FK | 0.621 | 0.621 | ~+0.003 (ns) |\n| logprob | 0.621 | 0.618 | ~+0.001 (ns) |\n| SJ | 0.620 | 0.617 | ~+0.001 (ns) |\n| EM | 0.606 | 0.613 | -0.005~-0.012 |\n| voting_conf | 0.585 | 0.584 | **-0.033** |\n| oracle | 0.787 | 0.785 | **+0.168** |\n\n### NER CoNLL (N=8, 3453 instances)\n所有信号都 **显著低于** greedy（p<0.001）。Oracle gap 仅 0.032，说明 N=8 sample 间差异小。\n\n### RE SciERC (N=16, 397 instances)\n| Signal | F1 | Δ greedy | p |\n|--------|------|----------|-----|\n| logprob | 0.410 | +0.007 | 0.27 |\n| voting_conf | 0.408 | +0.005 | 0.34 |\n| greedy | 0.403 | — | — |\n| oracle | 0.631 | **+0.228** | 0.00 |\n\nRE logprob-best 方向一致（+0.007）但在 v2 数据上不显著。Oracle gap 巨大（0.228），说明选择信号的 headroom 存在但当前信号无法利用。\n\n### 输出\n- 脚本：`code/exp_006_v2_selection.py`\n- 结果：`output/exp_006_v2/exp_006_v2_results.json`\n- Registry：exp_006_v2, DONE, conclusion=negative"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-006-v2.md"
+}

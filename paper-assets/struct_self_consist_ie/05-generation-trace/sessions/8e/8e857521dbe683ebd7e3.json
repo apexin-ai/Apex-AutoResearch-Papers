@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e857521dbe683ebd7e3",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose exp 14b inference fewnerd",
+  "task_key": "worker_diagnose_exp_14b_inference_fewnerd_20260520T171838",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp_14b_inference_fewnerd_20260520T171838_result.json",
+    "occurrence": 1,
+    "bytes": 860,
+    "sha256": "8e0dfcdc884aa662d415e7448a063d44d5525f57467cf7908bf140b447f8e422"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志持续增长（6116340 → 6121644），进程确认在运行。\n\n## 诊断结论\n\n**进程未退出。** `exp_14b_inference_fewnerd` 仍在 GPU 0 上运行：\n\n- **已完成**: scierc (n1-n16), conll2003 (n1-n16), fewnerd_n1 — 全部有 `report.json` + `samples.jsonl`\n- **进行中**: fewnerd_n2 — 截至日志末尾处理到 16% (12118/75296)，速度 ~10 it/s\n- **待跑**: fewnerd_n4, n8, n16\n- **PID**: 217960 (VLLM::EngineCore)，31088 MiB on GPU 0\n- **日志**: `/tmp/14b_fewnerd.log`，持续写入\n\n**预计 fewnerd_n2 剩余 ~105 分钟**（63K samples ÷ ~10 it/s），之后还有 n4/n8/n16 需要数小时。\n\n**GPU 状态**:\n- GPU 0: 98% 占用 (本实验)\n- GPU 1: 94% 占用 (另一进程)\n- GPU 2/3: 空闲\n\n不更新 registry，不删除 cron — 进程仍在运行，cron 监控应继续保留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-14b-inference-fewnerd.md"
+}

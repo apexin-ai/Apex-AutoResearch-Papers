@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba9322889d66f3fc2c89",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis inverse scaling status",
+  "task_key": "worker_analysis_inverse-scaling-status_20260523T194751",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_inverse-scaling-status_20260523T194751_result.json",
+    "occurrence": 1,
+    "bytes": 644,
+    "sha256": "19169c3c75cac6f5b48ef30befc3a049d9e8839e7ed2294642eb534a64e0f9e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "计算已完成，状态报告写入 `artifacts/inverse_scaling_server_status.md`。\n\n核心结果：\n- 全部 9 个配置运行成功，无活跃进程\n- Inverse scaling 跨种子可复现：Qwen N=8 的 4 个种子中，4/21 transitions 在所有种子上都显著 inverse（lp_weighted/theta2n/uniform 在高 N 时）\n- LLaMA 跨种子一致性更高（90%）\n- `majority_vote` 和 `lp_best` 在所有种子/模型上都不出现 inverse scaling\n- \"40 of 58 transitions\" claim 无需更新，但可补充 cross-seed reproducibility 的论据\n- 完整分析已在本地 `artifacts/multiseed_inverse_scaling_report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-inverse-scaling-status.md"
+}

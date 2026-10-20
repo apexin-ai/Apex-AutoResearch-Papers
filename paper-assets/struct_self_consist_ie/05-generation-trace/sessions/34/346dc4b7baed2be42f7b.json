@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "346dc4b7baed2be42f7b",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "maintenance review issues update",
+  "task_key": "worker_maintenance_review_issues_update_20260515T222644",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_maintenance_review_issues_update_20260515T222644.log",
+    "occurrence": 1,
+    "bytes": 1826523,
+    "sha256": "52fd2d4c7462a7482f88365d855ed7fd20d973f5d3c6eea21343fb87bf04ac37"
+  },
+  "statistics": {
+    "messages": 69,
+    "user_turns": 0,
+    "tool_calls": 30,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 30,
+      "tool_result": 30,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 69,
+      "chunks": [
+        {
+          "path": "346dc4b7baed2be42f7b-part-0001.json",
+          "message_count": 24
+        },
+        {
+          "path": "346dc4b7baed2be42f7b-part-0002.json",
+          "message_count": 20
+        },
+        {
+          "path": "346dc4b7baed2be42f7b-part-0003.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/maintenance-review-issues-update.md"
+}

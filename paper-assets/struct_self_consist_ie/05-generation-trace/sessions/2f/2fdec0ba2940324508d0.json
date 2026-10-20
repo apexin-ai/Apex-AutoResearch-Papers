@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fdec0ba2940324508d0",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis mlp verifier",
+  "task_key": "worker_analysis_mlp_verifier_20260518T011632",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mlp_verifier_20260518T011632_result.json",
+    "occurrence": 1,
+    "bytes": 832,
+    "sha256": "9790dffb03d8fc6ca9803cd7d9bc365b0f34b122bd472fc7dcec31d48643679c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。实验 exp_027 已有完整结果，无需重跑。\n\n**核心结论：Feature Bottleneck Confirmed**\n\n| Model | AUROC | Selection F1 | vs Greedy |\n|-------|-------|-------------|-----------|\n| LR (5 signals) | 0.6522 | 0.6407 | -0.34pp |\n| MLP (64,32, 5 signals) | 0.6393 | 0.6386 | -0.55pp |\n| RF (100 trees, 5 signals) | 0.5868 | 0.6154 | -2.87pp |\n| MLP (64,32, 15 feat) | 0.6322 | 0.6339 | -1.02pp |\n\n- MLP < LR (Δ = -0.013 AUROC): 非线性模型无法从 5 个 signals 中提取更多信息\n- 加 10 个 pairwise interactions 反而更差\n- 所有 supervised models 无法超越 greedy（0.6441）\n- Verdict: 瓶颈在信号质量（feature bottleneck），不在 aggregation 方式。支持论文 \"structural signals 是 lightweight diagnostics，不是 strong selectors\" 的结论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mlp-verifier.md"
+}

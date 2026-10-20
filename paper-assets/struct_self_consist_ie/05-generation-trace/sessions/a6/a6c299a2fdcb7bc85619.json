@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6c299a2fdcb7bc85619",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis r8w2 thinking tokens",
+  "task_key": "worker_analysis_r8w2_thinking_tokens_20260515T224012",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_r8w2_thinking_tokens_20260515T224012_result.json",
+    "occurrence": 1,
+    "bytes": 732,
+    "sha256": "7fc0346c8dad47d54cdcaef71d5de042016962c0d55083d199763eb00117739e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已保存到 `output/review_round8/r8w2_thinking_token_analysis.json`。\n\n结果：\n\n| | SciERC 4B | CoNLL 4B |\n|---|---|---|\n| instances | 551 | 3,453 |\n| mean tokens | 213 | 59 |\n| thinking ratio | 2.34% | 8.49% |\n| median LP shift | 0.0015 nats | 0.000007 nats |\n| selection changed | 8/551 (1.5%) | 0/3,453 (0.0%) |\n\n**Method B**（无 per-token logprobs）。没有 Qwen3-8B SciERC 数据，用 Qwen3-4B CoNLL 作对比。\n\n**结论**：Thinking tokens 的 LP 稀释效应可忽略（< 3% of LP range）。CoNLL 无 thinking tokens 但 LP 压缩更强（tied=95.8% vs SciERC 60.3%），直接排除 thinking tokens 是 LP 压缩的成因。累积 LP 排序完全不受影响（constant offset）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r8w2-thinking-tokens.md"
+}

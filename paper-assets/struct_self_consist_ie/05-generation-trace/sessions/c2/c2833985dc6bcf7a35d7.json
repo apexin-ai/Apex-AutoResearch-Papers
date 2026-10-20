@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2833985dc6bcf7a35d7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp backup1 het temp",
+  "task_key": "worker_code_exp_backup1_het_temp_20260520T171033",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_backup1_het_temp_20260520T171033_result.json",
+    "occurrence": 1,
+    "bytes": 1175,
+    "sha256": "5ae33b44d54c59ea23964e7af69d345da476f36cbaf485827ded103e6e641474"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 产出\n\n**脚本**: `artifacts/experiments/het_temp/run_het_temp.py` — 语法通过，dry run 通过。\n\n### 可用温度数据对\n\n| Dataset | Model | T_low | T_high | Seeds | T_low 路径 | T_high 路径 |\n|---------|-------|-------|--------|-------|-----------|------------|\n| SciERC | Qwen | T=0.8 | T=1.0 | 42, 123, 456 | `exp_026_t08[_seed*]` | `exp_026_t10_seed*` |\n| SciERC | Qwen | T=0.5 | T=1.0 | 42, 123, 456 | `exp_026_t05[_seed*]` | `exp_026_t10_seed*` |\n| CoNLL | LLaMA | T=0.7 | T=1.0 | 仅1个(默认) | `exp_017_llama_conll_n8_t07` | `exp_017_llama_conll`(需确认N=8) |\n\n**无 T_low 数据**: CoNLL Qwen、FewNERD (所有 model)。\n\n### 运行示例（SciERC T=0.8 vs T=1.0, seed42）\n\n```bash\npython run_het_temp.py \\\n  --t_low_path /root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08/samples.jsonl \\\n  --t_high_path /root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed42/samples.jsonl \\\n  --t_low_label \"T=0.8\" --t_high_label \"T=1.0\" \\\n  --output_dir /root/autodl-tmp/struct_self_consist_ie/output/exp_backup1_het_temp/scierc_t08_t10_s42 \\\n  --n_repeats 10 --seed 42\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-backup1-het-temp.md"
+}

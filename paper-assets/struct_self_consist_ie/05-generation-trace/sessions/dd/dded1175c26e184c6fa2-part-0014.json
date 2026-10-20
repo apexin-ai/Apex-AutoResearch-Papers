@@ -1,0 +1,3465 @@
+{
+  "schema_version": "1.0",
+  "session_id": "dded1175c26e184c6fa2",
+  "rounds": [
+    {
+      "number": 54,
+      "messages": [
+        {
+          "source_line": 2341,
+          "timestamp": "2026-05-20T14:25:23.342884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 754
+          },
+          "id": "event-002341"
+        },
+        {
+          "source_line": 2342,
+          "timestamp": "2026-05-20T14:25:23.443715+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p12.png"
+            }
+          },
+          "id": "event-002342"
+        },
+        {
+          "source_line": 2343,
+          "timestamp": "2026-05-20T14:25:23.896451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 856
+          },
+          "id": "event-002343"
+        },
+        {
+          "source_line": 2344,
+          "timestamp": "2026-05-20T14:25:24.248618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 804
+          },
+          "id": "event-002344"
+        },
+        {
+          "source_line": 2345,
+          "timestamp": "2026-05-20T14:25:33.114265+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.pdf",
+              "project": "struct_self_consist_ie",
+              "pages": "13-20",
+              "dpi": "150"
+            }
+          },
+          "id": "event-002345"
+        },
+        {
+          "source_line": 2346,
+          "timestamp": "2026-05-20T14:25:34.468457+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p13.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 601.5}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p14.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 587.9}, {\\\"page\\\": 15, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p15.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 445.3}, {\\\"page\\\": 16, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p16.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 525.4}, {\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p17.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 383.4}, {\\\"page\\\": 18, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p18.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 407.7}, {\\\"page\\\": 19, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p19.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 538.0}, {\\\"page\\\": 20, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p20.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 464.5}], \\\"total_pages\\\": 42, \\\"rendered_pages\\\": 8, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1354
+          },
+          "id": "event-002346"
+        },
+        {
+          "source_line": 2347,
+          "timestamp": "2026-05-20T14:25:38.333205+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p13.png"
+            }
+          },
+          "id": "event-002347"
+        },
+        {
+          "source_line": 2348,
+          "timestamp": "2026-05-20T14:25:38.736297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p14.png"
+            }
+          },
+          "id": "event-002348"
+        },
+        {
+          "source_line": 2349,
+          "timestamp": "2026-05-20T14:25:39.143348+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 810
+          },
+          "id": "event-002349"
+        },
+        {
+          "source_line": 2350,
+          "timestamp": "2026-05-20T14:25:39.143791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p15.png"
+            }
+          },
+          "id": "event-002350"
+        },
+        {
+          "source_line": 2351,
+          "timestamp": "2026-05-20T14:25:40.049309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1313
+          },
+          "id": "event-002351"
+        },
+        {
+          "source_line": 2352,
+          "timestamp": "2026-05-20T14:25:40.050121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 906
+          },
+          "id": "event-002352"
+        },
+        {
+          "source_line": 2353,
+          "timestamp": "2026-05-20T14:25:40.200835+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p16.png"
+            }
+          },
+          "id": "event-002353"
+        },
+        {
+          "source_line": 2354,
+          "timestamp": "2026-05-20T14:25:40.602545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p17.png"
+            }
+          },
+          "id": "event-002354"
+        },
+        {
+          "source_line": 2355,
+          "timestamp": "2026-05-20T14:25:41.004999+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 804
+          },
+          "id": "event-002355"
+        },
+        {
+          "source_line": 2356,
+          "timestamp": "2026-05-20T14:25:41.005432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p18.png"
+            }
+          },
+          "id": "event-002356"
+        },
+        {
+          "source_line": 2357,
+          "timestamp": "2026-05-20T14:25:41.510046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 907
+          },
+          "id": "event-002357"
+        },
+        {
+          "source_line": 2358,
+          "timestamp": "2026-05-20T14:25:41.713316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p19.png"
+            }
+          },
+          "id": "event-002358"
+        },
+        {
+          "source_line": 2359,
+          "timestamp": "2026-05-20T14:25:42.018963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1013
+          },
+          "id": "event-002359"
+        },
+        {
+          "source_line": 2360,
+          "timestamp": "2026-05-20T14:25:42.019407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p20.png"
+            }
+          },
+          "id": "event-002360"
+        },
+        {
+          "source_line": 2361,
+          "timestamp": "2026-05-20T14:25:42.659350+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 946
+          },
+          "id": "event-002361"
+        },
+        {
+          "source_line": 2362,
+          "timestamp": "2026-05-20T14:25:43.273822+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1254
+          },
+          "id": "event-002362"
+        },
+        {
+          "source_line": 2363,
+          "timestamp": "2026-05-20T14:25:51.474345+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.pdf",
+              "project": "struct_self_consist_ie",
+              "pages": "21-28",
+              "dpi": "150"
+            }
+          },
+          "id": "event-002363"
+        },
+        {
+          "source_line": 2364,
+          "timestamp": "2026-05-20T14:25:52.678394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 21, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p21.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 545.5}, {\\\"page\\\": 22, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p22.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 511.2}, {\\\"page\\\": 23, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p23.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 495.4}, {\\\"page\\\": 24, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p24.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 500.8}, {\\\"page\\\": 25, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p25.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 520.1}, {\\\"page\\\": 26, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p26.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 493.1}, {\\\"page\\\": 27, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p27.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 542.6}, {\\\"page\\\": 28, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p28.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 507.6}], \\\"total_pages\\\": 42, \\\"rendered_pages\\\": 8, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1204
+          },
+          "id": "event-002364"
+        },
+        {
+          "source_line": 2365,
+          "timestamp": "2026-05-20T14:25:52.779102+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Yao et al 2026 \"self-consistency\" structured prediction NER test-time scaling"
+            }
+          },
+          "id": "event-002365"
+        },
+        {
+          "source_line": 2366,
+          "timestamp": "2026-05-20T14:25:53.381436+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Chen et al 2025 \"two failures of self-consistency\" multi-step reasoning LLM"
+            }
+          },
+          "id": "event-002366"
+        },
+        {
+          "source_line": 2367,
+          "timestamp": "2026-05-20T14:25:57.347646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Eikema et al 2025 \"structured conditional minimum Bayes risk\" MBR decoding"
+            }
+          },
+          "id": "event-002367"
+        },
+        {
+          "source_line": 2368,
+          "timestamp": "2026-05-20T14:26:00.186378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Chen et al 2025 \"two failures of self-consistency\" multi-step reasoning LLM\"\n\nLinks: [{\"title\":\"[2305.14279] Two Failures of Self-Consistency in the Multi-Step Reasoning of LLMs\",\"url\":\"https://arxiv.org/abs/2305.14279\"},{\"title\":\"Two Failures of Self-Consistency in the Multi-Step Reasoning of LLMs\",\"url\":\"https://arxiv.org/html/2305.14279v4\"},{\"title\":\"Two Failures of Self-Consistency in the Multi-Step Reasoning of LLMs\",\"url\":\"https://arxiv.org/pdf/2305.14279\"},{\"title\":\"(PDF) Two Failures of Self-Consistency in the Multi-Step Reasoning of LLMs\",\"url\":\"https://www.researchgate.net/publication/370981558_Two_Failures_of_Self-Consistency_in_the_Multi-Step_Reasoning_of_LLMs\"},{\"title\":\"Existing LLMs Are Not Self-Consistent For Simple Tasks\",\"url\":\"https://arxiv.org/html/2506.18781v1\"},{\"title\":\"[PDF] Two Failures of Self-Consistency in the Multi-Step Reasoning of LLMs | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Two-Failures-of-Self-Consistency-in-the-Multi-Step-Chen-Phang/3200a0d6fef7164f0341cf1938f584da6057ffd6\"},{\"title\":\"Two Failures of Self-Consistency in the Multi-Step Reasoning of LLMs | NSF Public Access Repository\",\"url\":\"https://par.nsf.gov/biblio/10542787-two-failures-self-consistency-multi-step-reasoning-llms\"},{\"title\":\"Two Failures of Self-Consistency in the Multi-Step ...\",\"url\":\"https://openreview.net/pdf?id=5nBqY1y96B\"}]\n\nI found the paper! Note that the publication year in the search results shows it was originally published in 2023 on arXiv (May 23, 2023) and later appeared in the Transactions on Machine Learning Research in 2024, not 2025.\n\nThe paper \"Two Failures of Self-Consistency in the Multi-Step Reasoning of LLMs\" was written by Angelica Chen, Jason Phang, Alicia Parrish, Vishakh Padmakumar, Chen Zhao, Samuel R. Bowman, and Kyunghyun Cho.\n\nThe paper investigates two types of self-consistency failures in LLMs:\n\n1. **Hypothetical Consistency**: A model's ability to predict what its output would\n…[truncated 672 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 6804
+          },
+          "id": "event-002368"
+        },
+        {
+          "source_line": 2369,
+          "timestamp": "2026-05-20T14:26:00.487685+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Yao et al 2026 \"self-consistency\" structured prediction NER test-time scaling\"\n\nLinks: [{\"title\":\"Published as a conference paper at ICLR 2026 EFFICIENT TEST-TIME SCALING\",\"url\":\"https://openreview.net/pdf/7cc7c48e3fa905bc77791b1d3213db2341099fcd.pdf\"},{\"title\":\"Seer Self-Consistency: Advance Budget Estimation for Adaptive Test-Time Scaling\",\"url\":\"https://arxiv.org/pdf/2511.09345\"},{\"title\":\"CALIBRATED TEST-TIME SCALING FOR EFFICIENT LLM ...\",\"url\":\"https://openreview.net/pdf?id=jrSc4RJXy1\"},{\"title\":\"Certified Self-Consistency: Statistical Guarantees and Test-Time Training for Reliable Reasoning in LLMs\",\"url\":\"https://arxiv.org/html/2510.17472v2\"},{\"title\":\"nchellwig at SemEval-2026 Task 3: Self-Consistent Structured Generation (SCSG) for Dimensional Aspect-Based Sentiment Analysis using Large Language Models\",\"url\":\"https://arxiv.org/pdf/2603.01788\"}]\n\nI found several relevant results about self-consistency and test-time scaling. However, the search results don't appear to contain a paper specifically by \"Yao et al 2026\" focused on self-consistency for structured prediction and NER with test-time scaling.\n\nThe results show:\n\n1. **General test-time scaling work**: Huang et al. (2025) extended the self-consistency method (Wang et al., 2023b) for better confidence calibration, though this is from 2025, not 2026.\n\n2. **Self-consistency background**: Self-consistency (Wang et al., 2022) allows LLMs to improve performance during inference through increased computation, and a critical challenge for ensemble methods like self-consistency is dynamically determining the optimal number of ensemble samples based on input complexity.\n\n3. **Structured generation application**: There is a 2026 work on Self-Consistent Structured Generation (SCSG) that incorporates self-consistency prompting to enhance prediction reliability, where each prompt is executed k times with different random seeds, retaining only tuples that achieve majority consensus.\n\nT\n…[truncated 352 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 7708
+          },
+          "id": "event-002369"
+        },
+        {
+          "source_line": 2370,
+          "timestamp": "2026-05-20T14:26:04.400306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Eikema et al 2025 \"structured conditional minimum Bayes risk\" MBR decoding\"\n\nLinks: [{\"title\":\"Structure-Conditional Minimum Bayes Risk Decoding - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.emnlp-main.1616/\"},{\"title\":\"GitHub - Roxot/structure-conditional-mbr: Structure-conditional minimum Bayes risk decoding. · GitHub\",\"url\":\"https://github.com/Roxot/structure-conditional-mbr\"},{\"title\":\"[2510.20700] Structure-Conditional Minimum Bayes Risk Decoding\",\"url\":\"https://arxiv.org/abs/2510.20700\"},{\"title\":\"Minimum Bayes Risk Decoding\",\"url\":\"https://www.emergentmind.com/topics/minimum-bayes-risk-mbr-decoding\"},{\"title\":\"Structure-Conditional Minimum Bayes Risk Decoding\",\"url\":\"https://arxiv.org/html/2510.20700\"},{\"title\":\"Structure-Conditional Minimum Bayes Risk Decoding\",\"url\":\"https://arxiv.org/pdf/2510.20700\"},{\"title\":\"Theoretical Guarantees for Minimum Bayes Risk Decoding\",\"url\":\"https://aclanthology.org/2025.acl-long.793.pdf\"}]\n\nI found the research paper you're looking for! Here's what I found about the Eikema et al. 2025 work on structure-conditional minimum Bayes risk decoding:\n\n## Overview\n\nThe work introduces three lightweight adaptations to the utility function, designed to make MBR more sensitive to structural variability in the outcome space.\n\n## Research Motivation\n\nWhile MBR has proven effective in machine translation where the variability of a language model's outcome space is naturally constrained, it may face challenges in more open-ended tasks such as dialogue or instruction-following, and the authors hypothesise that applying MBR with standard similarity-based utility functions may result in selecting responses that are broadly representative of the model's distribution, yet sub-optimal with respect to any particular grouping of generations that share an underlying latent structure.\n\n## Methodology\n\nThe researchers curate a dataset capturing three representative types of latent structure—dialogue act, emotion,\n…[truncated 600 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 7052
+          },
+          "id": "event-002370"
+        },
+        {
+          "source_line": 2371,
+          "timestamp": "2026-05-20T14:26:13.180475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p21.png"
+            }
+          },
+          "id": "event-002371"
+        },
+        {
+          "source_line": 2372,
+          "timestamp": "2026-05-20T14:26:13.532745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p22.png"
+            }
+          },
+          "id": "event-002372"
+        },
+        {
+          "source_line": 2373,
+          "timestamp": "2026-05-20T14:26:14.036669+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p23.png"
+            }
+          },
+          "id": "event-002373"
+        },
+        {
+          "source_line": 2374,
+          "timestamp": "2026-05-20T14:26:14.540665+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1360
+          },
+          "id": "event-002374"
+        },
+        {
+          "source_line": 2375,
+          "timestamp": "2026-05-20T14:26:14.541116+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p24.png"
+            }
+          },
+          "id": "event-002375"
+        },
+        {
+          "source_line": 2376,
+          "timestamp": "2026-05-20T14:26:15.445393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1912
+          },
+          "id": "event-002376"
+        },
+        {
+          "source_line": 2377,
+          "timestamp": "2026-05-20T14:26:15.446198+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1409
+          },
+          "id": "event-002377"
+        },
+        {
+          "source_line": 2378,
+          "timestamp": "2026-05-20T14:26:15.446851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 905
+          },
+          "id": "event-002378"
+        },
+        {
+          "source_line": 2379,
+          "timestamp": "2026-05-20T14:26:15.497267+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Yao 2026 \"self-consistency\" structured IE confidence NER ICLR"
+            }
+          },
+          "id": "event-002379"
+        },
+        {
+          "source_line": 2380,
+          "timestamp": "2026-05-20T14:26:15.979829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"entity-level\" aggregation ensemble NER LLM test-time voting 2024 2025"
+            }
+          },
+          "id": "event-002380"
+        },
+        {
+          "source_line": 2381,
+          "timestamp": "2026-05-20T14:26:22.446757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Yao 2026 \"self-consistency\" structured IE confidence NER ICLR\"\n\nLinks: [{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://openreview.net/pdf?id=jrSc4RJXy1\"},{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://www.arxiv.org/pdf/2602.07470\"},{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://arxiv.org/pdf/2509.25787v4\"},{\"title\":\"(PDF) Self-Consistency Improves Chain of Thought Reasoning in Language Models\",\"url\":\"https://www.researchgate.net/publication/359390115_Self-Consistency_Improves_Chain_of_Thought_Reasoning_in_Language_Models\"},{\"title\":\"nchellwig at SemEval-2026 Task 3: Self-Consistent Structured Generation (SCSG) for Dimensional Aspect-Based Sentiment Analysis using Large Language Models\",\"url\":\"https://arxiv.org/pdf/2603.01788\"}]\n\nThe search returned several results related to ICLR 2026 papers involving self-consistency and structured tasks. Here's what I found:\n\n**Most Relevant Result:**\n\nOne ICLR 2026 paper discusses modifications that ensure responses with higher confidence contribute more significantly to final selection, enhancing robustness by prioritizing more reliable predictions, which appears to be about confidence-weighted self-consistency approaches.\n\n**Related Applications:**\n\nAnother ICLR 2026-era work presents Self-Consistent Structured Generation (SCSG) for Dimensional Aspect-Based Sentiment Analysis, which enhances prediction reliability by executing a model multiple times per instance, retaining only tuples that achieve majority consensus across runs.\n\nThe search results show multiple ICLR 2026 papers dealing with self-consistency methods applied to structured information extraction and NER-related tasks, with emphasis on confidence scoring and robustness. However, the specific paper matching all those exact keywords may require a more targeted search or access to the full conference proceedings.\n\n\nREMINDER: You MUST include the sources above in you\n…[truncated 49 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 6949
+          },
+          "id": "event-002381"
+        },
+        {
+          "source_line": 2382,
+          "timestamp": "2026-05-20T14:26:24.754872+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"entity-level\" aggregation ensemble NER LLM test-time voting 2024 2025\"\n\nLinks: [{\"title\":\"EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models\",\"url\":\"https://arxiv.org/html/2505.23038\"},{\"title\":\"Beyond Majority Voting: LLM Aggregation by Leveraging Higher-Order Information\",\"url\":\"https://arxiv.org/html/2510.01499v1\"},{\"title\":\"EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models\",\"url\":\"https://arxiv.org/pdf/2505.23038\"},{\"title\":\"Beyond Majority Voting: LLM Aggregation by Leveraging Higher-Order Information\",\"url\":\"https://arxiv.org/pdf/2510.01499\"},{\"title\":\"Best-of-$\\\\infty$ -- Asymptotic Performance of Test-Time LLM Ensembling\",\"url\":\"https://arxiv.org/pdf/2509.21091\"},{\"title\":\"Optimal Aggregation of LLM and PRM Signals for Efficient Test-Time Scaling\",\"url\":\"https://www.arxiv.org/pdf/2510.13918\"},{\"title\":\"LLM-Jury Filtering: Ensemble Decision-Making\",\"url\":\"https://www.emergentmind.com/topics/llm-jury-filtering\"}]\n\nBased on the search results, I found several relevant papers on ensemble learning, LLM aggregation, and test-time voting from 2024-2025:\n\n## Key Papers Found\n\n**1. EL4NER: Ensemble Learning for Named Entity Recognition (May 2025)**\n\nThis work decomposes the NER task into two stages, where the first uses multiple LLMs to extract potential entity spans and integrates them, and the second confirms entity types one by one by voting on multiple LLMs, enabling two integrations at a fine-grained level. The approach employs multiple open-source small-parameter LLMs to perform multi-stage in-context learning through ensemble learning to integrate inference results by means of union and vote.\n\n**2. Beyond Majority Voting: LLM Aggregation by Leveraging Higher-Order Information (October 2025)**\n\nPrevious works have mostly employed simple majority voting as a natural first instinct to aggregate different LLMs' responses, b\n…[truncated 883 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 8775
+          },
+          "id": "event-002382"
+        },
+        {
+          "source_line": 2383,
+          "timestamp": "2026-05-20T14:26:57.442064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Yao 2026 \"Self-Certainty\" self-consistency confidence LLM structured prediction ICLR"
+            }
+          },
+          "id": "event-002383"
+        },
+        {
+          "source_line": 2384,
+          "timestamp": "2026-05-20T14:26:57.442405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "EL4NER \"ensemble learning\" \"named entity recognition\" LLM entity-level voting 2025"
+            }
+          },
+          "id": "event-002384"
+        },
+        {
+          "source_line": 2385,
+          "timestamp": "2026-05-20T14:26:57.643118+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p25.png"
+            }
+          },
+          "id": "event-002385"
+        },
+        {
+          "source_line": 2386,
+          "timestamp": "2026-05-20T14:26:58.047307+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p26.png"
+            }
+          },
+          "id": "event-002386"
+        },
+        {
+          "source_line": 2387,
+          "timestamp": "2026-05-20T14:26:58.301189+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 658
+          },
+          "id": "event-002387"
+        },
+        {
+          "source_line": 2388,
+          "timestamp": "2026-05-20T14:26:58.856203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 808
+          },
+          "id": "event-002388"
+        },
+        {
+          "source_line": 2389,
+          "timestamp": "2026-05-20T14:27:03.665991+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Yao 2026 \"Self-Certainty\" self-consistency confidence LLM structured prediction ICLR\"\n\nLinks: [{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://arxiv.org/pdf/2505.19590\"},{\"title\":\"Estimating the Self-Consistency of LLMs\",\"url\":\"https://arxiv.org/pdf/2509.19489\"},{\"title\":\"Scalable Best-of-N Selection for Large Language Models via Self-Certainty\",\"url\":\"https://arxiv.org/pdf/2502.18581\"},{\"title\":\"Confidence Improves Self-Consistency in LLMs\",\"url\":\"https://arxiv.org/pdf/2502.06233\"},{\"title\":\"Graph-based Confidence Calibration for Large Language Models\",\"url\":\"https://arxiv.org/pdf/2411.02454\"},{\"title\":\"Confidence Improves Self-Consistency in LLMs\",\"url\":\"https://arxiv.org/html/2502.06233v1\"},{\"title\":\"Know When You're Wrong: Aligning Confidence with Correctness for LLM Error Detection\",\"url\":\"https://arxiv.org/pdf/2603.06604\"},{\"title\":\"[2502.06233] Confidence Improves Self-Consistency in LLMs\",\"url\":\"https://arxiv.org/abs/2502.06233\"}]\n\nBased on the search results, I found several relevant papers related to self-certainty, confidence, and LLM structured prediction. Here are the key findings:\n\n## Self-Certainty Metric\n\nSelf-certainty is defined as the average KL divergence between a uniform distribution over the vocabulary and the model's next-token distribution, and higher self-certainty values indicate greater confidence.\n\n## Applications and Benefits\n\nSelf-certainty overcomes limitations by directly measuring response confidence from token distributions, handling open-ended tasks and scaling efficiently. Additionally, this metric has proven useful for distinguishing high-quality responses from flawed ones.\n\n## Self-Consistency and Confidence Integration\n\nOne notable paper shows that when tested on nine models and four datasets, a confidence-integrated approach outperforms self-consistency in nearly all configurations, reducing the required number of reasoning paths by over 40% on average.\n\nThe search results\n…[truncated 324 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 6223
+          },
+          "id": "event-002389"
+        },
+        {
+          "source_line": 2390,
+          "timestamp": "2026-05-20T14:27:06.977802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"EL4NER \"ensemble learning\" \"named entity recognition\" LLM entity-level voting 2025\"\n\nLinks: [{\"title\":\"EL4NER: Ensemble Learning for Named Entity ...\",\"url\":\"https://arxiv.org/pdf/2505.23038\"},{\"title\":\"[2505.23038] EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models\",\"url\":\"https://arxiv.org/abs/2505.23038\"},{\"title\":\"EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models\",\"url\":\"https://arxiv.org/html/2505.23038v1\"},{\"title\":\"GitHub - junchenzhi/Awesome-LLM-Ensemble: A curated list of Awesome-LLM-Ensemble papers for the survey \\\"Harnessing Multiple Large Language Models: A Survey on LLM Ensemble\\\" · GitHub\",\"url\":\"https://github.com/junchenzhi/Awesome-LLM-Ensemble\"},{\"title\":\"Ensemble Learning for Named Entity Recognition\",\"url\":\"https://svn.aksw.org/papers/2014/ISWC_EL4NER/public.pdf\"},{\"title\":\"Local LLM Ensembles for Zero-shot Portuguese Named Entity Recognition\",\"url\":\"https://arxiv.org/html/2512.10043v1\"},{\"title\":\"[2505.08704v1] LLM-based Prompt Ensemble for Reliable Medical Entity Recognition from EHRs\",\"url\":\"https://arxiv.org/abs/2505.08704v1\"},{\"title\":\"GitHub - chinhang0104/Ensemble-Learning-for-Named-Entity-Recognition: Utilize multiple Named Entity Recogniztion packages to detect human name and organization and # determine the final output by conducting a voting process among the NER packages.\",\"url\":\"https://github.com/chinhang0104/Ensemble-Learning-for-Named-Entity-Recognition\"}]\n\nBased on the search results, here's what I found about EL4NER:\n\nEL4NER is an Ensemble Learning Method for Named Entity Recognition that aggregates the in-context learning (ICL) outputs of multiple open-source, small-parameter LLMs to enhance overall performance in NER tasks at less deployment and inference cost.\n\n**Key Components:**\n\nThe method includes a task decomposition-based pipeline that facilitates deep, multi-stage ensemble learnin\n…[truncated 965 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 9535
+          },
+          "id": "event-002390"
+        },
+        {
+          "source_line": 2391,
+          "timestamp": "2026-05-20T14:30:47.558454+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 2 — Round 1 审稿报告\n\n**论文**: \"Strong Predictors, Weak Selectors: The Correlation-Selection Gap in Self-Consistency for Named Entity Recognition\"\n**Venue**: EMNLP 2026 (via ARR May 2026)\n**审查侧重**: 新颖性 + 完整性 + 写作质量\n\n---\n\n## 总体评分\n**Overall**: 3.0 / 5 — Findings\n**一句话总结**: 扎实的实证研究揭示了 self-consistency 信号在 NER 上\"能估质量、不能选最优\"的 gap，但四项贡献各自增量偏小，entity-level construction 新颖性不足，理论 bound 过松，且存在重要缺引。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5 / 5 | 主要 claim 有实验支撑，但\"first systematic characterization\"过度声称；degeneracy bound 仅捕获 3-12% 的实际 gap，理论贡献名不副实 |\n| Excitement | 3.0 / 5 | Correlation-selection gap 是有价值的实证洞察，但 entity-level mitigation 效果有限（+1.40pp），整体 novelty 偏 incremental |\n| Reproducibility | 4.0 / 5 | 实验设置详尽（Appendix j-k），4 个公开数据集，承诺发布代码；LoRA 超参、prompt 模板均有报告 |\n| Overall Assessment | 3.0 / 5 | Findings 水平：有用的实证发现 + 实操指导，但单项贡献深度不够，不达主会议 novelty 门槛 |\n| Confidence | 4 / 5 | 熟悉 test-time scaling、MBR decoding、LLM-based NER 相关文献 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] Entity-level construction 的新颖性被高估，缺少关键引用\n\n- 具体位置：Section 6.1, Contribution #3 (§1, page 2)\n- 问题：论文将 entity-level construction 定位为 contribution #3，声称\"adapting entity voting from ensemble NER (Florian et al., 2003) to stochastic sampling\"。然而：\n  - (a) **EL4NER** (arXiv:2505.23038, May 2025) 已系统实现了基于多 LLM 的 entity-level span 提取 + entity type voting 的两阶段 ensemble NER pipeline，且在 ICL 设置下取得 SOTA。这篇直接相关的工作未被引用。\n  - (b) Xie et al. (2023a) 的 entity voting 方法（论文自己在 §2 引用）已是 entity-level aggregation 的先驱。论文的\"novelty\"本质上是将已有的 entity voting 重新用 MBR 框架包装，并在 SC 语境下做了消融。\n  - (c) +1.40pp (Few-NERD) 和 +0.12pp (Few-NERD) / +0.55pp (SciERC) 的改进幅度有限，不足以支撑单独作为一项 contribution。\n- 为什么影响接收：缺少直接相关的 2025 工作引用，且现有 contribution 的增量贡献被高估，会影响 novelty 判断。\n- 建议修改方向：(1) 补引 EL4NER 并明确区分（单模型内 SC vs. 多模型 ensemble）；(2) 将 entity-level construction 降级为 diagnostic-motivated ablation 而非 standalone contribution；(3) 如果保留为 contribution，需要在更多数据集/模型上展示稳健的改进。\n\n**N2** [critical] Degeneracy decomposition 的理论贡献过于 loose，不足以作为独立 contribution\n\n- 具体位置：Section 6.3, Proposition 1 (page 6), §o.3 (Appendix, page 25-26)\n- 问题：E[ΔF₁] ≤ (1−D)·G_adj 的 bound 仅能解释实际 correlation-selection gap 的 3-12%（论文自承，§6.3 \"the bound is loose\"）。具体数值：\n  - SciERC: bound ratio 3.1×(Figure 9)\n  - CoNLL: bound 仅捕获 ~6.8% 的 gap\n  - 论文在 Appendix o.4 进一步验证了 bound 太松（\"the best signal recovers only 6.8% of the non-degenerate oracle gap on average\"）\n  \n  Proposition 1 本身是 MBR for balanced set-overlap 的直接推导（F1 的 non-linear + closed-form threshold 在 Dembczyński et al. 2011 已有），新增理论贡献主要是 degeneracy rate D 的定义和分解，但 D 本身只是一个描述性统计量，不提供优化方向或 actionable insight。\n- 为什么影响接收：作为 Contribution #4，理论分析未能提供超出 descriptive statistics 的洞察。3-12% 的解释力使其在审稿人眼中更像 negative result 的理论注脚，而非独立贡献。\n- 建议修改方向：(1) 将 degeneracy decomposition 从 contribution 列表降级为 analysis tool，在 §6.3 讨论其局限性；(2) 或者 tighten the bound——考虑 non-degenerate instances 内部的 signal-dependent gap，给出更细粒度的分解。\n\n**N3** [critical] \"First systematic characterization\" 的声称过强\n\n- 具体位置：Abstract (\"we provide the first systematic characterization\"), §1 page 2 (\"the first systematic empirical characterization of when and why test-time scaling via LP-based selection succeeds or fails for NER\")\n- 问题：\n  - Chen et al. (2023, arXiv:2305.14279) 已系统研究了 self-consistency 在 multi-step reasoning 中的两种 failure modes（hypothetical + compositional consistency）\n  - Eikema et al. (2025, EMNLP) 已研究 structured MBR decoding 中 standard utility functions 在 structured outputs 上的失效\n  - Kang et al. (2025) Self-Certainty 和 Taubenfeld et al. (2025) 已研究 confidence signals 与 SC 的关系\n  - 论文的\"first\"仅限于 NER 任务 + 这 5 个 specific signals 的组合，但 Abstract 和 Introduction 中的措辞暗示更广泛的 novelty\n- 为什么影响接收：Overclaiming 是 ARR 审稿中的常见拒绝理由。如果不精确限定 scope，reviewer 会质疑作者对相关工作的了解程度。\n- 建议修改方向：改为 \"the first systematic empirical characterization of the correlation-selection gap **for NER**\" 或 \"**in the context of structured entity extraction**\"。\n\n**N4** [critical] 多处参考文献错误\n\n- 具体位置：References (pages 11-14)\n- 问题（引用验证工具检出）：\n  - **chen2025twofailures**: 论文标注 2025，但实际发表于 2023 (arXiv:2305.14279)。TMLR 版可能是 2024，但绝非 2025。\n  - **feng2025optimal**: bib 中第一作者 \"Feng\"，但 OpenAlex 显示实际第一作者应为 \"Austin\"——需核实。\n  - **park2024grammar**: bib 中第一作者 \"Park\"，但 OpenAlex 显示 \"Berg-Kirkpatrick\"——可能是 bib 条目张冠李戴。\n  - **hobelsberger2025systematic**: \"Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models\"——在 OpenAlex、Semantic Scholar 均无法验证，最佳匹配相似度仅 0.236。**疑似虚构引用**（fabricated reference），这在 ARR 审稿中是严重问题。\n  - **17 个 orphan bib entries**（在 .bib 中但未被引用），包括 openai2024o1、min2022rethinking 等。虽不影响接收，但反映提交前 cleanup 不足。\n- 为什么影响接收：虚构引用（如属实）可导致 desk reject。年份和作者错误影响可信度。\n- 建议修改方向：(1) 立即核实 hobelsberger2025systematic 的真实性；(2) 修正 chen2025twofailures 年份；(3) 核实 feng2025optimal 和 park2024grammar 的作者信息；(4) 清理 orphan bib entries。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] 模型多样性有限\n\n- 具体位置：§7.1 (page 7), Table 2-5\n- 问题：仅使用 Qwen3-8B 和 LLaMA-3.1-8B-Instruct 两个 ~8B 模型。两个模型来自不同 family 但参数规模相同。论文在 Discussion (§8) 承认\"we cover 4B-8B fine-tuned and 72B zero-shot; the gap persists at 72B\"，但 72B 结果仅在 Appendix r 简略提及，且未在主表格中展示。\n  - 缺少 >70B 规模的 fine-tuned 模型测试\n  - 缺少 closed-source 模型（如 GPT-4）的比较\n  - 仅测试 English NER datasets\n- 建议：至少在主表格中加入 72B 结果，或讨论为什么 model scale 不是关键变量。\n\n**W2** [warning] Correlation-selection gap 的因果方向未建立\n\n- 具体位置：§4 (pages 4-5), Figure 2-3, \"Diagnostic cascade\"\n- 问题：论文将 diagnostic cascade 描述为因果链（\"instance degeneracy sets the ceiling, oracle headroom determines the opportunity, and LP compression limits exploitation\"），但实际上这只是三个相关变量的描述性分析。论文未排除混淆变量的可能性——例如，instance difficulty 可能同时影响 degeneracy、headroom 和 compression。\n- 建议：明确标注为 descriptive decomposition 而非 causal cascade，或提供干预性实验。\n\n**W3** [warning] 论文试图同时做太多事情\n\n- 具体位置：整篇论文的 4 个 contributions\n- 问题：论文同时包含：(1) QE evaluation benchmark, (2) selection failure diagnosis, (3) entity-level construction mitigation, (4) degeneracy theory。每项都是半页到一页的篇幅，导致每个方向的深度不够。例如：\n  - Entity-level construction 没有和 EL4NER 或其他 entity-level methods 做充分对比\n  - Degeneracy bound 太松但没有深入分析 tightness\n  - QE evaluation 的 5 signals 仅选取了部分（缺少 PTrue、Self-Certainty 等近期信号）\n- 建议：考虑聚焦 contributions #1 + #2（QE + selection failure diagnosis），将 #3 和 #4 作为 follow-up 讨论。\n\n**W4** [warning] Missing related work: structured prediction 的 test-time scaling\n\n- 具体位置：§2 Background & Related Work\n- 问题：\n  - \"Beyond Majority Voting: LLM Aggregation by Leveraging Higher-Order Information\" (arXiv:2510.01499, Oct 2025)——探索了超越 majority voting 的 aggregation 方法\n  - \"Scalable Best-of-N Selection via Self-Certainty\" (arXiv:2502.18581)——直接相关的 best-of-N selection 方法\n  - \"Optimal Aggregation of LLM and PRM Signals for Efficient Test-Time Scaling\" (arXiv:2510.13918)——多 signal 聚合的理论框架\n  这些工作在 aggregation 和 signal combination 方面有直接相关性。\n- 建议：在 §2 增加对 aggregation beyond majority voting 的讨论。\n\n---\n\n## 小问题（不影响接收）\n\n- **M1**: Table 1 (page 4) 中 Oracle 行的 \"NER F1\" 和 \"NBR F1\" 列标题含义不够直观，caption 未完整解释 NBR 的含义（是 \"NER Benchmark Results\" 还是其他？实际看内容应是 \"NER F1\"）。→ 核实后统一。\n- **M2**: Figure 2 (page 5) 的 y 轴标签 \"μ\" 较小，且 dashed green line 的 legend \"greedy single\" 与正文 \"greedy (3-seed)\" 表述不一致。\n- **M3**: §3.2 中 Fleiss' κ (FK) 的定义引用了 Fleiss (1971)，但 FK 在文中被描述为 \"inter-rater agreement\"，而实际用法是 type-level agreement across N samples——这不是标准的 inter-rater reliability 场景，应补充说明。\n- **M4**: Appendix b (Robustness Analysis) 的 \"gold annotations\" filtering 条件未在主文中提及，可能影响主表结果的可比性。\n- **M5**: 论文在 §8 Discussion 提到 \"LP compression on SciERC; Appendix i\"——但 Appendix i 是关于 \"Multi-Seed Stability\"，§8 引用可能有误。\n- **M6**: 17 个 orphan bib entries 应清理（包括 openai2024o1、min2022rethinking、sagi2018ensemble 等未被引用的条目）。\n\n---\n\n## 格式合规性\n\n| 检查项 | 结果 | 备注 |\n|--------|------|------|\n| 正文 ≤ 8 页 | ✓ | Sections 1-9 (through Conclusion) 在 page 8 结束，Limitations 从 page 8 底部开始（不计入页数限制） |\n| 匿名 | ✓ | \"Anonymous ACL submission\"，未发现 deanonymization |\n| ACL style | ✓ | 使用 `\\usepackage[review]{acl}` |\n| Limitations section | ✓ | 存在于 page 8-9，内容诚实（讨论了 model scale、English-only、no open-ended QA 等限制） |\n| Ethics statement | ✓ | 存在于 page 9 |\n| NLP Checklist | ✓ | Pages 9-10，回答完整 |\n| Figure/Table captions | ⚠ | 大部分自解释，但 Table 1 的 \"NBR F1\" 需澄清 |\n| 参考文献格式 | ⚠ | 存在年份错误和可疑引用（见 N4） |\n\n---\n\n## 主要优势\n\n1. **问题定义清晰且有实际价值**：correlation-selection gap 是一个简洁、可操作的概念，对 NER practitioners 直接有用——知道信号能做 QE (ρ up to 0.45, AUROC 0.82) 但选不出最好的 sample，这改变了使用 test-time scaling 的策略。\n\n2. **实验设计系统全面**：5 signals × 4 datasets × 2 models × 4B-8B fine-tuned + 72B zero-shot，覆盖面在同类工作中属优秀。Bootstrap CI (3 seeds, 10,000 resamples)、Holm-Bonferroni correction、permutation tests 等统计方法的使用体现了严谨性。\n\n3. **Diagnostic cascade 分析有洞察力**：Figure 3 的 degeneracy × LP compression 交互分析、Figure 8 的 within-instance LP range CDF 分析，为理解\"为什么信号选不出最优\"提供了直觉。\n\n4. **Prescriptive guidance 有实操价值**：§7.5 给出的三条建议（filtering low-confidence → LP selection → entity-level construction 在 degeneracy 高时使用）对 practitioners 直接有用。\n\n5. **Appendix 极其详尽**（30 页）：robustness analyses、ablation studies、full signal comparisons、calibration analysis 等，展示了作者的严谨态度。\n\n---\n\n## 对 Director 的总结\n\n这是一篇扎实的实证论文，core insight（correlation-selection gap）有价值。但四项 contributions 中，#3（entity-level construction）新颖性不足且缺少关键引用（EL4NER），#4（degeneracy bound）过松不足以作为独立贡献。\"First systematic characterization\" 的 overclaim 需要 scope down。参考文献存在需要立即处理的问题（疑似虚构引用 hobelsberger2025systematic）。\n\n建议评级 **3.0 (Findings)**：有用的实证发现适合 Findings track，但 novelty 和 excitement 不达主会议水平。如果作者能 (1) 修正 overclaims，(2) 补引并区分 EL4NER，(3) 修复引用问题，(4) 将论文聚焦到最强的 contributions (#1 + #2)，这篇论文在 Findings 中会是一篇有价值的工作。",
+              "reviewer_id": "2",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-002391"
+        },
+        {
+          "source_line": 2392,
+          "timestamp": "2026-05-20T14:30:51.373707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_3897c2857f11615119e277e820eae311:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3815
+          },
+          "id": "event-002392"
+        },
+        {
+          "source_line": 2393,
+          "timestamp": "2026-05-20T14:30:56.809379+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images"
+            }
+          },
+          "id": "event-002393"
+        },
+        {
+          "source_line": 2394,
+          "timestamp": "2026-05-20T14:30:56.859955+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 22, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 50
+          },
+          "id": "event-002394"
+        },
+        {
+          "source_line": 2395,
+          "timestamp": "2026-05-20T14:31:04.505445+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿报告已提交给 Review Director。\n\n**核心判断**：Overall 3.0 (Findings)。\n\n**四个 Must-Fix 问题**：\n1. Entity-level construction 新颖性不足——缺引 EL4NER (2025)，改进幅度有限 (+1.40pp)\n2. Degeneracy bound 太松 (3-12%)，不足以作为独立 contribution\n3. \"First systematic characterization\" overclaim，需 scope down 到 NER\n4. 参考文献存在年份错误、作者错误、疑似虚构引用 (hobelsberger2025systematic)\n\n**主要优势**：correlation-selection gap 概念清晰有价值，实验设计系统全面，30 页附录展示了严谨的 robustness 分析。适合 Findings track 但未达主会议 novelty 门槛。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2"
+          },
+          "id": "event-002395"
+        }
+      ]
+    },
+    {
+      "number": 55,
+      "messages": [
+        {
+          "source_line": 2396,
+          "timestamp": "2026-05-20T14:32:07.256961+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n## 交叉分享 — 请逐条回应 Reviewer 1 的审稿意见\n\n以下是 Reviewer 1 的完整审稿原文。请逐条回应：\n- **[AGREE]** 同意并说明理由\n- **[REBUT]** 反驳并提供证据（cite 具体 Section/Table/Figure）\n \n---\n\n## Reviewer 1 审稿报告（Overall: 3.5 Borderline Conference）\n\n### Must-Fix 问题\n\n**R1-N1** [critical] \"Correlation-Selection Gap\"概念对4/5信号是 structural tautology，framing过度渲染novelty\n- 4/5 信号（SJ, VC, FK, EM）是 instance-level aggregates，对同一 instance 的所有 N 个 candidates 赋予相同分数——它们根据定义就无法做 within-instance ranking。\n- 论文在 Section 4 做了 structural vs. empirical 的区分，但 Abstract 和 Intro 的 framing 没有前置这个区分。\n- 真正的 empirical 贡献是 LP 也失败了（within-instance LP range ~0.041 nats），但在当前 framing 下被淹没。\n- 建议：Abstract/Intro 应前置 structural/empirical 二分法，突出 LP 作为唯一 per-sample 信号的 compression 问题。\n\n**R1-N2** [critical] Construction mitigation效果在数据集间不一致，且关键结果的统计显著性存疑\n- Few-NERD: +1.40pp（Holm p_adj=0.006，显著）✓\n- SciERC: +1.02pp（Section 2 报告 p_adj=0.20，但 Table 13 显示 p_adj=0.038——数值矛盾）\n- CoNLL: -0.39pp（不显著）✗\n- 建议：澄清 p_adj 矛盾；增加对 CoNLL 失败的分析。\n\n### Should-Fix 问题\n\n**R1-W1** [warning] N=8/16 对于研究\"test-time compute scaling\"而言范围过窄\n- 相关文献（Brown et al., 2024; Snell et al., 2025）通常测试到 N=64 或更大。\n- Few-NERD N=16 LP 仍有 +0.30pp gain，更大 N 可能有用。\n\n**R1-W2** [warning] Fine-tuned 4B-8B vs. Zero-shot 72B 的 scale/regime confound\n- 无法归因于 fine-tuning、model size 还是 model architecture。\n\n**R1-W3** [warning] Cross-model consistency 实验过于初步\n- 仅 1 个数据集（Few-NERD）+ 1 对模型（Qwen3-8B + LLaMA-3.1-8B），不足以支撑 general claim。\n\n**R1-W4** [warning] SciERC 部分关键分析基于 single seed\n- SciERC 是分析最详细的数据集，但部分分析 single seed。有 bootstrap CI 缓解但不够。\n\n**R1-W5** [warning] Trained verifier (LightGBM) 的负面结果可能不够 conclusive\n- 仅 SciERC 上测试，特征集有限（5个信号），cross-dataset transfer 负面可能是 domain shift。\n\n### 小问题\nM1-M6: Table 1 列名、Proposition 1 entity-wise independence 假设、Holm family 分组不一致、Figure 1 中间面板、T=0.5 LP 增幅、SciERC 551 instances 对 subgroup 分析不足\n\n### 主要优势\n1. 统计方法论远超 NLP 社区平均水平\n2. Degeneracy decomposition 提供 clean 理论框架\n3. 诊断框架的实用价值\n4. 极其详尽的附录（55个表格）\n5. 负面结果的诚实报告\n6. Entity-level construction 是 novel 且直觉合理的 idea\n\n---\n\n请对上述每个 Must-Fix (N1-N2) 和 Should-Fix (W1-W5) 问题给出 [AGREE] 或 [REBUT] 回应。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-002396"
+        },
+        {
+          "source_line": 2397,
+          "timestamp": "2026-05-20T14:32:50.128363+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.pdf",
+              "project": "struct_self_consist_ie",
+              "pages": "2,4,5,7,8",
+              "dpi": "150"
+            }
+          },
+          "id": "event-002397"
+        },
+        {
+          "source_line": 2398,
+          "timestamp": "2026-05-20T14:32:51.007594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.pdf",
+              "project": "struct_self_consist_ie",
+              "pages": "27-30",
+              "dpi": "150"
+            }
+          },
+          "id": "event-002398"
+        },
+        {
+          "source_line": 2399,
+          "timestamp": "2026-05-20T14:32:51.108422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 561.6}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 469.6}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 502.0}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 363.3}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 535.1}], \\\"total_pages\\\": 42, \\\"rendered_pages\\\": 5, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 980
+          },
+          "id": "event-002399"
+        },
+        {
+          "source_line": 2400,
+          "timestamp": "2026-05-20T14:32:51.611779+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 27, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p27.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 542.6}, {\\\"page\\\": 28, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p28.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 507.6}, {\\\"page\\\": 29, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p29.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 545.1}, {\\\"page\\\": 30, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p30.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 527.8}], \\\"total_pages\\\": 42, \\\"rendered_pages\\\": 4, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 604
+          },
+          "id": "event-002400"
+        },
+        {
+          "source_line": 2401,
+          "timestamp": "2026-05-20T14:32:55.881488+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p2.png"
+            }
+          },
+          "id": "event-002401"
+        },
+        {
+          "source_line": 2402,
+          "timestamp": "2026-05-20T14:32:56.384304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p4.png"
+            }
+          },
+          "id": "event-002402"
+        },
+        {
+          "source_line": 2403,
+          "timestamp": "2026-05-20T14:32:56.686571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 805
+          },
+          "id": "event-002403"
+        },
+        {
+          "source_line": 2404,
+          "timestamp": "2026-05-20T14:32:56.686974+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-002404"
+        },
+        {
+          "source_line": 2405,
+          "timestamp": "2026-05-20T14:32:57.594990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1210
+          },
+          "id": "event-002405"
+        },
+        {
+          "source_line": 2406,
+          "timestamp": "2026-05-20T14:32:57.646707+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-002406"
+        },
+        {
+          "source_line": 2407,
+          "timestamp": "2026-05-20T14:32:58.050096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1363
+          },
+          "id": "event-002407"
+        },
+        {
+          "source_line": 2408,
+          "timestamp": "2026-05-20T14:32:58.052585+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 405
+          },
+          "id": "event-002408"
+        },
+        {
+          "source_line": 2409,
+          "timestamp": "2026-05-20T14:32:58.103300+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-002409"
+        },
+        {
+          "source_line": 2410,
+          "timestamp": "2026-05-20T14:32:58.556223+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p27.png"
+            }
+          },
+          "id": "event-002410"
+        },
+        {
+          "source_line": 2411,
+          "timestamp": "2026-05-20T14:32:59.112654+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1009
+          },
+          "id": "event-002411"
+        },
+        {
+          "source_line": 2412,
+          "timestamp": "2026-05-20T14:32:59.113073+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p29.png"
+            }
+          },
+          "id": "event-002412"
+        },
+        {
+          "source_line": 2413,
+          "timestamp": "2026-05-20T14:32:59.566336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1010
+          },
+          "id": "event-002413"
+        },
+        {
+          "source_line": 2414,
+          "timestamp": "2026-05-20T14:32:59.616978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p30.png"
+            }
+          },
+          "id": "event-002414"
+        },
+        {
+          "source_line": 2415,
+          "timestamp": "2026-05-20T14:33:00.028157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 915
+          },
+          "id": "event-002415"
+        },
+        {
+          "source_line": 2416,
+          "timestamp": "2026-05-20T14:33:00.430766+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 813
+          },
+          "id": "event-002416"
+        },
+        {
+          "source_line": 2417,
+          "timestamp": "2026-05-20T14:35:00.855267+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 2 — 交叉回应 Reviewer 1 审稿意见\n\n---\n\n### Must-Fix 问题\n\n**[AGREE] R1-N1: \"Correlation-Selection Gap\" 对 4/5 信号是 structural tautology，framing 过度渲染 novelty**\n\n同意。这是 R1 最尖锐的观察。论文自己在 §4 (page 4) 明确承认：\"four of five signals are instance-level aggregates that assign identical scores to all N candidates...selection failure is a design property, not an empirical finding.\" §1 Contribution #2 也写道 \"That 4/5 signals are instance-level is definitional\"。\n\n但 Abstract 和 Introduction 的 framing 完全没有前置这个关键区分。Abstract 写 \"We evaluate five confidence signals...all signals achieve reliable QE...but gains are absent...despite large oracle headrooms (the correlation-selection gap)\" ——读者会以为 5 个信号都是 empirical failure，而非 4 个是 definitional + 1 个是 empirical。\n\n真正的 empirical surprise（LP compression: within-instance range ≈0.041 nats，60% instances，§4 page 4; Figure 8 page 23 的 CDF 分析）在当前 framing 下被淹没。**建议修改 Abstract/Intro 将 structural/empirical 二分法前置，将论文的核心 empirical 贡献重新聚焦到 LP 的 compression failure 上。**\n\n补充：我在自己的审稿中也指出了 overclaim 问题（我的 N3），但 R1 对 structural tautology 的诊断比我更精准——不仅是措辞问题，而是整个 framing architecture 需要重构。\n\n---\n\n**[AGREE] R1-N2: Construction mitigation 效果在数据集间不一致，p_adj 数值矛盾**\n\n同意，这是一个需要修复的问题。\n\n关于数据集不一致性：论文 §8 (page 8) 自己承认 \"Entity construction yields significant gains only when degeneracy is low and oracle headroom is sufficient (Few-NERD: D=0.13%, headroom=1.2 1pp); on datasets where either condition fails, construction is ineffective。\" CoNLL 上 -0.39pp 的负面结果表明 entity-level construction 不是一个 robust 的解决方案。\n\n关于 p_adj 矛盾：§1 page 2 明确报告 SciERC construction p_adj=0.20（按 Holm 校正，construction family k=10），如果 Table 13 确实显示 p_adj=0.038，这可能源于 Holm family 分组不同（k=10 vs. 其他 k 值）。但无论原因如何，同一结果在不同位置给出不同 p_adj 而未解释差异，属于报告失误。\n\n补充：我在自己的 N1 中从 novelty 角度批评了 entity-level construction（缺引 EL4NER），R1 从 empirical robustness 角度批评——两个视角叠加后，entity-level construction 作为独立 contribution 更难站住脚。\n\n---\n\n### Should-Fix 问题\n\n**[AGREE] R1-W1: N=8/16 对 test-time compute scaling 研究范围过窄**\n\n同意。Test-time scaling 文献（Brown et al., 2024; Snell et al., 2025）通常评估到 N=64+。论文仅在 Appendix r 报告了 N=16 结果，且 page 7 Table 3 显示 Few-NERD N=16 LP 仍有 +0.30pp gain，存在继续 scaling 的空间。\n\n不过我补充一个缓解因素：NER 的 per-sample generation cost 显著高于 reasoning tasks（需要处理完整 entity set 而非单个 answer），因此 N=64 的计算成本远高于 math reasoning 场景。论文可以在 Discussion 中以 cost-efficiency 角度论证 N=8 的实际合理性，但当前完全没有讨论这一点。\n\n---\n\n**[AGREE] R1-W2: Fine-tuned 4B-8B vs. Zero-shot 72B 的 confound**\n\n同意。我在自己的审稿 W1 中也指出了模型多样性不足。fine-tuning、model size、architecture 三个变量同时变化，无法归因。至少需要一个 fine-tuned 72B 或 zero-shot 8B 作为控制。\n\n---\n\n**[REBUT] R1-W3: Cross-model consistency 实验\"过于初步\"——部分反驳**\n\nR1 说仅 1 个数据集 + 1 对模型不足以支撑 general claim。这点本身我同意——实验确实有限。但我认为 R1 对这个实验的期待可能过高。\n\n看 §5.1 (page 5)：cross-model experiment 的定位是 \"an exploratory extension combining 4 samples each from Qwen3-8B and LLaMA-3.1-8B\"，且结果只是 \"+0.32 pp over pure LLaMA sum\"，95% CI 含 0。论文没有从这个实验中声称 general conclusion——它被标注为 exploratory，且放在 Adaptive Methods 部分而非 main results。\n\n**但 R1 的 concern 本身是对的**：如果论文要在 §5.1 花半栏讨论 cross-model SC，reading expectation 是应该有更充分的 evidence。建议要么扩展实验，要么将其缩减为 1-2 句 footnote。\n\n---\n\n**[AGREE] R1-W4: SciERC 部分关键分析基于 single seed**\n\n同意。论文在统计方法上非常严谨（bootstrap CI, Holm correction, permutation tests），但如果 SciERC 的 detailed diagnostic analyses（如 diagnostic cascade decomposition, Figure 3）是基于 single seed，则与论文的整体统计标准不一致。\n\nPage 7 Table 3 的 caption 确认主结果用了 \"3-seed mean; SciERC: single-seed, ρ: paired bootstrap\"——SciERC 的 selection 分析确实是 single seed。考虑到 SciERC 仅 551 instances (page 4)，这对 subgroup 分析（如 high/low degeneracy split）的统计 power 确实不足。\n\n---\n\n**[REBUT] R1-W5: Trained verifier (LightGBM) 负面结果\"不够 conclusive\"——部分反驳**\n\nR1 认为仅在 SciERC 上测试，特征集有限（5 signals），负面结果可能是 domain shift。\n\n我部分反驳：\n\n1. LightGBM 的 AUC=0.923±0.002 (§5.2, page 5) 表明特征集足以做 quality discrimination——问题不在于特征不够，而在于 discrimination 无法转化为 selection gain (+0.30pp)。这恰恰是 correlation-selection gap 的又一实例。\n\n2. Cross-dataset transfer 确实是负面的（page 22: \"Cross-dataset transfer to Few-NERD is negative: −0.70pp\"），但这更可能反映 NER 数据集间 entity schema 差异（SciERC 6 types vs. Few-NERD 66 types），而非简单 domain shift。论文对此有合理分析（page 22 §h.3）。\n\n3. 但我同意 R1 的 concern 方向：**仅 1 个训练数据集上的 negative result 不足以判定 \"learned verifiers cannot close the gap\"**。在 Few-NERD（更多 instances, 更多 entity types）上训练 verifier 可能有不同结果。论文应 soften §5.2 的结论从 \"cannot close\" 到 \"do not close in our setting\"。\n\n---\n\n### 关于 R1 主要优势评价的补充意见\n\n**R1 Strength #2: \"Degeneracy decomposition provides clean theoretical framework\"——我不同意**\n\nR1 评价 degeneracy decomposition 为 \"clean theoretical framework\"，但我在自己的审稿 N2 中认为 bound 太松（仅解释 3-12% 的 gap, page 6 §6.3, page 26 Appendix o.4）。E[ΔF₁] ≤ (1−D)·G_adj 本质上是 MBR balanced set-overlap 的直接推导，理论 novelty 有限；D 只是 degeneracy rate 的描述统计量，不提供优化方向。\"Clean\" 和 \"useful\" 不能等同——一个 captures only 3-12% of variance 的 bound 的实用价值存疑。\n\n**R1 Strength #6: \"Entity-level construction is novel and intuitive\"——我不同意**\n\nR1 评价 entity-level construction 为 \"novel\"。但如我在 N1 中指出：(a) EL4NER (arXiv:2505.23038, May 2025) 已实现 entity-level span extraction + type voting 的两阶段 ensemble NER；(b) Xie et al. (2023a) 已是 entity-level voting 的先驱；(c) 论文自己承认灵感来自 Florian et al. (2003) 的 ensemble NER。将已有 idea 在 SC 框架下重新包装，novelty 有限。\"Intuitive\" 我同意，但 \"novel\" 我不同意。\n\n---\n\n### R2 vs R1 评分差异说明\n\nR1 给 3.5 (Borderline Conference)，我给 3.0 (Findings)。差异主要源于：\n\n1. **对 entity-level construction novelty 的判断**：R1 认为 novel, 我认为 incremental（EL4NER 未被引用）。\n2. **对 degeneracy theory 的评价**：R1 认为 clean framework, 我认为 bound 太松不足以作为 contribution。\n3. **对 overclaiming 严重程度的判断**：R1 准确诊断了 structural tautology 问题但仍给 3.5，我认为 Abstract/Intro 的 framing 问题 + entity-level overclaim + theory overclaim 叠加后，论文需要 significant reframing 才能达到主会议水平。\n\n**共识点**：两位 Reviewer 一致认为 (1) 核心 empirical finding（LP compression failure）有价值；(2) 统计方法论优于 NLP 社区平均；(3) 论文需要 scope down overclaims；(4) 模型/scaling 范围有限。",
+              "reviewer_id": "2",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-002417"
+        },
+        {
+          "source_line": 2418,
+          "timestamp": "2026-05-20T14:35:04.559899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_3897c2857f11615119e277e820eae311:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3704
+          },
+          "id": "event-002418"
+        },
+        {
+          "source_line": 2419,
+          "timestamp": "2026-05-20T14:35:13.354391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images"
+            }
+          },
+          "id": "event-002419"
+        },
+        {
+          "source_line": 2420,
+          "timestamp": "2026-05-20T14:35:13.354900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 0
+          },
+          "id": "event-002420"
+        },
+        {
+          "source_line": 2421,
+          "timestamp": "2026-05-20T14:35:22.874780+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉回应已提交。总结：\n\n- **R1-N1 (structural tautology)**: AGREE — R1 对 4/5 信号 definitional failure 的诊断比我更精准，支持 Abstract/Intro 重构\n- **R1-N2 (construction 不一致 + p_adj 矛盾)**: AGREE — 与我的 N1 从不同角度（robustness vs. novelty）叠加\n- **R1-W1 (N 范围窄)**: AGREE，但补充了 NER cost-efficiency 的缓解因素\n- **R1-W2 (scale confound)**: AGREE\n- **R1-W3 (cross-model 初步)**: 部分 REBUT — 论文定位为 exploratory，未 overclaim\n- **R1-W4 (single seed)**: AGREE\n- **R1-W5 (LightGBM 不 conclusive)**: 部分 REBUT — AUC=0.923 说明特征足够，问题在 discrimination→selection 的转化\n\n关键分歧：R1 认为 degeneracy theory \"clean\" 且 entity-level construction \"novel\"，我不同意——bound 太松 (3-12%)，entity-level construction 已有 EL4NER 等先例。这是 R1 给 3.5 vs 我给 3.0 的主要原因。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2"
+          },
+          "id": "event-002421"
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "messages": [
+        {
+          "source_line": 2422,
+          "timestamp": "2026-05-21T04:35:09.954424+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n## Round 1 审稿任务 — Reviewer 2（新颖性/完整性）\n\n### 论文信息\n- **标题**: The Capability Ceiling of Self-Consistency: Why Entity-Level Self-Verification Fails in Structured Generation\n- **路径**: `projects/struct_self_consist_ie/docs/paper/main.tex`\n- **PDF**: `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.pdf`\n\n### Venue 要求\n- **目标**: EMNLP 2026 Main Conference (Long Paper), ARR May cycle\n- **截止日期**: 2026-05-25\n- **正文页数限制**: 8 页（参考文献不限，Limitations/Ethics 不计入）\n- **模板**: ACL style (`\\usepackage[review]{acl}`)\n- **匿名规则**: Double-blind\n- **附录**: 允许，但审稿人不保证阅读\n- **评分标准**: 5=Consider for Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1=Do not resubmit\n\n### 你的审查侧重：新颖性/完整性\n\n请重点审查以下方面：\n\n1. **新颖性评估**\n   - 核心贡献（correlation-selection gap、diagnostic cascade、entity-level self-verification ceiling）相对于现有工作的增量创新度\n   - 与 Yao et al. (2026) 的差异化是否清晰——他们 show correlation, 本文 diagnose why it breaks at selection\n   - \"Negative result\" 论文的贡献标准：发现本身是否足够 surprising 或 insightful\n   - Prescriptive escape routes (construction, ensemble, LP selection) 是否足够 novel 或只是 engineering\n\n2. **Related Work 覆盖度（§8）**\n   - Test-time compute scaling 文献是否充分\n   - MBR decoding / structured prediction 文献是否遗漏重要工作\n   - Self-consistency 在 NER/IE 之外的应用（code generation, math reasoning）是否充分对比\n   - Calibration 文献（LP compression 相关）\n   - Conformal prediction / selective prediction 文献\n   - Entity-level verification 和 hallucination detection 文献\n\n3. **写作质量**\n   - Abstract 是否准确概括贡献且不过度声称\n   - Introduction 的叙事结构：problem → gap → contribution 是否清晰\n   - 论文章节安排是否合理（Diagnostic Framework §2 → Why Self-Verification Fails §3 → Why Single-Signal Selection Fails §4 → Adaptive §5 → Theory §6 → Experiments §7 → Related Work §8 → Discussion §9 → Conclusion §10）\n   - 信息密度是否合适，8 页内是否遗漏关键信息\n   - 术语一致性（correlation-selection gap, capability ceiling 等是否全文统一）\n\n4. **格式合规性**\n   - 正文是否 ≤8 页\n   - 匿名是否完整（无自引泄露、无致谢、无机构信息）\n   - 图表标注是否规范、可读\n   - 引用格式是否符合 ACL 标准\n\n5. **Limitations & Ethics**\n   - Limitations 是否诚实覆盖主要局限\n   - 是否遗漏关键局限（如 English-only, model scale, closed-source API 未测）\n\n请以 EMNLP 2026 ARR 的标准严格审稿。输出结构：Summary → Strengths → Weaknesses (Must-Fix / Should-Fix / Minor) → Questions → Missing References → Overall Assessment (评分 + 置信度)。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-002422"
+        },
+        {
+          "source_line": 2423,
+          "timestamp": "2026-05-21T04:35:19.392949+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/skills/review-reviewer-session-start.skill.md"
+            }
+          },
+          "id": "event-002423"
+        },
+        {
+          "source_line": 2424,
+          "timestamp": "2026-05-21T04:35:20.247693+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/review_reviewer_2_a0c838f5."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 854
+          },
+          "id": "event-002424"
+        },
+        {
+          "source_line": 2425,
+          "timestamp": "2026-05-21T04:35:20.299335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__review_reviewer_post_to_director,mcp__agent-ml-research__verify_references,WebSearch,WebFetch",
+              "max_results": "5"
+            }
+          },
+          "id": "event-002425"
+        },
+        {
+          "source_line": 2426,
+          "timestamp": "2026-05-21T04:35:20.299733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-002426"
+        },
+        {
+          "source_line": 2427,
+          "timestamp": "2026-05-21T04:35:25.117006+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ACL ARR 2026 reviewer guidelines review form criteria scoring"
+            }
+          },
+          "id": "event-002427"
+        },
+        {
+          "source_line": 2428,
+          "timestamp": "2026-05-21T04:35:26.536295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.pdf",
+              "project": "struct_self_consist_ie",
+              "pages": "1-10",
+              "dpi": "150"
+            }
+          },
+          "id": "event-002428"
+        },
+        {
+          "source_line": 2429,
+          "timestamp": "2026-05-21T04:35:26.737242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__verify_references"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__verify_references",
+            "tool_args": {
+              "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-002429"
+        },
+        {
+          "source_line": 2430,
+          "timestamp": "2026-05-21T04:35:35.374150+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ACL ARR 2026 reviewer guidelines review form criteria scoring\"\n\nLinks: [{\"title\":\"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewerguidelines\"},{\"title\":\"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/acguidelines\"},{\"title\":\"Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewform\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"aclrollingreview/cfp.md at main · acl-org/aclrollingreview\",\"url\":\"https://github.com/acl-org/aclrollingreview/blob/main/cfp.md\"},{\"title\":\"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewing\"},{\"title\":\"aclrollingreview/reviewing.md at main · acl-org/aclrollingreview\",\"url\":\"https://github.com/acl-org/aclrollingreview/blob/main/reviewing.md\"},{\"title\":\"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/authors\"},{\"title\":\"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/\"}]\n\nBased on the search results, here's information about the ACL ARR 2026 reviewer guidelines, review form criteria, and scoring:\n\n## Reviewer Guidelines\n\nStarting with February 2025, ARR reviewers are asked to provide three scores: soundness, excitement, and overall recommendation. The soundness scores must be justified by the text of the review.\n\nARR reviewers are instructed to write a review as if the paper were bein\n…[truncated 1300 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 10257
+          },
+          "id": "event-002430"
+        },
+        {
+          "source_line": 2431,
+          "timestamp": "2026-05-21T04:35:36.678785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p1.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 459.9}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 533.9}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 422.7}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 472.2}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 536.2}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 523.6}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 378.3}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 547.0}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 538.2}, {\\\"page\\\": 10, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p10.png\\\",\n…[truncated 278 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 10142
+          },
+          "id": "event-002431"
+        },
+        {
+          "source_line": 2432,
+          "timestamp": "2026-05-21T04:36:43.502775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (63.2KB). Full output saved to: /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-review-reviewer-2-a0c838f5/600b80d2-90b5-4bb8-85d8-e6837a357bcc/tool-results/toolu_013TSfCZNE8H3aFGE1ZTCEhN.txt\n\nPreview (first 2KB):\n{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"summary\\\": {\\\"total_bib_entries\\\": 81, \\\"total_citations\\\": 80, \\\"unique_cited_keys\\\": 45, \\\"orphan_bib\\\": 36, \\\"missing_bib\\\": 0, \\\"duplicate_keys\\\": 0, \\\"online_verified\\\": 74, \\\"online_not_found\\\": 2, \\\"online_mismatch\\\": 5}, \\\"cross_check\\\": {\\\"orphan_bib\\\": [\\\"aggarwal2023adaptive\\\", \\\"chen2021evaluating\\\", \\\"chen2023twofailures\\\", \\\"chen2024usc\\\", \\\"culotta2004confidence\\\", \\\"deguchi2024centroid\\\", \\\"farquhar2024detecting\\\", \\\"feng2025optimal\\\", \\\"fernandes2022quality\\\", \\\"florian2003named\\\", \\\"fomicheva2020unsupervised\\\", \\\"holtzman2020curious\\\", \\\"hu2024refchecker\\\", \\\"jiang2023llmblender\\\", \\\"kim2026reasc\\\", \\\"kirk2024understanding\\\", \\\"kuleshov2015calibrated\\\", \\\"li2023codeie\\\", \\\"liu2025uqcc\\\", \\\"mejer2010confidence\\\", \\\"oh2026latentsc\\\", \\\"park2024grammar\\\", \\\"schall2025hidden\\\", \\\"shi2022mbr\\\", \\\"thirukovalluru2024atomic\\\", \\\"varshney2022investigating\\\", \\\"vashurin2025cocoa\\\", \\\"vijayakumar2018diverse\\\", \\\"wadhwa2023revisiting\\\", \\\"wang2025make\\\", \\\"wang2025rankedvoting\\\", \\\"wei2024long\\\", \\\"wen2025abstention\\\", \\\"xiao2025el4ner\\\", \\\"xie2023selfevaluation\\\", \\\"xie2024selfimproving\\\"], \\\"missing_bib\\\": [], \\\"orphan_count\\\": 36, \\\"missing_count\\\": 0}, \\\"bib_entries\\\": [{\\\"key\\\": \\\"min2023factscore\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation\\\", \\\"authors\\\": \\\"Min, Sewon and Krishna, Kalpesh and Lyu, Xinxi and Lewis, Mike and Yih, Wen-tau ...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Proceedings of the 2023 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"hu2024refcheck\n…[truncated 363 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__verify_references",
+            "elapsed_ms": 76765
+          },
+          "id": "event-002432"
+        },
+        {
+          "source_line": 2433,
+          "timestamp": "2026-05-21T04:36:47.584254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p1.png"
+            }
+          },
+          "id": "event-002433"
+        },
+        {
+          "source_line": 2434,
+          "timestamp": "2026-05-21T04:36:48.600359+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p2.png"
+            }
+          },
+          "id": "event-002434"
+        },
+        {
+          "source_line": 2435,
+          "timestamp": "2026-05-21T04:36:49.003318+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1419
+          },
+          "id": "event-002435"
+        },
+        {
+          "source_line": 2436,
+          "timestamp": "2026-05-21T04:36:49.003746+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p3.png"
+            }
+          },
+          "id": "event-002436"
+        },
+        {
+          "source_line": 2437,
+          "timestamp": "2026-05-21T04:36:49.911016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p4.png"
+            }
+          },
+          "id": "event-002437"
+        },
+        {
+          "source_line": 2438,
+          "timestamp": "2026-05-21T04:36:49.911440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-002438"
+        },
+        {
+          "source_line": 2439,
+          "timestamp": "2026-05-21T04:36:51.673495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 3073
+          },
+          "id": "event-002439"
+        },
+        {
+          "source_line": 2440,
+          "timestamp": "2026-05-21T04:36:51.673938+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewform",
+              "prompt": "Extract the complete review form: all scoring dimensions, their scales, and descriptions. Include soundness, excitement, overall assessment, confidence, and any other fields."
+            }
+          },
+          "id": "event-002440"
+        },
+        {
+          "source_line": 2441,
+          "timestamp": "2026-05-21T04:36:51.725955+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 2722
+          },
+          "id": "event-002441"
+        },
+        {
+          "source_line": 2442,
+          "timestamp": "2026-05-21T04:36:52.834605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 2923
+          },
+          "id": "event-002442"
+        },
+        {
+          "source_line": 2443,
+          "timestamp": "2026-05-21T04:36:52.986260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 3074
+          },
+          "id": "event-002443"
+        },
+        {
+          "source_line": 2444,
+          "timestamp": "2026-05-21T04:36:59.065345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ACL Rolling Review Form - Complete Scoring Dimensions\n\n## 1. **Reviewer Confidence**\nScale: 1-5\n- 5 = \"Positive that my evaluation is correct\"\n- 4 = Quite sure with unlikely but conceivable errors\n- 3 = Pretty sure, but may have missed details\n- 2 = Willing to defend evaluation, but fairly likely missed details\n- 1 = Not area expertise; evaluation is educated guess\n\n## 2. **Soundness**\nScale: 1-5 (with .5 increments)\n- 5 = \"Excellent: This study is one of the most thorough\"\n- 4 = Strong with sufficient support\n- 3 = Acceptable with minor points needing extra support\n- 2 = Poor; main claims lack sufficient support\n- 1 = Major issues; insufficient thoroughness for publication\n\n## 3. **Excitement**\nScale: 1-5 (with .5 increments)\n- 5 = \"Highly Exciting\" - would recommend broadly\n- 4 = Exciting; would mention to others\n- 3 = Interesting; might attend presentation\n- 2 = Potentially interesting but lacks resonance\n- 1 = Not exciting; unlikely to resonate with community\n\n## 4. **Overall Assessment**\nScale: 1-5 (with .5 increments)\n- 5 = Consider for award nomination\n- 4 = Conference acceptance recommended\n- 3 = Findings acceptance appropriate\n- 2 = Resubmit next cycle after revisions\n- 1.5 = Resubmit after subsequent cycle\n- 1 = Do not resubmit; fundamentally flawed\n\n## 5. **Reproducibility**\nScale: 1-5\n- 5 = Results easily reproducible\n- 4 = Mostly reproducible with minor variance\n- 3 = Reproducible with difficulty due to underspecified parameters\n- 2 = Very difficult reproduction; unavailable data\n- 1 = Reproduction impossible\n\n## 6. **Datasets Value**\nScale: 1-5\n- 5 = Enabling: affects research direction\n- 4 = Useful for ongoing work\n- 3 = Potentially useful\n- 2 = Documentary value only\n- 1 = No usable datasets\n\n## 7. **Software Value**\nScale: 1-5\n- 5 = Enabling tool affecting project choices\n- 4 = Useful for researchers/developers\n- 3 = Potentially useful\n- 2 = Documentary use only\n- 1 = No usable software\n\n## 8. **Author Identity Knowledge**\nScale: 1-5\n- 5 = Violati\n…[truncated 206 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebFetch",
+            "elapsed_ms": 7391
+          },
+          "id": "event-002444"
+        },
+        {
+          "source_line": 2445,
+          "timestamp": "2026-05-21T04:37:05.140279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p6.png"
+            }
+          },
+          "id": "event-002445"
+        },
+        {
+          "source_line": 2446,
+          "timestamp": "2026-05-21T04:37:05.642812+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-002446"
+        },
+        {
+          "source_line": 2447,
+          "timestamp": "2026-05-21T04:37:06.599278+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1458
+          },
+          "id": "event-002447"
+        },
+        {
+          "source_line": 2448,
+          "timestamp": "2026-05-21T04:37:06.599697+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-002448"
+        },
+        {
+          "source_line": 2449,
+          "timestamp": "2026-05-21T04:37:07.209813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1566
+          },
+          "id": "event-002449"
+        },
+        {
+          "source_line": 2450,
+          "timestamp": "2026-05-21T04:37:07.260447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p9.png"
+            }
+          },
+          "id": "event-002450"
+        },
+        {
+          "source_line": 2451,
+          "timestamp": "2026-05-21T04:37:07.412286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p10.png"
+            }
+          },
+          "id": "event-002451"
+        },
+        {
+          "source_line": 2452,
+          "timestamp": "2026-05-21T04:37:07.816659+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1216
+          },
+          "id": "event-002452"
+        },
+        {
+          "source_line": 2453,
+          "timestamp": "2026-05-21T04:37:09.877915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 2465
+          },
+          "id": "event-002453"
+        },
+        {
+          "source_line": 2454,
+          "timestamp": "2026-05-21T04:37:09.881935+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 2621
+          },
+          "id": "event-002454"
+        },
+        {
+          "source_line": 2455,
+          "timestamp": "2026-05-21T04:37:16.968304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.pdf",
+              "project": "struct_self_consist_ie",
+              "pages": "11-20",
+              "dpi": "150"
+            }
+          },
+          "id": "event-002455"
+        },
+        {
+          "source_line": 2456,
+          "timestamp": "2026-05-21T04:37:20.648964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 11, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p11.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 551.0}, {\\\"page\\\": 12, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p12.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 604.8}, {\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p13.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 491.2}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p14.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 476.1}, {\\\"page\\\": 15, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p15.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 518.3}, {\\\"page\\\": 16, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p16.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 360.8}, {\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p17.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 441.6}, {\\\"page\\\": 18, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p18.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 446.7}, {\\\"page\\\": 19, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p19.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 563.8}, {\\\"page\\\": 20, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_imag\n…[truncated 296 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 3680
+          },
+          "id": "event-002456"
+        },
+        {
+          "source_line": 2457,
+          "timestamp": "2026-05-21T04:37:20.649445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-review-reviewer-2-a0c838f5/600b80d2-90b5-4bb8-85d8-e6837a357bcc/tool-results/toolu_013TSfCZNE8H3aFGE1ZTCEhN.txt",
+              "limit": "200"
+            }
+          },
+          "id": "event-002457"
+        },
+        {
+          "source_line": 2458,
+          "timestamp": "2026-05-21T04:37:21.002164+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"summary\\\": {\\\"total_bib_entries\\\": 81, \\\"total_citations\\\": 80, \\\"unique_cited_keys\\\": 45, \\\"orphan_bib\\\": 36, \\\"missing_bib\\\": 0, \\\"duplicate_keys\\\": 0, \\\"online_verified\\\": 74, \\\"online_not_found\\\": 2, \\\"online_mismatch\\\": 5}, \\\"cross_check\\\": {\\\"orphan_bib\\\": [\\\"aggarwal2023adaptive\\\", \\\"chen2021evaluating\\\", \\\"chen2023twofailures\\\", \\\"chen2024usc\\\", \\\"culotta2004confidence\\\", \\\"deguchi2024centroid\\\", \\\"farquhar2024detecting\\\", \\\"feng2025optimal\\\", \\\"fernandes2022quality\\\", \\\"florian2003named\\\", \\\"fomicheva2020unsupervised\\\", \\\"holtzman2020curious\\\", \\\"hu2024refchecker\\\", \\\"jiang2023llmblender\\\", \\\"kim2026reasc\\\", \\\"kirk2024understanding\\\", \\\"kuleshov2015calibrated\\\", \\\"li2023codeie\\\", \\\"liu2025uqcc\\\", \\\"mejer2010confidence\\\", \\\"oh2026latentsc\\\", \\\"park2024grammar\\\", \\\"schall2025hidden\\\", \\\"shi2022mbr\\\", \\\"thirukovalluru2024atomic\\\", \\\"varshney2022investigating\\\", \\\"vashurin2025cocoa\\\", \\\"vijayakumar2018diverse\\\", \\\"wadhwa2023revisiting\\\", \\\"wang2025make\\\", \\\"wang2025rankedvoting\\\", \\\"wei2024long\\\", \\\"wen2025abstention\\\", \\\"xiao2025el4ner\\\", \\\"xie2023selfevaluation\\\", \\\"xie2024selfimproving\\\"], \\\"missing_bib\\\": [], \\\"orphan_count\\\": 36, \\\"missing_count\\\": 0}, \\\"bib_entries\\\": [{\\\"key\\\": \\\"min2023factscore\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation\\\", \\\"authors\\\": \\\"Min, Sewon and Krishna, Kalpesh and Lyu, Xinxi and Lewis, Mike and Yih, Wen-tau ...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Proceedings of the 2023 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"hu2024refchecker\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"RefChecker: Reference-based Fine-grained Hallucination Checker and Benchmark for Large Language Models\\\", \\\"authors\\\": \\\"Hu, Xiangkun and Ru, Dongyu and Qiu, Lin and Guo, Qipeng and Zhang, Tianhang and...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2405.14486\\\"}, {\\\"key\\\": \\\"wei202\n…[truncated 62711 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 352
+          },
+          "id": "event-002458"
+        },
+        {
+          "source_line": 2459,
+          "timestamp": "2026-05-21T04:37:26.895404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p11.png"
+            }
+          },
+          "id": "event-002459"
+        },
+        {
+          "source_line": 2460,
+          "timestamp": "2026-05-21T04:37:27.651399+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p12.png"
+            }
+          },
+          "id": "event-002460"
+        },
+        {
+          "source_line": 2461,
+          "timestamp": "2026-05-21T04:37:28.558298+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p13.png"
+            }
+          },
+          "id": "event-002461"
+        },
+        {
+          "source_line": 2462,
+          "timestamp": "2026-05-21T04:37:28.810184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1914
+          },
+          "id": "event-002462"
+        },
+        {
+          "source_line": 2463,
+          "timestamp": "2026-05-21T04:37:28.863296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p14.png"
+            }
+          },
+          "id": "event-002463"
+        },
+        {
+          "source_line": 2464,
+          "timestamp": "2026-05-21T04:37:29.064290+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p15.png"
+            }
+          },
+          "id": "event-002464"
+        },
+        {
+          "source_line": 2465,
+          "timestamp": "2026-05-21T04:37:30.723498+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 3072
+          },
+          "id": "event-002465"
+        },
+        {
+          "source_line": 2466,
+          "timestamp": "2026-05-21T04:37:32.589646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 4031
+          },
+          "id": "event-002466"
+        },
+        {
+          "source_line": 2467,
+          "timestamp": "2026-05-21T04:37:32.742191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 3878
+          },
+          "id": "event-002467"
+        },
+        {
+          "source_line": 2468,
+          "timestamp": "2026-05-21T04:37:32.944497+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 3880
+          },
+          "id": "event-002468"
+        },
+        {
+          "source_line": 2469,
+          "timestamp": "2026-05-21T04:37:37.862917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.pdf",
+              "project": "struct_self_consist_ie",
+              "pages": "16-25",
+              "dpi": "150"
+            }
+          },
+          "id": "event-002469"
+        },
+        {
+          "source_line": 2470,
+          "timestamp": "2026-05-21T04:37:40.322574+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 16, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p16.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 360.8}, {\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p17.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 441.6}, {\\\"page\\\": 18, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p18.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 446.7}, {\\\"page\\\": 19, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p19.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 563.8}, {\\\"page\\\": 20, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p20.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 544.9}, {\\\"page\\\": 21, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p21.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 536.3}, {\\\"page\\\": 22, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p22.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 507.4}, {\\\"page\\\": 23, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p23.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 469.5}, {\\\"page\\\": 24, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p24.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 513.5}, {\\\"page\\\": 25, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_imag\n…[truncated 296 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 2459
+          },
+          "id": "event-002470"
+        },
+        {
+          "source_line": 2471,
+          "timestamp": "2026-05-21T04:37:43.232811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p16.png"
+            }
+          },
+          "id": "event-002471"
+        },
+        {
+          "source_line": 2472,
+          "timestamp": "2026-05-21T04:37:43.687408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p17.png"
+            }
+          },
+          "id": "event-002472"
+        },
+        {
+          "source_line": 2473,
+          "timestamp": "2026-05-21T04:37:44.149366+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 916
+          },
+          "id": "event-002473"
+        },
+        {
+          "source_line": 2474,
+          "timestamp": "2026-05-21T04:37:44.149886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p18.png"
+            }
+          },
+          "id": "event-002474"
+        },
+        {
+          "source_line": 2475,
+          "timestamp": "2026-05-21T04:37:45.260289+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p19.png"
+            }
+          },
+          "id": "event-002475"
+        },
+        {
+          "source_line": 2476,
+          "timestamp": "2026-05-21T04:37:45.310909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p20.png"
+            }
+          },
+          "id": "event-002476"
+        },
+        {
+          "source_line": 2477,
+          "timestamp": "2026-05-21T04:37:45.563992+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1876
+          },
+          "id": "event-002477"
+        },
+        {
+          "source_line": 2478,
+          "timestamp": "2026-05-21T04:37:46.974154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 2822
+          },
+          "id": "event-002478"
+        },
+        {
+          "source_line": 2479,
+          "timestamp": "2026-05-21T04:37:48.043211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 2782
+          },
+          "id": "event-002479"
+        },
+        {
+          "source_line": 2480,
+          "timestamp": "2026-05-21T04:37:48.307535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 2996
+          },
+          "id": "event-002480"
+        },
+        {
+          "source_line": 2481,
+          "timestamp": "2026-05-21T04:37:53.564761+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p21.png"
+            }
+          },
+          "id": "event-002481"
+        },
+        {
+          "source_line": 2482,
+          "timestamp": "2026-05-21T04:37:54.069608+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p22.png"
+            }
+          },
+          "id": "event-002482"
+        },
+        {
+          "source_line": 2483,
+          "timestamp": "2026-05-21T04:37:54.930411+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "conformal prediction NER named entity recognition structured generation LLM 2024 2025"
+            }
+          },
+          "id": "event-002483"
+        },
+        {
+          "source_line": 2484,
+          "timestamp": "2026-05-21T04:37:55.082179+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1517
+          },
+          "id": "event-002484"
+        },
+        {
+          "source_line": 2485,
+          "timestamp": "2026-05-21T04:37:55.082650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "self-consistency code generation math reasoning failures limitations 2024 2025"
+            }
+          },
+          "id": "event-002485"
+        },
+        {
+          "source_line": 2486,
+          "timestamp": "2026-05-21T04:37:55.585168+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1515
+          },
+          "id": "event-002486"
+        },
+        {
+          "source_line": 2487,
+          "timestamp": "2026-05-21T04:38:02.561743+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"self-consistency code generation math reasoning failures limitations 2024 2025\"\n\nLinks: [{\"title\":\"Existing LLMs Are Not Self-Consistent For Simple Tasks\",\"url\":\"https://arxiv.org/html/2506.18781v1\"},{\"title\":\"Published as a conference paper at ICLR 2025\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/7c04aea54c2a60a632a47bd451cd2849-Paper-Conference.pdf\"},{\"title\":\"SymCode: A Neurosymbolic Approach to Mathematical Reasoning via Verifiable Code Generation\",\"url\":\"https://arxiv.org/pdf/2510.25975\"},{\"title\":\"EVALUATING SELF-CONSISTENCY OF CODE LARGE ...\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2024/file/16371a9d5fed65d6d78ca3a7fa6e598c-Paper-Conference.pdf\"},{\"title\":\"Deep Think with Confidence DEEP THINK WITH CONFIDENCE\",\"url\":\"https://arxiv.org/pdf/2508.15260\"},{\"title\":\"Self-Consistency Improves Chain of Thought Reasoning in ...\",\"url\":\"https://arxiv.org/pdf/2203.11171\"},{\"title\":\"Enhancing Mathematical Reasoning in Large Language Models with Self-Consistency-Based Hallucination Detection\",\"url\":\"https://arxiv.org/pdf/2504.09440\"},{\"title\":\"Universal Self-Consistency for Large Language Model Generation\",\"url\":\"https://arxiv.org/pdf/2311.17311\"}]\n\nBased on the search results, here's what recent research shows about self-consistency, code generation, and math reasoning limitations:\n\n## Self-Consistency Issues in 2024-2025\n\nLLMs fail to self-correct intrinsic reasoning errors without external feedback, and self-consistency issues in math reasoning have been classified into two types: hypothetical and compositional consistency.\n\nPrevious work on self-consistency mainly focuses on the failure of multi-step reasoning for math problems. A June 2025 paper titled \"Existing LLMs Are Not Self-Consistent For Simple Tasks\" examines this phenomenon across 12 models, including recent systems like GPT-4o, GPT-o1-mini, and various Qwen and DeepSeek models.\n\n## Limitations for Code Generation\n\nExisting evaluation settings \n…[truncated 998 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 7479
+          },
+          "id": "event-002487"
+        },
+        {
+          "source_line": 2488,
+          "timestamp": "2026-05-21T04:38:03.965745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"conformal prediction NER named entity recognition structured generation LLM 2024 2025\"\n\nLinks: [{\"title\":\"A novel large-language-model-driven framework for named entity recognition - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0306457324004138\"},{\"title\":\"PASC: Pipeline-Aware Conformal Prediction with Joint Coverage Guarantees for Multi-Stage NLP and LLM Pipelines\",\"url\":\"https://arxiv.org/html/2605.18812\"},{\"title\":\"ProgGen: Generating Named Entity Recognition Datasets Step-by-step with   Self-Reflexive Large Language Models\",\"url\":\"https://arxiv.org/pdf/2403.11103\"},{\"title\":\"Rethinking Negative Instances for Generative Named Entity Recognition\",\"url\":\"https://arxiv.org/pdf/2402.16602\"},{\"title\":\"Conformal Prediction and Verification of Large Language Model Extractions in\",\"url\":\"https://ojs.aaai.org/index.php/AAAI-SS/article/download/36929/39067/41006\"},{\"title\":\"Assessment of Generative Named Entity Recognition in the Era of Large Language Models\",\"url\":\"https://arxiv.org/pdf/2601.17898\"},{\"title\":\"A Reasoning Paradigm for Named Entity Recognition\",\"url\":\"https://arxiv.org/pdf/2511.11978\"}]\n\nI found several relevant research papers and articles on your query about conformal prediction, NER, named entity recognition, structured generation, and LLMs from 2024-2025. Here are the key findings:\n\n## Recent Work on Conformal Prediction with NER and LLM Pipelines\n\nMulti-stage IE pipelines of this form arise in production systems for domain-specific question answering and retrieval-augmented generation. One particularly relevant paper is **PASC: Pipeline-Aware Conformal Prediction with Joint Coverage Guarantees for Multi-Stage NLP and LLM Pipelines**, which was published recently (1 week ago). These pipelines typically chain several learned components: a named entity recognizer (NER) identifies entity spans, an entity disambiguator (NED) maps spans to knowledge-base entries, and an entity typer (or relation \n…[truncated 1253 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 9035
+          },
+          "id": "event-002488"
+        },
+        {
+          "source_line": 2489,
+          "timestamp": "2026-05-21T04:38:09.089282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p23.png"
+            }
+          },
+          "id": "event-002489"
+        },
+        {
+          "source_line": 2490,
+          "timestamp": "2026-05-21T04:38:09.440463+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p24.png"
+            }
+          },
+          "id": "event-002490"
+        },
+        {
+          "source_line": 2491,
+          "timestamp": "2026-05-21T04:38:10.446413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1357
+          },
+          "id": "event-002491"
+        },
+        {
+          "source_line": 2492,
+          "timestamp": "2026-05-21T04:38:10.446849+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p25.png"
+            }
+          },
+          "id": "event-002492"
+        },
+        {
+          "source_line": 2493,
+          "timestamp": "2026-05-21T04:38:10.949089+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1508
+          },
+          "id": "event-002493"
+        },
+        {
+          "source_line": 2494,
+          "timestamp": "2026-05-21T04:38:10.999703+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "test-time compute scaling structured prediction information extraction 2024 2025 2026"
+            }
+          },
+          "id": "event-002494"
+        },
+        {
+          "source_line": 2495,
+          "timestamp": "2026-05-21T04:38:11.652709+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1205
+          },
+          "id": "event-002495"
+        },
+        {
+          "source_line": 2496,
+          "timestamp": "2026-05-21T04:38:11.703241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"best-of-N\" selection NER structured output LLM entity-level verification 2025"
+            }
+          },
+          "id": "event-002496"
+        },
+        {
+          "source_line": 2497,
+          "timestamp": "2026-05-21T04:38:19.160901+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"best-of-N\" selection NER structured output LLM entity-level verification 2025\"\n\nLinks: [{\"title\":\"Statistical Network Analysis for LLMs via Knowledge Graphs\",\"url\":\"https://www.techrxiv.org/users/972913/articles/1347041/master/file/data/KG__Paper%20(4)/KG__Paper%20(4).pdf?inline=true\"},{\"title\":\"GPT-NER: Named Entity Recognition via Large Language Models - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.findings-naacl.239/\"},{\"title\":\"Training-free LLM Verification via Recycling Few-shot Examples\",\"url\":\"https://arxiv.org/pdf/2506.17251\"},{\"title\":\"Scalable Best-of-N Selection for Large Language Models via Self-Certainty\",\"url\":\"https://arxiv.org/pdf/2502.18581\"},{\"title\":\"Comparative analysis of generative LLMs for labeling entities in clinical notes - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC11804004/\"},{\"title\":\"TrajSelector: Harnessing Latent Representations for Efficient and Effective Best-of-N in Large Reasoning Model\",\"url\":\"https://arxiv.org/pdf/2510.16449\"}]\n\nBased on the search results, here are the key findings related to your query:\n\n## Best-of-N Selection for LLMs in 2025\n\nBest-of-N selection, generating and selecting from multiple candidate responses, has emerged as a powerful paradigm for significantly improving reasoning accuracy.\n\n### Verification Approaches\n\n**Entity-Level Verification for NER:**\nTo address hallucination issues where LLMs over-confidently label NULL inputs as entities, a self-verification strategy has been proposed by prompting LLMs to ask itself whether extracted entities belong to a labeled entity tag. Entity-level evaluation provides insight into using generative LLMs for NER, with the task benefiting from simple output structures that can then be aligned with texts using post-processing algorithms.\n\n### Selection Methods\n\nBest-of-N selection methods involve finding the most promising output among multiple LLM outputs, often by scoring each output using external verification models\n…[truncated 672 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 7457
+          },
+          "id": "event-002497"
+        },
+        {
+          "source_line": 2498,
+          "timestamp": "2026-05-21T04:38:25.358389+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"test-time compute scaling structured prediction information extraction 2024 2025 2026\"\n\nLinks: [{\"title\":\"A Survey on Test-Time Scaling. This blog is based a comprehensive… | by Yanan Chen | Medium\",\"url\":\"https://medium.com/@yananchen1116/a-survey-on-test-time-scaling-04b1c1dadb9d\"},{\"title\":\"Test-time Scaling of LLMs: A Survey from A Subproblem Structure Perspective\",\"url\":\"https://arxiv.org/pdf/2511.14772\"},{\"title\":\"Test-Time Scaling Makes Overtraining Compute-Optimal\",\"url\":\"https://arxiv.org/html/2604.01411v1\"},{\"title\":\"Predicting and improving test-time scaling laws via reward tail-guided search\",\"url\":\"https://arxiv.org/pdf/2602.01485\"},{\"title\":\"The Art of Scaling Test-Time Compute for Large Language Models\",\"url\":\"https://arxiv.org/pdf/2512.02008\"},{\"title\":\"[2512.02008] The Art of Scaling Test-Time Compute for Large Language Models\",\"url\":\"https://arxiv.org/abs/2512.02008\"}]\n\nI've performed the web search for \"test-time compute scaling structured prediction information extraction 2024 2025 2026\". Here are the results:\n\nThe search returned several relevant papers and resources on test-time scaling:\n\n1. **A Survey on Test-Time Scaling** (Medium article, April 2025) - In 2024, methods like PRM and MCTS enabled the automatic supervision of intricate reasoning trajectories, yielding richly annotated data for fine-tuning and improving TTS performance.\n\n2. **Test-time Scaling of LLMs: A Survey from A Subproblem Structure Perspective** (arXiv) - Test-time scaling (TTS) refers to the strategy of trading more computational resources for more predictive accuracy at inference time. By trading additional inference-time compute for accuracy, test-time scaling improves the performance of Large Language Models (LLMs) and Vision-Language Models (VLMs) while keeping model parameters unchanged, with demonstrated gains on complex tasks like ARC-AGI.\n\n3. **Test-Time Scaling Makes Overtraining Compute-Optimal** (arXiv, April 2026) - Recent studi\n…[truncated 1002 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 14358
+          },
+          "id": "event-002498"
+        },
+        {
+          "source_line": 2499,
+          "timestamp": "2026-05-21T04:38:30.729017+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.pdf",
+              "project": "struct_self_consist_ie",
+              "pages": "26-35",
+              "dpi": "150"
+            }
+          },
+          "id": "event-002499"
+        },
+        {
+          "source_line": 2500,
+          "timestamp": "2026-05-21T04:38:32.487902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 26, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p26.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 504.1}, {\\\"page\\\": 27, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p27.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 508.1}, {\\\"page\\\": 28, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p28.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 533.5}, {\\\"page\\\": 29, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p29.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 517.4}, {\\\"page\\\": 30, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p30.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 560.8}, {\\\"page\\\": 31, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p31.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 535.9}, {\\\"page\\\": 32, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p32.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 521.5}, {\\\"page\\\": 33, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p33.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 322.8}, {\\\"page\\\": 34, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p34.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 353.1}, {\\\"page\\\": 35, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_imag\n…[truncated 296 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1758
+          },
+          "id": "event-002500"
+        },
+        {
+          "source_line": 2501,
+          "timestamp": "2026-05-21T04:38:35.701008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p26.png"
+            }
+          },
+          "id": "event-002501"
+        },
+        {
+          "source_line": 2502,
+          "timestamp": "2026-05-21T04:38:36.054947+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p27.png"
+            }
+          },
+          "id": "event-002502"
+        },
+        {
+          "source_line": 2503,
+          "timestamp": "2026-05-21T04:38:36.508478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 807
+          },
+          "id": "event-002503"
+        },
+        {
+          "source_line": 2504,
+          "timestamp": "2026-05-21T04:38:36.508875+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p28.png"
+            }
+          },
+          "id": "event-002504"
+        },
+        {
+          "source_line": 2505,
+          "timestamp": "2026-05-21T04:38:37.416517+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1361
+          },
+          "id": "event-002505"
+        },
+        {
+          "source_line": 2506,
+          "timestamp": "2026-05-21T04:38:37.417381+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 908
+          },
+          "id": "event-002506"
+        },
+        {
+          "source_line": 2507,
+          "timestamp": "2026-05-21T04:38:37.568194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p29.png"
+            }
+          },
+          "id": "event-002507"
+        },
+        {
+          "source_line": 2508,
+          "timestamp": "2026-05-21T04:38:37.618977+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p30.png"
+            }
+          },
+          "id": "event-002508"
+        },
+        {
+          "source_line": 2509,
+          "timestamp": "2026-05-21T04:38:38.533277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 965
+          },
+          "id": "event-002509"
+        },
+        {
+          "source_line": 2510,
+          "timestamp": "2026-05-21T04:38:38.735505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1116
+          },
+          "id": "event-002510"
+        },
+        {
+          "source_line": 2511,
+          "timestamp": "2026-05-21T04:39:24.919813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewerguidelines",
+              "prompt": "Extract all specific reviewer guidelines, evaluation criteria, what reviewers should look for, how to score soundness and excitement, and any guidance on negative result papers or analysis papers."
+            }
+          },
+          "id": "event-002511"
+        },
+        {
+          "source_line": 2512,
+          "timestamp": "2026-05-21T04:39:34.953407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ARR Reviewer Guidelines Summary\n\n## Core Reviewing Tasks\n\nReviewers must complete four main tasks:\n1. **Allocate calendar time** for both reviewing and discussion periods\n2. **Check assignments** for expertise, conflicts of interest, and desk-rejection criteria\n3. **Write strong reviews** following specific standards\n4. **Update assessments** after author responses and peer discussion\n\n## Evaluation Criteria & Scoring\n\nARR uses three distinct scores (as of February 2025):\n\n**Soundness Score:** Must be justified by review content. \"Low soundness scores without sufficient justification indicate your review doesn't faithfully explain your recommendation.\"\n\n**Excitement Score:** Reflects personal interest, separate from technical quality assessment. Papers can be sound but personally uninteresting.\n\n**Overall Recommendation:** Composite score considering soundness, excitement, novelty, and potential impact. Main conference papers must be \"sufficiently sound and reproducible,\" though reviewers needn't personally find work exciting.\n\n## Key Writing Standards\n\nReviewers should:\n- Be **specific** with concrete examples rather than vague criticism\n- Avoid problematic heuristics like dismissing work for being \"too simple\" or \"not surprising\"\n- Maintain **professional, neutral tone** as if writing feedback you'd want to receive\n- Justify all scores with explicit reasoning in review text\n\n## Special Paper Types\n\n**Negative Results:** Encouraged as counterweight to publication bias. Systematic failures deserve documentation.\n\n**Analysis/Reproduction Papers:** Valid contributions within CFP scope. Criticizing them for \"lacking novelty\" is inappropriate.\n\n**Short Papers:** Proof-of-concept work shouldn't be rejected for incompleteness unless specific claims require additional evidence.\n\n## Common Review Problems to Avoid (with codes I1-I12)\n\nThe guidelines list 17 problematic heuristics, including:\n- H5: Expecting SOTA results (not necessary for scientific contribution)\n- H13: D\n…[truncated 1101 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "WebFetch",
+            "elapsed_ms": 10033
+          },
+          "id": "event-002512"
+        },
+        {
+          "source_line": 2513,
+          "timestamp": "2026-05-21T04:42:22.692445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n# Reviewer 2 — Round 1 审稿报告（新颖性/完整性）\n\n**论文**: The Capability Ceiling of Self-Consistency: Why Entity-Level Self-Verification Fails in Structured Generation\n**Venue**: EMNLP 2026 Main Conference (Long Paper), ARR May cycle\n\n---\n\n## 总体评分\n\n**Overall**: 3.5 — Borderline Conference\n**一句话总结**: 一篇实验极其扎实的 negative result/analysis 论文，diagnostic cascade 框架有用，但核心发现的 novelty 有限——instance degeneracy 作为 SC 失效的主因属于\"合理但不够 surprising\"的 insight，且 Related Work 覆盖存在明显缺口。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| **Soundness** | 3.5/5 | 实验设计严谨（4 NER 数据集 + 1 RE 扩展、2 模型家族、多 N 值、3 seeds），统计检验完备（Holm-Bonferroni, permutation tests, bootstrap CI），但若干因果性 claim 的支撑仍是相关性而非严格因果推断 |\n| **Excitement** | 3/5 | 对 practitioner 有直接 actionable value（\"不要在 degenerate regime 用 SC\"），但核心 insight（structured output 的 degeneracy 导致 SC 失效）与 Yun et al. (2025) 关于 constrained decoding diversity collapse 的发现高度重叠，增量有限 |\n| **Reproducibility** | 4/5 | 超参数、prompt template、训练细节在 Appendix 中充分给出；代码承诺 release；唯一不足是 LoRA 训练的 exact checkpoint 未提供 |\n| **Overall Assessment** | 3.5/5 | Borderline Conference — 实验质量足以支撑 Findings，但 novelty 对 Main 会议偏弱 |\n| **Confidence** | 4/5 | 我对 test-time compute scaling、NER 和 self-consistency 文献较为熟悉 |\n\n---\n\n## 主要优势\n\n**S1. 实验规模和严谨度出色。** 4 个 NER 数据集（SciERC, Few-NERD, CoNLL, WNUT-17）+ RE 扩展（SciERC RE），2 个模型家族（Qwen3-8B, LLaMA-3.1-8B-Instruct），N∈{2,...,32}，3 seeds，配合 bootstrap CI、permutation tests、Holm-Bonferroni 校正，实验可信度高。42 页附录覆盖了几乎所有合理的 ablation 和 robustness check。\n\n**S2. Diagnostic cascade 框架结构清晰。** 四阶段分解（QE → degeneracy → agreement fidelity → LP compression）将一个模糊的问题（\"为什么 SC 不 work\"）分解成可操作的诊断步骤。Figure 1 的可视化概括力强。尤其是对 instance degeneracy 的量化（82.9% 的 SciERC 输出完全一致，Table 2）有力解释了 selection 无从下手的根因。\n\n**S3. Entity-level self-verification ceiling 的系统性测试。** 七种方法（ESJ, MRSC, LSC, hidden-state probe, ASB, SCD, supervised classifier）逐一测试并 fail，形成了一个令人信服的 negative result。特别是 supervised hidden-state probe 仅达到 entity-level AUROC 0.63–0.88（§3, Table 1），表明质量信号即使存在也无法有效 operationalize。\n\n**S4. 与 MBR decoding 的理论联系。** §6 和 Appendix p 将 NER SC 形式化为 entity-level MBR decoding（Proposition 1: majority-vote 是 balanced set-overlap utility 下的 MBR optimal），提供了 principled 的理论基础。Degeneracy Decomposition（Definition 2, Corollary 1）给出了 SC 失效的 sufficient condition。\n\n**S5. Prescriptive escape routes 具实用价值。** Entity-level construction bypasses selection entirely（+1.09pp Few-NERD, +1.02pp SciERC），LP-weighted entity construction 在低退化 regime 有效，cross-model ensemble 提供互补信号——对 practitioner 可直接 adopt。\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] **Related Work 存在严重引用缺口——多篇 directly relevant 的论文在 .bib 中但未在正文引用**\n\n- 具体位置：§8 Related Work（仅 ~0.5 page）；.bib 文件中有 36 条 orphan entries\n- 问题：引用验证显示以下高度相关的论文存在于 .bib 但从未在正文 cite：\n  - **Chen et al. (2024) \"Two Failures of Self-Consistency in the Multi-Step Reasoning of LLMs\"** (TMLR) — 直接研究 SC 的 failure modes，是本文最直接的 prior work 之一\n  - **Chen et al. (2024) \"Universal Self-Consistency for Large Language Model Generation\"** (ICML Workshop) — 提出不依赖 equivalence class 的 USC 方法，与本文的 structured output 场景直接相关\n  - **Aggarwal et al. (2023) \"Let's Sample Step by Step: Adaptive-Consistency\"** (EMNLP) — 提出 adaptive stopping，与本文 §5 的 prescriptive 方向高度相关\n  - **Thirukovalluru et al. (2024) \"Atomic Self-Consistency\"** (EMNLP) — 将 SC 应用于 atomic claims 的 fine-grained level，与 entity-level 思路直接可比\n  - **Farquhar et al. (2024) \"Detecting Hallucinations via Semantic Entropy\"** (Nature) — semantic entropy 作为 sample-based 信号与本文所测 signals 有直接可比性\n- 为什么影响接收：这些遗漏使 Related Work 显得不完整。特别是 Chen et al. (2024) \"Two Failures\" 已经从 reasoning 角度分析了 SC 的 failure，不讨论它会让审稿人质疑 novelty claim 的准确性。\n- 建议：在 §8 中至少用 1-2 段讨论 SC 在 non-IE 场景的已知 failure modes 及 fine-grained SC 变体，明确说明本文在 structured generation 中的差异化贡献。\n\n**N2** [critical] **核心因果 claim \"degeneracy causes selection failure\" 的支撑仍是相关性证据**\n\n- 具体位置：§4 \"Why Single-Signal Selection Fails\"；§6.3 \"Degeneracy Decomposition\"；Figure 3\n- 问题：论文主 claim 之一是 degeneracy *导致* selection failure（例如 §4: \"degeneracy alone props LP gains across datasets, ρ=0.032, n=25, p=0.81\"）。但提供的证据是 Spearman ρ 和 controlled splits（high-degeneracy vs. low-degeneracy subsets），这仅建立了 association。在 §7.3 cross-dataset contrast 中，\"degeneracy alone does not predict LP direction\"（§7.3），又表明 degeneracy 不是唯一因素。这造成了叙事的内部张力——一边说 degeneracy 是 dominant factor，一边说它不能 predict LP direction。\n- 为什么影响接收：如果因果 claim 不成立，那么 diagnostic cascade 的第一层（degeneracy gating）作为 prescriptive 工具的可靠性就存疑。\n- 建议：(1) 软化因果语言，用 \"strongly associated with\" 替代 \"causes\"；(2) 或者用 instrumental variable 或 natural experiment（如 temperature 变化产生的 degeneracy 变化）做更严格的因果论证。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] **与 Yun et al. (2025) \"The Price of Format: Diversity Collapse in LLMs\" 的差异化不够清晰**\n\n- 具体位置：§8 第 2 段引用了 Yun et al. (2025)，仅一句带过\n- 问题：Yun et al. (2025) 已经证明 constrained decoding 导致 diversity collapse——这与本文发现的 instance degeneracy（82.9% 输出完全一致）高度相关。本文虽引用了 Yun et al.，但没有明确讨论：本文的 degeneracy 发现相比 Yun et al. 的 diversity collapse 有何 *新增 insight*？如果 Yun et al. 已解释了\"为什么结构化输出的 diversity 低\"，本文的贡献是否仅在于\"量化了这对 selection 的影响\"？\n- 建议：在 §8 或 §9 中用至少 3-4 句明确 delineate：Yun et al. 关注 diversity 本身，本文关注 diversity collapse 对 downstream selection 的功能性影响（correlation-selection gap），这是不同的 research question。\n\n**W2** [warning] **§8 Related Work 过于压缩，缺乏对关键方向的充分覆盖**\n\n- 具体位置：§8 总长约 0.5 页（page 8 上半部分）\n- 问题：以下方向覆盖不足或缺失：\n  - **Conformal prediction for structured outputs**: 论文在 §8 引用了 Geifman & El-Yaniv (2017) 做 selective prediction，但完全没讨论 conformal prediction 在 NER/IE 上的应用。最新的 PASC (2025) 提出了 pipeline-aware conformal prediction for multi-stage NLP pipelines（直接对标 IE 场景）。Kuleshov & Liang (2015) 的 calibrated structured prediction 在 bib 中但未 cite。\n  - **SC 在 code generation 的 failure**: 近期 \"Existing LLMs Are Not Self-Consistent For Simple Tasks\" (2025) 和 \"Evaluating Self-Consistency of Code LLMs\" (ICLR 2024) 都研究了 SC 在非 reasoning 场景的 failure——与本文形成互补，应讨论。\n  - **Entity-level hallucination detection**: Farquhar et al. (2024) semantic entropy、Min et al. (2023) FActScore 虽已引用，但未在 Related Work 中讨论它们与 entity-level self-verification 的关系。\n- 建议：将 Related Work 扩展至至少 0.75 页，增加上述方向的讨论。\n\n**W3** [warning] **RE extension（§7, Appendix o）作为 generalizability 证据说服力不足**\n\n- 具体位置：Appendix o（page 24）；§7 中 RE 结果提及寥寥\n- 问题：RE 扩展仅在 SciERC 的一个数据集上做了 exploratory 实验，且仅用 Qwen3-8B 单模型。Table 28 的结果显示 RE 的 selection failure 模式与 NER 不同（RE 的 per-entity-type 分析显示不同 pattern）。论文在 Limitations 中承认 RE 是 \"exploratory\"，但仍在 abstract 和 introduction 中宣称研究的是 \"structured information extraction\"——这个 scope claim 大于实际覆盖。\n- 建议：将 abstract/intro 中的 scope 从 \"information extraction\" 缩窄为 \"named entity recognition\"，或在 RE 上补充至少一个额外数据集和模型。\n\n**W4** [warning] **Entity-level construction 的 +1.09pp 增益虽 statistically significant，但实际影响有限**\n\n- 具体位置：§5, §7.5（Table 5）\n- 问题：论文将 entity-level construction（bypass selection entirely，+1.09pp on Few-NERD, +1.02pp on SciERC）作为主要 prescriptive 贡献。但从 practitioner 角度，这个增益的 cost-benefit 需要讨论：生成 N=8 个样本的计算开销是 single-sample 的 8 倍，而回报是 ~1pp F1。Table 5 显示 cross-model ensemble 仅 +0.42pp。在 high-degeneracy regime（占绝大多数 instances），all signals 都无法帮助。\n- 建议：在 §9 Discussion 中增加 cost-benefit 分析，帮助 practitioner 判断何时值得使用这些方法。\n\n---\n\n## 小问题（不影响接收）\n\n**M1.** §2.1 中 \"per-sample signal\" 的定义出现在 Appendix a 而非正文。正文首次使用时（page 3, \"produces a single score per input (notation in Appendix a)\"）应在正文中给出简要定义，不应完全 defer 到附录。\n\n**M2.** Figure 2 (page 4) 的 bar chart 在灰度打印时 greedy/LP/EM/SJ 的颜色难以区分。建议使用 hatching patterns 增强可读性。\n\n**M3.** Table 1 (page 4) 的 \"One score per input\" 列缺少解释。reviewer 需要翻到 Appendix a 才能理解 instance-level vs. per-sample 的区别。\n\n**M4.** §6.2 \"Scaling and Inverse Scaling\" 中引用了 Brown et al. (2024) 和 Snell et al. (2025)，但 inverse scaling 的具体机制（为什么 SciERC converges more slowly）缺乏解释，仅一句 \"the ceiling grows, but confidence-based aggregation recovery <1 pp\" 带过。\n\n**M5.** Limitations 中承认了 \"English-only\" 和 \"model scale\" 局限，但没有提及一个重要局限：所有实验都在 fine-tuned models 上进行，没有测试 closed-source API models（GPT-4, Claude 等）的 zero-shot 表现。这些模型可能有不同的 degeneracy 特征。虽然在 Limitations page 9 有提及 \"closed-source APIs where log-probabilities are unavailable\"，但这只是关于 LP signal 的可用性，没有讨论这些模型是否会有不同的 degeneracy profile。\n\n**M6.** 36 个 orphan bib entries（在 .bib 中但未被引用）应清理。\n\n---\n\n## Questions for Authors\n\n**Q1.** 在 degeneracy 最高的 SciERC 上（82.9% identical outputs），如果将 temperature 从 T=1.0 提高到 T=1.5 或 T=2.0 以人为增加 diversity，selection 方法是否能 recover 部分 gain？Appendix b 有 temperature robustness 分析但似乎仅测到 T=1.2。\n\n**Q2.** Chen et al. (2024) \"Two Failures of Self-Consistency\" 识别了 hypothetical consistency 和 compositional consistency 两种 failure mode。本文的 degeneracy-driven failure 是否可以映射到这两类之一，还是属于第三种 failure mode？\n\n**Q3.** Supervised hidden-state probe 的 AUROC 在 entity-level 达到 0.63–0.88，但在 sample-level 转化为 selection gain 有限。这是否暗示 bottleneck 不在 quality estimation 而在 aggregation？如果是，是否有替代 F1 的 aggregation metric 能更好利用 entity-level 信号？\n\n**Q4.** 论文测试了 entity-level construction 和 cross-model ensemble 作为 escape routes。是否考虑过 entity-level *filtering*（即只在 high-consistency entities 上 select，对 low-consistency entities abstain）作为中间方案？\n\n---\n\n## Missing References\n\n1. **Chen et al. (2024)** \"Two Failures of Self-Consistency in the Multi-Step Reasoning of LLMs\" (TMLR) — 直接分析 SC 失败原因\n2. **Chen et al. (2024)** \"Universal Self-Consistency for Large Language Model Generation\" (ICML Workshop) — 不依赖 equivalence class 的 SC 变体\n3. **Aggarwal et al. (2023)** \"Let's Sample Step by Step: Adaptive-Consistency\" (EMNLP) — 提出 adaptive sample stopping\n4. **Thirukovalluru et al. (2024)** \"Atomic Self-Consistency for Better Long Form Generations\" (EMNLP) — fine-grained SC\n5. **Farquhar et al. (2024)** \"Detecting Hallucinations in LLMs Using Semantic Entropy\" (Nature) — sample-based 不确定性估计\n6. PASC (2025) — \"Pipeline-Aware Conformal Prediction with Joint Coverage Guarantees for Multi-Stage NLP Pipelines\" — conformal prediction for IE pipelines\n7. \"Existing LLMs Are Not Self-Consistent For Simple Tasks\" (2025) — SC failure 在简单任务上的近期分析\n8. Kuleshov & Liang (2015) \"Calibrated Structured Prediction\" (NeurIPS) — calibration for structured outputs（已在 bib 中但未引用）\n\n注：上述 1-5 条已存在于 .bib 文件但未被 cite——这尤其令人困惑，暗示作者知道这些工作但选择不讨论。\n\n---\n\n## 格式合规性检查\n\n| 检查项 | 状态 | 备注 |\n|--------|------|------|\n| 正文 ≤8 页 | ✅ | §1–§10 在 page 1–8，Limitations 从 page 8 底部开始 |\n| 匿名性 | ✅ | \"Anonymous ACL submission\"，未发现自引泄露或机构信息 |\n| ACL style [review] | ✅ | 行号可见，双栏格式正确 |\n| 图表标注 | ✅ | Figure 1–3, Table 1–5 编号连续，caption 信息充分 |\n| 引用格式 | ⚠️ | 36 个 orphan bib entries 应清理；部分 author name encoding mismatch（如 Müller vs M\\\"uller）但不影响引用显示 |\n| Limitations | ✅ | 覆盖了主要局限（English-only, model scale, RE exploratory） |\n| Ethics Statement | ✅ | 存在且合理 |\n| Responsible NLP Checklist | ✅ | 完整填写（page 10） |\n\n---\n\n## 引用验证摘要\n\n- 总 bib 条目: 81 | 正文引用 unique keys: 45 | orphan entries: 36\n- 在线验证: 74 verified, 2 not found (OpenAlex limitation), 5 minor mismatch (LaTeX encoding)\n- 无虚假引用（hallucinated citations）\n- 无 missing bib（所有 \\cite 都有对应 bib entry）\n",
+              "reviewer_id": "2",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-002513"
+        },
+        {
+          "source_line": 2514,
+          "timestamp": "2026-05-21T04:42:26.748441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_3897c2857f11615119e277e820eae311:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 4055
+          },
+          "id": "event-002514"
+        },
+        {
+          "source_line": 2515,
+          "timestamp": "2026-05-21T04:42:31.438665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+              "max_results": "1"
+            }
+          },
+          "id": "event-002515"
+        },
+        {
+          "source_line": 2516,
+          "timestamp": "2026-05-21T04:42:31.539331+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-002516"
+        },
+        {
+          "source_line": 2517,
+          "timestamp": "2026-05-21T04:42:35.302287+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images"
+            }
+          },
+          "id": "event-002517"
+        },
+        {
+          "source_line": 2518,
+          "timestamp": "2026-05-21T04:42:35.403052+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message\\\": \\\"目录不存在，无需清理\\\", \\\"deleted\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 100
+          },
+          "id": "event-002518"
+        },
+        {
+          "source_line": 2519,
+          "timestamp": "2026-05-21T04:42:46.240396+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Round 1 审稿报告已提交给 Review Director。\n\n**审稿摘要：**\n\n- **Overall: 3.5 (Borderline Conference)**\n- **Soundness: 3.5/5** — 实验设计严谨（4 数据集、2 模型、统计检验完备），但 degeneracy→selection failure 的因果 claim 仍停留在相关性证据层面\n- **Excitement: 3/5** — 对 practitioner 有 actionable value，但核心 insight（degeneracy 导致 SC 失效）与 Yun et al. (2025) diversity collapse 发现高度重叠\n\n**两个 Must-Fix 问题：**\n1. Related Work 缺口严重——5 篇直接相关的论文（Chen \"Two Failures\"、USC、Adaptive-Consistency、Atomic SC、Semantic Entropy）存在于 .bib 但未被引用\n2. 核心因果 claim 的支撑不够（§4 说 degeneracy 是 dominant factor，§7.3 又说 degeneracy alone does not predict LP direction）\n\n**四个 Should-Fix：** 与 Yun et al. 差异化不清晰、§8 过于压缩、RE 扩展不足以支撑 \"IE\" scope claim、escape routes 缺少 cost-benefit 分析。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2"
+          },
+          "id": "event-002519"
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "messages": [
+        {
+          "source_line": 2520,
+          "timestamp": "2026-05-21T04:43:26.678683+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n## Step 2 交叉分享 — 请逐条回应 Reviewer 1 的审稿意见\n\n以下是 Reviewer 1 的完整审稿意见。请逐条回应：\n- **[AGREE]** 同意并说明理由\n- **[REBUT]** 反驳并提供证据（cite 具体 Section/Table/Figure）\n\n---\n\n# Reviewer 1 — Round 1 审稿报告（方法严谨性）\n\n**Overall**: 3.5 — Borderline Conference\n**Soundness**: 3.5/5 | **Excitement**: 3/5 | **Reproducibility**: 4/5 | **Confidence**: 4/5\n\n**一句话总结**: 一篇方法论严谨、实验规模令人印象深刻的负面结果论文，系统揭示了 self-consistency 在结构化生成中的能力天花板，但范围局限于 NER + 2 个~8B 模型系列，部分核心推导的理论性被夸大，限制了结论的泛化性。\n\n## Must-Fix 问题（3 个）\n\n**N1** [critical] θ_crit = 0.70 推导本质是半经验的，但呈现为理论结果\n- §6.3, Appendix p.3 (p25), Figure 9\n- θ_crit 公式嵌入了 SciERC 经验参数（G_gap=14.8pp, ε=0.068），不是纯理论阈值。CoNLL（D=61.7%<0.70）上 LP 选择也失效的事实进一步说明该阈值非普适。\n- 建议：明确标注为 data-dependent 经验近似，增加敏感性分析。\n\n**N2** [critical] 种子数不对称影响统计效力均衡性\n- §7.1, Table 1-2\n- SciERC 3 seeds vs. 其他数据集 1 seed。Few-NERD（最强正面信号 +1.39pp）无法验证跨 seed 稳定性。核心负面结论在 3/4 数据集上依赖单次运行。\n- 建议：至少为 Few-NERD 补做 3-seed 实验。\n\n**N3** [critical] Cascade 四阶段的因果声称缺乏因果干预论证\n- §3-4, Figure 1\n- 流程箭头和 \"Why\" 标题暗示因果关系，但实际论证的是描述性诊断和相关性。无干预实验（如人工控制 degeneracy 水平）。\n- 建议：将 \"Why\" 改为 \"Where and How\"，明确声明 cascade 是诊断工具而非因果模型。\n\n## Should-Fix 问题（4 个）\n\n**W1** \"Escape routes\" 效果量过于边际（最大 +1.39pp），与标注噪声量级相当，实用价值存疑。\n**W2** 标题 \"Structured Generation\" 范围过宽——实验仅覆盖 NER + 1 个 exploratory RE。\n**W3** LODO transfer 分析不充分——未识别 transfer-critical 特征，\"introspection boundary\" 论证不完整。\n**W4** 缺少 NER-specific 或 structured MBR baseline 对比（如 Eikema et al. 2025 已引用未实验）。\n\n## 主要优势\n1. 实验规模和统计严谨性令人印象深刻（42页，50+ 表图，Holm-Bonferroni/bootstrap/permutation/TOST）\n2. Diagnostic cascade 框架设计优雅，有独立工具价值\n3. 诚实报告负面结果并提供 prescriptive protocol\n4. MBR 形式化为 entity construction 提供理论基础\n5. Degeneracy Decomposition 上界简洁有力\n\n## 引用检查\n81 bib entries, 45 cited, 36 orphan (uncited), 0 missing. 建议清理 orphan entries。\n\n---\n\n请对以上每个 Must-Fix (N1, N2, N3)、Should-Fix (W1-W4) 逐条给出 [AGREE] 或 [REBUT] 回应。如有不同看法，请 cite 论文具体位置作为证据。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3897c2857f11615119e277e820eae311:reviewer_2",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-002520"
+        }
+      ]
+    }
+  ]
+}

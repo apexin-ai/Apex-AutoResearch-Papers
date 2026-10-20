@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bf78bff72723722a1cc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis entity token lp",
+  "task_key": "worker_analysis_entity_token_lp_20260518T152501",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_entity_token_lp_20260518T152501_result.json",
+    "occurrence": 1,
+    "bytes": 908,
+    "sha256": "bac49fe6160a054612ac3737ce8b00edc8e548f12a9a21520fcd63dc25534977"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n| LP Variant | Within-ρ | Global-ρ | AUROC | Sel.F1 |\n|---|---|---|---|---|\n| full (baseline) | 0.30 | 0.30 | 0.64 | **0.6465** |\n| **entity-text-type** | **0.38** | **0.44** | **0.72** | 0.6357 |\n| entity-span | 0.00 | 0.00 | 0.51 | 0.5923 |\n\n**Entity text+type LP 是更强的质量信号**（ρ/AUROC 全面超越 full-sequence LP），证实了 full-sequence LP 被 schema token 噪声稀释的假设。但 full-sequence LP 仍在 selection F1 上胜出（0.6465 vs 0.6357），因为 172 tokens 平均比 15 tokens 估计方差更低 — 经典的 bias-variance tradeoff。\n\n其他发现：\n- Entity-span LP（start/end 数字）信号为零（ρ≈0, AUROC≈0.50）\n- Entity-all LP 反而比子集差，因为 span tokens 稀释了 text+type 信号\n- 暗示加权 LP（upweight entity text+type）可能同时获得高相关性和低方差"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-entity-token-lp.md"
+}

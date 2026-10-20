@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "464bcd0d31149653dbcc",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code exp qwen25 14b fewnerd",
+  "task_key": "worker_code_exp_qwen25_14b_fewnerd_20260519T075103",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_qwen25_14b_fewnerd_20260519T075103.log",
+    "occurrence": 1,
+    "bytes": 661203,
+    "sha256": "4b60c71b784f4c7bcc87b393dd0d877617e995345e25c346071ac999313f6387"
+  },
+  "statistics": {
+    "messages": 340,
+    "user_turns": 0,
+    "tool_calls": 85,
+    "roles": {
+      "log": 1,
+      "system": 33,
+      "record": 2,
+      "assistant": 112,
+      "tool_call": 85,
+      "tool_result": 85,
+      "result": 22
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 340,
+      "chunks": [
+        {
+          "path": "464bcd0d31149653dbcc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "464bcd0d31149653dbcc-part-0002.json",
+          "message_count": 160
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-qwen25-14b-fewnerd.md"
+}

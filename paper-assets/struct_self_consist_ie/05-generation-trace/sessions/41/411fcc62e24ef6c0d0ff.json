@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "411fcc62e24ef6c0d0ff",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "investigate table4 gold filter",
+  "task_key": "worker_investigate_table4_gold_filter_20260516T033256",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_investigate_table4_gold_filter_20260516T033256_result.json",
+    "occurrence": 1,
+    "bytes": 1028,
+    "sha256": "1001de875f62aa09c4f64e4396c00e2d951446067c1e46b3d7e606472c275a00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。结论：\n\n## 审计结果：**filtering 一致，无需修正**\n\n**Hypothesis A 正确**：\n- `_full` = gold-filtered (排除 697 个 gold-empty instances)，**n=2756**\n- `_conditional` = gold-filtered + 排除 greedy-F1=0，4B n=2641，8B n=2676\n\n**关键证据**：\n1. `report.json` 中 `correlation_softjaccard_vs_f1_full` 明确记录 `\"n\": 2756`，而非 3453\n2. `run_mvp_pilot.py` 源码注释：`# Full ρ: on gold-nonempty instances`\n3. 4B 和 8B 都由同一个 `run_mvp_pilot.py` pipeline 生成，filtering 逻辑完全一致\n\n**数值对照**：\n\n| | SJ ρ | FK ρ | n | filtering |\n|---|---|---|---|---|\n| Table 1 (8B) | .436 | .400 | 2756 | gold-filtered |\n| Table 4 (4B) | .422 | .418 | 2756 | gold-filtered |\n\n`n_instances: 3453` 是原始数据集大小的元数据，不参与 ρ 计算。`_full` 后缀命名易误导，但实际值无误。\n\n已将审计结论写入 registry notes 和 `output/review_round9_experiments/table4_gold_filter_audit.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-table4-gold-filter.md"
+}

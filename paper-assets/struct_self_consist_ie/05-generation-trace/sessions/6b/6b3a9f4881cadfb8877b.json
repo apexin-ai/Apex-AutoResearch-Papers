@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0",
+  "id": "6b3a9f4881cadfb8877b",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "verify data integrity v2",
+  "task_key": "worker_verify_data-integrity-v2_20260516T024719",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_data-integrity-v2_20260516T024719.log",
+    "occurrence": 1,
+    "bytes": 1392779,
+    "sha256": "37aa01f6683d9b8a435ae2cd97294f0f14b4c1873cd3710cecf329c0ab4c6680"
+  },
+  "statistics": {
+    "messages": 465,
+    "user_turns": 5,
+    "tool_calls": 162,
+    "roles": {
+      "log": 1,
+      "system": 86,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 162,
+      "tool_result": 162,
+      "user": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 201,
+      "chunks": [
+        {
+          "path": "6b3a9f4881cadfb8877b-part-0001.json",
+          "message_count": 122
+        },
+        {
+          "path": "6b3a9f4881cadfb8877b-part-0002.json",
+          "message_count": 79
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "6b3a9f4881cadfb8877b-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 3,
+      "chunks": [
+        {
+          "path": "6b3a9f4881cadfb8877b-part-0002.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 30,
+      "chunks": [
+        {
+          "path": "6b3a9f4881cadfb8877b-part-0002.json",
+          "message_count": 30
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "6b3a9f4881cadfb8877b-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 193,
+      "chunks": [
+        {
+          "path": "6b3a9f4881cadfb8877b-part-0002.json",
+          "message_count": 30
+        },
+        {
+          "path": "6b3a9f4881cadfb8877b-part-0003.json",
+          "message_count": 163
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/verify-data-integrity-v2.md"
+}

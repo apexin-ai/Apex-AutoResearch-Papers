@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ab46636c0d61be7ce9d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp012 r1024 tau cond",
+  "task_key": "worker_analysis_exp012_r1024_tau_cond_20260514T234320",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp012_r1024_tau_cond_20260514T234320_result.json",
+    "occurrence": 1,
+    "bytes": 1329,
+    "sha256": "1ce50961995925f41eb4cc98686112ea8c5d40862b4211d37f581e3c265726ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整结果：\n\n```\nNER full (n=529):\n  Signal       |   ρ    |   τ\n  voting_conf  | 0.3792 | 0.2805\n  SJ           | 0.3599 | 0.2646\n  EM           | 0.2945 | 0.2208\n  FK           | 0.2665 | 0.1974\n  logprob      | 0.2052 | 0.1478\n\nNER conditional (n=477):\n  Signal       |   ρ    |   τ\n  SJ           | 0.3113 | 0.2257\n  EM           | 0.3596 | 0.2735\n  voting_conf  | 0.3000 | 0.2189\n  FK           | 0.1761 | 0.1284\n  logprob      | 0.1538 | 0.1111\n\nRE full (n=397):\n  Signal       |   ρ    |   τ\n  voting_conf  | 0.3498 | 0.2663\n  FK           | 0.2752 | 0.2117\n  logprob      | 0.2662 | 0.1951\n  SJ           | 0.2503 | 0.1878\n  EM           | 0.1344 | 0.1081\n\nRE conditional (n=238):\n  Signal       |   ρ    |   τ\n  EM           | 0.4165 | 0.3256\n  SJ           | 0.2457 | 0.1811\n  voting_conf  | 0.2409 | 0.1780\n  FK           | 0.1139 | 0.0876\n  logprob      | 0.0112 | 0.0051\n```\n\n关键发现：\n- NER conditional 中 **EM 跃升为最强信号**（ρ=0.360），超过 voting_conf（0.300）和 SJ（0.311）\n- RE conditional 中 **EM 大幅跃升**（ρ=0.417，full 仅 0.134），成为最强信号\n- RE conditional 中 logprob 几乎无效（ρ=0.011）\n- conditional 子集：NER n=477（排除 52 个 greedy_F1=0），RE n=238（排除 159 个）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp012-r1024-tau-cond.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a48e160a4dc88acf10ec",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "cpu rho max verify",
+  "task_key": "worker_cpu_rho_max_verify_20260521T120007",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cpu_rho_max_verify_20260521T120007_result.json",
+    "occurrence": 1,
+    "bytes": 2179,
+    "sha256": "7414d7403e4f47079c014e2e16d59483d92e2c3463ebac6fb81e22c8bec46a2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Here's the analysis:\n\n---\n\n## Abstract ρ_max 核实结果\n\n### 当前 Abstract 写法\n> Quality estimation signals correlate with oracle F1 ($\\rho$ up to 0.45, AUROC up to 0.82)\n\n### 实际 ρ 值汇总\n\n**Table 1 (N=8, seed=42, primary)**\n\n| Config | Signal | ρ |\n|--------|--------|---|\n| CoNLL (Qwen) | EM | **0.451** ← Table 1 最高 |\n| CoNLL (Qwen) | SJ | 0.436 |\n| CoNLL (LLaMA) | SJ/EM | 0.431 |\n\n→ 0.451 四舍五入 = 0.45，Abstract 对 N=8 primary 是准确的。\n\n**Table robustness (N=16, LLaMA CoNLL, 3-seed mean ± σ)**\n\n| Signal | ρ |\n|--------|---|\n| SJ | **0.474 ± 0.009** |\n| EM | **0.473 ± 0.010** |\n| VC | 0.470 ± 0.006 |\n| FK | 0.467 ± 0.009 |\n\n**Individual seed 最高值 (unified_rho_full.json, N=16)**\n\n| Config | Signal | ρ |\n|--------|--------|---|\n| LLaMA CoNLL seed42 | SJ | **0.4836** ← 全局最高 |\n| LLaMA CoNLL seed42 | EM | 0.4818 |\n| LLaMA CoNLL seed456 | EM | 0.4752 |\n\n**特殊情况（不宜放 Abstract）**\n- WNUT-17 VC full-set: ρ=0.724（但 conditional ρ=0.038，被 zero/non-zero boundary 驱动）\n- SciERC 6+ entities 子集: SJ ρ=0.547（stratified subset）\n\n### 结论\n\n| 范围 | ρ_max | Abstract \"0.45\" 是否准确 |\n|------|-------|--------------------------|\n| N=8 primary (Table 1) | 0.451 | ✅ 准确 |\n| N=16 3-seed mean (Tab robustness) | **0.474** | ❌ 偏低 |\n| N=16 单 seed 最高 | **0.484** | ❌ 偏低 |\n\n审稿人提到的 \"EM 0.472 (LLaMA CoNLL)\" 应该指的是 Tab robustness 中 EM 3-seed mean = 0.473。\n\n### 修正建议\n\n**方案 A**（保守，限定 N=8）: 不改，但需在 Abstract 中明确 \"at N=8\"，避免被认为隐瞒 N=16 结果。\n\n**方案 B**（推荐）: 改为 `$\\rho$ up to 0.47`，覆盖 N=16 三种子均值 0.474，四舍五入准确。Abstract 不需要区分 N=8/N=16，\"up to\" 应覆盖论文中所有正式报告的值。\n\n**方案 C**（最精确）: 改为 `$\\rho$ up to 0.48`，覆盖单 seed 最高值 0.484，但论文正文表格报的是 3-seed mean 0.474，用 0.48 可能反而过高。\n\n推荐 **方案 B: \"ρ up to 0.47\"**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-rho-max-verify.md"
+}

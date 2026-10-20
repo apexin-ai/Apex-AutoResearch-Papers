@@ -1,0 +1,2775 @@
+{
+  "schema_version": "1.0",
+  "id": "60b836567dedbf4f7a4f",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "analysis provenance audit c032 c023 c021",
+  "task_key": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analysis_provenance_audit_c032_c023_c021_20260516T045025.jsonl",
+    "occurrence": 1,
+    "bytes": 134498,
+    "sha256": "a862c261fb1ed189d89c0da2523fb7c9ddf31d2abfad23908132e3115b83501d"
+  },
+  "statistics": {
+    "messages": 137,
+    "user_turns": 0,
+    "tool_calls": 68,
+    "roles": {
+      "tool_call": 68,
+      "tool_result": 68,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T04:57:39.007993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__detect_image",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T04:57:39.008413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T04:57:39.008636+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T04:57:39.008883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 6560\\\\ndrwxr-xr-x 92 root root    8192 May 16 10:51 .\\\\ndrwxr-xr-x 15 root root    4096 May 16 11:09 ..\\\\ndrwxr-xr-x  2 root root      85 May 16 00:37 analysis_epsilon_sweep\\\\n-rw-r--r--  1 root root    7926 May 15 20:56 analysis_fk_bootstrap_ci.json\\\\n-rw-r--r--  1 root root    5824 May 15 21:16 analysis_fk_bootstrap_per_instance.json\\\\n-rw-r--r--  1 root root  150381 May 15 21:15 analysis_lp_range_cdf.json\\\\n-rw-r--r--  1 root root    3197 May 15 21:15 analysis_lp_range_cdf_n16_3seed.json\\\\n-rw-r--r--  1 root root   10542 May 15 20:46 analysis_multiseed_selection_f1.json\\\\ndrwxr-xr-x  2 root root    4096 May 16 00:50 analysis_round8\\\\n-rw-r--r--  1 root root   20864 May 15 21:14 analysis_scierc_n16_3seed_selection_f1.json\\\\n-rw-r--r--  1 root root   30781 May 15 21:26 analysis_scierc_n16_3seed_selection_f1_merged.json\\\\n-rw-r--r--  1 root root    9919 May 15 21:26 analysis_scierc_re_n16_3seed_selection_f1.json\\\\n-rw-r--r--  1 root root    7621 May 15 22:57 analysis_unified_rho_full.json\\\\ndrwxr-xr-x  2 root root      69 May 15 05:17 bootstrap_ci_nscaling\\\\n-rw-r--r--  1 root root   18675 May 15 06:05 bootstrap_ci_summary.json\\\\n-rw-r--r--  1 root root    1977 May 15 06:06 bootstrap_ci_tables.tex\\\\n-rw-r--r--  1 root root    2098 May 14 20:48 conditional_filter_diagnosis.json\\\\ndrwxr-xr-x  2 root root      58 May 14 20:54 exp001_n16_seed123\\\\ndrwxr-xr-x  2 root root      77 May 14 20:13 exp001_n16_seed123_200only\\\\ndrwxr-xr-x  2 root root      10 May 14 20:43 exp001_n16_seed123_200only_backup\\\\ndrwxr-xr-x  2 root root      10 May 14 20:44 exp001_n16_seed123_full\\\\n-rw-r--r--  1 root root  108646 May 14 20:54 exp001_n16_seed123_run.log\\\\ndrwxr-xr-x  2 root root     146 May 14 20:49 exp001_n16_seed42\\\\ndrwxr-xr-x  2 root root     119 May 14 19:55 exp001_n16_seed42_200only_backup\\\\n-rw-r--r--  1 root root  107674 May 14 20:24 exp001_n16_seed42_run.log\\\\ndrwxr-xr-x  2 root root      58 May 15 18:41 exp001_n1\n…[truncated 6429 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T04:57:39.009058+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/analysis_round8/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T04:57:39.009226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 88\\\\ndrwxr-xr-x  2 root root  4096 May 16 06:06 .\\\\ndrwxr-xr-x 15 root root  4096 May 16 11:09 ..\\\\n-rw-r--r--  1 root root  4487 May 16 06:06 analysis_fk_tost_round8.md\\\\n-rw-r--r--  1 root root   452 May 15 23:36 epsilon_sweep.csv\\\\n-rw-r--r--  1 root root  3403 May 15 23:35 epsilon_sweep.py\\\\n-rw-r--r--  1 root root  3273 May 16 06:11 fk_independence_instance_test.json\\\\n-rw-r--r--  1 root root 10993 May 16 06:02 fk_independence_instance_test.py\\\\n-rw-r--r--  1 root root 33666 May 16 05:58 tost_external_delta.json\\\\n-rw-r--r--  1 root root 11380 May 16 05:58 tost_external_delta.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T04:57:39.009372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -r \"0\\.002\" /root/autodl-tmp/struct_self_consist_ie/output/ --include=\"*.json\" --include=\"*.txt\" --include=\"*.csv\" --include=\"*.md\" --include=\"*.log\" -l",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T04:57:39.009538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/exp013_exact_match_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/exp001_all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/exp001_all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/logprob_diagnosis/diagnosis.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/re_all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp009_stratification_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp010_selection_curves/exp010_metrics.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_006_v2_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_006_v2/exp_006_v2_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2/results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2/summary.txt\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_v2/linear_combo_grid.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_re_rerun/results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_nscaling/results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_conll_n16_3seed_5signal_summary.json\\\\n/root/autodl-tm\n…[truncated 3184 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T04:57:39.009682+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -r \"0\\.002\" /root/autodl-tmp/struct_self_consist_ie/analysis_round8/ --include=\"*.json\" --include=\"*.txt\" --include=\"*.csv\" --include=\"*.md\" --include=\"*.log\" -l",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T04:57:39.009811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/analysis_round8/tost_external_delta.json\\\\n/root/autodl-tmp/struct_self_consist_ie/analysis_round8/analysis_fk_tost_round8.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T04:57:39.009938+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "file": "paper_provenance.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T04:57:39.010429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_provenance.yaml\\\", \\\"content\\\": \\\"paper:\\\\n  title: 'Strong Predictors, Weak Selectors: A Systematic Comparison of Confidence\\\\n    Signals for Test-Time Scaling in Information Extraction'\\\\n  version: 5\\\\n  generated_at: '2026-05-15T09:49:17.274112+00:00'\\\\n  source: manual provenance build by Paper Agent\\\\nclaims:\\\\n- id: c001_voting_rho_scierc_ner\\\\n  text: Voting Confidence achieves ρ=0.379 on SciERC NER (corrected from 0.502 truncation\\\\n    artifact)\\\\n  sections:\\\\n  - abstract\\\\n  - introduction\\\\n  - experiments\\\\n  - conclusion\\\\n  - discussion\\\\n  - related_work\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_012_rerun_1024\\\\n    metric: ner.voting_rho_full\\\\n    value: 0.379\\\\n  note: Old value 0.502 from exp_015 was inflated by max_tokens=512 truncation. Corrected\\\\n    via exp_012_rerun_1024 (max_tokens=1024).\\\\n- id: c002_auroc_dissociation_scierc\\\\n  text: ρ-AUROC dissociation on SciERC — EM leads AUROC (NER 0.749, RE 0.706) while\\\\n    Voting leads ρ (NER 0.379, RE 0.422)\\\\n  sections:\\\\n  - abstract\\\\n  - introduction\\\\n  - experiments\\\\n  - conclusion\\\\n  - discussion\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_012_rerun_1024\\\\n    metric: ner.em_auroc\\\\n    value: 0.749\\\\n  - exp_id: exp_012_rerun_1024\\\\n    metric: re.em_auroc\\\\n    value: 0.706\\\\n  - exp_id: exp_012_rerun_1024\\\\n    metric: ner.voting_auroc\\\\n    value: 0.684\\\\n  note: Old Table 1 had Voting NER AUROC=.741 (from exp_015 truncated). Corrected\\\\n    to .684 via exp_012_rerun_1024. EM now leads AUROC on both NER and RE. Headline\\\\n    claim changed from \\\\\\\"entity voting achieves ρ=0.38 and AUROC=0.74\\\\\\\" to split ρ (Voting\\\\n    0.38) / AUROC (EM 0.75) claim.\\\\n- id: c003_sj_rho_scierc_ner\\\\n  text: SJ achieves ρ=0.360 on SciERC NER (corrected from 0.357)\\\\n  sections:\\\\n  - experiments\\\\n  tier: 1\\\\n  evidence:\\\\n  - exp_id: exp_012_rerun_1024\\\\\n…[truncated 21948 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T04:57:39.010663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp009_stratification_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T04:57:39.010982+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scierc_ner\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"by_greedy_f1\\\\\\\": {\\\\n      \\\\\\\"[0, 0.25)\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 63,\\\\n        \\\\\\\"mean_f1\\\\\\\": 0.012964108202203438,\\\\n        \\\\\\\"std_f1\\\\\\\": 0.050002566931507855,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.1591899032754564,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": 0.03484575311256299,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.29441645758229157,\\\\n            \\\\\\\"p\\\\\\\": 0.21269348192185367,\\\\n            \\\\\\\"auroc\\\\\\\": 0.6864406779661016,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.5161290322580645,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.8158114035087718\\\\n          },\\\\n          \\\\\\\"fk\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.25112822147572084,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": 0.11183009657879464,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.3935594404481513,\\\\n            \\\\\\\"p\\\\\\\": 0.04711186360938125,\\\\n            \\\\\\\"auroc\\\\\\\": 0.7966101694915254,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.6694783752191701,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.8965794515023189\\\\n          },\\\\n          \\\\\\\"logprob\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.07734328551539553,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": -0.11072736503133365,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.285400972688807,\\\\n            \\\\\\\"p\\\\\\\": 0.5468388938510856,\\\\n            \\\\\\\"auroc\\\\\\\": 0.597457627118644,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.3225806451612903,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.967741935483871\\\\n          },\\\\n          \\\\\\\"voting_conf\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.12773976400064793,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": -0.013989156754501072,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.26940805593564277,\\\\n            \\\\\\\"p\\\\\\\": 0.3184276301710296,\\\\n            \\\\\\\"auroc\\\\\\\": 0.6504237288135594,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.4872404351273664,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.8277800546448086\\\\n          },\\\\n          \\\\\\\"em\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": -0.273904817\n…[truncated 7982 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T04:57:39.011186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T04:57:39.011429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"wnut17\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 16,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 1287,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.52316715542522,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.6637217007178353,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.14055454529261535,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.7002625416298626,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.8844110439882366,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.12498639982700602,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0010101389238927497,\\\\n    \\\\\\\"n\\\\\\\": 689\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.08883161050304318,\\\\n    \\\\\\\"p_value\\\\\\\": 0.019695320766242228,\\\\n    \\\\\\\"n\\\\\\\": 689\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.16863345538503793,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0019847067973992236,\\\\n    \\\\\\\"n\\\\\\\": 334\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2884389703925184,\\\\n    \\\\\\\"p_value\\\\\\\": 8.044470580733825e-08,\\\\n    \\\\\\\"n\\\\\\\": 334\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 598,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 355,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": false,\\\\n  \\\\\\\"rho_advantage\\\\\\\": -0.036154789323962835,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.4007648977651592,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.45324774277971985,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 53.68287373004354,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": -0.4094891030514717,\\\\n      \\\\\\\"p_rho\\\\\\\": 3.0724001673695786e-29,\\\\n      \\\\\\\"tau\\\\\\\": -0.2984555640667542,\\\\n      \\\\\\\"p_tau\\\\\\\": 3.0647533023775854e-24,\\\\n      \\\\\\\"auroc\\\\\\\": 0.21888336004048242,\\\\n      \\\\\\\"n\\\\\\\": 689\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.35011390590805674,\\\\n      \\\\\\\"p_rho\\\\\\\": 4.575598794556641e-11,\\\\n      \\\\\\\"tau\\\\\\\": 0.2722466231418909,\\\\n      \\\\\\\"p_tau\\\\\\\": 1.373591283647736e-10,\\\\n      \\\\\\\"a\n…[truncated 407 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T04:57:39.011594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T04:57:39.011786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"wnut17\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 16,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 1287,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.5246478873239436,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.6640883977900552,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.1394405104661116,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.683003441168254,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.8822903299654273,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.12413887343520687,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0010937938190619452,\\\\n    \\\\\\\"n\\\\\\\": 689\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.0824641320128276,\\\\n    \\\\\\\"p_value\\\\\\\": 0.030438088421768046,\\\\n    \\\\\\\"n\\\\\\\": 689\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.1638999025238164,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0027407033200631823,\\\\n    \\\\\\\"n\\\\\\\": 332\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.27455806190068305,\\\\n    \\\\\\\"p_value\\\\\\\": 3.7386117553263027e-07,\\\\n    \\\\\\\"n\\\\\\\": 332\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 598,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 357,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": false,\\\\n  \\\\\\\"rho_advantage\\\\\\\": -0.04167474142237927,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.400518788270245,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.453005368675313,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 53.71915820029027,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": -0.4138939788856724,\\\\n      \\\\\\\"p_rho\\\\\\\": 6.783004097628618e-30,\\\\n      \\\\\\\"tau\\\\\\\": -0.3019132806111708,\\\\n      \\\\\\\"p_tau\\\\\\\": 9.950349470683396e-25,\\\\n      \\\\\\\"auroc\\\\\\\": 0.21703621207519153,\\\\n      \\\\\\\"n\\\\\\\": 689\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.3519627321461846,\\\\n      \\\\\\\"p_rho\\\\\\\": 4.075928220112554e-11,\\\\n      \\\\\\\"tau\\\\\\\": 0.2740539886891814,\\\\n      \\\\\\\"p_tau\\\\\\\": 1.2208223275022382e-10,\\\\n      \\\\\\\"auroc\\\\\n…[truncated 401 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T04:57:39.011941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -r \"0\\.062\" /root/autodl-tmp/struct_self_consist_ie/output/ --include=\"*.json\" --include=\"*.txt\" --include=\"*.csv\" --include=\"*.md\" -l",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T04:57:39.012096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/correlation_matrix.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/selection_f1_full.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp009_stratification_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_005_v2_temperature/temperature_sensitivity_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2/results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2/summary.txt\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_v2/correlation_matrix.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_v2/linear_combo_grid.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_v2/logistic_ensemble.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_v2/summary.csv\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_re_rerun/results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_re_rerun/summary.txt\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/reliability_data_1024.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/correlation_matrix.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/selection_f1_full.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round4/logprob_tie_results_n529.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_lp_range_cdf.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_lp_range_cdf_n16_3seed.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/seed456_lp_range.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/r8w4_lp_range_analysis.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round8/task2_lp_range_final.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"err\n…[truncated 56 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T04:57:39.012311+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -r \"0\\.110\" /root/autodl-tmp/struct_self_consist_ie/output/ --include=\"*.json\" --include=\"*.txt\" --include=\"*.csv\" --include=\"*.md\" -l",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T04:57:39.012467+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/gate0_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_realigned_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_015_unified/exp015_unified_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_015_unified/exp015_summary.md\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_analysis/ood_cross_dataset_results.md\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_analysis/ood_cross_dataset_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp009_stratification_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004v2_re_diagnostic/cross_type_comparison.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004v2_re_diagnostic/full_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2/results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2/summary.txt\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_re_rerun/results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_re_rerun/summary.txt\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/reliability_data_1024.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/correlation_matrix.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round2/diversity_analysis.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_conll_to_scierc/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_lp_range_cdf.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_multiseed_sel\n…[truncated 204 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T04:57:39.012615+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -r \"0\\.473\" /root/autodl-tmp/struct_self_consist_ie/output/ --include=\"*.json\" --include=\"*.txt\" --include=\"*.csv\" --include=\"*.md\" -l",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T04:57:39.012755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/correlation_matrix.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp009_stratification_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_005_v2_temperature/temperature_sensitivity_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_v2/linear_combo_grid.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_re_rerun/summary.txt\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_conll_n16_3seed_5signal_summary.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_summary.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/reliability_data_1024.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/correlation_matrix.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_016_rerun_1024/logistic_ensemble.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round4/logprob_tie_results_n529.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/rho_audit_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/analysis_unified_rho_full.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T04:57:39.012938+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2/results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T04:57:39.013286+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"ner_seed42\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n    \\\\\\\"by_greedy_f1\\\\\\\": {\\\\n      \\\\\\\"[0, 0.25)\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 78,\\\\n        \\\\\\\"mean_f1\\\\\\\": 0.00931105931105931,\\\\n        \\\\\\\"std_f1\\\\\\\": 0.04161191412076067,\\\\n        \\\\\\\"too_small\\\\\\\": false,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.03970568636536484,\\\\n            \\\\\\\"ci_lo\\\\\\\": -0.17615526671331225,\\\\n            \\\\\\\"ci_hi\\\\\\\": 0.1916036640706902,\\\\n            \\\\\\\"p\\\\\\\": 0.7299848680515906\\\\n          },\\\\n          \\\\\\\"fk\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.18066430068305409,\\\\n            \\\\\\\"ci_lo\\\\\\\": 0.03604247946642114,\\\\n            \\\\\\\"ci_hi\\\\\\\": 0.30723586761095606,\\\\n            \\\\\\\"p\\\\\\\": 0.11344921259234626\\\\n          },\\\\n          \\\\\\\"logprob\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": -0.014755600473946933,\\\\n            \\\\\\\"ci_lo\\\\\\\": -0.21678790177571897,\\\\n            \\\\\\\"ci_hi\\\\\\\": 0.1985560620256237,\\\\n            \\\\\\\"p\\\\\\\": 0.8979741674289845\\\\n          },\\\\n          \\\\\\\"voting_conf\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.0848438115088091,\\\\n            \\\\\\\"ci_lo\\\\\\\": -0.04181147570504118,\\\\n            \\\\\\\"ci_hi\\\\\\\": 0.21378450887996164,\\\\n            \\\\\\\"p\\\\\\\": 0.46017689733899114\\\\n          },\\\\n          \\\\\\\"em\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": -0.3555172602890218,\\\\n            \\\\\\\"ci_lo\\\\\\\": -0.49989902115315443,\\\\n            \\\\\\\"ci_hi\\\\\\\": -0.17543243570602693,\\\\n            \\\\\\\"p\\\\\\\": 0.0014022340780114556\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"[0.25, 0.5)\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 73,\\\\n        \\\\\\\"mean_f1\\\\\\\": 0.3681780168081538,\\\\n        \\\\\\\"std_f1\\\\\\\": 0.0453827711238864,\\\\n        \\\\\\\"too_small\\\\\\\": false,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.10200527558028614,\\\\n            \\\\\\\"ci_lo\\\\\\\": -0.1296629959207327,\\\\n            \\\\\\\"ci_hi\\\\\\\": 0.3356583335118884,\\\\n         \n…[truncated 8113 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T04:57:39.013457+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_re_rerun/results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T04:57:39.013787+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"filter_stats\\\\\\\": {\\\\n    \\\\\\\"n_total_raw\\\\\\\": 551,\\\\n    \\\\\\\"n_empty_gold_filtered\\\\\\\": 154,\\\\n    \\\\\\\"n_after_filter\\\\\\\": 397\\\\n  },\\\\n  \\\\\\\"n_total\\\\\\\": 397,\\\\n  \\\\\\\"proxy_correlations\\\\\\\": {\\\\n    \\\\\\\"sent_len_vs_F1\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": -0.023099307562040112,\\\\n      \\\\\\\"p\\\\\\\": 0.6463344039583466\\\\n    },\\\\n    \\\\\\\"ent_count_vs_F1\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": -0.010902182599557667,\\\\n      \\\\\\\"p\\\\\\\": 0.8285622225106516\\\\n    },\\\\n    \\\\\\\"rel_count_vs_F1\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.1306090722643033,\\\\n      \\\\\\\"p\\\\\\\": 0.009178563893527534\\\\n    },\\\\n    \\\\\\\"type_diversity_vs_F1\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.07110951068229204,\\\\n      \\\\\\\"p\\\\\\\": 0.15731196139402373\\\\n    },\\\\n    \\\\\\\"sent_len_vs_ent_count\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.6503553500932429,\\\\n      \\\\\\\"p\\\\\\\": 4.2324874173740275e-49\\\\n    },\\\\n    \\\\\\\"sent_len_vs_rel_count\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.4312504917373513,\\\\n      \\\\\\\"p\\\\\\\": 2.0640413052928572e-19\\\\n    },\\\\n    \\\\\\\"ent_count_vs_rel_count\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.7693628186640157,\\\\n      \\\\\\\"p\\\\\\\": 6.900215660957394e-79\\\\n    },\\\\n    \\\\\\\"ent_count_vs_type_diversity\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.6435215826657187,\\\\n      \\\\\\\"p\\\\\\\": 8.619423661807758e-48\\\\n    }\\\\n  },\\\\n  \\\\\\\"proxy_ranking\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"proxy\\\\\\\": \\\\\\\"ent_count\\\\\\\",\\\\n      \\\\\\\"abs_rho_with_f1\\\\\\\": 0.010902182599557667,\\\\n      \\\\\\\"independent\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"proxy\\\\\\\": \\\\\\\"sent_len\\\\\\\",\\\\n      \\\\\\\"abs_rho_with_f1\\\\\\\": 0.023099307562040112,\\\\n      \\\\\\\"independent\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"proxy\\\\\\\": \\\\\\\"type_diversity\\\\\\\",\\\\n      \\\\\\\"abs_rho_with_f1\\\\\\\": 0.07110951068229204,\\\\n      \\\\\\\"independent\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"proxy\\\\\\\": \\\\\\\"rel_count\\\\\\\",\\\\n      \\\\\\\"abs_rho_with_f1\\\\\\\": 0.1306090722643033,\\\\n      \\\\\\\"independent\\\\\\\": true\\\\n    }\\\\n  ],\\\\n  \\\\\\\"global_signals\\\\\\\": {\\\\n    \\\\\\\"sj\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.28130\n…[truncated 8305 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T04:57:39.013951+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/rho_audit_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T04:57:39.014189+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp_017_llama_conll_n16_r1024\\\\\\\": {\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp_017_llama_conll_n16_r1024\\\\\\\",\\\\n    \\\\\\\"n_total\\\\\\\": 3453,\\\\n    \\\\\\\"n_gold_empty\\\\\\\": 697,\\\\n    \\\\\\\"n_valid\\\\\\\": 2756,\\\\n    \\\\\\\"n_conditional\\\\\\\": 2641,\\\\n    \\\\\\\"gold_empty_analysis\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 697,\\\\n      \\\\\\\"fk_mean\\\\\\\": 0.0372,\\\\n      \\\\\\\"fk_std\\\\\\\": 0.1982,\\\\n      \\\\\\\"sj_mean\\\\\\\": 0.9789,\\\\n      \\\\\\\"f1_mean\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"old_pipeline\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 3453,\\\\n      \\\\\\\"rho_fk\\\\\\\": 0.8095,\\\\n      \\\\\\\"rho_sj\\\\\\\": 0.1815,\\\\n      \\\\\\\"registry_rho_fk\\\\\\\": 0.8095,\\\\n      \\\\\\\"registry_rho_sj\\\\\\\": 0.1815\\\\n    },\\\\n    \\\\\\\"new_pipeline_full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2756,\\\\n      \\\\\\\"rho_fk\\\\\\\": 0.4752,\\\\n      \\\\\\\"rho_sj\\\\\\\": 0.4836,\\\\n      \\\\\\\"rho_vc\\\\\\\": 0.4746,\\\\n      \\\\\\\"rho_em\\\\\\\": 0.4818,\\\\n      \\\\\\\"rho_lp\\\\\\\": 0.3136,\\\\n      \\\\\\\"auroc_fk\\\\\\\": 0.7467,\\\\n      \\\\\\\"auroc_sj\\\\\\\": 0.7496,\\\\n      \\\\\\\"auroc_vc\\\\\\\": 0.7529,\\\\n      \\\\\\\"auroc_em\\\\\\\": 0.7508,\\\\n      \\\\\\\"auroc_lp\\\\\\\": 0.7661,\\\\n      \\\\\\\"median_f1\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"new_pipeline_conditional\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2641,\\\\n      \\\\\\\"rho_fk\\\\\\\": 0.4767,\\\\n      \\\\\\\"rho_sj\\\\\\\": 0.4856\\\\n    }\\\\n  },\\\\n  \\\\\\\"exp_017_llama_conll_n16_s456_r1024\\\\\\\": {\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp_017_llama_conll_n16_s456_r1024\\\\\\\",\\\\n    \\\\\\\"n_total\\\\\\\": 3453,\\\\n    \\\\\\\"n_gold_empty\\\\\\\": 697,\\\\n    \\\\\\\"n_valid\\\\\\\": 2756,\\\\n    \\\\\\\"n_conditional\\\\\\\": 2642,\\\\n    \\\\\\\"gold_empty_analysis\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 697,\\\\n      \\\\\\\"fk_mean\\\\\\\": 0.0372,\\\\n      \\\\\\\"fk_std\\\\\\\": 0.1991,\\\\n      \\\\\\\"sj_mean\\\\\\\": 0.9777,\\\\n      \\\\\\\"f1_mean\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"old_pipeline\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 3453,\\\\n      \\\\\\\"rho_fk\\\\\\\": 0.8085,\\\\n      \\\\\\\"rho_sj\\\\\\\": 0.1895,\\\\n      \\\\\\\"registry_rho_fk\\\\\\\": 0.8085,\\\\n      \\\\\\\"registry_rho_sj\\\\\\\": 0.1895\\\\n    },\\\\n    \\\\\\\"new_pipeline_full\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 2756,\\\\n      \\\\\\\"rho_fk\\\\\\\n…[truncated 3112 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T04:57:39.014355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/analysis_unified_rho_full.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T04:57:39.014640+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"pipeline\\\\\\\": \\\\\\\"unified_gold_filtered\\\\\\\",\\\\n    \\\\\\\"date\\\\\\\": \\\\\\\"2026-05-15\\\\\\\",\\\\n    \\\\\\\"fk_empty_fix\\\\\\\": true,\\\\n    \\\\\\\"gold_filter\\\\\\\": \\\\\\\"exclude instances where len(gold.entities)==0\\\\\\\",\\\\n    \\\\\\\"conll_n_valid\\\\\\\": 2756,\\\\n    \\\\\\\"scierc_n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n8_seed123_added\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"llama_conll_n16_seed42\\\\\\\": {\\\\n      \\\\\\\"n_instances\\\\\\\": 2756,\\\\n      \\\\\\\"n_total\\\\\\\": 3453,\\\\n      \\\\\\\"n_gold_empty\\\\\\\": 697,\\\\n      \\\\\\\"VC\\\\\\\": 0.4746,\\\\n      \\\\\\\"SJ\\\\\\\": 0.4836,\\\\n      \\\\\\\"FK\\\\\\\": 0.4752,\\\\n      \\\\\\\"EM\\\\\\\": 0.4818,\\\\n      \\\\\\\"LP\\\\\\\": 0.3136,\\\\n      \\\\\\\"auroc_VC\\\\\\\": 0.7529,\\\\n      \\\\\\\"auroc_SJ\\\\\\\": 0.7496,\\\\n      \\\\\\\"auroc_FK\\\\\\\": 0.7467,\\\\n      \\\\\\\"auroc_EM\\\\\\\": 0.7508,\\\\n      \\\\\\\"auroc_LP\\\\\\\": 0.7661\\\\n    },\\\\n    \\\\\\\"llama_conll_n16_seed123\\\\\\\": {\\\\n      \\\\\\\"n_instances\\\\\\\": 2756,\\\\n      \\\\\\\"n_total\\\\\\\": 3453,\\\\n      \\\\\\\"n_gold_empty\\\\\\\": 697,\\\\n      \\\\\\\"VC\\\\\\\": 0.4633,\\\\n      \\\\\\\"SJ\\\\\\\": 0.4662,\\\\n      \\\\\\\"FK\\\\\\\": 0.4573,\\\\n      \\\\\\\"EM\\\\\\\": 0.4632,\\\\n      \\\\\\\"LP\\\\\\\": 0.308,\\\\n      \\\\\\\"auroc_VC\\\\\\\": 0.7444,\\\\n      \\\\\\\"auroc_SJ\\\\\\\": 0.7391,\\\\n      \\\\\\\"auroc_FK\\\\\\\": 0.7358,\\\\n      \\\\\\\"auroc_EM\\\\\\\": 0.7395,\\\\n      \\\\\\\"auroc_LP\\\\\\\": 0.7611\\\\n    },\\\\n    \\\\\\\"llama_conll_n16_seed456\\\\\\\": {\\\\n      \\\\\\\"n_instances\\\\\\\": 2756,\\\\n      \\\\\\\"n_total\\\\\\\": 3453,\\\\n      \\\\\\\"n_gold_empty\\\\\\\": 697,\\\\n      \\\\\\\"VC\\\\\\\": 0.4722,\\\\n      \\\\\\\"SJ\\\\\\\": 0.4734,\\\\n      \\\\\\\"FK\\\\\\\": 0.469,\\\\n      \\\\\\\"EM\\\\\\\": 0.4752,\\\\n      \\\\\\\"LP\\\\\\\": 0.3099,\\\\n      \\\\\\\"auroc_VC\\\\\\\": 0.7495,\\\\n      \\\\\\\"auroc_SJ\\\\\\\": 0.7428,\\\\n      \\\\\\\"auroc_FK\\\\\\\": 0.7408,\\\\n      \\\\\\\"auroc_EM\\\\\\\": 0.7444,\\\\n      \\\\\\\"auroc_LP\\\\\\\": 0.7628\\\\n    },\\\\n    \\\\\\\"qwen_scierc_n16_seed42\\\\\\\": {\\\\n      \\\\\\\"n_instances\\\\\\\": 529,\\\\n      \\\\\\\"n_total\\\\\\\": 551,\\\\n      \\\\\\\"n_gold_empty\\\\\\\": 22,\\\\n      \\\\\\\"VC\\\\\\\": 0.3993,\\\\n      \\\\\\\"SJ\\\\\\\": 0.3984,\n…[truncated 8259 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T04:57:39.014798+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"0\\.002\" /root/autodl-tmp/struct_self_consist_ie/output/logprob_diagnosis/diagnosis.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T04:57:39.014932+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"132:        \\\\\\\"max\\\\\\\": -0.002333983745691524\\\\n144:        \\\\\\\"max\\\\\\\": -0.002125299685368073\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T04:57:39.015056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"logprob_rho_cond\\|logprob.*cond\\|cond.*logprob\" /root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2/results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T04:57:39.015201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T04:57:39.015365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_re_rerun/summary.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T04:57:39.015559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"==========================================================================================\\\\nEXP-009 v2 RE RERUN — FILTERED + PROXY INDEPENDENCE CHECK\\\\n==========================================================================================\\\\n\\\\nFiltering: 551 raw → 154 empty-gold removed → 397 kept\\\\n\\\\n──────────────────────────────────────────────────────────────────────\\\\nProxy Independence Check (proxy vs F1 Spearman ρ)\\\\n──────────────────────────────────────────────────────────────────────\\\\n  ✓ ent_count            |ρ|=0.011\\\\n  ✓ sent_len             |ρ|=0.023\\\\n  ✓ type_diversity       |ρ|=0.071\\\\n  ✓ rel_count            |ρ|=0.131\\\\n\\\\nProxy cross-correlations:\\\\n  sent_len_vs_ent_count               ρ=0.650 (p=4.2e-49)\\\\n  sent_len_vs_rel_count               ρ=0.431 (p=2.1e-19)\\\\n  ent_count_vs_rel_count              ρ=0.769 (p=6.9e-79)\\\\n  ent_count_vs_type_diversity         ρ=0.644 (p=8.6e-48)\\\\n\\\\n──────────────────────────────────────────────────────────────────────\\\\nGlobal Signal ρ (n=397, after filtering)\\\\n──────────────────────────────────────────────────────────────────────\\\\n  sj             ρ=0.281 [0.182, 0.371]  p=1.2e-08\\\\n  fk             ρ=0.279 [0.173, 0.375]  p=1.6e-08\\\\n  logprob        ρ=0.287 [0.192, 0.379]  p=6.1e-09\\\\n  voting_conf    ρ=0.322 [0.228, 0.414]  p=4.9e-11\\\\n  em             ρ=0.165 [0.066, 0.263]  p=9.4e-04\\\\n\\\\n───────────────────────────��──────────────────────────────────────────\\\\n▸ Stratification by Sentence Length QUARTILES (primary, independent)\\\\n──────────────────────────────────────────────────────────────────────\\\\n  Stratum                       n  mean_F1              sj              fk         logprob     voting_conf              em\\\\n  ------------------------------------------------------------------------------------------------------------------------\\\\n  Q1 (low)                    117    0.454  0.110[-0.08,0.29]  0.188[-0.00,0.37]  0.152[-0\n…[truncated 6490 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T04:57:39.015714+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"Q4\\|Q3\\|High\" /root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2_re_rerun/results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T04:57:39.015841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T04:57:39.015961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"0\\.062\" /root/autodl-tmp/struct_self_consist_ie/output/exp009_stratification_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T04:57:39.016083+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"794:            \\\\\\\"rho\\\\\\\": 0.06299743433466573,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T04:57:39.016225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"0\\.062\" /root/autodl-tmp/struct_self_consist_ie/output/exp_009_v2/results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T04:57:39.016384+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"133:            \\\\\\\"rho\\\\\\\": 0.06299075221044065,\\\\n304:            \\\\\\\"ci_lo\\\\\\\": 0.062368124696574434,\\\\n1048:            \\\\\\\"ci_lo\\\\\\\": 0.06201718433847767,\\\\n1569:            \\\\\\\"rho\\\\\\\": 0.06219925338517256,\\\\n2315:        \\\\\\\"rho\\\\\\\": 0.06253885238151985,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T04:57:39.016551+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/logprob_diagnosis/diagnosis.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T04:57:39.016762+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"total_gap\\\\\\\": 0.174,\\\\n    \\\\\\\"subset_effect_a\\\\\\\": 0.03921671115753153,\\\\n    \\\\\\\"condition_effect_bc\\\\\\\": 0.13536498031029492,\\\\n    \\\\\\\"n_effect_c\\\\\\\": 0.006654974114404744,\\\\n    \\\\\\\"t_effect_b_inferred\\\\\\\": 0.12871000619589018,\\\\n    \\\\\\\"conclusions\\\\\\\": [\\\\n      \\\\\\\"(a) MINOR: Instance subset effect is only +0.0392\\\\\\\",\\\\n      \\\\\\\"(b+c) SIGNIFICANT: T/N differences contribute +0.1354 to rho gap\\\\\\\",\\\\n      \\\\\\\"(c) NEGLIGIBLE: N effect is only +0.0067\\\\\\\",\\\\n      \\\\\\\"(d) RULED OUT: Both use identical per-token mean logprob normalization\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"normalization_difference\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"tests\\\\\\\": {\\\\n    \\\\\\\"baseline_ner\\\\\\\": {\\\\n      \\\\\\\"exp001\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.31418270668758275,\\\\n        \\\\\\\"p\\\\\\\": 8.602743251931677e-06,\\\\n        \\\\\\\"n\\\\\\\": 193\\\\n      },\\\\n      \\\\\\\"exp012\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1396010152197563,\\\\n        \\\\\\\"p\\\\\\\": 0.001286366893477423,\\\\n        \\\\\\\"n\\\\\\\": 529\\\\n      }\\\\n    },\\\\n    \\\\\\\"baseline_re\\\\\\\": {\\\\n      \\\\\\\"exp001\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.30964447975786663,\\\\n        \\\\\\\"p\\\\\\\": 8.831418345497867e-05,\\\\n        \\\\\\\"n\\\\\\\": 155\\\\n      },\\\\n      \\\\\\\"exp012\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.24668271217578314,\\\\n        \\\\\\\"p\\\\\\\": 6.466504185414077e-07,\\\\n        \\\\\\\"n\\\\\\\": 397\\\\n      }\\\\n    },\\\\n    \\\\\\\"subset_effect_ner\\\\\\\": {\\\\n      \\\\\\\"exp012_on_200_overlap\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.17881772637728782,\\\\n        \\\\\\\"p\\\\\\\": 0.012840401686677279,\\\\n        \\\\\\\"n\\\\\\\": 193\\\\n      },\\\\n      \\\\\\\"exp012_full_529\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1396010152197563,\\\\n        \\\\\\\"p\\\\\\\": 0.001286366893477423,\\\\n        \\\\\\\"n\\\\\\\": 529\\\\n      },\\\\n      \\\\\\\"exp012_nonoverlap\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.11488481105483911,\\\\n        \\\\\\\"p\\\\\\\": 0.035291311218680906,\\\\n        \\\\\\\"n\\\\\\\": 336\\\\n      }\\\\n    },\\\\n    \\\\\\\"subset_effect_re\\\\\\\": {\\\\n      \\\\\\\"exp012_on_200_overlap\\\\\\\":\n…[truncated 3528 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T04:57:39.016941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"logprob.*rho.*cond\\|cond.*logprob.*rho\\|logprob_rho_cond\\|re.*logprob.*0\\.002\\|0\\.002.*logprob\" /root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T04:57:39.017091+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T04:57:39.017345+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T04:57:39.017560+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"re\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 16,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.4228855721393035,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.6266397578203834,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.2037541856810799,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.3510270407688936,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.614509203908681,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.27897818810694835,\\\\n    \\\\\\\"p_value\\\\\\\": 1.570213281520457e-08,\\\\n    \\\\\\\"n\\\\\\\": 397\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2813061996083854,\\\\n    \\\\\\\"p_value\\\\\\\": 1.1780042209260059e-08,\\\\n    \\\\\\\"n\\\\\\\": 397\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.15246162499658367,\\\\n    \\\\\\\"p_value\\\\\\\": 0.018351602927135544,\\\\n    \\\\\\\"n\\\\\\\": 239\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3075703278261049,\\\\n    \\\\\\\"p_value\\\\\\\": 1.2469729314555676e-06,\\\\n    \\\\\\\"n\\\\\\\": 239\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 154,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 158,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"rho_advantage\\\\\\\": 0.0023280115014370217,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.3625127524561398,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.3815864789403641,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 44.30100755667506,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.2865841277011422,\\\\n      \\\\\\\"p_rho\\\\\\\": 6.079730418168513e-09,\\\\n      \\\\\\\"tau\\\\\\\": 0.20904431900055762,\\\\n      \\\\\\\"p_tau\\\\\\\": 9.7115757157968e-09,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6445594792681052,\\\\n      \\\\\\\"n\\\\\\\": 397\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": -0.026348741145267595,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.685274324226724,\\\\n      \\\\\\\"tau\\\\\\\": -0.019070287903681895,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.6791346824108437,\\\\n      \\\\\\\"auroc\\\\\\\": 0\n…[truncated 411 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T04:57:39.017720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"0\\.062\" /root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/report.json /root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/report.json /root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T04:57:39.017853+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T04:57:39.017975+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"logprob_rho_cond\\|logprob.*conditional\\|conditional.*logprob\\|rho_logprob_cond\" /root/autodl-tmp/struct_self_consist_ie/output/exp_015_unified/exp015_unified_report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T04:57:39.018098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T04:57:39.018285+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/conditional_filter_diagnosis.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T04:57:39.018514+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"diagnosis_date\\\\\\\": \\\\\\\"2026-05-14\\\\\\\",\\\\n  \\\\\\\"issue\\\\\\\": \\\\\\\"Conditional filtering definition inconsistency across analysis scripts\\\\\\\",\\\\n  \\\\\\\"standard_definition\\\\\\\": \\\\\\\"Exclude instances where greedy_F1 == 0 (knowledge-gap instances where the model has zero extraction capability at T=0)\\\\\\\",\\\\n  \\\\\\\"sources\\\\\\\": {\\\\n    \\\\\\\"exp001_postprocess.py\\\\\\\": {\\\\n      \\\\\\\"line\\\\\\\": 128,\\\\n      \\\\\\\"code\\\\\\\": \\\\\\\"cond = [i for i in valid if f1s[i] > 0]\\\\\\\",\\\\n      \\\\\\\"filter\\\\\\\": \\\\\\\"greedy_f1 > 0\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"CORRECT\\\\\\\",\\\\n      \\\\\\\"report_file\\\\\\\": \\\\\\\"exp001_all_signals_report.json\\\\\\\",\\\\n      \\\\\\\"re_n_cond\\\\\\\": 238,\\\\n      \\\\\\\"ner_n_cond\\\\\\\": 478\\\\n    },\\\\n    \\\\\\\"run_mvp_pilot.py\\\\\\\": {\\\\n      \\\\\\\"line\\\\\\\": 259,\\\\n      \\\\\\\"code\\\\\\\": \\\\\\\"cond_mask.append(any(f > 0 for f in sample_f1s_i))\\\\\\\",\\\\n      \\\\\\\"filter\\\\\\\": \\\\\\\"any sample F1 > 0\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"WRONG\\\\\\\",\\\\n      \\\\\\\"report_file\\\\\\\": \\\\\\\"report.json\\\\\\\",\\\\n      \\\\\\\"re_n_cond\\\\\\\": 331,\\\\n      \\\\\\\"ner_n_cond\\\\\\\": 510\\\\n    },\\\\n    \\\\\\\"analyze_exp015_unified.py\\\\\\\": {\\\\n      \\\\\\\"lines\\\\\\\": \\\\\\\"290-297\\\\\\\",\\\\n      \\\\\\\"code\\\\\\\": \\\\\\\"any(per_instance_f1(s, inst['gold'], subtask=subtask) > 0 for s in inst['samples'])\\\\\\\",\\\\n      \\\\\\\"filter\\\\\\\": \\\\\\\"any sample F1 > 0\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"WRONG\\\\\\\"\\\\n    },\\\\n    \\\\\\\"analyze_logprob_baseline.py\\\\\\\": {\\\\n      \\\\\\\"lines\\\\\\\": \\\\\\\"95-100\\\\\\\",\\\\n      \\\\\\\"code\\\\\\\": \\\\\\\"any(f > 0 for f in sample_f1s)\\\\\\\",\\\\n      \\\\\\\"filter\\\\\\\": \\\\\\\"any sample F1 > 0\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"WRONG\\\\\\\"\\\\n    },\\\\n    \\\\\\\"analyze_component_wise_re.py\\\\\\\": {\\\\n      \\\\\\\"lines\\\\\\\": \\\\\\\"107-110\\\\\\\",\\\\n      \\\\\\\"code\\\\\\\": \\\\\\\"any(per_instance_f1(s, inst['gold'], subtask='re') > 0 for s in inst['samples'])\\\\\\\",\\\\n      \\\\\\\"filter\\\\\\\": \\\\\\\"any sample F1 > 0\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"WRONG\\\\\\\"\\\\n    },\\\\n    \\\\\\\"analyze_exp004_re_diagnostic.py\\\\\\\": {\\\\n \n…[truncated 858 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T04:57:39.018731+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"*.json\" -path \"*exp_015*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T04:57:39.018870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_015_unified/exp015_unified_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T04:57:39.019020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_015_unified/exp015_unified_report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T04:57:39.019180+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"0\\.002\" /root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T04:57:39.019527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"ner\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"n_valid\\\\\\\": 529,\\\\n    \\\\\\\"n_conditional\\\\\\\": 501,\\\\n    \\\\\\\"median_f1_full\\\\\\\": 0.6666666666666666,\\\\n    \\\\\\\"median_f1_cond\\\\\\\": 0.6666666666666666,\\\\n    \\\\\\\"signals\\\\\\\": {\\\\n      \\\\\\\"soft_jaccard\\\\\\\": {\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.3565325519208428,\\\\n          \\\\\\\"p_rho\\\\\\\": 2.6630584025369088e-17,\\\\n          \\\\\\\"tau\\\\\\\": 0.2657836835394407,\\\\n          \\\\\\\"p_tau\\\\\\\": 6.647794397251756e-18,\\\\n          \\\\\\\"auroc\\\\\\\": 0.6656378600823045,\\\\n          \\\\\\\"n\\\\\\\": 529\\\\n        },\\\\n        \\\\\\\"cond\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.4120469334760367,\\\\n          \\\\\\\"p_rho\\\\\\\": 5.914759491394964e-22,\\\\n          \\\\\\\"tau\\\\\\\": 0.3017489674161096,\\\\n          \\\\\\\"p_tau\\\\\\\": 1.3124956005559717e-21,\\\\n          \\\\\\\"auroc\\\\\\\": 0.6871361196942593,\\\\n          \\\\\\\"n\\\\\\\": 501\\\\n        }\\\\n      },\\\\n      \\\\\\\"fleiss_kappa\\\\\\\": {\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.2651050577998432,\\\\n          \\\\\\\"p_rho\\\\\\\": 5.859602237137789e-10,\\\\n          \\\\\\\"tau\\\\\\\": 0.20273442316972345,\\\\n          \\\\\\\"p_tau\\\\\\\": 4.802036629715087e-11,\\\\n          \\\\\\\"auroc\\\\\\\": 0.6243489021266799,\\\\n          \\\\\\\"n\\\\\\\": 529\\\\n        },\\\\n        \\\\\\\"cond\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.3060194865287414,\\\\n          \\\\\\\"p_rho\\\\\\\": 2.537977550420891e-12,\\\\n          \\\\\\\"tau\\\\\\\": 0.2307818354774394,\\\\n          \\\\\\\"p_tau\\\\\\\": 2.7798130476385713e-13,\\\\n          \\\\\\\"auroc\\\\\\\": 0.6416734428362335,\\\\n          \\\\\\\"n\\\\\\\": 501\\\\n        }\\\\n      },\\\\n      \\\\\\\"mean_logprob\\\\\\\": {\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.1396010152197563,\\\\n          \\\\\\\"p_rho\\\\\\\": 0.001286366893477423,\\\\n          \\\\\\\"tau\\\\\\\": 0.10064101054079479,\\\\n          \\\\\\\"p_tau\\\\\\\": 0.0009969869396821928,\\\\n          \\\\\\\"auroc\\\\\\\": 0.5584765029209474,\\\\n          \\\\\\\"n\\\\\\\": 529\\\\n        },\\\\n        \\\\\\\"cond\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.16273823232575188,\\\\\n…[truncated 8031 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T04:57:39.019697+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"36:  \\\\\\\"rho_advantage\\\\\\\": 0.0023280115014370217,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T04:57:39.019825+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"0\\.002\" /root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T04:57:39.019952+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1647:          \\\\\\\"max\\\\\\\": -0.0027346352079722996\\\\n2387:          \\\\\\\"max\\\\\\\": -0.002734562366314261\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T04:57:39.020071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"wnut\\|WNUT\" /root/autodl-tmp/struct_self_consist_ie/output/analysis_unified_rho_full.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T04:57:39.020216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T04:57:39.020336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"*.tex\" -path \"*/sections/*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-16T04:57:39.020464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-16T04:57:39.020618+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-16T04:57:39.020947+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scierc_n8_logprob_ner\\\\\\\": {\\\\n    \\\\\\\"metrics\\\\\\\": {\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"AUROC\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.7151643358013084,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.6584056764120945,\\\\n            0.7682940600519558\\\\n          ]\\\\n        },\\\\n        \\\\\\\"Spearman_rho\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.3565325519208428,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.27093589913089045,\\\\n            0.43847517254753815\\\\n          ]\\\\n        },\\\\n        \\\\\\\"Kendall_tau\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.2657836835394407,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.20308584802623142,\\\\n            0.32764058791077727\\\\n          ]\\\\n        },\\\\n        \\\\\\\"ECE\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.45194957670806446\\\\n        }\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"AUROC\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.628716652955694,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.5673132538124828,\\\\n            0.6923820223647049\\\\n          ]\\\\n        },\\\\n        \\\\\\\"Spearman_rho\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.2651050577998432,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.1682875300012899,\\\\n            0.35268256172379303\\\\n          ]\\\\n        },\\\\n        \\\\\\\"Kendall_tau\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.20273442316972345,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.13006411469552326,\\\\n            0.27188613541902706\\\\n          ]\\\\n        },\\\\n        \\\\\\\"ECE\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.4511674846945833\\\\n        }\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"AUROC\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.5805813452422924,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.5218723422636723,\\\\n            0.6426371957852407\\\\n          ]\\\\n        },\\\\n        \\\\\\\"Spearman_rho\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.1396010152197563,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.05136070196928419,\\\\n            0.2238566300960571\\\\n          ]\\\\n        },\\\\n \n…[truncated 7966 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-16T04:57:39.021147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Find paper tex files locally",
+              "subagent_type": "Explore",
+              "prompt": "Find all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ — I need to locate the paper sections that contain specific numerical values (0.002, 0.062, 0.110, 0.473). Search for these files using glob patterns, and grep for these values in any tex files found. Report file paths and matching lines with context."
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-16T04:57:39.021313+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"logprob\" /root/autodl-tmp/struct_self_consist_ie/output/exp_015_unified/exp015_unified_report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-16T04:57:39.021449+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-16T04:57:39.021570+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260514T093336/best/paper.tex\nartifacts/dream_reports/dream_20260514T093336/median/paper.tex\nartifacts/dream_reports/dream_20260514T093336/worst/paper.tex\nartifacts/dream_reports/dream_20260514T105303/best/paper.tex\nartifacts/dream_reports/dream_20260514T105303/median/paper.tex\nartifacts/dream_reports/dream_20260514T105303/worst/paper.tex\nartifacts/_project/paper/related_work.tex\nartifacts/dream_reports/dream_20260514T203201/best/paper.tex\nartifacts/dream_reports/dream_20260514T203201/median/paper.tex\nartifacts/dream_reports/dream_20260514T203201/worst/paper.tex\nartifacts/bootstrap_ci_tables.tex\nartifacts/dream_reports/dream_20260515T092545/best/paper.tex\nartifacts/dream_reports/dream_20260515T092545/median/paper.tex\nartifacts/dream_reports/dream_20260515T092545/worst/paper.tex\nartifacts/_project/paper/freeform_ablation_appendix_table.tex\nartifacts/freeform_ablation_appendix_table.tex\nartifacts/_project/paper/n_scaling_appendix_tables_44b000.tex\nartifacts/n_scaling_appendix_tables.tex\ndocs/paper/main.tex\nartifacts/_project/paper/method.tex\nartifacts/_project/paper/n_scaling_appendix_tables.tex\nartifacts/_project/paper/introduction.tex\nartifacts/_project/paper/discussion.tex\nartifacts/_project/paper/limitations.tex\nartifacts/_project/paper/conclusion.tex\nartifacts/_project/paper/abstract.tex\nartifacts/_project/paper/experiments.tex\ndocs/paper/sections/abstract.tex\ndocs/paper/sections/introduction.tex\ndocs/paper/sections/experiments.tex\ndocs/paper/sections/discussion.tex\ndocs/paper/sections/related_work.tex\ndocs/paper/sections/conclusion.tex\ndocs/paper/sections/limitations.tex\ndocs/paper/sections/method.tex\ndocs/paper/sections/appendix.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-16T04:57:39.021706+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.002|0\\.062|0\\.110|0\\.473",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+              "type": "tex",
+              "output_mode": "content",
+              "context": "2"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-16T04:57:39.021829+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (20.4KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ff14a560-c52e-4a4a-af53-469861f178d5/tool-results/toolu_01RfgyuTasSYsCUTs7uaW7EU.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex-15-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex-16-Mean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\nartifacts/freeform_ablation_appendix_table.tex:17:Mean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex-18-Tied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex-19-\\bottomrule\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex-31-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex-32-\\multirow{3}{*}{NER}\nartifacts/freeform_ablation_appendix_table.tex:33:  & Greedy        & 0.6182 & 0.6204 & \\textbf{+0.0022} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex-34-  & LP-selected   & 0.6241 & 0.6222 & $-$0.0019 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex-35-  & Selection gap & +0.0059 & +0.0018 & $-$0.0041 \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex-57-FK & 0.2665 & 0.3197 & \\textbf{+0.0532} &\n…[truncated 272 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-16T04:57:39.021976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ff14a560-c52e-4a4a-af53-469861f178d5/tool-results/toolu_01RfgyuTasSYsCUTs7uaW7EU.txt"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-16T04:57:39.022165+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex-15-\\midrule\n2\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex-16-Mean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\n3\tartifacts/freeform_ablation_appendix_table.tex:17:Mean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\n4\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex-18-Tied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n5\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex-19-\\bottomrule\n6\t--\n7\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex-31-\\midrule\n8\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex-32-\\multirow{3}{*}{NER}\n9\tartifacts/freeform_ablation_appendix_table.tex:33:  & Greedy        & 0.6182 & 0.6204 & \\textbf{+0.0022} \\\\\n10\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex-34-  & LP-selected   & 0.6241 & 0.6222 & $-$0.0019 \\\\\n11\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex-35-  & Selection gap & +0.0059 & +0.0018 & $-$0.0041 \\\\\n12\t--\n13\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex-57-FK & 0.2665 & 0.3197 & \\textbf{+0.0532} & 0.2752 & 0.3145 & \\textbf{+0.0393} \\\\\n14\t/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex-58-LP & 0.2052 & 0.2129 & \\textbf{+0.0077} & 0.2662 & 0.3042 & \\textbf{+0.0379} \\\\\n15\tartifacts/\n…[truncated 19344 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-16T04:57:39.022380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have the complete search results. Let me compile the findings for you.\n\n## Summary of Findings\n\nI found **35 .tex files** in the project directory. The search for the four specific numerical values (0.002, 0.062, 0.110, 0.473) returned **multiple matches** across several files. Here are the key locations:\n\n### Files Containing the Target Values:\n\n1. **/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex**\n   - Line 73: Contains `0.002` - Part of table with instance-level signals (consensus-proximity selection): `SJ & $0.646 \\pm 0.002$ & .68 & 0.386 \\\\`\n\n2. **/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex**\n   - Line 60: Contains `0.473` - `\\quad EM & $0.473{\\pm}0.010$ & --- \\\\`\n   - Line 87: Contains `0.002` - Comparing SJ and VC at N=16: `At $N{=}16$, SJ converges to comparable NER performance with VC ($\\Delta{=}0.002$)`\n   - Line 150: Contains `0.110` and `0.473` - `For RE, SJ $\\rho$ increases monotonically with sentence length (Q1: 0.110 $\\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$)`\n   - Line 203: Contains `0.002` - `The margin over SJ is largest on RE ($\\Delta\\rho{=}{+}0.171$), where compound extraction decisions amplify output variability, and smallest on CoNLL LLaMA ($\\Delta\\rho{=}{+}0.002$)`\n   - Line 306: Contains `0.002` - Statistical significance testing: `On SciERC NER ($n{=}529$), SJ--FK ($\\Delta\\rho{=}0.147$--$0.160$, all $p{\\leq}0.002$)`\n   - Line 686: Contains `0.062` - Table with LP range values: `Mean LP range & 0.0623 & 0.0599 & $-$0.0024 \\\\` (0.0623 rounds/matches the pattern)\n   - Line 701: Contains `0.002` - Table row: `& Greedy & 0.6182 & 0.6204 & $+$0.0022 \\\\`\n   - Line 726: Contains `0.002` - Table row: `EM & 0.295 & 0.317 & $+$0.023 & 0.134 & 0.137 & $+$0.002 \\\\`\n\n3. **/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex**\n   - Line\n…[truncated 2338 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Agent",
+            "elapsed_ms": 1
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-16T04:57:39.022544+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"45:      \\\\\\\"mean_logprob\\\\\\\": {\\\\n107:      \\\\\\\"sj_vs_mean_logprob\\\\\\\": {\\\\n238:      \\\\\\\"mean_logprob\\\\\\\": [\\\\n439:      \\\\\\\"mean_logprob\\\\\\\": {\\\\n501:      \\\\\\\"sj_vs_mean_logprob\\\\\\\": {\\\\n632:      \\\\\\\"mean_logprob\\\\\\\": [\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-16T04:57:39.022708+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.002|logprob.*cond|cond.*logprob",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+              "output_mode": "content",
+              "context": "2"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-16T04:57:39.022863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-71-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-72-\\multicolumn{4}{l}{\\textit{Instance-level signals (consensus-proximity selection)}} \\\\\ndocs/paper/sections/experiments.tex:73:SJ           & $0.646 \\pm 0.002$ & .68 & 0.386 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-74-FK           & $0.646 \\pm 0.001$ & .79 & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-75-EM           & $0.637 \\pm 0.001$ & .45 & 0.372 \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-85-VC $N$-scaling is consistently positive ($+0.005$ on Qwen CoNLL, $+0.018$ on LLaMA SciERC, $+0.030$ on Qwen SciERC), while LP is approximately $N$-invariant ($\\Delta{\\leq}0.034$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-86-SJ, EM, and VC scale consistently across all tested settings; only FK shows seed-dependent variation that does not constitute a reliable trend, suggesting that structural and binary-agreement signals are the most robust to $N$.\ndocs/paper/sections/appendix.tex:87:At $N{=}16$, SJ converges to comparable NER performance with VC ($\\Delta{=}0.002$) while exhibiting lower cross-seed variance ($\\sigma{=}0.010$ vs.\\ $0.026$), making it a more stable alternative at higher sample sizes.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-88-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-89-\\paragraph{Transfer across model families.}\n--\ndocs/paper/sections/appendix.tex-201-On the full set, EM is dil\n…[truncated 4136 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-16T04:57:39.023011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.062|WNUT|wnut",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+              "output_mode": "content",
+              "context": "2"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-16T04:57:39.023222+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-9-\\textbf{SciERC} \\cite{luan2018scierc} contains 551 test instances annotated for joint NER (6 types) and RE (7 types).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-10-\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} provides 3{,}453 test sentences with 4 entity types, where models achieve ${\\approx}$91\\% micro F1.\ndocs/paper/sections/experiments.tex:11:\\textbf{WNUT-17} \\cite{derczynski2017wnut} consists of 1{,}287 social media instances with emerging entities, used to probe method boundaries (52\\% zero F1).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-12-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-13-\\paragraph{Models and sampling.}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-48-On CoNLL (single-sample F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$); the $\\rho$--AUROC dissociation across datasets reflects use-case alignment.\ndocs/paper/sections/experiments.tex-49-On $^\\dagger$RE, LP rises above SJ and FK at $N{=}16$ (Table~\\ref{tab:multiseed}).\ndocs/paper/sections/experiments.tex:50:At the capability boundary---WNUT-17 (52\\% zero F1)---all conditional signals collapse (Table~\\ref{tab:wnut}); restricting to non-zero instances reshuffles rankings, with EM strongest on NER ($\\rho{=}0.360$) and $^\\dagger$RE ($\\rho{=}0.417$) while LP $^\\dagger$RE collapses to $\\rho{=}0.011$ (Figure~\\ref{fig:signal_heatmap}, Appendix~\\ref{app:additional}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-51-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/expe\n…[truncated 13818 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-16T04:57:39.023381+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.110|0\\.473|sentence.length|sent.len",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+              "output_mode": "content",
+              "context": "2"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-16T04:57:39.023520+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-58-\\quad SJ &  & $0.474{\\pm}0.009$ & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-59-\\quad FK &  & $0.467{\\pm}0.009$ & --- \\\\\ndocs/paper/sections/appendix.tex:60:\\quad EM &  & $0.473{\\pm}0.010$ & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-61-\\quad VC &  & $0.470{\\pm}0.006$ & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-62-\\quad LP &  & $0.311{\\pm}0.003$ & --- \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-147-\\paragraph{Capability stratification.}\ndocs/paper/sections/appendix.tex-148-For NER, SJ effectiveness scales with structural complexity: on SciERC instances with 6+ entities, $\\rho{=}0.547$, compared to $\\rho{=}0.415$ for 1--2 entities.\ndocs/paper/sections/appendix.tex:149:The SJ advantage over LP remains stable across sentence-length quartiles ($\\Delta\\rho{\\approx}0.08$--$0.20$).\ndocs/paper/sections/appendix.tex:150:For RE, SJ $\\rho$ increases monotonically with sentence length (Q1: 0.110 $\\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$), indicating that longer, more relation-dense sentences provide richer structure for consistency-based estimation.\ndocs/paper/sections/appendix.tex:151:Both proxies are weakly correlated with F1 ($|r|{<}0.15$), confirming they capture input complexity rather than directly predicting output quality; however, entity count and sentence length are themselves moderately correlated ($\\rho{=}0.650$), so they reflect overlapping rather than independent complexity dimensions.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-152-For RE, entity count and relation count are st\n…[truncated 361 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-16T04:57:39.023687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "logprob.*RE|LP.*RE|RE.*LP|RE.*logprob|conditional.*RE|cond.*rho|logprob.*coll|LP.*coll",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+              "output_mode": "content",
+              "context": "2",
+              "-i": "True"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-16T04:57:39.023916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (44.4KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ff14a560-c52e-4a4a-af53-469861f178d5/tool-results/toolu_012ixdEELW31QN1YydkGbYoQ.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex-4-\ndocs/paper/sections/limitations.tex-5-We evaluate at $N{=}8$ (primary) and $N{=}16$; behavior at larger sample sizes is unknown (Appendix~\\ref{app:n_scaling}).\ndocs/paper/sections/limitations.tex:6:The free-form ablation covers SciERC NER and CoNLL NER with one model; RE shows a directional LP reversal under free-form decoding.\ndocs/paper/sections/limitations.tex-7-Qwen3-8B's SciERC checkpoint used empty \\texttt{<think></think>} blocks; a three-part analysis rules out this confound (Appendix~\\ref{app:thinking_token}).\ndocs/paper/sections/limitations.tex:8:LP compression worsens on easy datasets at lower temperature (CoNLL tied fractions reach 95.8\\% at $T{=}0.7$); whether reduced temperature translates to selection gains remains untested.\ndocs/paper/sections/limitations.tex-9-We tested verbalized confidence \\cite{tian2023calibration} as a second per-sample signal; it exhibits severe overconfidence (mean 8.58/10 on SciERC, 9.24/10 on CoNLL) and yields the weakest QE and selection among all signals (Appendix~\\ref{app:verbalized_confidence}).\ndocs/paper/sections/limitations.tex:10:We evaluate signals individually; whether signal combinations (e.g., LP $\\times$ consistency) or learned weightings could close the selection gap is unexplored.\ndocs/paper/sections/limitations.tex:11:The $\\varepsilon{=}0.05$ threshold used for tied/non-tied LP stratification is a post-hoc exploratory choice; while selection F1 is stable across $\\varepsilon \\in [0, 0.2]$ (Appendix~\\ref{app:epsilon_robustness}), the specific subset gains should be interpreted as characterizing the compres\n…[truncated 85 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-16T04:57:39.024070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "205",
+              "limit": "40"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-16T04:57:39.024241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "205\t\\paragraph{WNUT-17 full signal analysis.}\n206\tTable~\\ref{tab:wnut} reports all five signals on WNUT-17.\n207\tVC achieves $\\rho{=}0.724$ (AUROC${=}0.913$) on the full set, but conditional analysis (non-zero F1 instances) reveals this is entirely driven by the zero/non-zero boundary: conditional $\\rho{=}0.038$ ($p{=}0.49$).\n208\tLP shows the reverse pattern: full-set $\\rho{=}{-}0.410$ but conditional $\\rho{=}0.350$, the highest among all signals on the conditional set.\n209\tThis inversion confirms that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.\n210\t\n211\t\\begin{table}[t]\n212\t\\centering\n213\t\\small\n214\t\\caption{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$ after filtering gold-empty instances). Cond: non-zero F1 instances ($n{=}334$). LP exhibits strong negative full-set $\\rho$; its conditional $\\rho$ reverses to the highest among all signals, confirming that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.}\n215\t\\label{tab:wnut}\n216\t\\begin{tabular}{lccccc}\n217\t\\toprule\n218\tSignal & $\\rho$ & $p$ & AUROC & Cond.\\ $\\rho$ & Cond.\\ $p$ \\\\\n219\t\\midrule\n220\tVC      & .724 & ${<}$1e-112 & .913 & .038 & .487 \\\\\n221\tFK      & .125 & .001 & .555 & .169 & .002 \\\\\n222\tSJ      & .089 & .020 & .517 & .288 & ${<}$1e-7 \\\\\n223\tEM      & .050 & .194 & .487 & .333 & ${<}$1e-9 \\\\\n224\tLP & $-$.410 & ${<}$1e-28 & .219 & .350 & ${<}$1e-10 \\\\\n225\t\\bottomrule\n226\t\\end{tabular}\n227\t\\end{table}\n228\t\n229\t\\paragraph{Cross-configuration selection analysis.}\n230\tTable~\\ref{tab:cross_selection} extends the selection analysis to four additional configurations.\n231\tOn LLaMA SciERC, where output diversity remains substantial (18\\% identical outputs, 39\\% unique), LP achieves the highest selection F1 (0.652) at $N{=}8$ but still falls within bootstrap noise of greedy (0.646), replicating the gap observed on Qwen SciERC (Table~\\ref{tab:selection}).\n232\tOn Co\n…[truncated 1122 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-16T04:57:39.024435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output/figures/ -name \"*heatmap*\" -o -name \"*signal*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-16T04:57:39.024567+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-16T04:57:39.024687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"logprob\" /root/autodl-tmp/struct_self_consist_ie/output/exp_015_unified/exp015_summary.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-16T04:57:39.024809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-16T04:57:39.024939+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/figures/",
+              "account": "root"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-16T04:57:39.025062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"fig_selection_gap.pdf\\\\nfig_selection_gap.png\\\\nlp_range_cdf.pdf\\\\nlp_range_cdf.png\\\\nlp_range_cdf_check.png\\\\nlp_range_cdf_n16_3seed.pdf\\\\nlp_range_cdf_n16_3seed.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-16T04:57:39.025201+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "heatmap|signal_heatmap",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+              "output_mode": "content",
+              "context": "5"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-16T04:57:39.025342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-45-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-46-\\paragraph{Signal rankings are difficulty-dependent.}\ndocs/paper/sections/experiments.tex-47-On SciERC NER, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over surface ($\\rho{\\leq}0.295$) and LP ($0.205$); bootstrap CIs confirm the SJ--LP gap ($\\Delta\\rho{=}{+}0.155$; Appendix~\\ref{app:bootstrap_signal}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-48-On CoNLL (single-sample F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$); the $\\rho$--AUROC dissociation across datasets reflects use-case alignment.\ndocs/paper/sections/experiments.tex-49-On $^\\dagger$RE, LP rises above SJ and FK at $N{=}16$ (Table~\\ref{tab:multiseed}).\ndocs/paper/sections/experiments.tex:50:At the capability boundary---WNUT-17 (52\\% zero F1)---all conditional signals collapse (Table~\\ref{tab:wnut}); restricting to non-zero instances reshuffles rankings, with EM strongest on NER ($\\rho{=}0.360$) and $^\\dagger$RE ($\\rho{=}0.417$) while LP $^\\dagger$RE collapses to $\\rho{=}0.011$ (Figure~\\ref{fig:signal_heatmap}, Appendix~\\ref{app:additional}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-51-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-52-%% ============================================================\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-53-\\subsection{The Correlation-Selection Gap}\ndocs/paper/sections/experiments.tex-54-\\label{sec:selection_gap}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex\n…[truncated 2022 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-16T04:57:39.025532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"logprob.*rho\\|rho.*logprob\\|mean_logprob\" /root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-16T04:57:39.025661+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-16T04:57:39.025781+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"scierc_n8.*re\\|scierc_re\\|re_n8\\|_re_\" /root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-16T04:57:39.025900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-16T04:57:39.026014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"0\\.011\\|0\\.0114\\|0\\.0110\" /root/autodl-tmp/struct_self_consist_ie/output/ --include=\"*.json\" -l",
+              "account": "root"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-16T04:57:39.026147+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-16T04:57:39.026282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"mean_logprob\" /root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-16T04:57:39.026408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-16T04:57:39.026522+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"scierc_n8\" /root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-16T04:57:39.026643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2:  \\\\\\\"scierc_n8_logprob_ner\\\\\\\": {\\\\n187:  \\\\\\\"scierc_n8_logprob_re\\\\\\\": {\\\\n1482:  \\\\\\\"llama_scierc_n8_ner\\\\\\\": {\\\\n1667:  \\\\\\\"llama_scierc_n8_re\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-16T04:57:39.026757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"0\\.011\" /root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-16T04:57:39.026871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-16T04:57:39.026981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"re.*logprob_rho\" /root/autodl-tmp/struct_self_consist_ie/output/review_round8/ --include=\"*.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-16T04:57:39.027097+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-16T04:57:39.027242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -400 /root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-16T04:57:39.027624+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scierc_n8_logprob_ner\\\\\\\": {\\\\n    \\\\\\\"metrics\\\\\\\": {\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"AUROC\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.7151643358013084,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.6584056764120945,\\\\n            0.7682940600519558\\\\n          ]\\\\n        },\\\\n        \\\\\\\"Spearman_rho\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.3565325519208428,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.27093589913089045,\\\\n            0.43847517254753815\\\\n          ]\\\\n        },\\\\n        \\\\\\\"Kendall_tau\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.2657836835394407,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.20308584802623142,\\\\n            0.32764058791077727\\\\n          ]\\\\n        },\\\\n        \\\\\\\"ECE\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.45194957670806446\\\\n        }\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"AUROC\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.628716652955694,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.5673132538124828,\\\\n            0.6923820223647049\\\\n          ]\\\\n        },\\\\n        \\\\\\\"Spearman_rho\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.2651050577998432,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.1682875300012899,\\\\n            0.35268256172379303\\\\n          ]\\\\n        },\\\\n        \\\\\\\"Kendall_tau\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.20273442316972345,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.13006411469552326,\\\\n            0.27188613541902706\\\\n          ]\\\\n        },\\\\n        \\\\\\\"ECE\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.4511674846945833\\\\n        }\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"AUROC\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.5805813452422924,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.5218723422636723,\\\\n            0.6426371957852407\\\\n          ]\\\\n        },\\\\n        \\\\\\\"Spearman_rho\\\\\\\": {\\\\n          \\\\\\\"value\\\\\\\": 0.1396010152197563,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.05136070196928419,\\\\n            0.2238566300960571\\\\n          ]\\\\n        },\\\\n \n…[truncated 7969 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-16T04:57:39.027864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"0\\.011\" /root/autodl-tmp/struct_self_consist_ie/output/review_round8/ --include=\"*.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-16T04:57:39.028006+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-16T04:57:39.028155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"0\\.011\" /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/ --include=\"*.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-16T04:57:39.028337+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/freeform_conll/summary.json:316:        \\\\\\\"std\\\\\\\": 0.011952115390956714,\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/freeform_conll/summary.json:328:        \\\\\\\"std\\\\\\\": 0.011909327006374204,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-16T04:57:39.028473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"re_LP\\|re_lp\\|re.*logprob\\|logprob.*re\" /root/autodl-tmp/struct_self_consist_ie/output/rho_audit_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-16T04:57:39.028597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-16T04:57:39.028744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"*heatmap*\" -not -path \"*/.git/*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-16T04:57:39.028878+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"0\\.011\" /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/ --include=\"*.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-16T04:57:39.029009+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/figures/paper/fig_signal_heatmap.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/figures/paper/fig_signal_heatmap.png\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_signal_heatmap.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_signal_heatmap.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-16T04:57:39.029151+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/report.json:100:      \\\\\\\"rho\\\\\\\": 0.011185364740047766,\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/all_signals_5signal.json:403:            \\\\\\\"value\\\\\\\": 0.011185364740047766,\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/reliability_data_1024.json:408:    \\\\\\\"mean_logprob\\\\\\\": -0.011439259208573777\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/reliability_data_1024.json:1032:    \\\\\\\"mean_logprob\\\\\\\": -0.011435031874042564\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/reliability_data_1024.json:2640:    \\\\\\\"mean_logprob\\\\\\\": -0.011447283837923752\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-16T04:57:39.029286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"*.py\" -path \"*heatmap*\" -not -path \"*/.git/*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-16T04:57:39.029408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-16T04:57:39.029524+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"generate_heatmap*\" -o -name \"plot_heatmap*\" -o -name \"fig_signal*\" -not -path \"*/.git/*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-16T04:57:39.029644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/figures/paper/fig_signal_heatmap.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/figures/paper/fig_signal_heatmap.png\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_signal_heatmap.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_signal_heatmap.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-16T04:57:39.029797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -120 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-16T04:57:39.030023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"joint\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"ner_greedy_f1\\\\\\\": 0.6632805497460412,\\\\n  \\\\\\\"ner_oracle_f1\\\\\\\": 0.7775133848899465,\\\\n  \\\\\\\"ner_oracle_headroom\\\\\\\": 0.11423283514390525,\\\\n  \\\\\\\"ner_fleiss_kappa_mean\\\\\\\": 0.3932668065534345,\\\\n  \\\\\\\"ner_soft_jaccard_mean\\\\\\\": 0.6963097751953397,\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2665109373463269,\\\\n    \\\\\\\"p_value\\\\\\\": 4.716829112137585e-10,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3598905669976535,\\\\n    \\\\\\\"p_value\\\\\\\": 1.2752281196882738e-17,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.17607370722783125,\\\\n    \\\\\\\"p_value\\\\\\\": 0.00011078924939793821,\\\\n    \\\\\\\"n\\\\\\\": 477\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3113352549686453,\\\\n    \\\\\\\"p_value\\\\\\\": 3.5148620246813462e-12,\\\\n    \\\\\\\"n\\\\\\\": 477\\\\n  },\\\\n  \\\\\\\"ner_n_gold_empty_filtered\\\\\\\": 22,\\\\n  \\\\\\\"ner_n_greedy_f1_zero_filtered\\\\\\\": 52,\\\\n  \\\\\\\"ner_structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"ner_rho_advantage\\\\\\\": 0.09337962965132657,\\\\n  \\\\\\\"ner_sample_f1_mean\\\\\\\": 0.6077394535406134,\\\\n  \\\\\\\"ner_sample_f1_std\\\\\\\": 0.3177849195309394,\\\\n  \\\\\\\"ner_sample_f1_pct_zero\\\\\\\": 12.594517958412098,\\\\n  \\\\\\\"ner_logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.20517413101613924,\\\\n      \\\\\\\"p_rho\\\\\\\": 1.9498006196855416e-06,\\\\n      \\\\\\\"tau\\\\\\\": 0.14782758668777154,\\\\n      \\\\\\\"p_tau\\\\\\\": 1.2434769103035355e-06,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6115722797477874,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.1537825418721844,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.0007519115126420073,\\\\n      \\\\\\\"tau\\\\\\\": 0.111054535706\n…[truncated 2345 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-16T04:57:39.030205+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"0\\.011\" /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/all_signals_5signal.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-16T04:57:39.030341+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"403:            \\\\\\\"value\\\\\\\": 0.011185364740047766,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-16T04:57:39.030513+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-16T04:57:39.030658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3seed_ner_summary.md\n3seed_summary\n__pycache__\n_project\nanalysis_fk_bootstrap_ci_full.json\nanalysis_lp_range_cdf.json\nanalysis_lp_range_cdf_n16_3seed.json\nanalysis_scierc_n16_3seed_selection_f1.json\nanalysis_scierc_re_n16_3seed_selection_f1.json\nanalysis_unified_rho.json\nanalysis_unified_rho_full.json\nanalyze_exp004_re_diagnostic.py\nanalyze_exp004_v2_re_diagnostic.py\nanalyze_exp005_v2_temperature.py\nanalyze_exp015_metrics_expansion.py\nanalyze_exp016_ensemble.py\nanalyze_ood_signals.py\naudit_autodl5090_loop3.md\naudit_gpu5090_4x2_loop3.md\nauroc_bug_diagnosis.md\nautodl_process_check.md\nbjb1_status_report.md\nbootstrap_ci_nscaling\nbootstrap_ci_summary.json\nbootstrap_ci_tables.tex\nconsistency.py\nd072_paper_patch_inventory.md\ndata\ndata_utils.py\ndream_reports\nevaluate_verifier.py\nevaluation.py\nexp-001\nexp-015\nexp001_postprocess.py\nexp005_temperature\nexp009_stratification_analysis.py\nexp010_selection_curves\nexp_001\nexp_001_n16\nexp_001_ner_n16_scierc\nexp_001_seed456_v2_ner\nexp_002\nexp_003\nexp_004_re_diagnostic\nexp_004_v2\nexp_005\nexp_005_v2\nexp_009_capability_stratification\nexp_009_v2\nexp_009_v2_re_rerun\nexp_009_v2_stratification.py\nexp_010_selection_curves\nexp_011_ood_scierc_to_conll\nexp_012_logprob_baseline\nexp_012_rerun_1024\nexp_015_metrics_expansion\nexp_016_rerun_1024\nexp_016_rerun_1024_bootstrap\nexp_016_signal_ensemble\nexp_016_v2\nexp_016_v2_ensemble.py\nexp_017_llama_conll_n8_t07\nexp_018\nexp_018_provenance_report.md\nexp_freeform_ablation\nexp_freeform_conll_4seed\nexp_llama3b_scierc_ablation\nexp_verbalized_confidence\nfig_selection_gap.png\nfigures\nfk_excess_agreement_all_configs.md\nfreeform_3seed_summary.json\nfreeform_ablation_appendix_table.tex\nfreeform_ablation_deep_analysis.md\nfreeform_ablation_results.md\nft_001\nft_002\ngreedy_f1_discrepancy_audit.md\nheatmap_data_audit.md\nlogprob_tie_analysis.md\nloo_sj_cross_dataset\nlp_range_cdf.pdf\nlp_range_cdf.png\nlp_range_cdf_n16_3seed.pdf\nlp_range_cdf_n16_3seed.png\nmanifest.yaml\nmulti_seed_stability_table.md\nmultiseed_flip_overlap_analys\n…[truncated 687 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-16T04:57:39.030825+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/provenance_audit_c032_c023_c021.md",
+              "content": "# Provenance Audit: c032 / c023 / c021\n\n**Date**: 2026-05-16\n**Auditor**: automated provenance trace\n**Scope**: Three claims in paper_provenance.yaml where registered values diverge from paper text\n\n---\n\n## c032: logprob conditional RE ρ\n\n- **Provenance yaml claim**: paper says ρ=0.002\n- **Registry value**: exp_015_metrics_expansion → re.logprob_rho_cond = 0.1457\n- **Current paper text**: ρ=0.011 (experiments.tex:50, appendix.tex:137)\n\n### Source trace\n\nThe **current paper** says ρ=0.011 in two places:\n1. `experiments.tex:50` — \"LP †RE collapses to ρ=0.011\"\n2. `appendix.tex:137` — heatmap caption: \"LP RE collapses to near-zero (ρ=0.011)\"\n\nThe value **0.01119** is in:\n- `output/exp_012_rerun_1024/report.json:100` — `re_logprob_baseline.conditional.rho = 0.011185364740047766`\n- `output/exp_012_rerun_1024/all_signals_5signal.json:403` — same value\n- Conditions: SciERC RE, N=8, T=1.0, max_tokens=1024, **correct conditional filter** (greedy_f1 > 0, n=238)\n\n### Why the discrepancy\n\n| Value | Source | Filter | n_cond | Status |\n|-------|--------|--------|--------|--------|\n| 0.002 | provenance yaml claim | unknown | — | **STALE** — paper was updated to 0.011; 0.002 untraceable in any output file |\n| 0.1457 | exp_015_metrics_expansion | WRONG: any sample F1 > 0 | 331 | Wrong filter inflates n, changes correlation |\n| **0.011** | exp_012_rerun_1024 | CORRECT: greedy_f1 > 0 | 238 | Current paper value |\n\nThe `conditional_filter_diagnosis.json` documents that exp_015 (and several other scripts) used the wrong conditional filter (\"any sample F1 > 0\" instead of \"greedy_f1 > 0\"), inflating the conditional set from n=238 to n=331 for RE. This is the root cause of the registry's 0.1457.\n\n### Conclusion\n\n**Provenance yaml is stale.** The paper was already corrected from 0.002 to 0.011. The current paper value (0.011 from exp_012_rerun_1024, correct conditional filter) is correct. The registry value (0.1457) uses a known-wrong conditional filter and should be annotated as deprecated.\n\n---\n\n## c023: RE SJ ρ by sentence length (Q1/Q4)\n\n- **Paper values**: Q1=0.110, Q4=0.473, Fisher z p=0.004\n- **Registry values**: exp_009_capability_stratification → Q1=0.447, Q4=0.540\n\n### Source trace\n\nPaper values match **exp_009_v2_re_rerun** exactly:\n\nFrom `output/exp_009_v2_re_rerun/summary.txt`:\n```\nStratification by Sentence Length QUARTILES (primary, independent)\n  Q1 (low)   n=117  SJ 0.110[-0.08,0.29]\n  Q2         n=93   SJ 0.308[0.09,0.50]\n  Q3         n=92   SJ 0.372[0.18,0.54]\n  Q4 (high)  n=95   SJ 0.473[0.28,0.62]\n\nFisher z-test low_vs_high:\n  sj   z=-2.878  p=0.004*\n```\n\nAll three paper values (Q1=0.110, Q4=0.473, p=0.004) match the v2 rerun output character-for-character.\n\nFrom `output/exp_009_v2_re_rerun/results.json`:\n- `by_sent_len_quartiles.\"Q1 (low)\".signals.sj.rho = 0.10961735` → rounds to 0.110\n- `by_sent_len_quartiles.\"Q4 (high)\".signals.sj.rho = 0.47332...` → rounds to 0.473\n- Fisher z low_vs_high sj p = 0.00435... → rounds to 0.004\n\n### Why the registry differs\n\nThe registry values (Q1=0.447, Q4=0.540) come from the **original exp_009_capability_stratification**, which:\n1. Did NOT apply gold-empty filtering (included 154 instances with empty gold RE annotations)\n2. Used all 551 raw instances instead of the filtered 397\n\nThe v2 rerun applied proper gold-filtering (551 → 397 after removing gold-empty), which is the mandated pipeline for all ρ values in the paper.\n\n| Value set | Source | Gold filter | n_RE | Status |\n|-----------|--------|-------------|------|--------|\n| Q1=0.447, Q4=0.540 | exp_009 original | No | 551 | **Outdated** — pre-gold-filter |\n| **Q1=0.110, Q4=0.473** | exp_009_v2_re_rerun | Yes | 397 | Current paper value |\n\n### Conclusion\n\n**Paper values are correct.** They come from exp_009_v2_re_rerun with proper gold-filtering. The registry entry for exp_009_capability_stratification is outdated and should be annotated as superseded by exp_009_v2_re_rerun.\n\n---\n\n## c021: WNUT SJ ρ\n\n- **Provenance yaml claim**: paper says ρ=0.062 (p=0.106)\n- **Registry values**: exp_003_ner_wnut17 → 0.082; exp_003_wnut17_eval → 0.089\n\n### Source trace — current paper\n\nThe **current paper** (appendix.tex:222, Table tab:wnut) shows:\n```\nSJ  .089  .020  .517  .288  <1e-7\n```\ni.e., SJ full-set ρ = **0.089**, p = 0.020\n\nThis matches `output/exp003_wnut17_eval/report.json`:\n- `correlation_softjaccard_vs_f1_full.rho = 0.08883161` → rounds to 0.089\n- `correlation_softjaccard_vs_f1_full.p_value = 0.01970` → rounds to 0.020\n- n = 689 (after gold-empty filtering)\n\n### Tracing the 0.062\n\nThe value ρ=0.062 appears ONLY in the **old deprecated paper** at:\n- `artifacts/_project/paper/experiments.tex:181` — \"SJ achieves ρ=0.062 (p=0.106, not statistically significant)\"\n\nThis file is in `artifacts/_project/paper/` which is excluded from compilation per constraint C001. The current compiled paper at `docs/paper/sections/` does NOT contain 0.062 for WNUT.\n\nSearching all output files for 0.062 in WNUT context yields **no matches**. The closest values found are:\n- exp003_wnut17_pilot: SJ full rho = 0.0825 (different seed)\n- exp003_wnut17_eval: SJ full rho = 0.0888\n- exp_009_v2 global SJ rho (SciERC RE, not WNUT): 0.0625\n\nThe value 0.062 for WNUT SJ is **untraceable** — it does not appear in any analysis output file. It may have originated from:\n1. An earlier experiment run that was overwritten\n2. A different seed/N configuration\n3. A manual transcription error in the old draft\n\n### Conclusion\n\n**Provenance yaml is stale.** The current paper correctly uses ρ=0.089 from exp003_wnut17_eval (N=16, T=1.0, gold-filtered n=689). The 0.062 value from the old paper draft is untraceable and no longer appears in the compiled paper.\n\n---\n\n## Summary\n\n| Claim | Provenance yaml | Current paper | Ground truth source | Status |\n|-------|----------------|---------------|-------------------|--------|\n| c032 LP cond RE ρ | 0.002 | **0.011** | exp_012_rerun_1024 (correct filter, n=238) | Provenance stale; paper correct |\n| c023 RE SJ Q1/Q4 | Q1=0.447/Q4=0.540 (registry) | **Q1=0.110/Q4=0.473** | exp_009_v2_re_rerun (gold-filtered) | Registry outdated; paper correct |\n| c021 WNUT SJ ρ | 0.062 | **0.089** | exp003_wnut17_eval (n=689) | Provenance stale; paper correct |\n\n**All three paper values are correct in the current compiled paper.** The discrepancies exist only between the provenance yaml / registry entries and the paper — not between the paper and the ground truth data. The provenance yaml and registry entries need updating.\n"
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-16T04:57:39.031038+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/provenance_audit_c032_c023_c021.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-16T04:57:39.031233+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/provenance_audit_c032_c023_c021.md`。\n\n**结论：三个不一致项全部是 provenance yaml / registry 过时，当前论文值均正确。**\n\n| 项 | Provenance/Registry 值 | 当前论文值 | 真实来源 | 状态 |\n|---|---|---|---|---|\n| c032 LP cond RE ρ | 0.002 / 0.1457 | **0.011** | exp_012_rerun_1024 (正确 filter, n=238) | 论文已修正 |\n| c023 RE SJ Q1/Q4 | Q1=0.447, Q4=0.540 | **Q1=0.110, Q4=0.473** | exp_009_v2_re_rerun (gold-filtered) | 论文正确，registry 未更新 |\n| c021 WNUT SJ ρ | 0.062 | **0.089** | exp003_wnut17_eval (n=689) | 论文已修正，0.062 无法追溯 |\n\n关键发现：\n- **c032**：registry 的 0.1457 来自 exp_015_metrics_expansion 使用了错误的 conditional filter（any sample F1>0 而非 greedy_f1>0），当前论文的 0.011 使用正确 filter\n- **c023**：registry 来自原始 exp_009（未做 gold-filtering），论文使用了 v2 rerun（gold-filtered 后 n=397）\n- **c021**：0.062 仅存在于 artifacts/_project/paper/ 旧版本中，在所有实验输出中无法追溯"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_provenance_audit_c032_c023_c021_20260516T045025"
+          },
+          "id": "event-000137"
+        }
+      ],
+      "message_count": 137
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-provenance-audit-c032-c023-c021.md"
+}

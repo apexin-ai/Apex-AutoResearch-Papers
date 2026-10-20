@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf064e15e425d4489b26",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp freeform ablation",
+  "task_key": "worker_code_exp_freeform_ablation_20260515T093309",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_freeform_ablation_20260515T093309_result.json",
+    "occurrence": 1,
+    "bytes": 1035,
+    "sha256": "c768dd08e9ab330c17a1fb990f890ca9ce75210510b064f9216eea6603f331ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型正在加载，551 instances 已读取。任务运行正常。\n\n总结：\n\n**已完成：**\n- `run_freeform_inference.py` — free-form inference 脚本，使用 `use_grammar=False` 禁用 constrained decoding，保持与 exp_012_rerun_1024 完全相同的 prompt/model/参数（N=8, T=1.0, max_tokens=1024, seed=42），增加 post-hoc JSON parsing 和 `parse_success` 字段\n- `analyze_freeform_ablation.py` — 分析脚本，对比 constrained vs free-form 的 logprob variance（std/range/tied fraction）、selection F1、5 QE signals（SJ/FK/logprob/EM/voting_conf）的 ρ 和 AUROC、parse rate\n- Registry: `exp_freeform_ablation` 状态 RUNNING，plan_id=exp-018\n- 任务已通过 `submit_training_job` 提交到 cuda:0，tmux session `exp_freeform_ablation`\n\n**待运行完成后：**\n- 在 `results/exp_freeform_ablation/` 下会生成 `samples.jsonl` 和 `run_summary.json`\n- 然后运行 `python analyze_freeform_ablation.py` 生成 `ablation_report.json`\n- 预计运行时间 1-2 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-freeform-ablation.md"
+}

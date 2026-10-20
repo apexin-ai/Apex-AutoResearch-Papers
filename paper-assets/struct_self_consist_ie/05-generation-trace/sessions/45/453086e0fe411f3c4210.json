@@ -1,0 +1,477 @@
+{
+  "schema_version": "1.0",
+  "id": "453086e0fe411f3c4210",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "paper zeroshot section draft",
+  "task_key": "worker_paper_zeroshot-section-draft_20260519T170646",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_paper_zeroshot-section-draft_20260519T170646.jsonl",
+    "occurrence": 1,
+    "bytes": 23167,
+    "sha256": "41d50bccd244ffd8ef8e7858e21ed3efe86bebb49184ac82eaf344d308ff804b"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T17:11:09.068071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T17:11:09.068919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T17:11:09.069188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md",
+              "limit": "120"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T17:11:09.069481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — struct_self_consist_ie\n2\t\n3\t> Updated 2026-05-19 — D157+D160 TRIPLE CONTRIBUTION + SCALE UPGRADE. Title: \"Strong Predictors, Weak Selectors: Addressing the Correlation-Selection Gap in Self-Consistency for Named Entity Recognition\". Entity construction θ=2/N (+1.02pp SciERC, +1.40pp FewNERD, multi-seed N=8 mean). **72B zero-shot confirms gap is fundamental**: LP ρ=-0.002 (CoNLL) / 0.081 (SciERC); LP-weighted construction +1.53pp (SciERC ZS); θ=2/N fails in zero-shot (-0.52pp SciERC, -0.92pp CoNLL). Gating bootstrap CI: τ=0.3 stable in [0.2,0.4]. D162: Decomposition formula deleted (R²=-8.53). Scale: 7B→14B→32B→72B Qwen2.5 + 8B cross-family (Qwen3+LLaMA). 14B/32B training in progress.\n4\t\n5\t## Target Venue\n6\t- Primary: EMNLP 2026 **Main Conference** (via ARR May 2026)\n7\t- Deadline: ARR May cycle, 2026-05-25\n8\t\n9\t## Core Claims (D157 updated — TRIPLE CONTRIBUTION: QE + diagnostic + prescriptive)\n10\t\n11\t### Claim 1 (PRIMARY — Dual Contribution: QE Framework + Selection Diagnostic)\n12\t**Positive contribution (A)**: Confidence signals reliably predict structured IE output quality at the population level (AUROC up to 0.82, ρ up to 0.45), enabling practical QE/selective prediction.\n13\t**Diagnostic contribution (B)** (D154 revised): Selection viability depends on LP signal quality and dataset characteristics, not degeneracy alone:\n14\t- **Degeneracy as headroom predictor**: High degeneracy eliminates selection headroom (CoNLL 47.4% degen → 0 net gain). Within fixed dataset-model settings, degeneracy causally modulates LP effectiveness (SciERC epoch ablation: −1.18/+0.74/+0.99pp at 3/5/10 epochs; per-entity-type within Few-NERD ρ=−0.881). But across datasets, degeneracy alone does NOT predict LP selection direction (23-point cross-configuration ρ=0.052, p=0.81).\n15\t- **LP-quality alignment as primary predictor**: LP must track entity-level F1 within instances. Few-NERD within-instance ρ(LP,F1) ≈ 0.5-0.66 → LP selection +1.36pp (p<0.05). SciERC ρ(LP,F1) ≈ 0.\n…[truncated 15539 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T17:11:09.069657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper/main.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T17:11:09.069788+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T17:11:09.069933+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/main.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T17:11:09.070053+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T17:11:09.070203+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/sections/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T17:11:09.070338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/sections/checklist.tex\ndocs/paper/sections/method.tex\ndocs/paper/sections/related_work.tex\ndocs/paper/sections/introduction.tex\ndocs/paper/sections/abstract.tex\ndocs/paper/sections/limitations.tex\ndocs/paper/sections/discussion.tex\ndocs/paper/sections/conclusion.tex\ndocs/paper/sections/experiments.tex\ndocs/paper/sections/appendix.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T17:11:09.070467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T17:11:09.070603+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{inconsolata}\n11\t\\usepackage{graphicx}\n12\t\\usepackage{booktabs}\n13\t\\usepackage{amsmath}\n14\t\\usepackage{amssymb}\n15\t\\usepackage{multirow}\n16\t\\usepackage{xcolor}\n17\t\\usepackage{subcaption}\n18\t\n19\t\\graphicspath{{figures/}}\n20\t\n21\t\\title{Strong Predictors, Weak Selectors:\\\\ Diagnosing and Addressing Self-Consistency for Named Entity Recognition}\n22\t\n23\t\\author{Anonymous}\n24\t\n25\t\\begin{document}\n26\t\\maketitle\n27\t\n28\t\\input{sections/abstract}\n29\t\\input{sections/introduction}\n30\t\\input{sections/related_work}\n31\t\\input{sections/method}\n32\t\\input{sections/experiments}\n33\t\\input{sections/discussion}\n34\t\\input{sections/conclusion}\n35\t\n36\t\\section*{Limitations}\n37\t\\input{sections/limitations}\n38\t\n39\t\\section*{Ethics Statement}\n40\tAll experiments use publicly available benchmarks (SciERC, CoNLL-2003, WNUT-17) and open-weight models (Qwen3-8B, Qwen3-4B, LLaMA-3.1-8B).\n41\tCoNLL-2003 is derived from the Reuters RCV1 corpus, which is available for research purposes under a NIST agreement; we use the standard research distribution.\n42\tNo new human data was collected or annotated for this study.\n43\tOur findings on signal limitations could inform more reliable deployment of IE systems by guiding practitioners toward appropriate confidence signals for their use case.\n44\tCode and data will be released upon acceptance at [anonymized URL].\n45\t\n46\t\\section*{Responsible NLP Research Checklist}\n47\t\\input{sections/checklist}\n48\t\n49\t\\bibliography{references}\n50\t\n51\t\\appendix\n52\t\\input{sections/appendix}\n53\t\n54\t\\end{document}\n55\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T17:11:09.070736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T17:11:09.070995+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\paragraph{Datasets.}\n8\tWe evaluate on four English NER benchmarks spanning a difficulty gradient, each serving a distinct role.\n9\t\\textbf{SciERC} \\cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed where models achieve ${\\approx}$65\\% F1.\n10\t\\textbf{Few-NERD} \\cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\\approx}$75\\% F1) provides a low-degeneracy contrast where LP selection succeeds (\\S\\ref{sec:fewnerd}).\n11\t\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\\approx}$91\\% F1) serves as a ceiling-effect control where limited oracle headroom constrains selection gains.\n12\t\\textbf{WNUT-17} \\cite{derczynski2017wnut} (1{,}287 social media instances, 51\\% zero F1) probes the signal-collapse boundary where model capability is insufficient.\n13\t\n14\t\\paragraph{Models and sampling.}\n15\t\\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are LoRA fine-tuned using LLaMA Factory \\cite{zheng2024llamafactory} (training details in Appendix~\\ref{app:training}; Few-NERD uses 3 epochs vs.\\ 5 for others due to earlier convergence; Appendix~\\ref{app:epoch_confound}).\n16\tWe draw $N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \\cite{willard2023guided}, with $N{=}16$ for scaling experiments (Appendix~\\ref{app:n_scaling}).\n17\t\n18\t%% ============================================================\n19\t\\subsection{Quality Estimation Results}\n20\t\\label{sec:qe_results}\n21\t\n22\t\\begin{table*}[t]\n23\t\\centering\n24\t\\small\n25\t\\caption{NER quality estimation ($\\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 3-seed stability $\\sigma{\\leq}0.026$ in Table~\\ref{tab:multiseed}). Best in \\textbf{bold}. RE results in Appendix~\\ref{app:re_extension}. $N{=}16$ in Table~\\ref{tab:robustness}.}\n26\t\\label{tab:quality_estimation}\n27\t\\begin{tabular}{ll cc cc cc}\n28\t\\topr\n…[truncated 18335 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T17:11:09.071173+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T17:11:09.071319+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\\label{sec:discussion}\n2\t\n3\tThe decoupling of $\\rho$, AUROC, and selection F1 means single-metric evaluation risks selecting the wrong signal; effective selection likely requires content-aware verifiers \\cite{cobbe2021verifiers, venktesh2025trust}.\n4\tThree factors qualitatively constrain selection: instance degeneracy (17.8--67.9\\%) compresses the candidate space, limited oracle headroom bounds achievable gains, and LP compression (within-instance $\\rho$ 0.043--0.667) prevents exploiting the remainder; within non-degenerate instances, MBR utility correlates positively with F1 (SJ median $\\rho{=}0.524$) \\cite{eikema2022sampling}.\n5\tWhere compression is mitigated (LP range ${\\geq}0.05$, $n{=}210$), LP selection yields $+2.9$~pp ($p{=}0.004$; Table~\\ref{tab:nontied_main}), but $\\varepsilon{=}0.05$ is post-hoc ($p_{\\text{adj}}{=}0.14$ after joint correction; Appendix~\\ref{app:epsilon_robustness}), so this is exploratory evidence.\n6\tTemperature disentangles degeneracy from alignment: at $T{=}1.2$, degeneracy drops to 14.9\\% yet LP does not improve (median $\\rho{=}0.225$; Table~\\ref{tab:t_degeneracy}); the selection window narrows as models improve \\cite{wang2023selfconsistency, snell2025scaling}.\n7\t\n8\t\\paragraph{From diagnosis to practice.}\\label{sec:selection_method}\n9\tEntity-level construction bypasses both failure mechanisms (Table~\\ref{tab:entity_construction}), complementary with LP selection and governed by LP-quality alignment (\\S\\ref{sec:prescriptive}).\n10\tAlternative strategies (DALS, MBR, DGS) fail to reliably beat greedy (Appendix~\\ref{app:dals}); our negative results are specific to fine-tuned models with constrained decoding (Appendix~\\ref{app:when_selection_works}).\n11\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T17:11:09.071612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -d /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper/sections/ 2>/dev/null || echo \"DIR_NOT_FOUND\"",
+              "description": "Check if paper/sections directory exists"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T17:11:09.071774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "DIR_NOT_FOUND"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T17:11:09.071907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper/sections",
+              "description": "Create paper/sections directory for draft"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T17:11:09.072029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T17:11:09.072189+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper/sections/zeroshot_scaling_draft.tex",
+              "content": "%% Draft: Zero-shot / Scaling paragraph for \\S5.5 (Scaling Behavior)\n%% Exp ID: exp_qwen25_72b_zeroshot (all 72B ZS numbers)\n%% Status: Draft for Paper Agent integration. Replaces current \\S5.5 content.\n%% Pending: 7B/14B/32B FT results for full scaling curve; 72B FT for regime disentanglement.\n\n\\subsection{Scaling Behavior}\n\\label{sec:scaling}\n\nTo test whether the correlation-selection gap is specific to fine-tuned models, we evaluate Qwen2.5-72B-Instruct (AWQ 4-bit) in a zero-shot setting across all three primary datasets ($N{=}8$, $T{=}1.0$, no task-specific training).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Fine-tuned 8B vs.\\ zero-shot 72B: QE correlations and entity construction ($N{=}8$, $T{=}1.0$). Degen.\\ = instance degeneracy (\\%). Constr.\\ = LP-weighted entity construction $\\Delta$F1 vs.\\ greedy (pp). $^\\dagger$Majority voting (uniform weights).}\n\\label{tab:zs_72b}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llcccccr@{}}\n\\toprule\nDataset & Regime & Greedy & Degen. & LP $\\rho$ & SJ $\\rho$ & VC $\\rho$ & Constr. \\\\\n\\midrule\nSciERC & 8B FT  & .645 & 17.8\\% & .205 & .360 & .379 & $+$1.02 \\\\\n       & 72B ZS & .399 & 21.0\\% & .081 & .217 & .277 & $+$1.53 \\\\\n\\midrule\nFew-NERD & 8B FT & .748 & 13.0\\% & .220 & .380 & --- & $+$1.40 \\\\\n         & 72B ZS & .628 & 46.2\\% & .119 & .345 & .416 & $-$0.20 \\\\\n\\midrule\nCoNLL  & 8B FT  & .908 & 61.7\\% & .302 & .436 & .424 & $-$0.39 \\\\\n       & 72B ZS & .712 & 67.7\\% & $-$.002 & .304 & .297 & $-$0.37 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{LP requires fine-tuning calibration.}\nTable~\\ref{tab:zs_72b} compares QE correlations between regimes.\nLP $\\rho$ drops to near zero in the zero-shot setting: from $0.205$ to $0.081$ on SciERC, $0.220$ to $0.119$ on Few-NERD, and $0.302$ to $-0.002$ on CoNLL.\nFine-tuning calibrates the model's token-level confidence to task-specific quality gradients; without this calibration, LP provides little discriminative signal for candidate quality.\n\n\\paragraph{Structural signals generalize beyond fine-tuning.}\nVC and SJ retain moderate correlations in the zero-shot regime (VC $\\rho{=}0.277$--$0.416$, SJ $\\rho{=}0.217$--$0.345$), despite the absence of task-specific training.\nThese signals measure inter-sample agreement, a property of output consistency that does not require the model's confidence to be calibrated to a particular task.\nThe divergence between LP and structural signals under zero-shot conditions reflects the correlation-selection gap from a complementary angle: structural signals capture consistency as a task-agnostic distributional property, while LP depends on fine-tuning to align confidence with performance.\n\n\\paragraph{Degeneracy gates construction effectiveness.}\nEntity construction (\\S\\ref{sec:prescriptive}) with LP-weighting yields $+1.53$\\,pp on SciERC ($p{=}0.008$, 95\\% CI [$+0.25$, $+2.82$]\\,pp), where zero-shot degeneracy is lowest (21.0\\%).\nMajority voting also improves SciERC by $+1.39$\\,pp; the marginal contribution of LP-weighting over uniform voting is $+0.14$\\,pp.\nOn Few-NERD (46.2\\% degeneracy, $-0.20$\\,pp) and CoNLL (67.7\\%, $-0.37$\\,pp), construction provides no benefit.\nThis monotonic relationship between degeneracy and construction gain is consistent with the gating hypothesis from \\S\\ref{sec:fewnerd}: construction recovers value only when candidate diversity is sufficient for recall-driven aggregation.\n\n\\paragraph{The gap is not a fine-tuning artifact.}\nZero-shot LP $\\rho$ approaches zero on all three datasets, and LP selection fails on SciERC ($-0.1$\\,pp) and CoNLL ($-0.4$\\,pp).\nThe same structural factors identified in \\S\\ref{sec:selection_gap} operate here: weak LP-quality alignment and instance degeneracy compress the effective candidate space.\nThat the gap persists at $9{\\times}$ the parameter count, in a zero-shot regime without LoRA fine-tuning, and across three datasets with varying difficulty is consistent with the gap being a structural property of self-consistency applied to structured IE rather than an artifact of a specific training configuration.\n\n%% Placeholder: scaling curve figure\n\\begin{figure}[t]\n\\centering\n% \\includegraphics[width=\\columnwidth]{figures/fig_scaling_curve.pdf}\n\\textcolor{red}{TODO: Scaling curve (4B/8B/14B/32B/72B). Panels: (a) greedy/oracle F1 and headroom, (b) signal $\\rho$. Separate lines for fine-tuned vs.\\ zero-shot.}\n\\caption{\\textcolor{red}{TODO: Signal quality and oracle headroom across model scales.}}\n\\label{fig:scaling_curve}\n\\end{figure}\n\n%% TODO: 7B/14B/32B fine-tuned results to complete the scaling curve.\n%% TODO: 72B fine-tuned results to disentangle scale effect from training regime effect.\n"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T17:11:09.072399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper/sections/zeroshot_scaling_draft.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T17:11:09.072563+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "草稿已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper/sections/zeroshot_scaling_draft.tex`。\n\n**段落摘要**: 72B zero-shot 下 LP ρ 趋近零（三数据集均<0.12），而结构信号 VC/SJ 仍保持中等相关（0.22-0.42），表明 LP 依赖 fine-tuning 校准。Construction 效果与 degeneracy 单调相关（SciERC 21% degen → +1.53pp, p=0.008；majority vote 也 +1.39pp）。结论：gap 与 self-consistency 在结构化 IE 中的内在属性一致，非 LoRA-specific artifact。\n\n**注意事项**:\n- Few-NERD 8B FT 的 VC ρ 缺失（标记为 `---`），需 Paper Agent 补全\n- LP selection 数字仅引用 SciERC/CoNLL（FewNERD ZS LP selection 精确值未在 registry 中）\n- 7B/14B/32B 占位已预留"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_zeroshot-section-draft_20260519T170646"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/paper-zeroshot-section-draft.md"
+}

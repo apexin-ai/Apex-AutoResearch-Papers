@@ -1,0 +1,253 @@
+{
+  "schema_version": "1.0",
+  "id": "faf06ef773e6995be395",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "knowledge roadmap calibration close",
+  "task_key": "worker_knowledge_roadmap-calibration-close_20260519T220853",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_knowledge_roadmap-calibration-close_20260519T220853.jsonl",
+    "occurrence": 1,
+    "bytes": 9171,
+    "sha256": "7f2af1f5aa1aa6ee53fb7b3f16f3a17ed0eaccf2f006d64427f6ce811e477ef7"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "tool_call": 5,
+      "tool_result": 5,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T22:09:36.431724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_roadmap-calibration-close_20260519T220853",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T22:09:36.432076+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# struct_self_consist_ie — Research Dashboard\n2\t\n3\t> 最后更新: 2026-05-19 20:45 UTC | 更新原因: 全部 4 实验 ETA 大幅修正（延后 6-13h）\n4\t\n5\t## 核心方向\n6\tSelf-consistency for NER: diagnosing correlation-selection gap + entity-level construction as resolution. 详见 paper_framing.md。\n7\t\n8\t## 当前阶段\n9\t**Scale Upgrade + Paper Finalization**。DDL: EMNLP 2026 ARR May (2026-05-25, ~6 天)。\n10\t\n11\tRound 24 审稿: borderline (3.25/5)。冲 Main Conference 4.0。\n12\t\n13\t## 数值审计状态 — 全部关闭 ✅\n14\t\n15\t- [x] appendix L231: FewNERD degen 12.7%→13.0%, diff +10.7pp→+10.4pp\n16\t- [x] appendix L360/L363-365/L687 数值修正 (3-seed mean)\n17\t- [x] Table 5 degen 同步修正 (CoNLL 61.7%, FewNERD 13.0%)\n18\t- [x] Scaling script 8B FT 12处数据修正 + 2处 degen 同步\n19\t- [x] CoNLL oracle/headroom 全局修正: .957→.948, ≈5pp→≈4pp (appendix L248, experiments L102, appendix L932)\n20\t- [ ] tab:calibration caption 待 Director 决策（已发现 N=16 非 N=8、非 gold-filtered、单 seed 问题，等 Director 选方案）\n21\t\n22\t## RUNNING 实验（4 个，12/12 GPU 满载）\n23\t\n24\t### Server A (autodl-5090, 4 GPU): exp_qwen25_32b_fewnerd\n25\t- QLoRA 训练中，PID 804438, 29.1% (12000/41180)\n26\t- ETA ~05-20 23:15 UTC（**最慢瓶颈，+13h 延后**）\n27\t- 完成后: export → 3-seed N=8 inference → signals → construction (~4-6h)\n28\t\n29\t### Server B (autodl-5090-b, 4 GPU): exp_qwen25_72b_fewshot\n30\t- 72B AWQ 3-shot 推理，PID 131293, SciERC done / CoNLL 56% / FewNERD 未开始\n31\t- ETA ~05-20 06:00+ UTC（**+6h 延后**）\n32\t- 完成后: signal computation + construction pipeline\n33\t\n34\t### Server C (autodl-5090-c, 4 GPU):\n35\t- **exp_qwen25_14b_fewnerd** (cuda:0,1) — QLoRA 训练中，PID 56773, 42.5% (17500/41180)\n36\t  - ETA ~05-20 13:45 UTC（**+11h 延后**）\n37\t  - 完成后: export → 3-seed N=8 inference → signals → construction (~4h)\n38\t- **exp_qwen25_7b_fewnerd** (cuda:2,3) — 全自动 pipeline，PID 71837, 训练 63% (13016/20590)\n39\t  - ETA ~05-20 04:00 UTC（**+8h 延后，仍最先完成**）\n40\t  - Pipeline 自动执行: train → export → 3-seed inference → signals → construction\n41\t\n42\t### 完成时间线（更新 05-19 20:45 UTC）\n43\t1. **~05-20 04:00 UTC**: 7B pipeline 完成 → scaling curve 最小点（+8h）\n44\t2. **~05-20 06:00+ UTC**: 72B few-\n…[truncated 3677 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_roadmap-calibration-close_20260519T220853",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T22:09:36.432338+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_roadmap-calibration-close_20260519T220853",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+              "old_string": "- [ ] tab:calibration caption 待 Director 决策（已发现 N=16 非 N=8、非 gold-filtered、单 seed 问题，等 Director 选方案）",
+              "new_string": "- [x] tab:calibration caption 修复（N=8/16 分标、non-gold-filtered 说明、single seed 标注）"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T22:09:36.432513+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_roadmap-calibration-close_20260519T220853",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T22:09:36.432649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_roadmap-calibration-close_20260519T220853",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+              "old_string": "- [ ] tab:calibration caption/重跑（待 Director 决策）",
+              "new_string": "- [x] tab:calibration caption 修复完成（Reviewer PASS）"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T22:09:36.432812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_roadmap-calibration-close_20260519T220853",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T22:09:36.432942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_roadmap-calibration-close_20260519T220853",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+              "old_string": "> 最后更新: 2026-05-19 20:45 UTC | 更新原因: 全部 4 实验 ETA 大幅修正（延后 6-13h）",
+              "new_string": "> 最后更新: 2026-05-19 21:30 UTC | 更新原因: tab:calibration 已修复关闭 + 数值审计全部完成"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T22:09:36.433097+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_roadmap-calibration-close_20260519T220853",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T22:09:36.433265+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_roadmap-calibration-close_20260519T220853",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md",
+              "limit": "85"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T22:09:36.433421+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# struct_self_consist_ie — Research Dashboard\n2\t\n3\t> 最后更新: 2026-05-19 21:30 UTC | 更新原因: tab:calibration 已修复关闭 + 数值审计全部完成\n4\t\n5\t## 核心方向\n6\tSelf-consistency for NER: diagnosing correlation-selection gap + entity-level construction as resolution. 详见 paper_framing.md。\n7\t\n8\t## 当前阶段\n9\t**Scale Upgrade + Paper Finalization**。DDL: EMNLP 2026 ARR May (2026-05-25, ~6 天)。\n10\t\n11\tRound 24 审稿: borderline (3.25/5)。冲 Main Conference 4.0。\n12\t\n13\t## 数值审计状态 — 全部关闭 ✅\n14\t\n15\t- [x] appendix L231: FewNERD degen 12.7%→13.0%, diff +10.7pp→+10.4pp\n16\t- [x] appendix L360/L363-365/L687 数值修正 (3-seed mean)\n17\t- [x] Table 5 degen 同步修正 (CoNLL 61.7%, FewNERD 13.0%)\n18\t- [x] Scaling script 8B FT 12处数据修正 + 2处 degen 同步\n19\t- [x] CoNLL oracle/headroom 全局修正: .957→.948, ≈5pp→≈4pp (appendix L248, experiments L102, appendix L932)\n20\t- [x] tab:calibration caption 修复（N=8/16 分标、non-gold-filtered 说明、single seed 标注）\n21\t\n22\t## RUNNING 实验（4 个，12/12 GPU 满载）\n23\t\n24\t### Server A (autodl-5090, 4 GPU): exp_qwen25_32b_fewnerd\n25\t- QLoRA 训练中，PID 804438, 29.1% (12000/41180)\n26\t- ETA ~05-20 23:15 UTC（**最慢瓶颈，+13h 延后**）\n27\t- 完成后: export → 3-seed N=8 inference → signals → construction (~4-6h)\n28\t\n29\t### Server B (autodl-5090-b, 4 GPU): exp_qwen25_72b_fewshot\n30\t- 72B AWQ 3-shot 推理，PID 131293, SciERC done / CoNLL 56% / FewNERD 未开始\n31\t- ETA ~05-20 06:00+ UTC（**+6h 延后**）\n32\t- 完成后: signal computation + construction pipeline\n33\t\n34\t### Server C (autodl-5090-c, 4 GPU):\n35\t- **exp_qwen25_14b_fewnerd** (cuda:0,1) — QLoRA 训练中，PID 56773, 42.5% (17500/41180)\n36\t  - ETA ~05-20 13:45 UTC（**+11h 延后**）\n37\t  - 完成后: export → 3-seed N=8 inference → signals → construction (~4h)\n38\t- **exp_qwen25_7b_fewnerd** (cuda:2,3) — 全自动 pipeline，PID 71837, 训练 63% (13016/20590)\n39\t  - ETA ~05-20 04:00 UTC（**+8h 延后，仍最先完成**）\n40\t  - Pipeline 自动执行: train → export → 3-seed inference → signals → construction\n41\t\n42\t### 完成时间线（更新 05-19 20:45 UTC）\n43\t1. **~05-20 04:00 UTC**: 7B pipeline 完成 → scaling curve 最小点（+8h）\n44\t2. **~05-20 06:00+ UTC**: 72B few-shot 完成 → ZS vs\n…[truncated 2030 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_roadmap-calibration-close_20260519T220853",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T22:09:36.433610+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。审查结果：\n\n**已更新 (2处)**：\n- `数值审计状态` line 20: tab:calibration → `[x]`，现在该 section 6/6 全部关闭，与标题 \"全部关闭 ✅\" 一致\n- `近期任务 Checklist` line 82: tab:calibration → `[x]`\n\n**其他 checklist 项审查 — 无遗漏**：\n- `论文修复状态` 3 项未完成 (lines 72-74) 均依赖正在运行的实验 (7B/14B/32B/72B-FS)，状态正确\n- `近期任务 Checklist` 6 项未完成均依赖实验产出，状态正确\n- Scaling section 没有独立的 \"进行中\" 标记需要加，因为它明确标注了依赖实验完成"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_roadmap-calibration-close_20260519T220853"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/knowledge-roadmap-calibration-close.md"
+}

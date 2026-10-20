@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85ec545c334528aef9b4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper figure fig signal heatmap v2",
+  "task_key": "worker_paper_figure_fig_signal_heatmap_v2_20260514T150644",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig_signal_heatmap_v2_20260514T150644_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "2a4a934b4579b4d07aa576acfd29c24c0db4acf746e58b2bcd94f8f3289c43fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 不在可用工具列表中。图表已完成，总结变更：\n\n**已更新 SciERC 三列数据（exp_015 统一源）：**\n\n| Cell | 旧值 | 新值 |\n|------|------|------|\n| SciERC NER / Voting | 0.392 | **0.502** |\n| SciERC NER / SJ | 0.383 | **0.357** |\n| SciERC NER / EM | 0.294 | **0.257** |\n| SciERC NER / FK | 0.259 | **0.265** |\n| SciERC RE full / Voting | 0.340 | **0.422** |\n| SciERC RE full / SJ | 0.244 | **0.211** |\n| SciERC RE full / EM | 0.156 | **0.100** |\n| SciERC RE full / FK | 0.278 | **0.253** |\n| SciERC RE cond / Voting | 0.384 | **0.463** |\n| SciERC RE cond / SJ | 0.372 | **0.368** |\n| SciERC RE cond / EM | nan | **0.361** |\n| SciERC RE cond / FK | 0.307 | **0.317** |\n\nLog-prob 三个 SciERC 值不变（0.140, 0.247, 0.146），CoNLL/WNUT-17/LLaMA 数据不变。\n\n**产出文件：**\n- `figures/paper/fig_signal_heatmap.py` — 脚本已更新，含数据源注释\n- `figures/paper/fig_signal_heatmap.pdf` — 矢量图已覆盖\n- `figures/paper/fig_signal_heatmap.png` — 预览图已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-signal-heatmap-v2.md"
+}

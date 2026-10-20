@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ccb7dcae27d78161d065",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp dals hardening",
+  "task_key": "worker_exp_dals_hardening_20260518T064430",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_dals_hardening_20260518T064430_result.json",
+    "occurrence": 1,
+    "bytes": 1260,
+    "sha256": "b4134711b3b698653199dfd63ea9b3746cbf0a935d3b745490f2e069948f71d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Summary of results:\n\n**SciERC N=8 (3 seeds, τ=0.05):**\n| Seed | Greedy | LP Sel | DALS | Gain | 95% CI | p |\n|------|--------|--------|------|------|--------|---|\n| 42 | 64.41 | 65.05 | 65.55 | +1.14pp | [0.31, 2.02] | 0.009 |\n| 123 | 64.59 | 64.36 | 65.38 | +0.79pp | [-0.09, 1.71] | 0.083 |\n| 456 | 64.83 | 64.47 | 65.02 | +0.19pp | [-0.70, 1.06] | 0.669 |\n| **Mean** | | | **65.32±0.27** | **+0.71±0.48pp** | | |\n\n**SciERC N=16 (3 seeds):** DALS gain = +0.07±0.36pp (negligible, more samples reduce degeneracy naturally)\n\n**CoNLL Qwen N=8:** DALS = 90.01 (-0.87pp vs greedy), p<0.001 — DALS hurts here because greedy already dominates LP selection\n\n**CoNLL LLaMA N=8:** DALS = 92.39 (-0.04pp), p=0.50 — neutral, 86.8% instances are degenerate\n\n**Few-NERD N=8:** DALS = 75.20 (+0.30pp), CI=[0.18, 0.42], p<0.001 — small but significant gain\n\nKey takeaways:\n- seed42 reproduces the expected +1.14pp gain exactly\n- Cross-seed variance is non-trivial (0.19 to 1.14pp on SciERC N=8)\n- DALS is beneficial when LP selection outperforms greedy (SciERC, Few-NERD) but harmful when it doesn't (CoNLL Qwen)\n- Script + results saved to `code/dals_fixed_tau_evaluation.py` and `output/dals_hardening_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-dals-hardening.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9c5e85ed7d60f5e081a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code dev set lp alignment gating",
+  "task_key": "worker_code_dev_set_lp_alignment_gating_20260519T051829",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_dev_set_lp_alignment_gating_20260519T051829_result.json",
+    "occurrence": 1,
+    "bytes": 1265,
+    "sha256": "d4fbac9d70cbd8b2ae69b730235d630bb923dfe36c6e64eda2256f97e37de385"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。**三个数据集的 dev set routing 与 test set routing 完全一致。**\n\n## 结果汇总\n\n| Dataset | Dev adj ρ | Dev routing | Test adj ρ | Test routing | 一致 | 推理时间 |\n|---------|-----------|-------------|------------|--------------|------|---------|\n| SciERC | 0.167 | greedy | 0.158 | greedy | YES | 160.1s |\n| CoNLL | 0.065 | greedy | 0.166 | greedy | YES | 34.6s |\n| FewNERD | 0.516 | LP | 0.468 | LP | YES | 46.1s |\n\n**关键发现：**\n- **三个数据集 routing decision 完全一致**（threshold=0.3）\n- SciERC/CoNLL 在 dev set 和 test set 上都低于 0.3 → greedy\n- FewNERD 在 dev set 和 test set 上都远高于 0.3 → LP selection\n- Dev set probe 可以安全替代 test set probe，消除 test-set leakage\n- 总推理时间: ~240s (SciERC 因 275 instances 较慢，CoNLL/FewNERD 各 50 instances 很快)\n\n**输出文件：**\n- `output/dev_set_lp_probe/dev_vs_test_routing.json` — 对比结果\n- `output/dev_set_lp_probe/scierc_dev_samples.jsonl` — SciERC dev samples (275 instances)\n- `output/dev_set_lp_probe/conll2003_dev_samples.jsonl` — CoNLL dev samples (50 instances)\n- `output/dev_set_lp_probe/fewnerd_dev_samples.jsonl` — FewNERD dev samples (50 instances)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dev-set-lp-alignment-gating.md"
+}

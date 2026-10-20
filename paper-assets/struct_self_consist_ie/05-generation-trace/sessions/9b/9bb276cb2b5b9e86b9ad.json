@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bb276cb2b5b9e86b9ad",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh b2 v3 domain invariant",
+  "task_key": "worker_ssh_b2-v3-domain-invariant_20260520T114740",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_b2-v3-domain-invariant_20260520T114740_result.json",
+    "occurrence": 1,
+    "bytes": 1351,
+    "sha256": "709986179014f5bbab6985e64fe2a66aa7efcf01e5b346527d03b9b5584cb3e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n## B2-v3 Domain-Invariant Verifier Results\n\n**Fold 3 (关键: train CoNLL+SciERC → test FewNERD):**\n\n| Version | XGB AUC | LGB AUC | LGB ECE |\n|---------|---------|---------|---------|\n| B2 orig | 0.8282 | 0.8335 | - |\n| B2-v2 (13 features) | 0.8603 | 0.8477 | 0.1357 |\n| **B2-v3 (9 features)** | **0.8518** | **0.8562** | **0.1373** |\n| v3 vs v2 Δ | -0.0085 | **+0.0085** | +0.0016 |\n\n**所有 Fold:**\n\n| Fold | Test | XGB AUC | LGB AUC | vs v2 XGB | vs v2 LGB |\n|------|------|---------|---------|-----------|-----------|\n| 1 | CoNLL | 0.9386 | 0.9368 | -0.0005 | -0.0010 |\n| 2 | SciERC | **0.8163** | **0.8152** | **+0.0253** | **+0.0146** |\n| 3 | FewNERD | 0.8518 | **0.8562** | -0.0085 | **+0.0085** |\n\n**核心发现:**\n1. **LGB 跨域提升**: 去掉 domain features 后 LGB 在 FewNERD (+0.0085) 和 SciERC (+0.0146) 上都提升了，说明 domain features 确实引入了负迁移\n2. **XGB 混合结果**: XGB 在 SciERC 上大幅提升 (+0.0253)，但在 FewNERD 上略降 (-0.0085)\n3. **Feature importance**: agreement_count (58.4%) + vc (30.3%) 占 XGB gain 的 88%，剩余 7 个特征贡献极小\n4. **ECE 基本持平**: 去掉 domain features 对校准影响不大\n\n产出已保存到 `artifacts/b2_v3_domain_invariant/`（script + results.json + summary.md）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-b2-v3-domain-invariant.md"
+}

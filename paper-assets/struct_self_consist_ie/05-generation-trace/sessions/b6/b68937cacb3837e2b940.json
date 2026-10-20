@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b68937cacb3837e2b940",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh submit freeform fewnerd cuda0",
+  "task_key": "worker_ssh_submit_freeform_fewnerd_cuda0_20260522T124203",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_submit_freeform_fewnerd_cuda0_20260522T124203_result.json",
+    "occurrence": 1,
+    "bytes": 755,
+    "sha256": "17d5a0d54dd3f1199f82525ba8bcb5dbd6fa3fcd719e4e6b7a4e1a9bea0a2259"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both experiments submitted and registered.\n\n**Summary:**\n\n| Experiment | GPU | Model | Dataset | tmux session |\n|---|---|---|---|---|\n| `exp_fewnerd_freeform_n8_s42` | cuda:0 | qwen3-8b-fewnerd-exp021-merged | FewNERD (37,648) | `exp_fewnerd_freeform` |\n| `exp_conll_freeform_n8_s42` | cuda:1 | qwen3-8b-conll2003-merged | CoNLL-2003 (3,453) | `exp_conll_freeform` |\n\n**Changes made:**\n- Patched `run_mvp_pilot.py` to expose `--use_grammar` CLI flag (lines 70-71), wired to `run_sampling_pipeline()` call (line 203)\n- Both running with `--use_grammar false`, N=8, T=1.0, seed=42, `--collect_logprobs`\n- Output dirs: `output/fewnerd_freeform_n8_seed42/`, `output/conll_freeform_n8_seed42/`\n- Registry updated to RUNNING for both"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-freeform-fewnerd-cuda0.md"
+}

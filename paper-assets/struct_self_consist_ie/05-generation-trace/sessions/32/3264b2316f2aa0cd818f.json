@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "3264b2316f2aa0cd818f",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "research hidden state probe",
+  "task_key": "worker_research_hidden_state_probe_20260521T013621",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_hidden_state_probe_20260521T013621.log",
+    "occurrence": 1,
+    "bytes": 1124614,
+    "sha256": "4183b5ae0c81d240fe2674b7272cb4bb867820835795fbb78293bc2b9654eba5"
+  },
+  "statistics": {
+    "messages": 437,
+    "user_turns": 1,
+    "tool_calls": 162,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 105,
+      "tool_call": 162,
+      "tool_result": 162,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 209,
+      "chunks": [
+        {
+          "path": "3264b2316f2aa0cd818f-part-0001.json",
+          "message_count": 151
+        },
+        {
+          "path": "3264b2316f2aa0cd818f-part-0002.json",
+          "message_count": 58
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 228,
+      "chunks": [
+        {
+          "path": "3264b2316f2aa0cd818f-part-0002.json",
+          "message_count": 122
+        },
+        {
+          "path": "3264b2316f2aa0cd818f-part-0003.json",
+          "message_count": 106
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-hidden-state-probe.md"
+}

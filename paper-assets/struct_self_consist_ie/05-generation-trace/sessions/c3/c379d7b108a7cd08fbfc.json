@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c379d7b108a7cd08fbfc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh n32 scierc dryrun",
+  "task_key": "worker_ssh_n32_scierc_dryrun_20260522T032918",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_n32_scierc_dryrun_20260522T032918_result.json",
+    "occurrence": 1,
+    "bytes": 1925,
+    "sha256": "c313a26aabee1b4bcc1d50c58f99861a8b192cd171ae9bffd30724720005a1ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完全成功。以下是验证报告：\n\n---\n\n## SciERC N=32 Dry-run 环境验证报告\n\n### 1. 环境状态\n| 项目 | 状态 |\n|------|------|\n| Python | 3.12.3 |\n| vLLM | 0.18.1 |\n| GPU | 4x RTX 5090 (32GB each), 全部空闲 |\n| 磁盘 | 250GB 用了 91%，**剩余 24GB** |\n\n### 2. SciERC Finetuned Model Checkpoint\n- **路径**: `/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2`\n- **大小**: 16GB (merged, bf16)\n- 模型加载耗时 ~5s，总引擎初始化 ~11s\n\n### 3. SciERC 数据\n- **路径**: `/root/autodl-tmp/struct_self_consist_ie/data/scierc/processed_data/`\n- 100 篇文档 → **551 个 sentence-level instances**（与之前 N=16 实验一致）\n\n### 4. Dry-run 结果: 成功\n- 5 instances × 32 samples = 160 prompts，**12 秒**完成采样（~13 it/s）\n- Greedy F1: 0.8947, Oracle F1: 0.9474\n- Verdict: **PASS**\n\n### 5. 预估全量运行\n- 551 instances × 32 samples = 17,632 prompts\n- 按 12.36 it/s 推算，采样阶段 ~24 分钟\n- 加模型加载 + greedy + 评估，**总计约 30-40 分钟**\n- 之前 N=16 的 `samples.jsonl` 约 20MB，N=32 预估 **~37-40MB**（与 `scierc_n16_s456` 的 37MB 相当或略大）\n- 磁盘 24GB 剩余足够\n\n### 6. 正式提交命令\n\n```bash\ncd /root/autodl-tmp/struct_self_consist_ie && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nnohup bash -c 'CUDA_VISIBLE_DEVICES=0 python -u code/run_mvp_pilot.py \\\n  --model_path checkpoints/qwen3-8b-scierc-merged-v2 \\\n  --data_dir data/scierc/processed_data \\\n  --dataset scierc \\\n  --subtask ner \\\n  --n_samples 32 \\\n  --temperature 1.0 \\\n  --seed 456 \\\n  --collect_logprobs \\\n  --output_dir output/scierc_n32_s456/' > output/scierc_n32_s456.log 2>&1 &\necho \"PID=$!\"\n```\n\n如需多 seed 运行，替换 `--seed 456` 为 `123` / `42`，对应修改输出目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-n32-scierc-dryrun.md"
+}

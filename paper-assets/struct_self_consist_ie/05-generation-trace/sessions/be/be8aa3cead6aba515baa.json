@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be8aa3cead6aba515baa",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh harvest and gpu check",
+  "task_key": "worker_ssh_harvest_and_gpu_check_20260522T095831",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_harvest_and_gpu_check_20260522T095831_result.json",
+    "occurrence": 1,
+    "bytes": 1336,
+    "sha256": "6a5377148ac46c1384621ca4a42ffa148b8442f462ed736906bdb3942dd3cd9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收齐。\n\n## GPU 状态\n| 服务器 | cuda:0 | cuda:1 | cuda:2 | cuda:3 |\n|--------|--------|--------|--------|--------|\n| autodl-5090 | 空闲 | 空闲 | 空闲 | 空闲 |\n| autodl-5090-c | 空闲 | **忙** (30079/32607 MiB) | 空闲 | **忙** (29785/32607 MiB) |\n\nautodl-5090-c GPU1 跑 `fewnerd_pretrained_n16_s42`，GPU3 跑 `fewnerd_pretrained_n32_s42`。\n\n## 实验结果\n\n| exp_id | 状态 | greedy_f1 | mv_strict_f1 | mv_delta_pp | oracle_f1 | degen% |\n|--------|------|-----------|-------------|-------------|-----------|--------|\n| conll_pretrained_n64_s42 | **完成** | 0.6005 | 0.6316 | **+3.11** | 0.7703 | 14.3% |\n| fewnerd_n32_s42 | **完成** | 0.7914 | 0.7818 | **-0.96** | 0.9305 | 1.4% |\n| fewnerd_pretrained_n32_s42 | **运行中** 35% (422k/1.2M) | — | — | — | — | — |\n| fewnerd_pretrained_n16_s42 | **运行中** 54% (327k/602k) | — | — | — | — | — |\n\n### 要点\n- **conll_pretrained_n64**: MV 带来 +3.11pp 增益，degeneracy 14.3%，oracle headroom 大（77%），结构化 SC 有效\n- **fewnerd_n32 (finetuned)**: MV 反而降了 0.96pp，degeneracy 极低 (1.4%)——finetuned 模型在 fewnerd 上 greedy 已经很强 (79.1%)，一致性投票没帮助\n- **两个 pretrained fewnerd 实验**预计还需 ~10h (n32) 和 ~4h (n16) 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-and-gpu-check.md"
+}

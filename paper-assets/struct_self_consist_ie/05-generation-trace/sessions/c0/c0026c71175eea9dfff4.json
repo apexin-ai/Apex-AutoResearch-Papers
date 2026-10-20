@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0026c71175eea9dfff4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis re selection bootstrap",
+  "task_key": "worker_analysis_re_selection_bootstrap_20260515T032411",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_re_selection_bootstrap_20260515T032411_result.json",
+    "occurrence": 1,
+    "bytes": 850,
+    "sha256": "a3400aa28a14774a0bc17bf896a2e29be192638eb667e7b1c661932cbefe4a35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已保存到 `/root/autodl-tmp/struct_self_consist_ie/output/review_round2/re_selection_bootstrap.json`。\n\n结果摘要（n=397, greedy_f1=0.4042, oracle_f1=0.585）：\n\n| Signal | Sel F1 | Δ vs Greedy | p-value | 95% CI | Cohen's d | W/L/T |\n|--------|--------|-------------|---------|--------|-----------|-------|\n| sj | 0.3855 | -0.0188 | 0.955 | [-0.041, 0.003] | -0.083 | 29/49/319 |\n| voting_conf | 0.3592 | -0.0451 | 1.000 | [-0.070, -0.022] | -0.184 | 38/66/293 |\n| logprob | 0.3948 | -0.0094 | 0.798 | [-0.032, 0.013] | -0.041 | 36/59/302 |\n| ensemble | 0.3855 | -0.0188 | 0.949 | [-0.041, 0.004] | -0.083 | 29/49/319 |\n\n所有信号在 RE 上都未能超越 greedy（delta 全为负），p-value 均远高于 0.05。大量 instance 为 tied（~75-80%），实际变化的 instance 中 losses 显著多于 wins。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-re-selection-bootstrap.md"
+}

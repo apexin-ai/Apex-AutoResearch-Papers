@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5937d5759773f9c2309",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu exp mrsc multi round",
+  "task_key": "worker_gpu_exp_mrsc_multi_round_20260520T162935",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp_mrsc_multi_round_20260520T162935_result.json",
+    "occurrence": 1,
+    "bytes": 1103,
+    "sha256": "5d201f86cf70c9e56293b29d667d1464043b54fb657163d059b25116c4fe097e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程稳定运行中（3:49，GPU 91%）。\n\n实验状态总结：\n- **脚本**: `run_mrsc.py` 已部署并通过 dry run 验证\n- **进程**: PID 215236 在 GPU 3 上运行，GPU 利用率 90-100%\n- **数据**: 37,648 instances（675MB JSONL），Qwen2.5-7B-FewNERD-merged\n- **预计完成**: ~30-45 分钟（数据加载 ~3min + ~50K 验证 forward passes）\n- **日志**: `/root/autodl-tmp/struct_self_consist_ie/output/exp_mrsc_multi_round.log`（Python stdout 缓冲，完成后一次性刷新）\n- **结果文件**: `output/exp_mrsc_multi_round/mrsc_results.json`\n\n查看进度命令：\n```bash\n# 进程状态\nps -p 215236 -o pid,etime\n\n# GPU 利用率\nnvidia-smi --query-gpu=index,utilization.gpu --format=csv,noheader\n\n# 日志（完成后内容会刷新）\ntail -50 /root/autodl-tmp/struct_self_consist_ie/output/exp_mrsc_multi_round.log\n\n# 结果文件\ncat /root/autodl-tmp/struct_self_consist_ie/output/exp_mrsc_multi_round/mrsc_results.json\n```\n\nDry run 中 P(yes) 分离度很好（in-gold: 0.99 vs not-in-gold: 0.33），全量结果值得期待。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-mrsc-multi-round.md"
+}

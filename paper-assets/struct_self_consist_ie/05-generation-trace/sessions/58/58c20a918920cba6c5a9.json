@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58c20a918920cba6c5a9",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_6_1778848721.md",
+  "task_key": "loop_6_1778848721",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_6_1778848721.md",
+    "occurrence": 1,
+    "bytes": 4430,
+    "sha256": "245581239e8d83097fc9d10bc957a7ac5b50fa44311c89846cf86c183ae0aed4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_messages\nupdated: '2026-05-15T12:32:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: autodl-5090 的 cuda:0/1/2/3（4× RTX 5090 32GB）。白名单外的 GPU 必须 push back Director\n- exp_011_ood_conll_to_scierc 已改为 **negative**（Reviewer 确认）。论文中不得将其解读为\"信号失效\"，应解读为 schema incompatibility 导致模型崩溃\n- N=16 NER SJ vs VC：**不得说 \"SJ overtakes VC\"**，只能说 \"converges to\" 或 \"becomes comparable\"（Δ=0.0013 << σ(VC)=0.026）\n- RE 措辞 nuance：只有 VC 一致性优于 LP，其他 structural signals 不优于 LP。禁止写 \"structural > surface\" 泛化 claim for RE\n- OOD scierc→conll verdict = MARGINAL：full-set SJ 领先但 conditional-set **logprob 反超**（0.525 vs 0.380），这是 OOD reversal\n- submit + registry RUNNING 更新必须在同一个 Worker 内完成（Director 三次 CRITICAL 过）\n\n### 2. 🖥️ 基础设施快照\n- 服务器: autodl-5090，工作目录 /root/struct_self_consist_ie\n- Python: /root/miniconda3/bin/python，conda base env（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- Qwen 模型: /root/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2, qwen3-8b-conll2003-merged\n- LLaMA 模型: checkpoints/ 下 llama-scierc, llama-conll 系列\n- 数据: data/scierc/processed_data (551 instances), data/conll2003 (3453 instances)\n- 产出: output/ 下各实验目录，本地 artifacts/ 下 .md/.tex 分析产出\n- HF cache: /root/autodl-tmp/.hf_cache\n- 活跃进程: 无。4 张 GPU 全部空闲\n- 活跃 Worker: worker_analysis_fk_excess_agreement_20260515T121311（CPU-only，计算 FK excess agreement 全配置）\n\n### 3. 📊 当前状态\n刚完成 Reviewer 指令的 3 项修正：\n1. exp_011_ood_conll_to_scierc conclusion→negative，metrics 更新为 Director 指定值\n2. experiment_plan.yaml exp-011 补 registry_id（两个子实验）、deps 清空、description 更新\n3. n16_3seed_scs_analysis.md \"overtakes\"→\"converges to\"，补 seed42 来源 exp_id\n\n**Registry 全景**: 47 success / 19 negative / 1 failed，无 RUNNING/PREPARING 需关注的实验。全部 GPU 空闲。\n\n**等待中**:\n- Worker worker_analysis_fk_excess_agreement_20260515T121311 回调 → 产出 fk_excess_agreement_all_configs.md\n- 无 cron 活跃\n- 无 Director 待决策项（除 GPU 空闲需要新任务分配）\n\n### 4. 📋 待办\n- FK worker 完成 → 注册 artifact，汇报 Director。这是任务 3(c) 的最后一块\n- 任务 3(a) TOST δ* → artifact 已存在 `artifacts/tost_breakpoint_delta_star.md`，直接告知 Paper Agent\n- 任务 3(b) VC ρ diff → artifact 已存在 `artifacts/vc_implementation_rho_diff.md`，直接告知 Paper Agent\n- 4 张 GPU 全空闲 → 汇报 Director 请求新实验分配（或确认进入纯论文修订阶段）\n- Paper Agent D072 patch 所需数据全部齐备 → 等 Director 指示是否启动论文写作 Worker\n- LLaMA CoNLL 两 seed SCS 对比分析 → Director 之前提过但未正式下达，数据已就绪（exp_017 seed42+seed456 metrics 已在 registry）\n\n### 5. 🎯 战略上下文\n- **项目**: struct_self_consist_ie，EMNLP 2026 Findings，DDL 2026-05-25（距今 10 天）\n- **核心结论 (D072 framing)**: Universal correlation-selection gap——5 类 structural 信号都能排序输出质量但都无法有效选择最优输出。Controlled ablation (free-form vs constrained) 证明 gap 是 model/task intrinsic，非 constrained decoding artifact\n- **决策链**: D067 gap reframing → D068 VC 统一 majority threshold → D070 narrative restructure + 3 CPU 任务 → D071 根本重定位 → D072 universal gap framing → D073 取消 exp-019 verifier → D074 flip 作解释性分析 → D075 title \"Cannot\"→\"Do Not\"\n- **关键数据点**: free-form LP std ratio 0.97x（compression hypothesis 证伪）; W=0.956 排名一致性; OOD scierc→conll structural avg ρ=0.377（保持有效）; parse rate 99.95%\n- **易踩坑**:\n  - Qwen3 SciERC training 有 enable_thinking=True 的 train-test mismatch（已文档化在 limitations.tex，不要再花时间调查）\n  - VC 有两种实现（Eq.6 vs majority threshold），论文 Table 2 统一用 majority threshold (D068)，但 Eq.6 的 ρ 更高（NER Δ=+0.127）\n  - WNUT-17 (exp-003) 已 orphaned，不要再尝试\n  - exp-019 supervised verifier 已 killed (D073)，DDL 风险 + scope creep\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778848721.md"
+}

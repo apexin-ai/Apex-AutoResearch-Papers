@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad05d92dd92f1479b734",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "collect exp 028 results",
+  "task_key": "worker_collect_exp_028_results_20260517T202458",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_collect_exp_028_results_20260517T202458_result.json",
+    "occurrence": 1,
+    "bytes": 765,
+    "sha256": "de9f9a42d4aaa289b5b73686f18cbff23aec51aee40850466922faf33182df37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_028 结果已收集并写入 memory.md。关键发现：\n\n**exp_028 5-epoch Few-NERD 结论：NEGATIVE**\n\n| Metric | 3-epoch (exp-021) | 5-epoch (exp-028) | Delta |\n|--------|-------------------|-------------------|-------|\n| Degeneracy (CF1) | 11.1% | **31.3%** | +20.2pp |\n| Greedy F1 | 0.7478 | 0.7773 | +2.95pp |\n| LP sel delta | +1.37pp | **+0.62pp** | -0.75 |\n| LP ρ (global) | — | 0.4495 | — |\n| SJ ρ (global) | — | 0.3777 | — |\n\n核心问题：5-epoch 训练使 degeneracy 从 11.1% 跃升至 31.3%。Few-NERD 之前的低 degeneracy 可能源于模型 under-convergence，而非任务本质特性。结构信号（SJ/FK/EM/VC）selection delta 全为负，仅 LP 仍为正（+0.62pp）。论文叙事需要修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-exp-028-results.md"
+}

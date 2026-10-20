@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af9a0e7bcdb8afe118a6",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh check fewnerd pt n16 completion",
+  "task_key": "worker_ssh_check_fewnerd_pt_n16_completion_20260522T132531",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check_fewnerd_pt_n16_completion_20260522T132531_result.json",
+    "occurrence": 1,
+    "bytes": 664,
+    "sha256": "2636f0466f7351e090648e8d07ac90791f4832f8e7f6ec24fb5133a6306b2fe7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Status\n\n### N=16 (PID 392445) — **97% complete, ~15-20 min remaining**\n\n- Progress: **584,960 / 602,368** prompts processed\n- Elapsed: **7h 53m**\n- Speed: ~3,735 toks/s input, ~5,678 toks/s output\n- GPU: cuda:1, 30,070 MiB VRAM\n- ETA based on current ~20-25 it/s: **~10-20 min** to finish inference, then post-processing\n\n### N=32 — **57% complete**\n\n- Progress: **687,008 / 1,204,736** prompts processed  \n- Elapsed: **9h 10m**\n- Speed: ~3,774 toks/s input, ~5,635 toks/s output\n- ETA: **~7 more hours** at current rate\n\n---\n\nN=16 is very close. Want me to check back in ~20 min and pull the full metrics once it finishes?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-fewnerd-pt-n16-completion.md"
+}

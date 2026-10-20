@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "35e96538d75437f17df3",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "cpu d220 proposition fix",
+  "task_key": "worker_cpu_d220_proposition_fix_20260521T085641",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cpu_d220_proposition_fix_20260521T085641.log",
+    "occurrence": 1,
+    "bytes": 1005511,
+    "sha256": "71e0e026e33022af66b1713816dc059706305dc8a4d42ece79ca35fdfa3f96b4"
+  },
+  "statistics": {
+    "messages": 108,
+    "user_turns": 0,
+    "tool_calls": 39,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 26,
+      "tool_call": 39,
+      "tool_result": 39,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 108,
+      "chunks": [
+        {
+          "path": "35e96538d75437f17df3-part-0001.json",
+          "message_count": 45
+        },
+        {
+          "path": "35e96538d75437f17df3-part-0002.json",
+          "message_count": 63
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/cpu-d220-proposition-fix.md"
+}

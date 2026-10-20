@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f65efffe377415c75fe7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis n16 5signal eval",
+  "task_key": "worker_analysis_n16_5signal_eval_20260514T185920",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_n16_5signal_eval_20260514T185920_result.json",
+    "occurrence": 1,
+    "bytes": 1213,
+    "sha256": "517c89e8abc0b9a83252c345bb37d64e8357a122dfff6ece1f622e60e53a86cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。核心结果：\n\n**exp_002 Qwen CoNLL N=16 (full set, ρ)**:\n| Signal | N=8 | N=16 | Δ |\n|--------|-----|------|---|\n| EM | 0.451 | **0.463** | +0.012 |\n| SJ | 0.436 | **0.450** | +0.014 |\n| voting_conf | 0.424 | 0.429 | +0.005 |\n| FK | 0.400 | 0.393 | -0.007 |\n| logprob | 0.316 | 0.315 | -0.001 |\n\n**exp_007 LLaMA SciERC N=16 (full set, ρ)**:\n| Signal | N=8 | N=16 | Δ |\n|--------|-----|------|---|\n| voting_conf | 0.433 | **0.452** | +0.018 |\n| SJ | 0.363 | **0.379** | +0.016 |\n| EM | 0.315 | 0.316 | +0.001 |\n| FK | 0.327 | 0.308 | -0.019 |\n| logprob | 0.183 | 0.204 | +0.021 |\n\n**关键发现**:\n1. **SJ N-scaling 成立** — 两个实验 SJ ρ 都随 N 增长（+0.014, +0.016），跨模型、跨数据集一致\n2. **FK 随 N 退化** — 两个实验 FK ρ 都下降，不适合 N-scaling\n3. **logprob N-invariant** — 符合预期，logprob 不依赖样本数\n4. **Structural > Surface 优势扩大** — CoNLL 最佳结构信号 vs logprob gap 从 0.135 增到 0.148\n5. **SJ ECE 最低**（0.075-0.102），校准性最好\n\n报告已保存到 `artifacts/n16_5signal_comparison.md`，两个实验 registry 已更新完整 5-signal metrics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-n16-5signal-eval.md"
+}

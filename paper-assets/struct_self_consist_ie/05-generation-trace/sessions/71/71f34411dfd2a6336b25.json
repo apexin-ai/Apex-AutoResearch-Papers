@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "71f34411dfd2a6336b25",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code 5090b multiseed inference",
+  "task_key": "worker_code_5090b_multiseed_inference_20260518T184514",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_5090b_multiseed_inference_20260518T184514.log",
+    "occurrence": 1,
+    "bytes": 1660574,
+    "sha256": "2b441689df4513e86b5820194ab2c8e17b1cd4b5fd783b915ddfff5cb2088bff"
+  },
+  "statistics": {
+    "messages": 631,
+    "user_turns": 1,
+    "tool_calls": 224,
+    "roles": {
+      "log": 1,
+      "system": 16,
+      "record": 1,
+      "assistant": 163,
+      "tool_call": 224,
+      "tool_result": 224,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 499,
+      "chunks": [
+        {
+          "path": "71f34411dfd2a6336b25-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "71f34411dfd2a6336b25-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "71f34411dfd2a6336b25-part-0003.json",
+          "message_count": 139
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 132,
+      "chunks": [
+        {
+          "path": "71f34411dfd2a6336b25-part-0003.json",
+          "message_count": 41
+        },
+        {
+          "path": "71f34411dfd2a6336b25-part-0004.json",
+          "message_count": 91
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-5090b-multiseed-inference.md"
+}

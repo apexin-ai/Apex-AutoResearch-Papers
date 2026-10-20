@@ -1,0 +1,732 @@
+{
+  "schema_version": "1.0",
+  "id": "c68e0cb9d2592b3a66bf",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh gpu status check",
+  "task_key": "worker_ssh_gpu_status_check_20260521T143452",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_gpu_status_check_20260521T143452.log",
+    "occurrence": 1,
+    "bytes": 59002,
+    "sha256": "229ba261dc8be02f2e81637fc3371b8dc7d922d85cd7c3ecb3ea2c0c9c2b5c69"
+  },
+  "statistics": {
+    "messages": 16,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 2,
+      "tool_call": 5,
+      "tool_result": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+                "session_id": "829e657e-a70c-4938-8f03-5d30ace8c467",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "43dbdf8c-115c-40ea-955b-b87015db7328",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779580800,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.85,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "99f44ae1-d04d-49a6-81c7-b028ea3003cd",
+                "session_id": "829e657e-a70c-4938-8f03-5d30ace8c467"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to check GPU status on two servers: autodl-5090 and autodl-5090-c. Let me run the commands on both servers in parallel.",
+              "signature": "Es8CCmMIDRgCKkC50F3ETjVXaNnzzqi0rzXqgwOhUMrleg+60ABKYZbuP4rh86ypUo3alNCZe2oZfQ2xNhjU0FJqVTAPc+hySXv0Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDG1yZtYRVTVYoZrvhxoMgeqBSOzscbukVFOXIjCOZfuZR91ZpQ9hWOfDsw6sxJhKz9oIofIhM5xwSpc+xmPpdC9/bixIG+J/KrtkuvgqmQEsKVnBmrrOMrYKBpIlYUrYJYFHEcFqk4NIOUDLvQjqvNWThsOx+eDvlbpqhbD+Co24CsxlM/skKLw+nXejx4ihpK8blSpQT0zDQlAmqOLYtA4UVSkrEHU0MVK7wkRkrPZWRt2Dkxy7ZDPAhlowORDox3ukkFtJWtUW5JFMf8o/D09g6PvtQp7iE6SWctzSzqe1A80S8e0h5oMYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "829e657e-a70c-4938-8f03-5d30ace8c467",
+            "uuid": "a3b08481-e6e4-403f-b0a6-d5b8c7e7be4c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RRrDEajcEnQD19V9y4d1fg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11747,
+                "cache_read_input_tokens": 11701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11747
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C9hbG9qYJ5pEVzsco24Bdo",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "829e657e-a70c-4938-8f03-5d30ace8c467",
+            "uuid": "879d4ad4-6f78-4fdf-9273-f89c4ed12006",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RRrDEajcEnQD19V9y4d1fg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11747,
+                "cache_read_input_tokens": 11701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11747
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T14:35:02.614Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01C9hbG9qYJ5pEVzsco24Bdo",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "829e657e-a70c-4938-8f03-5d30ace8c467",
+            "uuid": "65b22b15-dc2a-42de-a325-7241baff21d7",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FSkd4J63yDFUPZSzsH1pJh",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "829e657e-a70c-4938-8f03-5d30ace8c467",
+            "uuid": "5e82fd13-749a-4246-96a7-31b5e2de31d9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AXwgoyuRv5DxoHvzEfq4q8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 479,
+                "cache_read_input_tokens": 23448,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 479
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VxE82d2Ypce68xrC2e1EmY",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090-c",
+                "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "829e657e-a70c-4938-8f03-5d30ace8c467",
+            "uuid": "037accb7-a3b7-4df6-802d-e94768659382",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AXwgoyuRv5DxoHvzEfq4q8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 479,
+                "cache_read_input_tokens": 23448,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 479
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T14:35:08.110Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FSkd4J63yDFUPZSzsH1pJh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 67 %, 30148 MiB, 32607 MiB\\\\n1, 77 %, 30204 MiB, 32607 MiB\\\\n2, 82 %, 30230 MiB, 32607 MiB\\\\n3, 68 %, 29946 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "829e657e-a70c-4938-8f03-5d30ace8c467",
+            "uuid": "4a03b6c9-3072-4782-8574-bef3dbd2536f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 67 %, 30148 MiB, 32607 MiB\\\\n1, 77 %, 30204 MiB, 32607 MiB\\\\n2, 82 %, 30230 MiB, 32607 MiB\\\\n3, 68 %, 29946 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 67 %, 30148 MiB, 32607 MiB\\n1, 77 %, 30204 MiB, 32607 MiB\\n2, 82 %, 30230 MiB, 32607 MiB\\n3, 68 %, 29946 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T14:35:11.627Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VxE82d2Ypce68xrC2e1EmY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 83 %, 30131 MiB, 32607 MiB\\\\n1, 0 %, 0 MiB, 32607 MiB\\\\n2, 0 %, 0 MiB, 32607 MiB\\\\n3, 81 %, 30889 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "829e657e-a70c-4938-8f03-5d30ace8c467",
+            "uuid": "5c9136de-4900-4662-bd6e-328ef5e26e35",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 83 %, 30131 MiB, 32607 MiB\\\\n1, 0 %, 0 MiB, 32607 MiB\\\\n2, 0 %, 0 MiB, 32607 MiB\\\\n3, 81 %, 30889 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.5}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 83 %, 30131 MiB, 32607 MiB\\n1, 0 %, 0 MiB, 32607 MiB\\n2, 0 %, 0 MiB, 32607 MiB\\n3, 81 %, 30889 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.5}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018RnkykDfhSit73C61qAYp1",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "ps aux --sort=-rss --no-headers -w -w",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "829e657e-a70c-4938-8f03-5d30ace8c467",
+            "uuid": "366350f6-b43e-4893-b059-26e07640d755",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LveFKwwxGrDpwjU2dciPed",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 649,
+                "cache_read_input_tokens": 23927,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 649
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T14:35:15.501Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018RnkykDfhSit73C61qAYp1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root      32394  122  3.1 114609544 25310896 ?  Rl   19:23 234:51 VLLM::EngineCore\\\\nroot      32118 36.4  2.8 56168664 22437780 ?   Sl   19:23  70:00 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_n16_s42/\\\\nroot      48045  123  2.3 105970704 18488624 pts/18 Rl 22:23  15:01 VLLM::EngineCore\\\\nroot      49513  119  2.3 105681700 18228652 pts/19 Rl 22:24  12:28 VLLM::EngineCore\\\\nroot      49361  119  2.3 105468104 18207028 pts/3 Rl 22:24  12:29 VLLM::EngineCore\\\\nroot      47635 46.8  0.4 37576004 3800324 pts/18 Sl 22:22   5:47 python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/e2_pretrained_fewnerd_s456/\\\\nroot      48814 42.7  0.4 37115640 3337808 pts/3 Sl  22:24   4:34 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed42/\\\\nroot      48956 43.4  0.4 37107188 3331280 pts/19 Sl 22:24   4:37 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\\\\nroot        937  0.3  0.0 7043580 133604 ?      Sl   May14  39:48 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        939  0.0  0.0 191560 96316 ?        S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        935  0.0  0.0 4147828 71856 ?       Sl   May14   3:54 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        917  1.7  0.0 724128 21388 ?        Sl   May14 186:46 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        941  0.1  0.0 4200204 19376 ?       Sl   May14  15:00 proxy -c /init/proxy/proxy.ini\\\\nroot        940  0.0  0.0 4126280 18800 ?       Sl   May14   9:50 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot     174588  0.0  0.0  16016 11880 ?        Ss   May15   1:15 tmux new-session -d -s exp_001_n16_seed456 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --output_dir output/exp001_n16_seed456 --collect_logprobs 2>&1 | tee output/exp001_n16_seed456_run.log\\\\nroot      50678  0.2  0.0  16692 10680 ?        Ss   22:35   0:00 sshd: root@notty\\\\nroot     885861  0.0  0.0  16692 10636 ?        Ss   May20   0:09 sshd: root@notty\\\\nroot       1050  0.0  0.0 28341068 10600 ?      Sl   May14   8:58 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_n2g13yqg/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_n2g13yqg/startup_error\\\\nroot     885862  0.0  0.0  16692 10588 ?        Ss   May20   0:11 sshd: root@notty\\\\nroot      50396  0.0  0.0  16692 10564 ?        Ss   22:29   0:00 sshd: root@notty\\\\nroot        932  0.0  0.0  15444  7996 ?        S    May14   0:47 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot     696324  0.0  0.0   4756  4016 pts/4    Ss+  May19   0:00 -bash\\\\nroot     711717  0.0  0.0   4760  4008 pts/17   Ss+  May19 \\\\n\\\\n... [截断: 输出过长，省略 2448 字符] ...\\\\n\\\\n timeout 43200 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\\\\\\\"'; } > ~/runs/struct_self_consist_ie/exp_fewnerd_mf4v2_s123_v3.log 2>&1\\\\nroot      48809  0.0  0.0   4496  3576 pts/3    Ss+  22:24   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_fewnerd_mf4v2_s42_v3.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/struct_self_consist_ie/exp_fewnerd_mf4v2_s42_v3.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_fewnerd_mf4v2_s42_v3.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/struct_self_consist_ie && export CUDA_VISIBLE_DEVICES=1 && timeout 43200 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed42/\\\\\\\"'; } > ~/runs/struct_self_consist_ie/exp_fewnerd_mf4v2_s42_v3.log 2>&1\\\\nroot     181723  0.0  0.0   4624  3500 pts/0    Ss+  May15   0:00 bash\\\\nroot     175728  0.0  0.0   4624  3476 pts/1    Ss+  May15   0:00 bash\\\\nroot     175864  0.0  0.0   4624  3412 pts/2    Ss+  May15   0:00 bash\\\\nroot          1  0.0  0.0   4476  3080 ?        Ss   May14   0:02 bash /init/boot/boot.sh\\\\nroot      32117  0.0  0.0   4364  1744 ?        S    19:23   0:00 bash -c cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 nohup bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_n16_s42/\\\\\\\" > logs/fewnerd_n16_s42.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\nroot      50696  0.0  0.0   7064  1544 ?        Rs   22:35   0:00 ps aux --sort=-rss --no-headers -w -w\\\\nroot      48955  0.0  0.0   2800  1064 pts/19   S    22:24   0:00 timeout 43200 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\\\\\\\"\\\\nroot      47634  0.0  0.0   2800  1044 pts/18   S    22:22   0:00 timeout 43200 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/e2_pretrained_fewnerd_s456/\\\\\\\"\\\\nroot      48813  0.0  0.0   2800  1036 pts/3    S    22:24   0:00 timeout 43200 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed42/\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "829e657e-a70c-4938-8f03-5d30ace8c467",
+            "uuid": "251f1954-6c63-450f-b38c-340f270edda8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root      32394  122  3.1 114609544 25310896 ?  Rl   19:23 234:51 VLLM::EngineCore\\\\nroot      32118 36.4  2.8 56168664 22437780 ?   Sl   19:23  70:00 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_n16_s42/\\\\nroot      48045  123  2.3 105970704 18488624 pts/18 Rl 22:23  15:01 VLLM::EngineCore\\\\nroot      49513  119  2.3 105681700 18228652 pts/19 Rl 22:24  12:28 VLLM::EngineCore\\\\nroot      49361  119  2.3 105468104 18207028 pts/3 Rl 22:24  12:29 VLLM::EngineCore\\\\nroot      47635 46.8  0.4 37576004 3800324 pts/18 Sl 22:22   5:47 python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/e2_pretrained_fewnerd_s456/\\\\nroot      48814 42.7  0.4 37115640 3337808 pts/3 Sl  22:24   4:34 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed42/\\\\nroot      48956 43.4  0.4 37107188 3331280 pts/19 Sl 22:24   4:37 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\\\\nroot        937  0.3  0.0 7043580 133604 ?      Sl   May14  39:48 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        939  0.0  0.0 191560 96316 ?        S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        935  0.0  0.0 4147828 71856 ?       Sl   May14   3:54 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        917  1.7  0.0 724128 21388 ?        Sl   May14 186:46 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        941  0.1  0.0 4200204 19376 ?       Sl   May14  15:00 proxy -c /init/proxy/proxy.ini\\\\nroot        940  0.0  0.0 4126280 18800 ?       Sl   May14   9:50 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot     174588  0.0  0.0  16016 11880 ?        Ss   May15   1:15 tmux new-session -d -s exp_001_n16_seed456 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --output_dir output/exp001_n16_seed456 --collect_logprobs 2>&1 | tee output/exp001_n16_seed456_run.log\\\\nroot      50678  0.2  0.0  16692 10680 ?        Ss   22:35   0:00 sshd: root@notty\\\\nroot     885861  0.0  0.0  16692 10636 ?        Ss   May20   0:09 sshd: root@notty\\\\nroot       1050  0.0  0.0 28341068 10600 ?      Sl   May14   8:58 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_n2g13yqg/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_n2g13yqg/startup_error\\\\nroot     885862  0.0  0.0  16692 10588 ?        Ss   May20   0:11 sshd: root@notty\\\\nroot      50396  0.0  0.0  16692 10564 ?        Ss   22:29   0:00 sshd: root@notty\\\\nroot        932  0.0  0.0  15444  7996 ?        S    May14   0:47 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot     696324  0.0  0.0   4756  4016 pts/4    Ss+  May19   0:00 -bash\\\\nroot     711717  0.0  0.0   4760  4008 pts/17   Ss+  May19 \\\\n\\\\n... [截断: 输出过长，省略 2448 字符] ...\\\\n\\\\n timeout 43200 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\\\\\\\"'; } > ~/runs/struct_self_consist_ie/exp_fewnerd_mf4v2_s123_v3.log 2>&1\\\\nroot      48809  0.0  0.0   4496  3576 pts/3    Ss+  22:24   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_fewnerd_mf4v2_s42_v3.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/struct_self_consist_ie/exp_fewnerd_mf4v2_s42_v3.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_fewnerd_mf4v2_s42_v3.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/struct_self_consist_ie && export CUDA_VISIBLE_DEVICES=1 && timeout 43200 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed42/\\\\\\\"'; } > ~/runs/struct_self_consist_ie/exp_fewnerd_mf4v2_s42_v3.log 2>&1\\\\nroot     181723  0.0  0.0   4624  3500 pts/0    Ss+  May15   0:00 bash\\\\nroot     175728  0.0  0.0   4624  3476 pts/1    Ss+  May15   0:00 bash\\\\nroot     175864  0.0  0.0   4624  3412 pts/2    Ss+  May15   0:00 bash\\\\nroot          1  0.0  0.0   4476  3080 ?        Ss   May14   0:02 bash /init/boot/boot.sh\\\\nroot      32117  0.0  0.0   4364  1744 ?        S    19:23   0:00 bash -c cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 nohup bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_n16_s42/\\\\\\\" > logs/fewnerd_n16_s42.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\nroot      50696  0.0  0.0   7064  1544 ?        Rs   22:35   0:00 ps aux --sort=-rss --no-headers -w -w\\\\nroot      48955  0.0  0.0   2800  1064 pts/19   S    22:24   0:00 timeout 43200 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\\\\\\\"\\\\nroot      47634  0.0  0.0   2800  1044 pts/18   S    22:22   0:00 timeout 43200 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/e2_pretrained_fewnerd_s456/\\\\\\\"\\\\nroot      48813  0.0  0.0   2800  1036 pts/3    S    22:24   0:00 timeout 43200 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed42/\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"root      32394  122  3.1 114609544 25310896 ?  Rl   19:23 234:51 VLLM::EngineCore\\nroot      32118 36.4  2.8 56168664 22437780 ?   Sl   19:23  70:00 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_n16_s42/\\nroot      48045  123  2.3 105970704 18488624 pts/18 Rl 22:23  15:01 VLLM::EngineCore\\nroot      49513  119  2.3 105681700 18228652 pts/19 Rl 22:24  12:28 VLLM::EngineCore\\nroot      49361  119  2.3 105468104 18207028 pts/3 Rl 22:24  12:29 VLLM::EngineCore\\nroot      47635 46.8  0.4 37576004 3800324 pts/18 Sl 22:22   5:47 python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/e2_pretrained_fewnerd_s456/\\nroot      48814 42.7  0.4 37115640 3337808 pts/3 Sl  22:24   4:34 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed42/\\nroot      48956 43.4  0.4 37107188 3331280 pts/19 Sl 22:24   4:37 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\\nroot        937  0.3  0.0 7043580 133604 ?      Sl   May14  39:48 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        939  0.0  0.0 191560 96316 ?        S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        935  0.0  0.0 4147828 71856 ?       Sl   May14   3:54 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        917  1.7  0.0 724128 21388 ?        Sl   May14 186:46 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        941  0.1  0.0 4200204 19376 ?       Sl   May14  15:00 proxy -c /init/proxy/proxy.ini\\nroot        940  0.0  0.0 4126280 18800 ?       Sl   May14   9:50 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot     174588  0.0  0.0  16016 11880 ?        Ss   May15   1:15 tmux new-session -d -s exp_001_n16_seed456 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --output_dir output/exp001_n16_seed456 --collect_logprobs 2>&1 | tee output/exp001_n16_seed456_run.log\\nroot      50678  0.2  0.0  16692 10680 ?        Ss   22:35   0:00 sshd: root@notty\\nroot     885861  0.0  0.0  16692 10636 ?        Ss   May20   0:09 sshd: root@notty\\nroot       1050  0.0  0.0 28341068 10600 ?      Sl   May14   8:58 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_n2g13yqg/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_n2g13yqg/startup_error\\nroot     885862  0.0  0.0  16692 10588 ?        Ss   May20   0:11 sshd: root@notty\\nroot      50396  0.0  0.0  16692 10564 ?        Ss   22:29   0:00 sshd: root@notty\\nroot        932  0.0  0.0  15444  7996 ?        S    May14   0:47 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot     696324  0.0  0.0   4756  4016 pts/4    Ss+  May19   0:00 -bash\\nroot     711717  0.0  0.0   4760  4008 pts/17   Ss+  May19 \\n\\n... [截断: 输出过长，省略 2448 字符] ...\\n\\n timeout 43200 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\\\"'; } > ~/runs/struct_self_consist_ie/exp_fewnerd_mf4v2_s123_v3.log 2>&1\\nroot      48809  0.0  0.0   4496  3576 pts/3    Ss+  22:24   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_fewnerd_mf4v2_s42_v3.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/struct_self_consist_ie/exp_fewnerd_mf4v2_s42_v3.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_fewnerd_mf4v2_s42_v3.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/struct_self_consist_ie && export CUDA_VISIBLE_DEVICES=1 && timeout 43200 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed42/\\\"'; } > ~/runs/struct_self_consist_ie/exp_fewnerd_mf4v2_s42_v3.log 2>&1\\nroot     181723  0.0  0.0   4624  3500 pts/0    Ss+  May15   0:00 bash\\nroot     175728  0.0  0.0   4624  3476 pts/1    Ss+  May15   0:00 bash\\nroot     175864  0.0  0.0   4624  3412 pts/2    Ss+  May15   0:00 bash\\nroot          1  0.0  0.0   4476  3080 ?        Ss   May14   0:02 bash /init/boot/boot.sh\\nroot      32117  0.0  0.0   4364  1744 ?        S    19:23   0:00 bash -c cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 nohup bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_n16_s42/\\\" > logs/fewnerd_n16_s42.log 2>&1 & echo \\\"PID=$!\\\"\\nroot      50696  0.0  0.0   7064  1544 ?        Rs   22:35   0:00 ps aux --sort=-rss --no-headers -w -w\\nroot      48955  0.0  0.0   2800  1064 pts/19   S    22:24   0:00 timeout 43200 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123/\\\"\\nroot      47634  0.0  0.0   2800  1044 pts/18   S    22:22   0:00 timeout 43200 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct/Qwen/Qwen2___5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/e2_pretrained_fewnerd_s456/\\\"\\nroot      48813  0.0  0.0   2800  1036 pts/3    S    22:24   0:00 timeout 43200 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed42/\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TSmo7ZoAfnn2m99BVa43ib",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090-c",
+                "command": "ps aux --sort=-rss --no-headers -w -w",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "829e657e-a70c-4938-8f03-5d30ace8c467",
+            "uuid": "deab3c01-9e71-44ff-9c6e-fd92b43db49b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LveFKwwxGrDpwjU2dciPed",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 649,
+                "cache_read_input_tokens": 23927,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 649
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T14:35:16.804Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TSmo7ZoAfnn2m99BVa43ib",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     306365 48.2  5.3 75854616 42158692 ?   Sl   18:18 124:00 python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_fewnerd_s123/\\\\nroot     312685  114  3.1 113506320 25022208 pts/0 Rl 19:24 219:30 VLLM::EngineCore\\\\nroot     311985 36.4  2.9 57469684 23695180 pts/0 Sl 19:23  69:47 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_n16_s123/\\\\nroot     306642  119  1.5 101261908 12366500 ?  Rl   18:18 306:59 VLLM::EngineCore\\\\nroot       1240  0.3  0.0 6748620 103332 ?      Sl   May18  14:05 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot       1244  0.0  0.0 182296 96400 ?        S    May18   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot       1242  0.0  0.0 4147004 73828 ?       Sl   May18   1:38 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot       1243  0.0  0.0 4125512 21212 ?       Sl   May18   4:09 proxy -c /init/proxy/proxy.ini\\\\nroot       1220  1.7  0.0 718752 19868 ?        Sl   May18  72:40 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot       1246  0.0  0.0 3459876 18644 ?       Sl   May18   1:28 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot     328427  0.3  0.0  16692 10776 ?        Ss   22:35   0:00 sshd: root@notty\\\\nroot       1352  0.0  0.0 28341192 10212 ?      Sl   May18   3:38 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_qebyywnj/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_qebyywnj/startup_error\\\\nroot     181914  0.0  0.0  16692  9656 ?        Ss   May20   0:08 sshd: root@notty\\\\nroot     181915  0.0  0.0  16780  9648 ?        Ss   May20   0:10 sshd: root@notty\\\\nroot       1237  0.0  0.0  15444  8308 ?        S    May18   0:17 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot     311980  0.0  0.0   6480  4208 ?        Ss   19:23   0:00 tmux new-session -d -s exp_fewnerd_n16_s123 rm -f /tmp/agent-ml-exit/exp_fewnerd_n16_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/struct_self_consist_ie/exp_fewnerd_n16_s123.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_fewnerd_n16_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/struct_self_consist_ie && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_n16_s123/\\\\\\\"'; } > ~/runs/struct_self_consist_ie/exp_fewnerd_n16_s123.log 2>&1\\\\nroot     311981  0.0  0.0   4496  3572 pts/0    Ss+  19:23   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_fewnerd_n16_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/struct_self_consist_ie/exp_fewnerd_n16_s123.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_fewnerd_n16_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/struct_self_consist_ie && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_n16_s123/\\\\\\\"'; } > ~/runs/struct_self_consist_ie/exp_fewnerd_n16_s123.log 2>&1\\\\nroot          1  0.0  0.0   4476  2428 ?        Ss   May18   0:00 bash /init/boot/boot.sh\\\\nroot     306360  0.0  0.0   4364  2144 ?        S    18:18   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && nohup env CUDA_VISIBLE_DEVICES=3 python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_fewnerd_s123/ > /tmp/exp_e2_pretrained_fewnerd_s123.log 2>&1 &\\\\nroot     328445  0.0  0.0   7064  1564 ?        Rs   22:35   0:00 ps aux --sort=-rss --no-headers -w -w\\\\nroot     311984  0.0  0.0   2800  1032 pts/0    S    19:23   0:00 timeout 86400 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_n16_s123/\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "829e657e-a70c-4938-8f03-5d30ace8c467",
+            "uuid": "de9ae127-3b73-430a-83b6-2331bc68689a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     306365 48.2  5.3 75854616 42158692 ?   Sl   18:18 124:00 python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_fewnerd_s123/\\\\nroot     312685  114  3.1 113506320 25022208 pts/0 Rl 19:24 219:30 VLLM::EngineCore\\\\nroot     311985 36.4  2.9 57469684 23695180 pts/0 Sl 19:23  69:47 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_n16_s123/\\\\nroot     306642  119  1.5 101261908 12366500 ?  Rl   18:18 306:59 VLLM::EngineCore\\\\nroot       1240  0.3  0.0 6748620 103332 ?      Sl   May18  14:05 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot       1244  0.0  0.0 182296 96400 ?        S    May18   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot       1242  0.0  0.0 4147004 73828 ?       Sl   May18   1:38 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot       1243  0.0  0.0 4125512 21212 ?       Sl   May18   4:09 proxy -c /init/proxy/proxy.ini\\\\nroot       1220  1.7  0.0 718752 19868 ?        Sl   May18  72:40 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot       1246  0.0  0.0 3459876 18644 ?       Sl   May18   1:28 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot     328427  0.3  0.0  16692 10776 ?        Ss   22:35   0:00 sshd: root@notty\\\\nroot       1352  0.0  0.0 28341192 10212 ?      Sl   May18   3:38 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_qebyywnj/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_qebyywnj/startup_error\\\\nroot     181914  0.0  0.0  16692  9656 ?        Ss   May20   0:08 sshd: root@notty\\\\nroot     181915  0.0  0.0  16780  9648 ?        Ss   May20   0:10 sshd: root@notty\\\\nroot       1237  0.0  0.0  15444  8308 ?        S    May18   0:17 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot     311980  0.0  0.0   6480  4208 ?        Ss   19:23   0:00 tmux new-session -d -s exp_fewnerd_n16_s123 rm -f /tmp/agent-ml-exit/exp_fewnerd_n16_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/struct_self_consist_ie/exp_fewnerd_n16_s123.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_fewnerd_n16_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/struct_self_consist_ie && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_n16_s123/\\\\\\\"'; } > ~/runs/struct_self_consist_ie/exp_fewnerd_n16_s123.log 2>&1\\\\nroot     311981  0.0  0.0   4496  3572 pts/0    Ss+  19:23   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_fewnerd_n16_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/struct_self_consist_ie/exp_fewnerd_n16_s123.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_fewnerd_n16_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/struct_self_consist_ie && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_n16_s123/\\\\\\\"'; } > ~/runs/struct_self_consist_ie/exp_fewnerd_n16_s123.log 2>&1\\\\nroot          1  0.0  0.0   4476  2428 ?        Ss   May18   0:00 bash /init/boot/boot.sh\\\\nroot     306360  0.0  0.0   4364  2144 ?        S    18:18   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && nohup env CUDA_VISIBLE_DEVICES=3 python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_fewnerd_s123/ > /tmp/exp_e2_pretrained_fewnerd_s123.log 2>&1 &\\\\nroot     328445  0.0  0.0   7064  1564 ?        Rs   22:35   0:00 ps aux --sort=-rss --no-headers -w -w\\\\nroot     311984  0.0  0.0   2800  1032 pts/0    S    19:23   0:00 timeout 86400 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_n16_s123/\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"root     306365 48.2  5.3 75854616 42158692 ?   Sl   18:18 124:00 python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_fewnerd_s123/\\nroot     312685  114  3.1 113506320 25022208 pts/0 Rl 19:24 219:30 VLLM::EngineCore\\nroot     311985 36.4  2.9 57469684 23695180 pts/0 Sl 19:23  69:47 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_n16_s123/\\nroot     306642  119  1.5 101261908 12366500 ?  Rl   18:18 306:59 VLLM::EngineCore\\nroot       1240  0.3  0.0 6748620 103332 ?      Sl   May18  14:05 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot       1244  0.0  0.0 182296 96400 ?        S    May18   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1242  0.0  0.0 4147004 73828 ?       Sl   May18   1:38 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot       1243  0.0  0.0 4125512 21212 ?       Sl   May18   4:09 proxy -c /init/proxy/proxy.ini\\nroot       1220  1.7  0.0 718752 19868 ?        Sl   May18  72:40 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot       1246  0.0  0.0 3459876 18644 ?       Sl   May18   1:28 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot     328427  0.3  0.0  16692 10776 ?        Ss   22:35   0:00 sshd: root@notty\\nroot       1352  0.0  0.0 28341192 10212 ?      Sl   May18   3:38 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_qebyywnj/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_qebyywnj/startup_error\\nroot     181914  0.0  0.0  16692  9656 ?        Ss   May20   0:08 sshd: root@notty\\nroot     181915  0.0  0.0  16780  9648 ?        Ss   May20   0:10 sshd: root@notty\\nroot       1237  0.0  0.0  15444  8308 ?        S    May18   0:17 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot     311980  0.0  0.0   6480  4208 ?        Ss   19:23   0:00 tmux new-session -d -s exp_fewnerd_n16_s123 rm -f /tmp/agent-ml-exit/exp_fewnerd_n16_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/struct_self_consist_ie/exp_fewnerd_n16_s123.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_fewnerd_n16_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/struct_self_consist_ie && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_n16_s123/\\\"'; } > ~/runs/struct_self_consist_ie/exp_fewnerd_n16_s123.log 2>&1\\nroot     311981  0.0  0.0   4496  3572 pts/0    Ss+  19:23   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_fewnerd_n16_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/struct_self_consist_ie/exp_fewnerd_n16_s123.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_fewnerd_n16_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/struct_self_consist_ie && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_n16_s123/\\\"'; } > ~/runs/struct_self_consist_ie/exp_fewnerd_n16_s123.log 2>&1\\nroot          1  0.0  0.0   4476  2428 ?        Ss   May18   0:00 bash /init/boot/boot.sh\\nroot     306360  0.0  0.0   4364  2144 ?        S    18:18   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && nohup env CUDA_VISIBLE_DEVICES=3 python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/e2_pretrained_fewnerd_s123/ > /tmp/exp_e2_pretrained_fewnerd_s123.log 2>&1 &\\nroot     328445  0.0  0.0   7064  1564 ?        Rs   22:35   0:00 ps aux --sort=-rss --no-headers -w -w\\nroot     311984  0.0  0.0   2800  1032 pts/0    S    19:23   0:00 timeout 86400 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_n16_s123/\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## autodl-5090\n\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| cuda:0 | 67% | 30148/32607 MiB | `fewnerd_n16_s42` — finetuned model, n_samples=16, seed=42 |\n| cuda:1 | 77% | 30204/32607 MiB | **exp_fewnerd_mf4v2_s42_v3** — finetuned model, n_samples=8, seed=42 ✅ 运行中 |\n| cuda:2 | 82% | 30230/32607 MiB | **exp_fewnerd_mf4v2_s123_v3** — finetuned model, n_samples=8, seed=123 ✅ 运行中 |\n| cuda:3 | 68% | 29946/32607 MiB | **exp_e2_pretrained_fewnerd_s456** — pretrained Qwen2.5-7B, n_samples=8, seed=456 ✅ 运行中 |\n\n## autodl-5090-c\n\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| cuda:0 | 83% | 30131/32607 MiB | `fewnerd_n16_s123` — finetuned model, n_samples=16, seed=123 |\n| cuda:1 | 0% | 0/32607 MiB | **空闲** |\n| cuda:2 | 0% | 0/32607 MiB | **空闲** |\n| cuda:3 | 81% | 30889/32607 MiB | **exp_e2_pretrained_fewnerd_s123** — pretrained Qwen2.5-7B, n_samples=8, seed=123 ✅ 运行中 |\n\n## 汇总\n\n4 个目标实验进程全部在跑。**autodl-5090-c 的 cuda:1 和 cuda:2 空闲**，可用于新任务。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "829e657e-a70c-4938-8f03-5d30ace8c467",
+            "uuid": "16c190ac-7964-4a63-bada-31ffea6f2f86",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JS7U81W5M9jCuMN9qpo9KE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6457,
+                "cache_read_input_tokens": 24576,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6457
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## autodl-5090\n\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| cuda:0 | 67% | 30148/32607 MiB | `fewnerd_n16_s42` — finetuned model, n_samples=16, seed=42 |\n| cuda:1 | 77% | 30204/32607 MiB | **exp_fewnerd_mf4v2_s42_v3** — finetuned model, n_samples=8, seed=42 ✅ 运行中 |\n| cuda:2 | 82% | 30230/32607 MiB | **exp_fewnerd_mf4v2_s123_v3** — finetuned model, n_samples=8, seed=123 ✅ 运行中 |\n| cuda:3 | 68% | 29946/32607 MiB | **exp_e2_pretrained_fewnerd_s456** — pretrained Qwen2.5-7B, n_samples=8, seed=456 ✅ 运行中 |\n\n## autodl-5090-c\n\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| cuda:0 | 83% | 30131/32607 MiB | `fewnerd_n16_s123` — finetuned model, n_samples=16, seed=123 |\n| cuda:1 | 0% | 0/32607 MiB | **空闲** |\n| cuda:2 | 0% | 0/32607 MiB | **空闲** |\n| cuda:3 | 81% | 30889/32607 MiB | **exp_e2_pretrained_fewnerd_s123** — pretrained Qwen2.5-7B, n_samples=8, seed=123 ✅ 运行中 |\n\n## 汇总\n\n4 个目标实验进程全部在跑。**autodl-5090-c 的 cuda:1 和 cuda:2 空闲**，可用于新任务。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 32769,
+            "duration_api_ms": 29381,
+            "num_turns": 6,
+            "stop_reason": "end_turn",
+            "session_id": "829e657e-a70c-4938-8f03-5d30ace8c467",
+            "total_cost_usd": 0.19322,
+            "usage": {
+              "input_tokens": 8,
+              "cache_creation_input_tokens": 19332,
+              "cache_read_input_tokens": 83652,
+              "output_tokens": 1175,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 19332,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 567,
+                  "cache_read_input_tokens": 24576,
+                  "cache_creation_input_tokens": 6457,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 6457
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1079,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001154,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 8,
+                "outputTokens": 1175,
+                "cacheReadInputTokens": 83652,
+                "cacheCreationInputTokens": 19332,
+                "webSearchRequests": 0,
+                "costUSD": 0.192066,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "e1d81e4b-684d-49e9-bc96-1e91ee87d1cc"
+          },
+          "id": "event-000016"
+        }
+      ],
+      "message_count": 16
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-gpu-status-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e35b069b03b7e77999e9",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 14b 32b progress check",
+  "task_key": "worker_ssh_14b-32b-progress-check_20260519T234338",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_14b-32b-progress-check_20260519T234338_result.json",
+    "occurrence": 1,
+    "bytes": 1201,
+    "sha256": "64af99fd5e99c01b87925e1c9056656647da930e82a9bf2f2b772e9e9345619a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度汇总\n\n### 14B (autodl-5090-c, PID 56773) — RUNNING\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **21,809 / 41,180 (53.0%)** |\n| Epoch | 2.65 / 5.0 |\n| Loss | 0.0273 (step 21800) |\n| 速度 | ~2.15 s/it |\n| 剩余 | 19,371 steps × 2.15s ≈ **11h 34m** |\n| 更新 ETA | **~2026-05-20 19:20 UTC** |\n| GPU | GPU0 95% (25.9G), GPU1 96% (25.8G), GPU2 74% (18.2G), GPU3 89% (18.0G) |\n\n### 32B (autodl-5090, PID 804438) — RUNNING\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **15,346 / 41,180 (37.3%)** |\n| Epoch | 1.86 / 5.0 |\n| Loss | 0.0528 (step 15300) |\n| 速度 | ~2.50 s/it |\n| 剩余 | 25,834 steps × 2.50s ≈ **17h 56m** |\n| 更新 ETA | **~2026-05-21 01:40 UTC** |\n| GPU | GPU0-3 均 93-100%, 各 ~30.5G/32.6G |\n\n### 与上次对比\n\n- **14B**: 48.8% → 53.0%，速度稳定，ETA 从 05-20 14:00 推迟到 05-20 19:20 UTC（偏慢约 5h，可能之前估算过于乐观或 checkpoint 保存导致减速）\n- **32B**: 34.5% → 37.3%，刚保存了 checkpoint-15000（删除了旧的 checkpoint-12000），ETA 从 05-20 23:40 推迟到 05-21 01:40 UTC（推迟约 2h）\n- 两个实验 loss 均在正常下降，GPU 利用率健康"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-14b-32b-progress-check.md"
+}

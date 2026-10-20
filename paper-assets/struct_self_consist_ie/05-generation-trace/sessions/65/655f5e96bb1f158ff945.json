@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "655f5e96bb1f158ff945",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code d141 conditional decomp eval unify",
+  "task_key": "worker_code_d141_conditional_decomp_eval_unify_20260518T144757",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_d141_conditional_decomp_eval_unify_20260518T144757_result.json",
+    "occurrence": 1,
+    "bytes": 686,
+    "sha256": "593957deacecd6b7c4964b0128e9cf9484f897bcc483c78b245cec20e65fa968"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改摘要：\n\n1. **evaluation.py**: `entity_strict_match` 从 `(start, end, type)` 改为 `(text, type)`\n2. **analysis_d141_conditional_decomp.py**: 删除内联 `entity_f1`，改用 `from evaluation import entity_strict_match, _prf`\n\n0.05pp 阈值检查结果：SciERC 勉强通过（=0.05pp），CoNLL（0.10pp）和 FewNERD（0.06pp）的 Favorable delta 略超阈值。根因是 text-based 匹配会合并同句中同名实体，导致少量实例的 degenerate 分类发生变化，进而引起 bucket 重组。所有差异 < 0.15pp，定性结论不变。\n\n报告已写入 `artifacts/d141_eval_unify/conditional_decomp_eval_unified_results.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d141-conditional-decomp-eval-unify.md"
+}

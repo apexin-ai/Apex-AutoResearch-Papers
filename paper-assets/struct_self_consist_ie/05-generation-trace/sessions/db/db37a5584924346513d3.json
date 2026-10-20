@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db37a5584924346513d3",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "eval gate0 ft001",
+  "task_key": "worker_eval_gate0_ft001_20260514T063206",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_gate0_ft001_20260514T063206_result.json",
+    "occurrence": 1,
+    "bytes": 140,
+    "sha256": "70d464c2d5eda1857a3d46c49b535c02f6e451466a8785cfe46e226ce0cb2a84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "That was just a background wait task that completed — nothing actionable. The Gate 0 report above is the final deliverable."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gate0-ft001.md"
+}

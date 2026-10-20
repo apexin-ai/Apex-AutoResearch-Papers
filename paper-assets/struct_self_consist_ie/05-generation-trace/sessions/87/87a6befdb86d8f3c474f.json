@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87a6befdb86d8f3c474f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code resubmit 4b scierc finetune v2",
+  "task_key": "worker_code_resubmit_4b_scierc_finetune_v2_20260515T190459",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_resubmit_4b_scierc_finetune_v2_20260515T190459_result.json",
+    "occurrence": 1,
+    "bytes": 254,
+    "sha256": "f7a4c2f788c72ef43c62d43d918d204b705a189ea82e2956702054c61224ff80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n- **exp_qwen3_4b_scierc_finetune_v2** 已在 cuda:3 上启动，registry 状态 RUNNING\n- 585 steps，~2.7s/it，预计约 26 分钟完成\n- GPU 映射正确：框架注入 `CUDA_VISIBLE_DEVICES=3`，未手动硬编码"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-resubmit-4b-scierc-finetune-v2.md"
+}

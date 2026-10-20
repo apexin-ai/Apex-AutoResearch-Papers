@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c1ab3dc92be99e385798",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "eval mvp pilot 001",
+  "task_key": "worker_eval_mvp_pilot_001_20260514T074023",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_mvp_pilot_001_20260514T074023.log",
+    "occurrence": 1,
+    "bytes": 858853,
+    "sha256": "3e75126b4f9250c18a067e12e2e72eabf4ac5a86bf69889d470a55de8ce955a4"
+  },
+  "statistics": {
+    "messages": 242,
+    "user_turns": 0,
+    "tool_calls": 87,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 87,
+      "tool_result": 87,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 242,
+      "chunks": [
+        {
+          "path": "c1ab3dc92be99e385798-part-0001.json",
+          "message_count": 141
+        },
+        {
+          "path": "c1ab3dc92be99e385798-part-0002.json",
+          "message_count": 101
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-mvp-pilot-001.md"
+}

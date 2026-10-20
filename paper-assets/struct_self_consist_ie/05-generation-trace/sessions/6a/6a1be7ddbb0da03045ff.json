@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6a1be7ddbb0da03045ff",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code registry cleanup",
+  "task_key": "worker_code_registry_cleanup_20260518T215719",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_registry_cleanup_20260518T215719.log",
+    "occurrence": 1,
+    "bytes": 783841,
+    "sha256": "5445922a286f82e94c7e4d2678c2d487bc9f97f0b2bcb6abecabe86ec337d089"
+  },
+  "statistics": {
+    "messages": 257,
+    "user_turns": 0,
+    "tool_calls": 71,
+    "roles": {
+      "log": 1,
+      "system": 69,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 71,
+      "tool_result": 71,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 257,
+      "chunks": [
+        {
+          "path": "6a1be7ddbb0da03045ff-part-0001.json",
+          "message_count": 113
+        },
+        {
+          "path": "6a1be7ddbb0da03045ff-part-0002.json",
+          "message_count": 144
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-registry-cleanup.md"
+}

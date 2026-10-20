@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "83b5ed593e5f61f0bb2a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "review r9 data integrity",
+  "task_key": "worker_review_r9_data_integrity_20260516T010154",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_review_r9_data_integrity_20260516T010154_result.json",
+    "occurrence": 1,
+    "bytes": 815104,
+    "sha256": "3715d712da1cbfeda4207daafa6ce9046d7689adc5ff37110f6bdba4ad22cb63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "83b5ed593e5f61f0bb2a-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/review-r9-data-integrity.md"
+}

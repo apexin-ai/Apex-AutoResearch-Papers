@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "5b2bac7dee752dd8c828",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh n inverse scaling test",
+  "task_key": "worker_ssh_n-inverse-scaling-test_20260520T105455",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_n-inverse-scaling-test_20260520T105455.log",
+    "occurrence": 1,
+    "bytes": 989736,
+    "sha256": "714a03f4a5e8b953aadd7d6cd7302008378c01cabf1507797b9138f3ddb999fe"
+  },
+  "statistics": {
+    "messages": 332,
+    "user_turns": 1,
+    "tool_calls": 122,
+    "roles": {
+      "log": 1,
+      "system": 38,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 122,
+      "user": 1,
+      "tool_result": 122,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "5b2bac7dee752dd8c828-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 326,
+      "chunks": [
+        {
+          "path": "5b2bac7dee752dd8c828-part-0001.json",
+          "message_count": 169
+        },
+        {
+          "path": "5b2bac7dee752dd8c828-part-0002.json",
+          "message_count": 157
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-n-inverse-scaling-test.md"
+}

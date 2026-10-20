@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "id": "980a9b789db0972619a2",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "gpu exp 003 ner wnut17",
+  "task_key": "worker_gpu_exp_003_ner_wnut17_20260514T120313",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp_003_ner_wnut17_20260514T120313.log",
+    "occurrence": 1,
+    "bytes": 1319000,
+    "sha256": "50b3690089e9ab8f1d9a75266c30eeef0c710beb051068af04cbbba97b710f76"
+  },
+  "statistics": {
+    "messages": 738,
+    "user_turns": 2,
+    "tool_calls": 236,
+    "roles": {
+      "log": 1,
+      "system": 97,
+      "record": 2,
+      "assistant": 158,
+      "tool_call": 236,
+      "user": 2,
+      "tool_result": 236,
+      "result": 6
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "980a9b789db0972619a2-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 634,
+      "chunks": [
+        {
+          "path": "980a9b789db0972619a2-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "980a9b789db0972619a2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "980a9b789db0972619a2-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "980a9b789db0972619a2-part-0004.json",
+          "message_count": 101
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 97,
+      "chunks": [
+        {
+          "path": "980a9b789db0972619a2-part-0004.json",
+          "message_count": 79
+        },
+        {
+          "path": "980a9b789db0972619a2-part-0005.json",
+          "message_count": 18
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-exp-003-ner-wnut17.md"
+}

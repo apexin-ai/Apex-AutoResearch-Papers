@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88666bd2fa4cd4c1203d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh dgec vc 8b qwen3 ft",
+  "task_key": "worker_ssh_dgec-vc-8b-qwen3-ft_20260520T085503",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_dgec-vc-8b-qwen3-ft_20260520T085503_result.json",
+    "occurrence": 1,
+    "bytes": 1495,
+    "sha256": "a33466b4416241a965ab5002bea5534331ebab7b968d0ebf0aaafb33870b38b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总结果：\n\n## VC-weighted construction — Qwen3-8B FT (9 configs)\n\n| Dataset | Seed | Greedy | VC F1 | Δ (pp) | p | LP Δ (pp) |\n|---------|------|--------|-------|--------|---|-----------|\n| FewNERD | 42 | 0.748 | 0.745 | **-0.30** | 0.997 | +0.88 |\n| FewNERD | 123 | 0.748 | 0.757 | **+0.91** | 0.000** | — |\n| FewNERD | 456 | 0.749 | 0.755 | **+0.59** | 0.000** | — |\n| SciERC | 42 | 0.644 | 0.658 | **+1.40** | 0.017* | +0.61 |\n| SciERC | 123 | 0.646 | 0.655 | +0.96 | 0.087 | — |\n| SciERC | 456 | 0.648 | 0.641 | -0.65 | 0.834 | — |\n| CoNLL | 42 | 0.908 | 0.904 | -0.38 | 0.955 | -1.05 |\n| CoNLL | 123 | 0.908 | 0.908 | +0.07 | 0.384 | — |\n| CoNLL | 456 | 0.907 | 0.902 | **-0.54** | 0.998 | — |\n\n## SJ two-tier construction — Qwen3-8B FT (9 configs, 补跑)\n\n| Dataset | Mean Δ (pp) | Pattern |\n|---------|------------|---------|\n| FewNERD | **-1.48** | 全部 3 seeds 显著负 (p=1.0) |\n| SciERC | **-0.40** | mixed, 无显著正 |\n| CoNLL | **-0.50** | 全部负 |\n\n**核心发现**：\n- VC 在 SciERC seed42 上表现优于 LP（+1.40pp vs +0.61pp），但 cross-seed 方差大\n- VC 在 FewNERD 上 seed-dependent：seed42 负，seed123/456 显著正\n- SJ 在 Qwen3-8B FT 上几乎全面失效（8/9 负），与 Qwen2.5-7B FT 一致\n- CoNLL 高 degeneracy（~60%）导致 VC/SJ 均无效\n\n产出已注册：`vc_8b_qwen3_ft_results` (art_20260520_f90ace), `sj_8b_qwen3_ft_results` (art_20260520_ca7b5c)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-dgec-vc-8b-qwen3-ft.md"
+}

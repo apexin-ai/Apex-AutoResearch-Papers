@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ad2b25e2dd295570f20",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run mf4 seed experiments",
+  "task_key": "worker_run_mf4_seed_experiments_20260521T050755",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_mf4_seed_experiments_20260521T050755_result.json",
+    "occurrence": 1,
+    "bytes": 845,
+    "sha256": "1fe8691036640987ee6d49ed699aa06c220411180c38a491ae5ca608d534d451"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态汇总：\n\n| 实验 | 状态 | 说明 |\n|------|------|------|\n| exp_conll_mf4_s123 | RUNNING (registry) / 等待模型 | rsync 未完成，auto_launch 脚本等待中 |\n| exp_conll_mf4_s456 | RUNNING (registry) / 等待模型 | 同上 |\n| exp_fewnerd_mf4_s42 | QUEUED | 等 FewNERD 模型 rsync 完成 |\n| exp_fewnerd_mf4_s123 | QUEUED | 同上 |\n| exp_fewnerd_mf4_s456 | QUEUED | 等 FewNERD 模型 + CoNLL s123 完成释放 cuda:2 |\n\n**问题发现**：两个模型的 rsync 都还未完成。CoNLL 模型的 safetensors 文件只有 ~200MB（应为 ~4GB/shard），导致第一次提交失败（`SafetensorError: incomplete metadata`）。已部署自动启动脚本 (PID 998732)，模型就绪后自动按 GPU 分配启动全部 5 个实验。rsync 从 12:41 开始，预计还需 ~20-30 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-mf4-seed-experiments.md"
+}

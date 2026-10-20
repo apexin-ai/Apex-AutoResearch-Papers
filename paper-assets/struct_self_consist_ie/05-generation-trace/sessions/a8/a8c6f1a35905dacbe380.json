@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8c6f1a35905dacbe380",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis sj threshold check",
+  "task_key": "worker_analysis_sj_threshold_check_20260515T032543",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_sj_threshold_check_20260515T032543_result.json",
+    "occurrence": 1,
+    "bytes": 939,
+    "sha256": "0fbf3cd4d4c3e4a519d4d63b5af1db85ebb00e787167b0bb8ed3227fdafa1881"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n### 代码确认\n- **没有任何 minimum similarity threshold**。`linear_sum_assignment(-cost)` 直接做最大化匹配，sim=0 的 pair 也会被 match。\n\n### 数据统计（Qwen SciERC N=8, 551 instances）\n\n| 区间 | 数量 | 占比 |\n|------|------|------|\n| sim = 0（完全不重叠） | 644 | 1.7% |\n| sim < 0.1 | 653 | 1.7% |\n| sim < 0.5 | 1,280 | 3.4% |\n| **sim >= 0.5** | **36,381** | **96.6%** |\n\n分布高度集中在 [0.9, 1.0]（93.0%），说明绝大多数 matched pair 是近乎完全重叠的。sim=0 的 644 个 pair 占比很小（1.7%），影响有限。\n\n按 entity type 看，**OtherScientificTerm** 的 sim=0 比例最高（3.1%, 355/11569），可能因为该类型边界模糊、提取变异大。\n\n总体 mean_sim=0.9595, median=1.0, std=0.1645。\n\n结果已保存到 `/root/autodl-tmp/struct_self_consist_ie/output/review_round2/sj_threshold_analysis.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sj-threshold-check.md"
+}

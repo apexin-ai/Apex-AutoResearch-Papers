@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c14491112774312d8505",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check all 4 experiments eta",
+  "task_key": "worker_check_all-4-experiments-eta_20260519T203940",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_all-4-experiments-eta_20260519T203940_result.json",
+    "occurrence": 1,
+    "bytes": 1089,
+    "sha256": "7fb00c178c90a31b78b04eac1bfda73c302987868e6715b38a648bc4aa83a1d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前时间约 05-19 20:45 UTC。汇总如下：\n\n| 实验 | 状态 | 进度 | 更新 ETA (UTC) |\n|---|---|---|---|\n| **exp_qwen25_7b_fewnerd** | RUNNING | Phase 1 训练 63% (13016/20590), ~2.35s/step | 训练完 ~05-20 01:45, 全 pipeline ~**05-20 04:00** |\n| **exp_qwen25_72b_fewshot** | RUNNING | Dataset 2/3 (conll2003) 56% (169784/301184), ~15 it/s | conll 完 ~+2.5h, fewnerd 待跑 → **05-20 06:00+** |\n| **exp_qwen25_14b_fewnerd** | RUNNING | 训练 42.5% (17500/41180), log 显示剩余 17h | **~05-20 13:45** |\n| **exp_qwen25_32b_fewnerd** | RUNNING | 训练 29.1% (12000/41180), log 显示剩余 1d2h27m | **~05-20 23:15** |\n\n关键变化：\n- **7B** 远未完成——仍在 Phase 1 训练（还有 7574 步 ≈ 5h），之后还需 export → inference (3 seeds) → analysis → entity construction，比原 ETA (05-19 20:00) 延迟约 **8h**\n- **72B fewshot** scierc 已完成，conll2003 进行到 56%，fewnerd 尚未开始，比原 ETA (05-20 00:00) 延迟约 **6h+**\n- **14B** 和 **32B** 均大幅慢于预期，分别延迟 ~11h 和 ~13h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-all-4-experiments-eta.md"
+}

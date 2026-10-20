@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf09a3c5faa6ca608cbb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check exp qwen3 4b conll finetune completion",
+  "task_key": "worker_check_exp_qwen3_4b_conll_finetune_completion_20260515T184028",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_exp_qwen3_4b_conll_finetune_completion_20260515T184028_result.json",
+    "occurrence": 1,
+    "bytes": 575,
+    "sha256": "d76d7da474d041cf19e11fd1f09b8c20d432ce44f960543f6867cbadf1a40745"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练仍在运行，未退出。**\n\n当前状态：\n- **进度**: step 3200/4390 (72.89%), epoch 3.64/5.0\n- **预计剩余**: ~41 分钟\n- **训练 loss**: ~0.018，eval_loss: 0.0254（step 3200）\n- **GPU 0**: 14902 MiB, 90% 利用率\n- **Checkpoints**: checkpoint-2200 ~ checkpoint-3000（每 200 步保存）\n- **日志路径**: `~/runs/` 下无日志文件，实际日志在 `checkpoints/qwen3-4b-conll2003-lora/trainer_log.jsonl`\n\nLoss 收敛正常，无异常。不修改 registry 状态，保留 cron 监控，等训练完成后再诊断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-qwen3-4b-conll-finetune-completion.md"
+}

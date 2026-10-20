@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe257731759d20a1f6af",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis n8 seed123 unified rho",
+  "task_key": "worker_analysis_n8_seed123_unified_rho_20260515T145640",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_n8_seed123_unified_rho_20260515T145640_result.json",
+    "occurrence": 1,
+    "bytes": 887,
+    "sha256": "f24171c8982a37787eff53bf8af304b61ce9bd05ecdff36fa48ddbfa93dd631b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**3 个条目已计算，输出在服务器 `review_round2/n8_seed123_unified_rho.json`**\n\n| 条目 | VC | SJ | FK | EM | LP | auroc_VC | auroc_SJ | auroc_FK | auroc_EM | auroc_LP |\n|------|-----|-----|-----|-----|-----|---------|---------|---------|---------|---------|\n| llama_conll_n8_s123 | .420 | .431 | .426 | .428 | .307 | .703 | .701 | .699 | .701 | .760 |\n| llama_scierc_n8_s123 | .419 | .355 | .290 | .284 | .197 | .672 | .640 | .597 | .603 | .572 |\n| qwen_scierc_n8_s123 | .413 | .388 | .263 | .314 | .234 | .690 | .681 | .618 | .644 | .590 |\n\n**seed 稳定性**: llama_conll 所有 ρ 的 seed 间差异 <0.01（高度稳定）。llama_scierc 波动稍大（n=529 小样本效应），但信号排序一致。\n\n**缺失**: qwen_conll_n8_seed123 — 服务器上无 Qwen CoNLL seed123 推理数据（N=16 也不存在）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-n8-seed123-unified-rho.md"
+}

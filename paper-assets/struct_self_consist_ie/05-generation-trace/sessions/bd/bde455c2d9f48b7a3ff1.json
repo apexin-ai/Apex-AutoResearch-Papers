@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bde455c2d9f48b7a3ff1",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix hidden probe entity match",
+  "task_key": "worker_fix_hidden_probe_entity_match_20260518T111519",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_hidden_probe_entity_match_20260518T111519_result.json",
+    "occurrence": 1,
+    "bytes": 2174,
+    "sha256": "3fcd49204fe6a91684a82bc3da08dbb71d256d2849457c8737b019b52123c853"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Probe 完成。汇总结果：\n\n---\n\n## 调查结果\n\n### 1. entity_set 修复状态\n- `hidden_state_probe.py` (v1) **已经是** `(text, type)` — 无需修改\n- `hidden_state_probe_v2.py` **仍用** `(start, end, type)` — **已修复**\n- `labels.pt` **是用旧 `(start, end, type)` 生成的**，但当前脚本内部已自动用 `(text, type)` 重算 labels\n\n### 2. Greedy F1 ≠ 0.644 的原因\n**不是 entity matching 问题。** Probe 数据 (`exp_012_logprob`) 和论文主表 (`exp_012_rerun_1024`) 是**不同的 sample set**：\n- 2547/4408 sample pairs 的 entities 不同\n- 46/551 instances 的 greedy 输出不同\n- `exp_012_rerun_1024` gold-filtered greedy F1 = **0.6441**（与论文一致）\n- `exp_012_logprob` gold-filtered greedy F1 = **0.6099**\n\n要得到 greedy=0.644 的 probe 结果，需要用 `exp_012_rerun_1024` 数据**重新提取 hidden states**（需要 GPU）。\n\n### 3. Probe 结果（text,type matching）\n\n```\nSciERC (gold-filtered 529 instances, 5-fold CV × 3 seeds, (text,type) matching):\n| Method        | Spearman ρ    | Selection F1  | Gap Closure |\n|---------------|---------------|---------------|-------------|\n| LP            | 0.221         | 0.609         | -0.7%       |\n| Hidden Linear | 0.233±0.021   | 0.620±0.004   | 6.3%        |\n| Hidden MLP    | 0.454±0.008   | 0.635±0.004   | 15.6%       |\n| Greedy        | —             | 0.610         | —           |\n| Oracle        | —             | 0.769         | 100%        |\n```\n\nMLP 架构: `4096 → 256 (ReLU, Dropout=0.1) → 64 (ReLU, Dropout=0.1) → 1`\n- Adam, lr=1e-3, weight_decay=1e-4, batch=256\n- 100 epochs max, early stopping patience=15\n\nHidden states 来源: `Qwen3-8B + SciERC LoRA (merged-v2)`, mean-pool, 4096-dim\n\n### 对比旧结果（start,end,type labels）\n\n| | ρ (MLP) | Sel F1 (MLP) | Gap Closure (MLP) |\n|---|---------|-------------|-------------------|\n| 旧 (start,end,type) | 0.461±0.020 | 0.632±0.004 | 13.9% |\n| **新 (text,type)** | **0.454±0.008** | **0.635±0.004** | **15.6%** |\n\nMLP gap closure 从 13.9% → 15.6%，std 从 0.020 → 0.008（更稳定）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-hidden-probe-entity-match.md"
+}

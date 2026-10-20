@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d99389bdb7e949cf139a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp a2 humaneval sc",
+  "task_key": "worker_code_exp_a2_humaneval_sc_20260520T181633",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_a2_humaneval_sc_20260520T181633_result.json",
+    "occurrence": 1,
+    "bytes": 1246,
+    "sha256": "8e3bb7549ee19a26c4564e2e1e234960e133b7b0f6c2c12cda288abc3c73df81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已完成，registry 已更新。产出报告：\n\n---\n\n**代码路径**: `artifacts/experiments/humaneval_sc/run_humaneval_sc.py`\n\n**依赖列表**:\n- `openai` (OpenAI SDK, 用于 API 调用)\n- `datasets` (HuggingFace, 加载 HumanEval)\n- `numpy`\n\n安装: `pip install openai datasets numpy`\n\n**Model ID**: `openai/gpt-5.5` (OpenRouter 确认, 2026-04-24 发布)\n\n**API cost 估算**:\n- 164 problems × (8 stochastic + 1 greedy) = 1476 次 completion\n- 输入 ~300 tokens/problem × 1476 ≈ 443K input tokens → $2.2\n- 输出 ~200 tokens/completion × 1476 ≈ 295K output tokens → $8.9\n- **总计约 $11**\n\n**预计时长**: ~30-60 min（取决于 API rate limit 和 test execution）\n\n**脚本功能**:\n- 增量 checkpoint（中断可恢复）\n- `--test_api` 先测一个 problem 验证连通性\n- 安全沙箱执行（subprocess + 30s timeout）\n- 输出: `summary.json`（metrics + diagnostics）, `all_results.jsonl`（逐题详情）\n\n**评估指标**: greedy pass rate, pass@1, pass@8, MV pass rate, random pass rate, oracle pass rate\n\n**诊断指标**: degeneracy rate, majority agreement rate, majority correct rate, all-pass/all-fail/mixed distribution, unique solutions diversity"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-a2-humaneval-sc.md"
+}

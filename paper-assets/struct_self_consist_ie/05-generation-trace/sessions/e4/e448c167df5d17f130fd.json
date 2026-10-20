@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e448c167df5d17f130fd",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose exp 007 llama seed456",
+  "task_key": "worker_diagnose_exp_007_llama_seed456_20260514T151826",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp_007_llama_seed456_20260514T151826_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "d3629b10a75ad74446f0c721e85e53d56f3b636da3d23d06a81084e130853c65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：negative**（实验正常运行完毕，但结果不支持假设）\n\n**关键指标：**\n\n| | NER | RE |\n|---|---|---|\n| Greedy F1 | 0.6597 | 0.4334 |\n| Oracle F1 | 0.7575 | 0.5789 |\n| ρ(SJ,F1) | +0.3663 | +0.2870 |\n| Structural > Surface | YES (+0.055) | NO (-0.014) |\n\n**失败原因：**\n- RE 的 ρ_sj=0.287 未达阈值 0.40\n- >30% 样本 F1=0（RE 高达 41.8%），建议 T=0.7 重跑\n- NER 子任务结构一致性信号成立，但 RE 子任务不成立，joint 模式判定为 FAIL\n\n**已完成操作：**\n- Registry: status=DONE, conclusion=negative, metrics 已记录\n- Cron 已清除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-007-llama-seed456.md"
+}

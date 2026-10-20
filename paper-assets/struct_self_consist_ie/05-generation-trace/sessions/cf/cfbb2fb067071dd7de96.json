@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfbb2fb067071dd7de96",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh bh fdr sensitivity",
+  "task_key": "worker_ssh_bh_fdr_sensitivity_20260522T033313",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_bh_fdr_sensitivity_20260522T033313_result.json",
+    "occurrence": 1,
+    "bytes": 1140,
+    "sha256": "c2ebb025299d5ec44ebf5da238a05f3b4110836afbe93090f281f6f8b487de16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果已保存到 `output/bh_fdr_sensitivity_results.txt`。\n\n核心结论：\n\n**BH-FDR 比论文当前的 Holm-Bonferroni 更宽松，不会削弱任何结论：**\n\n| 方法 | Rejected / 57 | Selection tests surviving |\n|------|---------------|---------------------------|\n| Holm-Bonferroni (论文现用) | 10 | 0 |\n| BH-FDR α=0.01 | 10 | #6, #19, #21 (3个) |\n| BH-FDR α=0.05 | 19 | #6, #18, #19, #20, #21 (5个) |\n| BH-FDR α=0.10 | 21 | 同上 |\n| BH-FDR α=0.20 | 26 | +#8, #13 (7个) |\n\n关键逻辑：\n- 15/21 个 selection tests 的 uncorrected p > 0.05，任何校正方法都不可能让它们变显著\n- Few-NERD LP selection (p<0.001) 在 BH α=0.01 下仍显著 (BH-adj=0.0029)，但在 Holm 下不显著 (Holm-adj=0.055)\n- BH 额外保留了 9 个 Holm 不保留的显著结果（non-tied LP subset、SciERC LP-wt construction 等）\n- 论文的核心结论 \"no signal reliably beats greedy\" 基于大量 non-significant p-values，与校正方法无关\n\nRebuttal 可以直接引用：换用 BH-FDR 只会让更多正面发现通过校正，不会改变 null findings。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-bh-fdr-sensitivity.md"
+}

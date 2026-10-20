@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a10aaec380110f705139",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh mf4v2 v3 check recompute v2",
+  "task_key": "worker_ssh_mf4v2_v3_check_recompute_v2_20260521T215005",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_mf4v2_v3_check_recompute_v2_20260521T215005_result.json",
+    "occurrence": 1,
+    "bytes": 1126,
+    "sha256": "a45537be3948b3500f94583db5948f8ffaaf4243d3ef89f8b2a7a9930b32a3d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Recompute 完成。\n\n## MF4v2 v3 Status\n\n### 完成状态\n- s123_v3: **完成** (37648/37648 lines)\n- s456_v3: **完成** (37648/37648 lines)\n\n### Recompute 结果\n\n| seed | greedy_f1 | mv_strict_f1 | MV Δ strict (pp) | mv_incl_f1 | MV Δ incl (pp) | degeneracy | α_crit_eff_str | α_crit_eff_incl |\n|------|-----------|--------------|-------------------|------------|----------------|------------|----------------|-----------------|\n| s123 | 0.7911 | 0.7648 | -2.63 | 0.7844 | -0.67 | 9.3% | 0.6825 | 0.7112 |\n| s456 | 0.7910 | 0.7686 | -2.24 | 0.7857 | -0.52 | 8.1% | 0.6793 | 0.7043 |\n\n### 原数据一致性\n- 原 3-seed mean: MV Δ = -2.74±0.54pp, degen = 8.8%\n- v3 当前 (s123+s456): MV Δ strict = **-2.44pp** (mean), degen = **8.7%**\n- 一致: **是** — MV Δ 在原 mean±1σ 范围内 (-2.74±0.54 → [-3.28, -2.20])，degen 8.7% 接近原 8.8%\n\n### pretrained_s42_v2 进度\n- 状态: **运行中** (PID 346388, elapsed 3h38m)\n- 进度: 87% (263296/301184 prompts)\n- 预计剩余: ~30-40 分钟\n- samples.jsonl 尚未写入（推测写入在 inference 全部完成后）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mf4v2-v3-check-recompute-v2.md"
+}

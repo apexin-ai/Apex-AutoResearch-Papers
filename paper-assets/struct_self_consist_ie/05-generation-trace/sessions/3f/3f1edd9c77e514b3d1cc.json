@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "3f1edd9c77e514b3d1cc",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis table1 vs table4 rho discrepancy",
+  "task_key": "worker_analysis_table1_vs_table4_rho_discrepancy_20260515T235236",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_table1_vs_table4_rho_discrepancy_20260515T235236.log",
+    "occurrence": 1,
+    "bytes": 982833,
+    "sha256": "1508f7abc3cef87b3f2db177c9adbb24efcc3f684045008e04f9d8d73cf2f9ef"
+  },
+  "statistics": {
+    "messages": 243,
+    "user_turns": 1,
+    "tool_calls": 85,
+    "roles": {
+      "log": 1,
+      "system": 25,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 85,
+      "tool_result": 85,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 136,
+      "chunks": [
+        {
+          "path": "3f1edd9c77e514b3d1cc-part-0001.json",
+          "message_count": 114
+        },
+        {
+          "path": "3f1edd9c77e514b3d1cc-part-0002.json",
+          "message_count": 22
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 107,
+      "chunks": [
+        {
+          "path": "3f1edd9c77e514b3d1cc-part-0002.json",
+          "message_count": 107
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-table1-vs-table4-rho-discrepancy.md"
+}

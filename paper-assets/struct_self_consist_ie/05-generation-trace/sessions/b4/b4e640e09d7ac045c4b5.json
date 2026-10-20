@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4e640e09d7ac045c4b5",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh urgent sampling fix both servers",
+  "task_key": "worker_ssh_urgent_sampling_fix_both_servers_20260522T155313",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_urgent_sampling_fix_both_servers_20260522T155313_result.json",
+    "occurrence": 1,
+    "bytes": 554,
+    "sha256": "4d6e75b39fc51795239a1a3533d37d3f9da0fa771662301b7e31061516293306"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器均已修复，验证通过：\n\n| 服务器 | 写入 open | 读取 open |\n|--------|----------|----------|\n| **autodl-5090** | L671 ✅ `errors=\"replace\"` | L686 ✅ `errors=\"replace\"` |\n| **autodl-5090-c** | L673 ✅ `errors=\"replace\"` | L688 ✅ `errors=\"replace\"` |\n\n两台服务器的 sampling.py 现在读写两处 `open()` 调用都有 `errors=\"replace\"` 防护。已创建带时间戳的 `.bak` 备份。运行中的进程不受影响，crash 后重跑或新启动的进程将使用修复版代码。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-sampling-fix-both-servers.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "909006443a8acc49d106",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_12_1778910206.md",
+  "task_key": "loop_12_1778910206",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_12_1778910206.md",
+    "occurrence": 1,
+    "bytes": 4719,
+    "sha256": "83b0cef6c73ee8069f141b978a55a1bea678838b72fb9625358a0c74f4d0bbde"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T04:48:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 上仅 cuda:0, cuda:1, cuda:2, cuda:3（项目配置 execution.gpu_ids）\n- 论文所有 ρ 值必须来自 gold-filtered 管道（排除 gold-empty 实例）。CoNLL n=2756，SciERC n=551（551 全集为 canonical，529 交集不进论文）\n- Registry metrics（来自 report.json）与分析脚本对 EM/VC 存在系统性差异——论文统一使用分析脚本输出，不从 registry 直接引用 EM/VC\n- max_tokens 必须用 1024（exp_012 曾用 512 导致 voting_conf ρ 虚高 0.502→0.379）\n- TACRED RE 实验是 D104 最高优先级（MF1: 跨 11 轮 #1 弱点），DDL 2026-05-25（距今 9 天）\n- Selection claim 是 null result（bootstrap p=0.39），不能写 \"significantly outperforms\"\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，4× RTX 5090 32GB\n- 工作目录：/root/autodl-tmp/struct_self_consist_ie/\n- Python/conda：/root/miniconda3/bin/python，激活命令 `source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 基座模型：/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\n- ft_002_v2 merged checkpoint：checkpoints/qwen3-8b-scierc-merged-v2/\n- HF cache：/root/autodl-tmp/.hf_cache/\n- W&B：需确认是否已配置（之前实验未统一用 W&B）\n- 活跃进程：**无**。0 个 RUNNING 实验，0 个活跃 cron，reconcile 返回空\n\n### 3. 📊 当前状态\n**全部 GPU 空闲，0 实验在跑——这是 DDL 前 9 天的紧急状态。**\n\nRegistry: 109 实验总计（60 success / 23 negative / 20 killed / 4 failed），全部 DONE。仅 2 个 PREPARING：\n- **exp_tacred_re_benchmark** [PREPARING]：TACRED RE benchmark，复刻 SciERC RE 实验流程到第二个 RE 数据集，验证 correlation-selection gap 跨数据集泛化。D104 最高优先级（MF1）\n- **exp_vc_lp_cascade_selection** [PREPARING]：VC-filtered LP selection 组合分析，纯分析任务（不需 GPU 训练），应对 SF3 reviewer 意见\n\n14 项 Round 11 写作修复由 Paper Agent 处理（MF2 ε circularity、MF3 contribution reframe、SF1-7、DIV1-4），状态未知——上一个 session 刚创建 D104 action matrix 后就到了硬限。\n\n无等待中的 Worker 回调或 Cron。无 Director 待决策项。\n\n### 4. 📋 待办（条件触发式）\n- **立即**：4 张 GPU 全空闲 = 失职状态。TACRED RE 需要：(1) 下载 TACRED 数据集 (2) 适配训练脚本 (3) fine-tune Qwen3-8B on TACRED (4) inference + signal analysis。应立即 spawn worker 开始 TACRED 实验准备\n- **TACRED fine-tune 完成** → spawn worker 跑 inference（N=8, T=1.0）→ 计算 5 类信号 ρ + selection F1 → 与 SciERC RE 对比 → 更新论文 Table 3/4\n- **VC-filtered LP 分析**：纯分析，不需 GPU。spawn worker 在现有 SciERC 数据上跑 VC pre-filter + LP rank 组合 → 汇报是否改善 selection F1\n- **TACRED 结果出来后** → 如 gap 泛化（预期）：整合进论文，强化 MF1 response；如 gap 不泛化：触发 red-section framing 调整\n- **Paper Agent 写作修复完成** → Round 12 审稿（continue mode）\n- **所有修复 + 实验完成** → Final polish → 2026-05-25 前提交\n\n### 5. 🎯 战略上下文\n- **核心结论**：structured IE 中存在 universal correlation-selection gap——置信信号能预测质量（AUROC 0.75）但不能选出更好的候选。Free-form ablation 证明 LP score compression 是 model/task intrinsic，非 constrained decoding artifact。Scale ablation（4B vs 8B）证明 gap 与 model capacity 无关\n- **Round 11 形势**：Borderline（3.25/5）。MF1（RE 单一 benchmark）是跨 11 轮最顽固的弱点，TACRED 是最后机会补上。MF2（ε circularity）和 MF3（definitional contribution）是写作问题，Paper Agent 处理\n- **决策链关键节点**：D104（Round 11 action matrix）→ D103（撤回 D102 Table 4 修正）→ D098（4B scale ablation 完成）→ D073（RE 3-seed negative 纳入 framing）→ D066（LLaMA fresh rerun）→ D054-D060（数据修正链）\n- **易错点**：\n  - TACRED 数据集需要 LDC license——可能需要用户提供或找替代（如 Re-TACRED/TACREV）。立即确认数据可得性\n  - 不要把 CoNLL NER 4B 的 marginal headroom（1.70pp）与 SciERC NER 的 13pp headroom 混为一谈——CoNLL 本身 selection 空间极小\n  - RE 上 LP > structural signals 是已确认的 task-dependent 现象（binary dominance），不是 bug\n  - AutoDL 实例重启后 SSH 端口会变，连接失败先查端口\n  - submit_training_job 不支持 shell builtin（source 等），命令要用绝对路径或 `bash -c \"...\"`\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778910206.md"
+}

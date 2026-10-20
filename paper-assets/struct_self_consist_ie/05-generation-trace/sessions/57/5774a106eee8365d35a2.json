@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5774a106eee8365d35a2",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu 5090 fill conll mf4v2",
+  "task_key": "worker_gpu_5090_fill_conll_mf4v2_20260521T130142",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_5090_fill_conll_mf4v2_20260521T130142_result.json",
+    "occurrence": 1,
+    "bytes": 498,
+    "sha256": "b58ee9257cd3fe7942cd244784c5363ae3de0bf3f5d30c98980f405853cad6ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验已成功启动，4 张卡全部在用：\n\n| 实验 | GPU | PID | 显存 | 状态 |\n|------|-----|-----|------|------|\n| `exp_conll_mf4v2_s123_rerun` | cuda:2 | 42724 (VLLM engine) / 42178 (tmux) | 16388MiB | RUNNING |\n| `exp_conll_mf4v2_s456_rerun` | cuda:3 | 42889 (VLLM engine) / 42447 (tmux) | 16388MiB | RUNNING |\n\nN=8 推理，CoNLL 3453 条，预计运行时间较短。日志分别在 `~/runs/struct_self_consist_ie/exp_conll_mf4v2_s{123,456}_rerun.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-5090-fill-conll-mf4v2.md"
+}

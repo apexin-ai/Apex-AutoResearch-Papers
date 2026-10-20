@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b4c73da71d848db2724",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh fewnerd n32 unified recompute",
+  "task_key": "worker_ssh_fewnerd_n32_unified_recompute_20260522T101609",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_fewnerd_n32_unified_recompute_20260522T101609_result.json",
+    "occurrence": 1,
+    "bytes": 79,
+    "sha256": "122e84e8ad77ba4811001c4a54ea004d051180a343944552ce96bea9dfcfb963"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Inference running on 4 GPUs. Will check progress in ~30 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fewnerd-n32-unified-recompute.md"
+}

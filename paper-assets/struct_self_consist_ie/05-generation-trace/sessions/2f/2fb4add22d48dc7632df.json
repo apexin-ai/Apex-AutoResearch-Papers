@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "2fb4add22d48dc7632df",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "diagnose exp b1 scd fewnerd curriculum q",
+  "task_key": "worker_diagnose_exp_b1_scd_fewnerd_curriculum_q_20260520T190612",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp_b1_scd_fewnerd_curriculum_q_20260520T190612.log",
+    "occurrence": 1,
+    "bytes": 1932460,
+    "sha256": "187e369eb21e89dac5792b6df6c78e5023fa65b6d918b74dab2b50c3b7bc8127"
+  },
+  "statistics": {
+    "messages": 675,
+    "user_turns": 1,
+    "tool_calls": 255,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 1,
+      "assistant": 151,
+      "tool_call": 255,
+      "tool_result": 255,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 442,
+      "chunks": [
+        {
+          "path": "2fb4add22d48dc7632df-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2fb4add22d48dc7632df-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2fb4add22d48dc7632df-part-0003.json",
+          "message_count": 82
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 233,
+      "chunks": [
+        {
+          "path": "2fb4add22d48dc7632df-part-0003.json",
+          "message_count": 91
+        },
+        {
+          "path": "2fb4add22d48dc7632df-part-0004.json",
+          "message_count": 142
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-exp-b1-scd-fewnerd-curriculum-q.md"
+}

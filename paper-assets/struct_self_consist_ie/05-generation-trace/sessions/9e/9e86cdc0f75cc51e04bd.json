@@ -1,0 +1,1918 @@
+{
+  "schema_version": "1.0",
+  "id": "9e86cdc0f75cc51e04bd",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "ssh b2 v4 inverse frequency",
+  "task_key": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_ssh_b2-v4-inverse-frequency_20260520T115649.jsonl",
+    "occurrence": 1,
+    "bytes": 110628,
+    "sha256": "9558dde2654be7e5a4717560eef9bba185e294ddaf807e3a5d7047ca9b0e53c9"
+  },
+  "statistics": {
+    "messages": 95,
+    "user_turns": 0,
+    "tool_calls": 47,
+    "roles": {
+      "tool_call": 47,
+      "tool_result": 47,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T12:04:00.051056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T12:04:00.052826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "ToolSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T12:04:00.053018+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__detect_image"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "tool_args": {
+              "server": "autodl-5090",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T12:04:00.053362+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"unknown\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"No image marker file found. Use traditional env-setup flow.\\\"\\n}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T12:04:00.053579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output -maxdepth 2 -name \"*.pkl\" -o -name \"*.csv\" -o -name \"*.json\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T12:04:00.053773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T12:04:00.053955+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/artifacts -maxdepth 2 -type d -name \"b2*\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T12:04:00.054162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T12:04:00.054360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/ 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T12:04:00.054539+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T12:04:00.054700+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T12:04:00.054937+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"adalp_analysis_results.json\\\\nadaptive_temperature_results.json\\\\nanalysis_epsilon_sweep\\\\nanalysis_fk_bootstrap_ci.json\\\\nanalysis_fk_bootstrap_per_instance.json\\\\nanalysis_lp_range_cdf.json\\\\nanalysis_lp_range_cdf_n16_3seed.json\\\\nanalysis_mbr_selection.json\\\\nanalysis_multiseed_selection_f1.json\\\\nanalysis_round8\\\\nanalysis_scierc_n16_3seed_selection_f1.json\\\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\\\nanalysis_unified_rho_full.json\\\\nanalyze_s789_rerun.log\\\\nb5_cross_model_construction.py\\\\nb5_cross_model_results.json\\\\nb7_adaptive_budget\\\\nbootstrap_ci_nscaling\\\\nbootstrap_ci_summary.json\\\\nbootstrap_ci_tables.tex\\\\ncalibration_baseline_results.json\\\\nccs_selection_report.md\\\\nccs_selection_results.json\\\\nclaim_audit\\\\nconditional_filter_diagnosis.json\\\\nconstruction_variants\\\\nd108_greedy_f1\\\\nd108_lp_vc_combination\\\\nd108_mbr_within_rho\\\\nd108_q4q5\\\\nd110_4b_degeneracy\\\\nd112_disk_cleanup\\\\nd112_hybrid_strategy\\\\nd112_mf3_random_single\\\\nd112_table2_fix\\\\nd114_auroc_investigation\\\\nd140_oracle_gated\\\\nd141_conditional_decomp\\\\nd141_degeneracy_scatter\\\\nd141_entity_merge\\\\ndals_analysis.json\\\\ndals_cross_model.json\\\\ndals_hardening_results.json\\\\ndeberta_verifier\\\\ndeberta_verifier_5fold\\\\ndebug_sj_variance.log\\\\ndebug_sj_variance_results.json\\\\ndecomposition_regression\\\\ndev_set_lp_probe\\\\ndgs_epoch_rank_analysis.json\\\\ndgs_selection_results.json\\\\ndiagnostic_calibration\\\\ndiagnostic_calibration_results.json\\\\ne2v2_regime_weights\\\\nentity_consensus_report.md\\\\nentity_consensus_results.json\\\\nentity_construction\\\\nentity_construction_fair\\\\nentity_construction_fair_log.txt\\\\nentity_construction_fair_n8\\\\nentity_construction_fair_n8_log.txt\\\\nentity_token_lp_full\\\\nepoch_scierc_textbased_rho.json\\\\nexp001_n16_seed123\\\\nexp001_n16_seed123_200only\\\\nexp001_n16_seed123_200only_backup\\\\nexp001_n16_seed123_full\\\\nexp001_n16_seed123_run.log\\\\nexp001_n16_\n…[truncated 6408 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T12:04:00.055092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/artifacts/",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T12:04:00.055273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"b2_oof\\\\nb2_v2_multi_domain\\\\nb2_v3_domain_invariant\\\\ne1v2_signal_routing\\\\nf1_scaling\\\\nfigures\\\\nj_calibration\\\\nmultiseed_selection_f1_report.md\\\\nn_inverse_scaling\\\\nr5_bonferroni\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T12:04:00.055402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T12:04:00.055566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"32b_post_completion_checklist.md\\\\n__pycache__\\\\nanalysis_d141_conditional_decomp.py\\\\nanalysis_d141_conditional_decomp.py.bak_d141v2\\\\nanalysis_d141_entity_merge.py\\\\nanalysis_d141_entity_merge.py.bak_d141v2\\\\nanalysis_d141_scatter_plot.py\\\\nanalysis_d141_scatter_plot.py.bak_d141v2\\\\nanalysis_r21_q1_alignment.py\\\\nanalysis_rho_unification\\\\nanalysis_round8\\\\nanalyze_freeform_ablation.py\\\\nanalyze_freeform_conll.py\\\\nanalyze_lp_compression.py\\\\nartifacts\\\\nb7_adaptive_budget.py\\\\nb7_adaptive_budget_v2.py\\\\nbootstrap_analysis.py\\\\nbootstrap_analysis2.py\\\\ncheckpoints\\\\ncode\\\\ncompute_error_correlation.py\\\\ncompute_fk_excess.py\\\\ncompute_missing_n8.py\\\\ncompute_seed42_degentable.py\\\\nconll2003_lora.yaml\\\\ndata\\\\ndeberta_verifier_5fold.py\\\\ndeep_freeform_analysis.py\\\\ndocs\\\\nenv.sh\\\\nevaluate_verifier.py\\\\nexamples\\\\nexport_config_ckpt400.yaml\\\\nexport_config_conll2003.yaml\\\\nexport_config_conll2003_4b.yaml\\\\nexport_config_conll2003_ckpt4200.yaml\\\\nexport_config_fewnerd.yaml\\\\nexport_config_fewnerd_5epoch.yaml\\\\nexport_config_llama.yaml\\\\nexport_config_llama_conll2003.yaml\\\\nexport_config_llama_fewnerd.yaml\\\\nexport_config_qwen25_32b_fewnerd.yaml\\\\nexport_config_rank8.yaml\\\\nexport_config_scierc_10epoch.yaml\\\\nexport_config_scierc_3epoch.yaml\\\\nexport_config_scierc_4b.yaml\\\\nexport_config_v2.yaml\\\\nexport_config_wnut17.yaml\\\\nfigures\\\\nft_002_train.log\\\\nft_002v2_train.log\\\\nlaunch_seeds.sh\\\\nlogprob_tie_analysis.py\\\\nlogprob_tie_structural.py\\\\nlogs\\\\nmerge_4b.py\\\\nmerge_4b_ckpt4200.py\\\\nmerge_and_infer_seed123.sh\\\\nmerge_conll.py\\\\nmerge_lora.py\\\\nmerge_shards_exp021.sh\\\\nmultiseed_flip_analysis.py\\\\nmultiseed_flip_analysis_part2.py\\\\nmvp_pilot.log\\\\nmvp_pilot_003.log\\\\nmvp_pilot_004.log\\\\noutput\\\\npatch_scripts.py\\\\nresults\\\\nrho_audit.py\\\\nrun_32b_fewnerd_inference.sh\\\\nrun_bootstrap_loo.py\\\\nrun_bootstrap_loo.py.bak\\\\nrun_bootstrap_loo.py.bak2\\\\nrun_conll_seed456.sh\\\\nrun_exp017_llama_conll_pipeline.sh\\\\nrun_\n…[truncated 1037 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T12:04:00.055750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/artifacts/b2_oof/",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T12:04:00.055887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 40\\\\ndrwxr-xr-x  2 root root   105 May 20 19:55 .\\\\ndrwxr-xr-x 11 root root  4096 May 20 19:53 ..\\\\n-rw-r--r--  1 root root 23337 May 20 19:56 b2_oof_evaluation.py\\\\n-rw-r--r--  1 root root  1942 May 20 19:56 comparison.json\\\\n-rw-r--r--  1 root root  7442 May 20 19:56 oof_construction_f1.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T12:04:00.056012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v2_multi_domain/",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T12:04:00.056171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 56\\\\ndrwxr-xr-x  2 root root   124 May 20 19:46 .\\\\ndrwxr-xr-x 11 root root  4096 May 20 19:53 ..\\\\n-rw-r--r--  1 root root 29675 May 20 19:45 b2_v2_multi_domain.py\\\\n-rw-r--r--  1 root root  2783 May 20 19:46 feature_importance.json\\\\n-rw-r--r--  1 root root 10718 May 20 19:46 results.json\\\\n-rw-r--r--  1 root root  2060 May 20 19:46 summary.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T12:04:00.056335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v3_domain_invariant/",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T12:04:00.056494+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 48\\\\ndrwxr-xr-x  2 root root    93 May 20 19:52 .\\\\ndrwxr-xr-x 11 root root  4096 May 20 19:53 ..\\\\n-rw-r--r--  1 root root 28204 May 20 19:52 b2_v3_domain_invariant.py\\\\n-rw-r--r--  1 root root 10391 May 20 19:52 results.json\\\\n-rw-r--r--  1 root root  2782 May 20 19:52 summary.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T12:04:00.056647+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/scripts -name \"b2*\" -maxdepth 1",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T12:04:00.056827+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T12:04:00.057142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:TodoWrite",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T12:04:00.057330+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T12:04:00.057492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'Read existing B2 verifier code and data structure', 'status': 'in_progress', 'activeForm': 'Reading existing B2 verifier code and data structure'}, {'content': 'Implement B2-v4 inverse-frequency weighted verifier script', 'status': 'pending', 'activeForm': 'Implementing B2-v4 inverse-frequency weighted verifier script'}, {'content': 'Upload and run on autodl-5090', 'status': 'pending', 'activeForm': 'Uploading and running on autodl-5090'}, {'content': 'Verify results and save artifacts', 'status': 'pending', 'activeForm': 'Verifying results and saving artifacts'}]"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T12:04:00.057666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "TodoWrite",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T12:04:00.057861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v2_multi_domain/b2_v2_multi_domain.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T12:04:00.058324+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"B2-v2: Multi-Domain Joint Training Entity Verifier.\\\\n\\\\nLeave-one-dataset-out cross-validation to address cross-domain generalization.\\\\nExtends B2 original (train CoNLL+SciERC, test FewNERD AUC=0.8335) by:\\\\n  - Joint training on all 3 datasets\\\\n  - 4-fold leave-one-dataset-out CV\\\\n  - ECE calibration metric\\\\n  - Feature stability analysis across domains\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json, os, re, math, time, sys\\\\nimport numpy as np\\\\nfrom collections import Counter, defaultdict\\\\n\\\\nBASE = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie\\\\\\\"\\\\nOUT = f\\\\\\\"{BASE}/artifacts/b2_v2_multi_domain\\\\\\\"\\\\nos.makedirs(OUT, exist_ok=True)\\\\n\\\\nCONFIGS = [\\\\n    # CoNLL 7B Qwen FT (3 seeds)\\\\n    dict(name=\\\\\\\"conll_7b_s42\\\\\\\",  path=f\\\\\\\"{BASE}/output/exp_002_conll_n16/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"conll\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=False),\\\\n    dict(name=\\\\\\\"conll_7b_s123\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_002_conll_n16_seed123/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"conll\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=True),\\\\n    dict(name=\\\\\\\"conll_7b_s456\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_002_conll_n16_seed456/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"conll\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=True),\\\\n    # SciERC 7B Qwen FT (3 seeds)\\\\n    dict(name=\\\\\\\"scierc_7b_s42\\\\\\\",  path=f\\\\\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"scierc\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=False),\\\\n    dict(name=\\\\\\\"scierc_7b_s123\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"scierc\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=False),\\\\n    dict(name=\\\\\\\"scierc_7b_s456\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"scierc\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=False),\\\\n    # FewNERD 7B Qwen FT (3 seeds, capped at 3000)\\\\n    dict(name=\\\\\\\"fewnerd_7b_s123\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_021_fewnerd_n8_seed123/samples.jsonl\\\\\\\",\\\\n \n…[truncated 7513 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T12:04:00.058582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v2_multi_domain/results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T12:04:00.059187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"total_instances\\\\\\\": 18855,\\\\n    \\\\\\\"total_candidates\\\\\\\": 86246,\\\\n    \\\\\\\"positive_rate\\\\\\\": 0.5214,\\\\n    \\\\\\\"per_dataset\\\\\\\": {\\\\n      \\\\\\\"conll\\\\\\\": {\\\\n        \\\\\\\"instances\\\\\\\": 8268,\\\\n        \\\\\\\"candidates\\\\\\\": 27965,\\\\n        \\\\\\\"positive\\\\\\\": 16437,\\\\n        \\\\\\\"pos_rate\\\\\\\": 0.5878\\\\n      },\\\\n      \\\\\\\"scierc\\\\\\\": {\\\\n        \\\\\\\"instances\\\\\\\": 1587,\\\\n        \\\\\\\"candidates\\\\\\\": 9572,\\\\n        \\\\\\\"positive\\\\\\\": 4219,\\\\n        \\\\\\\"pos_rate\\\\\\\": 0.4408\\\\n      },\\\\n      \\\\\\\"fewnerd\\\\\\\": {\\\\n        \\\\\\\"instances\\\\\\\": 9000,\\\\n        \\\\\\\"candidates\\\\\\\": 48709,\\\\n        \\\\\\\"positive\\\\\\\": 24310,\\\\n        \\\\\\\"pos_rate\\\\\\\": 0.4991\\\\n      }\\\\n    },\\\\n    \\\\\\\"entity_types\\\\\\\": [\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\" LOC\\\\\\\",\\\\n      \\\\\\\" PER\\\\\\\",\\\\n      \\\\\\\" PERSON\\\\\\\",\\\\n      \\\\\\\"...\\\\\\\",\\\\n      \\\\\\\".PER\\\\\\\",\\\\n      \\\\\\\"ACP\\\\\\\",\\\\n      \\\\\\\"ACRONYM\\\\\\\",\\\\n      \\\\\\\"ADMIN\\\\\\\",\\\\n      \\\\\\\"ALL\\\\\\\",\\\\n      \\\\\\\"Acronym\\\\\\\",\\\\n      \\\\\\\"AnatomicalStructure\\\\\\\",\\\\n      \\\\\\\"Anatomy\\\\\\\",\\\\n      \\\\\\\"DATE\\\\\\\",\\\\n      \\\\\\\"ENT\\\\\\\",\\\\n      \\\\\\\"ENTITY\\\\\\\",\\\\n      \\\\\\\"EST\\\\\\\",\\\\n      \\\\\\\"EVE\\\\\\\",\\\\n      \\\\\\\"EVENT\\\\\\\",\\\\n      \\\\\\\"EXP\\\\\\\",\\\\n      \\\\\\\"Feature\\\\\\\",\\\\n      \\\\\\\"GPE\\\\\\\",\\\\n      \\\\\\\"GROUP\\\\\\\",\\\\n      \\\\\\\"General\\\\\\\",\\\\n      \\\\\\\"Generic\\\\\\\",\\\\n      \\\\\\\"HYPONYM-OF\\\\\\\",\\\\n      \\\\\\\"LOC\\\\\\\",\\\\n      \\\\\\\"LOCATION\\\\\\\",\\\\n      \\\\\\\"Location\\\\\\\",\\\\n      \\\\\\\"MISC\\\\\\\",\\\\n      \\\\\\\"Material\\\\\\\",\\\\n      \\\\\\\"Method\\\\\\\",\\\\n      \\\\\\\"Metric\\\\\\\",\\\\n      \\\\\\\"NER\\\\\\\",\\\\n      \\\\\\\"OG\\\\\\\",\\\\n      \\\\\\\"ONE\\\\\\\",\\\\n      \\\\\\\"OR\\\\\\\",\\\\n      \\\\\\\"OR...\\\\\\\",\\\\n      \\\\\\\"OR:\\\\\\\",\\\\n      \\\\\\\"ORG\\\\\\\",\\\\n      \\\\\\\"ORGANIZATION\\\\\\\",\\\\n      \\\\\\\"ORGB\\\\\\\",\\\\n      \\\\\\\"ORGN\\\\\\\",\\\\n      \\\\\\\"ORg\\\\\\\",\\\\n      \\\\\\\"Organization\\\\\\\",\\\\n      \\\\\\\"OtherScientificTerm\\\\\\\",\\\\n      \\\\\\\"PE\\\\\\\",\\\\n      \\\\\\\"PEO\\\\\\\",\\\\n      \\\\\\\"PER\\\\\\\",\\\\n      \\\\\\\"PERSON\\\\\\\",\\\\n      \\\\\\\"PLAC\\\\\\\",\\\\n      \\\\\n…[truncated 8838 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T12:04:00.059452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v2_multi_domain/feature_importance.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T12:04:00.059764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"fold1_test_conll\\\\\\\": {\\\\n    \\\\\\\"xgb_gain\\\\\\\": {\\\\n      \\\\\\\"agreement_count\\\\\\\": 0.430828720331192,\\\\n      \\\\\\\"vc\\\\\\\": 0.43033933639526367,\\\\n      \\\\\\\"lp_token\\\\\\\": 0.015569023787975311,\\\\n      \\\\\\\"lp_span\\\\\\\": 0.029570596292614937,\\\\n      \\\\\\\"sample_mean_lp\\\\\\\": 0.01785563863813877,\\\\n      \\\\\\\"sj\\\\\\\": 0.01479666493833065,\\\\n      \\\\\\\"entity_type_enc\\\\\\\": 0.01796158403158188,\\\\n      \\\\\\\"entity_length\\\\\\\": 0.015186026692390442,\\\\n      \\\\\\\"entity_char_length\\\\\\\": 0.014032675884664059,\\\\n      \\\\\\\"entity_position\\\\\\\": 0.01385972648859024,\\\\n      \\\\\\\"model_size_log\\\\\\\": 0.0,\\\\n      \\\\\\\"dataset_enc\\\\\\\": 0.0,\\\\n      \\\\\\\"regime_enc\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"lgb_splits\\\\\\\": {\\\\n      \\\\\\\"agreement_count\\\\\\\": 298,\\\\n      \\\\\\\"vc\\\\\\\": 192,\\\\n      \\\\\\\"lp_token\\\\\\\": 615,\\\\n      \\\\\\\"lp_span\\\\\\\": 803,\\\\n      \\\\\\\"sample_mean_lp\\\\\\\": 797,\\\\n      \\\\\\\"sj\\\\\\\": 705,\\\\n      \\\\\\\"entity_type_enc\\\\\\\": 530,\\\\n      \\\\\\\"entity_length\\\\\\\": 246,\\\\n      \\\\\\\"entity_char_length\\\\\\\": 733,\\\\n      \\\\\\\"entity_position\\\\\\\": 1036,\\\\n      \\\\\\\"model_size_log\\\\\\\": 0,\\\\n      \\\\\\\"dataset_enc\\\\\\\": 0,\\\\n      \\\\\\\"regime_enc\\\\\\\": 0\\\\n    }\\\\n  },\\\\n  \\\\\\\"fold2_test_scierc\\\\\\\": {\\\\n    \\\\\\\"xgb_gain\\\\\\\": {\\\\n      \\\\\\\"agreement_count\\\\\\\": 0.35301294922828674,\\\\n      \\\\\\\"vc\\\\\\\": 0.4393840730190277,\\\\n      \\\\\\\"lp_token\\\\\\\": 0.006995593663305044,\\\\n      \\\\\\\"lp_span\\\\\\\": 0.010073778219521046,\\\\n      \\\\\\\"sample_mean_lp\\\\\\\": 0.012594703584909439,\\\\n      \\\\\\\"sj\\\\\\\": 0.009524607099592686,\\\\n      \\\\\\\"entity_type_enc\\\\\\\": 0.022523514926433563,\\\\n      \\\\\\\"entity_length\\\\\\\": 0.008751823566854,\\\\n      \\\\\\\"entity_char_length\\\\\\\": 0.007697838358581066,\\\\n      \\\\\\\"entity_position\\\\\\\": 0.00872276071459055,\\\\n      \\\\\\\"model_size_log\\\\\\\": 0.0,\\\\n      \\\\\\\"dataset_enc\\\\\\\": 0.12071837484836578,\\\\n      \\\\\\\"regime_enc\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"lgb_splits\\\\\\\": {\\\\n      \\\\\\\"agreement_count\\\\\\\": 364,\\\\n      \\\\\\\"vc\\\\\\\": 207,\\\\n      \\\\\\\n…[truncated 1659 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T12:04:00.060072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -300 /root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v2_multi_domain/b2_v2_multi_domain.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T12:04:00.060549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"B2-v2: Multi-Domain Joint Training Entity Verifier.\\\\n\\\\nLeave-one-dataset-out cross-validation to address cross-domain generalization.\\\\nExtends B2 original (train CoNLL+SciERC, test FewNERD AUC=0.8335) by:\\\\n  - Joint training on all 3 datasets\\\\n  - 4-fold leave-one-dataset-out CV\\\\n  - ECE calibration metric\\\\n  - Feature stability analysis across domains\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json, os, re, math, time, sys\\\\nimport numpy as np\\\\nfrom collections import Counter, defaultdict\\\\n\\\\nBASE = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie\\\\\\\"\\\\nOUT = f\\\\\\\"{BASE}/artifacts/b2_v2_multi_domain\\\\\\\"\\\\nos.makedirs(OUT, exist_ok=True)\\\\n\\\\nCONFIGS = [\\\\n    # CoNLL 7B Qwen FT (3 seeds)\\\\n    dict(name=\\\\\\\"conll_7b_s42\\\\\\\",  path=f\\\\\\\"{BASE}/output/exp_002_conll_n16/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"conll\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=False),\\\\n    dict(name=\\\\\\\"conll_7b_s123\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_002_conll_n16_seed123/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"conll\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=True),\\\\n    dict(name=\\\\\\\"conll_7b_s456\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_002_conll_n16_seed456/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"conll\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=True),\\\\n    # SciERC 7B Qwen FT (3 seeds)\\\\n    dict(name=\\\\\\\"scierc_7b_s42\\\\\\\",  path=f\\\\\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"scierc\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=False),\\\\n    dict(name=\\\\\\\"scierc_7b_s123\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"scierc\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=False),\\\\n    dict(name=\\\\\\\"scierc_7b_s456\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"scierc\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=False),\\\\n    # FewNERD 7B Qwen FT (3 seeds, capped at 3000)\\\\n    dict(name=\\\\\\\"fewnerd_7b_s123\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_021_fewnerd_n8_seed123/samples.jsonl\\\\\\\",\\\\n \n…[truncated 7413 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T12:04:00.060792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -400 /root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v2_multi_domain/b2_v2_multi_domain.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T12:04:00.061338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    for ds in DATASETS:\\\\n        ds_data = [d for d in all_data if d[\\\\\\\"dataset\\\\\\\"] == ds]\\\\n        nc = sum(len(d[\\\\\\\"candidates\\\\\\\"]) for d in ds_data)\\\\n        np_ = sum(c[\\\\\\\"label\\\\\\\"] for d in ds_data for c in d[\\\\\\\"candidates\\\\\\\"])\\\\n        per_ds_stats[ds] = {\\\\\\\"instances\\\\\\\": len(ds_data), \\\\\\\"candidates\\\\\\\": nc, \\\\\\\"positive\\\\\\\": np_,\\\\n                            \\\\\\\"pos_rate\\\\\\\": round(np_ / max(nc, 1), 4)}\\\\n        print(f\\\\\\\"  {ds}: {len(ds_data)} inst, {nc} cands ({np_} pos, {100*np_/max(nc,1):.1f}%)\\\\\\\")\\\\n\\\\n    # --- 2. Entity type encoding ---\\\\n    all_types = sorted({c[\\\\\\\"etype_raw\\\\\\\"] for d in all_data for c in d[\\\\\\\"candidates\\\\\\\"]})\\\\n    type_map = {t: i for i, t in enumerate(all_types)}\\\\n    print(f\\\\\\\"\\\\\\\\nEntity types ({len(type_map)}): {all_types[:10]}{'...' if len(all_types)>10 else ''}\\\\\\\")\\\\n    for d in all_data:\\\\n        for c in d[\\\\\\\"candidates\\\\\\\"]:\\\\n            c[\\\\\\\"features\\\\\\\"][6] = type_map[c[\\\\\\\"etype_raw\\\\\\\"]]\\\\n\\\\n    # --- 3. Import ML libs ---\\\\n    import xgboost as xgb\\\\n    import lightgbm as lgb\\\\n    from sklearn.model_selection import StratifiedKFold\\\\n    from sklearn.metrics import roc_auc_score\\\\n\\\\n    # ================================================================\\\\n    # Fold 1-3: Leave-one-dataset-out\\\\n    # ================================================================\\\\n    fold_results = {}\\\\n    feature_importance_all = {}\\\\n\\\\n    for fold_idx, test_ds in enumerate(DATASETS):\\\\n        fold_name = f\\\\\\\"fold{fold_idx+1}_test_{test_ds}\\\\\\\"\\\\n        train_ds_list = [d for d in DATASETS if d != test_ds]\\\\n        print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n        print(f\\\\\\\"Fold {fold_idx+1}: Train on {train_ds_list}, Test on [{test_ds}]\\\\\\\")\\\\n        print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n        train_data = [d for d in all_data if d[\\\\\\\"dataset\\\\\\\"] != test_ds]\\\\n        test_data = [d for d in all_data if d[\\\\\\\"dataset\\\\\\\"] == test_ds]\\\\n\\\\n     \n…[truncated 7295 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T12:04:00.061638+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "sed -n '100,250p' /root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v2_multi_domain/b2_v2_multi_domain.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T12:04:00.061826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T12:04:00.061962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -500 /root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v2_multi_domain/b2_v2_multi_domain.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T12:04:00.062292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"B2-v2: Multi-Domain Joint Training Entity Verifier.\\\\n\\\\nLeave-one-dataset-out cross-validation to address cross-domain generalization.\\\\nExtends B2 original (train CoNLL+SciERC, test FewNERD AUC=0.8335) by:\\\\n  - Joint training on all 3 datasets\\\\n  - 4-fold leave-one-dataset-out CV\\\\n  - ECE calibration metric\\\\n  - Feature stability analysis across domains\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json, os, re, math, time, sys\\\\nimport numpy as np\\\\nfrom collections import Counter, defaultdict\\\\n\\\\nBASE = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie\\\\\\\"\\\\nOUT = f\\\\\\\"{BASE}/artifacts/b2_v2_multi_domain\\\\\\\"\\\\nos.makedirs(OUT, exist_ok=True)\\\\n\\\\nCONFIGS = [\\\\n    # CoNLL 7B Qwen FT (3 seeds)\\\\n    dict(name=\\\\\\\"conll_7b_s42\\\\\\\",  path=f\\\\\\\"{BASE}/output/exp_002_conll_n16/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"conll\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=False),\\\\n    dict(name=\\\\\\\"conll_7b_s123\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_002_conll_n16_seed123/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"conll\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=True),\\\\n    dict(name=\\\\\\\"conll_7b_s456\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_002_conll_n16_seed456/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"conll\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=True),\\\\n    # SciERC 7B Qwen FT (3 seeds)\\\\n    dict(name=\\\\\\\"scierc_7b_s42\\\\\\\",  path=f\\\\\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"scierc\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=False),\\\\n    dict(name=\\\\\\\"scierc_7b_s123\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"scierc\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=False),\\\\n    dict(name=\\\\\\\"scierc_7b_s456\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"scierc\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=False),\\\\n    # FewNERD 7B Qwen FT (3 seeds, capped at 3000)\\\\n    dict(name=\\\\\\\"fewnerd_7b_s123\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_021_fewnerd_n8_seed123/samples.jsonl\\\\\\\",\\\\n \n…[truncated 7528 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T12:04:00.062499+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"def \" /root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v2_multi_domain/b2_v2_multi_domain.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T12:04:00.062655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"60:def load_data(path, maxn=None):\\\\n75:def precompute_text_regions(sample):\\\\n96:def entity_token_lp(pre, eidx):\\\\n108:def per_sample_sj(samples):\\\\n125:def get_sample_lp(sample, inst, si):\\\\n132:def process_config(cfg):\\\\n235:def prf(tp, fp, fn):\\\\n242:def eval_sets(pred_set, gold_set):\\\\n249:def eval_greedy(data):\\\\n258:def eval_majority_vote(data, threshold=0.5):\\\\n268:def eval_path_a(data, model_key, threshold):\\\\n278:def eval_path_b(data, model_key, construct_thresh=0.5, filter_thresh=0.5):\\\\n289:def compute_ece(y_true, y_prob, n_bins=10):\\\\n307:def main():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T12:04:00.062854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "python3 -c \"\nwith open('/root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v2_multi_domain/b2_v2_multi_domain.py') as f:\n    lines = f.readlines()\nfor i, line in enumerate(lines[107:235], start=108):\n    print(f'{i}: {line}', end='')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-20T12:04:00.063065+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-20T12:04:00.063295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -235 /root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v2_multi_domain/b2_v2_multi_domain.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-20T12:04:00.063719+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"B2-v2: Multi-Domain Joint Training Entity Verifier.\\\\n\\\\nLeave-one-dataset-out cross-validation to address cross-domain generalization.\\\\nExtends B2 original (train CoNLL+SciERC, test FewNERD AUC=0.8335) by:\\\\n  - Joint training on all 3 datasets\\\\n  - 4-fold leave-one-dataset-out CV\\\\n  - ECE calibration metric\\\\n  - Feature stability analysis across domains\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json, os, re, math, time, sys\\\\nimport numpy as np\\\\nfrom collections import Counter, defaultdict\\\\n\\\\nBASE = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie\\\\\\\"\\\\nOUT = f\\\\\\\"{BASE}/artifacts/b2_v2_multi_domain\\\\\\\"\\\\nos.makedirs(OUT, exist_ok=True)\\\\n\\\\nCONFIGS = [\\\\n    # CoNLL 7B Qwen FT (3 seeds)\\\\n    dict(name=\\\\\\\"conll_7b_s42\\\\\\\",  path=f\\\\\\\"{BASE}/output/exp_002_conll_n16/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"conll\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=False),\\\\n    dict(name=\\\\\\\"conll_7b_s123\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_002_conll_n16_seed123/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"conll\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=True),\\\\n    dict(name=\\\\\\\"conll_7b_s456\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_002_conll_n16_seed456/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"conll\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=True),\\\\n    # SciERC 7B Qwen FT (3 seeds)\\\\n    dict(name=\\\\\\\"scierc_7b_s42\\\\\\\",  path=f\\\\\\\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"scierc\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=False),\\\\n    dict(name=\\\\\\\"scierc_7b_s123\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"scierc\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=False),\\\\n    dict(name=\\\\\\\"scierc_7b_s456\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\\\\\\\",\\\\n         ds=\\\\\\\"scierc\\\\\\\", msz=7e9, reg=\\\\\\\"FT\\\\\\\", tok=False),\\\\n    # FewNERD 7B Qwen FT (3 seeds, capped at 3000)\\\\n    dict(name=\\\\\\\"fewnerd_7b_s123\\\\\\\", path=f\\\\\\\"{BASE}/output/exp_021_fewnerd_n8_seed123/samples.jsonl\\\\\\\",\\\\n \n…[truncated 7399 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-20T12:04:00.064360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v3_domain_invariant/summary.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-20T12:04:00.064732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# B2-v3: Domain-Invariant Features Only Entity Verifier\\\\n\\\\n**Date**: 2026-05-20 19:52\\\\n**Features** (9): agreement_count, vc, lp_token, lp_span, sample_mean_lp, sj, entity_length, entity_char_length, entity_position\\\\n**Removed**: entity_type_enc, model_size_log, dataset_enc, regime_enc\\\\n**Total entities**: 86246 across 9 configs\\\\n\\\\n## Leave-One-Dataset-Out Results\\\\n\\\\n| Fold | Train | Test | XGB AUC | LGB AUC | XGB ECE | LGB ECE | Greedy F1 | Best F1 | Δ Greedy |\\\\n|------|-------|------|---------|---------|---------|---------|-----------|---------|----------|\\\\n| 1 | scierc+fewnerd | conll | 0.9386 | 0.9368 | 0.0234 | 0.0197 | 0.9121 | 0.9151 | +0.0030 |\\\\n| 2 | conll+fewnerd | scierc | 0.8163 | 0.8152 | 0.1521 | 0.1439 | 0.6655 | 0.6745 | +0.0090 |\\\\n| 3 | conll+scierc | fewnerd | 0.8518 | 0.8562 | 0.1643 | 0.1373 | 0.7937 | 0.7835 | -0.0102 |\\\\n\\\\n## Comparison: v3 vs v2 vs Original (Fold 3: FewNERD)\\\\n\\\\n| Version | Features | XGB AUC | LGB AUC | XGB ECE | LGB ECE |\\\\n|---------|----------|---------|---------|---------|---------|\\\\n| B2 orig | 13 (all) | 0.8282 | 0.8335 | - | - |\\\\n| B2-v2   | 13 (all) | 0.8603 | 0.8477 | 0.1556 | 0.1357 |\\\\n| **B2-v3** | **9 (invariant)** | **0.8518** | **0.8562** | **0.1643** | **0.1373** |\\\\n\\\\n### AUC Delta (v3 - v2)\\\\n\\\\n| Fold | XGB Δ | LGB Δ | ECE XGB Δ | ECE LGB Δ |\\\\n|------|-------|-------|-----------|-----------|\\\\n| conll | -0.0005 | -0.0010 | -0.0070 | -0.0107 |\\\\n| scierc | +0.0253 | +0.0146 | +0.0071 | +0.0165 |\\\\n| fewnerd | -0.0085 | +0.0085 | +0.0087 | +0.0016 |\\\\n\\\\n## Feature Importance (XGB Gain, avg across folds)\\\\n\\\\n| Feature | Avg Gain | Rank |\\\\n|---------|----------|------|\\\\n| agreement_count | 0.5843 | 1 |\\\\n| vc | 0.3029 | 2 |\\\\n| lp_span | 0.0207 | 3 |\\\\n| sample_mean_lp | 0.0201 | 4 |\\\\n| lp_token | 0.0146 | 5 |\\\\n| entity_position | 0.0145 | 6 |\\\\n| entity_length | 0.0144 | 7 |\\\\n| sj | 0.0143 | 8 |\\\\n| entity_char_length | 0.0142 | \n…[truncated 1065 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-20T12:04:00.064995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "python3 -c \"import lightgbm; import xgboost; print(f'lgb={lightgbm.__version__}, xgb={xgboost.__version__}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-20T12:04:00.065314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-20T12:04:00.065539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "python3 -c \"import lightgbm; print(lightgbm.__version__)\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-20T12:04:00.065766+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-20T12:04:00.065981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "python3 -c \"import xgboost; print(xgboost.__version__)\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-20T12:04:00.066413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-20T12:04:00.066595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import lightgbm; print('lgb', lightgbm.__version__); import xgboost; print('xgb', xgboost.__version__); import sklearn; print('sk', sklearn.__version__)\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-20T12:04:00.066737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"lgb 4.6.0\\\\nxgb 3.2.0\\\\nsk 1.8.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-20T12:04:00.066930+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'Read existing B2 verifier code and data structure', 'status': 'completed', 'activeForm': 'Reading existing B2 verifier code and data structure'}, {'content': 'Implement B2-v4 inverse-frequency weighted verifier script', 'status': 'in_progress', 'activeForm': 'Implementing B2-v4 inverse-frequency weighted verifier script'}, {'content': 'Upload and run on autodl-5090', 'status': 'pending', 'activeForm': 'Uploading and running on autodl-5090'}, {'content': 'Verify results and save artifacts', 'status': 'pending', 'activeForm': 'Verifying results and saving artifacts'}]"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-20T12:04:00.067092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "TodoWrite",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-20T12:04:00.067425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/b2_v4_inverse_freq/b2_v4_inverse_freq.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"B2-v4: Inverse-Frequency Weighted Entity Verifier.\n\nMotivation: agreement_count, vc, sj have high discriminative power but\nworst cross-domain stability (std=0.12-0.14). High-frequency entity types\ndominate these features, hurting transfer.\n\nApproach: normalize agreement_count and vc by inverse entity-type frequency\nin the training set: feature_ifw = feature / log(1 + type_freq).\nThis downweights entities from common types where high agreement is expected.\n\nTwo variants:\n  A) \"replace\" — swap agreement_count/vc with IFW versions (13 features)\n  B) \"augment\" — add IFW features alongside originals (16 features)\n\"\"\"\n\nimport json, os, re, math, time, sys\nimport numpy as np\nfrom collections import Counter, defaultdict\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nOUT = f\"{BASE}/artifacts/b2_v4_inverse_freq\"\nos.makedirs(OUT, exist_ok=True)\n\nCONFIGS = [\n    dict(name=\"conll_7b_s42\",  path=f\"{BASE}/output/exp_002_conll_n16/samples.jsonl\",\n         ds=\"conll\", msz=7e9, reg=\"FT\", tok=False),\n    dict(name=\"conll_7b_s123\", path=f\"{BASE}/output/exp_002_conll_n16_seed123/samples.jsonl\",\n         ds=\"conll\", msz=7e9, reg=\"FT\", tok=True),\n    dict(name=\"conll_7b_s456\", path=f\"{BASE}/output/exp_002_conll_n16_seed456/samples.jsonl\",\n         ds=\"conll\", msz=7e9, reg=\"FT\", tok=True),\n    dict(name=\"scierc_7b_s42\",  path=f\"{BASE}/output/exp_001_seed42_v2/samples.jsonl\",\n         ds=\"scierc\", msz=7e9, reg=\"FT\", tok=False),\n    dict(name=\"scierc_7b_s123\", path=f\"{BASE}/output/exp_001_seed123_v2/samples.jsonl\",\n         ds=\"scierc\", msz=7e9, reg=\"FT\", tok=False),\n    dict(name=\"scierc_7b_s456\", path=f\"{BASE}/output/exp_001_seed456_v2/samples.jsonl\",\n         ds=\"scierc\", msz=7e9, reg=\"FT\", tok=False),\n    dict(name=\"fewnerd_7b_s123\", path=f\"{BASE}/output/exp_021_fewnerd_n8_seed123/samples.jsonl\",\n         ds=\"fewnerd\", msz=7e9, reg=\"FT\", tok=True),\n    dict(name=\"fewnerd_7b_s456\", path=f\"{BASE}/output/exp_021_fewnerd_n8_seed456/samples.jsonl\",\n         ds=\"fewnerd\", msz=7e9, reg=\"FT\", tok=True),\n    dict(name=\"fewnerd_7b_s789\", path=f\"{BASE}/output/fewnerd_seed789_merged/samples.jsonl\",\n         ds=\"fewnerd\", msz=7e9, reg=\"FT\", tok=True),\n]\n\nFEWNERD_MAX = 3000\nDS_MAP = {\"conll\": 0, \"scierc\": 1, \"fewnerd\": 2}\nREG_MAP = {\"FT\": 0, \"ZS\": 1, \"FS\": 2}\nDATASETS = [\"conll\", \"scierc\", \"fewnerd\"]\n\nFEAT_COLS_ORIG = [\n    \"agreement_count\", \"vc\", \"lp_token\", \"lp_span\", \"sample_mean_lp\",\n    \"sj\", \"entity_type_enc\", \"entity_length\", \"entity_char_length\",\n    \"entity_position\", \"model_size_log\", \"dataset_enc\", \"regime_enc\",\n]\n\nFEAT_COLS_REPLACE = [\n    \"ac_ifw\", \"vc_ifw\", \"lp_token\", \"lp_span\", \"sample_mean_lp\",\n    \"sj_ifw\", \"entity_type_enc\", \"entity_length\", \"entity_char_length\",\n    \"entity_position\", \"model_size_log\", \"dataset_enc\", \"regime_enc\",\n]\n\nFEAT_COLS_AUGMENT = FEAT_COLS_ORIG + [\"ac_ifw\", \"vc_ifw\", \"sj_ifw\"]\n\n\n# ================================================================\n# Feature extraction (from B2-v2)\n# ================================================================\n\ndef load_data(path, maxn=None):\n    out = []\n    with open(path) as f:\n        for line in f:\n            if not line.strip():\n                continue\n            obj = json.loads(line)\n            if not obj[\"gold\"][\"entities\"]:\n                continue\n            out.append(obj)\n            if maxn and len(out) >= maxn:\n                break\n    return out\n\n\ndef precompute_text_regions(sample):\n    tt = sample.get(\"token_texts\")\n    tl = sample.get(\"token_logprobs\")\n    if not tt or not tl:\n        return None\n    full = \"\".join(tt)\n    cs = []\n    p = 0\n    for t in tt:\n        cs.append(p)\n        p += len(t)\n    regions = []\n    for m in re.finditer(r'\"text\"\\s*:\\s*\"', full):\n        vs = m.end()\n        ve = vs\n        while ve < len(full) and not (full[ve] == '\"' and (ve == 0 or full[ve - 1] != '\\\\')):\n            ve += 1\n        regions.append((vs, ve))\n    return {\"cs\": cs, \"tt\": tt, \"tl\": tl, \"regions\": regions}\n\n\ndef entity_token_lp(pre, eidx):\n    if pre is None or eidx >= len(pre[\"regions\"]):\n        return None, None\n    vs, ve = pre[\"regions\"][eidx]\n    cs, tt, tl = pre[\"cs\"], pre[\"tt\"], pre[\"tl\"]\n    idxs = [i for i in range(len(tt)) if cs[i] < ve and cs[i] + len(tt[i]) > vs]\n    if not idxs:\n        return None, None\n    lps = [tl[i] for i in idxs if i < len(tl)]\n    return (float(np.mean(lps)), float(np.sum(lps))) if lps else (None, None)\n\n\ndef per_sample_sj(samples):\n    N = len(samples)\n    scores = []\n    for si, s in enumerate(samples):\n        eset = frozenset((e[\"start\"], e[\"end\"], e[\"type\"]) for e in s.get(\"entities\", []))\n        overlaps = []\n        for sj_idx, sj_s in enumerate(samples):\n            if sj_idx == si:\n                continue\n            other = frozenset((e[\"start\"], e[\"end\"], e[\"type\"]) for e in sj_s.get(\"entities\", []))\n            union = len(eset | other)\n            inter = len(eset & other)\n            overlaps.append(inter / union if union > 0 else 1.0)\n        scores.append(float(np.mean(overlaps)) if overlaps else 0.0)\n    return scores\n\n\ndef get_sample_lp(sample, inst, si):\n    lp = sample.get(\"mean_logprob\")\n    if lp is None and \"logprobs\" in inst and si < len(inst[\"logprobs\"]):\n        lp = inst[\"logprobs\"][si]\n    return lp\n\n\ndef normalize_etype(etype):\n    \"\"\"Normalize entity type string for frequency counting.\"\"\"\n    t = etype.strip().upper()\n    # Map common variants\n    alias = {\n        \"PERSON\": \"PER\", \"ORGANIZATION\": \"ORG\", \"LOCATION\": \"LOC\",\n        \"ORGN\": \"ORG\", \"ORGB\": \"ORG\", \"_ORG\": \"ORG\", \"_PER\": \"PER\",\n        \"ORG\": \"ORG\", \"PER\": \"PER\", \"LOC\": \"LOC\",\n        \"PLAC\": \"LOC\", \"PLACE\": \"LOC\",\n    }\n    return alias.get(t, t)\n\n\ndef process_config(cfg):\n    maxn = FEWNERD_MAX if cfg[\"ds\"] == \"fewnerd\" else None\n    insts = load_data(cfg[\"path\"], maxn)\n    print(f\"  {cfg['name']}: {len(insts)} inst\", flush=True)\n\n    results = []\n    for inst in insts:\n        samples = inst[\"samples\"]\n        gold = inst[\"gold\"][\"entities\"]\n        text = inst[\"text\"]\n        tlen = max(len(text), 1)\n        N = len(samples)\n\n        gold_set = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold}\n        sj_scores = per_sample_sj(samples)\n\n        span_cnt = Counter()\n        span_si = defaultdict(list)\n        span_text = {}\n        text_vc = Counter()\n\n        for si, s in enumerate(samples):\n            seen_s, seen_t = set(), set()\n            for e in s.get(\"entities\", []):\n                k = (e[\"start\"], e[\"end\"], e[\"type\"])\n                tk = (e[\"text\"].lower(), e[\"type\"])\n                if k not in seen_s:\n                    span_cnt[k] += 1\n                    span_si[k].append(si)\n                    span_text[k] = e[\"text\"]\n                    seen_s.add(k)\n                if tk not in seen_t:\n                    text_vc[tk] += 1\n                    seen_t.add(tk)\n\n        ent_tlp = defaultdict(list)\n        if cfg[\"tok\"]:\n            for si, s in enumerate(samples):\n                pre = precompute_text_regions(s)\n                if pre is None:\n                    continue\n                for ei, e in enumerate(s.get(\"entities\", [])):\n                    k = (e[\"start\"], e[\"end\"], e[\"type\"])\n                    lt, ls = entity_token_lp(pre, ei)\n                    if lt is not None:\n                        ent_tlp[k].append((lt, ls))\n\n        candidates = []\n        for k, cnt in span_cnt.items():\n            st, en, ety = k\n            etxt = span_text[k]\n            tk = (etxt.lower(), ety)\n\n            if k in ent_tlp and ent_tlp[k]:\n                lpt = float(np.mean([x[0] for x in ent_tlp[k]]))\n                lps = float(np.mean([x[1] for x in ent_tlp[k]]))\n            else:\n                lpt = lps = float('nan')\n\n            slps = [lp for si in span_si[k] if (lp := get_sample_lp(samples[si], inst, si)) is not None]\n            smlp = float(np.mean(slps)) if slps else float('nan')\n\n            csj = [sj_scores[si] for si in span_si[k]]\n\n            candidates.append({\n                \"key\": k,\n                \"text\": etxt,\n                \"features\": np.array([\n                    cnt,                          # 0: agreement_count\n                    text_vc.get(tk, cnt),         # 1: vc\n                    lpt,                          # 2: lp_token\n                    lps,                          # 3: lp_span\n                    smlp,                         # 4: sample_mean_lp\n                    float(np.mean(csj)),          # 5: sj\n                    0,                            # 6: entity_type_enc (filled later)\n                    len(etxt.split()),            # 7: entity_length\n                    len(etxt),                    # 8: entity_char_length\n                    st / tlen,                    # 9: entity_position\n                    math.log10(cfg[\"msz\"]),       # 10: model_size_log\n                    DS_MAP[cfg[\"ds\"]],            # 11: dataset_enc\n                    REG_MAP[cfg[\"reg\"]],          # 12: regime_enc\n                ], dtype=np.float64),\n                \"label\": 1 if k in gold_set else 0,\n                \"etype_raw\": ety,\n                \"etype_norm\": normalize_etype(ety),\n                \"span_len_bin\": min(len(etxt.split()), 5),\n            })\n\n        results.append({\n            \"config\": cfg[\"name\"],\n            \"iid\": inst[\"id\"],\n            \"dataset\": cfg[\"ds\"],\n            \"gold_set\": gold_set,\n            \"greedy_ents\": inst.get(\"greedy\", {}).get(\"entities\", []),\n            \"N\": N,\n            \"candidates\": candidates,\n        })\n\n    return results\n\n\n# ================================================================\n# Inverse-frequency weighting\n# ================================================================\n\ndef compute_type_freq(data):\n    \"\"\"Compute normalized entity type frequency from data.\"\"\"\n    type_cnt = Counter()\n    for d in data:\n        for c in d[\"candidates\"]:\n            type_cnt[c[\"etype_norm\"]] += 1\n    total = sum(type_cnt.values())\n    return {t: cnt / total for t, cnt in type_cnt.items()}\n\n\ndef compute_span_len_freq(data):\n    \"\"\"Fallback: compute span length bin frequency.\"\"\"\n    bin_cnt = Counter()\n    for d in data:\n        for c in d[\"candidates\"]:\n            bin_cnt[c[\"span_len_bin\"]] += 1\n    total = sum(bin_cnt.values())\n    return {b: cnt / total for b, cnt in bin_cnt.items()}\n\n\ndef apply_ifw(data, type_freq, span_freq):\n    \"\"\"Add IFW features to candidates. Returns augmented feature arrays.\"\"\"\n    for d in data:\n        for c in d[\"candidates\"]:\n            etype = c[\"etype_norm\"]\n            freq = type_freq.get(etype)\n            if freq is None or freq == 0:\n                freq = span_freq.get(c[\"span_len_bin\"], 0.01)\n            denom = math.log(1 + freq * 1000)  # scale freq so log is meaningful\n            if denom < 0.1:\n                denom = 0.1\n            ac = c[\"features\"][0]\n            vc = c[\"features\"][1]\n            sj = c[\"features\"][5]\n            c[\"ac_ifw\"] = ac / denom\n            c[\"vc_ifw\"] = vc / denom\n            c[\"sj_ifw\"] = sj / denom\n\n\ndef get_features_replace(candidates):\n    \"\"\"13 features: replace ac/vc/sj with IFW versions.\"\"\"\n    rows = []\n    for c in candidates:\n        f = c[\"features\"].copy()\n        f[0] = c[\"ac_ifw\"]\n        f[1] = c[\"vc_ifw\"]\n        f[5] = c[\"sj_ifw\"]\n        rows.append(f)\n    return rows\n\n\ndef get_features_augment(candidates):\n    \"\"\"16 features: original + 3 IFW features.\"\"\"\n    rows = []\n    for c in candidates:\n        aug = np.append(c[\"features\"], [c[\"ac_ifw\"], c[\"vc_ifw\"], c[\"sj_ifw\"]])\n        rows.append(aug)\n    return rows\n\n\n# ================================================================\n# Evaluation helpers (from B2-v2)\n# ================================================================\n\ndef prf(tp, fp, fn):\n    p = tp / (tp + fp) if (tp + fp) > 0 else 0.0\n    r = tp / (tp + fn) if (tp + fn) > 0 else 0.0\n    f = 2 * p * r / (p + r) if (p + r) > 0 else 0.0\n    return {\"precision\": round(p, 4), \"recall\": round(r, 4), \"f1\": round(f, 4)}\n\n\ndef eval_sets(pred_set, gold_set):\n    tp = len(pred_set & gold_set)\n    fp = len(pred_set - gold_set)\n    fn = len(gold_set - pred_set)\n    return tp, fp, fn\n\n\ndef eval_greedy(data):\n    tp = fp = fn = 0\n    for d in data:\n        ps = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in d[\"greedy_ents\"]}\n        t, f, n = eval_sets(ps, d[\"gold_set\"])\n        tp += t; fp += f; fn += n\n    return prf(tp, fp, fn)\n\n\ndef eval_majority_vote(data, threshold=0.5):\n    tp = fp = fn = 0\n    for d in data:\n        N = d[\"N\"]\n        ps = {c[\"key\"] for c in d[\"candidates\"] if c[\"features\"][0] / N > threshold}\n        t, f, n = eval_sets(ps, d[\"gold_set\"])\n        tp += t; fp += f; fn += n\n    return prf(tp, fp, fn)\n\n\ndef eval_path_a(data, model_key, threshold):\n    tp = fp = fn = 0\n    for d in data:\n        ps = {c[\"key\"] for c in d[\"candidates\"]\n              if c[model_key] * c[\"features\"][0] > threshold}\n        t, f, n = eval_sets(ps, d[\"gold_set\"])\n        tp += t; fp += f; fn += n\n    return prf(tp, fp, fn)\n\n\ndef eval_path_b(data, model_key, construct_thresh=0.5, filter_thresh=0.5):\n    tp = fp = fn = 0\n    for d in data:\n        N = d[\"N\"]\n        mv = {c[\"key\"] for c in d[\"candidates\"] if c[\"features\"][0] / N > construct_thresh}\n        ps = {c[\"key\"] for c in d[\"candidates\"] if c[\"key\"] in mv and c[model_key] >= filter_thresh}\n        t, f, n = eval_sets(ps, d[\"gold_set\"])\n        tp += t; fp += f; fn += n\n    return prf(tp, fp, fn)\n\n\ndef compute_ece(y_true, y_prob, n_bins=10):\n    bins = np.linspace(0, 1, n_bins + 1)\n    ece = 0.0\n    for i in range(n_bins):\n        mask = (y_prob > bins[i]) & (y_prob <= bins[i + 1])\n        if mask.sum() == 0:\n            continue\n        avg_conf = y_prob[mask].mean()\n        avg_acc = y_true[mask].mean()\n        ece += mask.sum() / len(y_true) * abs(avg_conf - avg_acc)\n    return float(ece)\n\n\n# ================================================================\n# Training and evaluation\n# ================================================================\n\ndef train_and_eval_fold(train_data, test_data, feat_fn, feat_cols, fold_name):\n    \"\"\"Train LGB+XGB and evaluate on a single fold.\"\"\"\n    import xgboost as xgb\n    import lightgbm as lgb\n    from sklearn.metrics import roc_auc_score\n\n    train_X = np.array([r for d in train_data for r in feat_fn(d[\"candidates\"])])\n    train_y = np.array([c[\"label\"] for d in train_data for c in d[\"candidates\"]])\n    test_X = np.array([r for d in test_data for r in feat_fn(d[\"candidates\"])])\n    test_y = np.array([c[\"label\"] for d in test_data for c in d[\"candidates\"]])\n\n    nan_mask = np.isnan(train_X)\n    if nan_mask.any():\n        col_medians = np.nanmedian(train_X, axis=0)\n        for j in range(train_X.shape[1]):\n            train_X[np.isnan(train_X[:, j]), j] = col_medians[j]\n            test_X[np.isnan(test_X[:, j]), j] = col_medians[j]\n\n    print(f\"  Train: {len(train_X)} entities ({int(train_y.sum())} pos)\")\n    print(f\"  Test:  {len(test_X)} entities ({int(test_y.sum())} pos)\")\n\n    xgb_m = xgb.XGBClassifier(\n        n_estimators=200, max_depth=6, learning_rate=0.1,\n        subsample=0.8, colsample_bytree=0.8,\n        eval_metric=\"logloss\", random_state=42, verbosity=0)\n    xgb_m.fit(train_X, train_y)\n\n    lgb_m = lgb.LGBMClassifier(\n        n_estimators=200, max_depth=6, learning_rate=0.1,\n        subsample=0.8, colsample_bytree=0.8,\n        random_state=42, verbose=-1)\n    lgb_m.fit(train_X, train_y)\n\n    xgb_p = xgb_m.predict_proba(test_X)[:, 1]\n    lgb_p = lgb_m.predict_proba(test_X)[:, 1]\n\n    auc_xgb = roc_auc_score(test_y, xgb_p)\n    auc_lgb = roc_auc_score(test_y, lgb_p)\n    ece_xgb = compute_ece(test_y, xgb_p)\n    ece_lgb = compute_ece(test_y, lgb_p)\n\n    print(f\"  AUC: XGB={auc_xgb:.4f}  LGB={auc_lgb:.4f}\")\n    print(f\"  ECE: XGB={ece_xgb:.4f}  LGB={ece_lgb:.4f}\")\n\n    idx = 0\n    for d in test_data:\n        for c in d[\"candidates\"]:\n            c[\"xgb_p\"] = float(xgb_p[idx])\n            c[\"lgb_p\"] = float(lgb_p[idx])\n            idx += 1\n\n    greedy = eval_greedy(test_data)\n    mv50 = eval_majority_vote(test_data, 0.5)\n    print(f\"  Greedy F1: {greedy['f1']:.4f}  MV50 F1: {mv50['f1']:.4f}\")\n\n    best_pa = {\"xgb\": {\"f1\": 0}, \"lgb\": {\"f1\": 0}}\n    for mk, mn in [(\"xgb_p\", \"xgb\"), (\"lgb_p\", \"lgb\")]:\n        for thresh in np.arange(0.5, 8.5, 0.5):\n            r = eval_path_a(test_data, mk, thresh)\n            if r[\"f1\"] > best_pa[mn].get(\"f1\", 0):\n                best_pa[mn] = {**r, \"thresh\": float(thresh)}\n\n    best_pb = {\"xgb\": {\"f1\": 0}, \"lgb\": {\"f1\": 0}}\n    for mk, mn in [(\"xgb_p\", \"xgb\"), (\"lgb_p\", \"lgb\")]:\n        for ft in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:\n            r = eval_path_b(test_data, mk, 0.5, ft)\n            if r[\"f1\"] > best_pb[mn].get(\"f1\", 0):\n                best_pb[mn] = {**r, \"thresh\": float(ft)}\n\n    for mn in [\"xgb\", \"lgb\"]:\n        pa = best_pa[mn]\n        pb = best_pb[mn]\n        pa_delta = pa[\"f1\"] - greedy[\"f1\"]\n        pb_delta = pb[\"f1\"] - greedy[\"f1\"]\n        print(f\"  {mn.upper()} PathA: F1={pa['f1']:.4f} (Δ={pa_delta:+.4f}, t={pa.get('thresh',0):.1f})\")\n        print(f\"  {mn.upper()} PathB: F1={pb['f1']:.4f} (Δ={pb_delta:+.4f}, ft={pb.get('thresh',0):.1f})\")\n\n    xgb_imp = dict(zip(feat_cols, [float(v) for v in xgb_m.feature_importances_]))\n    lgb_imp = dict(zip(feat_cols, [int(v) for v in lgb_m.feature_importances_]))\n\n    return {\n        \"auc\": {\"xgb\": round(auc_xgb, 4), \"lgb\": round(auc_lgb, 4)},\n        \"ece\": {\"xgb\": round(ece_xgb, 4), \"lgb\": round(ece_lgb, 4)},\n        \"baselines\": {\"greedy\": greedy, \"majority_vote_50\": mv50},\n        \"best_path_a\": {mn: {k: round(v, 4) if isinstance(v, float) else v\n                             for k, v in best_pa[mn].items()} for mn in [\"xgb\", \"lgb\"]},\n        \"best_path_b\": {mn: {k: round(v, 4) if isinstance(v, float) else v\n                             for k, v in best_pb[mn].items()} for mn in [\"xgb\", \"lgb\"]},\n        \"f1_delta_vs_greedy\": {\n            \"path_a_xgb\": round(best_pa[\"xgb\"][\"f1\"] - greedy[\"f1\"], 4),\n            \"path_a_lgb\": round(best_pa[\"lgb\"][\"f1\"] - greedy[\"f1\"], 4),\n            \"path_b_xgb\": round(best_pb[\"xgb\"][\"f1\"] - greedy[\"f1\"], 4),\n            \"path_b_lgb\": round(best_pb[\"lgb\"][\"f1\"] - greedy[\"f1\"], 4),\n        },\n        \"feature_importance\": {\"xgb_gain\": xgb_imp, \"lgb_splits\": lgb_imp},\n    }\n\n\ndef main():\n    t0 = time.time()\n    print(\"=\" * 60)\n    print(\"B2-v4: Inverse-Frequency Weighted Entity Verifier\")\n    print(\"=\" * 60)\n\n    # --- 1. Load and extract features ---\n    all_data = []\n    for cfg in CONFIGS:\n        data = process_config(cfg)\n        all_data.extend(data)\n\n    total_cands = sum(len(d[\"candidates\"]) for d in all_data)\n    total_pos = sum(c[\"label\"] for d in all_data for c in d[\"candidates\"])\n    print(f\"\\nTotal: {len(all_data)} instances, {total_cands} candidates ({total_pos} pos, {100*total_pos/max(total_cands,1):.1f}%)\")\n\n    per_ds_stats = {}\n    for ds in DATASETS:\n        ds_data = [d for d in all_data if d[\"dataset\"] == ds]\n        nc = sum(len(d[\"candidates\"]) for d in ds_data)\n        np_ = sum(c[\"label\"] for d in ds_data for c in d[\"candidates\"])\n        per_ds_stats[ds] = {\"instances\": len(ds_data), \"candidates\": nc, \"positive\": np_,\n                            \"pos_rate\": round(np_ / max(nc, 1), 4)}\n        print(f\"  {ds}: {len(ds_data)} inst, {nc} cands ({np_} pos, {100*np_/max(nc,1):.1f}%)\")\n\n    # --- 2. Entity type encoding ---\n    all_types = sorted({c[\"etype_raw\"] for d in all_data for c in d[\"candidates\"]})\n    type_map = {t: i for i, t in enumerate(all_types)}\n    for d in all_data:\n        for c in d[\"candidates\"]:\n            c[\"features\"][6] = type_map[c[\"etype_raw\"]]\n\n    # --- 3. B2-v2 baseline (original features, for fair comparison) ---\n    from sklearn.metrics import roc_auc_score\n\n    b2_v2_results = {}\n    b2_original = {\n        \"lgb_test_auc\": 0.8335, \"xgb_test_auc\": 0.8282,\n        \"lgb_cv_auc\": 0.9254, \"greedy_f1\": 0.7321,\n    }\n\n    # --- 4. LODO evaluation ---\n    results_replace = {}\n    results_augment = {}\n    ifw_stats = {}\n\n    for fold_idx, test_ds in enumerate(DATASETS):\n        fold_name = f\"fold{fold_idx+1}_test_{test_ds}\"\n        train_ds_list = [d for d in DATASETS if d != test_ds]\n        print(f\"\\n{'='*60}\")\n        print(f\"Fold {fold_idx+1}: Train on {train_ds_list}, Test on [{test_ds}]\")\n        print(f\"{'='*60}\")\n\n        train_data = [d for d in all_data if d[\"dataset\"] != test_ds]\n        test_data = [d for d in all_data if d[\"dataset\"] == test_ds]\n\n        # Compute IFW from training data only (no leakage)\n        type_freq = compute_type_freq(train_data)\n        span_freq = compute_span_len_freq(train_data)\n\n        top_types = sorted(type_freq.items(), key=lambda x: -x[1])[:10]\n        print(f\"  Top types in train: {[(t, f'{f:.4f}') for t, f in top_types]}\")\n\n        # Apply IFW to both train and test using train frequencies\n        apply_ifw(train_data, type_freq, span_freq)\n        apply_ifw(test_data, type_freq, span_freq)\n\n        # IFW stats\n        train_ac = [c[\"features\"][0] for d in train_data for c in d[\"candidates\"]]\n        train_ac_ifw = [c[\"ac_ifw\"] for d in train_data for c in d[\"candidates\"]]\n        ifw_stats[fold_name] = {\n            \"n_types_in_train\": len(type_freq),\n            \"top_types\": {t: round(f, 4) for t, f in top_types},\n            \"ac_raw_mean\": round(float(np.mean(train_ac)), 4),\n            \"ac_raw_std\": round(float(np.std(train_ac)), 4),\n            \"ac_ifw_mean\": round(float(np.mean(train_ac_ifw)), 4),\n            \"ac_ifw_std\": round(float(np.std(train_ac_ifw)), 4),\n        }\n\n        # --- Variant A: Replace ---\n        print(f\"\\n  --- Variant A: Replace (ac/vc/sj → IFW) ---\")\n        fr_a = train_and_eval_fold(\n            train_data, test_data,\n            get_features_replace, FEAT_COLS_REPLACE, fold_name)\n        fr_a[\"train_datasets\"] = train_ds_list\n        fr_a[\"test_dataset\"] = test_ds\n        results_replace[fold_name] = fr_a\n\n        # Clear predictions before next variant\n        for d in test_data:\n            for c in d[\"candidates\"]:\n                c.pop(\"xgb_p\", None)\n                c.pop(\"lgb_p\", None)\n\n        # --- Variant B: Augment ---\n        print(f\"\\n  --- Variant B: Augment (original + IFW) ---\")\n        fr_b = train_and_eval_fold(\n            train_data, test_data,\n            get_features_augment, FEAT_COLS_AUGMENT, fold_name)\n        fr_b[\"train_datasets\"] = train_ds_list\n        fr_b[\"test_dataset\"] = test_ds\n        results_augment[fold_name] = fr_b\n\n        # Clear predictions\n        for d in test_data:\n            for c in d[\"candidates\"]:\n                c.pop(\"xgb_p\", None)\n                c.pop(\"lgb_p\", None)\n\n    # --- 5. Fold 4: All-data 5-fold CV ---\n    print(f\"\\n{'='*60}\")\n    print(\"Fold 4: Train on ALL datasets, 5-fold random CV (upper bound)\")\n    print(f\"{'='*60}\")\n\n    import xgboost as xgb\n    import lightgbm as lgb\n    from sklearn.model_selection import StratifiedKFold\n\n    # Apply IFW using all data frequencies\n    all_type_freq = compute_type_freq(all_data)\n    all_span_freq = compute_span_len_freq(all_data)\n    apply_ifw(all_data, all_type_freq, all_span_freq)\n\n    all_y = np.array([c[\"label\"] for d in all_data for c in d[\"candidates\"]])\n    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\n\n    for variant_name, feat_fn, feat_cols in [\n        (\"replace\", get_features_replace, FEAT_COLS_REPLACE),\n        (\"augment\", get_features_augment, FEAT_COLS_AUGMENT),\n    ]:\n        all_X = np.array([r for d in all_data for r in feat_fn(d[\"candidates\"])])\n        nan_mask = np.isnan(all_X)\n        if nan_mask.any():\n            col_medians = np.nanmedian(all_X, axis=0)\n            for j in range(all_X.shape[1]):\n                all_X[np.isnan(all_X[:, j]), j] = col_medians[j]\n\n        cv_aucs = {\"xgb\": [], \"lgb\": []}\n        cv_eces = {\"xgb\": [], \"lgb\": []}\n\n        for fold_i, (tr_i, va_i) in enumerate(skf.split(all_X, all_y)):\n            Xtr, Xva = all_X[tr_i], all_X[va_i]\n            ytr, yva = all_y[tr_i], all_y[va_i]\n\n            m_xgb = xgb.XGBClassifier(\n                n_estimators=200, max_depth=6, learning_rate=0.1,\n                subsample=0.8, colsample_bytree=0.8,\n                eval_metric=\"logloss\", random_state=42, verbosity=0)\n            m_xgb.fit(Xtr, ytr)\n            p_xgb = m_xgb.predict_proba(Xva)[:, 1]\n            cv_aucs[\"xgb\"].append(roc_auc_score(yva, p_xgb))\n            cv_eces[\"xgb\"].append(compute_ece(yva, p_xgb))\n\n            m_lgb = lgb.LGBMClassifier(\n                n_estimators=200, max_depth=6, learning_rate=0.1,\n                subsample=0.8, colsample_bytree=0.8,\n                random_state=42, verbose=-1)\n            m_lgb.fit(Xtr, ytr)\n            p_lgb = m_lgb.predict_proba(Xva)[:, 1]\n            cv_aucs[\"lgb\"].append(roc_auc_score(yva, p_lgb))\n            cv_eces[\"lgb\"].append(compute_ece(yva, p_lgb))\n\n        target = results_replace if variant_name == \"replace\" else results_augment\n        target[\"fold4_all_cv\"] = {\n            \"auc\": {\n                \"xgb_mean\": round(float(np.mean(cv_aucs[\"xgb\"])), 4),\n                \"xgb_std\": round(float(np.std(cv_aucs[\"xgb\"])), 4),\n                \"lgb_mean\": round(float(np.mean(cv_aucs[\"lgb\"])), 4),\n                \"lgb_std\": round(float(np.std(cv_aucs[\"lgb\"])), 4),\n                \"xgb_folds\": [round(a, 4) for a in cv_aucs[\"xgb\"]],\n                \"lgb_folds\": [round(a, 4) for a in cv_aucs[\"lgb\"]],\n            },\n            \"ece\": {\n                \"xgb_mean\": round(float(np.mean(cv_eces[\"xgb\"])), 4),\n                \"lgb_mean\": round(float(np.mean(cv_eces[\"lgb\"])), 4),\n                \"xgb_folds\": [round(e, 4) for e in cv_eces[\"xgb\"]],\n                \"lgb_folds\": [round(e, 4) for e in cv_eces[\"lgb\"]],\n            },\n        }\n        print(f\"  {variant_name} CV AUC: XGB={np.mean(cv_aucs['xgb']):.4f}±{np.std(cv_aucs['xgb']):.4f}  \"\n              f\"LGB={np.mean(cv_aucs['lgb']):.4f}±{np.std(cv_aucs['lgb']):.4f}\")\n\n    # --- 6. Feature stability analysis ---\n    print(f\"\\n{'='*60}\")\n    print(\"Feature Stability Analysis\")\n    print(f\"{'='*60}\")\n\n    from scipy.stats import pointbiserialr\n\n    stability = {}\n    for fi, feat_name in enumerate(FEAT_COLS_AUGMENT):\n        per_ds = {}\n        for ds in DATASETS:\n            ds_cands = []\n            for d in all_data:\n                if d[\"dataset\"] == ds:\n                    for c in d[\"candidates\"]:\n                        if feat_name in [\"ac_ifw\", \"vc_ifw\", \"sj_ifw\"]:\n                            val = c.get(feat_name.replace(\"_ifw\", \"\") + \"_ifw\" if feat_name.endswith(\"_ifw\") else feat_name)\n                            if feat_name == \"ac_ifw\":\n                                val = c[\"ac_ifw\"]\n                            elif feat_name == \"vc_ifw\":\n                                val = c[\"vc_ifw\"]\n                            elif feat_name == \"sj_ifw\":\n                                val = c[\"sj_ifw\"]\n                        else:\n                            val = c[\"features\"][fi] if fi < len(c[\"features\"]) else float('nan')\n                        ds_cands.append((val, c[\"label\"]))\n\n            vals = np.array([x[0] for x in ds_cands])\n            labs = np.array([x[1] for x in ds_cands])\n            valid = ~np.isnan(vals)\n            if valid.sum() > 10 and len(np.unique(labs[valid])) == 2:\n                corr, _ = pointbiserialr(labs[valid], vals[valid])\n                per_ds[ds] = round(float(corr), 4)\n            else:\n                per_ds[ds] = float('nan')\n\n        vals_list = [v for v in per_ds.values() if not (isinstance(v, float) and math.isnan(v))]\n        stability[feat_name] = {\n            \"per_dataset_correlation\": per_ds,\n            \"cross_domain_std\": round(float(np.std(vals_list)), 4) if len(vals_list) >= 2 else float('nan'),\n            \"mean_correlation\": round(float(np.mean(vals_list)), 4) if vals_list else float('nan'),\n        }\n\n    elapsed = time.time() - t0\n\n    # --- 7. Comparison table ---\n    b2v2_fold3 = {\"lgb_auc\": 0.8477, \"xgb_auc\": 0.8603, \"lgb_ece\": 0.1357, \"xgb_ece\": 0.1556,\n                   \"greedy_f1\": 0.7937, \"path_a_lgb_f1\": 0.7929, \"path_a_xgb_f1\": 0.7929}\n    b2v3_fold3 = {\"lgb_auc\": 0.8562, \"xgb_auc\": 0.8518, \"lgb_ece\": 0.1373, \"xgb_ece\": 0.1643}\n\n    comparison = {\n        \"b2_original\": b2_original,\n        \"b2_v2_fold3\": b2v2_fold3,\n        \"b2_v3_fold3\": b2v3_fold3,\n    }\n\n    f3_replace = results_replace.get(\"fold3_test_fewnerd\", {})\n    f3_augment = results_augment.get(\"fold3_test_fewnerd\", {})\n\n    if f3_replace:\n        comparison[\"b2_v4_replace_fold3\"] = {\n            \"lgb_auc\": f3_replace[\"auc\"][\"lgb\"],\n            \"xgb_auc\": f3_replace[\"auc\"][\"xgb\"],\n            \"lgb_ece\": f3_replace[\"ece\"][\"lgb\"],\n            \"xgb_ece\": f3_replace[\"ece\"][\"xgb\"],\n            \"greedy_f1\": f3_replace[\"baselines\"][\"greedy\"][\"f1\"],\n            \"path_a_lgb_f1\": f3_replace[\"best_path_a\"][\"lgb\"][\"f1\"],\n            \"path_a_xgb_f1\": f3_replace[\"best_path_a\"][\"xgb\"][\"f1\"],\n        }\n        comparison[\"delta_v4replace_vs_v2\"] = {\n            \"lgb_auc\": round(f3_replace[\"auc\"][\"lgb\"] - b2v2_fold3[\"lgb_auc\"], 4),\n            \"xgb_auc\": round(f3_replace[\"auc\"][\"xgb\"] - b2v2_fold3[\"xgb_auc\"], 4),\n        }\n\n    if f3_augment:\n        comparison[\"b2_v4_augment_fold3\"] = {\n            \"lgb_auc\": f3_augment[\"auc\"][\"lgb\"],\n            \"xgb_auc\": f3_augment[\"auc\"][\"xgb\"],\n            \"lgb_ece\": f3_augment[\"ece\"][\"lgb\"],\n            \"xgb_ece\": f3_augment[\"ece\"][\"xgb\"],\n            \"greedy_f1\": f3_augment[\"baselines\"][\"greedy\"][\"f1\"],\n            \"path_a_lgb_f1\": f3_augment[\"best_path_a\"][\"lgb\"][\"f1\"],\n            \"path_a_xgb_f1\": f3_augment[\"best_path_a\"][\"xgb\"][\"f1\"],\n        }\n        comparison[\"delta_v4augment_vs_v2\"] = {\n            \"lgb_auc\": round(f3_augment[\"auc\"][\"lgb\"] - b2v2_fold3[\"lgb_auc\"], 4),\n            \"xgb_auc\": round(f3_augment[\"auc\"][\"xgb\"] - b2v2_fold3[\"xgb_auc\"], 4),\n        }\n\n    # --- 8. Save results ---\n    final_results = {\n        \"summary\": {\n            \"total_instances\": len(all_data),\n            \"total_candidates\": total_cands,\n            \"positive_rate\": round(total_pos / max(total_cands, 1), 4),\n            \"per_dataset\": per_ds_stats,\n            \"n_entity_types\": len(all_types),\n            \"n_configs\": len(CONFIGS),\n            \"elapsed_seconds\": round(elapsed, 1),\n        },\n        \"variant_a_replace\": results_replace,\n        \"variant_b_augment\": results_augment,\n        \"comparison\": comparison,\n        \"ifw_stats\": ifw_stats,\n        \"feature_stability_augment\": stability,\n    }\n\n    with open(f\"{OUT}/results.json\", \"w\") as f:\n        json.dump(final_results, f, indent=2)\n    print(f\"\\nSaved results.json\")\n\n    # --- 9. Summary markdown ---\n    md = []\n    md.append(\"# B2-v4: Inverse-Frequency Weighted Entity Verifier\\n\")\n    md.append(f\"**Date**: {time.strftime('%Y-%m-%d %H:%M')}\")\n    md.append(f\"**Total entities**: {total_cands} across {len(CONFIGS)} configs\")\n    md.append(f\"**IFW formula**: `feature / log(1 + freq * 1000)` where freq = type_proportion in train\\n\")\n\n    md.append(\"## Variant A: Replace (ac/vc/sj → IFW versions, 13 features)\\n\")\n    md.append(\"| Fold | Train | Test | XGB AUC | LGB AUC | XGB ECE | LGB ECE | Greedy F1 | Best F1 | Δ Greedy |\")\n    md.append(\"|------|-------|------|---------|---------|---------|---------|-----------|---------|----------|\")\n    for fold_idx, test_ds in enumerate(DATASETS):\n        fn = f\"fold{fold_idx+1}_test_{test_ds}\"\n        fr = results_replace[fn]\n        train_str = \"+\".join(fr[\"train_datasets\"])\n        best_f1 = max(fr[\"best_path_a\"][\"xgb\"][\"f1\"], fr[\"best_path_a\"][\"lgb\"][\"f1\"],\n                       fr[\"best_path_b\"][\"xgb\"][\"f1\"], fr[\"best_path_b\"][\"lgb\"][\"f1\"])\n        delta = best_f1 - fr[\"baselines\"][\"greedy\"][\"f1\"]\n        md.append(f\"| {fold_idx+1} | {train_str} | {test_ds} | \"\n                  f\"{fr['auc']['xgb']:.4f} | {fr['auc']['lgb']:.4f} | \"\n                  f\"{fr['ece']['xgb']:.4f} | {fr['ece']['lgb']:.4f} | \"\n                  f\"{fr['baselines']['greedy']['f1']:.4f} | {best_f1:.4f} | {delta:+.4f} |\")\n    f4r = results_replace.get(\"fold4_all_cv\", {})\n    if f4r:\n        md.append(f\"| 4 | ALL | CV | \"\n                  f\"{f4r['auc']['xgb_mean']:.4f}±{f4r['auc']['xgb_std']:.4f} | \"\n                  f\"{f4r['auc']['lgb_mean']:.4f}±{f4r['auc']['lgb_std']:.4f} | \"\n                  f\"{f4r['ece']['xgb_mean']:.4f} | {f4r['ece']['lgb_mean']:.4f} | - | - | - |\")\n\n    md.append(\"\\n## Variant B: Augment (original + IFW, 16 features)\\n\")\n    md.append(\"| Fold | Train | Test | XGB AUC | LGB AUC | XGB ECE | LGB ECE | Greedy F1 | Best F1 | Δ Greedy |\")\n    md.append(\"|------|-------|------|---------|---------|---------|---------|-----------|---------|----------|\")\n    for fold_idx, test_ds in enumerate(DATASETS):\n        fn = f\"fold{fold_idx+1}_test_{test_ds}\"\n        fr = results_augment[fn]\n        train_str = \"+\".join(fr[\"train_datasets\"])\n        best_f1 = max(fr[\"best_path_a\"][\"xgb\"][\"f1\"], fr[\"best_path_a\"][\"lgb\"][\"f1\"],\n                       fr[\"best_path_b\"][\"xgb\"][\"f1\"], fr[\"best_path_b\"][\"lgb\"][\"f1\"])\n        delta = best_f1 - fr[\"baselines\"][\"greedy\"][\"f1\"]\n        md.append(f\"| {fold_idx+1} | {train_str} | {test_ds} | \"\n                  f\"{fr['auc']['xgb']:.4f} | {fr['auc']['lgb']:.4f} | \"\n                  f\"{fr['ece']['xgb']:.4f} | {fr['ece']['lgb']:.4f} | \"\n                  f\"{fr['baselines']['greedy']['f1']:.4f} | {best_f1:.4f} | {delta:+.4f} |\")\n    f4a = results_augment.get(\"fold4_all_cv\", {})\n    if f4a:\n        md.append(f\"| 4 | ALL | CV | \"\n                  f\"{f4a['auc']['xgb_mean']:.4f}±{f4a['auc']['xgb_std']:.4f} | \"\n                  f\"{f4a['auc']['lgb_mean']:.4f}±{f4a['auc']['lgb_std']:.4f} | \"\n                  f\"{f4a['ece']['xgb_mean']:.4f} | {f4a['ece']['lgb_mean']:.4f} | - | - | - |\")\n\n    md.append(\"\\n## Comparison: Fold 3 (FewNERD, critical cross-domain fold)\\n\")\n    md.append(\"| Version | Features | XGB AUC | LGB AUC | XGB ECE | LGB ECE | Best F1 Δ |\")\n    md.append(\"|---------|----------|---------|---------|---------|---------|-----------|\")\n    md.append(f\"| B2 orig | 13 | {b2_original['xgb_test_auc']:.4f} | {b2_original['lgb_test_auc']:.4f} | - | - | - |\")\n    md.append(f\"| B2-v2 | 13 | {b2v2_fold3['xgb_auc']:.4f} | {b2v2_fold3['lgb_auc']:.4f} | \"\n              f\"{b2v2_fold3['xgb_ece']:.4f} | {b2v2_fold3['lgb_ece']:.4f} | - |\")\n    md.append(f\"| B2-v3 | 9 (invariant) | {b2v3_fold3['xgb_auc']:.4f} | {b2v3_fold3['lgb_auc']:.4f} | \"\n              f\"{b2v3_fold3['xgb_ece']:.4f} | {b2v3_fold3['lgb_ece']:.4f} | - |\")\n    if f3_replace:\n        best_f1_r = max(f3_replace[\"best_path_a\"][\"xgb\"][\"f1\"], f3_replace[\"best_path_a\"][\"lgb\"][\"f1\"],\n                         f3_replace[\"best_path_b\"][\"xgb\"][\"f1\"], f3_replace[\"best_path_b\"][\"lgb\"][\"f1\"])\n        delta_r = best_f1_r - f3_replace[\"baselines\"][\"greedy\"][\"f1\"]\n        md.append(f\"| **B2-v4 replace** | 13 (IFW) | {f3_replace['auc']['xgb']:.4f} | {f3_replace['auc']['lgb']:.4f} | \"\n                  f\"{f3_replace['ece']['xgb']:.4f} | {f3_replace['ece']['lgb']:.4f} | {delta_r:+.4f} |\")\n    if f3_augment:\n        best_f1_a = max(f3_augment[\"best_path_a\"][\"xgb\"][\"f1\"], f3_augment[\"best_path_a\"][\"lgb\"][\"f1\"],\n                         f3_augment[\"best_path_b\"][\"xgb\"][\"f1\"], f3_augment[\"best_path_b\"][\"lgb\"][\"f1\"])\n        delta_a = best_f1_a - f3_augment[\"baselines\"][\"greedy\"][\"f1\"]\n        md.append(f\"| **B2-v4 augment** | 16 (orig+IFW) | {f3_augment['auc']['xgb']:.4f} | {f3_augment['auc']['lgb']:.4f} | \"\n                  f\"{f3_augment['ece']['xgb']:.4f} | {f3_augment['ece']['lgb']:.4f} | {delta_a:+.4f} |\")\n\n    md.append(\"\\n## Feature Importance (XGB Gain, Fold 3)\\n\")\n    for var_name, var_results, var_cols in [\n        (\"Replace\", results_replace, FEAT_COLS_REPLACE),\n        (\"Augment\", results_augment, FEAT_COLS_AUGMENT),\n    ]:\n        f3 = var_results.get(\"fold3_test_fewnerd\", {})\n        if f3 and \"feature_importance\" in f3:\n            md.append(f\"\\n### {var_name}\\n\")\n            md.append(\"| Feature | XGB Gain | LGB Splits |\")\n            md.append(\"|---------|----------|------------|\")\n            xgb_g = f3[\"feature_importance\"][\"xgb_gain\"]\n            lgb_s = f3[\"feature_importance\"][\"lgb_splits\"]\n            sorted_feats = sorted(var_cols, key=lambda f: -xgb_g.get(f, 0))\n            for feat in sorted_feats:\n                md.append(f\"| {feat} | {xgb_g.get(feat, 0):.4f} | {lgb_s.get(feat, 0)} |\")\n\n    md.append(\"\\n## IFW Feature Stability\\n\")\n    md.append(\"| Feature | CoNLL | SciERC | FewNERD | Cross-Domain Std |\")\n    md.append(\"|---------|-------|--------|---------|------------------|\")\n    key_feats = [\"agreement_count\", \"vc\", \"sj\", \"ac_ifw\", \"vc_ifw\", \"sj_ifw\",\n                 \"lp_token\", \"lp_span\", \"sample_mean_lp\"]\n    for feat in key_feats:\n        if feat in stability:\n            s = stability[feat]\n            pc = s[\"per_dataset_correlation\"]\n            md.append(f\"| {feat} | {pc.get('conll', float('nan')):.4f} | \"\n                      f\"{pc.get('scierc', float('nan')):.4f} | {pc.get('fewnerd', float('nan')):.4f} | \"\n                      f\"{s['cross_domain_std']:.4f} |\")\n\n    md.append(f\"\\n**Elapsed**: {elapsed:.1f}s\\n\")\n\n    summary_md = \"\\n\".join(md) + \"\\n\"\n    with open(f\"{OUT}/summary.md\", \"w\") as f:\n        f.write(summary_md)\n    print(f\"Saved summary.md\")\n    print(f\"\\nTotal elapsed: {elapsed:.1f}s\")\n    print(\"Done.\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-20T12:04:00.068115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/b2_v4_inverse_freq/b2_v4_inverse_freq.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-20T12:04:00.068328+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'Read existing B2 verifier code and data structure', 'status': 'completed', 'activeForm': 'Reading existing B2 verifier code and data structure'}, {'content': 'Implement B2-v4 inverse-frequency weighted verifier script', 'status': 'completed', 'activeForm': 'Implementing B2-v4 inverse-frequency weighted verifier script'}, {'content': 'Upload and run on autodl-5090', 'status': 'in_progress', 'activeForm': 'Uploading and running on autodl-5090'}, {'content': 'Verify results and save artifacts', 'status': 'pending', 'activeForm': 'Verifying results and saving artifacts'}]"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-20T12:04:00.068485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "TodoWrite",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-20T12:04:00.068630+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "mkdir -p /root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v4_inverse_freq",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-20T12:04:00.068759+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-20T12:04:00.068886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "scp /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/b2_v4_inverse_freq/b2_v4_inverse_freq.py autodl-5090:/root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v4_inverse_freq/b2_v4_inverse_freq.py",
+              "description": "Upload B2-v4 script to server",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-20T12:04:00.069006+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-20T12:04:00.069184+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && nohup python3 artifacts/b2_v4_inverse_freq/b2_v4_inverse_freq.py > /tmp/b2_v4_run.log 2>&1 &\necho \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-20T12:04:00.069332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=898459\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-20T12:04:00.069471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -30 /tmp/b2_v4_run.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-20T12:04:00.069611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nB2-v4: Inverse-Frequency Weighted Entity Verifier\\\\n============================================================\\\\n  conll_7b_s42: 2756 inst\\\\n  conll_7b_s123: 2756 inst\\\\n  conll_7b_s456: 2756 inst\\\\n  scierc_7b_s42: 529 inst\\\\n  scierc_7b_s123: 529 inst\\\\n  scierc_7b_s456: 529 inst\\\\n  fewnerd_7b_s123: 3000 inst\\\\n  fewnerd_7b_s456: 3000 inst\\\\n  fewnerd_7b_s789: 3000 inst\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-20T12:04:00.069765+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /tmp/b2_v4_run.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-20T12:04:00.069891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30 /tmp/b2_v4_run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-20T12:04:00.070007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /tmp/b2_v4_run.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-20T12:04:00.070183+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nB2-v4: Inverse-Frequency Weighted Entity Verifier\\\\n============================================================\\\\n  conll_7b_s42: 2756 inst\\\\n  conll_7b_s123: 2756 inst\\\\n  conll_7b_s456: 2756 inst\\\\n  scierc_7b_s42: 529 inst\\\\n  scierc_7b_s123: 529 inst\\\\n  scierc_7b_s456: 529 inst\\\\n  fewnerd_7b_s123: 3000 inst\\\\n  fewnerd_7b_s456: 3000 inst\\\\n  fewnerd_7b_s789: 3000 inst\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does n\n…[truncated 803 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-20T12:04:00.070362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps -p 898459 -o pid,etime,pcpu,rss",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-20T12:04:00.070491+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED %CPU   RSS\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-20T12:04:00.070641+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v4_inverse_freq/",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-20T12:04:00.070770+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 72\\\\ndrwxr-xr-x  2 root root    89 May 20 20:02 .\\\\ndrwxr-xr-x 12 root root  4096 May 20 20:01 ..\\\\n-rw-r--r--  1 root root 37375 May 20 20:02 b2_v4_inverse_freq.py\\\\n-rw-r--r--  1 root root 22855 May 20 20:02 results.json\\\\n-rw-r--r--  1 root root  3679 May 20 20:02 summary.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-20T12:04:00.070891+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -c \"UserWarning\" /tmp/b2_v4_run.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-20T12:04:00.071012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"16\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-20T12:04:00.071179+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'Read existing B2 verifier code and data structure', 'status': 'completed', 'activeForm': 'Reading existing B2 verifier code and data structure'}, {'content': 'Implement B2-v4 inverse-frequency weighted verifier script', 'status': 'completed', 'activeForm': 'Implementing B2-v4 inverse-frequency weighted verifier script'}, {'content': 'Upload and run on autodl-5090', 'status': 'completed', 'activeForm': 'Uploading and running on autodl-5090'}, {'content': 'Verify results and save artifacts', 'status': 'in_progress', 'activeForm': 'Verifying results and saving artifacts'}]"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-20T12:04:00.071340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "TodoWrite",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-20T12:04:00.071461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v4_inverse_freq/summary.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-20T12:04:00.071634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# B2-v4: Inverse-Frequency Weighted Entity Verifier\\\\n\\\\n**Date**: 2026-05-20 20:02\\\\n**Total entities**: 86246 across 9 configs\\\\n**IFW formula**: `feature / log(1 + freq * 1000)` where freq = type_proportion in train\\\\n\\\\n## Variant A: Replace (ac/vc/sj → IFW versions, 13 features)\\\\n\\\\n| Fold | Train | Test | XGB AUC | LGB AUC | XGB ECE | LGB ECE | Greedy F1 | Best F1 | Δ Greedy |\\\\n|------|-------|------|---------|---------|---------|---------|-----------|---------|----------|\\\\n| 1 | scierc+fewnerd | conll | 0.8243 | 0.8181 | 0.3184 | 0.3220 | 0.9121 | 0.8924 | -0.0197 |\\\\n| 2 | conll+fewnerd | scierc | 0.7623 | 0.7530 | 0.1294 | 0.1341 | 0.6655 | 0.6647 | -0.0008 |\\\\n| 3 | conll+scierc | fewnerd | 0.8224 | 0.8340 | 0.1964 | 0.2188 | 0.7937 | 0.7810 | -0.0127 |\\\\n| 4 | ALL | CV | 0.9326±0.0011 | 0.9313±0.0012 | 0.0089 | 0.0091 | - | - | - |\\\\n\\\\n## Variant B: Augment (original + IFW, 16 features)\\\\n\\\\n| Fold | Train | Test | XGB AUC | LGB AUC | XGB ECE | LGB ECE | Greedy F1 | Best F1 | Δ Greedy |\\\\n|------|-------|------|---------|---------|---------|---------|-----------|---------|----------|\\\\n| 1 | scierc+fewnerd | conll | 0.9359 | 0.9413 | 0.1047 | 0.1065 | 0.9121 | 0.9151 | +0.0030 |\\\\n| 2 | conll+fewnerd | scierc | 0.7857 | 0.7907 | 0.1307 | 0.1192 | 0.6655 | 0.6722 | +0.0067 |\\\\n| 3 | conll+scierc | fewnerd | 0.8554 | 0.8541 | 0.1979 | 0.1934 | 0.7937 | 0.7852 | -0.0085 |\\\\n| 4 | ALL | CV | 0.9329±0.0016 | 0.9312±0.0014 | 0.0083 | 0.0073 | - | - | - |\\\\n\\\\n## Comparison: Fold 3 (FewNERD, critical cross-domain fold)\\\\n\\\\n| Version | Features | XGB AUC | LGB AUC | XGB ECE | LGB ECE | Best F1 Δ |\\\\n|---------|----------|---------|---------|---------|---------|-----------|\\\\n| B2 orig | 13 | 0.8282 | 0.8335 | - | - | - |\\\\n| B2-v2 | 13 | 0.8603 | 0.8477 | 0.1556 | 0.1357 | - |\\\\n| B2-v3 | 9 (invariant) | 0.8518 | 0.8562 | 0.1643 | 0.1373 | - |\\\\n| **B2-v4 replace** | 13 (IFW) | 0.8224 | 0.8340 | 0.1964 \n…[truncated 2014 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-20T12:04:00.071905+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v4_inverse_freq/results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-20T12:04:00.072346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"total_instances\\\\\\\": 18855,\\\\n    \\\\\\\"total_candidates\\\\\\\": 86246,\\\\n    \\\\\\\"positive_rate\\\\\\\": 0.5214,\\\\n    \\\\\\\"per_dataset\\\\\\\": {\\\\n      \\\\\\\"conll\\\\\\\": {\\\\n        \\\\\\\"instances\\\\\\\": 8268,\\\\n        \\\\\\\"candidates\\\\\\\": 27965,\\\\n        \\\\\\\"positive\\\\\\\": 16437,\\\\n        \\\\\\\"pos_rate\\\\\\\": 0.5878\\\\n      },\\\\n      \\\\\\\"scierc\\\\\\\": {\\\\n        \\\\\\\"instances\\\\\\\": 1587,\\\\n        \\\\\\\"candidates\\\\\\\": 9572,\\\\n        \\\\\\\"positive\\\\\\\": 4219,\\\\n        \\\\\\\"pos_rate\\\\\\\": 0.4408\\\\n      },\\\\n      \\\\\\\"fewnerd\\\\\\\": {\\\\n        \\\\\\\"instances\\\\\\\": 9000,\\\\n        \\\\\\\"candidates\\\\\\\": 48709,\\\\n        \\\\\\\"positive\\\\\\\": 24310,\\\\n        \\\\\\\"pos_rate\\\\\\\": 0.4991\\\\n      }\\\\n    },\\\\n    \\\\\\\"n_entity_types\\\\\\\": 81,\\\\n    \\\\\\\"n_configs\\\\\\\": 9,\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 48.7\\\\n  },\\\\n  \\\\\\\"variant_a_replace\\\\\\\": {\\\\n    \\\\\\\"fold1_test_conll\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": {\\\\n        \\\\\\\"xgb\\\\\\\": 0.8243,\\\\n        \\\\\\\"lgb\\\\\\\": 0.8181\\\\n      },\\\\n      \\\\\\\"ece\\\\\\\": {\\\\n        \\\\\\\"xgb\\\\\\\": 0.3184,\\\\n        \\\\\\\"lgb\\\\\\\": 0.322\\\\n      },\\\\n      \\\\\\\"baselines\\\\\\\": {\\\\n        \\\\\\\"greedy\\\\\\\": {\\\\n          \\\\\\\"precision\\\\\\\": 0.9099,\\\\n          \\\\\\\"recall\\\\\\\": 0.9142,\\\\n          \\\\\\\"f1\\\\\\\": 0.9121\\\\n        },\\\\n        \\\\\\\"majority_vote_50\\\\\\\": {\\\\n          \\\\\\\"precision\\\\\\\": 0.9309,\\\\n          \\\\\\\"recall\\\\\\\": 0.9,\\\\n          \\\\\\\"f1\\\\\\\": 0.9152\\\\n        }\\\\n      },\\\\n      \\\\\\\"best_path_a\\\\\\\": {\\\\n        \\\\\\\"xgb\\\\\\\": {\\\\n          \\\\\\\"precision\\\\\\\": 0.8533,\\\\n          \\\\\\\"recall\\\\\\\": 0.9353,\\\\n          \\\\\\\"f1\\\\\\\": 0.8924,\\\\n          \\\\\\\"thresh\\\\\\\": 0.5\\\\n        },\\\\n        \\\\\\\"lgb\\\\\\\": {\\\\n          \\\\\\\"precision\\\\\\\": 0.8527,\\\\n          \\\\\\\"recall\\\\\\\": 0.9197,\\\\n          \\\\\\\"f1\\\\\\\": 0.885,\\\\n          \\\\\\\"thresh\\\\\\\": 0.5\\\\n        }\\\\n      },\\\\n      \\\\\\\"best_path_b\\\\\\\": {\\\\n        \\\\\\\"xgb\\\\\\\": {\\\\n          \\\\\\\"precision\\\\\\\": 0.932,\\\\n          \\\\\\\"recall\\\\\\\": 0.7812,\\\\n      \n…[truncated 8511 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-20T12:04:00.072608+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "scp autodl-5090:/root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v4_inverse_freq/results.json /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/b2_v4_inverse_freq/results.json && scp autodl-5090:/root/autodl-tmp/struct_self_consist_ie/artifacts/b2_v4_inverse_freq/summary.md /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/b2_v4_inverse_freq/summary.md",
+              "description": "Download results from server",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-20T12:04:00.072776+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.\r\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-20T12:04:00.072905+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-20T12:04:00.073029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-20T12:04:00.073207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'Read existing B2 verifier code and data structure', 'status': 'completed', 'activeForm': 'Reading existing B2 verifier code and data structure'}, {'content': 'Implement B2-v4 inverse-frequency weighted verifier script', 'status': 'completed', 'activeForm': 'Implementing B2-v4 inverse-frequency weighted verifier script'}, {'content': 'Upload and run on autodl-5090', 'status': 'completed', 'activeForm': 'Uploading and running on autodl-5090'}, {'content': 'Verify results and save artifacts', 'status': 'completed', 'activeForm': 'Verifying results and saving artifacts'}]"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-20T12:04:00.073363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649",
+            "tool": "TodoWrite",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-20T12:04:00.073527+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。所有结果已保存到 `artifacts/b2_v4_inverse_freq/`（results.json + summary.md）。\n\n## 关键结果：Fold 3 (FewNERD 跨域泛化)\n\n| 版本 | XGB AUC | LGB AUC | ECE (LGB) | Best F1 Δ vs Greedy |\n|------|---------|---------|-----------|---------------------|\n| B2 orig | 0.8282 | 0.8335 | - | - |\n| B2-v2 (joint) | 0.8603 | 0.8477 | 0.1357 | -0.008 |\n| B2-v3 (invariant) | 0.8518 | 0.8562 | 0.1373 | -0.010 |\n| **B2-v4 replace** | 0.8224 | 0.8340 | 0.2188 | -0.013 |\n| **B2-v4 augment** | 0.8554 | 0.8541 | 0.1934 | -0.009 |\n\n## 分析\n\n**Variant A (replace)** 失败 — 直接替换 ac/vc/sj 为 IFW 版本导致 AUC 全面下降，ECE 恶化。IFW 破坏了原始特征的判别力。\n\n**Variant B (augment)** 表现中性偏积极 — LGB AUC 0.8541 略优于 v2 的 0.8477 (+0.006)，接近 v3 的 0.8562。但 ECE 恶化（0.19 vs 0.14），F1 delta 仍为负。\n\n**Feature stability 分析验证了 IFW 假设的部分有效性**：\n- `ac_ifw` cross-domain std: 0.110 vs `agreement_count`: 0.122（降低 10%）\n- `sj_ifw` cross-domain std: 0.063 vs `sj`: 0.138（降低 54%）\n- 但代价是均值相关性也下降（`sj_ifw`: 0.22 vs `sj`: 0.55）\n\n**结论**：IFW 确实提高了特征的跨域稳定性，但同时削弱了判别力。作为补充特征（augment）有微弱正效果，但不足以解决跨域 F1 负迁移问题。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_b2-v4-inverse-frequency_20260520T115649"
+          },
+          "id": "event-000095"
+        }
+      ],
+      "message_count": 95
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-b2-v4-inverse-frequency.md"
+}

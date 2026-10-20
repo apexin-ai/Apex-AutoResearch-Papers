@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2feeb951d7368b994f8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh kill vllm 5090c",
+  "task_key": "worker_ssh_kill-vllm-5090c_20260520T120859",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_kill-vllm-5090c_20260520T120859_result.json",
+    "occurrence": 1,
+    "bytes": 712,
+    "sha256": "cb729bd73119aedafdfb1471245dbf01e1a0e50be7f6e54aac0b1054736de143"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：**\n\n- PID 189534 (VLLM::EngineCore) 已成功 kill，`kill` 信号即生效，无需 `kill -9`\n- **GPU 3 已完全释放**：0 MiB / 32607 MiB，利用率 0%\n\n**当前 GPU 状态：**\n\n| GPU | 显存占用 | 利用率 | 用途 |\n|-----|---------|--------|------|\n| 0 | 25885/32607 MiB | 97% | train_14b_s42 (llamafactory) |\n| 1 | 25887/32607 MiB | 97% | train_14b_s42 (llamafactory) |\n| 2 | 29275/32607 MiB | 84% | exp_b3_prompted_diversity.py + 新 VLLM (PID 192539) |\n| 3 | **0/32607 MiB** | **0%** | **已释放** |\n\nGPU 2 上有一个新的 VLLM 进程 (PID 192539)，属于刚启动的 `exp_b3_prompted_diversity.py`（20:04 启动），是活跃任务，非空转。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-vllm-5090c.md"
+}

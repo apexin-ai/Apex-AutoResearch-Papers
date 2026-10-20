@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfe21bc25a425c1ffe1b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analyze freeform seed789 results",
+  "task_key": "worker_analyze_freeform_seed789_results_20260515T193127",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_freeform_seed789_results_20260515T193127_result.json",
+    "occurrence": 1,
+    "bytes": 1367,
+    "sha256": "2fe5470409cef4f1b5424dd97da3d17d0725178b3304923290f4a06fa0d33f0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。以下是 3-seed 汇总表：\n\n## Freeform Ablation 3-Seed 对比 (Constrained baseline 共用)\n\n| Metric | seed42 | seed456 | seed789 | mean±σ |\n|--------|--------|---------|---------|--------|\n| **NER selection gap** | +0.0018 | +0.0007 | +0.0028 | +0.0018±0.0011 |\n| **RE selection gap** | +0.0169 | +0.0200 | +0.0219 | +0.0196±0.0025 |\n| **LP std (freeform)** | 0.01988 | 0.01863 | 0.01830 | 0.01894±0.00083 |\n| **LP range (freeform)** | 0.05986 | 0.05679 | 0.05491 | 0.05719±0.00250 |\n| **Tied% (freeform)** | 57.7% | 58.4% | 59.0% | 58.4%±0.65 |\n| **RE LP flip (positive?)** | ✓ (+0.0169) | ✓ (+0.0200) | ✓ (+0.0219) | **3/3 一致** |\n| Parse rate | 99.95% | 99.98% | 100.0% | 99.98% |\n| Variance ratio (std) | 0.97x | 0.90x | 0.89x | 0.92x |\n| Variance ratio (range) | 0.96x | 0.91x | 0.88x | 0.92x |\n\n### 关键结论\n\n1. **RE LP 翻转 3 seed 100% 一致**：constrained RE gap = −0.0068（负），freeform RE gap 全部为正（+0.017~+0.022），翻转幅度 mean=+0.0196±0.0025，非常稳定\n2. **NER gap 稳定但微弱**：3 seed 均为正但量级小（+0.0007~+0.0028），mean=+0.0018±0.0011\n3. **LP variance 在 freeform 下略低**（ratio 0.88~0.97x），tied% 在 57.7~59.0% 范围内波动小\n4. **Parse rate 近乎完美**：≥99.95%，freeform 不损害输出质量"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-freeform-seed789-results.md"
+}

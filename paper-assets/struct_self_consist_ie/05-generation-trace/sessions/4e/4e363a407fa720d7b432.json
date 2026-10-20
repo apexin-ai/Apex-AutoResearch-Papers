@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e363a407fa720d7b432",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run exp backup3 distill verifier",
+  "task_key": "worker_run_exp_backup3_distill_verifier_20260520T184111",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_exp_backup3_distill_verifier_20260520T184111_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "a6a559e41fd1096c444eeab3a1db7fb2f87b7f2686fc6fccb08341abc6ed17c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n**总结**：`exp_backup3_distill_verifier` 实验完成，conclusion = **negative**。\n\n- Entity-level AUROC 不错（~0.875），说明分类器能区分 gold/non-gold entities\n- 但转化为下游 F1 时，ΔF1 极小（最好的 MLP 仅 +0.0011），说明 weighted MV 无法持续超越 standard MV\n- 核心原因：agreement_ratio 是压倒性强特征（LR coef ~1.6），而这本质上就是 MV 的投票频率——分类器学到的主要就是\"同意率高的 entity 更可能正确\"，跟 MV 做的事情一样\n- 结果文件在 `/root/autodl-tmp/struct_self_consist_ie/output/distill_verifier/distill_verifier_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-exp-backup3-distill-verifier.md"
+}

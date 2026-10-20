@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e10b15d46a89b7f528e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp wnut17 qwen25 7b v3",
+  "task_key": "worker_code_exp_wnut17_qwen25_7b_v3_20260519T080426",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_wnut17_qwen25_7b_v3_20260519T080426_result.json",
+    "occurrence": 1,
+    "bytes": 961,
+    "sha256": "41f4398183dac82536c8eaf38051722b9e66497646c5bfd702014e3f3eadbda7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "一切正常。总结当前状态：\n\n**exp_wnut17_qwen25_7b 已启动 (RUNNING)**\n\n- **Server**: autodl-5090-c, screen session `exp_wnut17_7b`\n- **GPU**: cuda:2,3 (不干扰 cuda:0,1 上的 14B 实验)\n- **当前阶段**: 等待 Qwen2.5-7B-Instruct 下载完成（~3GB/14.2GB，预计 ~70min）\n- **Pipeline 5 阶段自动执行**:\n  1. QLoRA 训练（rank=32, alpha=64, 4-bit NF4, 5 epochs, WNUT-17 train）\n  2. LoRA 导出/合并\n  3. 3-seed N=8 推理（seed 42/123/456, T=1.0）\n  4. 5-signal 分析（SJ/FK/VC/EM/LP）\n  5. Entity construction（θ=2/N, LP-weighted）\n\n**文件清单**:\n- 训练配置: `train_config_qwen25_7b_wnut17_s42.yaml`\n- 导出配置: `export_config_qwen25_7b_wnut17.yaml`\n- Pipeline 脚本: `run_wnut17_qwen25_7b_pipeline.sh`\n- Entity construction: `code/wnut17_entity_construction.py`\n- 日志: `logs/exp_wnut17_7b_pipeline.log`\n- 输出目录: `output/wnut17/qwen25_7b_n8_seed{42,123,456}/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-wnut17-qwen25-7b-v3.md"
+}

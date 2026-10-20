@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "977e71361999e965271f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis fewnerd rho variance lp claim",
+  "task_key": "worker_analysis_fewnerd-rho-variance-lp-claim_20260522T182104",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_fewnerd-rho-variance-lp-claim_20260522T182104_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "9a5695c598d45300da72bab754d84ef1a1212006199a7e78197885273a9f3061"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心发现：\n\n**Part A (ρ_sj 方差)**：s42 不是 outlier。degeneracy 三个 seed 一致 (8-9%)，ρ_sj_full 的 32% CV 来自退化实例在联合排名中的随机位置效应。ρ_sj_cond 更稳定 (CV=15%)，且真正重要的 LP_Δ 非常稳定 (0.07/0.09/0.12pp, σ=0.025)。方法是稳定的。\n\n**Part B (LP overclaim)**：最大风险是**指标不透明**。论文 Table 4 报告 LP +1.39pp 用的是 instance-averaged F1，但没有标注。MF4 统一管线 (corpus micro-F1) 下只有 +0.09pp。审稿人若用标准 micro-F1 复现会得到完全不同的数字。\n\n建议：(1) Table 4 caption 加 \"(instance-averaged F1)\" 标注；(2) appendix 补充 micro-F1 结果 (+0.09pp) 说明增益集中在少实体实例；(3) \"definitive contrast\" 改为 \"clearest positive case\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fewnerd-rho-variance-lp-claim.md"
+}

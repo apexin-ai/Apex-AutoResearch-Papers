@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e28ac6026c0ddafd2cfe",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code consistency module",
+  "task_key": "worker_code_consistency_module_20260514T042604",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_consistency_module_20260514T042604_result.json",
+    "occurrence": 1,
+    "bytes": 747,
+    "sha256": "549e02baf7ed5ad683c6c5e829c328593c43440f353d26a2410fc78874a51073"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`consistency.py` 已创建并注册。模块包含：\n\n- **`fleiss_kappa_surface`** — 将 N 次采样视为 N 个 rater，对 (text, type) entity 做 Fleiss' Kappa，含所有边界情况处理\n- **`structural_consistency_soft_jaccard`** — 按 type 分组后用 Hungarian matching 做 span-level soft Jaccard，支持 `ner` 和 `eae` 两种 subtask\n- **`oracle_best_of_n`** — 从 N 个 sample 中选 F1 最高的，lazy import `evaluation.per_instance_f1`\n- **`compute_all_consistency_scores`** — 聚合函数，对所有 instance 批量计算上述三个指标\n\n全部测试通过：perfect agreement → 1.0，partial overlap → 0.6154，no overlap → 0.0，边界情况（空集、单 sample）均正确返回。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-consistency-module.md"
+}

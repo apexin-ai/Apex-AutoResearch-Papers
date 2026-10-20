@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c89e7b58ed48d488f314",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run exp a2 humaneval sc",
+  "task_key": "worker_run_exp_a2_humaneval_sc_20260520T190009",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_exp_a2_humaneval_sc_20260520T190009_result.json",
+    "occurrence": 1,
+    "bytes": 88,
+    "sha256": "87380e38a7a3a075084a26698726545821cdf66d9093435d58145e6e3b454e11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验在进行中，第 1/164 个问题已开始处理。继续等待。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-exp-a2-humaneval-sc.md"
+}

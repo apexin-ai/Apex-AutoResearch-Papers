@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fac9aaf1558f2baa59a9",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code mrsc write and prepare",
+  "task_key": "worker_code_mrsc_write_and_prepare_20260520T162510",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_mrsc_write_and_prepare_20260520T162510_result.json",
+    "occurrence": 1,
+    "bytes": 2656,
+    "sha256": "7adb5a59a72286c1b5c424ca3bc667f543d966c3486467a05dbec3a15338748c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出汇总\n\n### Part 1: run_mrsc.py\n\n已写入 `artifacts/experiments/mrsc/run_mrsc.py`，语法验证通过。\n\n用法示例：\n```bash\nCUDA_VISIBLE_DEVICES=3 python run_mrsc.py \\\n  --base_model_path <模型路径> \\\n  --adapter_path <可选adapter> \\\n  --data_path <samples.jsonl> \\\n  --output_dir ./output_mrsc \\\n  --dispute_threshold 0.6 \\\n  --round2_weight 2.0 \\\n  --batch_size 16\n```\n\n### Part 2: autodl-5090-c 环境探查\n\n**FewNERD samples JSONL（可用作 Round 1 数据源）：**\n\n| 路径 | 大小 | 行数 |\n|------|------|------|\n| `/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl` | 675M | 37,648 |\n| `/root/autodl-tmp/struct_self_consist_ie/output/exp_fewnerd_seed789/samples.jsonl` | 643M | 37,648 |\n| `/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/conll2003_n8/samples.jsonl` | 38M | 3,453 |\n| `/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n8/samples.jsonl` | 3.8M | 551 |\n\n（fewnerd_7b/qwen25_7b_n8_seed123 目录存在但为空）\n\n**可用模型：**\n\n| 类型 | 路径 |\n|------|------|\n| 基座 | `/root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct` |\n| 基座 | `/root/autodl-tmp/.hf_cache/modelscope_hub/Qwen/Qwen2___5-14B-Instruct` |\n| 基座 | `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B` |\n| merged | `checkpoints/qwen25-7b-fewnerd-merged` |\n| merged | `checkpoints/qwen25-14b-fewnerd-merged-final` |\n| merged | `checkpoints/qwen25-14b-fewnerd-merged-ckpt36000` |\n| merged | `checkpoints/qwen3-8b-fewnerd-exp021-merged` |\n| merged | `checkpoints/qwen3-8b-conll2003-merged` |\n| merged | `checkpoints/qwen3-8b-scierc-merged-v2` |\n| merged | `checkpoints/qwen25-7b-wnut17-merged` |\n| LoRA | `checkpoints/qwen25-7b-fewnerd-qlora-s42` |\n| LoRA | `checkpoints/qwen25-14b-fewnerd-qlora-s42` |\n| LoRA | `checkpoints/qwen3-8b-fewnerd-exp021-lora` |\n| LoRA | `checkpoints/llama3.1-8b-scierc-lora` |\n\n（所有 checkpoints 路径前缀为 `/root/autodl-tmp/struct_self_consist_ie/checkpoints/`）\n\n**Python / 依赖环境：**\n- Python 3.12.3（conda base，`/root/miniconda3/bin/python`）\n- PyTorch 2.10.0+cu128\n- transformers 4.57.1, peft 0.17.1, scipy ✓, sklearn ✓\n\n**GPU 状态：**\n\n| GPU | 型号 | 显存占用 | 利用率 |\n|-----|------|----------|--------|\n| 0 | RTX 5090 | 31101/32607 MiB | 97% |\n| 1 | RTX 5090 | 0/32607 MiB | 0% |\n| 2 | RTX 5090 | 0/32607 MiB | 0% |\n| **3** | **RTX 5090** | **0/32607 MiB** | **0%** |\n\n**cuda:3 空闲，可用。**\n\n**磁盘：** `/root/autodl-tmp` 350G 总量，127G 可用（64% 使用）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mrsc-write-and-prepare.md"
+}

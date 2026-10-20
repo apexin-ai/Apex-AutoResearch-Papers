@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdbd6446b629781735ee",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "critical exp029b fix and postprocess",
+  "task_key": "worker_critical_exp029b_fix_and_postprocess_20260518T024623",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_critical_exp029b_fix_and_postprocess_20260518T024623_result.json",
+    "occurrence": 1,
+    "bytes": 1961,
+    "sha256": "cd1b359fbb14d5123cd68568cccd00339d6dc0b985ede2e82312e3e09d4263e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 全部完成。下面是完整结果汇报。\n\n---\n\n## Step 4: 完整结果汇报\n\n### 1. 训练状态\n\n| 项目 | 值 |\n|------|-----|\n| Total steps | 1170/1170 |\n| Epoch | 10.0 |\n| Final loss | 0.0084 |\n| Best checkpoint | None (未开启 eval-based selection) |\n| 训练时长 | ~58 min |\n\n### 2. 10-epoch 核心指标\n\n| Metric | Value |\n|--------|-------|\n| **Degeneracy (CF1 gold-filtered)** | **47.83%** |\n| Greedy F1 | 0.6491 |\n| Oracle F1 | 0.7331 |\n| Headroom | 8.40 pp |\n| LP selection F1 | 0.6567 (+0.75 pp) |\n| Within-instance rho(LP,F1) mean | 0.0685 |\n| Within-instance rho(LP,F1) median | 0.1201 |\n| LP range mean | 0.033337 |\n| LP range median | 0.023715 |\n| Valid within-rho instances | 276/529 (52.2%) |\n\n### 3. 3-point Epoch Curve 对比表\n\n| Metric | 3-epoch (029a) | 5-epoch (baseline) | 10-epoch (029b) |\n|--------|---------------|-------------------|----------------|\n| **Degeneracy %** | **6.43%** | **17.58%** | **47.83%** |\n| Greedy F1 | 0.6501 | 0.6094 | 0.6491 |\n| Oracle F1 | 0.7998 | N/A | 0.7331 |\n| LP sel delta (pp) | -1.18 | -0.07 | **+0.75** |\n| Within-inst med rho | 0.3172 | 0.2474 | 0.1201 |\n| LP range mean | 0.085427 | N/A | 0.033337 |\n| FK rho | 0.5302 | N/A | 0.3413 |\n| SJ rho | 0.5160 | N/A | 0.3441 |\n\n### 4. 单调递增趋势确认\n\n**CONFIRMED**: 10ep (47.83%) > 5ep (17.58%) > 3ep (6.43%)\n\nDegeneracy 呈强单调递增趋势。从 3ep 到 10ep 增长了 41.4pp，加速效应明显（3→5 增长 11.2pp，5→10 增长 30.2pp）。\n\n附带观察：\n- LP range 随 epoch 单调递减（0.085 → 0.033），说明 logprob 多样性急剧下降\n- Within-instance rho 随 epoch 单调递减（0.317 → 0.247 → 0.120），LP 的 F1 区分能力随过拟合恶化\n- LP selection 从负变正（-1.18 → -0.07 → +0.75），但这不代表 LP 更好用，而是因为 oracle headroom 从 15pp 缩小到 8.4pp，天花板大幅降低"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/critical-exp029b-fix-and-postprocess.md"
+}

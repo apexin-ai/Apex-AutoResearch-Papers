@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f516e79ba5ef0342e4a9",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh check 5090c status",
+  "task_key": "worker_ssh_check_5090c_status_20260521T182044",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check_5090c_status_20260521T182044_result.json",
+    "occurrence": 1,
+    "bytes": 1719,
+    "sha256": "995e08584743ec38c7fff98f5c4b152c6b87ffc9c556aae819d843baa803e3e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### GPU 使用\n\n| GPU | 状态 | 显存 |\n|-----|------|------|\n| cuda:0 | **空闲** | 0 / 32607 MiB |\n| cuda:1 | **空闲** | 0 / 32607 MiB |\n| cuda:2 | **运行中** (82%) | 30233 / 32607 MiB |\n| cuda:3 | **运行中** (77%) | 30295 / 32607 MiB |\n\n### 实验逐项\n\n**1. exp_e2_pretrained_fewnerd_s456 (cuda:2)**\n- 状态：**RUNNING** — 正在推理，刚启动不久\n- 进度：`Processed prompts: 3% | 8168/301184`（301184 = 37648 × 8 samples）\n- 速度：~3120 toks/s input, ~4632 toks/s output\n- ETA：~4-5 小时（log 显示已跑 ~8 分钟）\n- samples.jsonl 尚未生成（推理过程中不写文件）\n\n**2. exp_e2_pretrained_fewnerd_s42 (cuda:3)**\n- 状态：**RUNNING** — 正在推理\n- 进度：`Processed prompts: 2% | 7464/301184`\n- 速度：~3029 toks/s input, ~4534 toks/s output\n- ETA：~4-5 小时\n- ⚠️ **注意**：输出目录是 `e2_pretrained_fewnerd_s42`（不是 `s42_v2`），目录还是空的\n- tmux session 名是 `e2_fewnerd_s42`（从 ps 可见）\n\n**3. exp_e2_pretrained_fewnerd_s123**\n- 状态：**已完成** ✅\n- samples.jsonl: **37648 行**（FewNERD full，完整）\n- report.json 已生成，verdict = **PASS**\n- 关键指标：greedy_f1=0.512, oracle_f1=0.619, headroom=0.107, fleiss_kappa=0.443, soft_jaccard=0.687\n- structural_beats_surface=true, rho_advantage=0.047\n\n**4. 5-epoch s456 模型 (cuda:0)**\n- 状态：**SCP 传输中** — 模型正从另一台 AutoDL (端口 21071) 拷贝过来\n- 已传输文件：model-00001 (4.9GB), model-00002 (4.9GB), model-00003 (3.5GB, 正在写入中)\n- 还缺 model-00004 和其他文件（tokenizer 等）\n- 推理尚未开始，cuda:0 空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-5090c-status-copy-2.md"
+}

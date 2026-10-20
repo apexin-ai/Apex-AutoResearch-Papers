@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7fe5393c806ce569825",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "investigation auroc pipeline p01",
+  "task_key": "worker_investigation_auroc_pipeline_p01_20260519T140333",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_investigation_auroc_pipeline_p01_20260519T140333_result.json",
+    "occurrence": 1,
+    "bytes": 914,
+    "sha256": "a446a0ee64b9b03f3c19bd546d1405c71cde90b19a1163d2a9508a912ec7cad0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/p01_auroc_investigation_report.md`。\n\n**根因**：Registry (`all_signals_5signal.json`) 和 Paper Table 1 使用了完全不同的 AUROC 定义：\n- **Paper Table 1**: `F1 >= median (0.667)` binarization — 正类 301/529\n- **Registry**: `F1 >= 1.0` (perfect extraction) binarization — 正类 132/529\n\n**Paper Table 1 是正确的**，与论文 §3 方法描述一致。EM 的 13.5pp 偏差最大是因为 exact match 天然与\"完美抽取\"强相关，但与\"高于中位数\"的关系弱得多。LP 巧合匹配是因为其在两种 threshold 下的 discriminative power 恰好相近。\n\n**EM 不是 SciERC AUROC 最高信号**——在论文定义下 VC (.663) 和 SJ (.650) 排前两位，EM (.614) 排第三。\n\n此外，`d114_auroc_investigation/` 目录下已有之前的完整调查记录（包括 `evaluation.py` 的 `>` vs `>=` bug 修复）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigation-auroc-pipeline-p01.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65088905b038972584f1",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh p1 p2 power holm",
+  "task_key": "worker_ssh_p1-p2-power-holm_20260520T132923",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_p1-p2-power-holm_20260520T132923_result.json",
+    "occurrence": 1,
+    "bytes": 1174,
+    "sha256": "7981c929b63d3cd4ec8c87e7661b476d36df9d4211a7c31cfea298958a833c7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个产出均已完成，保存在本地和服务器的 `artifacts/r25_response/`：\n\n**P1: `power_analysis.tex`** — n=23 post-hoc power analysis表：\n| ρ | Power | n needed (80%) |\n|---|-------|----------------|\n| 0.1 | 0.073 | 783 |\n| 0.2 | 0.148 | 195 |\n| 0.3 | 0.283 | 85 |\n| 0.4 | 0.474 | 47 |\n| 0.5 | 0.690 | 30 |\n\n与论文现有 Table 13 (Appendix F.12) 数值一致（ρ=0.3 → n≈85 匹配论文正文引用）。\n\n**P2: `holm_bonferroni_enumeration.tex`** — 57个统计检验完整枚举，按7个家族分组：\n- **Selection** (19 tests): 实例级信号选择 vs greedy\n- **Construction** (10 tests): 实体构造 vs greedy\n- **Calibration** (3 tests): MF-Platt vs Raw LP\n- **Signal Δρ** (9 tests): 信号间 bootstrap 对比\n- **Correlation** (6 tests): 跨配置相关性显著性\n- **FS error** (4 tests): Few-shot 误差分析\n- **Other** (6 tests): 其他独立检验\n\nHolm-Bonferroni 校验结果：仅2个检验在 α=0.05 下存活（#51 CoNLL FS entropy Wilcoxon, #53 RE free-form reversal）。SciERC LP construction 的 p_adj=0.180（论文报告~0.20，差异源于 \"p<0.001\" 的保守估计）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p1-p2-power-holm.md"
+}

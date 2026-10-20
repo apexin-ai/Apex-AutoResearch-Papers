@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "529c20ccd723dd414347",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_16_1779396616.md",
+  "task_key": "loop_16_1779396616",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_16_1779396616.md",
+    "occurrence": 1,
+    "bytes": 5301,
+    "sha256": "e8ffa0100138768508338a168a2da64d2bf6f69c6e8aab23bd79400ba5c3365c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: max_wall_time\nupdated: '2026-05-21T18:18:33+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: autodl-5090 cuda:0-3, autodl-5090-c cuda:0-3。两台服务器各 4 张 RTX 5090。\n- **DDL 2026-05-25 (EMNLP 2026 ARR)**，Director 已宣布\"FewNERD 5-epoch 3 seeds 完成后不再加新实验\"，重心转论文质量。\n- CoNLL s42 MF4v2 数据仅在 5090-c（57MB），5090 上是旧 exp002 数据（9.8MB，不同 pipeline）。两者 Δ_SC 符号相反。v4 表统一用 MF4v2 数据。\n- 5-epoch 推理用 tmux 而非 submit_training_job 启动（worker 环境限制），cron 会频繁误报\"进程退出\"——检查 samples.jsonl 行数（37648=完成）而非信任 cron 判断。\n- bib key `xie2024selfimproving` 是正确的（第一作者 Xie，非 Ma），不要改。\n\n### 2. 🖥️ 基础设施快照\n- **autodl-5090**: `/root/autodl-tmp/struct_self_consist_ie/`, conda base (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\n  - 3-epoch merged model: `checkpoints/qwen3-8b-fewnerd-exp021-merged/`\n  - **5-epoch merged model**: `checkpoints/qwen3-8b-fewnerd-5epoch-merged/` (16GB, 4 shards, 刚 merge 完成)\n  - FewNERD MF4v2 data: `fewnerd_mf4v2_seed{42,123,456}/samples.jsonl` (各 ~670MB, 37648 lines)\n  - SciERC MF4v2 data: `scierc_mf4v2_seed{42,123,456}/samples.jsonl`\n  - CoNLL MF4v2 rerun: `conll_mf4v2_s{123,456}_rerun/samples.jsonl`\n  - 活跃进程: 5-epoch s42 推理 (cuda:1, tmux), 5-epoch s123 推理 (cuda:2, tmux), fewnerd_n16_s456 (cuda:0), e2_pretrained_fewnerd_s456 原始 (cuda:3, 可能已完成)\n- **autodl-5090-c**: 同路径结构\n  - CoNLL MF4v2 s42 原始+rerun: `conll_mf4v2_seed42/`, `conll_mf4v2_s42_rerun/` (checksum verified)\n  - 活跃进程: e2_pretrained_fewnerd_s456 (cuda:2, tmux `exp_e2_pretrained_fewnerd_s456`), e2_pretrained_fewnerd_s42_v2 (cuda:3, tmux `e2_fewnerd_s42`), 5-epoch s456 scp + 推理 worker (cuda:0, scp 约 7MB/s ~30min)\n  - Cron: exp_e2_pretrained_fewnerd_s456 (5090-c), exp_e2_pretrained_fewnerd_s42_v2 (5090-c)\n- **Recompute 脚本**: `code/recompute_alpha_crit_unified.py` (autodl-5090)\n- **HF cache**: `/root/autodl-tmp/.hf_cache/`\n\n### 3. 📊 当前状态\n**刚做完**: Round 30 审稿修复全 5 tasks 完成，registry 批量同步 5 个实验到 DONE，5-epoch LoRA merge 完成，GPU 填充方案执行中。\n\n**Registry RUNNING (3)**:\n- `exp_fewnerd_5epoch_s42` — 5090 cuda:1, ~10% 完成, ETA ~1h\n- `exp_fewnerd_5epoch_s123` — 5090 cuda:2, ~10% 完成, ETA ~1h\n- `exp_e2_pretrained_fewnerd_s456` — 5090-c cuda:2, 刚启动\n\n**等待中的回调**:\n- `worker_ssh_5epoch_s42_cron_check4` — 正在检查 s42/s123 是否完成（第 4 次 cron 误报处理）\n- `worker_ssh_5090c_5epoch_s456_inference` — scp merged model 到 5090-c + 启动 s456 推理\n- Cron 监控: exp_fewnerd_5epoch_s42, exp_fewnerd_5epoch_s123, exp_e2_pretrained_fewnerd_s456, exp_e2_pretrained_fewnerd_s42_v2\n\n**Round 30 完成状态**: Task 1 ✅ SciERC 3-seed recompute, Task 2 ✅ 因果语言 grep (主文 4 处 + 附录 ~15 处待改), Task 3 ✅ 作者验证 (Xie 正确), Task 4 ✅ ε/TOST 论证充分, Task 5 ✅ GPU 状态\n\n### 4. 📋 待办（条件触发式）\n- **5-epoch s42/s123 samples.jsonl = 37648 行** → 提取 report 指标 → update_registry DONE → delete_cron → **立即计算 degeneracy + MV delta + signal correlations** → 汇报 Director（这是 P0 — W5 epoch confound 的答案）\n- **5-epoch s456 scp 完成** → 在 5090-c cuda:0 启动推理 → register_cron\n- **e2_pretrained_fewnerd_s456 完成** → update_registry DONE → 汇报（完成 E2 pretrained FewNERD 3-seed set）\n- **全部 5-epoch 3 seeds 完成** → 生成 epoch confound 对比表（3-epoch vs 5-epoch: degeneracy, MV delta, LP selection, signal ρ）→ 写入 artifacts → 汇报 Director → **进入纯论文质量模式**\n- **Director 指示修复因果语言** → spawn paper worker 改 single_signal.tex:46 (\"determines\" → \"bounds/constrains\"), mechanistic.tex:27, method.tex:9, experiments_main.tex:122, 附录 ~15 处\n\n### 5. 🎯 战略上下文\n- **核心结论**: SC 在结构化 IE 任务上 fails — MV 要么 hurts 要么 neutral (v4 table: FewNERD Δ=−2.74pp, CoNLL Δ=−0.04pp, SciERC Δ=−0.74pp)。根因: degeneracy + LP compression + verification failure (四阶段 diagnostic cascade)。\n- **α_crit 公式**: α_crit = F₁^gr/2 (Proposition 1)。旧版脚本错误用了 π_MV/(2−π_MV)，v4 已修正。\n- **v4 narrative 修正**: CoNLL 3-seed 数据 Δ≈0（不是负向），从\"MV uniformly hurts\"改为\"MV fails to meaningfully improve\"。α_crit_eff > 1.0 预测 MV gain 结构性不可能——这更好地支撑 Proposition 1。\n- **易错点**: (1) Cron 对 5-epoch 推理频繁误报，必须检查 samples.jsonl 而非信任 cron。(2) 5090 vs 5090-c 数据不完全相同——FewNERD/SciERC MF4v2 仅在 5090，CoNLL MF4v2 仅在 5090-c。(3) exp_scierc_n16_s42 曾因 registry 状态机卡在 PREPARING，需走完整状态链才能到 DONE。(4) 不要重复跑已完成的实验——之前因 FewNERD N=16 s456 重复启动被 Director CRITICAL。\n- **5-epoch 实验的关键假设**: 如果 5-epoch degeneracy 高于 3-epoch (9.1%) 且 MV 仍 fails，说明 epoch count 不是 confound，论文论证可加强。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779396616.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97a55a0a9d52efab585a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis d112 table2 f1 fix",
+  "task_key": "worker_analysis_d112_table2_f1_fix_20260516T094332",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_d112_table2_f1_fix_20260516T094332_result.json",
+    "occurrence": 1,
+    "bytes": 1316,
+    "sha256": "ed68c2f894af66fc78133f40de94a733110f754b90806835241d201d31f5898b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. All 6 outputs saved to `/root/autodl-tmp/struct_self_consist_ie/output/d112_table2_fix/`:\n\n| File | Content |\n|------|---------|\n| `corrected_table2.json` | Unified macro F1 table (529 inst, 2-seed) |\n| `bootstrap_results.json` | Paired bootstrap B=10000, CIs, p-values, Cohen's d |\n| `cross_dataset_check.json` | CoNLL/WNUT/RE micro-macro comparison |\n| `clarification_v2.txt` | 10 specific locations in paper to fix |\n| `investigation.md` | Full diagnostic report |\n| `fix_table2.py` | Reproducible recomputation script |\n\n**Corrected Table 2 (SciERC NER, macro F1, n=529):**\n\n| Method | F1 | Δ vs Greedy | p |\n|--------|-----|-------------|---|\n| Oracle | 0.778 | +13.3 pp | — |\n| **Greedy (T=0)** | **0.645** | — | — |\n| LP | 0.647 | +0.2 pp | .385 |\n| SJ | 0.646 | +0.1 pp | .889 |\n| FK | 0.646 | +0.1 pp | .881 |\n| EM | 0.637 | -0.8 pp | .317 |\n| VC | 0.623 | -2.2 pp | .060 |\n| Random | 0.610 | -3.5 pp | — |\n\n**Key impact**: The claim \"Greedy surpasses all selection\" (0.663 vs 0.647) was an artifact of micro/macro mixing. Corrected: Greedy (0.645) ≈ LP (0.647), statistically indistinguishable. The core thesis (correlation-selection gap) is strengthened — not weakened — because the framing shifts to \"selection adds N=8 cost for zero gain.\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d112-table2-f1-fix.md"
+}

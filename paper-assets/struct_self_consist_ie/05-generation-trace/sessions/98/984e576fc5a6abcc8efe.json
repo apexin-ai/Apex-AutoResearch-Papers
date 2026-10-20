@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "984e576fc5a6abcc8efe",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_11_1778904748.md",
+  "task_key": "loop_11_1778904748",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_11_1778904748.md",
+    "occurrence": 1,
+    "bytes": 4140,
+    "sha256": "f1449d1488031fc3510e009a1144780643bda2f9afa8f9c29da95c898c611baf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: max_messages\nupdated: '2026-05-16T02:33:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 的 cuda:0, cuda:1, cuda:2, cuda:3（config 确认），当前全部空闲\n- 论文 ρ 值必须来自 gold-filtered 管道（排除 gold-empty 实例），禁止直接用 registry metrics 的 EM/VC 值（脚本 vs report.json 存在系统性差异，D066 决策）\n- CoNLL n=2756, SciERC n=551（canonical 全集），529 交集仅参考不进论文\n- exp_012 是唯一 max_tokens=512 实验，voting_conf ρ 虚高，论文数据必须来自 _rerun_1024 或本身用 1024 的实验\n- DDL: **2026-05-25**（ARR May cycle），距今 9 天，不接受任何 scope creep\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: autodl-5090 (别名 bjb1-21071), 4× RTX 5090 32GB\n- **工作目录**: /root/autodl-tmp/struct_self_consist_ie/\n- **Python/conda**: /root/miniconda3/，激活命令 `source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **基座模型**: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\n- **ft merged checkpoint**: checkpoints/qwen3-8b-scierc-merged-v2/\n- **canonical 数据**: artifacts/analysis_unified_rho.json, analysis_round8/epsilon_sweep.csv\n- **活跃进程**: 无。所有 tmux session / cron 已清理，reconcile_crons 返回 0 条\n- **W&B**: 项目内实验有 wandb 记录，具体 config 需查 memory.md 或 registry\n\n### 3. 📊 当前状态\n**全部 104 个实验已完成**（success 58 / negative 22 / killed 20 / failed 4），无 RUNNING/PREPARING/PENDING 实验，无活跃 Worker 或 Cron 回调。\n\n上一轮完成的关键工作：\n- 4B scale ablation 2×2 矩阵全部完成（D098），核心结论：gap 与 model capacity 无关，task difficulty 是主驱动\n- unified_rho_full.json LLaMA SciERC 污染已修复（D092-D094）\n- ε sweep 确认 ε=0.05 稳健（D095），RE 3-seed 一致（D091）\n- Registry desync 清理进行中（9 个 PREPARING+killed 废弃实验）\n\n**等待中**：\n- Paper Agent 应正在执行：4B compact table patch → 页数压缩 → 标题/Abstract/RE标注/次要修复（Round 8 Phase 1-5）\n- 无 Worker/Cron 回调待处理\n- 无 Director 决策待等待（除非 Paper Agent 完成后需 Round 9 审稿触发）\n\n### 4. 📋 待办（条件触发式）\n- Paper Agent 完成全部 Phase 1-5 → 触发 Round 9 审稿（continue mode），spawn reviewer Worker\n- Round 9 审稿发现需要补充实验 → autodl-5090 四卡待命，立即提交\n- Round 9 审稿通过 → final polish → 提交 ARR（DDL 2026-05-25）\n- Registry desync 9 个废弃实验 → 需要清理但非阻塞（状态机限制 PREPARING→killed 无法推 DONE）\n- Director 若要求 progress report → 读 ROADMAP + registry 汇总，带 [资源] 行\n\n### 5. 🎯 战略上下文\n**核心论点**：IE test-time scaling 中存在 universal correlation-selection gap。5 类置信信号能预测质量（QE）但不能选择更好的候选。Free-form ablation 证明 score compression 是 model/task intrinsic，非 constrained decoding artifact。4B scale ablation 证明 gap 与 model capacity 无关。\n\n**决策链关键节点**：\n- D098: 4B ablation 完成，R14 RESOLVED\n- D095: ε=0.05 稳健 + RE preliminary RESOLVED\n- D073/D091: RE negative 预纳入 framing 为 \"task-dependent signal effectiveness\"，无需 framing 调整\n- D066: LLaMA 3-seed fresh rerun，NER 排名 6/6 稳定\n\n**易错点**：\n- 不要把 registry metrics 直接写进论文——必须用 gold-filtered 分析脚本输出（脚本 vs report.json 有系统性差异）\n- CoNLL 4B headroom 仅 1.70pp（vs 8B 4.20pp），selection 全部 ≤0.1pp 是 MARGINAL 而非 negative——叙事上要区分 \"headroom 不够\" 和 \"信号失败\"\n- SciERC RE zero-F1 率 ~45%，binary signal dominance 是结构性的——不要试图用更多 seed 救回来\n- exp-019 supervised verifier 已 SKIPPED（DDL + scope creep），是 follow-up paper 材料\n- 当前瓶颈是 Paper Agent 写作，不是 GPU 实验。GPU 空闲是正确状态（实验全部完成），不要为了 \"GPU 利用率\" 发起不必要的实验\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778904748.md"
+}

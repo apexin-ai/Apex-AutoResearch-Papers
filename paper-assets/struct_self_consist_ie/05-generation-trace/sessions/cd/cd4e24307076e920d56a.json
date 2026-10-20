@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd4e24307076e920d56a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check n32 and run",
+  "task_key": "worker_check_n32_and_run_20260523T112013",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_n32_and_run_20260523T112013_result.json",
+    "occurrence": 1,
+    "bytes": 1084,
+    "sha256": "de632ddc3bd1a7be307d1d9265ff0a7144e42fd970f44d38a798314f9e602b5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果：\n\n### N=32 Pretrained FewNERD 分析（32565 instances）\n\n| 指标 | 值 |\n|------|-----|\n| **Greedy F1** | 0.539 |\n| **MV F1** | 0.577 (**MV Δ = +3.9 pp**) |\n| **MV Δ 95% CI** | [+2.6, +2.9] pp |\n| **Oracle F1** | 0.705 (**Oracle Δ = +16.6 pp**) |\n| **Degeneracy %** | 5.4% |\n| **Capture %** | 19% |\n| **SJ ρ** | 0.456 |\n| **LP F1** | 0.529 (Δ = -1.0 pp) |\n\n### N-scaling 对比\n\n| N | Greedy | MV Δ(pp) | Degen% | Oracle Δ | Capture | ρ_SJ |\n|---|--------|----------|--------|----------|---------|------|\n| 8 | .538 | +3.9 | 11.7 | +11.2 | 36% | .436 |\n| 16 | .537 | +4.1 | 7.6 | +14.1 | 29% | .453 |\n| **32** | **.539** | **+3.9** | **5.4** | **+16.6** | **19%** | **.456** |\n\n**判定：Scenario A (plateau)** — MV Δ 在 +3.9 pp，N=8→16→32 无显著增长。Degeneracy 从 11.7%→5.4% 持续下降，Oracle headroom 从 +11.2→+16.6 持续增长（更多样本覆盖更多正确答案），但 capture rate 从 36%→19% 持续下降（MV 无法利用这些多样性）。SJ ρ=0.456 基本稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-n32-and-run.md"
+}

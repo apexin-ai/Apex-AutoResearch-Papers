@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4e658b1a308969114d0",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "eval exp 012 logprob",
+  "task_key": "worker_eval_exp_012_logprob_20260514T105409",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp_012_logprob_20260514T105409_result.json",
+    "occurrence": 1,
+    "bytes": 2074,
+    "sha256": "bd1118655c55e12c79b47eb27c5585a55ce70a1f1d23e5ae07f965999739ff3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-012 完成。结果汇总：\n\n## exp-012 Logprob Baseline 对比结果\n\n### NER (Full Set, n=529)\n| Signal | ρ_spearman | p-value | τ_kendall | AUROC |\n|---|---|---|---|---|\n| **soft_jaccard** | **+0.3565** | 2.66e-17 | **+0.2658** | **0.6892** |\n| fleiss_kappa | +0.2651 | 5.86e-10 | +0.2027 | 0.6292 |\n| mean_logprob | +0.1396 | 1.29e-03 | +0.1006 | 0.5907 |\n| greedy_logprob | +0.1615 | 1.92e-04 | +0.1184 | 0.5941 |\n\n**NER → SJ 碾压 logprob (ρ delta = +0.217)**\n\n### RE (Full Set, n=397)\n| Signal | ρ_spearman | p-value | τ_kendall | AUROC |\n|---|---|---|---|---|\n| soft_jaccard | +0.2112 | 2.21e-05 | +0.1619 | 0.5916 |\n| **fleiss_kappa** | **+0.2528** | 3.32e-07 | **+0.1967** | **0.6262** |\n| mean_logprob | +0.2467 | 6.47e-07 | +0.1808 | 0.6186 |\n| greedy_logprob | +0.2307 | 3.40e-06 | +0.1696 | 0.6131 |\n\n### RE (Conditional Set, n=296, 过滤101个全零实例)\n| Signal | ρ_spearman | τ_kendall | AUROC |\n|---|---|---|---|\n| **soft_jaccard** | **+0.3683** | **+0.2699** | **0.6839** |\n| fleiss_kappa | +0.3168 | +0.2398 | 0.6469 |\n| mean_logprob | +0.1457 | +0.1039 | 0.5487 |\n| greedy_logprob | +0.1566 | +0.1119 | 0.5499 |\n\n**RE Conditional → SJ 碾压 logprob (ρ delta = +0.223)**\n\n### 结论\n\n- **NER**: SJ 在所有指标上大幅领先 logprob — 强贡献成立\n- **RE Full Set**: logprob 略优于 SJ（ρ 0.247 vs 0.211, delta=0.036），但 FK 以 0.253 胜出，且 AUROC FK 也最高（0.626）\n- **RE Conditional Set**（排除模型完全无法处理的实例后）: SJ 反超 logprob 两倍以上（0.368 vs 0.146）\n\nRE full set 中 logprob 的微弱优势来自 101 个全零实例（模型完全不会抽关系的 instance）——logprob 能区分\"模型完全困惑\"的情况，但对于模型有能力处理的实例，结构一致性信号远优于 logprob。\n\n**Paper direction: SJ 作为 confidence signal 的独特价值成立。** Logprob 不是竞争对手，而是互补信号——尤其在 RE 上可以考虑 ensemble（SJ + logprob）作为后续工作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-012-logprob.md"
+}

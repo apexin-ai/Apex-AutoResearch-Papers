@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f005d5a65cb9501d2ddb",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis provenance audit d105",
+  "task_key": "worker_analysis_provenance_audit_d105_20260516T045309",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_provenance_audit_d105_20260516T045309.log",
+    "occurrence": 1,
+    "bytes": 582892,
+    "sha256": "3f71404f5032313bf472b3f48d62be75a7ed26b49f59abe5b28cccae02460a79"
+  },
+  "statistics": {
+    "messages": 176,
+    "user_turns": 0,
+    "tool_calls": 66,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 66,
+      "tool_result": 66,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 176,
+      "chunks": [
+        {
+          "path": "f005d5a65cb9501d2ddb-part-0001.json",
+          "message_count": 176
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-provenance-audit-d105.md"
+}

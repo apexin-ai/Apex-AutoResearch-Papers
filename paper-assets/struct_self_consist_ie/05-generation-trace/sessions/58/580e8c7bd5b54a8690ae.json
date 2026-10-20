@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "580e8c7bd5b54a8690ae",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code lsc write and prepare",
+  "task_key": "worker_code_lsc_write_and_prepare_20260520T162619",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_lsc_write_and_prepare_20260520T162619_result.json",
+    "occurrence": 1,
+    "bytes": 1316,
+    "sha256": "8fa969b8f2d46c09c452b993ccc4f90817c46cd52422e197d82a90dfc5a87a34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法验证通过。\n\n`run_lsc.py` 已写入 `artifacts/experiments/lsc/run_lsc.py`。\n\n**核心设计**:\n- **Forward pass**: 对每个 sample 的 `[chat_template(prompt) + reconstructed_JSON_output]` 做 forward pass，提取指定层 hidden states\n- **Entity span 定位**: 双策略 — 优先用 `offset_mapping` 做 char→token 映射，fallback 用 token subsequence matching（含 leading space 变体）\n- **输出重建**: 因 JSONL 不存 raw_output，从 parsed entities/relations/events 重建 JSON 字符串\n- **Prompt 复用**: 内置 `_TRAIN_ALIGNED_TEMPLATE` 和 `_NER_TEMPLATE`，通过 `--use_train_format` / `--no_train_format` + `--schema_hint` 匹配推理时的 prompt\n\n**三种聚合方法**:\n- **A) Centroid Selection** — sample 级 entity centroid → 选 cosine 距离最近 grand centroid 的 sample\n- **B) Latent Confidence** — 收集同一 entity 跨 sample 的 hidden vectors，计算 mean pairwise cosine similarity 作为 latent agreement，乘以 frequency 后 threshold 做 weighted construction\n- **C) Clustering** — k-means(k=2) 在 instance 级 entity vectors 上，检测 cluster-correctness separation\n\n**显存管理**: 逐 instance 处理，batch 内即时释放 `model_outputs` 和 `hidden_states`，右侧 padding 简化位置计算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-lsc-write-and-prepare.md"
+}

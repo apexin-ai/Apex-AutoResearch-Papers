@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c1026bb8c1071ff4bad",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run fulldata groupkfold probe",
+  "task_key": "worker_run_fulldata_groupkfold_probe_20260521T034544",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_fulldata_groupkfold_probe_20260521T034544_result.json",
+    "occurrence": 1,
+    "bytes": 1486,
+    "sha256": "6e74cd8840a1e76f9792685a8790a1e3332d34d7df7299139090e987d03e546e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "P0 任务完成。Artifact 已注册，实验 registry 已更新为 DONE(success)。\n\n---\n\n## Full-data GroupKFold Hidden State Probe 最终结果\n\n| Dataset | Instances | Entities | GroupKFold AUROC | StratifiedKFold AUROC | Leakage Δ | 500-inst ref | vs MV(0.87) |\n|---------|-----------|----------|------------------|-----------------------|-----------|-------------|-------------|\n| **CoNLL** | 850 | 14,777 | **0.8824 ± 0.0001** | 0.9786 ± 0.0016 | +0.0962 | 0.885 | **> MV** |\n| **FewNERD** | 1,698 | 41,096 | **0.6361 ± 0.0001** | 0.9802 ± 0.0002 | +0.3441 | 0.651 | < MV |\n| **SciERC** | 539 | 13,188 | **0.6304 ± 0.0002** | 0.9763 ± 0.0002 | +0.3459 | 0.634 | < MV |\n\n### 关键结论\n\n1. **CoNLL hidden state probe (0.882) 超过 MV baseline (0.87)**，说明在 CoNLL 上模型内部表征比多次采样投票更能区分实体质量。\n\n2. **FewNERD/SciERC probe (~0.63) 远高于随机（0.5）但低于 MV**，表明 hidden states 编码了部分质量信息，但不如 MV 聚合信号强。\n\n3. **StratifiedKFold vs GroupKFold 泄露量化**：StratifiedKFold AUROC 全部 ~0.98，leakage delta 在 +0.096（CoNLL）到 +0.346（SciERC）。CoNLL 泄露最小（同一 instance 内实体相似度较低），FewNERD/SciERC 泄露严重——GroupKFold 是必要的。\n\n4. **全量 vs 500-inst 子集一致**：CoNLL 0.882 vs 0.885，FewNERD 0.636 vs 0.651，SciERC 0.630 vs 0.634，差异 <0.02，子集结果具有代表性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-fulldata-groupkfold-probe.md"
+}

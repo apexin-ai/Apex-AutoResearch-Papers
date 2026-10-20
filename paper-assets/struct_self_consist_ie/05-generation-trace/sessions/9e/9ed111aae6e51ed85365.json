@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ed111aae6e51ed85365",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp 015 eval metrics",
+  "task_key": "worker_analysis_exp_015_eval_metrics_20260514T114128",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_015_eval_metrics_20260514T114128_result.json",
+    "occurrence": 1,
+    "bytes": 1402,
+    "sha256": "8d17fad66e95eeb4e68749f1d7d93a32f259fdd286608bf0b37f5af805745b2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-015 结果摘要\n\n**数据**: pilot_005 (T=0.7, N=8), 551 instances, 全部 5 信号在同一数据集上计算。\n\n### NER (full, n=529)\n\n| Signal | ρ | τ | AUROC |\n|--------|-----|-----|-------|\n| Entity Voting | **0.502** | **0.377** | **0.728** |\n| Soft Jaccard (SJ) | 0.357 | 0.266 | 0.666 |\n| Fleiss' Kappa | 0.265 | 0.203 | 0.624 |\n| Exact Match | 0.257 | 0.192 | 0.623 |\n| Mean Log-prob | 0.140 | 0.101 | 0.558 |\n\n### RE (full, n=397)\n\n| Signal | ρ | τ | AUROC |\n|--------|-----|-----|-------|\n| Entity Voting | **0.422** | **0.327** | **0.716** |\n| Fleiss' Kappa | 0.253 | 0.197 | 0.631 |\n| Mean Log-prob | 0.247 | 0.181 | 0.635 |\n| Soft Jaccard (SJ) | 0.211 | 0.162 | 0.582 |\n| Exact Match | 0.100 | 0.084 | 0.504 |\n\n### 关键发现\n\n1. **Entity Voting 在所有设置下均为最强信号**，NER ρ=0.50、RE ρ=0.42，显著优于 SJ（bootstrap CI 不含 0）\n\n2. **SJ > FK > Exact Match > Log-prob**（NER full），SJ 对 FK/EM/logprob 的优势均统计显著\n\n3. **RE full 设置下 SJ 较弱**（ρ=0.21），但 conditional 设置跳回 0.37，说明大量 gold-empty 实例稀释了信号\n\n4. **LOO-SJ**：|Δρ| < 0.001（NER 和 RE），circularity 完全不是问题\n\n5. **Calibration**：Entity Voting 和 SJ 展现单调递增的 F1-confidence 关系；Exact Match 在 RE 上 calibration 不单调（bin 4 回落）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-015-eval-metrics.md"
+}

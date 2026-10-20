@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bfc47e38d41d4fe395d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "inference llama scierc seed456",
+  "task_key": "worker_inference_llama_scierc_seed456_20260515T050639",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_inference_llama_scierc_seed456_20260515T050639_result.json",
+    "occurrence": 1,
+    "bytes": 399,
+    "sha256": "dede95647221a1844fa6c249e9a8d50524d94457d8b288ef73832061c17dc87b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`exp_007_llama_seed456` 已有完全匹配的推理结果（LLaMA-3.1-8B-Instruct merged, SciERC joint, N=8, seed=456, T=1.0, logprobs=True），已复制到目标目录。\n\n**验证结果：**\n- `exp_018_llama_scierc_seed456/samples.jsonl`：551 行 × 8 samples\n- NER Greedy F1: 0.6597, Oracle F1: 0.7575\n- RE Greedy F1: 0.4334, Oracle F1: 0.5789\n- logprobs 已收集"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/inference-llama-scierc-seed456.md"
+}

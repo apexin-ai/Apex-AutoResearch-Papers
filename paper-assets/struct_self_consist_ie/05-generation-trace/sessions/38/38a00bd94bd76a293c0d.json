@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38a00bd94bd76a293c0d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "data fewnerd preparation",
+  "task_key": "worker_data_fewnerd_preparation_20260516T094449",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_data_fewnerd_preparation_20260516T094449_result.json",
+    "occurrence": 1,
+    "bytes": 1417,
+    "sha256": "5eae4c706db2ddf1dc69f55b908f0ace833ae724f786442696d13cf51ada80d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据加载和验证全部通过。\n\n## 完成总结\n\n**Few-NERD INTRA 数据已转换并集成到项目中。**\n\n### 文件产出\n\n| 文件 | 路径 |\n|------|------|\n| train.json | `data/fewnerd/train.json` (99,519 JSONL) |\n| dev.json | `data/fewnerd/dev.json` (19,358 JSONL) |\n| test.json | `data/fewnerd/test.json` (44,059 JSONL) |\n| llmfactory_train.json | `data/fewnerd/llmfactory_train.json` |\n| llmfactory_dev.json | `data/fewnerd/llmfactory_dev.json` |\n| README.md | `data/fewnerd/README.md` |\n| convert_fewnerd.py | `code/convert_fewnerd.py` |\n\n### 统计\n\n| Split | Instances | Entities | Avg tok/sent | Avg ent/sent | Entity Types |\n|-------|-----------|----------|-------------|-------------|-------------|\n| train | 99,519 | 208,637 | 26.9 | 2.10 | person (108k), other (48k), product (31k), art (21k) |\n| dev | 19,358 | 28,649 | 26.0 | 1.48 | building (17k), event (12k) |\n| test | 44,059 | 107,163 | 23.0 | 2.43 | location (64k), organization (43k) |\n\n注：Few-NERD INTRA 设计特点 — 每个 split 使用不同的 entity type（用于 few-shot 评估）。\n\n### 代码修改\n- `sampling.py`: 添加 `FEWNERD_SCHEMA_HINT`\n- `run_mvp_pilot.py`: 添加 `load_fewnerd` 导入、`--dataset fewnerd` 选项、schema hint 映射\n- `data_utils.py`: 添加 `load_fewnerd()` 函数\n- `dataset_info.json`: 添加 `fewnerd_uie_train` / `fewnerd_uie_dev` 条目"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-fewnerd-preparation.md"
+}

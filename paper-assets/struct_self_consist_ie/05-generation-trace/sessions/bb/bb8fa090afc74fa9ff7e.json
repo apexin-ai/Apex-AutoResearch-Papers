@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb8fa090afc74fa9ff7e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fig fig4 bound",
+  "task_key": "worker_fig_fig4_bound_20260524T093239",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fig_fig4_bound_20260524T093239_result.json",
+    "occurrence": 1,
+    "bytes": 64,
+    "sha256": "382fb0b47059da0a74a247abc7c1d0943b56cdaa867925dc93eca6d62e195ce1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 26, 8am (UTC)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fig-fig4-bound.md"
+}

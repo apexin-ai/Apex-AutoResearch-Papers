@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5430ff08bdbea625dfbb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "knowledge update paper framing",
+  "task_key": "worker_knowledge_update_paper_framing_20260514T233712",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_knowledge_update_paper_framing_20260514T233712_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "c4f2b8f24282f87ce45908cbce587838b007a37fd246d9880015fb4fe0fd45ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已更新 paper_framing.md，主要变更：\n\n1. **Claim 1**: EM 取代 voting 成为 AUROC 最强信号 (0.749 vs 旧 voting 0.728)；voting_conf 仍领先 ρ (0.379)；logprob 从 0.559→0.578。所有 evidence 表格替换为 1024-token 数据，缺失的 τ/cond ρ 标注\"待补\"。\n\n2. **Claim 2**: NER 方向反转——logprob 0.6501 微超 greedy 0.6439 (+0.6pp，标注待 bootstrap)；RE 方向完全反转——greedy 0.4042 > logprob 0.3948。correlation-selection gap 叙事更强。\n\n3. **R3b**: 从\"voting vs SJ\"改为\"EM beats all on AUROC — why present SJ/voting_conf?\"，补充 EM 在 ρ 上反而最弱 (0.295) 的互补论证。\n\n4. **R11**: Ensemble AUROC 从 0.735 降至 0.666，不再有 ensemble 优势（EM 单信号 0.749 反而更高），解释调整为特征冗余。\n\n5. **Headline result / Story spine**: 所有引用数字同步更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-update-paper-framing.md"
+}

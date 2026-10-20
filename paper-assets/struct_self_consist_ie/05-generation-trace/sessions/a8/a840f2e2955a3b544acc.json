@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "a840f2e2955a3b544acc",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "gpu exp 002 merge and pilot",
+  "task_key": "worker_gpu_exp_002_merge_and_pilot_20260514T122323",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp_002_merge_and_pilot_20260514T122323.log",
+    "occurrence": 1,
+    "bytes": 1283582,
+    "sha256": "78339144354d4b67bfa03ec394bd56ffe9bbe392b6fed48f12e3756e38ce4cd7"
+  },
+  "statistics": {
+    "messages": 360,
+    "user_turns": 1,
+    "tool_calls": 112,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 1,
+      "assistant": 124,
+      "tool_call": 112,
+      "tool_result": 112,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 255,
+      "chunks": [
+        {
+          "path": "a840f2e2955a3b544acc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a840f2e2955a3b544acc-part-0002.json",
+          "message_count": 75
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 105,
+      "chunks": [
+        {
+          "path": "a840f2e2955a3b544acc-part-0002.json",
+          "message_count": 17
+        },
+        {
+          "path": "a840f2e2955a3b544acc-part-0003.json",
+          "message_count": 88
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-exp-002-merge-and-pilot.md"
+}

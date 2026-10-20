@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "f4ba6d704aea1324400e",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "paper verify appendix L363 L365",
+  "task_key": "worker_paper_verify-appendix-L363-L365_20260519T154004",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_verify-appendix-L363-L365_20260519T154004.log",
+    "occurrence": 1,
+    "bytes": 1167667,
+    "sha256": "36ed6478eaf2ab4abd3a2af70e36c0e8dd571c4a70b3285df1ba7f2ff809a239"
+  },
+  "statistics": {
+    "messages": 215,
+    "user_turns": 1,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 75,
+      "tool_result": 75,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 201,
+      "chunks": [
+        {
+          "path": "f4ba6d704aea1324400e-part-0001.json",
+          "message_count": 161
+        },
+        {
+          "path": "f4ba6d704aea1324400e-part-0002.json",
+          "message_count": 40
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "f4ba6d704aea1324400e-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-verify-appendix-l363-l365.md"
+}

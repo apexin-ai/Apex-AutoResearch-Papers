@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95b2b3bd51f2f10a217a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp 017 llama conll n8 t07",
+  "task_key": "worker_analysis_exp_017_llama_conll_n8_t07_20260515T154212",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_017_llama_conll_n8_t07_20260515T154212_result.json",
+    "occurrence": 1,
+    "bytes": 916,
+    "sha256": "cdf96e361405ee4f292bb31197c9bb04b9d9a557eaa4d1a5b8c39bb76092cda1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## exp_017_llama_conll_n8_t07 结果摘要\n\n**基础指标**：greedy_f1=0.9266, oracle_f1=0.9407, n_valid=2756, parse_rate=100%\n\n**核心发现 — correlation-selection gap 在低温下放大**：\n\n| | rho delta (vs baseline) | AUROC delta (vs baseline) |\n|---|---|---|\n| 4 个 agreement 信号 (SJ/FK/VC/EM) | -0.09 | **-0.10** |\n| LP | -0.02 | **-0.015** |\n\n- Agreement 信号 AUROC 从 ~0.75 跌到 ~0.65（T=0.7 压缩了 agreement 分布，FK mean=0.956, SJ mean=0.983，区分度大幅下降）\n- LP AUROC 从 0.766 仅跌到 0.751，对温度鲁棒\n- LP 对 agreement 信号的 AUROC 优势从 ~0.02 扩大到 ~0.10\n\n**结论**：**success**。Correlation-selection gap 在 T=0.7 N=8 条件下不仅存在而且放大，支持 gap 是 universal 的 claim（跨温度、样本数、模型）。Registry 已更新为 DONE，分析报告已注册为 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-017-llama-conll-n8-t07.md"
+}

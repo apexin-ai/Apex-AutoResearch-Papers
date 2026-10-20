@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f0786c982bcc493c844",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "audit re freeform lp gain",
+  "task_key": "worker_audit_re_freeform_lp_gain_20260518T055403",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_re_freeform_lp_gain_20260518T055403_result.json",
+    "occurrence": 1,
+    "bytes": 2629,
+    "sha256": "00068f505c9aa711d9450b4327a828082cc32f172a0a8f38b3668a98bef9655a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Confirmed: +2.35 does not appear anywhere in the appendix. Here's the full trace:\n\n---\n\n## +2.35pp 来源追踪\n\n### 搜索结果\n- 服务器上所有 `output/`、`results/`、`scripts/`、`code/` 文件中 **不存在 2.35 作为 delta 值**\n- 论文 `appendix.tex` 中 **不存在 2.35**\n- 唯一来源：`logs/workers/worker_analysis_freeform_re_bootstrap_20260517T044401_result.json`\n\n### 来源确认\n`+2.35pp` 和 `p=0.025` 来自 seed=42 的 **gold-non-empty 子集 (n=397)** 的 bootstrap 分析：\n\n| 子集 | Point estimate | p-value |\n|------|---------------|---------|\n| gold-non-empty (n=397) | **+2.35pp** | **0.0250** |\n| all instances (n=551) | +1.69pp | 0.0272 |\n\n数学关系：154 个 empty-gold instances 对 selection gap 贡献为零，所以 `1.69 × 551/397 ≈ 2.35pp`——纯粹是 denominator 缩放。\n\n### 与 Appendix 的不匹配\n\n**Appendix `\\ref{app:freeform_ablation}` (line 771) 报告**:\n> 4-seed mean = **+1.84±0.12pp** (seeds: +1.69, +1.76, +2.00, +1.91) on all instances (n=551)\n\n**Appendix `\\ref{app:re_extension}` (line 687) 报告**:\n> +1.8±0.1pp across 4 seeds\n\n**Discussion.tex line 21 引用**:\n> +2.35pp, p=0.025 (citing Appendix re_extension)\n\n问题：\n1. Discussion 用的是 **单 seed (42)** 值，Appendix 报告的是 **4-seed mean**\n2. Discussion 用的是 **gold-non-empty (n=397)** 子集，Appendix 用的是 **all instances (n=551)**\n3. Appendix 中 **完全没有** +2.35 这个数字\n4. `p=0.025` 是 seed-42 单独的 bootstrap p-value，不是 4-seed Fisher combined p\n\n### p=0.025 核查\n- 来源：bootstrap analysis worker，seed=42，n=397\n- 与正确 LP delta 匹配：仅匹配 seed-42 gold-non-empty 的 +2.35pp，**不匹配** appendix 报告的 +1.84pp\n- Wilcoxon 检验在同一数据上 p=0.1327（不显著），因为 77% instances 是 tied\n\n### 建议\n\ndiscussion.tex line 21 应改为与 appendix 一致的 4-seed 值：\n\n```latex\n% 当前（错误）\nbut restores LP selection for RE ($+2.35$~pp, $p{=}0.025$; Appendix~\\ref{app:re_extension}).\n\n% 修正选项 A：使用 4-seed mean on all instances（与 appendix 一致）\nbut restores LP selection for RE ($+1.8{\\pm}0.1$~pp across 4 seeds; Appendix~\\ref{app:re_extension}).\n\n% 修正选项 B：如果要保留 p-value，需要对 4-seed mean 做 Fisher combined test 或 bootstrap\nbut restores LP selection for RE ($+1.84{\\pm}0.12$~pp, $p{<}0.05$; Appendix~\\ref{app:freeform_ablation}).\n```\n\n选项 A 更安全，直接引用 appendix 已有数字。如果用选项 B，需要重新计算 4-seed combined p-value。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-re-freeform-lp-gain.md"
+}

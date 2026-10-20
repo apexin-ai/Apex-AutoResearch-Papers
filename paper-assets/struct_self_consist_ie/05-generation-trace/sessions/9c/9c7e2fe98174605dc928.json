@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c7e2fe98174605dc928",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp hidden state probe",
+  "task_key": "worker_exp_hidden_state_probe_20260518T103419",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_hidden_state_probe_20260518T103419_result.json",
+    "occurrence": 1,
+    "bytes": 1412,
+    "sha256": "cbb2f6f242178f1cac64bf85350fc1473c149f3edc6c97fea623e54457f61743"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总结果：\n\n```\n===========================================================================\nMethod              Dim    Spearman ρ    Selection F1    Gap Closure\n---------------------------------------------------------------------------\nLP (mean pool)        1      0.2207        0.6087          -0.4%\nDeBERTa             768      0.3290        0.6114         -26.5%\nHidden Linear      4096      0.2346        0.6206           7.0%\nHidden MLP         4096      0.4611        0.6317          13.9%\nOracle                —           —        0.7692         100.0%\n===========================================================================\n```\n\n**核心发现**:\n\n1. **Hidden states 包含比 LP 更多的 quality-relevant 信息** — MLP probe ρ=0.461 远超 LP ρ=0.221 (2x+)，支持 hypothesis\n2. **Linear probe (ρ=0.235) 仅略好于 LP** — 说明 quality-relevant 信息在 hidden space 中以非线性方式编码\n3. **MLP probe gap closure = 13.9%** — 首次在 selection F1 上实现正向 gap closure（LP=-0.4%, DeBERTa=-26.5% 均为负）\n4. **信息存在但 LP 无法捕获** — LP 将 4096-dim 压缩为 1-dim scalar，丢失大量 quality 信号\n\n输出文件:\n- `hidden_states.pt` (69MB, [4408, 4096])\n- `labels.pt`, `logprobs.pt`\n- `results.json` (含 per-seed breakdown)\n- `metadata.json` (含每个 sample 的详细 meta)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-hidden-state-probe.md"
+}

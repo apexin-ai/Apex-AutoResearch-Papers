@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7f9f4d2b108a552c2d8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "bugfix a2 humaneval sc",
+  "task_key": "worker_bugfix_a2_humaneval_sc_20260520T203502",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_bugfix_a2_humaneval_sc_20260520T203502_result.json",
+    "occurrence": 1,
+    "bytes": 635,
+    "sha256": "4ac7596b33c6af3380a63772eb2a58a6c9d4818a1a30e27a10d79da6be1dee5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**Bug 1 修复**: `api_sample_greedy()` 的 `temperature` — API 只支持 `T=1.0`（设 0 返回 400），已保留 `T=1.0` 并加注释说明这是 single-sample baseline 而非真正 greedy。\n\n**Bug 2 验证**: MV 逻辑已正确，投票在 `all_codes`（所有 N 个 samples）上，非仅 passing samples。无需修复。\n\n**运行状态**:\n- PID: **1501109**（本地 nohup，`python -u` 无缓冲）\n- API 连通性: OK\n- 已清除旧 checkpoint 并重跑，当前已恢复 5 个 problems，继续处理剩余 159 个\n- 日志: `humaneval_sc.log`\n- Registry 已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/bugfix-a2-humaneval-sc.md"
+}

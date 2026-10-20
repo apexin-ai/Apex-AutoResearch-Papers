@@ -1,0 +1,285 @@
+{
+  "schema_version": "1.0",
+  "session_id": "abd31535f82fd96b228f",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 174,
+          "timestamp": "2026-05-21T07:25:44.385Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KtmRaReuWg2T7oRYUXeNWf",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/failure_gallery_examples.json"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "09e632df-b7fd-438e-b1c2-391b9c79d1a2",
+            "uuid": "8736b2a0-43ee-4163-93f0-bd5c7e8f06cc",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/failure_gallery_examples.json",
+              "content": "{\n  \"degenerate\": [\n    {\n      \"instance_id\": \"fewnerd_test_00469\",\n      \"sentence\": \"His undergraduate studies at the University of Notre Dame were interrupted by Army service in World War II .\",\n      \"gold_entities\": [\n        {\"text\": \"University of Notre Dame\", \"type\": \"building\"}\n      ],\n      \"predicted_entities_all_samples\": [\n        {\"text\": \"University of Notre Dame\", \"type\": \"organization\"},\n        {\"text\": \"World War II\", \"type\": \"event\"}\n      ],\n      \"n_samples\": 8,\n      \"n_unique_outputs\": 1,\n      \"agreement_rate\": 1.0,\n      \"entity_f1\": 0.0,\n      \"n_gold\": 1,\n      \"n_pred\": 2,\n      \"n_correct\": 0,\n      \"sentence_length\": 108,\n      \"has_predictions\": true,\n      \"source_exp\": \"exp_021_fewnerd_n8_seed123\",\n      \"explanation\": \"All 8 samples identical (F1=0.00), 0/1 gold matched — model predicts correct text but wrong type (organization vs building) plus hallucinated 'World War II'\"\n    },\n    {\n      \"instance_id\": \"fewnerd_test_02015\",\n      \"sentence\": \"There have been confirmed usages and reports of the deployment of the `` SPQ `` template in ;\",\n      \"gold_entities\": [\n        {\"text\": \"SPQ\", \"type\": \"organization\"}\n      ],\n      \"predicted_entities_all_samples\": [\n        {\"text\": \"SPQ\", \"type\": \"product\"}\n      ],\n      \"n_samples\": 8,\n      \"n_unique_outputs\": 1,\n      \"agreement_rate\": 1.0,\n      \"entity_f1\": 0.0,\n      \"n_gold\": 1,\n      \"n_pred\": 1,\n      \"n_correct\": 0,\n      \"sentence_length\": 93,\n      \"has_predictions\": true,\n      \"source_exp\": \"exp_021_fewnerd_n8_seed123\",\n      \"explanation\": \"All 8 samples identical (F1=0.00), 0/1 gold matched — correct entity text 'SPQ' but wrong type (product vs organization), all samples agree on wrong type\"\n    },\n    {\n      \"instance_id\": \"fewnerd_test_16612\",\n      \"sentence\": \"On stage , the band uses different kinds of instruments like synths , guitars , cello , glockenspiel and a bass played with a sickle .\",\n      \"gold_entities\": [\n        {\"text\": \"synths\", \"type\": \"product\"},\n        {\"text\": \"guitars\", \"type\": \"product\"},\n        {\"text\": \"cello\", \"type\": \"product\"},\n        {\"text\": \"glockenspiel\", \"type\": \"product\"},\n        {\"text\": \"bass\", \"type\": \"product\"},\n        {\"text\": \"sickle\", \"type\": \"product\"}\n      ],\n      \"predicted_entities_all_samples\": [],\n      \"n_samples\": 8,\n      \"n_unique_outputs\": 1,\n      \"agreement_rate\": 1.0,\n      \"entity_f1\": 0.0,\n      \"n_gold\": 6,\n      \"n_pred\": 0,\n      \"n_correct\": 0,\n      \"sentence_length\": 134,\n      \"has_predictions\": false,\n      \"source_exp\": \"exp_021_fewnerd_n8_seed456\",\n      \"explanation\": \"All 8 samples predict empty entity set despite 6 gold entities — complete degenerate miss, SC provides zero signal\"\n    }\n  ],\n  \"lp_inversion\": [\n    {\n      \"instance_id\": \"fewnerd_test_01046\",\n      \"sentence\": \"Cramer pitched for the Orange County Flyers of the independent Golden League in 2008 .\",\n      \"entity_text\": \"Cramer\",\n      \"entity_type\": \"person\",\n      \"entity_span\": \"0-6\",\n      \"mean_sample_logprob\": -0.045948,\n      \"frequency\": 1.0,\n      \"n_samples_with\": 8,\n      \"n_total\": 8,\n      \"is_correct\": false,\n      \"gold_entities\": [\n        {\"text\": \"Orange County Flyers\", \"type\": \"organization\"},\n        {\"text\": \"independent Golden League\", \"type\": \"organization\"}\n      ],\n      \"source_exp\": \"exp_021_fewnerd_n8_seed123\",\n      \"explanation\": \"High-confidence hallucination: 'Cramer' (person) in 8/8 samples (logprob=-0.046), not in gold set despite being a plausible entity — LP signal misleads\"\n    },\n    {\n      \"instance_id\": \"fewnerd_test_31667\",\n      \"sentence\": \"`` There are other costs that are not as easy to calculate but are equally disturbing , '' according to UK Royal Air Force Wing Commander and FOD researcher Richard Friend .\",\n      \"entity_text\": \"Richard Friend\",\n      \"entity_type\": \"person\",\n      \"entity_span\": \"157-171\",\n      \"mean_sample_logprob\": -0.049775,\n      \"frequency\": 1.0,\n      \"n_samples_with\": 8,\n      \"n_total\": 8,\n      \"is_correct\": false,\n      \"gold_entities\": [\n        {\"text\": \"UK Royal Air Force\", \"type\": \"organization\"},\n        {\"text\": \"FOD\", \"type\": \"organization\"}\n      ],\n      \"source_exp\": \"exp_021_fewnerd_n8_seed123\",\n      \"explanation\": \"High-confidence hallucination: 'Richard Friend' (person) in 8/8 samples (logprob=-0.050), not in gold — model identifies real entity but gold annotation omits it, LP cannot distinguish\"\n    },\n    {\n      \"instance_id\": \"fewnerd_test_28689\",\n      \"sentence\": \"In contrast to the carrier , amphibious , and naval gunfire support forces and , at least during early 1965 , the coastal patrol force , which Commander Seventh Fleet directed , the Navy 's forces within South Vietnam were operationally controlled by COMUSMACV .\",\n      \"entity_text\": \"COMUSMACV\",\n      \"entity_type\": \"organization\",\n      \"entity_span\": \"251-260\",\n      \"mean_sample_logprob\": -0.049521,\n      \"frequency\": 1.0,\n      \"n_samples_with\": 8,\n      \"n_total\": 8,\n      \"is_correct\": false,\n      \"gold_entities\": [\n        {\"text\": \"Seventh Fleet\", \"type\": \"organization\"},\n        {\"text\": \"South Vietnam\", \"type\": \"location\"}\n      ],\n      \"source_exp\": \"exp_021_fewnerd_n8_seed123\",\n      \"explanation\": \"High-confidence hallucination: 'COMUSMACV' (organization) in 8/8 samples (logprob=-0.050), not in gold — LP fails to flag because model is genuinely confident about this entity\"\n    }\n  ],\n  \"esj_failure\": [\n    {\n      \"instance_id\": \"fewnerd_test_00230\",\n      \"sentence\": \"Les Blank ( November 27 , 1935 – April 7 , 2013 ) was an American documentary filmmaker best known for his portraits of American traditional musicians .\",\n      \"entity_text\": \"American\",\n      \"entity_type\": \"location\",\n      \"esj_score\": 1.0,\n      \"actual_correct\": false,\n      \"failure_subtype\": \"overconfident\",\n      \"n_samples_with\": 8,\n      \"n_total\": 8,\n      \"gold_entities\": [\n        {\"text\": \"Les Blank\", \"type\": \"person\"}\n      ],\n      \"source_exp\": \"exp_021_fewnerd_n8_seed123\",\n      \"explanation\": \"All 8 samples predict 'American' as location entity (consensus=100%) — but gold doesn't include it; ESJ gives max confidence to non-gold entity\"\n    },\n    {\n      \"instance_id\": \"fewnerd_test_01046\",\n      \"sentence\": \"Cramer pitched for the Orange County Flyers of the independent Golden League in 2008 .\",\n      \"entity_text\": \"Cramer\",\n      \"entity_type\": \"person\",\n      \"esj_score\": 1.0,\n      \"actual_correct\": false,\n      \"failure_subtype\": \"overconfident\",\n      \"n_samples_with\": 8,\n      \"n_total\": 8,\n      \"gold_entities\": [\n        {\"text\": \"Orange County Flyers\", \"type\": \"organization\"},\n        {\"text\": \"independent Golden League\", \"type\": \"organization\"}\n      ],\n      \"source_exp\": \"exp_021_fewnerd_n8_seed123\",\n      \"explanation\": \"All 8 samples predict 'Cramer' as person (consensus=100%) — ESJ gives max confidence but entity is not in gold\"\n    },\n    {\n      \"instance_id\": \"fewnerd_test_00002\",\n      \"sentence\": \"They finished the season 14–19 , 9–9 in C-USA play to finish in seventh place .\",\n      \"entity_text\": \"C-USA play\",\n      \"entity_type\": \"event\",\n      \"esj_score\": 0.0,\n      \"actual_correct\": true,\n      \"failure_subtype\": \"underconfident\",\n      \"n_samples_with\": 0,\n      \"n_total\": 8,\n      \"gold_entities\": [\n        {\"text\": \"C-USA play\", \"type\": \"event\"}\n      ],\n      \"source_exp\": \"exp_021_fewnerd_n8_seed123\",\n      \"explanation\": \"Gold entity 'C-USA play' (event) never predicted in any of 8 samples — ESJ gives 0% confidence to a correct entity\"\n    }\n  ],\n  \"metadata\": {\n    \"total_degenerate_found\": 1358,\n    \"total_lp_inversion_found\": 3827,\n    \"total_esj_overconfident_found\": 1134,\n    \"total_esj_underconfident_found\": 6843,\n    \"experiments_scanned\": [\n      \"exp_021_fewnerd_n8_seed123\",\n      \"exp_021_fewnerd_n8_seed456\",\n      \"exp_026_t10_seed42\"\n    ],\n    \"dataset\": \"FewNERD (primary), SciERC T=1.0\",\n    \"model\": \"Qwen fine-tuned, N=8 samples\",\n    \"filtering\": \"Strict: excluded span-boundary near-misses and text-match near-misses; degenerate requires prediction != gold\",\n    \"note_on_lp_inversion\": \"LP inversion examples show entities the model is confident about (high logprob, 100% frequency) that are not in the gold standard. In some cases these are genuine annotation gaps rather than model hallucinations — this is precisely the failure mode: LP cannot distinguish the two.\",\n    \"note_on_esj\": \"ESJ (Entity Self-Judgment) is proxied by entity-level consensus frequency across N samples. Actual model-based ESJ verification was not run; consensus serves as the self-judgment signal.\",\n    \"note_on_overlap\": \"fewnerd_test_01046 appears in both lp_inversion and esj_failure — this instance exhibits simultaneous failure of both LP and ESJ signals\"\n  }\n}",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "09e632df-b7fd-438e-b1c2-391b9c79d1a2",
+            "uuid": "3518059d-ee3b-4a66-ada1-2aaf9ffe4f30",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QkUWEuh9ykuRq11CgA3e1Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3039,
+                "cache_read_input_tokens": 109063,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3039
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014P6KHR818Mmy5N7g9zPU73",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "failure_gallery_examples",
+                "type": "data",
+                "description": "9 failure gallery examples (3 degenerate, 3 LP inversion, 3 ESJ failure) extracted from FewNERD N=8 experiments for paper appendix",
+                "project": "struct_self_consist_ie",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/failure_gallery_examples.json",
+                "tags": [
+                  "paper",
+                  "failure-gallery",
+                  "appendix",
+                  "fewnerd"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "09e632df-b7fd-438e-b1c2-391b9c79d1a2",
+            "uuid": "20b563c3-e962-44fe-a7f2-bc8120546a7b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QkUWEuh9ykuRq11CgA3e1Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3039,
+                "cache_read_input_tokens": 109063,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3039
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-21T07:25:50.871Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014P6KHR818Mmy5N7g9zPU73",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_82f2d5\\\", \\\"name\\\": \\\"failure_gallery_examples\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"9 failure gallery examples (3 degenerate, 3 LP inversion, 3 ESJ failure) extracted from FewNERD N=8 experiments for paper appendix\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/data/failure_gallery_examples.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T07:25:49.464561+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"failure-gallery\\\", \\\"appendix\\\", \\\"fewnerd\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "09e632df-b7fd-438e-b1c2-391b9c79d1a2",
+            "uuid": "0bf37ad3-0690-4851-b230-981f8c52962c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_82f2d5\\\", \\\"name\\\": \\\"failure_gallery_examples\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"9 failure gallery examples (3 degenerate, 3 LP inversion, 3 ESJ failure) extracted from FewNERD N=8 experiments for paper appendix\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/data/failure_gallery_examples.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T07:25:49.464561+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"failure-gallery\\\", \\\"appendix\\\", \\\"fewnerd\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_82f2d5\", \"name\": \"failure_gallery_examples\", \"type\": \"data\", \"description\": \"9 failure gallery examples (3 degenerate, 3 LP inversion, 3 ESJ failure) extracted from FewNERD N=8 experiments for paper appendix\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/data/failure_gallery_examples.json\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-21T07:25:49.464561+00:00\", \"tags\": [\"paper\", \"failure-gallery\", \"appendix\", \"fewnerd\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。`failure_gallery_examples.json` 已保存到 artifacts 并注册。\n\n**提取结果概要**（扫描 3 个实验，~75k 实例）：\n\n| 类别 | 总数 | 选出 |\n|------|------|------|\n| Degenerate (全样本一致但错误) | 1,358 | 3 |\n| LP Inversion (高 logprob 但非 gold) | 3,827 | 3 |\n| ESJ Overconfident | 1,134 | 2 |\n| ESJ Underconfident | 6,843 | 1 |\n\n**选出的 9 个实例**：\n\n**Degenerate (F1)**:\n1. `fewnerd_test_00469` — \"University of Notre Dame\" 正确文本但错误类型(org→building)，8/8 一致\n2. `fewnerd_test_02015` — \"SPQ\" 类型混淆(product→org)，8/8 一致\n3. `fewnerd_test_16612` — 6 个 gold 实体全漏（空预测），8/8 一致\n\n**LP Inversion (F3)**:\n1. `fewnerd_test_01046` — \"Cramer\"(person) 8/8 出现，logprob=-0.046，但不在 gold 中\n2. `fewnerd_test_31667` — \"Richard Friend\"(person) 8/8 出现，gold 只标注了组织实体\n3. `fewnerd_test_28689` — \"COMUSMACV\"(organization) 8/8 出现，gold 遗漏\n\n**ESJ Failure**:\n1. `fewnerd_test_00230` — \"American\"(location) consensus=100% 但非 gold（overconfident）\n2. `fewnerd_test_01046` — \"Cramer\" consensus=100% 但非 gold（overconfident）\n3. `fewnerd_test_00002` — \"C-USA play\"(event) 0/8 样本预测但确实是 gold（underconfident）\n\n**注意事项**：\n- LP inversion 的 3 个例子多为标注遗漏而非纯幻觉——这恰好说明 LP 无法区分两者\n- ESJ 用 entity-level consensus frequency 代理，未运行实际 ESJ 模型验证（`exp_esj_entity_self_judgment` 输出不存在）\n- `fewnerd_test_01046` 同时出现在 LP inversion 和 ESJ failure 中"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "09e632df-b7fd-438e-b1c2-391b9c79d1a2",
+            "uuid": "052df442-0dec-40c3-9860-527b0cf5c34c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NdRZBKbDJmfaZW1YC1BurJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 657,
+                "cache_read_input_tokens": 112102,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 657
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。`failure_gallery_examples.json` 已保存到 artifacts 并注册。\n\n**提取结果概要**（扫描 3 个实验，~75k 实例）：\n\n| 类别 | 总数 | 选出 |\n|------|------|------|\n| Degenerate (全样本一致但错误) | 1,358 | 3 |\n| LP Inversion (高 logprob 但非 gold) | 3,827 | 3 |\n| ESJ Overconfident | 1,134 | 2 |\n| ESJ Underconfident | 6,843 | 1 |\n\n**选出的 9 个实例**：\n\n**Degenerate (F1)**:\n1. `fewnerd_test_00469` — \"University of Notre Dame\" 正确文本但错误类型(org→building)，8/8 一致\n2. `fewnerd_test_02015` — \"SPQ\" 类型混淆(product→org)，8/8 一致\n3. `fewnerd_test_16612` — 6 个 gold 实体全漏（空预测），8/8 一致\n\n**LP Inversion (F3)**:\n1. `fewnerd_test_01046` — \"Cramer\"(person) 8/8 出现，logprob=-0.046，但不在 gold 中\n2. `fewnerd_test_31667` — \"Richard Friend\"(person) 8/8 出现，gold 只标注了组织实体\n3. `fewnerd_test_28689` — \"COMUSMACV\"(organization) 8/8 出现，gold 遗漏\n\n**ESJ Failure**:\n1. `fewnerd_test_00230` — \"American\"(location) consensus=100% 但非 gold（overconfident）\n2. `fewnerd_test_01046` — \"Cramer\" consensus=100% 但非 gold（overconfident）\n3. `fewnerd_test_00002` — \"C-USA play\"(event) 0/8 样本预测但确实是 gold（underconfident）\n\n**注意事项**：\n- LP inversion 的 3 个例子多为标注遗漏而非纯幻觉——这恰好说明 LP 无法区分两者\n- ESJ 用 entity-level consensus frequency 代理，未运行实际 ESJ 模型验证（`exp_esj_entity_self_judgment` 输出不存在）\n- `fewnerd_test_01046` 同时出现在 LP inversion 和 ESJ failure 中"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 688131,
+            "duration_api_ms": 549855,
+            "num_turns": 67,
+            "stop_reason": "end_turn",
+            "session_id": "09e632df-b7fd-438e-b1c2-391b9c79d1a2",
+            "total_cost_usd": 2.8445329999999998,
+            "usage": {
+              "input_tokens": 42,
+              "cache_creation_input_tokens": 100918,
+              "cache_read_input_tokens": 2769297,
+              "output_tokens": 33073,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 100918,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 698,
+                  "cache_read_input_tokens": 112102,
+                  "cache_creation_input_tokens": 657,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 657
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2037,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002112,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 42,
+                "outputTokens": 33073,
+                "cacheReadInputTokens": 2769297,
+                "cacheCreationInputTokens": 100918,
+                "webSearchRequests": 0,
+                "costUSD": 2.8424209999999994,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "f2349449-6bf3-4b9f-bc36-10d517ef3fd5"
+          },
+          "id": "event-000179"
+        }
+      ]
+    }
+  ]
+}

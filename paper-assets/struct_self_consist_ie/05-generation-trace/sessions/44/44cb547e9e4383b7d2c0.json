@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44cb547e9e4383b7d2c0",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh b7 adaptive sampling budget",
+  "task_key": "worker_ssh_b7-adaptive-sampling-budget_20260520T090154",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_b7-adaptive-sampling-budget_20260520T090154_result.json",
+    "occurrence": 1,
+    "bytes": 1526,
+    "sha256": "341421b1caa224a60c590d3b082dc47843ce1f3592a7d02ea150ca6b46b23540"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果摘要：\n\n### FewNERD (Qwen3 8B, 37648 instances)\n\n| Strategy | Micro F1 | Δ vs U8 | Samples | Savings |\n|---|---|---|---|---|\n| Greedy | 78.84 | +0.65 | 37648 | 87.5% |\n| Uniform N=8 | 78.19 | — | 301184 | — |\n| **Adaptive h1/l8** | **78.49** | **+0.30** | **169416** | **43.8%** |\n| Adaptive h2/l8 | 76.00 | -2.19 | 188240 | 37.5% |\n| Adaptive h4/l8 | 77.81 | -0.38 | 225888 | 25.0% |\n\n**关键发现**：FewNERD 上 greedy 已优于 SC N=8（78.84 vs 78.19）。最优策略是 **adaptive_h1_l8**（高置信度用 greedy，低置信度用 N=8 SC），F1 比 uniform N=8 **提升 +0.30** 同时节省 43.8% 样本。N=2 majority vote 反而伤害高置信度组的精度。\n\n### SciERC (Qwen3 8B, 551 instances)\n\n| Strategy | Micro F1 | Δ vs U8 | Samples | Savings |\n|---|---|---|---|---|\n| Greedy | 65.92 | -1.20 | 551 | 87.5% |\n| Uniform N=8 | 67.12 | — | 4408 | — |\n| Adaptive h2/l8 | 66.99 | -0.13 | 2752 | 37.6% |\n| **top67% h2/l8** | **67.07** | **-0.05** | **2194** | **50.2%** |\n| top75% h2/l8 | 66.97 | -0.15 | 1930 | 56.2% |\n\n**关键发现**：SciERC 上 adaptive 极为有效——top 67% 用 N=2 仅损失 0.05 F1 却省 50% 样本。SciERC 对 sample 数不敏感，即使 top 75% 只用 N=2 也仅损失 0.15。\n\n### 推荐策略\n- **FewNERD**: 用 adaptive_h1_l8（高置信度直接用 greedy，低置信度用 N=8 SC）—— 效果更好且省 44% 算力\n- **SciERC**: 用 top67%_h2_l8 —— 仅 -0.05 F1 损失，省 50% 算力"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-b7-adaptive-sampling-budget.md"
+}

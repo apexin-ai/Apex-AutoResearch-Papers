@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "406cee0f4d6c4cef588b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis scierc mv sign flip",
+  "task_key": "worker_analysis_scierc-mv-sign-flip_20260522T182049",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_scierc-mv-sign-flip_20260522T182049_result.json",
+    "occurrence": 1,
+    "bytes": 586,
+    "sha256": "61d4399f090c10156d9cd4033a042adabe84b25ed689b077a5c6f273f53cb858"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。核心结论：\n\n**不存在真正的符号翻转。** 注册表中 s123=+0.34pp 来自混用了两次独立的 pipeline 运行（N8 re-run vs MF4v2）。统一的 MF4v2 recompute（3 个 seed 用同一 pipeline、同一数据源）显示 **MV delta 全为负**：\n\n| Seed | MV Δ (pp) |\n|------|-----------|\n| 42 | −1.25 |\n| 123 | −0.11 |\n| 456 | −0.86 |\n| **Mean±σ** | **−0.74 ± 0.46** |\n\n论文可直接写 \"MV consistently hurts on SciERC\"，无需对符号不稳定性做 hedge。\n\n报告已注册为 `art_20260522_c57a9e`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-scierc-mv-sign-flip.md"
+}

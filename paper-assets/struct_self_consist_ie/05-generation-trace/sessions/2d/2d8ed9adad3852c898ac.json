@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d8ed9adad3852c898ac",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix citation bib repair",
+  "task_key": "worker_fix_citation_bib_repair_20260517T091424",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_citation_bib_repair_20260517T091424_result.json",
+    "occurrence": 1,
+    "bytes": 1899,
+    "sha256": "8d2da5265d698402b51a18d9fe98db28ea6536f56d443949d16da0d292e5f561"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 fixes applied and synced. Summary:\n\n```\n=== Fix 1: xie2024selfevaluation (CRITICAL) ===\nBEFORE: author = {Xie, Jie and Lu, Kai and Dong, Rui and Pan, Liangming and Han, Qi and Wang, Shasha and Huang, Deyu and Zhang, Junlan}\n        booktitle = {Advances in Neural Information Processing Systems (NeurIPS)}, year = {2024}\nAFTER:  author = {Ren, Jie and Zhao, Yao and Vu, Tu and Liu, Peter J. and Lakshminarayanan, Balaji}\n        booktitle = {NeurIPS 2023 Workshop on ``I Can't Believe It's Not Better''}, year = {2023}\n\n=== Fix 2: deguchi2024centroid (CRITICAL) ===\nBEFORE: author = {Deguchi, Hiroyuki and Kamigaito, Hidetaka and Watanabe, Taro}\n        booktitle = {EMNLP}, pages = missing\nAFTER:  author = {Deguchi, Hiroyuki and Sakai, Yusuke and Kamigaito, Hidetaka and Watanabe, Taro and Tanaka, Hideki and Utiyama, Masao}\n        booktitle = {Findings of the Association for Computational Linguistics: ACL 2024}, pages = {11009--11018}\n\n=== Fix 3: tian2023calibration (MINOR) ===\nBEFORE: title truncated (missing \"Fine-Tuned with Human Feedback\")\n        author = {Tian, Katherine and Mitchell, Eric and Yao, Huaxiu and Manning, Christopher D. and Finn, Chelsea}\n        pages = {1278--1294}\nAFTER:  title = {Just Ask for Calibration: ... Fine-Tuned with Human Feedback}\n        author = {Tian, Katherine and Mitchell, Eric and Zhou, Allan and Sharma, Archit and Rafailov, Rafael and Yao, Huaxiu and Finn, Chelsea and Manning, Christopher D.}\n        pages = {5433--5442}\n\n=== Fix 4: oh2026latentsc (MINOR) ===\nBEFORE: @article, journal = {arXiv preprint arXiv:2508.18395}\nAFTER:  @inproceedings, booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)}\n\n=== Fix 5: chen2024usc (MINOR) ===\nBEFORE: booktitle = {arXiv preprint (ICML 2024 Workshop ICL)}\nAFTER:  booktitle = {ICML 2024 Workshop on In-Context Learning}\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-citation-bib-repair.md"
+}

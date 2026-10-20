@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9d139db0e80f1ddccb0",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "train exp 002 conll2003 finetune",
+  "task_key": "worker_train_exp_002_conll2003_finetune_20260514T114540",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_exp_002_conll2003_finetune_20260514T114540_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "eb08665fa663ced521608f20a072050a37f2f6480fe81956be5b606f794a8bc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，正在加载数据集。\n\n**完成摘要：**\n\n| 步骤 | 状态 |\n|------|------|\n| conll2003 dev LLaMA Factory 数据生成（3250 条） | ✓ |\n| dataset_info.json 添加 `conll2003_uie_dev` | ✓ |\n| `train_config_conll2003.yaml` 创建（LoRA r=32, α=64, bs=2, grad_accum=8, 5 epochs, enable_thinking=false） | ✓ |\n| `export_config_conll2003.yaml` 创建（合并到 qwen3-8b-conll2003-merged） | ✓ |\n| Dry-run 2 步验证通过（loss 0.89→0.28, 无 OOM） | ✓ |\n| 训练提交 `exp_002_ner_conll2003`，tmux session 运行中，cuda:1 | ✓ |\n\n训练完成后需用 `llamafactory-cli export export_config_conll2003.yaml` 合并 LoRA adapter。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-exp-002-conll2003-finetune.md"
+}

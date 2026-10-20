@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2ab2464ebf3fb1a63fa",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix fewnerd degeneracy calc v2",
+  "task_key": "worker_fix_fewnerd_degeneracy_calc_v2_20260518T130227",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_fewnerd_degeneracy_calc_v2_20260518T130227_result.json",
+    "occurrence": 1,
+    "bytes": 271,
+    "sha256": "7e4ebfd4bb9f8ab1c337e480df20a246e43e3296977c43f914252225a0a7c6ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，验证通过。\n\n- **改动**: `code/analyze_fewnerd_results.py` 第 163 行，`len(set(key_sets)) == 1` → `len(set(sample_f1s)) == 1`\n- **验证**: F1-based degeneracy = 13.75% (4479/32565)，与预期一致；旧 keyset-based = 10.13%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-fewnerd-degeneracy-calc-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dca4597ffc0b578e2034",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis paper audit review",
+  "task_key": "worker_analysis_paper_audit_review_20260518T215610",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_paper_audit_review_20260518T215610_result.json",
+    "occurrence": 1,
+    "bytes": 706,
+    "sha256": "e70e0b87084b40b8acde51428d3e555b6e3d400805299d0b6befc66de6442032"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "memory.md 已更新。总结：\n\n**核心发现：**\n1. **无 delta > 1pp** — 24 条记录最大偏差 +0.85pp（4B SciERC），论文数字无需紧急修改\n2. **无 needs_update 字段** — 所有条目 status=verified\n3. **9/24 条目缺 degen_pct**，其中 3 个可从 recalc 补充（4B CoNLL=90.57%, SciERC seed123=17.2%, seed456=20.42%），4 个仍需补跑（rank=8, N=32, N=16 seed42, FewNERD N=8 seed42）\n4. **退化率交叉验证通过** — 所有 15 个重叠条目 audit 与 recalc 精确匹配\n\n**待办：** 4 个位置需补跑 `unified_metrics.compute_degeneracy()`（rank=8, N=32, N=16 seed42, FewNERD N=8 seed42）。Canonical 数值已录入 memory.md。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-paper-audit-review.md"
+}

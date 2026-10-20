@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bebdc58ae4539eb3b874",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5090c fewnerd data check",
+  "task_key": "worker_ssh_5090c_fewnerd_data_check_20260521T143623",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090c_fewnerd_data_check_20260521T143623_result.json",
+    "occurrence": 1,
+    "bytes": 1064,
+    "sha256": "f4552772c5d0788644884d1fc791a89c94561d6a49cc6694cc679453fa5dc442"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n### 1. FewNERD MF4v2 数据\n\n**不存在。** 服务器上唯一名含 `mf4v2` 的目录是 **CoNLL** 的：\n- `/root/autodl-tmp/struct_self_consist_ie/output/conll_mf4v2_seed42/` — CoNLL MF4v2 结果（samples.jsonl 57MB, report.json, 时间戳 May 21 18:27）\n\nFewNERD 没有对应的 MF4v2 output 目录。\n\nFewNERD 现有 samples.jsonl（均非 MF4v2）：\n| 路径 | 说明 |\n|------|------|\n| `output/exp_fewnerd_seed789/` | seed 789 |\n| `output/exp_tlow_fewnerd_t05_s42/` | temp=0.5, seed 42 |\n| `output/fewnerd_7b_n16_seed42/` | 7B, n=16, seed 42 |\n| `output/fewnerd_n16_seed456_v2/` | n=16, seed 456 v2 |\n\n### 2. GPU 状态（4× RTX 5090 32GB）\n\n| GPU | 利用率 | 显存占用 | 状态 |\n|-----|--------|---------|------|\n| GPU 0 | 84% | 30131/32607 MiB | 运行 `exp_fewnerd_n16_s123`（Qwen3-8B-merged, n=16, seed 123） |\n| GPU 1 | 0% | 0 MiB | **空闲** |\n| GPU 2 | 0% | 0 MiB | **空闲** |\n| GPU 3 | 85% | 30889/32607 MiB | 运行 `e2_pretrained_fewnerd_s123`（Qwen2.5-7B, n=8, seed 123） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5090c-fewnerd-data-check.md"
+}

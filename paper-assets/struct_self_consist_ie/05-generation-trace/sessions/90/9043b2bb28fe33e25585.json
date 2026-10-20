@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9043b2bb28fe33e25585",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp qwen fewnerd seed123 infer",
+  "task_key": "worker_exp_qwen_fewnerd_seed123_infer_20260518T082904",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_qwen_fewnerd_seed123_infer_20260518T082904_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "8438ba2c801d278c857c3b9b180225de727c098b7d328b4f4533bfa44e448b0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Inference is running on bjb1-21071, PID 133509. Progress: 552/301,184 prompts (~0.2%). Output directory exists but is still empty (results written at end). At ~10 it/s average, estimated ~8 hours remaining for stochastic sampling, plus ~1 hour for greedy decoding.\n\nThe job is running via `merge_and_infer_seed123.sh` which will automatically run `analyze_fewnerd_results.py` after inference completes. Check back with:\n\n```\ntail -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123_run.log\n```\n\nOnce done, I'll read `output/exp_021_fewnerd_n8_seed123/results.json` and produce the seed=123 vs seed=42 comparison summary."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-qwen-fewnerd-seed123-infer.md"
+}

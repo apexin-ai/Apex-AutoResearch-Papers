@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "687e51c035da302aece8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5090c cuda2 scierc n16 s123",
+  "task_key": "worker_ssh_5090c_cuda2_scierc_n16_s123_20260521T145648",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090c_cuda2_scierc_n16_s123_20260521T145648_result.json",
+    "occurrence": 1,
+    "bytes": 293,
+    "sha256": "0f6397f3aa36ca47602b57cc0bc498b0cc090dff097f5e0c943ad7de600ea831"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已正常运行。\n\n- **PID**: 330685（vLLM engine PID: 330959）\n- **GPU 2**: 85% util, 30137/32607 MiB\n- **进度**: 16/8816 prompts（551 instances × 16 samples），当前速率 ~3 it/s\n- **预估时间**: ~48 min（比预期稍长，因为含 logprob 收集）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5090c-cuda2-scierc-n16-s123.md"
+}

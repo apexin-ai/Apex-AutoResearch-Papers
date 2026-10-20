@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7aeabc56ec887f05fd98",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose exp 14b inference fewnerd exit",
+  "task_key": "worker_diagnose_exp_14b_inference_fewnerd_exit_20260520T192142",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp_14b_inference_fewnerd_exit_20260520T192142_result.json",
+    "occurrence": 1,
+    "bytes": 828,
+    "sha256": "7183ae0ddd763980f3f4455b7f8d469b6c7fe355fc290e5c930a9c666e971afe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**进程 217960 尚未退出，仍在正常运行。**\n\n当前状态：\n- **FewNERD N=2 正在进行中** — 82% (61628/75296 prompts)，75296 = 37648 实例 × 2 采样，吻合 N=2\n- Kill 监控脚本尚未触发（日志为空），因为还没到 N=8\n\n已完成的推理：\n\n| 数据集 | N=1 | N=2 | N=4 | N=8 | N=16 |\n|--------|-----|-----|-----|-----|------|\n| CoNLL2003 | ✅ | ✅ | ✅ | ✅ | ✅ |\n| SciERC | ✅ | ✅ | ✅ | ✅ | ✅ |\n| FewNERD | ✅ (170MB) | 🔄 82% | ❌ | ❌ | ❌ |\n\n输出路径：`/root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/`\n\n不需要更新 registry，进程正常运行中。预计 FewNERD N=2 再需约 20 分钟完成，之后继续 N=4 → N=8，到 N=8 完成后 kill 监控脚本会触发终止进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-14b-inference-fewnerd-exit.md"
+}

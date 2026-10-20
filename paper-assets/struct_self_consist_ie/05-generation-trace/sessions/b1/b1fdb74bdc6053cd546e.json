@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1fdb74bdc6053cd546e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "postprocess exp 028 v3",
+  "task_key": "worker_postprocess_exp_028_v3_20260517T201735",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_postprocess_exp_028_v3_20260517T201735_result.json",
+    "occurrence": 1,
+    "bytes": 233,
+    "sha256": "835e596d3e8723131149145a213344f3339349c8b7cfeb9522eafb09795bf251"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后处理正在运行中：\n- Step 1 (LoRA merge): 已完成\n- Step 2 (vLLM inference): 84% (33464/40000)，估计再 2-3 分钟完成\n- Step 3 (analysis): 待执行\n\n4.5 分钟后自动回来检查完成状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/postprocess-exp-028-v3.md"
+}

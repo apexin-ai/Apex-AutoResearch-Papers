@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "5fc817f6cc6a92531684",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "paper freeform integration",
+  "task_key": "worker_paper_freeform_integration_20260523T060422",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_freeform_integration_20260523T060422.log",
+    "occurrence": 1,
+    "bytes": 761272,
+    "sha256": "9b0360961cc2583f4456600a445527c73659acc65eb8c77f108e880611007d1b"
+  },
+  "statistics": {
+    "messages": 131,
+    "user_turns": 0,
+    "tool_calls": 45,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 45,
+      "tool_result": 45,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 131,
+      "chunks": [
+        {
+          "path": "5fc817f6cc6a92531684-part-0001.json",
+          "message_count": 120
+        },
+        {
+          "path": "5fc817f6cc6a92531684-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-freeform-integration.md"
+}

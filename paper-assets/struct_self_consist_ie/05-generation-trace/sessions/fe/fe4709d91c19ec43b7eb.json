@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe4709d91c19ec43b7eb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "research q1q6 answer prep d105",
+  "task_key": "worker_research_q1q6_answer_prep_d105_20260516T045413",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_q1q6_answer_prep_d105_20260516T045413_result.json",
+    "occurrence": 1,
+    "bytes": 1279,
+    "sha256": "4dd19a3d75ae31d0a1eff5f060448b5e1b7722f61f7d9e7b973d98ebd3710ddf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文档已写入 `artifacts/q1q6_answer_prep/answers.md` 并注册。\n\n每个 Q 的核心策略：\n\n- **Q1 (RE scope)**: 不加 TACRED（结构不兼容），改 title/scope 限定为 NER-focused + RE exploratory。12 configurations 一致的 binary dominance pattern 是防守点。\n- **Q2 (ε circularity)**: 删除 \"data-driven justification\"，ε-free 连续指标 (median range 0.041, pooled ρ=0.248) 作主呈现，ε sweep 标 post-hoc。主结论 (Table 2) 完全不依赖 ε。\n- **Q3 (Contribution 1 trivial)**: Reframe 为 empirical dissociation（ρ/AUROC/selection F1 三指标解耦），instance-level/per-sample 分类移入 §3 作前提。EM \"best filter worst ranker\" 悖论是 key evidence。\n- **Q4 (signal combination)**: LR ensemble 已做且 negative (AUROC 0.666 < EM 0.749)。VC quartile 分层分析代替 binary threshold cascade。\n- **Q5 (scale + seeds)**: 所有 scale claims 限定 \"within 3B-8B\"，删除 Kendall W=1.000 强结论，改为 descriptive consistency。\n- **Q6 (RE reversal)**: Binary dominance mechanism——RE LP full ρ=0.266 vs cond ρ=0.011 (p=0.86)，LP 的 RE 信号完全来自 zero/nonzero split。\n\n三个 MF 全部是写作/framing 调整，无需新实验，关键路径在 Paper Agent。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-q1q6-answer-prep-d105.md"
+}

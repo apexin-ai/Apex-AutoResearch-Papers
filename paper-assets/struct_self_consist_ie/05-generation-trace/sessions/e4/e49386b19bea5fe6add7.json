@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e49386b19bea5fe6add7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis mlp verifier upgrade",
+  "task_key": "worker_analysis_mlp_verifier_upgrade_20260517T083302",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mlp_verifier_upgrade_20260517T083302_result.json",
+    "occurrence": 1,
+    "bytes": 1345,
+    "sha256": "c0676f403d6593e8620649aa43bddf5b2d71afb5a9a39603890eecacdf060da8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved to `output/r17_analyses/mlp_verifier_comparison.json`.\n\n## Summary\n\nExisting exp-027 already ran MLP/RF verifier comparison on SciERC NER N=16 data (3 seeds, 551 instances each). Results:\n\n```\nModel              | AUROC  | Sel F1 | Δ vs Greedy | Gap Closed\n─────────────────────────────────────────────────────────────────\nGreedy baseline    |   --   | 0.6441 |     --      |    0%\nBest unsup (LP)    |   --   | 0.6470 | +0.0029pp   |   1.6%\nLR (5 feat)        | 0.6522 | 0.6407 | -0.0034pp   |  -1.9%\nMLP (5 feat)       | 0.6393 | 0.6386 | -0.0055pp   |  -3.1%\nRF (5 feat)        | 0.5868 | 0.6154 | -0.0287pp   | -16.0%\nMLP (15 feat)      | 0.6322 | 0.6339 | -0.0102pp   |  -5.7%\nRF (15 feat)       | 0.6043 | 0.6146 | -0.0295pp   | -16.5%\nOracle             |   --   | 0.8231 | +0.1790pp   |  100%\n```\n\n**Verdict: Feature bottleneck** (supports paper conclusion).\n- MLP AUROC (0.6393) ≤ LR AUROC (0.6522), Δ = -0.0129\n- Adding 10 interaction features makes MLP worse (0.6322)\n- All supervised models fail to beat even greedy baseline in selection F1\n- The 5 confidence signals lack discriminative power; nonlinear models can't extract more signal from them"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mlp-verifier-upgrade.md"
+}

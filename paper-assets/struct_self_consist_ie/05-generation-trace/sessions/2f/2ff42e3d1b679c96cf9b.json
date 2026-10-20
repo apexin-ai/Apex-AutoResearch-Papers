@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0",
+  "id": "2ff42e3d1b679c96cf9b",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "audit appendix numbers",
+  "task_key": "worker_audit_appendix-numbers_20260524T042816",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_appendix-numbers_20260524T042816.log",
+    "occurrence": 1,
+    "bytes": 2558284,
+    "sha256": "66957b3c6da4b24650c8d0083a9eb9b73b87598e44a98ed6be936f1d6bac33fc"
+  },
+  "statistics": {
+    "messages": 945,
+    "user_turns": 4,
+    "tool_calls": 312,
+    "roles": {
+      "log": 1,
+      "system": 299,
+      "record": 1,
+      "assistant": 15,
+      "tool_call": 312,
+      "tool_result": 312,
+      "user": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 49,
+      "chunks": [
+        {
+          "path": "2ff42e3d1b679c96cf9b-part-0001.json",
+          "message_count": 16
+        },
+        {
+          "path": "2ff42e3d1b679c96cf9b-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "2ff42e3d1b679c96cf9b-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "2ff42e3d1b679c96cf9b-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "2ff42e3d1b679c96cf9b-part-0002.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 842,
+      "chunks": [
+        {
+          "path": "2ff42e3d1b679c96cf9b-part-0002.json",
+          "message_count": 90
+        },
+        {
+          "path": "2ff42e3d1b679c96cf9b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "2ff42e3d1b679c96cf9b-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "2ff42e3d1b679c96cf9b-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "2ff42e3d1b679c96cf9b-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "2ff42e3d1b679c96cf9b-part-0007.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-appendix-numbers.md"
+}

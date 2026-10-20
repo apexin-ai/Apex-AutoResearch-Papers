@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "59e1d48fd8995bfdb0a1",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper round8 fixes",
+  "task_key": "worker_paper_round8-fixes_20260515T215425",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_round8-fixes_20260515T215425_result.json",
+    "occurrence": 1,
+    "bytes": 2113342,
+    "sha256": "7b845788801ad0ecd29534d4721436ad2fbf654cc8bc8ce0e1ad8a8fdb755040"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2113362,
+                "serialized_sha256": "b62430f52ca8d6e497418990840bebe429f58ee581e04a748cb7c45d5b966ede",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-round8-fixes.md"
+}

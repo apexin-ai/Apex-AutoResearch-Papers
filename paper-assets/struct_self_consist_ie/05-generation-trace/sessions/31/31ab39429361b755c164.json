@@ -1,0 +1,1772 @@
+{
+  "schema_version": "1.0",
+  "id": "31ab39429361b755c164",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "fix hidden probe goldfilter details",
+  "task_key": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_fix_hidden_probe_goldfilter_details_20260518T105341.jsonl",
+    "occurrence": 1,
+    "bytes": 83834,
+    "sha256": "359bcf97e3feec84ed230d27970f0c07c25c7e3e4f8baac8d1fa468b33bc539a"
+  },
+  "statistics": {
+    "messages": 87,
+    "user_turns": 0,
+    "tool_calls": 43,
+    "roles": {
+      "tool_call": 43,
+      "tool_result": 43,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T10:59:56.291932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T10:59:56.292307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T10:59:56.292500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "a100",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/hidden_state_probe.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T10:59:56.292640+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool ssh_read_only: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T10:59:56.292764+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "a100",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T10:59:56.292885+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool ssh_read_only: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T10:59:56.293001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "a100",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T10:59:56.293158+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool ssh_read_only: Unknown server 'a100'. Available: ['autodl-5090', 'bjb1-21071']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T10:59:56.293297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/hidden_state_probe.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T10:59:56.293420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T10:59:56.293543+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/struct_self_consist_ie/code/hidden_state_probe.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T10:59:56.293703+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"SciERC\\\\\\\",\\\\n  \\\\\\\"n_instances\\\\\\\": 529,\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"hidden_dim\\\\\\\": 4096,\\\\n  \\\\\\\"cv_folds\\\\\\\": 5,\\\\n  \\\\\\\"seeds\\\\\\\": [\\\\n    42,\\\\n    123,\\\\n    456\\\\n  ],\\\\n  \\\\\\\"probes\\\\\\\": {\\\\n    \\\\\\\"linear\\\\\\\": {\\\\n      \\\\\\\"rho_mean\\\\\\\": 0.23463036001263568,\\\\n      \\\\\\\"rho_std\\\\\\\": 0.020033203591266518,\\\\n      \\\\\\\"rho_per_seed\\\\\\\": [\\\\n        0.21154010846551952,\\\\n        0.24738356639083428,\\\\n        0.24496740518155322\\\\n      ],\\\\n      \\\\\\\"sel_f1_mean\\\\\\\": 0.620623448175433,\\\\n      \\\\\\\"sel_f1_std\\\\\\\": 0.005345097327661501,\\\\n      \\\\\\\"sel_f1_per_seed\\\\\\\": [\\\\n        0.6247431574936301,\\\\n        0.6225436766552078,\\\\n        0.6145835103774611\\\\n      ],\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.6094026851115697,\\\\n      \\\\\\\"oracle_f1_mean\\\\\\\": 0.7692388634260089,\\\\n      \\\\\\\"gap_closure\\\\\\\": 7.020164760064006\\\\n    },\\\\n    \\\\\\\"mlp\\\\\\\": {\\\\n      \\\\\\\"rho_mean\\\\\\\": 0.4611373667854694,\\\\n      \\\\\\\"rho_std\\\\\\\": 0.019982456963728423,\\\\n      \\\\\\\"rho_per_seed\\\\\\\": [\\\\n        0.47038186887232986,\\\\n        0.47482366489760536,\\\\n        0.438206566586473\\\\n      ],\\\\n      \\\\\\\"sel_f1_mean\\\\\\\": 0.6316744542837059,\\\\n      \\\\\\\"sel_f1_std\\\\\\\": 0.004414136181594634,\\\\n      \\\\\\\"sel_f1_per_seed\\\\\\\": [\\\\n        0.6366404494476329,\\\\n        0.628197088935997,\\\\n        0.6301858244674879\\\\n      ],\\\\n      \\\\\\\"greedy_f1_mean\\\\\\\": 0.6094026851115697,\\\\n      \\\\\\\"oracle_f1_mean\\\\\\\": 0.7692388634260089,\\\\n      \\\\\\\"gap_closure\\\\\\\": 13.934122679235925\\\\n    }\\\\n  },\\\\n  \\\\\\\"baselines\\\\\\\": {\\\\n    \\\\\\\"lp\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.22074069594266574,\\\\n      \\\\\\\"sel_f1\\\\\\\": 0.6086970895099441,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.6094026851115697,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.7692388634260089,\\\\n      \\\\\\\"random_f1\\\\\\\": 0.5795735839259273,\\\\n      \\\\\\\"gap_closure\\\\\\\": -0.4414492445118101\\\\n    },\\\\n    \\\\\\\"deberta\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.329,\\\\n      \\\\\\\"sel_f1\\\\\\\": 0.6114,\\\\n   \n…[truncated 151 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T10:59:56.293863+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T10:59:56.294001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 71448\\\\ndrwxr-xr-x   2 root root      175 May 18 18:50 .\\\\ndrwxr-xr-x 136 root root    12288 May 18 18:43 ..\\\\n-rw-r--r--   1 root root     1292 May 18 18:46 extract.log\\\\n-rw-r--r--   1 root root 72222291 May 18 18:46 hidden_states.pt\\\\n-rw-r--r--   1 root root    19170 May 18 18:46 labels.pt\\\\n-rw-r--r--   1 root root    19184 May 18 18:46 logprobs.pt\\\\n-rw-r--r--   1 root root   867345 May 18 18:46 metadata.json\\\\n-rw-r--r--   1 root root     1221 May 18 18:50 probe.log\\\\n-rw-r--r--   1 root root     1619 May 18 18:50 results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T10:59:56.294181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -50 /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/metadata.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T10:59:56.294369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_instances\\\\\\\": 551,\\\\n  \\\\\\\"n_samples_per_instance\\\\\\\": 8,\\\\n  \\\\\\\"total_pairs\\\\\\\": 4408,\\\\n  \\\\\\\"hidden_dim\\\\\\\": 4096,\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2\\\\\\\",\\\\n  \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\\\\\\",\\\\n  \\\\\\\"extraction_time_seconds\\\\\\\": 213.70074272155762,\\\\n  \\\\\\\"per_sample_meta\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"instance_idx\\\\\\\": 0,\\\\n      \\\\\\\"sample_idx\\\\\\\": 0,\\\\n      \\\\\\\"instance_id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\",\\\\n      \\\\\\\"f1\\\\\\\": 0.28571428571428575,\\\\n      \\\\\\\"mean_logprob\\\\\\\": -0.10053437038451059,\\\\n      \\\\\\\"n_tokens\\\\\\\": 137\\\\n    },\\\\n    {\\\\n      \\\\\\\"instance_idx\\\\\\\": 0,\\\\n      \\\\\\\"sample_idx\\\\\\\": 1,\\\\n      \\\\\\\"instance_id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\",\\\\n      \\\\\\\"f1\\\\\\\": 0.888888888888889,\\\\n      \\\\\\\"mean_logprob\\\\\\\": -0.029720495046498277,\\\\n      \\\\\\\"n_tokens\\\\\\\": 245\\\\n    },\\\\n    {\\\\n      \\\\\\\"instance_idx\\\\\\\": 0,\\\\n      \\\\\\\"sample_idx\\\\\\\": 2,\\\\n      \\\\\\\"instance_id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\",\\\\n      \\\\\\\"f1\\\\\\\": 0.4444444444444445,\\\\n      \\\\\\\"mean_logprob\\\\\\\": -0.07129721934365281,\\\\n      \\\\\\\"n_tokens\\\\\\\": 199\\\\n    },\\\\n    {\\\\n      \\\\\\\"instance_idx\\\\\\\": 0,\\\\n      \\\\\\\"sample_idx\\\\\\\": 3,\\\\n      \\\\\\\"instance_id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\",\\\\n      \\\\\\\"f1\\\\\\\": 0.4444444444444445,\\\\n      \\\\\\\"mean_logprob\\\\\\\": -0.061961916950112696,\\\\n      \\\\\\\"n_tokens\\\\\\\": 199\\\\n    },\\\\n    {\\\\n      \\\\\\\"instance_idx\\\\\\\": 0,\\\\n      \\\\\\\"sample_idx\\\\\\\": 4,\\\\n      \\\\\\\"instance_id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\",\\\\n      \\\\\\\"f1\\\\\\\": 0.5,\\\\n      \\\\\\\"mean_logprob\\\\\\\": -0.03243560016301233,\\\\n      \\\\\\\"n_tokens\\\\\\\": 218\\\\n    },\\\\n    {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T10:59:56.294511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/extract.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T10:59:56.294658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\n  551 instances, 8 samples each\\\\n  Total (instance, sample) pairs: 4408\\\\nLoading tokenizer...\\\\nLoading model...\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.12it/s]\\\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.16it/s]\\\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.17it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.62it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.41it/s]\\\\n  Model loaded on GPU\\\\n  [50/551] 20s elapsed, ETA 202s\\\\n  [100/551] 39s elapsed, ETA 178s\\\\n  [150/551] 59s elapsed, ETA 158s\\\\n  [200/551] 78s elapsed, ETA 137s\\\\n  [250/551] 96s elapsed, ETA 116s\\\\n  [300/551] 116s elapsed, ETA 97s\\\\n  [350/551] 136s elapsed, ETA 78s\\\\n  [400/551] 154s elapsed, ETA 58s\\\\n  [450/551] 173s elapsed, ETA 39s\\\\n  [500/551] 194s elapsed, ETA 20s\\\\n  [550/551] 213s elapsed, ETA 0s\\\\nDone extracting hidden states in 213.7s\\\\n  hidden_states shape: torch.Size([4408, 4096])\\\\n  labels shape: torch.Size([4408]), range [0.000, 1.000]\\\\nSaved to /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T10:59:56.294803+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T10:59:56.294950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading hidden states and labels...\\\\n  hidden_states: (4408, 4096)\\\\n  labels: (4408,)\\\\nLoading instance data for selection F1...\\\\n  529 instances with non-empty gold, 8 samples each\\\\n\\\\nComputing LP baseline...\\\\n  LP: ρ=0.2207, sel_f1=0.6087, gap_closure=-0.4%\\\\n\\\\nTraining Linear Probe (Ridge, 5-fold CV × 3 seeds)...\\\\n  Linear: ρ=0.2346±0.0200, sel_f1=0.6206, gap_closure=7.0%\\\\n\\\\nTraining MLP Probe (5-fold CV × 3 seeds)...\\\\n  MLP: ρ=0.4611±0.0200, sel_f1=0.6317, gap_closure=13.9%\\\\n\\\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/results.json\\\\n\\\\n===========================================================================\\\\nMethod                 Dim   Spearman ρ   Selection F1   Gap Closure\\\\n---------------------------------------------------------------------------\\\\nLP (mean pool)           1       0.2207         0.6087         -0.4%\\\\nDeBERTa                768       0.3290         0.6114        -26.5%\\\\nHidden Linear         4096       0.2346         0.6206          7.0%\\\\nHidden MLP            4096       0.4611         0.6317         13.9%\\\\nOracle                   —            —         0.7692        100.0%\\\\n===========================================================================\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T10:59:56.295090+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/code -name \"*probe*\" -o -name \"*hidden*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T10:59:56.295250+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/code/probe\\\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states.py\\\\n/root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T10:59:56.295416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T10:59:56.295547+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/probe/extract_hidden_states.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T10:59:56.295791+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Train linear and MLP probes on hidden states to predict sample quality.\\\\n\\\\nEvaluates with 5-fold CV × 3 seeds. Computes Spearman ρ, Selection F1,\\\\nand Gap Closure % relative to greedy/oracle baselines.\\\\n\\\\nInput: hidden_states.pt, labels.pt, logprobs.pt, metadata.json\\\\nOutput: results.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport warnings\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.linear_model import Ridge\\\\nfrom sklearn.model_selection import KFold\\\\nfrom sklearn.preprocessing import StandardScaler\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nDATA_DIR = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe\\\\\\\"\\\\nSAMPLES_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\\\\\\"\\\\n\\\\nCV_FOLDS = 5\\\\nSEEDS = [42, 123, 456]\\\\n\\\\nMLP_HIDDEN = [256, 64]\\\\nMLP_EPOCHS = 100\\\\nMLP_LR = 1e-3\\\\nMLP_DROPOUT = 0.1\\\\nMLP_BATCH = 256\\\\n\\\\n\\\\ndef entity_set(ext):\\\\n    return {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in ext.get(\\\\\\\"entities\\\\\\\", [])}\\\\n\\\\n\\\\ndef compute_ner_f1(pred, gold):\\\\n    pred_set = entity_set(pred)\\\\n    gold_set = entity_set(gold)\\\\n    tp = len(pred_set & gold_set)\\\\n    if tp == 0:\\\\n        return 0.0\\\\n    p = tp / (tp + len(pred_set - gold_set))\\\\n    r = tp / (tp + len(gold_set - pred_set))\\\\n    return 2 * p * r / (p + r)\\\\n\\\\n\\\\ndef load_instance_data():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load instance-level data for selection F1 computation.\\\\n    Returns (instance_data, n_samples, nonempty_indices) where\\\\n    nonempty_indices maps into the original instance ordering.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(SAMPLES_PATH) as f:\\\\n        instances = [json.loads(line) for line in f if line.strip()]\\\\n\\\\n    n_samples = len(instances[0][\\\\\\\"samples\\\\\\\"])\\\\n    instance_data = []\\\\n    nonempty_indices =\n…[truncated 7167 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T10:59:56.296105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Extract hidden states from Qwen3-8B SciERC model for probe experiments.\\\\n\\\\nFor each (instance, sample) pair in exp_012_logprob:\\\\n1. Reconstruct prompt + output JSON\\\\n2. Forward pass through model\\\\n3. Extract last-layer hidden states, mean-pool over output tokens\\\\n4. Compute per-sample NER F1 as labels\\\\n\\\\nOutput: hidden_states.pt, labels.pt, metadata.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\n# Paths\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2\\\\\\\"\\\\nDATA_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\\\\\\"\\\\nOUTPUT_DIR = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe\\\\\\\"\\\\n\\\\nSCIERC_SCHEMA_HINT = (\\\\n    \\\\\\\"Entity types: Generic, Material, Method, Metric, OtherScientificTerm, Task\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Relation types: COMPARE, CONJUNCTION, EVALUATE-FOR, FEATURE-OF, HYPONYM-OF, PART-OF, USED-FOR\\\\\\\"\\\\n)\\\\n\\\\nTRAIN_ALIGNED_TEMPLATE = (\\\\n    \\\\\\\"Extract all structured information (entities and relations) from the following text. \\\\\\\"\\\\n    \\\\\\\"Output a JSON object.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Text: {text}\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"{schema_line}\\\\\\\"\\\\n    \\\\\\\"\\\\\\\\nOutput format: \\\\\\\"\\\\n    '{{\\\\\\\"entities\\\\\\\": [{{\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"start\\\\\\\": <int>, \\\\\\\"end\\\\\\\": <int>}}], '\\\\n    '\\\\\\\"relations\\\\\\\": [{{\\\\\\\"head\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"...\\\\\\\", '\\\\n    '\\\\\\\"head_start\\\\\\\": <int>, \\\\\\\"head_end\\\\\\\": <int>, \\\\\\\"tail_start\\\\\\\": <int>, \\\\\\\"tail_end\\\\\\\": <int>}}], '\\\\n    '\\\\\\\"events\\\\\\\": []}}'\\\\n)\\\\n\\\\n\\\\ndef build_prompt(text):\\\\n    schema_line = f\\\\\\\"{SCIERC_SCHEMA_HINT}\\\\\\\\n\\\\\\\"\\\\n    return TRAIN_ALIGNED_TEMPLATE.format(text=text, schema_line=s\n…[truncated 5907 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T10:59:56.296348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"def \" /root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T10:59:56.296502+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"39:def entity_set(ext):\\\\n43:def compute_ner_f1(pred, gold):\\\\n54:def load_instance_data():\\\\n90:    def __init__(self, input_dim, hidden_dims, dropout=0.1):\\\\n100:    def forward(self, x):\\\\n104:def train_mlp(X_train, y_train, X_val, y_val, seed):\\\\n155:def compute_selection_f1(instance_data, n_samples, score_matrix):\\\\n181:def compute_instance_rho(instance_data, n_samples, score_matrix):\\\\n196:def run_cv(hidden_states, labels, instance_data, n_samples, method=\\\\\\\"linear\\\\\\\"):\\\\n276:def compute_lp_baseline(instance_data, n_samples):\\\\n299:def main():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T10:59:56.296633+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T10:59:56.296761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"374 /root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-18T10:59:56.296886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -195 /root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-18T10:59:56.297120+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Train linear and MLP probes on hidden states to predict sample quality.\\\\n\\\\nEvaluates with 5-fold CV × 3 seeds. Computes Spearman ρ, Selection F1,\\\\nand Gap Closure % relative to greedy/oracle baselines.\\\\n\\\\nInput: hidden_states.pt, labels.pt, logprobs.pt, metadata.json\\\\nOutput: results.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport warnings\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.linear_model import Ridge\\\\nfrom sklearn.model_selection import KFold\\\\nfrom sklearn.preprocessing import StandardScaler\\\\n\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\n\\\\nDATA_DIR = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe\\\\\\\"\\\\nSAMPLES_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\\\\\\\"\\\\n\\\\nCV_FOLDS = 5\\\\nSEEDS = [42, 123, 456]\\\\n\\\\nMLP_HIDDEN = [256, 64]\\\\nMLP_EPOCHS = 100\\\\nMLP_LR = 1e-3\\\\nMLP_DROPOUT = 0.1\\\\nMLP_BATCH = 256\\\\n\\\\n\\\\ndef entity_set(ext):\\\\n    return {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in ext.get(\\\\\\\"entities\\\\\\\", [])}\\\\n\\\\n\\\\ndef compute_ner_f1(pred, gold):\\\\n    pred_set = entity_set(pred)\\\\n    gold_set = entity_set(gold)\\\\n    tp = len(pred_set & gold_set)\\\\n    if tp == 0:\\\\n        return 0.0\\\\n    p = tp / (tp + len(pred_set - gold_set))\\\\n    r = tp / (tp + len(gold_set - pred_set))\\\\n    return 2 * p * r / (p + r)\\\\n\\\\n\\\\ndef load_instance_data():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load instance-level data for selection F1 computation.\\\\n    Returns (instance_data, n_samples, nonempty_indices) where\\\\n    nonempty_indices maps into the original instance ordering.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(SAMPLES_PATH) as f:\\\\n        instances = [json.loads(line) for line in f if line.strip()]\\\\n\\\\n    n_samples = len(instances[0][\\\\\\\"samples\\\\\\\"])\\\\n    instance_data = []\\\\n    nonempty_indices =\n…[truncated 4878 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-18T10:59:56.297345+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -n +196 /root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-18T10:59:56.297617+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def run_cv(hidden_states, labels, instance_data, n_samples, method=\\\\\\\"linear\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run 5-fold CV × 3 seeds at instance level.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_instances = len(instance_data)\\\\n    all_rhos = []\\\\n    all_sel_f1s = []\\\\n    all_greedy_f1s = []\\\\n    all_oracle_f1s = []\\\\n\\\\n    for seed in SEEDS:\\\\n        kf = KFold(n_splits=CV_FOLDS, shuffle=True, random_state=seed)\\\\n        inst_indices = np.arange(n_instances)\\\\n\\\\n        fold_score_matrix = np.zeros((n_instances, n_samples))\\\\n\\\\n        for fold, (train_inst, val_inst) in enumerate(kf.split(inst_indices)):\\\\n            train_rows = []\\\\n            val_rows = []\\\\n            for idx in train_inst:\\\\n                for s in range(n_samples):\\\\n                    train_rows.append(idx * n_samples + s)\\\\n            for idx in val_inst:\\\\n                for s in range(n_samples):\\\\n                    val_rows.append(idx * n_samples + s)\\\\n\\\\n            X_train = hidden_states[train_rows]\\\\n            y_train = labels[train_rows]\\\\n            X_val = hidden_states[val_rows]\\\\n            y_val = labels[val_rows]\\\\n\\\\n            if method == \\\\\\\"linear\\\\\\\":\\\\n                scaler = StandardScaler()\\\\n                X_train_s = scaler.fit_transform(X_train)\\\\n                X_val_s = scaler.transform(X_val)\\\\n                reg = Ridge(alpha=1.0)\\\\n                reg.fit(X_train_s, y_train)\\\\n                preds = reg.predict(X_val_s)\\\\n            elif method == \\\\\\\"mlp\\\\\\\":\\\\n                scaler = StandardScaler()\\\\n                X_train_s = scaler.fit_transform(X_train)\\\\n                X_val_s = scaler.transform(X_val)\\\\n                preds = train_mlp(X_train_s, y_train, X_val_s, y_val, seed * 100 + fold)\\\\n            else:\\\\n                raise ValueError(f\\\\\\\"Unknown method: {method}\\\\\\\")\\\\n\\\\n            for k, idx in enumerate(val_inst):\\\\n                for s in range(n_samples):\\\\n                 \n…[truncated 6267 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-18T10:59:56.297813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2/",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-18T10:59:56.297965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16013168\\\\ndrwxr-xr-x  2 root root       4096 May 14 16:44 .\\\\ndrwxr-xr-x 20 root root       4096 May 18 18:23 ..\\\\n-rw-r--r--  1 root root        381 May 14 16:44 Modelfile\\\\n-rw-r--r--  1 root root        707 May 14 16:44 added_tokens.json\\\\n-rw-r--r--  1 root root       4168 May 14 16:44 chat_template.jinja\\\\n-rw-r--r--  1 root root       1538 May 14 16:44 config.json\\\\n-rw-r--r--  1 root root        214 May 14 16:44 generation_config.json\\\\n-rw-r--r--  1 root root    1671853 May 14 16:44 merges.txt\\\\n-rw-r--r--  1 root root 4902257696 May 14 16:44 model-00001-of-00004.safetensors\\\\n-rw-r--r--  1 root root 4915960368 May 14 16:44 model-00002-of-00004.safetensors\\\\n-rw-r--r--  1 root root 4983068496 May 14 16:44 model-00003-of-00004.safetensors\\\\n-rw-r--r--  1 root root 1580230264 May 14 16:44 model-00004-of-00004.safetensors\\\\n-rw-r--r--  1 root root      32914 May 14 16:44 model.safetensors.index.json\\\\n-rw-r--r--  1 root root        613 May 14 16:44 special_tokens_map.json\\\\n-rw-r--r--  1 root root   11422654 May 14 16:44 tokenizer.json\\\\n-rw-r--r--  1 root root       5430 May 14 16:44 tokenizer_config.json\\\\n-rw-r--r--  1 root root    2776833 May 14 16:44 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-18T10:59:56.298101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2/config.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-18T10:59:56.298301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"architectures\\\\\\\": [\\\\n    \\\\\\\"Qwen3ForCausalLM\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"attention_bias\\\\\\\": false,\\\\n  \\\\\\\"attention_dropout\\\\\\\": 0.0,\\\\n  \\\\\\\"bos_token_id\\\\\\\": 151643,\\\\n  \\\\\\\"dtype\\\\\\\": \\\\\\\"bfloat16\\\\\\\",\\\\n  \\\\\\\"eos_token_id\\\\\\\": 151645,\\\\n  \\\\\\\"head_dim\\\\\\\": 128,\\\\n  \\\\\\\"hidden_act\\\\\\\": \\\\\\\"silu\\\\\\\",\\\\n  \\\\\\\"hidden_size\\\\\\\": 4096,\\\\n  \\\\\\\"initializer_range\\\\\\\": 0.02,\\\\n  \\\\\\\"intermediate_size\\\\\\\": 12288,\\\\n  \\\\\\\"layer_types\\\\\\\": [\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"max_position_embeddings\\\\\\\": 40960,\\\\n  \\\\\\\"max_window_layers\\\\\\\": 36,\\\\n  \\\\\\\"model_type\\\\\\\": \\\\\\\"qwen3\\\\\\\",\\\\n  \\\\\\\"num_attention_heads\\\\\\\": 32,\\\\n  \\\\\\\"num_hidden_layers\\\\\\\": 36,\\\\n  \\\\\\\"num_key_value_heads\\\\\\\": 8,\\\\n  \\\\\\\"rms_norm_eps\\\\\\\": 1e-06,\\\\n  \\\\\\\"rope_scaling\\\\\\\": null,\\\\n  \\\\\\\"rope_theta\\\\\\\": 1000000,\\\\n  \\\\\\\"sliding_window\\\\\\\": null,\\\\n  \\\\\\\"tie_word_embeddings\\\\\\\": false,\\\\n  \\\\\\\"transform\n…[truncated 242 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-18T10:59:56.298560+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/probe/hidden_state_probe_v2.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Train linear and MLP probes on hidden states to predict sample quality.\n\nv2: Adds overfitting tracking and saves comprehensive results_goldfiltered.json.\n\"\"\"\n\nimport json\nimport os\nimport sys\nimport warnings\n\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom scipy.stats import spearmanr\nfrom sklearn.linear_model import Ridge\nfrom sklearn.model_selection import KFold\nfrom sklearn.preprocessing import StandardScaler\n\nwarnings.filterwarnings(\"ignore\")\n\nDATA_DIR = \"/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe\"\nSAMPLES_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\"\n\nCV_FOLDS = 5\nSEEDS = [42, 123, 456]\n\nMLP_HIDDEN = [256, 64]\nMLP_EPOCHS = 100\nMLP_LR = 1e-3\nMLP_DROPOUT = 0.1\nMLP_BATCH = 256\n\n\ndef entity_set(ext):\n    return {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in ext.get(\"entities\", [])}\n\n\ndef compute_ner_f1(pred, gold):\n    pred_set = entity_set(pred)\n    gold_set = entity_set(gold)\n    tp = len(pred_set & gold_set)\n    if tp == 0:\n        return 0.0\n    p = tp / (tp + len(pred_set - gold_set))\n    r = tp / (tp + len(gold_set - pred_set))\n    return 2 * p * r / (p + r)\n\n\ndef load_instance_data():\n    with open(SAMPLES_PATH) as f:\n        instances = [json.loads(line) for line in f if line.strip()]\n\n    n_samples = len(instances[0][\"samples\"])\n    instance_data = []\n    nonempty_indices = []\n    for orig_idx, inst in enumerate(instances):\n        gold = inst[\"gold\"]\n        gold_entities = gold.get(\"entities\", [])\n        if len(gold_entities) == 0:\n            continue\n        sample_f1s = [compute_ner_f1(s, gold) for s in inst[\"samples\"]]\n        greedy = inst.get(\"greedy\", inst[\"samples\"][0])\n        greedy_f1 = compute_ner_f1(greedy, gold)\n        oracle_f1 = max(sample_f1s)\n        lp_scores = []\n        for s in inst[\"samples\"]:\n            lp = s.get(\"mean_logprob\")\n            if lp is None:\n                lp = s.get(\"cumulative_logprob\", -999) / max(s.get(\"n_tokens\", 1), 1)\n            lp_scores.append(lp)\n        instance_data.append({\n            \"sample_f1s\": sample_f1s,\n            \"greedy_f1\": greedy_f1,\n            \"oracle_f1\": oracle_f1,\n            \"lp_scores\": lp_scores,\n        })\n        nonempty_indices.append(orig_idx)\n    return instance_data, n_samples, nonempty_indices\n\n\nclass MLPProbe(nn.Module):\n    def __init__(self, input_dim, hidden_dims, dropout=0.1):\n        super().__init__()\n        layers = []\n        prev = input_dim\n        for h in hidden_dims:\n            layers.extend([nn.Linear(prev, h), nn.ReLU(), nn.Dropout(dropout)])\n            prev = h\n        layers.append(nn.Linear(prev, 1))\n        self.net = nn.Sequential(*layers)\n\n    def forward(self, x):\n        return self.net(x).squeeze(-1)\n\n\ndef train_mlp(X_train, y_train, X_val, y_val, seed):\n    torch.manual_seed(seed)\n    device = \"cpu\"\n    model = MLPProbe(X_train.shape[1], MLP_HIDDEN, MLP_DROPOUT).to(device)\n    optimizer = torch.optim.Adam(model.parameters(), lr=MLP_LR, weight_decay=1e-4)\n\n    X_tr = torch.tensor(X_train, dtype=torch.float32, device=device)\n    y_tr = torch.tensor(y_train, dtype=torch.float32, device=device)\n    X_v = torch.tensor(X_val, dtype=torch.float32, device=device)\n    y_v = torch.tensor(y_val, dtype=torch.float32, device=device)\n\n    best_val_loss = float(\"inf\")\n    patience_counter = 0\n    best_state = None\n    best_train_loss = None\n    best_epoch = 0\n\n    for epoch in range(MLP_EPOCHS):\n        model.train()\n        perm = torch.randperm(len(X_tr))\n        total_loss = 0.0\n        n_batches = 0\n        for start in range(0, len(X_tr), MLP_BATCH):\n            idx = perm[start:start + MLP_BATCH]\n            pred = model(X_tr[idx])\n            loss = nn.functional.mse_loss(pred, y_tr[idx])\n            optimizer.zero_grad()\n            loss.backward()\n            optimizer.step()\n            total_loss += loss.item()\n            n_batches += 1\n\n        train_loss = total_loss / n_batches\n\n        model.eval()\n        with torch.no_grad():\n            val_pred = model(X_v)\n            val_loss = nn.functional.mse_loss(val_pred, y_v).item()\n\n        if val_loss < best_val_loss:\n            best_val_loss = val_loss\n            best_train_loss = train_loss\n            best_epoch = epoch\n            best_state = {k: v.clone() for k, v in model.state_dict().items()}\n            patience_counter = 0\n        else:\n            patience_counter += 1\n            if patience_counter >= 15:\n                break\n\n    if best_state is not None:\n        model.load_state_dict(best_state)\n    model.eval()\n    with torch.no_grad():\n        preds = model(X_v).cpu().numpy()\n\n    return preds, {\n        \"best_train_loss\": best_train_loss,\n        \"best_val_loss\": best_val_loss,\n        \"best_epoch\": best_epoch,\n        \"total_epochs\": epoch + 1,\n    }\n\n\ndef compute_selection_f1(instance_data, n_samples, score_matrix):\n    sel_f1s = []\n    greedy_f1s = []\n    oracle_f1s = []\n    random_f1s = []\n\n    for i, idata in enumerate(instance_data):\n        scores = score_matrix[i]\n        chosen = int(np.argmax(scores))\n        sel_f1s.append(idata[\"sample_f1s\"][chosen])\n        greedy_f1s.append(idata[\"greedy_f1\"])\n        oracle_f1s.append(idata[\"oracle_f1\"])\n        random_f1s.append(np.mean(idata[\"sample_f1s\"]))\n\n    return (\n        np.mean(sel_f1s),\n        np.mean(greedy_f1s),\n        np.mean(oracle_f1s),\n        np.mean(random_f1s),\n    )\n\n\ndef run_cv(hidden_states, labels, instance_data, n_samples, method=\"linear\"):\n    n_instances = len(instance_data)\n    all_rhos = []\n    all_sel_f1s = []\n    all_greedy_f1s = []\n    all_oracle_f1s = []\n    all_overfit = []\n\n    for seed in SEEDS:\n        kf = KFold(n_splits=CV_FOLDS, shuffle=True, random_state=seed)\n        inst_indices = np.arange(n_instances)\n\n        fold_score_matrix = np.zeros((n_instances, n_samples))\n        seed_overfit = []\n\n        for fold, (train_inst, val_inst) in enumerate(kf.split(inst_indices)):\n            train_rows = []\n            val_rows = []\n            for idx in train_inst:\n                for s in range(n_samples):\n                    train_rows.append(idx * n_samples + s)\n            for idx in val_inst:\n                for s in range(n_samples):\n                    val_rows.append(idx * n_samples + s)\n\n            X_train = hidden_states[train_rows]\n            y_train = labels[train_rows]\n            X_val = hidden_states[val_rows]\n            y_val = labels[val_rows]\n\n            if method == \"linear\":\n                scaler = StandardScaler()\n                X_train_s = scaler.fit_transform(X_train)\n                X_val_s = scaler.transform(X_val)\n                reg = Ridge(alpha=1.0)\n                reg.fit(X_train_s, y_train)\n                preds = reg.predict(X_val_s)\n                train_preds = reg.predict(X_train_s)\n                train_loss = float(np.mean((train_preds - y_train) ** 2))\n                val_loss = float(np.mean((preds - y_val) ** 2))\n                seed_overfit.append({\"train_loss\": train_loss, \"val_loss\": val_loss})\n            elif method == \"mlp\":\n                scaler = StandardScaler()\n                X_train_s = scaler.fit_transform(X_train)\n                X_val_s = scaler.transform(X_val)\n                preds, overfit_info = train_mlp(X_train_s, y_train, X_val_s, y_val, seed * 100 + fold)\n                seed_overfit.append(overfit_info)\n            else:\n                raise ValueError(f\"Unknown method: {method}\")\n\n            for k, idx in enumerate(val_inst):\n                for s in range(n_samples):\n                    fold_score_matrix[idx, s] = preds[k * n_samples + s]\n\n        rho_val, _ = spearmanr(\n            fold_score_matrix.flatten(),\n            np.array([f1 for idata in instance_data for f1 in idata[\"sample_f1s\"]])\n        )\n        sel_f1, greedy_f1, oracle_f1, _ = compute_selection_f1(\n            instance_data, n_samples, fold_score_matrix\n        )\n\n        all_rhos.append(rho_val)\n        all_sel_f1s.append(sel_f1)\n        all_greedy_f1s.append(greedy_f1)\n        all_oracle_f1s.append(oracle_f1)\n        all_overfit.append(seed_overfit)\n\n    greedy_mean = np.mean(all_greedy_f1s)\n    oracle_mean = np.mean(all_oracle_f1s)\n    sel_mean = np.mean(all_sel_f1s)\n    gap = oracle_mean - greedy_mean\n    gap_closure = ((sel_mean - greedy_mean) / gap * 100) if gap > 0 else 0.0\n\n    if method == \"mlp\":\n        train_losses = [info[\"best_train_loss\"] for seed_of in all_overfit for info in seed_of]\n        val_losses = [info[\"best_val_loss\"] for seed_of in all_overfit for info in seed_of]\n        best_epochs = [info[\"best_epoch\"] for seed_of in all_overfit for info in seed_of]\n        overfit_summary = {\n            \"train_loss_mean\": float(np.mean(train_losses)),\n            \"val_loss_mean\": float(np.mean(val_losses)),\n            \"gap\": float(np.mean(val_losses) - np.mean(train_losses)),\n            \"best_epoch_mean\": float(np.mean(best_epochs)),\n        }\n    else:\n        train_losses = [info[\"train_loss\"] for seed_of in all_overfit for info in seed_of]\n        val_losses = [info[\"val_loss\"] for seed_of in all_overfit for info in seed_of]\n        overfit_summary = {\n            \"train_loss_mean\": float(np.mean(train_losses)),\n            \"val_loss_mean\": float(np.mean(val_losses)),\n            \"gap\": float(np.mean(val_losses) - np.mean(train_losses)),\n        }\n\n    return {\n        \"rho_mean\": float(np.mean(all_rhos)),\n        \"rho_std\": float(np.std(all_rhos, ddof=1)),\n        \"rho_per_seed\": [float(r) for r in all_rhos],\n        \"sel_f1_mean\": float(sel_mean),\n        \"sel_f1_std\": float(np.std(all_sel_f1s, ddof=1)),\n        \"sel_f1_per_seed\": [float(f) for f in all_sel_f1s],\n        \"greedy_f1_mean\": float(greedy_mean),\n        \"oracle_f1_mean\": float(oracle_mean),\n        \"gap_closure\": float(gap_closure),\n        \"overfitting\": overfit_summary,\n    }\n\n\ndef compute_lp_baseline(instance_data, n_samples):\n    score_matrix = np.array([idata[\"lp_scores\"] for idata in instance_data])\n    flat_scores = score_matrix.flatten()\n    flat_f1s = np.array([f1 for idata in instance_data for f1 in idata[\"sample_f1s\"]])\n    rho, _ = spearmanr(flat_scores, flat_f1s)\n\n    sel_f1, greedy_f1, oracle_f1, random_f1 = compute_selection_f1(\n        instance_data, n_samples, score_matrix\n    )\n    gap = oracle_f1 - greedy_f1\n    gap_closure = ((sel_f1 - greedy_f1) / gap * 100) if gap > 0 else 0.0\n\n    return {\n        \"rho\": float(rho),\n        \"sel_f1\": float(sel_f1),\n        \"greedy_f1\": float(greedy_f1),\n        \"oracle_f1\": float(oracle_f1),\n        \"random_f1\": float(random_f1),\n        \"gap_closure\": float(gap_closure),\n    }\n\n\ndef main():\n    print(\"Loading hidden states and labels...\")\n    hidden_states = torch.load(os.path.join(DATA_DIR, \"hidden_states.pt\"), weights_only=True).numpy()\n    labels = torch.load(os.path.join(DATA_DIR, \"labels.pt\"), weights_only=True).numpy()\n\n    print(f\"  hidden_states: {hidden_states.shape}\")\n    print(f\"  labels: {labels.shape}\")\n\n    print(\"Loading instance data for selection F1...\")\n    instance_data, n_samples, nonempty_indices = load_instance_data()\n    n_instances = len(instance_data)\n    print(f\"  {n_instances} instances with non-empty gold, {n_samples} samples each\")\n    print(f\"  Filtered out {551 - n_instances} empty-gold instances\")\n    print(f\"  Using {n_instances * n_samples} / {hidden_states.shape[0]} samples\")\n\n    rows = []\n    for idx in nonempty_indices:\n        for s in range(n_samples):\n            rows.append(idx * n_samples + s)\n    rows = np.array(rows)\n    hs_filtered = hidden_states[rows]\n    labels_filtered = labels[rows]\n\n    print(\"\\nComputing LP baseline...\")\n    lp_baseline = compute_lp_baseline(instance_data, n_samples)\n    print(f\"  LP: rho={lp_baseline['rho']:.4f}, sel_f1={lp_baseline['sel_f1']:.4f}, \"\n          f\"gap_closure={lp_baseline['gap_closure']:.1f}%\")\n\n    print(\"\\nTraining Linear Probe (Ridge, 5-fold CV x 3 seeds)...\")\n    linear_results = run_cv(hs_filtered, labels_filtered, instance_data, n_samples, method=\"linear\")\n    print(f\"  Linear: rho={linear_results['rho_mean']:.4f}+/-{linear_results['rho_std']:.4f}, \"\n          f\"sel_f1={linear_results['sel_f1_mean']:.4f}+/-{linear_results['sel_f1_std']:.4f}, \"\n          f\"gap_closure={linear_results['gap_closure']:.1f}%\")\n    print(f\"  Overfit: train_loss={linear_results['overfitting']['train_loss_mean']:.6f}, \"\n          f\"val_loss={linear_results['overfitting']['val_loss_mean']:.6f}, \"\n          f\"gap={linear_results['overfitting']['gap']:.6f}\")\n\n    print(\"\\nTraining MLP Probe (5-fold CV x 3 seeds)...\")\n    mlp_results = run_cv(hs_filtered, labels_filtered, instance_data, n_samples, method=\"mlp\")\n    print(f\"  MLP: rho={mlp_results['rho_mean']:.4f}+/-{mlp_results['rho_std']:.4f}, \"\n          f\"sel_f1={mlp_results['sel_f1_mean']:.4f}+/-{mlp_results['sel_f1_std']:.4f}, \"\n          f\"gap_closure={mlp_results['gap_closure']:.1f}%\")\n    print(f\"  Overfit: train_loss={mlp_results['overfitting']['train_loss_mean']:.6f}, \"\n          f\"val_loss={mlp_results['overfitting']['val_loss_mean']:.6f}, \"\n          f\"gap={mlp_results['overfitting']['gap']:.6f}, \"\n          f\"best_epoch={mlp_results['overfitting']['best_epoch_mean']:.1f}\")\n\n    greedy_f1 = lp_baseline[\"greedy_f1\"]\n    oracle_f1 = lp_baseline[\"oracle_f1\"]\n\n    results = {\n        \"protocol\": f\"gold-filtered {n_instances} instances, 5-fold CV x 3 seeds\",\n        \"n_instances_total\": 551,\n        \"n_instances_goldfiltered\": n_instances,\n        \"n_empty_gold\": 551 - n_instances,\n        \"n_samples_per_instance\": n_samples,\n        \"n_samples_used\": n_instances * n_samples,\n        \"methods\": {\n            \"lp\": {\n                \"rho\": lp_baseline[\"rho\"],\n                \"sel_f1\": lp_baseline[\"sel_f1\"],\n                \"gap_closure\": lp_baseline[\"gap_closure\"],\n            },\n            \"hidden_linear\": {\n                \"rho_mean\": linear_results[\"rho_mean\"],\n                \"rho_std\": linear_results[\"rho_std\"],\n                \"rho_per_seed\": linear_results[\"rho_per_seed\"],\n                \"sel_f1_mean\": linear_results[\"sel_f1_mean\"],\n                \"sel_f1_std\": linear_results[\"sel_f1_std\"],\n                \"sel_f1_per_seed\": linear_results[\"sel_f1_per_seed\"],\n                \"gap_closure\": linear_results[\"gap_closure\"],\n            },\n            \"hidden_mlp\": {\n                \"rho_mean\": mlp_results[\"rho_mean\"],\n                \"rho_std\": mlp_results[\"rho_std\"],\n                \"rho_per_seed\": mlp_results[\"rho_per_seed\"],\n                \"sel_f1_mean\": mlp_results[\"sel_f1_mean\"],\n                \"sel_f1_std\": mlp_results[\"sel_f1_std\"],\n                \"sel_f1_per_seed\": mlp_results[\"sel_f1_per_seed\"],\n                \"gap_closure\": mlp_results[\"gap_closure\"],\n            },\n        },\n        \"architecture\": {\n            \"linear\": \"Ridge regression, alpha=1.0, StandardScaler\",\n            \"mlp_layers\": \"4096 -> 256 -> 64 -> 1\",\n            \"mlp_hidden_sizes\": MLP_HIDDEN,\n            \"mlp_activation\": \"ReLU\",\n            \"mlp_dropout\": MLP_DROPOUT,\n            \"mlp_lr\": MLP_LR,\n            \"mlp_optimizer\": \"Adam (weight_decay=1e-4)\",\n            \"mlp_epochs\": f\"{MLP_EPOCHS} max (early stopping patience=15)\",\n            \"mlp_batch_size\": MLP_BATCH,\n            \"cv_folds\": CV_FOLDS,\n            \"seeds\": SEEDS,\n        },\n        \"overfitting\": {\n            \"linear\": linear_results[\"overfitting\"],\n            \"mlp\": mlp_results[\"overfitting\"],\n        },\n        \"hidden_state_source\": {\n            \"model\": \"Qwen3-8B + SciERC LoRA (merged)\",\n            \"checkpoint\": \"checkpoints/qwen3-8b-scierc-merged-v2\",\n            \"pooling\": \"mean-pool over output tokens (last hidden layer)\",\n            \"hidden_dim\": 4096,\n        },\n        \"greedy_f1\": greedy_f1,\n        \"oracle_f1\": oracle_f1,\n    }\n\n    output_path = os.path.join(DATA_DIR, \"results_goldfiltered.json\")\n    with open(output_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nResults saved to {output_path}\")\n\n    gap = oracle_f1 - greedy_f1\n    print(f\"\\nGreedy F1: {greedy_f1:.4f}\")\n    print(f\"Oracle F1: {oracle_f1:.4f}\")\n    print(f\"Gap: {gap:.4f}\")\n\n    print(\"\\n\" + \"=\" * 85)\n    print(f\"{'Method':<18} {'Dim':>5} {'Spearman rho':>16} {'Selection F1':>16} {'Gap Closure':>13}\")\n    print(\"-\" * 85)\n    print(f\"{'LP (mean logp)':<18} {'1':>5} {lp_baseline['rho']:>16.4f} {lp_baseline['sel_f1']:>16.4f} {lp_baseline['gap_closure']:>12.1f}%\")\n    print(f\"{'Hidden Linear':<18} {'4096':>5} {linear_results['rho_mean']:.4f}+/-{linear_results['rho_std']:.4f} {linear_results['sel_f1_mean']:.4f}+/-{linear_results['sel_f1_std']:.4f} {linear_results['gap_closure']:>12.1f}%\")\n    print(f\"{'Hidden MLP':<18} {'4096':>5} {mlp_results['rho_mean']:.4f}+/-{mlp_results['rho_std']:.4f} {mlp_results['sel_f1_mean']:.4f}+/-{mlp_results['sel_f1_std']:.4f} {mlp_results['gap_closure']:>12.1f}%\")\n    print(f\"{'Oracle':<18} {'---':>5} {'---':>16} {oracle_f1:>16.4f} {'100.0':>12}%\")\n    print(\"=\" * 85)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written successfully\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-18T10:59:56.298855+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-18T10:59:56.299004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python code/probe/hidden_state_probe_v2.py 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-18T10:59:56.299154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && python code/probe/hidden_state_probe_v2.py 2>&1'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-18T10:59:56.299298+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && nohup python code/probe/hidden_state_probe_v2.py > output/hidden_state_probe/probe_v2.log 2>&1 &\necho \"PID: $!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-18T10:59:56.299430+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && source /root/miniconda3/bin/activate && nohup python code/probe/hidden_state_probe_v2.py > output/hidden_state_probe/probe_v2.log 2>&1 &\\\\\\\\necho \\\\\\\"PID: $!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID: 793110\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-18T10:59:56.299578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-18T10:59:56.299704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-18T10:59:56.299841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-18T10:59:56.299967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-18T10:59:56.300106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps aux",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-18T10:59:56.300289+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot          1  0.0  0.0   4476  3080 ?        Ss   May14   0:00 bash /init/boot/boot.sh\\\\nroot        917  1.6  0.0 723104 20736 ?        Sl   May14 103:22 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        932  0.0  0.0  15444  7972 ?        S    May14   0:05 sshd: /usr/sbin/sshd -D [listener] 1 of 10-100 startups\\\\nroot        935  0.0  0.0 4147828 71852 ?       Sl   May14   2:08 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        937  0.3  0.0 6822352 130948 ?      Sl   May14  21:25 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        939  0.0  0.0 191560 96316 ?        S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        940  0.0  0.0 3682864 21392 ?       Sl   May14   1:57 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        941  0.0  0.0 3682864 21864 ?       Sl   May14   3:41 proxy -c /init/proxy/proxy.ini\\\\nroot       1050  0.0  0.0 28341068 10600 ?      Sl   May14   5:17 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_n2g13yqg/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_n2g13yqg/startup_error\\\\nroot     137791  0.0  0.0   4364  3256 pts/3    Ss+  17:31   0:00 bash -c source /root/miniconda3/bin/activate && bash /root/autodl-tmp/struct_self_consist_ie/code/run_llama_fewnerd_train_single_gpu.sh 2>&1 | tee /root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\\\\nroot     137860  0.0  0.0   4364  3216 pts/3    S+   17:31   0:00 bash /root/autodl-tmp/struct_self_consist_ie/code/run_llama_fewnerd_train_single_gpu.sh\\\\nroot     137861  0.0  0.0   \n…[truncated 3628 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-18T10:59:56.300538+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "kill 793556 2>/dev/null; ls -la /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/results_goldfiltered.json 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-18T10:59:56.300695+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'kill 793556 2>/dev/null; ls -la /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/results_goldfiltered.json 2>&1'\\\\n\\\\nExit code: 2\\\\n\\\\nStdout:\\\\n\\\\nls: cannot access '/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/results_goldfiltered.json': No such file or directory\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-18T10:59:56.300831+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "kill 793556 2>/dev/null; ps -p 694293 -o pid,start,etime,pcpu --no-headers 2>&1",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-18T10:59:56.300961+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"694293 18:56:19       01:37 5789\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-18T10:59:56.301142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "sleep 30 && cat /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_v2.log 2>/dev/null && ls -la /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/results_goldfiltered.json 2>/dev/null; echo \"---\"; ps -p 694293 -o pid,etime --no-headers 2>/dev/null || echo \"Process finished\"",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-18T10:59:56.301306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'sleep 30 && cat /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_v2.log 2>/dev/null && ls -la /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/results_goldfiltered.json 2>/dev/null; echo \\\\\\\"---\\\\\\\"; ps -p 694293 -o pid,etime --no-headers 2>/dev/null || echo \\\\\\\"Process finished\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-18T10:59:56.301435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/results_goldfiltered.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-18T10:59:56.301558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/probe_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-18T10:59:56.301684+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/results_goldfiltered.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-18T10:59:56.301811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-18T10:59:56.301946+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps -p 694293 -o pid,etime,pcpu --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-18T10:59:56.302069+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"694293       02:29 6373\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-18T10:59:56.302218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps -p 694293 -o pid,etime --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-18T10:59:56.302366+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"694293       02:33\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-18T10:59:56.302510+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps -p 694293 -o pid,etime --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-18T10:59:56.302633+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"694293       02:36\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-18T10:59:56.302748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps -p 694293 -o pid,etime --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-18T10:59:56.302867+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"694293       02:39\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-18T10:59:56.302979+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps -p 694293 -o pid,etime --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-18T10:59:56.303103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"694293       02:43\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-18T10:59:56.303262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/results_goldfiltered.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-18T10:59:56.303389+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/results_goldfiltered.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-18T10:59:56.303506+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps -p 694293 -o pid,etime --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-18T10:59:56.303623+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"694293       02:50\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-18T10:59:56.303735+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps -p 694293 -o pid,etime --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-18T10:59:56.303851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"694293       02:54\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-18T10:59:56.303963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps -p 694293 -o pid,etime --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-18T10:59:56.304081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"694293       02:58\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-18T10:59:56.304214+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/results_goldfiltered.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-18T10:59:56.304347+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 2393 May 18 18:59 /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/results_goldfiltered.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-18T10:59:56.304475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/hidden_state_probe/results_goldfiltered.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-18T10:59:56.304646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"protocol\\\\\\\": \\\\\\\"gold-filtered 529 instances, 5-fold CV x 3 seeds\\\\\\\",\\\\n  \\\\\\\"n_instances_total\\\\\\\": 551,\\\\n  \\\\\\\"n_instances_goldfiltered\\\\\\\": 529,\\\\n  \\\\\\\"n_empty_gold\\\\\\\": 22,\\\\n  \\\\\\\"n_samples_per_instance\\\\\\\": 8,\\\\n  \\\\\\\"n_samples_used\\\\\\\": 4232,\\\\n  \\\\\\\"methods\\\\\\\": {\\\\n    \\\\\\\"lp\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.22074069594266574,\\\\n      \\\\\\\"sel_f1\\\\\\\": 0.6086970895099441,\\\\n      \\\\\\\"gap_closure\\\\\\\": -0.4414492445118101\\\\n    },\\\\n    \\\\\\\"hidden_linear\\\\\\\": {\\\\n      \\\\\\\"rho_mean\\\\\\\": 0.23463036001263568,\\\\n      \\\\\\\"rho_std\\\\\\\": 0.020033203591266518,\\\\n      \\\\\\\"rho_per_seed\\\\\\\": [\\\\n        0.21154010846551952,\\\\n        0.24738356639083428,\\\\n        0.24496740518155322\\\\n      ],\\\\n      \\\\\\\"sel_f1_mean\\\\\\\": 0.620623448175433,\\\\n      \\\\\\\"sel_f1_std\\\\\\\": 0.005345097327661501,\\\\n      \\\\\\\"sel_f1_per_seed\\\\\\\": [\\\\n        0.6247431574936301,\\\\n        0.6225436766552078,\\\\n        0.6145835103774611\\\\n      ],\\\\n      \\\\\\\"gap_closure\\\\\\\": 7.020164760064006\\\\n    },\\\\n    \\\\\\\"hidden_mlp\\\\\\\": {\\\\n      \\\\\\\"rho_mean\\\\\\\": 0.4611373667854694,\\\\n      \\\\\\\"rho_std\\\\\\\": 0.019982456963728423,\\\\n      \\\\\\\"rho_per_seed\\\\\\\": [\\\\n        0.47038186887232986,\\\\n        0.47482366489760536,\\\\n        0.438206566586473\\\\n      ],\\\\n      \\\\\\\"sel_f1_mean\\\\\\\": 0.6316744542837059,\\\\n      \\\\\\\"sel_f1_std\\\\\\\": 0.004414136181594634,\\\\n      \\\\\\\"sel_f1_per_seed\\\\\\\": [\\\\n        0.6366404494476329,\\\\n        0.628197088935997,\\\\n        0.6301858244674879\\\\n      ],\\\\n      \\\\\\\"gap_closure\\\\\\\": 13.934122679235925\\\\n    }\\\\n  },\\\\n  \\\\\\\"architecture\\\\\\\": {\\\\n    \\\\\\\"linear\\\\\\\": \\\\\\\"Ridge regression, alpha=1.0, StandardScaler\\\\\\\",\\\\n    \\\\\\\"mlp_layers\\\\\\\": \\\\\\\"4096 -> 256 -> 64 -> 1\\\\\\\",\\\\n    \\\\\\\"mlp_hidden_sizes\\\\\\\": [\\\\n      256,\\\\n      64\\\\n    ],\\\\n    \\\\\\\"mlp_activation\\\\\\\": \\\\\\\"ReLU\\\\\\\",\\\\n    \\\\\\\"mlp_dropout\\\\\\\": 0.1,\\\\n    \\\\\\\"mlp_lr\\\\\\\": 0.001,\\\\n    \\\\\\\"mlp_optimizer\\\\\\\": \\\\\\\"Adam (weight_decay=1e-4)\\\\\\\"\n…[truncated 1121 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-18T10:59:56.304844+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-18T10:59:56.305009+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3seed_ner_summary.md\n3seed_summary\n__pycache__\n_project\nanalysis_fk_bootstrap_ci_full.json\nanalysis_lp_range_cdf.json\nanalysis_lp_range_cdf_n16_3seed.json\nanalysis_scierc_n16_3seed_selection_f1.json\nanalysis_scierc_re_n16_3seed_selection_f1.json\nanalysis_unified_rho.json\nanalysis_unified_rho_full.json\nanalyze_exp004_re_diagnostic.py\nanalyze_exp004_v2_re_diagnostic.py\nanalyze_exp005_v2_temperature.py\nanalyze_exp015_metrics_expansion.py\nanalyze_exp016_ensemble.py\nanalyze_ood_signals.py\naudit_autodl5090_loop3.md\naudit_gpu5090_4x2_loop3.md\nauroc_bug_diagnosis.md\nautodl_process_check.md\nbatch_completion_check_a.md\nbatch_completion_check_b.md\nbertoldi_citation_check\nbjb1_status_report.md\nbootstrap_ci_nscaling\nbootstrap_ci_summary.json\nbootstrap_ci_tables.tex\nbootstrap_selection_test.py\nconsistency.py\nd072_paper_patch_inventory.md\nd108\nd108_lp_vc_combination\nd112\nd112_claim_audit\nd113_table2_fix\nd113_table2_narrative_fix\ndata\ndata_utils.py\ndeberta_verifier.py\ndeberta_verifier_5fold.py\ndeberta_verifier_5fold_results.json\ndeberta_verifier_results.json\ndegeneracy_lp_scatter.pdf\ndegeneracy_lp_scatter.png\ndream_reports\nevaluate_verifier.py\nevaluation.py\nexp-001\nexp-015\nexp-019\nexp-022\nexp001_postprocess.py\nexp005_temperature\nexp009_stratification_analysis.py\nexp010_selection_curves\nexp_001\nexp_001_n16\nexp_001_ner_n16_scierc\nexp_001_seed456_v2_ner\nexp_002\nexp_003\nexp_004_re_diagnostic\nexp_004_v2\nexp_005\nexp_005_v2\nexp_009_capability_stratification\nexp_009_v2\nexp_009_v2_re_rerun\nexp_009_v2_stratification.py\nexp_010_selection_curves\nexp_011_ood_scierc_to_conll\nexp_012_logprob_baseline\nexp_012_rerun_1024\nexp_015_metrics_expansion\nexp_016_rerun_1024\nexp_016_rerun_1024_bootstrap\nexp_016_signal_ensemble\nexp_016_v2\nexp_016_v2_ensemble.py\nexp_017\nexp_017_llama_conll_n8_t07\nexp_017_setup.md\nexp_018\nexp_018_provenance_report.md\nexp_019_trained_verifier\nexp_020_pilot\nexp_021_fewnerd_full\nexp_023_lora_rank8\nexp_024_claim_audit\nexp_025\nexp_026\nexp_026_T_ablation\nexp_026_t12\nexp_027\nexp_028\ne\n…[truncated 1595 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-18T10:59:56.305221+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/hidden_state_probe/results_goldfiltered.json",
+              "content": "{\n  \"protocol\": \"gold-filtered 529 instances, 5-fold CV x 3 seeds\",\n  \"n_instances_total\": 551,\n  \"n_instances_goldfiltered\": 529,\n  \"n_empty_gold\": 22,\n  \"n_samples_per_instance\": 8,\n  \"n_samples_used\": 4232,\n  \"methods\": {\n    \"lp\": {\n      \"rho\": 0.2207,\n      \"sel_f1\": 0.6087,\n      \"gap_closure\": -0.44\n    },\n    \"hidden_linear\": {\n      \"rho_mean\": 0.2346,\n      \"rho_std\": 0.0200,\n      \"rho_per_seed\": [0.2115, 0.2474, 0.2450],\n      \"sel_f1_mean\": 0.6206,\n      \"sel_f1_std\": 0.0053,\n      \"sel_f1_per_seed\": [0.6247, 0.6225, 0.6146],\n      \"gap_closure\": 7.02\n    },\n    \"hidden_mlp\": {\n      \"rho_mean\": 0.4611,\n      \"rho_std\": 0.0200,\n      \"rho_per_seed\": [0.4704, 0.4748, 0.4382],\n      \"sel_f1_mean\": 0.6317,\n      \"sel_f1_std\": 0.0044,\n      \"sel_f1_per_seed\": [0.6366, 0.6282, 0.6302],\n      \"gap_closure\": 13.93\n    }\n  },\n  \"architecture\": {\n    \"linear\": \"Ridge regression, alpha=1.0, StandardScaler\",\n    \"mlp_layers\": \"4096 -> 256 -> 64 -> 1\",\n    \"mlp_hidden_sizes\": [256, 64],\n    \"mlp_activation\": \"ReLU\",\n    \"mlp_dropout\": 0.1,\n    \"mlp_lr\": 0.001,\n    \"mlp_optimizer\": \"Adam (weight_decay=1e-4)\",\n    \"mlp_epochs\": \"100 max (early stopping patience=15)\",\n    \"mlp_batch_size\": 256,\n    \"cv_folds\": 5,\n    \"seeds\": [42, 123, 456]\n  },\n  \"overfitting\": {\n    \"linear\": {\n      \"train_loss_mean\": 0.000356,\n      \"val_loss_mean\": 0.5652,\n      \"gap\": 0.5649,\n      \"note\": \"Severe overfitting - Ridge with 4096 features on ~3400 training samples\"\n    },\n    \"mlp\": {\n      \"train_loss_mean\": 0.0423,\n      \"val_loss_mean\": 0.0784,\n      \"gap\": 0.0360,\n      \"best_epoch_mean\": 9.4,\n      \"note\": \"Moderate gap, early stopping effective (avg best epoch 9.4/100)\"\n    }\n  },\n  \"hidden_state_source\": {\n    \"model\": \"Qwen3-8B + SciERC LoRA (merged)\",\n    \"checkpoint\": \"checkpoints/qwen3-8b-scierc-merged-v2\",\n    \"pooling\": \"mean-pool over output tokens (last hidden layer)\",\n    \"hidden_dim\": 4096\n  },\n  \"greedy_f1\": 0.6094,\n  \"oracle_f1\": 0.7692\n}\n"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-18T10:59:56.305397+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/hidden_state_probe/results_goldfiltered.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-18T10:59:56.305568+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成汇总\n\n### 关键发现：评估本已正确\n\n原始 probe 代码 (`hidden_state_probe.py`) **已经在 evaluation 阶段 gold-filter 了** — `load_instance_data()` 跳过 `gold_entities == []` 的 instance。`results.json` 显示的 `n_instances: 529` 是正确的。3 seeds [42, 123, 456] × 5-fold CV 也已完成。\n\n本次新增：overfitting 追踪 + 综合 `results_goldfiltered.json`。\n\n### 实验细节\n\n| 项目 | 值 |\n|---|---|\n| **Hidden state 来源** | Qwen3-8B + SciERC LoRA merged (v2), last hidden layer, mean-pool over output tokens |\n| **Hidden dim** | 4096 |\n| **Linear probe** | Ridge (α=1.0), StandardScaler |\n| **MLP 架构** | 4096→256→64→1, ReLU, Dropout=0.1 |\n| **MLP 训练** | Adam (lr=1e-3, wd=1e-4), batch=256, max 100 epochs, early stopping patience=15 |\n| **评估** | 5-fold CV × 3 seeds (42, 123, 456), instance-level split |\n\n### Overfitting\n\n- **Linear**: 严重过拟合 (train MSE=0.0004, val MSE=0.565) — 4096 features vs ~3400 training samples\n- **MLP**: 适度 (train MSE=0.042, val MSE=0.078, gap=0.036), early stopping 有效 (avg best epoch=9.4)\n\n### 最终结果表 (gold-filtered 529 instances, 3-seed mean±std)\n\n| Method | Dim | Spearman ρ | Selection F1 | Gap Closure |\n|--------|-----|-----------|-------------|-------------|\n| LP (mean logprob) | 1 | 0.2207 | 0.6087 | -0.4% |\n| Hidden Linear | 4096 | 0.2346±0.020 | 0.6206±0.005 | 7.0% |\n| Hidden MLP | 4096 | 0.4611±0.020 | 0.6317±0.004 | 13.9% |\n| Oracle | — | — | 0.7692 | 100% |\n\n结果文件:\n- 服务器: `output/hidden_state_probe/results_goldfiltered.json`\n- 本地: `artifacts/hidden_state_probe/results_goldfiltered.json`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_hidden_probe_goldfilter_details_20260518T105341"
+          },
+          "id": "event-000087"
+        }
+      ],
+      "message_count": 87
+    }
+  ],
+  "readable_path": "readable/conversations/fix-hidden-probe-goldfilter-details.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3122e6f2dc91f149e14",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh i diversity predictor",
+  "task_key": "worker_ssh_i-diversity-predictor_20260520T101451",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_i-diversity-predictor_20260520T101451_result.json",
+    "occurrence": 1,
+    "bytes": 1225,
+    "sha256": "2903912088a189095c1e1405c37bf77ce8ed53ad10827fd594856637c138f42e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**模型配对**: Qwen3-8B-FT vs Qwen2.5-72B-fewshot（原始 LLaMA FT 数据已不存在，改用此对）\n\n**SciERC** (n=529):\n| 指标 | Spearman ρ vs ΔF1 | p-value |\n|------|-------------------|---------|\n| JSD | -0.310 | 2.9e-13 |\n| Cross-model div | -0.295 | 4.2e-12 |\n| EU Jaccard | +0.177 | 4.1e-05 |\n| Within-A div | +0.062 | n.s. |\n| Within-B div | -0.029 | n.s. |\n\nOLS: JSD R²=0.30, div_cross R²=0.27\n\n**CoNLL** (n=2756):\n| 指标 | Spearman ρ vs ΔF1 | p-value |\n|------|-------------------|---------|\n| JSD | -0.615 | ~0 |\n| Cross-model div | -0.640 | ~0 |\n| EU Jaccard | +0.576 | ~0 |\n\nOLS: JSD R²=0.74, div_cross R²=0.73\n\n**核心发现**: Cross-model 输出分歧（JSD、cross-model diversity）强预测 SC 混合构造的 ΔF1。模型间越不一致，混合 majority vote 越伤害性能。Within-model diversity 不显著。CoNLL 上效应远强于 SciERC（R² 0.74 vs 0.30），因为 CoNLL 任务更规范、模型间一致性差异更结构化。\n\n产出路径:\n- `artifacts/i_diversity_predictor/diversity_correlation.json`\n- `artifacts/i_diversity_predictor/diversity_per_instance.json`\n- `code/i_diversity_predictor.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-i-diversity-predictor.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d900c09c151c4d56100d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu 5090b check and fill",
+  "task_key": "worker_gpu_5090b_check_and_fill_20260521T081102",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_5090b_check_and_fill_20260521T081102_result.json",
+    "occurrence": 1,
+    "bytes": 1373,
+    "sha256": "515b56f9065198ef9c55fa4b44f0f70acc803bccdcaf1507fde01edc78c6ae65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 3 experiments running:\n- **cuda:0**: exp_conll_mf4_v2_s123 — 30GB, 86% util, processing prompts (CoNLL 3453 instances × 8 samples)\n- **cuda:1**: exp_conll_mf4_v2_s456 — 30GB, 86% util, processing\n- **cuda:2**: exp_fewnerd_mf4_v2_s456 — 30GB, rendering prompts (FewNERD 37648 instances × 8 samples)\n- **cuda:3**: idle, no PREPARING/QUEUED experiments available to fill\n\n## 汇报\n\n### 已完成实验（已更新 registry → DONE）\n\n| 实验 | greedy_f1 | oracle_f1 | rho_SJ_full | rho_SJ_cond | verdict |\n|------|-----------|-----------|-------------|-------------|---------|\n| exp_fewnerd_mf4_v2_s42 (MF4v2) | 0.788 | 0.878 | 0.163 | 0.199 | FAIL |\n| exp_fewnerd_t12_s456 (T=1.2) | 0.789 | 0.878 | 0.290 | 0.254 | FAIL |\n| exp_fewnerd_n16_s42 (N=16) | 0.789 | 0.906 | 0.211 | 0.212 | FAIL |\n| exp_fewnerd_n16_s123 (N=16) | 0.789 | 0.915 | 0.352 | 0.282 | MARGINAL |\n\n### 新启动实验\n\n| GPU | 实验 | Dataset | Config | PID |\n|-----|------|---------|--------|-----|\n| cuda:0 | exp_conll_mf4_v2_s123 | CoNLL | N=8 T=1.0 s=123 | 334013 |\n| cuda:1 | exp_conll_mf4_v2_s456 | CoNLL | N=8 T=1.0 s=456 | 334155 |\n| cuda:2 | exp_fewnerd_mf4_v2_s456 | FewNERD | N=8 T=1.0 s=456 | 334423 |\n| cuda:3 | — | — | 空闲 | — |\n\nCoNLL 实验约 3453 instances，预计 ~1h 完成；FewNERD 37648 instances，预计 ~3-4h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-5090b-check-and-fill.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4b9f02140f441bc0580",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper research ie literature",
+  "task_key": "worker_paper_research_ie_literature_20260514T194843",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_research_ie_literature_20260514T194843_result.json",
+    "occurrence": 1,
+    "bytes": 639,
+    "sha256": "95adf0b33d329652ddcd369c3d8c0ba560bce9cc1f2f362aa576aeced44c010c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All entries are correctly placed in alphabetical order. Summary of changes:\n\n**references.bib** — 4 new BibTeX entries added:\n- `josifoski2022genie` — GenIE: constrained decoding for IE (NAACL 2022)\n- `li2023codeie` — CodeIE: code generation for IE (ACL 2023)\n- `wang2023instructuie` — InstructUIE: unified instruction-tuned IE (arXiv 2023)\n- `zhou2024uniner` — UniversalNER: distilled open NER (ICLR 2024)\n\n**literature_map.yaml** — 3 new entries added (`josifoski2022genie`, `li2023codeie`, `wang2023instructuie`), `zhou2024uniner` verified changed from `false` to `true`, `total_papers` updated to 55."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-ie-literature.md"
+}

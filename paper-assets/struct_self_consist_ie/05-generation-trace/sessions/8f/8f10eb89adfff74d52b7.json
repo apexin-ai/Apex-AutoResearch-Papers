@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f10eb89adfff74d52b7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis fk bootstrap per instance",
+  "task_key": "worker_analysis_fk_bootstrap_per_instance_20260515T130838",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_fk_bootstrap_per_instance_20260515T130838_result.json",
+    "occurrence": 1,
+    "bytes": 1457,
+    "sha256": "c7bf579bd55e2a649ade727574404849304ed50e25b6a7c369f5e081f6a58ce3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output saved to `output/analysis_fk_bootstrap_per_instance.json`. Results:\n\n### SciERC NER (N=8, n=529)\n\n**Signal rhos (Spearman with greedy F1):**\n| Signal | rho | 95% CI |\n|--------|-----|--------|\n| FK | 0.267 | [0.176, 0.354] |\n| SJ | 0.360 | [0.277, 0.437] |\n| VC | 0.379 | [0.299, 0.456] |\n| EM | 0.295 | [0.212, 0.371] |\n\n**FK vs others (bootstrap + permutation):**\n| Comparison | delta | 95% CI | p_perm |\n|------------|-------|--------|--------|\n| FK vs SJ | -0.093 | [-0.159, -0.031] | 0.080 (n.s.) |\n| FK vs VC | -0.113 | [-0.200, -0.026] | 0.031 (*) |\n| FK vs EM | -0.028 | [-0.118, +0.064] | 0.622 (n.s.) |\n\n**FK excess agreement:** 0.240 [0.217, 0.265], P_o=0.749, P_e=0.509\n\n### CoNLL NER (N=16, n=2756)\n\n**FK vs others:**\n| Comparison | delta | 95% CI | p_perm |\n|------------|-------|--------|--------|\n| FK vs SJ | -0.056 | [-0.071, -0.041] | 0.0001 (***) |\n| FK vs VC | -0.022 | [-0.045, +0.002] | 0.078 (n.s.) |\n| FK vs EM | -0.071 | [-0.089, -0.053] | 0.0001 (***) |\n\n**FK excess agreement:** 0.582 [0.567, 0.597]\n\n**Key findings:** FK is consistently the weakest signal. On SciERC, the bootstrap CIs exclude zero for FK vs SJ and FK vs VC (though permutation p for FK vs SJ is borderline at 0.08). On CoNLL with larger n, FK is significantly worse than SJ and EM (p<0.001). FK excess agreement on SciERC is modest (0.24) due to high P_e (~0.51), while CoNLL has much higher excess (0.58)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fk-bootstrap-per-instance.md"
+}

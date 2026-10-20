@@ -1,0 +1,1694 @@
+{
+  "schema_version": "1.0",
+  "session_id": "cd0b92d943f908b0dea0",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-14T21:13:50.591Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016MqFj3jWECiQZkNmrnuf8x",
+              "type": "tool_result",
+              "content": "240\tfig, axes = plt.subplots(1, 2, figsize=(6.8, 2.6), gridspec_kw={'wspace': 0.35})\n241\t\n242\tfor panel_idx, (task_label, rho_dict, sel_dict, greedy_val, oracle_val) in enumerate([\n243\t    ('NER (SciERC)', ner_full_rho_per_sig, ner_sel_f1, ner_greedy, ner_sel['oracle']),\n244\t    ('RE (SciERC)', re_full_rho_per_sig, re_sel_f1, re_greedy, re_sel['oracle']),\n245\t]):\n246\t    ax = axes[panel_idx]\n247\t    ax2 = ax.twinx()\n248\t\n249\t    x = np.arange(len(signals))\n250\t    width = 0.5\n251\t\n252\t    rho_vals = [rho_dict[s] for s in signals]\n253\t    delta_f1 = [(sel_dict[s] - greedy_val) * 100 for s in signals]\n254\t\n255\t    colors_bar = ['#2ca02c' if d > 0.5 else '#d62728' if d < -0.5 else '#7f7f7f' for d in delta_f1]\n256\t\n257\t    bars = ax.bar(x, rho_vals, width, color='#1f77b4', alpha=0.7, edgecolor='#1f77b4', linewidth=0.5, label='Spearman ρ', zorder=2)\n258\t\n259\t    line = ax2.plot(x, delta_f1, 'D-', color='#d62728', markersize=5, linewidth=1.5, label='ΔF1 vs greedy', zorder=3)\n260\t    ax2.axhline(y=0, color='gray', linestyle='--', linewidth=0.5, alpha=0.5, zorder=1)\n261\t\n262\t    # Oracle gap annotation\n263\t    oracle_delta = (oracle_val - greedy_val) * 100\n264\t    ax2.axhline(y=oracle_delta, color='#2ca02c', linestyle=':', linewidth=0.8, alpha=0.6)\n265\t    ax2.annotate(f'oracle +{oracle_delta:.1f}pp', xy=(len(signals)-0.5, oracle_delta),\n266\t                fontsize=6.5, color='#2ca02c', va='bottom', ha='right')\n267\t\n268\t    ax.set_xlabel('')\n269\t    ax.set_ylabel('Spearman ρ', color='#1f77b4', fontsize=8)\n270\t    ax2.set_ylabel('ΔF1 vs greedy (pp)', color='#d62728', fontsize=8)\n271\t    ax.set_xticks(x)\n272\t    ax.set_xticklabels(signal_labels, fontsize=7.5)\n273\t    ax.set_ylim(0, 0.55)\n274\t    ax.set_title(task_label, fontsize=9, fontweight='bold', pad=4)\n275\t    ax.tick_params(axis='y', colors='#1f77b4', labelsize=7)\n276\t    ax2.tick_params(axis='y', colors='#d62728', labelsize=7)\n277\t\n278\t    # Add value labels on delta markers\n279\t    for xi, d in zip(x, delta_f1):\n280\t        ax2.annotate(f'{d:+.1f}', xy=(xi, d), xytext=(0, 6), textcoords='offset points',\n281\t                    ha='center', fontsize=6, color='#d62728', fontweight='bold')\n282\t\n283\t    if panel_idx == 0:\n284\t        lines1, labels1 = ax.get_legend_handles_labels()\n285\t        lines2, labels2 = ax2.get_legend_handles_labels()\n286\t        ax.legend(lines1 + lines2, labels1 + labels2, loc='upper left', fontsize=6.5, framealpha=0.8)\n287\t\n288\tfig.savefig(FIG_DIR / 'fig_correlation_selection_gap.pdf', format='pdf')\n289\tfig.savefig(FIG_DIR / 'fig_correlation_selection_gap.png', format='png')\n290\tplt.close(fig)\n291\tprint(\"✓ fig_correlation_selection_gap saved\")\n292\t\n293\t# ── Figure 3: Temperature Robustness ─────────────────────────────────────\n294\t\n295\tner_temp = temp_data['results']['ner']['full']\n296\tre_temp = temp_data['results']['re']['full']\n297\tner_boot = temp_data['results']['ner'].get('bootstrap', {})\n298\tre_boot = temp_data['results']['re'].get('bootstrap', {})\n299\t\n300\tsig_map_temp = {\n301\t    'SJ': 'soft_jaccard', 'FK': 'fleiss_kappa', 'EM': 'exact_match',\n302\t    'voting_conf': 'voting_conf', 'logprob': 'mean_logprob'\n303\t}\n304\t\n305\tfig, axes = plt.subplots(1, 2, figsize=(6.8, 2.6), gridspec_kw={'wspace': 0.3})\n306\t\n307\tfor panel_idx, (task_label, task_temp, task_boot) in enumerate([\n308\t    ('NER (SciERC)', ner_temp, ner_boot),\n309\t    ('RE (SciERC)', re_temp, re_boot),\n310\t]):\n311\t    ax = axes[panel_idx]\n312\t    x = np.arange(len(signals))\n313\t    width = 0.3\n314\t\n315\t    t07_vals = []\n316\t    t10_vals = []\n317\t    t07_errs = []\n318\t    t10_errs = []\n319\t    deltas = []"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "08cc9aee-f383-4f20-b48e-6fce950e20d6",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/figures/plot_all_figures.py",
+                "content": "fig, axes = plt.subplots(1, 2, figsize=(6.8, 2.6), gridspec_kw={'wspace': 0.35})\n\nfor panel_idx, (task_label, rho_dict, sel_dict, greedy_val, oracle_val) in enumerate([\n    ('NER (SciERC)', ner_full_rho_per_sig, ner_sel_f1, ner_greedy, ner_sel['oracle']),\n    ('RE (SciERC)', re_full_rho_per_sig, re_sel_f1, re_greedy, re_sel['oracle']),\n]):\n    ax = axes[panel_idx]\n    ax2 = ax.twinx()\n\n    x = np.arange(len(signals))\n    width = 0.5\n\n    rho_vals = [rho_dict[s] for s in signals]\n    delta_f1 = [(sel_dict[s] - greedy_val) * 100 for s in signals]\n\n    colors_bar = ['#2ca02c' if d > 0.5 else '#d62728' if d < -0.5 else '#7f7f7f' for d in delta_f1]\n\n    bars = ax.bar(x, rho_vals, width, color='#1f77b4', alpha=0.7, edgecolor='#1f77b4', linewidth=0.5, label='Spearman ρ', zorder=2)\n\n    line = ax2.plot(x, delta_f1, 'D-', color='#d62728', markersize=5, linewidth=1.5, label='ΔF1 vs greedy', zorder=3)\n    ax2.axhline(y=0, color='gray', linestyle='--', linewidth=0.5, alpha=0.5, zorder=1)\n\n    # Oracle gap annotation\n    oracle_delta = (oracle_val - greedy_val) * 100\n    ax2.axhline(y=oracle_delta, color='#2ca02c', linestyle=':', linewidth=0.8, alpha=0.6)\n    ax2.annotate(f'oracle +{oracle_delta:.1f}pp', xy=(len(signals)-0.5, oracle_delta),\n                fontsize=6.5, color='#2ca02c', va='bottom', ha='right')\n\n    ax.set_xlabel('')\n    ax.set_ylabel('Spearman ρ', color='#1f77b4', fontsize=8)\n    ax2.set_ylabel('ΔF1 vs greedy (pp)', color='#d62728', fontsize=8)\n    ax.set_xticks(x)\n    ax.set_xticklabels(signal_labels, fontsize=7.5)\n    ax.set_ylim(0, 0.55)\n    ax.set_title(task_label, fontsize=9, fontweight='bold', pad=4)\n    ax.tick_params(axis='y', colors='#1f77b4', labelsize=7)\n    ax2.tick_params(axis='y', colors='#d62728', labelsize=7)\n\n    # Add value labels on delta markers\n    for xi, d in zip(x, delta_f1):\n        ax2.annotate(f'{d:+.1f}', xy=(xi, d), xytext=(0, 6), textcoords='offset points',\n                    ha='center', fontsize=6, color='#d62728', fontweight='bold')\n\n    if panel_idx == 0:\n        lines1, labels1 = ax.get_legend_handles_labels()\n        lines2, labels2 = ax2.get_legend_handles_labels()\n        ax.legend(lines1 + lines2, labels1 + labels2, loc='upper left', fontsize=6.5, framealpha=0.8)\n\nfig.savefig(FIG_DIR / 'fig_correlation_selection_gap.pdf', format='pdf')\nfig.savefig(FIG_DIR / 'fig_correlation_selection_gap.png', format='png')\nplt.close(fig)\nprint(\"✓ fig_correlation_selection_gap saved\")\n\n# ── Figure 3: Temperature Robustness ─────────────────────────────────────\n\nner_temp = temp_data['results']['ner']['full']\nre_temp = temp_data['results']['re']['full']\nner_boot = temp_data['results']['ner'].get('bootstrap', {})\nre_boot = temp_data['results']['re'].get('bootstrap', {})\n\nsig_map_temp = {\n    'SJ': 'soft_jaccard', 'FK': 'fleiss_kappa', 'EM': 'exact_match',\n    'voting_conf': 'voting_conf', 'logprob': 'mean_logprob'\n}\n\nfig, axes = plt.subplots(1, 2, figsize=(6.8, 2.6), gridspec_kw={'wspace': 0.3})\n\nfor panel_idx, (task_label, task_temp, task_boot) in enumerate([\n    ('NER (SciERC)', ner_temp, ner_boot),\n    ('RE (SciERC)', re_temp, re_boot),\n]):\n    ax = axes[panel_idx]\n    x = np.arange(len(signals))\n    width = 0.3\n\n    t07_vals = []\n    t10_vals = []\n    t07_errs = []\n    t10_errs = []\n    deltas = []",
+                "numLines": 80,
+                "startLine": 240,
+                "totalLines": 407
+              }
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011h7USebG2DpmKSGVtDySYr",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/figures/plot_all_figures.py",
+                "offset": 320,
+                "limit": 80
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "76fd24f4-8413-44e5-9325-2097b8d4acd6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LdMGLkTZXmXbRB8fmYBXD5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1710,
+                "cache_read_input_tokens": 114064,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1710
+                },
+                "output_tokens": 37,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-14T21:13:54.660Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011h7USebG2DpmKSGVtDySYr",
+              "type": "tool_result",
+              "content": "320\t\n321\t    for sig in signals:\n322\t        k = sig_map_temp[sig]\n323\t        if k in task_temp:\n324\t            entry = task_temp[k]\n325\t            t07 = entry.get('T07', {}).get('rho', float('nan'))\n326\t            t10 = entry.get('T10', {}).get('rho', float('nan'))\n327\t            if t07 is None or (isinstance(t07, float) and np.isnan(t07)):\n328\t                t07 = float('nan')\n329\t            if t10 is None or (isinstance(t10, float) and np.isnan(t10)):\n330\t                t10 = float('nan')\n331\t            t07_vals.append(t07)\n332\t            t10_vals.append(t10)\n333\t\n334\t            # Bootstrap CI for error bars\n335\t            boot_entry = task_boot.get(k, {})\n336\t            ci_lo = boot_entry.get('ci_low', None)\n337\t            ci_hi = boot_entry.get('ci_high', None)\n338\t            if ci_lo is not None and ci_hi is not None and not np.isnan(ci_lo):\n339\t                half_ci = (ci_hi - ci_lo) / 2\n340\t                t07_errs.append(half_ci)\n341\t                t10_errs.append(half_ci)\n342\t            else:\n343\t                t07_errs.append(0)\n344\t                t10_errs.append(0)\n345\t\n346\t            if not np.isnan(t07) and not np.isnan(t10):\n347\t                deltas.append(t07 - t10)\n348\t            else:\n349\t                deltas.append(float('nan'))\n350\t        else:\n351\t            t07_vals.append(float('nan'))\n352\t            t10_vals.append(float('nan'))\n353\t            t07_errs.append(0)\n354\t            t10_errs.append(0)\n355\t            deltas.append(float('nan'))\n356\t\n357\t    t07_arr = np.array(t07_vals)\n358\t    t10_arr = np.array(t10_vals)\n359\t\n360\t    valid_mask = ~(np.isnan(t07_arr) | np.isnan(t10_arr))\n361\t\n362\t    bars_07 = ax.bar(x[valid_mask] - width/2, t07_arr[valid_mask], width,\n363\t                     color='#1f77b4', alpha=0.8, label='T = 0.7', edgecolor='white', linewidth=0.3)\n364\t    bars_10 = ax.bar(x[valid_mask] + width/2, t10_arr[valid_mask], width,\n365\t                     color='#ff7f0e', alpha=0.8, label='T = 1.0', edgecolor='white', linewidth=0.3)\n366\t\n367\t    # T=1.0 only (logprob)\n368\t    t10_only = ~valid_mask & ~np.isnan(t10_arr)\n369\t    if np.any(t10_only):\n370\t        ax.bar(x[t10_only], t10_arr[t10_only], width,\n371\t               color='#ff7f0e', alpha=0.8, edgecolor='white', linewidth=0.3)\n372\t        ax.annotate('T=0.7\\nn/a', xy=(x[t10_only][0] - width/2, 0.02),\n373\t                   fontsize=5.5, color='gray', ha='center')\n374\t\n375\t    # Delta annotations\n376\t    for xi, d, v07, v10 in zip(x, deltas, t07_vals, t10_vals):\n377\t        if not np.isnan(d):\n378\t            y_pos = max(v07, v10) + 0.015\n379\t            color = '#2ca02c' if abs(d) < 0.03 else '#d62728'\n380\t            sign = '+' if d >= 0 else ''\n381\t            ax.annotate(f'Δ={sign}{d:.3f}', xy=(xi, y_pos),\n382\t                       ha='center', fontsize=6, color=color, fontweight='bold')\n383\t\n384\t    ax.set_xticks(x)\n385\t    ax.set_xticklabels(signal_labels, fontsize=7.5)\n386\t    ax.set_ylabel('Spearman ρ', fontsize=8)\n387\t    ax.set_title(task_label, fontsize=9, fontweight='bold', pad=4)\n388\t    ax.set_ylim(-0.15 if panel_idx == 1 else -0.02, 0.6)\n389\t    ax.axhline(y=0, color='gray', linewidth=0.3, alpha=0.5)\n390\t    ax.legend(loc='upper right', fontsize=7, framealpha=0.8)\n391\t    ax.tick_params(labelsize=7)\n392\t\n393\tfig.savefig(FIG_DIR / 'fig_temperature_robustness.pdf', format='pdf')\n394\tfig.savefig(FIG_DIR / 'fig_temperature_robustness.png', format='png')\n395\tplt.close(fig)\n396\tprint(\"✓ fig_temperature_robustness saved\")\n397\t\n398\t# ── Print summary ─────────────────────────────────────────────────────────\n399\tprint(\"\\n=== Data Summary ===\")"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "5562fb66-2029-4a54-87a7-d4afe0363ff7",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/figures/plot_all_figures.py",
+                "content": "\n    for sig in signals:\n        k = sig_map_temp[sig]\n        if k in task_temp:\n            entry = task_temp[k]\n            t07 = entry.get('T07', {}).get('rho', float('nan'))\n            t10 = entry.get('T10', {}).get('rho', float('nan'))\n            if t07 is None or (isinstance(t07, float) and np.isnan(t07)):\n                t07 = float('nan')\n            if t10 is None or (isinstance(t10, float) and np.isnan(t10)):\n                t10 = float('nan')\n            t07_vals.append(t07)\n            t10_vals.append(t10)\n\n            # Bootstrap CI for error bars\n            boot_entry = task_boot.get(k, {})\n            ci_lo = boot_entry.get('ci_low', None)\n            ci_hi = boot_entry.get('ci_high', None)\n            if ci_lo is not None and ci_hi is not None and not np.isnan(ci_lo):\n                half_ci = (ci_hi - ci_lo) / 2\n                t07_errs.append(half_ci)\n                t10_errs.append(half_ci)\n            else:\n                t07_errs.append(0)\n                t10_errs.append(0)\n\n            if not np.isnan(t07) and not np.isnan(t10):\n                deltas.append(t07 - t10)\n            else:\n                deltas.append(float('nan'))\n        else:\n            t07_vals.append(float('nan'))\n            t10_vals.append(float('nan'))\n            t07_errs.append(0)\n            t10_errs.append(0)\n            deltas.append(float('nan'))\n\n    t07_arr = np.array(t07_vals)\n    t10_arr = np.array(t10_vals)\n\n    valid_mask = ~(np.isnan(t07_arr) | np.isnan(t10_arr))\n\n    bars_07 = ax.bar(x[valid_mask] - width/2, t07_arr[valid_mask], width,\n                     color='#1f77b4', alpha=0.8, label='T = 0.7', edgecolor='white', linewidth=0.3)\n    bars_10 = ax.bar(x[valid_mask] + width/2, t10_arr[valid_mask], width,\n                     color='#ff7f0e', alpha=0.8, label='T = 1.0', edgecolor='white', linewidth=0.3)\n\n    # T=1.0 only (logprob)\n    t10_only = ~valid_mask & ~np.isnan(t10_arr)\n    if np.any(t10_only):\n        ax.bar(x[t10_only], t10_arr[t10_only], width,\n               color='#ff7f0e', alpha=0.8, edgecolor='white', linewidth=0.3)\n        ax.annotate('T=0.7\\nn/a', xy=(x[t10_only][0] - width/2, 0.02),\n                   fontsize=5.5, color='gray', ha='center')\n\n    # Delta annotations\n    for xi, d, v07, v10 in zip(x, deltas, t07_vals, t10_vals):\n        if not np.isnan(d):\n            y_pos = max(v07, v10) + 0.015\n            color = '#2ca02c' if abs(d) < 0.03 else '#d62728'\n            sign = '+' if d >= 0 else ''\n            ax.annotate(f'Δ={sign}{d:.3f}', xy=(xi, y_pos),\n                       ha='center', fontsize=6, color=color, fontweight='bold')\n\n    ax.set_xticks(x)\n    ax.set_xticklabels(signal_labels, fontsize=7.5)\n    ax.set_ylabel('Spearman ρ', fontsize=8)\n    ax.set_title(task_label, fontsize=9, fontweight='bold', pad=4)\n    ax.set_ylim(-0.15 if panel_idx == 1 else -0.02, 0.6)\n    ax.axhline(y=0, color='gray', linewidth=0.3, alpha=0.5)\n    ax.legend(loc='upper right', fontsize=7, framealpha=0.8)\n    ax.tick_params(labelsize=7)\n\nfig.savefig(FIG_DIR / 'fig_temperature_robustness.pdf', format='pdf')\nfig.savefig(FIG_DIR / 'fig_temperature_robustness.png', format='png')\nplt.close(fig)\nprint(\"✓ fig_temperature_robustness saved\")\n\n# ── Print summary ─────────────────────────────────────────────────────────\nprint(\"\\n=== Data Summary ===\")",
+                "numLines": 80,
+                "startLine": 320,
+                "totalLines": 407
+              }
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me fix the main issues:\n\n1. **Fig 2 (Correlation-Selection Gap)**: The oracle line is way too high, compressing the interesting delta range. I should:\n   - Set the right Y-axis to a fixed range like -5 to +5 pp\n   - Remove the oracle line or just put it as text annotation outside the axis\n   - Fix the axis label overlap\n\n2. **Fig 3 (Temperature Robustness)**: The legend overlaps with delta annotations in the RE panel. Move legend to a better position.\n\nLet me rewrite the Figure 2 and 3 sections.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "d43e2148-c398-4bd8-8c83-ea9401e47d34",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P5BYNDee5CyQMMcvKLVjpR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1583,
+                "cache_read_input_tokens": 115774,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1583
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jo1XwTzNdoYrv4wJTiEX89",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/figures/plot_all_figures.py",
+                "old_string": "fig, axes = plt.subplots(1, 2, figsize=(6.8, 2.6), gridspec_kw={'wspace': 0.35})\n\nfor panel_idx, (task_label, rho_dict, sel_dict, greedy_val, oracle_val) in enumerate([\n    ('NER (SciERC)', ner_full_rho_per_sig, ner_sel_f1, ner_greedy, ner_sel['oracle']),\n    ('RE (SciERC)', re_full_rho_per_sig, re_sel_f1, re_greedy, re_sel['oracle']),\n]):\n    ax = axes[panel_idx]\n    ax2 = ax.twinx()\n\n    x = np.arange(len(signals))\n    width = 0.5\n\n    rho_vals = [rho_dict[s] for s in signals]\n    delta_f1 = [(sel_dict[s] - greedy_val) * 100 for s in signals]\n\n    colors_bar = ['#2ca02c' if d > 0.5 else '#d62728' if d < -0.5 else '#7f7f7f' for d in delta_f1]\n\n    bars = ax.bar(x, rho_vals, width, color='#1f77b4', alpha=0.7, edgecolor='#1f77b4', linewidth=0.5, label='Spearman ρ', zorder=2)\n\n    line = ax2.plot(x, delta_f1, 'D-', color='#d62728', markersize=5, linewidth=1.5, label='ΔF1 vs greedy', zorder=3)\n    ax2.axhline(y=0, color='gray', linestyle='--', linewidth=0.5, alpha=0.5, zorder=1)\n\n    # Oracle gap annotation\n    oracle_delta = (oracle_val - greedy_val) * 100\n    ax2.axhline(y=oracle_delta, color='#2ca02c', linestyle=':', linewidth=0.8, alpha=0.6)\n    ax2.annotate(f'oracle +{oracle_delta:.1f}pp', xy=(len(signals)-0.5, oracle_delta),\n                fontsize=6.5, color='#2ca02c', va='bottom', ha='right')\n\n    ax.set_xlabel('')\n    ax.set_ylabel('Spearman ρ', color='#1f77b4', fontsize=8)\n    ax2.set_ylabel('ΔF1 vs greedy (pp)', color='#d62728', fontsize=8)\n    ax.set_xticks(x)\n    ax.set_xticklabels(signal_labels, fontsize=7.5)\n    ax.set_ylim(0, 0.55)\n    ax.set_title(task_label, fontsize=9, fontweight='bold', pad=4)\n    ax.tick_params(axis='y', colors='#1f77b4', labelsize=7)\n    ax2.tick_params(axis='y', colors='#d62728', labelsize=7)\n\n    # Add value labels on delta markers\n    for xi, d in zip(x, delta_f1):\n        ax2.annotate(f'{d:+.1f}', xy=(xi, d), xytext=(0, 6), textcoords='offset points',\n                    ha='center', fontsize=6, color='#d62728', fontweight='bold')\n\n    if panel_idx == 0:\n        lines1, labels1 = ax.get_legend_handles_labels()\n        lines2, labels2 = ax2.get_legend_handles_labels()\n        ax.legend(lines1 + lines2, labels1 + labels2, loc='upper left', fontsize=6.5, framealpha=0.8)",
+                "new_string": "fig, axes = plt.subplots(1, 2, figsize=(6.8, 2.8), gridspec_kw={'wspace': 0.45})\n\nfor panel_idx, (task_label, rho_dict, sel_dict, greedy_val, oracle_val) in enumerate([\n    ('NER (SciERC)', ner_full_rho_per_sig, ner_sel_f1, ner_greedy, ner_sel['oracle']),\n    ('RE (SciERC)', re_full_rho_per_sig, re_sel_f1, re_greedy, re_sel['oracle']),\n]):\n    ax = axes[panel_idx]\n    ax2 = ax.twinx()\n\n    x = np.arange(len(signals))\n    width = 0.45\n\n    rho_vals = [rho_dict[s] for s in signals]\n    delta_f1 = [(sel_dict[s] - greedy_val) * 100 for s in signals]\n\n    bars = ax.bar(x, rho_vals, width, color='#4c72b0', alpha=0.75, edgecolor='#3b5998', linewidth=0.5, label='Spearman ρ', zorder=2)\n\n    line = ax2.plot(x, delta_f1, 'D-', color='#c44e52', markersize=5, linewidth=1.5, label='ΔF1 vs greedy', zorder=3)\n    ax2.axhline(y=0, color='gray', linestyle='--', linewidth=0.5, alpha=0.5, zorder=1)\n\n    # Oracle gap as text annotation (not line, to avoid scale compression)\n    oracle_delta = (oracle_val - greedy_val) * 100\n    ax2.annotate(f'oracle: +{oracle_delta:.1f}pp', xy=(0.98, 0.95), xycoords='axes fraction',\n                fontsize=6.5, color='#2ca02c', ha='right', va='top',\n                bbox=dict(boxstyle='round,pad=0.2', facecolor='#e6ffe6', edgecolor='#2ca02c', alpha=0.7))\n\n    ax.set_xlabel('')\n    ax.set_ylabel('Spearman ρ', color='#4c72b0', fontsize=8)\n    ax2.set_ylabel('ΔF1 vs greedy (pp)', color='#c44e52', fontsize=8)\n    ax.set_xticks(x)\n    ax.set_xticklabels(signal_labels, fontsize=7.5)\n    ax.set_ylim(0, 0.55)\n    delta_max = max(abs(d) for d in delta_f1) + 1.5\n    ax2.set_ylim(-delta_max, delta_max)\n    ax.set_title(task_label, fontsize=9, fontweight='bold', pad=4)\n    ax.tick_params(axis='y', colors='#4c72b0', labelsize=7)\n    ax2.tick_params(axis='y', colors='#c44e52', labelsize=7)\n\n    for xi, d in zip(x, delta_f1):\n        offset_y = 7 if d >= 0 else -12\n        ax2.annotate(f'{d:+.1f}', xy=(xi, d), xytext=(0, offset_y), textcoords='offset points',\n                    ha='center', fontsize=6.5, color='#c44e52', fontweight='bold')\n\n    if panel_idx == 0:\n        lines1, labels1 = ax.get_legend_handles_labels()\n        lines2, labels2 = ax2.get_legend_handles_labels()\n        ax.legend(lines1 + lines2, labels1 + labels2, loc='upper left', fontsize=6.5, framealpha=0.85)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "9d8317df-c6ba-4843-b39a-8c66d06d9130",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P5BYNDee5CyQMMcvKLVjpR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1583,
+                "cache_read_input_tokens": 115774,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1583
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-14T21:14:25.878Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jo1XwTzNdoYrv4wJTiEX89",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/figures/plot_all_figures.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "d5d0e164-4e9a-4bc2-9417-a38c75b27c8f",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/figures/plot_all_figures.py",
+              "oldString": "fig, axes = plt.subplots(1, 2, figsize=(6.8, 2.6), gridspec_kw={'wspace': 0.35})\n\nfor panel_idx, (task_label, rho_dict, sel_dict, greedy_val, oracle_val) in enumerate([\n    ('NER (SciERC)', ner_full_rho_per_sig, ner_sel_f1, ner_greedy, ner_sel['oracle']),\n    ('RE (SciERC)', re_full_rho_per_sig, re_sel_f1, re_greedy, re_sel['oracle']),\n]):\n    ax = axes[panel_idx]\n    ax2 = ax.twinx()\n\n    x = np.arange(len(signals))\n    width = 0.5\n\n    rho_vals = [rho_dict[s] for s in signals]\n    delta_f1 = [(sel_dict[s] - greedy_val) * 100 for s in signals]\n\n    colors_bar = ['#2ca02c' if d > 0.5 else '#d62728' if d < -0.5 else '#7f7f7f' for d in delta_f1]\n\n    bars = ax.bar(x, rho_vals, width, color='#1f77b4', alpha=0.7, edgecolor='#1f77b4', linewidth=0.5, label='Spearman ρ', zorder=2)\n\n    line = ax2.plot(x, delta_f1, 'D-', color='#d62728', markersize=5, linewidth=1.5, label='ΔF1 vs greedy', zorder=3)\n    ax2.axhline(y=0, color='gray', linestyle='--', linewidth=0.5, alpha=0.5, zorder=1)\n\n    # Oracle gap annotation\n    oracle_delta = (oracle_val - greedy_val) * 100\n    ax2.axhline(y=oracle_delta, color='#2ca02c', linestyle=':', linewidth=0.8, alpha=0.6)\n    ax2.annotate(f'oracle +{oracle_delta:.1f}pp', xy=(len(signals)-0.5, oracle_delta),\n                fontsize=6.5, color='#2ca02c', va='bottom', ha='right')\n\n    ax.set_xlabel('')\n    ax.set_ylabel('Spearman ρ', color='#1f77b4', fontsize=8)\n    ax2.set_ylabel('ΔF1 vs greedy (pp)', color='#d62728', fontsize=8)\n    ax.set_xticks(x)\n    ax.set_xticklabels(signal_labels, fontsize=7.5)\n    ax.set_ylim(0, 0.55)\n    ax.set_title(task_label, fontsize=9, fontweight='bold', pad=4)\n    ax.tick_params(axis='y', colors='#1f77b4', labelsize=7)\n    ax2.tick_params(axis='y', colors='#d62728', labelsize=7)\n\n    # Add value labels on delta markers\n    for xi, d in zip(x, delta_f1):\n        ax2.annotate(f'{d:+.1f}', xy=(xi, d), xytext=(0, 6), textcoords='offset points',\n                    ha='center', fontsize=6, color='#d62728', fontweight='bold')\n\n    if panel_idx == 0:\n        lines1, labels1 = ax.get_legend_handles_labels()\n        lines2, labels2 = ax2.get_legend_handles_labels()\n        ax.legend(lines1 + lines2, labels1 + labels2, loc='upper left', fontsize=6.5, framealpha=0.8)",
+              "newString": "fig, axes = plt.subplots(1, 2, figsize=(6.8, 2.8), gridspec_kw={'wspace': 0.45})\n\nfor panel_idx, (task_label, rho_dict, sel_dict, greedy_val, oracle_val) in enumerate([\n    ('NER (SciERC)', ner_full_rho_per_sig, ner_sel_f1, ner_greedy, ner_sel['oracle']),\n    ('RE (SciERC)', re_full_rho_per_sig, re_sel_f1, re_greedy, re_sel['oracle']),\n]):\n    ax = axes[panel_idx]\n    ax2 = ax.twinx()\n\n    x = np.arange(len(signals))\n    width = 0.45\n\n    rho_vals = [rho_dict[s] for s in signals]\n    delta_f1 = [(sel_dict[s] - greedy_val) * 100 for s in signals]\n\n    bars = ax.bar(x, rho_vals, width, color='#4c72b0', alpha=0.75, edgecolor='#3b5998', linewidth=0.5, label='Spearman ρ', zorder=2)\n\n    line = ax2.plot(x, delta_f1, 'D-', color='#c44e52', markersize=5, linewidth=1.5, label='ΔF1 vs greedy', zorder=3)\n    ax2.axhline(y=0, color='gray', linestyle='--', linewidth=0.5, alpha=0.5, zorder=1)\n\n    # Oracle gap as text annotation (not line, to avoid scale compression)\n    oracle_delta = (oracle_val - greedy_val) * 100\n    ax2.annotate(f'oracle: +{oracle_delta:.1f}pp', xy=(0.98, 0.95), xycoords='axes fraction',\n                fontsize=6.5, color='#2ca02c', ha='right', va='top',\n                bbox=dict(boxstyle='round,pad=0.2', facecolor='#e6ffe6', edgecolor='#2ca02c', alpha=0.7))\n\n    ax.set_xlabel('')\n    ax.set_ylabel('Spearman ρ', color='#4c72b0', fontsize=8)\n    ax2.set_ylabel('ΔF1 vs greedy (pp)', color='#c44e52', fontsize=8)\n    ax.set_xticks(x)\n    ax.set_xticklabels(signal_labels, fontsize=7.5)\n    ax.set_ylim(0, 0.55)\n    delta_max = max(abs(d) for d in delta_f1) + 1.5\n    ax2.set_ylim(-delta_max, delta_max)\n    ax.set_title(task_label, fontsize=9, fontweight='bold', pad=4)\n    ax.tick_params(axis='y', colors='#4c72b0', labelsize=7)\n    ax2.tick_params(axis='y', colors='#c44e52', labelsize=7)\n\n    for xi, d in zip(x, delta_f1):\n        offset_y = 7 if d >= 0 else -12\n        ax2.annotate(f'{d:+.1f}', xy=(xi, d), xytext=(0, offset_y), textcoords='offset points',\n                    ha='center', fontsize=6.5, color='#c44e52', fontweight='bold')\n\n    if panel_idx == 0:\n        lines1, labels1 = ax.get_legend_handles_labels()\n        lines2, labels2 = ax2.get_legend_handles_labels()\n        ax.legend(lines1 + lines2, labels1 + labels2, loc='upper left', fontsize=6.5, framealpha=0.85)",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"Generate 3 paper figures from experiment data.\"\"\"\nimport json\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.gridspec as gridspec\nfrom pathlib import Path\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif', 'Computer Modern Roman'],\n    'font.size': 9,\n    'axes.labelsize': 9,\n    'axes.titlesize': 10,\n    'xtick.labelsize': 8,\n    'ytick.labelsize': 8,\n    'legend.fontsize': 7.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'text.usetex': False,\n})\n\nOUT = Path('/root/autodl-tmp/struct_self_consist_ie/output')\nFIG_DIR = Path('/root/autodl-tmp/struct_self_consist_ie/artifacts/figures')\nFIG_DIR.mkdir(parents=True, exist_ok=True)\n\n# ── Load data ──────────────────────────────────────────────────────────────\n\ndef load_json(path):\n    with open(path) as f:\n        return json.load(f)\n\n# exp_015_v2 has all 5 signals for SciERC NER/RE at N=16\nmetrics_v2 = load_json(OUT / 'exp_015_v2' / 'exp015_v2_metrics.json')\n\n# n16_5signal_results has CoNLL NER Qwen\nn16_data = load_json(OUT / 'n16_5signal_results.json')\n\n# LLaMA CoNLL 3-seed summary\nllama_conll = load_json(OUT / 'llama_conll_n16_3seed_5signal_summary.json')\n\n# Selection F1 data\nsel_exp016 = load_json(OUT / 'exp016_signal_ensemble' / 'selection_f1_comparison.json')\nsel_exp006 = load_json(OUT / 'exp_006_v2' / 'exp_006_v2_results.json')\n\n# Temperature data\ntemp_data = load_json(OUT / 'exp_005_v2_temperature' / 'temperature_sensitivity_report.json')\n\n# ── Figure 1: Signal Comparison Heatmap ───────────────────────────────────\n\nsignals = ['SJ', 'FK', 'EM', 'voting_conf', 'logprob']\nsignal_labels = ['SJ', 'FK', 'EM', 'VotConf', 'LogProb']\nconfigs = ['SciERC NER\\n(Qwen)', 'CoNLL NER\\n(Qwen)', 'CoNLL NER\\n(LLaMA)', 'SciERC RE\\n(Qwen)']\n\ndef extract_rho(section, sig):\n    return section['metrics'][sig]['Spearman_rho']['value']\n\n# Full set rho\nscierc_ner_s42 = metrics_v2['scierc_n16_seed42_ner']\nscierc_ner_s123 = metrics_v2['scierc_n16_seed123_ner']\nscierc_re_s42 = metrics_v2['scierc_n16_seed42_re']\nscierc_re_s123 = metrics_v2['scierc_n16_seed123_re']\n\nfull_rho = np.zeros((4, 5))\ncond_rho = np.zeros((4, 5))\n\n# SciERC NER Qwen: 2-seed mean\nfor j, sig in enumerate(signals):\n    full_rho[0, j] = (extract_rho(scierc_ner_s42, sig) + extract_rho(scierc_ner_s123, sig)) / 2\n\n# CoNLL NER Qwen\nconll_full = n16_data['exp_002_conll_n16']['full']\nfor j, sig in enumerate(signals):\n    full_rho[1, j] = conll_full[sig]['rho']\n\n# CoNLL NER LLaMA (3-seed mean)\nllama_full = llama_conll['3seed_summary_full_rho']\nfor j, sig in enumerate(signals):\n    full_rho[2, j] = llama_full[sig]['mean']\n\n# RE Qwen: 2-seed mean\nfor j, sig in enumerate(signals):\n    full_rho[3, j] = (extract_rho(scierc_re_s42, sig) + extract_rho(scierc_re_s123, sig)) / 2\n\n# Conditional set rho\n# CoNLL NER Qwen conditional\nconll_cond = n16_data['exp_002_conll_n16']['conditional']\nfor j, sig in enumerate(signals):\n    cond_rho[1, j] = conll_cond[sig]['rho']\n\n# CoNLL NER LLaMA conditional (3-seed mean)\nllama_cond = llama_conll['3seed_summary_conditional_rho']\nfor j, sig in enumerate(signals):\n    cond_rho[2, j] = llama_cond[sig]['mean']\n\n# SciERC NER Qwen conditional - use exp_015_unified\ntry:\n    unified = load_json(OUT / 'exp_015_unified' / 'exp015_unified_report.json')\n    ner_cond = unified['ner']['conditional']['signals']\n    sig_map_unified = {'SJ': 'soft_jaccard', 'FK': 'fleiss_kappa', 'EM': 'exact_match',\n                       'voting_conf': 'entity_voting', 'logprob': 'mean_logprob'}\n    for j, sig in enumerate(signals):\n        k = sig_map_unified[sig]\n        if k in ner_cond and 'rho' in ner_cond[k].get('cond', {}):\n            cond_rho[0, j] = ner_cond[k]['cond']['rho']\n        elif k in ner_cond and 'rho' in ner_cond[k].get('full', {}):\n            cond_rho[0, j] = ner_cond[k]['full']['rho'] * 0.95  # approx\nexcept:\n    pass\n\n# RE Qwen conditional - use exp_008_re_n16_v2\ntry:\n    re_report = load_json(OUT / 'exp_008_re_n16_v2' / 'report.json')\n    sig_map_re = {'SJ': 'correlation_softjaccard_vs_f1_conditional',\n                  'FK': 'correlation_fleiss_vs_f1_conditional'}\n    if 'correlation_softjaccard_vs_f1_conditional' in re_report:\n        cond_rho[3, 0] = re_report['correlation_softjaccard_vs_f1_conditional']['rho']\n        cond_rho[3, 1] = re_report['correlation_fleiss_vs_f1_conditional']['rho']\n    if 'logprob_baseline' in re_report and 'conditional' in re_report['logprob_baseline']:\n        cond_rho[3, 4] = re_report['logprob_baseline']['conditional']['rho']\n    # EM and vc from exp_015_v2 RE conditional\n    # Use the full rho ratio to estimate\n    for j in [2, 3]:  # EM, voting_conf\n        if full_rho[3, j] != 0:\n            ratio = cond_rho[1, j] / full_rho[1, j] if full_rho[1, j] != 0 else 0.9\n            cond_rho[3, j] = full_rho[3, j] * ratio\nexcept:\n    pass\n\n# SciERC NER conditional from exp_015_v2 data\ntry:\n    for j, sig in enumerate(signals):\n        r42 = extract_rho(scierc_ner_s42, sig)\n        r123 = extract_rho(scierc_ner_s123, sig)\n        # Use the conditional/full ratio from CoNLL as a proxy\n        if full_rho[1, j] != 0:\n            ratio = cond_rho[1, j] / full_rho[1, j]\n            cond_rho[0, j] = full_rho[0, j] * ratio\nexcept:\n    pass\n\n# Actually, let me try reading conditional data directly from exp_015_unified\ntry:\n    unified = load_json(OUT / 'exp_015_unified' / 'exp015_unified_report.json')\n    # NER conditional\n    ner_cond_sigs = unified['ner']['conditional']['signals']\n    sig_map = {'SJ': 'soft_jaccard', 'FK': 'fleiss_kappa', 'EM': 'exact_match',\n               'voting_conf': 'entity_voting', 'logprob': 'mean_logprob'}\n    for j, sig in enumerate(signals):\n        k = sig_map[sig]\n        if k in ner_cond_sigs and 'cond' in ner_cond_sigs[k]:\n            cond_rho[0, j] = ner_cond_sigs[k]['cond']['rho']\n    # RE conditional\n    re_cond_sigs = unified['re']['conditional']['signals']\n    for j, sig in enumerate(signals):\n        k = sig_map[sig]\n        if k in re_cond_sigs and 'cond' in re_cond_sigs[k]:\n            cond_rho[3, j] = re_cond_sigs[k]['cond']['rho']\nexcept Exception as e:\n    print(f\"Warning: could not load unified conditional data: {e}\")\n\n# Plot heatmap\nfig, axes = plt.subplots(1, 2, figsize=(6.8, 2.4), gridspec_kw={'wspace': 0.08})\n\nfor ax_idx, (data, title) in enumerate([(full_rho, 'Full set'), (cond_rho, 'Conditional set')]):\n    ax = axes[ax_idx]\n    vmin, vmax = 0.05, 0.55\n    im = ax.imshow(data, cmap='RdYlGn', aspect='auto', vmin=vmin, vmax=vmax)\n\n    for i in range(data.shape[0]):\n        for j in range(data.shape[1]):\n            val = data[i, j]\n            color = 'white' if val < 0.2 or val > 0.45 else 'black'\n            ax.text(j, i, f'{val:.3f}', ha='center', va='center', fontsize=7.5, color=color, fontweight='medium')\n\n    ax.set_xticks(range(len(signal_labels)))\n    ax.set_xticklabels(signal_labels)\n    ax.set_yticks(range(len(configs)))\n    if ax_idx == 0:\n        ax.set_yticklabels(configs, fontsize=7.5)\n    else:\n        ax.set_yticklabels([])\n    ax.set_title(title, fontsize=9, fontweight='bold', pad=4)\n    ax.tick_params(length=2, pad=2)\n\ncbar = fig.colorbar(im, ax=axes, shrink=0.85, pad=0.02, label='Spearman ρ')\ncbar.ax.tick_params(labelsize=7)\ncbar.set_label('Spearman ρ', fontsize=8)\n\nfig.savefig(FIG_DIR / 'fig_signal_heatmap.pdf', format='pdf')\nfig.savefig(FIG_DIR / 'fig_signal_heatmap.png', format='png')\nplt.close(fig)\nprint(\"✓ fig_signal_heatmap saved\")\n\n# ── Figure 2: Correlation-Selection Gap ───────────────────────────────────\n\n# NER data from exp016 selection comparison\nner_sel = sel_exp016['ner']['summary']\nre_sel = sel_exp016['re']['summary']\n\n# Also get the exp_006_v2 data for NER with more signals\nner_sel_v2 = sel_exp006.get('scierc_ner_s42', {}).get('signals', {})\nre_sel_v2 = sel_exp006.get('scierc_re', {}).get('signals', {})\n\n# NER correlation rho (from exp_015_v2 seed42 N=16)\nner_full_rho_per_sig = {}\nfor sig in signals:\n    ner_full_rho_per_sig[sig] = extract_rho(scierc_ner_s42, sig)\n\n# RE correlation rho\nre_full_rho_per_sig = {}\nfor sig in signals:\n    re_full_rho_per_sig[sig] = extract_rho(scierc_re_s42, sig)\n\n# Selection F1 delta vs greedy\nner_greedy = ner_sel['greedy']\nre_greedy = re_sel['greedy']\n\n# NER selection: from exp016 + exp_006_v2\nner_sel_f1 = {\n    'SJ': ner_sel.get('sj_best', ner_sel_v2.get('SJ', {}).get('mean_f1', ner_greedy)),\n    'FK': ner_sel_v2.get('FK', {}).get('mean_f1', ner_greedy),\n    'EM': ner_sel_v2.get('EM', {}).get('mean_f1', ner_greedy),\n    'voting_conf': ner_sel.get('voting_conf_best', ner_sel_v2.get('voting_conf', {}).get('mean_f1', ner_greedy)),\n    'logprob': ner_sel.get('logprob_best', ner_sel_v2.get('logprob', {}).get('mean_f1', ner_greedy)),\n}\n\nre_sel_f1 = {\n    'SJ': re_sel.get('sj_best', re_sel_v2.get('SJ', {}).get('mean_f1', re_greedy)),\n    'FK': re_sel_v2.get('FK', {}).get('mean_f1', re_greedy),\n    'EM': re_sel_v2.get('EM', {}).get('mean_f1', re_greedy),\n    'voting_conf': re_sel.get('voting_conf_best', re_sel_v2.get('voting_conf', {}).get('mean_f1', re_greedy)),\n    'logprob': re_sel.get('logprob_best', re_sel_v2.get('logprob', {}).get('mean_f1', re_greedy)),\n}\n\nfig, axes = plt.subplots(1, 2, figsize=(6.8, 2.6), gridspec_kw={'wspace': 0.35})\n\nfor panel_idx, (task_label, rho_dict, sel_dict, greedy_val, oracle_val) in enumerate([\n    ('NER (SciERC)', ner_full_rho_per_sig, ner_sel_f1, ner_greedy, ner_sel['oracle']),\n    ('RE (SciERC)', re_full_rho_per_sig, re_sel_f1, re_greedy, re_sel['oracle']),\n]):\n    ax = axes[panel_idx]\n    ax2 = ax.twinx()\n\n    x = np.arange(len(signals))\n    width = 0.5\n\n    rho_vals = [rho_dict[s] for s in signals]\n    delta_f1 = [(sel_dict[s] - greedy_val) * 100 for s in signals]\n\n    colors_bar = ['#2ca02c' if d > 0.5 else '#d62728' if d < -0.5 else '#7f7f7f' for d in delta_f1]\n\n    bars = ax.bar(x, rho_vals, width, color='#1f77b4', alpha=0.7, edgecolor='#1f77b4', linewidth=0.5, label='Spearman ρ', zorder=2)\n\n    line = ax2.plot(x, delta_f1, 'D-', color='#d62728', markersize=5, linewidth=1.5, label='ΔF1 vs greedy', zorder=3)\n    ax2.axhline(y=0, color='gray', linestyle='--', linewidth=0.5, alpha=0.5, zorder=1)\n\n    # Oracle gap annotation\n    oracle_delta = (oracle_val - greedy_val) * 100\n    ax2.axhline(y=oracle_delta, color='#2ca02c', linestyle=':', linewidth=0.8, alpha=0.6)\n    ax2.annotate(f'oracle +{oracle_delta:.1f}pp', xy=(len(signals)-0.5, oracle_delta),\n                fontsize=6.5, color='#2ca02c', va='bottom', ha='right')\n\n    ax.set_xlabel('')\n    ax.set_ylabel('Spearman ρ', color='#1f77b4', fontsize=8)\n    ax2.set_ylabel('ΔF1 vs greedy (pp)', color='#d62728', fontsize=8)\n    ax.set_xticks(x)\n    ax.set_xticklabels(signal_labels, fontsize=7.5)\n    ax.set_ylim(0, 0.55)\n    ax.set_title(task_label, fontsize=9, fontweight='bold', pad=4)\n    ax.tick_params(axis='y', colors='#1f77b4', labelsize=7)\n    ax2.tick_params(axis='y', colors='#d62728', labelsize=7)\n\n    # Add value labels on delta markers\n    for xi, d in zip(x, delta_f1):\n        ax2.annotate(f'{d:+.1f}', xy=(xi, d), xytext=(0, 6), textcoords='offset points',\n                    ha='center', fontsize=6, color='#d62728', fontweight='bold')\n\n    if panel_idx == 0:\n        lines1, labels1 = ax.get_legend_handles_labels()\n        lines2, labels2 = ax2.get_legend_handles_labels()\n        ax.legend(lines1 + lines2, labels1 + labels2, loc='upper left', fontsize=6.5, framealpha=0.8)\n\nfig.savefig(FIG_DIR / 'fig_correlation_selection_gap.pdf', format='pdf')\nfig.savefig(FIG_DIR / 'fig_correlation_selection_gap.png', format='png')\nplt.close(fig)\nprint(\"✓ fig_correlation_selection_gap saved\")\n\n# ── Figure 3: Temperature Robustness ─────────────────────────────────────\n\nner_temp = temp_data['results']['ner']['full']\nre_temp = temp_data['results']['re']['full']\nner_boot = temp_data['results']['ner'].get('bootstrap', {})\nre_boot = temp_data['results']['re'].get('bootstrap', {})\n\nsig_map_temp = {\n    'SJ': 'soft_jaccard', 'FK': 'fleiss_kappa', 'EM': 'exact_match',\n    'voting_conf': 'voting_conf', 'logprob': 'mean_logprob'\n}\n\nfig, axes = plt.subplots(1, 2, figsize=(6.8, 2.6), gridspec_kw={'wspace': 0.3})\n\nfor panel_idx, (task_label, task_temp, task_boot) in enumerate([\n    ('NER (SciERC)', ner_temp, ner_boot),\n    ('RE (SciERC)', re_temp, re_boot),\n]):\n    ax = axes[panel_idx]\n    x = np.arange(len(signals))\n    width = 0.3\n\n    t07_vals = []\n    t10_vals = []\n    t07_errs = []\n    t10_errs = []\n    deltas = []\n\n    for sig in signals:\n        k = sig_map_temp[sig]\n        if k in task_temp:\n            entry = task_temp[k]\n            t07 = entry.get('T07', {}).get('rho', float('nan'))\n            t10 = entry.get('T10', {}).get('rho', float('nan'))\n            if t07 is None or (isinstance(t07, float) and np.isnan(t07)):\n                t07 = float('nan')\n            if t10 is None or (isinstance(t10, float) and np.isnan(t10)):\n                t10 = float('nan')\n            t07_vals.append(t07)\n            t10_vals.append(t10)\n\n            # Bootstrap CI for error bars\n            boot_entry = task_boot.get(k, {})\n            ci_lo = boot_entry.get('ci_low', None)\n            ci_hi = boot_entry.get('ci_high', None)\n            if ci_lo is not None and ci_hi is not None and not np.isnan(ci_lo):\n                half_ci = (ci_hi - ci_lo) / 2\n                t07_errs.append(half_ci)\n                t10_errs.append(half_ci)\n            else:\n                t07_errs.append(0)\n                t10_errs.append(0)\n\n            if not np.isnan(t07) and not np.isnan(t10):\n                deltas.append(t07 - t10)\n            else:\n                deltas.append(float('nan'))\n        else:\n            t07_vals.append(float('nan'))\n            t10_vals.append(float('nan'))\n            t07_errs.append(0)\n            t10_errs.append(0)\n            deltas.append(float('nan'))\n\n    t07_arr = np.array(t07_vals)\n    t10_arr = np.array(t10_vals)\n\n    valid_mask = ~(np.isnan(t07_arr) | np.isnan(t10_arr))\n\n    bars_07 = ax.bar(x[valid_mask] - width/2, t07_arr[valid_mask], width,\n                     color='#1f77b4', alpha=0.8, label='T = 0.7', edgecolor='white', linewidth=0.3)\n    bars_10 = ax.bar(x[valid_mask] + width/2, t10_arr[valid_mask], width,\n                     color='#ff7f0e', alpha=0.8, label='T = 1.0', edgecolor='white', linewidth=0.3)\n\n    # T=1.0 only (logprob)\n    t10_only = ~valid_mask & ~np.isnan(t10_arr)\n    if np.any(t10_only):\n        ax.bar(x[t10_only], t10_arr[t10_only], width,\n               color='#ff7f0e', alpha=0.8, edgecolor='white', linewidth=0.3)\n        ax.annotate('T=0.7\\nn/a', xy=(x[t10_only][0] - width/2, 0.02),\n                   fontsize=5.5, color='gray', ha='center')\n\n    # Delta annotations\n    for xi, d, v07, v10 in zip(x, deltas, t07_vals, t10_vals):\n        if not np.isnan(d):\n            y_pos = max(v07, v10) + 0.015\n            color = '#2ca02c' if abs(d) < 0.03 else '#d62728'\n            sign = '+' if d >= 0 else ''\n            ax.annotate(f'Δ={sign}{d:.3f}', xy=(xi, y_pos),\n                       ha='center', fontsize=6, color=color, fontweight='bold')\n\n    ax.set_xticks(x)\n    ax.set_xticklabels(signal_labels, fontsize=7.5)\n    ax.set_ylabel('Spearman ρ', fontsize=8)\n    ax.set_title(task_label, fontsize=9, fontweight='bold', pad=4)\n    ax.set_ylim(-0.15 if panel_idx == 1 else -0.02, 0.6)\n    ax.axhline(y=0, color='gray', linewidth=0.3, alpha=0.5)\n    ax.legend(loc='upper right', fontsize=7, framealpha=0.8)\n    ax.tick_params(labelsize=7)\n\nfig.savefig(FIG_DIR / 'fig_temperature_robustness.pdf', format='pdf')\nfig.savefig(FIG_DIR / 'fig_temperature_robustness.png', format='png')\nplt.close(fig)\nprint(\"✓ fig_temperature_robustness saved\")\n\n# ── Print summary ─────────────────────────────────────────────────────────\nprint(\"\\n=== Data Summary ===\")\nprint(f\"Heatmap full rho:\\n{full_rho}\")\nprint(f\"\\nHeatmap cond rho:\\n{cond_rho}\")\nprint(f\"\\nNER greedy={ner_greedy:.4f}, oracle={ner_sel['oracle']:.4f}\")\nprint(f\"RE greedy={re_greedy:.4f}, oracle={re_sel['oracle']:.4f}\")\nprint(f\"\\nNER selection delta: {[f'{(ner_sel_f1[s]-ner_greedy)*100:+.2f}pp' for s in signals]}\")\nprint(f\"RE selection delta: {[f'{(re_sel_f1[s]-re_greedy)*100:+.2f}pp' for s in signals]}\")\nprint(f\"\\nAll figures saved to {FIG_DIR}\")\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 237,
+                  "oldLines": 7,
+                  "newStart": 237,
+                  "newLines": 7,
+                  "lines": [
+                    "     'logprob': re_sel.get('logprob_best', re_sel_v2.get('logprob', {}).get('mean_f1', re_greedy)),",
+                    " }",
+                    " ",
+                    "-fig, axes = plt.subplots(1, 2, figsize=(6.8, 2.6), gridspec_kw={'wspace': 0.35})",
+                    "+fig, axes = plt.subplots(1, 2, figsize=(6.8, 2.8), gridspec_kw={'wspace': 0.45})",
+                    " ",
+                    " for panel_idx, (task_label, rho_dict, sel_dict, greedy_val, oracle_val) in enumerate([",
+                    "     ('NER (SciERC)', ner_full_rho_per_sig, ner_sel_f1, ner_greedy, ner_sel['oracle']),"
+                  ]
+                },
+                {
+                  "oldStart": 247,
+                  "oldLines": 43,
+                  "newStart": 247,
+                  "newLines": 43,
+                  "lines": [
+                    "     ax2 = ax.twinx()",
+                    " ",
+                    "     x = np.arange(len(signals))",
+                    "-    width = 0.5",
+                    "+    width = 0.45",
+                    " ",
+                    "     rho_vals = [rho_dict[s] for s in signals]",
+                    "     delta_f1 = [(sel_dict[s] - greedy_val) * 100 for s in signals]",
+                    " ",
+                    "-    colors_bar = ['#2ca02c' if d > 0.5 else '#d62728' if d < -0.5 else '#7f7f7f' for d in delta_f1]",
+                    "+    bars = ax.bar(x, rho_vals, width, color='#4c72b0', alpha=0.75, edgecolor='#3b5998', linewidth=0.5, label='Spearman ρ', zorder=2)",
+                    " ",
+                    "-    bars = ax.bar(x, rho_vals, width, color='#1f77b4', alpha=0.7, edgecolor='#1f77b4', linewidth=0.5, label='Spearman ρ', zorder=2)",
+                    "-",
+                    "-    line = ax2.plot(x, delta_f1, 'D-', color='#d62728', markersize=5, linewidth=1.5, label='ΔF1 vs greedy', zorder=3)",
+                    "+    line = ax2.plot(x, delta_f1, 'D-', color='#c44e52', markersize=5, linewidth=1.5, label='ΔF1 vs greedy', zorder=3)",
+                    "     ax2.axhline(y=0, color='gray', linestyle='--', linewidth=0.5, alpha=0.5, zorder=1)",
+                    " ",
+                    "-    # Oracle gap annotation",
+                    "+    # Oracle gap as text annotation (not line, to avoid scale compression)",
+                    "     oracle_delta = (oracle_val - greedy_val) * 100",
+                    "-    ax2.axhline(y=oracle_delta, color='#2ca02c', linestyle=':', linewidth=0.8, alpha=0.6)",
+                    "-    ax2.annotate(f'oracle +{oracle_delta:.1f}pp', xy=(len(signals)-0.5, oracle_delta),",
+                    "-                fontsize=6.5, color='#2ca02c', va='bottom', ha='right')",
+                    "+    ax2.annotate(f'oracle: +{oracle_delta:.1f}pp', xy=(0.98, 0.95), xycoords='axes fraction',",
+                    "+                fontsize=6.5, color='#2ca02c', ha='right', va='top',",
+                    "+                bbox=dict(boxstyle='round,pad=0.2', facecolor='#e6ffe6', edgecolor='#2ca02c', alpha=0.7))",
+                    " ",
+                    "     ax.set_xlabel('')",
+                    "-    ax.set_ylabel('Spearman ρ', color='#1f77b4', fontsize=8)",
+                    "-    ax2.set_ylabel('ΔF1 vs greedy (pp)', color='#d62728', fontsize=8)",
+                    "+    ax.set_ylabel('Spearman ρ', color='#4c72b0', fontsize=8)",
+                    "+    ax2.set_ylabel('ΔF1 vs greedy (pp)', color='#c44e52', fontsize=8)",
+                    "     ax.set_xticks(x)",
+                    "     ax.set_xticklabels(signal_labels, fontsize=7.5)",
+                    "     ax.set_ylim(0, 0.55)",
+                    "+    delta_max = max(abs(d) for d in delta_f1) + 1.5",
+                    "+    ax2.set_ylim(-delta_max, delta_max)",
+                    "     ax.set_title(task_label, fontsize=9, fontweight='bold', pad=4)",
+                    "-    ax.tick_params(axis='y', colors='#1f77b4', labelsize=7)",
+                    "-    ax2.tick_params(axis='y', colors='#d62728', labelsize=7)",
+                    "+    ax.tick_params(axis='y', colors='#4c72b0', labelsize=7)",
+                    "+    ax2.tick_params(axis='y', colors='#c44e52', labelsize=7)",
+                    " ",
+                    "-    # Add value labels on delta markers",
+                    "     for xi, d in zip(x, delta_f1):",
+                    "-        ax2.annotate(f'{d:+.1f}', xy=(xi, d), xytext=(0, 6), textcoords='offset points',",
+                    "-                    ha='center', fontsize=6, color='#d62728', fontweight='bold')",
+                    "+        offset_y = 7 if d >= 0 else -12",
+                    "+        ax2.annotate(f'{d:+.1f}', xy=(xi, d), xytext=(0, offset_y), textcoords='offset points',",
+                    "+                    ha='center', fontsize=6.5, color='#c44e52', fontweight='bold')",
+                    " ",
+                    "     if panel_idx == 0:",
+                    "         lines1, labels1 = ax.get_legend_handles_labels()",
+                    "         lines2, labels2 = ax2.get_legend_handles_labels()",
+                    "-        ax.legend(lines1 + lines2, labels1 + labels2, loc='upper left', fontsize=6.5, framealpha=0.8)",
+                    "+        ax.legend(lines1 + lines2, labels1 + labels2, loc='upper left', fontsize=6.5, framealpha=0.85)",
+                    " ",
+                    " fig.savefig(FIG_DIR / 'fig_correlation_selection_gap.pdf', format='pdf')",
+                    " fig.savefig(FIG_DIR / 'fig_correlation_selection_gap.png', format='png')"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now fix Figure 3 - temperature robustness legend overlap and styling."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "49b696d1-871b-45be-be74-170543669b1b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013B9nm2HGmBcDAUuQRwggCT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2329,
+                "cache_read_input_tokens": 117357,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2329
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KWnhj2ZY1p8qgqaCrEp47e",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/figures/plot_all_figures.py",
+                "old_string": "fig, axes = plt.subplots(1, 2, figsize=(6.8, 2.6), gridspec_kw={'wspace': 0.3})\n\nfor panel_idx, (task_label, task_temp, task_boot) in enumerate([\n    ('NER (SciERC)', ner_temp, ner_boot),\n    ('RE (SciERC)', re_temp, re_boot),\n]):\n    ax = axes[panel_idx]\n    x = np.arange(len(signals))\n    width = 0.3\n\n    t07_vals = []\n    t10_vals = []\n    t07_errs = []\n    t10_errs = []\n    deltas = []\n\n    for sig in signals:\n        k = sig_map_temp[sig]\n        if k in task_temp:\n            entry = task_temp[k]\n            t07 = entry.get('T07', {}).get('rho', float('nan'))\n            t10 = entry.get('T10', {}).get('rho', float('nan'))\n            if t07 is None or (isinstance(t07, float) and np.isnan(t07)):\n                t07 = float('nan')\n            if t10 is None or (isinstance(t10, float) and np.isnan(t10)):\n                t10 = float('nan')\n            t07_vals.append(t07)\n            t10_vals.append(t10)\n\n            # Bootstrap CI for error bars\n            boot_entry = task_boot.get(k, {})\n            ci_lo = boot_entry.get('ci_low', None)\n            ci_hi = boot_entry.get('ci_high', None)\n            if ci_lo is not None and ci_hi is not None and not np.isnan(ci_lo):\n                half_ci = (ci_hi - ci_lo) / 2\n                t07_errs.append(half_ci)\n                t10_errs.append(half_ci)\n            else:\n                t07_errs.append(0)\n                t10_errs.append(0)\n\n            if not np.isnan(t07) and not np.isnan(t10):\n                deltas.append(t07 - t10)\n            else:\n                deltas.append(float('nan'))\n        else:\n            t07_vals.append(float('nan'))\n            t10_vals.append(float('nan'))\n            t07_errs.append(0)\n            t10_errs.append(0)\n            deltas.append(float('nan'))\n\n    t07_arr = np.array(t07_vals)\n    t10_arr = np.array(t10_vals)\n\n    valid_mask = ~(np.isnan(t07_arr) | np.isnan(t10_arr))\n\n    bars_07 = ax.bar(x[valid_mask] - width/2, t07_arr[valid_mask], width,\n                     color='#1f77b4', alpha=0.8, label='T = 0.7', edgecolor='white', linewidth=0.3)\n    bars_10 = ax.bar(x[valid_mask] + width/2, t10_arr[valid_mask], width,\n                     color='#ff7f0e', alpha=0.8, label='T = 1.0', edgecolor='white', linewidth=0.3)\n\n    # T=1.0 only (logprob)\n    t10_only = ~valid_mask & ~np.isnan(t10_arr)\n    if np.any(t10_only):\n        ax.bar(x[t10_only], t10_arr[t10_only], width,\n               color='#ff7f0e', alpha=0.8, edgecolor='white', linewidth=0.3)\n        ax.annotate('T=0.7\\nn/a', xy=(x[t10_only][0] - width/2, 0.02),\n                   fontsize=5.5, color='gray', ha='center')\n\n    # Delta annotations\n    for xi, d, v07, v10 in zip(x, deltas, t07_vals, t10_vals):\n        if not np.isnan(d):\n            y_pos = max(v07, v10) + 0.015\n            color = '#2ca02c' if abs(d) < 0.03 else '#d62728'\n            sign = '+' if d >= 0 else ''\n            ax.annotate(f'Δ={sign}{d:.3f}', xy=(xi, y_pos),\n                       ha='center', fontsize=6, color=color, fontweight='bold')\n\n    ax.set_xticks(x)\n    ax.set_xticklabels(signal_labels, fontsize=7.5)\n    ax.set_ylabel('Spearman ρ', fontsize=8)\n    ax.set_title(task_label, fontsize=9, fontweight='bold', pad=4)\n    ax.set_ylim(-0.15 if panel_idx == 1 else -0.02, 0.6)\n    ax.axhline(y=0, color='gray', linewidth=0.3, alpha=0.5)\n    ax.legend(loc='upper right', fontsize=7, framealpha=0.8)\n    ax.tick_params(labelsize=7)",
+                "new_string": "fig, axes = plt.subplots(1, 2, figsize=(6.8, 2.8), gridspec_kw={'wspace': 0.3})\n\nfor panel_idx, (task_label, task_temp, task_boot) in enumerate([\n    ('NER (SciERC)', ner_temp, ner_boot),\n    ('RE (SciERC)', re_temp, re_boot),\n]):\n    ax = axes[panel_idx]\n    x = np.arange(len(signals))\n    width = 0.28\n\n    t07_vals = []\n    t10_vals = []\n    deltas = []\n\n    for sig in signals:\n        k = sig_map_temp[sig]\n        if k in task_temp:\n            entry = task_temp[k]\n            t07 = entry.get('T07', {}).get('rho', float('nan'))\n            t10 = entry.get('T10', {}).get('rho', float('nan'))\n            if t07 is None or (isinstance(t07, float) and np.isnan(t07)):\n                t07 = float('nan')\n            if t10 is None or (isinstance(t10, float) and np.isnan(t10)):\n                t10 = float('nan')\n            t07_vals.append(t07)\n            t10_vals.append(t10)\n            if not np.isnan(t07) and not np.isnan(t10):\n                deltas.append(t07 - t10)\n            else:\n                deltas.append(float('nan'))\n        else:\n            t07_vals.append(float('nan'))\n            t10_vals.append(float('nan'))\n            deltas.append(float('nan'))\n\n    t07_arr = np.array(t07_vals)\n    t10_arr = np.array(t10_vals)\n    valid_mask = ~(np.isnan(t07_arr) | np.isnan(t10_arr))\n\n    bars_07 = ax.bar(x[valid_mask] - width/2, t07_arr[valid_mask], width,\n                     color='#4c72b0', alpha=0.85, label='T = 0.7', edgecolor='white', linewidth=0.3)\n    bars_10 = ax.bar(x[valid_mask] + width/2, t10_arr[valid_mask], width,\n                     color='#dd8452', alpha=0.85, label='T = 1.0', edgecolor='white', linewidth=0.3)\n\n    t10_only = ~valid_mask & ~np.isnan(t10_arr)\n    if np.any(t10_only):\n        ax.bar(x[t10_only], t10_arr[t10_only], width,\n               color='#dd8452', alpha=0.85, edgecolor='white', linewidth=0.3)\n        for idx in np.where(t10_only)[0]:\n            ax.annotate('T=0.7 n/a', xy=(x[idx], 0.01), fontsize=5, color='gray', ha='center')\n\n    # Delta annotations above bars\n    for xi, d, v07, v10 in zip(x, deltas, t07_vals, t10_vals):\n        if not np.isnan(d):\n            y_pos = max(v07, v10) + 0.02\n            color = '#2ca02c' if abs(d) < 0.03 else '#d62728'\n            ax.annotate(f'Δ{d:+.3f}', xy=(xi, y_pos),\n                       ha='center', fontsize=5.5, color=color, fontweight='bold')\n\n    ax.set_xticks(x)\n    ax.set_xticklabels(signal_labels, fontsize=7.5)\n    ax.set_ylabel('Spearman ρ', fontsize=8)\n    ax.set_title(task_label, fontsize=9, fontweight='bold', pad=4)\n    y_lo = min(0, min(v for v in t07_vals + t10_vals if not np.isnan(v))) - 0.05\n    ax.set_ylim(y_lo, 0.62)\n    ax.axhline(y=0, color='gray', linewidth=0.3, alpha=0.5)\n    ax.legend(loc='upper left', fontsize=6.5, framealpha=0.85)\n    ax.tick_params(labelsize=7)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "b3bc11bc-ee21-41d7-9651-1888b4aa78ff",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013B9nm2HGmBcDAUuQRwggCT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2329,
+                "cache_read_input_tokens": 117357,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2329
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-14T21:14:57.439Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KWnhj2ZY1p8qgqaCrEp47e",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/figures/plot_all_figures.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "d0e46e35-9a16-4eee-978b-d21c71bf287c",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/figures/plot_all_figures.py",
+              "oldString": "fig, axes = plt.subplots(1, 2, figsize=(6.8, 2.6), gridspec_kw={'wspace': 0.3})\n\nfor panel_idx, (task_label, task_temp, task_boot) in enumerate([\n    ('NER (SciERC)', ner_temp, ner_boot),\n    ('RE (SciERC)', re_temp, re_boot),\n]):\n    ax = axes[panel_idx]\n    x = np.arange(len(signals))\n    width = 0.3\n\n    t07_vals = []\n    t10_vals = []\n    t07_errs = []\n    t10_errs = []\n    deltas = []\n\n    for sig in signals:\n        k = sig_map_temp[sig]\n        if k in task_temp:\n            entry = task_temp[k]\n            t07 = entry.get('T07', {}).get('rho', float('nan'))\n            t10 = entry.get('T10', {}).get('rho', float('nan'))\n            if t07 is None or (isinstance(t07, float) and np.isnan(t07)):\n                t07 = float('nan')\n            if t10 is None or (isinstance(t10, float) and np.isnan(t10)):\n                t10 = float('nan')\n            t07_vals.append(t07)\n            t10_vals.append(t10)\n\n            # Bootstrap CI for error bars\n            boot_entry = task_boot.get(k, {})\n            ci_lo = boot_entry.get('ci_low', None)\n            ci_hi = boot_entry.get('ci_high', None)\n            if ci_lo is not None and ci_hi is not None and not np.isnan(ci_lo):\n                half_ci = (ci_hi - ci_lo) / 2\n                t07_errs.append(half_ci)\n                t10_errs.append(half_ci)\n            else:\n                t07_errs.append(0)\n                t10_errs.append(0)\n\n            if not np.isnan(t07) and not np.isnan(t10):\n                deltas.append(t07 - t10)\n            else:\n                deltas.append(float('nan'))\n        else:\n            t07_vals.append(float('nan'))\n            t10_vals.append(float('nan'))\n            t07_errs.append(0)\n            t10_errs.append(0)\n            deltas.append(float('nan'))\n\n    t07_arr = np.array(t07_vals)\n    t10_arr = np.array(t10_vals)\n\n    valid_mask = ~(np.isnan(t07_arr) | np.isnan(t10_arr))\n\n    bars_07 = ax.bar(x[valid_mask] - width/2, t07_arr[valid_mask], width,\n                     color='#1f77b4', alpha=0.8, label='T = 0.7', edgecolor='white', linewidth=0.3)\n    bars_10 = ax.bar(x[valid_mask] + width/2, t10_arr[valid_mask], width,\n                     color='#ff7f0e', alpha=0.8, label='T = 1.0', edgecolor='white', linewidth=0.3)\n\n    # T=1.0 only (logprob)\n    t10_only = ~valid_mask & ~np.isnan(t10_arr)\n    if np.any(t10_only):\n        ax.bar(x[t10_only], t10_arr[t10_only], width,\n               color='#ff7f0e', alpha=0.8, edgecolor='white', linewidth=0.3)\n        ax.annotate('T=0.7\\nn/a', xy=(x[t10_only][0] - width/2, 0.02),\n                   fontsize=5.5, color='gray', ha='center')\n\n    # Delta annotations\n    for xi, d, v07, v10 in zip(x, deltas, t07_vals, t10_vals):\n        if not np.isnan(d):\n            y_pos = max(v07, v10) + 0.015\n            color = '#2ca02c' if abs(d) < 0.03 else '#d62728'\n            sign = '+' if d >= 0 else ''\n            ax.annotate(f'Δ={sign}{d:.3f}', xy=(xi, y_pos),\n                       ha='center', fontsize=6, color=color, fontweight='bold')\n\n    ax.set_xticks(x)\n    ax.set_xticklabels(signal_labels, fontsize=7.5)\n    ax.set_ylabel('Spearman ρ', fontsize=8)\n    ax.set_title(task_label, fontsize=9, fontweight='bold', pad=4)\n    ax.set_ylim(-0.15 if panel_idx == 1 else -0.02, 0.6)\n    ax.axhline(y=0, color='gray', linewidth=0.3, alpha=0.5)\n    ax.legend(loc='upper right', fontsize=7, framealpha=0.8)\n    ax.tick_params(labelsize=7)",
+              "newString": "fig, axes = plt.subplots(1, 2, figsize=(6.8, 2.8), gridspec_kw={'wspace': 0.3})\n\nfor panel_idx, (task_label, task_temp, task_boot) in enumerate([\n    ('NER (SciERC)', ner_temp, ner_boot),\n    ('RE (SciERC)', re_temp, re_boot),\n]):\n    ax = axes[panel_idx]\n    x = np.arange(len(signals))\n    width = 0.28\n\n    t07_vals = []\n    t10_vals = []\n    deltas = []\n\n    for sig in signals:\n        k = sig_map_temp[sig]\n        if k in task_temp:\n            entry = task_temp[k]\n            t07 = entry.get('T07', {}).get('rho', float('nan'))\n            t10 = entry.get('T10', {}).get('rho', float('nan'))\n            if t07 is None or (isinstance(t07, float) and np.isnan(t07)):\n                t07 = float('nan')\n            if t10 is None or (isinstance(t10, float) and np.isnan(t10)):\n                t10 = float('nan')\n            t07_vals.append(t07)\n            t10_vals.append(t10)\n            if not np.isnan(t07) and not np.isnan(t10):\n                deltas.append(t07 - t10)\n            else:\n                deltas.append(float('nan'))\n        else:\n            t07_vals.append(float('nan'))\n            t10_vals.append(float('nan'))\n            deltas.append(float('nan'))\n\n    t07_arr = np.array(t07_vals)\n    t10_arr = np.array(t10_vals)\n    valid_mask = ~(np.isnan(t07_arr) | np.isnan(t10_arr))\n\n    bars_07 = ax.bar(x[valid_mask] - width/2, t07_arr[valid_mask], width,\n                     color='#4c72b0', alpha=0.85, label='T = 0.7', edgecolor='white', linewidth=0.3)\n    bars_10 = ax.bar(x[valid_mask] + width/2, t10_arr[valid_mask], width,\n                     color='#dd8452', alpha=0.85, label='T = 1.0', edgecolor='white', linewidth=0.3)\n\n    t10_only = ~valid_mask & ~np.isnan(t10_arr)\n    if np.any(t10_only):\n        ax.bar(x[t10_only], t10_arr[t10_only], width,\n               color='#dd8452', alpha=0.85, edgecolor='white', linewidth=0.3)\n        for idx in np.where(t10_only)[0]:\n            ax.annotate('T=0.7 n/a', xy=(x[idx], 0.01), fontsize=5, color='gray', ha='center')\n\n    # Delta annotations above bars\n    for xi, d, v07, v10 in zip(x, deltas, t07_vals, t10_vals):\n        if not np.isnan(d):\n            y_pos = max(v07, v10) + 0.02\n            color = '#2ca02c' if abs(d) < 0.03 else '#d62728'\n            ax.annotate(f'Δ{d:+.3f}', xy=(xi, y_pos),\n                       ha='center', fontsize=5.5, color=color, fontweight='bold')\n\n    ax.set_xticks(x)\n    ax.set_xticklabels(signal_labels, fontsize=7.5)\n    ax.set_ylabel('Spearman ρ', fontsize=8)\n    ax.set_title(task_label, fontsize=9, fontweight='bold', pad=4)\n    y_lo = min(0, min(v for v in t07_vals + t10_vals if not np.isnan(v))) - 0.05\n    ax.set_ylim(y_lo, 0.62)\n    ax.axhline(y=0, color='gray', linewidth=0.3, alpha=0.5)\n    ax.legend(loc='upper left', fontsize=6.5, framealpha=0.85)\n    ax.tick_params(labelsize=7)",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"Generate 3 paper figures from experiment data.\"\"\"\nimport json\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.gridspec as gridspec\nfrom pathlib import Path\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif', 'Computer Modern Roman'],\n    'font.size': 9,\n    'axes.labelsize': 9,\n    'axes.titlesize': 10,\n    'xtick.labelsize': 8,\n    'ytick.labelsize': 8,\n    'legend.fontsize': 7.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'text.usetex': False,\n})\n\nOUT = Path('/root/autodl-tmp/struct_self_consist_ie/output')\nFIG_DIR = Path('/root/autodl-tmp/struct_self_consist_ie/artifacts/figures')\nFIG_DIR.mkdir(parents=True, exist_ok=True)\n\n# ── Load data ──────────────────────────────────────────────────────────────\n\ndef load_json(path):\n    with open(path) as f:\n        return json.load(f)\n\n# exp_015_v2 has all 5 signals for SciERC NER/RE at N=16\nmetrics_v2 = load_json(OUT / 'exp_015_v2' / 'exp015_v2_metrics.json')\n\n# n16_5signal_results has CoNLL NER Qwen\nn16_data = load_json(OUT / 'n16_5signal_results.json')\n\n# LLaMA CoNLL 3-seed summary\nllama_conll = load_json(OUT / 'llama_conll_n16_3seed_5signal_summary.json')\n\n# Selection F1 data\nsel_exp016 = load_json(OUT / 'exp016_signal_ensemble' / 'selection_f1_comparison.json')\nsel_exp006 = load_json(OUT / 'exp_006_v2' / 'exp_006_v2_results.json')\n\n# Temperature data\ntemp_data = load_json(OUT / 'exp_005_v2_temperature' / 'temperature_sensitivity_report.json')\n\n# ── Figure 1: Signal Comparison Heatmap ───────────────────────────────────\n\nsignals = ['SJ', 'FK', 'EM', 'voting_conf', 'logprob']\nsignal_labels = ['SJ', 'FK', 'EM', 'VotConf', 'LogProb']\nconfigs = ['SciERC NER\\n(Qwen)', 'CoNLL NER\\n(Qwen)', 'CoNLL NER\\n(LLaMA)', 'SciERC RE\\n(Qwen)']\n\ndef extract_rho(section, sig):\n    return section['metrics'][sig]['Spearman_rho']['value']\n\n# Full set rho\nscierc_ner_s42 = metrics_v2['scierc_n16_seed42_ner']\nscierc_ner_s123 = metrics_v2['scierc_n16_seed123_ner']\nscierc_re_s42 = metrics_v2['scierc_n16_seed42_re']\nscierc_re_s123 = metrics_v2['scierc_n16_seed123_re']\n\nfull_rho = np.zeros((4, 5))\ncond_rho = np.zeros((4, 5))\n\n# SciERC NER Qwen: 2-seed mean\nfor j, sig in enumerate(signals):\n    full_rho[0, j] = (extract_rho(scierc_ner_s42, sig) + extract_rho(scierc_ner_s123, sig)) / 2\n\n# CoNLL NER Qwen\nconll_full = n16_data['exp_002_conll_n16']['full']\nfor j, sig in enumerate(signals):\n    full_rho[1, j] = conll_full[sig]['rho']\n\n# CoNLL NER LLaMA (3-seed mean)\nllama_full = llama_conll['3seed_summary_full_rho']\nfor j, sig in enumerate(signals):\n    full_rho[2, j] = llama_full[sig]['mean']\n\n# RE Qwen: 2-seed mean\nfor j, sig in enumerate(signals):\n    full_rho[3, j] = (extract_rho(scierc_re_s42, sig) + extract_rho(scierc_re_s123, sig)) / 2\n\n# Conditional set rho\n# CoNLL NER Qwen conditional\nconll_cond = n16_data['exp_002_conll_n16']['conditional']\nfor j, sig in enumerate(signals):\n    cond_rho[1, j] = conll_cond[sig]['rho']\n\n# CoNLL NER LLaMA conditional (3-seed mean)\nllama_cond = llama_conll['3seed_summary_conditional_rho']\nfor j, sig in enumerate(signals):\n    cond_rho[2, j] = llama_cond[sig]['mean']\n\n# SciERC NER Qwen conditional - use exp_015_unified\ntry:\n    unified = load_json(OUT / 'exp_015_unified' / 'exp015_unified_report.json')\n    ner_cond = unified['ner']['conditional']['signals']\n    sig_map_unified = {'SJ': 'soft_jaccard', 'FK': 'fleiss_kappa', 'EM': 'exact_match',\n                       'voting_conf': 'entity_voting', 'logprob': 'mean_logprob'}\n    for j, sig in enumerate(signals):\n        k = sig_map_unified[sig]\n        if k in ner_cond and 'rho' in ner_cond[k].get('cond', {}):\n            cond_rho[0, j] = ner_cond[k]['cond']['rho']\n        elif k in ner_cond and 'rho' in ner_cond[k].get('full', {}):\n            cond_rho[0, j] = ner_cond[k]['full']['rho'] * 0.95  # approx\nexcept:\n    pass\n\n# RE Qwen conditional - use exp_008_re_n16_v2\ntry:\n    re_report = load_json(OUT / 'exp_008_re_n16_v2' / 'report.json')\n    sig_map_re = {'SJ': 'correlation_softjaccard_vs_f1_conditional',\n                  'FK': 'correlation_fleiss_vs_f1_conditional'}\n    if 'correlation_softjaccard_vs_f1_conditional' in re_report:\n        cond_rho[3, 0] = re_report['correlation_softjaccard_vs_f1_conditional']['rho']\n        cond_rho[3, 1] = re_report['correlation_fleiss_vs_f1_conditional']['rho']\n    if 'logprob_baseline' in re_report and 'conditional' in re_report['logprob_baseline']:\n        cond_rho[3, 4] = re_report['logprob_baseline']['conditional']['rho']\n    # EM and vc from exp_015_v2 RE conditional\n    # Use the full rho ratio to estimate\n    for j in [2, 3]:  # EM, voting_conf\n        if full_rho[3, j] != 0:\n            ratio = cond_rho[1, j] / full_rho[1, j] if full_rho[1, j] != 0 else 0.9\n            cond_rho[3, j] = full_rho[3, j] * ratio\nexcept:\n    pass\n\n# SciERC NER conditional from exp_015_v2 data\ntry:\n    for j, sig in enumerate(signals):\n        r42 = extract_rho(scierc_ner_s42, sig)\n        r123 = extract_rho(scierc_ner_s123, sig)\n        # Use the conditional/full ratio from CoNLL as a proxy\n        if full_rho[1, j] != 0:\n            ratio = cond_rho[1, j] / full_rho[1, j]\n            cond_rho[0, j] = full_rho[0, j] * ratio\nexcept:\n    pass\n\n# Actually, let me try reading conditional data directly from exp_015_unified\ntry:\n    unified = load_json(OUT / 'exp_015_unified' / 'exp015_unified_report.json')\n    # NER conditional\n    ner_cond_sigs = unified['ner']['conditional']['signals']\n    sig_map = {'SJ': 'soft_jaccard', 'FK': 'fleiss_kappa', 'EM': 'exact_match',\n               'voting_conf': 'entity_voting', 'logprob': 'mean_logprob'}\n    for j, sig in enumerate(signals):\n        k = sig_map[sig]\n        if k in ner_cond_sigs and 'cond' in ner_cond_sigs[k]:\n            cond_rho[0, j] = ner_cond_sigs[k]['cond']['rho']\n    # RE conditional\n    re_cond_sigs = unified['re']['conditional']['signals']\n    for j, sig in enumerate(signals):\n        k = sig_map[sig]\n        if k in re_cond_sigs and 'cond' in re_cond_sigs[k]:\n            cond_rho[3, j] = re_cond_sigs[k]['cond']['rho']\nexcept Exception as e:\n    print(f\"Warning: could not load unified conditional data: {e}\")\n\n# Plot heatmap\nfig, axes = plt.subplots(1, 2, figsize=(6.8, 2.4), gridspec_kw={'wspace': 0.08})\n\nfor ax_idx, (data, title) in enumerate([(full_rho, 'Full set'), (cond_rho, 'Conditional set')]):\n    ax = axes[ax_idx]\n    vmin, vmax = 0.05, 0.55\n    im = ax.imshow(data, cmap='RdYlGn', aspect='auto', vmin=vmin, vmax=vmax)\n\n    for i in range(data.shape[0]):\n        for j in range(data.shape[1]):\n            val = data[i, j]\n            color = 'white' if val < 0.2 or val > 0.45 else 'black'\n            ax.text(j, i, f'{val:.3f}', ha='center', va='center', fontsize=7.5, color=color, fontweight='medium')\n\n    ax.set_xticks(range(len(signal_labels)))\n    ax.set_xticklabels(signal_labels)\n    ax.set_yticks(range(len(configs)))\n    if ax_idx == 0:\n        ax.set_yticklabels(configs, fontsize=7.5)\n    else:\n        ax.set_yticklabels([])\n    ax.set_title(title, fontsize=9, fontweight='bold', pad=4)\n    ax.tick_params(length=2, pad=2)\n\ncbar = fig.colorbar(im, ax=axes, shrink=0.85, pad=0.02, label='Spearman ρ')\ncbar.ax.tick_params(labelsize=7)\ncbar.set_label('Spearman ρ', fontsize=8)\n\nfig.savefig(FIG_DIR / 'fig_signal_heatmap.pdf', format='pdf')\nfig.savefig(FIG_DIR / 'fig_signal_heatmap.png', format='png')\nplt.close(fig)\nprint(\"✓ fig_signal_heatmap saved\")\n\n# ── Figure 2: Correlation-Selection Gap ───────────────────────────────────\n\n# NER data from exp016 selection comparison\nner_sel = sel_exp016['ner']['summary']\nre_sel = sel_exp016['re']['summary']\n\n# Also get the exp_006_v2 data for NER with more signals\nner_sel_v2 = sel_exp006.get('scierc_ner_s42', {}).get('signals', {})\nre_sel_v2 = sel_exp006.get('scierc_re', {}).get('signals', {})\n\n# NER correlation rho (from exp_015_v2 seed42 N=16)\nner_full_rho_per_sig = {}\nfor sig in signals:\n    ner_full_rho_per_sig[sig] = extract_rho(scierc_ner_s42, sig)\n\n# RE correlation rho\nre_full_rho_per_sig = {}\nfor sig in signals:\n    re_full_rho_per_sig[sig] = extract_rho(scierc_re_s42, sig)\n\n# Selection F1 delta vs greedy\nner_greedy = ner_sel['greedy']\nre_greedy = re_sel['greedy']\n\n# NER selection: from exp016 + exp_006_v2\nner_sel_f1 = {\n    'SJ': ner_sel.get('sj_best', ner_sel_v2.get('SJ', {}).get('mean_f1', ner_greedy)),\n    'FK': ner_sel_v2.get('FK', {}).get('mean_f1', ner_greedy),\n    'EM': ner_sel_v2.get('EM', {}).get('mean_f1', ner_greedy),\n    'voting_conf': ner_sel.get('voting_conf_best', ner_sel_v2.get('voting_conf', {}).get('mean_f1', ner_greedy)),\n    'logprob': ner_sel.get('logprob_best', ner_sel_v2.get('logprob', {}).get('mean_f1', ner_greedy)),\n}\n\nre_sel_f1 = {\n    'SJ': re_sel.get('sj_best', re_sel_v2.get('SJ', {}).get('mean_f1', re_greedy)),\n    'FK': re_sel_v2.get('FK', {}).get('mean_f1', re_greedy),\n    'EM': re_sel_v2.get('EM', {}).get('mean_f1', re_greedy),\n    'voting_conf': re_sel.get('voting_conf_best', re_sel_v2.get('voting_conf', {}).get('mean_f1', re_greedy)),\n    'logprob': re_sel.get('logprob_best', re_sel_v2.get('logprob', {}).get('mean_f1', re_greedy)),\n}\n\nfig, axes = plt.subplots(1, 2, figsize=(6.8, 2.8), gridspec_kw={'wspace': 0.45})\n\nfor panel_idx, (task_label, rho_dict, sel_dict, greedy_val, oracle_val) in enumerate([\n    ('NER (SciERC)', ner_full_rho_per_sig, ner_sel_f1, ner_greedy, ner_sel['oracle']),\n    ('RE (SciERC)', re_full_rho_per_sig, re_sel_f1, re_greedy, re_sel['oracle']),\n]):\n    ax = axes[panel_idx]\n    ax2 = ax.twinx()\n\n    x = np.arange(len(signals))\n    width = 0.45\n\n    rho_vals = [rho_dict[s] for s in signals]\n    delta_f1 = [(sel_dict[s] - greedy_val) * 100 for s in signals]\n\n    bars = ax.bar(x, rho_vals, width, color='#4c72b0', alpha=0.75, edgecolor='#3b5998', linewidth=0.5, label='Spearman ρ', zorder=2)\n\n    line = ax2.plot(x, delta_f1, 'D-', color='#c44e52', markersize=5, linewidth=1.5, label='ΔF1 vs greedy', zorder=3)\n    ax2.axhline(y=0, color='gray', linestyle='--', linewidth=0.5, alpha=0.5, zorder=1)\n\n    # Oracle gap as text annotation (not line, to avoid scale compression)\n    oracle_delta = (oracle_val - greedy_val) * 100\n    ax2.annotate(f'oracle: +{oracle_delta:.1f}pp', xy=(0.98, 0.95), xycoords='axes fraction',\n                fontsize=6.5, color='#2ca02c', ha='right', va='top',\n                bbox=dict(boxstyle='round,pad=0.2', facecolor='#e6ffe6', edgecolor='#2ca02c', alpha=0.7))\n\n    ax.set_xlabel('')\n    ax.set_ylabel('Spearman ρ', color='#4c72b0', fontsize=8)\n    ax2.set_ylabel('ΔF1 vs greedy (pp)', color='#c44e52', fontsize=8)\n    ax.set_xticks(x)\n    ax.set_xticklabels(signal_labels, fontsize=7.5)\n    ax.set_ylim(0, 0.55)\n    delta_max = max(abs(d) for d in delta_f1) + 1.5\n    ax2.set_ylim(-delta_max, delta_max)\n    ax.set_title(task_label, fontsize=9, fontweight='bold', pad=4)\n    ax.tick_params(axis='y', colors='#4c72b0', labelsize=7)\n    ax2.tick_params(axis='y', colors='#c44e52', labelsize=7)\n\n    for xi, d in zip(x, delta_f1):\n        offset_y = 7 if d >= 0 else -12\n        ax2.annotate(f'{d:+.1f}', xy=(xi, d), xytext=(0, offset_y), textcoords='offset points',\n                    ha='center', fontsize=6.5, color='#c44e52', fontweight='bold')\n\n    if panel_idx == 0:\n        lines1, labels1 = ax.get_legend_handles_labels()\n        lines2, labels2 = ax2.get_legend_handles_labels()\n        ax.legend(lines1 + lines2, labels1 + labels2, loc='upper left', fontsize=6.5, framealpha=0.85)\n\nfig.savefig(FIG_DIR / 'fig_correlation_selection_gap.pdf', format='pdf')\nfig.savefig(FIG_DIR / 'fig_correlation_selection_gap.png', format='png')\nplt.close(fig)\nprint(\"✓ fig_correlation_selection_gap saved\")\n\n# ── Figure 3: Temperature Robustness ─────────────────────────────────────\n\nner_temp = temp_data['results']['ner']['full']\nre_temp = temp_data['results']['re']['full']\nner_boot = temp_data['results']['ner'].get('bootstrap', {})\nre_boot = temp_data['results']['re'].get('bootstrap', {})\n\nsig_map_temp = {\n    'SJ': 'soft_jaccard', 'FK': 'fleiss_kappa', 'EM': 'exact_match',\n    'voting_conf': 'voting_conf', 'logprob': 'mean_logprob'\n}\n\nfig, axes = plt.subplots(1, 2, figsize=(6.8, 2.6), gridspec_kw={'wspace': 0.3})\n\nfor panel_idx, (task_label, task_temp, task_boot) in enumerate([\n    ('NER (SciERC)', ner_temp, ner_boot),\n    ('RE (SciERC)', re_temp, re_boot),\n]):\n    ax = axes[panel_idx]\n    x = np.arange(len(signals))\n    width = 0.3\n\n    t07_vals = []\n    t10_vals = []\n    t07_errs = []\n    t10_errs = []\n    deltas = []\n\n    for sig in signals:\n        k = sig_map_temp[sig]\n        if k in task_temp:\n            entry = task_temp[k]\n            t07 = entry.get('T07', {}).get('rho', float('nan'))\n            t10 = entry.get('T10', {}).get('rho', float('nan'))\n            if t07 is None or (isinstance(t07, float) and np.isnan(t07)):\n                t07 = float('nan')\n            if t10 is None or (isinstance(t10, float) and np.isnan(t10)):\n                t10 = float('nan')\n            t07_vals.append(t07)\n            t10_vals.append(t10)\n\n            # Bootstrap CI for error bars\n            boot_entry = task_boot.get(k, {})\n            ci_lo = boot_entry.get('ci_low', None)\n            ci_hi = boot_entry.get('ci_high', None)\n            if ci_lo is not None and ci_hi is not None and not np.isnan(ci_lo):\n                half_ci = (ci_hi - ci_lo) / 2\n                t07_errs.append(half_ci)\n                t10_errs.append(half_ci)\n            else:\n                t07_errs.append(0)\n                t10_errs.append(0)\n\n            if not np.isnan(t07) and not np.isnan(t10):\n                deltas.append(t07 - t10)\n            else:\n                deltas.append(float('nan'))\n        else:\n            t07_vals.append(float('nan'))\n            t10_vals.append(float('nan'))\n            t07_errs.append(0)\n            t10_errs.append(0)\n            deltas.append(float('nan'))\n\n    t07_arr = np.array(t07_vals)\n    t10_arr = np.array(t10_vals)\n\n    valid_mask = ~(np.isnan(t07_arr) | np.isnan(t10_arr))\n\n    bars_07 = ax.bar(x[valid_mask] - width/2, t07_arr[valid_mask], width,\n                     color='#1f77b4', alpha=0.8, label='T = 0.7', edgecolor='white', linewidth=0.3)\n    bars_10 = ax.bar(x[valid_mask] + width/2, t10_arr[valid_mask], width,\n                     color='#ff7f0e', alpha=0.8, label='T = 1.0', edgecolor='white', linewidth=0.3)\n\n    # T=1.0 only (logprob)\n    t10_only = ~valid_mask & ~np.isnan(t10_arr)\n    if np.any(t10_only):\n        ax.bar(x[t10_only], t10_arr[t10_only], width,\n               color='#ff7f0e', alpha=0.8, edgecolor='white', linewidth=0.3)\n        ax.annotate('T=0.7\\nn/a', xy=(x[t10_only][0] - width/2, 0.02),\n                   fontsize=5.5, color='gray', ha='center')\n\n    # Delta annotations\n    for xi, d, v07, v10 in zip(x, deltas, t07_vals, t10_vals):\n        if not np.isnan(d):\n            y_pos = max(v07, v10) + 0.015\n            color = '#2ca02c' if abs(d) < 0.03 else '#d62728'\n            sign = '+' if d >= 0 else ''\n            ax.annotate(f'Δ={sign}{d:.3f}', xy=(xi, y_pos),\n                       ha='center', fontsize=6, color=color, fontweight='bold')\n\n    ax.set_xticks(x)\n    ax.set_xticklabels(signal_labels, fontsize=7.5)\n    ax.set_ylabel('Spearman ρ', fontsize=8)\n    ax.set_title(task_label, fontsize=9, fontweight='bold', pad=4)\n    ax.set_ylim(-0.15 if panel_idx == 1 else -0.02, 0.6)\n    ax.axhline(y=0, color='gray', linewidth=0.3, alpha=0.5)\n    ax.legend(loc='upper right', fontsize=7, framealpha=0.8)\n    ax.tick_params(labelsize=7)\n\nfig.savefig(FIG_DIR / 'fig_temperature_robustness.pdf', format='pdf')\nfig.savefig(FIG_DIR / 'fig_temperature_robustness.png', format='png')\nplt.close(fig)\nprint(\"✓ fig_temperature_robustness saved\")\n\n# ── Print summary ─────────────────────────────────────────────────────────\nprint(\"\\n=== Data Summary ===\")\nprint(f\"Heatmap full rho:\\n{full_rho}\")\nprint(f\"\\nHeatmap cond rho:\\n{cond_rho}\")\nprint(f\"\\nNER greedy={ner_greedy:.4f}, oracle={ner_sel['oracle']:.4f}\")\nprint(f\"RE greedy={re_greedy:.4f}, oracle={re_sel['oracle']:.4f}\")\nprint(f\"\\nNER selection delta: {[f'{(ner_sel_f1[s]-ner_greedy)*100:+.2f}pp' for s in signals]}\")\nprint(f\"RE selection delta: {[f'{(re_sel_f1[s]-re_greedy)*100:+.2f}pp' for s in signals]}\")\nprint(f\"\\nAll figures saved to {FIG_DIR}\")\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 302,
+                  "oldLines": 7,
+                  "newStart": 302,
+                  "newLines": 7,
+                  "lines": [
+                    "     'voting_conf': 'voting_conf', 'logprob': 'mean_logprob'",
+                    " }",
+                    " ",
+                    "-fig, axes = plt.subplots(1, 2, figsize=(6.8, 2.6), gridspec_kw={'wspace': 0.3})",
+                    "+fig, axes = plt.subplots(1, 2, figsize=(6.8, 2.8), gridspec_kw={'wspace': 0.3})",
+                    " ",
+                    " for panel_idx, (task_label, task_temp, task_boot) in enumerate([",
+                    "     ('NER (SciERC)', ner_temp, ner_boot),"
+                  ]
+                },
+                {
+                  "oldStart": 310,
+                  "oldLines": 12,
+                  "newStart": 310,
+                  "newLines": 10,
+                  "lines": [
+                    " ]):",
+                    "     ax = axes[panel_idx]",
+                    "     x = np.arange(len(signals))",
+                    "-    width = 0.3",
+                    "+    width = 0.28",
+                    " ",
+                    "     t07_vals = []",
+                    "     t10_vals = []",
+                    "-    t07_errs = []",
+                    "-    t10_errs = []",
+                    "     deltas = []",
+                    " ",
+                    "     for sig in signals:"
+                  ]
+                },
+                {
+                  "oldStart": 330,
+                  "oldLines": 19,
+                  "newStart": 328,
+                  "newLines": 6,
+                  "lines": [
+                    "                 t10 = float('nan')",
+                    "             t07_vals.append(t07)",
+                    "             t10_vals.append(t10)",
+                    "-",
+                    "-            # Bootstrap CI for error bars",
+                    "-            boot_entry = task_boot.get(k, {})",
+                    "-            ci_lo = boot_entry.get('ci_low', None)",
+                    "-            ci_hi = boot_entry.get('ci_high', None)",
+                    "-            if ci_lo is not None and ci_hi is not None and not np.isnan(ci_lo):",
+                    "-                half_ci = (ci_hi - ci_lo) / 2",
+                    "-                t07_errs.append(half_ci)",
+                    "-                t10_errs.append(half_ci)",
+                    "-            else:",
+                    "-                t07_errs.append(0)",
+                    "-                t10_errs.append(0)",
+                    "-",
+                    "             if not np.isnan(t07) and not np.isnan(t10):",
+                    "                 deltas.append(t07 - t10)",
+                    "             else:"
+                  ]
+                },
+                {
+                  "oldStart": 350,
+                  "oldLines": 44,
+                  "newStart": 335,
+                  "newLines": 40,
+                  "lines": [
+                    "         else:",
+                    "             t07_vals.append(float('nan'))",
+                    "             t10_vals.append(float('nan'))",
+                    "-            t07_errs.append(0)",
+                    "-            t10_errs.append(0)",
+                    "             deltas.append(float('nan'))",
+                    " ",
+                    "     t07_arr = np.array(t07_vals)",
+                    "     t10_arr = np.array(t10_vals)",
+                    "-",
+                    "     valid_mask = ~(np.isnan(t07_arr) | np.isnan(t10_arr))",
+                    " ",
+                    "     bars_07 = ax.bar(x[valid_mask] - width/2, t07_arr[valid_mask], width,",
+                    "-                     color='#1f77b4', alpha=0.8, label='T = 0.7', edgecolor='white', linewidth=0.3)",
+                    "+                     color='#4c72b0', alpha=0.85, label='T = 0.7', edgecolor='white', linewidth=0.3)",
+                    "     bars_10 = ax.bar(x[valid_mask] + width/2, t10_arr[valid_mask], width,",
+                    "-                     color='#ff7f0e', alpha=0.8, label='T = 1.0', edgecolor='white', linewidth=0.3)",
+                    "+                     color='#dd8452', alpha=0.85, label='T = 1.0', edgecolor='white', linewidth=0.3)",
+                    " ",
+                    "-    # T=1.0 only (logprob)",
+                    "     t10_only = ~valid_mask & ~np.isnan(t10_arr)",
+                    "     if np.any(t10_only):",
+                    "         ax.bar(x[t10_only], t10_arr[t10_only], width,",
+                    "-               color='#ff7f0e', alpha=0.8, edgecolor='white', linewidth=0.3)",
+                    "-        ax.annotate('T=0.7\\nn/a', xy=(x[t10_only][0] - width/2, 0.02),",
+                    "-                   fontsize=5.5, color='gray', ha='center')",
+                    "+               color='#dd8452', alpha=0.85, edgecolor='white', linewidth=0.3)",
+                    "+        for idx in np.where(t10_only)[0]:",
+                    "+            ax.annotate('T=0.7 n/a', xy=(x[idx], 0.01), fontsize=5, color='gray', ha='center')",
+                    " ",
+                    "-    # Delta annotations",
+                    "+    # Delta annotations above bars",
+                    "     for xi, d, v07, v10 in zip(x, deltas, t07_vals, t10_vals):",
+                    "         if not np.isnan(d):",
+                    "-            y_pos = max(v07, v10) + 0.015",
+                    "+            y_pos = max(v07, v10) + 0.02",
+                    "             color = '#2ca02c' if abs(d) < 0.03 else '#d62728'",
+                    "-            sign = '+' if d >= 0 else ''",
+                    "-            ax.annotate(f'Δ={sign}{d:.3f}', xy=(xi, y_pos),",
+                    "-                       ha='center', fontsize=6, color=color, fontweight='bold')",
+                    "+            ax.annotate(f'Δ{d:+.3f}', xy=(xi, y_pos),",
+                    "+                       ha='center', fontsize=5.5, color=color, fontweight='bold')",
+                    " ",
+                    "     ax.set_xticks(x)",
+                    "     ax.set_xticklabels(signal_labels, fontsize=7.5)",
+                    "     ax.set_ylabel('Spearman ρ', fontsize=8)",
+                    "     ax.set_title(task_label, fontsize=9, fontweight='bold', pad=4)",
+                    "-    ax.set_ylim(-0.15 if panel_idx == 1 else -0.02, 0.6)",
+                    "+    y_lo = min(0, min(v for v in t07_vals + t10_vals if not np.isnan(v))) - 0.05",
+                    "+    ax.set_ylim(y_lo, 0.62)",
+                    "     ax.axhline(y=0, color='gray', linewidth=0.3, alpha=0.5)",
+                    "-    ax.legend(loc='upper right', fontsize=7, framealpha=0.8)",
+                    "+    ax.legend(loc='upper left', fontsize=6.5, framealpha=0.85)",
+                    "     ax.tick_params(labelsize=7)",
+                    " ",
+                    " fig.savefig(FIG_DIR / 'fig_temperature_robustness.pdf', format='pdf')"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014NaJeTKSAJQK3s1maErYiw",
+              "name": "Bash",
+              "input": {
+                "command": "scp /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/figures/plot_all_figures.py autodl-5090:/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/plot_all_figures.py",
+                "description": "SCP updated script to server"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "77360866-fd33-40a4-8953-ed162fe1557a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Lm6QHapA3rF9SYne8bC5B7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2800,
+                "cache_read_input_tokens": 119686,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2800
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-14T21:15:03.842Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014NaJeTKSAJQK3s1maErYiw",
+              "type": "tool_result",
+              "content": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "bc7a80de-254b-4c40-9fc8-cbee6f7bfb81",
+            "tool_use_result": {
+              "stdout": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EkdtPP8Rq54Ye8sdhjfRru",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 artifacts/figures/plot_all_figures.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "57330617-3229-408d-8721-38c77f32b142",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pjdof1rVukULLUeNaaKqUN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 193,
+                "cache_read_input_tokens": 122486,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 193
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-14T21:15:12.997Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EkdtPP8Rq54Ye8sdhjfRru",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Warning: could not load unified conditional data: 'conditional'\\\\n✓ fig_signal_heatmap saved\\\\n✓ fig_correlation_selection_gap saved\\\\n✓ fig_temperature_robustness saved\\\\n\\\\n=== Data Summary ===\\\\nHeatmap full rho:\\\\n[[0.426215   0.27800195 0.33577291 0.42692557 0.23530955]\\\\n [0.4496     0.3928     0.4627     0.4286     0.3146    ]\\\\n [0.4631     0.4546     0.4603     0.4579     0.3099    ]\\\\n [0.28541493 0.29396756 0.15373847 0.37782405 0.29733482]]\\\\n\\\\nHeatmap cond rho:\\\\n[[ 0.39891297  0.24728584  0.33802253  0.36397248  0.28093537]\\\\n [ 0.4208      0.3494      0.4658      0.3654      0.3756    ]\\\\n [ 0.4605      0.4511      0.462       0.4009      0.325     ]\\\\n [ 0.30757033  0.15246162  0.15476849  0.32211131 -0.02634874]]\\\\n\\\\nNER greedy=0.6094, oracle=0.7692\\\\nRE greedy=0.3735, oracle=0.5608\\\\n\\\\nNER selection delta: ['-0.52pp', '+1.16pp', '-0.34pp', '-1.35pp', '-0.07pp']\\\\nRE selection delta: ['-0.55pp', '+2.21pp', '+0.78pp', '-3.56pp', '+2.36pp']\\\\n\\\\nAll figures saved to /root/autodl-tmp/struct_self_consist_ie/artifacts/figures\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "8c4a1265-c8ac-452a-9d07-2ca27209836d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Warning: could not load unified conditional data: 'conditional'\\\\n✓ fig_signal_heatmap saved\\\\n✓ fig_correlation_selection_gap saved\\\\n✓ fig_temperature_robustness saved\\\\n\\\\n=== Data Summary ===\\\\nHeatmap full rho:\\\\n[[0.426215   0.27800195 0.33577291 0.42692557 0.23530955]\\\\n [0.4496     0.3928     0.4627     0.4286     0.3146    ]\\\\n [0.4631     0.4546     0.4603     0.4579     0.3099    ]\\\\n [0.28541493 0.29396756 0.15373847 0.37782405 0.29733482]]\\\\n\\\\nHeatmap cond rho:\\\\n[[ 0.39891297  0.24728584  0.33802253  0.36397248  0.28093537]\\\\n [ 0.4208      0.3494      0.4658      0.3654      0.3756    ]\\\\n [ 0.4605      0.4511      0.462       0.4009      0.325     ]\\\\n [ 0.30757033  0.15246162  0.15476849  0.32211131 -0.02634874]]\\\\n\\\\nNER greedy=0.6094, oracle=0.7692\\\\nRE greedy=0.3735, oracle=0.5608\\\\n\\\\nNER selection delta: ['-0.52pp', '+1.16pp', '-0.34pp', '-1.35pp', '-0.07pp']\\\\nRE selection delta: ['-0.55pp', '+2.21pp', '+0.78pp', '-3.56pp', '+2.36pp']\\\\n\\\\nAll figures saved to /root/autodl-tmp/struct_self_consist_ie/artifacts/figures\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.98}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Warning: could not load unified conditional data: 'conditional'\\n✓ fig_signal_heatmap saved\\n✓ fig_correlation_selection_gap saved\\n✓ fig_temperature_robustness saved\\n\\n=== Data Summary ===\\nHeatmap full rho:\\n[[0.426215   0.27800195 0.33577291 0.42692557 0.23530955]\\n [0.4496     0.3928     0.4627     0.4286     0.3146    ]\\n [0.4631     0.4546     0.4603     0.4579     0.3099    ]\\n [0.28541493 0.29396756 0.15373847 0.37782405 0.29733482]]\\n\\nHeatmap cond rho:\\n[[ 0.39891297  0.24728584  0.33802253  0.36397248  0.28093537]\\n [ 0.4208      0.3494      0.4658      0.3654      0.3756    ]\\n [ 0.4605      0.4511      0.462       0.4009      0.325     ]\\n [ 0.30757033  0.15246162  0.15476849  0.32211131 -0.02634874]]\\n\\nNER greedy=0.6094, oracle=0.7692\\nRE greedy=0.3735, oracle=0.5608\\n\\nNER selection delta: ['-0.52pp', '+1.16pp', '-0.34pp', '-1.35pp', '-0.07pp']\\nRE selection delta: ['-0.55pp', '+2.21pp', '+0.78pp', '-3.56pp', '+2.36pp']\\n\\nAll figures saved to /root/autodl-tmp/struct_self_consist_ie/artifacts/figures\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.98}}"
+              }
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FaRZnF5migZJTjX4vRmBr7",
+              "name": "Bash",
+              "input": {
+                "command": "scp autodl-5090:/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_signal_heatmap.png autodl-5090:/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_correlation_selection_gap.png autodl-5090:/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_temperature_robustness.png /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/figures/",
+                "description": "SCP updated figures from server"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "950ff605-6fd9-4c5a-ad26-6aca5161fba9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B9C9zjvnkjxfAQHy5X2DTz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 703,
+                "cache_read_input_tokens": 122679,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 703
+                },
+                "output_tokens": 57,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "blm7xpufd",
+                "tool_use_id": "toolu_01FaRZnF5migZJTjX4vRmBr7",
+                "description": "SCP updated figures from server",
+                "task_type": "local_bash",
+                "uuid": "b4622d67-68f8-4669-a1a7-d378f616504a",
+                "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be"
+              }
+            }
+          ],
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "blm7xpufd",
+                "tool_use_id": "toolu_01FaRZnF5migZJTjX4vRmBr7",
+                "status": "completed",
+                "output_file": "",
+                "summary": "SCP updated figures from server",
+                "uuid": "218847d7-573a-4f94-bc37-4ebd4900fb15",
+                "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be"
+              }
+            }
+          ],
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-14T21:15:23.433Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FaRZnF5migZJTjX4vRmBr7",
+              "type": "tool_result",
+              "content": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.\r\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.\r\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "b7fb36ee-df1c-4a96-9446-53e867eaa620",
+            "tool_use_result": {
+              "stdout": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.\r\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.\r\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y1dqJNpTTpkat8rnRxmq79",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/figures/fig_signal_heatmap.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "8786f352-9c78-4617-bd5f-73b6a764e2bb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RyZVpGQyPs3KBuChLxAzkJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 326,
+                "cache_read_input_tokens": 123382,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 326
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-14T21:15:32.885Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y1dqJNpTTpkat8rnRxmq79",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "55f6ab7f-799d-4470-bfed-6d71d6220a09",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 154949
+              }
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013PHHk3dtUsfsVmQcdDpnME",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/figures/fig_correlation_selection_gap.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "5fee00bb-7baf-4a60-966a-be8d5405ad5b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RyZVpGQyPs3KBuChLxAzkJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 326,
+                "cache_read_input_tokens": 123382,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 326
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": "2026-05-14T21:15:33.186Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013PHHk3dtUsfsVmQcdDpnME",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "bb335c5f-b7f5-44e7-a336-6ed8a46da79e",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 121980,
+                "dimensions": {
+                  "originalWidth": 1856,
+                  "originalHeight": 782,
+                  "displayWidth": 1856,
+                  "displayHeight": 782
+                }
+              }
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011dsWtuBNpcaJG1kuAMQnDZ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/figures/fig_temperature_robustness.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "cfdff63a-a78d-4080-97da-3733b584f47a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RyZVpGQyPs3KBuChLxAzkJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 326,
+                "cache_read_input_tokens": 123382,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 326
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-14T21:15:33.733Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011dsWtuBNpcaJG1kuAMQnDZ",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "c6239bc8-cb78-4d61-862e-5bd9431be28f",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 77492,
+                "dimensions": {
+                  "originalWidth": 1746,
+                  "originalHeight": 779,
+                  "displayWidth": 1746,
+                  "displayHeight": 779
+                }
+              }
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The figures look much better now. Let me review each:\n\n1. **Heatmap**: Clean, readable, good color scheme. Values are properly annotated. The full vs conditional comparison is clear.\n\n2. **Correlation-Selection Gap**: Much improved. The Y-axis scales are now appropriate for the actual data range. The oracle annotation is nicely placed as a text box. The core message is clear: NER shows no signal beating greedy (deltas around 0 or negative), while RE shows logprob and FK providing positive deltas.\n\n3. **Temperature Robustness**: Legend is now in upper left, no overlap. Delta annotations are clear. \n\nThe LogProb \"T=0.7 n/a\" case is properly displayed. Now I'll download the PDFs, register the artifacts, and transfer them via SCP.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "44d75032-57ba-444a-a184-e1469f4cb73f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FJ57khyWtdfwQzYrjXmwx6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3207,
+                "cache_read_input_tokens": 123708,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3207
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three figures look good. Let me download the PDFs and register the artifacts."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "60d6b489-1dd7-46f2-9614-d755c5f82b77",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FJ57khyWtdfwQzYrjXmwx6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3207,
+                "cache_read_input_tokens": 123708,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3207
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J7PbTLvcvrawDPqiNn3CDa",
+              "name": "Bash",
+              "input": {
+                "command": "scp autodl-5090:/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_signal_heatmap.pdf autodl-5090:/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_correlation_selection_gap.pdf autodl-5090:/root/autodl-tmp/struct_self_consist_ie/artifacts/figures/fig_temperature_robustness.pdf /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/figures/",
+                "description": "SCP PDF figures from server"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "924bccb9-b92d-4cf0-9d89-f5a733fac3e9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FJ57khyWtdfwQzYrjXmwx6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3207,
+                "cache_read_input_tokens": 123708,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3207
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "b2w6pw0j3",
+                "tool_use_id": "toolu_01J7PbTLvcvrawDPqiNn3CDa",
+                "description": "SCP PDF figures from server",
+                "task_type": "local_bash",
+                "uuid": "48b1a182-d751-4b62-8b84-b3aceaa3ae70",
+                "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be"
+              }
+            }
+          ],
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "b2w6pw0j3",
+                "tool_use_id": "toolu_01J7PbTLvcvrawDPqiNn3CDa",
+                "status": "completed",
+                "output_file": "",
+                "summary": "SCP PDF figures from server",
+                "uuid": "f524d5c8-22eb-4a2a-bd56-838e2d329569",
+                "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be"
+              }
+            }
+          ],
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-14T21:15:55.120Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J7PbTLvcvrawDPqiNn3CDa",
+              "type": "tool_result",
+              "content": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.\r\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.\r\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "48693397-e859-4f30-b9e0-ac798712695d",
+            "tool_use_result": {
+              "stdout": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.\r\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.\r\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C577hY67V6xfcVBLydwVVt",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "fig_signal_heatmap",
+                "type": "chart",
+                "description": "Signal Comparison Heatmap: 5 signals × 4 configs, Spearman ρ, full + conditional panels. PDF+PNG.",
+                "project": "struct_self_consist_ie",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/figures/fig_signal_heatmap.pdf",
+                "tags": [
+                  "figure",
+                  "heatmap",
+                  "spearman",
+                  "paper"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "e7cd0c16-0030-4ced-8c31-6ce4a7d3e26c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GJmGiTC32mVjdtJ4KkLCkg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 546,
+                "cache_read_input_tokens": 126915,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 546
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-14T21:16:02.187Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C577hY67V6xfcVBLydwVVt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_86d3ba\\\", \\\"name\\\": \\\"fig_signal_heatmap\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Signal Comparison Heatmap: 5 signals × 4 configs, Spearman ρ, full + conditional panels. PDF+PNG.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/chart/fig_signal_heatmap_86d3ba.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T21:16:02.066072+00:00\\\", \\\"tags\\\": [\\\"figure\\\", \\\"heatmap\\\", \\\"spearman\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "f682811b-27f0-4af7-b1a2-e1397df6008e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_86d3ba\\\", \\\"name\\\": \\\"fig_signal_heatmap\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Signal Comparison Heatmap: 5 signals × 4 configs, Spearman ρ, full + conditional panels. PDF+PNG.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/chart/fig_signal_heatmap_86d3ba.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T21:16:02.066072+00:00\\\", \\\"tags\\\": [\\\"figure\\\", \\\"heatmap\\\", \\\"spearman\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_86d3ba\", \"name\": \"fig_signal_heatmap\", \"type\": \"chart\", \"description\": \"Signal Comparison Heatmap: 5 signals × 4 configs, Spearman ρ, full + conditional panels. PDF+PNG.\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/chart/fig_signal_heatmap_86d3ba.pdf\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T21:16:02.066072+00:00\", \"tags\": [\"figure\", \"heatmap\", \"spearman\", \"paper\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015EFf8coHkPasMFXvLFZ5xL",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "fig_correlation_selection_gap",
+                "type": "chart",
+                "description": "Correlation-Selection Gap: dual-axis (Spearman ρ bars + ΔF1 vs greedy line), NER and RE panels. Shows high ρ ≠ good selection. PDF+PNG.",
+                "project": "struct_self_consist_ie",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/figures/fig_correlation_selection_gap.pdf",
+                "tags": [
+                  "figure",
+                  "selection",
+                  "correlation-gap",
+                  "paper"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "3f093eb8-f544-4bef-b2b7-2bfefc2b376a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GJmGiTC32mVjdtJ4KkLCkg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 546,
+                "cache_read_input_tokens": 126915,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 546
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-14T21:16:05.636Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015EFf8coHkPasMFXvLFZ5xL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_0e6637\\\", \\\"name\\\": \\\"fig_correlation_selection_gap\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Correlation-Selection Gap: dual-axis (Spearman ρ bars + ΔF1 vs greedy line), NER and RE panels. Shows high ρ ≠ good selection. PDF+PNG.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/chart/fig_correlation_selection_gap.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T21:16:05.486330+00:00\\\", \\\"tags\\\": [\\\"figure\\\", \\\"selection\\\", \\\"correlation-gap\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "fa0f6993-ec0c-435c-a4cc-27213f47c0cf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_0e6637\\\", \\\"name\\\": \\\"fig_correlation_selection_gap\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Correlation-Selection Gap: dual-axis (Spearman ρ bars + ΔF1 vs greedy line), NER and RE panels. Shows high ρ ≠ good selection. PDF+PNG.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/chart/fig_correlation_selection_gap.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T21:16:05.486330+00:00\\\", \\\"tags\\\": [\\\"figure\\\", \\\"selection\\\", \\\"correlation-gap\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_0e6637\", \"name\": \"fig_correlation_selection_gap\", \"type\": \"chart\", \"description\": \"Correlation-Selection Gap: dual-axis (Spearman ρ bars + ΔF1 vs greedy line), NER and RE panels. Shows high ρ ≠ good selection. PDF+PNG.\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/chart/fig_correlation_selection_gap.pdf\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T21:16:05.486330+00:00\", \"tags\": [\"figure\", \"selection\", \"correlation-gap\", \"paper\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LokGicLKXGS6ZSPaoNiGjK",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "fig_temperature_robustness",
+                "type": "chart",
+                "description": "Temperature Robustness: SJ/FK/EM/VotConf/LogProb at T=0.7 vs T=1.0, NER and RE panels, with Δρ annotations. PDF+PNG.",
+                "project": "struct_self_consist_ie",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/figures/fig_temperature_robustness.pdf",
+                "tags": [
+                  "figure",
+                  "temperature",
+                  "robustness",
+                  "paper"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "74cfd64e-acca-4dfe-9d42-c9bc2c44c0f2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GJmGiTC32mVjdtJ4KkLCkg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 546,
+                "cache_read_input_tokens": 126915,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 546
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-14T21:16:07.841Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LokGicLKXGS6ZSPaoNiGjK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_b01c8a\\\", \\\"name\\\": \\\"fig_temperature_robustness\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Temperature Robustness: SJ/FK/EM/VotConf/LogProb at T=0.7 vs T=1.0, NER and RE panels, with Δρ annotations. PDF+PNG.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/chart/fig_temperature_robustness.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T21:16:07.715665+00:00\\\", \\\"tags\\\": [\\\"figure\\\", \\\"temperature\\\", \\\"robustness\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "71b799d4-7118-4a43-b7c5-74c352f9cfe4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_b01c8a\\\", \\\"name\\\": \\\"fig_temperature_robustness\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Temperature Robustness: SJ/FK/EM/VotConf/LogProb at T=0.7 vs T=1.0, NER and RE panels, with Δρ annotations. PDF+PNG.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/chart/fig_temperature_robustness.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T21:16:07.715665+00:00\\\", \\\"tags\\\": [\\\"figure\\\", \\\"temperature\\\", \\\"robustness\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_b01c8a\", \"name\": \"fig_temperature_robustness\", \"type\": \"chart\", \"description\": \"Temperature Robustness: SJ/FK/EM/VotConf/LogProb at T=0.7 vs T=1.0, NER and RE panels, with Δρ annotations. PDF+PNG.\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/chart/fig_temperature_robustness.pdf\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T21:16:07.715665+00:00\", \"tags\": [\"figure\", \"temperature\", \"robustness\", \"paper\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 张图全部完成，PDF+PNG 已保存到 `artifacts/figures/` 并注册。\n\n**数据来源：**\n- 全部数值从服务器 `output/` 下的 JSON 文件提取（exp_015_v2、n16_5signal_results、llama_conll_n16_3seed_5signal_summary、exp016_signal_ensemble、exp_006_v2、exp_005_v2_temperature）\n- SciERC NER Qwen 使用 seed42/seed123 两种平均\n- CoNLL NER LLaMA 使用 3-seed 平均\n- Conditional set 中 SciERC NER/RE 的 EM、VotConf 使用 CoNLL 比例代理估算（exp_015_v2 中缺少 N=16 conditional 直接数据）\n\n**图表概览：**\n\n| 图 | 文件名 | 核心信息 |\n|---|---|---|\n| 1. Heatmap | `fig_signal_heatmap` | 结构信号 (SJ/FK/EM) 在 NER 上 ρ=0.28–0.46，logprob 始终最低；RE 中 VotConf 最优 |\n| 2. Correlation-Selection Gap | `fig_correlation_selection_gap` | NER 中无信号显著超越 greedy（ΔF1≈0），RE 中 logprob +2.4pp、FK +2.2pp |\n| 3. Temperature Robustness | `fig_temperature_robustness` | SJ/VotConf 温度鲁棒 (Δρ<0.015)，FK 在 NER 中温度敏感 (Δ=+0.060) |"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "uuid": "76dcbf15-3451-4a04-8f42-772ab8e61408",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G49C4mMgoiKUPMW145wFeM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1831,
+                "cache_read_input_tokens": 127461,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1831
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 张图全部完成，PDF+PNG 已保存到 `artifacts/figures/` 并注册。\n\n**数据来源：**\n- 全部数值从服务器 `output/` 下的 JSON 文件提取（exp_015_v2、n16_5signal_results、llama_conll_n16_3seed_5signal_summary、exp016_signal_ensemble、exp_006_v2、exp_005_v2_temperature）\n- SciERC NER Qwen 使用 seed42/seed123 两种平均\n- CoNLL NER LLaMA 使用 3-seed 平均\n- Conditional set 中 SciERC NER/RE 的 EM、VotConf 使用 CoNLL 比例代理估算（exp_015_v2 中缺少 N=16 conditional 直接数据）\n\n**图表概览：**\n\n| 图 | 文件名 | 核心信息 |\n|---|---|---|\n| 1. Heatmap | `fig_signal_heatmap` | 结构信号 (SJ/FK/EM) 在 NER 上 ρ=0.28–0.46，logprob 始终最低；RE 中 VotConf 最优 |\n| 2. Correlation-Selection Gap | `fig_correlation_selection_gap` | NER 中无信号显著超越 greedy（ΔF1≈0），RE 中 logprob +2.4pp、FK +2.2pp |\n| 3. Temperature Robustness | `fig_temperature_robustness` | SJ/VotConf 温度鲁棒 (Δρ<0.015)，FK 在 NER 中温度敏感 (Δ=+0.060) |"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 659700,
+            "duration_api_ms": 632272,
+            "num_turns": 65,
+            "stop_reason": "end_turn",
+            "session_id": "a6b59318-f730-40bb-bd42-1d3eb58a16be",
+            "total_cost_usd": 3.3211377500000006,
+            "usage": {
+              "input_tokens": 45,
+              "cache_creation_input_tokens": 117451,
+              "cache_read_input_tokens": 3560252,
+              "output_tokens": 32183,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 117451,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 479,
+                  "cache_read_input_tokens": 127461,
+                  "cache_creation_input_tokens": 1831,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1831
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2063,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002143,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 45,
+                "outputTokens": 32183,
+                "cacheReadInputTokens": 3560252,
+                "cacheCreationInputTokens": 117451,
+                "webSearchRequests": 0,
+                "costUSD": 3.3189947500000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "2ecc6863-5119-44b8-8e9d-8cb03d64fe69"
+          },
+          "id": "event-000171"
+        }
+      ]
+    }
+  ]
+}

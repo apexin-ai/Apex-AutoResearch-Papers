@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "546366da48c477c8bd98",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp017 seed42 5signal",
+  "task_key": "worker_analysis_exp017_seed42_5signal_20260514T194345",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp017_seed42_5signal_20260514T194345_result.json",
+    "occurrence": 1,
+    "bytes": 812,
+    "sha256": "10da21c2c385e7b2033f25fd5dc7c40778ac6c8c73967985a76be8f8c8df5a0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。seed42 N=16 的 5 信号评估结果：\n\n**Full split (2756 instances)**:\n| Signal | ρ | AUROC | ECE |\n|--------|------|-------|------|\n| SJ | 0.464 | 0.739 | 0.113 |\n| FK | 0.457 | 0.736 | 0.107 |\n| EM | 0.461 | 0.739 | 0.108 |\n| voting_conf | 0.455 | 0.741 | 0.084 |\n| logprob | 0.306 | 0.759 | 0.129 |\n\n**Conditional split (2642 instances)**:\n| Signal | ρ | AUROC | ECE |\n|--------|------|-------|------|\n| SJ | 0.460 | 0.757 | 0.085 |\n| FK | 0.452 | 0.753 | 0.081 |\n| EM | 0.462 | 0.759 | 0.076 |\n| voting_conf | 0.398 | 0.729 | 0.074 |\n| logprob | 0.319 | 0.802 | 0.092 |\n\nN=8→N=16 结构信号 ρ 提升 +0.02~0.03，logprob 不变（Δ≈0）。Registry 已更新为 DONE/success，报告保存在 `output/exp_017_llama_conll_n16/all_signals_report.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp017-seed42-5signal.md"
+}

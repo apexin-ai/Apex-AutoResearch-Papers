@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51023027f54886ea0c0a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops registry check s123",
+  "task_key": "worker_ops_registry-check-s123_20260524T081851",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_registry-check-s123_20260524T081851_result.json",
+    "occurrence": 1,
+    "bytes": 743,
+    "sha256": "7d8d1ee3df5cfcbcc6c2468bad81755eea8470ec81c2779d154b5705f65bcb71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**Registry 状态已修正为 RUNNING。**\n\n实验 `exp_fewnerd_mf4v2_s123_v4` 之前在 registry 中存在但 conclusion 为 `killed`（来自之前 v3 的记录），filter 查询时未返回是因为状态不匹配。现已更新为 RUNNING。\n\n**服务器进程状态**：\n- 主进程 PID 273294：`run_mvp_pilot.py` seed=123，已运行 ~2 小时，CPU 35%\n- vLLM 子进程 PID 273638：占用 GPU cuda:0，30588 MiB 显存，CPU 99%\n- 在 tmux session 中运行，进程树完整\n\n**注意**：tee 未成功写入 `train.log`（输出目录在 tee 启动时可能尚未创建），`output/fewnerd_mf4v2_seed123_v4/` 目录当前为空。实验结果（`samples.jsonl`）应在推理完成后生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-check-s123.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "839696deeaeceb893a9a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 028 fewnerd 5epoch",
+  "task_key": "worker_code_exp_028_fewnerd_5epoch_20260517T073339",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_028_fewnerd_5epoch_20260517T073339_result.json",
+    "occurrence": 1,
+    "bytes": 605,
+    "sha256": "8e494730596f425d7c854619fb9e10c55684b3674f2bec5f1fe038c8e9497693"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_028 已提交并在运行中。\n\n**状态总结：**\n- 训练进程 PID 371545，GPU 0，5 epochs / 41,180 steps\n- 速度 ~1.95 s/step，预计 ~22 小时完成\n- 训练完成后需：\n  1. `llamafactory-cli export export_config_fewnerd_5epoch.yaml` (merge LoRA)\n  2. 推理：`python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-5epoch-merged --data_dir data/fewnerd_n16_subset --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_028_fewnerd_5epoch`\n- Registry 状态：RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-028-fewnerd-5epoch.md"
+}

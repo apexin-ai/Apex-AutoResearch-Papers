@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fe0a7afcb7da90de77c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260514T200845",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_introduction_20260514T200845_result.json",
+    "occurrence": 1,
+    "bytes": 1062,
+    "sha256": "3c8b84095a6724ca5f561441b3766adb89f72532d32a25db57e026f68f24e5d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction 已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex`。\n\n结构概要：\n- **段落1 (Hook)**: Self-consistency 在推理任务上的成功 → IE 的结构化输出本质不同 → 核心问题\n- **段落2 (Gap)**: Quality estimation vs sample selection 被混为一谈；Nédellec & Xia 2026 的 surface matching 局限；现有工作缺乏系统比较\n- **段落3 (Insight + Approach)**: Correlation-selection gap 核心发现预告；5 signals × 3 families × 3 datasets × 2 models；引用 Figure~\\ref{fig:overview}\n- **段落4 (Contributions)**: C1 首次系统比较 (ρ=0.50, AUROC=0.73)；C2 correlation-selection gap (NER 无信号超越 greedy，RE logprob +2.3pp)；C3 task-complexity boundary (EM>SJ easy tasks, SJ>EM hard tasks, 收敛于 WNUT-17)\n- **过渡**: 指向 §method, §experiments, §related\n\n所有数字与 experiments.tex 一致，引用仅使用 references.bib 中已有的 keys，未违反任何 FORBIDDEN 规则。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-introduction.md"
+}

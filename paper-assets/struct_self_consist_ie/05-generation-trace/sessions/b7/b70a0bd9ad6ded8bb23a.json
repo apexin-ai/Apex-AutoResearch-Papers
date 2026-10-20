@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b70a0bd9ad6ded8bb23a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "maintenance registry cleanup",
+  "task_key": "worker_maintenance_registry_cleanup_20260515T200152",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_maintenance_registry_cleanup_20260515T200152_result.json",
+    "occurrence": 1,
+    "bytes": 1280,
+    "sha256": "6ae269d885a8ade8079992fe679a915b226e81791d4713b434ce2028ec091149"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。Registry 现在没有 RUNNING 或 PREPARING 状态的残留实验。\n\n---\n\n## 清理操作汇总\n\n| 实验 | 原状态 | 操作 | 原因 |\n|------|--------|------|------|\n| `exp_qwen3_4b_conll_merge_inference_v2` | RUNNING → DONE(killed) | 标记 killed | 与 `exp_qwen3_4b_conll_scs_inference_v2` 完全重复：相同 checkpoint (ckpt-4200 merged)、数据 (conll2003)、seed (42)、全部推理参数 |\n| `exp_qwen3_4b_scierc_merge_inference` | PREPARING → DONE(killed) | 标记 killed | 从未启动，已被 `exp_qwen3_4b_scierc_scs_inference` 替代 |\n\n## 问题 2 结论：`exp_scale_qwen3_4b_conll`\n\n**Registry 中不存在此实验。** 关于 SJ_ρ 微差 (0.432 vs 0.422)，registry 中 CoNLL 4B 的两个已完成实验是：\n\n| 实验 | Checkpoint | SJ_ρ (full) | Greedy F1 |\n|------|-----------|-------------|-----------|\n| `exp_qwen3_4b_conll_scs_inference` (v1) | ckpt-3800 merged | 0.4045 | 0.9251 |\n| `exp_qwen3_4b_conll_scs_inference_v2` | ckpt-4200 merged | 0.4217 | 0.9234 |\n\n差异来源：**不同 checkpoint**（3800 vs 4200），同一数据/seed。ckpt-4200 多训练了 ~400 steps，correlation metrics 全面提升 (+1.7pp SJ_ρ)，但 greedy F1 略降 (-0.17pp)。不存在 0.432 的 SJ_ρ 值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/maintenance-registry-cleanup.md"
+}

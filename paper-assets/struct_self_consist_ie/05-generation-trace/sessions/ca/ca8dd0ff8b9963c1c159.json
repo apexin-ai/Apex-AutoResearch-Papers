@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca8dd0ff8b9963c1c159",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis 3seed qwen scierc",
+  "task_key": "worker_analysis_3seed_qwen_scierc_20260515T051603",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_3seed_qwen_scierc_20260515T051603_result.json",
+    "occurrence": 1,
+    "bytes": 1176,
+    "sha256": "780d0e90d6bf57ce62eddc4dbcf7af32cec1100c1a596bcfc130759a32867f87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON saved. Here's the summary:\n\n### NER — Qwen/SciERC 3-seed (42, 123, 456)\n\n| Signal | Spearman ρ | AUROC |\n|---|---|---|\n| Voting Confidence | **0.3861 ± 0.0187** | **0.6968 ± 0.0098** |\n| Soft Jaccard | 0.3641 ± 0.0179 | 0.6841 ± 0.0090 |\n| Exact Match | 0.3071 ± 0.0076 | 0.6606 ± 0.0103 |\n| Fleiss' Kappa | 0.2536 ± 0.0157 | 0.6177 ± 0.0092 |\n| Log-probability | 0.2167 ± 0.0125 | 0.6134 ± 0.0015 |\n\n### RE — Qwen/SciERC 3-seed (42, 123, 456)\n\n| Signal | Spearman ρ | AUROC |\n|---|---|---|\n| Voting Confidence | **0.3088 ± 0.0244** | **0.6581 ± 0.0095** |\n| Log-probability | 0.2970 ± 0.0218 | 0.6471 ± 0.0188 |\n| Fleiss' Kappa | 0.2903 ± 0.0121 | 0.6493 ± 0.0031 |\n| Soft Jaccard | 0.2485 ± 0.0015 | 0.6270 ± 0.0054 |\n| Exact Match | 0.1353 ± 0.0157 | 0.5625 ± 0.0128 |\n\nResults saved to `/root/autodl-tmp/struct_self_consist_ie/output/review_round2/qwen_scierc_3seed_summary.json`. Sanity-checked against report.json (seed 42 NER) — all 4 reference values match exactly. Cross-seed standard deviations are tight (σ < 0.025), indicating stable signals. Voting Confidence ranks #1 on both subtasks by ρ."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-3seed-qwen-scierc.md"
+}

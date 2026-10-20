@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "38b2a7dab861c29e30a8",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis exp 004 re diagnostic",
+  "task_key": "worker_analysis_exp_004_re_diagnostic_20260514T114103",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_004_re_diagnostic_20260514T114103.log",
+    "occurrence": 1,
+    "bytes": 573634,
+    "sha256": "924cd6a8522231a4903c3f34dedec096ecfc433bbb8ed948c054f18ae3650edc"
+  },
+  "statistics": {
+    "messages": 261,
+    "user_turns": 1,
+    "tool_calls": 94,
+    "roles": {
+      "log": 1,
+      "system": 43,
+      "record": 1,
+      "assistant": 26,
+      "tool_call": 94,
+      "tool_result": 94,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "38b2a7dab861c29e30a8-part-0001.json",
+          "message_count": 32
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 229,
+      "chunks": [
+        {
+          "path": "38b2a7dab861c29e30a8-part-0001.json",
+          "message_count": 148
+        },
+        {
+          "path": "38b2a7dab861c29e30a8-part-0002.json",
+          "message_count": 81
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-exp-004-re-diagnostic.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8cfc05ed081d5a52d81",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis diversity quantification",
+  "task_key": "worker_analysis_diversity_quantification_20260515T042244",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_diversity_quantification_20260515T042244_result.json",
+    "occurrence": 1,
+    "bytes": 1393,
+    "sha256": "763fbc6d586a4de009bf7cba85b357a648a6b69998567acfab77c20f49adfe2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已保存到 `/root/autodl-tmp/struct_self_consist_ie/output/review_round2/diversity_analysis.json`。\n\n关键发现：\n\n**Diversity 排序（高→低）：Qwen SciERC > LLaMA SciERC > WNUT-17 > Qwen CoNLL > LLaMA CoNLL**\n\n| Config | Unique Frac (mean) | F1 Std | Pairwise SJ (mean) | Logprob Std |\n|--------|-------------------|--------|---------------------|-------------|\n| Qwen SciERC | 0.433 | 0.144 | 0.703 | 0.0205 |\n| LLaMA SciERC | 0.389 | 0.127 | 0.744 | 0.0188 |\n| WNUT-17 (Qwen) | 0.224 | 0.100 | 0.823 | 0.0215 |\n| Qwen CoNLL | 0.235 | 0.092 | 0.869 | 0.0256 |\n| LLaMA CoNLL | 0.147 | 0.020 | 0.972 | 0.0069 |\n\n核心观察：\n1. **SciERC diversity 远高于 CoNLL/WNUT** — SciERC 实体边界模糊（科学术语），导致输出变化大；CoNLL/WNUT 是标准 NER（人名/地名），大部分 instance 8 个 sample 完全一致（unique=1 占 57%-88%）\n2. **LLaMA CoNLL 几乎无 diversity** — 88% instance 的 8 个 sample 完全相同（unique=1=2421/2756），pairwise SJ 中位数=1.0，constrained decoding 对简单 NER + 强模型的输出高度确定\n3. **Qwen 比 LLaMA 在同一数据集上 diversity 更高** — SciERC 上 0.433 vs 0.389，CoNLL 上 0.235 vs 0.147，说明 Qwen 在 constrained decoding 下产生更多样化的输出\n4. **WNUT-17 注意**：原始数据有 N=16 samples，这里截取前 8 个分析"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-diversity-quantification.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69437523277df0e5bc68",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 7b progress quick check",
+  "task_key": "worker_ssh_7b-progress-quick-check_20260520T010129",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_7b-progress-quick-check_20260520T010129_result.json",
+    "occurrence": 1,
+    "bytes": 542,
+    "sha256": "0fceef375be4aba1ae1b5cf54f678fa5fa5fc9e2520ca5f2bad426aa1040bf03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**7B 训练进度 (exp_qwen25_7b_fewnerd)**\n\n| 项目 | 值 |\n|------|-----|\n| 进度 | 19138 / 20590 (93%) |\n| Loss | 0.0058 (step 19100) |\n| Grad norm | 0.114 |\n| LR | 3.18e-06 |\n| Epoch | 4.64 |\n| 速度 | ~2.3s/it |\n| ETA | ~55 min（训练部分剩余 1452 steps） |\n| PID 71837 | RUNNING |\n| GPU 2,3 | 84%, 84% 利用率 |\n\nLoss 从上次的水平继续下降到 0.0058，grad norm 稳定在 0.11，训练正常。预计训练部分约 55 分钟后完成（~UTC 14:27），之后还有 evaluation 阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-7b-progress-quick-check.md"
+}

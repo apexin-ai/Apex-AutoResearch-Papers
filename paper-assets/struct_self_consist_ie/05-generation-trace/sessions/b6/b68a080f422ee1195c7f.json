@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "b68a080f422ee1195c7f",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "gpu scierc mf4 3seed",
+  "task_key": "worker_gpu_scierc_mf4_3seed_20260521T085908",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_scierc_mf4_3seed_20260521T085908.log",
+    "occurrence": 1,
+    "bytes": 1130779,
+    "sha256": "068775d496b7df4ee9833c966535941b4a95fc09db6c28e8681cedbb4de82c42"
+  },
+  "statistics": {
+    "messages": 832,
+    "user_turns": 1,
+    "tool_calls": 341,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 2,
+      "assistant": 136,
+      "tool_call": 341,
+      "tool_result": 341,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 763,
+      "chunks": [
+        {
+          "path": "b68a080f422ee1195c7f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b68a080f422ee1195c7f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b68a080f422ee1195c7f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b68a080f422ee1195c7f-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "b68a080f422ee1195c7f-part-0005.json",
+          "message_count": 43
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 69,
+      "chunks": [
+        {
+          "path": "b68a080f422ee1195c7f-part-0005.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-scierc-mf4-3seed.md"
+}

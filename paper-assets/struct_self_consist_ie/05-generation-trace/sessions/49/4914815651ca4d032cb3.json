@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4914815651ca4d032cb3",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp e theta v2 mlp",
+  "task_key": "worker_exp_e_theta_v2_mlp_20260520T154102",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_e_theta_v2_mlp_20260520T154102_result.json",
+    "occurrence": 1,
+    "bytes": 976,
+    "sha256": "6b0134ffba6758fc5195cf8ec8bf828eb401a34174c93ec5bfedd8861e1b6bfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registered as `art_20260520_3fc00a`.\n\n**E_θ Variant 2 (MLP) 结果汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| Configs | 18 (3 datasets × 2 models × 3 seeds) |\n| N | 8 |\n| θ Grid | {0.3, 0.35, ..., 0.7} |\n| Mean F1 Fixed θ=0.5 | **0.7940** |\n| Mean F1 MLP Adaptive | **0.7906** (Δ = -0.0034) |\n| Mean F1 Oracle θ | **0.7953** (Δ = +0.0013) |\n| θ Exact Match | 1/18 (5.6%) |\n| θ Within ±0.05 | 5/18 (27.8%) |\n| W/T/L vs Fixed | **5W / 0T / 13L** |\n\n**关键观察：**\n- MLP 在 LOCO-CV 下表现比 fixed θ=0.5 差，raw predictions 经常大幅偏离合理范围（如 -0.82, 0.71）\n- Oracle θ 和 Fixed θ=0.5 之间的 gap 本身很小（仅 +0.13pp），留给 predictor 学习的空间有限\n- 18 个数据点对 MLP 太少——same-seed configs 的 features 高度相似导致 LOCO-CV 几乎是在做 extrapolation\n- MLP wins 集中在 Qwen×FewNERD 和 Qwen/LLaMA×SciERC（低 degeneracy configs 中 θ<0.5 更优）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-e-theta-v2-mlp.md"
+}

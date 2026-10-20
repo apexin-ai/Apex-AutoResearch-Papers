@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e52735807f6004c5e3c9",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp027 mlp verifier v2",
+  "task_key": "worker_analysis_exp027_mlp_verifier_v2_20260518T160242",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp027_mlp_verifier_v2_20260518T160242_result.json",
+    "occurrence": 1,
+    "bytes": 828,
+    "sha256": "39925675be21bcac6fb0fad268babe9160a80749fb36d76148b67395fea22358"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Feature bottleneck 确认。** 已有 exp_027 结果直接复用，无需重跑（脚本+数据+结果完整）。\n\n核心结论：\n\n| 对比 | 值 |\n|------|-----|\n| Best supervised AUROC | LR 5feat = 0.6522 |\n| Best single signal AUROC | EM = 0.6476 |\n| Best supervised Sel F1 | LR 5feat = 0.6407 |\n| Best unsup Sel F1 | LP = 0.6470 |\n| Greedy F1 | 0.6441 |\n| Oracle F1 | 0.8231 |\n\n- MLP (0.6393) < LR (0.6522)，nonlinear model 在 5 个弱信号上过拟合\n- 15-feat interactions 无帮助：MLP 15feat (0.6322) < MLP 5feat (0.6393)\n- 所有 supervised models 的 selection F1 都低于 best unsupervised (LP=0.6470)\n- Oracle gap 巨大 (0.8231 vs 0.6470)：好 sample 存在但 5 个 QE signals 无法识别\n\n报告已写入 `artifacts/exp027_mlp_v2/mlp_verifier_results.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp027-mlp-verifier-v2-copy-2.md"
+}

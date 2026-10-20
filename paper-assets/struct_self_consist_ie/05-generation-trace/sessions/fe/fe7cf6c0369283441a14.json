@@ -1,0 +1,1161 @@
+{
+  "schema_version": "1.0",
+  "id": "fe7cf6c0369283441a14",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "paper figure fig reliability",
+  "task_key": "worker_paper_figure_fig_reliability_20260514T145317",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_paper_figure_fig_reliability_20260514T145317.jsonl",
+    "occurrence": 1,
+    "bytes": 42067,
+    "sha256": "60c2baf1bb2dc26317e48b8e9969e6598bb087e53046a885901fefdb1ec26eb7"
+  },
+  "statistics": {
+    "messages": 57,
+    "user_turns": 0,
+    "tool_calls": 28,
+    "roles": {
+      "tool_call": 28,
+      "tool_result": 28,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T14:58:14.987599+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T14:58:14.988221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tdescription: 生成学术论文级 matplotlib 图表——reliability diagrams、ECE heatmap、T* scatter plot、模型对比图，直接在 A6000 服务器上执行，输出 PDF/PNG\n3\tname: draw-paper-figure\n4\tscope: global\n5\ttags:\n6\t  - research\n7\t  - visualization\n8\t  - paper\n9\t  - matplotlib\n10\tversion: 1\n11\ttools:\n12\t  - ssh_execute\n13\t---\n14\t\n15\t# Draw Paper Figure — 学术图表生成\n16\t\n17\t为 ML 论文生成发表级图表。通过 SSH 在 A6000 上运行 matplotlib 脚本，直接输出到实验目录。\n18\t\n19\t## 触发条件\n20\t\n21\t- 用户说\"画个图\"、\"生成 reliability diagram\"、\"做个 heatmap\"\n22\t- 论文写作阶段需要插图\n23\t- 实验结果需要可视化汇总\n24\t\n25\t## 通用样式标准（所有图表必须遵守）\n26\t\n27\t```python\n28\timport matplotlib\n29\tmatplotlib.use('Agg')\n30\timport matplotlib.pyplot as plt\n31\timport matplotlib.patches as mpatches\n32\timport numpy as np\n33\t\n34\t# 字体和全局样式\n35\tplt.rcParams.update({\n36\t    'font.family': 'DejaVu Sans',\n37\t    'font.size': 11,\n38\t    'axes.titlesize': 13,\n39\t    'axes.labelsize': 12,\n40\t    'xtick.labelsize': 10,\n41\t    'ytick.labelsize': 10,\n42\t    'legend.fontsize': 10,\n43\t    'figure.dpi': 300,\n44\t    'savefig.dpi': 300,\n45\t    'savefig.bbox': 'tight',\n46\t    'savefig.pad_inches': 0.05,\n47\t    'axes.spines.top': False,\n48\t    'axes.spines.right': False,\n49\t    'lines.linewidth': 1.8,\n50\t})\n51\t\n52\t# 色盲友好配色（Okabe-Ito）\n53\tCOLORS = {\n54\t    'fp16':   '#E69F00',  # 橙黄\n55\t    'nf4':    '#56B4E9',  # 天蓝\n56\t    'int8':   '#009E73',  # 绿\n57\t    'gptq':   '#F0E442',  # 黄\n58\t    'awq':    '#CC79A7',  # 粉紫\n59\t    'llama':  '#0072B2',  # 深蓝\n60\t    'qwen3':  '#D55E00',  # 橙红\n61\t    'gemma':  '#009E73',  # 绿\n62\t    'mistral':'#CC79A7',  # 粉紫\n63\t    'phi3':   '#F0E442',  # 黄\n64\t}\n65\t\n66\t# 方法标签\n67\tMETHOD_LABELS = {\n68\t    'fp16': 'FP16', 'nf4': 'BNB-NF4',\n69\t    'int8': 'BNB-INT8', 'gptq': 'GPTQ-4bit', 'awq': 'AWQ-4bit'\n70\t}\n71\t```\n72\t\n73\t---\n74\t\n75\t## 1. Reliability Diagram（校准图）\n76\t\n77\t**用途**：显示模型 confidence bin vs accuracy，对角线 = 完美校准。\n78\t\n79\t```python\n80\tdef plot_reliability_diagram(confidences, accuracies, n_bins=10,\n81\t                              label='', color='#0072B2',\n82\t                              title='Reliability\n…[truncated 8160 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T14:58:14.988478+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "ssh execute read",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T14:58:14.988629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T14:58:14.988760+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/figures/paper"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T14:58:14.988902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "figures/paper/fig_overview.pdf\nfigures/paper/fig_selection_gap.pdf\nfigures/paper/fig_selection_gap.png\nfigures/paper/fig_signal_heatmap.py\nfigures/paper/fig_signal_heatmap.pdf\nfigures/paper/fig_signal_heatmap.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T14:58:14.989077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "ssh execute read_only",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T14:58:14.989263+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T14:58:14.989428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "ssh remote command server",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T14:58:14.989558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T14:58:14.989686+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "+ssh",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T14:58:14.989801+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T14:58:14.989936+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-5090 \"ls /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/ 2>/dev/null && echo '---' && ls /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/ 2>/dev/null\" 2>&1 | head -30",
+              "description": "SSH to autodl-5090 to list data directories",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T14:58:14.990056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.\r\ne1_component_decomposition.json\nexp013_exact_match_report.json\nexp014_entity_voting_report.json\nreport.json\nsamples.jsonl\n---\nanalysis_report.json\nsamples_with_logprobs.jsonl"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T14:58:14.990241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-5090 \"head -2 /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\" 2>&1",
+              "description": "Read first 2 lines of samples.jsonl to see fields",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T14:58:14.990433+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-5090 \"head -2 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\" 2>&1",
+              "description": "Read first 2 lines of logprob data to see fields",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T14:58:14.990692+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.\r\n{\"id\": \"X96-1059_sent000\", \"text\": \"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\", \"gold\": {\"entities\": [{\"text\": \"Recognition of proper nouns\", \"type\": \"Task\", \"start\": 0, \"end\": 27}, {\"text\": \"proper nouns\", \"type\": \"OtherScientificTerm\", \"start\": 15, \"end\": 27}, {\"text\": \"Japanese text\", \"type\": \"Material\", \"start\": 31, \"end\": 44}, {\"text\": \"morphological analysis\", \"type\": \"Task\", \"start\": 103, \"end\": 125}, {\"text\": \"Japanese text processing\", \"type\": \"Task\", \"start\": 129, \"end\": 153}], \"relations\": [{\"head\": \"Recognition of proper nouns\", \"tail\": \"morphological analysis\", \"type\": \"PART-OF\", \"head_start\": 0, \"head_end\": 27, \"tail_start\": 103, \"tail_end\": 125}, {\"head\": \"proper nouns\", \"tail\": \"Japanese text\", \"type\": \"PART-OF\", \"head_start\": 15, \"head_end\": 27, \"tail_start\": 31, \"tail_end\": 44}, {\"head\": \"morphological analysis\", \"tail\": \"Japanese text processing\", \"type\": \"USED-FOR\", \"head_start\": 103, \"head_end\": 125, \"tail_start\": 129, \"tail_end\": 153}], \"events\": []}, \"samples\": [{\"entities\": [{\"text\": \"Recognition of proper nouns\", \"type\": \"Task\", \"start\": 0, \"end\": 27}, {\"text\": \"Japanese text\", \"type\": \"Material\", \"start\": 31, \"end\": 44}, {\"text\": \"morphological analysis\", \"type\": \"Task\", \"start\": 103, \"end\": 125}, {\"text\": \"Japanese text processing\", \"type\": \"Task\", \"start\": 129, \"end\": 153}], \"relations\": [{\"head\": \"Recognition of proper nouns\", \"tail\": \"morphological analysis\", \"type\": \"PART-OF\", \"head_start\": 0, \"head_end\": 27, \"tail_start\": 103, \"tail_end\": 125}, {\"head\": \"Recognition of proper nouns\", \"tail\": \"Japanese text processing\", \"type\": \"PART-OF\", \"head_start\": 0, \"head_end\": 27, \"tail_start\": 129, \"tail_end\": 153}, {\"head\": \"Japanese text\", \"tail\": \"morphological analysis\", \"type\": \"USED-FO\n…[truncated 8770 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T14:58:14.990961+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.\r\n{\"id\": \"X96-1059_sent000\", \"text\": \"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\", \"gold\": {\"entities\": [{\"text\": \"Recognition of proper nouns\", \"type\": \"Task\", \"start\": 0, \"end\": 27}, {\"text\": \"proper nouns\", \"type\": \"OtherScientificTerm\", \"start\": 15, \"end\": 27}, {\"text\": \"Japanese text\", \"type\": \"Material\", \"start\": 31, \"end\": 44}, {\"text\": \"morphological analysis\", \"type\": \"Task\", \"start\": 103, \"end\": 125}, {\"text\": \"Japanese text processing\", \"type\": \"Task\", \"start\": 129, \"end\": 153}], \"relations\": [{\"head\": \"Recognition of proper nouns\", \"tail\": \"morphological analysis\", \"type\": \"PART-OF\", \"head_start\": 0, \"head_end\": 27, \"tail_start\": 103, \"tail_end\": 125}, {\"head\": \"proper nouns\", \"tail\": \"Japanese text\", \"type\": \"PART-OF\", \"head_start\": 15, \"head_end\": 27, \"tail_start\": 31, \"tail_end\": 44}, {\"head\": \"morphological analysis\", \"tail\": \"Japanese text processing\", \"type\": \"USED-FOR\", \"head_start\": 103, \"head_end\": 125, \"tail_start\": 129, \"tail_end\": 153}], \"events\": []}, \"samples\": [{\"entities\": [{\"text\": \"Recognition of proper nouns in Japanese text\", \"type\": \"Task\", \"start\": 0, \"end\": 44}, {\"text\": \"Japanese text processing\", \"type\": \"Task\", \"start\": 129, \"end\": 153}], \"relations\": [{\"head\": \"Recognition of proper nouns in Japanese text\", \"tail\": \"Japanese text processing\", \"type\": \"HYPONYM-OF\", \"head_start\": 0, \"head_end\": 44, \"tail_start\": 129, \"tail_end\": 153}], \"events\": [], \"cumulative_logprob\": -13.773208742677951, \"n_tokens\": 137, \"mean_logprob\": -0.10053437038451059}, {\"entities\": [{\"text\": \"Recognition of proper nouns\", \"type\": \"Task\", \"start\": 0, \"end\": 27}, {\"text\": \"Japanese text\", \"type\": \"Material\", \"start\": 31, \"end\": 44}, {\"text\": \"morphological analysis\", \"type\": \"Task\", \"start\": 103, \"end\": \n…[truncated 9514 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T14:58:14.991181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-5090 \"wc -l /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\" 2>&1",
+              "description": "Count lines in data files",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T14:58:14.991357+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.\r\n    551 /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl\n    551 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\n   1102 total"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T14:58:14.991484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-5090 \"cat /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/report.json\" 2>&1 | head -80",
+              "description": "Read report.json for metric definitions",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T14:58:14.991631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.\r\n{\n  \"dataset\": \"scierc\",\n  \"subtask\": \"joint\",\n  \"n_samples\": 8,\n  \"temperature\": 1.0,\n  \"num_instances\": 551,\n  \"use_train_format\": true,\n  \"ner_greedy_f1\": 0.6670644391408114,\n  \"ner_oracle_f1\": 0.7755707085680403,\n  \"ner_oracle_headroom\": 0.10850626942722896,\n  \"ner_fleiss_kappa_mean\": 0.404833077782123,\n  \"ner_soft_jaccard_mean\": 0.7007668853280039,\n  \"ner_correlation_fleiss_vs_f1_full\": {\n    \"rho\": 0.2590287670611875,\n    \"p_value\": 1.4749617362002596e-09,\n    \"n\": 529\n  },\n  \"ner_correlation_softjaccard_vs_f1_full\": {\n    \"rho\": 0.3825183376668469,\n    \"p_value\": 7.075136887733191e-20,\n    \"n\": 529\n  },\n  \"ner_correlation_fleiss_vs_f1_conditional\": {\n    \"rho\": 0.23519998074107282,\n    \"p_value\": 8.162404147668711e-08,\n    \"n\": 508\n  },\n  \"ner_correlation_softjaccard_vs_f1_conditional\": {\n    \"rho\": 0.3761747231572503,\n    \"p_value\": 1.6016428996438062e-18,\n    \"n\": 508\n  },\n  \"ner_n_gold_empty_filtered\": 22,\n  \"ner_n_all_samples_f1_zero_filtered\": 21,\n  \"ner_structural_beats_surface\": true,\n  \"ner_rho_advantage\": 0.1234895706056594,\n  \"ner_sample_f1_mean\": 0.6083957210996992,\n  \"ner_sample_f1_std\": 0.3173545540187574,\n  \"ner_sample_f1_pct_zero\": 12.19281663516068,\n  \"re_greedy_f1\": 0.4207896051974013,\n  \"re_oracle_f1\": 0.5882352941176471,\n  \"re_oracle_headroom\": 0.1674456889202458,\n  \"re_fleiss_kappa_mean\": 0.2996385624366326,\n  \"re_soft_jaccard_mean\": 0.6113509598733148,\n  \"re_correlation_fleiss_vs_f1_full\": {\n    \"rho\": 0.2782151188817765,\n    \"p_value\": 1.7243205365720716e-08,\n    \"n\": 397\n  },\n  \"re_correlation_softjaccard_vs_f1_full\": {\n    \"rho\": 0.2440702831280834,\n    \"p_value\": 8.550224511243979e-07,\n    \"n\": 397\n  },\n  \"re_correlation_fleiss_vs_f1_conditional\": {\n    \"rho\": 0.3067010369107279,\n    \"p_value\": 3.051941342129941e-08,\n    \"n\": 313\n  },\n  \"re_correlation_softjaccard_vs_f1_conditional\": {\n    \"rho\": 0.31612432525905776,\n    \"p_value\": \n…[truncated 551 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T14:58:14.991829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat << 'PYEOF' > /tmp/compute_reliability_data.py\nimport json\nimport sys\nimport numpy as np\nfrom collections import Counter\nfrom itertools import combinations\n\ndef entity_set(sample):\n    return set((e['text'], e['type']) for e in sample.get('entities', []))\n\ndef relation_set(sample):\n    return set((r['head'], r['tail'], r['type']) for r in sample.get('relations', []))\n\ndef jaccard(s1, s2):\n    if not s1 and not s2:\n        return 1.0\n    if not s1 or not s2:\n        return 0.0\n    return len(s1 & s2) / len(s1 | s2)\n\ndef pairwise_jaccard(sets_list):\n    if len(sets_list) < 2:\n        return 1.0\n    sims = [jaccard(s1, s2) for s1, s2 in combinations(sets_list, 2)]\n    return np.mean(sims)\n\ndef voting_confidence(sets_list):\n    all_items = []\n    for s in sets_list:\n        all_items.extend(s)\n    if not all_items:\n        return 1.0\n    counter = Counter(all_items)\n    n = len(sets_list)\n    union = set(all_items)\n    voted = set()\n    for item, count in counter.items():\n        if count > n / 2:\n            voted.add(item)\n    if not union:\n        return 1.0\n    confidences = []\n    for item in union:\n        confidences.append(counter[item] / n)\n    return np.mean(confidences)\n\ndef f1_score(pred_set, gold_set):\n    if not pred_set and not gold_set:\n        return 1.0\n    if not pred_set or not gold_set:\n        return 0.0\n    tp = len(pred_set & gold_set)\n    p = tp / len(pred_set) if pred_set else 0\n    r = tp / len(gold_set) if gold_set else 0\n    if p + r == 0:\n        return 0.0\n    return 2 * p * r / (p + r)\n\ndef majority_vote(sets_list):\n    all_items = []\n    for s in sets_list:\n        all_items.extend(s)\n    counter = Counter(all_items)\n    n = len(sets_list)\n    return set(item for item, count in counter.items() if count > n / 2)\n\ndef process(samples_file, logprob_file, output_file):\n    # Load both files keyed by id\n    samples_data = {}\n    with open(samples_file) as f:\n        for line in f:\n            d = json.loads(line)\n            samples_data[d['id']] = d\n\n    logprob_data = {}\n    with open(logprob_file) as f:\n        for line in f:\n            d = json.loads(line)\n            logprob_data[d['id']] = d\n\n    results = []\n    for doc_id, doc in samples_data.items():\n        gold_ents = entity_set(doc['gold'])\n        gold_rels = relation_set(doc['gold'])\n        samples = doc['samples']\n\n        ent_sets = [entity_set(s) for s in samples]\n        rel_sets = [relation_set(s) for s in samples]\n\n        # Soft Jaccard\n        sj_ner = pairwise_jaccard(ent_sets)\n        sj_re = pairwise_jaccard(rel_sets)\n\n        # Voting confidence\n        vc_ner = voting_confidence(ent_sets)\n        vc_re = voting_confidence(rel_sets)\n\n        # F1 of majority vote vs gold\n        voted_ents = majority_vote(ent_sets)\n        voted_rels = majority_vote(rel_sets)\n        f1_ner = f1_score(voted_ents, gold_ents)\n        f1_re = f1_score(voted_rels, gold_rels)\n\n        # Mean sample F1 vs gold (alternative accuracy measure)\n        sample_ner_f1s = [f1_score(es, gold_ents) for es in ent_sets]\n        sample_re_f1s = [f1_score(rs, gold_rels) for rs in rel_sets]\n        mean_sample_ner_f1 = np.mean(sample_ner_f1s)\n        mean_sample_re_f1 = np.mean(sample_re_f1s)\n\n        # Logprob (mean across samples)\n        lp_doc = logprob_data.get(doc_id)\n        if lp_doc:\n            lp_samples = lp_doc['samples']\n            mean_logprob = np.mean([s.get('mean_logprob', 0) for s in lp_samples])\n        else:\n            mean_logprob = None\n\n        results.append({\n            'id': doc_id,\n            'sj_ner': sj_ner,\n            'sj_re': sj_re,\n            'vc_ner': vc_ner,\n            'vc_re': vc_re,\n            'f1_ner': f1_ner,\n            'f1_re': f1_re,\n            'mean_sample_ner_f1': mean_sample_ner_f1,\n            'mean_sample_re_f1': mean_sample_re_f1,\n            'mean_logprob': mean_logprob,\n            'has_gold_ents': len(gold_ents) > 0,\n            'has_gold_rels': len(gold_rels) > 0,\n        })\n\n    with open(output_file, 'w') as f:\n        json.dump(results, f)\n    print(f\"Wrote {len(results)} instances to {output_file}\")\n\nprocess(\n    '/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/samples.jsonl',\n    '/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl',\n    '/tmp/reliability_data.json'\n)\nPYEOF\necho \"Script written\"",
+              "description": "Write metric computation script locally"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T14:58:14.991995+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script written"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T14:58:14.992144+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "scp /tmp/compute_reliability_data.py autodl-5090:/tmp/compute_reliability_data.py 2>&1 && ssh autodl-5090 \"python3 /tmp/compute_reliability_data.py\" 2>&1",
+              "description": "Upload and run metric computation on remote server",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T14:58:14.992275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 127\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.\r\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.\r\nbash: line 1: python3: command not found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T14:58:14.992393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-5090 \"which python && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python && python /tmp/compute_reliability_data.py\" 2>&1",
+              "description": "Run with conda python",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T14:58:14.992508+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T14:58:14.992620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-5090 \"ls /root/miniconda3/bin/python 2>/dev/null; ls /usr/bin/python* 2>/dev/null; which python 2>/dev/null; find / -name 'python*' -type f 2>/dev/null | head -5\" 2>&1",
+              "description": "Find Python binary on remote server",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T14:58:14.992737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.\r\n/root/miniconda3/bin/python\n/opt/nvidia/nsight-compute/2025.1.1/host/target-linux-x64/python/bin/python\n/root/miniconda3/bin/python3.12\n/root/miniconda3/bin/python3.12-config\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\n/root/miniconda3/include/python3.12/cpython/pythonrun.h"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T14:58:14.992851+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-5090 \"/root/miniconda3/bin/python /tmp/compute_reliability_data.py\" 2>&1",
+              "description": "Run metric computation with explicit python path",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T14:58:14.992998+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.\r\nWrote 551 instances to /tmp/reliability_data.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T14:58:14.993140+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "scp autodl-5090:/tmp/reliability_data.json /tmp/reliability_data.json 2>&1 && wc -c /tmp/reliability_data.json",
+              "description": "Download computed metrics",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T14:58:14.993260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:21071' (ED25519) to the list of known hosts.\r\n172791 /tmp/reliability_data.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T14:58:14.993385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nimport numpy as np\ndata = json.load(open('/tmp/reliability_data.json'))\nprint(f'Total instances: {len(data)}')\nsj_ner = [d['sj_ner'] for d in data]\nsj_re = [d['sj_re'] for d in data]\nvc_ner = [d['vc_ner'] for d in data]\nvc_re = [d['vc_re'] for d in data]\nlp = [d['mean_logprob'] for d in data if d['mean_logprob'] is not None]\nf1_ner = [d['f1_ner'] for d in data]\nf1_re = [d['f1_re'] for d in data]\nhas_ents = sum(1 for d in data if d['has_gold_ents'])\nhas_rels = sum(1 for d in data if d['has_gold_rels'])\nprint(f'Has gold ents: {has_ents}, Has gold rels: {has_rels}')\nprint(f'SJ NER: [{np.min(sj_ner):.3f}, {np.max(sj_ner):.3f}] mean={np.mean(sj_ner):.3f}')\nprint(f'SJ RE: [{np.min(sj_re):.3f}, {np.max(sj_re):.3f}] mean={np.mean(sj_re):.3f}')\nprint(f'VC NER: [{np.min(vc_ner):.3f}, {np.max(vc_ner):.3f}] mean={np.mean(vc_ner):.3f}')\nprint(f'VC RE: [{np.min(vc_re):.3f}, {np.max(vc_re):.3f}] mean={np.mean(vc_re):.3f}')\nprint(f'Logprob: [{np.min(lp):.4f}, {np.max(lp):.4f}] mean={np.mean(lp):.4f} (n={len(lp)})')\nprint(f'F1 NER: [{np.min(f1_ner):.3f}, {np.max(f1_ner):.3f}] mean={np.mean(f1_ner):.3f}')\nprint(f'F1 RE: [{np.min(f1_re):.3f}, {np.max(f1_re):.3f}] mean={np.mean(f1_re):.3f}')\nprint(f'Mean sample NER F1: {np.mean([d[\\\"mean_sample_ner_f1\\\"] for d in data]):.3f}')\nprint(f'Mean sample RE F1: {np.mean([d[\\\"mean_sample_re_f1\\\"] for d in data]):.3f}')\n\"",
+              "description": "Inspect downloaded metrics distribution"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T14:58:14.993510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total instances: 551\nHas gold ents: 529, Has gold rels: 397\nSJ NER: [0.179, 1.000] mean=0.671\nSJ RE: [0.036, 1.000] mean=0.567\nVC NER: [0.125, 1.000] mean=0.624\nVC RE: [0.125, 1.000] mean=0.505\nLogprob: [-0.1529, -0.0006] mean=-0.0455 (n=551)\nF1 NER: [0.000, 1.000] mean=0.624\nF1 RE: [0.000, 1.000] mean=0.488\nMean sample NER F1: 0.606\nMean sample RE F1: 0.451"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T14:58:14.993672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/tmp/plot_reliability.py",
+              "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport json\nimport os\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\nCOLORS = {\n    'sj': '#56B4E9',\n    'voting': '#E69F00',\n    'logprob': '#0072B2',\n}\n\nMARKERS = {\n    'sj': 'o',\n    'voting': 's',\n    'logprob': '^',\n}\n\ndata = json.load(open('/tmp/reliability_data.json'))\n\ndef compute_bins(confidences, accuracies, n_bins=10):\n    bin_edges = np.linspace(0, 1, n_bins + 1)\n    bin_accs = []\n    bin_confs = []\n    bin_counts = []\n    for i in range(n_bins):\n        lo, hi = bin_edges[i], bin_edges[i + 1]\n        if i == n_bins - 1:\n            mask = (confidences >= lo) & (confidences <= hi)\n        else:\n            mask = (confidences >= lo) & (confidences < hi)\n        if mask.sum() > 0:\n            bin_accs.append(accuracies[mask].mean())\n            bin_confs.append(confidences[mask].mean())\n            bin_counts.append(mask.sum())\n        else:\n            bin_accs.append(np.nan)\n            bin_confs.append((lo + hi) / 2)\n            bin_counts.append(0)\n    return np.array(bin_accs), np.array(bin_confs), np.array(bin_counts), bin_edges\n\ndef compute_ece(bin_accs, bin_confs, bin_counts):\n    total = bin_counts.sum()\n    if total == 0:\n        return 0.0\n    valid = ~np.isnan(bin_accs)\n    return np.sum(bin_counts[valid] / total * np.abs(bin_accs[valid] - bin_confs[valid]))\n\n# Prepare per-instance arrays\n# NER: filter to instances with gold entities\nner_mask = [d['has_gold_ents'] for d in data]\nre_mask = [d['has_gold_rels'] for d in data]\n\nsj_ner = np.array([d['sj_ner'] for d, m in zip(data, ner_mask) if m])\nvc_ner = np.array([d['vc_ner'] for d, m in zip(data, ner_mask) if m])\nf1_ner = np.array([d['mean_sample_ner_f1'] for d, m in zip(data, ner_mask) if m])\nlp_raw_ner = np.array([d['mean_logprob'] for d, m in zip(data, ner_mask) if m and d['mean_logprob'] is not None])\nf1_ner_lp = np.array([d['mean_sample_ner_f1'] for d, m in zip(data, ner_mask) if m and d['mean_logprob'] is not None])\n\nsj_re = np.array([d['sj_re'] for d, m in zip(data, re_mask) if m])\nvc_re = np.array([d['vc_re'] for d, m in zip(data, re_mask) if m])\nf1_re = np.array([d['mean_sample_re_f1'] for d, m in zip(data, re_mask) if m])\nlp_raw_re = np.array([d['mean_logprob'] for d, m in zip(data, re_mask) if m and d['mean_logprob'] is not None])\nf1_re_lp = np.array([d['mean_sample_re_f1'] for d, m in zip(data, re_mask) if m and d['mean_logprob'] is not None])\n\n# Normalize logprob to [0, 1] (higher = more confident)\nall_lp = np.array([d['mean_logprob'] for d in data if d['mean_logprob'] is not None])\nlp_min, lp_max = all_lp.min(), all_lp.max()\nlp_ner_norm = (lp_raw_ner - lp_min) / (lp_max - lp_min)\nlp_re_norm = (lp_raw_re - lp_min) / (lp_max - lp_min)\n\nn_bins = 10\n\n# --- Figure ---\nfig, axes = plt.subplots(2, 2, figsize=(10, 4.5),\n                         gridspec_kw={'height_ratios': [3, 1], 'hspace': 0.08, 'wspace': 0.3},\n                         sharex='col')\n\npanels = [\n    {\n        'title': 'NER',\n        'signals': [\n            ('Soft Jaccard', 'sj', sj_ner, f1_ner),\n            ('Voting Conf.', 'voting', vc_ner, f1_ner),\n            ('Logprob', 'logprob', lp_ner_norm, f1_ner_lp),\n        ],\n        'ax_main': axes[0, 0],\n        'ax_hist': axes[1, 0],\n    },\n    {\n        'title': 'RE',\n        'signals': [\n            ('Soft Jaccard', 'sj', sj_re, f1_re),\n            ('Voting Conf.', 'voting', vc_re, f1_re),\n            ('Logprob', 'logprob', lp_re_norm, f1_re_lp),\n        ],\n        'ax_main': axes[0, 1],\n        'ax_hist': axes[1, 1],\n    },\n]\n\nfor panel in panels:\n    ax_main = panel['ax_main']\n    ax_hist = panel['ax_hist']\n\n    # Perfect calibration line\n    ax_main.plot([0, 1], [0, 1], 'k--', linewidth=1, alpha=0.5, zorder=1)\n\n    for label, key, confs, accs in panel['signals']:\n        bin_accs, bin_confs, bin_counts, bin_edges = compute_bins(confs, accs, n_bins)\n        ece = compute_ece(bin_accs, bin_confs, bin_counts)\n\n        valid = ~np.isnan(bin_accs)\n        ax_main.plot(bin_confs[valid], bin_accs[valid],\n                     marker=MARKERS[key], color=COLORS[key],\n                     label=f'{label} (ECE={ece:.3f})',\n                     markersize=5, zorder=2)\n\n        bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2\n        ax_hist.bar(bin_centers, bin_counts, width=0.08, alpha=0.4,\n                    color=COLORS[key], zorder=2)\n\n    ax_main.set_xlim(0, 1)\n    ax_main.set_ylim(0, 1)\n    ax_main.set_ylabel('Mean F1')\n    ax_main.set_title(panel['title'])\n    ax_main.legend(loc='upper left', fontsize=8.5, framealpha=0.9)\n    ax_main.grid(True, alpha=0.2, zorder=0)\n    ax_main.set_xticklabels([])\n\n    ax_hist.set_xlabel('Confidence')\n    ax_hist.set_ylabel('Count', fontsize=9)\n    ax_hist.set_xlim(0, 1)\n    ax_hist.grid(True, alpha=0.2, zorder=0)\n\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/figures/paper'\nos.makedirs(outdir, exist_ok=True)\noutpath = os.path.join(outdir, 'fig_reliability.pdf')\nplt.savefig(outpath)\nplt.close()\nprint(f'Saved: {outpath}')\n\n# Also save PNG for preview\npng_path = outpath.replace('.pdf', '.png')\nfig2, axes2 = plt.subplots(2, 2, figsize=(10, 4.5),\n                           gridspec_kw={'height_ratios': [3, 1], 'hspace': 0.08, 'wspace': 0.3},\n                           sharex='col')\nfor pi, panel in enumerate(panels):\n    ax_main = axes2[0, pi]\n    ax_hist = axes2[1, pi]\n    ax_main.plot([0, 1], [0, 1], 'k--', linewidth=1, alpha=0.5, zorder=1)\n    for label, key, confs, accs in panel['signals']:\n        bin_accs, bin_confs, bin_counts, bin_edges = compute_bins(confs, accs, n_bins)\n        ece = compute_ece(bin_accs, bin_confs, bin_counts)\n        valid = ~np.isnan(bin_accs)\n        ax_main.plot(bin_confs[valid], bin_accs[valid],\n                     marker=MARKERS[key], color=COLORS[key],\n                     label=f'{label} (ECE={ece:.3f})',\n                     markersize=5, zorder=2)\n        bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2\n        ax_hist.bar(bin_centers, bin_counts, width=0.08, alpha=0.4,\n                    color=COLORS[key], zorder=2)\n    ax_main.set_xlim(0, 1)\n    ax_main.set_ylim(0, 1)\n    ax_main.set_ylabel('Mean F1')\n    ax_main.set_title(panel['title'])\n    ax_main.legend(loc='upper left', fontsize=8.5, framealpha=0.9)\n    ax_main.grid(True, alpha=0.2, zorder=0)\n    ax_main.set_xticklabels([])\n    ax_hist.set_xlabel('Confidence')\n    ax_hist.set_ylabel('Count', fontsize=9)\n    ax_hist.set_xlim(0, 1)\n    ax_hist.grid(True, alpha=0.2, zorder=0)\nplt.savefig(png_path, dpi=150)\nplt.close()\nprint(f'Saved: {png_path}')\n"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T14:58:14.993867+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /tmp/plot_reliability.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T14:58:14.993987+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 /tmp/plot_reliability.py",
+              "description": "Generate reliability diagram",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T14:58:14.994102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"/tmp/plot_reliability.py\", line 1, in <module>\n    import matplotlib\nModuleNotFoundError: No module named 'matplotlib'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T14:58:14.994239+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pip install matplotlib numpy 2>&1 | tail -5",
+              "description": "Install matplotlib and numpy",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T14:58:14.994355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    See /usr/share/doc/python3.14/README.venv for more information.\n\nnote: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.\nhint: See PEP 668 for the detailed specification."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T14:58:14.994469+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -m venv /tmp/plotenv && /tmp/plotenv/bin/pip install matplotlib numpy -q 2>&1 | tail -3",
+              "description": "Create venv and install matplotlib",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T14:58:14.994622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T14:58:14.994777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "/tmp/plotenv/bin/python /tmp/plot_reliability.py",
+              "description": "Generate reliability diagram with venv python",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-14T14:58:14.994910+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Saved: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/figures/paper/fig_reliability.pdf\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/figures/paper/fig_reliability.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-14T14:58:14.995037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/figures/paper/fig_reliability.pdf /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/figures/paper/fig_reliability.png",
+              "description": "Verify output files"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-14T14:58:14.995182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu 20725 May 14 14:57 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/figures/paper/fig_reliability.pdf\n-rw-r--r-- 1 ubuntu ubuntu 99194 May 14 14:57 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/figures/paper/fig_reliability.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-14T14:58:14.995311+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/figures/paper/fig_reliability.png"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-14T14:58:14.995823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-14T14:58:14.996043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cp /tmp/plot_reliability.py /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/figures/paper/fig_reliability.py && cp /tmp/reliability_data.json /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/figures/paper/fig_reliability_data.json",
+              "description": "Save script and data alongside figure"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-14T14:58:14.996222+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-14T14:58:14.996361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-14T14:58:14.996482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-14T14:58:14.996600+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "fig_reliability",
+              "type": "chart",
+              "description": "Reliability diagram (2 panels: NER/RE) comparing calibration of 3 confidence signals — Soft Jaccard (ECE=0.077/0.165), Voting Conf (ECE=0.071/0.128), Logprob (ECE=0.113/0.380). Shows structural signals are better calibrated than logprob, especially for RE. SciERC N=8 T=1.0, 551 instances.",
+              "project": "struct_self_consist_ie",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/figures/paper/fig_reliability.pdf",
+              "tags": "['paper', 'reliability-diagram', 'calibration', 'ECE']"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-14T14:58:14.996752+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_dd7249\\\", \\\"name\\\": \\\"fig_reliability\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Reliability diagram (2 panels: NER/RE) comparing calibration of 3 confidence signals — Soft Jaccard (ECE=0.077/0.165), Voting Conf (ECE=0.071/0.128), Logprob (ECE=0.113/0.380). Shows structural signals are better calibrated than logprob, especially for RE. SciERC N=8 T=1.0, 551 instances.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/chart/fig_reliability.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T14:58:02.822895+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"reliability-diagram\\\", \\\"calibration\\\", \\\"ECE\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-14T14:58:14.996943+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成并注册。\n\n**输出**: `/figures/paper/fig_reliability.pdf` (20KB, 矢量 PDF)\n\n**结果摘要**:\n\n| Signal | NER ECE | RE ECE |\n|--------|---------|--------|\n| Soft Jaccard | 0.077 | 0.165 |\n| Voting Conf. | 0.071 | 0.128 |\n| Logprob | 0.113 | 0.380 |\n\n结构性一致性信号（SJ、Voting）校准质量显著优于 Logprob，RE 任务差距尤其明显（Logprob ECE 0.380 vs Voting 0.128）。NER 上三者差距较小但结构信号仍占优。配套脚本 `fig_reliability.py` 和数据 `fig_reliability_data.json` 已保存在同目录下。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_reliability_20260514T145317"
+          },
+          "id": "event-000057"
+        }
+      ],
+      "message_count": 57
+    }
+  ],
+  "readable_path": "readable/conversations/paper-figure-fig-reliability.md"
+}

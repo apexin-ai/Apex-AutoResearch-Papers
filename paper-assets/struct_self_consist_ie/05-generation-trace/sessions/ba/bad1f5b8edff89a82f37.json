@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bad1f5b8edff89a82f37",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis n16 3seed scs",
+  "task_key": "worker_analysis_n16_3seed_scs_20260515T113242",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_n16_3seed_scs_20260515T113242_result.json",
+    "occurrence": 1,
+    "bytes": 802,
+    "sha256": "59cb5f47f3115806a6901ff1229d8b8e898d8124bc8b133aaea6ca11d129679f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**NER**: SJ 和 VC 在 N=16 下并列最强（ρ ≈ 0.41），SJ 更稳定（σ=0.010 vs 0.026）。相比 N=8，SJ 提升最大（+0.046, +12.7%），从第二跃升至与 VC 并列第一。\n\n**RE**: VC 稳居第一（ρ=0.374），大幅领先 #2 LP（0.310）。VC 从 N=8→N=16 提升最大（+0.065, +21.1%）。\n\n**排名稳定性**: Kendall's W = 0.956（NER 和 RE 均为），近乎完美一致。NER 仅 SJ/VC 在不同 seed 互换 #1-2，RE 仅 FK/LP 互换 #2-3，其余位置完全固定。\n\n**N=8 → N=16**: 所有信号的 ρ 均提升，跨 seed σ 普遍降低。RE 排名从 N=8 的轻微不稳定变为 N=16 的高度一致。\n\n报告已注册为 `art_20260515_c14e0b`，registry 已更新 `exp_001_n16_seed456 → DONE`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-n16-3seed-scs.md"
+}

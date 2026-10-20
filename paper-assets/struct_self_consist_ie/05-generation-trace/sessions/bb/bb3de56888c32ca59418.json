@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb3de56888c32ca59418",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 7b pipeline auto check",
+  "task_key": "worker_ssh_7b-pipeline-auto-check_20260520T002625",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_7b-pipeline-auto-check_20260520T002625_result.json",
+    "occurrence": 1,
+    "bytes": 1423,
+    "sha256": "e85f65f6e9b9d02cef28dbb67015f2f282cfb30a6f2bc48e5496d9bca6410a30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整信息已获取。\n\n## 总结\n\n### Pipeline 完整性\n\n`run_fewnerd_qwen25_7b_pipeline.sh` 包含 5 个阶段：\n\n| 阶段 | 脚本 | 状态 |\n|------|------|------|\n| Phase 1: QLoRA Training | `llamafactory-cli train` | ✅ 包含 |\n| Phase 2: Export/Merge LoRA | `llamafactory-cli export` | ✅ 包含 |\n| Phase 3: 3-seed N=8 Inference | `code/run_mvp_pilot.py` (seed 42/123/456) | ✅ 包含 |\n| Phase 4: Signal Analysis | `code/analyze_fewnerd_results.py` | ✅ 包含 |\n| Phase 5: Entity Construction | `code/wnut17_entity_construction.py` | ✅ 包含 |\n\n### 缺少的步骤\n\nPipeline **不包含** ROADMAP \"准备就绪的工具\" 中列出的以下脚本：\n\n- `artifacts/compute_signals.py` — 用的是 `analyze_fewnerd_results.py` 替代\n- `artifacts/bootstrap_construction.py` — 用的是 `wnut17_entity_construction.py` 替代\n- **`artifacts/format_for_scaling.py`** — **完全缺失**，pipeline 结束后需手动跑\n\n也就是说 pipeline 完成后，signal 和 construction 会自动跑完，但 **format_for_scaling.py 需要手动触发** 才能生成 scaling curve 数据点。\n\n### 7B 当前进度\n\n- Step: **18283/20590** = **88.8%**\n- Loss: 0.0066, eval_loss: 0.0385\n- 速度: ~2.3s/it\n- 剩余训练: ~2307 steps × 2.3s ≈ **1.5 小时**\n- 训练完成后还有 export + 3-seed inference + signals + construction，预计额外 2-3 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-7b-pipeline-auto-check.md"
+}

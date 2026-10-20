@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd11d0eb41ea38ed502a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu e2 pretrained fill",
+  "task_key": "worker_gpu_e2_pretrained_fill_20260521T105606",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_e2_pretrained_fill_20260521T105606_result.json",
+    "occurrence": 1,
+    "bytes": 613,
+    "sha256": "70a68c12a1653d990914752647f498434eb06596be3f6364d27836c6f4387dab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验已经存在且已完成，无需重新启动：\n\n**exp_e2_pretrained_conll** — status: DONE, conclusion: **success**\n- server: autodl-5090, cuda:2\n- wall clock: ~97min (1.62 GPU-hours)\n\n**exp_e2_pretrained_scierc** — status: DONE, conclusion: **negative**\n- server: autodl-5090-c, cuda:3\n- wall clock: ~112min (1.86 GPU-hours)\n- greedy_f1=0.242, oracle_f1=0.389, oracle_headroom=0.147\n- rho_SJ_full=0.219, rho_kappa_full=0.252\n- verdict: FAIL (>30% samples F1=0, structural_beats_surface=false)\n\n两个实验都已跑完并写入了 registry，不需要重复提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-e2-pretrained-fill.md"
+}

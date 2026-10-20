@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7db58718d3ee26f56e1d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh e1 adaptive signal routing",
+  "task_key": "worker_ssh_e1-adaptive-signal-routing_20260520T093508",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_e1-adaptive-signal-routing_20260520T093508_result.json",
+    "occurrence": 1,
+    "bytes": 1407,
+    "sha256": "5fbfac71cadaa7641d932b5ecbe33daf35d134649fc47ae3e45b77cae8e57640"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "E1 完成。结果总结：\n\n**数据**: 16 configs (Qwen3-8B FT × 7, Qwen2.5-72B ZS × 3, Qwen2.5-72B FS × 3, Qwen2.5-7B FT × 3)，0 missing。先用 `compute_signals.py` 为缺少 signal report 的 10 个 config 补算了完整建构方法 F1。\n\n**Label 分布** (5-class): lp_selection=6, none=5, consensus_theta2n=3, consensus_lp_weighted=1, majority_vote=1\n\n**最佳模型: RandomForest (5-class)**\n| 指标 | 值 |\n|------|-----|\n| LOO Accuracy | **56.2%** (9/16) — 未达 60% 目标 |\n| Router avg ΔF1 | **+0.39 pp** |\n| Always-LP ΔF1 | +0.15 pp |\n| Oracle ΔF1 | +0.56 pp |\n\n**Router ΔF1 > Always-LP ΔF1** ✓ (2.6× 提升，达标)\n\n**关键发现**:\n- **FT + 低退化 (SciERC)**: consensus_theta2n 最优\n- **FT + 高退化 (CoNLL)**: greedy 已最优 (none)\n- **FT + 中退化 (FewNERD)**: lp_selection 或 consensus 都有效\n- **72B ZS/FS**: 结果分散，是主要误分类来源\n- **Top features**: oracle_headroom, degeneracy_rate, base_f1 — 退化率和 headroom 是最强预测因子\n\n**为什么 accuracy < 60%**: 16 个 config 中 5 个 class，其中 2 个 class 只有 1 个样本 (consensus_lp_weighted, majority_vote)；72B configs 之间差异大但数量少。3-class 简化版 (合并 consensus) 结果相同。\n\n产出已保存至 `/root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-e1-adaptive-signal-routing.md"
+}

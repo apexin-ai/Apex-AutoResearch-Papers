@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6645de177d35b6fab0ba",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops scierc seeds registry update",
+  "task_key": "worker_ops_scierc-seeds-registry-update_20260522T182548",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_scierc-seeds-registry-update_20260522T182548_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "b448db4932f127c952141326e108d218c55274f22ed22218c6ce5ce324d7071a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。两个实验摘要：\n\n| | exp_scierc_n8_s2024 | exp_scierc_n8_s3141 |\n|---|---|---|\n| **status** | DONE (success) | DONE (success) |\n| **greedy_f1** | 0.6641 | 0.6609 |\n| **oracle_f1** | 0.7914 | 0.7645 |\n| **ρ(SJ,F1) full** | 0.337 | 0.348 |\n| **ρ(κ,F1) full** | 0.236 | 0.207 |\n| **structural > surface** | YES (+0.101) | YES (+0.140) |\n| **logprob ρ full** | 0.183 | 0.193 |\n| **verdict** | MARGINAL | MARGINAL |\n| **wall_clock** | ~1.9 GPU-hrs | ~1.9 GPU-hrs |\n\n两个 seed 均确认 structural consistency (SJ) 优于 surface consistency (kappa)，与之前 3 个 seed 一致。现在 SciERC 有 5 个 seed (42, 123, 456, 2024, 3141)，可用于 Holm-Bonferroni 校正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scierc-seeds-registry-update.md"
+}

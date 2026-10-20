@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "45382fabafa2966dbbd8",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "eval mvp pilot 003",
+  "task_key": "worker_eval_mvp_pilot_003_20260514T080934",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_mvp_pilot_003_20260514T080934.log",
+    "occurrence": 1,
+    "bytes": 1089791,
+    "sha256": "d58ac056e525bebbec106d7b310ef0220180376c7b586835073e2afe524ab835"
+  },
+  "statistics": {
+    "messages": 218,
+    "user_turns": 1,
+    "tool_calls": 77,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 77,
+      "tool_result": 77,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 150,
+      "chunks": [
+        {
+          "path": "45382fabafa2966dbbd8-part-0001.json",
+          "message_count": 118
+        },
+        {
+          "path": "45382fabafa2966dbbd8-part-0002.json",
+          "message_count": 32
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 68,
+      "chunks": [
+        {
+          "path": "45382fabafa2966dbbd8-part-0002.json",
+          "message_count": 68
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-mvp-pilot-003.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb6e3448cda3a99ee84f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh b3 prompted diversity",
+  "task_key": "worker_ssh_b3-prompted-diversity_20260520T113805",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_b3-prompted-diversity_20260520T113805_result.json",
+    "occurrence": 1,
+    "bytes": 173,
+    "sha256": "73d860bd5d501142c0b3a09e4a71bde532027249b11c587092a3acc6c9694201"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已启动并运行正常。模型加载成功，正以约 35 it/s 推理 baseline 采样（template A × N=8）。4 分钟后自动检查完成状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-b3-prompted-diversity.md"
+}

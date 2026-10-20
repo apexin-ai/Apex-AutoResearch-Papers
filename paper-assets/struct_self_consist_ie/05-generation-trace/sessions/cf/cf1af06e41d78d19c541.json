@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "cf1af06e41d78d19c541",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "exp llama fewnerd train infer",
+  "task_key": "worker_exp_llama_fewnerd_train_infer_20260518T082852",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_llama_fewnerd_train_infer_20260518T082852.log",
+    "occurrence": 1,
+    "bytes": 564637,
+    "sha256": "35ea85575bb3adb497d73f0328d8e8f8a8b5279b2ab26e40d581f5ccf74c8c98"
+  },
+  "statistics": {
+    "messages": 209,
+    "user_turns": 0,
+    "tool_calls": 73,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 73,
+      "tool_result": 73,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 209,
+      "chunks": [
+        {
+          "path": "cf1af06e41d78d19c541-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "cf1af06e41d78d19c541-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-llama-fewnerd-train-infer.md"
+}

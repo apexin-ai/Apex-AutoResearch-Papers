@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab5f6d06cf7533145655",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "inference exp 017 llama conll n16 s456",
+  "task_key": "worker_inference_exp_017_llama_conll_n16_s456_20260514T194308",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_inference_exp_017_llama_conll_n16_s456_20260514T194308_result.json",
+    "occurrence": 1,
+    "bytes": 223,
+    "sha256": "23b168d632ccd7694d47708524c1b8ff5458b19e928ad6c3fc1f62619b04c795"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理已启动：\n- **tmux session**: `exp017_s456` on cuda:2\n- **Registry**: `exp_017_llama_conll_n16_s456` → RUNNING\n- 模型加载完成，正在渲染 3453 prompts\n- 将在 ~5 分钟后检查进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/inference-exp-017-llama-conll-n16-s456.md"
+}

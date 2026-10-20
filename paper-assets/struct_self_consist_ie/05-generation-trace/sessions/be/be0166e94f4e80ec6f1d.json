@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be0166e94f4e80ec6f1d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code anonymous repo push",
+  "task_key": "worker_code_anonymous_repo_push_20260523T132336",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_anonymous_repo_push_20260523T132336_result.json",
+    "occurrence": 1,
+    "bytes": 939,
+    "sha256": "a8ed2a6ed56253dac2b6f65b7c9ece77e5aeb90e78379d772b85640e3f325275"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报：\n\n| 项目 | 结果 |\n|------|------|\n| **Repo URL** | https://github.com/anonymous-nlp-2026/struct_self_consist_ie |\n| **文件数** | 330 |\n| **Commit 数** | 1 (`Anonymous submission for review`) |\n| **Git author** | `Anonymous <anonymous@example.com>` |\n| **匿名化检查** | CLEAN — 无 `caoxiaoyu`、`qq.com`、`/root/`、`autodl`、机构名等泄露 |\n\n包含内容：\n- `code/` — 核心模块（sampling, consistency, evaluation, unified_metrics, data_utils）+ 全部分析脚本（200+ 文件）\n- `scripts/` — 实验后处理脚本\n- `configs/` — train/export/lora 配置（路径已替换为 `./models/` 等通用路径）\n- `experiments/` — 跨任务 pilot（FewRel RE, HumanEval code）\n- `examples/` — DeepSpeed 配置\n- 顶层 `.py`/`.sh` — 实验启动脚本\n- `README.md` — 去身份化的复现说明\n- `.gitignore` — 排除数据/checkpoint/日志"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-anonymous-repo-push.md"
+}

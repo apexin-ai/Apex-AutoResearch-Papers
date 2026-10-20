@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a4c1e507df1b2590495",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "setup 5090b download 32b",
+  "task_key": "worker_setup_5090b_download_32b_20260520T220604",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_setup_5090b_download_32b_20260520T220604_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "ee4f3c18855e95bf98e97c9382c2d87ac125fd8bac719d91eae7826c87075207"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载正在进行中，多个 shard 并行下载。当前速度约 5-12 MB/s。\n\n**状态汇总：**\n- **服务器**: autodl-5090-b, 4x RTX 5090 32GB\n- **磁盘**: /root/autodl-tmp/ 95GB 可用（够装 ~65GB 模型）\n- **下载 PID**: 284644，正在后台运行\n- **下载源**: ModelScope 国内 CDN，多文件并行下载中\n- **下载速度**: 约 5-12 MB/s/shard，17 个 shard（每个 ~3.63GB）\n- **预估完成时间**: 总量 ~65GB，按聚合 ~30MB/s 估算约 35-40 分钟\n\n可以用以下命令随时检查进度：\n```\ntail -5 /tmp/download_32b.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-5090b-download-32b.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d9a0dbe44639bba114b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis d112 mf3 random vs single",
+  "task_key": "worker_analysis_d112_mf3_random_vs_single_20260516T090329",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_d112_mf3_random_vs_single_20260516T090329_result.json",
+    "occurrence": 1,
+    "bytes": 1270,
+    "sha256": "90f4536f6af73dc72d217f7eefed448bb42bc173a13b30e99eb8bbc46446766a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three artifacts registered. Here's the summary:\n\n---\n\n## 根因：Table 2 \"Single\" 行标注错误\n\n**Paper 声称** \"Single: one T=1.0 draw\"，但**代码实际使用 T=0 greedy decode**。\n\n### 证据链\n\n1. `table2_selection_f1.py:131` — `greedy = inst.get(\"greedy\", samples[0])`\n2. `sampling.py` — `greedy` 字段来自 `sampler.sample(prompts, n_samples=1, temperature=0.0)`\n3. 这个 T=0 greedy F1 被论文标为 \"Single (one T=1.0 draw)\"\n\n### 数值映射\n\n| Paper 标签 | 值 | 实际来源 |\n|---|---|---|\n| Greedy (T=0) | 0.663 | micro F1, T=0, 551 inst |\n| Single‡ | 0.645 | **macro F1, T=0** (标注为 T=1.0) |\n| Random | 0.610 | macro F1, T=1.0 samples 均值 |\n\n### 3.5pp 差距解释\n\n- 完全是 T=0 argmax vs T=1.0 stochastic 的解码策略差异\n- 如果 Single 正确实现为 T=1.0 单次采样：E[Single] = E[Random] ≈ 0.610（审稿人直觉正确）\n- 信号 vs 真正的 single-sample baseline (0.610)：LP +3.7pp, SJ/FK +3.6pp\n\n### 输出文件\n\n服务器 `output/d112_mf3_random_single/`:\n- `investigation.md` — 完整调查报告（含代码行号）\n- `clarification.txt` — 英文澄清文本（可直接用于 rebuttal）\n- `raw_values.json` — 原始数值验证"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d112-mf3-random-vs-single.md"
+}

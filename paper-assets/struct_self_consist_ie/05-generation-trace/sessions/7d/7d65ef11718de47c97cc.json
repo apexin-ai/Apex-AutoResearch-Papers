@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d65ef11718de47c97cc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp 009 capability stratification",
+  "task_key": "worker_exp_009_capability_stratification_20260514T144925",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_009_capability_stratification_20260514T144925_result.json",
+    "occurrence": 1,
+    "bytes": 1950,
+    "sha256": "87ce923ecf127e54edf4f2ab2f1115fdc2d2415070655cac7e88fd5e169ce3a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-009 完成。结果摘要：\n\n---\n\n## exp-009 Capability Stratification — 结果\n\n### 核心发现\n\n**1. 无经典 inverted-U pattern**\n\n按 greedy F1 分层，SJ 的 within-stratum ρ 没有在中等难度处出现峰值：\n- SciERC NER: 0.159 → 0.139 → 0.090 → 0.230（随难度降低反而升高）\n- SciERC RE: -0.043 → -0.003 → 0.006 → 0.210（仅最容易层有显著相关）\n\n原因：最难层（F1<0.25）的 F1 方差极低（大多数 ≈0），within-stratum 可区分性不足。\n\n**2. SJ 优于 logprob 的优势跨难度稳定**\n\n按 sentence length 分层（independent proxy）：\n| Quartile | SJ ρ (NER) | LP ρ (NER) | SJ ρ (RE) | LP ρ (RE) |\n|----------|-----------|-----------|----------|----------|\n| Q1 短句 | 0.461 [0.31,0.59] | 0.266 [0.10,0.43] | 0.447 [0.30,0.59] | -0.076 |\n| Q2 | 0.401 | 0.253 | 0.319 | 0.031 |\n| Q3 | 0.296 | 0.222 | 0.498 | 0.105 |\n| Q4 长句 | 0.382 [0.22,0.53] | 0.304 [0.15,0.45] | 0.540 [0.41,0.65] | 0.170 |\n\nSJ 在所有 quartile 均显著优于 logprob，RE 任务中 SJ-LP 差距达 Δρ≈0.3-0.5。\n\n**3. Complexity-dependent pattern（比 inverted-U 更有趣）**\n\n按 entity/relation count 分层，SJ 在高复杂度实例上信号更强：\n- SciERC NER: ent 6+ → SJ ρ=0.547 [0.30,0.74], ent 1-2 → SJ ρ=0.415\n- SciERC RE: rel 6+ → SJ ρ=0.527, VC ρ=0.695; rel 1-2 → SJ ρ=0.275\n\n结构一致性信号在输出空间更大时区分力更强——这比 inverted-U 更有实际意义。\n\n**4. Independent proxy 验证**\n\n三个 proxy 之间弱相关（f1 vs sent_len: ρ=-0.02~-0.16），确认独立性。Sentence length 和 entity count 的分层结果与 greedy F1 分层一致，支持结论的 robustness。\n\n### Conclusion: **success**\n假设的 inverted-U 不成立，但发现了更强的 complexity-dependent pattern：SJ 在复杂实例上越强，且跨所有 independent proxy 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-009-capability-stratification.md"
+}

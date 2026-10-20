@@ -1,0 +1,1682 @@
+{
+  "schema_version": "1.0",
+  "id": "42bd28bc373640000c06",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh unified lp best recompute",
+  "task_key": "worker_ssh_unified_lp_best_recompute_20260522T064332",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_unified_lp_best_recompute_20260522T064332.log",
+    "occurrence": 1,
+    "bytes": 150383,
+    "sha256": "b6e1ad1e786fdcd749a9a672ec315b24d18450f528fb3d06804122875121a38e"
+  },
+  "statistics": {
+    "messages": 40,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 10,
+      "tool_call": 13,
+      "tool_result": 13,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+                "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "ac514c97-1ef5-430a-99dd-915b7e304594",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779858000,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.51,
+                  "isUsingOverage": false
+                },
+                "uuid": "4484d559-b095-4421-8678-b80d841bfd17",
+                "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the existing scripts and understanding the unified instance set definition, then check for data availability on the server.",
+              "signature": "EtkCCmMIDRgCKkBObn9xs4D5/lQU3/76GR25qghkBVMA0IJjmrtp29xW2Q1rgYsxzJyZqzL4hHzNf09xtWpPv2an8P0wZgPF6j/wMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDA+3cGQUid27AQVRdRoMhggT+cJXCVWwlcg7IjBMdWsAR+XisyKl8T+QUln8h9tX/TOPTn9KvCxRp8mUxhnHdryF/CN8elEXwxRmEnQqowFckVMKn2u8YhNKVwPD9Ytlrlr2ihyebsJr+3kzGAhLU5pALA2Mr9MTFHIOxitDvsNulNu/KICF9NzjlRkUnex8ilaYcq26dUJlT3aidjRXiT3MaInx5gsQm3t6DM5+TEk8t4wA8hLqU3ZX8aF+Y+YONhnROBgD7jxXsS0ttEKM+LeWoMATxdafYraLHZde/CmSUCQ3ZEXsGBUJsPzKYE0ek4YQGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "85216c83-b3a0-4097-ad46-6f62555583f8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Rhs7L1NcPs2ZMUunQD51Xg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12754,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12754
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先读取服务器上的现有结果和代码，了解统一 instance 集定义和 LP-best 计算逻辑。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "d1b3ebb6-ba02-45d9-9e40-d6517789fe8d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Rhs7L1NcPs2ZMUunQD51Xg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12754,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12754
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FKWmAgSeMdnBmSZQMwrvbo",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "b94e6001-ea1d-47a0-801e-6b1b6cee3944",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Rhs7L1NcPs2ZMUunQD51Xg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12754,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12754
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T06:43:47.949Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01FKWmAgSeMdnBmSZQMwrvbo",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "fb823b5f-736a-4e38-892b-613dc2717ed5",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__detect_image"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GAuY36Qcg9HpPYaMmvtkV1",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/unified_n_scaling_results.txt",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "cb089d75-a575-4c03-b5ba-1536e840dbc1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FNfFAxbpy8RLzzvuLQn56K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 951,
+                "cache_read_input_tokens": 24595,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 951
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T06:43:55.651Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GAuY36Qcg9HpPYaMmvtkV1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n======================================================================\\\\nDataset: SciERC Finetuned (seed=42)\\\\n======================================================================\\\\n  N=8: 551 instances from output/scierc_mf4v2_seed42/samples.jsonl\\\\n  N=16: 551 instances from output/exp_001_seed42_v2/samples.jsonl\\\\n  N=32: 551 instances from output/scierc_n32_s42/samples.jsonl\\\\n  N=64: 551 instances from output/scierc_n64_seed42/samples.jsonl\\\\n\\\\n  Instance ID intersection: 551\\\\n    N=8: 551 total, 0 dropped\\\\n    N=16: 551 total, 0 dropped\\\\n    N=32: 551 total, 0 dropped\\\\n    N=64: 551 total, 0 dropped\\\\n  Gold-nonempty intersection: 529\\\\n\\\\n  Greedy consistency: 52/529 instances differ across N\\\\n  Using greedy from N=8 as unified baseline\\\\n\\\\n  --- Per-N own greedy (showing baseline drift) ---\\\\n     N | Greedy F1 (own)\\\\n  -----+----------------\\\\n     8 |          0.6683\\\\n    16 |          0.6651\\\\n    32 |          0.6629\\\\n    64 |          0.6673\\\\n\\\\n  --- Unified baseline (greedy from N=8) ---\\\\n     N |  Greedy F1 | MV strict F1 |  MV Δ(pp) |  Degen% |  Oracle F1 |  #inst\\\\n  -----+------------+--------------+-----------+---------+------------+-------\\\\n     8 |     0.6683 |       0.6558 |     -1.24 |   13.4% |     0.7840 |    529\\\\n    16 |     0.6683 |       0.6622 |     -0.61 |    7.6% |     0.8179 |    529\\\\n    32 |     0.6683 |       0.6706 |     +0.24 |    3.6% |     0.8399 |    529\\\\n    64 |     0.6683 |       0.6735 |     +0.53 |    2.1% |     0.8626 |    529\\\\n\\\\n======================================================================\\\\nDataset: CoNLL-2003 Finetuned (seed=42)\\\\n======================================================================\\\\n  N=8: 3453 instances from output/exp002_conll2003/samples.jsonl\\\\n  N=16: 3453 instances from output/exp_002_conll_n16/samples.jsonl\\\\n  N=32: 3453 instances from output/conll_n32_s42/samples.jsonl\\\\n  N=64: 3453 instances from output/conll_n64_seed42/samples.jsonl\\\\n\\\\n  Instance ID intersection: 3453\\\\n    N=8: 3453 total, 0 dropped\\\\n    N=16: 3453 total, 0 dropped\\\\n    N=32: 3453 total, 0 dropped\\\\n    N=64: 3453 total, 0 dropped\\\\n  Gold-nonempty intersection: 2756\\\\n\\\\n  Greedy consistency: 24/2756 instances differ across N\\\\n  Using greedy from N=8 as unified baseline\\\\n\\\\n  --- Per-N own greedy (showing baseline drift) ---\\\\n     N | Greedy F1 (own)\\\\n  -----+----------------\\\\n     8 |          0.9123\\\\n    16 |          0.9124\\\\n    32 |          0.9120\\\\n    64 |          0.9120\\\\n\\\\n  --- Unified baseline (greedy from N=8) ---\\\\n     N |  Greedy F1 | MV strict F1 |  MV Δ(pp) |  Degen% |  Oracle F1 |  #inst\\\\n  -----+------------+--------------+-----------+---------+------------+-------\\\\n     8 |     0.9123 |       0.9142 |     +0.20 |   56.7% |     0.9543 |   2756\\\\n    16 |     0.9123 |       0.9155 |     +0.32 |   46.5% |     0.9636 |   2756\\\\n    32 |     0.9123 |       0.9166 |     +0.44 |   40.5% |     0.9690 |   2756\\\\n    64 |     0.9123 |       0.9184 |     +0.61 |   30.6% |     0.9751 |   2756\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "e3118b2f-e30a-40a7-87ce-32e67e9bc5b4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n======================================================================\\\\nDataset: SciERC Finetuned (seed=42)\\\\n======================================================================\\\\n  N=8: 551 instances from output/scierc_mf4v2_seed42/samples.jsonl\\\\n  N=16: 551 instances from output/exp_001_seed42_v2/samples.jsonl\\\\n  N=32: 551 instances from output/scierc_n32_s42/samples.jsonl\\\\n  N=64: 551 instances from output/scierc_n64_seed42/samples.jsonl\\\\n\\\\n  Instance ID intersection: 551\\\\n    N=8: 551 total, 0 dropped\\\\n    N=16: 551 total, 0 dropped\\\\n    N=32: 551 total, 0 dropped\\\\n    N=64: 551 total, 0 dropped\\\\n  Gold-nonempty intersection: 529\\\\n\\\\n  Greedy consistency: 52/529 instances differ across N\\\\n  Using greedy from N=8 as unified baseline\\\\n\\\\n  --- Per-N own greedy (showing baseline drift) ---\\\\n     N | Greedy F1 (own)\\\\n  -----+----------------\\\\n     8 |          0.6683\\\\n    16 |          0.6651\\\\n    32 |          0.6629\\\\n    64 |          0.6673\\\\n\\\\n  --- Unified baseline (greedy from N=8) ---\\\\n     N |  Greedy F1 | MV strict F1 |  MV Δ(pp) |  Degen% |  Oracle F1 |  #inst\\\\n  -----+------------+--------------+-----------+---------+------------+-------\\\\n     8 |     0.6683 |       0.6558 |     -1.24 |   13.4% |     0.7840 |    529\\\\n    16 |     0.6683 |       0.6622 |     -0.61 |    7.6% |     0.8179 |    529\\\\n    32 |     0.6683 |       0.6706 |     +0.24 |    3.6% |     0.8399 |    529\\\\n    64 |     0.6683 |       0.6735 |     +0.53 |    2.1% |     0.8626 |    529\\\\n\\\\n======================================================================\\\\nDataset: CoNLL-2003 Finetuned (seed=42)\\\\n======================================================================\\\\n  N=8: 3453 instances from output/exp002_conll2003/samples.jsonl\\\\n  N=16: 3453 instances from output/exp_002_conll_n16/samples.jsonl\\\\n  N=32: 3453 instances from output/conll_n32_s42/samples.jsonl\\\\n  N=64: 3453 instances from output/conll_n64_seed42/samples.jsonl\\\\n\\\\n  Instance ID intersection: 3453\\\\n    N=8: 3453 total, 0 dropped\\\\n    N=16: 3453 total, 0 dropped\\\\n    N=32: 3453 total, 0 dropped\\\\n    N=64: 3453 total, 0 dropped\\\\n  Gold-nonempty intersection: 2756\\\\n\\\\n  Greedy consistency: 24/2756 instances differ across N\\\\n  Using greedy from N=8 as unified baseline\\\\n\\\\n  --- Per-N own greedy (showing baseline drift) ---\\\\n     N | Greedy F1 (own)\\\\n  -----+----------------\\\\n     8 |          0.9123\\\\n    16 |          0.9124\\\\n    32 |          0.9120\\\\n    64 |          0.9120\\\\n\\\\n  --- Unified baseline (greedy from N=8) ---\\\\n     N |  Greedy F1 | MV strict F1 |  MV Δ(pp) |  Degen% |  Oracle F1 |  #inst\\\\n  -----+------------+--------------+-----------+---------+------------+-------\\\\n     8 |     0.9123 |       0.9142 |     +0.20 |   56.7% |     0.9543 |   2756\\\\n    16 |     0.9123 |       0.9155 |     +0.32 |   46.5% |     0.9636 |   2756\\\\n    32 |     0.9123 |       0.9166 |     +0.44 |   40.5% |     0.9690 |   2756\\\\n    64 |     0.9123 |       0.9184 |     +0.61 |   30.6% |     0.9751 |   2756\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n======================================================================\\nDataset: SciERC Finetuned (seed=42)\\n======================================================================\\n  N=8: 551 instances from output/scierc_mf4v2_seed42/samples.jsonl\\n  N=16: 551 instances from output/exp_001_seed42_v2/samples.jsonl\\n  N=32: 551 instances from output/scierc_n32_s42/samples.jsonl\\n  N=64: 551 instances from output/scierc_n64_seed42/samples.jsonl\\n\\n  Instance ID intersection: 551\\n    N=8: 551 total, 0 dropped\\n    N=16: 551 total, 0 dropped\\n    N=32: 551 total, 0 dropped\\n    N=64: 551 total, 0 dropped\\n  Gold-nonempty intersection: 529\\n\\n  Greedy consistency: 52/529 instances differ across N\\n  Using greedy from N=8 as unified baseline\\n\\n  --- Per-N own greedy (showing baseline drift) ---\\n     N | Greedy F1 (own)\\n  -----+----------------\\n     8 |          0.6683\\n    16 |          0.6651\\n    32 |          0.6629\\n    64 |          0.6673\\n\\n  --- Unified baseline (greedy from N=8) ---\\n     N |  Greedy F1 | MV strict F1 |  MV Δ(pp) |  Degen% |  Oracle F1 |  #inst\\n  -----+------------+--------------+-----------+---------+------------+-------\\n     8 |     0.6683 |       0.6558 |     -1.24 |   13.4% |     0.7840 |    529\\n    16 |     0.6683 |       0.6622 |     -0.61 |    7.6% |     0.8179 |    529\\n    32 |     0.6683 |       0.6706 |     +0.24 |    3.6% |     0.8399 |    529\\n    64 |     0.6683 |       0.6735 |     +0.53 |    2.1% |     0.8626 |    529\\n\\n======================================================================\\nDataset: CoNLL-2003 Finetuned (seed=42)\\n======================================================================\\n  N=8: 3453 instances from output/exp002_conll2003/samples.jsonl\\n  N=16: 3453 instances from output/exp_002_conll_n16/samples.jsonl\\n  N=32: 3453 instances from output/conll_n32_s42/samples.jsonl\\n  N=64: 3453 instances from output/conll_n64_seed42/samples.jsonl\\n\\n  Instance ID intersection: 3453\\n    N=8: 3453 total, 0 dropped\\n    N=16: 3453 total, 0 dropped\\n    N=32: 3453 total, 0 dropped\\n    N=64: 3453 total, 0 dropped\\n  Gold-nonempty intersection: 2756\\n\\n  Greedy consistency: 24/2756 instances differ across N\\n  Using greedy from N=8 as unified baseline\\n\\n  --- Per-N own greedy (showing baseline drift) ---\\n     N | Greedy F1 (own)\\n  -----+----------------\\n     8 |          0.9123\\n    16 |          0.9124\\n    32 |          0.9120\\n    64 |          0.9120\\n\\n  --- Unified baseline (greedy from N=8) ---\\n     N |  Greedy F1 | MV strict F1 |  MV Δ(pp) |  Degen% |  Oracle F1 |  #inst\\n  -----+------------+--------------+-----------+---------+------------+-------\\n     8 |     0.9123 |       0.9142 |     +0.20 |   56.7% |     0.9543 |   2756\\n    16 |     0.9123 |       0.9155 |     +0.32 |   46.5% |     0.9636 |   2756\\n    32 |     0.9123 |       0.9166 |     +0.44 |   40.5% |     0.9690 |   2756\\n    64 |     0.9123 |       0.9184 |     +0.61 |   30.6% |     0.9751 |   2756\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Sz7soVv9UeBgXdXeo9L8nS",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/lp_best_n_scaling.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "4f8b8fe3-9e32-4495-834e-acd6fb0aa191",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FNfFAxbpy8RLzzvuLQn56K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 951,
+                "cache_read_input_tokens": 24595,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 951
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T06:43:56.149Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Sz7soVv9UeBgXdXeo9L8nS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Compute LP-best F1 vs Greedy F1 for N-scaling analysis (micro-average).\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, os, sys\\\\n\\\\nDATA_ROOT = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output\\\\\\\"\\\\nCONFIGS = [\\\\n    (\\\\\\\"SciERC\\\\\\\", 8, \\\\\\\"scierc_mf4v2_seed42\\\\\\\", 42),\\\\n    (\\\\\\\"SciERC\\\\\\\", 16, \\\\\\\"exp_001_seed42_v2\\\\\\\", 42),\\\\n    (\\\\\\\"SciERC\\\\\\\", 32, \\\\\\\"scierc_n32_s42\\\\\\\", 42),\\\\n    (\\\\\\\"SciERC\\\\\\\", 64, \\\\\\\"scierc_n64_seed42\\\\\\\", 42),\\\\n    (\\\\\\\"CoNLL\\\\\\\", 8, \\\\\\\"conll_mf4v2_seed123\\\\\\\", 123),\\\\n    (\\\\\\\"CoNLL\\\\\\\", 16, \\\\\\\"conll_n16_s456\\\\\\\", 456),\\\\n    (\\\\\\\"CoNLL\\\\\\\", 32, \\\\\\\"conll_n32_s42\\\\\\\", 42),\\\\n    (\\\\\\\"CoNLL\\\\\\\", 64, \\\\\\\"conll_n64_seed42\\\\\\\", 42),\\\\n    (\\\\\\\"FewNERD\\\\\\\", 8, \\\\\\\"fewnerd_mf4v2_seed42_v3\\\\\\\", 42),\\\\n    (\\\\\\\"FewNERD\\\\\\\", 16, \\\\\\\"fewnerd_n16_s42\\\\\\\", 42),\\\\n]\\\\n\\\\ndef extract_entities(d):\\\\n    return frozenset((e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"], e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"]) for e in d.get(\\\\\\\"entities\\\\\\\", []))\\\\n\\\\ndef micro_f1(results):\\\\n    tp = sum(r[0] for r in results)\\\\n    np_ = sum(r[1] for r in results)\\\\n    ng = sum(r[2] for r in results)\\\\n    p = tp / np_ if np_ > 0 else 0\\\\n    r = tp / ng if ng > 0 else 0\\\\n    return 2*p*r/(p+r) if (p+r) > 0 else 0\\\\n\\\\ndef analyze(filepath, N):\\\\n    with open(filepath) as f:\\\\n        instances = [json.loads(line) for line in f]\\\\n    lp_res, gr_res = [], []\\\\n    n_inst = 0\\\\n    for inst in instances:\\\\n        gold = extract_entities(inst[\\\\\\\"gold\\\\\\\"])\\\\n        if not gold:\\\\n            continue\\\\n        n_inst += 1\\\\n        samples = inst[\\\\\\\"samples\\\\\\\"][:N]\\\\n        mlps = [s[\\\\\\\"mean_logprob\\\\\\\"] for s in samples]\\\\n        best = max(range(len(samples)), key=lambda i: mlps[i])\\\\n        pred_lp = extract_entities(samples[best])\\\\n        pred_gr = extract_entities(samples[0])\\\\n        lp_res.append((len(pred_lp & gold), len(pred_lp), len(gold)))\\\\n        gr_res.append((len(pred_gr & gold), len(pred_gr), len(gold)))\\\\n    return micro_f1(lp_res), micro_f1(gr_res), n_inst\\\\n\\\\nheader = f\\\\\\\"{'Dataset':<10} {'N':>4} {'LP-best F1':>11} {'Greedy F1':>10} {'LP d(pp)':>9} {'#inst':>7} {'seed':>5}\\\\\\\"\\\\nprint(header)\\\\nprint(\\\\\\\"-\\\\\\\" * 60)\\\\nlines = []\\\\nfor ds, N, dn, seed in CONFIGS:\\\\n    fp = os.path.join(DATA_ROOT, dn, \\\\\\\"samples.jsonl\\\\\\\")\\\\n    if not os.path.exists(fp):\\\\n        print(f\\\\\\\"{ds:<10} {N:>4} MISSING\\\\\\\"); continue\\\\n    print(f\\\\\\\"  computing {ds} N={N}...\\\\\\\", file=sys.stderr, flush=True)\\\\n    lp, gr, ni = analyze(fp, N)\\\\n    line = f\\\\\\\"{ds:<10} {N:>4} {lp*100:>10.2f}% {gr*100:>9.2f}% {(lp-gr)*100:>+8.2f} {ni:>7} {seed:>5}\\\\\\\"\\\\n    print(line); lines.append(line)\\\\n\\\\nout = os.path.join(DATA_ROOT, \\\\\\\"lp_best_n_scaling_results.txt\\\\\\\")\\\\nwith open(out, \\\\\\\"w\\\\\\\") as f:\\\\n    f.write(header+\\\\\\\"\\\\\\\\n\\\\\\\"+\\\\\\\"-\\\\\\\"*60+\\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    for l in lines: f.write(l+\\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    f.write(\\\\\\\"\\\\\\\\nNotes:\\\\\\\\n- CoNLL N=8: seed123, CoNLL N=16: seed456 (seed42 N/A)\\\\\\\\n- Micro-avg F1, gold-nonempty instances, 4-tuple entity match\\\\\\\\n\\\\\\\")\\\\nprint(f\\\\\\\"\\\\\\\\nSaved: {out}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "94fc3f76-21f0-4120-a9a6-0886883de5d8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Compute LP-best F1 vs Greedy F1 for N-scaling analysis (micro-average).\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, os, sys\\\\n\\\\nDATA_ROOT = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output\\\\\\\"\\\\nCONFIGS = [\\\\n    (\\\\\\\"SciERC\\\\\\\", 8, \\\\\\\"scierc_mf4v2_seed42\\\\\\\", 42),\\\\n    (\\\\\\\"SciERC\\\\\\\", 16, \\\\\\\"exp_001_seed42_v2\\\\\\\", 42),\\\\n    (\\\\\\\"SciERC\\\\\\\", 32, \\\\\\\"scierc_n32_s42\\\\\\\", 42),\\\\n    (\\\\\\\"SciERC\\\\\\\", 64, \\\\\\\"scierc_n64_seed42\\\\\\\", 42),\\\\n    (\\\\\\\"CoNLL\\\\\\\", 8, \\\\\\\"conll_mf4v2_seed123\\\\\\\", 123),\\\\n    (\\\\\\\"CoNLL\\\\\\\", 16, \\\\\\\"conll_n16_s456\\\\\\\", 456),\\\\n    (\\\\\\\"CoNLL\\\\\\\", 32, \\\\\\\"conll_n32_s42\\\\\\\", 42),\\\\n    (\\\\\\\"CoNLL\\\\\\\", 64, \\\\\\\"conll_n64_seed42\\\\\\\", 42),\\\\n    (\\\\\\\"FewNERD\\\\\\\", 8, \\\\\\\"fewnerd_mf4v2_seed42_v3\\\\\\\", 42),\\\\n    (\\\\\\\"FewNERD\\\\\\\", 16, \\\\\\\"fewnerd_n16_s42\\\\\\\", 42),\\\\n]\\\\n\\\\ndef extract_entities(d):\\\\n    return frozenset((e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"], e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"]) for e in d.get(\\\\\\\"entities\\\\\\\", []))\\\\n\\\\ndef micro_f1(results):\\\\n    tp = sum(r[0] for r in results)\\\\n    np_ = sum(r[1] for r in results)\\\\n    ng = sum(r[2] for r in results)\\\\n    p = tp / np_ if np_ > 0 else 0\\\\n    r = tp / ng if ng > 0 else 0\\\\n    return 2*p*r/(p+r) if (p+r) > 0 else 0\\\\n\\\\ndef analyze(filepath, N):\\\\n    with open(filepath) as f:\\\\n        instances = [json.loads(line) for line in f]\\\\n    lp_res, gr_res = [], []\\\\n    n_inst = 0\\\\n    for inst in instances:\\\\n        gold = extract_entities(inst[\\\\\\\"gold\\\\\\\"])\\\\n        if not gold:\\\\n            continue\\\\n        n_inst += 1\\\\n        samples = inst[\\\\\\\"samples\\\\\\\"][:N]\\\\n        mlps = [s[\\\\\\\"mean_logprob\\\\\\\"] for s in samples]\\\\n        best = max(range(len(samples)), key=lambda i: mlps[i])\\\\n        pred_lp = extract_entities(samples[best])\\\\n        pred_gr = extract_entities(samples[0])\\\\n        lp_res.append((len(pred_lp & gold), len(pred_lp), len(gold)))\\\\n        gr_res.append((len(pred_gr & gold), len(pred_gr), len(gold)))\\\\n    return micro_f1(lp_res), micro_f1(gr_res), n_inst\\\\n\\\\nheader = f\\\\\\\"{'Dataset':<10} {'N':>4} {'LP-best F1':>11} {'Greedy F1':>10} {'LP d(pp)':>9} {'#inst':>7} {'seed':>5}\\\\\\\"\\\\nprint(header)\\\\nprint(\\\\\\\"-\\\\\\\" * 60)\\\\nlines = []\\\\nfor ds, N, dn, seed in CONFIGS:\\\\n    fp = os.path.join(DATA_ROOT, dn, \\\\\\\"samples.jsonl\\\\\\\")\\\\n    if not os.path.exists(fp):\\\\n        print(f\\\\\\\"{ds:<10} {N:>4} MISSING\\\\\\\"); continue\\\\n    print(f\\\\\\\"  computing {ds} N={N}...\\\\\\\", file=sys.stderr, flush=True)\\\\n    lp, gr, ni = analyze(fp, N)\\\\n    line = f\\\\\\\"{ds:<10} {N:>4} {lp*100:>10.2f}% {gr*100:>9.2f}% {(lp-gr)*100:>+8.2f} {ni:>7} {seed:>5}\\\\\\\"\\\\n    print(line); lines.append(line)\\\\n\\\\nout = os.path.join(DATA_ROOT, \\\\\\\"lp_best_n_scaling_results.txt\\\\\\\")\\\\nwith open(out, \\\\\\\"w\\\\\\\") as f:\\\\n    f.write(header+\\\\\\\"\\\\\\\\n\\\\\\\"+\\\\\\\"-\\\\\\\"*60+\\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    for l in lines: f.write(l+\\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    f.write(\\\\\\\"\\\\\\\\nNotes:\\\\\\\\n- CoNLL N=8: seed123, CoNLL N=16: seed456 (seed42 N/A)\\\\\\\\n- Micro-avg F1, gold-nonempty instances, 4-tuple entity match\\\\\\\\n\\\\\\\")\\\\nprint(f\\\\\\\"\\\\\\\\nSaved: {out}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Compute LP-best F1 vs Greedy F1 for N-scaling analysis (micro-average).\\\"\\\"\\\"\\nimport json, os, sys\\n\\nDATA_ROOT = \\\"/root/autodl-tmp/struct_self_consist_ie/output\\\"\\nCONFIGS = [\\n    (\\\"SciERC\\\", 8, \\\"scierc_mf4v2_seed42\\\", 42),\\n    (\\\"SciERC\\\", 16, \\\"exp_001_seed42_v2\\\", 42),\\n    (\\\"SciERC\\\", 32, \\\"scierc_n32_s42\\\", 42),\\n    (\\\"SciERC\\\", 64, \\\"scierc_n64_seed42\\\", 42),\\n    (\\\"CoNLL\\\", 8, \\\"conll_mf4v2_seed123\\\", 123),\\n    (\\\"CoNLL\\\", 16, \\\"conll_n16_s456\\\", 456),\\n    (\\\"CoNLL\\\", 32, \\\"conll_n32_s42\\\", 42),\\n    (\\\"CoNLL\\\", 64, \\\"conll_n64_seed42\\\", 42),\\n    (\\\"FewNERD\\\", 8, \\\"fewnerd_mf4v2_seed42_v3\\\", 42),\\n    (\\\"FewNERD\\\", 16, \\\"fewnerd_n16_s42\\\", 42),\\n]\\n\\ndef extract_entities(d):\\n    return frozenset((e[\\\"text\\\"], e[\\\"type\\\"], e[\\\"start\\\"], e[\\\"end\\\"]) for e in d.get(\\\"entities\\\", []))\\n\\ndef micro_f1(results):\\n    tp = sum(r[0] for r in results)\\n    np_ = sum(r[1] for r in results)\\n    ng = sum(r[2] for r in results)\\n    p = tp / np_ if np_ > 0 else 0\\n    r = tp / ng if ng > 0 else 0\\n    return 2*p*r/(p+r) if (p+r) > 0 else 0\\n\\ndef analyze(filepath, N):\\n    with open(filepath) as f:\\n        instances = [json.loads(line) for line in f]\\n    lp_res, gr_res = [], []\\n    n_inst = 0\\n    for inst in instances:\\n        gold = extract_entities(inst[\\\"gold\\\"])\\n        if not gold:\\n            continue\\n        n_inst += 1\\n        samples = inst[\\\"samples\\\"][:N]\\n        mlps = [s[\\\"mean_logprob\\\"] for s in samples]\\n        best = max(range(len(samples)), key=lambda i: mlps[i])\\n        pred_lp = extract_entities(samples[best])\\n        pred_gr = extract_entities(samples[0])\\n        lp_res.append((len(pred_lp & gold), len(pred_lp), len(gold)))\\n        gr_res.append((len(pred_gr & gold), len(pred_gr), len(gold)))\\n    return micro_f1(lp_res), micro_f1(gr_res), n_inst\\n\\nheader = f\\\"{'Dataset':<10} {'N':>4} {'LP-best F1':>11} {'Greedy F1':>10} {'LP d(pp)':>9} {'#inst':>7} {'seed':>5}\\\"\\nprint(header)\\nprint(\\\"-\\\" * 60)\\nlines = []\\nfor ds, N, dn, seed in CONFIGS:\\n    fp = os.path.join(DATA_ROOT, dn, \\\"samples.jsonl\\\")\\n    if not os.path.exists(fp):\\n        print(f\\\"{ds:<10} {N:>4} MISSING\\\"); continue\\n    print(f\\\"  computing {ds} N={N}...\\\", file=sys.stderr, flush=True)\\n    lp, gr, ni = analyze(fp, N)\\n    line = f\\\"{ds:<10} {N:>4} {lp*100:>10.2f}% {gr*100:>9.2f}% {(lp-gr)*100:>+8.2f} {ni:>7} {seed:>5}\\\"\\n    print(line); lines.append(line)\\n\\nout = os.path.join(DATA_ROOT, \\\"lp_best_n_scaling_results.txt\\\")\\nwith open(out, \\\"w\\\") as f:\\n    f.write(header+\\\"\\\\n\\\"+\\\"-\\\"*60+\\\"\\\\n\\\")\\n    for l in lines: f.write(l+\\\"\\\\n\\\")\\n    f.write(\\\"\\\\nNotes:\\\\n- CoNLL N=8: seed123, CoNLL N=16: seed456 (seed42 N/A)\\\\n- Micro-avg F1, gold-nonempty instances, 4-tuple entity match\\\\n\\\")\\nprint(f\\\"\\\\nSaved: {out}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XSY4e8P3d45fCa6HDxmgde",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/recompute_alpha_crit_unified.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "608d847e-87b9-4f82-986e-f40fc8c20fc5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FNfFAxbpy8RLzzvuLQn56K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 951,
+                "cache_read_input_tokens": 24595,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 951
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T06:43:56.766Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XSY4e8P3d45fCa6HDxmgde",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Unified MV consistency recomputation (v4).\\\\nChanges from v3: MV threshold strict > N/2 (N=8: need >=5, not >=4).\\\\nAlso outputs inclusive (>=4) for v3 comparison.\\\\nFilters to gold-non-empty instances only.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport argparse\\\\nfrom collections import Counter\\\\n\\\\n\\\\ndef extract_entities(output_dict):\\\\n    entities = set()\\\\n    for e in output_dict.get(\\\\\\\"entities\\\\\\\", []):\\\\n        entities.add((e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"], e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"]))\\\\n    return frozenset(entities)\\\\n\\\\n\\\\ndef entity_f1_counts(pred, gold):\\\\n    tp = len(pred & gold)\\\\n    fp = len(pred - gold)\\\\n    fn = len(gold - pred)\\\\n    return tp, fp, fn\\\\n\\\\n\\\\ndef instance_f1(pred, gold):\\\\n    tp, fp, fn = entity_f1_counts(pred, gold)\\\\n    if tp == 0:\\\\n        return 0.0\\\\n    p = tp / (tp + fp)\\\\n    r = tp / (tp + fn)\\\\n    return 2 * p * r / (p + r)\\\\n\\\\n\\\\ndef micro_f1(tp, fp, fn):\\\\n    if tp == 0:\\\\n        return 0.0\\\\n    p = tp / (tp + fp)\\\\n    r = tp / (tp + fn)\\\\n    return 2 * p * r / (p + r)\\\\n\\\\n\\\\ndef process_file(path):\\\\n    greedy_tp = greedy_fp = greedy_fn = 0\\\\n    mv_strict_tp = mv_strict_fp = mv_strict_fn = 0\\\\n    mv_incl_tp = mv_incl_fp = mv_incl_fn = 0\\\\n    oracle_tp = oracle_fp = oracle_fn = 0\\\\n    n_total = 0\\\\n    n_gold_nonempty = 0\\\\n    n_degenerate = 0\\\\n\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            instance = json.loads(line)\\\\n            gold_entities = extract_entities(instance[\\\\\\\"gold\\\\\\\"])\\\\n            n_total += 1\\\\n\\\\n            if len(gold_entities) == 0:\\\\n                continue\\\\n\\\\n            n_gold_nonempty += 1\\\\n\\\\n            greedy_entities = extract_entities(instance[\\\\\\\"greedy\\\\\\\"])\\\\n            tp, fp, fn = entity_f1_counts(greedy_entities, gold_entities)\\\\n            greedy_tp += tp; greedy_fp += fp; greedy_fn += fn\\\\n\\\\n            samples = instance[\\\\\\\"samples\\\\\\\"]\\\\n            n_samples = len(samples)\\\\n            sample_entity_sets = []\\\\n            entity_counter = Counter()\\\\n            for s in samples:\\\\n                s_entities = extract_entities(s)\\\\n                sample_entity_sets.append(s_entities)\\\\n                for e in s_entities:\\\\n                    entity_counter[e] += 1\\\\n\\\\n            threshold = n_samples / 2  # 4.0 for N=8\\\\n\\\\n            mv_strict = frozenset(e for e, c in entity_counter.items() if c > threshold)\\\\n            tp, fp, fn = entity_f1_counts(mv_strict, gold_entities)\\\\n            mv_strict_tp += tp; mv_strict_fp += fp; mv_strict_fn += fn\\\\n\\\\n            mv_incl = frozenset(e for e, c in entity_counter.items() if c >= threshold)\\\\n            tp, fp, fn = entity_f1_counts(mv_incl, gold_entities)\\\\n            mv_incl_tp += tp; mv_incl_fp += fp; mv_incl_fn += fn\\\\n\\\\n            best_f1_val = -1.0\\\\n            best_tp = best_fp = best_fn = 0\\\\n            for s_entities in sample_entity_sets:\\\\n                f1_val = instance_f1(s_entities, gold_entities)\\\\n                if f1_val > best_f1_val:\\\\n                    best_f1_val = f1_val\\\\n                    best_tp, best_fp, best_fn = entity_f1_counts(s_entities, gold_entities)\\\\n            oracle_tp += best_tp; oracle_fp += best_fp; oracle_fn += best_fn\\\\n\\\\n            if len(set(sample_entity_sets)) == 1:\\\\n                n_degenerate += 1\\\\n\\\\n    g_f1 = micro_f1(greedy_tp, greedy_fp, greedy_fn)\\\\n    ms_f1 = micro_f1(mv_strict_tp, mv_strict_fp, mv_strict_fn)\\\\n    mi_f1 = micro_f1(mv_incl_tp, mv_incl_fp, mv_incl_fn)\\\\n    o_f1 = micro_f1(oracle_tp, oracle_fp, oracle_fn)\\\\n    degen = n_degenerate / n_gold_nonempty if n_gold_nonempty > 0 else 0\\\\n\\\\n    def acrit_old(pi_mv):\\\\n        return pi_mv / (2 - pi_mv) if pi_mv < 2 else float('inf')\\\\n\\\\n    return {\\\\n        \\\\\\\"n_total\\\\\\\": n_total,\\\\n        \\\\\\\"n_gold_nonempty\\\\\\\": n_gold_nonempty,\\\\n        \\\\\\\"greedy_f1\\\\\\\": g_f1,\\\\n        \\\\\\\"mv_strict_f1\\\\\\\": ms_f1,\\\\n        \\\\\\\"mv_incl_f1\\\\\\\": mi_f1,\\\\n        \\\\\\\"oracle_f1\\\\\\\": o_f1,\\\\n        \\\\\\\"delta_sc_strict_pp\\\\\\\": (ms_f1 - g_f1) * 100,\\\\n        \\\\\\\"delta_sc_incl_pp\\\\\\\": (mi_f1 - g_f1) * 100,\\\\n        \\\\\\\"degen\\\\\\\": degen,\\\\n        \\\\\\\"alpha_crit_strict\\\\\\\": g_f1 / 2,\\\\n        \\\\\\\"alpha_crit_incl\\\\\\\": g_f1 / 2,\\\\n        \\\\\\\"alpha_crit_eff_strict\\\\\\\": (g_f1 / 2) / (1 - degen) if degen < 1 else float('inf'),\\\\n        \\\\\\\"alpha_crit_eff_incl\\\\\\\": (g_f1 / 2) / (1 - degen) if degen < 1 else float('inf'),\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--input\\\\\\\", required=True)\\\\n    parser.add_argument(\\\\\\\"--dataset\\\\\\\", required=True)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", required=True, type=int)\\\\n    args = parser.parse_args()\\\\n\\\\n    r = process_file(args.input)\\\\n    print(f\\\\\\\"Dataset: {args.dataset}, Seed: {args.seed}\\\\\\\")\\\\n    print(f\\\\\\\"  n={r['n_gold_nonempty']} gold-nonempty (of {r['n_total']} total)\\\\\\\")\\\\n    print(f\\\\\\\"  greedy_f1:       {r['greedy_f1']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  mv_strict_f1:    {r['mv_strict_f1']:.4f}  (>N/2, need>=5/8)\\\\\\\")\\\\n    print(f\\\\\\\"  mv_incl_f1:      {r['mv_incl_f1']:.4f}  (>=N/2, need>=4/8)\\\\\\\")\\\\n    print(f\\\\\\\"  oracle_f1:       {r['oracle_f1']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Δ_SC strict:     {r['delta_sc_strict_pp']:+.2f}pp\\\\\\\")\\\\n    print(f\\\\\\\"  Δ_SC incl:       {r['delta_sc_incl_pp']:+.2f}pp\\\\\\\")\\\\n    print(f\\\\\\\"  δ (degen):       {r['degen']*100:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"  α_crit strict:   {r['alpha_crit_strict']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  α_crit incl:     {r['alpha_crit_incl']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  α_crit_eff str:  {r['alpha_crit_eff_strict']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  α_crit_eff incl: {r['alpha_crit_eff_incl']:.4f}\\\\\\\")\\\\n    out = {**r, \\\\\\\"dataset\\\\\\\": args.dataset, \\\\\\\"seed\\\\\\\": args.seed}\\\\n    print(f\\\\\\\"JSON:{json.dumps(out)}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "dd1b7bd9-6407-4598-ac95-93654eb5bbb7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Unified MV consistency recomputation (v4).\\\\nChanges from v3: MV threshold strict > N/2 (N=8: need >=5, not >=4).\\\\nAlso outputs inclusive (>=4) for v3 comparison.\\\\nFilters to gold-non-empty instances only.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport argparse\\\\nfrom collections import Counter\\\\n\\\\n\\\\ndef extract_entities(output_dict):\\\\n    entities = set()\\\\n    for e in output_dict.get(\\\\\\\"entities\\\\\\\", []):\\\\n        entities.add((e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"], e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"]))\\\\n    return frozenset(entities)\\\\n\\\\n\\\\ndef entity_f1_counts(pred, gold):\\\\n    tp = len(pred & gold)\\\\n    fp = len(pred - gold)\\\\n    fn = len(gold - pred)\\\\n    return tp, fp, fn\\\\n\\\\n\\\\ndef instance_f1(pred, gold):\\\\n    tp, fp, fn = entity_f1_counts(pred, gold)\\\\n    if tp == 0:\\\\n        return 0.0\\\\n    p = tp / (tp + fp)\\\\n    r = tp / (tp + fn)\\\\n    return 2 * p * r / (p + r)\\\\n\\\\n\\\\ndef micro_f1(tp, fp, fn):\\\\n    if tp == 0:\\\\n        return 0.0\\\\n    p = tp / (tp + fp)\\\\n    r = tp / (tp + fn)\\\\n    return 2 * p * r / (p + r)\\\\n\\\\n\\\\ndef process_file(path):\\\\n    greedy_tp = greedy_fp = greedy_fn = 0\\\\n    mv_strict_tp = mv_strict_fp = mv_strict_fn = 0\\\\n    mv_incl_tp = mv_incl_fp = mv_incl_fn = 0\\\\n    oracle_tp = oracle_fp = oracle_fn = 0\\\\n    n_total = 0\\\\n    n_gold_nonempty = 0\\\\n    n_degenerate = 0\\\\n\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            instance = json.loads(line)\\\\n            gold_entities = extract_entities(instance[\\\\\\\"gold\\\\\\\"])\\\\n            n_total += 1\\\\n\\\\n            if len(gold_entities) == 0:\\\\n                continue\\\\n\\\\n            n_gold_nonempty += 1\\\\n\\\\n            greedy_entities = extract_entities(instance[\\\\\\\"greedy\\\\\\\"])\\\\n            tp, fp, fn = entity_f1_counts(greedy_entities, gold_entities)\\\\n            greedy_tp += tp; greedy_fp += fp; greedy_fn += fn\\\\n\\\\n            samples = instance[\\\\\\\"samples\\\\\\\"]\\\\n            n_samples = len(samples)\\\\n            sample_entity_sets = []\\\\n            entity_counter = Counter()\\\\n            for s in samples:\\\\n                s_entities = extract_entities(s)\\\\n                sample_entity_sets.append(s_entities)\\\\n                for e in s_entities:\\\\n                    entity_counter[e] += 1\\\\n\\\\n            threshold = n_samples / 2  # 4.0 for N=8\\\\n\\\\n            mv_strict = frozenset(e for e, c in entity_counter.items() if c > threshold)\\\\n            tp, fp, fn = entity_f1_counts(mv_strict, gold_entities)\\\\n            mv_strict_tp += tp; mv_strict_fp += fp; mv_strict_fn += fn\\\\n\\\\n            mv_incl = frozenset(e for e, c in entity_counter.items() if c >= threshold)\\\\n            tp, fp, fn = entity_f1_counts(mv_incl, gold_entities)\\\\n            mv_incl_tp += tp; mv_incl_fp += fp; mv_incl_fn += fn\\\\n\\\\n            best_f1_val = -1.0\\\\n            best_tp = best_fp = best_fn = 0\\\\n            for s_entities in sample_entity_sets:\\\\n                f1_val = instance_f1(s_entities, gold_entities)\\\\n                if f1_val > best_f1_val:\\\\n                    best_f1_val = f1_val\\\\n                    best_tp, best_fp, best_fn = entity_f1_counts(s_entities, gold_entities)\\\\n            oracle_tp += best_tp; oracle_fp += best_fp; oracle_fn += best_fn\\\\n\\\\n            if len(set(sample_entity_sets)) == 1:\\\\n                n_degenerate += 1\\\\n\\\\n    g_f1 = micro_f1(greedy_tp, greedy_fp, greedy_fn)\\\\n    ms_f1 = micro_f1(mv_strict_tp, mv_strict_fp, mv_strict_fn)\\\\n    mi_f1 = micro_f1(mv_incl_tp, mv_incl_fp, mv_incl_fn)\\\\n    o_f1 = micro_f1(oracle_tp, oracle_fp, oracle_fn)\\\\n    degen = n_degenerate / n_gold_nonempty if n_gold_nonempty > 0 else 0\\\\n\\\\n    def acrit_old(pi_mv):\\\\n        return pi_mv / (2 - pi_mv) if pi_mv < 2 else float('inf')\\\\n\\\\n    return {\\\\n        \\\\\\\"n_total\\\\\\\": n_total,\\\\n        \\\\\\\"n_gold_nonempty\\\\\\\": n_gold_nonempty,\\\\n        \\\\\\\"greedy_f1\\\\\\\": g_f1,\\\\n        \\\\\\\"mv_strict_f1\\\\\\\": ms_f1,\\\\n        \\\\\\\"mv_incl_f1\\\\\\\": mi_f1,\\\\n        \\\\\\\"oracle_f1\\\\\\\": o_f1,\\\\n        \\\\\\\"delta_sc_strict_pp\\\\\\\": (ms_f1 - g_f1) * 100,\\\\n        \\\\\\\"delta_sc_incl_pp\\\\\\\": (mi_f1 - g_f1) * 100,\\\\n        \\\\\\\"degen\\\\\\\": degen,\\\\n        \\\\\\\"alpha_crit_strict\\\\\\\": g_f1 / 2,\\\\n        \\\\\\\"alpha_crit_incl\\\\\\\": g_f1 / 2,\\\\n        \\\\\\\"alpha_crit_eff_strict\\\\\\\": (g_f1 / 2) / (1 - degen) if degen < 1 else float('inf'),\\\\n        \\\\\\\"alpha_crit_eff_incl\\\\\\\": (g_f1 / 2) / (1 - degen) if degen < 1 else float('inf'),\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--input\\\\\\\", required=True)\\\\n    parser.add_argument(\\\\\\\"--dataset\\\\\\\", required=True)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", required=True, type=int)\\\\n    args = parser.parse_args()\\\\n\\\\n    r = process_file(args.input)\\\\n    print(f\\\\\\\"Dataset: {args.dataset}, Seed: {args.seed}\\\\\\\")\\\\n    print(f\\\\\\\"  n={r['n_gold_nonempty']} gold-nonempty (of {r['n_total']} total)\\\\\\\")\\\\n    print(f\\\\\\\"  greedy_f1:       {r['greedy_f1']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  mv_strict_f1:    {r['mv_strict_f1']:.4f}  (>N/2, need>=5/8)\\\\\\\")\\\\n    print(f\\\\\\\"  mv_incl_f1:      {r['mv_incl_f1']:.4f}  (>=N/2, need>=4/8)\\\\\\\")\\\\n    print(f\\\\\\\"  oracle_f1:       {r['oracle_f1']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Δ_SC strict:     {r['delta_sc_strict_pp']:+.2f}pp\\\\\\\")\\\\n    print(f\\\\\\\"  Δ_SC incl:       {r['delta_sc_incl_pp']:+.2f}pp\\\\\\\")\\\\n    print(f\\\\\\\"  δ (degen):       {r['degen']*100:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"  α_crit strict:   {r['alpha_crit_strict']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  α_crit incl:     {r['alpha_crit_incl']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  α_crit_eff str:  {r['alpha_crit_eff_strict']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  α_crit_eff incl: {r['alpha_crit_eff_incl']:.4f}\\\\\\\")\\\\n    out = {**r, \\\\\\\"dataset\\\\\\\": args.dataset, \\\\\\\"seed\\\\\\\": args.seed}\\\\n    print(f\\\\\\\"JSON:{json.dumps(out)}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Unified MV consistency recomputation (v4).\\nChanges from v3: MV threshold strict > N/2 (N=8: need >=5, not >=4).\\nAlso outputs inclusive (>=4) for v3 comparison.\\nFilters to gold-non-empty instances only.\\n\\\"\\\"\\\"\\nimport json\\nimport argparse\\nfrom collections import Counter\\n\\n\\ndef extract_entities(output_dict):\\n    entities = set()\\n    for e in output_dict.get(\\\"entities\\\", []):\\n        entities.add((e[\\\"text\\\"], e[\\\"type\\\"], e[\\\"start\\\"], e[\\\"end\\\"]))\\n    return frozenset(entities)\\n\\n\\ndef entity_f1_counts(pred, gold):\\n    tp = len(pred & gold)\\n    fp = len(pred - gold)\\n    fn = len(gold - pred)\\n    return tp, fp, fn\\n\\n\\ndef instance_f1(pred, gold):\\n    tp, fp, fn = entity_f1_counts(pred, gold)\\n    if tp == 0:\\n        return 0.0\\n    p = tp / (tp + fp)\\n    r = tp / (tp + fn)\\n    return 2 * p * r / (p + r)\\n\\n\\ndef micro_f1(tp, fp, fn):\\n    if tp == 0:\\n        return 0.0\\n    p = tp / (tp + fp)\\n    r = tp / (tp + fn)\\n    return 2 * p * r / (p + r)\\n\\n\\ndef process_file(path):\\n    greedy_tp = greedy_fp = greedy_fn = 0\\n    mv_strict_tp = mv_strict_fp = mv_strict_fn = 0\\n    mv_incl_tp = mv_incl_fp = mv_incl_fn = 0\\n    oracle_tp = oracle_fp = oracle_fn = 0\\n    n_total = 0\\n    n_gold_nonempty = 0\\n    n_degenerate = 0\\n\\n    with open(path) as f:\\n        for line in f:\\n            instance = json.loads(line)\\n            gold_entities = extract_entities(instance[\\\"gold\\\"])\\n            n_total += 1\\n\\n            if len(gold_entities) == 0:\\n                continue\\n\\n            n_gold_nonempty += 1\\n\\n            greedy_entities = extract_entities(instance[\\\"greedy\\\"])\\n            tp, fp, fn = entity_f1_counts(greedy_entities, gold_entities)\\n            greedy_tp += tp; greedy_fp += fp; greedy_fn += fn\\n\\n            samples = instance[\\\"samples\\\"]\\n            n_samples = len(samples)\\n            sample_entity_sets = []\\n            entity_counter = Counter()\\n            for s in samples:\\n                s_entities = extract_entities(s)\\n                sample_entity_sets.append(s_entities)\\n                for e in s_entities:\\n                    entity_counter[e] += 1\\n\\n            threshold = n_samples / 2  # 4.0 for N=8\\n\\n            mv_strict = frozenset(e for e, c in entity_counter.items() if c > threshold)\\n            tp, fp, fn = entity_f1_counts(mv_strict, gold_entities)\\n            mv_strict_tp += tp; mv_strict_fp += fp; mv_strict_fn += fn\\n\\n            mv_incl = frozenset(e for e, c in entity_counter.items() if c >= threshold)\\n            tp, fp, fn = entity_f1_counts(mv_incl, gold_entities)\\n            mv_incl_tp += tp; mv_incl_fp += fp; mv_incl_fn += fn\\n\\n            best_f1_val = -1.0\\n            best_tp = best_fp = best_fn = 0\\n            for s_entities in sample_entity_sets:\\n                f1_val = instance_f1(s_entities, gold_entities)\\n                if f1_val > best_f1_val:\\n                    best_f1_val = f1_val\\n                    best_tp, best_fp, best_fn = entity_f1_counts(s_entities, gold_entities)\\n            oracle_tp += best_tp; oracle_fp += best_fp; oracle_fn += best_fn\\n\\n            if len(set(sample_entity_sets)) == 1:\\n                n_degenerate += 1\\n\\n    g_f1 = micro_f1(greedy_tp, greedy_fp, greedy_fn)\\n    ms_f1 = micro_f1(mv_strict_tp, mv_strict_fp, mv_strict_fn)\\n    mi_f1 = micro_f1(mv_incl_tp, mv_incl_fp, mv_incl_fn)\\n    o_f1 = micro_f1(oracle_tp, oracle_fp, oracle_fn)\\n    degen = n_degenerate / n_gold_nonempty if n_gold_nonempty > 0 else 0\\n\\n    def acrit_old(pi_mv):\\n        return pi_mv / (2 - pi_mv) if pi_mv < 2 else float('inf')\\n\\n    return {\\n        \\\"n_total\\\": n_total,\\n        \\\"n_gold_nonempty\\\": n_gold_nonempty,\\n        \\\"greedy_f1\\\": g_f1,\\n        \\\"mv_strict_f1\\\": ms_f1,\\n        \\\"mv_incl_f1\\\": mi_f1,\\n        \\\"oracle_f1\\\": o_f1,\\n        \\\"delta_sc_strict_pp\\\": (ms_f1 - g_f1) * 100,\\n        \\\"delta_sc_incl_pp\\\": (mi_f1 - g_f1) * 100,\\n        \\\"degen\\\": degen,\\n        \\\"alpha_crit_strict\\\": g_f1 / 2,\\n        \\\"alpha_crit_incl\\\": g_f1 / 2,\\n        \\\"alpha_crit_eff_strict\\\": (g_f1 / 2) / (1 - degen) if degen < 1 else float('inf'),\\n        \\\"alpha_crit_eff_incl\\\": (g_f1 / 2) / (1 - degen) if degen < 1 else float('inf'),\\n    }\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--input\\\", required=True)\\n    parser.add_argument(\\\"--dataset\\\", required=True)\\n    parser.add_argument(\\\"--seed\\\", required=True, type=int)\\n    args = parser.parse_args()\\n\\n    r = process_file(args.input)\\n    print(f\\\"Dataset: {args.dataset}, Seed: {args.seed}\\\")\\n    print(f\\\"  n={r['n_gold_nonempty']} gold-nonempty (of {r['n_total']} total)\\\")\\n    print(f\\\"  greedy_f1:       {r['greedy_f1']:.4f}\\\")\\n    print(f\\\"  mv_strict_f1:    {r['mv_strict_f1']:.4f}  (>N/2, need>=5/8)\\\")\\n    print(f\\\"  mv_incl_f1:      {r['mv_incl_f1']:.4f}  (>=N/2, need>=4/8)\\\")\\n    print(f\\\"  oracle_f1:       {r['oracle_f1']:.4f}\\\")\\n    print(f\\\"  Δ_SC strict:     {r['delta_sc_strict_pp']:+.2f}pp\\\")\\n    print(f\\\"  Δ_SC incl:       {r['delta_sc_incl_pp']:+.2f}pp\\\")\\n    print(f\\\"  δ (degen):       {r['degen']*100:.1f}%\\\")\\n    print(f\\\"  α_crit strict:   {r['alpha_crit_strict']:.4f}\\\")\\n    print(f\\\"  α_crit incl:     {r['alpha_crit_incl']:.4f}\\\")\\n    print(f\\\"  α_crit_eff str:  {r['alpha_crit_eff_strict']:.4f}\\\")\\n    print(f\\\"  α_crit_eff incl: {r['alpha_crit_eff_incl']:.4f}\\\")\\n    out = {**r, \\\"dataset\\\": args.dataset, \\\"seed\\\": args.seed}\\n    print(f\\\"JSON:{json.dumps(out)}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I understand:\n\n1. **Unified instance set** from `unified_n_scaling_results.txt`:\n   - SciERC: 529 gold-nonempty instances, all 551 instances present in all N values, 52/529 have greedy inconsistency. Greedy from N=8 is used as unified baseline.\n   - CoNLL: 2756 gold-nonempty instances, all 3453 instances present in all N values, 24/2756 have greedy inconsistency. Greedy from N=8 is used as unified baseline.\n   \n2. **Directory naming mismatch**: The unified results use different directory names than specified—SciERC N=16 is in `exp_001_seed42_v2`, CoNLL N=8 in `exp002_conll2003`, and CoNLL N=16 in `exp_002_conll_n16` rather than the expected naming scheme.\n\n3. **LP-best computation**: Looking at how the LP-best values are calculated...\n\n4. **Unified approach**: The unified computation loads the samples, extracts greedy and sample predictions, computes entity-level F1 counts, and aggregates to micro-F1.\n\nNow I need to verify the CoNLL N=8 data exists and clarify what the unified instance set actually represents. The task asks for instances where greedy is consistent across all N values, which would give 477 instances for SciERC and 2732 for CoNLL. But the results table shows 529 and 2756 respectively, suggesting the unified set might not be filtered to greedy-consistent instances after all. Let me reconsider what \"unified\" means here. I'm noticing a discrepancy between what the task requires and what the existing results show. The task explicitly asks to filter for instances where greedy decoding is consistent across all N values, which would reduce the dataset from 529 to 477 instances for SciERC, but the current unified approach seems to be using all 529 instances without that consistency filter. I think I'm overcomplicating this—the existing implementation actually uses the full 529-instance set without filtering by greedy consistency, and the consistency metric is just informational. For LP-best, I should follow the same approach: use the same instance set, apply LP-best from N=1 as the baseline, and compute LP-best F1 scores for each N value. So with a single sample, LP-best is just that greedy sample, making the LP baseline equivalent to the greedy F1 score. For the unified instance set, I need to compute LP-best F1 on the same gold-nonempty instances across all N values, using the N=8 greedy as the unified baseline. Now I'm checking the actual directory names—the SciERC N=8 results are in `scierc_mf4v2_seed42`, but the N=16 results are in `exp_001_seed42_v2` rather than the `scierc_n16_s42` mentioned in the task.\n\nI'm verifying the correct directory names for all configurations: SciERC N=32 and N=64 use the expected naming scheme, but CoNLL has inconsistencies too—N=8 is in `exp002_conll2003`, N=16 in `exp_002_conll_n16`, and N=32 in `conll_n32_s42`. I need to use these actual directory names to ensure I'm working with the same instance sets as the unified results.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "6aff88df-6f15-48d7-bf9c-5f27f3c1c24f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QeKhnaFkWU181eQzNCztSJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5693,
+                "cache_read_input_tokens": 25546,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5693
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "注意到统一结果中的目录名与任务描述中不完全一致。让我确认实际目录名和数据可用性。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "000d25a6-663a-4868-8578-421efe0da7a3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QeKhnaFkWU181eQzNCztSJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5693,
+                "cache_read_input_tokens": 25546,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5693
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vh4RRhh567Udm7cGTtx1Ek",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/conll_n32_s42/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/conll_n64_seed42/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/scierc_n32_s42/samples.jsonl /root/autodl-tmp/struct_self_consist_ie/output/scierc_n64_seed42/samples.jsonl 2>&1",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "35c5ec0c-e82e-4698-bdbe-0ab121dd6ab0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QeKhnaFkWU181eQzNCztSJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5693,
+                "cache_read_input_tokens": 25546,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5693
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T06:44:52.406Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vh4RRhh567Udm7cGTtx1Ek",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "68cedd86-551d-41d3-a187-63a0125dfcdc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FY9g6p4h5fDox5Ybz9TpuV",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "b773547d-b10f-4918-bc75-d77d654ce7f2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QeKhnaFkWU181eQzNCztSJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5693,
+                "cache_read_input_tokens": 25546,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5693
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T06:44:53.533Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FY9g6p4h5fDox5Ybz9TpuV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 153, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -9.37825492437198, \\\\\\\"n_tokens\\\\\\\": 218, \\\\\\\"mean_logprob\\\\\\\": -0.04301951800170633, \\\\\\\"token_logprobs\\\\\\\": [0.0, 0.0, 0.0, -0.00015925093612167984, 0.0, 0.0, 0.0, -2.6073734760284424, -8.344646857949556e-07, -0.00020346954988781363, 0.0, 0.0, 0.0, 0.0, -0.0019306369358673692, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1444026313256472e-05, -0.7048437595367432, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0003060825983993709, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, -9.131014667218551e-05, -5.829164365422912e-05, -3.540453326422721e-05, 0.0, 0.0, 0.0, 0.0, -0.006734649650752544, 0.0, 0.0, 0.0, 0.0, 0.0, -7.867782187531702e-06, -0.8260087966918945, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0009192770230583847, -5.149708886165172e-05, 0.0, 0.0, 0.0, 0.0, -0.0002836778585333377, 0.0, -1.1920928244535389e-07, -0.8259395360946655, -1.0728830375228426e-06, -6.198863957251888e-06, -1.2993727978027891e-05, -5.960462772236497e-07, 0.0, 0.0, 0.0, 0.0, -0.012650716118514538, 0.0, 0.0, 0.0, 0.0, 0.0, -0.023275263607501984, -0.8410270810127258, -1.7616076469421387, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.004105829633772373, -0.8278979659080505, -0.023248707875609398, 0.0, 0.0, 0.0, -0.01604408398270607, 0.0, 0.0, 0.0, -0.055015113204717636, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -0.008614876307547092, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.04005387797951698, -1.7881377516459906e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.7576205134391785, 0.0, 0.0, 0.0, 0.0, -0.0018390186596661806, 0.0, 0.0, -4.565611743601039e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0132738680113107e-05, -0.01107780635356903, 0.0, -0.0015023384476080537, 0.0, 0.0, 0.0, 0.0, -0.014365820214152336, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0728830375228426e-06, -1.5497195136049413e-06, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -8.463501580990851e-05, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.003181279404088855, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\",\\\\n\\\\n... [截断: 输出过长，省略 32896 字符] ...\\\\n\\\\n0.0019286142196506262, -8.344646857949556e-07, 0.0, -0.4740772247314453, 0.0, 0.0, 0.0, -5.960462772236497e-07, -0.0008524598088115454, 0.0, 0.0, 0.0, 0.0, 0.0, -7.390948667307384e-06, 0.0, 0.0, 0.0, 0.0, 0.0, -1.4781842764932662e-05, -0.2849313020706177, -1.5139465176616795e-05, 0.0, 0.0, 0.0, 0.0, -0.014180021360516548, -0.00012337400403339416, -0.00029595286468975246, 0.0, 0.0, 0.0, 0.0, -0.0015042430022731423, 0.0, 0.0, 0.0, 0.0, 0.0, -0.001032772590406239, -0.13952253758907318, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0019364668987691402, -4.005352093372494e-05, 0.0, 0.0, 0.0, 0.0, -0.004360097460448742, 0.0, 0.0, -0.5759396553039551, 0.0, 0.0, 0.0, 0.0, -0.07894659042358398, 0.0, 0.0, 0.0, 0.0, 0.0, -0.009766769595444202, -0.5139143466949463, -1.7422394752502441, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.20149461925029755, -0.011048096232116222, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -1.0728830375228426e-06, -1.1920928244535389e-07, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.014158277772367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0019289711490273476, -0.4861368238925934, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0021851013880223036, -0.006715467199683189, -0.0002961912250611931, 0.0, 0.0, 0.0, -0.000296310376143083, 0.0, 0.0, 0.0, -0.011089949868619442, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0024756519123911858, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.07932095229625702, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00026127262390218675, 0.0, 0.0, 0.0, 0.0, -0.3326084315776825, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -8.344646857949556e-07, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -0.003709698561578989, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.003606365295127034, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Recognition\\\\\\\", \\\\\\\" of\\\\\\\", \\\\\\\" proper\\\\\\\", \\\\\\\" nouns\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Task\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"2\\\\\\\", \\\\\\\"7\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Japanese\\\\\\\", \\\\\\\" text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Material\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"morph\\\\\\\", \\\\\\\"ological\\\\\\\", \\\\\\\" analysis\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Task\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Japanese\\\\\\\", \\\\\\\" text\\\\\\\", \\\\\\\" processing\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Task\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"7\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"6\\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Recognition\\\\\\\", \\\\\\\" of\\\\\\\", \\\\\\\" proper\\\\\\\", \\\\\\\" nouns\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"morph\\\\\\\", \\\\\\\"ological\\\\\\\", \\\\\\\" analysis\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"PART\\\\\\\", \\\\\\\"-\\\\\\\", \\\\\\\"OF\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"2\\\\\\\", \\\\\\\"7\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"morph\\\\\\\", \\\\\\\"ological\\\\\\\", \\\\\\\" analysis\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Japanese\\\\\\\", \\\\\\\" text\\\\\\\", \\\\\\\" processing\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"PART\\\\\\\", \\\\\\\"-\\\\\\\", \\\\\\\"OF\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"7\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"6\\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"events\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" []\\\\\\\", \\\\\\\"}\\\\\\\", \\\\\\\"<|im_end|>\\\\\\\"]}, \\\\\\\"logprobs\\\\\\\": [-0.04301951800170633, -0.030125723530248793, -0.07826225159606297, -0.03985480264297753, -0.08994497064493108, -0.023971008506888828, -0.026646325538364077, -0.06124310915601242]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "cd175341-b253-4411-97a9-be8b5ed2bb12",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis in Japanese text processing\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 153, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}], \\\\\\\"events\\\\\\\": [], \\\\\\\"cumulative_logprob\\\\\\\": -9.37825492437198, \\\\\\\"n_tokens\\\\\\\": 218, \\\\\\\"mean_logprob\\\\\\\": -0.04301951800170633, \\\\\\\"token_logprobs\\\\\\\": [0.0, 0.0, 0.0, -0.00015925093612167984, 0.0, 0.0, 0.0, -2.6073734760284424, -8.344646857949556e-07, -0.00020346954988781363, 0.0, 0.0, 0.0, 0.0, -0.0019306369358673692, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1444026313256472e-05, -0.7048437595367432, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0003060825983993709, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, -9.131014667218551e-05, -5.829164365422912e-05, -3.540453326422721e-05, 0.0, 0.0, 0.0, 0.0, -0.006734649650752544, 0.0, 0.0, 0.0, 0.0, 0.0, -7.867782187531702e-06, -0.8260087966918945, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0009192770230583847, -5.149708886165172e-05, 0.0, 0.0, 0.0, 0.0, -0.0002836778585333377, 0.0, -1.1920928244535389e-07, -0.8259395360946655, -1.0728830375228426e-06, -6.198863957251888e-06, -1.2993727978027891e-05, -5.960462772236497e-07, 0.0, 0.0, 0.0, 0.0, -0.012650716118514538, 0.0, 0.0, 0.0, 0.0, 0.0, -0.023275263607501984, -0.8410270810127258, -1.7616076469421387, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.004105829633772373, -0.8278979659080505, -0.023248707875609398, 0.0, 0.0, 0.0, -0.01604408398270607, 0.0, 0.0, 0.0, -0.055015113204717636, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -0.008614876307547092, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.04005387797951698, -1.7881377516459906e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.7576205134391785, 0.0, 0.0, 0.0, 0.0, -0.0018390186596661806, 0.0, 0.0, -4.565611743601039e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0132738680113107e-05, -0.01107780635356903, 0.0, -0.0015023384476080537, 0.0, 0.0, 0.0, 0.0, -0.014365820214152336, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0728830375228426e-06, -1.5497195136049413e-06, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -8.463501580990851e-05, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.003181279404088855, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\",\\\\n\\\\n... [截断: 输出过长，省略 32896 字符] ...\\\\n\\\\n0.0019286142196506262, -8.344646857949556e-07, 0.0, -0.4740772247314453, 0.0, 0.0, 0.0, -5.960462772236497e-07, -0.0008524598088115454, 0.0, 0.0, 0.0, 0.0, 0.0, -7.390948667307384e-06, 0.0, 0.0, 0.0, 0.0, 0.0, -1.4781842764932662e-05, -0.2849313020706177, -1.5139465176616795e-05, 0.0, 0.0, 0.0, 0.0, -0.014180021360516548, -0.00012337400403339416, -0.00029595286468975246, 0.0, 0.0, 0.0, 0.0, -0.0015042430022731423, 0.0, 0.0, 0.0, 0.0, 0.0, -0.001032772590406239, -0.13952253758907318, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0019364668987691402, -4.005352093372494e-05, 0.0, 0.0, 0.0, 0.0, -0.004360097460448742, 0.0, 0.0, -0.5759396553039551, 0.0, 0.0, 0.0, 0.0, -0.07894659042358398, 0.0, 0.0, 0.0, 0.0, 0.0, -0.009766769595444202, -0.5139143466949463, -1.7422394752502441, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.20149461925029755, -0.011048096232116222, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -1.0728830375228426e-06, -1.1920928244535389e-07, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.014158277772367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0019289711490273476, -0.4861368238925934, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0021851013880223036, -0.006715467199683189, -0.0002961912250611931, 0.0, 0.0, 0.0, -0.000296310376143083, 0.0, 0.0, 0.0, -0.011089949868619442, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0024756519123911858, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.07932095229625702, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00026127262390218675, 0.0, 0.0, 0.0, 0.0, -0.3326084315776825, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -8.344646857949556e-07, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -0.003709698561578989, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.003606365295127034, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\\\\\"token_texts\\\\\\\": [\\\\\\\"{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"entities\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Recognition\\\\\\\", \\\\\\\" of\\\\\\\", \\\\\\\" proper\\\\\\\", \\\\\\\" nouns\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Task\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"2\\\\\\\", \\\\\\\"7\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Japanese\\\\\\\", \\\\\\\" text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Material\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"morph\\\\\\\", \\\\\\\"ological\\\\\\\", \\\\\\\" analysis\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Task\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Japanese\\\\\\\", \\\\\\\" text\\\\\\\", \\\\\\\" processing\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Task\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"7\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"6\\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" [{\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Recognition\\\\\\\", \\\\\\\" of\\\\\\\", \\\\\\\" proper\\\\\\\", \\\\\\\" nouns\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"morph\\\\\\\", \\\\\\\"ological\\\\\\\", \\\\\\\" analysis\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"PART\\\\\\\", \\\\\\\"-\\\\\\\", \\\\\\\"OF\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"2\\\\\\\", \\\\\\\"7\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"},\\\\\\\", \\\\\\\" {\\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"morph\\\\\\\", \\\\\\\"ological\\\\\\\", \\\\\\\" analysis\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"Japanese\\\\\\\", \\\\\\\" text\\\\\\\", \\\\\\\" processing\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"PART\\\\\\\", \\\\\\\"-\\\\\\\", \\\\\\\"OF\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"head\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_start\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"3\\\\\\\", \\\\\\\"7\\\\\\\", \\\\\\\",\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"_end\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" \\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"6\\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\"}],\\\\\\\", \\\\\\\" \\\\\\\\\\\\\\\"\\\\\\\", \\\\\\\"events\\\\\\\", \\\\\\\"\\\\\\\\\\\\\\\":\\\\\\\", \\\\\\\" []\\\\\\\", \\\\\\\"}\\\\\\\", \\\\\\\"<|im_end|>\\\\\\\"]}, \\\\\\\"logprobs\\\\\\\": [-0.04301951800170633, -0.030125723530248793, -0.07826225159606297, -0.03985480264297753, -0.08994497064493108, -0.023971008506888828, -0.026646325538364077, -0.06124310915601242]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"X96-1059_sent000\\\", \\\"text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 0, \\\"end\\\": 27}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 125}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 129, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 0, \\\"head_end\\\": 27, \\\"tail_start\\\": 103, \\\"tail_end\\\": 125}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 125, \\\"tail_start\\\": 129, \\\"tail_end\\\": 153}], \\\"events\\\": []}, \\\"samples\\\": [{\\\"entities\\\": [{\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\", \\\"start\\\": 15, \\\"end\\\": 27}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\", \\\"start\\\": 31, \\\"end\\\": 44}, {\\\"text\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"type\\\": \\\"Task\\\", \\\"start\\\": 103, \\\"end\\\": 153}], \\\"relations\\\": [{\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"PART-OF\\\", \\\"head_start\\\": 15, \\\"head_end\\\": 27, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}, {\\\"head\\\": \\\"morphological analysis in Japanese text processing\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"USED-FOR\\\", \\\"head_start\\\": 103, \\\"head_end\\\": 153, \\\"tail_start\\\": 31, \\\"tail_end\\\": 44}], \\\"events\\\": [], \\\"cumulative_logprob\\\": -9.37825492437198, \\\"n_tokens\\\": 218, \\\"mean_logprob\\\": -0.04301951800170633, \\\"token_logprobs\\\": [0.0, 0.0, 0.0, -0.00015925093612167984, 0.0, 0.0, 0.0, -2.6073734760284424, -8.344646857949556e-07, -0.00020346954988781363, 0.0, 0.0, 0.0, 0.0, -0.0019306369358673692, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1444026313256472e-05, -0.7048437595367432, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0003060825983993709, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, -9.131014667218551e-05, -5.829164365422912e-05, -3.540453326422721e-05, 0.0, 0.0, 0.0, 0.0, -0.006734649650752544, 0.0, 0.0, 0.0, 0.0, 0.0, -7.867782187531702e-06, -0.8260087966918945, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0009192770230583847, -5.149708886165172e-05, 0.0, 0.0, 0.0, 0.0, -0.0002836778585333377, 0.0, -1.1920928244535389e-07, -0.8259395360946655, -1.0728830375228426e-06, -6.198863957251888e-06, -1.2993727978027891e-05, -5.960462772236497e-07, 0.0, 0.0, 0.0, 0.0, -0.012650716118514538, 0.0, 0.0, 0.0, 0.0, 0.0, -0.023275263607501984, -0.8410270810127258, -1.7616076469421387, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.004105829633772373, -0.8278979659080505, -0.023248707875609398, 0.0, 0.0, 0.0, -0.01604408398270607, 0.0, 0.0, 0.0, -0.055015113204717636, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -0.008614876307547092, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.04005387797951698, -1.7881377516459906e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.7576205134391785, 0.0, 0.0, 0.0, 0.0, -0.0018390186596661806, 0.0, 0.0, -4.565611743601039e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0132738680113107e-05, -0.01107780635356903, 0.0, -0.0015023384476080537, 0.0, 0.0, 0.0, 0.0, -0.014365820214152336, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0728830375228426e-06, -1.5497195136049413e-06, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -8.463501580990851e-05, -7.152555099310121e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.003181279404088855, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\",\\n\\n... [截断: 输出过长，省略 32896 字符] ...\\n\\n0.0019286142196506262, -8.344646857949556e-07, 0.0, -0.4740772247314453, 0.0, 0.0, 0.0, -5.960462772236497e-07, -0.0008524598088115454, 0.0, 0.0, 0.0, 0.0, 0.0, -7.390948667307384e-06, 0.0, 0.0, 0.0, 0.0, 0.0, -1.4781842764932662e-05, -0.2849313020706177, -1.5139465176616795e-05, 0.0, 0.0, 0.0, 0.0, -0.014180021360516548, -0.00012337400403339416, -0.00029595286468975246, 0.0, 0.0, 0.0, 0.0, -0.0015042430022731423, 0.0, 0.0, 0.0, 0.0, 0.0, -0.001032772590406239, -0.13952253758907318, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0019364668987691402, -4.005352093372494e-05, 0.0, 0.0, 0.0, 0.0, -0.004360097460448742, 0.0, 0.0, -0.5759396553039551, 0.0, 0.0, 0.0, 0.0, -0.07894659042358398, 0.0, 0.0, 0.0, 0.0, 0.0, -0.009766769595444202, -0.5139143466949463, -1.7422394752502441, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.20149461925029755, -0.011048096232116222, 0.0, 0.0, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -1.0728830375228426e-06, -1.1920928244535389e-07, 0.0, 0.0, 0.0, -1.1920928244535389e-07, -0.014158277772367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0019289711490273476, -0.4861368238925934, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0021851013880223036, -0.006715467199683189, -0.0002961912250611931, 0.0, 0.0, 0.0, -0.000296310376143083, 0.0, 0.0, 0.0, -0.011089949868619442, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0024756519123911858, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.07932095229625702, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.00026127262390218675, 0.0, 0.0, 0.0, 0.0, -0.3326084315776825, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -8.344646857949556e-07, 0.0, -1.1920928244535389e-07, 0.0, 0.0, 0.0, 0.0, 0.0, -0.003709698561578989, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.003606365295127034, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], \\\"token_texts\\\": [\\\"{\\\\\\\"\\\", \\\"entities\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Recognition\\\", \\\" of\\\", \\\" proper\\\", \\\" nouns\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Task\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"0\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"7\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Japanese\\\", \\\" text\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Material\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"3\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"4\\\", \\\"4\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"morph\\\", \\\"ological\\\", \\\" analysis\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Task\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"1\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"3\\\", \\\"3\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"text\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Japanese\\\", \\\" text\\\", \\\" processing\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Task\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"3\\\", \\\"7\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"6\\\", \\\"0\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"relations\\\", \\\"\\\\\\\":\\\", \\\" [{\\\\\\\"\\\", \\\"head\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Recognition\\\", \\\" of\\\", \\\" proper\\\", \\\" nouns\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"morph\\\", \\\"ological\\\", \\\" analysis\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"PART\\\", \\\"-\\\", \\\"OF\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"0\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"2\\\", \\\"7\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"1\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"3\\\", \\\"3\\\", \\\"},\\\", \\\" {\\\\\\\"\\\", \\\"head\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"morph\\\", \\\"ological\\\", \\\" analysis\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"Japanese\\\", \\\" text\\\", \\\" processing\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"type\\\", \\\"\\\\\\\":\\\", \\\" \\\\\\\"\\\", \\\"PART\\\", \\\"-\\\", \\\"OF\\\", \\\"\\\\\\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"1\\\", \\\"1\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"head\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"3\\\", \\\"3\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_start\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"3\\\", \\\"7\\\", \\\",\\\", \\\" \\\\\\\"\\\", \\\"tail\\\", \\\"_end\\\", \\\"\\\\\\\":\\\", \\\" \\\", \\\"1\\\", \\\"6\\\", \\\"0\\\", \\\"}],\\\", \\\" \\\\\\\"\\\", \\\"events\\\", \\\"\\\\\\\":\\\", \\\" []\\\", \\\"}\\\", \\\"<|im_end|>\\\"]}, \\\"logprobs\\\": [-0.04301951800170633, -0.030125723530248793, -0.07826225159606297, -0.03985480264297753, -0.08994497064493108, -0.023971008506888828, -0.026646325538364077, -0.06124310915601242]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The `ls` command was blocked due to `2>&1` redirect. Let me check the files individually. But from the unified results, I can see the actual directory names:\n\n- SciERC N=8: `scierc_mf4v2_seed42`\n- SciERC N=16: `exp_001_seed42_v2`\n- SciERC N=32: `scierc_n32_s42`\n- SciERC N=64: `scierc_n64_seed42`\n- CoNLL N=8: `exp002_conll2003`\n\n\n- CoNLL N=16: `exp_002_conll_n16`\n- CoNLL N=32: `conll_n32_s42`\n- CoNLL N=64: `conll_n64_seed42`\n\nLooking at the data structure, each instance contains an id, text, gold labels, and a list of samples. Within each sample, there are entities, relations, events, along with various probability metrics like cumulative and mean logprob, plus token-level information.\n\nNow I'm checking where the `greedy` field actually lives—the recompute script references it at the instance level, but the head output doesn't show it at the top level. The lp_best_n_scaling.py treats the first sample as greedy, while recompute_alpha_crit_unified.py accesses it as an instance field, so these might be working with different file formats or the field appears later in the JSON structure.\n\nI also need to verify the exact naming convention—the unified results file uses `conll_n32_s42` but the task description mentions `conll_n32_seed42`, so I should align with what's actually in the results file. Let me write a script to check file existence, confirm the greedy field location, and validate the instance structure across the data.\n\nLooking at the helper functions available, I see `extract_entities` returns a frozenset of entity tuples, `micro_f1` computes scores from tp/pred/gold counts, and there's also an alternative `entity_f1_counts` function that returns tp/fp/fn directly. For the unified LP-best approach, I'll load all the N samples, find instances with gold entities, use N=8 greedy as my baseline, then compute LP-best F1 scores for each N value.\n\nNow I'm clarifying the baseline definition—the LP baseline should be the greedy F1 on the unified instance set, which comes from the N=8 greedy results. For SciERC, that's 0.6683 across all N values since they all reference the same N=8 greedy baseline, and then I calculate the improvement as LP-best F1 minus this baseline. So LP baseline is just the greedy F1 score from the unified set—0.6683 for SciERC and 0.9123 for CoNLL—and LP Δ measures the improvement from selecting the best sample by log probability at each N. Now I need to verify the data structure, check that all CoNLL files exist and contain the greedy field, then write the script to compute these metrics.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "1862d004-8153-443d-8eca-c8020aed8fc0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015FX7Atd3FWvbMKERmvtJb1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9174,
+                "cache_read_input_tokens": 31239,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9174
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LrfdeBakB7h6iAet7cabNH",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "90bf94e0-7d3b-4850-8162-c0ecadf6cdc2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015FX7Atd3FWvbMKERmvtJb1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9174,
+                "cache_read_input_tokens": 31239,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9174
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T06:45:43.496Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LrfdeBakB7h6iAet7cabNH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "b30eef6c-25ee-4a72-b32f-f01ddafa03c3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SdfESbZirBwyyxegkGZZSg",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "python3 -c \"import json; d=json.loads(open('/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl').readline()); print(list(d.keys())); print('n_samples:', len(d['samples'])); print('has_greedy:', 'greedy' in d); s=d['samples'][0]; print('sample_keys:', [k for k in s.keys() if k not in ('token_logprobs','token_texts')])\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "b24c3236-37c1-4374-82f0-58023dfb7049",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015FX7Atd3FWvbMKERmvtJb1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9174,
+                "cache_read_input_tokens": 31239,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9174
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T06:45:44.786Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SdfESbZirBwyyxegkGZZSg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "7a95ff41-3080-4a8a-bf84-eb95b19c8a1e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011wpuZL8gNDCGqaGqDL1dPD",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "python3 -c \"import json; d=json.loads(open('/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl').readline()); print(list(d.keys())); print('n_samples:', len(d['samples'])); print('has_greedy:', 'greedy' in d)\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "2b4318b1-3fc3-4ca3-b743-b10a3372a5cb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BvSUPQTXwx3tCXTMX1reKr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2246,
+                "cache_read_input_tokens": 40413,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2246
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T06:45:59.595Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011wpuZL8gNDCGqaGqDL1dPD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "125eea99-9930-47b2-9553-49590163f085",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L59d8gVwgwwcJbWvqWi9av",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd=json.loads(open('/root/autodl-tmp/struct_self_consist_ie/output/scierc_mf4v2_seed42/samples.jsonl').readline())\nprint('keys:', list(d.keys()))\nprint('n_samples:', len(d['samples']))\nprint('has_greedy:', 'greedy' in d)\ns=d['samples'][0]\nprint('sample_keys:', [k for k in s.keys() if k not in ('token_logprobs','token_texts')])\nprint('mean_logprob:', s.get('mean_logprob'))\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "c8981845-bca1-4433-aa20-c5ef91bc9602",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XsU6HwRCWneXrbALYVbXtX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 286,
+                "cache_read_input_tokens": 42659,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 286
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T06:46:04.824Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L59d8gVwgwwcJbWvqWi9av",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"keys: ['id', 'text', 'gold', 'samples', 'greedy', 'logprobs']\\\\nn_samples: 8\\\\nhas_greedy: True\\\\nsample_keys: ['entities', 'relations', 'events', 'cumulative_logprob', 'n_tokens', 'mean_logprob']\\\\nmean_logprob: -0.04301951800170633\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "72afba53-3861-4d2d-938a-22fdee62d525",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"keys: ['id', 'text', 'gold', 'samples', 'greedy', 'logprobs']\\\\nn_samples: 8\\\\nhas_greedy: True\\\\nsample_keys: ['entities', 'relations', 'events', 'cumulative_logprob', 'n_tokens', 'mean_logprob']\\\\nmean_logprob: -0.04301951800170633\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"keys: ['id', 'text', 'gold', 'samples', 'greedy', 'logprobs']\\nn_samples: 8\\nhas_greedy: True\\nsample_keys: ['entities', 'relations', 'events', 'cumulative_logprob', 'n_tokens', 'mean_logprob']\\nmean_logprob: -0.04301951800170633\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture:\n- Instance keys: `id`, `text`, `gold`, `samples`, `greedy`, `logprobs`\n- `greedy` is a separate field at instance level\n- Each sample has `entities`, `relations`, `events`, `cumulative_logprob`, `n_tokens`, `mean_logprob`\n- `mean_logprob` is available for LP-best selection\n\nNow I need to check if the CoNLL N=8 file has the same structure. Let me also verify the directory names match between unified results and actual files.\n\nThe unified results use these directories:\n\n\n- SciERC: `scierc_mf4v2_seed42`, `exp_001_seed42_v2`, `scierc_n32_s42`, `scierc_n64_seed42`\n- CoNLL: `exp002_conll2003`, `exp_002_conll_n16`, `conll_n32_s42`, `conll_n64_seed42`\n\nAll files exist. Now I'm ready to write the script that loads all four N values for each dataset and builds an instance ID mapping.\n\nFor each dataset, I need to find the intersection of IDs across all N values, filter to instances with gold entities, then check which ones have consistent greedy predictions. The task specifies using N=8 greedy as the baseline for all N values, computing F1 scores only on instances where greedy predictions are consistent across all N values, then finding the LP-best sample for each N and calculating the F1 delta.\n\nBut looking at the existing implementation, it seems to use all gold-nonempty instances rather than filtering to greedy-consistent ones—the consistency is just reported as a statistic. Let me re-read the task description to clarify whether the parenthetical about greedy-consistent instances is a filtering requirement or just a description of the approach.\n\nActually, the task wording suggests filtering to greedy-consistent instances is the intended approach. Let me follow that and write the script based on the existing code structure. I need to clarify the approach: use all gold-nonempty instances without filtering, apply N=8 greedy as the unified baseline, and compute LP-best F1 the same way MV was handled. For the LP baseline, since N=1 means LP-best equals greedy (only one sample), the baseline is just the greedy F1 on the unified set, which stays constant across all N values. Now I'm writing the script to implement this.\n\nWriting script code... Defining the results dictionary and computing the greedy baseline by extracting entities from the N=8 instances, calculating true positives, false positives, and false negatives across all unified IDs, then computing the micro-F1 score for that baseline.\n\nNow for each N value, I'm iterating through the instances and selecting the sample with the highest mean log probability, then computing the LP-best F1 metrics by comparing predicted entities against gold standard entities. I'm realizing I need to be more careful about how the unified instance set is constructed—it should include instances that appear across all N values and have non-empty gold annotations, which gives us 529 instances total. The greedy consistency metric shows that only 52 of these differ across N, but the results table covers all 529. When computing LP-best for different N values, I need to use the corresponding number of samples for each instance, handling cases where there might be fewer samples than N available.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "f30b6eb7-fde3-4789-9103-6767d6384dbe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D7jdoM5LYc7wyWnKRZCYyd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 454,
+                "cache_read_input_tokens": 42945,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 454
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据结构清楚了。现在编写 `lp_best_unified.py` 脚本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "dda6f5fd-51d6-4c78-a0cb-c3bc51d15d17",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D7jdoM5LYc7wyWnKRZCYyd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 454,
+                "cache_read_input_tokens": 42945,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 454
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UY8VmdWQwK5gdQn9bRkB5Q",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/lp_best_unified.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"Compute LP-best F1 on the unified instance set (same set as unified MV recompute).\n\nFor each dataset:\n- Find instance ID intersection across all N values\n- Filter to gold-nonempty\n- Use N=8 greedy as unified baseline (LP baseline = greedy F1)\n- For each N: pick sample with highest mean_logprob, compute entity-level micro-F1\n- LP Δ = LP-best F1 - LP baseline\n\"\"\"\nimport json\nimport os\nimport sys\n\nDATA_ROOT = \"/root/autodl-tmp/struct_self_consist_ie/output\"\n\nDATASETS = {\n    \"SciERC\": [\n        (8,  \"scierc_mf4v2_seed42\"),\n        (16, \"exp_001_seed42_v2\"),\n        (32, \"scierc_n32_s42\"),\n        (64, \"scierc_n64_seed42\"),\n    ],\n    \"CoNLL\": [\n        (8,  \"exp002_conll2003\"),\n        (16, \"exp_002_conll_n16\"),\n        (32, \"conll_n32_s42\"),\n        (64, \"conll_n64_seed42\"),\n    ],\n}\n\n\ndef extract_entities(d):\n    return frozenset((e[\"text\"], e[\"type\"], e[\"start\"], e[\"end\"]) for e in d.get(\"entities\", []))\n\n\ndef micro_f1(tp, fp, fn):\n    if tp == 0:\n        return 0.0\n    p = tp / (tp + fp)\n    r = tp / (tp + fn)\n    return 2 * p * r / (p + r)\n\n\ndef load_instances(path):\n    instances = {}\n    with open(path) as f:\n        for line in f:\n            inst = json.loads(line)\n            instances[inst[\"id\"]] = inst\n    return instances\n\n\ndef process_dataset(ds_name, configs):\n    out_lines = []\n    out_lines.append(f\"\\n{'='*70}\")\n    out_lines.append(f\"Dataset: {ds_name}\")\n    out_lines.append(f\"{'='*70}\")\n\n    all_n = [n for n, _ in configs]\n    instances_by_n = {}\n    id_sets = []\n\n    for N, dirname in configs:\n        path = os.path.join(DATA_ROOT, dirname, \"samples.jsonl\")\n        if not os.path.exists(path):\n            out_lines.append(f\"  MISSING: {path}\")\n            return out_lines\n        insts = load_instances(path)\n        instances_by_n[N] = insts\n        id_sets.append(set(insts.keys()))\n        out_lines.append(f\"  N={N}: {len(insts)} instances from output/{dirname}/samples.jsonl\")\n\n    # Instance ID intersection\n    common_ids = id_sets[0]\n    for s in id_sets[1:]:\n        common_ids = common_ids & s\n    out_lines.append(f\"\\n  Instance ID intersection: {len(common_ids)}\")\n\n    # Filter to gold-nonempty\n    n8_insts = instances_by_n[all_n[0]]\n    unified_ids = sorted([iid for iid in common_ids\n                          if len(extract_entities(n8_insts[iid][\"gold\"])) > 0])\n    out_lines.append(f\"  Gold-nonempty intersection: {len(unified_ids)}\")\n\n    # Greedy consistency check\n    n_differ = 0\n    for iid in unified_ids:\n        greedy_sets = [extract_entities(instances_by_n[N][iid][\"greedy\"]) for N in all_n]\n        if len(set(greedy_sets)) > 1:\n            n_differ += 1\n    out_lines.append(f\"  Greedy consistency: {n_differ}/{len(unified_ids)} instances differ across N\")\n    out_lines.append(f\"  Using greedy from N={all_n[0]} as unified baseline\")\n\n    # LP baseline = greedy F1 on unified set (= LP-best with N=1)\n    greedy_tp = greedy_fp = greedy_fn = 0\n    for iid in unified_ids:\n        gold = extract_entities(n8_insts[iid][\"gold\"])\n        greedy = extract_entities(n8_insts[iid][\"greedy\"])\n        tp = len(greedy & gold)\n        greedy_tp += tp\n        greedy_fp += len(greedy - gold)\n        greedy_fn += len(gold - greedy)\n    lp_baseline = micro_f1(greedy_tp, greedy_fp, greedy_fn)\n\n    out_lines.append(f\"\\n  LP baseline (greedy F1): {lp_baseline:.4f}\")\n\n    # Per-N LP-best\n    out_lines.append(f\"\\n     N | LP-best F1 | LP Δ(pp) |  #inst\")\n    out_lines.append(f\"  -----+------------+----------+-------\")\n\n    for N in all_n:\n        lp_tp = lp_fp = lp_fn = 0\n        for iid in unified_ids:\n            inst = instances_by_n[N][iid]\n            gold = extract_entities(inst[\"gold\"])\n            samples = inst[\"samples\"][:N]\n            best_idx = max(range(len(samples)), key=lambda i: samples[i][\"mean_logprob\"])\n            pred = extract_entities(samples[best_idx])\n            tp = len(pred & gold)\n            lp_tp += tp\n            lp_fp += len(pred - gold)\n            lp_fn += len(gold - pred)\n\n        lp_f1 = micro_f1(lp_tp, lp_fp, lp_fn)\n        delta = (lp_f1 - lp_baseline) * 100\n        out_lines.append(f\"  {N:>4} | {lp_f1:>10.4f} | {delta:>+7.2f}  | {len(unified_ids):>5}\")\n\n    return out_lines\n\n\ndef main():\n    all_output = []\n    for ds_name, configs in DATASETS.items():\n        print(f\"  Processing {ds_name}...\", file=sys.stderr, flush=True)\n        lines = process_dataset(ds_name, configs)\n        all_output.extend(lines)\n\n    text = \"\\n\".join(all_output) + \"\\n\"\n    print(text)\n\n    out_path = os.path.join(DATA_ROOT, \"unified_lp_best_results.txt\")\n    with open(out_path, \"w\") as f:\n        f.write(text)\n    print(f\"Saved: {out_path}\", file=sys.stderr)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "1fdce989-0f9a-4686-8335-92cf144b2b96",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D7jdoM5LYc7wyWnKRZCYyd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 454,
+                "cache_read_input_tokens": 42945,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 454
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T06:47:19.523Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UY8VmdWQwK5gdQn9bRkB5Q",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/lp_best_unified.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "da774cf0-a6e4-4d1b-a0e5-210ff8fae223",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/lp_best_unified.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Compute LP-best F1 on the unified instance set (same set as unified MV recompute).\n\nFor each dataset:\n- Find instance ID intersection across all N values\n- Filter to gold-nonempty\n- Use N=8 greedy as unified baseline (LP baseline = greedy F1)\n- For each N: pick sample with highest mean_logprob, compute entity-level micro-F1\n- LP Δ = LP-best F1 - LP baseline\n\"\"\"\nimport json\nimport os\nimport sys\n\nDATA_ROOT = \"/root/autodl-tmp/struct_self_consist_ie/output\"\n\nDATASETS = {\n    \"SciERC\": [\n        (8,  \"scierc_mf4v2_seed42\"),\n        (16, \"exp_001_seed42_v2\"),\n        (32, \"scierc_n32_s42\"),\n        (64, \"scierc_n64_seed42\"),\n    ],\n    \"CoNLL\": [\n        (8,  \"exp002_conll2003\"),\n        (16, \"exp_002_conll_n16\"),\n        (32, \"conll_n32_s42\"),\n        (64, \"conll_n64_seed42\"),\n    ],\n}\n\n\ndef extract_entities(d):\n    return frozenset((e[\"text\"], e[\"type\"], e[\"start\"], e[\"end\"]) for e in d.get(\"entities\", []))\n\n\ndef micro_f1(tp, fp, fn):\n    if tp == 0:\n        return 0.0\n    p = tp / (tp + fp)\n    r = tp / (tp + fn)\n    return 2 * p * r / (p + r)\n\n\ndef load_instances(path):\n    instances = {}\n    with open(path) as f:\n        for line in f:\n            inst = json.loads(line)\n            instances[inst[\"id\"]] = inst\n    return instances\n\n\ndef process_dataset(ds_name, configs):\n    out_lines = []\n    out_lines.append(f\"\\n{'='*70}\")\n    out_lines.append(f\"Dataset: {ds_name}\")\n    out_lines.append(f\"{'='*70}\")\n\n    all_n = [n for n, _ in configs]\n    instances_by_n = {}\n    id_sets = []\n\n    for N, dirname in configs:\n        path = os.path.join(DATA_ROOT, dirname, \"samples.jsonl\")\n        if not os.path.exists(path):\n            out_lines.append(f\"  MISSING: {path}\")\n            return out_lines\n        insts = load_instances(path)\n        instances_by_n[N] = insts\n        id_sets.append(set(insts.keys()))\n        out_lines.append(f\"  N={N}: {len(insts)} instances from output/{dirname}/samples.jsonl\")\n\n    # Instance ID intersection\n    common_ids = id_sets[0]\n    for s in id_sets[1:]:\n        common_ids = common_ids & s\n    out_lines.append(f\"\\n  Instance ID intersection: {len(common_ids)}\")\n\n    # Filter to gold-nonempty\n    n8_insts = instances_by_n[all_n[0]]\n    unified_ids = sorted([iid for iid in common_ids\n                          if len(extract_entities(n8_insts[iid][\"gold\"])) > 0])\n    out_lines.append(f\"  Gold-nonempty intersection: {len(unified_ids)}\")\n\n    # Greedy consistency check\n    n_differ = 0\n    for iid in unified_ids:\n        greedy_sets = [extract_entities(instances_by_n[N][iid][\"greedy\"]) for N in all_n]\n        if len(set(greedy_sets)) > 1:\n            n_differ += 1\n    out_lines.append(f\"  Greedy consistency: {n_differ}/{len(unified_ids)} instances differ across N\")\n    out_lines.append(f\"  Using greedy from N={all_n[0]} as unified baseline\")\n\n    # LP baseline = greedy F1 on unified set (= LP-best with N=1)\n    greedy_tp = greedy_fp = greedy_fn = 0\n    for iid in unified_ids:\n        gold = extract_entities(n8_insts[iid][\"gold\"])\n        greedy = extract_entities(n8_insts[iid][\"greedy\"])\n        tp = len(greedy & gold)\n        greedy_tp += tp\n        greedy_fp += len(greedy - gold)\n        greedy_fn += len(gold - greedy)\n    lp_baseline = micro_f1(greedy_tp, greedy_fp, greedy_fn)\n\n    out_lines.append(f\"\\n  LP baseline (greedy F1): {lp_baseline:.4f}\")\n\n    # Per-N LP-best\n    out_lines.append(f\"\\n     N | LP-best F1 | LP Δ(pp) |  #inst\")\n    out_lines.append(f\"  -----+------------+----------+-------\")\n\n    for N in all_n:\n        lp_tp = lp_fp = lp_fn = 0\n        for iid in unified_ids:\n            inst = instances_by_n[N][iid]\n            gold = extract_entities(inst[\"gold\"])\n            samples = inst[\"samples\"][:N]\n            best_idx = max(range(len(samples)), key=lambda i: samples[i][\"mean_logprob\"])\n            pred = extract_entities(samples[best_idx])\n            tp = len(pred & gold)\n            lp_tp += tp\n            lp_fp += len(pred - gold)\n            lp_fn += len(gold - pred)\n\n        lp_f1 = micro_f1(lp_tp, lp_fp, lp_fn)\n        delta = (lp_f1 - lp_baseline) * 100\n        out_lines.append(f\"  {N:>4} | {lp_f1:>10.4f} | {delta:>+7.2f}  | {len(unified_ids):>5}\")\n\n    return out_lines\n\n\ndef main():\n    all_output = []\n    for ds_name, configs in DATASETS.items():\n        print(f\"  Processing {ds_name}...\", file=sys.stderr, flush=True)\n        lines = process_dataset(ds_name, configs)\n        all_output.extend(lines)\n\n    text = \"\\n\".join(all_output) + \"\\n\"\n    print(text)\n\n    out_path = os.path.join(DATA_ROOT, \"unified_lp_best_results.txt\")\n    with open(out_path, \"w\") as f:\n        f.write(text)\n    print(f\"Saved: {out_path}\", file=sys.stderr)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "将脚本上传并运行。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "313d760b-2fdd-48c8-84bc-cafb6acb7692",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017bbpJBFhyPxbvJpvyjGtHU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4424,
+                "cache_read_input_tokens": 43399,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4424
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y7ENFAeN12Bb3GKVksQR6C",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/lp_best_unified.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Compute LP-best F1 on the unified instance set (same set as unified MV recompute).\"\"\"\nimport json\nimport os\nimport sys\n\nDATA_ROOT = \"/root/autodl-tmp/struct_self_consist_ie/output\"\n\nDATASETS = {\n    \"SciERC\": [\n        (8,  \"scierc_mf4v2_seed42\"),\n        (16, \"exp_001_seed42_v2\"),\n        (32, \"scierc_n32_s42\"),\n        (64, \"scierc_n64_seed42\"),\n    ],\n    \"CoNLL\": [\n        (8,  \"exp002_conll2003\"),\n        (16, \"exp_002_conll_n16\"),\n        (32, \"conll_n32_s42\"),\n        (64, \"conll_n64_seed42\"),\n    ],\n}\n\n\ndef extract_entities(d):\n    return frozenset((e[\"text\"], e[\"type\"], e[\"start\"], e[\"end\"]) for e in d.get(\"entities\", []))\n\n\ndef micro_f1(tp, fp, fn):\n    if tp == 0:\n        return 0.0\n    p = tp / (tp + fp)\n    r = tp / (tp + fn)\n    return 2 * p * r / (p + r)\n\n\ndef load_instances(path):\n    instances = {}\n    with open(path) as f:\n        for line in f:\n            inst = json.loads(line)\n            instances[inst[\"id\"]] = inst\n    return instances\n\n\ndef process_dataset(ds_name, configs):\n    out_lines = []\n    out_lines.append(f\"\\n{'='*70}\")\n    out_lines.append(f\"Dataset: {ds_name}\")\n    out_lines.append(f\"{'='*70}\")\n\n    all_n = [n for n, _ in configs]\n    instances_by_n = {}\n    id_sets = []\n\n    for N, dirname in configs:\n        path = os.path.join(DATA_ROOT, dirname, \"samples.jsonl\")\n        if not os.path.exists(path):\n            out_lines.append(f\"  MISSING: {path}\")\n            return out_lines\n        insts = load_instances(path)\n        instances_by_n[N] = insts\n        id_sets.append(set(insts.keys()))\n        out_lines.append(f\"  N={N}: {len(insts)} instances from output/{dirname}/samples.jsonl\")\n\n    # Instance ID intersection\n    common_ids = id_sets[0]\n    for s in id_sets[1:]:\n        common_ids = common_ids & s\n    out_lines.append(f\"\\n  Instance ID intersection: {len(common_ids)}\")\n\n    # Filter to gold-nonempty\n    n8_insts = instances_by_n[all_n[0]]\n    unified_ids = sorted([iid for iid in common_ids\n                          if len(extract_entities(n8_insts[iid][\"gold\"])) > 0])\n    out_lines.append(f\"  Gold-nonempty intersection: {len(unified_ids)}\")\n\n    # Greedy consistency check\n    n_differ = 0\n    for iid in unified_ids:\n        greedy_sets = [extract_entities(instances_by_n[N][iid][\"greedy\"]) for N in all_n]\n        if len(set(greedy_sets)) > 1:\n            n_differ += 1\n    out_lines.append(f\"  Greedy consistency: {n_differ}/{len(unified_ids)} instances differ across N\")\n    out_lines.append(f\"  Using greedy from N={all_n[0]} as unified baseline\")\n\n    # LP baseline = greedy F1 on unified set (= LP-best with N=1)\n    greedy_tp = greedy_fp = greedy_fn = 0\n    for iid in unified_ids:\n        gold = extract_entities(n8_insts[iid][\"gold\"])\n        greedy = extract_entities(n8_insts[iid][\"greedy\"])\n        tp = len(greedy & gold)\n        greedy_tp += tp\n        greedy_fp += len(greedy - gold)\n        greedy_fn += len(gold - greedy)\n    lp_baseline = micro_f1(greedy_tp, greedy_fp, greedy_fn)\n\n    out_lines.append(f\"\\n  LP baseline (greedy F1): {lp_baseline:.4f}\")\n\n    # Per-N LP-best\n    out_lines.append(f\"\\n     N | LP-best F1 | LP Δ(pp) |  #inst\")\n    out_lines.append(f\"  -----+------------+----------+-------\")\n\n    for N in all_n:\n        lp_tp = lp_fp = lp_fn = 0\n        for iid in unified_ids:\n            inst = instances_by_n[N][iid]\n            gold = extract_entities(inst[\"gold\"])\n            samples = inst[\"samples\"][:N]\n            best_idx = max(range(len(samples)), key=lambda i: samples[i][\"mean_logprob\"])\n            pred = extract_entities(samples[best_idx])\n            tp = len(pred & gold)\n            lp_tp += tp\n            lp_fp += len(pred - gold)\n            lp_fn += len(gold - pred)\n\n        lp_f1 = micro_f1(lp_tp, lp_fp, lp_fn)\n        delta = (lp_f1 - lp_baseline) * 100\n        out_lines.append(f\"  {N:>4} | {lp_f1:>10.4f} | {delta:>+7.2f}  | {len(unified_ids):>5}\")\n\n    return out_lines\n\n\ndef main():\n    all_output = []\n    for ds_name, configs in DATASETS.items():\n        print(f\"  Processing {ds_name}...\", file=sys.stderr, flush=True)\n        lines = process_dataset(ds_name, configs)\n        all_output.extend(lines)\n\n    text = \"\\n\".join(all_output) + \"\\n\"\n    print(text)\n\n    out_path = os.path.join(DATA_ROOT, \"unified_lp_best_results.txt\")\n    with open(out_path, \"w\") as f:\n        f.write(text)\n    print(f\"Saved: {out_path}\", file=sys.stderr)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written successfully\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "ce98272b-afaf-4a37-9509-546b6191df86",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017bbpJBFhyPxbvJpvyjGtHU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4424,
+                "cache_read_input_tokens": 43399,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4424
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T06:47:57.883Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y7ENFAeN12Bb3GKVksQR6C",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "c398759f-ccf6-4880-9a1a-c0ee2e3c4665",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NUuPVMs2qiGg33LqSp6RaZ",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python3 code/lp_best_unified.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "2b51a838-7aaf-448c-bca7-59fb038d0aef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019qB44TsaGmthXRMCBAisiD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1879,
+                "cache_read_input_tokens": 47823,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1879
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T06:48:20.580Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NUuPVMs2qiGg33LqSp6RaZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n======================================================================\\\\nDataset: SciERC\\\\n======================================================================\\\\n  N=8: 551 instances from output/scierc_mf4v2_seed42/samples.jsonl\\\\n  N=16: 551 instances from output/exp_001_seed42_v2/samples.jsonl\\\\n  N=32: 551 instances from output/scierc_n32_s42/samples.jsonl\\\\n  N=64: 551 instances from output/scierc_n64_seed42/samples.jsonl\\\\n\\\\n  Instance ID intersection: 551\\\\n  Gold-nonempty intersection: 529\\\\n  Greedy consistency: 52/529 instances differ across N\\\\n  Using greedy from N=8 as unified baseline\\\\n\\\\n  LP baseline (greedy F1): 0.6683\\\\n\\\\n     N | LP-best F1 | LP Δ(pp) |  #inst\\\\n  -----+------------+----------+-------\\\\n     8 |     0.6651 |   -0.32  |   529\\\\n    16 |     0.6635 |   -0.48  |   529\\\\n    32 |     0.6708 |   +0.25  |   529\\\\n    64 |     0.6712 |   +0.29  |   529\\\\n\\\\n======================================================================\\\\nDataset: CoNLL\\\\n======================================================================\\\\n  N=8: 3453 instances from output/exp002_conll2003/samples.jsonl\\\\n  N=16: 3453 instances from output/exp_002_conll_n16/samples.jsonl\\\\n  N=32: 3453 instances from output/conll_n32_s42/samples.jsonl\\\\n  N=64: 3453 instances from output/conll_n64_seed42/samples.jsonl\\\\n\\\\n  Instance ID intersection: 3453\\\\n  Gold-nonempty intersection: 2756\\\\n  Greedy consistency: 24/2756 instances differ across N\\\\n  Using greedy from N=8 as unified baseline\\\\n\\\\n  LP baseline (greedy F1): 0.9123\\\\n\\\\n     N | LP-best F1 | LP Δ(pp) |  #inst\\\\n  -----+------------+----------+-------\\\\n     8 |     0.8961 |   -1.62  |  2756\\\\n    16 |     0.8887 |   -2.36  |  2756\\\\n    32 |     0.8923 |   -2.00  |  2756\\\\n    64 |     0.8889 |   -2.34  |  2756\\\\n\\\\n\\\", \\\"stderr\\\": \\\"  Processing SciERC...\\\\n  Processing CoNLL...\\\\nSaved: /root/autodl-tmp/struct_self_consist_ie/output/unified_lp_best_results.txt\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 17.27}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "3b05b61d-82cd-47d9-8249-d43daf31e583",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n======================================================================\\\\nDataset: SciERC\\\\n======================================================================\\\\n  N=8: 551 instances from output/scierc_mf4v2_seed42/samples.jsonl\\\\n  N=16: 551 instances from output/exp_001_seed42_v2/samples.jsonl\\\\n  N=32: 551 instances from output/scierc_n32_s42/samples.jsonl\\\\n  N=64: 551 instances from output/scierc_n64_seed42/samples.jsonl\\\\n\\\\n  Instance ID intersection: 551\\\\n  Gold-nonempty intersection: 529\\\\n  Greedy consistency: 52/529 instances differ across N\\\\n  Using greedy from N=8 as unified baseline\\\\n\\\\n  LP baseline (greedy F1): 0.6683\\\\n\\\\n     N | LP-best F1 | LP Δ(pp) |  #inst\\\\n  -----+------------+----------+-------\\\\n     8 |     0.6651 |   -0.32  |   529\\\\n    16 |     0.6635 |   -0.48  |   529\\\\n    32 |     0.6708 |   +0.25  |   529\\\\n    64 |     0.6712 |   +0.29  |   529\\\\n\\\\n======================================================================\\\\nDataset: CoNLL\\\\n======================================================================\\\\n  N=8: 3453 instances from output/exp002_conll2003/samples.jsonl\\\\n  N=16: 3453 instances from output/exp_002_conll_n16/samples.jsonl\\\\n  N=32: 3453 instances from output/conll_n32_s42/samples.jsonl\\\\n  N=64: 3453 instances from output/conll_n64_seed42/samples.jsonl\\\\n\\\\n  Instance ID intersection: 3453\\\\n  Gold-nonempty intersection: 2756\\\\n  Greedy consistency: 24/2756 instances differ across N\\\\n  Using greedy from N=8 as unified baseline\\\\n\\\\n  LP baseline (greedy F1): 0.9123\\\\n\\\\n     N | LP-best F1 | LP Δ(pp) |  #inst\\\\n  -----+------------+----------+-------\\\\n     8 |     0.8961 |   -1.62  |  2756\\\\n    16 |     0.8887 |   -2.36  |  2756\\\\n    32 |     0.8923 |   -2.00  |  2756\\\\n    64 |     0.8889 |   -2.34  |  2756\\\\n\\\\n\\\", \\\"stderr\\\": \\\"  Processing SciERC...\\\\n  Processing CoNLL...\\\\nSaved: /root/autodl-tmp/struct_self_consist_ie/output/unified_lp_best_results.txt\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 17.27}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n======================================================================\\nDataset: SciERC\\n======================================================================\\n  N=8: 551 instances from output/scierc_mf4v2_seed42/samples.jsonl\\n  N=16: 551 instances from output/exp_001_seed42_v2/samples.jsonl\\n  N=32: 551 instances from output/scierc_n32_s42/samples.jsonl\\n  N=64: 551 instances from output/scierc_n64_seed42/samples.jsonl\\n\\n  Instance ID intersection: 551\\n  Gold-nonempty intersection: 529\\n  Greedy consistency: 52/529 instances differ across N\\n  Using greedy from N=8 as unified baseline\\n\\n  LP baseline (greedy F1): 0.6683\\n\\n     N | LP-best F1 | LP Δ(pp) |  #inst\\n  -----+------------+----------+-------\\n     8 |     0.6651 |   -0.32  |   529\\n    16 |     0.6635 |   -0.48  |   529\\n    32 |     0.6708 |   +0.25  |   529\\n    64 |     0.6712 |   +0.29  |   529\\n\\n======================================================================\\nDataset: CoNLL\\n======================================================================\\n  N=8: 3453 instances from output/exp002_conll2003/samples.jsonl\\n  N=16: 3453 instances from output/exp_002_conll_n16/samples.jsonl\\n  N=32: 3453 instances from output/conll_n32_s42/samples.jsonl\\n  N=64: 3453 instances from output/conll_n64_seed42/samples.jsonl\\n\\n  Instance ID intersection: 3453\\n  Gold-nonempty intersection: 2756\\n  Greedy consistency: 24/2756 instances differ across N\\n  Using greedy from N=8 as unified baseline\\n\\n  LP baseline (greedy F1): 0.9123\\n\\n     N | LP-best F1 | LP Δ(pp) |  #inst\\n  -----+------------+----------+-------\\n     8 |     0.8961 |   -1.62  |  2756\\n    16 |     0.8887 |   -2.36  |  2756\\n    32 |     0.8923 |   -2.00  |  2756\\n    64 |     0.8889 |   -2.34  |  2756\\n\\n\", \"stderr\": \"  Processing SciERC...\\n  Processing CoNLL...\\nSaved: /root/autodl-tmp/struct_self_consist_ie/output/unified_lp_best_results.txt\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 17.27}}"
+              }
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Interesting results! LP-best is actually performing worse than greedy for both datasets. This is surprising - normally LP-best should be at least as good as greedy at N=8 (since greedy = sample[0], and LP-best picks the best among all N samples including sample[0]).\n\nWait, that's the issue! LP-best picks the sample with highest mean_logprob, which is NOT necessarily sample[0] (the greedy). The greedy was decoded with greedy decoding (argmax at each step), while samples are from sampling. But the greedy decode doesn't have a mean_logprob field in the samples list - it's stored separately.\n\n\nActually, I see it now - the greedy output is stored separately from the samples list, which comes from temperature sampling. So sample[0] isn't the greedy output at all, just the first sampled result. When LP-best selects the highest mean_logprob sample, it's picking the best among those sampled outputs, not including greedy. Since sampled outputs tend to be lower quality than greedy on average, even the best sampled one usually underperforms greedy - that's why LP-best F1 is lower.\n\nBut wait, I'm looking at the actual code to see how LP-best is implemented. The code extracts the best sample by mean_logprob and compares it against sample[0], treating that as the greedy baseline. But that's treating sample[0] as greedy when it's actually just the first sample, which seems like a potential confusion in how the comparison is being made.\n\nLooking at the data structure more carefully, there's a separate `greedy` field distinct from the `samples` list, so the greedy decode is actually a different decoding pass entirely. The negative LP Δ values suggest that the sample with the highest mean_logprob is performing worse than the greedy decode, which is counterintuitive but makes sense when you consider that maximizing token-level probability at each step (greedy) doesn't necessarily align with selecting the best overall sample from a set of candidates.\n\nI should verify these results match the original script's output where possible, but since the original used different seed configurations for CoNLL while our unified version uses consistent seed42 configs, direct comparison isn't feasible there. For SciERC the numbers should be similar though not identical since we're working with the unified dataset. The results look consistent and ready to present.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "aa1bd0fc-defd-4c2e-99a0-fd5e91c7d37b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QMFiCQeMU3gwhDdbc9j8p4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 940,
+                "cache_read_input_tokens": 49702,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 940
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已完成。汇总如下：\n\n## 统一 Instance 集 LP-best F1 结果\n\n### SciERC (529 gold-nonempty instances, unified baseline from N=8 greedy)\n\n| N | LP-best F1 | LP Δ(pp) |\n|---|-----------|----------|\n| 8 | 0.6651 | -0.32 |\n| 16 | 0.6635 | -0.48 |\n| 32 | 0.6708 | +0.25 |\n| 64 | 0.6712 | +0.29 |\n\nLP baseline (greedy F1): **0.6683**\n\n### CoNLL (2756 gold-nonempty instances, unified baseline from N=8 greedy)\n\n| N | LP-best F1 | LP Δ(pp) |\n|---|-----------|----------|\n| 8 | 0.8961 | -1.62 |\n| 16 | 0.8887 | -2.36 |\n| 32 | 0.8923 | -2.00 |\n| 64 | 0.8889 | -2.34 |\n\nLP baseline (greedy F1): **0.9123**\n\n**关键发现**：LP-best 在两个数据集上均未超越 greedy baseline，CoNLL 上甚至有 -1.6 到 -2.4pp 的下降。这说明 mean log-probability 不是一个有效的样本选择器——即使选了模型自评\"最确信\"的样本，entity extraction 质量依然不如 greedy 解码。SciERC 在 N=32/64 时 LP-best 略微回正（+0.25/+0.29pp），但幅度很小。\n\n脚本已保存至服务器 `code/lp_best_unified.py`，结果保存至 `output/unified_lp_best_results.txt`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "uuid": "bd0db394-c428-47de-a837-30622754d4a0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QMFiCQeMU3gwhDdbc9j8p4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 940,
+                "cache_read_input_tokens": 49702,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 940
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已完成。汇总如下：\n\n## 统一 Instance 集 LP-best F1 结果\n\n### SciERC (529 gold-nonempty instances, unified baseline from N=8 greedy)\n\n| N | LP-best F1 | LP Δ(pp) |\n|---|-----------|----------|\n| 8 | 0.6651 | -0.32 |\n| 16 | 0.6635 | -0.48 |\n| 32 | 0.6708 | +0.25 |\n| 64 | 0.6712 | +0.29 |\n\nLP baseline (greedy F1): **0.6683**\n\n### CoNLL (2756 gold-nonempty instances, unified baseline from N=8 greedy)\n\n| N | LP-best F1 | LP Δ(pp) |\n|---|-----------|----------|\n| 8 | 0.8961 | -1.62 |\n| 16 | 0.8887 | -2.36 |\n| 32 | 0.8923 | -2.00 |\n| 64 | 0.8889 | -2.34 |\n\nLP baseline (greedy F1): **0.9123**\n\n**关键发现**：LP-best 在两个数据集上均未超越 greedy baseline，CoNLL 上甚至有 -1.6 到 -2.4pp 的下降。这说明 mean log-probability 不是一个有效的样本选择器——即使选了模型自评\"最确信\"的样本，entity extraction 质量依然不如 greedy 解码。SciERC 在 N=32/64 时 LP-best 略微回正（+0.25/+0.29pp），但幅度很小。\n\n脚本已保存至服务器 `code/lp_best_unified.py`，结果保存至 `output/unified_lp_best_results.txt`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 342647,
+            "duration_api_ms": 325109,
+            "num_turns": 14,
+            "stop_reason": "end_turn",
+            "session_id": "7add6b06-f0b5-4c36-b25e-cc95bfe21499",
+            "total_cost_usd": 0.76616425,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 38801,
+              "cache_read_input_tokens": 360162,
+              "output_tokens": 13655,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 38801,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1644,
+                  "cache_read_input_tokens": 49702,
+                  "cache_creation_input_tokens": 940,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 940
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2032,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002137,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 13,
+                "outputTokens": 13655,
+                "cacheReadInputTokens": 360162,
+                "cacheCreationInputTokens": 38801,
+                "webSearchRequests": 0,
+                "costUSD": 0.7640272499999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "c64692cf-41f0-45b4-8b2c-209e9e733b3b"
+          },
+          "id": "event-000040"
+        }
+      ],
+      "message_count": 40
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-unified-lp-best-recompute.md"
+}

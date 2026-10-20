@@ -1,0 +1,1860 @@
+{
+  "schema_version": "1.0",
+  "id": "7d8e64c06571e058ed43",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "run 5090c conll extra seeds",
+  "task_key": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_run_5090c_conll_extra_seeds_20260520T233713.jsonl",
+    "occurrence": 1,
+    "bytes": 66850,
+    "sha256": "f95b3709774ba9b1baf74d29df24004c21b7a8c935587abb12ec1f389f8fa6b5"
+  },
+  "statistics": {
+    "messages": 91,
+    "user_turns": 0,
+    "tool_calls": 45,
+    "roles": {
+      "tool_call": 45,
+      "tool_result": 45,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T23:42:28.827506+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T23:42:28.827928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T23:42:28.828194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T23:42:28.828407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "head -30 /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t05_seed42/run.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T23:42:28.828602+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/ -d exp_conll_t*",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T23:42:28.828802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 31535 MiB, 98 %\\\\n1, 0 MiB, 0 %\\\\n2, 0 MiB, 0 %\\\\n3, 0 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T23:42:28.828944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"head: cannot open '/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t05_seed42/run.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T23:42:28.829145+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/\\\\n\\\", \\\"stderr\\\": \\\"ls: cannot access 'exp_conll_t*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T23:42:28.829321+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output -maxdepth 2 -name \"*.log\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T23:42:28.829453+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T23:42:28.829589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_fewnerd_seed789.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_seed789_5090c.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_seed789.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scierc_t12_seed456.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_b3_prompted_diversity/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_mrsc_multi_round.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_lsc_latent_sc.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_esj_entity_self_judgment.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_tlow_fewnerd_t05_s42.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/docred_re_sc/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/fewrel_re_sc/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t05_seed42.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t08_seed42.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t12_seed42.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T23:42:28.829749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"14b_final_inference\\\\n7b_ft_signals\\\\ndocred_re_sc\\\\nexp_b3_prompted_diversity\\\\nexp_conll_seed789\\\\nexp_conll_seed789.log\\\\nexp_conll_t05_seed42\\\\nexp_conll_t05_seed42.log\\\\nexp_conll_t08_seed42\\\\nexp_conll_t08_seed42.log\\\\nexp_conll_t12_seed42\\\\nexp_conll_t12_seed42.log\\\\nexp_esj_entity_self_judgment\\\\nexp_esj_entity_self_judgment.log\\\\nexp_esj_entity_self_judgment_dryrun\\\\nexp_fewnerd_seed456\\\\nexp_fewnerd_seed789\\\\nexp_fewnerd_seed789.log\\\\nexp_llama_scierc_seed123\\\\nexp_lsc_latent_sc\\\\nexp_lsc_latent_sc.log\\\\nexp_lsc_latent_sc_dryrun\\\\nexp_mrsc_multi_round\\\\nexp_mrsc_multi_round.log\\\\nexp_scierc_seed789_5090c\\\\nexp_scierc_seed789_5090c.log\\\\nexp_scierc_t12_seed456\\\\nexp_scierc_t12_seed456.log\\\\nexp_tlow_fewnerd_t05_s42\\\\nexp_tlow_fewnerd_t05_s42.log\\\\nfewnerd_14b_ckpt36000\\\\nfewnerd_7b\\\\nfewrel_re_sc\\\\nre_sc\\\\nwnut17\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T23:42:28.829899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "head -10 /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t05_seed42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T23:42:28.830021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "head -10 /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t08_seed42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T23:42:28.830165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "head -10 /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t12_seed42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T23:42:28.830342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 3453 test instances from conll2003 [index 0:None]\\\\nINFO 05-21 06:41:43 [utils.py:233] non-default args: {'max_model_len': 4096, 'disable_log_stats': True, 'model': '/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged'}\\\\nINFO 05-21 06:41:43 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\\\nINFO 05-21 06:41:43 [model.py:1582] Using max model len 4096\\\\nINFO 05-21 06:41:43 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=8192.\\\\nINFO 05-21 06:41:43 [vllm.py:775] Asynchronous scheduling is enabled.\\\\n(EngineCore pid=242475) INFO 05-21 06:41:44 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged', speculative_config=None, tokenizer='/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=/root/\n…[truncated 2589 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T23:42:28.830537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 3453 test instances from conll2003 [index 0:None]\\\\nINFO 05-21 06:42:16 [utils.py:233] non-default args: {'max_model_len': 4096, 'disable_log_stats': True, 'model': '/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged'}\\\\nINFO 05-21 06:42:16 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\\\nINFO 05-21 06:42:16 [model.py:1582] Using max model len 4096\\\\nINFO 05-21 06:42:16 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=8192.\\\\nINFO 05-21 06:42:16 [vllm.py:775] Asynchronous scheduling is enabled.\\\\n(EngineCore pid=243180) INFO 05-21 06:42:17 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged', speculative_config=None, tokenizer='/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=/root/\n…[truncated 2588 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T23:42:28.830717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 3453 test instances from conll2003 [index 0:None]\\\\nINFO 05-21 06:42:49 [utils.py:233] non-default args: {'max_model_len': 4096, 'disable_log_stats': True, 'model': '/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged'}\\\\nINFO 05-21 06:42:49 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\\\nINFO 05-21 06:42:49 [model.py:1582] Using max model len 4096\\\\nINFO 05-21 06:42:49 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=8192.\\\\nINFO 05-21 06:42:49 [vllm.py:775] Asynchronous scheduling is enabled.\\\\n(EngineCore pid=243879) INFO 05-21 06:42:50 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged', speculative_config=None, tokenizer='/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=/root/\n…[truncated 2588 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T23:42:28.830893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t05_seed42/",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T23:42:28.831021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "grep -r \"seed\" /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t05_seed42/ --include=\"*.json\" -l",
+              "account": "root"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T23:42:28.831176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"report.json\\\\nsamples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T23:42:28.831316+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T23:42:28.831443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "head -50 /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t05_seed42/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T23:42:28.831597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"conll2003\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 0.5,\\\\n  \\\\\\\"num_instances\\\\\\\": 3453,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.9076531060539497,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.9372090980943181,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.029555992040368406,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.8948034130740936,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.9581788916083211,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.42992661376514846,\\\\n    \\\\\\\"p_value\\\\\\\": 2.1455095102970553e-124,\\\\n    \\\\\\\"n\\\\\\\": 2756\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.43118554022575517,\\\\n    \\\\\\\"p_value\\\\\\\": 3.4231901533439753e-125,\\\\n    \\\\\\\"n\\\\\\\": 2756\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.4519184050752218,\\\\n    \\\\\\\"p_value\\\\\\\": 9.248877531915667e-132,\\\\n    \\\\\\\"n\\\\\\\": 2614\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.45435366976245706,\\\\n    \\\\\\\"p_value\\\\\\\": 2.4463573015189183e-133,\\\\n    \\\\\\\"n\\\\\\\": 2614\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 697,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 142,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"rho_advantage\\\\\\\": 0.001258926460606713,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.899252336446511,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.25401664951857184,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 5.642235123367199,\\\\n  \\\\\\\"verdict\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n  \\\\\\\"verdict_note\\\\\\\": \\\\\\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T23:42:28.831735+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "grep -n \"temperature\\|seed\\|n_samples\\|collect_logprobs\\|model_path\\|dataset\" /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t05_seed42/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T23:42:28.831858+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T23:42:28.832007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "grep -n \"argparse\\|add_argument\\|parser\" /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T23:42:28.832154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T23:42:28.832283+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "grep -n \"add_argument\" /root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T23:42:28.832442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"46:    p.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, required=True, help=\\\\\\\"Path to the fine-tuned model\\\\\\\")\\\\n47:    p.add_argument(\\\\\\\"--data_dir\\\\\\\", type=str, required=True, help=\\\\\\\"Dataset directory (SciERC or ACE05)\\\\\\\")\\\\n48:    p.add_argument(\\\\\\\"--dataset\\\\\\\", type=str, default=\\\\\\\"scierc\\\\\\\", choices=[\\\\\\\"scierc\\\\\\\", \\\\\\\"ace05\\\\\\\", \\\\\\\"conll2003\\\\\\\", \\\\\\\"wnut17\\\\\\\", \\\\\\\"fewnerd\\\\\\\"],\\\\n50:    p.add_argument(\\\\\\\"--subtask\\\\\\\", type=str, default=\\\\\\\"ner\\\\\\\", choices=[\\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\", \\\\\\\"eae\\\\\\\", \\\\\\\"joint\\\\\\\"],\\\\n52:    p.add_argument(\\\\\\\"--schema_hint\\\\\\\", type=str, default=\\\\\\\"\\\\\\\",\\\\n54:    p.add_argument(\\\\\\\"--use_train_format\\\\\\\", type=lambda x: x.lower() != \\\\\\\"false\\\\\\\", default=True,\\\\n56:    p.add_argument(\\\\\\\"--n_samples\\\\\\\", type=int, default=8, help=\\\\\\\"Number of samples per instance (default: 8)\\\\\\\")\\\\n57:    p.add_argument(\\\\\\\"--temperature\\\\\\\", type=float, default=1.0, help=\\\\\\\"Sampling temperature (default: 1.0)\\\\\\\")\\\\n58:    p.add_argument(\\\\\\\"--max_tokens\\\\\\\", type=int, default=1024, help=\\\\\\\"Max generation tokens (default: 1024)\\\\\\\")\\\\n59:    p.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str, default=\\\\\\\"output\\\\\\\", help=\\\\\\\"Output directory (default: output)\\\\\\\")\\\\n60:    p.add_argument(\\\\\\\"--num_test\\\\\\\", type=int, default=99999, help=\\\\\\\"Max test instances (default: 99999, i.e. use all)\\\\\\\")\\\\n61:    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42, help=\\\\\\\"Random seed (default: 42)\\\\\\\")\\\\n62:    p.add_argument(\\\\\\\"--tensor_parallel\\\\\\\", type=int, default=1, help=\\\\\\\"vLLM tensor parallel size (default: 1)\\\\\\\")\\\\n63:    p.add_argument(\\\\\\\"--skip_sampling\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Skip sampling, load from existing results\\\\\\\")\\\\n64:    p.add_argument(\\\\\\\"--samples_path\\\\\\\", type=str, default=None,\\\\n66:    p.add_argument(\\\\\\\"--no_realign\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n68:    p.add_argument(\\\\\\\"--collect_logprobs\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n70:    \n…[truncated 747 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T23:42:28.832622+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "grep -rn \"data_dir\" /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t05_seed42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T23:42:28.832752+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/data -maxdepth 2 -type d -name \"conll*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T23:42:28.832881+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T23:42:28.833001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/conll2003\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T23:42:28.833183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T23:42:28.834112+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (179,060 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/f9523eba-9e6b-4ba5-8584-4152448977ff/tool-results/mcp-agent-ml-research-read_registry-1779320311095.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/f9523eba-9e6b-4ba5-8584-4152448977ff/tool-results/mcp-agent-ml-research-read_registry-1779320311095.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/f9523eba-9e6b-4ba5-8584-4152448977ff/tool-results/mcp-agent-ml-research-read_registry-1779320311095.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T23:42:28.834318+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/f9523eba-9e6b-4ba5-8584-4152448977ff/tool-results/mcp-agent-ml-research-read_registry-1779320311095.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result.get('experiments', {})\nfor eid, exp in experiments.items():\n    if 'conll_t' in eid and 'seed42' in eid:\n        print(f'=== {eid} ===')\n        print(json.dumps(exp, indent=2)[:2000])\n        print()\n\"",
+              "description": "Extract seed=42 CoNLL T-ablation experiments from registry"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T23:42:28.834456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T23:42:28.834580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/f9523eba-9e6b-4ba5-8584-4152448977ff/tool-results/mcp-agent-ml-research-read_registry-1779320311095.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result.get('experiments', {})\nfor eid, exp in experiments.items():\n    if 'conll' in eid and ('t05' in eid or 't08' in eid or 't12' in eid):\n        print(f'=== {eid} ===')\n        cmd = exp.get('command', 'N/A')\n        print(f'command: {cmd[:500]}')\n        print(f'status: {exp.get(\\\"status\\\", \\\"N/A\\\")}')\n        print()\n\"",
+              "description": "Search registry for CoNLL T-ablation experiments"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T23:42:28.834703+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T23:42:28.834820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/f9523eba-9e6b-4ba5-8584-4152448977ff/tool-results/mcp-agent-ml-research-read_registry-1779320311095.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result.get('experiments', {})\n# List all experiment IDs with 'conll' in name\nfor eid in sorted(experiments.keys()):\n    if 'conll' in eid.lower():\n        print(eid)\n\"",
+              "description": "List all CoNLL experiment IDs in registry"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T23:42:28.834939+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T23:42:28.835055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/f9523eba-9e6b-4ba5-8584-4152448977ff/tool-results/mcp-agent-ml-research-read_registry-1779320311095.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\n# Show structure\nprint(type(result))\nif isinstance(result, dict):\n    print(list(result.keys())[:20])\n    for k in result:\n        v = result[k]\n        if isinstance(v, dict):\n            print(f'{k}: dict with {len(v)} keys, sample keys: {list(v.keys())[:5]}')\n        elif isinstance(v, list):\n            print(f'{k}: list with {len(v)} items')\n        else:\n            print(f'{k}: {type(v).__name__} = {str(v)[:100]}')\n\"",
+              "description": "Probe registry JSON structure"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T23:42:28.835198+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<class 'dict'>\n['success', 'data', 'error', 'metadata']\nsuccess: bool = True\ndata: dict with 4 keys, sample keys: ['experiments', 'count', 'total', 'baseline']\nerror: NoneType = None\nmetadata: dict with 1 keys, sample keys: ['elapsed_seconds']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T23:42:28.835321+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/f9523eba-9e6b-4ba5-8584-4152448977ff/tool-results/mcp-agent-ml-research-read_registry-1779320311095.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nexperiments = data['data']['experiments']\nfor eid in sorted(experiments.keys()):\n    if 'conll' in eid.lower() and ('t05' in eid or 't08' in eid or 't12' in eid or 'ablat' in eid):\n        exp = experiments[eid]\n        print(f'=== {eid} ===')\n        print(f'  command: {exp.get(\\\"command\\\",\\\"N/A\\\")[:300]}')\n        print(f'  status: {exp.get(\\\"status\\\",\\\"N/A\\\")}')\n        print()\n\"",
+              "description": "Extract CoNLL T-ablation experiments from correct JSON path"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-20T23:42:28.835447+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n    experiments = data['data']['experiments']\n                  ~~~~^^^^^^^^\nKeyError: 'data'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-20T23:42:28.835564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/f9523eba-9e6b-4ba5-8584-4152448977ff/tool-results/mcp-agent-ml-research-read_registry-1779320311095.txt | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\nfor eid in sorted(experiments.keys()):\n    if 'conll' in eid.lower():\n        exp = experiments[eid]\n        print(f'{eid}: status={exp.get(\\\"status\\\",\\\"?\\\")}')\n        cmd = exp.get('command','')\n        if cmd:\n            print(f'  cmd: {cmd[:400]}')\n        print()\n\" 2>&1 | head -60",
+              "description": "List CoNLL experiments from registry"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-20T23:42:28.835690+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_002_conll_n16: status=DONE\n\nexp_002_conll_n16_r1024: status=DONE\n\nexp_002_conll_n16_seed123: status=DONE\n\nexp_002_conll_n16_seed456: status=DONE\n\nexp_002_merge_conll2003: status=DONE\n\nexp_002_ner_conll2003: status=DONE\n\nexp_011_ood_conll_to_scierc: status=DONE\n\nexp_011_ood_scierc_to_conll: status=DONE\n\nexp_017_llama_conll: status=DONE\n\nexp_017_llama_conll_finetune: status=DONE\n\nexp_017_llama_conll_infer: status=DONE\n\nexp_017_llama_conll_n16: status=DONE\n\nexp_017_llama_conll_n16_r1024: status=DONE\n\nexp_017_llama_conll_n16_s123: status=DONE\n\nexp_017_llama_conll_n16_s123_r1024: status=DONE\n\nexp_017_llama_conll_n16_s456: status=DONE\n\nexp_017_llama_conll_n16_s456_r1024: status=DONE\n\nexp_017_llama_conll_n8_t07: status=DONE\n\nexp_030_conll_t12: status=DONE\n\nexp_14b_inference_conll: status=PREPARING\n\nexp_b1_scd_conll_control: status=DONE\n\nexp_conll_t05_s42: status=DONE\n\nexp_conll_t_ablation_t05: status=DONE\n\nexp_conll_t_ablation_t08: status=DONE\n\nexp_conll_t_ablation_t12: status=DONE\n\nexp_freeform_conll_4seed: status=DONE\n\nexp_qwen3_4b_conll_finetune: status=DONE\n\nexp_qwen3_4b_conll_finetune_resume: status=DONE\n\nexp_qwen3_4b_conll_merge_inference_v2: status=DONE\n\nexp_qwen3_4b_conll_scs_inference: status=DONE"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-20T23:42:28.835811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/f9523eba-9e6b-4ba5-8584-4152448977ff/tool-results/mcp-agent-ml-research-read_registry-1779320311095.txt | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\nfor eid in ['exp_conll_t_ablation_t05', 'exp_conll_t_ablation_t08', 'exp_conll_t_ablation_t12']:\n    exp = experiments[eid]\n    print(f'=== {eid} ===')\n    print(f'  command: {exp.get(\\\"command\\\",\\\"N/A\\\")[:500]}')\n    print(f'  status: {exp.get(\\\"status\\\")}')\n    print(f'  server: {exp.get(\\\"server\\\")}')\n    print(f'  hypothesis: {exp.get(\\\"hypothesis\\\",\\\"\\\")[:200]}')\n    print()\n\"",
+              "description": "Get exact commands for seed=42 T-ablation experiments"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-20T23:42:28.835938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== exp_conll_t_ablation_t05 ===\n  command: N/A\n  status: DONE\n  server: None\n  hypothesis: CoNLL temperature ablation (T=0.5): test how temperature affects degeneracy rate and SC diagnostic cascade on CoNLL-2003, complementing SciERC and FewNERD T-ablation data to form 3-dataset temperature\n\n=== exp_conll_t_ablation_t08 ===\n  command: N/A\n  status: DONE\n  server: None\n  hypothesis: CoNLL temperature ablation (T=0.8): test how temperature affects degeneracy rate and SC diagnostic cascade on CoNLL-2003, complementing SciERC and FewNERD T-ablation data to form 3-dataset temperature\n\n=== exp_conll_t_ablation_t12 ===\n  command: N/A\n  status: DONE\n  server: None\n  hypothesis: CoNLL temperature ablation (T=1.2): test how temperature affects degeneracy rate and SC diagnostic cascade on CoNLL-2003, complementing SciERC and FewNERD T-ablation data to form 3-dataset temperature"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-20T23:42:28.836088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "tail -20 /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t05_seed42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-20T23:42:28.836231+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "grep -n \"collect_logprobs\" /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t05_seed42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-20T23:42:28.836370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Soft Jaccard (mean):     0.9582\\\\n------------------------------------------------------------\\\\n  Sample F1 (mean):        0.8993\\\\n  Sample F1 (std):         0.2540\\\\n  Sample F1=0 (%):         5.6%\\\\n------------------------------------------------------------\\\\n  Gold-empty filtered:     697\\\\n  All-samples-F1=0 filtered: 142\\\\n------------------------------------------------------------\\\\n  Full ρ(κ,F1):   +0.4299  p=2.1455e-124  n=2756\\\\n  Full ρ(SJ,F1):  +0.4312  p=3.4232e-125  n=2756\\\\n  Cond ρ(κ,F1):   +0.4519  p=9.2489e-132  n=2614\\\\n  Cond ρ(SJ,F1):  +0.4544  p=2.4464e-133  n=2614\\\\n  Structural > Surface:    YES  (delta=+0.0013)\\\\n------------------------------------------------------------\\\\n  Verdict:        PASS\\\\n  Note:           MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\\n============================================================\\\\n\\\\nReport saved to /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t05_seed42/report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-20T23:42:28.836502+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "head -1 /root/autodl-tmp/struct_self_consist_ie/output/exp_conll_t05_seed42/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-20T23:42:28.836630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-20T23:42:28.836807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"conll2003_test_00000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PER\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"JAPAN\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 9, \\\\\\\"end\\\\\\\": 14}, {\\\\\\\"text\\\\\\\": \\\\\\\"CHINA\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 36}], \\\\\\\"relations\\\\\\\": [], \\\\\\\"events\\\\\\\": []}, {\\\\\\\"entities\\\\\\\": [{\\\\\\\n…[truncated 854 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-20T23:42:28.836987+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-20T23:42:28.837149+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-20T23:42:28.837322+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && mkdir -p output/exp_conll_t05_seed123 output/exp_conll_t08_seed123 output/exp_conll_t12_seed123 && CUDA_VISIBLE_DEVICES=1 nohup python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --n_samples 8 --temperature 0.5 --seed 123 --output_dir output/exp_conll_t05_seed123 > output/exp_conll_t05_seed123.log 2>&1 & echo \"T05_PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-20T23:42:28.837464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && mkdir -p output/exp_conll_t05_seed123 output/exp_conll_t08_seed123 output/exp_conll_t12_seed123 && CUDA_VISIBLE_DEVICES=1 nohup python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --n_samples 8 --temperature 0.5 --seed 123 --output_dir output/exp_conll_t05_seed123 > output/exp_conll_t05_seed123.log 2>&1 & echo \\\\\\\"T05_PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nT05_PID=247486\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-20T23:42:28.837617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=2 nohup python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --n_samples 8 --temperature 0.8 --seed 123 --output_dir output/exp_conll_t08_seed123 > output/exp_conll_t08_seed123.log 2>&1 & echo \"T08_PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-20T23:42:28.837742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=3 nohup python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --n_samples 8 --temperature 1.2 --seed 123 --output_dir output/exp_conll_t12_seed123 > output/exp_conll_t12_seed123.log 2>&1 & echo \"T12_PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-20T23:42:28.837868+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=2 nohup python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --n_samples 8 --temperature 0.8 --seed 123 --output_dir output/exp_conll_t08_seed123 > output/exp_conll_t08_seed123.log 2>&1 & echo \\\\\\\"T08_PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nT08_PID=248190\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 32.95}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-20T23:42:28.838003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=3 nohup python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --n_samples 8 --temperature 1.2 --seed 123 --output_dir output/exp_conll_t12_seed123 > output/exp_conll_t12_seed123.log 2>&1 & echo \\\\\\\"T12_PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nT12_PID=248879\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-20T23:42:28.838156+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-20T23:42:28.838288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 31535 MiB, 98 %\\\\n1, 30085 MiB, 94 %\\\\n2, 30091 MiB, 92 %\\\\n3, 30035 MiB, 74 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-20T23:42:28.838425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_t05_s123",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --n_samples 8 --temperature 0.5 --seed 123 --output_dir output/exp_conll_t05_seed123', 'server': 'autodl-5090-c', 'data_path': 'data/conll2003', 'data_count': 3453, 'model_name': 'qwen3-8b-conll2003-merged', 'seed': 123}"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-20T23:42:28.838559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5782}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-20T23:42:28.838683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_t08_s123",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --n_samples 8 --temperature 0.8 --seed 123 --output_dir output/exp_conll_t08_seed123', 'server': 'autodl-5090-c', 'data_path': 'data/conll2003', 'data_count': 3453, 'model_name': 'qwen3-8b-conll2003-merged', 'seed': 123}"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-20T23:42:28.838814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5364}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-20T23:42:28.838941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_t12_s123",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --n_samples 8 --temperature 1.2 --seed 123 --output_dir output/exp_conll_t12_seed123', 'server': 'autodl-5090-c', 'data_path': 'data/conll2003', 'data_count': 3453, 'model_name': 'qwen3-8b-conll2003-merged', 'seed': 123}"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-20T23:42:28.839072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5521}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-20T23:42:28.839229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_t05_s123",
+              "field": "hypothesis",
+              "value": "CoNLL temperature ablation (T=0.5, seed=123): additional seed for statistical power, complementing seed=42 results. N=8, Qwen3-8B-FT, CoNLL-2003.",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-20T23:42:28.839361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_t05_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T23:41:56.932Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:41:56.932Z\\\", \\\"hypothesis\\\": \\\"CoNLL temperature ablation (T=0.5, seed=123): additional seed for statistical power, complementing seed=42 results. N=8, Qwen3-8B-FT, CoNLL-2003.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9782}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-20T23:42:28.839480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_t08_s123",
+              "field": "hypothesis",
+              "value": "CoNLL temperature ablation (T=0.8, seed=123): additional seed for statistical power, complementing seed=42 results. N=8, Qwen3-8B-FT, CoNLL-2003.",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-20T23:42:28.839597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_t12_s123",
+              "field": "hypothesis",
+              "value": "CoNLL temperature ablation (T=1.2, seed=123): additional seed for statistical power, complementing seed=42 results. N=8, Qwen3-8B-FT, CoNLL-2003.",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-20T23:42:28.839721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_t08_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T23:41:58.169Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:41:58.169Z\\\", \\\"hypothesis\\\": \\\"CoNLL temperature ablation (T=0.8, seed=123): additional seed for statistical power, complementing seed=42 results. N=8, Qwen3-8B-FT, CoNLL-2003.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-20T23:42:28.839848+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_t12_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T23:41:59.173Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:41:59.173Z\\\", \\\"hypothesis\\\": \\\"CoNLL temperature ablation (T=1.2, seed=123): additional seed for statistical power, complementing seed=42 results. N=8, Qwen3-8B-FT, CoNLL-2003.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9354}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-20T23:42:28.839966+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_t05_s123",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-20T23:42:28.840082+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_t08_s123",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-20T23:42:28.840217+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_t12_s123",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-20T23:42:28.840340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_t05_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T23:41:56.932Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:42:03.288Z\\\", \\\"hypothesis\\\": \\\"CoNLL temperature ablation (T=0.5, seed=123): additional seed for statistical power, complementing seed=42 results. N=8, Qwen3-8B-FT, CoNLL-2003.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.4699}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-20T23:42:28.840460+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_t08_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T23:41:58.169Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:42:05.752Z\\\", \\\"hypothesis\\\": \\\"CoNLL temperature ablation (T=0.8, seed=123): additional seed for statistical power, complementing seed=42 results. N=8, Qwen3-8B-FT, CoNLL-2003.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.411}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-20T23:42:28.840578+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_t12_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T23:41:59.173Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:42:08.187Z\\\", \\\"hypothesis\\\": \\\"CoNLL temperature ablation (T=1.2, seed=123): additional seed for statistical power, complementing seed=42 results. N=8, Qwen3-8B-FT, CoNLL-2003.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.5091}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-20T23:42:28.840700+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_t05_s123",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --n_samples 8 --temperature 0.5 --seed 123 --output_dir output/exp_conll_t05_seed123', 'server': 'autodl-5090-c', 'data_path': 'data/conll2003', 'data_count': 3453, 'model_name': 'qwen3-8b-conll2003-merged', 'seed': 123}"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-20T23:42:28.840829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_t08_s123",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --n_samples 8 --temperature 0.8 --seed 123 --output_dir output/exp_conll_t08_seed123', 'server': 'autodl-5090-c', 'data_path': 'data/conll2003', 'data_count': 3453, 'model_name': 'qwen3-8b-conll2003-merged', 'seed': 123}"
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-20T23:42:28.840964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_t05_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T23:41:56.932Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:42:15.028Z\\\", \\\"hypothesis\\\": \\\"CoNLL temperature ablation (T=0.5, seed=123): additional seed for statistical power, complementing seed=42 results. N=8, Qwen3-8B-FT, CoNLL-2003.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --n_samples 8 --temperature 0.5 --seed 123 --output_dir output/exp_conll_t05_seed123\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"data_path\\\": \\\"data/conll2003\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 123}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.4963}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-20T23:42:28.841106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_conll_t12_s123",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --n_samples 8 --temperature 1.2 --seed 123 --output_dir output/exp_conll_t12_seed123', 'server': 'autodl-5090-c', 'data_path': 'data/conll2003', 'data_count': 3453, 'model_name': 'qwen3-8b-conll2003-merged', 'seed': 123}"
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-20T23:42:28.841269+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_t08_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T23:41:58.169Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:42:17.480Z\\\", \\\"hypothesis\\\": \\\"CoNLL temperature ablation (T=0.8, seed=123): additional seed for statistical power, complementing seed=42 results. N=8, Qwen3-8B-FT, CoNLL-2003.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --n_samples 8 --temperature 0.8 --seed 123 --output_dir output/exp_conll_t08_seed123\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"data_path\\\": \\\"data/conll2003\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 123}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.4494}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-20T23:42:28.841408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_t12_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T23:41:59.173Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:42:19.946Z\\\", \\\"hypothesis\\\": \\\"CoNLL temperature ablation (T=1.2, seed=123): additional seed for statistical power, complementing seed=42 results. N=8, Qwen3-8B-FT, CoNLL-2003.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --n_samples 8 --temperature 1.2 --seed 123 --output_dir output/exp_conll_t12_seed123\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"data_path\\\": \\\"data/conll2003\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 123}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.3955}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-20T23:42:28.841571+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部启动并注册完毕。\n\n| exp_id | GPU | T | seed | PID | status |\n|--------|-----|---|------|-----|--------|\n| exp_conll_t05_s123 | cuda:1 | 0.5 | 123 | 247486 | RUNNING |\n| exp_conll_t08_s123 | cuda:2 | 0.8 | 123 | 248190 | RUNNING |\n| exp_conll_t12_s123 | cuda:3 | 1.2 | 123 | 248879 | RUNNING |\n\nGPU 验证：cuda:1-3 各占用 ~30GB 显存，cuda:0 (14B inference) 未受影响。命令与 seed=42 完全一致，仅改 `--seed 123` 和 `--output_dir`。预计 30-40 分钟完成。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_5090c_conll_extra_seeds_20260520T233713"
+          },
+          "id": "event-000091"
+        }
+      ],
+      "message_count": 91
+    }
+  ],
+  "readable_path": "readable/conversations/run-5090c-conll-extra-seeds.md"
+}

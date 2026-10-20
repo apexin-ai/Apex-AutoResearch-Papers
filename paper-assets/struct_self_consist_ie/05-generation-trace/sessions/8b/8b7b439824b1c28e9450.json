@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b7b439824b1c28e9450",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh r5 bonferroni holm",
+  "task_key": "worker_ssh_r5-bonferroni-holm_20260520T101440",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_r5-bonferroni-holm_20260520T101440_result.json",
+    "occurrence": 1,
+    "bytes": 1380,
+    "sha256": "09ce6f0ccfc60b54057780c5e78b1821d66447ebfeaa6957a0674aa10166bbfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n57 个 entity construction paired bootstrap tests，Holm-Bonferroni 校正后：\n\n**17 → 8 survive (α=0.05)**\n\n### Survived correction (corrected p=0.0057)\n| Config | Method | ΔF1 | raw p |\n|--------|--------|-----|-------|\n| n16_scierc | adaptive_uniform | +4.05pp | 0.0000 |\n| n16_fewnerd | uniform_cv | +1.32pp | 0.0000 |\n| n16_fewnerd | lp_selection | +1.88pp | 0.0000 |\n| n16_fewnerd | lp_weighted_cv | +1.42pp | 0.0000 |\n| n16_fewnerd | adaptive_uniform | +5.55pp | 0.0000 |\n| n8_fewnerd | lp_selection | +1.36pp | 0.0000 |\n| n8_fewnerd | lp_weighted_confirm | +0.88pp | 0.0000 |\n| n8_fewnerd | lp_weighted_cv | +0.88pp | 0.0000 |\n\n### Lost significance (9 tests)\n- **n16_conll adaptive_uniform** (raw p=0.0012 → corr p=0.0588) — borderline miss\n- **n16_scierc uniform_cv / lp_weighted_cv** (raw p≈0.018 → corr p=0.79)\n- **n8_scierc** 的 confirm/cv 构造方法\n- **n16_scierc RE uniform_cv** (raw p=0.049 → corr p=1.0)\n\n### 主线 claim 评估\n- **FewNERD 上的构造方法优势** — 全部 survive，主线 claim 最稳固\n- **SciERC adaptive_uniform** — survive\n- **CoNLL adaptive_uniform** — borderline miss (corr p=0.0588)，需谨慎表述\n- **SciERC 上的 cv/lp_weighted_cv 构造** — 不 survive，论文中应弱化或标注为 exploratory\n- **RE 构造** — 没有任何 test survive"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-r5-bonferroni-holm.md"
+}

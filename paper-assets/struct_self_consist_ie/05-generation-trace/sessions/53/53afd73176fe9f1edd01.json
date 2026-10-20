@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53afd73176fe9f1edd01",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code fix inference quality",
+  "task_key": "worker_code_fix_inference_quality_20260514T061441",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix_inference_quality_20260514T061441_result.json",
+    "occurrence": 1,
+    "bytes": 807,
+    "sha256": "e5f5dea4635e9a600383f7a50f68736e386c24065be5aa73725bf5aebb41a0bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件修改完成，语法验证通过。改动总结：\n\n**sampling.py**:\n- `format_chat_prompt` 加了 `enable_thinking=False`，避免 `<think>` 块与 XGrammar 冲突\n- 新增 `_TRAIN_ALIGNED_TEMPLATE`（与训练 prompt 格式一致）和 `SCIERC_SCHEMA_HINT` 常量\n- `build_uie_prompt` 新增 `use_train_format` 参数（默认 `True`），启用时统一用训练模板\n- `run_sampling_pipeline` 新增 `use_train_format` 参数并透传\n\n**run_mvp_pilot.py**:\n- 新增 `--schema_hint`、`--use_train_format` 参数；`--subtask` 扩展支持 `joint`\n- SciERC 数据集在 `use_train_format=True` 时自动填充 schema hint\n- `joint` 模式下用统一 prompt 采样一次，NER/RE 分别评估并报告\n- `print_report` 重构为支持 joint 模式的分块打印"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-inference-quality.md"
+}

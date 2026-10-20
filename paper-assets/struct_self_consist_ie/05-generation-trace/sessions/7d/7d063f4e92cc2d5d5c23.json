@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d063f4e92cc2d5d5c23",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose exp fewnerd t05 s456",
+  "task_key": "worker_diagnose_exp_fewnerd_t05_s456_20260521T053321",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp_fewnerd_t05_s456_20260521T053321_result.json",
+    "occurrence": 1,
+    "bytes": 1713,
+    "sha256": "cf84854abfb8269b4af105f08578586230d38afe991176f114377932a9fdc620"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论：实验已成功完成，非真正失败\n\n### 根因\n**误报（False Alarm）** — Cron 监控系统检测不到 sentinel 文件和 W&B run，将进程正常退出误判为失败。\n\n### 关键证据\n\n1. **日志显示 100% 完成**：37648/37648 实例全部处理，耗时 18m25s，vLLM 引擎正常 shutdown：\n   ```\n   Processed prompts: 100%|██████████| 37648/37648 [18:25<00:00, 34.06it/s]\n   Sampling complete. Saved to output/fewnerd_t05_s456/samples.jsonl\n   Report saved to output/fewnerd_t05_s456/report.json\n   (EngineCore pid=307107) INFO 05-21 13:22:23 Shutdown complete\n   ```\n\n2. **产出完整**：\n   - `samples.jsonl` — 714MB（37648 条 × 8 samples）\n   - `report.json` — 完整的实验报告\n\n3. **无 sentinel 文件**：输出目录中没有 `.sentinel` / `.done` / `DONE` 等标记文件。脚本本身不生成 sentinel，Cron 监控因此判定失败。\n\n4. **无 W&B 集成**：运行命令中没有 W&B 相关参数，Cron 的 W&B 检测也为空。\n\n### 实验结果摘要\n| 指标 | 值 |\n|------|-----|\n| Greedy F1 | 0.7889 |\n| Oracle F1 | 0.8579 |\n| Oracle headroom | +0.0690 |\n| Fleiss' κ (mean) | 0.6237 |\n| Soft Jaccard (mean) | 0.8643 |\n| Structural > Surface | YES (+0.0544) |\n| Logprob AUROC (full) | 0.6988 |\n| Verdict | **MARGINAL** |\n\n### 建议\n- **无需重跑** — 数据完整，结果可用\n- **修复监控**：`run_mvp_pilot.py` 应在完成后写一个 sentinel 文件（如 `touch output/.../DONE`），或者 Cron 监控改为检测 `report.json` 的存在作为完成标志\n- **磁盘注意**：数据盘 93% 已用（28GB 剩余），后续实验注意清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-fewnerd-t05-s456.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "422e00442069272ee189",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run cleanup 5090 check 32b",
+  "task_key": "worker_run_cleanup_5090_check_32b_20260521T053116",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_cleanup_5090_check_32b_20260521T053116_result.json",
+    "occurrence": 1,
+    "bytes": 1769,
+    "sha256": "5db0d8a3388bffab84f22d351abd88bbcdd66d98ce56eb6c73c295d61b07ed46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，汇报如下：\n\n---\n\n### 1. rsync/auto-launch 清理\n**已全部清理。** 0 个残留进程。\n\n### 2. 32B 模型\n**存在**，路径 `/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-merged/`，大小 **62GB**（14 个 safetensors 分片，完整）。今天 08:19 写入完成。\n\n### 3. 5090 上所有可用模型\n\n| 模型 | 路径 | 大小 | 类型 |\n|------|------|------|------|\n| **Qwen2.5-32B FewNERD merged** | `checkpoints/qwen25-32b-fewnerd-merged/` | 62G | merged 完整模型 |\n| **Qwen3-8B FewNERD exp021 merged** | `checkpoints/qwen3-8b-fewnerd-exp021-merged/` | 22G | merged 完整模型 |\n| **Qwen3-8B CoNLL2003 merged** | `checkpoints/qwen3-8b-conll2003-merged/` | 5.2G | merged 完整模型 |\n| Qwen3-8B FewNERD 5epoch LoRA | `checkpoints/qwen3-8b-fewnerd-5epoch-lora/` | 3.4G | LoRA adapter |\n| Qwen3-8B SciERC LoRA v2 | `checkpoints/qwen3-8b-scierc-lora-v2/` | 3.4G | LoRA adapter |\n| Qwen3-4B SciERC LoRA | `checkpoints/qwen3-4b-scierc-lora/` | 2.6G | LoRA adapter |\n| Qwen3-8B CoNLL2003 LoRA | `checkpoints/qwen3-8b-conll2003-lora/` | 2.0G | LoRA adapter |\n| Qwen3-8B SciERC 10epoch LoRA | `checkpoints/qwen3-8b-scierc-10epoch-lora/` | 1.4G | LoRA adapter |\n| Qwen3-8B SciERC 3epoch LoRA | `checkpoints/qwen3-8b-scierc-3epoch-lora/` | 1.4G | LoRA adapter |\n| Qwen3-8B SciERC LoRA rank8 | `checkpoints/qwen3-8b-scierc-lora-rank8/` | 895M | LoRA adapter |\n\n基座模型在 `/root/autodl-tmp/models/`：Qwen2.5-7B-Instruct、Qwen3-4B。HF cache 仅有 deberta-v3-base。\n\n### 4. GPU 状态\n4 张 GPU **全部空闲**：\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 2 MiB | 0% |\n| 1 | 2 MiB | 0% |\n| 2 | 2 MiB | 0% |\n| 3 | 2 MiB | 0% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-cleanup-5090-check-32b.md"
+}

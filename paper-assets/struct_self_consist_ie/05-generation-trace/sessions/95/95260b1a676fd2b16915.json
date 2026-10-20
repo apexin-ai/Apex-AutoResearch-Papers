@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95260b1a676fd2b16915",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code full server check post restart",
+  "task_key": "worker_code_full_server_check_post_restart_20260519T125009",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_full_server_check_post_restart_20260519T125009_result.json",
+    "occurrence": 1,
+    "bytes": 1936,
+    "sha256": "c6b2ec56204722e616ddb8a32bc2ac5515248df4880f6bc7af6d1b6a8be09911"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Server A (autodl-5090) — 32B QLoRA Training\n- **进程**：存活（PIDs 804665-804668，4 GPU 进程）\n- **GPU**: 70% / 78% / 100% / 91%，显存 ~29-30 GB / 32 GB\n- **Step**: 3659/41180 (8.9%)\n- **Loss**: 0.0624 (step 3650), grad_norm: 0.288\n- **Checkpoint**: checkpoint-3000 (20:22 保存), checkpoint-2000, checkpoint-1000\n- **Speed**: ~2.5s/it, 预计剩余 ~26h\n\n## Server B (autodl-5090-b) — 72B Zero-shot Inference\n- **进程**：存活（VLLM Workers PIDs 59314-59317，4 GPU 100%，~31.9 GB / 32 GB）\n- **SciERC**: 551 行 ✓ (完成)\n- **CoNLL**: 3453 行 ✓ (完成)\n- **FewNERD**: 推理中 — 295704/301184 prompts (**98.2%**)\n  - 301184 = 37648 instances × 8 samples\n  - 剩余 ~5480 prompts，预计几分钟内完成\n  - 速度: ~7110 toks/s input, ~1792 toks/s output\n- **Signal report**: `full_signal_report.json` 已存在，但仅含 scierc + conll2003 结果（FewNERD 完成前生成的）\n- **注意**: FewNERD 输出目录尚未创建，推理完成后会写入。脚本应会自动更新 signal report 包含 FewNERD 结果\n\n## Server C (autodl-5090-c)\n\n### 14B (cuda:0,1)\n- **进程**：存活（PIDs 56978-56979，~25.5-25.9 GB）\n- **GPU**: 97% / 97%\n- **Step**: 6617/41180 (16.1%)\n- **Loss**: 0.0604 (step 6600), grad_norm: 0.574\n- **Checkpoint**: checkpoint-6000 (20:28), checkpoint-4000, checkpoint-2000\n- **Speed**: ~2.2s/it\n\n### 7B (cuda:2,3)\n- **进程**：存活（PIDs 72042-72043，~16.7-17.7 GB）\n- **GPU**: 93% / 93%\n- **Step**: 2000/20590 (9.7%)\n- **Loss**: 0.072 (step 2000), grad_norm: 0.528\n- **Checkpoint**: 暂无（尚未到第一个保存点）\n- **Speed**: ~2.3s/it\n- Pipeline 日志显示 1523/2353（pipeline 内部子进度，非训练 step）\n\n---\n\n**总结**: 4 个实验全部存活，状态正常。72B FewNERD 推理 98.2%，几分钟内即将完成。3 个训练任务稳步推进，loss 均在合理下降。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-full-server-check-post-restart.md"
+}

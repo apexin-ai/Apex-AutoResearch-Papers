@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "c117b7688f29e203dd8a",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code pipeline dry run 72b zs",
+  "task_key": "worker_code_pipeline-dry-run-72b-zs_20260519T192708",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_pipeline-dry-run-72b-zs_20260519T192708.log",
+    "occurrence": 1,
+    "bytes": 607809,
+    "sha256": "2e1fd859c051b77c050296ed4d04d2401629f718bc27db4cd2a91919539af4dc"
+  },
+  "statistics": {
+    "messages": 243,
+    "user_turns": 1,
+    "tool_calls": 85,
+    "roles": {
+      "log": 1,
+      "system": 34,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 85,
+      "tool_result": 85,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 54,
+      "chunks": [
+        {
+          "path": "c117b7688f29e203dd8a-part-0001.json",
+          "message_count": 54
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 189,
+      "chunks": [
+        {
+          "path": "c117b7688f29e203dd8a-part-0001.json",
+          "message_count": 126
+        },
+        {
+          "path": "c117b7688f29e203dd8a-part-0002.json",
+          "message_count": 63
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-pipeline-dry-run-72b-zs.md"
+}

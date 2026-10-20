@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5df5ded1f4b0e4a1be2",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu exp lsc latent sc",
+  "task_key": "worker_gpu_exp_lsc_latent_sc_20260520T163017",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp_lsc_latent_sc_20260520T163017_result.json",
+    "occurrence": 1,
+    "bytes": 1140,
+    "sha256": "0d9a651114813b9b8fbb34a08f2d1b526d9da5336ab7825c139ec6da7b6c9716"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，结果为 **negative**。\n\n## 结果摘要\n\n| Method | F1 |\n|--------|-----|\n| Greedy | 0.7793 |\n| LP Selection | 0.7845 |\n| **Centroid Selection (A)** | **0.7593** ❌ |\n| Majority Vote | 0.8366 |\n| **Latent Entity Conf (B)** | **0.8385** (~= MV) |\n| Oracle | 0.8668 |\n\n**关键发现：**\n- **Centroid selection (0.7593) 比 LP selection (0.7845) 还差**，head-to-head W100/L218/T1671\n- Latent entity confidence (0.8385) 仅比 majority vote (0.8366) 高 +0.19pp，几乎无增益\n- LP vs Latent Spearman ρ=0.518（中等相关）— hidden states 确实提供了 LP 之外的部分独立信号，但这些信号不足以改善 selection\n- Entity match rate 99.45% — pipeline 本身工作正常\n- 507s (8.5min) 完成 2000 instances × 8 samples\n\n**结论：** 假设\"hidden states 绕过 LP 压缩提供更好的 discriminative ranking\"在技术上成立（ρ=0.518 说明两者不完全相关），但 latent signal 的判别力不足以超越已有 baselines。Centroid selection 尤其差，说明 mean-pooled entity fingerprint 的相似性不能有效区分好/坏 samples。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-lsc-latent-sc.md"
+}

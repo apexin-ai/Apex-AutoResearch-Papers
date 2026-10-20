@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85b803c5211e048d240e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "cpu alpha crit v4 audit",
+  "task_key": "worker_cpu_alpha_crit_v4_audit_20260521T132225",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cpu_alpha_crit_v4_audit_20260521T132225_result.json",
+    "occurrence": 1,
+    "bytes": 1794,
+    "sha256": "13fdbcd6cd22f275f26296cf01e70e8a7f66a58ea13702fb119a0675a1db7c85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出汇总\n\n### 1. α_crit 计算公式\n\n| | 公式 | 来源 |\n|---|---|---|\n| **脚本** | `π_MV / (2 − π_MV)` 其中 π_MV = mv_f1 | 旧版推导残留，**错误** |\n| **论文 Proposition 1** | `F₁^gr / 2` | theory.tex:36, appendix.tex:1121 |\n| **论文 LaTeX 表** | `F₁^gr / 2` | appendix.tex:1145-1147，**正确** |\n\n### 2. 论文 Proposition 1 定义\n`Δ F₁ > 0` 当且仅当 `π_{M⁺} > α_crit ≜ F₁^gr/2`，其中 π_{M⁺} 是 MV 新增实体的 precision。\n\n### 3. 修正后的 α_crit 值\n\n| Dataset | greedy_f1 | 正确 α_crit (F₁^gr/2) | 旧值 (错误) |\n|---------|-----------|----------------------|------------|\n| FewNERD | 0.7912 | **0.396** | 0.618 |\n| CoNLL | 0.9123 | **0.456** | 0.835 |\n| SciERC | 0.6670 | **0.334** | 0.492 |\n\nv4 markdown 表已修正并注册 (`art_20260521_ff5191`)。**论文 LaTeX 无需修改，本身就是正确的。**\n\n### 4. CoNLL s42 数据来源\n- 文件在 `autodl-5090-c` 上的 `conll_mf4v2_seed42/samples.jsonl`\n- `autodl-5090` 上无此文件（仅有 seed123/456，今天新生成）\n- `review_round9_experiments/freeform_conll/seed_42/` 是 freeform 实验数据，非 MF4v2\n\n### 5. v3 vs v4 CoNLL s42 差异根因\n**数据重新生成**，不是计算方法差异。证据：\n- greedy_f1 变化 +0.48pp、degen 变化 −5.6pp，这些指标不受 MV 阈值影响\n- v4 表自注：\"conll_mf4v2_seed42 data was regenerated since v3\"\n- 论文 LaTeX 表已规避：CoNLL 标 Seeds=2，仅用 v3 的 seed123+456（在 bjb2-11496 上，未重新生成）\n\n**脚本 `recompute_alpha_crit_unified.py` 中的 `acrit()` 函数仍需修正**（改为 `greedy_f1 / 2`），但不影响论文 — 论文 LaTeX 表中的值是手动对齐到 Proposition 1 的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-alpha-crit-v4-audit.md"
+}

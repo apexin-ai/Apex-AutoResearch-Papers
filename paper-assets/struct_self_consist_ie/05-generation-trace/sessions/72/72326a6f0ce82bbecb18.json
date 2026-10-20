@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "72326a6f0ce82bbecb18",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "check all servers gpu state",
+  "task_key": "worker_check_all_servers_gpu_state_20260521T090529",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_all_servers_gpu_state_20260521T090529.log",
+    "occurrence": 1,
+    "bytes": 811104,
+    "sha256": "2cee90e0925f84b9fec4682505fc807ece646c30906a6b073205cec2ad486aeb"
+  },
+  "statistics": {
+    "messages": 187,
+    "user_turns": 0,
+    "tool_calls": 79,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 25,
+      "tool_call": 79,
+      "tool_result": 79,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 187,
+      "chunks": [
+        {
+          "path": "72326a6f0ce82bbecb18-part-0001.json",
+          "message_count": 122
+        },
+        {
+          "path": "72326a6f0ce82bbecb18-part-0002.json",
+          "message_count": 65
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/check-all-servers-gpu-state.md"
+}

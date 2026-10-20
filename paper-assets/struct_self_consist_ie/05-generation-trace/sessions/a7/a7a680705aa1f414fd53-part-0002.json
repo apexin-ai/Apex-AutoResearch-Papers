@@ -1,0 +1,1644 @@
+{
+  "schema_version": "1.0",
+  "session_id": "a7a680705aa1f414fd53",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 75,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I can see the registry entries. I need to update these to DONE:\n\n1. **exp_conll_n16_s123_v2** → DONE, PASS\n2. **exp_conll_n16_s456_v2** → DONE, PASS\n3. **exp_e2_pretrained_scierc** → DONE, FAIL\n\nAnd **exp_fewnerd_n16_s456_v2** is still running, keep as RUNNING.\n\nLet me update the 3 completed experiments. For each I need to:\n\n\n- Set status=DONE\n- Set conclusion with metrics\n- Set metrics\n- Also set checkpoint_path and log_path since they're required for DONE transition\n\nI'll update all 3 experiments in parallel.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "1659a03f-0669-4719-9d56-c94ea557b605",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Vm1edTUd9CpZcAXKTF9L9W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2680,
+                "cache_read_input_tokens": 48195,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2680
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 中 3 个实验需要更新为 DONE。并行更新。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "b1530691-f807-4766-a34d-df52b4ef5dde",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Vm1edTUd9CpZcAXKTF9L9W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2680,
+                "cache_read_input_tokens": 48195,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2680
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CsGx883a716S3ujyqg7T5p",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_conll_n16_s123_v2",
+                "field": "status",
+                "value": "DONE",
+                "project": "struct_self_consist_ie",
+                "spec": {
+                  "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed123_v2/",
+                  "log_path": "~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "042940b6-1856-4670-973e-126834309ecc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Vm1edTUd9CpZcAXKTF9L9W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2680,
+                "cache_read_input_tokens": 48195,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2680
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-21T09:09:07.486Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CsGx883a716S3ujyqg7T5p",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8395}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "5f164a8e-3dde-492d-b025-140211b86dcd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8395}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.8395}}"
+              }
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MeL43nSFoAZYnVFCjXgkxL",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_conll_n16_s456_v2",
+                "field": "status",
+                "value": "DONE",
+                "project": "struct_self_consist_ie",
+                "spec": {
+                  "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed456_v2/",
+                  "log_path": "~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "745e9554-8473-4fbd-b92f-590b74cce63b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Vm1edTUd9CpZcAXKTF9L9W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2680,
+                "cache_read_input_tokens": 48195,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2680
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-21T09:09:08.811Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MeL43nSFoAZYnVFCjXgkxL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7094}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "3387bd4f-74ea-447a-8972-39d9ec9a07bd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7094}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.7094}}"
+              }
+            }
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WBq42tNXuVTqei4bCxBvPu",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_e2_pretrained_scierc",
+                "field": "status",
+                "value": "DONE",
+                "project": "struct_self_consist_ie",
+                "spec": {
+                  "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc/",
+                  "log_path": "~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "fdfdc039-aa35-4d36-af59-18b92e5760e5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Vm1edTUd9CpZcAXKTF9L9W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2680,
+                "cache_read_input_tokens": 48195,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2680
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-21T09:09:09.777Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WBq42tNXuVTqei4bCxBvPu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6848}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "ca131231-8afe-4395-85f1-8205551245ba",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6848}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.6848}}"
+              }
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先设 conclusion，再设 status。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "6d9286fb-49fc-46ae-92f6-60b7b90e20fd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YHP2v6aVDQHURoUbC32rV1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1125,
+                "cache_read_input_tokens": 50875,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1125
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UofK9Vwy8mxnnRarpdVL7a",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_conll_n16_s123_v2",
+                "field": "conclusion",
+                "value": "PASS. CoNLL N=16 seed123: greedy_f1=0.907, oracle_f1=0.962, headroom=0.055. structural_beats_surface=true, rho_advantage=0.010. SoftJaccard rho full=0.457/cond=0.417, Fleiss rho full=0.447/cond=0.394. Logprob rho full=0.346/cond=0.375.",
+                "project": "struct_self_consist_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "7dc9fbf8-dee8-4779-990a-1f377f3d7f96",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YHP2v6aVDQHURoUbC32rV1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1125,
+                "cache_read_input_tokens": 50875,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1125
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-21T09:09:16.923Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UofK9Vwy8mxnnRarpdVL7a",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'PASS. CoNLL N=16 seed123: greedy_f1=0.907, oracle_f1=0.962, headroom=0.055. structural_beats_surface=true, rho_advantage=0.010. SoftJaccard rho full=0.457/cond=0.417, Fleiss rho full=0.447/cond=0.394. Logprob rho full=0.346/cond=0.375.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.669}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "28be7da4-6409-4ad1-aea4-586140252264",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'PASS. CoNLL N=16 seed123: greedy_f1=0.907, oracle_f1=0.962, headroom=0.055. structural_beats_surface=true, rho_advantage=0.010. SoftJaccard rho full=0.457/cond=0.417, Fleiss rho full=0.447/cond=0.394. Logprob rho full=0.346/cond=0.375.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.669}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion 'PASS. CoNLL N=16 seed123: greedy_f1=0.907, oracle_f1=0.962, headroom=0.055. structural_beats_surface=true, rho_advantage=0.010. SoftJaccard rho full=0.457/cond=0.417, Fleiss rho full=0.447/cond=0.394. Logprob rho full=0.346/cond=0.375.'. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 0.669}}"
+              }
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H3FbouFfQifWXxh1sQWqxK",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_conll_n16_s456_v2",
+                "field": "conclusion",
+                "value": "PASS. CoNLL N=16 seed456: greedy_f1=0.908, oracle_f1=0.955, headroom=0.047. structural_beats_surface=true, rho_advantage=0.009. SoftJaccard rho full=0.479/cond=0.448, Fleiss rho full=0.470/cond=0.427. Logprob rho full=0.314/cond=0.373.",
+                "project": "struct_self_consist_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "37e8a510-4eb5-43c4-b666-80ede58791d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YHP2v6aVDQHURoUbC32rV1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1125,
+                "cache_read_input_tokens": 50875,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1125
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-21T09:09:18.826Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H3FbouFfQifWXxh1sQWqxK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'PASS. CoNLL N=16 seed456: greedy_f1=0.908, oracle_f1=0.955, headroom=0.047. structural_beats_surface=true, rho_advantage=0.009. SoftJaccard rho full=0.479/cond=0.448, Fleiss rho full=0.470/cond=0.427. Logprob rho full=0.314/cond=0.373.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7177}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "c0dcb802-2db8-4dd5-8ea4-3052f85a3572",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'PASS. CoNLL N=16 seed456: greedy_f1=0.908, oracle_f1=0.955, headroom=0.047. structural_beats_surface=true, rho_advantage=0.009. SoftJaccard rho full=0.479/cond=0.448, Fleiss rho full=0.470/cond=0.427. Logprob rho full=0.314/cond=0.373.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7177}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion 'PASS. CoNLL N=16 seed456: greedy_f1=0.908, oracle_f1=0.955, headroom=0.047. structural_beats_surface=true, rho_advantage=0.009. SoftJaccard rho full=0.479/cond=0.448, Fleiss rho full=0.470/cond=0.427. Logprob rho full=0.314/cond=0.373.'. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 0.7177}}"
+              }
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012nWT94Q8f92x94qfC8PR52",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_e2_pretrained_scierc",
+                "field": "conclusion",
+                "value": "FAIL. Pretrained Qwen2.5-7B on SciERC: greedy_f1=0.242, oracle_f1=0.389, headroom=0.147. structural_beats_surface=false, rho_advantage=-0.032. SoftJaccard rho full=0.219/cond=0.199, Fleiss rho full=0.252/cond=0.195. Logprob rho full=0.078(ns)/cond=0.190. 46% samples F1=0.",
+                "project": "struct_self_consist_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "2c88e58a-5f68-4ca6-8d55-17d43fe0530d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YHP2v6aVDQHURoUbC32rV1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1125,
+                "cache_read_input_tokens": 50875,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1125
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-21T09:09:21.291Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012nWT94Q8f92x94qfC8PR52",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'FAIL. Pretrained Qwen2.5-7B on SciERC: greedy_f1=0.242, oracle_f1=0.389, headroom=0.147. structural_beats_surface=false, rho_advantage=-0.032. SoftJaccard rho full=0.219/cond=0.199, Fleiss rho full=0.252/cond=0.195. Logprob rho full=0.078(ns)/cond=0.190. 46% samples F1=0.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6616}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "6150868a-f5aa-4ebb-ace4-0578ea756e12",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'FAIL. Pretrained Qwen2.5-7B on SciERC: greedy_f1=0.242, oracle_f1=0.389, headroom=0.147. structural_beats_surface=false, rho_advantage=-0.032. SoftJaccard rho full=0.219/cond=0.199, Fleiss rho full=0.252/cond=0.195. Logprob rho full=0.078(ns)/cond=0.190. 46% samples F1=0.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6616}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion 'FAIL. Pretrained Qwen2.5-7B on SciERC: greedy_f1=0.242, oracle_f1=0.389, headroom=0.147. structural_beats_surface=false, rho_advantage=-0.032. SoftJaccard rho full=0.219/cond=0.199, Fleiss rho full=0.252/cond=0.195. Logprob rho full=0.078(ns)/cond=0.190. 46% samples F1=0.'. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 0.6616}}"
+              }
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The conclusion must be one of: 'failed', 'killed', 'negative', 'success'. The metrics should go in a separate field. Let me set conclusion correctly and put the details in metrics.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "b2f7ce96-2d0b-49d2-8098-9e56718016e6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UNq1wpAzfju1Nm8XfdGnn8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1387,
+                "cache_read_input_tokens": 52000,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1387
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "conclusion 需要用固定值。先设 conclusion + metrics，再设 status。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "5d830c50-6906-4b5e-aaae-4f0902654e0c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UNq1wpAzfju1Nm8XfdGnn8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1387,
+                "cache_read_input_tokens": 52000,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1387
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N8hwAyCnyGbbUByA3xxWc1",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_conll_n16_s123_v2",
+                "field": "conclusion",
+                "value": "success",
+                "project": "struct_self_consist_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "bb0b6e14-dced-4023-932e-cee42e69e0cd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UNq1wpAzfju1Nm8XfdGnn8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1387,
+                "cache_read_input_tokens": 52000,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1387
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TebNvgsiyB6Car4jwBUpUH",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_conll_n16_s456_v2",
+                "field": "conclusion",
+                "value": "success",
+                "project": "struct_self_consist_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "e2c8611b-5851-4551-8078-50e618948cc5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UNq1wpAzfju1Nm8XfdGnn8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1387,
+                "cache_read_input_tokens": 52000,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1387
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-21T09:09:28.285Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N8hwAyCnyGbbUByA3xxWc1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:03.921Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:27.793Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=123, v2): retry after previous failure on 5090 (damaged checkpoint). Extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003.\\\", \\\"parent\\\": \\\"exp_conll_n16_s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_seed123_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"293577\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:14.095Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1494}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "8947b7f7-db9b-4071-98b4-ec8743b0fe82",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:03.921Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:27.793Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=123, v2): retry after previous failure on 5090 (damaged checkpoint). Extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003.\\\", \\\"parent\\\": \\\"exp_conll_n16_s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_seed123_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"293577\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:14.095Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1494}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_conll_n16_s123_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:05:03.921Z\", \"updated_at\": \"2026-05-21T09:09:27.793Z\", \"hypothesis\": \"CoNLL N=16 (seed=123, v2): retry after previous failure on 5090 (damaged checkpoint). Extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003.\", \"parent\": \"exp_conll_n16_s123\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_seed123_v2/\\\"\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:1\"], \"pid\": \"293577\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log\", \"submitted_at\": \"2026-05-21T07:18:14.095Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/conll2003/\", \"data_count\": 3453, \"model_name\": \"qwen3-8b-conll2003-merged\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/qwen3-8b-conll2003-merged\", \"eval_data\": \"conll2003 test set (3453 instances, N=16)\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1494}}"
+              }
+            }
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012kpygMGRbmSBTPA8k8DvCG",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_e2_pretrained_scierc",
+                "field": "conclusion",
+                "value": "negative",
+                "project": "struct_self_consist_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "05c1d09e-0225-4ea3-8eb5-07184ba381c5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UNq1wpAzfju1Nm8XfdGnn8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1387,
+                "cache_read_input_tokens": 52000,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1387
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-21T09:09:29.525Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TebNvgsiyB6Car4jwBUpUH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s456_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:07.022Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:29.025Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=456, v2): retry after previous failure on 5090. Third seed for 3-seed statistical power on CoNLL-2003 N=16.\\\", \\\"parent\\\": \\\"exp_conll_n16_s456\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n16_seed456_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"293990\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:17.355Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2323}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "d93c580a-c711-4f84-b609-420f0ded9272",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s456_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:07.022Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:29.025Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=456, v2): retry after previous failure on 5090. Third seed for 3-seed statistical power on CoNLL-2003 N=16.\\\", \\\"parent\\\": \\\"exp_conll_n16_s456\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n16_seed456_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"293990\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:17.355Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2323}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_conll_n16_s456_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:05:07.022Z\", \"updated_at\": \"2026-05-21T09:09:29.025Z\", \"hypothesis\": \"CoNLL N=16 (seed=456, v2): retry after previous failure on 5090. Third seed for 3-seed statistical power on CoNLL-2003 N=16.\", \"parent\": \"exp_conll_n16_s456\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n16_seed456_v2/\\\"\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:2\"], \"pid\": \"293990\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log\", \"submitted_at\": \"2026-05-21T07:18:17.355Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/conll2003/\", \"data_count\": 3453, \"model_name\": \"qwen3-8b-conll2003-merged\", \"seed\": 456, \"checkpoint_source\": \"checkpoints/qwen3-8b-conll2003-merged\", \"eval_data\": \"conll2003 test set (3453 instances, N=16)\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2323}}"
+              }
+            }
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-21T09:09:30.672Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012kpygMGRbmSBTPA8k8DvCG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_scierc\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:18:21.189Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:30.206Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/ --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_scierc/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294269\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:20.538Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data/\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained_base\\\", \\\"eval_data\\\": \\\"scierc test set (100 instances, N=8)\\\"}, \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third dataset for E2 baseline, validates whether correlation-selection gap exists without task-specific fine-tuning across all 3 NER benchmarks.\\\", \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.138}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "5ec98fc3-098d-4526-8e38-0c23cde8a6a6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_scierc\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:18:21.189Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:30.206Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/ --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_scierc/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294269\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:20.538Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data/\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained_base\\\", \\\"eval_data\\\": \\\"scierc test set (100 instances, N=8)\\\"}, \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third dataset for E2 baseline, validates whether correlation-selection gap exists without task-specific fine-tuning across all 3 NER benchmarks.\\\", \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.138}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_e2_pretrained_scierc\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T07:18:21.189Z\", \"updated_at\": \"2026-05-21T09:09:30.206Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/ --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_scierc/\\\"\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:3\"], \"pid\": \"294269\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log\", \"submitted_at\": \"2026-05-21T07:18:20.538Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data/\", \"data_count\": 100, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"pretrained_base\", \"eval_data\": \"scierc test set (100 instances, N=8)\"}, \"hypothesis\": \"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third dataset for E2 baseline, validates whether correlation-selection gap exists without task-specific fine-tuning across all 3 NER benchmarks.\", \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.138}}"
+              }
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Conclusions 设置成功。现在设 metrics 和 status=DONE。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "ac97a5c4-a135-4bdb-a046-f55880f638d5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016B1254reHyiWyfXSMJSEmF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2476,
+                "cache_read_input_tokens": 53387,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2476
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Mq4tUyU5zqi5TDJkJpN7J6",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_conll_n16_s123_v2",
+                "field": "metrics",
+                "value": {
+                  "verdict": "PASS",
+                  "greedy_f1": 0.907,
+                  "oracle_f1": 0.962,
+                  "oracle_headroom": 0.055,
+                  "structural_beats_surface": true,
+                  "rho_advantage": 0.01,
+                  "softjaccard_rho_full": 0.457,
+                  "softjaccard_rho_cond": 0.417,
+                  "fleiss_rho_full": 0.447,
+                  "fleiss_rho_cond": 0.394,
+                  "logprob_rho_full": 0.346,
+                  "logprob_rho_cond": 0.375
+                },
+                "project": "struct_self_consist_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "7b5d5382-1018-4223-a3cf-e46b71f3c86c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016B1254reHyiWyfXSMJSEmF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2476,
+                "cache_read_input_tokens": 53387,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2476
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-21T09:09:39.510Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Mq4tUyU5zqi5TDJkJpN7J6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:03.921Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:39.029Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=123, v2): retry after previous failure on 5090 (damaged checkpoint). Extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003.\\\", \\\"parent\\\": \\\"exp_conll_n16_s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_seed123_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"293577\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:14.095Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"verdict\\\": \\\"PASS\\\", \\\"greedy_f1\\\": 0.907, \\\"oracle_f1\\\": 0.962, \\\"oracle_headroom\\\": 0.055, \\\"structural_beats_surface\\\": true, \\\"rho_advantage\\\": 0.01, \\\"softjaccard_rho_full\\\": 0.457, \\\"softjaccard_rho_cond\\\": 0.417, \\\"fleiss_rho_full\\\": 0.447, \\\"fleiss_rho_cond\\\": 0.394, \\\"logprob_rho_full\\\": 0.346, \\\"logprob_rho_cond\\\": 0.375}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1487}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "20fd809f-6d16-45bb-ba1d-0d771dc8e38b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:03.921Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:39.029Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=123, v2): retry after previous failure on 5090 (damaged checkpoint). Extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003.\\\", \\\"parent\\\": \\\"exp_conll_n16_s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_seed123_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"293577\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:14.095Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"verdict\\\": \\\"PASS\\\", \\\"greedy_f1\\\": 0.907, \\\"oracle_f1\\\": 0.962, \\\"oracle_headroom\\\": 0.055, \\\"structural_beats_surface\\\": true, \\\"rho_advantage\\\": 0.01, \\\"softjaccard_rho_full\\\": 0.457, \\\"softjaccard_rho_cond\\\": 0.417, \\\"fleiss_rho_full\\\": 0.447, \\\"fleiss_rho_cond\\\": 0.394, \\\"logprob_rho_full\\\": 0.346, \\\"logprob_rho_cond\\\": 0.375}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1487}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_conll_n16_s123_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:05:03.921Z\", \"updated_at\": \"2026-05-21T09:09:39.029Z\", \"hypothesis\": \"CoNLL N=16 (seed=123, v2): retry after previous failure on 5090 (damaged checkpoint). Extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003.\", \"parent\": \"exp_conll_n16_s123\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_seed123_v2/\\\"\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:1\"], \"pid\": \"293577\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log\", \"submitted_at\": \"2026-05-21T07:18:14.095Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/conll2003/\", \"data_count\": 3453, \"model_name\": \"qwen3-8b-conll2003-merged\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/qwen3-8b-conll2003-merged\", \"eval_data\": \"conll2003 test set (3453 instances, N=16)\"}, \"conclusion\": \"success\", \"metrics\": {\"verdict\": \"PASS\", \"greedy_f1\": 0.907, \"oracle_f1\": 0.962, \"oracle_headroom\": 0.055, \"structural_beats_surface\": true, \"rho_advantage\": 0.01, \"softjaccard_rho_full\": 0.457, \"softjaccard_rho_cond\": 0.417, \"fleiss_rho_full\": 0.447, \"fleiss_rho_cond\": 0.394, \"logprob_rho_full\": 0.346, \"logprob_rho_cond\": 0.375}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1487}}"
+              }
+            }
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RcNzYbCKCrsMbowxKPTt28",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_conll_n16_s456_v2",
+                "field": "metrics",
+                "value": {
+                  "verdict": "PASS",
+                  "greedy_f1": 0.908,
+                  "oracle_f1": 0.955,
+                  "oracle_headroom": 0.047,
+                  "structural_beats_surface": true,
+                  "rho_advantage": 0.009,
+                  "softjaccard_rho_full": 0.479,
+                  "softjaccard_rho_cond": 0.448,
+                  "fleiss_rho_full": 0.47,
+                  "fleiss_rho_cond": 0.427,
+                  "logprob_rho_full": 0.314,
+                  "logprob_rho_cond": 0.373
+                },
+                "project": "struct_self_consist_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "ec9ba409-e757-4b6d-a0e8-5985f30d8d0e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016B1254reHyiWyfXSMJSEmF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2476,
+                "cache_read_input_tokens": 53387,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2476
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-21T09:09:41.712Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RcNzYbCKCrsMbowxKPTt28",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s456_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:07.022Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:41.249Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=456, v2): retry after previous failure on 5090. Third seed for 3-seed statistical power on CoNLL-2003 N=16.\\\", \\\"parent\\\": \\\"exp_conll_n16_s456\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n16_seed456_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"293990\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:17.355Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"verdict\\\": \\\"PASS\\\", \\\"greedy_f1\\\": 0.908, \\\"oracle_f1\\\": 0.955, \\\"oracle_headroom\\\": 0.047, \\\"structural_beats_surface\\\": true, \\\"rho_advantage\\\": 0.009, \\\"softjaccard_rho_full\\\": 0.479, \\\"softjaccard_rho_cond\\\": 0.448, \\\"fleiss_rho_full\\\": 0.47, \\\"fleiss_rho_cond\\\": 0.427, \\\"logprob_rho_full\\\": 0.314, \\\"logprob_rho_cond\\\": 0.373}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.176}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "b9a21407-f9b4-4262-b620-2269015cb165",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s456_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:07.022Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:41.249Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=456, v2): retry after previous failure on 5090. Third seed for 3-seed statistical power on CoNLL-2003 N=16.\\\", \\\"parent\\\": \\\"exp_conll_n16_s456\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n16_seed456_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"293990\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:17.355Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"verdict\\\": \\\"PASS\\\", \\\"greedy_f1\\\": 0.908, \\\"oracle_f1\\\": 0.955, \\\"oracle_headroom\\\": 0.047, \\\"structural_beats_surface\\\": true, \\\"rho_advantage\\\": 0.009, \\\"softjaccard_rho_full\\\": 0.479, \\\"softjaccard_rho_cond\\\": 0.448, \\\"fleiss_rho_full\\\": 0.47, \\\"fleiss_rho_cond\\\": 0.427, \\\"logprob_rho_full\\\": 0.314, \\\"logprob_rho_cond\\\": 0.373}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.176}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_conll_n16_s456_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:05:07.022Z\", \"updated_at\": \"2026-05-21T09:09:41.249Z\", \"hypothesis\": \"CoNLL N=16 (seed=456, v2): retry after previous failure on 5090. Third seed for 3-seed statistical power on CoNLL-2003 N=16.\", \"parent\": \"exp_conll_n16_s456\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n16_seed456_v2/\\\"\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:2\"], \"pid\": \"293990\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log\", \"submitted_at\": \"2026-05-21T07:18:17.355Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/conll2003/\", \"data_count\": 3453, \"model_name\": \"qwen3-8b-conll2003-merged\", \"seed\": 456, \"checkpoint_source\": \"checkpoints/qwen3-8b-conll2003-merged\", \"eval_data\": \"conll2003 test set (3453 instances, N=16)\"}, \"conclusion\": \"success\", \"metrics\": {\"verdict\": \"PASS\", \"greedy_f1\": 0.908, \"oracle_f1\": 0.955, \"oracle_headroom\": 0.047, \"structural_beats_surface\": true, \"rho_advantage\": 0.009, \"softjaccard_rho_full\": 0.479, \"softjaccard_rho_cond\": 0.448, \"fleiss_rho_full\": 0.47, \"fleiss_rho_cond\": 0.427, \"logprob_rho_full\": 0.314, \"logprob_rho_cond\": 0.373}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.176}}"
+              }
+            }
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LBSLarRXT7P8FpwFbbSUqb",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_e2_pretrained_scierc",
+                "field": "metrics",
+                "value": {
+                  "verdict": "FAIL",
+                  "greedy_f1": 0.242,
+                  "oracle_f1": 0.389,
+                  "oracle_headroom": 0.147,
+                  "structural_beats_surface": false,
+                  "rho_advantage": -0.032,
+                  "softjaccard_rho_full": 0.219,
+                  "softjaccard_rho_cond": 0.199,
+                  "fleiss_rho_full": 0.252,
+                  "fleiss_rho_cond": 0.195,
+                  "logprob_rho_full": 0.078,
+                  "logprob_rho_cond": 0.19,
+                  "sample_f1_pct_zero": 46.3
+                },
+                "project": "struct_self_consist_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "8e17c35f-91b1-4347-9e2b-47f9d744e7e0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016B1254reHyiWyfXSMJSEmF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2476,
+                "cache_read_input_tokens": 53387,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2476
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-21T09:09:43.941Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LBSLarRXT7P8FpwFbbSUqb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_scierc\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:18:21.189Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:43.481Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/ --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_scierc/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294269\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:20.538Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data/\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained_base\\\", \\\"eval_data\\\": \\\"scierc test set (100 instances, N=8)\\\"}, \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third dataset for E2 baseline, validates whether correlation-selection gap exists without task-specific fine-tuning across all 3 NER benchmarks.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"verdict\\\": \\\"FAIL\\\", \\\"greedy_f1\\\": 0.242, \\\"oracle_f1\\\": 0.389, \\\"oracle_headroom\\\": 0.147, \\\"structural_beats_surface\\\": false, \\\"rho_advantage\\\": -0.032, \\\"softjaccard_rho_full\\\": 0.219, \\\"softjaccard_rho_cond\\\": 0.199, \\\"fleiss_rho_full\\\": 0.252, \\\"fleiss_rho_cond\\\": 0.195, \\\"logprob_rho_full\\\": 0.078, \\\"logprob_rho_cond\\\": 0.19, \\\"sample_f1_pct_zero\\\": 46.3}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2146}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "832c99ce-cfbd-479b-aa97-4c9f1dfce343",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_scierc\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:18:21.189Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:43.481Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/ --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_scierc/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294269\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:20.538Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data/\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained_base\\\", \\\"eval_data\\\": \\\"scierc test set (100 instances, N=8)\\\"}, \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third dataset for E2 baseline, validates whether correlation-selection gap exists without task-specific fine-tuning across all 3 NER benchmarks.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"verdict\\\": \\\"FAIL\\\", \\\"greedy_f1\\\": 0.242, \\\"oracle_f1\\\": 0.389, \\\"oracle_headroom\\\": 0.147, \\\"structural_beats_surface\\\": false, \\\"rho_advantage\\\": -0.032, \\\"softjaccard_rho_full\\\": 0.219, \\\"softjaccard_rho_cond\\\": 0.199, \\\"fleiss_rho_full\\\": 0.252, \\\"fleiss_rho_cond\\\": 0.195, \\\"logprob_rho_full\\\": 0.078, \\\"logprob_rho_cond\\\": 0.19, \\\"sample_f1_pct_zero\\\": 46.3}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2146}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_e2_pretrained_scierc\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T07:18:21.189Z\", \"updated_at\": \"2026-05-21T09:09:43.481Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/ --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_scierc/\\\"\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:3\"], \"pid\": \"294269\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log\", \"submitted_at\": \"2026-05-21T07:18:20.538Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data/\", \"data_count\": 100, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"pretrained_base\", \"eval_data\": \"scierc test set (100 instances, N=8)\"}, \"hypothesis\": \"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third dataset for E2 baseline, validates whether correlation-selection gap exists without task-specific fine-tuning across all 3 NER benchmarks.\", \"conclusion\": \"negative\", \"metrics\": {\"verdict\": \"FAIL\", \"greedy_f1\": 0.242, \"oracle_f1\": 0.389, \"oracle_headroom\": 0.147, \"structural_beats_surface\": false, \"rho_advantage\": -0.032, \"softjaccard_rho_full\": 0.219, \"softjaccard_rho_cond\": 0.199, \"fleiss_rho_full\": 0.252, \"fleiss_rho_cond\": 0.195, \"logprob_rho_full\": 0.078, \"logprob_rho_cond\": 0.19, \"sample_f1_pct_zero\": 46.3}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2146}}"
+              }
+            }
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Metrics 设置成功。现在设 status=DONE。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "35bce184-1b35-47d4-865a-15d192c1fdb8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JNhwmZDUC23HBybGvCZZeM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3319,
+                "cache_read_input_tokens": 55863,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3319
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017ymATBb7SfVsgfxtJKD3uR",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_conll_n16_s123_v2",
+                "field": "status",
+                "value": "DONE",
+                "project": "struct_self_consist_ie",
+                "spec": {
+                  "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed123_v2/",
+                  "log_path": "~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "9081b323-aff1-4454-b986-aa7500dfe53c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JNhwmZDUC23HBybGvCZZeM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3319,
+                "cache_read_input_tokens": 55863,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3319
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R5ZZKEiehBKAy7sJaTFab8",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_conll_n16_s456_v2",
+                "field": "status",
+                "value": "DONE",
+                "project": "struct_self_consist_ie",
+                "spec": {
+                  "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed456_v2/",
+                  "log_path": "~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "e54be87a-1d11-44ed-9eae-bb6f5fc1a527",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JNhwmZDUC23HBybGvCZZeM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3319,
+                "cache_read_input_tokens": 55863,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3319
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HBtFNBTiRjzADi4AQPgPjj",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_e2_pretrained_scierc",
+                "field": "status",
+                "value": "DONE",
+                "project": "struct_self_consist_ie",
+                "spec": {
+                  "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc/",
+                  "log_path": "~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "a1ee5f37-1de5-4053-819a-c59c2422fbb8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JNhwmZDUC23HBybGvCZZeM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3319,
+                "cache_read_input_tokens": 55863,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3319
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-21T09:10:00.204Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017ymATBb7SfVsgfxtJKD3uR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:03.921Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:56.662Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=123, v2): retry after previous failure on 5090 (damaged checkpoint). Extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003.\\\", \\\"parent\\\": \\\"exp_conll_n16_s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_seed123_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"293577\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:14.095Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed123_v2/\\\", \\\"wall_clock_seconds\\\": 6702.6, \\\"gpu_hours\\\": 1.86}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"verdict\\\": \\\"PASS\\\", \\\"greedy_f1\\\": 0.907, \\\"oracle_f1\\\": 0.962, \\\"oracle_headroom\\\": 0.055, \\\"structural_beats_surface\\\": true, \\\"rho_advantage\\\": 0.01, \\\"softjaccard_rho_full\\\": 0.457, \\\"softjaccard_rho_cond\\\": 0.417, \\\"fleiss_rho_full\\\": 0.447, \\\"fleiss_rho_cond\\\": 0.394, \\\"logprob_rho_full\\\": 0.346, \\\"logprob_rho_cond\\\": 0.375}, \\\"completed_at\\\": \\\"2026-05-21T09:09:56.663Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.2715}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "d647ece4-2dc6-4361-8f50-cade4fd482a8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:03.921Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:09:56.662Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=123, v2): retry after previous failure on 5090 (damaged checkpoint). Extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003.\\\", \\\"parent\\\": \\\"exp_conll_n16_s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_seed123_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"293577\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:14.095Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed123_v2/\\\", \\\"wall_clock_seconds\\\": 6702.6, \\\"gpu_hours\\\": 1.86}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"verdict\\\": \\\"PASS\\\", \\\"greedy_f1\\\": 0.907, \\\"oracle_f1\\\": 0.962, \\\"oracle_headroom\\\": 0.055, \\\"structural_beats_surface\\\": true, \\\"rho_advantage\\\": 0.01, \\\"softjaccard_rho_full\\\": 0.457, \\\"softjaccard_rho_cond\\\": 0.417, \\\"fleiss_rho_full\\\": 0.447, \\\"fleiss_rho_cond\\\": 0.394, \\\"logprob_rho_full\\\": 0.346, \\\"logprob_rho_cond\\\": 0.375}, \\\"completed_at\\\": \\\"2026-05-21T09:09:56.663Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.2715}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_conll_n16_s123_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:05:03.921Z\", \"updated_at\": \"2026-05-21T09:09:56.662Z\", \"hypothesis\": \"CoNLL N=16 (seed=123, v2): retry after previous failure on 5090 (damaged checkpoint). Extending N-scaling curve to N=16 for Qwen3-8B-FT on CoNLL-2003.\", \"parent\": \"exp_conll_n16_s123\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/conll_n16_seed123_v2/\\\"\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:1\"], \"pid\": \"293577\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_conll_n16_s123_v2.log\", \"submitted_at\": \"2026-05-21T07:18:14.095Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/conll2003/\", \"data_count\": 3453, \"model_name\": \"qwen3-8b-conll2003-merged\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/qwen3-8b-conll2003-merged\", \"eval_data\": \"conll2003 test set (3453 instances, N=16)\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed123_v2/\", \"wall_clock_seconds\": 6702.6, \"gpu_hours\": 1.86}, \"conclusion\": \"success\", \"metrics\": {\"verdict\": \"PASS\", \"greedy_f1\": 0.907, \"oracle_f1\": 0.962, \"oracle_headroom\": 0.055, \"structural_beats_surface\": true, \"rho_advantage\": 0.01, \"softjaccard_rho_full\": 0.457, \"softjaccard_rho_cond\": 0.417, \"fleiss_rho_full\": 0.447, \"fleiss_rho_cond\": 0.394, \"logprob_rho_full\": 0.346, \"logprob_rho_cond\": 0.375}, \"completed_at\": \"2026-05-21T09:09:56.663Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.2715}}"
+              }
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-21T09:10:04.820Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R5ZZKEiehBKAy7sJaTFab8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s456_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:07.022Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:10:01.094Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=456, v2): retry after previous failure on 5090. Third seed for 3-seed statistical power on CoNLL-2003 N=16.\\\", \\\"parent\\\": \\\"exp_conll_n16_s456\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n16_seed456_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"293990\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:17.355Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed456_v2/\\\", \\\"wall_clock_seconds\\\": 6703.7, \\\"gpu_hours\\\": 1.86}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"verdict\\\": \\\"PASS\\\", \\\"greedy_f1\\\": 0.908, \\\"oracle_f1\\\": 0.955, \\\"oracle_headroom\\\": 0.047, \\\"structural_beats_surface\\\": true, \\\"rho_advantage\\\": 0.009, \\\"softjaccard_rho_full\\\": 0.479, \\\"softjaccard_rho_cond\\\": 0.448, \\\"fleiss_rho_full\\\": 0.47, \\\"fleiss_rho_cond\\\": 0.427, \\\"logprob_rho_full\\\": 0.314, \\\"logprob_rho_cond\\\": 0.373}, \\\"completed_at\\\": \\\"2026-05-21T09:10:01.095Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.599}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "4b5b51b7-d626-4f02-8cd0-3aa0ba144f7d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_conll_n16_s456_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T05:05:07.022Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:10:01.094Z\\\", \\\"hypothesis\\\": \\\"CoNLL N=16 (seed=456, v2): retry after previous failure on 5090. Third seed for 3-seed statistical power on CoNLL-2003 N=16.\\\", \\\"parent\\\": \\\"exp_conll_n16_s456\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n16_seed456_v2/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"293990\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:17.355Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/conll2003/\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set (3453 instances, N=16)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed456_v2/\\\", \\\"wall_clock_seconds\\\": 6703.7, \\\"gpu_hours\\\": 1.86}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"verdict\\\": \\\"PASS\\\", \\\"greedy_f1\\\": 0.908, \\\"oracle_f1\\\": 0.955, \\\"oracle_headroom\\\": 0.047, \\\"structural_beats_surface\\\": true, \\\"rho_advantage\\\": 0.009, \\\"softjaccard_rho_full\\\": 0.479, \\\"softjaccard_rho_cond\\\": 0.448, \\\"fleiss_rho_full\\\": 0.47, \\\"fleiss_rho_cond\\\": 0.427, \\\"logprob_rho_full\\\": 0.314, \\\"logprob_rho_cond\\\": 0.373}, \\\"completed_at\\\": \\\"2026-05-21T09:10:01.095Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.599}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_conll_n16_s456_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:05:07.022Z\", \"updated_at\": \"2026-05-21T09:10:01.094Z\", \"hypothesis\": \"CoNLL N=16 (seed=456, v2): retry after previous failure on 5090. Third seed for 3-seed statistical power on CoNLL-2003 N=16.\", \"parent\": \"exp_conll_n16_s456\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003/ --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/conll_n16_seed456_v2/\\\"\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:2\"], \"pid\": \"293990\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_conll_n16_s456_v2.log\", \"submitted_at\": \"2026-05-21T07:18:17.355Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/conll2003/\", \"data_count\": 3453, \"model_name\": \"qwen3-8b-conll2003-merged\", \"seed\": 456, \"checkpoint_source\": \"checkpoints/qwen3-8b-conll2003-merged\", \"eval_data\": \"conll2003 test set (3453 instances, N=16)\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/conll_n16_seed456_v2/\", \"wall_clock_seconds\": 6703.7, \"gpu_hours\": 1.86}, \"conclusion\": \"success\", \"metrics\": {\"verdict\": \"PASS\", \"greedy_f1\": 0.908, \"oracle_f1\": 0.955, \"oracle_headroom\": 0.047, \"structural_beats_surface\": true, \"rho_advantage\": 0.009, \"softjaccard_rho_full\": 0.479, \"softjaccard_rho_cond\": 0.448, \"fleiss_rho_full\": 0.47, \"fleiss_rho_cond\": 0.427, \"logprob_rho_full\": 0.314, \"logprob_rho_cond\": 0.373}, \"completed_at\": \"2026-05-21T09:10:01.095Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.599}}"
+              }
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-21T09:10:10.019Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HBtFNBTiRjzADi4AQPgPjj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_scierc\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:18:21.189Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:10:06.216Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/ --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_scierc/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294269\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:20.538Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data/\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained_base\\\", \\\"eval_data\\\": \\\"scierc test set (100 instances, N=8)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc/\\\", \\\"wall_clock_seconds\\\": 6705.7, \\\"gpu_hours\\\": 1.86}, \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third dataset for E2 baseline, validates whether correlation-selection gap exists without task-specific fine-tuning across all 3 NER benchmarks.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"verdict\\\": \\\"FAIL\\\", \\\"greedy_f1\\\": 0.242, \\\"oracle_f1\\\": 0.389, \\\"oracle_headroom\\\": 0.147, \\\"structural_beats_surface\\\": false, \\\"rho_advantage\\\": -0.032, \\\"softjaccard_rho_full\\\": 0.219, \\\"softjaccard_rho_cond\\\": 0.199, \\\"fleiss_rho_full\\\": 0.252, \\\"fleiss_rho_cond\\\": 0.195, \\\"logprob_rho_full\\\": 0.078, \\\"logprob_rho_cond\\\": 0.19, \\\"sample_f1_pct_zero\\\": 46.3}, \\\"checkpoint_path\\\": \\\"output/e2_pretrained_scierc/\\\", \\\"completed_at\\\": \\\"2026-05-21T09:10:06.217Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.1809}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "db8dc034-8978-4ad4-adb2-8208e079bf01",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_e2_pretrained_scierc\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T07:18:21.189Z\\\", \\\"updated_at\\\": \\\"2026-05-21T09:10:06.216Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/ --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_scierc/\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294269\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T07:18:20.538Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data/\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained_base\\\", \\\"eval_data\\\": \\\"scierc test set (100 instances, N=8)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc/\\\", \\\"wall_clock_seconds\\\": 6705.7, \\\"gpu_hours\\\": 1.86}, \\\"hypothesis\\\": \\\"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third dataset for E2 baseline, validates whether correlation-selection gap exists without task-specific fine-tuning across all 3 NER benchmarks.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"verdict\\\": \\\"FAIL\\\", \\\"greedy_f1\\\": 0.242, \\\"oracle_f1\\\": 0.389, \\\"oracle_headroom\\\": 0.147, \\\"structural_beats_surface\\\": false, \\\"rho_advantage\\\": -0.032, \\\"softjaccard_rho_full\\\": 0.219, \\\"softjaccard_rho_cond\\\": 0.199, \\\"fleiss_rho_full\\\": 0.252, \\\"fleiss_rho_cond\\\": 0.195, \\\"logprob_rho_full\\\": 0.078, \\\"logprob_rho_cond\\\": 0.19, \\\"sample_f1_pct_zero\\\": 46.3}, \\\"checkpoint_path\\\": \\\"output/e2_pretrained_scierc/\\\", \\\"completed_at\\\": \\\"2026-05-21T09:10:06.217Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.1809}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_e2_pretrained_scierc\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T07:18:21.189Z\", \"updated_at\": \"2026-05-21T09:10:06.216Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct/ --data_dir data/scierc/processed_data/ --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/e2_pretrained_scierc/\\\"\", \"server\": \"autodl-5090-c\", \"gpu\": [\"cuda:3\"], \"pid\": \"294269\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_e2_pretrained_scierc.log\", \"submitted_at\": \"2026-05-21T07:18:20.538Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data/\", \"data_count\": 100, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"pretrained_base\", \"eval_data\": \"scierc test set (100 instances, N=8)\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc/\", \"wall_clock_seconds\": 6705.7, \"gpu_hours\": 1.86}, \"hypothesis\": \"E2 pre-trained baseline: Qwen2.5-7B-Instruct (unfinetuned) on SciERC SC pipeline N=8 T=1.0. Third dataset for E2 baseline, validates whether correlation-selection gap exists without task-specific fine-tuning across all 3 NER benchmarks.\", \"conclusion\": \"negative\", \"metrics\": {\"verdict\": \"FAIL\", \"greedy_f1\": 0.242, \"oracle_f1\": 0.389, \"oracle_headroom\": 0.147, \"structural_beats_surface\": false, \"rho_advantage\": -0.032, \"softjaccard_rho_full\": 0.219, \"softjaccard_rho_cond\": 0.199, \"fleiss_rho_full\": 0.252, \"fleiss_rho_cond\": 0.195, \"logprob_rho_full\": 0.078, \"logprob_rho_cond\": 0.19, \"sample_f1_pct_zero\": 46.3}, \"checkpoint_path\": \"output/e2_pretrained_scierc/\", \"completed_at\": \"2026-05-21T09:10:06.217Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.1809}}"
+              }
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 全部更新完成。现在汇总结果。\n\n---\n\n## 执行结果\n\n### 1. 5090-b 状态\n\n**无法连接**（端口 11496 连接失败）。AutoDL 实例可能已关机或端口已变。如果实例仍在运行，需要去控制台查新端口更新 `~/.ssh/config`。如果已关机，则无需清理，可直接释放。\n\n### 2. 5090 MF4 s456 — 已完成 ✓\n\n| 指标 | 值 |\n|------|-----|\n| verdict | MARGINAL |\n| greedy_f1 | 0.789 |\n| oracle_f1 | 0.881 |\n| oracle_headroom | 0.092 |\n| structural_beats_surface | true |\n| rho_advantage | 0.149 |\n| softjaccard ρ (full/cond) | 0.313 / 0.257 |\n| fleiss ρ (full/cond) | 0.165 / 0.015 |\n| logprob ρ (full/cond) | 0.245 / 0.238 |\n\n### 3. SciERC MF4 s42 — 已在 5090 GPU 0 启动 ✓\n\n- exp_id: `exp_scierc_mf4_v2_s42`, PID 18393, GPU cuda:0\n- 模型: `checkpoints/qwen3-8b-scierc-merged-v2`\n\n### 4. 5090-c 完成实验\n\n| 实验 | 状态 | verdict | greedy_f1 | ρ_adv |\n|------|------|---------|-----------|-------|\n| conll_n16_seed123_v2 | DONE (success) | PASS | 0.907 | +0.010 |\n| conll_n16_seed456_v2 | DONE (success) | PASS | 0.908 | +0.009 |\n| e2_pretrained_scierc | DONE (negative) | FAIL | 0.242 | -0.032 |\n| fewnerd_n16_seed456_v2 | RUNNING | — | — | — |\n\n### 5. 三台服务器 GPU 分配表\n\n| 服务器 | GPU 0 | GPU 1 | GPU 2 | GPU 3 |\n|--------|-------|-------|-------|-------|\n| **5090** | `exp_scierc_mf4_v2_s42` (新启) | 空闲 | 空闲 | `exp_e2_pretrained_fewnerd` |\n| **5090-b** | 连接失败，无法确认 | — | — | — |\n| **5090-c** | `exp_fewnerd_n16_s456_v2` (运行中) | 空闲 | 空闲 | 空闲 |\n\n> 5090-c 还有一个 API-based `frontier_sc_gemini25pro` 在跑（不占 GPU）。\n\n**5090-b 需要你确认：是已关机可以直接释放，还是需要去 AutoDL 控制台查新端口？**"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "uuid": "edad16c2-93e7-4ddc-a074-028e67746867",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XHM4D5Ah491DEekkzApfUS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3476,
+                "cache_read_input_tokens": 59182,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3476
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 全部更新完成。现在汇总结果。\n\n---\n\n## 执行结果\n\n### 1. 5090-b 状态\n\n**无法连接**（端口 11496 连接失败）。AutoDL 实例可能已关机或端口已变。如果实例仍在运行，需要去控制台查新端口更新 `~/.ssh/config`。如果已关机，则无需清理，可直接释放。\n\n### 2. 5090 MF4 s456 — 已完成 ✓\n\n| 指标 | 值 |\n|------|-----|\n| verdict | MARGINAL |\n| greedy_f1 | 0.789 |\n| oracle_f1 | 0.881 |\n| oracle_headroom | 0.092 |\n| structural_beats_surface | true |\n| rho_advantage | 0.149 |\n| softjaccard ρ (full/cond) | 0.313 / 0.257 |\n| fleiss ρ (full/cond) | 0.165 / 0.015 |\n| logprob ρ (full/cond) | 0.245 / 0.238 |\n\n### 3. SciERC MF4 s42 — 已在 5090 GPU 0 启动 ✓\n\n- exp_id: `exp_scierc_mf4_v2_s42`, PID 18393, GPU cuda:0\n- 模型: `checkpoints/qwen3-8b-scierc-merged-v2`\n\n### 4. 5090-c 完成实验\n\n| 实验 | 状态 | verdict | greedy_f1 | ρ_adv |\n|------|------|---------|-----------|-------|\n| conll_n16_seed123_v2 | DONE (success) | PASS | 0.907 | +0.010 |\n| conll_n16_seed456_v2 | DONE (success) | PASS | 0.908 | +0.009 |\n| e2_pretrained_scierc | DONE (negative) | FAIL | 0.242 | -0.032 |\n| fewnerd_n16_seed456_v2 | RUNNING | — | — | — |\n\n### 5. 三台服务器 GPU 分配表\n\n| 服务器 | GPU 0 | GPU 1 | GPU 2 | GPU 3 |\n|--------|-------|-------|-------|-------|\n| **5090** | `exp_scierc_mf4_v2_s42` (新启) | 空闲 | 空闲 | `exp_e2_pretrained_fewnerd` |\n| **5090-b** | 连接失败，无法确认 | — | — | — |\n| **5090-c** | `exp_fewnerd_n16_s456_v2` (运行中) | 空闲 | 空闲 | 空闲 |\n\n> 5090-c 还有一个 API-based `frontier_sc_gemini25pro` 在跑（不占 GPU）。\n\n**5090-b 需要你确认：是已关机可以直接释放，还是需要去 AutoDL 控制台查新端口？**"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 207793,
+            "duration_api_ms": 178751,
+            "num_turns": 41,
+            "stop_reason": "end_turn",
+            "session_id": "ba323085-0947-4ff0-b169-a620ae4e60de",
+            "total_cost_usd": 0.94791675,
+            "usage": {
+              "input_tokens": 22,
+              "cache_creation_input_tokens": 50957,
+              "cache_read_input_tokens": 726519,
+              "output_tokens": 10542,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 50957,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 870,
+                  "cache_read_input_tokens": 59182,
+                  "cache_creation_input_tokens": 3476,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3476
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2431,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002516,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 22,
+                "outputTokens": 10542,
+                "cacheReadInputTokens": 726519,
+                "cacheCreationInputTokens": 50957,
+                "webSearchRequests": 0,
+                "costUSD": 0.94540075,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "6ce81471-7a95-478e-b6e2-b7b8628fa7ff"
+          },
+          "id": "event-000113"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87aac2afad3455347e32",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code cuda2 scierc epoch dgs",
+  "task_key": "worker_code_cuda2_scierc_epoch_dgs_20260518T191406",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_cuda2_scierc_epoch_dgs_20260518T191406_result.json",
+    "occurrence": 1,
+    "bytes": 1172,
+    "sha256": "af824ad979539b3682620bfad79a5eb3f50a15f38b8f940b4f8a64540d94ff1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部任务完成。汇总：\n\n**Task 1: SciERC 3ep/10ep DGS 分析** ✅\n**Task 2: Qwen rank=8 DGS 分析** ✅\n\n| 设置 | 退化率 | Greedy | DGS | DGS-Greedy | Oracle Headroom |\n|------|--------|--------|-----|------------|-----------------|\n| 3-epoch | 6.4% | 0.6501 | 0.6383 | **-1.18pp** n.s. | 14.97pp |\n| 5-epoch | 17.8% | 0.6439 | 0.6513 | **+0.74pp** n.s. | 13.19pp |\n| 10-epoch | 47.8% | 0.6467 | 0.6567 | **+0.99pp** sig | 8.64pp |\n| rank=8 | 7.2% | 0.6397 | 0.6350 | **-0.47pp** n.s. | 16.01pp |\n\n关键结论：\n1. **退化率与 epoch 严格单调**: 3ep(6.4%) < 5ep(17.8%) < 10ep(47.8%)\n2. **DGS 增益依赖退化率**: 低退化率(3ep/rank8)时 DGS ≈ LP-all，而 LP 选择本身 underperform greedy → DGS 无效；中高退化率时 gating 机制才有意义\n3. **10ep 是唯一 DGS 显著正向的设置**（CI 完全在零以上），但代价是 oracle headroom 压缩到 8.64pp\n4. **rank8 与 3ep 表现相似**：低退化、高 headroom，但 LP 信号弱\n\n**Task 3**: ROADMAP 剩余 P0 任务主要是论文写作和 LLaMA FewNERD 训练（63%，~6h 剩余）。cuda:2 当前无可执行的分析任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cuda2-scierc-epoch-dgs.md"
+}

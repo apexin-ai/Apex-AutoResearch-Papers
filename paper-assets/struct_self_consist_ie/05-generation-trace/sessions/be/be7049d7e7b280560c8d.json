@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be7049d7e7b280560c8d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh check s456 5090 real",
+  "task_key": "worker_ssh_check_s456_5090_real_20260521T185706",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check_s456_5090_real_20260521T185706_result.json",
+    "occurrence": 1,
+    "bytes": 484,
+    "sha256": "171d23274aa09c19a64bdcf15de54e4722ece7854209398d39ecb6e2c6f9e516"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**未完成，当前进度 95%。**\n\n- 进度: 285,920 / 301,184 prompts = **94.9%**\n- 已运行: 4h32m54s\n- 当前速度: ~14-29 it/s\n- 剩余: 15,264 prompts，按平均 ~20 it/s 估计约 **12-15 分钟**完成\n\n注意：总 prompts 301,184 = 37,648 样本 × 8 samples，符合预期。samples.jsonl 在全部推理完成后才写入。\n\n预计约 **05:50 UTC（即北京时间 13:50 左右）** 完成。完成后需要再跑 recompute 获取 MV 数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-s456-5090-real.md"
+}

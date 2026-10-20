@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c60255501359224a9c09",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis e1 component wise re sj",
+  "task_key": "worker_analysis_e1_component_wise_re_sj_20260514T091631",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_e1_component_wise_re_sj_20260514T091631_result.json",
+    "occurrence": 1,
+    "bytes": 1094,
+    "sha256": "e2b0cfabb55fecd3afa2000f45d8ffb0b5efc587f2a852bb0d9e91f0b317a25e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "E1 完成。**结论：negative — 乘性惩罚假说被否定。**\n\n关键数据：\n\n| Component | Full ρ | Cond ρ |\n|---|---|---|\n| head_sj | 0.210 | 0.270 |\n| tail_sj | 0.201 | 0.259 |\n| type_match | 0.201 | 0.252 |\n| **multiplicative** | **0.244** | **0.316** |\n| additive | 0.243 | 0.306 |\n| fleiss_kappa | **0.278** | **0.307** |\n\n验证通过：multiplicative ρ=0.2441 精确匹配 pilot_004，FK ρ=0.2782 精确匹配。\n\n核心发现：\n1. **head_sj ρ=0.210 远低于 NER ρ_sj=0.383**（Δ=-0.173），假说被否定\n2. **每个 component 单独都比乘性组合差** — 乘性组合实际上是在 *帮忙*（整合三个信号），不是在 *伤害*\n3. **additive fix 无效** — additive ρ ≈ multiplicative ρ（差 0.001）\n4. RE 的 SJ 问题不是公式问题，是更根本的：关系级别的 span soft Jaccard 本身就缺乏区分力，Fleiss' kappa 的 surface matching 反而更鲁棒\n\n这排除了方案 B（度量分解）。问题根源不在乘法公式，而在 span-level SJ 度量本身对 RE 任务的适用性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-e1-component-wise-re-sj.md"
+}

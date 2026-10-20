@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "b2b053c821970d169a2d",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code llama scierc seed123 inference",
+  "task_key": "worker_code_llama_scierc_seed123_inference_20260518T190455",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_llama_scierc_seed123_inference_20260518T190455.log",
+    "occurrence": 1,
+    "bytes": 602655,
+    "sha256": "da0153239c34b28016b762c92144afc2474b3c7e2be4dbb1f650dcd532bb85ee"
+  },
+  "statistics": {
+    "messages": 176,
+    "user_turns": 1,
+    "tool_calls": 66,
+    "roles": {
+      "log": 1,
+      "system": 11,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 66,
+      "tool_result": 66,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 30,
+      "chunks": [
+        {
+          "path": "b2b053c821970d169a2d-part-0001.json",
+          "message_count": 30
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 146,
+      "chunks": [
+        {
+          "path": "b2b053c821970d169a2d-part-0001.json",
+          "message_count": 141
+        },
+        {
+          "path": "b2b053c821970d169a2d-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-llama-scierc-seed123-inference.md"
+}

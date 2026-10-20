@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe6b27eb512a30304c6c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp d054 rerun gpu1",
+  "task_key": "worker_exp_d054_rerun_gpu1_20260514T221958",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_d054_rerun_gpu1_20260514T221958_result.json",
+    "occurrence": 1,
+    "bytes": 208,
+    "sha256": "e6c65220f977ab1de250cf56f661dc42b0b919d1c5f65f5ddd4b997ef3ea39cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 分钟后回来检查 GPU 状态。当前进展：\n- **exp_001_seed456_v2_ner_r1024**: 等待 GPU 1 释放\n- **exp_002_conll_n16_r1024**: 已在 GPU 2 运行中（其他 worker 启动的）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-d054-rerun-gpu1.md"
+}

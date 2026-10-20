@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "66ed1c7b0238b57005a9",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "cpu rho max verify",
+  "task_key": "worker_cpu_rho_max_verify_20260521T120007",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cpu_rho_max_verify_20260521T120007.log",
+    "occurrence": 1,
+    "bytes": 683496,
+    "sha256": "5b29fff3bd71e0397afb4b4e0457df666de22e03f826d6ce2eddeebf260ae836"
+  },
+  "statistics": {
+    "messages": 49,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 17,
+      "tool_result": 17,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 49,
+      "chunks": [
+        {
+          "path": "66ed1c7b0238b57005a9-part-0001.json",
+          "message_count": 45
+        },
+        {
+          "path": "66ed1c7b0238b57005a9-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/cpu-rho-max-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57dad11b54b0d8e8e9db",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh check 3 experiments status",
+  "task_key": "worker_ssh_check_3_experiments_status_20260522T145321",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check_3_experiments_status_20260522T145321_result.json",
+    "occurrence": 1,
+    "bytes": 1560,
+    "sha256": "818cd0679cd3fc68d4a9048d952d335ee76132a9b785f3b167d32ac6d0765d5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the full status report:\n\n---\n\n## Experiment Status\n\n### 1. exp_fewnerd_pretrained_n16_s42 (5090-c:cuda:1) — CRASHED\n\n- **Error**: `UnicodeEncodeError: 'utf-8' codec can't encode character '\\udced'` in `sampling.py:675` during `save_sampled_results()`\n- **samples.jsonl**: 27,110 / 37,648 lines written (72%, incomplete)\n- **report.json**: not generated (crash before report stage)\n- **Runtime**: ~8h50m (13:31 → 22:21)\n- Surrogate character in vLLM output caused the JSON write to fail.\n\n### 2. exp_fewnerd_freeform_n8_s42 (5090:cuda:0) — COMPLETED\n\n| Metric | Value |\n|--------|-------|\n| greedy_f1 | 0.7886 |\n| oracle_f1 | 0.8782 |\n| oracle_headroom | +0.0896 |\n| fleiss_kappa_mean | 0.3529 |\n| soft_jaccard_mean | 0.6745 |\n| sample_f1_mean / std | 0.6122 / 0.3914 |\n| sample_f1_pct_zero | 23.1% |\n| Full ρ(SJ,F1) | +0.1630 |\n| Cond ρ(SJ,F1) | +0.1993 |\n| Full ρ(κ,F1) | +0.0463 |\n| Cond ρ(κ,F1) | -0.0324 |\n| structural_beats_surface | YES (Δ=+0.1167) |\n| Logprob full ρ / AUROC | +0.1534 / 0.5769 |\n| Logprob cond ρ / AUROC | +0.1644 / 0.5771 |\n| **Verdict** | **FAIL** |\n\nMV/LP/degeneracy metrics **not in report.json**, and no `/tmp/recompute_mv*.py` script found on either server.\n\n### 3. exp_fewnerd_pretrained_n32_s42 (5090-c:cuda:3) — RUNNING 66%\n\n- **Progress**: 799,680 / 1,204,736 prompts (66.3%)\n- **Elapsed**: 10h38m\n- **Speed**: ~20 it/s, 3786 input toks/s, 5653 output toks/s\n- **GPU**: 29.8GB VRAM, 80% util, PID 387768 (VLLM::EngineCore)\n- **ETA**: ~5-7 hours"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-3-experiments-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d238a9534748897f631c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis confidence selective prediction",
+  "task_key": "worker_analysis_confidence_selective_prediction_20260519T011958",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_confidence_selective_prediction_20260519T011958_result.json",
+    "occurrence": 1,
+    "bytes": 1131,
+    "sha256": "1a13ab927eabe72fd063df7f6ed7ed867118b25ee89868c10b5963924d184e4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。所有 sanity check 通过：F1@100% = greedy F1，oracle 单调递减，random 近似平坦。\n\n## 结果摘要\n\n**VC (Voting Confidence) 在所有 4 个数据集上一致最强。**\n\n| Dataset | Best Signal | AUPRC | F1@80% | F1@100% | Δ@80% |\n|---------|------------|-------|--------|---------|-------|\n| SciERC NER | VC | 0.7013 | 0.6944 | 0.6439 | +5.0pp |\n| SciERC RE | VC | 0.4921 | 0.4605 | 0.4042 | +5.6pp |\n| CoNLL NER | VC | 0.9202 | 0.9627 | 0.9070 | +5.6pp |\n| FewNERD NER | VC | 0.8251 | 0.8320 | 0.7478 | **+8.4pp** |\n\n信号排序（按 AUPRC 平均）: VC > LP > SJ > FK > EM\n\nFewNERD 上效果最显著：过滤掉最不确定的 20% 实例后 F1 从 74.8% 提升至 83.2%。\n\n## 产出文件\n\n| 文件 | 路径 |\n|------|------|\n| 分析脚本 | `/root/autodl-tmp/struct_self_consist_ie/code/selective_prediction.py` |\n| 结果 JSON | `output/prescriptive_analysis/selective_prediction.json` |\n| Figure (PDF+PNG) | `output/prescriptive_analysis/fig_selective_prediction.pdf` |\n| LaTeX 表格 | `output/prescriptive_analysis/selective_prediction_table.tex` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-confidence-selective-prediction.md"
+}

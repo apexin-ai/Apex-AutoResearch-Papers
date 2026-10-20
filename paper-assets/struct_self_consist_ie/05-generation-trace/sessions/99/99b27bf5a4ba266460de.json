@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99b27bf5a4ba266460de",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose tlow fewnerd exit",
+  "task_key": "worker_diagnose_tlow_fewnerd_exit_20260520T193849",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_tlow_fewnerd_exit_20260520T193849_result.json",
+    "occurrence": 1,
+    "bytes": 448,
+    "sha256": "f88cd80a2ef093acaf259d24bbeade423642cf0e364886fa0ccfa268f2bf92ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**诊断结果：正常完成。** Registry 已更新为 DONE/success。\n\n关键指标：\n- 37648 instances × 8 samples, T=0.5, 耗时 ~15 min\n- Greedy F1: **0.7938**, Oracle F1: **0.8473** (headroom +0.0535)\n- Fleiss' κ: 0.7567, Soft Jaccard: 0.9164\n- Structural > Surface: **YES** (Δ=+0.0178)\n- Logprob AUROC: 0.7185\n- Verdict: **MARGINAL**\n\n输出文件：`samples.jsonl` (716MB) + `report.json`，cuda:2 已释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-tlow-fewnerd-exit.md"
+}

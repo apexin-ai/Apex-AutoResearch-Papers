@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "4dffc28c5b9bcc474ca7",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh 14b early inference",
+  "task_key": "worker_ssh_14b-early-inference_20260520T111801",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_14b-early-inference_20260520T111801.log",
+    "occurrence": 1,
+    "bytes": 1086327,
+    "sha256": "5064f91b5c5d4ec1ce80c97c302de6130308317c8bf91640aad25f35743eb802"
+  },
+  "statistics": {
+    "messages": 298,
+    "user_turns": 1,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 90,
+      "tool_call": 100,
+      "tool_result": 100,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 283,
+      "chunks": [
+        {
+          "path": "4dffc28c5b9bcc474ca7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4dffc28c5b9bcc474ca7-part-0002.json",
+          "message_count": 103
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "4dffc28c5b9bcc474ca7-part-0003.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-14b-early-inference.md"
+}

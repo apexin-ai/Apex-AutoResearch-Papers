@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df14ee00be678e2654fc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix scaling script 8b data",
+  "task_key": "worker_fix_scaling-script-8b-data_20260519T172758",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_scaling-script-8b-data_20260519T172758_result.json",
+    "occurrence": 1,
+    "bytes": 1249,
+    "sha256": "8dc26ea62943b2869d50b44d21363b7a11a58ed4947b874c7e6577e21413296d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script runs cleanly. Here's the complete diff of all 12 corrections:\n\n**8B FT SciERC** (5 fixes):\n| Metric | Old | New | Source |\n|---|---|---|---|\n| `lp_rho` | 0.22 | **0.205** | tab:scale_comparison |\n| `sj_rho` | 0.35 | **0.360** | tab:scale_comparison |\n| `vc_rho` | 0.45 | **0.379** | tab:scale_comparison |\n| `degen` | 18.5 | **17.8** | tab:scale_comparison, tab:degeneracy |\n| `construction_lp_delta` | 1.67 | **1.02** | tab:entity_construction (multi-seed mean) |\n\n**8B FT FewNERD** (3 fixes):\n| Metric | Old | New | Source |\n|---|---|---|---|\n| `lp_rho` | 0.62 | **0.220** | tab:scale_comparison (was 3x inflated) |\n| `degen` | 12.7 | **13.8** | tab:scale_comparison |\n| `construction_lp_delta` | 1.38 | **1.40** | tab:entity_construction (multi-seed mean) |\n\n**8B FT CoNLL** (4 fixes):\n| Metric | Old | New | Source |\n|---|---|---|---|\n| `lp_rho` | 0.29 | **0.302** | tab:scale_comparison |\n| `degen` | 50.3 | **48.4** | tab:scale_comparison |\n| `construction_lp_delta` | +0.10 | **-0.39** | tab:entity_construction (sign flip) |\n| `greedy_f1` | 0.907 | **0.908** | tab:scale_comparison |\n\n**Verified correct** (no changes): all 72B ZS values (9 data points × 3 datasets), 4B FT SciERC degen=10.4."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-scaling-script-8b-data.md"
+}

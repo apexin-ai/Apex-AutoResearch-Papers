@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d36835c93d7a17a71c19",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper fix appendix labels",
+  "task_key": "worker_paper_fix-appendix-labels_20260516T024647",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_fix-appendix-labels_20260516T024647_result.json",
+    "occurrence": 1,
+    "bytes": 202,
+    "sha256": "df0449ab24d688a84ea77cd002808367470c341fc75ec1c9e894899844c35496"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。旧文件已替换为废弃注释，三个 label (`tab:n-scaling`, `tab:ranking-stability`, `tab:sigma-comparison`) 现在只在 `_44b000` 文件中定义，不会再有冲突。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-appendix-labels.md"
+}

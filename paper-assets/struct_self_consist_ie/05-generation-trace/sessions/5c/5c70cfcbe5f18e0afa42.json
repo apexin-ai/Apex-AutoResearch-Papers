@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c70cfcbe5f18e0afa42",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis n16 readiness check",
+  "task_key": "worker_analysis_n16_readiness_check_20260515T100959",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_n16_readiness_check_20260515T100959_result.json",
+    "occurrence": 1,
+    "bytes": 918,
+    "sha256": "9dc98e41eeaf8f1dac19b919fdeebe291ef952edd5a525830adee92a5d42d4cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成并注册。核心发现：\n\n**seed42 和 seed123 的 N=16 实验已完成**（各 551 instances，含 logprobs），`exp001_n16_seed123_full` 只是被 kill 的旧尝试，`exp001_n16_seed123`（无 `_full` 后缀）实际已成功运行。\n\n**唯一缺失的是 seed456 的 full N=16 运行**。`output/exp001_n16_seed456/` 为空目录，仅有 `_200only` 的 200 实例部分结果。\n\n运行命令：\n```bash\ncd /root/autodl-tmp/struct_self_consist_ie && \\\npython code/run_mvp_pilot.py \\\n  --model_path checkpoints/qwen3-8b-scierc-merged-v2 \\\n  --data_dir data/ --dataset scierc --subtask joint \\\n  --n_samples 16 --temperature 1.0 --seed 456 \\\n  --output_dir output/exp001_n16_seed456 \\\n  --collect_logprobs \\\n  2>&1 | tee output/exp001_n16_seed456_run.log\n```\n\n预计 ~8-9 分钟完成。所有依赖（vLLM 0.18.1、xgrammar 0.1.33）和模型均就绪。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-n16-readiness-check.md"
+}

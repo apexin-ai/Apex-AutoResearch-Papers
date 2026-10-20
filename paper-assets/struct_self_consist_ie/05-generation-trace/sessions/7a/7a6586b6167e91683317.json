@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a6586b6167e91683317",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix bootstrap voting conf p1",
+  "task_key": "worker_fix_bootstrap_voting_conf_p1_20260514T214500",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_bootstrap_voting_conf_p1_20260514T214500_result.json",
+    "occurrence": 1,
+    "bytes": 870,
+    "sha256": "ab676dc7cf76fd125209f872f76a58e35255d2d77f6cccfed23d198bb6b451f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修复总结：\n\n**修改的文件：**\n1. **`run_bootstrap_loo.py`（服务器）** — `compute_vc()` 函数（第 101-109 行）：删除 `if v > n/2` majority 过滤，改为 `np.mean([v / n for v in counter.values()])`，与主 pipeline `compute_voting_confidence()` 定义对齐。增加 `n == 0` 边界检查。\n2. **`bootstrap_ci_summary.json`（本地）** — `_metadata.notes` 中增加 `voting_conf_bootstrap_caveat` 说明。\n\n**影响范围：**\n- `run_llama_conll_bootstrap.py` 从 `run_bootstrap_loo` import `compute_all_signals`，自动继承修复。\n- `analyze_exp016_ensemble.py` / `exp_016_v2_ensemble.py` 中的 `if v > n/2` 是 ensemble 选择逻辑（非 voting_conf 信号计算），不受影响，无需修改。\n- 已有 bootstrap 结果未重跑，JSON 中数据不变，论文表格已排除 voting_conf。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-bootstrap-voting-conf-p1.md"
+}

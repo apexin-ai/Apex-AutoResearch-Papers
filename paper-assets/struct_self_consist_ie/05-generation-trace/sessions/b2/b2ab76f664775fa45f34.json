@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2ab76f664775fa45f34",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code d141 conditional decomp span fix",
+  "task_key": "worker_code_d141_conditional_decomp_span_fix_20260518T141657",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_d141_conditional_decomp_span_fix_20260518T141657_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "ec1155da23fda2b30193532c5f53b8d502db89620018239143393c7bcebb61bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修复内容和结果：\n\n**修复**: `entity_f1` 从 `(text, type)` 改回 `(start, end, type)` span matching，其他部分（数据源、N=8 截断、gold filter）未改动。\n\n**Span matching 结果要点**:\n\n| Dataset | Favorable Delta | Favorable % | 趋势 |\n|---------|----------------|-------------|------|\n| SciERC | +0.0252 [0.0034, 0.0476] | 42.9% | LP selection 显著正向 |\n| CoNLL | -0.0188 [-0.0293, -0.0085] | 30.5% | LP selection 显著负向 |\n| FewNERD | +0.0069 [0.0005, 0.0135] | 47.4% | LP selection 显著正向 |\n\nCoNLL 的 Favorable bucket 在 span matching 下 delta 为负，与 text matching 时表现不同。FewNERD Cond1-only bucket 出现 +0.0274 的强正向增益。\n\n结果已写入 `artifacts/d141_v2_fix/d141_conditional_decomp_span_matching_results.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d141-conditional-decomp-span-fix.md"
+}

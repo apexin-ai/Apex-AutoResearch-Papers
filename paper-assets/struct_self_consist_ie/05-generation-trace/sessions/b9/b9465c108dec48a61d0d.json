@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9465c108dec48a61d0d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5090b download and 7b check",
+  "task_key": "worker_ssh_5090b-download-and-7b-check_20260520T014245",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090b-download-and-7b-check_20260520T014245_result.json",
+    "occurrence": 1,
+    "bytes": 613,
+    "sha256": "0b156c3daaec5448a339acbf6072b1b23938b7771a3b516596e9ea941538a0ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总结\n\n**5090-b：Qwen2.5-7B 下载**\n- 状态：**仍在下载中**（PID 160848 存活）\n- 已下载：8.0G\n- 进度：tokenizer 文件（vocab.json, tokenizer_config.json）已完成，模型权重应仍在下载中\n\n**5090-c：7B 训练**\n- 状态：**仍在训练中**（PID 71837 存活）\n- 进度：**97%**（20017/20590 steps），刚保存了 checkpoint-20000 并删除了旧的 checkpoint-14000\n- 速度：~2.7s/it\n- 预计剩余：~573 steps × ~2.7s ≈ **~26 分钟**完成训练\n\n训练尚未结束，pipeline 还未进入下一阶段（export/inference）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5090b-download-and-7b-check.md"
+}

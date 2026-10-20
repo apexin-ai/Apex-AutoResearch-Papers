@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86721c40c6c79f680946",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp exp 020 fewnerd smoke",
+  "task_key": "worker_exp_exp_020_fewnerd_smoke_20260516T103407",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_exp_020_fewnerd_smoke_20260516T103407_result.json",
+    "occurrence": 1,
+    "bytes": 163,
+    "sha256": "14824b1c0a58b4739734dbf0247a71c8e4f17dc5688010f5e3afba41481633b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitoring loop set. Will check back in ~30 minutes (~step 1100 expected). Training is healthy — loss dropping steadily, GPU 1 at 83% utilization."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp-020-fewnerd-smoke.md"
+}

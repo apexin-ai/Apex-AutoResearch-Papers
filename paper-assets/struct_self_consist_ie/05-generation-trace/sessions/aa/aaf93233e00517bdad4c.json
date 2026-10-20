@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aaf93233e00517bdad4c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis fewnerd 3epoch construction v2",
+  "task_key": "worker_analysis_fewnerd-3epoch-construction-v2_20260524T073554",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_fewnerd-3epoch-construction-v2_20260524T073554_result.json",
+    "occurrence": 1,
+    "bytes": 612,
+    "sha256": "6d5b321153f64fdede30599f3943f2e5054c21b64799478790d30d731e00f255"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果：\n\n- **LP construction**: pooled **+0.75pp**，p<0.0001，显著。但 seed 间差异大（seed42 -0.02pp 不显著，seed456 +1.52pp 强显著）\n- **MV construction**: pooled -0.02pp，p=0.62，不显著\n- **Degeneracy rate**: 8.6%\n- 与论文对比：SciERC 4-seed LP +1.40pp → FewNERD 2-seed LP +0.75pp，幅度约一半但 pooled 仍然显著，支持跨数据集泛化\n\n结果已保存至：\n- 服务器：`/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_3epoch_construction_results.txt`\n- 本地：`artifacts/rebuttal_fewnerd_3epoch_construction.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fewnerd-3epoch-construction-v2.md"
+}

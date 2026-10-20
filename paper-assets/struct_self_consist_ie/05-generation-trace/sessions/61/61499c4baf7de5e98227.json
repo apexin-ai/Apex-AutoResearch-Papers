@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61499c4baf7de5e98227",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp llama fewnerd train infer",
+  "task_key": "worker_exp_llama_fewnerd_train_infer_20260518T082852",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_llama_fewnerd_train_infer_20260518T082852_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "ed49be5fd87e4af905f2b03fd0e3dddfd3f75351bf2539228bbdf8c12365193e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Status summary:**\n\n- **Training**: LLaMA-3.1-8B-Instruct LoRA on Few-NERD INTRA coarse, 4×RTX 5090, ~2.1 it/s, 24,708 steps, ETA ~3.3h\n  - Config: rank=32, alpha=64, lr=2e-4, bf16, 3 epochs, effective batch=16\n  - Matches Qwen Few-NERD training hyperparams\n- **Prepared**: Export config (`export_config_llama_fewnerd.yaml`), analysis script (`code/analyze_llama_fewnerd.py`)\n- **Next steps after training**: export LoRA → merge → vLLM inference (N=8, T=1.0, 37,648 test instances) → full analysis pipeline\n\nThe training will take ~3 hours. I'll check progress periodically and proceed with export/inference/analysis once complete.\n\nWant me to set up a monitoring loop, or should I check back manually?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-llama-fewnerd-train-infer.md"
+}

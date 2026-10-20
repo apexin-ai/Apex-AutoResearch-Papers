@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67158d51c7f120c03d4f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5090c 5epoch s456 inference",
+  "task_key": "worker_ssh_5090c_5epoch_s456_inference_20260521T175722",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090c_5epoch_s456_inference_20260521T175722_result.json",
+    "occurrence": 1,
+    "bytes": 500,
+    "sha256": "4159a3fc40fe4a57727813d2438f952b2c9907f7f4cc523f50caec0f4be7222a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n1. **模型传输** ✓ — rsync 从 autodl-5090 传输 16GB merged model 到 autodl-5090-c，4 个 safetensor shard 大小全部匹配\n2. **验证** ✓ — 模型文件、tokenizer/config、FewNERD 数据全部就位\n3. **推理启动** ✓ — `exp_fewnerd_5epoch_s456` 在 autodl-5090-c cuda:0 运行中\n   - PID: 353730\n   - 37,648 prompts 正在渲染，vLLM 引擎正常\n   - 日志: `/tmp/inference_s456.log`\n   - 输出: `output/fewnerd_5epoch_s456/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5090c-5epoch-s456-inference.md"
+}

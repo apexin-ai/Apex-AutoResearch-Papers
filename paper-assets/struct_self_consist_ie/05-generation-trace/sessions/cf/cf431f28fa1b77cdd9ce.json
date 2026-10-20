@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "cf431f28fa1b77cdd9ce",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis unified rho n8 seed123",
+  "task_key": "worker_analysis_unified_rho_n8_seed123_20260515T133720",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_unified_rho_n8_seed123_20260515T133720.log",
+    "occurrence": 1,
+    "bytes": 616399,
+    "sha256": "4e50dd91d00aa146031029e4efdf323603868a8b9b088a1f766d697a26d83f62"
+  },
+  "statistics": {
+    "messages": 130,
+    "user_turns": 0,
+    "tool_calls": 44,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 44,
+      "tool_result": 44,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 130,
+      "chunks": [
+        {
+          "path": "cf431f28fa1b77cdd9ce-part-0001.json",
+          "message_count": 126
+        },
+        {
+          "path": "cf431f28fa1b77cdd9ce-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-unified-rho-n8-seed123.md"
+}

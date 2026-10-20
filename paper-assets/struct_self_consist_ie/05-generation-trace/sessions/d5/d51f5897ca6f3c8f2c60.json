@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "d51f5897ca6f3c8f2c60",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code adaptive temperature",
+  "task_key": "worker_code_adaptive_temperature_20260518T173330",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_adaptive_temperature_20260518T173330.log",
+    "occurrence": 1,
+    "bytes": 1406926,
+    "sha256": "02542c41d71397c07ceebbb40ff2b8b053c643d694717a06ca6d71f831502069"
+  },
+  "statistics": {
+    "messages": 357,
+    "user_turns": 1,
+    "tool_calls": 125,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 99,
+      "tool_call": 125,
+      "tool_result": 125,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 234,
+      "chunks": [
+        {
+          "path": "d51f5897ca6f3c8f2c60-part-0001.json",
+          "message_count": 170
+        },
+        {
+          "path": "d51f5897ca6f3c8f2c60-part-0002.json",
+          "message_count": 64
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 123,
+      "chunks": [
+        {
+          "path": "d51f5897ca6f3c8f2c60-part-0002.json",
+          "message_count": 68
+        },
+        {
+          "path": "d51f5897ca6f3c8f2c60-part-0003.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-adaptive-temperature.md"
+}

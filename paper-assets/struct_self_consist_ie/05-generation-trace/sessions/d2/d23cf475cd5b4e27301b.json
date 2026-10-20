@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d23cf475cd5b4e27301b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run 5090c conll extra seeds",
+  "task_key": "worker_run_5090c_conll_extra_seeds_20260520T233713",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_5090c_conll_extra_seeds_20260520T233713_result.json",
+    "occurrence": 1,
+    "bytes": 529,
+    "sha256": "d3009aa826c7bdeb610cea7c05221ec3891d0f5c9bb72caa34e60b471f92cbba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部启动并注册完毕。\n\n| exp_id | GPU | T | seed | PID | status |\n|--------|-----|---|------|-----|--------|\n| exp_conll_t05_s123 | cuda:1 | 0.5 | 123 | 247486 | RUNNING |\n| exp_conll_t08_s123 | cuda:2 | 0.8 | 123 | 248190 | RUNNING |\n| exp_conll_t12_s123 | cuda:3 | 1.2 | 123 | 248879 | RUNNING |\n\nGPU 验证：cuda:1-3 各占用 ~30GB 显存，cuda:0 (14B inference) 未受影响。命令与 seed=42 完全一致，仅改 `--seed 123` 和 `--output_dir`。预计 30-40 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-5090c-conll-extra-seeds.md"
+}

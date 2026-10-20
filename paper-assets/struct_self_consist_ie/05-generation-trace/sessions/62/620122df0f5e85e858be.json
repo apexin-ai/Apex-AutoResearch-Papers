@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "620122df0f5e85e858be",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code prepare 4b conll scs inference",
+  "task_key": "worker_code_prepare_4b_conll_scs_inference_20260515T190528",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prepare_4b_conll_scs_inference_20260515T190528.log",
+    "occurrence": 1,
+    "bytes": 1126621,
+    "sha256": "05526cecd46dc6a53ca3ab42ddc94ba656fff6156001f65b1a9a60423f10da9b"
+  },
+  "statistics": {
+    "messages": 307,
+    "user_turns": 1,
+    "tool_calls": 111,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 77,
+      "tool_call": 111,
+      "tool_result": 111,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 276,
+      "chunks": [
+        {
+          "path": "620122df0f5e85e858be-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "620122df0f5e85e858be-part-0002.json",
+          "message_count": 96
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 31,
+      "chunks": [
+        {
+          "path": "620122df0f5e85e858be-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-prepare-4b-conll-scs-inference.md"
+}

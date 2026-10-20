@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46ccc2a738c76c09102a",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "reviewer / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_6.md",
+    "occurrence": 1,
+    "bytes": 4302,
+    "sha256": "8e1db0533f69f3939dd963b1eeb2253efc7d6573abcf39e79081b324457be46f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_wall_time\nupdated: '2026-05-15T10:20:35+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器名是 `autodl-5090`（不是 `autodl-5090(root)`，后者会报 unknown server）\n- 项目 GPU 白名单未在 constraints.yaml 中明确定义（文件未创建），但历史上用 cuda:0 跑 freeform ablation 未被 flag。每次新实验仍需核对 `execution.gpu_ids`\n- RE 结论全文必须标 \"(preliminary, single benchmark)\"——这是多轮审稿的硬约束，遗漏 = critical\n- Selection F1 绝对值：ablation_report.json 与论文 Table 2 有 ~2.6pp 差异（greedy NER: 0.618 vs 0.644），原因未查明。**不要混用两套数字**\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，工作目录 `/root/autodl-tmp/struct_self_consist_ie`\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/`\n- 论文源文件：`docs/paper/sections/{abstract,introduction,method,experiments,discussion,conclusion,appendix}.tex`\n- paper_framing.md：`/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md`\n- 模型 checkpoint：`checkpoints/qwen3-8b-scierc-merged-v2`（远程）\n- Ablation 结果：`results/exp_freeform_ablation/ablation_report.json`（远程）\n- N=16 数据：seed42 + seed123 完成，seed456 缺失（仅有 200-instance 部分结果）\n- 无 wandb 配置，无活跃训练进程\n\n### 3. 📊 当前状态\n**刚完成**：\n- D070/D071 论文修订 21 项验证（PASS）\n- Free-form ablation 结果独立审查 → [critical] LP 压缩因果归因被否定\n- 两轮 framing 影响评估（四维度审查）→ Agent \"不需调整\" 被打回\n- D072 framing（universal gap）独立确认\n- D073 ROADMAP 审查（exp-019 verifier 取消，PASS）\n\n**Registry 状态**：exp_freeform_ablation 未在 registry 中注册（count=0 when filtered）。Worker 注册了 artifact `art_20260515_b80d82`。\n\n**等待中**：\n- Paper Agent D072 patch（title + abstract + intro + discussion + conclusion 全面修改）\n- Dream (dream_20260515T092545) 结果（基于旧 D071 framing，需 discount）\n- 可能的多种子实验回调\n\n### 4. 📋 待办\n- Paper Agent 提交 D072 patch → 按首轮报告的 7 处修改清单逐条核实（abstract:6-7, discussion:11/14/15/23-27/31, intro:25, conclusion:8）\n- Dream 结果返回 → 过滤掉 framing 相关评语，保留与 framing 无关的审稿建议\n- RE flip 3-seed 分析结果返回 → 显著则可升级为 secondary finding，不显著则要求从 Story Spine 降级到 appendix\n- 多种子 N=16 seed456 完成 → 核实数据完整性\n- Round 7 提交 → 全文最终审查（特别关注：是否还有残留的 \"constrained decoding bottleneck\" 因果归因）\n- Selection F1 差异（ablation 0.618 vs Table 2 0.644）→ Agent 排查后审查结论\n\n### 5. 🎯 战略上下文\n**决策链**：D067(gap reframing) → D069(scope limiting) → D070(narrative restructure) → D071(regime-specific bottleneck) → D072(ablation 否定→universal gap) → D073(verifier cancelled)\n\n**核心结论**：LP score compression 是结构化 IE 的固有属性（std ratio 0.97x constrained vs free-form），非 constrained decoding 导致。Correlation-selection gap 是 universal。\n\n**最容易判断错的事**：\n1. **论文中残留的 \"constrained decoding\" 因果归因**——D071 在 abstract/intro/discussion/conclusion 至少 7 处写了 \"constrained decoding causes compression\"，D072 patch 必须全部修正。grep `constrained.decoding` 全文扫描\n2. **RE flip 不要过度解读**——single seed, +1.69pp, NER 方向相反。paper_framing.md Story Spine 第 4 点已将其提升过高，我已发 warning 但未见降级\n3. **\"first\" 措辞**——论文不能说 \"first to study confidence for IE\"（Nédellec 2026 先于我们），只能说 \"first controlled ablation proving universality\" 且需措辞精确\n4. **Parse rate 99.95%**——这挑战了 intro:19 \"without constrained decoding, a substantial fraction of outputs are unparseable\"。如果新论文仍保留此句，与 ablation 数据矛盾\n5. **6 轮 3.0/5 的根因是 content ceiling**——ablation 结果是唯一新 content。如果 D072 patch 只改叙事不加 ablation 数据，评分不会突破\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-copy-3.md"
+}

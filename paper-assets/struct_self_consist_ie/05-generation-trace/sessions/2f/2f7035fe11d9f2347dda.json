@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f7035fe11d9f2347dda",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code 5090b multiseed inference",
+  "task_key": "worker_code_5090b_multiseed_inference_20260518T184514",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_5090b_multiseed_inference_20260518T184514_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "aa2ae03c897a9da1880b29c433bd63246cfa27cd94b82610fe3cb75d76b258a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "FewNERD seed123: 19664/301184 = 6.5%，处理速度约 ~40 it/s。剩余 ~281520 prompts / 40 = ~7038 秒 ≈ **约 2 小时**。\n\n**当前完成汇总：**\n\n| 数据集 | seed | greedy F1 | oracle F1 | headroom | degeneracy | 最佳 ρ | DGS delta |\n|--------|------|-----------|-----------|----------|------------|--------|-----------|\n| SciERC | 456 | 0.6453 | 0.7726 | +12.72pp | 19.3% | VC=0.41 | -0.30pp |\n| CoNLL | 123 | 0.9074 | 0.9477 | +4.03pp | 63.0% | EM=0.47 | -0.60pp |\n| CoNLL | 456 | 0.9076 | 0.9443 | +3.67pp | 63.0% | VC=0.48 | -0.71pp |\n| FewNERD | 123 | -- | -- | -- | -- | -- | -- |\n\nGPU3 FewNERD seed123 预计还需约 2 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-5090b-multiseed-inference.md"
+}

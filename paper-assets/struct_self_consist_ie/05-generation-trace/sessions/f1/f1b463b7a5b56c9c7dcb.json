@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "f1b463b7a5b56c9c7dcb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis multiseed inverse scaling",
+  "task_key": "worker_analysis_multiseed-inverse-scaling_20260523T185422",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_multiseed-inverse-scaling_20260523T185422_result.json",
+    "occurrence": 1,
+    "bytes": 2356257,
+    "sha256": "a84fd959557223cbb7f6758147abeeffa21e9b2c54a632b1498bb89e41b3ddf7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2356277,
+                "serialized_sha256": "5f85c1a3b5b1e6f8f4e3cbf65a24c8f09599e65c31e8ed7f6b1e10e5e81cbe3d",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-multiseed-inverse-scaling.md"
+}

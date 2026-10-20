@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2b94f3ae7fb0b757bd9",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis wnut17 signals",
+  "task_key": "worker_analysis_wnut17_signals_20260515T030718",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_wnut17_signals_20260515T030718_result.json",
+    "occurrence": 1,
+    "bytes": 1072,
+    "sha256": "e66158a7f34c635eb057169b71950bd5e2b1930ff81f5be1099d50518853a82c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存。汇总如下：\n\n### 数据概况\n| 指标 | 值 |\n|------|-----|\n| n_total | 1287 |\n| n_gold_empty | 598 |\n| n_after_filter (gold nonempty) | 689 |\n| n_f1_positive (F1>0) | 334 |\n\n### 5 信号完整分析\n\n| Signal | Spearman ρ | p-value | AUROC | Cond ρ (F1>0) | Cond p |\n|--------|-----------|---------|-------|---------------|--------|\n| soft_jaccard | 0.0888 | 0.0197 | 0.5170 | 0.2884 | 8.04e-08 |\n| fleiss_kappa | 0.1250 | 0.0010 | 0.5551 | 0.1686 | 0.0020 |\n| exact_match | 0.0496 | 0.1935 | 0.4872 | 0.3330 | 4.33e-10 |\n| logprob | -0.4095 | 3.07e-29 | 0.2189 | 0.3501 | 4.58e-11 |\n| voting_conf | 0.7238 | 7.84e-113 | 0.9127 | 0.0382 | 0.4868 |\n\n### SJ 校对结论\n\n**论文写的 SJ ρ = 0.082 (p=0.106) 是错误的。** 从 raw data 重新计算的确切值是：\n\n- **SJ ρ = 0.0888 (p = 0.0197)**，与 report.json 中的 0.0888 完全一致\n- 与论文值差 +0.0068，且 p 值差异显著（0.0197 vs 0.106）\n- registry 中 0.089 是正确的（四舍五入），0.062 和 0.082 均不正确"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-wnut17-signals.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d03bb22535f212cb1e73",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp cross model consistency",
+  "task_key": "worker_code_exp_cross_model_consistency_20260520T174248",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_cross_model_consistency_20260520T174248_result.json",
+    "occurrence": 1,
+    "bytes": 1758,
+    "sha256": "f4a7a1bad3b565ceebf0bd75352a663130e530dec1a871456d2cb84fd2b97498"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "准备完毕。产出报告：\n\n---\n\n## exp_cross_model_consistency 准备报告\n\n### 数据可用性\n\n| 数据集 | 模型 | 路径 (autodl-5090) | 条数 |\n|--------|------|---------------------|------|\n| SciERC | Qwen3-8B FT | `output/exp_026_t10_seed42/samples.jsonl` | 551 |\n| SciERC | LLaMA-3.1-8B FT | `output/exp007_llama_inference/samples.jsonl` | 551 |\n| FewNERD | Qwen3-8B FT | `output/exp_021_inference/samples.jsonl` | 37,648 |\n| FewNERD | LLaMA-3.1-8B FT | `output/llama_fewnerd_s42/samples.jsonl` | 37,648 |\n\n**两个数据集的双模型 samples 全部可用，均在 autodl-5090 上，无需 rsync。**\n\n### 运行命令\n\n```bash\nbash /root/autodl-tmp/struct_self_consist_ie/code/run_cross_model.sh\n```\n\n依次运行 SciERC + FewNERD cross-model construction。输出到 `output/exp_cross_model_consistency/{scierc,fewnerd}_results.json`。\n\n### GPU 需求\n\n**不需要 GPU。** 脚本是纯 CPU 分析（entity construction + bootstrap），无 model forward pass。Director 分配的 cuda:3 可释放给其他任务。实验运行在 **autodl-5090**（数据所在服务器），不在 autodl-5090-c。\n\n### 脚本改动\n\n原 `cross_model_construction.py` 有硬编码的 M030 greedy F1 sanity check（SciERC 特定值 0.748/0.745），FewNERD 会 fail。修改为 argparse 接口，添加 `--skip-m030` 和 `--dataset` 参数。SciERC 仍走 M030 check，FewNERD 跳过。\n\n### FewNERD 可行性\n\n**可行。** Qwen3-8B FewNERD seed=42 (exp_021_inference) 和 LLaMA FewNERD seed=42 (llama_fewnerd_s42) 均为 37,648 条完整测试集，格式一致（含 gold、samples[0:8]、greedy）。\n\n### Registry\n\n- exp_id: `exp_cross_model_consistency`\n- status: `PENDING`\n- spec 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-cross-model-consistency.md"
+}

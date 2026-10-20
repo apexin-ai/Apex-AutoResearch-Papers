@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d3c718317dfb4fbf95e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp 022 3seed analysis",
+  "task_key": "worker_analysis_exp_022_3seed_analysis_20260516T105321",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_022_3seed_analysis_20260516T105321_result.json",
+    "occurrence": 1,
+    "bytes": 1561,
+    "sha256": "e8b3d0bf4f75857d146509bdc359b744fc8cdd0e5dea6bd888bfadc61b0bf075"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 artifacts registered. Here's the summary:\n\n## exp-022 3-Seed (42, 123, 789) Analysis Results — SciERC NER N=8\n\n### Spearman ρ (3-seed mean ± std)\n| Signal | Mean | Std |\n|--------|------|-----|\n| **VC** | **0.4144** | 0.0357 |\n| **SJ** | **0.3772** | 0.0151 |\n| EM | 0.3039 | 0.0095 |\n| FK | 0.2545 | 0.0177 |\n| LP | 0.2155 | 0.0161 |\n\n### AUROC (3-seed mean ± std)\n| Signal | Mean | Std |\n|--------|------|-----|\n| **VC** | **0.7064** | 0.0173 |\n| **SJ** | **0.6842** | 0.0111 |\n| EM | 0.6512 | 0.0073 |\n| FK | 0.6158 | 0.0140 |\n| LP | 0.6124 | 0.0008 |\n\n### Selection macro F1\n| Method | Mean ± σ | ΔF1 vs Greedy |\n|--------|----------|---------------|\n| Greedy | 0.6469 ± 0.0037 | — |\n| **LP** | **0.6472 ± 0.0033** | **+0.0003** |\n| FK | 0.6442 ± 0.0030 | -0.0027 |\n| SJ | 0.6434 ± 0.0050 | -0.0035 |\n| EM | 0.6383 ± 0.0022 | -0.0086 |\n| VC | 0.6218 ± 0.0033 | -0.0251 |\n| Oracle | 0.7816 ± 0.0064 | +0.1347 |\n\n### Key Fisher Tests\n- **SJ ρ > LP ρ**: All 3 seeds consistent (diffs: 0.15–0.18). Structural beats surface.\n- **SJ ρ > FK ρ**: All 3 seeds consistent (diffs: 0.09–0.15).\n- **EM AUROC > all others**: False. EM < SJ and EM < VC consistently.\n\n### 2-Seed vs 3-Seed\n- ρ CIs narrowed for LP, SJ, EM (3/5 signals)\n- Selection F1 CIs narrowed for LP, VC (2/5 signals)\n- Conclusions unchanged: LP selection ≈ greedy, VC consistently worst at sample selection despite best ρ/AUROC\n\nOutput at: `/root/autodl-tmp/struct_self_consist_ie/output/exp_022_3seed_analysis/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-022-3seed-analysis.md"
+}

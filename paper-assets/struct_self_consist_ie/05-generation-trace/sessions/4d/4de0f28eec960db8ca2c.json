@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4de0f28eec960db8ca2c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp qwen fewnerd seed123 v2",
+  "task_key": "worker_exp_qwen_fewnerd_seed123_v2_20260518T090848",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_qwen_fewnerd_seed123_v2_20260518T090848_result.json",
+    "occurrence": 1,
+    "bytes": 195,
+    "sha256": "a2b5bb2b9df00b72efe18ce0fd802b94077213dc5e456f3d13d3c2df86170a54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "30 分钟后回来检查推理进度。当前推理正常运行，预计约 18:50 服务器时间完成全部推理 + 自动分析。DALS 分析需在推理完成后额外运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-qwen-fewnerd-seed123-v2.md"
+}

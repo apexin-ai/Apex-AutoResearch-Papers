@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4e7a0680d113fb6b647",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 14b merge inference",
+  "task_key": "worker_ssh_14b-merge-inference_20260520T141932",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_14b-merge-inference_20260520T141932_result.json",
+    "occurrence": 1,
+    "bytes": 661,
+    "sha256": "da3b97a588f995f070e860a1dd7c548ada17570de804884c9b4313bc5b07b721"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个推理进程全部正常运行：\n\n| GPU | 数据集 | 显存占用 | 进度 | 速度 |\n|-----|--------|---------|------|------|\n| cuda:0 | FewNERD (37648 inst) | 31101 MiB | 519/37648 (~1.4%) N=1 | ~9 it/s |\n| cuda:1 | CoNLL (3453 inst) | 31121 MiB | 714/3453 (~21%) N=1 | ~8 it/s |\n| cuda:3 | SciERC (551 inst) | 30839 MiB | rendering prompts | starting |\n\n预计时间：\n- SciERC: 最快完成（551 inst × 5 N），约 30-60 min\n- CoNLL: 3453 inst × 5 N，约 2-4h  \n- FewNERD: 37648 inst × 5 N，约 20-30h（N=16 最重）\n\n所有进程都用 nohup 后台运行，可以安全断开。需要我定期检查进度吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-14b-merge-inference.md"
+}

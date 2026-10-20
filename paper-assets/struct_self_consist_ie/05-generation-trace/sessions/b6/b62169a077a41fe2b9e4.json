@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b62169a077a41fe2b9e4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "cpu mv consistency check",
+  "task_key": "worker_cpu_mv_consistency_check_20260521T122158",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cpu_mv_consistency_check_20260521T122158_result.json",
+    "occurrence": 1,
+    "bytes": 1095,
+    "sha256": "a919f9ebf098fa9f0de9b5fe1bd001b26f5b9e7446ca43bc7ebde597253ffddd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "核查完成。核心发现：\n\n**矛盾已确认，根因是代码库中 3 个 MV 实现使用了不同参数：**\n\n| 差异 | `e3_mbr_micro_f1.py` (产出 0.6579) | `recompute_alpha_crit.py` (产出 0.670) |\n|------|------|------|\n| MV threshold | strict `>` N/2 (需≥5/8票) | inclusive `>=` N/2 (需≥4/8票) |\n| entity match | 3-tuple `(start, end, type)` | 4-tuple `(text, type, start, end)` |\n| 数据 | `scierc_mf4v2_seed456/` | `exp_001_seed456_v2/` (旧数据) |\n\n**最关键的问题**: 论文 Proposition 1 定义 MV 为 $\\hat{p}(e) > 1/2$ (strict)，但 alpha_crit 表的计算用了 `>= 1/2` (inclusive)。For N=8，strict 需 ≥5 票，inclusive 需 ≥4 票，差异 ~1.0pp。\n\n论文 alpha_crit 表的数值 (.666/.668/.781) 不精确匹配任何现有脚本输出，可能来自已删除的中间脚本。\n\n**建议方案 A**（修改量最小）: 统一为 inclusive `>=`，修改论文数学定义为 $\\hat{p}(e) \\geq 1/2$，然后在 mf4v2 数据上用统一参数重新计算 alpha_crit 表。详见 artifact `mv_consistency_check.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-mv-consistency-check.md"
+}

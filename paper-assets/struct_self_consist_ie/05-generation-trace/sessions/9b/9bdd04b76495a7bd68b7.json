@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bdd04b76495a7bd68b7",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_17_1779405603.md",
+  "task_key": "loop_17_1779405603",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_17_1779405603.md",
+    "occurrence": 1,
+    "bytes": 6385,
+    "sha256": "4f48b8a2f81ffcf534742d2f8198da025871ed2775e17f07fc72d7261c4fd490"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-21T23:02:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**：autodl-5090 / 5090-b / 5090-c 各 cuda:0-3，共 12 张。无白名单外 GPU。\n- **14B 推理诊断**：历史 5 次误判（M021/M037/M038/M047/M048）。判定 failed **必须同时确认** PID 死亡 + GPU util=0。\"无输出文件\"不能判定失败（vLLM 加载阶段 15-20min 无输出是正常行为）。14B 单卡必须 enforce_eager。\n- **5090 CoNLL checkpoint 损坏**：rsync 中断（5.2GB/~22GB），不要用 5090 上的 `qwen3-8b-conll2003-merged` 跑 CoNLL 实验，除非确认传输完成。\n- **GPT-5.5 只支持 T=1.0**，设 T=0 返回 400。\n- **TUM 代理 Base URL**: `http://47.94.22.126/v1`，曾于 05-20 余额耗尽（402），Frontier SC 实验依赖此代理。\n- **SCD 已证伪**（M046）：+3.84pp 完全虚假（metric 口径不一致），不构成论文贡献。exp_b1_scd 仍 PENDING 但价值存疑——已向 Director 提出是否取消。\n- **DDL 2026-05-25**（~4 天），EMNLP 2026 via ARR，D219 目标 4.5 (Consider for Award)。\n- **F1 口径**：对比必须统一 micro vs instance-avg, gold-filtered vs full。M046 教训。\n- **Probe 数字**：必须用 GroupKFold（StratifiedKFold 有 0.34 泄露）。\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：autodl-5090 / autodl-5090-b / autodl-5090-c，各 4×RTX 5090 (32GB)\n- **工作目录**：`/root/autodl-tmp/struct_self_consist_ie`\n- **Python**：`/root/miniconda3/bin/python`（conda base，不是 venv）\n- **模型路径**：各服务器 `/root/autodl-tmp/` 下；FewNERD merged 模型在 5090-b/5090-c 可用；CoNLL merged 模型 5090 上损坏（rsync 中断）\n- **活跃 cron**（3 个，reconcile 结果）：\n  - `exp_14b_inference_fewnerd` — PID 252310，5090-c cuda:0（⚠️ cron 报 process gone, miss 1/5）\n  - `exp_fewnerd_mf4_v2_s42` — PID 320158，5090-b cuda:0（confirmed running）\n  - `exp_fewnerd_mf4_v2_s123` — PID 320302，5090-b cuda:1（confirmed running）\n- **Worker 池**（session 启动时 3 个 running）：\n  - `worker_gpu_5090_launch_3exp` — 正在 5090 上启动 MF4 s456 + E2 pre-trained baselines\n  - `worker_check_frontier_sc_progress` — 检查 4 个 Frontier SC API 实验进度\n  - `worker_diagnose_14b_fewnerd_status` — 诊断 14B FewNERD 存活（PID+GPU dual check）\n\n### 3. 📊 当前状态\n刚完成 session-start 初始化（reconcile crons + registry 读取 + ROADMAP 同步 + 资源检查）并向 Director 汇报。**尚未收到任何 Worker 回调**——3 个 Worker 全部仍在运行中。\n\n**RUNNING 实验（12 个，registry 记录）**：\n\n| exp_id | 服务器/GPU | 要点 |\n|--------|-----------|------|\n| exp_14b_inference_fewnerd | 5090-c cuda:0 | 14B FewNERD N∈{1,2,4,8}，⚠️ 疑似 process gone |\n| exp_fewnerd_mf4_v2_s42 | 5090-b cuda:0 | MF4 v2 seed=42，PID 320158 confirmed |\n| exp_fewnerd_mf4_v2_s123 | 5090-b cuda:1 | MF4 v2 seed=123，PID 320302 confirmed |\n| exp_fewnerd_t12_s456 | 5090-b cuda:1 | T=1.2 温度消融第3种子 |\n| exp_fewnerd_n16_s42 | 5090-b cuda:2 | N=16 扩展 seed=42 |\n| exp_fewnerd_n16_s123 | 5090-b cuda:3 | N=16 扩展 seed=123 |\n| exp_fewnerd_n16_s456 | 5090-c cuda:3 | N=16 扩展 seed=456 |\n| exp_fewnerd_7b_n16_s42 | 5090-c cuda:2 | 7B N=16 |\n| exp_frontier_sc_gpt55_fewnerd_v2 | API (5090-c) | GPT-5.5 Frontier SC |\n| exp_frontier_sc_deepseek | API (5090-c) | DeepSeek Frontier SC |\n| exp_frontier_sc_gemini25pro | API (5090-c) | Gemini 2.5 Pro Frontier SC |\n| exp_frontier_sc_claude_sonnet4 | API (5090) | Claude Sonnet 4 Frontier SC |\n\n**空闲 GPU（5 张）**：5090 cuda:0-3（Worker 正在启动实验）+ 5090-c cuda:1（ROADMAP 原为 14B CoNLL，疑似完成/失败，待确认）\n\n**等待中**：\n- 3 个 Worker 回调（5090 launch / Frontier SC check / 14B diagnose）\n- Director 对 exp_b1_scd（PENDING）和 5090-c cuda:1 分配的决策\n- 3 个 QUEUED MF4 实验（exp_fewnerd_mf4_s42/s123/s456）等 GPU\n- 20 个 PREPARING 实验\n\n### 4. 📋 待办（条件触发式）\n- **Worker `diagnose:14b_fewnerd_status` 回调** → 如 TRULY_FAILED：更新 registry + 释放 5090-c cuda:0 + 汇报 Director；如 COMPLETED：提取 scale curve 数据 + 填 L1；如 ALIVE：更新 cron 继续监控\n- **Worker `gpu:5090_launch_3exp` 回调** → 确认 5090 上 MF4 s456 + E2 pre-trained FewNERD/CoNLL 是否成功启动；失败则诊断原因重试\n- **Worker `check:frontier_sc_progress` 回调** → 如任一 Frontier SC 完成：spawn Worker 分析结果 + 填 cross-family 对比表；4 家族全出数据 → 汇报 Director 是否支持 universality claim（L3）\n- **exp_fewnerd_mf4_v2_s42/s123 cron 回调（完成）** → 与 s456 合并做 FewNERD MF4 3-seed 统计，更新 L1 层\n- **exp_fewnerd_t12_s456 完成** → 与 s42+s123 汇总 FewNERD T-ablation 3-seed 统计\n- **N=16 实验完成（3 seeds）** → 提取 N-scaling 数据，与 N=8 对比 inverse scaling\n- **5090 GPU 空闲时** → 检查 QUEUED 列表优先启动\n- **5090-c cuda:1 确认空闲** → 向 Director 建议分配 CoNLL N=16 v2（需先确认 checkpoint 修复）或其他实验\n\n### 5. 🎯 战略上下文\n- **核心命题**：SC 对结构化生成存在 capability ceiling——correlation-selection gap 普遍存在，信号诊断级联可定位但无法突破瓶颈。\n- **D219 目标 4.5**，5-Layer 战略：L1 MF4 统一 pipeline（s42/s123 running, s456 启动中）、L2 α_crit Proposition（推导中）、L3 Frontier SC 4-family universality（4 个 API 实验在跑）、L4 Cross-task Spider+HumanEval（Spider 有数据但 HumanEval 待确认）、L5 IB Theorem（已写入论文 §6）\n- **关键负向结论**：SCD 虚假（M046）、B2 Verifier 91%泄露、Probe 仅 CoNLL > MV\n- **最容易判断错的事**：(1) 14B 推理实验存活判定——必须 PID+GPU 双信号，5 次误判历史；(2) F1 对比口径不一致导致虚假结论——M046 教训；(3) 5090 CoNLL checkpoint 损坏（5.2GB/22GB）——不要用来跑实验\n- **Registry provenance gap**：所有 12 个 RUNNING 实验缺 server/gpu/spec 字段（只有 status+hypothesis），是历史遗留问题，不影响实验运行但增加追溯难度\n- **DDL 紧迫**：~4 天。优先级：L1 MF4 3-seed > L3 Frontier SC 4-family > L2 α_crit > L4 cross-task。论文写作需等关键数据到位后全力推进\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779405603.md"
+}

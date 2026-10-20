@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e06d0b4f684585c2858d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 017 llama conll inference",
+  "task_key": "worker_code_exp_017_llama_conll_inference_20260517T113609",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_017_llama_conll_inference_20260517T113609_result.json",
+    "occurrence": 1,
+    "bytes": 416,
+    "sha256": "e8736bbaf07cab0368c36344e7fad3115bd51bca7e20583824d630811d78b942"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`exp_017_llama_conll_infer` 已经存在且完全满足需求：\n\n- **N=8**, **T=1.0**, **3453 instances**（全量 test set）\n- **Logprobs 已收集**：每个 sample 包含 `cumulative_logprob`, `n_tokens`, `mean_logprob`\n- Greedy F1: 0.9266, Oracle F1: 0.9443\n- 输出包含 `samples.jsonl`, `report.json`, `all_signals_report.json`\n\n无需重复提交 inference job，该实验已完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-017-llama-conll-inference.md"
+}

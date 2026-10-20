@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e6f5ad77778df3366ca9",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh re diagnostic bugfix",
+  "task_key": "worker_ssh_re_diagnostic_bugfix_20260522T075425",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_re_diagnostic_bugfix_20260522T075425.log",
+    "occurrence": 1,
+    "bytes": 648561,
+    "sha256": "b6f384bd4454748746e61282b201da46ea3cfc79053ff31dd258c2ec20d95ecf"
+  },
+  "statistics": {
+    "messages": 158,
+    "user_turns": 0,
+    "tool_calls": 55,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 42,
+      "tool_call": 55,
+      "tool_result": 55,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 158,
+      "chunks": [
+        {
+          "path": "e6f5ad77778df3366ca9-part-0001.json",
+          "message_count": 155
+        },
+        {
+          "path": "e6f5ad77778df3366ca9-part-0002.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-re-diagnostic-bugfix.md"
+}

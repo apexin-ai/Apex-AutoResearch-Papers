@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fee08e2eb1f02017f1f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis batch completion check a",
+  "task_key": "worker_analysis_batch_completion_check_a_20260516T140049",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_batch_completion_check_a_20260516T140049_result.json",
+    "occurrence": 1,
+    "bytes": 568,
+    "sha256": "0e799ebae7cf930379bbc2bb149ac2a85d42b245c1a09bf9bbd67399ced3cc6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| 实验 | 状态 | 核心发现 |\n|------|------|---------|\n| **exp_022_seed789** | SUCCESS | 551行完整，NER ρ_sj=0.384，结构指标优于表面指标(+0.15)，RE 弱 |\n| **exp_025_n32** | SUCCESS | 551行完整，N=32 使 NER ρ_sj 提升至 0.440（+15%），oracle headroom +51%，RE 仍不达标 |\n| **exp_020_fewnerd_smoke** | INCOMPLETE | 训练到 step 5000/8236（60%）被中断，loss 从 0.96 降至 0.041，checkpoint-4000 可用(eval_loss=0.051) |\n\n报告已写入 `artifacts/batch_completion_check_a.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-batch-completion-check-a.md"
+}

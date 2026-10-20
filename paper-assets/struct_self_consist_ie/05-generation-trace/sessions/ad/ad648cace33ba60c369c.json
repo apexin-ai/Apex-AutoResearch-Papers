@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "ad648cace33ba60c369c",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh j calibration conformal",
+  "task_key": "worker_ssh_j-calibration-conformal_20260520T101503",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_j-calibration-conformal_20260520T101503.log",
+    "occurrence": 1,
+    "bytes": 741675,
+    "sha256": "512dc93a2bf23b8f874936b2d4d2928146b4d365a6d7c8c91b2f5562ce43020e"
+  },
+  "statistics": {
+    "messages": 284,
+    "user_turns": 2,
+    "tool_calls": 94,
+    "roles": {
+      "log": 1,
+      "system": 67,
+      "record": 1,
+      "assistant": 24,
+      "tool_call": 94,
+      "user": 2,
+      "tool_result": 94,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "ad648cace33ba60c369c-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 86,
+      "chunks": [
+        {
+          "path": "ad648cace33ba60c369c-part-0001.json",
+          "message_count": 86
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 192,
+      "chunks": [
+        {
+          "path": "ad648cace33ba60c369c-part-0001.json",
+          "message_count": 88
+        },
+        {
+          "path": "ad648cace33ba60c369c-part-0002.json",
+          "message_count": 104
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-j-calibration-conformal.md"
+}

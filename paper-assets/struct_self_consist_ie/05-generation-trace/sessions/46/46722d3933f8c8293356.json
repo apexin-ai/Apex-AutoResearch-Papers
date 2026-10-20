@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46722d3933f8c8293356",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "viz signal heatmap 1024",
+  "task_key": "worker_viz_signal_heatmap_1024_20260515T000745",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_viz_signal_heatmap_1024_20260515T000745_result.json",
+    "occurrence": 1,
+    "bytes": 456,
+    "sha256": "6491267c40ab5389fbdb96bc6874064f72aa6f92168d1a71b461e0002c7102da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2×2 heatmap 已生成。文件：\n\n- **PDF**: `artifacts/figures/fig_signal_heatmap_1024.pdf` (36 KB)\n- **PNG**: `artifacts/figures/fig_signal_heatmap_1024.png` (203 KB)\n- **脚本**: `artifacts/figures/plot_signal_heatmap_1024.py`\n\nTop row 是 Spearman ρ（Full / Conditional），bottom row 是 AUROC（Full / Conditional），每 panel 2 行（NER, RE）× 5 列信号，数据全部来自 exp_012_rerun_1024 (N=8, 1024 tokens)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-signal-heatmap-1024.md"
+}

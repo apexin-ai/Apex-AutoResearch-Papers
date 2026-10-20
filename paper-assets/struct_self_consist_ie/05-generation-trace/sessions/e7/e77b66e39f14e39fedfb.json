@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e77b66e39f14e39fedfb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose exp fewnerd pretrained n32 s42 v2",
+  "task_key": "worker_diagnose_exp_fewnerd_pretrained_n32_s42_v2_20260523T113901",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp_fewnerd_pretrained_n32_s42_v2_20260523T113901_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "c99d915740760b5bb9c8c24e798f8d17f5382611dcc144c98a89df4ad083523e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告已保存到 `artifacts/diagnose_exp_fewnerd_pretrained_n32_s42_v2.md`。\n\n**核心结论：实验没有失败，是 cron 监控误判。**\n\n实验于 00:15 启动，19:28 完成，耗时约 19 小时，37648/37648 实例全部处理完毕。三个输出文件（samples.jsonl 7.2GB、report.json、n32_analysis.json）均完整生成，verdict = **PASS**。\n\n误判原因：cron 检查 sentinel 文件和 W&B 记录，但该实验两者均未配置，导致 5 次检查都认为进程\"无产出\"。\n\n关键指标：MV 比 greedy 提升 +3.85pp（F1 0.5390→0.5775），结构化一致性信号(SJ)优于表面信号(FK)，ρ 优势 +0.0515。\n\n需注意：磁盘已用 96%（剩 13GB），后续实验前应清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-fewnerd-pretrained-n32-s42-v2.md"
+}

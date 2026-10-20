@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64e6721fc6936f227d7e",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_10_1778883331.md",
+  "task_key": "loop_10_1778883331",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_10_1778883331.md",
+    "occurrence": 1,
+    "bytes": 4727,
+    "sha256": "1593f4650f4ffe74b8ca02a716619df066b3794968c1f25ec0739fe8514c62f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T22:13:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 上 cuda:0, cuda:1, cuda:2, cuda:3（config 明确指定，不可用其他设备）\n- 论文所有 ρ 值必须来自 gold-filtered 管道（排除 gold-empty 实例），CoNLL n=2756，SciERC n=551/529。绝不引用 registry metrics 中的 EM/VC 值到论文（report.json 与分析脚本有系统性差异，D066）\n- 论文数据只能来自 `_rerun_1024` 或本身用 max_tokens=1024 的实验（exp_012 用了 512 导致 voting_conf ρ 虚高，D054-D060 教训）\n- 551 全集为 canonical（无选择偏差），529 交集仅作参考不进论文\n- DDL 硬限 2026-05-25（EMNLP 2026 ARR May cycle），不可延期\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: autodl-5090 (bjb1-21071), 4× RTX 5090 32GB — 当前全部空闲\n- **工作目录**: `/root/autodl-tmp/struct_self_consist_ie/`\n- **Python**: `/root/miniconda3/bin/python`，环境激活: `source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **基座模型**: Qwen3-8B at `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`，ft merged model at `checkpoints/qwen3-8b-scierc-merged-v2/`\n- **分析产出**: `analysis_round8/` 目录下 — `epsilon_sweep.csv`, `fk_independence_instance_test.json`, `tost_external_delta.json`, `r8w3_sj_union_v2.json`, `analysis_fk_tost_round8.md`\n- **Canonical data**: `artifacts/analysis_unified_rho.json` (gold-filtered ρ 值)\n- **活跃进程**: 无。无 tmux session、无 cron、无 RUNNING 实验。全部 104 实验 DONE\n\n### 3. 📊 当前状态\n所有 104 实验已完成（success 58 / negative 22 / failed 4 / killed 20）。无 RUNNING/PREPARING 实验。\n\n**刚完成的三个 Worker（本 session 最后一批）：**\n- `worker_analysis_fk-independence-tost-fix` ✅ — FK independence instance-level test 通过（n=529-2756，全部 p<0.001）；TOST 外部 δ 分析完成（LLaMA-CoNLL 全通过，SciERC/Qwen-CoNLL 仅 SJ 在 δ_SEM 通过）\n- `worker_analysis_r8w3_sj_union_v2` ✅ — SJ_max vs SJ_union Δρ < 0.01，分母选择不影响排序结论\n- `worker_paper_round8-fixes` ❌ FAILED — Paper Agent 写入 4B patch + 页数压缩 + Phase 2-5，启动约 4 分钟后崩溃（疑似 rate limit 或 context 问题），**需要重新 spawn**\n\n**等待中：**\n- 无 Worker 回调、无 Cron、无 Director 决策待处理\n- Registry desync 清理部分已由 `worker_maintenance_registry_cleanup` 完成，但 9 个 PREPARING+killed 实验因状态机限制无法推进到 DONE（已记录在 memory.md）\n\n### 4. 📋 待办（条件触发式）\n- **立即**（无条件）→ 重新 spawn Paper Agent 执行 Round 8 修复：4B scale ablation compact table (≤0.5页) + 页数压缩至 ≤8页 + ε robustness 写入 + 标题去 overclaim + Abstract 精简 + RE 标注说明 + 次要修复。上次 Worker 失败，prompt 和数据都已就绪\n- Paper Agent 完成 → 启动 Round 9 审稿（continue mode）\n- Round 9 审稿发现需补充实验 → GPU 全部空闲可立即提交（autodl-5090 cuda:0-3 待命）\n- Round 9 审稿通过 → Final polish → 提交 ARR\n- 如 Director 要求额外 ablation（如 n_samples sweep、更多 model scales）→ GPU 空闲，分钟级可开跑\n\n### 5. 🎯 战略上下文\n**核心论点**: Universal correlation-selection gap — 置信信号能预测质量（AUROC 0.75）但不能选出更好的候选。Free-form ablation 证明 score compression 是 model/task intrinsic，非 constrained decoding artifact。4B scale ablation 证明 gap 与 model capacity 无关。\n\n**审稿状态**: Borderline (R1=3.5, R2=2.5)。Round 8 已解决 ε justification (D095)、RE preliminary (D095)、LP T=0.7 (D095)、页数超限（进行中）。剩余 HIGH：标题 overclaim + Abstract 过载（Paper Agent Phase 2）。\n\n**关键决策链**: D054-D060 数据修正 → D066 LLaMA fresh rerun → D072 free-form ablation (universality) → D073 RE 3-seed (task-dependent) → D092-D094 rho 一致性审计（gold-filtered pipeline）→ D095 ε sweep → D096-D099 4B scale ablation\n\n**易踩坑**:\n- Paper Agent 上次崩溃了，重试时注意：给足上下文但控制 prompt 长度，避免 context overflow。可考虑拆分为多个 Worker（Phase 1 页数压缩 + Phase 2 标题/Abstract 分开）\n- FK independence test 和 TOST 分析结果刚出（本 session），可能尚未写入论文——Paper Agent 需要拿到这些数据\n- 不要把 CoNLL 4B 的 selection 结果过度解读——headroom 只有 1.70pp，MARGINAL 是预期内的\n- SciERC NER 4B 是最佳 gap 展示：SJ_ρ=0.422 > 8B 但 selection -1.49pp，论文应重点引用此 cell\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778883331.md"
+}

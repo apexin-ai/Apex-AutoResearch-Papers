@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "424b5f39261bf26e5420",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "cpu failure gallery",
+  "task_key": "worker_cpu_failure_gallery_20260521T071429",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cpu_failure_gallery_20260521T071429_result.json",
+    "occurrence": 1,
+    "bytes": 1684,
+    "sha256": "07d7f9191fa0c40a64812de295fd4348bbe47d8b554dab3deb0fd15a4096b8b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。`failure_gallery_examples.json` 已保存到 artifacts 并注册。\n\n**提取结果概要**（扫描 3 个实验，~75k 实例）：\n\n| 类别 | 总数 | 选出 |\n|------|------|------|\n| Degenerate (全样本一致但错误) | 1,358 | 3 |\n| LP Inversion (高 logprob 但非 gold) | 3,827 | 3 |\n| ESJ Overconfident | 1,134 | 2 |\n| ESJ Underconfident | 6,843 | 1 |\n\n**选出的 9 个实例**：\n\n**Degenerate (F1)**:\n1. `fewnerd_test_00469` — \"University of Notre Dame\" 正确文本但错误类型(org→building)，8/8 一致\n2. `fewnerd_test_02015` — \"SPQ\" 类型混淆(product→org)，8/8 一致\n3. `fewnerd_test_16612` — 6 个 gold 实体全漏（空预测），8/8 一致\n\n**LP Inversion (F3)**:\n1. `fewnerd_test_01046` — \"Cramer\"(person) 8/8 出现，logprob=-0.046，但不在 gold 中\n2. `fewnerd_test_31667` — \"Richard Friend\"(person) 8/8 出现，gold 只标注了组织实体\n3. `fewnerd_test_28689` — \"COMUSMACV\"(organization) 8/8 出现，gold 遗漏\n\n**ESJ Failure**:\n1. `fewnerd_test_00230` — \"American\"(location) consensus=100% 但非 gold（overconfident）\n2. `fewnerd_test_01046` — \"Cramer\" consensus=100% 但非 gold（overconfident）\n3. `fewnerd_test_00002` — \"C-USA play\"(event) 0/8 样本预测但确实是 gold（underconfident）\n\n**注意事项**：\n- LP inversion 的 3 个例子多为标注遗漏而非纯幻觉——这恰好说明 LP 无法区分两者\n- ESJ 用 entity-level consensus frequency 代理，未运行实际 ESJ 模型验证（`exp_esj_entity_self_judgment` 输出不存在）\n- `fewnerd_test_01046` 同时出现在 LP inversion 和 ESJ failure 中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-failure-gallery.md"
+}

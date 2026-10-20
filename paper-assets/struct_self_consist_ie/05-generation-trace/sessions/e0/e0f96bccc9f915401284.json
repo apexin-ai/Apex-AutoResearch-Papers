@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0f96bccc9f915401284",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh re diagnostic bugfix",
+  "task_key": "worker_ssh_re_diagnostic_bugfix_20260522T075425",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_re_diagnostic_bugfix_20260522T075425_result.json",
+    "occurrence": 1,
+    "bytes": 1557,
+    "sha256": "25009959267013cd4ca67209c92c71ab12d3bf98e339ae44b3ad262ff7668806"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 三个 Bug\n\n| Bug | 描述 |\n|-----|------|\n| 1. 错误数据源 | Worker 在 autodl-5090-c 的 `re_sc/re_samples.jsonl` 上运行，该文件来自一个极弱的模型（greedy micro F1 仅 0.069），而非 autodl-5090 上的正规数据 `exp_012_rerun_1024/samples_with_logprobs.jsonl`（micro F1 = 0.44） |\n| 2. 错误匹配方式 | 用 text-based `(head_text, type, tail_text)` 匹配，而非标准的 span-based `(head_start, head_end, tail_start, tail_end, type)` |\n| 3. 错误 zero-F1 定义 | 计算\"所有 8 个 sample 的 F1 = 0\"的 instance 比例，而非\"greedy F1 = 0\"的 instance 比例 |\n\n### 修正对比\n\n| Metric | 原值 (错误) | 修正值 | 变化 |\n|--------|-----------|--------|------|\n| **Zero-F1%** | **71.8%** | **40.1%** (159/397) | **大幅修正** |\n| Degeneracy | 0.8% | 10.1% | ↑ |\n| Greedy F1 | 0.0752 | 0.4042 | ↑ 大幅 |\n| MV F1 | 0.0390 | 0.3452 | ↑ 大幅 |\n| MV Δ | −3.62pp | −5.90pp | MV 损害更大 |\n| LP-best F1 | 0.0760 | 0.3948 | ↑ 大幅 |\n| LP-best Δ | +0.08pp | −0.94pp | 从微正变负 |\n| Oracle F1 | 0.1541 | 0.5850 | ↑ 大幅 |\n| Oracle headroom | +7.89pp | +18.08pp | ↑ 大幅 |\n| LP-F1 ρ (pooled) | 0.1622 | 0.3501 | ↑ 显著增强 |\n| LP-F1 ρ (within) | 0.2243 | 0.1573 | ↓ |\n\n已完成：\n- 修正脚本保存至 autodl-5090: `code/re_diagnostic_cascade.py`\n- 更新 artifact: `re_diagnostic_cascade_pilot.md` 和 `complete_diagnostic_cascade_table.md`\n- 更新 `mistakes.yaml` M060 状态为 fixed"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-re-diagnostic-bugfix.md"
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "77f45c319ee003cc8a2d",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "submit 4b conll inference ckpt4200",
+  "task_key": "worker_submit_4b_conll_inference_ckpt4200_20260515T194153",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_submit_4b_conll_inference_ckpt4200_20260515T194153.log",
+    "occurrence": 1,
+    "bytes": 1147703,
+    "sha256": "f0fa3637b8375504469f04298368900cbc9e05848ae19634bd68d428cf2c0b4d"
+  },
+  "statistics": {
+    "messages": 412,
+    "user_turns": 1,
+    "tool_calls": 160,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 84,
+      "tool_call": 160,
+      "tool_result": 160,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 409,
+      "chunks": [
+        {
+          "path": "77f45c319ee003cc8a2d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "77f45c319ee003cc8a2d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "77f45c319ee003cc8a2d-part-0003.json",
+          "message_count": 49
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 3,
+      "chunks": [
+        {
+          "path": "77f45c319ee003cc8a2d-part-0003.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/submit-4b-conll-inference-ckpt4200.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c4130e35d10f8f1d991",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code llama fewnerd inference status v3",
+  "task_key": "worker_code_llama_fewnerd_inference_status_v3_20260519T024716",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_llama_fewnerd_inference_status_v3_20260519T024716_result.json",
+    "occurrence": 1,
+    "bytes": 3509,
+    "sha256": "95e0fcc6944b26843c87bae0b2f106be392bd13bd77527ceae53b904880a0d47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here is the full report:\n\n---\n\n## LLaMA 3.1-8B FewNERD 3-Seed Results\n\n**Tmux session**: `llama_fewnerd_infer` — DONE\n**Test instances**: 37,648 total, 32,565 gold-filtered (per seed)\n**Config**: N=8 stochastic (temp=1.0) + greedy (temp=0), 3 seeds\n\n### Per-Seed Core Metrics\n\n| Metric | Seed 42 | Seed 123 | Seed 456 | **3-seed Mean** | **Std** |\n|--------|---------|----------|----------|-----------------|---------|\n| Greedy F1 | 0.7841 | 0.7840 | 0.7844 | **0.7842** | 0.0002 |\n| Oracle F1 | 0.8854 | 0.8839 | 0.8835 | **0.8843** | 0.0008 |\n| Headroom (pp) | 10.13 | 9.99 | 9.91 | **10.01** | 0.09 |\n| Degeneracy (%) | 27.32 | 24.63 | 18.13 | **23.36** | 3.86 |\n\n### 5-Signal Selection F1 (delta vs greedy, pp)\n\n| Signal | Seed 42 | Seed 123 | Seed 456 | **Mean delta** | **Mean F1** |\n|--------|---------|----------|----------|----------------|-------------|\n| LP | +0.34 | +0.37 | +0.36 | **+0.36** | 0.7877 |\n| SJ | -0.06 | -0.41 | -1.08 | **-0.52** | 0.7790 |\n| FK | -0.09 | -0.39 | -1.10 | **-0.53** | 0.7789 |\n| EM | -0.46 | -0.99 | -1.62 | **-1.02** | 0.7739 |\n| VC | -2.54 | -2.61 | -2.02 | **-2.39** | 0.7603 |\n\n### Correlations (Spearman rho with sample quality)\n\n| Signal | Seed 42 | Seed 123 | Seed 456 | **Mean rho** | **Std** |\n|--------|---------|----------|----------|--------------|---------|\n| EM | 0.4240 | 0.4136 | 0.4061 | **0.4146** | 0.0073 |\n| FK | 0.4380 | 0.4083 | 0.3812 | **0.4092** | 0.0232 |\n| SJ | 0.4234 | 0.3992 | 0.3508 | **0.3911** | 0.0302 |\n| LP | 0.3639 | 0.3232 | 0.2611 | **0.3161** | 0.0423 |\n| VC | 0.3543 | 0.3196 | 0.2743 | **0.3161** | 0.0328 |\n\n### DGS (tau=0.05)\n\n| Metric | Seed 42 | Seed 123 | Seed 456 | **Mean** |\n|--------|---------|----------|----------|----------|\n| DGS F1 | 0.7842 | 0.7809 | 0.7769 | **0.7807** |\n| DGS gain (pp) | +0.01 | -0.31 | -0.75 | **-0.35** |\n\n### Within-instance LP-F1 correlation\n\n| Metric | Seed 42 | Seed 123 | Seed 456 |\n|--------|---------|----------|----------|\n| n (non-degenerate) | 23,668 | 24,544 | 26,662 |\n| Median rho | 0.5879 | 0.5843 | 0.6070 |\n| Mean rho | 0.3881 | 0.4081 | 0.4671 |\n| LP range mean | 0.0573 | 0.0733 | 0.1070 |\n\n---\n\n### Comparison with Qwen FewNERD (4-seed mean)\n\n| Metric | **LLaMA 3.1-8B** | **Qwen** | **Delta** |\n|--------|-------------------|----------|-----------|\n| Greedy F1 | 0.7842 | 0.7481 | **+3.61 pp** |\n| Oracle F1 | 0.8843 | 0.8739 | **+1.04 pp** |\n| Headroom | 10.01 pp | 12.58 pp | **-2.57 pp** |\n| Degeneracy | 23.36% | 12.69% | **+10.67 pp** |\n| LP delta | +0.36 pp | — | — |\n| DGS delta | -0.35 pp | — | — |\n\n### Key observations\n\n1. **LLaMA greedy baseline significantly stronger** (+3.61 pp), leaving less headroom for self-consistency\n2. **Degeneracy nearly doubled** (23.36% vs 12.69%) — LLaMA produces far more degenerate sample sets at temp=1.0\n3. **LP is the only positive selection signal** (+0.36 pp); all structural/surface signals (SJ, FK, EM, VC) hurt performance\n4. **DGS fails** (-0.35 pp) — the degeneracy gate doesn't help because even non-degenerate instances see structural signal failures\n5. **LP correlation is the weakest across-instance signal** (rho=0.3161) but the **only one that translates to positive selection gain** — structural signals (EM rho=0.4146, FK rho=0.4092) have higher correlation but negative selection delta, suggesting they pick consistently wrong \"high-agreement\" samples over the greedy baseline"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-fewnerd-inference-status-v3.md"
+}

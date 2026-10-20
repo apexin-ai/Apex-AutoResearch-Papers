@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d0de1f0a0ef4bee627e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh alpha crit conll s42 gemini",
+  "task_key": "worker_ssh_alpha_crit_conll_s42_gemini_20260521T111401",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_alpha_crit_conll_s42_gemini_20260521T111401_result.json",
+    "occurrence": 1,
+    "bytes": 1703,
+    "sha256": "b71a20ec141692a46f5667ae517f17186c9f755cf194d390e0dc6f874b5c8667"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两组数据提取完毕。汇总如下：\n\n---\n\n### CoNLL MF4v2 seed=42 α_crit 数据\n\n| 指标 | 值 |\n|---|---|\n| greedy_f1 | 0.9075 |\n| mv_f1 (≥4/8) | 0.9090 |\n| oracle_f1 | 0.9495 |\n| Δ_SC | +0.15 pp |\n| degen | 65.7% (2270/3453) |\n| fleiss_kappa | 0.7729 |\n| soft_jaccard | 0.8949 |\n| α_crit | 0.8332 (= π_MV / (2 − π_MV)) |\n| α_crit_eff | 2.4321 (= α_crit / (1 − δ)) |\n\n**注意**：α_crit_eff > 1.0，说明 65.7% 的高 degeneracy 使得有效阈值不可达。模型已经在大多数实例上是确定性的，MV 几乎没有余地改进。Oracle headroom +4.20 pp 全部来自非退化实例。\n\n---\n\n### Gemini Frontier SC 详细 (FewNERD, n=200)\n\n| 指标 | 值 |\n|---|---|\n| greedy_f1 | 0.6301 |\n| mv_f1 | 0.6446 |\n| oracle_f1 | 0.7575 |\n| Δ_SC | +1.45 pp |\n| degen | 28.5% (57/200) |\n| α_crit | 0.4756 |\n| α_crit_eff | 0.6651 |\n| agreement_rho (vs F1) | 0.3887 |\n| fleiss_kappa (mean) | 0.5185 |\n| soft_jaccard (mean) | 0.8023 |\n| parse_failure_rate | 11.9% (191/1600) |\n\n**Per-instance F1 分布**：\n- Greedy: mean=0.6301, median=0.6667, std=0.3661\n- MV: mean=0.6446, median=0.6905, std=0.3606\n- Oracle: mean=0.7575, median=1.0000, std=0.3268\n\n**MV gain 模式**：\n- MV > Greedy: 33 (16.5%)\n- MV == Greedy: 144 (72.0%)\n- MV < Greedy: 23 (10.5%) — SC hurts\n- rho(agreement, mv_gain) = −0.0905 (p=0.20, 不显著)\n\n**Failure mode**：\n- F3_both_good: 125 (62.5%)\n- F4_both_bad: 43 (21.5%)\n- F1_sc_hurts: 21 (10.5%)\n- F2_sc_helps: 11 (5.5%)\n\n**Selection gap**: oracle − MV = 11.29 pp，表明 MV 只捕获了 oracle headroom 的 ~11% (1.45/12.74)，大量改进空间在 smarter aggregation。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-alpha-crit-conll-s42-gemini.md"
+}

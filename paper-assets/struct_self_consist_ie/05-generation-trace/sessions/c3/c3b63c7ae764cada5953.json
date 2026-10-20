@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3b63c7ae764cada5953",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp fewnerd pretrained n16 s42 v2",
+  "task_key": "worker_analysis_exp_fewnerd_pretrained_n16_s42_v2_20260523T002055",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_fewnerd_pretrained_n16_s42_v2_20260523T002055_result.json",
+    "occurrence": 1,
+    "bytes": 733,
+    "sha256": "be291e2ef8c0eca5c8e8cc8151b494733c4dd4a8ed9cc76ebed4d6a0e45795f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**exp_fewnerd_pretrained_n16_s42_v2 最终结果（gold-nonempty, n=32,565）：**\n\n| 指标 | N=8 s42 | N=16 s42 |\n|---|---|---|\n| greedy_f1 | 0.5384 | 0.5373 |\n| mv_strict_f1 | 0.5788 | 0.5779 |\n| mv_delta_strict | +4.03pp | **+4.06pp** |\n| oracle_f1 | 0.6508 | **0.6786** (+2.78pp) |\n| degeneracy | 12.2% | **7.6%** |\n| alpha_crit_eff_strict | — | 0.4398 |\n| mv_capture_rate | — | 28.8% |\n\n**结论**: N=16 符合 N-scaling 预期——greedy/MV delta 稳定（seed 间差异 <0.1pp），oracle headroom 显著扩大（+2.78pp），退化率下降近一半（12.2%→7.6%）。MV 仍然能捕获 28.8% 的 oracle headroom，与 N=8 一致。实验 success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-fewnerd-pretrained-n16-s42-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95c488bb86cf16d4b0b7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exec exp021 inference now",
+  "task_key": "worker_exec_exp021_inference_now_20260516T205628",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exec_exp021_inference_now_20260516T205628_result.json",
+    "occurrence": 1,
+    "bytes": 302,
+    "sha256": "d8896d4c1a84da033f6e93b8de46dd4b50cadd812f04231346cbbc5571feef2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Status**: exp-021 inference running on autodl-5090, PID 330903.\n- Progress: 12% (37K/301K prompts), ~14min elapsed\n- Speed: ~50-75 it/s, ~7.4K input toks/s, ~3.7K output toks/s\n- ETA: ~60-80 min remaining\n- Will check back in ~20 min to monitor progress and run analysis when done."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-exp021-inference-now.md"
+}

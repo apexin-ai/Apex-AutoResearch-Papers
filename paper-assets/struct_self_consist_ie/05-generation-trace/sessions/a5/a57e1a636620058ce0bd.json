@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a57e1a636620058ce0bd",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp 025 n32",
+  "task_key": "worker_analysis_exp_025_n32_20260516T142721",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_025_n32_20260516T142721_result.json",
+    "occurrence": 1,
+    "bytes": 1118,
+    "sha256": "0a86d4a7020c48bcbce6a64ef2c0ca43268381ed3b9b931221a63b04ed47ff7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果如下：\n\n## N=32 数据行\n\n| Regime | N | Degeneracy% | LP_range | Oracle_F1 | Greedy_F1 | Oracle_gap | LP_Δ | SJ_Δ | FK_Δ | EM_Δ | VC_Δ | Best_Δ |\n|--------|---|-------------|----------|-----------|-----------|------------|------|------|------|------|------|--------|\n| rank32 | 32 | 4.0 | 0.0807 | 0.8061 | 0.5880 | 0.2181 | +3.53 | +2.95 | +3.24 | +2.83 | -1.56 | +3.53 |\n\n## 各信号绝对 Selection F1\n\n| Signal | F1 | Δ vs Greedy |\n|--------|------|-------------|\n| LP | 0.6232 | +3.53 |\n| FK | 0.6204 | +3.24 |\n| SJ | 0.6175 | +2.95 |\n| EM | 0.6163 | +2.83 |\n| VC | 0.5723 | -1.56 |\n\n## 特殊发现\n\n**信号排序变化**：N=16 时 FK > LP > SJ > EM > VC，N=32 时 **LP 重新超过 FK** 成为最佳信号。说明随 N 增大，LP 的区分度优势（LP_range 从 0.054→0.081）重新压过了 FK 在中等 N 时的一致性优势。\n\n另外 Degeneracy 从 N=16 的 11.5% 降至 4.0%，Oracle gap 从 0.175 扩大到 0.218——N=32 提供了更大的选择空间，但 VC 信号反而变为负 delta，表明其在高 N 时退化严重。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-025-n32.md"
+}

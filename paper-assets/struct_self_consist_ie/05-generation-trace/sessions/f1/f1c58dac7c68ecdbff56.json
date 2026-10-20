@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1c58dac7c68ecdbff56",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh n32 verify and fix restart",
+  "task_key": "worker_ssh_n32_verify_and_fix_restart_20260522T161351",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_n32_verify_and_fix_restart_20260522T161351_result.json",
+    "occurrence": 1,
+    "bytes": 754,
+    "sha256": "b959ae0c3cd7811993064c45fc9b7987637c1a908243e9f1497c8a7e15546473"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "新进程已正常启动并运行。\n\n## 汇报\n\n| 项目 | 状态 |\n|------|------|\n| **PID 387768**（旧 N=32） | 已死，无需操作 |\n| **PID 155692**（v2） | 已 kill — 启动于 `23:52:42`，sampling.py 修复于 `23:53:52`，进程加载了旧代码 |\n| **sampling.py fix** | 已确认：L671 `open(..., errors=\"replace\")` + L686 同样修复 |\n| **新进程** | PID **157469**（VLLM::EngineCore），GPU 3，29834MiB，tmux session `exp_fewnerd_pretrained_n32_s42_v2` |\n| **当前状态** | 模型加载完成，正在 Rendering prompts（37648 条，~9% at ~414 it/s），预计约 1.5 分钟完成 prompt 渲染 |\n| **代码确认** | 新进程在 sampling.py 修复后启动，加载的是修复版代码 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-n32-verify-and-fix-restart.md"
+}

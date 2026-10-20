@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e270961768203abaf830",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diag gpu usage check",
+  "task_key": "worker_diag_gpu_usage_check_20260518T084935",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_gpu_usage_check_20260518T084935_result.json",
+    "occurrence": 1,
+    "bytes": 1166,
+    "sha256": "01ef9ab47f3794cd34f308ea5f19a0965405c88f27ffe4d1522b95a8b6c1884c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 占用汇总\n\n| GPU | 状态 | 显存占用 | GPU 利用率 | 进程 |\n|-----|------|----------|-----------|------|\n| cuda:0 | **占用** | 30194 / 32607 MiB | 87% | `VLLM::EngineCore` (PID 133921) |\n| cuda:1 | 空闲 | 2 / 32607 MiB | 100%* | 无 |\n| cuda:2 | 空闲 | 2 / 32607 MiB | 100%* | 无 |\n| cuda:3 | 空闲 | 2 / 32607 MiB | 100%* | 无 |\n\n*cuda:1-3 GPU-Util 显示 100% 但无进程占用显存，可能是 driver 残留状态或计数器异常，实际空闲。\n\n**LLaMA Few-NERD 训练**: 无训练进程运行，未找到训练脚本。仅有 `analyze_llama_fewnerd.py` 分析脚本。训练已结束或未启动。\n\n**Qwen Few-NERD seed=123 推理**: 正在 cuda:0 上运行（单卡 vLLM），进度 19728/301184 (~6.5%)，预计还需 ~1-1.5 小时。运行命令:\n```\npython code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged \\\n  --data_dir data/fewnerd --dataset fewnerd --subtask ner \\\n  --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs \\\n  --output_dir output/exp_021_fewnerd_n8_seed123\n```\n\n**可用于新实验: cuda:1, cuda:2, cuda:3**（3 张卡空闲）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gpu-usage-check.md"
+}

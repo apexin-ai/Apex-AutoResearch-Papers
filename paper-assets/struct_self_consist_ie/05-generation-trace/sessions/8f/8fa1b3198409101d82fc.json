@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fa1b3198409101d82fc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis bootstrap voting conf fix",
+  "task_key": "worker_analysis_bootstrap_voting_conf_fix_20260514T215616",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_bootstrap_voting_conf_fix_20260514T215616_result.json",
+    "occurrence": 1,
+    "bytes": 893,
+    "sha256": "4a0bf9afce46e8a1f44dcb52c2f00b85482976208a5130c44738319d028ea8c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有文件已生成。最终汇总：\n\n---\n\n**更新的文件：**\n\n| 文件 | 位置 |\n|------|------|\n| `bootstrap_ci_nscaling/results.json` | 服务器 `output/` + 本地通过 summary 引用 |\n| `bootstrap_ci_summary.json` | 服务器 `output/` + 本地 `artifacts/` |\n| `bootstrap_ci_tables.tex` | 服务器 `output/` + 本地 `artifacts/` |\n\n**voting_conf ρ 验证结果（全部 ±0.01 内匹配）：**\n\n| 设置 | 新 ρ | 参考值 | 差值 |\n|------|------|--------|------|\n| Qwen CoNLL | 0.4286 | 0.429 | -0.0004 |\n| LLaMA CoNLL | 0.4554 | 0.455 | +0.0004 |\n| LLaMA SciERC | 0.4515 | 0.452 | -0.0005 |\n| Qwen SciERC | 0.4408 | 0.441 | -0.0002 |\n\n**额外修复：**\n- Qwen SciERC 3-seed 的 EM 和 voting_conf 已从 `all_signals_report.json` 补入 summary（之前标记为 missing）\n- EM full mean = 0.329, voting_conf full mean = 0.422"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-voting-conf-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94b87ef09a4533fb844a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis 72b fewnerd construction",
+  "task_key": "worker_analysis_72b_fewnerd_construction_20260519T142544",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_72b_fewnerd_construction_20260519T142544_result.json",
+    "occurrence": 1,
+    "bytes": 860,
+    "sha256": "08273c6bcfe2c962eefbe1cf95c18be113d6a04ad8d0348b4ebf14328c54ffe6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新（含三个数据集完整 metrics）。\n\n## 总结\n\n**FewNERD 72B ZS construction 全面失败**：LP-weighted -0.20pp, θ=2/N -1.70pp, LP selection -0.40pp。所有 consensus variant 阈值组合也均为负。\n\n72B ZS 三数据集 construction 全景：\n\n| Dataset | Degen | LP ρ | LP-wt ΔF1 | θ=2/N ΔF1 |\n|---|---|---|---|---|\n| **SciERC** | 21.0% | 0.081 | **+1.53pp** ✓ | -0.52pp |\n| **FewNERD** | 46.2% | 0.119 | **-0.20pp** ✗ | -1.70pp |\n| **CoNLL** | 67.7% | -0.002 | -0.37pp | -0.92pp |\n\n**Pattern 清晰**：degeneracy 是 construction 成败的决定因素。SciERC (degen=21%) 成功，FewNERD (46%) 和 CoNLL (68%) 失败。LP ρ 正面（FewNERD 0.119 > SciERC 0.081）不足以抵消高 degeneracy 的破坏性——这直接支持论文 \"degeneracy gates construction\" 的 narrative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-72b-fewnerd-construction.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4137a08bbdc53796284f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis multiseed aggregate prep",
+  "task_key": "worker_analysis_multiseed_aggregate_prep_20260518T202610",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_multiseed_aggregate_prep_20260518T202610_result.json",
+    "occurrence": 1,
+    "bytes": 2827,
+    "sha256": "e238f3f0eceba8571bf5e93ede47b2045534e24a738418eed6f1edad1289cc30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个 GPU 满载运行。以下是完整汇总。\n\n---\n\n## 产出 1: 多种子覆盖汇总表\n\n### Qwen3-8B CoNLL2003 NER (T=1.0, n=16)\n\n| Seed | Greedy F1 | Oracle F1 | Sample F1 | Degen% | Cond ρ(SJ) | Cond AUROC | Verdict |\n|------|-----------|-----------|-----------|--------|------------|------------|---------|\n| 42   | 0.9075    | 0.9566    | 0.8674    | 7.6%   | 0.4208     | 0.8259     | PASS    |\n| 123  | **0.9068**| **0.9633**| **0.8673**| 7.5%   | 0.4238     | 0.8235     | PASS ✓ new |\n| 456  | **0.9074**| **0.9549**| **0.8735**| 7.0%   | 0.4482     | 0.8238     | PASS ✓ new |\n\n### Qwen3-8B SciERC NER 温度消融 (n=8)\n\n| T   | Seed | Greedy F1 | Oracle F1 | Degen% | Cond ρ(SJ) | Cond AUROC | Verdict |\n|-----|------|-----------|-----------|--------|------------|------------|---------|\n| 0.5 | 42   | 0.6647    | 0.7423    | 10.3%  | 0.2781     | 0.5921     | FAIL    |\n| 0.5 | 123  | *running* | —         | —      | —          | —          | —       |\n| 0.5 | 456  | *running* | —         | —      | —          | —          | —       |\n| 0.7 | 42   | 0.6621    | 0.7643    | 11.0%  | 0.3625     | 0.6118     | MARGINAL|\n| 0.8 | 42   | 0.6633    | 0.7684    | 11.2%  | 0.3123     | 0.5509     | MARGINAL|\n| 0.8 | 123  | *running* | —         | —      | —          | —          | —       |\n| 1.0 | 42   | 0.6621    | 0.8150    | 12.4%  | 0.3688     | 0.5851     | PASS    |\n| 1.0 | 123  | 0.6621    | 0.8128    | 12.5%  | 0.3757     | 0.5993     | PASS    |\n| 1.0 | 456  | 0.6639    | 0.8112    | 12.3%  | 0.3494     | 0.6014     | MARGINAL|\n| 1.2 | 42   | 0.6615    | 0.7914    | 13.9%  | 0.3551     | 0.5569     | MARGINAL|\n| 1.2 | 123  | **0.6595**| **0.7895**| 14.0%  | 0.2718     | 0.5464     | MARGINAL ✓ new |\n\n### LLaMA3.1-8B CoNLL2003 (T=1.0, n=16)\n\n| Seed | Greedy F1 | Oracle F1 | Sample F1 | Cond ρ(SJ) | Verdict |\n|------|-----------|-----------|-----------|------------|---------|\n| 42   | 0.9264    | 0.9494    | 0.9219    | 0.4856     | PASS    |\n| 123  | 0.9264    | 0.9498    | 0.9218    | 0.4556     | PASS    |\n| 456  | 0.9267    | 0.9488    | 0.9215    | 0.4505     | PASS    |\n\n---\n\n## 产出 2: GPU 新任务状态\n\n| GPU | Task | Session | Status |\n|-----|------|---------|--------|\n| cuda:0 | SciERC T=0.5 s123 | `t05_s123` | Running (~7% done, ~3-4min remaining) |\n| cuda:1 | LLaMA FewNERD LoRA train | `llama_fewnerd` | 71% (17476/24708) |\n| cuda:2 | SciERC T=0.8 s123 | `t08_s123` | Running (~7% done) |\n| cuda:3 | SciERC T=0.5 s456 | `t05_s456` | Running (~7% done) |\n\n---\n\n## 产出 3: LLaMA FewNERD 训练进度\n\n- 进度: **71%** (17476/24708 steps)\n- 最新 checkpoint: `checkpoint-17000`\n- 预计剩余: ~3h16m\n- GPU: cuda:1, 30888 MiB, 87-100% utilization"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-multiseed-aggregate-prep.md"
+}

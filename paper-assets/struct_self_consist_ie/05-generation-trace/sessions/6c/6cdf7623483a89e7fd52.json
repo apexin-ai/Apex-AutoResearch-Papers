@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6cdf7623483a89e7fd52",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code exp 004 v2",
+  "task_key": "worker_code_exp_004_v2_20260514T152021",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_004_v2_20260514T152021.log",
+    "occurrence": 1,
+    "bytes": 609261,
+    "sha256": "ae68d1c23c000fc306580a4ee8a4362a3ce9696212f9982bd679a28370bdebe1"
+  },
+  "statistics": {
+    "messages": 177,
+    "user_turns": 0,
+    "tool_calls": 69,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 34,
+      "tool_call": 69,
+      "tool_result": 69,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 177,
+      "chunks": [
+        {
+          "path": "6cdf7623483a89e7fd52-part-0001.json",
+          "message_count": 168
+        },
+        {
+          "path": "6cdf7623483a89e7fd52-part-0002.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-004-v2.md"
+}

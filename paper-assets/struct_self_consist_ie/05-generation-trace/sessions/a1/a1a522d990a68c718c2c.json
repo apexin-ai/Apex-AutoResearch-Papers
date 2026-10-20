@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1a522d990a68c718c2c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 002 conll n16",
+  "task_key": "worker_code_exp_002_conll_n16_20260514T181146",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_002_conll_n16_20260514T181146_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "d8146d6d5c1546b2b3edc5492901adac1d8a2027cdace9d09362071ddc7a070d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已成功启动并开始推理：\n\n- **Registry**: `exp_002_conll_n16` → RUNNING\n- **PID**: 101165（EngineCore pid=101436）\n- **模型加载**: 15.27 GiB，3.1s\n- **KV cache**: 87,136 tokens，最大并发 ~21x\n- **进度**: 3453 prompts 已渲染完毕，开始处理 55,248 次推理（3453 × 16）\n- **日志**: `output/exp_002_conll_n16.log`\n\n预估 ~3h 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-002-conll-n16.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37281d015b4b310cf977",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh k robustness analysis",
+  "task_key": "worker_ssh_k-robustness-analysis_20260520T111328",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_k-robustness-analysis_20260520T111328_result.json",
+    "occurrence": 1,
+    "bytes": 1366,
+    "sha256": "ee7159435e06737eb678ea805bd5056f6c49e4d1b0e820ee8438c042e7cd842c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。所有产出保存在 `autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/k_robustness/`。\n\n## 结果摘要\n\n### 1. Seed 鲁棒性 (4 seeds: 42/123/456/789)\n\n| Method | Mean F1 | Std | \n|--------|---------|-----|\n| vc_weighted | **76.61** | 0.544 |\n| lp_weighted | 76.21 | **0.524** (最稳) |\n| uniform | 75.56 | 0.585 |\n| greedy | 74.81 | 0.033 |\n| sj_weighted | 74.19 | 0.615 |\n| majority_vote | 72.08 | 1.410 (最不稳) |\n\n### 2. N 鲁棒性 (子采样 N=2,4,6)\n- **majority_vote** 对 N 最不敏感（N=2 时仍有 70.56%）\n- uniform/lp/vc/sj 在 N=2 时都崩到 ~55.7%（theta=2/N=1.0 时要求 100% 一致）\n- N≥4 后差距缩小\n\n### 3. Dropout 韧性\n- **uniform** 最抗 dropout（avg drop 仅 0.376pp）\n- majority_vote 最差（avg drop 1.722pp，drop=3 时下降 2.9pp）\n\n### 4. Entity Type 分析\n- 8 种 entity types，`art` 和 `event` 的方法间差异最大（4.46% / 3.06% range）\n- rare types 上所有方法 F1 都低 ~10pp（gap 10-12pp vs common）\n- majority_vote 在 rare types 上表现最好（倾向高 recall）\n\n### 5. 综合鲁棒性排名\n- **uniform** 和 **lp_weighted** 并列第一（avg rank 2.3）\n- uniform 胜在 dropout 韧性，lp_weighted 胜在 seed 稳定性\n- vc_weighted 虽然绝对 F1 最高，但 N-sensitivity 和 dropout 排名靠后"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-k-robustness-analysis.md"
+}

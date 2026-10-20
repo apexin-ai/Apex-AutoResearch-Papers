@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "7acc7cab62b5c6359b3f",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "eval exp b1 scd fewnerd standard",
+  "task_key": "worker_eval_exp_b1_scd_fewnerd_standard_20260520T192035",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp_b1_scd_fewnerd_standard_20260520T192035.log",
+    "occurrence": 1,
+    "bytes": 1751716,
+    "sha256": "f7cd1103538df17c78dd4f5b1893f44935e52c1abc553ef059462af36b30d138"
+  },
+  "statistics": {
+    "messages": 644,
+    "user_turns": 1,
+    "tool_calls": 261,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 114,
+      "tool_call": 261,
+      "tool_result": 261,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 184,
+      "chunks": [
+        {
+          "path": "7acc7cab62b5c6359b3f-part-0001.json",
+          "message_count": 126
+        },
+        {
+          "path": "7acc7cab62b5c6359b3f-part-0002.json",
+          "message_count": 58
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 460,
+      "chunks": [
+        {
+          "path": "7acc7cab62b5c6359b3f-part-0002.json",
+          "message_count": 37
+        },
+        {
+          "path": "7acc7cab62b5c6359b3f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7acc7cab62b5c6359b3f-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "7acc7cab62b5c6359b3f-part-0005.json",
+          "message_count": 63
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-exp-b1-scd-fewnerd-standard.md"
+}

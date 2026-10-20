@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "59eb9d7663451e736367",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "paper final polish 20260524T013437 retry1",
+  "task_key": "worker_paper_final-polish_20260524T013437_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_final-polish_20260524T013437_retry1.log",
+    "occurrence": 1,
+    "bytes": 676963,
+    "sha256": "e2bbc16bd3c6961ef9adc096f3b2e9d75cff2395b8ecab865b8a167dbf90214e"
+  },
+  "statistics": {
+    "messages": 180,
+    "user_turns": 0,
+    "tool_calls": 71,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 28,
+      "tool_call": 71,
+      "tool_result": 71,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 180,
+      "chunks": [
+        {
+          "path": "59eb9d7663451e736367-part-0001.json",
+          "message_count": 127
+        },
+        {
+          "path": "59eb9d7663451e736367-part-0002.json",
+          "message_count": 53
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-final-polish-20260524t013437-retry1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a17c62ed087f59a24091",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis lp rho inconsistency p0",
+  "task_key": "worker_analysis_lp_rho_inconsistency_p0_20260518T232334",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_lp_rho_inconsistency_p0_20260518T232334_result.json",
+    "occurrence": 1,
+    "bytes": 1819,
+    "sha256": "ccc627bfbec4d168688ace8f45f7dff8ee2d3c008ad8d3c9f04a95ca19984b9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 调查结论\n\n### 1. 论文中 FewNERD LP ρ 位置和值\n\n论文 **已更新** 为一致的 LP ρ=0.22：\n- `experiments.tex:125` — \"LP $0.22$\"\n- `appendix.tex:1219` — \"LP ($0.22$)\"\n- `introduction.tex:23` — 引用的是 VC ρ=0.39（不是 LP）\n\n### 2. F1 函数差异 → 不是根因\n\n旧 `evaluation.py` 和 `unified_metrics.py` 的 NER F1 逻辑完全相同（strict match on (start, end, type)）。唯一区别是 both-empty 边界情况（旧=0.0, 新=1.0），但 gold_filter 排除了这些实例。\n\n**验证：非 LP 信号（SJ/FK/EM/VC）ρ 在两管道中完全一致。**\n\n### 3. 根因：LP 信号定义不同\n\n| LP 定义 | FewNERD ρ | SciERC ρ | 谁用 |\n|---------|-----------|----------|------|\n| **Greedy mean_logprob** | 0.427 | 0.261 | 旧管道 `full_signal_analysis.json` |\n| **Mean(sample mean_logprobs)** | 0.222 | 0.205 | unified `results.json` + 当前论文 |\n\nGreedy logprob 天然与 greedy F1 更相关（同一解码过程的置信度和质量），所以 ρ 更高。Sample 均值是跨 8 次随机采样的平均置信度，与特定 greedy 输出的关联更弱。\n\n### 4. 是否需要更新论文\n\n**不需要** — 论文已一致使用 mean sample LP (ρ=0.22)，跨数据集定义统一。\n\n但 `paper_framing.md:66` 仍写 \"LP ρ=0.42\"，已过时。\n\n### 5. paper_framing.md \"ρ(LP,F1) ≈ 0.5-0.66\" 不受影响\n\n已验证这是 **within-instance** ρ（每个实例内 sample LP 与 sample F1 的相关性）：\n- mean = 0.5106\n- median = 0.6667\n- N = 28,086 non-degenerate instances\n\n这是一个完全不同的指标（LP-quality alignment），用于解释为什么 LP selection 在 FewNERD 上成功（强 alignment → LP 能 rank candidates），不涉及 global QE ρ 的定义问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lp-rho-inconsistency-p0.md"
+}

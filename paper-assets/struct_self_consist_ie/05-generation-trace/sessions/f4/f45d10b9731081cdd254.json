@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f45d10b9731081cdd254",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code ssh check server a",
+  "task_key": "worker_code_ssh_check_server_a_20260519T081921",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_ssh_check_server_a_20260519T081921_result.json",
+    "occurrence": 1,
+    "bytes": 821,
+    "sha256": "a868fd578aaa9c106698022b94a8414e13299d94721d9c3070753338a604ebae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n**GPU**: 4× RTX 5090 (32GB each)，全部空闲，0% 利用率，无 GPU 进程。\n\n**32B 模型下载**: **进行中，未完成**。`Qwen2.5-32B-Instruct` 当前已下载 38GB，进程 PID 764903 在跑，日志显示 fetching 27 files 进度约 22% (6/27)。`config.json` 尚未出现，模型不完整。\n\n**磁盘**: `/root/autodl-tmp/` 总 250GB，已用 179GB (72%)，剩余 **72GB**。32B 模型完整约 65GB，空间应该刚好够。\n\n**活跃进程**:\n- Qwen2.5-32B-Instruct 下载进程 (PID 764903, 14:40 启动，已运行约 1.5h)\n- Tensorboard (port 6007)\n- JupyterLab\n- 一个旧的 tmux session `exp_001_n16_seed456`\n\n**Tmux sessions**: 17 个，包括多个实验 session（fewnerd、qwen_conll、scierc、各温度/seed 组合），无 screen session。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ssh-check-server-a.md"
+}

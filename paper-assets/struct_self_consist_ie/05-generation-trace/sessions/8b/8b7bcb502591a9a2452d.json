@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b7bcb502591a9a2452d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis scierc 3seed recompute",
+  "task_key": "worker_analysis_scierc_3seed_recompute_20260521T172731",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_scierc_3seed_recompute_20260521T172731_result.json",
+    "occurrence": 1,
+    "bytes": 1172,
+    "sha256": "d5f6f632d22a5ed3938d147f79de96877e75bf53badfb0c74f6e3338108e63d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到 `/root/autodl-tmp/struct_self_consist_ie/scierc_3seed_recompute_results.txt` 和对应 JSON。\n\n## 3-Seed 汇总 (SciERC MF4v2, N=8, mean ± σ)\n\n| 指标 | mean ± σ |\n|------|----------|\n| Greedy F1 | 0.6669 ± 0.0009 |\n| Oracle F1 | 0.7808 ± 0.0023 |\n| MV F1 (strict >N/2) | 0.6596 ± 0.0040 |\n| δ (degeneracy) | 12.2% ± 1.0% |\n| α_crit = F1_gr/2 | 0.3335 ± 0.0005 |\n| Consensus Construct F1 | 0.6701 ± 0.0034 |\n| Selection F1 (LP) | 0.6669 ± 0.0035 |\n| Selection F1 (SJ) | 0.6621 ± 0.0036 |\n\n**Signal ρ (full-set):**\n\n| Signal | ρ (mean ± σ) |\n|--------|-------------|\n| VC | +0.3977 ± 0.0112 |\n| SJ | +0.3654 ± 0.0097 |\n| EM | +0.3119 ± 0.0123 |\n| FK | +0.2599 ± 0.0166 |\n| LP | +0.2164 ± 0.0047 |\n\n**Signal ρ (conditional, greedy F1>0):**\n\n| Signal | ρ (mean ± σ) |\n|--------|-------------|\n| EM | +0.3805 ± 0.0211 |\n| VC | +0.3261 ± 0.0187 |\n| SJ | +0.3242 ± 0.0137 |\n| FK | +0.1770 ± 0.0170 |\n| LP | +0.1590 ± 0.0058 |\n\nESJ/MRSC/LSC 是需要模型推理的 mechanistic probe，无法从 samples.jsonl 计算。每个 seed 的详细数值在产出文件中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-scierc-3seed-recompute.md"
+}

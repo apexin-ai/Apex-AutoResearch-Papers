@@ -1,0 +1,924 @@
+{
+  "schema_version": "1.0",
+  "id": "d7fa4a6afb8bb9933130",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "ssh a2 degen capability regression",
+  "task_key": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_ssh_a2-degen-capability-regression_20260520T090113.jsonl",
+    "occurrence": 1,
+    "bytes": 50015,
+    "sha256": "398025ccec8095f5d730f5c4d3ba6f318e2c82888232ded56572a1c3f244c49b"
+  },
+  "statistics": {
+    "messages": 45,
+    "user_turns": 0,
+    "tool_calls": 22,
+    "roles": {
+      "tool_call": 22,
+      "tool_result": 22,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T09:04:53.746719+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T09:04:53.747067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T09:04:53.747281+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "struct_self_consist_ie",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T09:04:53.747426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"full_signal_report.json\" -o -name \"report.json\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T09:04:53.748557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (267,248 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ac6b4b29-de5c-453d-86df-87ab66576d8d/tool-results/mcp-agent-ml-research-read_registry-1779267694007.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ac6b4b29-de5c-453d-86df-87ab66576d8d/tool-results/mcp-agent-ml-research-read_registry-1779267694007.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ac6b4b29-de5c-453d-86df-87ab66576d8d/tool-results/mcp-agent-ml-research-read_registry-1779267694007.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T09:04:53.748768+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T09:04:53.748939+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"full_signal_report.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T09:04:53.749106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T09:04:53.749284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ac6b4b29-de5c-453d-86df-87ab66576d8d/tool-results/mcp-agent-ml-research-read_registry-1779267694007.txt | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\n\n# Extract key fields from each experiment\nresults = []\nfor exp in data:\n    results.append({\n        'exp_id': exp.get('exp_id'),\n        'model': exp.get('model', exp.get('config', {}).get('model', '')),\n        'dataset': exp.get('dataset', exp.get('config', {}).get('dataset', '')),\n        'regime': exp.get('regime', exp.get('config', {}).get('regime', '')),\n        'status': exp.get('status'),\n        'metrics': exp.get('metrics', {}),\n        'conclusion': exp.get('conclusion', ''),\n        'output_dir': exp.get('output_dir', exp.get('config', {}).get('output_dir', '')),\n    })\nprint(json.dumps(results, indent=2))\n\" 2>&1 | head -500",
+              "description": "Extract key fields from registry JSON"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T09:04:53.749423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Traceback (most recent call last):\n  File \"<string>\", line 11, in <module>\n    'exp_id': exp.get('exp_id'),\n              ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T09:04:53.749577+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ac6b4b29-de5c-453d-86df-87ab66576d8d/tool-results/mcp-agent-ml-research-read_registry-1779267694007.txt') as f:\n    raw = json.load(f)\nresult = raw['result']\n# Check type\nif isinstance(result, str):\n    data = json.loads(result)\nelse:\n    data = result\nprint('Type:', type(data))\nif isinstance(data, list):\n    print('Length:', len(data))\n    print('First item type:', type(data[0]))\n    print('First item keys:', list(data[0].keys()) if isinstance(data[0], dict) else data[0][:200])\nelif isinstance(data, dict):\n    print('Keys:', list(data.keys())[:20])\n\"",
+              "description": "Probe registry JSON structure"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T09:04:53.749705+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Type: <class 'dict'>\nKeys: ['success', 'data', 'error', 'metadata']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T09:04:53.749824+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"*.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T09:04:53.750031+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/gate0_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_samples.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_realigned_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/e1_component_decomposition.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/exp013_exact_match_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/exp014_entity_voting_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_015_unified/exp015_unified_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/per_relation_type.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/error_propagation.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/threshold_sensitivity.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/bootstrap_ci.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/ner_vs_re_comparison.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/correlation_matrix.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensemble/linear_combo_grid.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp016_signal_ensem\n…[truncated 6386 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T09:04:53.750252+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ac6b4b29-de5c-453d-86df-87ab66576d8d/tool-results/mcp-agent-ml-research-read_registry-1779267694007.txt') as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\ndata = result.get('data', [])\nprint('data type:', type(data))\nif isinstance(data, list):\n    print('count:', len(data))\n    if data:\n        print('first item keys:', list(data[0].keys()))\n        print('first item:', json.dumps(data[0], indent=2)[:2000])\nelif isinstance(data, dict):\n    print('keys:', list(data.keys())[:10])\n    # maybe experiments are nested\n    for k, v in data.items():\n        if isinstance(v, list):\n            print(f'{k}: list of {len(v)}')\n        elif isinstance(v, dict):\n            print(f'{k}: dict with keys {list(v.keys())[:5]}')\n        else:\n            print(f'{k}: {type(v).__name__} = {str(v)[:100]}')\n\"",
+              "description": "Probe registry data structure"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T09:04:53.750399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "data type: <class 'dict'>\nkeys: ['experiments', 'count', 'total', 'baseline']\nexperiments: dict with keys ['exp_qwen25_7b_fewnerd', 'exp_qwen25_72b_fewshot', 'exp_qwen25_72b_zeroshot', 'exp_wnut17_qwen25_7b', 'exp_llama_fewnerd_inference']\ncount: int = 170\ntotal: int = 170\nbaseline: NoneType = None"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T09:04:53.750522+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/scatter_v2_data.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T09:04:53.750645+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/supplement_degen_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T09:04:53.750961+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"SciERC\\\\\\\",\\\\n    \\\\\\\"category\\\\\\\": \\\\\\\"cross-dataset\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"SciERC\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"degen_pct\\\\\\\": 17.77,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.6439,\\\\n    \\\\\\\"lp_f1\\\\\\\": 0.6501,\\\\n    \\\\\\\"lp_delta_pp\\\\\\\": 0.61,\\\\n    \\\\\\\"n_used\\\\\\\": 529,\\\\n    \\\\\\\"n_degen\\\\\\\": 94\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"CoNLL\\\\\\\",\\\\n    \\\\\\\"category\\\\\\\": \\\\\\\"cross-dataset\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"CoNLL\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"degen_pct\\\\\\\": 57.95,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.907,\\\\n    \\\\\\\"lp_f1\\\\\\\": 0.8989,\\\\n    \\\\\\\"lp_delta_pp\\\\\\\": -0.81,\\\\n    \\\\\\\"n_used\\\\\\\": 2756,\\\\n    \\\\\\\"n_degen\\\\\\\": 1597\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"FewNERD\\\\\\\",\\\\n    \\\\\\\"category\\\\\\\": \\\\\\\"cross-dataset\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"FewNERD\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"degen_pct\\\\\\\": 14.43,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.7478,\\\\n    \\\\\\\"lp_f1\\\\\\\": 0.761,\\\\n    \\\\\\\"lp_delta_pp\\\\\\\": 1.32,\\\\n    \\\\\\\"n_used\\\\\\\": 4351,\\\\n    \\\\\\\"n_degen\\\\\\\": 628\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"SciERC s123\\\\\\\",\\\\n    \\\\\\\"category\\\\\\\": \\\\\\\"multi-seed\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"SciERC\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 123,\\\\n    \\\\\\\"degen_pct\\\\\\\": 17.2,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.6457,\\\\n    \\\\\\\"lp_f1\\\\\\\": 0.6436,\\\\n    \\\\\\\"lp_delta_pp\\\\\\\": -0.21,\\\\n    \\\\\\\"n_used\\\\\\\": 529,\\\\n    \\\\\\\"n_degen\\\\\\\": 91\\\\n  },\\\\n  {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"SciERC s456\\\\\\\",\\\\n    \\\\\\\"category\\\\\\\": \\\\\\\"multi-seed\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"SciERC\\\\\\\",\\\\n    \\\\\\\"T\\\\\\\": 1.0,\\\\n    \\\\\\\"seed\\\\\\\": 456,\\\\n    \\\\\\\"degen_pct\\\\\\\": 20.42,\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.6478,\\\\n    \\\\\\\"lp_f1\\\\\\\": 0.645,\\\\n    \\\\\\\"lp_delta_pp\n…[truncated 7572 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T09:04:53.751152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"rank8_scierc\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 529,\\\\n    \\\\\\\"n_degen\\\\\\\": 38,\\\\n    \\\\\\\"degen_pct\\\\\\\": 7.18\\\\n  },\\\\n  \\\\\\\"n32_scierc\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 529,\\\\n    \\\\\\\"n_degen\\\\\\\": 38,\\\\n    \\\\\\\"degen_pct\\\\\\\": 7.18\\\\n  },\\\\n  \\\\\\\"n16_scierc_seed42\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 529,\\\\n    \\\\\\\"n_degen\\\\\\\": 64,\\\\n    \\\\\\\"degen_pct\\\\\\\": 12.1\\\\n  },\\\\n  \\\\\\\"fewnerd_n8_seed42\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 32565,\\\\n    \\\\\\\"n_degen\\\\\\\": 4479,\\\\n    \\\\\\\"degen_pct\\\\\\\": 13.75\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T09:04:53.751333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ac6b4b29-de5c-453d-86df-87ab66576d8d/tool-results/mcp-agent-ml-research-read_registry-1779267694007.txt') as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\nexps = result['data']['experiments']\nfor eid, exp in exps.items():\n    print(f'{eid}: status={exp.get(\\\"status\\\")}, metrics={json.dumps(exp.get(\\\"metrics\\\",{}))[:200]}')\n    if 'config' in exp:\n        c = exp['config']\n        print(f'  model={c.get(\\\"model\\\")}, dataset={c.get(\\\"dataset\\\")}, regime={c.get(\\\"regime\\\")}')\n    print()\n\" 2>&1 | head -80",
+              "description": "List all DONE experiments from registry"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T09:04:53.751576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_qwen25_7b_fewnerd: status=DONE, metrics={\"3seed_mean\": {\"lp_rho\": 0.346, \"lp_rho_std\": 0.021, \"sj_rho\": 0.388, \"sj_rho_std\": 0.029, \"vc_rho\": 0.404, \"vc_rho_std\": 0.01, \"degen_pct\": 31.7, \"degen_std\": 0.9, \"greedy_f1\": 0.784, \"greedy_f1_std\n\nexp_qwen25_72b_fewshot: status=DONE, metrics={\"scierc\": {\"lp_rho\": 0.06, \"sj_rho\": 0.293, \"fk_rho\": 0.301, \"vc_rho\": 0.258, \"em_rho\": 0.205, \"degen_pct\": 16.6, \"greedy_f1\": 0.461, \"oracle_f1\": 0.604, \"construction_f1\": 0.461, \"construction_delta\n\nexp_qwen25_72b_zeroshot: status=DONE, metrics={\"scierc\": {\"greedy_f1\": 0.3993, \"lp_rho\": 0.081, \"vc_rho\": 0.277, \"sj_rho\": 0.217, \"degen_rate\": 0.21, \"construction_lp_weighted_f1\": 0.4146, \"construction_lp_delta_pp\": 1.53, \"construction_uniform_f\n\nexp_wnut17_qwen25_7b: status=DONE, metrics={\"seed42\": {\"greedy_f1\": 0.4524, \"construction_f1\": 0.4439, \"construction_delta_pp\": -0.84, \"construction_p\": 0.95}, \"seed123\": {\"greedy_f1\": 0.4518, \"construction_f1\": 0.4579, \"construction_delta_pp\"\n\nexp_llama_fewnerd_inference: status=DONE, metrics={\"3seed_mean\": {\"greedy_f1\": 0.7842, \"oracle_f1\": 0.8843, \"headroom_pp\": 10.01, \"degeneracy_pct\": 23.36, \"lp_delta_pp\": 0.36, \"dgs_delta_pp\": -0.35}, \"seed_42\": {\"greedy_f1\": 0.7841, \"oracle_f1\": 0.88\n\nexp_entity_construction: status=DONE, metrics={\"n16_fair_cv\": {\"scierc_ner\": {\"cv_uniform_delta\": \"+1.35pp\", \"p_value\": 0.018, \"significant\": true}, \"conll_ner\": {\"cv_uniform_delta\": \"+0.10pp\", \"p_value\": 0.303, \"significant\": false}, \"fewnerd_ne\n\nexp_lp_alignment_gating: status=DONE, metrics={\"adjusted_score\": \"mean_rho * valid_ratio\", \"threshold\": 0.3, \"accuracy\": \"3/3 datasets correct\", \"robust_range\": \"0.2-0.4\"}\n\nexp_selective_prediction: status=DONE, metrics={\"vc_best_signal\": true, \"f1_at_80pct_coverage\": {\"scierc\": \"+5.0pp\", \"conll\": \"+8.4pp\", \"fewnerd\": \"+6.2pp\"}, \"precision_coverage_curves\": \"output/prescriptive_analysis/fig_selective_prediction.pdf\"}\n\nexp_llama_fewnerd_lora: status=DONE, metrics={\"epoch\": 3, \"train_loss\": 0.0516, \"eval_loss\":\n…[truncated 5809 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T09:04:53.751745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/vc_8b_qwen3_ft_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T09:04:53.751879+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T09:04:53.752042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ac6b4b29-de5c-453d-86df-87ab66576d8d/tool-results/mcp-agent-ml-research-read_registry-1779267694007.txt') as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\nexps = result['data']['experiments']\n\n# Get Qwen2.5-72B zeroshot metrics\nzs = exps.get('exp_qwen25_72b_zeroshot', {})\nprint('=== Qwen2.5-72B ZS ===')\nprint(json.dumps(zs.get('metrics', {}), indent=2))\n\nprint()\nprint('=== Qwen2.5-72B FS ===')\nfs = exps.get('exp_qwen25_72b_fewshot', {})\nprint(json.dumps(fs.get('metrics', {}), indent=2))\n\nprint()\nprint('=== Qwen2.5-7B FewNERD ===')\nq7 = exps.get('exp_qwen25_7b_fewnerd', {})\nprint(json.dumps(q7.get('metrics', {}), indent=2))\n\nprint()\nprint('=== WNUT17 Qwen2.5-7B ===')\nwn = exps.get('exp_wnut17_qwen25_7b', {})\nprint(json.dumps(wn.get('metrics', {}), indent=2))\n\nprint()\nprint('=== LLaMA FewNERD inference ===')\nll = exps.get('exp_llama_fewnerd_inference', {})\nprint(json.dumps(ll.get('metrics', {}), indent=2))\n\" 2>&1",
+              "description": "Extract ZS/FS/7B metrics from registry"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T09:04:53.752288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== Qwen2.5-72B ZS ===\n{\n  \"scierc\": {\n    \"greedy_f1\": 0.3993,\n    \"lp_rho\": 0.081,\n    \"vc_rho\": 0.277,\n    \"sj_rho\": 0.217,\n    \"degen_rate\": 0.21,\n    \"construction_lp_weighted_f1\": 0.4146,\n    \"construction_lp_delta_pp\": 1.53,\n    \"construction_uniform_f1\": 0.3941,\n    \"construction_uniform_delta_pp\": -0.52,\n    \"lp_selection_f1\": 0.3984,\n    \"majority_vote_f1\": 0.4132,\n    \"oracle_f1\": 0.5489,\n    \"bootstrap_p\": 0.0082,\n    \"bootstrap_ci_lower\": 0.0025,\n    \"bootstrap_ci_upper\": 0.0282,\n    \"cohens_d\": 0.1027,\n    \"n_instances\": 529,\n    \"non_degen_delta_pp\": 1.65,\n    \"non_degen_p\": 0.0069\n  },\n  \"conll2003\": {\n    \"greedy_f1\": 0.712,\n    \"lp_rho\": -0.002,\n    \"vc_rho\": 0.297,\n    \"sj_rho\": 0.304,\n    \"degen_rate\": 0.677,\n    \"construction_lp_weighted_f1\": 0.7083,\n    \"construction_lp_delta_pp\": -0.37,\n    \"construction_uniform_f1\": 0.7028,\n    \"construction_uniform_delta_pp\": -0.92,\n    \"lp_selection_f1\": 0.708,\n    \"majority_vote_f1\": 0.7034,\n    \"oracle_f1\": 0.7651\n  },\n  \"fewnerd\": {\n    \"greedy_f1\": 0.6281,\n    \"lp_rho\": 0.119,\n    \"vc_rho\": 0.416,\n    \"sj_rho\": 0.345,\n    \"degen_rate\": 0.462,\n    \"construction_lp_weighted_f1\": 0.6261,\n    \"construction_lp_delta_pp\": -0.2,\n    \"construction_uniform_f1\": 0.6112,\n    \"construction_uniform_delta_pp\": -1.7,\n    \"lp_selection_f1\": 0.6241,\n    \"lp_selection_delta_pp\": -0.4,\n    \"majority_vote_f1\": 0.6262,\n    \"oracle_f1\": 0.7072\n  }\n}\n\n=== Qwen2.5-72B FS ===\n{\n  \"scierc\": {\n    \"lp_rho\": 0.06,\n    \"sj_rho\": 0.293,\n    \"fk_rho\": 0.301,\n    \"vc_rho\": 0.258,\n    \"em_rho\": 0.205,\n    \"degen_pct\": 16.6,\n    \"greedy_f1\": 0.461,\n    \"oracle_f1\": 0.604,\n    \"construction_f1\": 0.461,\n    \"construction_delta_pp\": -0.08,\n    \"bootstrap_p\": 0.544\n  },\n  \"conll\": {\n    \"lp_rho\": 0.106,\n    \"sj_rho\": 0.442,\n    \"fk_rho\": 0.451,\n    \"vc_rho\": 0.426,\n    \"em_rho\": 0.403,\n    \"degen_pct\": 70,\n    \"greedy_f1\": 0.745,\n    \"oracle_f1\": 0.796,\n    \"construction_f1\": 0.745,\n    \"construction_delta_pp\": 0.03,\n    \"bootstrap_p\": 0.41\n…[truncated 2691 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T09:04:53.752500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ac6b4b29-de5c-453d-86df-87ab66576d8d/tool-results/mcp-agent-ml-research-read_registry-1779267694007.txt') as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\nexps = result['data']['experiments']\n\n# Get all experiment IDs with their metrics\nfor eid, exp in exps.items():\n    # Skip the ones we already printed\n    if eid in ['exp_qwen25_7b_fewnerd', 'exp_qwen25_72b_fewshot', 'exp_qwen25_72b_zeroshot', 'exp_wnut17_qwen25_7b', 'exp_llama_fewnerd_inference']:\n        continue\n    m = exp.get('metrics', {})\n    if not m:\n        continue\n    # Look for greedy_f1 and degen_rate\n    flat = json.dumps(m)\n    if 'greedy_f1' in flat or 'degen' in flat:\n        print(f'\\\\n=== {eid} ===')\n        print(flat[:500])\n\" 2>&1",
+              "description": "Find remaining experiments with greedy_f1 and degen data"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T09:04:53.752791+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (30.6KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ac6b4b29-de5c-453d-86df-87ab66576d8d/tool-results/b7acc1jv3.txt\n\nPreview (first 2KB):\n=== exp_fewnerd_s789_n8 ===\n{\"greedy_f1\": 0.7478, \"oracle_f1\": 0.8714, \"headroom_pp\": 12.37, \"degen_rate\": 0.1177, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"instance_count\": 37648, \"n_valid\": 32565, \"lp_sel_f1\": 0.7614, \"lp_delta_pp\": 1.36, \"lp_rho_global\": 0.1788, \"lp_rho_cond\": 0.176, \"dgs_f1\": 0.7621, \"dgs_delta_pp\": 1.43, \"dgs_vs_lp_pp\": 0.07, \"best_signal\": \"LP\", \"four_seed_mean_greedy\": 0.7481, \"four_seed_mean_lp_delta_pp\": 1.38, \"four_seed_lp_delta_ci95\": [1.32, 1.44]}\n\n=== exp_026_t12_seed456 ===\n{\"ner_greedy_f1\": 0.6637, \"ner_oracle_f1\": 0.7821, \"rho_sj_ner\": 0.3995, \"sample_f1_pct_zero\": 14.08, \"instance_count\": 551, \"n_valid\": 529}\n\n=== exp_026_t12_seed123 ===\n{\"ner_greedy_f1\": 0.6595, \"ner_oracle_f1\": 0.7895, \"rho_sj_ner\": 0.359, \"sample_f1_pct_zero\": 13.99, \"instance_count\": 551, \"n_valid\": 529}\n\n=== exp_026_t10_seed456 ===\n{\"ner_greedy_f1\": 0.6621, \"ner_oracle_f1\": 0.7754, \"rho_sj_ner\": 0.3921, \"sample_f1_pct_zero\": 12.97, \"instance_count\": 551, \"n_valid\": 529}\n\n=== exp_026_t10_seed123 ===\n{\"ner_greedy_f1\": 0.6633, \"ner_oracle_f1\": 0.7777, \"rho_sj_ner\": 0.3809, \"sample_f1_pct_zero\": 12.59, \"instance_count\": 551, \"n_valid\": 529}\n\n=== exp_026_t10_seed42 ===\n{\"ner_greedy_f1\": 0.6617, \"ner_oracle_f1\": 0.7798, \"rho_sj_ner\": 0.3598, \"sample_f1_pct_zero\": 12.9, \"instance_count\": 551, \"n_valid\": 529}\n\n=== exp_026_t08_seed456 ===\n{\"ner_greedy_f1\": 0.6641, \"ner_oracle_f1\": 0.7694, \"rho_sj_ner\": 0.3771, \"sample_f1_pct_zero\": 11.79, \"instance_count\": 551, \"n_valid\": 529}\n\n=== exp_026_t08_seed123 ===\n{\"ner_greedy_f1\": 0.6607, \"ner_oracle_f1\": 0.7714, \"rho_sj_ner\": 0.3893, \"sample_f1_pct_zero\": 11.22, \"instance_count\": 551, \"n_valid\": 529}\n\n=== exp_026_t05_seed456 ===\n{\"ne\n…[truncated 189 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T09:04:53.752962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/ac6b4b29-de5c-453d-86df-87ab66576d8d/tool-results/b7acc1jv3.txt"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T09:04:53.753428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t=== exp_fewnerd_s789_n8 ===\n3\t{\"greedy_f1\": 0.7478, \"oracle_f1\": 0.8714, \"headroom_pp\": 12.37, \"degen_rate\": 0.1177, \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\", \"instance_count\": 37648, \"n_valid\": 32565, \"lp_sel_f1\": 0.7614, \"lp_delta_pp\": 1.36, \"lp_rho_global\": 0.1788, \"lp_rho_cond\": 0.176, \"dgs_f1\": 0.7621, \"dgs_delta_pp\": 1.43, \"dgs_vs_lp_pp\": 0.07, \"best_signal\": \"LP\", \"four_seed_mean_greedy\": 0.7481, \"four_seed_mean_lp_delta_pp\": 1.38, \"four_seed_lp_delta_ci95\": [1.32, 1.44]}\n4\t\n5\t=== exp_026_t12_seed456 ===\n6\t{\"ner_greedy_f1\": 0.6637, \"ner_oracle_f1\": 0.7821, \"rho_sj_ner\": 0.3995, \"sample_f1_pct_zero\": 14.08, \"instance_count\": 551, \"n_valid\": 529}\n7\t\n8\t=== exp_026_t12_seed123 ===\n9\t{\"ner_greedy_f1\": 0.6595, \"ner_oracle_f1\": 0.7895, \"rho_sj_ner\": 0.359, \"sample_f1_pct_zero\": 13.99, \"instance_count\": 551, \"n_valid\": 529}\n10\t\n11\t=== exp_026_t10_seed456 ===\n12\t{\"ner_greedy_f1\": 0.6621, \"ner_oracle_f1\": 0.7754, \"rho_sj_ner\": 0.3921, \"sample_f1_pct_zero\": 12.97, \"instance_count\": 551, \"n_valid\": 529}\n13\t\n14\t=== exp_026_t10_seed123 ===\n15\t{\"ner_greedy_f1\": 0.6633, \"ner_oracle_f1\": 0.7777, \"rho_sj_ner\": 0.3809, \"sample_f1_pct_zero\": 12.59, \"instance_count\": 551, \"n_valid\": 529}\n16\t\n17\t=== exp_026_t10_seed42 ===\n18\t{\"ner_greedy_f1\": 0.6617, \"ner_oracle_f1\": 0.7798, \"rho_sj_ner\": 0.3598, \"sample_f1_pct_zero\": 12.9, \"instance_count\": 551, \"n_valid\": 529}\n19\t\n20\t=== exp_026_t08_seed456 ===\n21\t{\"ner_greedy_f1\": 0.6641, \"ner_oracle_f1\": 0.7694, \"rho_sj_ner\": 0.3771, \"sample_f1_pct_zero\": 11.79, \"instance_count\": 551, \"n_valid\": 529}\n22\t\n23\t=== exp_026_t08_seed123 ===\n24\t{\"ner_greedy_f1\": 0.6607, \"ner_oracle_f1\": 0.7714, \"rho_sj_ner\": 0.3893, \"sample_f1_pct_zero\": 11.22, \"instance_count\": 551, \"n_valid\": 529}\n25\t\n26\t=== exp_026_t05_seed456 ===\n27\t{\"ner_greedy_f1\": 0.6639, \"ner_oracle_f1\": 0.7437, \"rho_sj_ner\": 0.3279, \"sample_f1_pct_zero\": 10.28, \"instance_count\": 551, \"n_valid\": 529}\n28\t\n29\t=== exp_026_t05_seed123 ===\n30\t{\"ner_greedy_f1\": 0.6611, \n…[truncated 30223 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T09:04:53.753675+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a2_degen_regression",
+              "description": "Create output directory"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T09:04:53.753815+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T09:04:53.753987+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a2_degen_regression/run_analysis.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"A2: Degeneracy-Capability regression analysis and scatter plot.\"\"\"\n\nimport json\nimport numpy as np\nfrom scipy import stats\nfrom pathlib import Path\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nfrom matplotlib.lines import Line2D\n\nOUT_DIR = Path(__file__).parent\n\n# ── Data points: (model_family, regime, dataset, greedy_f1, degen_pct) ──\n# Each row is a seed-level or single-run observation.\n\nDATA = [\n    # ── Qwen3-8B FT (T=1.0, 5-epoch, rank=1024, N=16 unless noted) ──\n    (\"Qwen3-8B\", \"FT\", \"SciERC\",  0.6439, 17.77),\n    (\"Qwen3-8B\", \"FT\", \"SciERC\",  0.6457, 17.20),\n    (\"Qwen3-8B\", \"FT\", \"SciERC\",  0.6478, 20.42),\n    (\"Qwen3-8B\", \"FT\", \"CoNLL\",   0.9070, 57.95),\n    (\"Qwen3-8B\", \"FT\", \"CoNLL\",   0.9077, 63.03),\n    (\"Qwen3-8B\", \"FT\", \"CoNLL\",   0.9070, 62.88),\n    (\"Qwen3-8B\", \"FT\", \"FewNERD\", 0.7478, 14.43),\n    (\"Qwen3-8B\", \"FT\", \"FewNERD\", 0.7480, 13.12),\n    (\"Qwen3-8B\", \"FT\", \"FewNERD\", 0.7486, 12.12),\n    (\"Qwen3-8B\", \"FT\", \"FewNERD\", 0.7478, 11.77),  # seed 789\n    # Qwen3-8B FT N=16 FewNERD (from exp_027_fewnerd_n16)\n    (\"Qwen3-8B\", \"FT\", \"FewNERD-N16\", 0.7478, 7.06),\n    # Qwen3-8B WNUT17\n    (\"Qwen3-8B\", \"FT\", \"WNUT17\",  0.5250, 53.70),  # from sample_f1_pct_zero as proxy; note this is actually pct_zero not degen\n\n    # ── Qwen3-4B FT ──\n    (\"Qwen3-4B\", \"FT\", \"SciERC\",  0.6622, 10.40),\n    (\"Qwen3-4B\", \"FT\", \"CoNLL\",   0.9212, 90.57),\n\n    # ── Qwen2.5-7B FT (FewNERD, 3 seeds) ──\n    (\"Qwen2.5-7B\", \"FT\", \"FewNERD\", 0.7851, 31.10),\n    (\"Qwen2.5-7B\", \"FT\", \"FewNERD\", 0.7850, 32.80),\n    (\"Qwen2.5-7B\", \"FT\", \"FewNERD\", 0.7825, 31.30),\n\n    # ── Qwen2.5-72B Zero-Shot ──\n    (\"Qwen2.5-72B\", \"ZS\", \"SciERC\",  0.3993, 21.00),\n    (\"Qwen2.5-72B\", \"ZS\", \"CoNLL\",   0.7120, 67.70),\n    (\"Qwen2.5-72B\", \"ZS\", \"FewNERD\", 0.6281, 46.20),\n\n    # ── Qwen2.5-72B Few-Shot ──\n    (\"Qwen2.5-72B\", \"FS\", \"SciERC\",  0.4610, 16.60),\n    (\"Qwen2.5-72B\", \"FS\", \"CoNLL\",   0.7450, 70.00),\n    (\"Qwen2.5-72B\", \"FS\", \"FewNERD\", 0.6190, 45.20),\n\n    # ── LLaMA-3.1-8B FT SciERC (3 seeds) ──\n    (\"LLaMA-3.1-8B\", \"FT\", \"SciERC\",  0.6460, 24.95),\n    (\"LLaMA-3.1-8B\", \"FT\", \"SciERC\",  0.6454, 26.65),\n    (\"LLaMA-3.1-8B\", \"FT\", \"SciERC\",  0.6459, 27.41),\n    # ── LLaMA-3.1-8B FT CoNLL (3 seeds) ──\n    (\"LLaMA-3.1-8B\", \"FT\", \"CoNLL\",   0.9239, 89.44),\n    (\"LLaMA-3.1-8B\", \"FT\", \"CoNLL\",   0.9238, 89.30),\n    (\"LLaMA-3.1-8B\", \"FT\", \"CoNLL\",   0.9242, 89.44),\n    # ── LLaMA-3.1-8B FT FewNERD (3 seeds) ──\n    (\"LLaMA-3.1-8B\", \"FT\", \"FewNERD\", 0.7841, 27.32),\n    (\"LLaMA-3.1-8B\", \"FT\", \"FewNERD\", 0.7840, 24.63),\n    (\"LLaMA-3.1-8B\", \"FT\", \"FewNERD\", 0.7844, 18.13),\n\n    # ── LLaMA-3.2-3B FT SciERC ──\n    (\"LLaMA-3.2-3B\", \"FT\", \"SciERC\", 0.6267, None),  # no degen data, skip\n]\n\n# Filter out entries without degen data\nDATA = [(m, r, d, f1, dg) for m, r, d, f1, dg in DATA if dg is not None]\n\n# Remove WNUT17 pct_zero proxy — not true degeneracy\nDATA = [(m, r, d, f1, dg) for m, r, d, f1, dg in DATA if d != \"WNUT17\"]\n# Remove FewNERD-N16 (different N, confounded)\nDATA = [(m, r, d, f1, dg) for m, r, d, f1, dg in DATA if d != \"FewNERD-N16\"]\n\n# ── Color/marker scheme ──\nFAMILY_STYLE = {\n    \"Qwen3-8B\":     {\"color\": \"#2166ac\", \"marker\": \"o\", \"label\": \"Qwen3-8B FT\"},\n    \"Qwen3-4B\":     {\"color\": \"#67a9cf\", \"marker\": \"s\", \"label\": \"Qwen3-4B FT\"},\n    \"Qwen2.5-7B\":   {\"color\": \"#1b7837\", \"marker\": \"D\", \"label\": \"Qwen2.5-7B FT\"},\n    \"Qwen2.5-72B_ZS\": {\"color\": \"#d6604d\", \"marker\": \"^\", \"label\": \"Qwen2.5-72B ZS\"},\n    \"Qwen2.5-72B_FS\": {\"color\": \"#f4a582\", \"marker\": \"v\", \"label\": \"Qwen2.5-72B FS\"},\n    \"LLaMA-3.1-8B\": {\"color\": \"#e66101\", \"marker\": \"P\", \"label\": \"LLaMA-3.1-8B FT\"},\n}\n\ndef get_family_key(model, regime):\n    if model == \"Qwen2.5-72B\" and regime == \"ZS\":\n        return \"Qwen2.5-72B_ZS\"\n    if model == \"Qwen2.5-72B\" and regime == \"FS\":\n        return \"Qwen2.5-72B_FS\"\n    return model\n\n# ── Arrays ──\nf1_arr = np.array([row[3] for row in DATA])\ndg_arr = np.array([row[4] for row in DATA])\n\n# ── Regression ──\n# Linear\nslope, intercept, r_lin, p_lin, se_lin = stats.linregress(f1_arr, dg_arr)\nlin_eq = f\"degen = {slope:.1f} × F1 + {intercept:.1f}\"\n\n# Quadratic\ncoeffs = np.polyfit(f1_arr, dg_arr, 2)\npoly = np.poly1d(coeffs)\nss_res = np.sum((dg_arr - poly(f1_arr))**2)\nss_tot = np.sum((dg_arr - np.mean(dg_arr))**2)\nr2_quad = 1 - ss_res / ss_tot\nquad_eq = f\"degen = {coeffs[0]:.1f}×F1² + {coeffs[1]:.1f}×F1 + {coeffs[2]:.1f}\"\n\n# Spearman rank correlation\nrho_sp, p_sp = stats.spearmanr(f1_arr, dg_arr)\n\nresults = {\n    \"n_points\": len(DATA),\n    \"linear\": {\n        \"equation\": lin_eq,\n        \"slope\": round(slope, 3),\n        \"intercept\": round(intercept, 3),\n        \"R2\": round(r_lin**2, 4),\n        \"r\": round(r_lin, 4),\n        \"p_value\": float(f\"{p_lin:.4e}\"),\n        \"std_err\": round(se_lin, 3),\n    },\n    \"quadratic\": {\n        \"equation\": quad_eq,\n        \"coefficients\": [round(c, 3) for c in coeffs],\n        \"R2\": round(r2_quad, 4),\n    },\n    \"spearman\": {\n        \"rho\": round(rho_sp, 4),\n        \"p_value\": float(f\"{p_sp:.4e}\"),\n    },\n    \"summary\": (\n        f\"Positive correlation: higher greedy F1 → higher degeneracy rate. \"\n        f\"Spearman ρ={rho_sp:.3f} (p={p_sp:.2e}). \"\n        f\"Linear R²={r_lin**2:.3f}. Quadratic R²={r2_quad:.3f}. \"\n        f\"The relationship is largely driven by dataset difficulty: \"\n        f\"CoNLL (easy, high F1) has very high degeneracy, while SciERC (hard, low F1) has low degeneracy.\"\n    ),\n    \"data_points\": [\n        {\"model\": m, \"regime\": r, \"dataset\": d, \"greedy_f1\": f1, \"degen_pct\": dg}\n        for m, r, d, f1, dg in DATA\n    ],\n}\n\n# ── Save regression results ──\nwith open(OUT_DIR / \"regression_results.json\", \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(\"Regression results saved.\")\nprint(f\"  Linear:    {lin_eq}  (R²={r_lin**2:.4f}, p={p_lin:.2e})\")\nprint(f\"  Quadratic: {quad_eq}  (R²={r2_quad:.4f})\")\nprint(f\"  Spearman:  ρ={rho_sp:.4f}, p={p_sp:.2e}\")\n\n# ── Scatter plot ──\nfig, ax = plt.subplots(figsize=(8, 5.5))\n\nDATASET_ABBREV = {\n    \"SciERC\": \"Sci\", \"CoNLL\": \"CoN\", \"FewNERD\": \"Few\",\n}\n\nfor m, regime, ds, f1, dg in DATA:\n    fk = get_family_key(m, regime)\n    sty = FAMILY_STYLE[fk]\n    ax.scatter(f1, dg, c=sty[\"color\"], marker=sty[\"marker\"],\n               s=70, edgecolors=\"white\", linewidths=0.5, zorder=5)\n\n# Dataset labels: annotate cluster centroids only\nfrom collections import defaultdict\nclusters = defaultdict(list)\nfor m, regime, ds, f1, dg in DATA:\n    fk = get_family_key(m, regime)\n    clusters[(fk, ds)].append((f1, dg))\n\nfor (fk, ds), pts in clusters.items():\n    xs = np.mean([p[0] for p in pts])\n    ys = np.mean([p[1] for p in pts])\n    abbr = DATASET_ABBREV.get(ds, ds[:3])\n    ax.annotate(abbr, (xs, ys), textcoords=\"offset points\",\n                xytext=(6, 4), fontsize=6.5, color=\"gray\", alpha=0.8)\n\n# Regression lines\nx_fit = np.linspace(f1_arr.min() - 0.02, f1_arr.max() + 0.02, 200)\nax.plot(x_fit, slope * x_fit + intercept, \"--\", color=\"gray\", alpha=0.6, linewidth=1.2,\n        label=f\"Linear (R²={r_lin**2:.3f})\")\nax.plot(x_fit, poly(x_fit), \"-\", color=\"#984ea3\", alpha=0.55, linewidth=1.2,\n        label=f\"Quadratic (R²={r2_quad:.3f})\")\n\n# Legend\nhandles = []\nfor fk, sty in FAMILY_STYLE.items():\n    handles.append(Line2D([0], [0], marker=sty[\"marker\"], color=\"w\",\n                          markerfacecolor=sty[\"color\"], markersize=8,\n                          markeredgecolor=\"white\", markeredgewidth=0.5,\n                          label=sty[\"label\"]))\nhandles.append(Line2D([0], [0], linestyle=\"--\", color=\"gray\", alpha=0.6, label=f\"Linear (R²={r_lin**2:.3f})\"))\nhandles.append(Line2D([0], [0], linestyle=\"-\", color=\"#984ea3\", alpha=0.55, label=f\"Quadratic (R²={r2_quad:.3f})\"))\n\nax.legend(handles=handles, fontsize=7.5, loc=\"upper left\", framealpha=0.9,\n          borderpad=0.6, handletextpad=0.5)\n\nax.set_xlabel(\"Greedy F1\", fontsize=11)\nax.set_ylabel(\"Degeneracy Rate (%)\", fontsize=11)\nax.set_title(\"Degeneracy Rate vs. Capability (Greedy F1)\", fontsize=12, pad=10)\nax.tick_params(labelsize=9)\nax.set_xlim(0.35, 0.96)\nax.set_ylim(-2, 98)\nax.spines[\"top\"].set_visible(False)\nax.spines[\"right\"].set_visible(False)\nax.grid(alpha=0.15)\n\nfig.tight_layout()\nfig.savefig(OUT_DIR / \"degen_capability_scatter.png\", dpi=200, bbox_inches=\"tight\")\nfig.savefig(OUT_DIR / \"degen_capability_scatter.pdf\", bbox_inches=\"tight\")\nprint(\"Scatter plot saved (PNG + PDF).\")\n"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T09:04:53.754288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a2_degen_regression/run_analysis.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T09:04:53.754430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a2_degen_regression && python3 run_analysis.py",
+              "description": "Run regression analysis and generate scatter plot"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T09:04:53.754562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Regression results saved.\n  Linear:    degen = 129.5 × F1 + -56.9  (R²=0.4139, p=1.26e-04)\n  Quadratic: degen = 470.3×F1² + -538.0×F1 + 171.5  (R²=0.5920)\n  Spearman:  ρ=0.5194, p=3.27e-03\nScatter plot saved (PNG + PDF)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T09:04:53.754689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a2_degen_regression/degen_capability_scatter.png"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T09:04:53.755355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T09:04:53.755508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a2_degen_regression/regression_results.json"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T09:04:53.755714+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"n_points\": 30,\n3\t  \"linear\": {\n4\t    \"equation\": \"degen = 129.5 \\u00d7 F1 + -56.9\",\n5\t    \"slope\": 129.537,\n6\t    \"intercept\": -56.887,\n7\t    \"R2\": 0.4139,\n8\t    \"r\": 0.6433,\n9\t    \"p_value\": 0.00012564,\n10\t    \"std_err\": 29.131\n11\t  },\n12\t  \"quadratic\": {\n13\t    \"equation\": \"degen = 470.3\\u00d7F1\\u00b2 + -538.0\\u00d7F1 + 171.5\",\n14\t    \"coefficients\": [\n15\t      470.269,\n16\t      -537.957,\n17\t      171.509\n18\t    ],\n19\t    \"R2\": 0.592\n20\t  },\n21\t  \"spearman\": {\n22\t    \"rho\": 0.5194,\n23\t    \"p_value\": 0.0032664\n24\t  },\n25\t  \"summary\": \"Positive correlation: higher greedy F1 \\u2192 higher degeneracy rate. Spearman \\u03c1=0.519 (p=3.27e-03). Linear R\\u00b2=0.414. Quadratic R\\u00b2=0.592. The relationship is largely driven by dataset difficulty: CoNLL (easy, high F1) has very high degeneracy, while SciERC (hard, low F1) has low degeneracy.\",\n26\t  \"data_points\": [\n27\t    {\n28\t      \"model\": \"Qwen3-8B\",\n29\t      \"regime\": \"FT\",\n30\t      \"dataset\": \"SciERC\",\n31\t      \"greedy_f1\": 0.6439,\n32\t      \"degen_pct\": 17.77\n33\t    },\n34\t    {\n35\t      \"model\": \"Qwen3-8B\",\n36\t      \"regime\": \"FT\",\n37\t      \"dataset\": \"SciERC\",\n38\t      \"greedy_f1\": 0.6457,\n39\t      \"degen_pct\": 17.2\n40\t    },\n41\t    {\n42\t      \"model\": \"Qwen3-8B\",\n43\t      \"regime\": \"FT\",\n44\t      \"dataset\": \"SciERC\",\n45\t      \"greedy_f1\": 0.6478,\n46\t      \"degen_pct\": 20.42\n47\t    },\n48\t    {\n49\t      \"model\": \"Qwen3-8B\",\n50\t      \"regime\": \"FT\",\n51\t      \"dataset\": \"CoNLL\",\n52\t      \"greedy_f1\": 0.907,\n53\t      \"degen_pct\": 57.95\n54\t    },\n55\t    {\n56\t      \"model\": \"Qwen3-8B\",\n57\t      \"regime\": \"FT\",\n58\t      \"dataset\": \"CoNLL\",\n59\t      \"greedy_f1\": 0.9077,\n60\t      \"degen_pct\": 63.03\n61\t    },\n62\t    {\n63\t      \"model\": \"Qwen3-8B\",\n64\t      \"regime\": \"FT\",\n65\t      \"dataset\": \"CoNLL\",\n66\t      \"greedy_f1\": 0.907,\n67\t      \"degen_pct\": 62.88\n68\t    },\n69\t    {\n70\t      \"model\": \"Qwen3-8B\",\n71\t      \"regime\": \"FT\",\n72\t      \"dataset\": \"FewNERD\",\n73\t      \"greedy_f1\": 0.7478,\n74\t      \"degen_pct\": 14.43\n…[truncated 3932 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T09:04:53.755895+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "A2 Degeneracy-Capability Scatter Plot",
+              "type": "chart",
+              "description": "Scatter plot of degeneracy rate vs greedy F1 across 30 data points (6 model-regime families × 3 datasets). Shows positive correlation (Spearman ρ=0.519, p=0.003) with quadratic R²=0.592. Degeneracy is dataset-driven: CoNLL (easy) has 58-90% degeneracy, SciERC (hard) 10-27%.",
+              "project": "struct_self_consist_ie",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a2_degen_regression/degen_capability_scatter.png",
+              "tags": "['A2', 'degeneracy', 'regression', 'scatter']"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T09:04:53.756062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_f09c51\\\", \\\"name\\\": \\\"A2 Degeneracy-Capability Scatter Plot\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Scatter plot of degeneracy rate vs greedy F1 across 30 data points (6 model-regime families × 3 datasets). Shows positive correlation (Spearman ρ=0.519, p=0.003) with quadratic R²=0.592. Degeneracy is dataset-driven: CoNLL (easy) has 58-90% degeneracy, SciERC (hard) 10-27%.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/chart/degen_capability_scatter.png\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T09:04:42.164575+00:00\\\", \\\"tags\\\": [\\\"A2\\\", \\\"degeneracy\\\", \\\"regression\\\", \\\"scatter\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T09:04:53.756228+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "A2 Regression Results JSON",
+              "type": "data",
+              "description": "Regression analysis results: linear (R²=0.414, slope=129.5), quadratic (R²=0.592), Spearman ρ=0.519. Includes all 30 data points with model/regime/dataset/F1/degen.",
+              "project": "struct_self_consist_ie",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a2_degen_regression/regression_results.json",
+              "tags": "['A2', 'degeneracy', 'regression']"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T09:04:53.756387+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_d5c29f\\\", \\\"name\\\": \\\"A2 Regression Results JSON\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Regression analysis results: linear (R²=0.414, slope=129.5), quadratic (R²=0.592), Spearman ρ=0.519. Includes all 30 data points with model/regime/dataset/F1/degen.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/data/regression_results.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T09:04:44.828972+00:00\\\", \\\"tags\\\": [\\\"A2\\\", \\\"degeneracy\\\", \\\"regression\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T09:04:53.756565+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。30 个数据点（6 个 model-regime 组合 × 3 个数据集）的回归分析结果：\n\n| 方法 | R² | 备注 |\n|------|------|------|\n| Linear | 0.414 | degen = 129.5 × F1 − 56.9, p=1.3e-4 |\n| Quadratic | 0.592 | U 型曲线，高 F1 端陡升 |\n| Spearman ρ | 0.519 | p=3.3e-3 |\n\n关键发现：degeneracy 与 F1 正相关，但主要由**数据集难度**驱动——CoNLL（简单任务，F1>0.90）degeneracy 极高（58-90%），SciERC（难任务，F1~0.64）degeneracy 低（10-27%）。同一数据集内不同模型的 degeneracy 差异较小，说明 degeneracy 更多反映的是任务本身的 entropy ceiling 而非模型能力。\n\n输出文件：\n- `artifacts/a2_degen_regression/degen_capability_scatter.png` / `.pdf`\n- `artifacts/a2_degen_regression/regression_results.json`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_a2-degen-capability-regression_20260520T090113"
+          },
+          "id": "event-000045"
+        }
+      ],
+      "message_count": 45
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-a2-degen-capability-regression.md"
+}

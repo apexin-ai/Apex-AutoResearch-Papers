@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3d1a3cdc5993e019a81",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code asb write",
+  "task_key": "worker_code_asb_write_20260520T162800",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_asb_write_20260520T162800_result.json",
+    "occurrence": 1,
+    "bytes": 560,
+    "sha256": "b33f8f2695b8cbd6d7ad0ea2b69d196062c492ef7ff8da1fbdd48325aef979ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入 `artifacts/experiments/asb/run_asb.py`，语法正确。\n\n**产出概要：**\n- 5 个 Phase 完整实现：subsampling → instance features → optimal N labels → predictor 训练 (LR/RF/MLP, 5-fold CV) → budget-constrained evaluation\n- 支持多数据集（逗号分隔 `--data_paths` / `--dataset_names`）\n- 输出 `asb_results.json`（聚合结果）+ `instance_details_{dataset}.jsonl`（逐 instance 细节）\n- 包含 oracle adaptive baseline 和 feature importance 分析\n- **CPU-only 实验，不需要 GPU**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-asb-write.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d74ee5e9e0d2ed05b87c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp016 r1024 extract missing",
+  "task_key": "worker_analysis_exp016_r1024_extract_missing_20260514T232845",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp016_r1024_extract_missing_20260514T232845_result.json",
+    "occurrence": 1,
+    "bytes": 1098,
+    "sha256": "dedf5bee901a64b0dd4936d9e867a4b0cc85f037848adf4cf068e3f51268b7f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已经有完整数据了。结论如下：\n\n## 完整 Selection F1 表格 (exp_016_rerun_1024)\n\n| Method | NER F1 | RE F1 |\n|--------|--------|-------|\n| greedy | 0.6439 | 0.4042 |\n| random_avg | 0.6077 | 0.3544 |\n| sj_best | 0.6450 | 0.3855 |\n| voting_conf_best | 0.6337 | 0.3592 |\n| logprob_best | 0.6501 | 0.3948 |\n| ensemble_best | 0.6450 | 0.3855 |\n| oracle | 0.7758 | 0.5850 |\n\n### 缺失值说明\n\n**`em_best` (exact_match_best) 和 `fk_best` (fleiss_kappa_best) 不存在于 exp_016_rerun_1024 的输出中。** 该实验只计算了 7 种 selection method 的 F1，没有单独为 exact_match 和 fleiss_kappa 信号做 best-of-N selection。\n\n这两个信号只在 logistic ensemble 的 AUROC 分析中出现（作为特征），但没有作为独立的 selection criterion 输出 best-of-N F1 值。\n\n### Random baseline 确认\n\n- NER random_avg = 0.6077 ✓\n- RE random_avg = 0.3544 ✓\n\n如需补充 em_best 和 fk_best，需要修改实验脚本，用 exact_match / fleiss_kappa 分数作为 selection criterion 重新跑 best-of-N selection。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp016-r1024-extract-missing.md"
+}

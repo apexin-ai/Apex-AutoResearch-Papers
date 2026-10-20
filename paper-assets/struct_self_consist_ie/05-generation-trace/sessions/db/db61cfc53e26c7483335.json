@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db61cfc53e26c7483335",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops autodl process check",
+  "task_key": "worker_ops_autodl_process_check_20260514T142740",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_autodl_process_check_20260514T142740_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "9c76eea10ee2663f48ff6eaa599b340cc9b91aa0cbc36e5da375b277824a2e9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已完成，registry 已更新，报告已写入。总结：\n\n**exp_007_llama_inference** (LLaMA-3.1-8B, SciERC joint):\n- NER greedy F1=0.660, RE greedy F1=0.434\n- NER structural > surface ✅，RE structural < surface ❌\n- Verdict: **FAIL** — RE ρ_sj_full=0.299 未达 0.40 阈值，41% RE 样本 F1=0\n\n**exp_003_wnut17_eval** (Qwen3-8B, WNUT17 NER):\n- Greedy F1=0.523, oracle headroom +0.141\n- Verdict: **FAIL** — structural 未胜出，53.7% 样本 F1=0，logprob full ρ 为负\n- 46.5% 实例 gold-empty 被过滤，有效评估只有 689 条\n\n两个实验共同问题：**T=1.0 采样过热**，大量样本 F1=0。建议 T=0.7 重试。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-autodl-process-check.md"
+}

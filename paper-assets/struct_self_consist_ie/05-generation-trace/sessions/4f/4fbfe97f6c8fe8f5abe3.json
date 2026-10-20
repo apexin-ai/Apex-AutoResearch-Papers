@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4fbfe97f6c8fe8f5abe3",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis r8w4 lp range",
+  "task_key": "worker_analysis_r8w4_lp_range_20260515T221454",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_r8w4_lp_range_20260515T221454_result.json",
+    "occurrence": 1,
+    "bytes": 1052,
+    "sha256": "76038e5671959eca208cd96a9a98edfd8b10a2e9211b6c5836804f330af95b01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果：\n\n### LP Range 分析（Cumulative Log Prob）\n\n| Seed | Subtask | N | Median LP Range | IQR | Mean±Std |\n|------|---------|---|-----------------|-----|----------|\n| 42 | ner | 551 | 8.1946 | [5.76, 11.28] | 8.91±4.58 |\n| 123 | ner | 551 | 8.2111 | [6.16, 11.43] | 9.15±4.71 |\n| 456 | **joint** | 551 | 8.3672 | [6.00, 11.51] | 9.21±4.78 |\n| 456 | ner | 551 | 8.1411 | [5.70, 11.42] | 8.81±4.39 |\n\n### 结论\n\n- Seed 456 (joint) 与 seed 42/123 (ner) 的 LP range **无显著差异**：\n  - 相对差异仅 **2.0%**（远低于 10% 阈值）\n  - Mann-Whitney U 检验 p = 0.551（不显著）\n- Mean LP range 也几乎一致（各 seed 的 median 都在 0.054–0.061 之间）\n- 额外对照：seed 456 的 NER-only 重跑版本与 joint 版本 LP range 也基本一致\n- Kruskal-Wallis 三组 NER seeds 检验 p = 0.482（三组间无差异）\n\n**Joint decoding 未改变 LP range 分布，种子间可比。**\n\n结果已保存到 `output/review_round8/r8w4_lp_range_analysis.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r8w4-lp-range.md"
+}

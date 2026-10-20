@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62c32d647aab068ba84a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exec exp020 merge pilot exp021",
+  "task_key": "worker_exec_exp020_merge_pilot_exp021_20260516T160805",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exec_exp020_merge_pilot_exp021_20260516T160805_result.json",
+    "occurrence": 1,
+    "bytes": 1088,
+    "sha256": "616da030bd92354048fc9deda61a13ffeb92e0580e1effc71a982eafa55be499"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-021 is running. All confirmed.\n\n---\n\n## Summary — 4-Step Pipeline Complete\n\n| Step | Status | Details |\n|------|--------|---------|\n| **1. exp-020 训练完成** | DONE | 8236/8236 steps, eval_loss=0.031, time=5h54m |\n| **2. LoRA merge** | DONE | `checkpoints/qwen3-8b-fewnerd-merged/` (9 shards) |\n| **3. Pilot inference** | **PASS** | Greedy F1 = **0.8037** > 0.5 threshold |\n| **4. exp-021 4-GPU 训练** | RUNNING | 4x RTX 5090, DDP, 6177 steps, 3 epochs |\n\n**exp-021 运行信息：**\n- tmux session: `exp021`\n- PIDs: 316742, 316743, 316744, 316745 (4 worker ranks)\n- Log: `/tmp/exp021_train.log`\n- GPU 利用率: 71-100%, 每卡 ~20 GB\n- Config: LoRA r=32/α=64, bs=2×4GPU×8accum=64 effective, lr=2e-4, cosine, 3 epochs\n- 总步数: 6177 (vs exp-020 单卡 8236 步，因 4GPU 并行 effective batch size 翻倍)\n\n**注：** DeepSpeed ZeRO-2 因版本兼容问题（DS 0.18.9 vs LlamaFactory 要求 ≤0.16.9 + lr_scheduler bug）回退为 PyTorch DDP。对 LoRA 训练来说 DDP 已足够（87M 可训练参数，显存不是瓶颈）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-exp020-merge-pilot-exp021.md"
+}

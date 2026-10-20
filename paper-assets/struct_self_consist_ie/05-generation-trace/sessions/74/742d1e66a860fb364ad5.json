@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "742d1e66a860fb364ad5",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix epsilon sweep model label",
+  "task_key": "worker_fix_epsilon_sweep_model_label_20260515T163207",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_epsilon_sweep_model_label_20260515T163207_result.json",
+    "occurrence": 1,
+    "bytes": 161,
+    "sha256": "c55c66f47e9e3b9fecb6cc2e783e18a32f2b015fda87ab22c395ff19cadfb6b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认修改成功：`qwen_scierc_ner` 的 `model` 字段已从 `\"Qwen2.5-7B\"` 改为 `\"Qwen3-8B-SciERC-merged-v2\"`，其他内容未变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-epsilon-sweep-model-label-copy-2.md"
+}

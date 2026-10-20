@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d14dff8678337c61fc9",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis d140 oracle gated selection",
+  "task_key": "worker_analysis_d140_oracle_gated_selection_20260518T130246",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_d140_oracle_gated_selection_20260518T130246_result.json",
+    "occurrence": 1,
+    "bytes": 1507,
+    "sha256": "a97986b9fc34371ce03269f7d7a06723ce0b2bcdce79f6658a52f109bf0f5c7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果汇总：\n\n## D140 Oracle Degeneracy-Gated LP Selection 结果\n\n| | Few-NERD | SciERC | CoNLL |\n|---|---|---|---|\n| **Instances** | 32,565 | 529 | 2,756 |\n| **Degeneracy rate** | 13.8% | 17.8% | **59.1%** |\n| **Greedy F1** | 79.11 | 66.63 | 91.23 |\n| **Oracle F1** | 88.55 | 78.08 | 95.43 |\n| **Ungated LP delta** | +0.07 | -0.31 | -1.62 |\n| **Gated delta** | +0.13 | -0.26 | -1.59 |\n| **Gated vs Ungated improvement** | +0.06 | +0.06 | +0.03 |\n| **NonDegen LP delta** (vs nondeg greedy) | +0.15 | -0.29 | **-3.05** |\n\n### 关键发现\n\n1. **Oracle gating 在所有数据集上都有正向改善**（+0.03 ~ +0.06），验证了 degeneracy 确实引入噪声。\n\n2. **但改善幅度很小**，因为 degeneracy 只是两个必要条件之一。即使 oracle 移除了所有 degenerate instances，LP selection 在 non-degenerate subset 上仍然可能不 work：\n   - CoNLL non-degenerate LP delta = **-3.05**（LP 在非退化 instance 上反而更差）\n   - SciERC non-degenerate LP delta = **-0.29**\n\n3. **CoNLL degeneracy 极高（59.1%）**，因为模型在 CoNLL 上准确度高，大多数 sample 输出完全一致。\n\n4. 这直接支持论文核心 claim：LP selection 需要 **low degeneracy + LP alignment** 两个条件同时满足。Oracle gating 只解决了 degeneracy 条件，alignment 问题仍在。\n\n**产出文件**：\n- 脚本：`code/d140_oracle_gated_analysis.py`\n- 结果：`output/d140_oracle_gated/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d140-oracle-gated-selection.md"
+}

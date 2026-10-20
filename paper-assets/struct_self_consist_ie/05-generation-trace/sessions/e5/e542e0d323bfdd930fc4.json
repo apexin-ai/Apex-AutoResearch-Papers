@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e542e0d323bfdd930fc4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp 005 temperature sensitivity",
+  "task_key": "worker_analysis_exp_005_temperature_sensitivity_20260514T114116",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_005_temperature_sensitivity_20260514T114116_result.json",
+    "occurrence": 1,
+    "bytes": 689,
+    "sha256": "5c110515ed95748c661530fdd0beb1aa9f6f71cc6e0c13073a76b4114bd180ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-005 完成。产出在 `artifacts/exp005_temperature/`，已注册。\n\n核心发现：\n\n1. **SJ 对温度鲁棒**：NER ρ 变化仅 +0.005，RE 仅 -0.010。FK 对温度更敏感（NER +0.062, RE -0.095）。\n\n2. **T=0.7 压缩可用范围**：oracle headroom 下降（NER -1.2pp, RE -3.6pp），diversity (1-SJ) 下降约 0.075。\n\n3. **条件过滤 >> 温度调整**：RE SJ 的 full→cond lift (+0.07~+0.14) 远大于温度效应 (±0.01)。\n\n4. **推荐 T=1.0 + conditional filtering**：保留更多 headroom 和多样性，信号质量几乎一致。\n\n5. **数据缺口**：logprob/exact_match/voting_conf 只有 T=1.0 数据；T=0.7 无 tau/AUROC。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-005-temperature-sensitivity.md"
+}

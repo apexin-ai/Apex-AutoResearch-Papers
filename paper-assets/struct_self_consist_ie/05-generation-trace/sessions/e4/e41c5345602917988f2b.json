@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e41c5345602917988f2b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "knowledge experiment plan batch update",
+  "task_key": "worker_knowledge_experiment-plan-batch-update_20260519T225014",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_knowledge_experiment-plan-batch-update_20260519T225014_result.json",
+    "occurrence": 1,
+    "bytes": 409,
+    "sha256": "ff4c3cafbd15ab875e7248a32181050fbfc7490421678faf5b2be114571a4599"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验已更新：\n\n| plan_id | registry_id | conclusion |\n|---------|------------|------------|\n| exp-017 | `exp_017_llama_conll_finetune` | success |\n| exp-026 | `exp_026_t10_seed42` | success |\n| exp-027 | `exp_027_mlp_verifier` | negative |\n| exp-028 | `exp_028_entity_token_lp` | negative |\n\n每个条目已添加 `status: done`、`registry_id`、`conclusion` 三个字段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-experiment-plan-batch-update.md"
+}

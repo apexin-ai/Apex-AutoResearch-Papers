@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3ae55d733eb7c85c73f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 028 multigpu switch",
+  "task_key": "worker_code_exp_028_multigpu_switch_20260517T122517",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_028_multigpu_switch_20260517T122517_result.json",
+    "occurrence": 1,
+    "bytes": 805,
+    "sha256": "6529bf9e62850143bee87d90a07249eb577300745b33c279cd187775e30db573"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行，速度已稳定。\n\n**汇总报告：**\n\n| 项目 | 值 |\n|---|---|\n| 最新 checkpoint | step 7000 (已成功 resume) |\n| 当前进度 | step 7100/41180 (17.2%) |\n| Loss | 0.0516 (与 resume 前 ~0.054 一致，无异常) |\n| GPU 使用 | 4× RTX 5090, 21-23 GB, 73-100% 利用率 |\n| Effective batch size | 4×2×2 = 16（不变）|\n\n**速度对比：**\n\n| | 单卡 | 4 卡 |\n|---|---|---|\n| 速度 | ~0.51 steps/s | ~1.79 steps/s |\n| 剩余时间 | ~18.6h | **~5.3h** |\n| 预计完成 | — | ~凌晨 2:00 |\n\n加速比约 3.5x，通信开销导致未达理论 4x，属正常水平。\n\n**配置文件：** `train_config_fewnerd_5epoch_4gpu.yaml`（原配置未修改）\n**日志：** `logs/exp_028_4gpu_train.log`\n**tmux session：** `exp_028`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-028-multigpu-switch.md"
+}

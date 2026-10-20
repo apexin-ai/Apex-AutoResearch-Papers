@@ -1,0 +1,377 @@
+{
+  "schema_version": "1.0",
+  "id": "c7ee3c3c91c405d866d6",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "code exp 002 conll n16",
+  "task_key": "worker_code_exp_002_conll_n16_20260514T181146",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_code_exp_002_conll_n16_20260514T181146.jsonl",
+    "occurrence": 1,
+    "bytes": 13694,
+    "sha256": "0322f7330f3adea3f3eabb314ab57eda398bddee9b56febe9fb8a6cee07d89e0"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T18:13:06.723575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_002_conll_n16_20260514T181146",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T18:13:06.723918+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_002_conll_n16_20260514T181146",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T18:13:06.724108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_002_conll_n16_20260514T181146",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_002_conll_n16",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'hypothesis': 'Qwen CoNLL-2003 N=16: cross-dataset N-scaling comparison with SciERC N=16', 'plan_id': 'exp-002', 'parent': 'exp_002_ner_conll2003', 'command': 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_002_conll_n16', 'server': 'autodl-5090', 'data_path': 'data/conll2003', 'data_count': 3453, 'model_name': 'qwen3-8b-conll2003-merged', 'seed': 42}"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T18:13:06.724344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3444}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_002_conll_n16_20260514T181146",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T18:13:06.724487+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_002_conll_n16_20260514T181146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T18:13:06.724630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16013168\\\\ndrwxr-xr-x  2 root root       4096 May 14 20:25 .\\\\ndrwxr-xr-x 15 root root       4096 May 15 01:32 ..\\\\n-rw-r--r--  1 root root        381 May 14 20:26 Modelfile\\\\n-rw-r--r--  1 root root        707 May 14 20:26 added_tokens.json\\\\n-rw-r--r--  1 root root       4168 May 14 20:26 chat_template.jinja\\\\n-rw-r--r--  1 root root       1538 May 14 20:26 config.json\\\\n-rw-r--r--  1 root root        214 May 14 20:26 generation_config.json\\\\n-rw-r--r--  1 root root    1671853 May 14 20:26 merges.txt\\\\n-rw-r--r--  1 root root 4902257696 May 14 20:26 model-00001-of-00004.safetensors\\\\n-rw-r--r--  1 root root 4915960368 May 14 20:26 model-00002-of-00004.safetensors\\\\n-rw-r--r--  1 root root 4983068496 May 14 20:26 model-00003-of-00004.safetensors\\\\n-rw-r--r--  1 root root 1580230264 May 14 20:26 model-00004-of-00004.safetensors\\\\n-rw-r--r--  1 root root      32914 May 14 20:26 model.safetensors.index.json\\\\n-rw-r--r--  1 root root        613 May 14 20:26 special_tokens_map.json\\\\n-rw-r--r--  1 root root   11422654 May 14 20:26 tokenizer.json\\\\n-rw-r--r--  1 root root       5430 May 14 20:26 tokenizer_config.json\\\\n-rw-r--r--  1 root root    2776833 May 14 20:26 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_002_conll_n16_20260514T181146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T18:13:06.724782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_002_conll_n16_20260514T181146",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_002_conll_n16",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "struct_self_consist_ie",
+              "spec": "{'hypothesis': 'Qwen CoNLL-2003 N=16: cross-dataset N-scaling comparison with SciERC N=16', 'plan_id': 'exp-002', 'parent': 'exp_002_ner_conll2003', 'command': 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_002_conll_n16', 'server': 'autodl-5090', 'data_path': 'data/conll2003', 'data_count': 3453, 'model_name': 'qwen3-8b-conll2003-merged', 'seed': 42}"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T18:13:06.724973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_002_conll_n16\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:12:16.041Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:12:16.041Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Qwen CoNLL-2003 N=16: cross-dataset N-scaling comparison with SciERC N=16\\\", \\\"plan_id\\\": \\\"exp-002\\\", \\\"parent\\\": \\\"exp_002_ner_conll2003\\\", \\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_002_conll_n16\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/conll2003\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6413}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_002_conll_n16_20260514T181146",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T18:13:06.725114+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_002_conll_n16_20260514T181146",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_002_conll_n16",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T18:13:06.725323+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_002_conll_n16\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:12:16.041Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:12:19.710Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Qwen CoNLL-2003 N=16: cross-dataset N-scaling comparison with SciERC N=16\\\", \\\"plan_id\\\": \\\"exp-002\\\", \\\"parent\\\": \\\"exp_002_ner_conll2003\\\", \\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_002_conll_n16\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/conll2003\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.595}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_002_conll_n16_20260514T181146",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T18:13:06.725487+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_002_conll_n16_20260514T181146",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cd /root/autodl-tmp/struct_self_consist_ie && nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_002_conll_n16' > output/exp_002_conll_n16.log 2>&1 & echo \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T18:13:06.725622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=101165\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_002_conll_n16_20260514T181146",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T18:13:06.725757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_002_conll_n16_20260514T181146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps -p 101165 -o pid,etime,cmd",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T18:13:06.725882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED CMD\\\\n101165       00:33 bash -c cd /root/autodl-tmp/struct_self_consist_ie && nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_002_conll_n16' > output/exp_002_conll_n16.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_002_conll_n16_20260514T181146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T18:13:06.726002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_002_conll_n16_20260514T181146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -30 /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T18:13:06.726252+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"(EngineCore pid=101436) \\\\rLoading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]\\\\n(EngineCore pid=101436) \\\\rLoading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:02,  1.48it/s]\\\\n(EngineCore pid=101436) \\\\rLoading safetensors checkpoint shards:  50% Completed | 2/4 [00:01<00:01,  1.39it/s]\\\\n(EngineCore pid=101436) \\\\rLoading safetensors checkpoint shards:  75% Completed | 3/4 [00:02<00:00,  1.33it/s]\\\\n(EngineCore pid=101436) \\\\rLoading safetensors checkpoint shards: 100% Completed | 4/4 [00:02<00:00,  1.72it/s]\\\\n(EngineCore pid=101436) \\\\rLoading safetensors checkpoint shards: 100% Completed | 4/4 [00:02<00:00,  1.57it/s]\\\\n(EngineCore pid=101436) \\\\n(EngineCore pid=101436) INFO 05-15 02:12:38 [default_loader.py:384] Loading weights took 2.57 seconds\\\\n(EngineCore pid=101436) INFO 05-15 02:12:39 [gpu_model_runner.py:4566] Model loading took 15.27 GiB memory and 3.111731 seconds\\\\n(EngineCore pid=101436) INFO 05-15 02:12:41 [backends.py:988] Using cache directory: /root/.cache/vllm/torch_compile_cache/9ba1a91839/rank_0_0/backbone for vLLM's torch.compile\\\\n(EngineCore pid=101436) INFO 05-15 02:12:41 [backends.py:1048] Dynamo bytecode transform time: 2.41 s\\\\n(EngineCore pid=101436) INFO 05-15 02:12:43 [backends.py:284] Directly load the compiled graph(s) for compile range (1, 8192) from the cache, took 1.236 s\\\\n(EngineCore pid=101436) INFO 05-15 02:12:43 [monitor.py:48] torch.compile took 4.25 s in total\\\\n(EngineCore pid=101436) INFO 05-15 02:12:43 [decorators.py:296] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/d03ce3cf20c50cf572dab934505b93ce63da72dd614adee5490c0d5638cc72fa/rank_0_0/model\\\\n(EngineCore pid=101436) INFO 05-15 02:12:43 [monitor.py:76] Initial profiling/warmup run took 0.16 s\\\\n(EngineCore pid=101436) INFO 05-15 02:12:44 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=\n…[truncated 6391 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_002_conll_n16_20260514T181146",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T18:13:06.726477+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已成功启动并开始推理：\n\n- **Registry**: `exp_002_conll_n16` → RUNNING\n- **PID**: 101165（EngineCore pid=101436）\n- **模型加载**: 15.27 GiB，3.1s\n- **KV cache**: 87,136 tokens，最大并发 ~21x\n- **进度**: 3453 prompts 已渲染完毕，开始处理 55,248 次推理（3453 × 16）\n- **日志**: `output/exp_002_conll_n16.log`\n\n预估 ~3h 完成。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_002_conll_n16_20260514T181146"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/code-exp-002-conll-n16.md"
+}

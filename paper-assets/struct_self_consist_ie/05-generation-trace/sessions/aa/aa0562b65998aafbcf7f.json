@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa0562b65998aafbcf7f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh p3 scierc pretrained mv retry",
+  "task_key": "worker_ssh_p3_scierc_pretrained_mv_retry_20260521T205948",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_p3_scierc_pretrained_mv_retry_20260521T205948_result.json",
+    "occurrence": 1,
+    "bytes": 945,
+    "sha256": "256173210f94cd7425c31aafb7e984ff88ae108fd7c19af3c5e4c7aaa2391303"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件均已生成。\n\n## SciERC Pretrained MV Recompute — 3-Seed\n\n| seed | greedy_f1 | mv_strict_f1 | MV Δ (pp) | degeneracy | α_crit_eff_strict | n_instances |\n|------|-----------|-------------|-----------|------------|-------------------|-------------|\n| s42  | 0.2475 | 0.2618 | +1.43 | 0.9% | 0.1520 | 529 |\n| s123 | 0.2436 | 0.2548 | +1.12 | 0.6% | 0.1468 | 529 |\n| s456 | 0.2436 | 0.2642 | +2.06 | 0.9% | 0.1537 | 529 |\n| **Mean±Std** | 0.2449±0.0023 | 0.2603±0.0048 | +1.54±0.48 | 0.8%±0.2% | 0.1508±0.0036 | 529 |\n\n## 产出文件\n- s42: `/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc_s42_v2/recompute_mv_results.txt` (894 bytes)\n- s123: `/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc_s123/recompute_mv_results.txt` (899 bytes)\n- s456: `/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_scierc_s456/recompute_mv_results.txt` (894 bytes)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p3-scierc-pretrained-mv-retry.md"
+}

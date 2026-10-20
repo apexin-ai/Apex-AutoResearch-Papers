@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "e96d960c8dcc291941e4",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code download 72b server b",
+  "task_key": "worker_code_download_72b_server_b_20260519T064000",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_download_72b_server_b_20260519T064000.log",
+    "occurrence": 1,
+    "bytes": 1187726,
+    "sha256": "5a6cb7b2b178663cc6cc8af2fdcc6ac6fd740d4f75fd1f41a45ce8b8f51bdfd4"
+  },
+  "statistics": {
+    "messages": 838,
+    "user_turns": 1,
+    "tool_calls": 366,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 98,
+      "tool_call": 366,
+      "tool_result": 366,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 749,
+      "chunks": [
+        {
+          "path": "e96d960c8dcc291941e4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e96d960c8dcc291941e4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e96d960c8dcc291941e4-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e96d960c8dcc291941e4-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "e96d960c8dcc291941e4-part-0005.json",
+          "message_count": 29
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 89,
+      "chunks": [
+        {
+          "path": "e96d960c8dcc291941e4-part-0005.json",
+          "message_count": 89
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-download-72b-server-b.md"
+}

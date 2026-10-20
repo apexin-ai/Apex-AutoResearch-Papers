@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce3a4d39b507633e35e7",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper scale section template",
+  "task_key": "worker_paper_scale_section_template_20260519T103054",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_scale_section_template_20260519T103054_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "aa4f20d5dcd17d959639de1c2ef5b2d5205d669e93488acb3c2e4c60dbceff2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`\\subsection{Scaling Behavior}` 已插入 Robustness 和 Prescriptive Results 之间（L182-219），包含：\n\n- **Table** (`tab:scale_comparison`): 8B FT vs 72B ZS 对比，含 greedy、headroom、四个 signal ρ 值；72B FT 行标 TODO\n- **叙事**: 72B ZS headroom 更大但 LP selection 仍失败，signal ρ 全面下降，LP-weighted construction 仍有效 (+1.6pp SciERC)\n- **Figure placeholder** (`fig:scaling_curve`): scaling curve 的 TODO 描述\n- **TODO 标注**: 72B fine-tuned 结果、degeneracy 分析、CoNLL construction 结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-scale-section-template.md"
+}

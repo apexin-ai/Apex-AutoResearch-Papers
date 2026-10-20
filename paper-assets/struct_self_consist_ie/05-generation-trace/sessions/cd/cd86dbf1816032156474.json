@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd86dbf1816032156474",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper latex compile check",
+  "task_key": "worker_paper_latex-compile-check_20260519T204420",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_latex-compile-check_20260519T204420_result.json",
+    "occurrence": 1,
+    "bytes": 1118,
+    "sha256": "5ef4bc9dd89e1b30339b7c77ce49d1093e99414dfeda7a245efaab5977fc2aed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 编译报告\n\n| 项目 | 结果 |\n|------|------|\n| **编译状态** | SUCCESS |\n| **总页数** | 36 页 |\n| **主文页数** | 8 页（第 1–8 页，符合 EMNLP 2026 限制） |\n| **未定义引用** | 0 |\n| **编译错误** | 0 |\n\n### Warning 分类\n\n| 类别 | 数量 | 严重程度 |\n|------|------|---------|\n| Overfull hbox | 24 个，**全部在 appendix.tex** | 低（不影响主文排版；appendix 表格溢出常见） |\n| Severe underfull (badness ≥ 5000) | 13 个，均在 appendix | 低（字间距过松，排版瑕疵） |\n| Float specifier `h` → `ht` | 3 个 | 可忽略 |\n| hyperref math-in-PDF-string | 4 个 | 可忽略（PDF 书签中数学符号警告） |\n\n### 关键发现\n\n- **主文 0 个 overfull hbox**——排版干净\n- Appendix 有几个严重溢出（>80pt）：`appendix.tex:104–113` (84pt)、`appendix.tex:1049–1060` (113pt)、`appendix.tex:1289–1303` (109pt)——这些是宽表格，需要 `\\resizebox` 或 `\\small` 修复\n- 72 个引用全部正确解析\n\n### PDF 备份\n`artifacts/paper_compiled_20260519.pdf` (768KB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-latex-compile-check.md"
+}

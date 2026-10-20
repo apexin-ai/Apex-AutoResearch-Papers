@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81c48a63f981cee7e0f4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run mf4 seeds 5090b",
+  "task_key": "worker_run_mf4_seeds_5090b_20260521T053150",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_mf4_seeds_5090b_20260521T053150_result.json",
+    "occurrence": 1,
+    "bytes": 507,
+    "sha256": "154ad54995eef782999bf2534676ccdf7dba093d0f0b2e068dff217affd9785f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Phase 1 状态汇总：**\n\n| 实验 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| exp_fewnerd_mf4_v2_s42 | cuda:0 | 320158 | RUNNING（模型已加载） |\n| exp_fewnerd_mf4_v2_s123 | cuda:1 | 320302 | RUNNING（模型已加载） |\n\n注意：FewNERD test set 实际 37648 instances（非预估的 14770），运行时间可能更长（~3-4h）。5 个实验 registry 已全部创建。Phase 2/3 的 3 个实验等 Phase 1 完成后链式提交。~4.5 分钟后轮询进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-mf4-seeds-5090b.md"
+}

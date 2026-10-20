@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "479895babc4e64dfe803",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_11.md",
+  "task_key": "loop_11",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_11.md",
+    "occurrence": 1,
+    "bytes": 4857,
+    "sha256": "c39559e3cb648533aa5c5a74aeed1c432e2bb06b7c11f419474c5ba63795bc1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T00:57:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 上 cuda:0, cuda:1, cuda:2, cuda:3（config 已确认）\n- 论文数据必须来自 gold-filtered 管道（排除 gold-empty 实例）。CoNLL n=2756, SciERC n=551/529。**不要用 registry metrics 中来自 report.json 的 EM/VC 值**——必须用分析脚本输出（与 Qwen 同一套管道），已知两者存在系统性差异（memory.md D066）\n- Table 4 SciERC 8B 数据已统一为 Table 1 的 v2 checkpoint 值（D100），不要再用旧值\n- unified_rho_full.json 中 LLaMA SciERC 数据已修复污染（D092-D094），canonical 数据在 artifacts/analysis_unified_rho.json\n- 论文 ε 默认=0.05，有 sweep 实证支撑（D095），不要随意改\n- DDL: **2026-05-25**，9 天，无 buffer\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090（别名 bjb1-21071），4× RTX 5090 32GB，**全部空闲**\n- 工作目录：/root/autodl-tmp/struct_self_consist_ie/\n- Python：/root/miniconda3/bin/python（conda base）\n- 环境激活：`source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 基座模型：/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\n- 8B merged checkpoint: checkpoints/qwen3-8b-scierc-merged-v2/\n- 4B merged checkpoints: checkpoints/qwen3-4b-conll2003-merged-ckpt4200, checkpoints/qwen3-4b-scierc-merged（推测，需确认）\n- ε sweep CSV: analysis_round8/epsilon_sweep.csv\n- 活跃进程：无（0 running workers, 0 active crons, 0 RUNNING experiments）\n\n### 3. 📊 当前状态\nRegistry 104 实验全部 DONE（58 success / 22 negative / 4 failed / 其余 killed/superseded）。无 RUNNING/PREPARING。\n\n上一轮 session（5/15-5/16）完成了：\n- 4B scale ablation 2×2 矩阵全部跑完并分析（D098），结论：gap 与 model capacity 无关\n- Table 1 vs Table 4 rho 不一致分析（worker_analysis_table1_vs_table4_rho_discrepancy, done）→ D100 统一数据\n- Round 8 内容修补（worker_paper_r8-content-patch, done）+ 压缩（worker_paper_r8-framing-compress, done）\n- FK independence TOST 修复（worker_analysis_fk-independence-tost-fix, done）\n- **worker_paper_round8-fixes 失败**——需要调查原因并重新派发\n- Round 8 审稿任务 1-4 分析 + thinking tokens + RE multiseed 分析全部完成\n\n**关键路径现在在论文写作修复上**，不在实验上。ROADMAP 列出的待办：\n1. ~~Registry desync 清理~~ → 大部分完成\n2. Paper Agent: 4B scale ablation Patch（compact table ≤0.5 页）\n3. Paper Agent Phase 1: 页数压缩至 ≤8 页（含 4B table）\n4. Paper Agent: ε robustness 写入\n5. Paper Agent Phase 2-5: 标题/Abstract/RE标注/次要修复\n6. Round 9 审稿\n7. Final polish + 提交\n\n### 4. 📋 待办（条件触发式）\n- 启动即刻 → 调查 worker_paper_round8-fixes 失败原因，重新派发或拆分任务\n- 启动即刻 → 派 Paper Worker 执行 4B compact table 写入 + 页数压缩（Phase 1，最高优先级）\n- Phase 1 完成 → 派 Paper Worker 做 Phase 2-5（标题去 overclaim、Abstract 精简、RE \"preliminary\" 标注、次要修复）\n- Phase 2-5 完成 → 启动 Round 9 审稿（continue mode）\n- Round 9 审稿若发现需要补充实验 → 4 块 5090 待命，立即提交\n- Round 9 审稿通过 → Final polish → 提交（DDL 5/25）\n- Director 任何时候问进展 → 汇报带 `[资源] GPU 分配 4 / 实际跑 0 | Worker 池 0 (全部论文写作阶段)`\n\n### 5. 🎯 战略上下文\n**核心结论**：Structured IE 中 confidence signals 的 correlation-selection gap 是 universal 的——controlled free-form ablation 证明 score compression 是 model/task intrinsic，非 constrained decoding artifact。4B scale ablation 进一步证明与 model capacity 无关，task difficulty 是主驱动。\n\n**决策链关键节点**：\n- D098: 4B 2×2 矩阵完成，R14 reviewer concern RESOLVED\n- D095: ε=0.05 robustness 有实证，BLOCKING #2 已解决\n- D100: Table 4 SciERC 8B 数据统一为 v2 checkpoint 值\n- D073: RE signal effectiveness 是 task-dependent（LP > structural in RE），已纳入 framing\n\n**易踩的坑**：\n- 不要把 GC4-par 和 GC4-seq 直接对比（不同 decoding regime）\n- 不要从 registry metrics 引用 EM/VC 到论文（report.json vs 分析脚本有系统性差异）\n- Round 8 还有 2 个 HIGH issue 未解决：标题 overclaim + Abstract 过载（Phase 2 任务）\n- worker_paper_round8-fixes 失败了但后续的 r8-content-patch 和 r8-framing-compress 成功了——可能部分修复已完成，查清楚再派新 worker 避免重复工作\n- 9 个 PREPARING+killed 的老实验因状态机限制无法推到 DONE，不影响任何事，忽略即可\n- 论文当前可能超页数限制（≤8 页），压缩是 Phase 1 的核心任务\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-copy-2.md"
+}

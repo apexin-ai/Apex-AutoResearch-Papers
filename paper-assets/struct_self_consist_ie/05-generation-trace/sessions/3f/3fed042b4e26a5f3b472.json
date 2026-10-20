@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fed042b4e26a5f3b472",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper claim audit",
+  "task_key": "worker_paper_claim-audit_20260523T183421",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_claim-audit_20260523T183421_result.json",
+    "occurrence": 1,
+    "bytes": 909,
+    "sha256": "a68e9a8d866150c6093ef3b987858b0afb4b01d2e22cd91573ba6811ce523034"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/claim_audit_report.md`。\n\n核心发现：\n\n**3 处 MISMATCH：**\n- **M1** (HIGH): `experiments_main.tex:76` 5-epoch LP Δ 写了 +0.09pp，但同文件 line 107 和 appendix 表格均为 **+0.12pp**（疑似混淆了 footnote 中 corpus micro-F1 的 +0.09 值）\n- **M2** (HIGH): `experiments_main.tex:76,107` 5-epoch degeneracy 写了 31%，但 appendix tab:epoch_confound 为 **26.4%**（疑似混淆了 Qwen2.5-7B FT 的 31.7%）\n- **M3** (LOW): `experiments_main.tex:91` SciERC degeneracy 13.4% vs 其他表格的 **12.2%**（可能因评估子集不同）\n\n**1 处 UNTRACED：**\n- **U1** (MEDIUM): `experiments_main.tex:106` \"+5--8pp at 80% coverage\" 引用 tab:cross_selection，但该表不含 selective prediction 数据（疑似旧版残留）\n\n其余 55+ 定量声明全部通过交叉验证。M1+M2 在同一句话中，修正影响最小。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-claim-audit.md"
+}

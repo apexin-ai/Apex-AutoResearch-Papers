@@ -1,0 +1,492 @@
+{
+  "schema_version": "1.0",
+  "id": "5bc105ef46b81897924f",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "ssh cleanup 5090 old checkpoints",
+  "task_key": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_ssh_cleanup-5090-old-checkpoints_20260520T070723.jsonl",
+    "occurrence": 1,
+    "bytes": 15197,
+    "sha256": "48eaa3b2bef485031f961877faea4c109b9c1a7f132b6901b1d0598d5d86c0b5"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T07:09:05.852977+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T07:09:05.853342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T07:09:05.853509+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "hostname",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T07:09:05.853649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'hostname' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T07:09:05.853775+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "hostname",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T07:09:05.853901+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"autodl-container-31eb41bf76-61568de9\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T07:09:05.854058+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -lhd /root/autodl-tmp/struct_self_consist_ie/checkpoints/*wnut17* /root/autodl-tmp/struct_self_consist_ie/checkpoints/*4b-conll* /root/autodl-tmp/struct_self_consist_ie/checkpoints/*scierc-v2* /root/autodl-tmp/struct_self_consist_ie/checkpoints/*llama* /root/autodl-tmp/struct_self_consist_ie/checkpoints/*smoke*",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T07:09:05.854221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"drwxr-xr-x 5 root root 4.0K May 17 00:25 /root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke\\\\ndrwxr-xr-x 5 root root 4.0K May 19 09:02 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora\\\\ndrwxr-xr-x 5 root root 4.0K May 14 21:08 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora\\\\n-rw-r--r-- 1 root root  32K May 18 16:36 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train.log\\\\n-rw-r--r-- 1 root root  64K May 18 16:38 /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train_4gpu.log\\\\ndrwxr-xr-x 7 root root 4.0K May 16 03:35 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora\\\\ndrwxr-xr-x 7 root root 4.0K May 14 23:59 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora\\\\n-rw-r--r-- 1 root root  27K May 14 20:11 /root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log\\\\n\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/struct_self_consist_ie/checkpoints/*scierc-v2*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T07:09:05.854369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "du -sh /root/autodl-tmp/struct_self_consist_ie/checkpoints/*wnut17* /root/autodl-tmp/struct_self_consist_ie/checkpoints/*4b-conll* /root/autodl-tmp/struct_self_consist_ie/checkpoints/*scierc-v2* /root/autodl-tmp/struct_self_consist_ie/checkpoints/*llama* /root/autodl-tmp/struct_self_consist_ie/checkpoints/*smoke*",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T07:09:05.854494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "df -h /root/autodl-tmp/",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T07:09:05.854655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"5.3G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora\\\\n28K\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/wnut17_train.log\\\\n4.1G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora\\\\n3.2G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora\\\\n3.2G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora\\\\n32K\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train.log\\\\n64K\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train_4gpu.log\\\\n1.7G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke\\\\n\\\", \\\"stderr\\\": \\\"du: cannot access '/root/autodl-tmp/struct_self_consist_ie/checkpoints/*scierc-v2*': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T07:09:05.854813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  172G   79G  69% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T07:09:05.854957+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/checkpoints/ -maxdepth 1 -type d -name \"*wnut17*\" -o -name \"*4b-conll*\" -o -name \"*scierc*\" -o -name \"*llama*\" -o -name \"*smoke*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T07:09:05.855095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-lora\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-scierc-lora\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-rank8\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train.log\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora\\\\n/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama_fewnerd_train_4gpu.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T07:09:05.855335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "du -sh /root/autodl-tmp/struct_self_consist_ie/checkpoints/*scierc*",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T07:09:05.855483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3.2G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-lora\\\\n2.6G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-scierc-lora\\\\n1.4G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora\\\\n1.4G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora\\\\n895M\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-rank8\\\\n3.4G\\\\t/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T07:09:05.855660+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cd /root/autodl-tmp/struct_self_consist_ie/checkpoints/ && for dir in *wnut17* *4b-conll* *scierc-v2* *llama* *smoke*; do if [ -d \"$dir\" ]; then echo \"Deleting: $dir ($(du -sh \"$dir\" | cut -f1))\"; rm -rf \"$dir\"; echo \"  -> Deleted\"; else echo \"SKIP: $dir (not a directory or not found)\"; fi; done",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T07:09:05.855800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Deleting: qwen3-8b-wnut17-lora (5.3G)\\\\n  -> Deleted\\\\nSKIP: wnut17_train.log (not a directory or not found)\\\\nDeleting: qwen3-4b-conll2003-lora (4.1G)\\\\n  -> Deleted\\\\nSKIP: *scierc-v2* (not a directory or not found)\\\\nDeleting: llama3.1-8b-fewnerd-lora (3.2G)\\\\n  -> Deleted\\\\nDeleting: llama3.1-8b-scierc-lora (3.2G)\\\\n  -> Deleted\\\\nSKIP: llama_fewnerd_train.log (not a directory or not found)\\\\nSKIP: llama_fewnerd_train_4gpu.log (not a directory or not found)\\\\nDeleting: ft_fewnerd_smoke (1.7G)\\\\n  -> Deleted\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T07:09:05.855941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "df -h /root/autodl-tmp/",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T07:09:05.856067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  154G   97G  62% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T07:09:05.856218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -lhd /root/autodl-tmp/struct_self_consist_ie/checkpoints/*/",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T07:09:05.856354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"drwxr-xr-x 5 root root  123 May 20 14:54 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42/\\\\ndrwxr-xr-x 5 root root 4.0K May 16 03:47 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-scierc-lora/\\\\ndrwxr-xr-x 4 root root   91 May 14 20:04 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-lora/\\\\ndrwxr-xr-x 5 root root 4.0K May 18 04:04 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-5epoch-lora/\\\\ndrwxr-xr-x 3 root root 4.0K May 18 10:35 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora/\\\\ndrwxr-xr-x 3 root root 4.0K May 18 09:54 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora/\\\\ndrwxr-xr-x 5 root root 4.0K May 16 18:58 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-rank8/\\\\ndrwxr-xr-x 5 root root 4.0K May 14 16:39 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T07:09:05.856522+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理结果\n\n**已删除（5 个目录，~17.5G）：**\n\n| 目录 | 大小 |\n|------|------|\n| qwen3-8b-wnut17-lora | 5.3G |\n| qwen3-4b-conll2003-lora | 4.1G |\n| llama3.1-8b-fewnerd-lora | 3.2G |\n| llama3.1-8b-scierc-lora | 3.2G |\n| ft_fewnerd_smoke | 1.7G |\n\n**磁盘空间对比：**\n- 删除前：79G 可用 (69% used)\n- 删除后：**97G 可用 (62% used)**\n- 释放：~18G\n\n**剩余 checkpoints（8 个）：**\n- qwen25-32b-fewnerd-qlora-s42\n- qwen3-4b-scierc-lora\n- qwen3-8b-conll2003-lora\n- qwen3-8b-fewnerd-5epoch-lora\n- qwen3-8b-scierc-10epoch-lora\n- qwen3-8b-scierc-3epoch-lora\n- qwen3-8b-scierc-lora-rank8\n- qwen3-8b-scierc-lora-v2\n\n**注意：可用空间 97G < 100G 目标。** `*scierc-v2*` glob 未匹配任何目录（`qwen3-8b-scierc-lora-v2` 的子串是 \"scierc-lora-v2\" 而非 \"scierc-v2\"）。如果也需要删除该目录（3.4G），删后可达 ~100G。另外还有 2 个 llama log 文件（共 96K）未删除（非目录，被脚本跳过）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_cleanup-5090-old-checkpoints_20260520T070723"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-cleanup-5090-old-checkpoints.md"
+}

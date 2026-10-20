@@ -1,0 +1,207 @@
+{
+  "schema_version": "1.0",
+  "id": "c2df9cb6d7b8177852dd",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "paper scaling section dual narrative",
+  "task_key": "worker_paper_scaling-section-dual-narrative_20260519T200611",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_paper_scaling-section-dual-narrative_20260519T200611.jsonl",
+    "occurrence": 1,
+    "bytes": 12716,
+    "sha256": "06c280ce4eef613e0f1b276e90a404cd88afa54b36daed30efd4bc6f1c3fcadc"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T20:07:16.811953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-section-dual-narrative_20260519T200611",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper/sections/zeroshot_scaling_draft.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T20:07:16.812348+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t%% Draft: Zero-shot / Scaling paragraph for \\S5.5 (Scaling Behavior)\n2\t%% Exp ID: exp_qwen25_72b_zeroshot (all 72B ZS numbers)\n3\t%% Status: Draft for Paper Agent integration. Replaces current \\S5.5 content.\n4\t%% Pending: 7B/14B/32B FT results for full scaling curve; 72B FT for regime disentanglement.\n5\t\n6\t\\subsection{Scaling Behavior}\n7\t\\label{sec:scaling}\n8\t\n9\tTo test whether the correlation-selection gap is specific to fine-tuned models, we evaluate Qwen2.5-72B-Instruct (AWQ 4-bit) in a zero-shot setting across all three primary datasets ($N{=}8$, $T{=}1.0$, no task-specific training).\n10\t\n11\t\\begin{table}[t]\n12\t\\centering\n13\t\\small\n14\t\\caption{Fine-tuned 8B vs.\\ zero-shot 72B: QE correlations and entity construction ($N{=}8$, $T{=}1.0$). Degen.\\ = instance degeneracy (\\%). Constr.\\ = LP-weighted entity construction $\\Delta$F1 vs.\\ greedy (pp). $^\\dagger$Majority voting (uniform weights).}\n15\t\\label{tab:zs_72b}\n16\t\\resizebox{\\columnwidth}{!}{%\n17\t\\begin{tabular}{@{}llcccccr@{}}\n18\t\\toprule\n19\tDataset & Regime & Greedy & Degen. & LP $\\rho$ & SJ $\\rho$ & VC $\\rho$ & Constr. \\\\\n20\t\\midrule\n21\tSciERC & 8B FT  & .645 & 17.8\\% & .205 & .360 & .379 & $+$1.02 \\\\\n22\t       & 72B ZS & .399 & 21.0\\% & .081 & .217 & .277 & $+$1.53 \\\\\n23\t\\midrule\n24\tFew-NERD & 8B FT & .748 & 13.0\\% & .220 & .380 & --- & $+$1.40 \\\\\n25\t         & 72B ZS & .628 & 46.2\\% & .119 & .345 & .416 & $-$0.20 \\\\\n26\t\\midrule\n27\tCoNLL  & 8B FT  & .908 & 61.7\\% & .302 & .436 & .424 & $-$0.39 \\\\\n28\t       & 72B ZS & .712 & 67.7\\% & $-$.002 & .304 & .297 & $-$0.37 \\\\\n29\t\\bottomrule\n30\t\\end{tabular}}\n31\t\\end{table}\n32\t\n33\t\\paragraph{LP requires fine-tuning calibration.}\n34\tTable~\\ref{tab:zs_72b} compares QE correlations between regimes.\n35\tLP $\\rho$ drops to near zero in the zero-shot setting: from $0.205$ to $0.081$ on SciERC, $0.220$ to $0.119$ on Few-NERD, and $0.302$ to $-0.002$ on CoNLL.\n36\tFine-tuning calibrates the model's token-level confidence to task-specific quality gradients; without this calibrat\n…[truncated 2836 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-section-dual-narrative_20260519T200611",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T20:07:16.812553+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-section-dual-narrative_20260519T200611",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T20:07:16.812734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3seed_ner_summary.md\n3seed_summary\n72b_zeroshot_signal_summary.json\n__pycache__\n_project\nanalysis_dgs_epoch_rank.py\nanalysis_fk_bootstrap_ci_full.json\nanalysis_lp_range_cdf.json\nanalysis_lp_range_cdf_n16_3seed.json\nanalysis_scierc_n16_3seed_selection_f1.json\nanalysis_scierc_re_n16_3seed_selection_f1.json\nanalysis_unified_rho.json\nanalysis_unified_rho_full.json\nanalyze_exp004_re_diagnostic.py\nanalyze_exp004_v2_re_diagnostic.py\nanalyze_exp005_v2_temperature.py\nanalyze_exp015_metrics_expansion.py\nanalyze_exp016_ensemble.py\nanalyze_ood_signals.py\naudit_autodl5090_loop3.md\naudit_gpu5090_4x2_loop3.md\nauroc_bug_diagnosis.md\nautodl_process_check.md\nbatch_completion_check_a.md\nbatch_completion_check_b.md\nbertoldi_citation_check\nbjb1_status_report.md\nbootstrap_ci_nscaling\nbootstrap_ci_summary.json\nbootstrap_ci_tables.tex\nbootstrap_construction.py\nbootstrap_selection_test.py\nccs_selection.py\nclaim_audit_report.md\nclaim_audit_v2.json\ncompute_signals.py\nconsistency.py\nd072_paper_patch_inventory.md\nd108\nd108_lp_vc_combination\nd112\nd112_claim_audit\nd113_table2_fix\nd113_table2_narrative_fix\nd140\nd140_oracle_gated_analysis.py\nd141_data_fix_rerun_v2_report.md\nd141_eval_unify\nd141_v2_fix\nd146_epoch_scierc_rho\nd146_span_revert\ndata\ndata_utils.py\ndeberta_verifier.py\ndeberta_verifier_5fold.py\ndeberta_verifier_5fold_results.json\ndeberta_verifier_results.json\ndegen_gated\ndegeneracy_lp_scatter.pdf\ndegeneracy_lp_scatter.png\ndgs_results\ndream_reports\nentity_construction.py\nentity_construction_fair.py\nentity_token_lp\nevaluate_verifier.py\nevaluation.py\nexp-001\nexp-015\nexp-019\nexp-022\nexp001_postprocess.py\nexp005_temperature\nexp009_stratification_analysis.py\nexp010_selection_curves\nexp027_mlp_v2\nexp_001\nexp_001_n16\nexp_001_ner_n16_scierc\nexp_001_seed456_v2_ner\nexp_002\nexp_003\nexp_004_re_diagnostic\nexp_004_v2\nexp_005\nexp_005_v2\nexp_007_llama_scierc_seed123\nexp_009_capability_stratification\nexp_009_v2\nexp_009_v2_re_rerun\nexp_009_v2_stratification.py\nexp_010_selection_curves\nexp_011_ood_scierc_to_c\n…[truncated 2916 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-section-dual-narrative_20260519T200611",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T20:07:16.812941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-section-dual-narrative_20260519T200611",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/scaling_narrative_A_monotonic.tex",
+              "content": "%% Version A: Monotonic scaling narrative (7B < 14B < 32B degeneracy)\n%% Use condition: Qwen2.5 FT results show degeneracy rising monotonically with scale.\n%% Status: Placeholder framework — fill numbers when exp results arrive.\n\n%% ---- Placeholder commands (replace with actual values) ----\n\\newcommand{\\scaleSevenDegen}{XX.X}    % 7B degeneracy %\n\\newcommand{\\scaleFourteenDegen}{XX.X} % 14B degeneracy %\n\\newcommand{\\scaleThirtytwoDegen}{XX.X}% 32B degeneracy %\n\\newcommand{\\scaleSevenGreedy}{.XXX}   % 7B greedy F1\n\\newcommand{\\scaleFourteenGreedy}{.XXX}% 14B greedy F1\n\\newcommand{\\scaleThirtytwoGreedy}{.XXX}% 32B greedy F1\n\\newcommand{\\scaleSevenConstr}{X.XX}   % 7B construction Δ (pp)\n\\newcommand{\\scaleFourteenConstr}{X.XX}% 14B construction Δ (pp)\n\\newcommand{\\scaleThirtytwoConstr}{X.XX}% 32B construction Δ (pp)\n\\newcommand{\\scaleSevenLP}{.XXX}       % 7B LP ρ\n\\newcommand{\\scaleFourteenLP}{.XXX}    % 14B LP ρ\n\\newcommand{\\scaleThirtytwoLP}{.XXX}   % 32B LP ρ\n\n%% ---- Narrative ----\n\n\\paragraph{Degeneracy rises with scale within a model family.}\nTo examine how model scale affects the capability--diversity tradeoff, we fine-tune Qwen2.5 at three scales (7B, 14B, 32B) with an identical QLoRA recipe on Few-NERD ($N{=}8$, $T{=}1.0$).\nDegeneracy increases monotonically with parameter count: $\\scaleSevenDegen\\%\\to\\scaleFourteenDegen\\%\\to\\scaleThirtytwoDegen\\%$ (Figure~\\ref{fig:scaling_curve}a).\nGreedy F1 also rises ($\\scaleSevenGreedy\\to\\scaleFourteenGreedy\\to\\scaleThirtytwoGreedy$), confirming that larger models are more capable but less diverse in their sampled outputs.\nLP-weighted construction $\\Delta$F1 inversely tracks degeneracy ($\\scaleSevenConstr\\to\\scaleFourteenConstr\\to\\scaleThirtytwoConstr$\\,pp), consistent with the gating hypothesis from \\S\\ref{sec:fewnerd}: the selection window narrows as stronger greedy performance comes at the cost of reduced output diversity.\n\nThis within-family trend converges with two independent dimensions of evidence.\nAlong the \\emph{epoch} dimension, extending Qwen3-8B training from 3 to 5 epochs on Few-NERD raises degeneracy from 11.1\\% to 31.3\\% (\\S\\ref{sec:fewnerd}), mirroring the effect of added parameters.\nAlong the \\emph{family} dimension, Qwen3-8B FT (13.0\\% degeneracy, $+1.39$\\,pp construction) and Qwen2.5-72B ZS (46.2\\%, $-0.20$\\,pp) bracket the trade-off from opposite ends.\nAcross all three dimensions---scale, training duration, and model family---higher degeneracy consistently predicts smaller or negative construction gains, supporting degeneracy as a robust diagnostic for when self-consistency aggregation can add value.\n"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T20:07:16.813169+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/scaling_narrative_A_monotonic.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-section-dual-narrative_20260519T200611",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T20:07:16.813340+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-section-dual-narrative_20260519T200611",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/scaling_narrative_B_nonmonotonic.tex",
+              "content": "%% Version B: Non-monotonic scaling narrative (some scale point breaks monotonicity)\n%% Use condition: Qwen2.5 FT results show degeneracy does NOT rise monotonically with scale.\n%% Status: Placeholder framework — fill numbers when exp results arrive.\n\n%% ---- Placeholder commands (replace with actual values) ----\n\\newcommand{\\scaleSevenDegen}{XX.X}    % 7B degeneracy %\n\\newcommand{\\scaleFourteenDegen}{XX.X} % 14B degeneracy %\n\\newcommand{\\scaleThirtytwoDegen}{XX.X}% 32B degeneracy %\n\\newcommand{\\scaleSevenGreedy}{.XXX}   % 7B greedy F1\n\\newcommand{\\scaleFourteenGreedy}{.XXX}% 14B greedy F1\n\\newcommand{\\scaleThirtytwoGreedy}{.XXX}% 32B greedy F1\n\\newcommand{\\scaleSevenConstr}{X.XX}   % 7B construction Δ (pp)\n\\newcommand{\\scaleFourteenConstr}{X.XX}% 14B construction Δ (pp)\n\\newcommand{\\scaleThirtytwoConstr}{X.XX}% 32B construction Δ (pp)\n\\newcommand{\\scaleSevenLP}{.XXX}       % 7B LP ρ\n\\newcommand{\\scaleFourteenLP}{.XXX}    % 14B LP ρ\n\\newcommand{\\scaleThirtytwoLP}{.XXX}   % 32B LP ρ\n\n%% ---- Narrative ----\n\n\\paragraph{Degeneracy is not a simple function of scale.}\nWe fine-tune Qwen2.5 at three scales (7B, 14B, 32B) with an identical QLoRA recipe on Few-NERD ($N{=}8$, $T{=}1.0$).\nDegeneracy does not increase monotonically with parameter count: $\\scaleSevenDegen\\%\\to\\scaleFourteenDegen\\%\\to\\scaleThirtytwoDegen\\%$ (Figure~\\ref{fig:scaling_curve}a), indicating that model-specific factors beyond raw scale---such as pretraining data composition or architecture choices within the Qwen2.5 family---modulate the capability--diversity tradeoff.\nNonetheless, the gating relationship between degeneracy and construction effectiveness remains intact: LP-weighted construction $\\Delta$F1 tracks degeneracy rather than parameter count ($\\scaleSevenConstr$, $\\scaleFourteenConstr$, $\\scaleThirtytwoConstr$\\,pp), with the largest gains at the scale point exhibiting lowest degeneracy regardless of model size.\n\nThis result reframes degeneracy as a \\emph{diagnostic} rather than a predictable consequence of scaling.\nThe epoch dimension reinforces this view: extending Qwen3-8B training from 3 to 5 epochs on Few-NERD raises degeneracy from 11.1\\% to 31.3\\% (\\S\\ref{sec:fewnerd}), showing that training choices can shift degeneracy as much as a $4{\\times}$ increase in parameters.\nThe practical implication is that practitioners should measure degeneracy post-hoc rather than predict it from model size: a mid-scale model with favorable output diversity may benefit more from self-consistency aggregation than a larger model whose samples have collapsed.\n"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T20:07:16.813511+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/scaling_narrative_B_nonmonotonic.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-section-dual-narrative_20260519T200611",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T20:07:16.813676+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两版已写入 artifacts/：\n\n- **Version A**（单调）：degeneracy 随 scale 单调上升 → \"selection window narrows\" 叙事，与 epoch/family 两维证据汇合，三维一致性支撑 degeneracy 作为 robust diagnostic。\n- **Version B**（非单调）：degeneracy 不随 scale 单调变化 → 重新定位 degeneracy 为 post-hoc diagnostic 而非 scaling 的可预测结果，弱化 \"narrows with scale\" 说法，转向 \"practitioners should measure rather than predict\"。\n\n两版共享同一套 `\\newcommand` placeholder，数据到位后替换即可。每版约 5-6 句，匹配现有 `zeroshot_scaling_draft.tex` 的 `\\paragraph{}` 风格和数据密度。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_scaling-section-dual-narrative_20260519T200611"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/paper-scaling-section-dual-narrative.md"
+}

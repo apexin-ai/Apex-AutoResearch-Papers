@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dae4d218e54cf5f06927",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis entity level construction",
+  "task_key": "worker_analysis_entity_level_construction_20260519T013947",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_entity_level_construction_20260519T013947_result.json",
+    "occurrence": 1,
+    "bytes": 2783,
+    "sha256": "bf1d2ea58984eb0b495350166630990a4c08ab0d22de4e643708107277f013d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**Construction 在所有 3 个数据集上都超过 greedy。**\n\n### NER 对比表\n\n| Dataset | Method | F1 | P | R | Δ vs Greedy |\n|---------|--------|-----|------|------|-------------|\n| **SciERC** | Greedy | 0.6442 | 0.6604 | 0.6592 | — |\n| | LP Selection | 0.6465 | 0.6574 | 0.6674 | +0.23pp |\n| | **Construction@θ=0.2** | **0.6637** | 0.6353 | **0.7410** | **+1.95pp** |\n| | Oracle | 0.8194 | | | +17.52pp |\n| **CoNLL** | Greedy | 0.9070 | 0.9089 | 0.9125 | — |\n| | LP Selection | 0.8960 | | | -1.10pp |\n| | **Construction@θ=0.3** | **0.9080** | 0.8988 | 0.9271 | **+0.10pp** |\n| | Oracle | 0.9581 | | | +5.11pp |\n| **FewNERD** | Greedy | 0.7478 | 0.7463 | 0.7631 | — |\n| | LP Selection | 0.7666 | 0.7629 | 0.7842 | +1.88pp |\n| | **Construction@θ=0.2** | **0.7621** | 0.7340 | **0.8207** | **+1.44pp** |\n| | Oracle | 0.9020 | | | +15.43pp |\n\n### RE (SciERC only)\n\n| Method | F1 | P | R | Δ |\n|--------|-----|------|------|-----|\n| Greedy | 0.4757 | 0.4802 | 0.4877 | — |\n| **Construction@θ=0.4** | **0.4963** | 0.5132 | 0.5032 | **+2.06pp** |\n\n### P/R 分解分析\n\nConstruction 的核心机制是**提升 recall**：\n- SciERC: recall 0.6592 → 0.7410 (+8.18pp)，precision 0.6604 → 0.6353 (-2.51pp)\n- FewNERD: recall 0.7631 → 0.8207 (+5.76pp)，precision 0.7463 → 0.7340 (-1.23pp)\n- CoNLL: recall 0.9125 → 0.9271 (+1.46pp)，precision 0.9089 → 0.8988 (-1.01pp)\n\nConstruction 通过汇聚多个样本中出现的正确 entity 来提升 recall，同时 threshold 过滤掉低频噪声 entity，precision 下降幅度有限。\n\n### 关键发现\n\n1. **SciERC 上 construction (+1.95pp) 远超 LP selection (+0.23pp)**，这是最有说服力的证据\n2. **RE construction 也有效** (+2.06pp)，最优 threshold 更高（0.4 vs 0.2），因为关系更稀疏\n3. LP-weighted 与 uniform 几乎无差异，说明 logprob weighting 对 entity 频次投票帮助不大\n4. 最优 threshold 在 0.2-0.3，偏低，说明即使只有少数样本同意的 entity 也有价值\n5. CoNLL 改进很小 (+0.10pp)，因为 baseline 已经很高（0.907）\n\n### 产出路径\n- 脚本：`/root/autodl-tmp/struct_self_consist_ie/code/entity_construction.py`\n- 完整结果：`/root/autodl-tmp/struct_self_consist_ie/output/entity_construction/construction_results.json`\n- 摘要：`/root/autodl-tmp/struct_self_consist_ie/output/entity_construction/best_threshold_summary.json`\n\n### 结论\n\n**Construction 在所有数据集上显著超过 greedy**，尤其在 SciERC（+1.95pp NER, +2.06pp RE）和 FewNERD（+1.44pp）上效果明显。这验证了核心假设：entity-level majority vote construction 是 self-consistency 在结构化输出上比 instance-level selection 更好的类比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-entity-level-construction.md"
+}

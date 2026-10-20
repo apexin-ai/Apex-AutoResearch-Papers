@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "daf904b2a33d7da7c478",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu gpu 5090 4x2 setup and experiments",
+  "task_key": "worker_gpu_gpu_5090_4x2_setup_and_experiments_20260514T120440",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_gpu_5090_4x2_setup_and_experiments_20260514T120440_result.json",
+    "occurrence": 1,
+    "bytes": 933,
+    "sha256": "dd9d4481ccd46698087ad9102793c48bdb9f610c8abea3a36fc556e704941a08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**环境**: gpu-5090-4x-2 已有完整环境（torch 2.10.0+cu128, vllm 0.18.1, transformers 4.57.1, 4× RTX 5090 32GB），代码/模型/数据已同步，无需额外安装。\n\n**实验状态**:\n\n| 实验 | GPU | 状态 | tmux session |\n|------|-----|------|-------------|\n| exp-001 seed=123 | cuda:0 | **已完成** | exp001_seed123 |\n| exp-001 seed=456 | cuda:1 | 运行中 (~40%) | exp001_seed456 |\n| exp-008 RE N=16 | cuda:2 | 运行中 (刚启动) | exp008_re_n16 |\n\n**Registry**: `exp_001_n16_seed123`, `exp_001_n16_seed456`, `exp_008_re_n16` 均已更新为 RUNNING。\n\n**注意**: 初次提交时 3 个 vLLM 实例同时初始化导致跨 GPU 内存竞争，seed456 和 exp008 失败。错开启动后解决。结果在 `output/exp001_n16_seed123/`（已生成 report.json），其余两个产出将分别在 `output/exp001_n16_seed456/` 和 `output/exp008_re_n16/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-gpu-5090-4x2-setup-and-experiments.md"
+}

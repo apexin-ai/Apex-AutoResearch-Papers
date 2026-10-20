@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5aa83a9dd6e7840bb67d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu exp 001 seed456 v2",
+  "task_key": "worker_gpu_exp_001_seed456_v2_20260514T153835",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp_001_seed456_v2_20260514T153835_result.json",
+    "occurrence": 1,
+    "bytes": 541,
+    "sha256": "25bb9d1acb421f14d5dd78b0819ad94aae31942c4bb6c8b8d544c43da50d946a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交完成：\n\n- **tmux session**: `exp_001_seed456_v2` 在 autodl-5090 上运行中\n- **GPU**: cuda:2（通过 CUDA_VISIBLE_DEVICES=2）\n- **模型**: qwen3-8b-scierc-merged-v2 已加载（15.27 GiB），vLLM v0.18.1 + FlashAttention v2\n- **Registry**: `exp_001_seed456_v2` → RUNNING\n- **Cron 监控**: 每 8 分钟检查一次（job `e7ae38ea`），完成后自动更新 registry 并通知\n\n首次启动遇到 cuda:0 显存不足（被其他任务占用），已通过 `CUDA_VISIBLE_DEVICES=2` 修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-001-seed456-v2.md"
+}

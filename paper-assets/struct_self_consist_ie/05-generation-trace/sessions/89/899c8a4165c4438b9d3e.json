@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "899c8a4165c4438b9d3e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix kill claude duplicate",
+  "task_key": "worker_fix_kill_claude_duplicate_20260521T083641",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_kill_claude_duplicate_20260521T083641_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "de1dd904d37b3fbf18a2e12f75d865dca8ff766bbe2fb177682f6f19327e47c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **PID 6307 / 6302**：已不存在（kill 时报 No such process），说明这两个重复进程之前已经自行退出或被其他方式终止。\n- **PID 5791（--resume 进程）**：也不在了，没有任何 `run_frontier_sc` 进程存活。\n- **checkpoint 进度**：`checkpoint.jsonl` 有 **381 行**。\n- **日志**：`claude_sc_restart.log` 不存在。\n\n所有进程均已停止，无存活的 `run_frontier_sc` 进程。如需恢复实验，需要重新启动带 `--resume` 的进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-claude-duplicate.md"
+}

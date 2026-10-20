@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4e8cda60a4d287a7d1c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh fewnerd freeform mv recompute and pt n16 fix",
+  "task_key": "worker_ssh_fewnerd_freeform_mv_recompute_and_pt_n16_fix_20260522T145749",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_fewnerd_freeform_mv_recompute_and_pt_n16_fix_20260522T145749_result.json",
+    "occurrence": 1,
+    "bytes": 1791,
+    "sha256": "91fa40294681bffde3b82dc4e2330ae38eb045b6ffa7100b022ba7d76cfbc0f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both tasks complete.\n\n---\n\n## Task 1: FewNERD Freeform MV/LP/Degeneracy Results\n\n```\nFewNERD N=8 T=1.0 seed=42:\n                    Constrained    Free-form     Δ\ngreedy_f1              0.7911       0.7913      +0.00 pp\nmv_strict_f1           0.7585       0.7586      +0.00 pp\nmv_Δ (pp)               -3.27        -3.26      +0.01 pp\nlp_f1                  0.7918       0.7922      +0.00 pp\nlp_Δ (pp)               +0.07        +0.09      +0.02 pp\ndegeneracy_rate          9.1%         9.1%       -0.0 pp\n```\n\n**Key finding**: Freeform and constrained are virtually identical on FewNERD. All deltas are <0.02pp. Degeneracy rate is the same 9.1%. This contrasts with CoNLL where freeform showed larger differences — FewNERD's fine-grained entity types apparently constrain the output space enough that removing schema constraints has no effect.\n\nGold-filtered instances: 32,565 / 37,648.\n\n---\n\n## Task 2: PT N=16 Crash Diagnosis\n\n**Partial data**: 27,110 / 37,648 lines (72%) — confirmed.\n\n**Root cause**: `sampling.py:675` — `f.write(json.dumps(inst, ensure_ascii=False))` with `open(path, \"w\", encoding=\"utf-8\")`. vLLM occasionally produces token strings containing lone Unicode surrogates (`\\ud800`–`\\udfff`), which `ensure_ascii=False` passes through but UTF-8 encoding rejects.\n\n**Fix applied**: Line 673 changed from:\n```python\nwith open(path, \"w\", encoding=\"utf-8\") as f:\n```\nto:\n```python\nwith open(path, \"w\", encoding=\"utf-8\", errors=\"replace\") as f:\n```\n\nThis replaces unencodable surrogates with `�` during write. Backup at `sampling.py.bak`.\n\n**GPU availability**: cuda:0, cuda:1, cuda:2 all free (0 MiB). cuda:3 in use (29785 MiB, 83% util). Ready for rerun on any of GPUs 0–2 when you decide."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fewnerd-freeform-mv-recompute-and-pt-n16-fix.md"
+}

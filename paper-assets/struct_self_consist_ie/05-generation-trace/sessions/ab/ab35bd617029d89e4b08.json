@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab35bd617029d89e4b08",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "infra 7b pipeline env prep",
+  "task_key": "worker_infra_7b-pipeline-env-prep_20260519T204404",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_7b-pipeline-env-prep_20260519T204404_result.json",
+    "occurrence": 1,
+    "bytes": 1458,
+    "sha256": "48ec221b2ea7dd9f4ee0e1e519c19c2def5f70a65be404b7c95cc77020e48d8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 环境准备完成\n\n| 项目 | 状态 |\n|------|------|\n| 脚本部署 | ✅ 3 个脚本已部署到 `/root/autodl-tmp/struct_self_consist_ie/code/pipeline/` |\n| 依赖包 | ✅ scipy 1.17.1, numpy 2.2.6, stdlib OK |\n| 输出目录 | ✅ `/root/autodl-tmp/struct_self_consist_ie/output/7b_ft_signals/` 已创建 |\n| Dry-run | ✅ 3 个脚本 `--help` 均正常 |\n\n### 7B 当前输出文件\n\n- `wnut17/qwen25_7b_n8_seed42/samples.jsonl`\n- `wnut17/qwen25_7b_n8_seed123/samples.jsonl`\n- `wnut17/qwen25_7b_n8_seed456/samples.jsonl`\n- `fewnerd_7b/` — 空目录（实验尚未产出）\n\n### 处理命令模板\n\n7B 完成后 copy-paste 运行：\n\n```bash\n# 假设 7B FT 输出在标准目录结构下（含 scierc/conll2003/fewnerd 子目录）\nINPUT=/root/autodl-tmp/struct_self_consist_ie/output/<7b_ft_dir>\nOUTPUT=/root/autodl-tmp/struct_self_consist_ie/output/7b_ft_signals\nPIPELINE=/root/autodl-tmp/struct_self_consist_ie/code/pipeline\n\n# Step 1: 计算信号\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython $PIPELINE/compute_signals.py --input-dir $INPUT --output-dir $OUTPUT --model-size 7 --regime ft\n\n# Step 2: 格式化 scaling curve 数据\npython $PIPELINE/format_for_scaling.py --report $OUTPUT/full_signal_report.json --model-size 7 --regime ft\n\n# Step 3: Bootstrap 显著性检验\npython $PIPELINE/bootstrap_construction.py --input-dir $INPUT --output-dir $OUTPUT\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-7b-pipeline-env-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8429d4e9ec79452c8a47",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "train ft 001",
+  "task_key": "worker_train_ft_001_20260514T060518",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_train_ft_001_20260514T060518_result.json",
+    "occurrence": 1,
+    "bytes": 882,
+    "sha256": "70a9a740db0aa9ece3f1240612f750a6ee494e7158e91d96006efe6d28bb7478"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已提交并运行中。汇报：\n\n**训练命令**: `CUDA_VISIBLE_DEVICES=0 llamafactory-cli train train_config.yaml`（nohup 后台, PID 6414）\n\n**预估训练时间**: 351 steps × ~3s/step ≈ **17-18 分钟**\n\n**Checkpoint 输出路径**: `/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora`\n\n**训练日志**: `/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_001_train.log`\n\n**配置摘要**:\n- 模型: Qwen3-8B, LoRA r=16 α=32, target=all (43.6M trainable params, 0.53%)\n- 数据: 1861 train / 275 dev, sharegpt format\n- Batch: 4 × 4 accumulation = 16 effective, 3 epochs, lr=2e-4 cosine\n- Eval every 100 steps, save every 100 steps\n- report_to: none（W&B 未配置）\n\n**注意事项**:\n- Dry-run 2 步通过，初始 loss ~0.83\n- 4x RTX 5090 可用但只用了 cuda:0 单卡（LoRA 8B 单卡足够）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-ft-001.md"
+}

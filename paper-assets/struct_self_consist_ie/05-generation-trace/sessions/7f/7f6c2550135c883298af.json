@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f6c2550135c883298af",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "cpu matching method memory",
+  "task_key": "worker_cpu_matching_method_memory_20260521T101142",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cpu_matching_method_memory_20260521T101142_result.json",
+    "occurrence": 1,
+    "bytes": 190,
+    "sha256": "e4470400efdeccd41653ccff7987ccfa7871a6dd2c608c12f24c3fa31d62fa92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入。在 memory.md 顶部新建了「实验设计备忘」段落，包含 Entity Matching 方法差异（Reviewer #45 Action 2）的完整记录，其余内容不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-matching-method-memory.md"
+}

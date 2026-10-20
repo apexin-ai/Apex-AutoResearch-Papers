@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "670b5413077ba4670f69",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp015v2 auroc extract",
+  "task_key": "worker_analysis_exp015v2_auroc_extract_20260514T222132",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp015v2_auroc_extract_20260514T222132_result.json",
+    "occurrence": 1,
+    "bytes": 3421,
+    "sha256": "e4aafa0a2a0f12eaa5483dbfaa0393ebcb052268ec61b3e27c60f68ed99769fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the raw data. Let me compile the results.\n\n## Complete findings\n\n### 1. SciERC NER AUROC — all 5 sections (precise values from JSON)\n\n| Section | N | Voting | SJ | FK | EM | Logprob |\n|---|---|---|---|---|---|---|\n| `scierc_n8_logprob_ner` | 8 | 0.74092 | 0.71516 | 0.62872 | 0.75675 | 0.58058 |\n| `scierc_n16_seed42_ner` | 16 | 0.73401 | 0.73676 | 0.60992 | 0.79023 | 0.58698 |\n| `scierc_n16_seed123_ner` | 16 | 0.71665 | 0.73629 | 0.62682 | 0.78070 | 0.60621 |\n| `scierc_re_n16_ner` | 16 | 0.74018 | 0.75203 | 0.61134 | 0.80193 | 0.59436 |\n| `scierc_re_seed123_ner` | 16 | 0.75156 | 0.75654 | 0.60927 | 0.80704 | 0.59099 |\n| **Recomputed avg (5)** | | **0.7367** | **0.7394** | **0.6172** | **0.7873** | **0.5918** |\n| **Registry `scierc_ner_avg`** | | **0.7367** | **0.7328** | **0.6172** | **0.7873** | **0.5918** |\n\n### 2. SciERC RE AUROC — all 5 sections\n\n| Section | N | Voting | SJ | FK | EM | Logprob |\n|---|---|---|---|---|---|---|\n| `scierc_n8_logprob_re` | 8 | 0.72557 | 0.66558 | 0.61385 | 0.68681 | 0.60612 |\n| `scierc_n16_seed42_re` | 16 | 0.73478 | 0.69391 | 0.60582 | 0.73996 | 0.58718 |\n| `scierc_n16_seed123_re` | 16 | 0.72875 | 0.67792 | 0.59365 | 0.71563 | 0.59164 |\n| `scierc_re_n16_re` | 16 | 0.71735 | 0.66690 | 0.58362 | 0.72325 | 0.56879 |\n| `scierc_re_seed123_re` | 16 | 0.71051 | 0.66845 | 0.57238 | 0.70923 | 0.57086 |\n| **Recomputed avg (5)** | | **0.7234** | **0.6746** | **0.5939** | **0.7150** | **0.5849** |\n| **Registry `scierc_re_avg`** | | **0.7195** | **0.6788** | **0.5939** | **0.7150** | **0.5849** |\n\n### 3. 关键发现\n\n**D052 Table 1 NER AUROC** (.741, .715, .629, .757, .581) 来源是 `scierc_n8_logprob_ner`（N=8 单一实验），不是多seed平均值。\n\n**Registry `scierc_ner_avg` 含义**：5个SciERC NER sections 的算术平均（包含 N=8 + 4个 N=16）。这是 worker 手动计算后写入 registry 的（见 worker log line 271）。\n\n**Registry 与真实数据的不一致**：\n\n| Signal | Registry | Recomputed | 差异 |\n|---|---|---|---|\n| **SJ NER** | **0.7328** | **0.7394** | **-0.0066 (错误)** |\n| FK NER | 0.6172 | 0.6172 | 0 |\n| logprob NER | 0.5918 | 0.5918 | 0 |\n| EM NER | 0.7873 | 0.7873 | 0 |\n| Voting NER | 0.7367 | 0.7367 | 0 |\n| **Voting RE** | **0.7195** | **0.7234** | **-0.0039 (错误)** |\n| **SJ RE** | **0.6788** | **0.6746** | **+0.0042 (错误)** |\n| FK RE | 0.5939 | 0.5939 | 0 |\n| EM RE | 0.7150 | 0.7150 | 0 |\n| logprob RE | 0.5849 | 0.5849 | 0 |\n\n**SJ NER、Voting RE、SJ RE 三个 registry 值与 JSON 原始数据不一致**。FK/logprob/EM 完全吻合。问题出在 worker 手动填写 registry 时的计算错误。\n\n### 4. `scierc_ner_avg` 的组成\n\n平均覆盖 **5 个 NER 评估**（不是3个），包括：\n- 1 个 N=8 实验 (`exp_012_logprob`)\n- 2 个 N=16 主实验 (`exp_001_seed42_v2`, `exp_001_seed123_v2`)\n- 2 个 N=16 RE实验的 NER 副产品 (`exp_008_re_n16_v2`, `exp_008_re_seed123`)\n\n### 5. N=16 下 SciERC NER 值（仅4个N=16 sections）\n\n| Signal | seed42 | seed123 | re_n16 | re_seed123 | N=16 avg |\n|---|---|---|---|---|---|\n| Voting | 0.7340 | 0.7167 | 0.7402 | 0.7516 | 0.7356 |\n| SJ | 0.7368 | 0.7363 | 0.7520 | 0.7565 | 0.7454 |\n| FK | 0.6099 | 0.6268 | 0.6113 | 0.6093 | 0.6143 |\n| EM | 0.7902 | 0.7807 | 0.8019 | 0.8070 | 0.7950 |\n| Logprob | 0.5870 | 0.6062 | 0.5944 | 0.5910 | 0.5946 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp015v2-auroc-extract.md"
+}

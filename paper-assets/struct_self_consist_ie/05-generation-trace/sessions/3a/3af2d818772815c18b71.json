@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3af2d818772815c18b71",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_16_1779407008.md",
+  "task_key": "loop_16_1779407008",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_16_1779407008.md",
+    "occurrence": 1,
+    "bytes": 3870,
+    "sha256": "d022b5d51d07c4c4dbef7a65da6594bf3c3bbf653f6116b90e56d4cbd984e83e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-21T23:20:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 cuda:0-3, autodl-5090-b cuda:0-3, autodl-5090-c cuda:0-3（共12张）\n- autodl-5090-c:cuda:0 上有 14B inference 进程（PID 217692），可能已完成但未确认——不要在 cuda:0 上启动新任务前先确认进程状态\n- B1 SCD 实验跑在 autodl-5090-b（PID 207109/205634/205991），reconcile 确认存活——不要 kill\n- exp_14b_inference_fewnerd 被 cron 误标为 failed（PID mismatch），实际进程在跑或已完成——registry 状态需修正\n- 14B 模型推理需 enforce_eager=True 否则 CUDA graph OOM（教训已写入 memory.md）\n\n### 2. 🖥️ 基础设施快照\n- **autodl-5090**: 4×RTX 5090, 工作目录 /root/autodl-tmp/struct_self_consist_ie, conda base (/root/miniconda3)\n- **autodl-5090-b**: 4×RTX 5090, 同上路径结构, B1 SCD 三实验在跑\n- **autodl-5090-c**: 4×RTX 5090, 同上路径结构, 14B merged model at /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-14b-fewnerd-merged-final\n- **32B FT**: autodl-5090 全4卡, exp_qwen25_32b_fewnerd (PID 804438, cron active)\n- **ESJ**: autodl-5090-c:cuda:1, exp_esj_entity_self_judgment (PID 218678)\n- **磁盘充裕**: 5090 813G free, 5090-b 427G free, 5090-c 813G free (根分区)\n\n### 3. 📊 当前状态\n**刚做完**: session-start 初始化 + 处理 exp_14b_inference_fewnerd 失败回调（诊断发现是 PID mismatch 误报）\n\n**活跃 Workers**（5个）:\n- worker_collect_exp_14b_inference_fewnerd_results — 去 5090-c 收集 14B FewNERD 推理结果\n- worker_gpu_5090c_fill_4gpu — 向 5090-c 空闲 GPU 提交新实验\n- worker_cpu_failure_gallery — CPU 任务\n- worker_cpu_alpha_crit_derivation — CPU 任务\n- worker_gpu_5090_check_and_fill — 检查 5090 并填充\n\n**RUNNING 实验**:\n- exp_qwen25_32b_fewnerd (5090 ×4卡, ~73% 完成)\n- exp_b1_scd_fewnerd_standard (5090-b, PID 207109)\n- exp_b1_scd_fewnerd_curriculum_q (5090-b, PID 205634)\n- exp_b1_scd_threshold_ablation (5090-b, PID 205991)\n- exp_e_theta_adaptive (local-cpu)\n- exp_esj_entity_self_judgment (5090-c:cuda:1)\n\n**等待**: 5个 Worker 回调; exp_14b_inference_fewnerd 结果收集\n\n### 4. 📋 待办\n- worker_collect 回调 → 如果 FewNERD 14B 结果完整：update_registry(conclusion=success, metrics=...) + 汇报 Director scaling curve 数据点\n- worker_collect 回调 → 如果进程已死无结果：重新提交 14B inference（用正确 PID 监控 + enforce_eager）\n- worker_gpu_5090c_fill 回调 → 确认 5090-c 空闲卡已填满（cuda:0/2/3）\n- exp_qwen25_32b_fewnerd cron 完成 → 分析 32B FewNERD 结果，与 7B/14B 对比 scaling law\n- B1 SCD 三实验 cron 完成 → on-experiment-done 流程，与 D193 CoNLL negative control 对比\n- ESJ 完成 → entity-level self-judgment 结果分析，对标 majority vote baseline\n\n### 5. 🎯 战略上下文\n- **项目核心**: Self-Consistency for NER，ceiling-gap diagnostic → prescriptive framework\n- **当前阶段**: R26 审稿 3.5/3.0，双线并行 Track A (writing v3) + Track B (method breakthrough: E_θ/ESJ/SCD/14B-32B scaling)\n- **关键决策链**: D197(双线并行) → D198(pivot to prescriptive) → D199(reverse conservative) → D200(E_θ V1 negative) → D201(entity-level 全 negative, pivot to sampling-level)\n- **易错点**: \n  - autodl-5090-b 的 B1 SCD 实验没有 gpu_ids 记录在 registry，resource-usage 显示 idle 但实际在跑——不要重复提交到这些卡\n  - 14B inference 脚本 run_mvp_pilot.py 跑多数据集（SciERC/CoNLL/FewNERD）但跨域结果无意义，只有 FewNERD 有价值\n  - cron 对 14B inference 会反复触发 failed 通知（已是 stale），忽略即可\n  - 32B 训练完成后下一步是 32B inference（同 run_mvp_pilot.py），需要 enforce_eager + 正确 PID 注册\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779407008.md"
+}

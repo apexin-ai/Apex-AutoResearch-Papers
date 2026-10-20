@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57332bbc2217f8e81f29",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "run 5090 fill mf4 e2",
+  "task_key": "worker_run_5090_fill_mf4_e2_20260521T055134",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_5090_fill_mf4_e2_20260521T055134_result.json",
+    "occurrence": 1,
+    "bytes": 423,
+    "sha256": "aaa3654be5e5076c6e7da7fffd6b61453b8bcec0c2f6dd21df1fa0006c05f2fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部启动成功，GPU 已占用：\n\n| 实验 | GPU | VRAM | 状态 |\n|------|-----|------|------|\n| exp_fewnerd_mf4_v2_s456 | cuda:0 | 16.4GB | 运行中 |\n| exp_e2_pretrained_fewnerd | cuda:1 | 15.4GB | 运行中 |\n| exp_e2_pretrained_conll | cuda:2 | 15.4GB | 运行中 |\n\ncuda:3 空闲。CoNLL (3453 instances) 预计 30-45min 先完成，两个 FewNERD (37648 instances) 约 3-4h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-5090-fill-mf4-e2.md"
+}

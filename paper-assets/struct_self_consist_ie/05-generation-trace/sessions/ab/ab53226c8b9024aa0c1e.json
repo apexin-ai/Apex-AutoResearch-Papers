@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab53226c8b9024aa0c1e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh lp best vs cumlp best f1",
+  "task_key": "worker_ssh_lp_best_vs_cumlp_best_f1_20260522T013119",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_lp_best_vs_cumlp_best_f1_20260522T013119_result.json",
+    "occurrence": 1,
+    "bytes": 1361,
+    "sha256": "3623c79a4d9c2f8c97fa5aa8b49b9b6276f5f6146e306f910a804c37c637727f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果清晰：\n\n```\nInstances evaluated: 32565\n\nOverall: LP-best mean F1 = 0.7614, cumLP-best mean F1 = 0.7151 (差 +4.62pp)\nDisagreement subset (n=3550): LP-best = 0.6429, cumLP-best = 0.2187 (差 +42.42pp)\nWilcoxon p-value (overall): 0.000000\nWilcoxon p-value (disagreement): 0.000000\nWinner: mean_LP\n```\n\n**Token CV 分层表格：**\n\n| Bucket | n | LP-best F1 | cumLP-best F1 | diff | p |\n|--------|---|-----------|--------------|------|---|\n| low (CV≤0.05) | 7123 | 0.7554 | 0.7556 | -0.01pp | 0.77 |\n| mid (0.05<CV≤0.10) | 3572 | 0.8174 | 0.8159 | +0.15pp | 0.052 |\n| high-mid (0.10<CV≤0.20) | 5649 | 0.7883 | 0.7878 | +0.05pp | 0.14 |\n| high (CV>0.20) | 16221 | 0.7423 | 0.6499 | **+9.24pp** | 0.0000 |\n\n**关键发现：**\n\n1. **mean_LP 全面优于 cumulative_LP**，+4.62pp（p ≈ 0）\n2. 在 rank-1 不同的 3550 个 instances 上，差距达 **+42.42pp**——cumLP 选出的 sample F1 仅 0.22，几乎选错\n3. 差异完全集中在 **high CV (>0.20)** 桶：+9.24pp。低/中 CV 桶两者几乎无差别（因为 ranking 本身就一致）\n4. 这验证了之前的 token CV 分析：token 长度变异大时 cumulative LP 偏向长序列，选出的 sample 质量显著更差\n\n脚本已保存在服务器 `code/lp_best_vs_cumlp_best.py`，结果在 `output/lp_best_vs_cumlp_best_results.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-lp-best-vs-cumlp-best-f1.md"
+}

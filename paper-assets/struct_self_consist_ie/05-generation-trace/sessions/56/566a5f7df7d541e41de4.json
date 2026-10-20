@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "566a5f7df7d541e41de4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp d054 rerun gpu3 replacement",
+  "task_key": "worker_exp_d054_rerun_gpu3_replacement_20260514T222628",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_d054_rerun_gpu3_replacement_20260514T222628_result.json",
+    "occurrence": 1,
+    "bytes": 322,
+    "sha256": "0f3085e8b2bb57c2718f76fc8ab8a95c4d30c7769c097943e8318ea101a1b2aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s123 推理在 47%（26128/55248），速度约 80-150 it/s，预计约 5 分钟后完成。已设置 4.5 分钟后自动检查。\n\n等待中的准备工作：\n- s123 完成后：运行 5-signal 分析 → 更新 registry\n- 之后：用相同命令提交 s456（seed=456, output_dir 改为 s456_r1024）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-d054-rerun-gpu3-replacement.md"
+}

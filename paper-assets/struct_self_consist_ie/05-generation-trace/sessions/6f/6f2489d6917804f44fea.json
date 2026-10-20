@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6f2489d6917804f44fea",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh dgec sj construction",
+  "task_key": "worker_ssh_dgec-sj-construction_20260520T083925",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_dgec-sj-construction_20260520T083925.log",
+    "occurrence": 1,
+    "bytes": 659139,
+    "sha256": "4a5eed1e995714608133134eefcce52ad29d17d855468cfaef50592114910740"
+  },
+  "statistics": {
+    "messages": 194,
+    "user_turns": 0,
+    "tool_calls": 74,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 74,
+      "tool_result": 74,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 194,
+      "chunks": [
+        {
+          "path": "6f2489d6917804f44fea-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "6f2489d6917804f44fea-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-dgec-sj-construction.md"
+}

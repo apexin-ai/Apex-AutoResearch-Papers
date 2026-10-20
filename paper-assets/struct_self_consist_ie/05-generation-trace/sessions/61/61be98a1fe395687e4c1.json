@@ -1,0 +1,1113 @@
+{
+  "schema_version": "1.0",
+  "id": "61be98a1fe395687e4c1",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "gpu exp 14b inference fewnerd retry",
+  "task_key": "worker_gpu_exp_14b_inference_fewnerd_retry_20260520T174845",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp_14b_inference_fewnerd_retry_20260520T174845.log",
+    "occurrence": 1,
+    "bytes": 117939,
+    "sha256": "cea4a84cc1bd6645b39da6046c854a1179835f820024eeeff902891f09f33296"
+  },
+  "statistics": {
+    "messages": 26,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 9,
+      "tool_result": 9
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+                "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "c1397f61-8449-4a02-a804-98e7658c792c",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779309600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "bf743c6f-adb5-491f-a4da-370d1bead026",
+                "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "我来恢复 FewNERD 14B inference。先检查服务器环境状态。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "bf51dcc3-e747-4859-a2fb-c5b4ca190166",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XQRzefMWWHGMhAe2jZ7M3y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12656,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12656
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015AA7JLnfX8xpjhoiPtzvP3",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+                "max_results": 6
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "91d6971e-aa02-4a90-9c93-46763247e5d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XQRzefMWWHGMhAe2jZ7M3y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12656,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12656
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T17:48:59.689Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_015AA7JLnfX8xpjhoiPtzvP3",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "9c71211b-038c-4004-aba8-31c62289cc78",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__detect_image",
+                "mcp__agent-ml-research__read_registry",
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by checking the server environment and the registry in parallel.",
+              "signature": "EpICCmMIDRgCKkDhHqN1AniZymLwguGXKK7a/bKTjlEelWVyXejWdyjZdevq2bE0TKxKmSXqmZRqMzP/kSyseow2RgbQlZE/FDPIMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDA2fgmL/I50+QkqWMRoMhi6g2FBwx0bzIn70IjCYIbCC0b2VCZUSAVoIEdZyPwkkmN2xIeZ2VIbvYEUV5VwZC2jguRUPcKpJo5KoOrYqXarmhPOrLhxfhfXRZTJ0nXQBTvQeoe60WWDhHBPhNIMs9NCzhvOunKmci4uhV19z7L0WOSvzdgZmiQcHGQScGjXm73tXcWjkDqH4wVllMlwFz4LbkQOjp07C0YiLiBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "31860514-3cf3-4e53-96c6-beeb150f1e30",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HvkoUHjiHcdo6zhVUKCGoJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2352,
+                "cache_read_input_tokens": 24497,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2352
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先并行检查服务器状态和 registry 信息。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "e1f33389-b748-427f-ae1f-bdb4899412bc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HvkoUHjiHcdo6zhVUKCGoJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2352,
+                "cache_read_input_tokens": 24497,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2352
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BDeLDhad6NhJQtqSDSxZuE",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "ps -p 217960 -o pid,cmd --no-headers",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "6a99de53-1857-4c79-918d-515623f096dd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HvkoUHjiHcdo6zhVUKCGoJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2352,
+                "cache_read_input_tokens": 24497,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2352
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T17:49:05.677Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BDeLDhad6NhJQtqSDSxZuE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "e7cbdd10-8ee4-41d0-abde-d40a15126fd2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.13}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TNd9uRAD7TQGD6MwKaqJEC",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "75c6a647-6cca-45db-9e4f-95b19c32c938",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HvkoUHjiHcdo6zhVUKCGoJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2352,
+                "cache_read_input_tokens": 24497,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2352
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T17:49:06.626Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TNd9uRAD7TQGD6MwKaqJEC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA GeForce RTX 5090, 30562 MiB, 32607 MiB, 100 %\\\\n1, NVIDIA GeForce RTX 5090, 30538 MiB, 32607 MiB, 100 %\\\\n2, NVIDIA GeForce RTX 5090, 30546 MiB, 32607 MiB, 93 %\\\\n3, NVIDIA GeForce RTX 5090, 30064 MiB, 32607 MiB, 79 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "5e787c14-c945-41ba-87e1-ede10b55edb8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA GeForce RTX 5090, 30562 MiB, 32607 MiB, 100 %\\\\n1, NVIDIA GeForce RTX 5090, 30538 MiB, 32607 MiB, 100 %\\\\n2, NVIDIA GeForce RTX 5090, 30546 MiB, 32607 MiB, 93 %\\\\n3, NVIDIA GeForce RTX 5090, 30064 MiB, 32607 MiB, 79 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA GeForce RTX 5090, 30562 MiB, 32607 MiB, 100 %\\n1, NVIDIA GeForce RTX 5090, 30538 MiB, 32607 MiB, 100 %\\n2, NVIDIA GeForce RTX 5090, 30546 MiB, 32607 MiB, 93 %\\n3, NVIDIA GeForce RTX 5090, 30064 MiB, 32607 MiB, 79 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DCfjMrWv3JsFZUA3RWn6wm",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "adf418a5-16d2-4212-afa6-35127a48fd7e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HvkoUHjiHcdo6zhVUKCGoJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2352,
+                "cache_read_input_tokens": 24497,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2352
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T17:49:07.443Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DCfjMrWv3JsFZUA3RWn6wm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"adalp_analysis_results.json\\\\nadaptive_temperature_results.json\\\\nanalysis_epsilon_sweep\\\\nanalysis_fk_bootstrap_ci.json\\\\nanalysis_fk_bootstrap_per_instance.json\\\\nanalysis_lp_range_cdf.json\\\\nanalysis_lp_range_cdf_n16_3seed.json\\\\nanalysis_mbr_selection.json\\\\nanalysis_multiseed_selection_f1.json\\\\nanalysis_round8\\\\nanalysis_scierc_n16_3seed_selection_f1.json\\\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\\\nanalysis_unified_rho_full.json\\\\nanalyze_s789_rerun.log\\\\nb5_cross_model_construction.py\\\\nb5_cross_model_results.json\\\\nb7_adaptive_budget\\\\nbootstrap_ci_nscaling\\\\nbootstrap_ci_summary.json\\\\nbootstrap_ci_tables.tex\\\\ncalibration_baseline_results.json\\\\nccs_selection_report.md\\\\nccs_selection_results.json\\\\nclaim_audit\\\\nconditional_filter_diagnosis.json\\\\nconstruction_variants\\\\nd108_greedy_f1\\\\nd108_lp_vc_combination\\\\nd108_mbr_within_rho\\\\nd108_q4q5\\\\nd110_4b_degeneracy\\\\nd112_disk_cleanup\\\\nd112_hybrid_strategy\\\\nd112_mf3_random_single\\\\nd112_table2_fix\\\\nd114_auroc_investigation\\\\nd140_oracle_gated\\\\nd141_conditional_decomp\\\\nd141_degeneracy_scatter\\\\nd141_entity_merge\\\\ndals_analysis.json\\\\ndals_cross_model.json\\\\ndals_hardening_results.json\\\\ndeberta_verifier\\\\ndeberta_verifier_5fold\\\\ndebug_sj_variance.log\\\\ndebug_sj_variance_results.json\\\\ndecomposition_regression\\\\ndev_set_lp_probe\\\\ndgs_epoch_rank_analysis.json\\\\ndgs_selection_results.json\\\\ndiagnostic_calibration\\\\ndiagnostic_calibration_results.json\\\\ndistill_verifier\\\\ne2v2_regime_weights\\\\ne_theta_v1_logreg_results.json\\\\ne_theta_v3_no_dataset_results.json\\\\ne_theta_v4_no_model_results.json\\\\nentity_consensus_report.md\\\\nentity_consensus_results.json\\\\nentity_construction\\\\nentity_construction_fair\\\\nentity_construction_fair_log.txt\\\\nentity_construction_fair_n8\\\\nentity_construction_fair_n8_log.txt\\\\nentity_independence_analysis\\\\nentity_token_lp_full\\\\nepoch_scierc_textbased_rho.json\\\\nexp001_n16_seed123\\\\nexp001_n16_seed123_200only\\\\nexp001_n16_seed123_200only_backup\\\\nexp001_n16_seed123_full\\\\nexp001_n16_seed123_run.log\\\\nexp001_n16_seed42\\\\nexp001_n16_seed42_200only_backup\\\\nexp001_n16_seed42_run.log\\\\nexp001_n16_seed456\\\\nexp001_n16_seed456_200only\\\\nexp001_n16_seed456_run.log\\\\nexp001_seed123_t10_full\\\\nexp001_seed123_t10_full.log\\\\nexp001_seed456_t10_full\\\\nexp001_seed456_t10_full.log\\\\nexp002_conll2003\\\\nexp003_wnut17_dryrun\\\\nexp003_wnut17_eval\\\\nexp003_wnut17_eval.log\\\\nexp003_wnut17_pilot\\\\nexp003_wnut17_pilot.log\\\\nexp004_re_diagnostic\\\\nexp004v2_re_diagnostic\\\\nexp007_llama_dryrun\\\\nexp007_llama_inference\\\\nexp008_re_n16\\\\nexp008_re_n16_200only\\\\nexp008_re_n16_t10_full\\\\nexp008_re_n16_t10_full.log\\\\nexp009_stratification_results.json\\\\nexp010_selection_curves\\\\nexp016_signal_ensemble\\\\nexp018_3seed_5signal_results.json\\\\nexp_001_seed123_v2\\\\nexp_001_seed123_v2_r1024\\\\nexp_001_seed42_v2\\\\nexp_001_seed42_v2_r1024\\\\nexp_001_seed456_v2\\\\nexp_001_seed456_v2_ner\\\\nexp_001_seed456_v2_ner.log\\\\nexp_001_seed456_v2_ner_r1024\\\\nexp_002_conll_n16\\\\nexp_002_conll_n16.log\\\\nexp_002_conll_n16_r1024\\\\nexp_002_conll_n16_seed123\\\\nexp_002_conll_n16_seed123.log\\\\nexp_002_conll_n16_seed456\\\\nexp_002_conll_n16_seed456.log\\\\nexp_002_conll_n8_seed123\\\\nexp_002_conll_n8_seed123_run.log\\\\nexp_002_conll_n8_seed456\\\\nexp_002_conll_n8_seed456.log\\\\nexp_003_wnut17_v2_infer\\\\nexp_005_v2_temperature\\\\nexp_006_v2\\\\nexp_006_v2_run.log\\\\nexp_007_llama_n16\\\\nexp_007_llama_n16.log\\\\nexp_007_llama_n16_r1024\\\\nexp_007_llama_scierc_seed123\\\\nexp_007_llama_seed123\\\\nexp_007_llama_seed456\\\\nexp_008_re_n16_v2\\\\nexp_008_re_seed123\\\\nexp_009_v2\\\\nexp_009_v2_re_rerun\\\\nexp_009_v2_run.log\\\\nexp_011_ood_analysis\\\\nexp_011_ood_conll_to_scierc\\\\nexp_011_ood_scierc_to_conll\\\\nexp_011_ood_scierc_to_conll_run.log\\\\nexp_012_logprob\\\\nexp_012_rerun_1024\\\\nexp_015_unified\\\\nexp_015_v2\\\\nexp_016_rerun_1024\\\\nexp_016_v2\\\\nexp_017_llama_conll\\\\nexp_017_llama_conll_infer\\\\nexp_017_llama_conll_infer.log\\\\nexp_017_llama_conll_n16\\\\nexp_017_llama_conll_n16_r1024\\\\nexp_017_llama_conll_n16_r1024_run.log\\\\nexp_017_llama_conll_n16_s123\\\\nexp_017_llama_conll_n16_s123.log\\\\nexp_017_llama_conll_n16_s123_r1024\\\\nexp_017_llama_conll_n16_s456\\\\nexp_017_llama_conll_n16_s456.log\\\\nexp_017_llama_conll_n16_s456_r1024\\\\nexp_017_llama_conll_n16_s456_r1024_run.log\\\\nexp_017_llama_conll_n8_t07\\\\nexp_017_llama_conll_pipeline.log\\\\nexp_018_llama_scierc_seed123\\\\nexp_018_llama_scierc_seed123.log\\\\nexp_018_llama_scierc_seed42_r1024\\\\nexp_018_llama_scierc_seed456\\\\nexp_018_llama_scierc_seed456_r1024\\\\nexp_018_qwen_scierc_seed123\\\\nexp_018_qwen_scierc_seed123.log\\\\nexp_018_qwen_scierc_seed456\\\\nexp_019_trained_verifier\\\\nexp_020_pilot\\\\nexp_021_fewnerd_full\\\\nexp_021_fewnerd_n8_seed123\\\\nexp_021_fewnerd_n8_seed123_run.log\\\\nexp_021_fewnerd_n8_seed456\\\\nexp_021_fewnerd_n8_seed456_run.log\\\\nexp_021_fewnerd_n8_seed789_shard0\\\\nexp_021_fewnerd_n8_seed789_shard1\\\\nexp_021_fewnerd_n8_seed789_shard2\\\\nexp_021_inference\\\\nexp_022_3seed_analysis\\\\nexp_022_seed789\\\\nexp_023_rank8_inference\\\\nexp_025_n32\\\\nexp_025_n32.log\\\\nexp_025_n_ablation\\\\nexp_026_T05\\\\nexp_026_T05_run.log\\\\nexp_026_T08\\\\nexp_026_T08_run.log\\\\nexp_026_T12\\\\nexp_026_T12_run.log\\\\nexp_026_T_ablation_summary.json\\\\nexp_026_t05\\\\nexp_026_t05.log\\\\nexp_026_t05_seed123\\\\nexp_026_t05_seed123.log\\\\nexp_026_t05_seed456\\\\nexp_026_t05_seed456.log\\\\nexp_026_t08\\\\nexp_026_t08.log\\\\nexp_026_t08_seed123\\\\nexp_026_t08_seed123.log\\\\nexp_026_t08_seed456\\\\nexp_026_t10_seed123\\\\nexp_026_t10_seed42\\\\nexp_026_t10_seed456\\\\nexp_026_t12\\\\nexp_026_t12.log\\\\nexp_026_t12_seed123\\\\nexp_026_t12_seed123.log\\\\nexp_026_t12_seed456\\\\nexp_027_fewnerd_n16\\\\nexp_027_mlp_v2\\\\nexp_027_mlp_verifier\\\\nexp_027v2_mlp_verifier\\\\nexp_028_entity_token_lp\\\\nexp_028_fewnerd_5epoch\\\\nexp_029a_scierc_3epoch\\\\nexp_029b_scierc_10epoch\\\\nexp_030_conll_t12\\\\nexp_030_conll_t12.log\\\\nexp_031_fewnerd_t12\\\\nexp_031_fewnerd_t12.log\\\\nexp_cross_model_consistency\\\\nexp_dgec_heterogeneous_t\\\\nexp_entity_token_lp\\\\nexp_entity_token_lp_conll_run.log\\\\nexp_entity_token_lp_pilot\\\\nexp_entity_token_lp_pilot_run.log\\\\nexp_entity_token_lp_scierc_run.log\\\\nexp_entity_token_lp_smoke\\\\nexp_lp_scierc_t07\\\\nexp_qwen3_4b_conll_merge_inference_v2\\\\nexp_qwen3_4b_conll_scs_inference\\\\nexp_qwen3_4b_conll_scs_inference_v2\\\\nexp_qwen3_4b_scierc_scs_inference\\\\nexp_re_scierc_seed123\\\\nexp_re_scierc_seed456\\\\nexp_scale_qwen3_4b_conll\\\\nf1_audit_results.json\\\\nfewnerd_3seed_construction_bootstrap.json\\\\nfewnerd_dals_multiseed_results.json\\\\nfewnerd_multiseed_unified_v2.json\\\\nfewnerd_seed789_merged\\\\nfigures\\\\nfs_vs_zs_error_correlation.json\\\\ngate0_all_predictions.jsonl\\\\ngate0_ft002v2\\\\ngate0_ft002v2_ckpt400\\\\ngate0_realigned_predictions.jsonl\\\\ngate0_realigned_results.json\\\\ngate0_results.json\\\\ngate0_samples.json\\\\ngating_bootstrap\\\\nhidden_state_probe\\\\nhidden_state_probe_exp016\\\\nhidden_state_probe_exp016_run.log\\\\nhidden_state_probe_fewnerd\\\\nk_robustness\\\\nllama_conll_n16_3seed_5signal_summary.json\\\\nllama_fewnerd_3seed_summary\\\\nllama_fewnerd_s123\\\\nllama_fewnerd_s42\\\\nllama_fewnerd_s456\\\\nlogprob_diagnosis\\\\nloo_sj_cross_dataset\\\\nlp_rank_comparison.py\\\\nlp_rank_comparison_results.json\\\\nmbr_selection_results.json\\\\nmerge_conll.log\\\\nmultiseed_selection_f1.json\\\\nmvp_pilot_001\\\\nmvp_pilot_001.log\\\\nmvp_pilot_003\\\\nmvp_pilot_004\\\\nmvp_pilot_005\\\\nn16_3seed_5signal_results.json\\\\nn16_3seed_analysis.py\\\\nn16_5signal_results.json\\\\nn8_5signal_results.json\\\\nn_scaling_gf_maxlp.json\\\\npaper_f1_audit\\\\npaper_f1_audit_script.py\\\\nprescriptive_analysis\\\\nr17_analyses\\\\nr21_q1_alignment\\\\nr21_w5_lp_rho_audit\\\\nrecompute_tab_fewnerd_results.json\\\\nreview_round2\\\\nreview_round4\\\\nreview_round8\\\\nreview_round9_experiments\\\\nrho_audit_results.json\\\\nscatter_v2_data.json\\\\nselection_f1_4b_results.json\\\\nsj_8b_qwen3_ft_progress.log\\\\nsj_8b_qwen3_ft_results.json\\\\nstatistical_hardening\\\\nsupervised_verifier_upgrade\\\\nsupervised_verifier_upgrade.log\\\\nsupplement_degen_results.json\\\\ntask1_within_rho.py\\\\ntask2_dals_cross_model.py\\\\ntask3_llama_n16_check.py\\\\ntoken_lp_aggregator\\\\ntoken_lp_aggregator_fewnerd.log\\\\ntoken_lp_aggregator_scierc.log\\\\ntoken_lp_aggregator_scierc_3ep.log\\\\ntoken_lp_aggregator_scierc_v2.log\\\\nunified_degeneracy_audit\\\\nunified_metrics_regression\\\\nunified_oracle_audit\\\\nunified_tab_fewnerd_maxlp.json\\\\nvc_8b_qwen3_ft_progress.log\\\\nvc_8b_qwen3_ft_results.json\\\\nvc_quartile_analysis.json\\\\nwithin_instance_rho_table.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "e30d409a-7af5-4a1e-ad3c-88e29ff23709",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"adalp_analysis_results.json\\\\nadaptive_temperature_results.json\\\\nanalysis_epsilon_sweep\\\\nanalysis_fk_bootstrap_ci.json\\\\nanalysis_fk_bootstrap_per_instance.json\\\\nanalysis_lp_range_cdf.json\\\\nanalysis_lp_range_cdf_n16_3seed.json\\\\nanalysis_mbr_selection.json\\\\nanalysis_multiseed_selection_f1.json\\\\nanalysis_round8\\\\nanalysis_scierc_n16_3seed_selection_f1.json\\\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\\\nanalysis_unified_rho_full.json\\\\nanalyze_s789_rerun.log\\\\nb5_cross_model_construction.py\\\\nb5_cross_model_results.json\\\\nb7_adaptive_budget\\\\nbootstrap_ci_nscaling\\\\nbootstrap_ci_summary.json\\\\nbootstrap_ci_tables.tex\\\\ncalibration_baseline_results.json\\\\nccs_selection_report.md\\\\nccs_selection_results.json\\\\nclaim_audit\\\\nconditional_filter_diagnosis.json\\\\nconstruction_variants\\\\nd108_greedy_f1\\\\nd108_lp_vc_combination\\\\nd108_mbr_within_rho\\\\nd108_q4q5\\\\nd110_4b_degeneracy\\\\nd112_disk_cleanup\\\\nd112_hybrid_strategy\\\\nd112_mf3_random_single\\\\nd112_table2_fix\\\\nd114_auroc_investigation\\\\nd140_oracle_gated\\\\nd141_conditional_decomp\\\\nd141_degeneracy_scatter\\\\nd141_entity_merge\\\\ndals_analysis.json\\\\ndals_cross_model.json\\\\ndals_hardening_results.json\\\\ndeberta_verifier\\\\ndeberta_verifier_5fold\\\\ndebug_sj_variance.log\\\\ndebug_sj_variance_results.json\\\\ndecomposition_regression\\\\ndev_set_lp_probe\\\\ndgs_epoch_rank_analysis.json\\\\ndgs_selection_results.json\\\\ndiagnostic_calibration\\\\ndiagnostic_calibration_results.json\\\\ndistill_verifier\\\\ne2v2_regime_weights\\\\ne_theta_v1_logreg_results.json\\\\ne_theta_v3_no_dataset_results.json\\\\ne_theta_v4_no_model_results.json\\\\nentity_consensus_report.md\\\\nentity_consensus_results.json\\\\nentity_construction\\\\nentity_construction_fair\\\\nentity_construction_fair_log.txt\\\\nentity_construction_fair_n8\\\\nentity_construction_fair_n8_log.txt\\\\nentity_independence_analysis\\\\nentity_token_lp_full\\\\nepoch_scierc_textbased_rho.json\\\\nexp001_n16_seed123\\\\nexp001_n16_seed123_200only\\\\nexp001_n16_seed123_200only_backup\\\\nexp001_n16_seed123_full\\\\nexp001_n16_seed123_run.log\\\\nexp001_n16_seed42\\\\nexp001_n16_seed42_200only_backup\\\\nexp001_n16_seed42_run.log\\\\nexp001_n16_seed456\\\\nexp001_n16_seed456_200only\\\\nexp001_n16_seed456_run.log\\\\nexp001_seed123_t10_full\\\\nexp001_seed123_t10_full.log\\\\nexp001_seed456_t10_full\\\\nexp001_seed456_t10_full.log\\\\nexp002_conll2003\\\\nexp003_wnut17_dryrun\\\\nexp003_wnut17_eval\\\\nexp003_wnut17_eval.log\\\\nexp003_wnut17_pilot\\\\nexp003_wnut17_pilot.log\\\\nexp004_re_diagnostic\\\\nexp004v2_re_diagnostic\\\\nexp007_llama_dryrun\\\\nexp007_llama_inference\\\\nexp008_re_n16\\\\nexp008_re_n16_200only\\\\nexp008_re_n16_t10_full\\\\nexp008_re_n16_t10_full.log\\\\nexp009_stratification_results.json\\\\nexp010_selection_curves\\\\nexp016_signal_ensemble\\\\nexp018_3seed_5signal_results.json\\\\nexp_001_seed123_v2\\\\nexp_001_seed123_v2_r1024\\\\nexp_001_seed42_v2\\\\nexp_001_seed42_v2_r1024\\\\nexp_001_seed456_v2\\\\nexp_001_seed456_v2_ner\\\\nexp_001_seed456_v2_ner.log\\\\nexp_001_seed456_v2_ner_r1024\\\\nexp_002_conll_n16\\\\nexp_002_conll_n16.log\\\\nexp_002_conll_n16_r1024\\\\nexp_002_conll_n16_seed123\\\\nexp_002_conll_n16_seed123.log\\\\nexp_002_conll_n16_seed456\\\\nexp_002_conll_n16_seed456.log\\\\nexp_002_conll_n8_seed123\\\\nexp_002_conll_n8_seed123_run.log\\\\nexp_002_conll_n8_seed456\\\\nexp_002_conll_n8_seed456.log\\\\nexp_003_wnut17_v2_infer\\\\nexp_005_v2_temperature\\\\nexp_006_v2\\\\nexp_006_v2_run.log\\\\nexp_007_llama_n16\\\\nexp_007_llama_n16.log\\\\nexp_007_llama_n16_r1024\\\\nexp_007_llama_scierc_seed123\\\\nexp_007_llama_seed123\\\\nexp_007_llama_seed456\\\\nexp_008_re_n16_v2\\\\nexp_008_re_seed123\\\\nexp_009_v2\\\\nexp_009_v2_re_rerun\\\\nexp_009_v2_run.log\\\\nexp_011_ood_analysis\\\\nexp_011_ood_conll_to_scierc\\\\nexp_011_ood_scierc_to_conll\\\\nexp_011_ood_scierc_to_conll_run.log\\\\nexp_012_logprob\\\\nexp_012_rerun_1024\\\\nexp_015_unified\\\\nexp_015_v2\\\\nexp_016_rerun_1024\\\\nexp_016_v2\\\\nexp_017_llama_conll\\\\nexp_017_llama_conll_infer\\\\nexp_017_llama_conll_infer.log\\\\nexp_017_llama_conll_n16\\\\nexp_017_llama_conll_n16_r1024\\\\nexp_017_llama_conll_n16_r1024_run.log\\\\nexp_017_llama_conll_n16_s123\\\\nexp_017_llama_conll_n16_s123.log\\\\nexp_017_llama_conll_n16_s123_r1024\\\\nexp_017_llama_conll_n16_s456\\\\nexp_017_llama_conll_n16_s456.log\\\\nexp_017_llama_conll_n16_s456_r1024\\\\nexp_017_llama_conll_n16_s456_r1024_run.log\\\\nexp_017_llama_conll_n8_t07\\\\nexp_017_llama_conll_pipeline.log\\\\nexp_018_llama_scierc_seed123\\\\nexp_018_llama_scierc_seed123.log\\\\nexp_018_llama_scierc_seed42_r1024\\\\nexp_018_llama_scierc_seed456\\\\nexp_018_llama_scierc_seed456_r1024\\\\nexp_018_qwen_scierc_seed123\\\\nexp_018_qwen_scierc_seed123.log\\\\nexp_018_qwen_scierc_seed456\\\\nexp_019_trained_verifier\\\\nexp_020_pilot\\\\nexp_021_fewnerd_full\\\\nexp_021_fewnerd_n8_seed123\\\\nexp_021_fewnerd_n8_seed123_run.log\\\\nexp_021_fewnerd_n8_seed456\\\\nexp_021_fewnerd_n8_seed456_run.log\\\\nexp_021_fewnerd_n8_seed789_shard0\\\\nexp_021_fewnerd_n8_seed789_shard1\\\\nexp_021_fewnerd_n8_seed789_shard2\\\\nexp_021_inference\\\\nexp_022_3seed_analysis\\\\nexp_022_seed789\\\\nexp_023_rank8_inference\\\\nexp_025_n32\\\\nexp_025_n32.log\\\\nexp_025_n_ablation\\\\nexp_026_T05\\\\nexp_026_T05_run.log\\\\nexp_026_T08\\\\nexp_026_T08_run.log\\\\nexp_026_T12\\\\nexp_026_T12_run.log\\\\nexp_026_T_ablation_summary.json\\\\nexp_026_t05\\\\nexp_026_t05.log\\\\nexp_026_t05_seed123\\\\nexp_026_t05_seed123.log\\\\nexp_026_t05_seed456\\\\nexp_026_t05_seed456.log\\\\nexp_026_t08\\\\nexp_026_t08.log\\\\nexp_026_t08_seed123\\\\nexp_026_t08_seed123.log\\\\nexp_026_t08_seed456\\\\nexp_026_t10_seed123\\\\nexp_026_t10_seed42\\\\nexp_026_t10_seed456\\\\nexp_026_t12\\\\nexp_026_t12.log\\\\nexp_026_t12_seed123\\\\nexp_026_t12_seed123.log\\\\nexp_026_t12_seed456\\\\nexp_027_fewnerd_n16\\\\nexp_027_mlp_v2\\\\nexp_027_mlp_verifier\\\\nexp_027v2_mlp_verifier\\\\nexp_028_entity_token_lp\\\\nexp_028_fewnerd_5epoch\\\\nexp_029a_scierc_3epoch\\\\nexp_029b_scierc_10epoch\\\\nexp_030_conll_t12\\\\nexp_030_conll_t12.log\\\\nexp_031_fewnerd_t12\\\\nexp_031_fewnerd_t12.log\\\\nexp_cross_model_consistency\\\\nexp_dgec_heterogeneous_t\\\\nexp_entity_token_lp\\\\nexp_entity_token_lp_conll_run.log\\\\nexp_entity_token_lp_pilot\\\\nexp_entity_token_lp_pilot_run.log\\\\nexp_entity_token_lp_scierc_run.log\\\\nexp_entity_token_lp_smoke\\\\nexp_lp_scierc_t07\\\\nexp_qwen3_4b_conll_merge_inference_v2\\\\nexp_qwen3_4b_conll_scs_inference\\\\nexp_qwen3_4b_conll_scs_inference_v2\\\\nexp_qwen3_4b_scierc_scs_inference\\\\nexp_re_scierc_seed123\\\\nexp_re_scierc_seed456\\\\nexp_scale_qwen3_4b_conll\\\\nf1_audit_results.json\\\\nfewnerd_3seed_construction_bootstrap.json\\\\nfewnerd_dals_multiseed_results.json\\\\nfewnerd_multiseed_unified_v2.json\\\\nfewnerd_seed789_merged\\\\nfigures\\\\nfs_vs_zs_error_correlation.json\\\\ngate0_all_predictions.jsonl\\\\ngate0_ft002v2\\\\ngate0_ft002v2_ckpt400\\\\ngate0_realigned_predictions.jsonl\\\\ngate0_realigned_results.json\\\\ngate0_results.json\\\\ngate0_samples.json\\\\ngating_bootstrap\\\\nhidden_state_probe\\\\nhidden_state_probe_exp016\\\\nhidden_state_probe_exp016_run.log\\\\nhidden_state_probe_fewnerd\\\\nk_robustness\\\\nllama_conll_n16_3seed_5signal_summary.json\\\\nllama_fewnerd_3seed_summary\\\\nllama_fewnerd_s123\\\\nllama_fewnerd_s42\\\\nllama_fewnerd_s456\\\\nlogprob_diagnosis\\\\nloo_sj_cross_dataset\\\\nlp_rank_comparison.py\\\\nlp_rank_comparison_results.json\\\\nmbr_selection_results.json\\\\nmerge_conll.log\\\\nmultiseed_selection_f1.json\\\\nmvp_pilot_001\\\\nmvp_pilot_001.log\\\\nmvp_pilot_003\\\\nmvp_pilot_004\\\\nmvp_pilot_005\\\\nn16_3seed_5signal_results.json\\\\nn16_3seed_analysis.py\\\\nn16_5signal_results.json\\\\nn8_5signal_results.json\\\\nn_scaling_gf_maxlp.json\\\\npaper_f1_audit\\\\npaper_f1_audit_script.py\\\\nprescriptive_analysis\\\\nr17_analyses\\\\nr21_q1_alignment\\\\nr21_w5_lp_rho_audit\\\\nrecompute_tab_fewnerd_results.json\\\\nreview_round2\\\\nreview_round4\\\\nreview_round8\\\\nreview_round9_experiments\\\\nrho_audit_results.json\\\\nscatter_v2_data.json\\\\nselection_f1_4b_results.json\\\\nsj_8b_qwen3_ft_progress.log\\\\nsj_8b_qwen3_ft_results.json\\\\nstatistical_hardening\\\\nsupervised_verifier_upgrade\\\\nsupervised_verifier_upgrade.log\\\\nsupplement_degen_results.json\\\\ntask1_within_rho.py\\\\ntask2_dals_cross_model.py\\\\ntask3_llama_n16_check.py\\\\ntoken_lp_aggregator\\\\ntoken_lp_aggregator_fewnerd.log\\\\ntoken_lp_aggregator_scierc.log\\\\ntoken_lp_aggregator_scierc_3ep.log\\\\ntoken_lp_aggregator_scierc_v2.log\\\\nunified_degeneracy_audit\\\\nunified_metrics_regression\\\\nunified_oracle_audit\\\\nunified_tab_fewnerd_maxlp.json\\\\nvc_8b_qwen3_ft_progress.log\\\\nvc_8b_qwen3_ft_results.json\\\\nvc_quartile_analysis.json\\\\nwithin_instance_rho_table.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"adalp_analysis_results.json\\nadaptive_temperature_results.json\\nanalysis_epsilon_sweep\\nanalysis_fk_bootstrap_ci.json\\nanalysis_fk_bootstrap_per_instance.json\\nanalysis_lp_range_cdf.json\\nanalysis_lp_range_cdf_n16_3seed.json\\nanalysis_mbr_selection.json\\nanalysis_multiseed_selection_f1.json\\nanalysis_round8\\nanalysis_scierc_n16_3seed_selection_f1.json\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\nanalysis_unified_rho_full.json\\nanalyze_s789_rerun.log\\nb5_cross_model_construction.py\\nb5_cross_model_results.json\\nb7_adaptive_budget\\nbootstrap_ci_nscaling\\nbootstrap_ci_summary.json\\nbootstrap_ci_tables.tex\\ncalibration_baseline_results.json\\nccs_selection_report.md\\nccs_selection_results.json\\nclaim_audit\\nconditional_filter_diagnosis.json\\nconstruction_variants\\nd108_greedy_f1\\nd108_lp_vc_combination\\nd108_mbr_within_rho\\nd108_q4q5\\nd110_4b_degeneracy\\nd112_disk_cleanup\\nd112_hybrid_strategy\\nd112_mf3_random_single\\nd112_table2_fix\\nd114_auroc_investigation\\nd140_oracle_gated\\nd141_conditional_decomp\\nd141_degeneracy_scatter\\nd141_entity_merge\\ndals_analysis.json\\ndals_cross_model.json\\ndals_hardening_results.json\\ndeberta_verifier\\ndeberta_verifier_5fold\\ndebug_sj_variance.log\\ndebug_sj_variance_results.json\\ndecomposition_regression\\ndev_set_lp_probe\\ndgs_epoch_rank_analysis.json\\ndgs_selection_results.json\\ndiagnostic_calibration\\ndiagnostic_calibration_results.json\\ndistill_verifier\\ne2v2_regime_weights\\ne_theta_v1_logreg_results.json\\ne_theta_v3_no_dataset_results.json\\ne_theta_v4_no_model_results.json\\nentity_consensus_report.md\\nentity_consensus_results.json\\nentity_construction\\nentity_construction_fair\\nentity_construction_fair_log.txt\\nentity_construction_fair_n8\\nentity_construction_fair_n8_log.txt\\nentity_independence_analysis\\nentity_token_lp_full\\nepoch_scierc_textbased_rho.json\\nexp001_n16_seed123\\nexp001_n16_seed123_200only\\nexp001_n16_seed123_200only_backup\\nexp001_n16_seed123_full\\nexp001_n16_seed123_run.log\\nexp001_n16_seed42\\nexp001_n16_seed42_200only_backup\\nexp001_n16_seed42_run.log\\nexp001_n16_seed456\\nexp001_n16_seed456_200only\\nexp001_n16_seed456_run.log\\nexp001_seed123_t10_full\\nexp001_seed123_t10_full.log\\nexp001_seed456_t10_full\\nexp001_seed456_t10_full.log\\nexp002_conll2003\\nexp003_wnut17_dryrun\\nexp003_wnut17_eval\\nexp003_wnut17_eval.log\\nexp003_wnut17_pilot\\nexp003_wnut17_pilot.log\\nexp004_re_diagnostic\\nexp004v2_re_diagnostic\\nexp007_llama_dryrun\\nexp007_llama_inference\\nexp008_re_n16\\nexp008_re_n16_200only\\nexp008_re_n16_t10_full\\nexp008_re_n16_t10_full.log\\nexp009_stratification_results.json\\nexp010_selection_curves\\nexp016_signal_ensemble\\nexp018_3seed_5signal_results.json\\nexp_001_seed123_v2\\nexp_001_seed123_v2_r1024\\nexp_001_seed42_v2\\nexp_001_seed42_v2_r1024\\nexp_001_seed456_v2\\nexp_001_seed456_v2_ner\\nexp_001_seed456_v2_ner.log\\nexp_001_seed456_v2_ner_r1024\\nexp_002_conll_n16\\nexp_002_conll_n16.log\\nexp_002_conll_n16_r1024\\nexp_002_conll_n16_seed123\\nexp_002_conll_n16_seed123.log\\nexp_002_conll_n16_seed456\\nexp_002_conll_n16_seed456.log\\nexp_002_conll_n8_seed123\\nexp_002_conll_n8_seed123_run.log\\nexp_002_conll_n8_seed456\\nexp_002_conll_n8_seed456.log\\nexp_003_wnut17_v2_infer\\nexp_005_v2_temperature\\nexp_006_v2\\nexp_006_v2_run.log\\nexp_007_llama_n16\\nexp_007_llama_n16.log\\nexp_007_llama_n16_r1024\\nexp_007_llama_scierc_seed123\\nexp_007_llama_seed123\\nexp_007_llama_seed456\\nexp_008_re_n16_v2\\nexp_008_re_seed123\\nexp_009_v2\\nexp_009_v2_re_rerun\\nexp_009_v2_run.log\\nexp_011_ood_analysis\\nexp_011_ood_conll_to_scierc\\nexp_011_ood_scierc_to_conll\\nexp_011_ood_scierc_to_conll_run.log\\nexp_012_logprob\\nexp_012_rerun_1024\\nexp_015_unified\\nexp_015_v2\\nexp_016_rerun_1024\\nexp_016_v2\\nexp_017_llama_conll\\nexp_017_llama_conll_infer\\nexp_017_llama_conll_infer.log\\nexp_017_llama_conll_n16\\nexp_017_llama_conll_n16_r1024\\nexp_017_llama_conll_n16_r1024_run.log\\nexp_017_llama_conll_n16_s123\\nexp_017_llama_conll_n16_s123.log\\nexp_017_llama_conll_n16_s123_r1024\\nexp_017_llama_conll_n16_s456\\nexp_017_llama_conll_n16_s456.log\\nexp_017_llama_conll_n16_s456_r1024\\nexp_017_llama_conll_n16_s456_r1024_run.log\\nexp_017_llama_conll_n8_t07\\nexp_017_llama_conll_pipeline.log\\nexp_018_llama_scierc_seed123\\nexp_018_llama_scierc_seed123.log\\nexp_018_llama_scierc_seed42_r1024\\nexp_018_llama_scierc_seed456\\nexp_018_llama_scierc_seed456_r1024\\nexp_018_qwen_scierc_seed123\\nexp_018_qwen_scierc_seed123.log\\nexp_018_qwen_scierc_seed456\\nexp_019_trained_verifier\\nexp_020_pilot\\nexp_021_fewnerd_full\\nexp_021_fewnerd_n8_seed123\\nexp_021_fewnerd_n8_seed123_run.log\\nexp_021_fewnerd_n8_seed456\\nexp_021_fewnerd_n8_seed456_run.log\\nexp_021_fewnerd_n8_seed789_shard0\\nexp_021_fewnerd_n8_seed789_shard1\\nexp_021_fewnerd_n8_seed789_shard2\\nexp_021_inference\\nexp_022_3seed_analysis\\nexp_022_seed789\\nexp_023_rank8_inference\\nexp_025_n32\\nexp_025_n32.log\\nexp_025_n_ablation\\nexp_026_T05\\nexp_026_T05_run.log\\nexp_026_T08\\nexp_026_T08_run.log\\nexp_026_T12\\nexp_026_T12_run.log\\nexp_026_T_ablation_summary.json\\nexp_026_t05\\nexp_026_t05.log\\nexp_026_t05_seed123\\nexp_026_t05_seed123.log\\nexp_026_t05_seed456\\nexp_026_t05_seed456.log\\nexp_026_t08\\nexp_026_t08.log\\nexp_026_t08_seed123\\nexp_026_t08_seed123.log\\nexp_026_t08_seed456\\nexp_026_t10_seed123\\nexp_026_t10_seed42\\nexp_026_t10_seed456\\nexp_026_t12\\nexp_026_t12.log\\nexp_026_t12_seed123\\nexp_026_t12_seed123.log\\nexp_026_t12_seed456\\nexp_027_fewnerd_n16\\nexp_027_mlp_v2\\nexp_027_mlp_verifier\\nexp_027v2_mlp_verifier\\nexp_028_entity_token_lp\\nexp_028_fewnerd_5epoch\\nexp_029a_scierc_3epoch\\nexp_029b_scierc_10epoch\\nexp_030_conll_t12\\nexp_030_conll_t12.log\\nexp_031_fewnerd_t12\\nexp_031_fewnerd_t12.log\\nexp_cross_model_consistency\\nexp_dgec_heterogeneous_t\\nexp_entity_token_lp\\nexp_entity_token_lp_conll_run.log\\nexp_entity_token_lp_pilot\\nexp_entity_token_lp_pilot_run.log\\nexp_entity_token_lp_scierc_run.log\\nexp_entity_token_lp_smoke\\nexp_lp_scierc_t07\\nexp_qwen3_4b_conll_merge_inference_v2\\nexp_qwen3_4b_conll_scs_inference\\nexp_qwen3_4b_conll_scs_inference_v2\\nexp_qwen3_4b_scierc_scs_inference\\nexp_re_scierc_seed123\\nexp_re_scierc_seed456\\nexp_scale_qwen3_4b_conll\\nf1_audit_results.json\\nfewnerd_3seed_construction_bootstrap.json\\nfewnerd_dals_multiseed_results.json\\nfewnerd_multiseed_unified_v2.json\\nfewnerd_seed789_merged\\nfigures\\nfs_vs_zs_error_correlation.json\\ngate0_all_predictions.jsonl\\ngate0_ft002v2\\ngate0_ft002v2_ckpt400\\ngate0_realigned_predictions.jsonl\\ngate0_realigned_results.json\\ngate0_results.json\\ngate0_samples.json\\ngating_bootstrap\\nhidden_state_probe\\nhidden_state_probe_exp016\\nhidden_state_probe_exp016_run.log\\nhidden_state_probe_fewnerd\\nk_robustness\\nllama_conll_n16_3seed_5signal_summary.json\\nllama_fewnerd_3seed_summary\\nllama_fewnerd_s123\\nllama_fewnerd_s42\\nllama_fewnerd_s456\\nlogprob_diagnosis\\nloo_sj_cross_dataset\\nlp_rank_comparison.py\\nlp_rank_comparison_results.json\\nmbr_selection_results.json\\nmerge_conll.log\\nmultiseed_selection_f1.json\\nmvp_pilot_001\\nmvp_pilot_001.log\\nmvp_pilot_003\\nmvp_pilot_004\\nmvp_pilot_005\\nn16_3seed_5signal_results.json\\nn16_3seed_analysis.py\\nn16_5signal_results.json\\nn8_5signal_results.json\\nn_scaling_gf_maxlp.json\\npaper_f1_audit\\npaper_f1_audit_script.py\\nprescriptive_analysis\\nr17_analyses\\nr21_q1_alignment\\nr21_w5_lp_rho_audit\\nrecompute_tab_fewnerd_results.json\\nreview_round2\\nreview_round4\\nreview_round8\\nreview_round9_experiments\\nrho_audit_results.json\\nscatter_v2_data.json\\nselection_f1_4b_results.json\\nsj_8b_qwen3_ft_progress.log\\nsj_8b_qwen3_ft_results.json\\nstatistical_hardening\\nsupervised_verifier_upgrade\\nsupervised_verifier_upgrade.log\\nsupplement_degen_results.json\\ntask1_within_rho.py\\ntask2_dals_cross_model.py\\ntask3_llama_n16_check.py\\ntoken_lp_aggregator\\ntoken_lp_aggregator_fewnerd.log\\ntoken_lp_aggregator_scierc.log\\ntoken_lp_aggregator_scierc_3ep.log\\ntoken_lp_aggregator_scierc_v2.log\\nunified_degeneracy_audit\\nunified_metrics_regression\\nunified_oracle_audit\\nunified_tab_fewnerd_maxlp.json\\nvc_8b_qwen3_ft_progress.log\\nvc_8b_qwen3_ft_results.json\\nvc_quartile_analysis.json\\nwithin_instance_rho_table.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017LQGCdajyeEr4rzB9v3p3b",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "filters": {
+                  "exp_id": "exp_14b_inference_fewnerd"
+                },
+                "project": "struct_self_consist_ie",
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "e7f73422-c8aa-4a0e-b883-f2bd651bd0eb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HvkoUHjiHcdo6zhVUKCGoJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2352,
+                "cache_read_input_tokens": 24497,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2352
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T17:49:09.250Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017LQGCdajyeEr4rzB9v3p3b",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9761}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "093eafb6-a414-4838-b08d-33570d7c84a0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9761}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9761}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Key findings:\n1. PID 217960 is NOT running (exit code 1, no output)\n2. All 4 GPUs are fully occupied (~30GB each, 79-100% utilization) - something else is running\n3. The output directory has many entries but I need to find the 14b-specific ones\n4. Registry search returned 0 results for \"exp_14b_inference_fewnerd\" - let me search more broadly\n\nLet me check what's running on the GPUs, look for the 14b output directories, and search the registry more broadly.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "03995cb9-4e92-403a-94dc-4eb0be894fa6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GczxntfXLndYeGtwDXZmFE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4867,
+                "cache_read_input_tokens": 26849,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4867
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "vLLM PID 217960 已不在运行。4 块 GPU 全部高负载占用。需要进一步排查。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "ce6a6d45-4d2f-4669-9737-edca54fd2622",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GczxntfXLndYeGtwDXZmFE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4867,
+                "cache_read_input_tokens": 26849,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4867
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015Z2YJ8xQQGY3JmRMbVsjgk",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "ps aux --sort=-%mem --no-headers",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "387f8356-c0cb-4962-b22f-9dbd52b7f2e9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GczxntfXLndYeGtwDXZmFE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4867,
+                "cache_read_input_tokens": 26849,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4867
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T17:49:19.000Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015Z2YJ8xQQGY3JmRMbVsjgk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     804666  100  0.4 177187348 3753648 ?   Ssl  May19 1936:23 /root/miniconda3/bin/python -u /root/miniconda3/lib/python3.12/site-packages/llamafactory/launcher.py /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\\\nroot     804665  100  0.4 177223028 3751428 ?   Ssl  May19 1936:03 /root/miniconda3/bin/python -u /root/miniconda3/lib/python3.12/site-packages/llamafactory/launcher.py /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\\\nroot     804668  100  0.4 177177220 3747048 ?   Rsl  May19 1936:18 /root/miniconda3/bin/python -u /root/miniconda3/lib/python3.12/site-packages/llamafactory/launcher.py /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\\\nroot     804667  100  0.4 177163032 3741440 ?   Rsl  May19 1936:19 /root/miniconda3/bin/python -u /root/miniconda3/lib/python3.12/site-packages/llamafactory/launcher.py /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\\\nroot     804438  0.0  0.1 36295232 858944 ?     Sl   May19   0:20 /root/miniconda3/bin/python /root/miniconda3/bin/llamafactory-cli train /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\\\nroot     804590  0.0  0.0 33010892 542360 ?     Sl   May19   1:37 /root/miniconda3/bin/python /root/miniconda3/bin/torchrun --nnodes 1 --node_rank 0 --nproc_per_node 4 --master_addr 127.0.0.1 --master_port 42349 /root/miniconda3/lib/python3.12/site-packages/llamafactory/launcher.py /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\\\nroot        937  0.3  0.0 7043580 134016 ?      Sl   May14  34:26 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        939  0.0  0.0 191560 96316 ?        S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        935  0.0  0.0 4147828 71852 ?       Sl   May14   3:24 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        940  0.0  0.0 3830840 24112 ?       Sl   May14   8:41 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        917  1.7  0.0 724128 21388 ?        Sl   May14 162:05 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        941  0.0  0.0 4052292 20172 ?       Sl   May14   8:16 proxy -c /init/proxy/proxy.ini\\\\nroot     174588  0.0  0.0  14672 11708 ?        Ss   May15   1:00 tmux new-session -d -s exp_001_n16_seed456 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --output_dir output/exp001_n16_seed456 --collect_logprobs 2>&1 | tee output/exp001_n16_seed456_run.log\\\\nroot     938301  0.0  0.0  16836 11004 ?        Ss   01:42   0:00 sshd: root@notty\\\\nroot     940583  0.2  0.0  16692 10764 ?        Ss   01:49   0:00 sshd: root@notty\\\\nroot     885861  0.0  0.0  16692 10736 ?        Ss   May20   0:02 sshd: root@notty\\\\nroot     885862  0.0  0.0  16692 10656 ?        Ss   May20   0:03 sshd: root@notty\\\\nroot       1050  0.0  0.0 28341068 10600 ?      Sl   May14   7:56 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_n2g13yqg/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_n2g13yqg/startup_error\\\\nroot     940163  0.0  0.0  16692 10536 ?        Ss   01:48   0:00 sshd: root@notty\\\\nroot     940641  0.2  0.0  16432 10204 ?        Ss   01:49   0:00 sshd: unknown [priv]\\\\nroot     940655  0.0  0.0  16432 10108 ?        Ss   01:49   0:00 sshd: unknown [priv]\\\\nroot     940653  1.0  0.0  16432 10084 ?        Ss   01:49   0:00 sshd: unknown [priv]\\\\nroot     940657  0.0  0.0  16432 10084 ?        Ss   01:49   0:00 sshd: unknown [priv]\\\\nroot     940659  0.0  0.0  16432  9976 ?        Ss   01:49   0:00 sshd: unknown [priv]\\\\nroot        932  0.0  0.0  15444  7996 ?        S    May14   0:38 sshd: /usr/sbin/sshd -D [listener] 5 of 10-100 startups\\\\nsshd     940658  0.0  0.0  15444  5564 ?        S    01:49   0:00 sshd: unknown [net]\\\\nsshd     940656  0.0  0.0  15444  5552 ?        S    01:49   0:00 sshd: unknown [net]\\\\nsshd     940660  0.0  0.0  15444  5520 ?        S    01:49   0:00 sshd: unknown [net]\\\\nsshd     940642  0.0  0.0  15444  5504 ?        S    01:49   0:00 sshd: unknown [net]\\\\nsshd     940654  0.0  0.0  15444  5496 ?        S    01:49   0:00 sshd: unknown [net]\\\\nroot     696324  0.0  0.0   4756  4028 pts/4    Ss+  May19   0:00 -bash\\\\nroot     711717  0.0  0.0   4760  4020 pts/17   Ss+  May19   0:00 -bash\\\\nroot     708537  0.0  0.0   4760  4008 pts/14   Ss+  May19   0:00 -bash\\\\nroot     702924  0.0  0.0   4760  4000 pts/7    Ss+  May19   0:00 -bash\\\\nroot     705422  0.0  0.0   4760  4000 pts/10   Ss+  May19   0:00 -bash\\\\nroot     703088  0.0  0.0   4760  3992 pts/8    Ss+  May19   0:00 -bash\\\\nroot     705587  0.0  0.0   4760  3992 pts/11   Ss+  May19   0:00 -bash\\\\nroot     703252  0.0  0.0   4760  3988 pts/9    Ss+  May19   0:00 -bash\\\\nroot     698100  0.0  0.0   4756  3980 pts/6    Ss+  May19   0:00 -bash\\\\nroot     707223  0.0  0.0   4760  3968 pts/12   Ss+  May19   0:00 -bash\\\\nroot     711552  0.0  0.0   4760  3968 pts/16   Ss+  May19   0:00 -bash\\\\nroot     711381  0.0  0.0   4760  3964 pts/15   Ss+  May19   0:00 -bash\\\\nroot     708370  0.0  0.0   4760  3960 pts/13   Ss+  May19   0:00 -bash\\\\nroot     696492  0.0  0.0   4756  3832 pts/5    Ss+  May19   0:00 -bash\\\\nroot     181723  0.0  0.0   4624  3500 pts/0    Ss+  May15   0:00 bash\\\\nroot     175728  0.0  0.0   4624  3476 pts/1    Ss+  May15   0:00 bash\\\\nroot     175864  0.0  0.0   4624  3412 pts/2    Ss+  May15   0:00 bash\\\\nroot     940662  0.0  0.0   7208  3228 ?        Rs   01:49   0:00 ps aux --sort=-%mem --no-headers\\\\nroot          1  0.0  0.0   4476  3080 ?        Ss   May14   0:01 bash /init/boot/boot.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "0b3f88d9-ede5-42d0-b127-8a979a2f770d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     804666  100  0.4 177187348 3753648 ?   Ssl  May19 1936:23 /root/miniconda3/bin/python -u /root/miniconda3/lib/python3.12/site-packages/llamafactory/launcher.py /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\\\nroot     804665  100  0.4 177223028 3751428 ?   Ssl  May19 1936:03 /root/miniconda3/bin/python -u /root/miniconda3/lib/python3.12/site-packages/llamafactory/launcher.py /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\\\nroot     804668  100  0.4 177177220 3747048 ?   Rsl  May19 1936:18 /root/miniconda3/bin/python -u /root/miniconda3/lib/python3.12/site-packages/llamafactory/launcher.py /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\\\nroot     804667  100  0.4 177163032 3741440 ?   Rsl  May19 1936:19 /root/miniconda3/bin/python -u /root/miniconda3/lib/python3.12/site-packages/llamafactory/launcher.py /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\\\nroot     804438  0.0  0.1 36295232 858944 ?     Sl   May19   0:20 /root/miniconda3/bin/python /root/miniconda3/bin/llamafactory-cli train /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\\\nroot     804590  0.0  0.0 33010892 542360 ?     Sl   May19   1:37 /root/miniconda3/bin/python /root/miniconda3/bin/torchrun --nnodes 1 --node_rank 0 --nproc_per_node 4 --master_addr 127.0.0.1 --master_port 42349 /root/miniconda3/lib/python3.12/site-packages/llamafactory/launcher.py /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\\\nroot        937  0.3  0.0 7043580 134016 ?      Sl   May14  34:26 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        939  0.0  0.0 191560 96316 ?        S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        935  0.0  0.0 4147828 71852 ?       Sl   May14   3:24 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        940  0.0  0.0 3830840 24112 ?       Sl   May14   8:41 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        917  1.7  0.0 724128 21388 ?        Sl   May14 162:05 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        941  0.0  0.0 4052292 20172 ?       Sl   May14   8:16 proxy -c /init/proxy/proxy.ini\\\\nroot     174588  0.0  0.0  14672 11708 ?        Ss   May15   1:00 tmux new-session -d -s exp_001_n16_seed456 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --output_dir output/exp001_n16_seed456 --collect_logprobs 2>&1 | tee output/exp001_n16_seed456_run.log\\\\nroot     938301  0.0  0.0  16836 11004 ?        Ss   01:42   0:00 sshd: root@notty\\\\nroot     940583  0.2  0.0  16692 10764 ?        Ss   01:49   0:00 sshd: root@notty\\\\nroot     885861  0.0  0.0  16692 10736 ?        Ss   May20   0:02 sshd: root@notty\\\\nroot     885862  0.0  0.0  16692 10656 ?        Ss   May20   0:03 sshd: root@notty\\\\nroot       1050  0.0  0.0 28341068 10600 ?      Sl   May14   7:56 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_n2g13yqg/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_n2g13yqg/startup_error\\\\nroot     940163  0.0  0.0  16692 10536 ?        Ss   01:48   0:00 sshd: root@notty\\\\nroot     940641  0.2  0.0  16432 10204 ?        Ss   01:49   0:00 sshd: unknown [priv]\\\\nroot     940655  0.0  0.0  16432 10108 ?        Ss   01:49   0:00 sshd: unknown [priv]\\\\nroot     940653  1.0  0.0  16432 10084 ?        Ss   01:49   0:00 sshd: unknown [priv]\\\\nroot     940657  0.0  0.0  16432 10084 ?        Ss   01:49   0:00 sshd: unknown [priv]\\\\nroot     940659  0.0  0.0  16432  9976 ?        Ss   01:49   0:00 sshd: unknown [priv]\\\\nroot        932  0.0  0.0  15444  7996 ?        S    May14   0:38 sshd: /usr/sbin/sshd -D [listener] 5 of 10-100 startups\\\\nsshd     940658  0.0  0.0  15444  5564 ?        S    01:49   0:00 sshd: unknown [net]\\\\nsshd     940656  0.0  0.0  15444  5552 ?        S    01:49   0:00 sshd: unknown [net]\\\\nsshd     940660  0.0  0.0  15444  5520 ?        S    01:49   0:00 sshd: unknown [net]\\\\nsshd     940642  0.0  0.0  15444  5504 ?        S    01:49   0:00 sshd: unknown [net]\\\\nsshd     940654  0.0  0.0  15444  5496 ?        S    01:49   0:00 sshd: unknown [net]\\\\nroot     696324  0.0  0.0   4756  4028 pts/4    Ss+  May19   0:00 -bash\\\\nroot     711717  0.0  0.0   4760  4020 pts/17   Ss+  May19   0:00 -bash\\\\nroot     708537  0.0  0.0   4760  4008 pts/14   Ss+  May19   0:00 -bash\\\\nroot     702924  0.0  0.0   4760  4000 pts/7    Ss+  May19   0:00 -bash\\\\nroot     705422  0.0  0.0   4760  4000 pts/10   Ss+  May19   0:00 -bash\\\\nroot     703088  0.0  0.0   4760  3992 pts/8    Ss+  May19   0:00 -bash\\\\nroot     705587  0.0  0.0   4760  3992 pts/11   Ss+  May19   0:00 -bash\\\\nroot     703252  0.0  0.0   4760  3988 pts/9    Ss+  May19   0:00 -bash\\\\nroot     698100  0.0  0.0   4756  3980 pts/6    Ss+  May19   0:00 -bash\\\\nroot     707223  0.0  0.0   4760  3968 pts/12   Ss+  May19   0:00 -bash\\\\nroot     711552  0.0  0.0   4760  3968 pts/16   Ss+  May19   0:00 -bash\\\\nroot     711381  0.0  0.0   4760  3964 pts/15   Ss+  May19   0:00 -bash\\\\nroot     708370  0.0  0.0   4760  3960 pts/13   Ss+  May19   0:00 -bash\\\\nroot     696492  0.0  0.0   4756  3832 pts/5    Ss+  May19   0:00 -bash\\\\nroot     181723  0.0  0.0   4624  3500 pts/0    Ss+  May15   0:00 bash\\\\nroot     175728  0.0  0.0   4624  3476 pts/1    Ss+  May15   0:00 bash\\\\nroot     175864  0.0  0.0   4624  3412 pts/2    Ss+  May15   0:00 bash\\\\nroot     940662  0.0  0.0   7208  3228 ?        Rs   01:49   0:00 ps aux --sort=-%mem --no-headers\\\\nroot          1  0.0  0.0   4476  3080 ?        Ss   May14   0:01 bash /init/boot/boot.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"root     804666  100  0.4 177187348 3753648 ?   Ssl  May19 1936:23 /root/miniconda3/bin/python -u /root/miniconda3/lib/python3.12/site-packages/llamafactory/launcher.py /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\nroot     804665  100  0.4 177223028 3751428 ?   Ssl  May19 1936:03 /root/miniconda3/bin/python -u /root/miniconda3/lib/python3.12/site-packages/llamafactory/launcher.py /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\nroot     804668  100  0.4 177177220 3747048 ?   Rsl  May19 1936:18 /root/miniconda3/bin/python -u /root/miniconda3/lib/python3.12/site-packages/llamafactory/launcher.py /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\nroot     804667  100  0.4 177163032 3741440 ?   Rsl  May19 1936:19 /root/miniconda3/bin/python -u /root/miniconda3/lib/python3.12/site-packages/llamafactory/launcher.py /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\nroot     804438  0.0  0.1 36295232 858944 ?     Sl   May19   0:20 /root/miniconda3/bin/python /root/miniconda3/bin/llamafactory-cli train /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\nroot     804590  0.0  0.0 33010892 542360 ?     Sl   May19   1:37 /root/miniconda3/bin/python /root/miniconda3/bin/torchrun --nnodes 1 --node_rank 0 --nproc_per_node 4 --master_addr 127.0.0.1 --master_port 42349 /root/miniconda3/lib/python3.12/site-packages/llamafactory/launcher.py /root/autodl-tmp/struct_self_consist_ie/train_config_qwen25_32b_fewnerd_s42.yaml\\nroot        937  0.3  0.0 7043580 134016 ?      Sl   May14  34:26 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        939  0.0  0.0 191560 96316 ?        S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        935  0.0  0.0 4147828 71852 ?       Sl   May14   3:24 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        940  0.0  0.0 3830840 24112 ?       Sl   May14   8:41 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        917  1.7  0.0 724128 21388 ?        Sl   May14 162:05 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        941  0.0  0.0 4052292 20172 ?       Sl   May14   8:16 proxy -c /init/proxy/proxy.ini\\nroot     174588  0.0  0.0  14672 11708 ?        Ss   May15   1:00 tmux new-session -d -s exp_001_n16_seed456 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --output_dir output/exp001_n16_seed456 --collect_logprobs 2>&1 | tee output/exp001_n16_seed456_run.log\\nroot     938301  0.0  0.0  16836 11004 ?        Ss   01:42   0:00 sshd: root@notty\\nroot     940583  0.2  0.0  16692 10764 ?        Ss   01:49   0:00 sshd: root@notty\\nroot     885861  0.0  0.0  16692 10736 ?        Ss   May20   0:02 sshd: root@notty\\nroot     885862  0.0  0.0  16692 10656 ?        Ss   May20   0:03 sshd: root@notty\\nroot       1050  0.0  0.0 28341068 10600 ?      Sl   May14   7:56 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_n2g13yqg/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_n2g13yqg/startup_error\\nroot     940163  0.0  0.0  16692 10536 ?        Ss   01:48   0:00 sshd: root@notty\\nroot     940641  0.2  0.0  16432 10204 ?        Ss   01:49   0:00 sshd: unknown [priv]\\nroot     940655  0.0  0.0  16432 10108 ?        Ss   01:49   0:00 sshd: unknown [priv]\\nroot     940653  1.0  0.0  16432 10084 ?        Ss   01:49   0:00 sshd: unknown [priv]\\nroot     940657  0.0  0.0  16432 10084 ?        Ss   01:49   0:00 sshd: unknown [priv]\\nroot     940659  0.0  0.0  16432  9976 ?        Ss   01:49   0:00 sshd: unknown [priv]\\nroot        932  0.0  0.0  15444  7996 ?        S    May14   0:38 sshd: /usr/sbin/sshd -D [listener] 5 of 10-100 startups\\nsshd     940658  0.0  0.0  15444  5564 ?        S    01:49   0:00 sshd: unknown [net]\\nsshd     940656  0.0  0.0  15444  5552 ?        S    01:49   0:00 sshd: unknown [net]\\nsshd     940660  0.0  0.0  15444  5520 ?        S    01:49   0:00 sshd: unknown [net]\\nsshd     940642  0.0  0.0  15444  5504 ?        S    01:49   0:00 sshd: unknown [net]\\nsshd     940654  0.0  0.0  15444  5496 ?        S    01:49   0:00 sshd: unknown [net]\\nroot     696324  0.0  0.0   4756  4028 pts/4    Ss+  May19   0:00 -bash\\nroot     711717  0.0  0.0   4760  4020 pts/17   Ss+  May19   0:00 -bash\\nroot     708537  0.0  0.0   4760  4008 pts/14   Ss+  May19   0:00 -bash\\nroot     702924  0.0  0.0   4760  4000 pts/7    Ss+  May19   0:00 -bash\\nroot     705422  0.0  0.0   4760  4000 pts/10   Ss+  May19   0:00 -bash\\nroot     703088  0.0  0.0   4760  3992 pts/8    Ss+  May19   0:00 -bash\\nroot     705587  0.0  0.0   4760  3992 pts/11   Ss+  May19   0:00 -bash\\nroot     703252  0.0  0.0   4760  3988 pts/9    Ss+  May19   0:00 -bash\\nroot     698100  0.0  0.0   4756  3980 pts/6    Ss+  May19   0:00 -bash\\nroot     707223  0.0  0.0   4760  3968 pts/12   Ss+  May19   0:00 -bash\\nroot     711552  0.0  0.0   4760  3968 pts/16   Ss+  May19   0:00 -bash\\nroot     711381  0.0  0.0   4760  3964 pts/15   Ss+  May19   0:00 -bash\\nroot     708370  0.0  0.0   4760  3960 pts/13   Ss+  May19   0:00 -bash\\nroot     696492  0.0  0.0   4756  3832 pts/5    Ss+  May19   0:00 -bash\\nroot     181723  0.0  0.0   4624  3500 pts/0    Ss+  May15   0:00 bash\\nroot     175728  0.0  0.0   4624  3476 pts/1    Ss+  May15   0:00 bash\\nroot     175864  0.0  0.0   4624  3412 pts/2    Ss+  May15   0:00 bash\\nroot     940662  0.0  0.0   7208  3228 ?        Rs   01:49   0:00 ps aux --sort=-%mem --no-headers\\nroot          1  0.0  0.0   4476  3080 ?        Ss   May14   0:01 bash /init/boot/boot.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CsBrAqPB4tqSmeynm3NV4s",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -maxdepth 1 -name \"*14b*\" -o -name \"*qwen3_14b*\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "6f2011a9-2278-4577-a6c4-a9d7ccb00449",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GczxntfXLndYeGtwDXZmFE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4867,
+                "cache_read_input_tokens": 26849,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4867
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T17:49:20.989Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CsBrAqPB4tqSmeynm3NV4s",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "1deb5bf2-141d-48f0-9b6f-bf6876ab269b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G4sM2e5eDvZXBFiwRa4AHd",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "struct_self_consist_ie",
+                "fields": [
+                  "*"
+                ],
+                "limit": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "955f20d6-a7df-4085-91ce-95e0c7a9ac02",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GczxntfXLndYeGtwDXZmFE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4867,
+                "cache_read_input_tokens": 26849,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4867
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014oAxqgTBZSijCcqfhx9qKC",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cat /tmp/14b_fewnerd.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "de2845e5-91c4-44fa-a68b-e0e03c623a5e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GczxntfXLndYeGtwDXZmFE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4867,
+                "cache_read_input_tokens": 26849,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4867
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T17:49:22.393Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G4sM2e5eDvZXBFiwRa4AHd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_14b_inference_fewnerd\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-20T14:36:27.954Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:48:23.920Z\\\", \\\"hypothesis\\\": \\\"14B Qwen2.5 inference on FewNERD (N∈{1,2,4,8,16}): primary dataset should show oracle scaling law F1(N)=a-b*N^(-c) consistent at 14B scale, filling the scaling curve between 7B and 32B.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T17:19:15.098Z\\\"}, \\\"failure_reason\\\": \\\"FALSE POSITIVE: PID 201001 died but inference continues under PID 217692→217960 (EngineCore). Fewnerd n=2 at 24% on GPU 0. Earlier ckpt36000 run crashed with EngineDeadError (CUDA OOM from torch.compile); current merged-final run uses enforce_eager=True and is stable. KV cache critically low (1.09 GiB) — recommend tensor_parallel=2 for future 14B runs.\\\", \\\"completed_at\\\": \\\"2026-05-20T17:19:16.003Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T17:19:25.424710+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"2026-05-21 diagnosis: Process STILL RUNNING. PID 217692 (python) → 217960 (EngineCore) on GPU 0. Completed: SciERC/CoNLL all N + FewNERD N=1. In progress: FewNERD N=2 (24%, ETA ~2h). Log: /tmp/14b_fewnerd.log. SciERC/CoNLL results are garbage (model FewNERD-only, F1<0.05). KV cache critically low (1.09 GiB). Earlier ckpt36000 run crashed with EngineDeadError at 60% — fixed by enforce_eager=True.\\\"}}, \\\"notes\\\": \\\"2026-05-21 diagnosis: Process STILL RUNNING. PID 217692 (python) → 217960 (EngineCore) on GPU 0. Completed: SciERC/CoNLL all N + FewNERD N=1. In progress: FewNERD N=2 (24%, ETA ~2h). Log: /tmp/14b_fewnerd.log. SciERC/CoNLL results are garbage (model FewNERD-only, F1<0.05). KV cache critically low (1.09 GiB). Earlier ckpt36000 run crashed with EngineDeadError at 60% — fixed by enforce_eager=True.\\\"}, \\\"exp_cross_model_consistency\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T09:30:47.928Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:47:31.201Z\\\", \\\"hypothesis\\\": \\\"Pooling samples from two different fine-tuned models (Qwen3-8B + LLaMA-8B) for entity construction significantly outperforms single-model construction because cross-model diversity breaks model-specific mode collapse, reducing degeneracy and providing complementary error patterns that improve consensus quality.\\\", \\\"metrics\\\": {\\\"dataset\\\": \\\"SciERC\\\", \\\"model_a\\\": \\\"Qwen3-8B FT\\\", \\\"model_b\\\": \\\"LLaMA-8B FT\\\", \\\"pure_qwen\\\": {\\\"degen\\\": 0.1, \\\"greedy_f1\\\": 0.7478, \\\"uniform_f1\\\": 0.7499, \\\"vc_f1\\\": 0.7448, \\\"uni_delta_pp\\\": \\\"+0.21\\\", \\\"vc_delta_pp\\\": \\\"-0.30\\\"}, \\\"pure_llama\\\": {\\\"degen\\\": 0.234, \\\"greedy_f1\\\": 0.7841, \\\"uniform_f1\\\": 0.7873, \\\"vc_f1\\\": 0.7869, \\\"uni_delta_pp\\\": \\\"+0.33\\\", \\\"vc_delta_pp\\\": \\\"+0.28\\\"}, \\\"mixed_4q4l\\\": {\\\"degen\\\": 0.116, \\\"uniform_f1\\\": 0.7916, \\\"vc_f1\\\": 0.7898, \\\"uni_delta_vs_qwen_greedy_pp\\\": \\\"+4.37\\\", \\\"vc_delta_vs_qwen_greedy_pp\\\": \\\"+4.20\\\", \\\"mixed_vs_pure_llama_uniform_pp\\\": \\\"+0.42\\\", \\\"mixed_vs_pure_llama_uniform_p\\\": 0, \\\"mixed_vs_pure_llama_uniform_ci\\\": \\\"[0.27, 0.58]\\\", \\\"mixed_vs_pure_llama_vc_pp\\\": \\\"+0.29\\\", \\\"mixed_vs_pure_llama_vc_p\\\": 0.0001}}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"B5 cross-model consistency on SciERC NER. Mixed pool (4 Qwen + 4 LLaMA) significantly outperforms pure LLaMA construction (+0.42pp uniform, p=0.000, CI [0.27,0.58]). Cross-model diversity reduces degeneracy (11.6% vs LLaMA 23.4%). Most of the +4.37pp ΔF1 vs Qwen greedy comes from LLaMA being stronger (greedy 0.784 vs 0.748), but the +0.42pp vs pure LLaMA is genuine cross-model diversity gain. Supports diversity hypothesis: different models make complementary errors → better consensus.\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/autodl-tmp/struct_self_consist_ie/code/run_cross_model.sh\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"output/{exp_026_t10_seed42,exp007_llama_inference,exp_021_inference,llama_fewnerd_s42}/samples.jsonl\\\", \\\"data_count\\\": 76398, \\\"model_name\\\": \\\"Qwen3-8B FT + LLaMA-3.1-8B FT\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_cross_model_consistency\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_cross_model_consistency\\\"}}, \\\"exp_tlow_fewnerd_inference\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:40:52.432Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:47:23.345Z\\\", \\\"hypothesis\\\": \\\"Lower temperature (T=0.5) sampling on FewNERD produces less diverse but higher-quality samples that, when combined with T=1.0 samples in heterogeneous-temperature selection, improve self-consistency-based quality estimation compared to single-temperature baselines.\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/qwen25-7b-fewnerd-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 0.5 --seed 42 --collect_logprobs --output_dir output/exp_tlow_fewnerd_t05_s42/\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/test.json\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"qwen25-7b-fewnerd-merged\\\", \\\"seed\\\": 42, \\\"pid\\\": 221493, \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_tlow_fewnerd_t05_s42.log\\\"}}, \\\"exp_esj_entity_self_judgment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:31:53.721Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:44:33.778Z\\\", \\\"hypothesis\\\": \\\"Entity-Level Self-Judgment: F4 diagnostic proves 4/5 signals are instance-level only, LP is per-sample but compressed. ESJ provides true per-sample-per-entity signal via yes/no verification prompts. ESJ-weighted entity construction should outperform majority vote by leveraging entity-level confidence scores that structural signals cannot provide. Parent: exp_e2_mixture_of_signals (F4 LP-only diagnostic).\\\", \\\"parent\\\": \\\"exp_e2_mixture_of_signals\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-20T15:37:30.954Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python run_esj.py --base_model_path checkpoints/qwen25-7b-fewnerd-merged --data_path output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl --output_dir output/exp_esj_entity_self_judgment --batch_size 8\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"qwen25-7b-fewnerd-merged\\\", \\\"seed\\\": 42, \\\"pid\\\": 218678, \\\"gpu\\\": \\\"cuda:1\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_esj_entity_self_judgment.log\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-merged\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl\\\", \\\"n_verification_prompts\\\": 153649, \\\"estimated_runtime_hours\\\": 2.5, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_esj_entity_self_judgment/\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T17:44:33.778Z\\\"}, \\\"exp_backup3_distill_verifier\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:40:49.676Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:40:57.990Z\\\", \\\"hypothesis\\\": \\\"Distillation-based Verifier: MRSC/ESJ/LSC三个prompt-based self-judgment方法全部negative，证明unsupervised entity-level信号无法close selection gap。但E_θ oracle分析显示oracle headroom存在。转supervised signal aggregation：训练entity-level binary classifier（entity in gold?），用LP score、vote count、degeneracy flag、span length、entity type分布、N作为特征，classifier score做weighted MV替代frequency voting。Leave-one-dataset-out CV解决reviewer公平性质疑。\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:1\\\"}, \\\"exp_b3_prompted_diversity\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T11:12:51.750Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:40:45.878Z\\\", \\\"hypothesis\\\": \\\"Structurally different prompt templates (expert persona, descriptive types, recall-focused) generate more diverse N=8 samples than repeating a single template, improving entity construction F1 via broader coverage of the entity space.\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"single_vc_weighted_f1\\\": 0.7723, \\\"multi_vc_weighted_f1\\\": 0.7311, \\\"delta_vc\\\": -0.0412, \\\"single_lp_weighted_f1\\\": 0.7665, \\\"multi_lp_weighted_f1\\\": 0.7308, \\\"delta_lp\\\": -0.0356, \\\"single_theta2n_f1\\\": 0.7618, \\\"multi_theta2n_f1\\\": 0.7269, \\\"delta_theta2n\\\": -0.0349, \\\"single_unique_entities\\\": 5.29, \\\"multi_unique_entities\\\": 4.06, \\\"within_template_jaccard\\\": 0.474, \\\"cross_template_jaccard\\\": 0.67, \\\"verdict\\\": \\\"Multi-template strictly worse. Templates converge to similar outputs; non-standard templates add noise, diluting construction signals.\\\"}, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python /root/autodl-tmp/struct_self_consist_ie/code/exp_b3_prompted_diversity.py --phase both --num_instances 3000 --seed 42\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/test.json\\\", \\\"data_count\\\": 3000, \\\"model_name\\\": \\\"qwen3-8b-fewnerd-exp021-merged\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"N/A\\\"}, \\\"completed_at\\\": \\\"2026-05-20T17:40:45.878Z\\\"}, \\\"exp_14b_inference_conll\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T14:36:26.315Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:20:19.370Z\\\", \\\"hypothesis\\\": \\\"14B Qwen2.5 inference on CoNLL (N∈{1,2,4,8,16}): high-resource dataset should show higher degeneracy at 14B scale, consistent with 7B pattern where construction gain is negative.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:49:00.238Z\\\"}, \\\"failure_reason\\\": \\\"Director ordered kill: cross-domain 14B inference deemed valueless by Reviewer. Only FewNERD 14B inference retained.\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:49:09.529266+00:00\\\"}]}, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:2\\\"}, \\\"exp_mrsc_multi_round\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:37:27.523Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:12:53.641Z\\\", \\\"hypothesis\\\": \\\"Multi-Round Iterative SC: N inverse scaling reveals disputed entities cause failures. Focused re-prompting on disputed entities (agreement < 0.6) with weighted aggregation (Round 2 weight=2) should reduce error rate on disputed entities without affecting non-disputed ones, closing part of the selection gap through iterative refinement rather than single-round aggregation.\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-20T15:39:10.190Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python /root/autodl-tmp/struct_self_consist_ie/code/run_mrsc.py --base_model_path /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-merged --data_path /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl --output_dir /root/autodl-tmp/struct_self_consist_ie/output/exp_mrsc_multi_round --batch_size 16\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"qwen25-7b-fewnerd-merged\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_mrsc_multi_round\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_mrsc_multi_round.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T17:12:53.641Z\\\"}, \\\"exp_lsc_latent_sc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:37:31.881Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:11:49.135Z\\\", \\\"hypothesis\\\": \\\"Latent Self-Consistency: F4 diagnostic proves LP is compressed (median range 0.041 nats). Hidden states contain richer per-sample information than scalar LP. Entity-level mean-pooled hidden state representations enable latent aggregation (centroid selection, latent confidence scoring, clustering) that bypasses LP compression and provides discriminative per-sample ranking unavailable from output-space signals.\\\", \\\"parent\\\": \\\"exp_e2_mixture_of_signals\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"started_at\\\": \\\"2026-05-20T15:39:11.609Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python run_lsc.py --base_model_path qwen25-7b-fewnerd-merged --data_path fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl --max_instances 2000\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl\\\", \\\"data_count\\\": 2000, \\\"model_name\\\": \\\"qwen25-7b-fewnerd-merged\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-merged\\\", \\\"eval_data\\\": \\\"FewNERD test (gold-filtered, n=2000)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_lsc_latent_sc\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_lsc_latent_sc.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T16:51:53.120Z\\\", \\\"metrics\\\": {\\\"centroid_selection_f1\\\": 0.7593, \\\"lp_selection_f1\\\": 0.7845, \\\"latent_entity_conf_f1\\\": 0.8385, \\\"majority_vote_f1\\\": 0.8366, \\\"greedy_f1\\\": 0.7793, \\\"oracle_f1\\\": 0.8668, \\\"lp_vs_latent_rho\\\": 0.518, \\\"entity_match_rate\\\": 0.9945, \\\"n_instances\\\": 2000, \\\"runtime_s\\\": 507}}, \\\"exp_backup1_het_temp\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:09:31.094Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:09:41.667Z\\\", \\\"hypothesis\\\": \\\"Heterogeneous-Temperature Sampling: MRSC/LSC negative results prove entity-level correction cannot close the selection gap. F4 degeneracy analysis shows T=0.7 has ~62% degeneracy (too homogeneous) while T=1.0 has more diversity but noisier entities. Mixing samples from different temperatures (k from T_low + (8-k) from T_high) breaks temperature-specific degeneracy patterns: low-T samples provide precise entities, high-T samples provide diversity. Mixed-T N=8 pool should achieve lower degeneracy than pure T_low and higher construction F1 than pure T_high. Hypothesis source: entity-level methods (MRSC weighted re-prompting, LSC latent aggregation) both failed → pivot to sampling-level diversity improvement.\\\", \\\"parent\\\": \\\"exp_mrsc_multi_round\\\"}}, \\\"count\\\": 10, \\\"total\\\": 201, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8185}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "5dbe4ac7-4cc4-4c4f-ae75-a24b5a63f703",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_14b_inference_fewnerd\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-20T14:36:27.954Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:48:23.920Z\\\", \\\"hypothesis\\\": \\\"14B Qwen2.5 inference on FewNERD (N∈{1,2,4,8,16}): primary dataset should show oracle scaling law F1(N)=a-b*N^(-c) consistent at 14B scale, filling the scaling curve between 7B and 32B.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T17:19:15.098Z\\\"}, \\\"failure_reason\\\": \\\"FALSE POSITIVE: PID 201001 died but inference continues under PID 217692→217960 (EngineCore). Fewnerd n=2 at 24% on GPU 0. Earlier ckpt36000 run crashed with EngineDeadError (CUDA OOM from torch.compile); current merged-final run uses enforce_eager=True and is stable. KV cache critically low (1.09 GiB) — recommend tensor_parallel=2 for future 14B runs.\\\", \\\"completed_at\\\": \\\"2026-05-20T17:19:16.003Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T17:19:25.424710+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"2026-05-21 diagnosis: Process STILL RUNNING. PID 217692 (python) → 217960 (EngineCore) on GPU 0. Completed: SciERC/CoNLL all N + FewNERD N=1. In progress: FewNERD N=2 (24%, ETA ~2h). Log: /tmp/14b_fewnerd.log. SciERC/CoNLL results are garbage (model FewNERD-only, F1<0.05). KV cache critically low (1.09 GiB). Earlier ckpt36000 run crashed with EngineDeadError at 60% — fixed by enforce_eager=True.\\\"}}, \\\"notes\\\": \\\"2026-05-21 diagnosis: Process STILL RUNNING. PID 217692 (python) → 217960 (EngineCore) on GPU 0. Completed: SciERC/CoNLL all N + FewNERD N=1. In progress: FewNERD N=2 (24%, ETA ~2h). Log: /tmp/14b_fewnerd.log. SciERC/CoNLL results are garbage (model FewNERD-only, F1<0.05). KV cache critically low (1.09 GiB). Earlier ckpt36000 run crashed with EngineDeadError at 60% — fixed by enforce_eager=True.\\\"}, \\\"exp_cross_model_consistency\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T09:30:47.928Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:47:31.201Z\\\", \\\"hypothesis\\\": \\\"Pooling samples from two different fine-tuned models (Qwen3-8B + LLaMA-8B) for entity construction significantly outperforms single-model construction because cross-model diversity breaks model-specific mode collapse, reducing degeneracy and providing complementary error patterns that improve consensus quality.\\\", \\\"metrics\\\": {\\\"dataset\\\": \\\"SciERC\\\", \\\"model_a\\\": \\\"Qwen3-8B FT\\\", \\\"model_b\\\": \\\"LLaMA-8B FT\\\", \\\"pure_qwen\\\": {\\\"degen\\\": 0.1, \\\"greedy_f1\\\": 0.7478, \\\"uniform_f1\\\": 0.7499, \\\"vc_f1\\\": 0.7448, \\\"uni_delta_pp\\\": \\\"+0.21\\\", \\\"vc_delta_pp\\\": \\\"-0.30\\\"}, \\\"pure_llama\\\": {\\\"degen\\\": 0.234, \\\"greedy_f1\\\": 0.7841, \\\"uniform_f1\\\": 0.7873, \\\"vc_f1\\\": 0.7869, \\\"uni_delta_pp\\\": \\\"+0.33\\\", \\\"vc_delta_pp\\\": \\\"+0.28\\\"}, \\\"mixed_4q4l\\\": {\\\"degen\\\": 0.116, \\\"uniform_f1\\\": 0.7916, \\\"vc_f1\\\": 0.7898, \\\"uni_delta_vs_qwen_greedy_pp\\\": \\\"+4.37\\\", \\\"vc_delta_vs_qwen_greedy_pp\\\": \\\"+4.20\\\", \\\"mixed_vs_pure_llama_uniform_pp\\\": \\\"+0.42\\\", \\\"mixed_vs_pure_llama_uniform_p\\\": 0, \\\"mixed_vs_pure_llama_uniform_ci\\\": \\\"[0.27, 0.58]\\\", \\\"mixed_vs_pure_llama_vc_pp\\\": \\\"+0.29\\\", \\\"mixed_vs_pure_llama_vc_p\\\": 0.0001}}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"B5 cross-model consistency on SciERC NER. Mixed pool (4 Qwen + 4 LLaMA) significantly outperforms pure LLaMA construction (+0.42pp uniform, p=0.000, CI [0.27,0.58]). Cross-model diversity reduces degeneracy (11.6% vs LLaMA 23.4%). Most of the +4.37pp ΔF1 vs Qwen greedy comes from LLaMA being stronger (greedy 0.784 vs 0.748), but the +0.42pp vs pure LLaMA is genuine cross-model diversity gain. Supports diversity hypothesis: different models make complementary errors → better consensus.\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/autodl-tmp/struct_self_consist_ie/code/run_cross_model.sh\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"output/{exp_026_t10_seed42,exp007_llama_inference,exp_021_inference,llama_fewnerd_s42}/samples.jsonl\\\", \\\"data_count\\\": 76398, \\\"model_name\\\": \\\"Qwen3-8B FT + LLaMA-3.1-8B FT\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_cross_model_consistency\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_cross_model_consistency\\\"}}, \\\"exp_tlow_fewnerd_inference\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:40:52.432Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:47:23.345Z\\\", \\\"hypothesis\\\": \\\"Lower temperature (T=0.5) sampling on FewNERD produces less diverse but higher-quality samples that, when combined with T=1.0 samples in heterogeneous-temperature selection, improve self-consistency-based quality estimation compared to single-temperature baselines.\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/qwen25-7b-fewnerd-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 0.5 --seed 42 --collect_logprobs --output_dir output/exp_tlow_fewnerd_t05_s42/\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/test.json\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"qwen25-7b-fewnerd-merged\\\", \\\"seed\\\": 42, \\\"pid\\\": 221493, \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_tlow_fewnerd_t05_s42.log\\\"}}, \\\"exp_esj_entity_self_judgment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:31:53.721Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:44:33.778Z\\\", \\\"hypothesis\\\": \\\"Entity-Level Self-Judgment: F4 diagnostic proves 4/5 signals are instance-level only, LP is per-sample but compressed. ESJ provides true per-sample-per-entity signal via yes/no verification prompts. ESJ-weighted entity construction should outperform majority vote by leveraging entity-level confidence scores that structural signals cannot provide. Parent: exp_e2_mixture_of_signals (F4 LP-only diagnostic).\\\", \\\"parent\\\": \\\"exp_e2_mixture_of_signals\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-20T15:37:30.954Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python run_esj.py --base_model_path checkpoints/qwen25-7b-fewnerd-merged --data_path output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl --output_dir output/exp_esj_entity_self_judgment --batch_size 8\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"qwen25-7b-fewnerd-merged\\\", \\\"seed\\\": 42, \\\"pid\\\": 218678, \\\"gpu\\\": \\\"cuda:1\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_esj_entity_self_judgment.log\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-merged\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl\\\", \\\"n_verification_prompts\\\": 153649, \\\"estimated_runtime_hours\\\": 2.5, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_esj_entity_self_judgment/\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T17:44:33.778Z\\\"}, \\\"exp_backup3_distill_verifier\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:40:49.676Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:40:57.990Z\\\", \\\"hypothesis\\\": \\\"Distillation-based Verifier: MRSC/ESJ/LSC三个prompt-based self-judgment方法全部negative，证明unsupervised entity-level信号无法close selection gap。但E_θ oracle分析显示oracle headroom存在。转supervised signal aggregation：训练entity-level binary classifier（entity in gold?），用LP score、vote count、degeneracy flag、span length、entity type分布、N作为特征，classifier score做weighted MV替代frequency voting。Leave-one-dataset-out CV解决reviewer公平性质疑。\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:1\\\"}, \\\"exp_b3_prompted_diversity\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T11:12:51.750Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:40:45.878Z\\\", \\\"hypothesis\\\": \\\"Structurally different prompt templates (expert persona, descriptive types, recall-focused) generate more diverse N=8 samples than repeating a single template, improving entity construction F1 via broader coverage of the entity space.\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"single_vc_weighted_f1\\\": 0.7723, \\\"multi_vc_weighted_f1\\\": 0.7311, \\\"delta_vc\\\": -0.0412, \\\"single_lp_weighted_f1\\\": 0.7665, \\\"multi_lp_weighted_f1\\\": 0.7308, \\\"delta_lp\\\": -0.0356, \\\"single_theta2n_f1\\\": 0.7618, \\\"multi_theta2n_f1\\\": 0.7269, \\\"delta_theta2n\\\": -0.0349, \\\"single_unique_entities\\\": 5.29, \\\"multi_unique_entities\\\": 4.06, \\\"within_template_jaccard\\\": 0.474, \\\"cross_template_jaccard\\\": 0.67, \\\"verdict\\\": \\\"Multi-template strictly worse. Templates converge to similar outputs; non-standard templates add noise, diluting construction signals.\\\"}, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python /root/autodl-tmp/struct_self_consist_ie/code/exp_b3_prompted_diversity.py --phase both --num_instances 3000 --seed 42\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/test.json\\\", \\\"data_count\\\": 3000, \\\"model_name\\\": \\\"qwen3-8b-fewnerd-exp021-merged\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"N/A\\\"}, \\\"completed_at\\\": \\\"2026-05-20T17:40:45.878Z\\\"}, \\\"exp_14b_inference_conll\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T14:36:26.315Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:20:19.370Z\\\", \\\"hypothesis\\\": \\\"14B Qwen2.5 inference on CoNLL (N∈{1,2,4,8,16}): high-resource dataset should show higher degeneracy at 14B scale, consistent with 7B pattern where construction gain is negative.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:49:00.238Z\\\"}, \\\"failure_reason\\\": \\\"Director ordered kill: cross-domain 14B inference deemed valueless by Reviewer. Only FewNERD 14B inference retained.\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:49:09.529266+00:00\\\"}]}, \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:2\\\"}, \\\"exp_mrsc_multi_round\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:37:27.523Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:12:53.641Z\\\", \\\"hypothesis\\\": \\\"Multi-Round Iterative SC: N inverse scaling reveals disputed entities cause failures. Focused re-prompting on disputed entities (agreement < 0.6) with weighted aggregation (Round 2 weight=2) should reduce error rate on disputed entities without affecting non-disputed ones, closing part of the selection gap through iterative refinement rather than single-round aggregation.\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-20T15:39:10.190Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python /root/autodl-tmp/struct_self_consist_ie/code/run_mrsc.py --base_model_path /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-merged --data_path /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl --output_dir /root/autodl-tmp/struct_self_consist_ie/output/exp_mrsc_multi_round --batch_size 16\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl\\\", \\\"data_count\\\": 37648, \\\"model_name\\\": \\\"qwen25-7b-fewnerd-merged\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_mrsc_multi_round\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_mrsc_multi_round.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T17:12:53.641Z\\\"}, \\\"exp_lsc_latent_sc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:37:31.881Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:11:49.135Z\\\", \\\"hypothesis\\\": \\\"Latent Self-Consistency: F4 diagnostic proves LP is compressed (median range 0.041 nats). Hidden states contain richer per-sample information than scalar LP. Entity-level mean-pooled hidden state representations enable latent aggregation (centroid selection, latent confidence scoring, clustering) that bypasses LP compression and provides discriminative per-sample ranking unavailable from output-space signals.\\\", \\\"parent\\\": \\\"exp_e2_mixture_of_signals\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"autodl-5090-c\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"started_at\\\": \\\"2026-05-20T15:39:11.609Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python run_lsc.py --base_model_path qwen25-7b-fewnerd-merged --data_path fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl --max_instances 2000\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl\\\", \\\"data_count\\\": 2000, \\\"model_name\\\": \\\"qwen25-7b-fewnerd-merged\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-merged\\\", \\\"eval_data\\\": \\\"FewNERD test (gold-filtered, n=2000)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_lsc_latent_sc\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_lsc_latent_sc.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T16:51:53.120Z\\\", \\\"metrics\\\": {\\\"centroid_selection_f1\\\": 0.7593, \\\"lp_selection_f1\\\": 0.7845, \\\"latent_entity_conf_f1\\\": 0.8385, \\\"majority_vote_f1\\\": 0.8366, \\\"greedy_f1\\\": 0.7793, \\\"oracle_f1\\\": 0.8668, \\\"lp_vs_latent_rho\\\": 0.518, \\\"entity_match_rate\\\": 0.9945, \\\"n_instances\\\": 2000, \\\"runtime_s\\\": 507}}, \\\"exp_backup1_het_temp\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:09:31.094Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:09:41.667Z\\\", \\\"hypothesis\\\": \\\"Heterogeneous-Temperature Sampling: MRSC/LSC negative results prove entity-level correction cannot close the selection gap. F4 degeneracy analysis shows T=0.7 has ~62% degeneracy (too homogeneous) while T=1.0 has more diversity but noisier entities. Mixing samples from different temperatures (k from T_low + (8-k) from T_high) breaks temperature-specific degeneracy patterns: low-T samples provide precise entities, high-T samples provide diversity. Mixed-T N=8 pool should achieve lower degeneracy than pure T_low and higher construction F1 than pure T_high. Hypothesis source: entity-level methods (MRSC weighted re-prompting, LSC latent aggregation) both failed → pivot to sampling-level diversity improvement.\\\", \\\"parent\\\": \\\"exp_mrsc_multi_round\\\"}}, \\\"count\\\": 10, \\\"total\\\": 201, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8185}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_14b_inference_fewnerd\": {\"status\": \"PREPARING\", \"retry_count\": 1, \"created_at\": \"2026-05-20T14:36:27.954Z\", \"updated_at\": \"2026-05-20T17:48:23.920Z\", \"hypothesis\": \"14B Qwen2.5 inference on FewNERD (N∈{1,2,4,8,16}): primary dataset should show oracle scaling law F1(N)=a-b*N^(-c) consistent at 14B scale, filling the scaling curve between 7B and 32B.\", \"reproduce\": {\"finished_at\": \"2026-05-20T17:19:15.098Z\"}, \"failure_reason\": \"FALSE POSITIVE: PID 201001 died but inference continues under PID 217692→217960 (EngineCore). Fewnerd n=2 at 24% on GPU 0. Earlier ckpt36000 run crashed with EngineDeadError (CUDA OOM from torch.compile); current merged-final run uses enforce_eager=True and is stable. KV cache critically low (1.09 GiB) — recommend tensor_parallel=2 for future 14B runs.\", \"completed_at\": \"2026-05-20T17:19:16.003Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-20T17:19:25.424710+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"2026-05-21 diagnosis: Process STILL RUNNING. PID 217692 (python) → 217960 (EngineCore) on GPU 0. Completed: SciERC/CoNLL all N + FewNERD N=1. In progress: FewNERD N=2 (24%, ETA ~2h). Log: /tmp/14b_fewnerd.log. SciERC/CoNLL results are garbage (model FewNERD-only, F1<0.05). KV cache critically low (1.09 GiB). Earlier ckpt36000 run crashed with EngineDeadError at 60% — fixed by enforce_eager=True.\"}}, \"notes\": \"2026-05-21 diagnosis: Process STILL RUNNING. PID 217692 (python) → 217960 (EngineCore) on GPU 0. Completed: SciERC/CoNLL all N + FewNERD N=1. In progress: FewNERD N=2 (24%, ETA ~2h). Log: /tmp/14b_fewnerd.log. SciERC/CoNLL results are garbage (model FewNERD-only, F1<0.05). KV cache critically low (1.09 GiB). Earlier ckpt36000 run crashed with EngineDeadError at 60% — fixed by enforce_eager=True.\"}, \"exp_cross_model_consistency\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:30:47.928Z\", \"updated_at\": \"2026-05-20T17:47:31.201Z\", \"hypothesis\": \"Pooling samples from two different fine-tuned models (Qwen3-8B + LLaMA-8B) for entity construction significantly outperforms single-model construction because cross-model diversity breaks model-specific mode collapse, reducing degeneracy and providing complementary error patterns that improve consensus quality.\", \"metrics\": {\"dataset\": \"SciERC\", \"model_a\": \"Qwen3-8B FT\", \"model_b\": \"LLaMA-8B FT\", \"pure_qwen\": {\"degen\": 0.1, \"greedy_f1\": 0.7478, \"uniform_f1\": 0.7499, \"vc_f1\": 0.7448, \"uni_delta_pp\": \"+0.21\", \"vc_delta_pp\": \"-0.30\"}, \"pure_llama\": {\"degen\": 0.234, \"greedy_f1\": 0.7841, \"uniform_f1\": 0.7873, \"vc_f1\": 0.7869, \"uni_delta_pp\": \"+0.33\", \"vc_delta_pp\": \"+0.28\"}, \"mixed_4q4l\": {\"degen\": 0.116, \"uniform_f1\": 0.7916, \"vc_f1\": 0.7898, \"uni_delta_vs_qwen_greedy_pp\": \"+4.37\", \"vc_delta_vs_qwen_greedy_pp\": \"+4.20\", \"mixed_vs_pure_llama_uniform_pp\": \"+0.42\", \"mixed_vs_pure_llama_uniform_p\": 0, \"mixed_vs_pure_llama_uniform_ci\": \"[0.27, 0.58]\", \"mixed_vs_pure_llama_vc_pp\": \"+0.29\", \"mixed_vs_pure_llama_vc_p\": 0.0001}}, \"conclusion\": \"killed\", \"notes\": \"B5 cross-model consistency on SciERC NER. Mixed pool (4 Qwen + 4 LLaMA) significantly outperforms pure LLaMA construction (+0.42pp uniform, p=0.000, CI [0.27,0.58]). Cross-model diversity reduces degeneracy (11.6% vs LLaMA 23.4%). Most of the +4.37pp ΔF1 vs Qwen greedy comes from LLaMA being stronger (greedy 0.784 vs 0.748), but the +0.42pp vs pure LLaMA is genuine cross-model diversity gain. Supports diversity hypothesis: different models make complementary errors → better consensus.\", \"server\": \"autodl-5090-c\", \"gpu\": \"cuda:3\", \"spec\": {\"command\": \"bash /root/autodl-tmp/struct_self_consist_ie/code/run_cross_model.sh\", \"server\": \"autodl-5090\", \"data_path\": \"output/{exp_026_t10_seed42,exp007_llama_inference,exp_021_inference,llama_fewnerd_s42}/samples.jsonl\", \"data_count\": 76398, \"model_name\": \"Qwen3-8B FT + LLaMA-3.1-8B FT\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_cross_model_consistency\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_cross_model_consistency\"}}, \"exp_tlow_fewnerd_inference\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:40:52.432Z\", \"updated_at\": \"2026-05-20T17:47:23.345Z\", \"hypothesis\": \"Lower temperature (T=0.5) sampling on FewNERD produces less diverse but higher-quality samples that, when combined with T=1.0 samples in heterogeneous-temperature selection, improve self-consistency-based quality estimation compared to single-temperature baselines.\", \"server\": \"autodl-5090-c\", \"gpu\": \"cuda:2\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/qwen25-7b-fewnerd-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 0.5 --seed 42 --collect_logprobs --output_dir output/exp_tlow_fewnerd_t05_s42/\", \"server\": \"autodl-5090-c\", \"gpu\": \"cuda:2\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/test.json\", \"data_count\": 37648, \"model_name\": \"qwen25-7b-fewnerd-merged\", \"seed\": 42, \"pid\": 221493, \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_tlow_fewnerd_t05_s42.log\"}}, \"exp_esj_entity_self_judgment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:31:53.721Z\", \"updated_at\": \"2026-05-20T17:44:33.778Z\", \"hypothesis\": \"Entity-Level Self-Judgment: F4 diagnostic proves 4/5 signals are instance-level only, LP is per-sample but compressed. ESJ provides true per-sample-per-entity signal via yes/no verification prompts. ESJ-weighted entity construction should outperform majority vote by leveraging entity-level confidence scores that structural signals cannot provide. Parent: exp_e2_mixture_of_signals (F4 LP-only diagnostic).\", \"parent\": \"exp_e2_mixture_of_signals\", \"server\": \"autodl-5090-c\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090-c\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-20T15:37:30.954Z\"}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python run_esj.py --base_model_path checkpoints/qwen25-7b-fewnerd-merged --data_path output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl --output_dir output/exp_esj_entity_self_judgment --batch_size 8\", \"server\": \"autodl-5090-c\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl\", \"data_count\": 37648, \"model_name\": \"qwen25-7b-fewnerd-merged\", \"seed\": 42, \"pid\": 218678, \"gpu\": \"cuda:1\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_esj_entity_self_judgment.log\", \"checkpoint_source\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-merged\", \"eval_data\": \"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl\", \"n_verification_prompts\": 153649, \"estimated_runtime_hours\": 2.5, \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_esj_entity_self_judgment/\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T17:44:33.778Z\"}, \"exp_backup3_distill_verifier\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:40:49.676Z\", \"updated_at\": \"2026-05-20T17:40:57.990Z\", \"hypothesis\": \"Distillation-based Verifier: MRSC/ESJ/LSC三个prompt-based self-judgment方法全部negative，证明unsupervised entity-level信号无法close selection gap。但E_θ oracle分析显示oracle headroom存在。转supervised signal aggregation：训练entity-level binary classifier（entity in gold?），用LP score、vote count、degeneracy flag、span length、entity type分布、N作为特征，classifier score做weighted MV替代frequency voting。Leave-one-dataset-out CV解决reviewer公平性质疑。\", \"server\": \"autodl-5090-c\", \"gpu\": \"cuda:1\"}, \"exp_b3_prompted_diversity\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:12:51.750Z\", \"updated_at\": \"2026-05-20T17:40:45.878Z\", \"hypothesis\": \"Structurally different prompt templates (expert persona, descriptive types, recall-focused) generate more diverse N=8 samples than repeating a single template, improving entity construction F1 via broader coverage of the entity space.\", \"conclusion\": \"killed\", \"metrics\": {\"single_vc_weighted_f1\": 0.7723, \"multi_vc_weighted_f1\": 0.7311, \"delta_vc\": -0.0412, \"single_lp_weighted_f1\": 0.7665, \"multi_lp_weighted_f1\": 0.7308, \"delta_lp\": -0.0356, \"single_theta2n_f1\": 0.7618, \"multi_theta2n_f1\": 0.7269, \"delta_theta2n\": -0.0349, \"single_unique_entities\": 5.29, \"multi_unique_entities\": 4.06, \"within_template_jaccard\": 0.474, \"cross_template_jaccard\": 0.67, \"verdict\": \"Multi-template strictly worse. Templates converge to similar outputs; non-standard templates add noise, diluting construction signals.\"}, \"server\": \"autodl-5090-c\", \"gpu\": \"cuda:3\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python /root/autodl-tmp/struct_self_consist_ie/code/exp_b3_prompted_diversity.py --phase both --num_instances 3000 --seed 42\", \"server\": \"autodl-5090-c\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/test.json\", \"data_count\": 3000, \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"N/A\"}, \"completed_at\": \"2026-05-20T17:40:45.878Z\"}, \"exp_14b_inference_conll\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T14:36:26.315Z\", \"updated_at\": \"2026-05-20T17:20:19.370Z\", \"hypothesis\": \"14B Qwen2.5 inference on CoNLL (N∈{1,2,4,8,16}): high-resource dataset should show higher degeneracy at 14B scale, consistent with 7B pattern where construction gain is negative.\", \"reproduce\": {\"finished_at\": \"2026-05-20T14:49:00.238Z\"}, \"failure_reason\": \"Director ordered kill: cross-domain 14B inference deemed valueless by Reviewer. Only FewNERD 14B inference retained.\", \"conclusion\": \"killed\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-20T14:49:09.529266+00:00\"}]}, \"server\": \"autodl-5090-c\", \"gpu\": \"cuda:2\"}, \"exp_mrsc_multi_round\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:37:27.523Z\", \"updated_at\": \"2026-05-20T17:12:53.641Z\", \"hypothesis\": \"Multi-Round Iterative SC: N inverse scaling reveals disputed entities cause failures. Focused re-prompting on disputed entities (agreement < 0.6) with weighted aggregation (Round 2 weight=2) should reduce error rate on disputed entities without affecting non-disputed ones, closing part of the selection gap through iterative refinement rather than single-round aggregation.\", \"server\": \"autodl-5090-c\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090-c\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-20T15:39:10.190Z\"}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python /root/autodl-tmp/struct_self_consist_ie/code/run_mrsc.py --base_model_path /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-merged --data_path /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl --output_dir /root/autodl-tmp/struct_self_consist_ie/output/exp_mrsc_multi_round --batch_size 16\", \"server\": \"autodl-5090-c\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl\", \"data_count\": 37648, \"model_name\": \"qwen25-7b-fewnerd-merged\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_mrsc_multi_round\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_mrsc_multi_round.log\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T17:12:53.641Z\"}, \"exp_lsc_latent_sc\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:37:31.881Z\", \"updated_at\": \"2026-05-20T17:11:49.135Z\", \"hypothesis\": \"Latent Self-Consistency: F4 diagnostic proves LP is compressed (median range 0.041 nats). Hidden states contain richer per-sample information than scalar LP. Entity-level mean-pooled hidden state representations enable latent aggregation (centroid selection, latent confidence scoring, clustering) that bypasses LP compression and provides discriminative per-sample ranking unavailable from output-space signals.\", \"parent\": \"exp_e2_mixture_of_signals\", \"server\": \"autodl-5090-c\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"autodl-5090-c\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-20T15:39:11.609Z\"}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python run_lsc.py --base_model_path qwen25-7b-fewnerd-merged --data_path fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl --max_instances 2000\", \"server\": \"autodl-5090-c\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/samples.jsonl\", \"data_count\": 2000, \"model_name\": \"qwen25-7b-fewnerd-merged\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-fewnerd-merged\", \"eval_data\": \"FewNERD test (gold-filtered, n=2000)\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_lsc_latent_sc\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_lsc_latent_sc.log\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T16:51:53.120Z\", \"metrics\": {\"centroid_selection_f1\": 0.7593, \"lp_selection_f1\": 0.7845, \"latent_entity_conf_f1\": 0.8385, \"majority_vote_f1\": 0.8366, \"greedy_f1\": 0.7793, \"oracle_f1\": 0.8668, \"lp_vs_latent_rho\": 0.518, \"entity_match_rate\": 0.9945, \"n_instances\": 2000, \"runtime_s\": 507}}, \"exp_backup1_het_temp\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:09:31.094Z\", \"updated_at\": \"2026-05-20T17:09:41.667Z\", \"hypothesis\": \"Heterogeneous-Temperature Sampling: MRSC/LSC negative results prove entity-level correction cannot close the selection gap. F4 degeneracy analysis shows T=0.7 has ~62% degeneracy (too homogeneous) while T=1.0 has more diversity but noisier entities. Mixing samples from different temperatures (k from T_low + (8-k) from T_high) breaks temperature-specific degeneracy patterns: low-T samples provide precise entities, high-T samples provide diversity. Mixed-T N=8 pool should achieve lower degeneracy than pure T_low and higher construction F1 than pure T_high. Hypothesis source: entity-level methods (MRSC weighted re-prompting, LSC latent aggregation) both failed → pivot to sampling-level diversity improvement.\", \"parent\": \"exp_mrsc_multi_round\"}}, \"count\": 10, \"total\": 201, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8185}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T17:49:22.767Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014oAxqgTBZSijCcqfhx9qKC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /tmp/14b_fewnerd.log: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a339b879-b1fb-4b1b-aef8-4eec50a86b20",
+            "uuid": "854bdefa-6d3a-4aaa-9638-e6fec0737cb1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /tmp/14b_fewnerd.log: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /tmp/14b_fewnerd.log: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 26
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu-exp-14b-inference-fewnerd-retry.md"
+}

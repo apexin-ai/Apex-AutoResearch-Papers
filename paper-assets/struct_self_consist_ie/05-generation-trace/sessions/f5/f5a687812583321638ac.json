@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5a687812583321638ac",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp 027 mlp verifier",
+  "task_key": "worker_analysis_exp_027_mlp_verifier_20260516T133606",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_027_mlp_verifier_20260516T133606_result.json",
+    "occurrence": 1,
+    "bytes": 789,
+    "sha256": "e4a0414b04d98644b5e7d769d0564a9567caaedfb33c60c1cf0cedc433fddd03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结论：\n\n**特征是瓶颈，不是模型容量。**\n\n| Model | Features | AUROC | Selection F1 |\n|-------|----------|-------|-------------|\n| Best single (EM) | 1 | 0.6476 | 0.6470 (LP) |\n| LR | 5 | **0.6522** | **0.6406** |\n| MLP | 5 | 0.6393 | 0.6377 |\n| RF | 5 | 0.5868 | 0.6133 |\n| MLP | 15 | 0.6322 | 0.6339 |\n| RF | 15 | 0.6043 | 0.6143 |\n\n- MLP ≈ LR（Δ=-0.013），RF 更差（过拟合）\n- 15-feat interactions 无增益\n- LR 仅比最佳单信号高 +0.005 AUROC\n- 所有 supervised verifier 的 selection F1 都没超过 unsupervised LP baseline（0.647）\n\n输出已保存到 `/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/`（results.json, report.md, train_mlp_verifier.py）并注册为 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-027-mlp-verifier.md"
+}

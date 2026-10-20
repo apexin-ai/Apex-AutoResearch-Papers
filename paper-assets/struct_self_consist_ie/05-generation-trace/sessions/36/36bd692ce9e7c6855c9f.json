@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "36bd692ce9e7c6855c9f",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh a4 pareto diversity quality",
+  "task_key": "worker_ssh_a4-pareto-diversity-quality_20260520T090124",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_a4-pareto-diversity-quality_20260520T090124.log",
+    "occurrence": 1,
+    "bytes": 694415,
+    "sha256": "dadce3f7eba6b8e0450b610bb213054070df6e8e74de067b558f06f37714e282"
+  },
+  "statistics": {
+    "messages": 130,
+    "user_turns": 1,
+    "tool_calls": 43,
+    "roles": {
+      "log": 1,
+      "system": 23,
+      "record": 1,
+      "assistant": 17,
+      "tool_call": 43,
+      "tool_result": 43,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "36bd692ce9e7c6855c9f-part-0001.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 112,
+      "chunks": [
+        {
+          "path": "36bd692ce9e7c6855c9f-part-0001.json",
+          "message_count": 84
+        },
+        {
+          "path": "36bd692ce9e7c6855c9f-part-0002.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-a4-pareto-diversity-quality.md"
+}

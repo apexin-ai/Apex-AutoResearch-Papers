@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70f9cea726558515cf82",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis read exp016 and seed123 results",
+  "task_key": "worker_analysis_read_exp016_and_seed123_results_20260514T122622",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_read_exp016_and_seed123_results_20260514T122622_result.json",
+    "occurrence": 1,
+    "bytes": 1802,
+    "sha256": "9f4366db74531994280ff709f92dbf8bfb8f48161d6761043ebaed08de465ec9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 registry 已更新。汇总如下：\n\n---\n\n## 汇总\n\n### exp-016 (Signal Ensemble, autodl-5090) — DONE\n\n**NER** (n=529):\n| 指标 | 值 |\n|---|---|\n| SJ↔logprob 相关 | r=0.567, ρ=0.538 |\n| 最优线性组合 | SJ+VotConf α=0.3 → ρ=**0.489** |\n| Ensemble AUROC | **0.735** (vs best single VotConf 0.700) |\n| 系数排名 | VotConf(0.86) > ExactMatch(0.65) > SJ(0.12) > logprob(0.04) > FK(-0.34) |\n| Selection F1 | greedy 0.609 > logprob 0.609 > ensemble 0.604 > oracle 0.769 |\n\n**RE** (n=397):\n| 指标 | 值 |\n|---|---|\n| SJ↔logprob 相关 | r=0.417, ρ=0.489 |\n| 最优线性组合 | VotConf+logprob α=0.6 → ρ=**0.429** |\n| Ensemble AUROC | **0.719** (vs best single VotConf 0.721) |\n| Selection F1 | logprob 0.397 > greedy 0.374 > oracle 0.561 |\n\n关键发现：Ensemble 在 NER 上 AUROC 提升 ~3.5pp，但 **Selection F1 未超过 greedy**。RE 上 Ensemble AUROC 甚至不如单 VotConf。\n\n---\n\n### exp-001 三 seed 对比 (gpu-5090-4x-2) — 全部 DONE, verdict=FAIL\n\n| Seed | NER ρ_sj (cond) | NER advantage | RE ρ_sj (cond) | RE advantage |\n|------|----------------|--------------|---------------|-------------|\n| 42 (原始) | — | — | — | — |\n| **123** | **0.427** | +0.128 | **0.400** | +0.029 |\n| **456** | 0.339 | +0.072 | 0.353 | +0.048 |\n\nseed=123 的 NER ρ_sj 最高 (0.427)，RE ρ_sj 刚好触及 0.40 门槛但整体 joint verdict 仍 FAIL。seed=456 数值明显低于 seed=123。\n\n---\n\n### exp-008 (RE N=16, seed=42) — DONE, verdict=FAIL\n\nNER ρ_sj_cond=0.360, RE ρ_sj_cond=**0.398** (接近但未达 0.40)。RE SJ 仅比 FK 高 0.01，几乎无优势。\n\n---\n\n### seed=456 和 exp-008 进度\n\n均已完成（200 samples, report.json 存在），已更新 registry 为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-read-exp016-and-seed123-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c3e5649258db9b0cdcc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code wnut17 data prep",
+  "task_key": "worker_code_wnut17_data_prep_20260514T100828",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_wnut17_data_prep_20260514T100828_result.json",
+    "occurrence": 1,
+    "bytes": 926,
+    "sha256": "d23d09d08832cadcfaaaf8af85d695640e866d331a20817f7a85c7cbd7d142fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部产出已生成，汇总如下：\n\n### 产出文件\n| 文件 | 大小 |\n|------|------|\n| `data/wnut17/train.json` | 950KB |\n| `data/wnut17/dev.json` | 280KB |\n| `data/wnut17/test.json` | 399KB |\n| `data/wnut17/llmfactory_train.json` | 2.3MB |\n| `code/convert_wnut17.py` | 转换脚本 |\n\n### 数据统计\n| Split | Instances | Entities |\n|-------|-----------|----------|\n| train | 3,394 | 1,975 |\n| dev | 1,009 | 836 |\n| test | 1,287 | 1,079 |\n\n### Entity type 分布 (train)\nperson: 660, location: 548, group: 264, corporation: 221, product: 142, creative-work: 140\n\n### 验证结果\n- test 集 1,079 个 entity 全部通过 `text[start:end] == entity[\"text\"]` 校验，0 错误\n- 非标准标签（DAY, CULTURE 等共 7 个 token）已过滤\n\n### Schema hint\n```python\nWNUT17_SCHEMA_HINT = \"Entity types: corporation, creative-work, group, location, person, product\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wnut17-data-prep.md"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "72693380a35a919c3586",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code fig overview triple contribution",
+  "task_key": "worker_code_fig_overview_triple_contribution_20260519T042703",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fig_overview_triple_contribution_20260519T042703_result.json",
+    "occurrence": 1,
+    "bytes": 2115344,
+    "sha256": "bd93028ccf8696d6750a12439ef854e9238505b04057fcff4e2d1dee4cd9cc73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2115364,
+                "serialized_sha256": "2064c1fa2dc8c46dbf51da7edd9467a4b8e748677db64440fee4f6ddb822ba74",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig-overview-triple-contribution.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46ef7720d3796de82659",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu exp 002 ner conll2003",
+  "task_key": "worker_gpu_exp_002_ner_conll2003_20260514T114609",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp_002_ner_conll2003_20260514T114609_result.json",
+    "occurrence": 1,
+    "bytes": 733,
+    "sha256": "369f707e0904ec2e162acd8922fd9f4e5d0b464d7d9a395d96ef55dd35297356"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动，当前状态：\n\n**已完成：**\n- CoNLL-2003 数据转换（14041 train / 3250 dev / 3453 test）\n- LLaMA Factory 数据格式（train + dev）及 dataset_info.json 注册\n- 训练配置 `conll2003_lora.yaml`（LoRA r=32, alpha=64, epochs=5, lr=2e-4）\n- Export 配置 `export_config_conll2003.yaml`\n- `sampling.py` 添加 CONLL2003_SCHEMA_HINT\n- `run_mvp_pilot.py` 添加 conll2003 数据集支持\n- 实验注册 registry (RUNNING)\n\n**进行中：**\n- Fine-tune 在 GPU 1 运行，step 70/4390，loss=0.107，预计 ~2h 后完成\n\n**待完成：**\n- Merge LoRA adapter\n- NER pilot (N=8, T=0.7, logprobs)\n- 结果分析 & registry 更新\n\n4.5 分钟后自动轮询训练进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-002-ner-conll2003.md"
+}

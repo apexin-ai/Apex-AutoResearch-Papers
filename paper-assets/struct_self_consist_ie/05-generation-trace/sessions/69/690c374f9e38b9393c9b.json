@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "690c374f9e38b9393c9b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "viz regen figures 1024",
+  "task_key": "worker_viz_regen_figures_1024_20260514T233319",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_viz_regen_figures_1024_20260514T233319_result.json",
+    "occurrence": 1,
+    "bytes": 792,
+    "sha256": "a480f639d52880458c0647131db4e8329eff96a374276bfe9c31449e6acd6512"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个图表已生成并保存到本地 artifacts 目录：\n\n**fig_selection_gap_1024.pdf** — 双轴图：Spearman ρ（柱）+ ΔF1 vs greedy（菱形线）。NER 中 LogProb 选择比 greedy 高 +0.6pp，SJ +0.1pp；RE 中所有方法 F1 均低于 greedy（SJ -1.9pp, VotConf -4.5pp, LogProb -0.9pp）。Oracle gap 分别为 +13.2pp 和 +18.1pp。\n\n**fig_reliability_1024.pdf** — 校准曲线 + 分布直方图。NER 三个信号校准良好（ECE 0.069-0.096）；RE 中 Logprob 校准最差（ECE=0.339），Voting Conf 最好（ECE=0.109）。\n\n注意：这里的 ECE 是 calibration ECE（confidence → mean F1 的偏差），与 `all_signals_5signal.json` 中的 binary ECE（0.453/0.353 等）定义不同——后者用 binary correctness 作为 accuracy。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-regen-figures-1024.md"
+}

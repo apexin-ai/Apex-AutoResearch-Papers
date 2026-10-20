@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79b01bd6bc9932d92dc5",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "reviewer / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_1.md",
+    "occurrence": 1,
+    "bytes": 4140,
+    "sha256": "e2adb9e1a0b016ac43d25ec1b7bc8da4e9dda5c724cb2f6cc430f44581bed7ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-14T08:43:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（autodl-5090 四卡全分配给本项目）\n- ft_002_v2 训练用 CUDA_VISIBLE_DEVICES=1，LLaMA Factory 不在 yaml 里指定 GPU，必须靠环境变量\n- train_config_v2.yaml 已改为 batch=2 + grad_accum=8 + gradient_checkpointing=true，**不要改回 batch=4**，32GB 5090 单卡会 OOM（step 73 处已验证两次）\n- LoRA 适配器不能直接喂 vLLM，必须先 merge 成完整模型（mvp_pilot_002 就是因为这个 failed）\n- AutoDL 网络：pip/git 前必须 `source /etc/network_turbo`；HF 下载设 `HF_HUB_DISABLE_XET=1` + SSL 证书环境变量\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090 (root) + gpu-5090-4x-2 (root)，4× RTX 5090 32GB\n- 工作目录：`/root/autodl-tmp/struct_self_consist_ie`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 基础模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`\n- ft_001 LoRA：`checkpoints/qwen3-8b-scierc-lora/`\n- ft_001 merged：`checkpoints/qwen3-8b-scierc-merged/`（pilot_001/003 用的）\n- ft_002_v2 LoRA：`checkpoints/qwen3-8b-scierc-lora-v2/`（训练完成，**尚未 merge**）\n- 数据：`data/scierc/processed_data/`（551 test instances）\n- 活跃进程：截至 handoff 时四卡全空闲，无活跃 PID\n- GPU 3 有驱动残留（100% util / 0 MiB），非真实负载\n\n### 3. 📊 当前状态\n**刚完成但尚未发审查报告的**：\n- ft_002_v2 训练完成（5 epochs, 585 steps, 28m41s），train_loss=0.0806, eval_loss=0.089\n- mvp_pilot_003 已完成（用 ft_001 模型），verdict=FAIL，RE ρ_sj=0.237(full)/0.300(cond)\n\n**Registry 状态**（6 条）：\n- ft_001: DONE, conclusion=\"success\"（实际 gate0_pass=false，conclusion 从未被修正，已标记 6 次）\n- ft_002: DONE, conclusion=\"killed\"（OOM，已关闭）\n- ft_002_v2: **RUNNING**（实际已完成，status 未更新为 DONE）\n- mvp_pilot_001: DONE, conclusion=\"negative\", verdict=FAIL\n- mvp_pilot_002: **ANALYZING**（实际 failed，status 未关闭）\n- mvp_pilot_003: DONE, conclusion=\"negative\", verdict=FAIL\n\n**等待中**：ft_002_v2 需要 merge → gate0 评估 → 如果 RE F1 ≥ 40% 则跑 pilot\n\n### 4. 📋 待办（条件触发式）\n- ft_002_v2 LoRA merge 完成 → gate0 评估（realign + strict match），核查 NER/RE F1 是否过 40% 阈值\n- gate0 RE F1 ≥ 40% → 用 merged 模型跑 mvp_pilot（N=8, T=1.0, joint subtask），关注 RE ρ_sj 是否 > 0.30\n- gate0 RE F1 < 40% → 方案 C 宣告失败，需要 Director 决策（数据增强？更大模型？pivot？）\n- 任何训练/推理启动 → 验证 CUDA_VISIBLE_DEVICES 在白名单内\n- eval_loss 趋势：step 300 最低 0.0817，之后回升至 0.089（step 585）。**可能过拟合**，checkpoint-300 可能比 final 更优。建议 gate0 对比 checkpoint-300 vs checkpoint-585\n\n### 5. 🎯 战略上下文\n- **核心假设**：fine-tuned 模型的结构自一致性（soft Jaccard）与 per-instance F1 相关，可作为 test-time compute 自适应分配的置信信号\n- **Gate 0**：NER F1 ≥ 56, RE F1 ≥ 40（SOTA 的 85%）。ft_001 NER 通过（60.4%），RE 未通过（33.8%）\n- **Gate 1**：RE ρ_sj ≥ 0.40, sj > fk, oracle headroom ≥ 2pp。目前最好结果是 pilot_003 RE cond ρ_sj=0.300，距 0.40 差距大\n- **mvp_pilot_003 vs 001 对比**（同一模型 ft_001）：parse failures 0 vs 164（代码修复），但 RE ρ 反而下降（cond: 0.352→0.300）。原因不明，可能 max_tokens 512→1024 或不同脚本（mvp_pilot.py vs run_mvp_pilot.py）导致。**不要简单认为\"parse failure 修复=结果更好\"**\n- **eval_loss 拐点在 step 300**（epoch 2.57），之后轻微上升。如果 gate0 用 final checkpoint 效果不好，**一定要试 checkpoint-300/400**\n- **ft_001 conclusion=\"success\" 是历史遗留错误**，已标记 6 次未修正。不要信这个字段，看 gate0_pass=false\n- **deadline**：ARR May 2026 截稿 2026-05-25，距今 11 天。项目 phase=mvp。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-copy-3.md"
+}

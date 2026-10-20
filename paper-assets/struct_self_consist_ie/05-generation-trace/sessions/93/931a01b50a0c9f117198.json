@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "931a01b50a0c9f117198",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "audit fewnerd dals n mismatch",
+  "task_key": "worker_audit_fewnerd_dals_n_mismatch_20260518T072647",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_fewnerd_dals_n_mismatch_20260518T072647_result.json",
+    "occurrence": 1,
+    "bytes": 1269,
+    "sha256": "b006ddc0a18cbe5118153baa042959c7a1ec582053da65e6d7f0ad02f5fee25c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据全部到位，整理结论。\n\n## 结论\n\n### 数据来源\n\n| 指标 | n (gold-filtered) | 来源文件/目录 | n_samples | 备注 |\n|------|---------|-------------|-----------|------|\n| **+0.30pp** | **32,565** | `dals_hardening_results.json` → `fewnerd_n8`<br>数据: `exp_021_inference/samples.jsonl` (37,648行, gold-filtered→32,565) | 8 | 全量 Few-NERD test set |\n| **+1.08pp** | **4,351** | `fewnerd_dals_multiseed_results.json` → `task1_multiseed`<br>数据: `exp_027_fewnerd_n16/samples.jsonl` (5,000行, gold-filtered→4,351) | 16 | 5K 子采样 |\n\n### 关键发现\n\n- **n=32,565** = exp_021_inference 的 gold-filtered 数量（全量 test set 37,648 行去除无 gold entity 的 instance）。这就是 `tab:fewnerd` 所用数据。\n- **+0.30pp (τ=0.05)** 已经是基于 n=32,565 的 DALS gain，无需重新计算。来自 `dals_hardening_results.json`，bootstrap CI=[0.18, 0.42], p<0.001。\n- **+1.08pp** 和 +0.30pp 差异的原因：\n  1. **n_samples 不同**：n=16 vs n=8。更多样本→更低 degeneracy (4.5% vs 38.2%)→LP 区分度更高\n  2. **数据集不同**：5K subsample vs 全量 32,565\n- 论文 `tab:fewnerd` 对应的正确 DALS gain（n=32,565, τ=0.05, n_samples=8）：**+0.30pp**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-fewnerd-dals-n-mismatch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38160692571299f42c04",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code qwen3 4b scierc finetune",
+  "task_key": "worker_code_qwen3_4b_scierc_finetune_20260515T185817",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_qwen3_4b_scierc_finetune_20260515T185817_result.json",
+    "occurrence": 1,
+    "bytes": 544,
+    "sha256": "6458315cd6ff4481e339cf78099705f434a09022039ff44a149cb85813254287"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，模型正在加载数据并开始 tokenization。\n\n总结：\n1. `train_config_scierc_4b.yaml` 已创建，LoRA 配置与 CoNLL 4B 完全一致（rank=32, alpha=64, lr=2e-4, 5 epochs, enable_thinking=false）\n2. dataset_info.json 已有 `scierc_uie_train` / `scierc_uie_dev` 条目，无需修改\n3. 训练已通过 `submit_training_job` 提交到 cuda:3，tmux session `exp_qwen3_4b_scierc_finetune`\n4. Registry 已更新为 RUNNING\n5. 日志确认模型加载和数据 tokenization 正常进行中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen3-4b-scierc-finetune.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a6ba846232a09f2d9f1",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis d070 tost breakpoint",
+  "task_key": "worker_analysis_d070_tost_breakpoint_20260515T091709",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_d070_tost_breakpoint_20260515T091709_result.json",
+    "occurrence": 1,
+    "bytes": 585,
+    "sha256": "58437f6aa009fdd29504e3543b11a16658245a97afe74072b80b70ddc82ac3a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已注册。结果汇总：\n\n**NER (n=529)**: δ* ∈ [1.28, 3.38] pp\n\n| Signal | δ* (pp) |\n|--------|---------|\n| SJ | 1.28 |\n| LP | 1.80 |\n| EM | 2.07 |\n| VC | 2.29 |\n| FK | 3.38 |\n\n**RE (n=397)**: δ* ∈ [2.86, 6.53] pp\n\n| Signal | δ* (pp) |\n|--------|---------|\n| LP | 2.86 |\n| SJ | 3.76 |\n| FK | 4.22 |\n| EM | 5.17 |\n| VC | 6.53 |\n\n使用 paired t-distribution 90% CI 计算，与 TOST worker 的 8 个已知判定结果全部一致。论文当前参数下（NER δ=2pp, RE δ=5pp），NER 仅 SJ/LP 通过，RE 仅 LP/SJ/FK 通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d070-tost-breakpoint.md"
+}

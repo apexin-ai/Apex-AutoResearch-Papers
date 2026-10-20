@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e816f679c99f8f3bb0a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "postprocess exp 029a",
+  "task_key": "worker_postprocess_exp_029a_20260518T004320",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_postprocess_exp_029a_20260518T004320_result.json",
+    "occurrence": 1,
+    "bytes": 1142,
+    "sha256": "0a6b68f87e00967c9a2c4f22fd7c3892509884ae01eb5d12fb8dfee626a2098d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp_029a 状态：训练在 step 100/351 崩溃（磁盘满）**\n\n详情：\n- 崩溃点：step 100/351（epoch 0.86），eval_loss=0.1076\n- 错误：保存 checkpoint-100 时 `RuntimeError: basic_ios::clear: iostream error`（optimizer.pt 写入失败）\n- 根因：磁盘 100%（250G/250G，剩余 64K）\n- checkpoint-100 的 adapter 权重已保存（349MB），但 optimizer.pt 被截断（仅 12MB）\n\n**磁盘分布：**\n| 目录 | 大小 |\n|------|------|\n| checkpoints/ | 199G |\n| .hf_cache/ (base models) | 38G |\n| output/ | 5.8G |\n| data/ | 0.4G |\n\n**清理方案：** 删除已完成推理的 merged 模型（均可从 LoRA + base model 重建）：\n\n| 模型 | 大小 | 对应推理输出 |\n|------|------|------------|\n| qwen3-8b-fewnerd-merged | 16G | exp_021 已有 |\n| llama3.1-8b-conll2003-merged | 15G | exp_017 已有 |\n| llama3.1-8b-scierc-merged | 15G | exp_018 已有 |\n| llama3.2-3b-scierc-merged | 6.1G | 早期实验 |\n| qwen3-4b-conll2003-merged-ckpt4200 | 7.6G | 重复变体 |\n\n共释放 ~60G，足够重跑训练+merge+inference。\n\n是否执行清理并重启训练？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/postprocess-exp-029a.md"
+}

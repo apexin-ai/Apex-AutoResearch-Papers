@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e11e34a596ba20dfd31a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper arr checklist",
+  "task_key": "worker_paper_arr-checklist_20260523T183434",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_arr-checklist_20260523T183434_result.json",
+    "occurrence": 1,
+    "bytes": 1278,
+    "sha256": "3d8bcdabd7893d496d9c8f19dd99fed6e4098dbbd2ed1232976fde02130befa5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计完成\n\n### 修复了 3 处问题\n\n**A2、B2、B3 引用了不存在的 \"Ethics Statement\"**：论文中没有 Ethics Statement 章节（只有 Limitations），但 checklist 三处引用了它。已删除悬空引用，改为自包含描述。\n\n### 全部检查项结果\n\n| 项 | 状态 |\n|----|------|\n| A1 Limitations | PASS |\n| A2 Risks | FIXED — 删除悬空引用 |\n| A3 Claims | PASS |\n| B1 Citations | PASS |\n| B2 Licenses | FIXED — 删除悬空引用 |\n| B3 Intended use | FIXED — 删除悬空引用 |\n| B4 PII | PASS |\n| B5 Documentation | PASS |\n| B6 Statistics | PASS |\n| C1 Compute | PASS |\n| C2 Hyperparameters | PASS |\n| C3 Descriptive stats | PASS |\n| C4 Packages | PASS |\n| D Human annotators | PASS |\n| E1 AI assistants | PASS — \"Appendix ak\" 问题已修复 |\n\n无占位符、无遗漏引用、所有 `\\ref{}` 和 `\\cite{}` 目标均存在。\n\n### 建议（未自动修改）\n\n论文缺少 Ethics Statement 章节。虽然 ARR/EMNLP 2026 不强制要求，但建议在 main.tex 的 Limitations 前加一段简短的 `\\section*{Ethics Statement}`，覆盖 B2/B3 中提到的 license 和 intended use 信息，避免 reviewer 质疑。\n\n报告已写入 `artifacts/arr_checklist_audit.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-arr-checklist.md"
+}

@@ -1,0 +1,738 @@
+{
+  "schema_version": "1.0",
+  "id": "ffbc070ae02ac198dd4c",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "analysis fk excess agreement",
+  "task_key": "worker_analysis_fk_excess_agreement_20260515T121311",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analysis_fk_excess_agreement_20260515T121311.jsonl",
+    "occurrence": 1,
+    "bytes": 37056,
+    "sha256": "e092c115b4737432b0df53d38d712afd8bc00a66fe12959ac3a24932ce31fa66"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "tool_call": 17,
+      "tool_result": 17,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T12:15:10.204736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T12:15:10.205250+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T12:15:10.205526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T12:15:10.205750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "fleiss|kappa",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+              "-i": "True"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T12:15:10.206038+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bootstrap_ci_nscaling\\\\nbootstrap_ci_summary.json\\\\nbootstrap_ci_tables.tex\\\\nconditional_filter_diagnosis.json\\\\nexp001_n16_seed123\\\\nexp001_n16_seed123_200only\\\\nexp001_n16_seed123_200only_backup\\\\nexp001_n16_seed123_full\\\\nexp001_n16_seed123_run.log\\\\nexp001_n16_seed42\\\\nexp001_n16_seed42_200only_backup\\\\nexp001_n16_seed42_run.log\\\\nexp001_n16_seed456\\\\nexp001_n16_seed456_200only\\\\nexp001_n16_seed456_run.log\\\\nexp001_seed123_t10_full\\\\nexp001_seed123_t10_full.log\\\\nexp001_seed456_t10_full\\\\nexp001_seed456_t10_full.log\\\\nexp002_conll2003\\\\nexp003_wnut17_dryrun\\\\nexp003_wnut17_eval\\\\nexp003_wnut17_eval.log\\\\nexp003_wnut17_pilot\\\\nexp003_wnut17_pilot.log\\\\nexp004_re_diagnostic\\\\nexp004v2_re_diagnostic\\\\nexp007_llama_dryrun\\\\nexp007_llama_inference\\\\nexp008_re_n16\\\\nexp008_re_n16_200only\\\\nexp008_re_n16_t10_full\\\\nexp008_re_n16_t10_full.log\\\\nexp009_stratification_results.json\\\\nexp010_selection_curves\\\\nexp016_signal_ensemble\\\\nexp018_3seed_5signal_results.json\\\\nexp_001_seed123_v2\\\\nexp_001_seed123_v2_r1024\\\\nexp_001_seed42_v2\\\\nexp_001_seed42_v2_r1024\\\\nexp_001_seed456_v2\\\\nexp_001_seed456_v2_ner\\\\nexp_001_seed456_v2_ner.log\\\\nexp_001_seed456_v2_ner_r1024\\\\nexp_002_conll_n16\\\\nexp_002_conll_n16.log\\\\nexp_002_conll_n16_r1024\\\\nexp_003_wnut17_v2_infer\\\\nexp_005_v2_temperature\\\\nexp_006_v2\\\\nexp_006_v2_run.log\\\\nexp_007_llama_n16\\\\nexp_007_llama_n16.log\\\\nexp_007_llama_n16_r1024\\\\nexp_007_llama_seed123\\\\nexp_007_llama_seed456\\\\nexp_008_re_n16_v2\\\\nexp_008_re_seed123\\\\nexp_009_v2\\\\nexp_009_v2_re_rerun\\\\nexp_009_v2_run.log\\\\nexp_011_ood_analysis\\\\nexp_011_ood_conll_to_scierc\\\\nexp_011_ood_scierc_to_conll\\\\nexp_011_ood_scierc_to_conll_run.log\\\\nexp_012_logprob\\\\nexp_012_rerun_1024\\\\nexp_015_unified\\\\nexp_015_v2\\\\nexp_016_rerun_1024\\\\nexp_016_v2\\\\nexp_017_llama_conll_infer\\\\nexp_017_llama_conll_infer.log\\\\nexp_017_llama_conll_n16\\\\nexp_017_llama_conll_n16_r1024\\\\nexp_017_llama_conll_n16_r1024_run.log\\\\nexp_017_llama\n…[truncated 1099 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T12:15:10.206471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 250 files limit: 250\nlogs/workers/worker_analysis_fk_excess_agreement_20260515T121311.log\nlogs/chats/feishu_group_oc_523053f5a039428dc15666668fa856b3_paper_agent.jsonl\nlogs/chats/feishu_group_oc_523053f5a039428dc15666668fa856b3_reviewer.jsonl\nlogs/chats/feishu_group_oc_523053f5a039428dc15666668fa856b3.jsonl\nlogs/chats/feishu_group_oc_3897c2857f11615119e277e820eae311_director.jsonl\ndocs/paper/main.aux\ndocs/paper/main.bbl\ndocs/paper/sections/appendix.tex\nregistry.yaml\nartifacts/manifest.yaml\ndocs/paper/sections/introduction.tex\ndocs/paper/references.bib\ndocs/paper/sections/method.tex\ndecisions.yaml\nlogs/workers/worker_code_exp_011_ood_cross_dataset_20260515T113645.log\nlogs/workers/worker_ops_registry_metrics_update_20260515T113729.log\nartifacts/analyze_ood_signals.py\nlogs/workers/worker_analysis_n16_3seed_scs_20260515T113242.log\nlogs/workers/worker_analysis_d072_paper_patch_inventory_20260515T113312.log\nlogs/workers/worker_analysis_ood_cross_dataset_feasibility_20260515T113259.log\nlogs/workers/worker_code_exp_017_llama_conll_submit_20260515T103759.log\nlogs/workers/worker_analysis_pending_exp_readiness_20260515T103205.log\nlogs/workers/worker_analysis_freeform_deep_analysis_20260515T102907.log\nartifacts/dream_reports/dream_20260515T092545/meta.yaml\nartifacts/dream_reports/dream_20260515T092545/logs/review_worst.log\nartifacts/dream_reports/dream_20260515T092545/worst/review_report.md\nartifacts/dream_reports/dream_20260515T092545/logs/review_median.log\nartifacts/dream_reports/dream_20260515T092545/median/review_report.md\nlogs/chats/worker_code_exp_019_supervised_verifier_20260515T100946.jsonl\nlogs/workers/worker_code_exp_019_supervised_verifier_20260515T100946.log\nlogs/chats/archive/feishu_group_oc_523053f5a039428dc15666668fa856b3_reviewer_20260515T102035_551765.jsonl\nlogs/chats/archive/feishu_group_oc_1b56445332d8ca2b4964b30f300f0e00_director_20260515T102033_395761.jsonl\nartifacts/evaluate_verifier.py\nlogs/chats/worker_analysis_n16_readiness_check_20260515T100959.j\n…[truncated 14689 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T12:15:10.206927+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "fleiss|kappa",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+              "-i": "True",
+              "glob": "*.py"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T12:15:10.207192+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 56 files\nartifacts/analyze_ood_signals.py\nartifacts/evaluate_verifier.py\nartifacts/re_conditional_analysis.py\nartifacts/n8_bootstrap_ci.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_mathtext.py\n.venv/lib/python3.14/site-packages/matplotlib/_mathtext_data.py\n.venv/lib/python3.14/site-packages/scipy/stats/tests/test_sampling.py\n.venv/lib/python3.14/site-packages/scipy/stats/tests/test_multivariate.py\n.venv/lib/python3.14/site-packages/scipy/stats/tests/test_fit.py\n.venv/lib/python3.14/site-packages/scipy/stats/tests/test_distributions.py\n.venv/lib/python3.14/site-packages/scipy/stats/tests/test_continuous_basic.py\n.venv/lib/python3.14/site-packages/scipy/stats/tests/test_continuous.py\n.venv/lib/python3.14/site-packages/scipy/stats/_multivariate.py\n.venv/lib/python3.14/site-packages/scipy/stats/_morestats.py\n.venv/lib/python3.14/site-packages/scipy/stats/_distr_params.py\n.venv/lib/python3.14/site-packages/scipy/stats/_distn_infrastructure.py\n.venv/lib/python3.14/site-packages/scipy/stats/_continuous_distns.py\n.venv/lib/python3.14/site-packages/scipy/stats/__init__.py\n.venv/lib/python3.14/site-packages/scipy/spatial/transform/_rotation_xp.py\n.venv/lib/python3.14/site-packages/scipy/signal/_filter_design.py\n.venv/lib/python3.14/site-packages/scipy/optimize/_linprog_ip.py\n.venv/lib/python3.14/site-packages/scipy/linalg/tests/test_matfuncs.py\n.venv/lib/python3.14/site-packages/scipy/linalg/_expm_frechet.py\n.venv/lib/python3.14/site-packages/scipy/integrate/tests/test_bvp.py\n.venv/lib/python3.14/site-packages/scipy/integrate/_ivp/bdf.py\n.venv/lib/python3.14/site-packages/fontTools/agl.py\n.venv/lib/python3.14/site-packages/numpy/random/tests/test_randomstate.py\n.venv/lib/python3.14/site-packages/numpy/random/tests/test_random.py\n.venv/lib/python3.14/site-packages/numpy/random/tests/test_generator_mt19937.py\n.venv/lib/python3.14/site-packages/pip/_vendor/pygments/filters/__init__.py\nartifacts/figures/plot_all_figures.py\nartifacts/exp_016_v2_ensemble.py\nart\n…[truncated 1147 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T12:15:10.207457+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T12:15:10.207706+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"all_signals_5signal.json\\\\nauroc_5signal.json\\\\ncomparison.json\\\\nreliability_data_1024.json\\\\nreport.json\\\\nrun.log\\\\nsamples.jsonl\\\\nsamples_with_logprobs.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T12:15:10.208039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T12:15:10.208314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"report.json\\\\nsamples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T12:15:10.208552+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T12:15:10.208792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"report.json\\\\nsamples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T12:15:10.209057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16_r1024/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T12:15:10.209315+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"report.json\\\\nrun.log\\\\nsamples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T12:15:10.209747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T12:15:10.209954+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"all_signals_report.json\\\\nreport.json\\\\nsamples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T12:15:10.210190+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T12:15:10.210416+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"report.json\\\\nsamples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T12:15:10.210672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "fleiss|kappa|def.*consistency",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/consistency.py",
+              "-i": "True",
+              "output_mode": "content",
+              "-n": "True",
+              "-C": "3"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T12:15:10.211093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1-\"\"\"Consistency metrics for structured information extraction with self-consistency.\n2-\n3-Implements three complementary consistency measures over N sampled extractions:\n4:1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\n5-2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\n6-3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\n7-\n--\n29-\n30-\n31-# ===================================================================\n32:# 1. Fleiss' Kappa — surface‐level entity agreement\n33-# ===================================================================\n34-\n35-def _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\n36:    \"\"\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\"\"\"\n37-    if subtask == \"ner\":\n38-        return {(e[\"text\"], e[\"type\"]) for e in sample.get(\"entities\", [])}\n39-    elif subtask == \"re\":\n--\n49-        raise ValueError(f\"Unknown subtask: {subtask}\")\n50-\n51-\n52:def fleiss_kappa_surface(samples: list[Extraction], subtask: str = \"ner\") -> float:\n53:    \"\"\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\n54-\n55-    Items are subtask-dependent surface keys:\n56-    - ner: (entity_text, entity_type)\n--\n62-        subtask: \"ner\", \"re\", or \"eae\".\n63-\n64-    Returns:\n65:        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (≤1 unique\n66-        item, perfect agreement, or undefined P_e).\n67-    \"\"\"\n68-    n_raters = len(samples)\n--\n112-    if abs(1.0 - P_e) < 1e-12:\n113-        return 1.0\n114-\n115:    kappa = (P_bar - P_e) / (1.0 - P_e)\n116:    return float(kappa)\n117-\n118-\n119-# ===================================================================\n--\n285-    return total_score / total_weight\n286-\n287-\n288:def structural_consistency_soft_jaccard(\n289-    samples: list[Extraction],\n290-    subtask: str = \"ner\",\n291-) -> float:\n--\n366-# Aggregate helper\n367-# ===============================================\n…[truncated 920 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T12:15:10.211376+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples_with_logprobs.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T12:15:10.212018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"\n…[truncated 9068 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T12:15:10.212350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/consistency.py",
+              "offset": "52",
+              "limit": "70"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T12:15:10.212600+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "52\tdef fleiss_kappa_surface(samples: list[Extraction], subtask: str = \"ner\") -> float:\n53\t    \"\"\"Compute Fleiss' kappa treating N LLM samples as N raters on item presence.\n54\t\n55\t    Items are subtask-dependent surface keys:\n56\t    - ner: (entity_text, entity_type)\n57\t    - re: (head_text, tail_text, relation_type)\n58\t    - eae: (trigger_text, trigger_type, role, argument_text)\n59\t\n60\t    Args:\n61\t        samples: List of N extraction dicts.\n62\t        subtask: \"ner\", \"re\", or \"eae\".\n63\t\n64\t    Returns:\n65\t        Fleiss' kappa in [-1, 1].  Returns 1.0 for degenerate cases (≤1 unique\n66\t        item, perfect agreement, or undefined P_e).\n67\t    \"\"\"\n68\t    n_raters = len(samples)\n69\t    if n_raters <= 1:\n70\t        return 1.0\n71\t\n72\t    # Collect unique keys and per-sample presence sets\n73\t    entity_sets: list[set[tuple]] = []\n74\t    all_keys: set[tuple] = set()\n75\t    for sample in samples:\n76\t        keys = _extract_surface_keys(sample, subtask)\n77\t        entity_sets.append(keys)\n78\t        all_keys |= keys\n79\t\n80\t    n_subjects = len(all_keys)\n81\t    if n_subjects <= 0:\n82\t        # All samples extracted nothing — perfect agreement on empty set\n83\t        return 1.0\n84\t\n85\t    key_list = sorted(all_keys)\n86\t\n87\t    # Build rating matrix: n_subjects × 2 (categories: absent=0, present=1)\n88\t    # n_ij = number of raters assigning subject i to category j\n89\t    rating = np.zeros((n_subjects, 2), dtype=np.int64)\n90\t    for es in entity_sets:\n91\t        for idx, key in enumerate(key_list):\n92\t            if key in es:\n93\t                rating[idx, 1] += 1\n94\t            else:\n95\t                rating[idx, 0] += 1\n96\t\n97\t    n = n_raters\n98\t    k = 2  # number of categories\n99\t\n100\t    # Check perfect agreement: every subject has all votes in one category\n101\t    if np.all(np.max(rating, axis=1) == n):\n102\t        return 1.0\n103\t\n104\t    # P_i for each subject\n105\t    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\n106\t    P_bar = np.mean(P_i)\n107\t\n108\t    #\n…[truncated 465 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T12:15:10.212892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/consistency.py",
+              "offset": "35",
+              "limit": "16"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T12:15:10.213121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "35\tdef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\n36\t    \"\"\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\"\"\"\n37\t    if subtask == \"ner\":\n38\t        return {(e[\"text\"], e[\"type\"]) for e in sample.get(\"entities\", [])}\n39\t    elif subtask == \"re\":\n40\t        return {(r[\"head\"], r[\"tail\"], r[\"type\"]) for r in sample.get(\"relations\", [])}\n41\t    elif subtask == \"eae\":\n42\t        keys: set[tuple] = set()\n43\t        for ev in sample.get(\"events\", []):\n44\t            t = ev.get(\"trigger\", {})\n45\t            for arg in ev.get(\"arguments\", []):\n46\t                keys.add((t.get(\"text\", \"\"), t.get(\"type\", \"\"), arg[\"role\"], arg[\"text\"]))\n47\t        return keys\n48\t    else:\n49\t        raise ValueError(f\"Unknown subtask: {subtask}\")\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T12:15:10.213408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat > /root/autodl-tmp/struct_self_consist_ie/compute_fk_excess.py << 'PYEOF'\nimport json\nimport numpy as np\nimport sys\n\ndef extract_surface_keys(sample, subtask):\n    if subtask == \"ner\":\n        return {(e[\"text\"], e[\"type\"]) for e in sample.get(\"entities\", [])}\n    elif subtask == \"re\":\n        return {(r[\"head\"], r[\"tail\"], r[\"type\"]) for r in sample.get(\"relations\", [])}\n    else:\n        raise ValueError(f\"Unknown subtask: {subtask}\")\n\ndef fleiss_kappa_decomposed(samples, subtask=\"ner\"):\n    \"\"\"Returns (P_o, P_e, excess, kappa) for one instance.\"\"\"\n    n_raters = len(samples)\n    if n_raters <= 1:\n        return (1.0, 0.0, 1.0, 1.0)\n\n    entity_sets = []\n    all_keys = set()\n    for sample in samples:\n        keys = extract_surface_keys(sample, subtask)\n        entity_sets.append(keys)\n        all_keys |= keys\n\n    n_subjects = len(all_keys)\n    if n_subjects <= 0:\n        return (1.0, 0.0, 1.0, 1.0)\n\n    key_list = sorted(all_keys)\n    rating = np.zeros((n_subjects, 2), dtype=np.int64)\n    for es in entity_sets:\n        for idx, key in enumerate(key_list):\n            if key in es:\n                rating[idx, 1] += 1\n            else:\n                rating[idx, 0] += 1\n\n    n = n_raters\n    if np.all(np.max(rating, axis=1) == n):\n        return (1.0, 0.0, 1.0, 1.0)\n\n    P_i = (np.sum(rating ** 2, axis=1) - n) / (n * (n - 1))\n    P_bar = float(np.mean(P_i))  # P_o\n\n    p_j = np.sum(rating, axis=0) / (n_subjects * n)\n    P_e = float(np.sum(p_j ** 2))\n\n    excess = P_bar - P_e\n\n    if abs(1.0 - P_e) < 1e-12:\n        return (P_bar, P_e, excess, 1.0)\n\n    kappa = excess / (1.0 - P_e)\n    return (P_bar, P_e, excess, kappa)\n\nconfigs = [\n    {\n        \"name\": \"Qwen SciERC NER\",\n        \"path\": \"output/exp_012_rerun_1024/samples_with_logprobs.jsonl\",\n        \"subtask\": \"ner\",\n        \"n\": 8,\n    },\n    {\n        \"name\": \"Qwen SciERC RE\",\n        \"path\": \"output/exp_012_rerun_1024/samples_with_logprobs.jsonl\",\n        \"subtask\": \"re\",\n        \"n\": 8,\n    },\n    {\n        \"name\": \"Qwen CoNLL NER\",\n        \"path\": \"output/exp_002_conll_n16/samples.jsonl\",\n        \"subtask\": \"ner\",\n        \"n\": 8,\n        \"take_first_n\": 8,\n    },\n    {\n        \"name\": \"Qwen CoNLL NER N=16\",\n        \"path\": \"output/exp_002_conll_n16/samples.jsonl\",\n        \"subtask\": \"ner\",\n        \"n\": 16,\n    },\n    {\n        \"name\": \"LLaMA SciERC NER\",\n        \"path\": \"output/exp007_llama_inference/samples.jsonl\",\n        \"subtask\": \"ner\",\n        \"n\": 8,\n    },\n    {\n        \"name\": \"LLaMA SciERC RE\",\n        \"path\": \"output/exp007_llama_inference/samples.jsonl\",\n        \"subtask\": \"re\",\n        \"n\": 8,\n    },\n    {\n        \"name\": \"LLaMA CoNLL NER\",\n        \"path\": \"output/exp_017_llama_conll_infer/samples.jsonl\",\n        \"subtask\": \"ner\",\n        \"n\": 8,\n    },\n    {\n        \"name\": \"LLaMA CoNLL NER N=16\",\n        \"path\": \"output/exp_017_llama_conll_n16_r1024/samples.jsonl\",\n        \"subtask\": \"ner\",\n        \"n\": 16,\n    },\n]\n\nbase = \"/root/autodl-tmp/struct_self_consist_ie\"\nresults = []\n\nfor cfg in configs:\n    filepath = f\"{base}/{cfg['path']}\"\n    try:\n        with open(filepath) as f:\n            instances = [json.loads(line) for line in f if line.strip()]\n    except FileNotFoundError:\n        results.append({**cfg, \"status\": \"FILE_NOT_FOUND\"})\n        continue\n\n    po_list, pe_list, excess_list, fk_list = [], [], [], []\n    for inst in instances:\n        samples = inst[\"samples\"]\n        n_expected = cfg.get(\"take_first_n\", cfg[\"n\"])\n        if len(samples) < n_expected:\n            continue\n        samples = samples[:n_expected]\n\n        P_o, P_e, excess, kappa = fleiss_kappa_decomposed(samples, cfg[\"subtask\"])\n        po_list.append(P_o)\n        pe_list.append(P_e)\n        excess_list.append(excess)\n        fk_list.append(kappa)\n\n    if not fk_list:\n        results.append({**cfg, \"status\": \"NO_VALID_INSTANCES\"})\n        continue\n\n    fk_arr = np.array(fk_list)\n    results.append({\n        \"name\": cfg[\"name\"],\n        \"subtask\": cfg[\"subtask\"],\n        \"n\": cfg.get(\"take_first_n\", cfg[\"n\"]),\n        \"n_instances\": len(fk_list),\n        \"mean_po\": float(np.mean(po_list)),\n        \"mean_pe\": float(np.mean(pe_list)),\n        \"mean_excess\": float(np.mean(excess_list)),\n        \"mean_fk\": float(np.mean(fk_list)),\n        \"fk_p5\": float(np.percentile(fk_arr, 5)),\n        \"fk_p95\": float(np.percentile(fk_arr, 95)),\n        \"std_po\": float(np.std(po_list)),\n        \"std_pe\": float(np.std(pe_list)),\n        \"std_excess\": float(np.std(excess_list)),\n        \"std_fk\": float(np.std(fk_list)),\n        \"status\": \"OK\",\n    })\n\nprint(json.dumps(results, indent=2))\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python compute_fk_excess.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T12:15:10.213820+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"name\\\\\\\": \\\\\\\"Qwen SciERC NER\\\\\\\",\\\\n    \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 8,\\\\n    \\\\\\\"n_instances\\\\\\\": 551,\\\\n    \\\\\\\"mean_po\\\\\\\": 0.7472988758281732,\\\\n    \\\\\\\"mean_pe\\\\\\\": 0.5076475603232583,\\\\n    \\\\\\\"mean_excess\\\\\\\": 0.23965131550491497,\\\\n    \\\\\\\"mean_fk\\\\\\\": 0.3932668065534345,\\\\n    \\\\\\\"fk_p5\\\\\\\": -0.11355311355311361,\\\\n    \\\\\\\"fk_p95\\\\\\\": 1.0,\\\\n    \\\\\\\"std_po\\\\\\\": 0.13523910593212604,\\\\n    \\\\\\\"std_pe\\\\\\\": 0.20639527675051936,\\\\n    \\\\\\\"std_excess\\\\\\\": 0.29293307938889784,\\\\n    \\\\\\\"std_fk\\\\\\\": 0.30998344677591005,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"name\\\\\\\": \\\\\\\"Qwen SciERC RE\\\\\\\",\\\\n    \\\\\\\"subtask\\\\\\\": \\\\\\\"re\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 8,\\\\n    \\\\\\\"n_instances\\\\\\\": 551,\\\\n    \\\\\\\"mean_po\\\\\\\": 0.7255494741562376,\\\\n    \\\\\\\"mean_pe\\\\\\\": 0.48750281155326075,\\\\n    \\\\\\\"mean_excess\\\\\\\": 0.2380466626029769,\\\\n    \\\\\\\"mean_fk\\\\\\\": 0.29342166441787654,\\\\n    \\\\\\\"fk_p5\\\\\\\": -0.14285714285714285,\\\\n    \\\\\\\"fk_p95\\\\\\\": 1.0,\\\\n    \\\\\\\"std_po\\\\\\\": 0.15503110429600384,\\\\n    \\\\\\\"std_pe\\\\\\\": 0.24756178429463546,\\\\n    \\\\\\\"std_excess\\\\\\\": 0.3738954974210933,\\\\n    \\\\\\\"std_fk\\\\\\\": 0.39587715860302447,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"name\\\\\\\": \\\\\\\"Qwen CoNLL NER\\\\\\\",\\\\n    \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 8,\\\\n    \\\\\\\"n_instances\\\\\\\": 3453,\\\\n    \\\\\\\"mean_po\\\\\\\": 0.8952663629123238,\\\\n    \\\\\\\"mean_pe\\\\\\\": 0.23819161608984724,\\\\n    \\\\\\\"mean_excess\\\\\\\": 0.6570747468224766,\\\\n    \\\\\\\"mean_fk\\\\\\\": 0.7212693184162104,\\\\n    \\\\\\\"fk_p5\\\\\\\": -0.14285714285714285,\\\\n    \\\\\\\"fk_p95\\\\\\\": 1.0,\\\\n    \\\\\\\"std_po\\\\\\\": 0.1466837432146799,\\\\n    \\\\\\\"std_pe\\\\\\\": 0.3022400657778882,\\\\n    \\\\\\\"std_excess\\\\\\\": 0.43038561604901276,\\\\n    \\\\\\\"std_fk\\\\\\\": 0.3924976993702876,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"name\\\\\\\": \\\\\\\"Qwen CoNLL NER N=16\\\\\\\",\\\\n    \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 16,\\\\n    \\\\\\\"n_instances\\\\\\\": 34\n…[truncated 2975 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T12:15:10.214115+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/fk_excess_agreement_all_configs.md",
+              "content": "# FK Excess Agreement — All Configurations\n\nFleiss' Kappa decomposition: FK = (P_o - P_e) / (1 - P_e), where excess agreement = P_o - P_e.\n\n| Config | Subtask | N | n_instances | mean P_o | mean P_e | mean excess (P_o−P_e) | mean FK | FK range (5th–95th pctl) |\n|--------|---------|---|-------------|----------|----------|-----------------------|---------|--------------------------|\n| Qwen SciERC NER | NER | 8 | 551 | 0.747 | 0.508 | 0.240 | 0.393 | −0.114 – 1.000 |\n| Qwen SciERC RE | RE | 8 | 551 | 0.726 | 0.488 | 0.238 | 0.293 | −0.143 – 1.000 |\n| Qwen CoNLL NER | NER | 8 | 3453 | 0.895 | 0.238 | 0.657 | 0.721 | −0.143 – 1.000 |\n| Qwen CoNLL NER N=16 | NER | 16 | 3453 | 0.910 | 0.309 | 0.601 | 0.716 | −0.067 – 1.000 |\n| LLaMA SciERC NER | NER | 8 | 551 | 0.774 | 0.472 | 0.302 | 0.451 | −0.126 – 1.000 |\n| LLaMA SciERC RE | RE | 8 | 551 | 0.755 | 0.447 | 0.308 | 0.368 | −0.143 – 1.000 |\n| LLaMA CoNLL NER | NER | 8 | 3453 | 0.973 | 0.068 | 0.906 | 0.928 | 0.357 – 1.000 |\n| LLaMA CoNLL NER N=16 | NER | 16 | 3453 | 0.976 | 0.085 | 0.891 | 0.929 | 0.426 – 1.000 |\n\n## Key Findings\n\n**P_e (chance agreement) varies dramatically by dataset, not model.** SciERC configs have high P_e (0.45–0.51) reflecting few distinct items per instance and skewed category distributions. CoNLL P_e is much lower (0.07–0.31), meaning more diverse item spaces where chance agreement is rare.\n\n**Excess agreement (P_o − P_e) is the more informative metric.** LLaMA CoNLL shows the highest excess (~0.90), meaning nearly all observed agreement is genuine. SciERC configs have modest excess (0.24–0.31) despite reasonable P_o, because P_e inflates the baseline. This means a substantial fraction of SciERC's raw agreement is attributable to chance.\n\n**RE consistently has lower FK than NER on the same data**, despite similar P_o levels. Qwen SciERC RE (FK=0.293) vs NER (FK=0.393); LLaMA SciERC RE (FK=0.368) vs NER (FK=0.451). RE's slightly lower P_e doesn't compensate for its lower P_o, resulting in less excess agreement.\n\n**N=8 vs N=16 shows minimal FK change.** Qwen CoNLL: 0.721→0.716; LLaMA CoNLL: 0.928→0.929. However, P_e increases with N (0.238→0.309 for Qwen CoNLL) because more samples surface more unique items, slightly reducing excess despite higher P_o.\n\n**LLaMA vs Qwen:** LLaMA consistently achieves higher excess agreement across all configs, particularly on CoNLL (+0.25 excess over Qwen). On SciERC the gap is smaller (~0.06). This suggests LLaMA's outputs are more internally consistent.\n"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T12:15:10.214415+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/fk_excess_agreement_all_configs.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T12:15:10.214627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "fk_excess_agreement_all_configs",
+              "type": "report",
+              "description": "Fleiss Kappa excess agreement decomposition (P_o, P_e, excess, FK) for all 8 experiment configurations",
+              "project": "struct_self_consist_ie",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/fk_excess_agreement_all_configs.md",
+              "tags": "['fleiss_kappa', 'excess_agreement', 'analysis']"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T12:15:10.214861+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_8c9da1\\\", \\\"name\\\": \\\"fk_excess_agreement_all_configs\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Fleiss Kappa excess agreement decomposition (P_o, P_e, excess, FK) for all 8 experiment configurations\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/report/fk_excess_agreement_all_configs.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T12:15:03.193487+00:00\\\", \\\"tags\\\": [\\\"fleiss_kappa\\\", \\\"excess_agreement\\\", \\\"analysis\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T12:15:10.215114+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/fk_excess_agreement_all_configs.md` 并注册。\n\n核心结论：\n- **P_e 由数据集决定**：SciERC P_e 高（0.45–0.51），CoNLL P_e 低（0.07–0.31）\n- **LLaMA CoNLL excess 最高**（~0.90），SciERC excess 最低（0.24–0.31）——SciERC 的大量观察一致性来自 chance\n- RE 的 FK 系统性低于同数据集的 NER\n- N=8→16 对 FK 几乎无影响，但 P_e 随 N 增大而上升"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fk_excess_agreement_20260515T121311"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-fk-excess-agreement.md"
+}

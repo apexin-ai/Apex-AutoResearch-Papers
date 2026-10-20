@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa7f258845b71d819c28",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp e theta v1 logreg",
+  "task_key": "worker_exp_e_theta_v1_logreg_20260520T154053",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_e_theta_v1_logreg_20260520T154053_result.json",
+    "occurrence": 1,
+    "bytes": 856,
+    "sha256": "b59ff56f43b51c0a51e4922467703160211dd943d1a93b2e0bb882ac91c512a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**E_θ V1: Full Features + Ridge Regression** (7 configs, 46,758 instances)\n\n| Metric | F1 |\n|--------|-----|\n| Fixed θ=0.5 | 0.7747 |\n| Adaptive (predicted) | 0.7932 (+1.84%) |\n| Oracle | 0.8279 (+5.31%) |\n\n**关键发现：**\n- Ridge 回归对所有实例退化预测 θ=0.3 — 线性特征无法区分 per-instance 最优 θ\n- +1.84% 的整体增益完全来自 FewNERD（占 80.5% 数据，θ=0.3 比 0.5 好 +2.35%），而在 CoNLL 上 θ=0.3 反而掉分（-0.56%）\n- 83% 的实例 oracle θ=0.5，只有 17% 受益于非默认阈值\n- 特征重要性：`degeneracy_level` > `agreement_mean` > `n_unique_entities` > `lp_variance`；dataset/model 指示特征系数接近零\n- Oracle headroom 5.31% 中，线性预测器仅捕获 34.7%\n\n结果已保存并注册为 `art_20260520_ecc20e`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-e-theta-v1-logreg.md"
+}

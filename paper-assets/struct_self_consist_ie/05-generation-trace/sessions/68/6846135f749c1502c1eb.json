@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6846135f749c1502c1eb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu exp 003 ner wnut17",
+  "task_key": "worker_gpu_exp_003_ner_wnut17_20260514T120313",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp_003_ner_wnut17_20260514T120313_result.json",
+    "occurrence": 1,
+    "bytes": 135,
+    "sha256": "caafdbd764b092504144937f6acd7e8a6d347f2dc1881b9498dcaf2daf85fe60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training at step 210/1065 with loss=0.088, eval_loss=0.088. Checking again in ~20 min when it should be near completion."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-003-ner-wnut17.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8a63f32806cc5fc5db5",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check ft 001 result",
+  "task_key": "worker_check_ft_001_result_20260514T062945",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_ft_001_result_20260514T062945_result.json",
+    "occurrence": 1,
+    "bytes": 468,
+    "sha256": "836056f218c47bebfd27dc24cb690ec4d2aa373a75cee6902ea3efa456327d24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ft_001 训练已成功完成，registry 已更新，cron 已清除。\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | DONE / success |\n| train_loss | 0.1099 |\n| eval_loss | 0.0771 |\n| epoch | 3/3 |\n| 训练时长 | 17 分 49 秒 |\n| checkpoint | `/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora/` |\n| adapter 文件 | `adapter_model.safetensors` (166 MB) |\n| checkpoints | checkpoint-200, checkpoint-300, checkpoint-351 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-ft-001-result.md"
+}

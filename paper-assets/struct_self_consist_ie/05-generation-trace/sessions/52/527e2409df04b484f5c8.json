@@ -1,0 +1,731 @@
+{
+  "schema_version": "1.0",
+  "id": "527e2409df04b484f5c8",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "analysis n8 bootstrap ci",
+  "task_key": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analysis_n8_bootstrap_ci_20260515T030809.jsonl",
+    "occurrence": 1,
+    "bytes": 50632,
+    "sha256": "89fda0dfce9b9ab09308166af98471eee2048316e33f282421a51734261a6ac2"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "tool_call": 17,
+      "tool_result": 17,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T03:11:43.353745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T03:11:43.354191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T03:11:43.354454+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -5 /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T03:11:43.354648+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/consistency.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T03:11:43.355242+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"X96-1059_sent000\\\\\\\", \\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\\\\\", \\\\\\\"gold\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\", \\\\\\\"start\\\\\\\": 15, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 129, \\\\\\\"end\\\\\\\": 153}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 0, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 103, \\\\\\\"tail_end\\\\\\\": 125}, {\\\\\\\"head\\\\\\\": \\\\\\\"proper nouns\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"PART-OF\\\\\\\", \\\\\\\"head_start\\\\\\\": 15, \\\\\\\"head_end\\\\\\\": 27, \\\\\\\"tail_start\\\\\\\": 31, \\\\\\\"tail_end\\\\\\\": 44}, {\\\\\\\"head\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"USED-FOR\\\\\\\", \\\\\\\"head_start\\\\\\\": 103, \\\\\\\"head_end\\\\\\\": 125, \\\\\\\"tail_start\\\\\\\": 129, \\\\\\\"tail_end\\\\\\\": 153}], \\\\\\\"events\\\\\\\": []}, \\\\\\\"samples\\\\\\\": [{\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Recognition of proper nouns\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 0, \\\\\\\"end\\\\\\\": 27}, {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Material\\\\\\\", \\\\\\\"start\\\\\\\": 31, \\\\\\\"end\\\\\\\": 44}, {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\", \\\\\\\"start\\\\\\\": 103, \\\\\\\"end\\\\\\\": 125}, {\\\\\\\"text\\\\\\\": \\\\\\\"\n…[truncated 9068 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T03:11:43.355517+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/code/evaluation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T03:11:43.355928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Consistency metrics for structured information extraction with self-consistency.\\\\n\\\\nImplements three complementary consistency measures over N sampled extractions:\\\\n1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\\\\n2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\\\\n3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\\\\n\\\\nKey dependencies: numpy, scipy (linear_sum_assignment).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nfrom itertools import combinations\\\\nfrom typing import TYPE_CHECKING\\\\n\\\\nimport numpy as np\\\\nfrom scipy.optimize import linear_sum_assignment\\\\n\\\\nif TYPE_CHECKING:\\\\n    pass\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Type aliases (mirrors shared data format)\\\\n# ---------------------------------------------------------------------------\\\\nEntity = dict       # {\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"end\\\\\\\"}\\\\nRelation = dict     # {\\\\\\\"head\\\\\\\", \\\\\\\"tail\\\\\\\", \\\\\\\"type\\\\\\\", ...}\\\\nEvent = dict        # {\\\\\\\"trigger\\\\\\\": {...}, \\\\\\\"arguments\\\\\\\": [...]}\\\\nExtraction = dict   # {\\\\\\\"entities\\\\\\\", \\\\\\\"relations\\\\\\\", \\\\\\\"events\\\\\\\"}\\\\n\\\\n\\\\n# ===================================================================\\\\n# 1. Fleiss' Kappa — surface-level entity agreement\\\\n# ===================================================================\\\\n\\\\ndef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        return {(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in sample.get(\\\\\\\"entities\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"re\\\\\\\":\\\\n        return {(r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in sample.get(\\\\\\\"relations\\\\\\\", [])}\\\\n    elif subtask == \\\\\\\"eae\\\\\\\":\\\\n   \n…[truncated 7249 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T03:11:43.356402+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Evaluation module for structured self-consistency IE experiments.\\\\n\\\\nProvides strict-match NER/EAE evaluation, per-instance F1 computation,\\\\ncorrelation analysis, and summary report generation.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport statistics\\\\nfrom typing import Any\\\\n\\\\nfrom scipy.stats import kendalltau, spearmanr\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# NER evaluation (strict match)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef entity_strict_match(\\\\n    pred_entities: list[dict],\\\\n    gold_entities: list[dict],\\\\n) -> tuple[int, int, int]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute strict entity match counts.\\\\n\\\\n    Strict match requires exact span (start, end) AND exact type.\\\\n\\\\n    Args:\\\\n        pred_entities: Predicted entity dicts with keys text, type, start, end.\\\\n        gold_entities: Gold entity dicts with the same schema.\\\\n\\\\n    Returns:\\\\n        (tp, fp, fn) counts.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pred_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in pred_entities}\\\\n    gold_set = {(e[\\\\\\\"start\\\\\\\"], e[\\\\\\\"end\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in gold_entities}\\\\n    tp = len(pred_set & gold_set)\\\\n    fp = len(pred_set - gold_set)\\\\n    fn = len(gold_set - pred_set)\\\\n    return tp, fp, fn\\\\n\\\\n\\\\ndef compute_ner_f1(\\\\n    predictions: list[dict],\\\\n    golds: list[dict],\\\\n) -> dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute micro-averaged NER precision, recall, and F1.\\\\n\\\\n    Args:\\\\n        predictions: List of Extraction dicts (one per instance).\\\\n        golds: List of Extraction dicts (one per instance), aligned with predictions.\\\\n\\\\n    Returns:\\\\n        Dict with keys \\\\\\\"precision\\\\\\\", \\\\\\\"recall\\\\\\\", \\\\\\\"f1\\\\\\\".\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    total_tp = total_fp = total_fn = 0\\\\n    for pred, gold in zip(predictions, golds):\\\\n        tp, fp, fn = entity_\n…[truncated 7194 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T03:11:43.356721+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"voting_conf\\|voting_confidence\\|em_consist\\|exact_match\\|logprob\" /root/autodl-tmp/struct_self_consist_ie/code/ --include=\"*.py\" -l",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T03:11:43.357008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T03:11:43.357225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"voting_conf\" /root/autodl-tmp/struct_self_consist_ie/code/ --include=\"*.py\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T03:11:43.357572+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:8:5. Compute voting_confidence = mean(voting_rate of consensus items)\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:122:def voting_confidence(voting_rates, consensus_keys):\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:139:    voting_confs = []\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:183:            voting_confs.append(float(np.mean(list(v_rates.values()))))\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:185:            voting_confs.append(0.0)\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:194:    vc_v = [voting_confs[i] for i in valid]\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:206:    for name, scores in [(\\\\\\\"soft_jaccard\\\\\\\", sj_v), (\\\\\\\"fleiss_kappa\\\\\\\", fk_v), (\\\\\\\"voting_confidence\\\\\\\", vc_v)]:\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_entity_voting.py:250:    for name in [\\\\\\\"soft_jaccard\\\\\\\", \\\\\\\"fleiss_kappa\\\\\\\", \\\\\\\"voting_confidence\\\\\\\"]:\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py:63:def compute_voting_confidence(samples, subtask):\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp015_unified.py:109:        signals[\\\\\\\"entity_voting\\\\\\\"].append(compute_voting_confidence(samples, subtask))\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:199:def voting_confidence_re(samples):\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:219:def voting_confidence_ner(samples):\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:249:    For each type, compute SJ, FK, voting_conf correlation with greedy F1.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n/root/autodl-tmp/struct_self_consist_ie/code/analyze_exp004_re_diagnostic.py:263:        vc_scores = [voting_confidence_re(inst[\\\\\\\"\n…[truncated 6688 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T03:11:43.357875+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -rn \"def.*em_\" /root/autodl-tmp/struct_self_consist_ie/code/ --include=\"*.py\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T03:11:43.358082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/code/exp_006_v2_selection.py:126:def compute_sample_em_scores(key_sets: list[frozenset]) -> list[float]:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T03:11:43.358296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/code/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T03:11:43.358512+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\n_backup_cond_fix\\\\nanalyze_3seed_5signal.py\\\\nanalyze_component_wise_re.py\\\\nanalyze_entity_voting.py\\\\nanalyze_exact_match_voting.py\\\\nanalyze_exp002_conll2003.py\\\\nanalyze_exp004_re_diagnostic.py\\\\nanalyze_exp004_v2_re_diagnostic.py\\\\nanalyze_exp005_v2_temperature.py\\\\nanalyze_exp012_rerun_5signal.py\\\\nanalyze_exp015_unified.py\\\\nanalyze_exp015_v2_metrics.py\\\\nanalyze_exp016_ensemble.py\\\\nanalyze_exp017_5signal.py\\\\nanalyze_exp017_llama_conll_n16.py\\\\nanalyze_exp017_llama_conll_n16_s123.py\\\\nanalyze_logprob_baseline.py\\\\ncompute_re_conditional.py\\\\nconsistency.py\\\\nconvert_conll2003.py\\\\nconvert_to_llamafactory.py\\\\nconvert_wnut17.py\\\\ndata_utils.py\\\\ndiagnose_logprob_rho.py\\\\neval_exp012_rerun_auroc.py\\\\neval_n16_5signal.py\\\\neval_n8_5signal.py\\\\neval_s456_5signal.py\\\\nevaluation.py\\\\nexp001_3seed_all_signals.py\\\\nexp001_postprocess.py\\\\nexp009_stratification_analysis.py\\\\nexp010_selection_curves.py\\\\nexp_006_v2_selection.py\\\\nexp_009_v2_re_rerun.py\\\\nexp_009_v2_stratification.py\\\\nexp_016_v2_ensemble.py\\\\nextract_logprobs.py\\\\ngate0_diagnose.py\\\\ngate0_eval.py\\\\ngate0_realign_eval.py\\\\ngen_reliability_1024.py\\\\nmvp_pilot.py\\\\nplot_reliability_1024.py\\\\nplot_selection_gap_1024.py\\\\nrun_mvp_pilot.py\\\\nsampling.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T03:11:43.358734+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -200 /root/autodl-tmp/struct_self_consist_ie/code/analyze_exp012_rerun_5signal.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T03:11:43.359096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp_012_rerun_1024: Full 5-signal metrics for NER + RE.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport sys\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\nfrom scipy.stats import spearmanr, kendalltau, rankdata\\\\n\\\\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\\\\nfrom consistency import compute_all_consistency_scores\\\\nfrom evaluation import per_instance_f1\\\\n\\\\nDATA_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\\\\"\\\\nOUTPUT_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/all_signals_5signal.json\\\\\\\"\\\\nSUBTASKS = [\\\\\\\"ner\\\\\\\", \\\\\\\"re\\\\\\\"]\\\\n\\\\n\\\\ndef load_data(path):\\\\n    records = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            if line.strip():\\\\n                records.append(json.loads(line))\\\\n    return records\\\\n\\\\n\\\\ndef compute_exact_match_rate(samples, subtask):\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        keys = [frozenset((e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in s.get(\\\\\\\"entities\\\\\\\", [])) for s in samples]\\\\n    else:\\\\n        keys = [frozenset((r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in s.get(\\\\\\\"relations\\\\\\\", [])) for s in samples]\\\\n    if not keys:\\\\n        return 0.0\\\\n    counter = Counter(keys)\\\\n    return counter.most_common(1)[0][1] / len(samples)\\\\n\\\\n\\\\ndef compute_voting_confidence(samples, subtask):\\\\n    N = len(samples)\\\\n    if N == 0:\\\\n        return 0.0\\\\n    counter = Counter()\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\n        for s in samples:\\\\n            for e in s.get(\\\\\\\"entities\\\\\\\", []):\\\\n                counter[(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"])] += 1\\\\n    else:\\\\n        for s in samples:\\\\n            for r in s.get(\\\\\\\"relations\\\\\\\", []):\\\\n                counter[(r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"])] += 1\\\\n    if not counter:\\\\n        return 0.0\\\\n    rates = [v / N for v in co\n…[truncated 6083 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T03:11:43.359447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/autodl-tmp/struct_self_consist_ie/output/review_round2 && cat > /tmp/n8_bootstrap_ci.py << 'PYEOF'\nimport json, sys\nimport numpy as np\nfrom collections import Counter\nfrom scipy.stats import spearmanr\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\nfrom evaluation import per_instance_f1\n\nDATA_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\"\nOUT_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json\"\nSUBTASK = \"ner\"\n\ndef load_data(path):\n    records = []\n    with open(path) as f:\n        for line in f:\n            if line.strip():\n                records.append(json.loads(line))\n    return records\n\ndef compute_exact_match_rate(samples, subtask):\n    if subtask == \"ner\":\n        keys = [frozenset((e[\"text\"], e[\"type\"]) for e in s.get(\"entities\", [])) for s in samples]\n    else:\n        keys = [frozenset((r[\"head\"], r[\"tail\"], r[\"type\"]) for r in s.get(\"relations\", [])) for s in samples]\n    if not keys:\n        return 0.0\n    counter = Counter(keys)\n    return counter.most_common(1)[0][1] / len(samples)\n\ndef compute_voting_confidence(samples, subtask):\n    N = len(samples)\n    if N == 0:\n        return 0.0\n    counter = Counter()\n    if subtask == \"ner\":\n        for s in samples:\n            for e in s.get(\"entities\", []):\n                counter[(e[\"text\"], e[\"type\"])] += 1\n    else:\n        for s in samples:\n            for r in s.get(\"relations\", []):\n                counter[(r[\"head\"], r[\"tail\"], r[\"type\"])] += 1\n    if not counter:\n        return 0.0\n    rates = [v / N for v in counter.values()]\n    return float(np.mean(rates))\n\ndef compute_mean_logprob(samples):\n    logprobs = [s.get(\"mean_logprob\") for s in samples if s.get(\"mean_logprob\") is not None]\n    logprobs = [lp for lp in logprobs if np.isfinite(lp)]\n    if not logprobs:\n        return float(\"nan\")\n    return float(np.mean(logprobs))\n\ndef bootstrap_rho_ci(signal, quality, n_boot=10000, alpha=0.05, rng=None):\n    rng = np.random.default_rng(42) if rng is None else rng\n    signal, quality = np.array(signal, dtype=float), np.array(quality, dtype=float)\n    mask = np.isfinite(signal) & np.isfinite(quality)\n    signal, quality = signal[mask], quality[mask]\n    n = len(signal)\n    point_rho = spearmanr(signal, quality).statistic\n    rhos = []\n    for _ in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        r = spearmanr(signal[idx], quality[idx]).statistic\n        if np.isfinite(r):\n            rhos.append(r)\n    rhos.sort()\n    lo = np.percentile(rhos, 100 * alpha / 2)\n    hi = np.percentile(rhos, 100 * (1 - alpha / 2))\n    return {\"rho\": round(float(point_rho), 4), \"ci_lo\": round(float(lo), 4), \"ci_hi\": round(float(hi), 4), \"n\": n}\n\ndef bootstrap_delta_ci(sig_a, sig_b, quality, n_boot=10000, alpha=0.05):\n    rng = np.random.default_rng(42)\n    sig_a, sig_b, quality = np.array(sig_a, dtype=float), np.array(sig_b, dtype=float), np.array(quality, dtype=float)\n    mask = np.isfinite(sig_a) & np.isfinite(sig_b) & np.isfinite(quality)\n    sig_a, sig_b, quality = sig_a[mask], sig_b[mask], quality[mask]\n    n = len(sig_a)\n    rho_a = spearmanr(sig_a, quality).statistic\n    rho_b = spearmanr(sig_b, quality).statistic\n    point_delta = rho_a - rho_b\n    deltas = []\n    for _ in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        ra = spearmanr(sig_a[idx], quality[idx]).statistic\n        rb = spearmanr(sig_b[idx], quality[idx]).statistic\n        d = ra - rb\n        if np.isfinite(d):\n            deltas.append(d)\n    deltas.sort()\n    lo = np.percentile(deltas, 100 * alpha / 2)\n    hi = np.percentile(deltas, 100 * (1 - alpha / 2))\n    significant = not (lo <= 0 <= hi)\n    return {\n        \"delta\": round(float(point_delta), 4),\n        \"ci_lo\": round(float(lo), 4),\n        \"ci_hi\": round(float(hi), 4),\n        \"significant\": significant\n    }\n\n# Load and filter\nrecords = load_data(DATA_PATH)\nprint(f\"Total records: {len(records)}\")\n\nvalid = [r for r in records if len(r[\"gold\"].get(\"entities\", [])) > 0]\nprint(f\"Valid (gold non-empty) for NER: {len(valid)}\")\n\n# Compute signals + F1\nsj_vals, fk_vals, vc_vals, em_vals, lp_vals, f1_vals = [], [], [], [], [], []\nfor inst in valid:\n    samples = inst[\"samples\"]\n    gold = inst[\"gold\"]\n    greedy = inst.get(\"greedy\", samples[0])\n\n    sj_vals.append(structural_consistency_soft_jaccard(samples, subtask=SUBTASK))\n    fk_vals.append(fleiss_kappa_surface(samples, subtask=SUBTASK))\n    vc_vals.append(compute_voting_confidence(samples, SUBTASK))\n    em_vals.append(compute_exact_match_rate(samples, SUBTASK))\n    lp_vals.append(compute_mean_logprob(samples))\n    f1_vals.append(per_instance_f1(greedy, gold, subtask=SUBTASK))\n\nsignals_map = {\n    \"sj\": np.array(sj_vals),\n    \"fk\": np.array(fk_vals),\n    \"voting_conf\": np.array(vc_vals),\n    \"em\": np.array(em_vals),\n    \"logprob\": np.array(lp_vals),\n}\nf1_arr = np.array(f1_vals)\n\n# Bootstrap CIs for each signal\nprint(\"\\nComputing bootstrap CIs (B=10000)...\")\nsignal_results = {}\nfor name, vals in signals_map.items():\n    ci = bootstrap_rho_ci(vals, f1_arr, n_boot=10000)\n    signal_results[name] = ci\n    print(f\"  {name:12s}: rho={ci['rho']:+.4f}  CI=[{ci['ci_lo']:+.4f}, {ci['ci_hi']:+.4f}]  n={ci['n']}\")\n\n# Delta comparisons\nprint(\"\\nDelta comparisons:\")\ndelta_results = {}\n\nd1 = bootstrap_delta_ci(signals_map[\"sj\"], signals_map[\"logprob\"], f1_arr)\ndelta_results[\"sj_minus_logprob\"] = d1\nprint(f\"  SJ - logprob:     delta={d1['delta']:+.4f}  CI=[{d1['ci_lo']:+.4f}, {d1['ci_hi']:+.4f}]  sig={d1['significant']}\")\n\nd2 = bootstrap_delta_ci(signals_map[\"voting_conf\"], signals_map[\"sj\"], f1_arr)\ndelta_results[\"voting_minus_sj\"] = d2\nprint(f\"  voting - SJ:      delta={d2['delta']:+.4f}  CI=[{d2['ci_lo']:+.4f}, {d2['ci_hi']:+.4f}]  sig={d2['significant']}\")\n\nd3 = bootstrap_delta_ci(signals_map[\"em\"], signals_map[\"sj\"], f1_arr)\ndelta_results[\"em_minus_sj\"] = d3\nprint(f\"  EM - SJ:          delta={d3['delta']:+.4f}  CI=[{d3['ci_lo']:+.4f}, {d3['ci_hi']:+.4f}]  sig={d3['significant']}\")\n\n# Assemble output\noutput = {\n    \"config\": \"Qwen SciERC N=8 seed=42\",\n    \"n_valid\": len(valid),\n    \"subtask\": SUBTASK,\n    \"signals\": signal_results,\n    \"delta_comparisons\": delta_results\n}\n\nwith open(OUT_PATH, \"w\") as f:\n    json.dump(output, f, indent=2)\n\nprint(f\"\\nSaved to {OUT_PATH}\")\nprint(\"\\n\" + json.dumps(output, indent=2))\nPYEOF\npython3 /tmp/n8_bootstrap_ci.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T03:11:43.359911+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/autodl-tmp/struct_self_consist_ie/output/review_round2 && cat > /tmp/n8_bootstrap_ci.py << \\\\\\\\'PYEOF\\\\\\\\'\\\\\\\\nimport json, sys\\\\\\\\nimport numpy as np\\\\\\\\nfrom collections import Counter\\\\\\\\nfrom scipy.stats import spearmanr\\\\\\\\n\\\\\\\\nsys.path.insert(0, \\\\\\\\'/root/autodl-tmp/struct_self_consist_ie/code\\\\\\\\')\\\\\\\\nfrom consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\\\\\\\\nfrom evaluation import per_instance_f1\\\\\\\\n\\\\\\\\nDATA_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\\\\\\\"\\\\\\\\nOUT_PATH = \\\\\\\"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json\\\\\\\"\\\\\\\\nSUBTASK = \\\\\\\"ner\\\\\\\"\\\\\\\\n\\\\\\\\ndef load_data(path):\\\\\\\\n    records = []\\\\\\\\n    with open(path) as f:\\\\\\\\n        for line in f:\\\\\\\\n            if line.strip():\\\\\\\\n                records.append(json.loads(line))\\\\\\\\n    return records\\\\\\\\n\\\\\\\\ndef compute_exact_match_rate(samples, subtask):\\\\\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\\\\\n        keys = [frozenset((e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"]) for e in s.get(\\\\\\\"entities\\\\\\\", [])) for s in samples]\\\\\\\\n    else:\\\\\\\\n        keys = [frozenset((r[\\\\\\\"head\\\\\\\"], r[\\\\\\\"tail\\\\\\\"], r[\\\\\\\"type\\\\\\\"]) for r in s.get(\\\\\\\"relations\\\\\\\", [])) for s in samples]\\\\\\\\n    if not keys:\\\\\\\\n        return 0.0\\\\\\\\n    counter = Counter(keys)\\\\\\\\n    return counter.most_common(1)[0][1] / len(samples)\\\\\\\\n\\\\\\\\ndef compute_voting_confidence(samples, subtask):\\\\\\\\n    N = len(samples)\\\\\\\\n    if N == 0:\\\\\\\\n        return 0.0\\\\\\\\n    counter = Counter()\\\\\\\\n    if subtask == \\\\\\\"ner\\\\\\\":\\\\\\\\n        for s in samples:\\\\\\\\n            for e in s.get(\\\\\\\"entities\\\\\\\", []):\\\\\\\\n                counter[(e[\\\\\\\"text\\\\\\\"], e[\\\\\\\"type\\\\\\\"])] += 1\\\\\\\\n    else:\\\\\\\\n        for s in samples:\\\\\\\\n         \n…[truncated 6039 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T03:11:43.360217+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "mkdir -p /root/autodl-tmp/struct_self_consist_ie/output/review_round2",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T03:11:43.360426+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T03:11:43.360653+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n8_bootstrap_ci.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Bootstrap CI for 5 signals: Qwen SciERC N=8 seed=42.\"\"\"\nimport json, sys\nimport numpy as np\nfrom collections import Counter\nfrom scipy.stats import spearmanr\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\nfrom evaluation import per_instance_f1\n\nDATA_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\"\nOUT_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json\"\nSUBTASK = \"ner\"\n\ndef load_data(path):\n    records = []\n    with open(path) as f:\n        for line in f:\n            if line.strip():\n                records.append(json.loads(line))\n    return records\n\ndef compute_exact_match_rate(samples, subtask):\n    if subtask == \"ner\":\n        keys = [frozenset((e[\"text\"], e[\"type\"]) for e in s.get(\"entities\", [])) for s in samples]\n    else:\n        keys = [frozenset((r[\"head\"], r[\"tail\"], r[\"type\"]) for r in s.get(\"relations\", [])) for s in samples]\n    if not keys:\n        return 0.0\n    counter = Counter(keys)\n    return counter.most_common(1)[0][1] / len(samples)\n\ndef compute_voting_confidence(samples, subtask):\n    N = len(samples)\n    if N == 0:\n        return 0.0\n    counter = Counter()\n    if subtask == \"ner\":\n        for s in samples:\n            for e in s.get(\"entities\", []):\n                counter[(e[\"text\"], e[\"type\"])] += 1\n    else:\n        for s in samples:\n            for r in s.get(\"relations\", []):\n                counter[(r[\"head\"], r[\"tail\"], r[\"type\"])] += 1\n    if not counter:\n        return 0.0\n    rates = [v / N for v in counter.values()]\n    return float(np.mean(rates))\n\ndef compute_mean_logprob(samples):\n    logprobs = [s.get(\"mean_logprob\") for s in samples if s.get(\"mean_logprob\") is not None]\n    logprobs = [lp for lp in logprobs if np.isfinite(lp)]\n    if not logprobs:\n        return float(\"nan\")\n    return float(np.mean(logprobs))\n\ndef bootstrap_rho_ci(signal, quality, n_boot=10000, alpha=0.05):\n    rng = np.random.default_rng(42)\n    signal, quality = np.array(signal, dtype=float), np.array(quality, dtype=float)\n    mask = np.isfinite(signal) & np.isfinite(quality)\n    signal, quality = signal[mask], quality[mask]\n    n = len(signal)\n    point_rho = float(spearmanr(signal, quality).statistic)\n    rhos = []\n    for _ in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        r = spearmanr(signal[idx], quality[idx]).statistic\n        if np.isfinite(r):\n            rhos.append(float(r))\n    rhos.sort()\n    lo = float(np.percentile(rhos, 100 * alpha / 2))\n    hi = float(np.percentile(rhos, 100 * (1 - alpha / 2)))\n    return {\"rho\": round(point_rho, 4), \"ci_lo\": round(lo, 4), \"ci_hi\": round(hi, 4), \"n\": n}\n\ndef bootstrap_delta_ci(sig_a, sig_b, quality, n_boot=10000, alpha=0.05):\n    rng = np.random.default_rng(42)\n    sig_a = np.array(sig_a, dtype=float)\n    sig_b = np.array(sig_b, dtype=float)\n    quality = np.array(quality, dtype=float)\n    mask = np.isfinite(sig_a) & np.isfinite(sig_b) & np.isfinite(quality)\n    sig_a, sig_b, quality = sig_a[mask], sig_b[mask], quality[mask]\n    n = len(sig_a)\n    rho_a = float(spearmanr(sig_a, quality).statistic)\n    rho_b = float(spearmanr(sig_b, quality).statistic)\n    point_delta = rho_a - rho_b\n    deltas = []\n    for _ in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        ra = spearmanr(sig_a[idx], quality[idx]).statistic\n        rb = spearmanr(sig_b[idx], quality[idx]).statistic\n        d = float(ra) - float(rb)\n        if np.isfinite(d):\n            deltas.append(d)\n    deltas.sort()\n    lo = float(np.percentile(deltas, 100 * alpha / 2))\n    hi = float(np.percentile(deltas, 100 * (1 - alpha / 2)))\n    significant = not (lo <= 0 <= hi)\n    return {\n        \"delta\": round(point_delta, 4),\n        \"ci_lo\": round(lo, 4),\n        \"ci_hi\": round(hi, 4),\n        \"significant\": significant\n    }\n\n# Load and filter\nrecords = load_data(DATA_PATH)\nprint(f\"Total records: {len(records)}\")\n\nvalid = [r for r in records if len(r[\"gold\"].get(\"entities\", [])) > 0]\nprint(f\"Valid (gold non-empty) for NER: {len(valid)}\")\n\n# Compute signals + F1\nsj_vals, fk_vals, vc_vals, em_vals, lp_vals, f1_vals = [], [], [], [], [], []\nfor inst in valid:\n    samples = inst[\"samples\"]\n    gold = inst[\"gold\"]\n    greedy = inst.get(\"greedy\", samples[0])\n    sj_vals.append(structural_consistency_soft_jaccard(samples, subtask=SUBTASK))\n    fk_vals.append(fleiss_kappa_surface(samples, subtask=SUBTASK))\n    vc_vals.append(compute_voting_confidence(samples, SUBTASK))\n    em_vals.append(compute_exact_match_rate(samples, SUBTASK))\n    lp_vals.append(compute_mean_logprob(samples))\n    f1_vals.append(per_instance_f1(greedy, gold, subtask=SUBTASK))\n\nprint(f\"Signal computation done.\")\n\nsignals_map = {\n    \"sj\": np.array(sj_vals),\n    \"fk\": np.array(fk_vals),\n    \"voting_conf\": np.array(vc_vals),\n    \"em\": np.array(em_vals),\n    \"logprob\": np.array(lp_vals),\n}\nf1_arr = np.array(f1_vals)\n\n# Bootstrap CIs for each signal\nprint(\"Computing bootstrap CIs (B=10000)...\")\nsignal_results = {}\nfor name, vals in signals_map.items():\n    ci = bootstrap_rho_ci(vals, f1_arr, n_boot=10000)\n    signal_results[name] = ci\n    print(f\"  {name:12s}: rho={ci['rho']:+.4f}  CI=[{ci['ci_lo']:+.4f}, {ci['ci_hi']:+.4f}]  n={ci['n']}\")\n\n# Delta comparisons\nprint(\"Delta comparisons:\")\ndelta_results = {}\n\nd1 = bootstrap_delta_ci(signals_map[\"sj\"], signals_map[\"logprob\"], f1_arr)\ndelta_results[\"sj_minus_logprob\"] = d1\nprint(f\"  SJ - logprob:     delta={d1['delta']:+.4f}  CI=[{d1['ci_lo']:+.4f}, {d1['ci_hi']:+.4f}]  sig={d1['significant']}\")\n\nd2 = bootstrap_delta_ci(signals_map[\"voting_conf\"], signals_map[\"sj\"], f1_arr)\ndelta_results[\"voting_minus_sj\"] = d2\nprint(f\"  voting - SJ:      delta={d2['delta']:+.4f}  CI=[{d2['ci_lo']:+.4f}, {d2['ci_hi']:+.4f}]  sig={d2['significant']}\")\n\nd3 = bootstrap_delta_ci(signals_map[\"em\"], signals_map[\"sj\"], f1_arr)\ndelta_results[\"em_minus_sj\"] = d3\nprint(f\"  EM - SJ:          delta={d3['delta']:+.4f}  CI=[{d3['ci_lo']:+.4f}, {d3['ci_hi']:+.4f}]  sig={d3['significant']}\")\n\n# Assemble output\noutput = {\n    \"config\": \"Qwen SciERC N=8 seed=42\",\n    \"n_valid\": len(valid),\n    \"subtask\": SUBTASK,\n    \"signals\": signal_results,\n    \"delta_comparisons\": delta_results\n}\n\nwith open(OUT_PATH, \"w\") as f:\n    json.dump(output, f, indent=2)\n\nprint(f\"\\nSaved to {OUT_PATH}\")\nprint(\"\\n\" + json.dumps(output, indent=2))\n"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T03:11:43.360989+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n8_bootstrap_ci.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T03:11:43.361245+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat > /root/autodl-tmp/struct_self_consist_ie/code/n8_bootstrap_ci.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Bootstrap CI for 5 signals: Qwen SciERC N=8 seed=42.\"\"\"\nimport json, sys\nimport numpy as np\nfrom collections import Counter\nfrom scipy.stats import spearmanr\n\nsys.path.insert(0, '/root/autodl-tmp/struct_self_consist_ie/code')\nfrom consistency import structural_consistency_soft_jaccard, fleiss_kappa_surface\nfrom evaluation import per_instance_f1\n\nDATA_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/samples.jsonl\"\nOUT_PATH = \"/root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json\"\nSUBTASK = \"ner\"\n\ndef load_data(path):\n    records = []\n    with open(path) as f:\n        for line in f:\n            if line.strip():\n                records.append(json.loads(line))\n    return records\n\ndef compute_exact_match_rate(samples, subtask):\n    if subtask == \"ner\":\n        keys = [frozenset((e[\"text\"], e[\"type\"]) for e in s.get(\"entities\", [])) for s in samples]\n    else:\n        keys = [frozenset((r[\"head\"], r[\"tail\"], r[\"type\"]) for r in s.get(\"relations\", [])) for s in samples]\n    if not keys:\n        return 0.0\n    counter = Counter(keys)\n    return counter.most_common(1)[0][1] / len(samples)\n\ndef compute_voting_confidence(samples, subtask):\n    N = len(samples)\n    if N == 0:\n        return 0.0\n    counter = Counter()\n    if subtask == \"ner\":\n        for s in samples:\n            for e in s.get(\"entities\", []):\n                counter[(e[\"text\"], e[\"type\"])] += 1\n    else:\n        for s in samples:\n            for r in s.get(\"relations\", []):\n                counter[(r[\"head\"], r[\"tail\"], r[\"type\"])] += 1\n    if not counter:\n        return 0.0\n    rates = [v / N for v in counter.values()]\n    return float(np.mean(rates))\n\ndef compute_mean_logprob(samples):\n    logprobs = [s.get(\"mean_logprob\") for s in samples if s.get(\"mean_logprob\") is not None]\n    logprobs = [lp for lp in logprobs if np.isfinite(lp)]\n    if not logprobs:\n        return float(\"nan\")\n    return float(np.mean(logprobs))\n\ndef bootstrap_rho_ci(signal, quality, n_boot=10000, alpha=0.05):\n    rng = np.random.default_rng(42)\n    signal, quality = np.array(signal, dtype=float), np.array(quality, dtype=float)\n    mask = np.isfinite(signal) & np.isfinite(quality)\n    signal, quality = signal[mask], quality[mask]\n    n = len(signal)\n    point_rho = float(spearmanr(signal, quality).statistic)\n    rhos = []\n    for _ in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        r = spearmanr(signal[idx], quality[idx]).statistic\n        if np.isfinite(r):\n            rhos.append(float(r))\n    rhos.sort()\n    lo = float(np.percentile(rhos, 100 * alpha / 2))\n    hi = float(np.percentile(rhos, 100 * (1 - alpha / 2)))\n    return {\"rho\": round(point_rho, 4), \"ci_lo\": round(lo, 4), \"ci_hi\": round(hi, 4), \"n\": n}\n\ndef bootstrap_delta_ci(sig_a, sig_b, quality, n_boot=10000, alpha=0.05):\n    rng = np.random.default_rng(42)\n    sig_a = np.array(sig_a, dtype=float)\n    sig_b = np.array(sig_b, dtype=float)\n    quality = np.array(quality, dtype=float)\n    mask = np.isfinite(sig_a) & np.isfinite(sig_b) & np.isfinite(quality)\n    sig_a, sig_b, quality = sig_a[mask], sig_b[mask], quality[mask]\n    n = len(sig_a)\n    rho_a = float(spearmanr(sig_a, quality).statistic)\n    rho_b = float(spearmanr(sig_b, quality).statistic)\n    point_delta = rho_a - rho_b\n    deltas = []\n    for _ in range(n_boot):\n        idx = rng.integers(0, n, size=n)\n        ra = spearmanr(sig_a[idx], quality[idx]).statistic\n        rb = spearmanr(sig_b[idx], quality[idx]).statistic\n        d = float(ra) - float(rb)\n        if np.isfinite(d):\n            deltas.append(d)\n    deltas.sort()\n    lo = float(np.percentile(deltas, 100 * alpha / 2))\n    hi = float(np.percentile(deltas, 100 * (1 - alpha / 2)))\n    significant = not (lo <= 0 <= hi)\n    return {\n        \"delta\": round(point_delta, 4),\n        \"ci_lo\": round(lo, 4),\n        \"ci_hi\": round(hi, 4),\n        \"significant\": significant\n    }\n\nrecords = load_data(DATA_PATH)\nprint(f\"Total records: {len(records)}\")\n\nvalid = [r for r in records if len(r[\"gold\"].get(\"entities\", [])) > 0]\nprint(f\"Valid (gold non-empty) for NER: {len(valid)}\")\n\nsj_vals, fk_vals, vc_vals, em_vals, lp_vals, f1_vals = [], [], [], [], [], []\nfor inst in valid:\n    samples = inst[\"samples\"]\n    gold = inst[\"gold\"]\n    greedy = inst.get(\"greedy\", samples[0])\n    sj_vals.append(structural_consistency_soft_jaccard(samples, subtask=SUBTASK))\n    fk_vals.append(fleiss_kappa_surface(samples, subtask=SUBTASK))\n    vc_vals.append(compute_voting_confidence(samples, SUBTASK))\n    em_vals.append(compute_exact_match_rate(samples, SUBTASK))\n    lp_vals.append(compute_mean_logprob(samples))\n    f1_vals.append(per_instance_f1(greedy, gold, subtask=SUBTASK))\n\nprint(\"Signal computation done.\")\n\nsignals_map = {\n    \"sj\": np.array(sj_vals),\n    \"fk\": np.array(fk_vals),\n    \"voting_conf\": np.array(vc_vals),\n    \"em\": np.array(em_vals),\n    \"logprob\": np.array(lp_vals),\n}\nf1_arr = np.array(f1_vals)\n\nprint(\"Computing bootstrap CIs (B=10000)...\")\nsignal_results = {}\nfor name, vals in signals_map.items():\n    ci = bootstrap_rho_ci(vals, f1_arr, n_boot=10000)\n    signal_results[name] = ci\n    print(f\"  {name:12s}: rho={ci['rho']:+.4f}  CI=[{ci['ci_lo']:+.4f}, {ci['ci_hi']:+.4f}]  n={ci['n']}\")\n\nprint(\"Delta comparisons:\")\ndelta_results = {}\n\nd1 = bootstrap_delta_ci(signals_map[\"sj\"], signals_map[\"logprob\"], f1_arr)\ndelta_results[\"sj_minus_logprob\"] = d1\nprint(f\"  SJ - logprob:     delta={d1['delta']:+.4f}  CI=[{d1['ci_lo']:+.4f}, {d1['ci_hi']:+.4f}]  sig={d1['significant']}\")\n\nd2 = bootstrap_delta_ci(signals_map[\"voting_conf\"], signals_map[\"sj\"], f1_arr)\ndelta_results[\"voting_minus_sj\"] = d2\nprint(f\"  voting - SJ:      delta={d2['delta']:+.4f}  CI=[{d2['ci_lo']:+.4f}, {d2['ci_hi']:+.4f}]  sig={d2['significant']}\")\n\nd3 = bootstrap_delta_ci(signals_map[\"em\"], signals_map[\"sj\"], f1_arr)\ndelta_results[\"em_minus_sj\"] = d3\nprint(f\"  EM - SJ:          delta={d3['delta']:+.4f}  CI=[{d3['ci_lo']:+.4f}, {d3['ci_hi']:+.4f}]  sig={d3['significant']}\")\n\noutput = {\n    \"config\": \"Qwen SciERC N=8 seed=42\",\n    \"n_valid\": len(valid),\n    \"subtask\": SUBTASK,\n    \"signals\": signal_results,\n    \"delta_comparisons\": delta_results\n}\n\nwith open(OUT_PATH, \"w\") as f:\n    json.dump(output, f, indent=2)\n\nprint(f\"\\nSaved to {OUT_PATH}\")\nprint(\"\\n\" + json.dumps(output, indent=2))\nPYEOF",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T03:11:43.361536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T03:11:43.361795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python3 /root/autodl-tmp/struct_self_consist_ie/code/n8_bootstrap_ci.py > /tmp/n8_bootstrap.log 2>&1 & echo \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T03:11:43.362004+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=142518\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T03:11:43.362251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /tmp/n8_bootstrap.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T03:11:43.362446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T03:11:43.362646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps -p 142518 -o pid=",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T03:11:43.362825+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T03:11:43.363014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /tmp/n8_bootstrap.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T03:11:43.363275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total records: 551\\\\nValid (gold non-empty) for NER: 529\\\\nSignal computation done.\\\\nComputing bootstrap CIs (B=10000)...\\\\n  sj          : rho=+0.3599  CI=[+0.2766, +0.4373]  n=529\\\\n  fk          : rho=+0.2665  CI=[+0.1758, +0.3537]  n=529\\\\n  voting_conf : rho=+0.3792  CI=[+0.2987, +0.4556]  n=529\\\\n  em          : rho=+0.2945  CI=[+0.2117, +0.3713]  n=529\\\\n  logprob     : rho=+0.2052  CI=[+0.1186, +0.2908]  n=529\\\\nDelta comparisons:\\\\n  SJ - logprob:     delta=+0.1547  CI=[+0.0737, +0.2340]  sig=True\\\\n  voting - SJ:      delta=+0.0193  CI=[-0.0327, +0.0725]  sig=False\\\\n  EM - SJ:          delta=-0.0653  CI=[-0.1296, -0.0027]  sig=True\\\\n\\\\nSaved to /root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json\\\\n\\\\n{\\\\n  \\\\\\\"config\\\\\\\": \\\\\\\"Qwen SciERC N=8 seed=42\\\\\\\",\\\\n  \\\\\\\"n_valid\\\\\\\": 529,\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"signals\\\\\\\": {\\\\n    \\\\\\\"sj\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.3599,\\\\n      \\\\\\\"ci_lo\\\\\\\": 0.2766,\\\\n      \\\\\\\"ci_hi\\\\\\\": 0.4373,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"fk\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.2665,\\\\n      \\\\\\\"ci_lo\\\\\\\": 0.1758,\\\\n      \\\\\\\"ci_hi\\\\\\\": 0.3537,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"voting_conf\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.3792,\\\\n      \\\\\\\"ci_lo\\\\\\\": 0.2987,\\\\n      \\\\\\\"ci_hi\\\\\\\": 0.4556,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"em\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.2945,\\\\n      \\\\\\\"ci_lo\\\\\\\": 0.2117,\\\\n      \\\\\\\"ci_hi\\\\\\\": 0.3713,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"logprob\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.2052,\\\\n      \\\\\\\"ci_lo\\\\\\\": 0.1186,\\\\n      \\\\\\\"ci_hi\\\\\\\": 0.2908,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    }\\\\n  },\\\\n  \\\\\\\"delta_comparisons\\\\\\\": {\\\\n    \\\\\\\"sj_minus_logprob\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.1547,\\\\n      \\\\\\\"ci_lo\\\\\\\": 0.0737,\\\\n      \\\\\\\"ci_hi\\\\\\\": 0.234,\\\\n      \\\\\\\"significant\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"voting_minus_sj\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.0193,\\\\n      \\\\\\\"ci_lo\\\\\\\": -0.0327,\\\\n      \\\\\\\"ci_hi\\\\\\\n…[truncated 338 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T03:11:43.363565+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已保存到 `/root/autodl-tmp/struct_self_consist_ie/output/review_round2/n8_bootstrap_ci.json`。\n\n结果 (n=529, B=10000, seed=42):\n\n**Signal ρ with 95% CI:**\n\n| Signal | ρ | 95% CI |\n|---|---|---|\n| voting_conf | +0.3792 | [+0.2987, +0.4556] |\n| SJ | +0.3599 | [+0.2766, +0.4373] |\n| EM | +0.2945 | [+0.2117, +0.3713] |\n| FK | +0.2665 | [+0.1758, +0.3537] |\n| logprob | +0.2052 | [+0.1186, +0.2908] |\n\n**Δρ comparisons:**\n\n| Comparison | Δρ | 95% CI | Significant? |\n|---|---|---|---|\n| SJ − logprob | +0.1547 | [+0.0737, +0.2340] | **Yes** |\n| voting − SJ | +0.0193 | [−0.0327, +0.0725] | No |\n| EM − SJ | −0.0653 | [−0.1296, −0.0027] | **Yes** (borderline) |\n\nSJ 显著优于 logprob；voting_conf 与 SJ 无显著差异（CI 跨 0）；SJ 显著优于 EM（CI 刚好不包含 0，下界 −0.0027）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_n8_bootstrap_ci_20260515T030809"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-n8-bootstrap-ci.md"
+}

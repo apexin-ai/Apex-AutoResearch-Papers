@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "835bc1cb91a36a771645",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "knowledge appendix zs fs table integration",
+  "task_key": "worker_knowledge_appendix-zs-fs-table-integration_20260520T022104",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_knowledge_appendix-zs-fs-table-integration_20260520T022104_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "5219c8a19db2ee19283f6746a16ccfca612fdd87b0887c04c3306bd704b781eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "插入完成。\n\n**插入位置**: `appendix.tex` 末尾，紧接 `\\subsection{Construction Weighting Variants}` 之后（line 1649），作为新 `\\subsection{Zero-Shot vs.\\ Few-Shot Comparison}`（`\\label{app:zs_vs_fs}`）。\n\n**内容**:\n- `table*` 环境 + `\\resizebox{\\textwidth}{!}` 防止 overfull hbox\n- 3 句解读：(1) construction 仅 SciERC ZS 显著 (+1.53pp, p=.008)；(2) FS 提升 greedy baseline 但不改善 construction；(3) dual-gating 在 FT+ZS 成立，FS 有独立失效因素，交叉引用 `\\S\\ref{app:fs_error}`\n- \"significant\" 仅用于 p=.008 的 SciERC ZS 结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-appendix-zs-fs-table-integration.md"
+}

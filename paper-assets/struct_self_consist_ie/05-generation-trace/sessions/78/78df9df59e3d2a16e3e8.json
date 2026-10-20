@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78df9df59e3d2a16e3e8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis d140 task a oracle gated",
+  "task_key": "worker_analysis_d140_task_a_oracle_gated_20260518T132211",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_d140_task_a_oracle_gated_20260518T132211_result.json",
+    "occurrence": 1,
+    "bytes": 1828,
+    "sha256": "a8fcfbadfc34cdf43b817435d38e1c131d3b7103fdb62acdc2c7f56f16bcbcaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Here are the key results:\n\n## D140 Oracle Degeneracy-Gated LP Selection: Results Summary\n\n**The hypothesis that degeneracy gates LP selection effectiveness is NOT supported by the data.** The results tell a different story:\n\n### Overall Picture\n| Dataset | Degen% | LP vs Greedy | NonDeg LP vs Greedy | Gated vs LP |\n|---------|--------|-------------|---------------------|-------------|\n| SciERC | 17.8% | -0.31 (ns) | -0.29 (ns) | +0.06 (ns) |\n| CoNLL | 48.4% | **-2.37** (sig) | **-3.58** (sig) | +0.05 (ns) |\n| Few-NERD | 13.8% | +0.07 (ns) | +0.15 (marginal) | **+0.06** (sig) |\n\n### Key Takeaways\n\n1. **LP selection hurts or is neutral everywhere.** On CoNLL it's significantly negative (-2.37, CI excludes 0). On SciERC and Few-NERD the CI includes 0.\n\n2. **The gating hypothesis doesn't hold.** On non-degenerate instances (where oracle CAN improve), LP selection is *worse* than on degenerate ones for CoNLL (-3.58 non-deg vs -2.37 overall) and roughly the same for SciERC. The problem isn't that LP picks from identical-F1 candidates; it's that LP picks *wrong* even when there's signal.\n\n3. **Gated > ungated LP is technically true but tiny.** Gated improves over ungated LP by +0.05-0.06 across all datasets, but only Few-NERD's Gated vs LP CI is fully positive [+0.04, +0.08]. The improvement comes purely from substituting greedy on degenerate instances (where LP might pick a logprob-higher but identical-F1 sample that happens to have different tp/fp/fn counts).\n\n4. **Oracle gap is huge (5-11 F1 points)** but LP selection cannot exploit it. The selection signal (mean logprob) is fundamentally miscalibrated for entity-level quality.\n\nScript saved at `code/analysis_d140_oracle_gated.py`, results at `output/d140_oracle_gated/{results.json, report.md}`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d140-task-a-oracle-gated.md"
+}

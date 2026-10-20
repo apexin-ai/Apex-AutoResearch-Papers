@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9cec8f241e95da154b8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix auroc ref and verify logprobs",
+  "task_key": "worker_fix_auroc_ref_and_verify_logprobs_20260516T174529",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_auroc_ref_and_verify_logprobs_20260516T174529_result.json",
+    "occurrence": 1,
+    "bytes": 363,
+    "sha256": "ba62f3185a0d6edef986c215ad1bb7752d657e7263f407296e84e5a4b2544ab5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n1. **SCIERC_REF `lp_auroc`** — 已从 `0.5035` 更新为 `0.578`，附注释 `# instance-level AUROC`。脚本内部 sample-level 计算逻辑未动（第 277 行仍计算 `qe_results[\"LP\"][\"auroc\"]`）。\n\n2. **推理命令** — 已追加到 `train_config_fewnerd_exp021.yaml` 末尾注释块，包含 `--collect_logprobs`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-auroc-ref-and-verify-logprobs.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6128b2d8efb4232a3c9e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis freeform 3seed integration",
+  "task_key": "worker_analysis_freeform_3seed_integration_20260515T184905",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_freeform_3seed_integration_20260515T184905_result.json",
+    "occurrence": 1,
+    "bytes": 1488,
+    "sha256": "2524039f74e83642bf3457fc0171a86a2ff717c4ad01e146ea8c27fe0cff048a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the 3-seed freeform ablation summary:\n\n### Freeform QE Signals (mean±σ across seeds 123/456/789)\n\n**NER (n=529)**\n| Signal | ρ | AUROC |\n|--------|---|-------|\n| VC | 0.415±0.007 | 0.775±0.022 |\n| SJ | 0.386±0.008 | 0.730±0.021 |\n| EM | 0.322±0.004 | 0.510±0.028 |\n| FK | 0.307±0.019 | 0.772±0.020 |\n| LP | 0.230±0.015 | 0.684±0.016 |\n\n**RE (n=397)**\n| Signal | ρ | AUROC |\n|--------|---|-------|\n| VC | 0.308±0.008 | 0.640±0.010 |\n| LP | 0.304±0.007 | 0.698±0.009 |\n| FK | 0.265±0.047 | 0.655±0.023 |\n| SJ | 0.229±0.039 | 0.587±0.024 |\n| EM | 0.115±0.019 | 0.475±0.013 |\n\n### LP Compression\n- Freeform tied_pct = **58.37±0.65%** vs constrained **59.7%**\n- Variance ratio = **0.92±0.04x** (freeform slightly *less* compressed)\n- Tied reduction = **1.33±0.65pp** (minimal)\n\n### Selection Gap (freeform)\n- NER: **+0.21±0.12pp** (consistently positive)\n- RE: **+1.89±0.12pp** (stronger, very stable)\n\n### Conclusion\nLP compression persists in freeform decoding (58.4% tied vs 59.7% constrained), confirming it is **model/task intrinsic**, not a constrained decoding artifact. LP is notably the most stable RE signal across seeds (σ=0.007) while being weakest for NER — this task-dependent pattern is preserved in freeform. Parse rate 99.98±0.03% shows grammar constraints aren't needed for structural output fidelity.\n\nArtifact registered: `freeform_3seed_summary.json` (art_20260515_74add7)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-freeform-3seed-integration.md"
+}

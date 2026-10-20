@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee5a4a62f0c394d57d33",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "director / loop_9.md",
+  "task_key": "loop_9",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/director/loop_9.md",
+    "occurrence": 1,
+    "bytes": 4724,
+    "sha256": "824ef5ebe966dd5352b22221f4ffbe2f9d9b5b65d77d15d856103412db4bcbaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_messages\nupdated: '2026-05-21T01:41:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：5090 cuda:0-3, 5090-b cuda:0-3, 5090-c cuda:0-3（共 12 张，不可跨项目用别人的卡）\n- API 余额已耗尽（`http://47.94.22.126/v1` 返回 402）——Frontier SC / Spider SQL remaining / HumanEval 全部阻塞，等用户充值或提供 OpenRouter 直连 key（`sk-or-*` 格式）\n- 存储的 `openrouter_api_key` 实际是 TUM proxy key，不是 OpenRouter 直连 key——不要尝试用它调 `https://openrouter.ai/api/v1`\n- 14B inference 进程（PID 252310）不要标 failed——Agent 已 5 次误判 vLLM 长初始化进程（M021/M037/M038/M047/M049），必须 ps + nvidia-smi 双信号确认\n- 论文统一用 micro_f1（D204），不混用 mean_f1\n- Frontier SC API 阻塞已向 Reviewer 澄清——不要再标记为\"不受 API 影响\"\n\n### 2. 🖥️ 基础设施快照\n- **autodl-5090** (4×RTX 5090): `/root/autodl-tmp/struct_self_consist_ie`。32B merged model at `checkpoints/qwen25-32b-fewnerd-merged/`。merge script: `scripts/merge_32b_lora.py`\n- **autodl-5090-b** (4×RTX 5090): `/root/autodl-tmp/struct_self_consist_ie`。Models: Qwen2.5-7B, Qwen3-8B, LLaMA-3.1-8B, 16 LoRA checkpoints. vLLM 0.18.1. 32B base model downloaded via ModelScope.\n- **autodl-5090-c** (4×RTX 5090): `/root/autodl-tmp/struct_self_consist_ie`。14B merged at `checkpoints/qwen25-14b-fewnerd-merged-final/`\n- **活跃进程**: 32B inference PID 978386 (5090, TP=4, ~8.8%); 14B N=8 PID 252310 (5090-c:cuda:0); FewNERD T-ablation s123 PID 296744/296880/297143 + s456 PID 297409 (5090-b:cuda:0-3); CoNLL s456 (5090-c:cuda:1-3)\n- **Cron**: 14B PID 252310 监控已注册（5min）; 32B cron 已删除（训练完成）\n\n### 3. 📊 当前状态\n**刚完成**：D208 战略跃迁——3 件 P0 全部 dispatch（Mechanistic Probe → Agent; Impossibility Reframe → Paper Agent 已在执行 Worker 1 Abstract; Multi-Model Correlation → Agent）。32B 训练 DONE，merge DONE，inference RUNNING。\n\n**RUNNING 实验（8 个）**：\n- exp_32b_inference_fewnerd (5090:0-3, ~8.8%, ETA 2-3h)\n- exp_14b_inference_fewnerd N=8 (5090-c:0, ETA 6-10h)\n- FewNERD T-ablation s123 T=0.5/0.8/1.2 (5090-b:0-2)\n- FewNERD T=0.8 s456 (5090-b:3)\n- CoNLL T-ablation s456 T=0.5/0.8/1.2 (5090-c:1-3)\n\n**等待中**：\n- Agent 执行 P0-1 hidden state probe（需确认 LSC hidden states 可用性）\n- Agent 执行 P0-3 multi-model error correlation（CPU-only）\n- Paper Agent 执行 Reframe（Abstract → Intro → Framework → Mechanistic → Related Work → Conclusion）\n- 用户回复 API 充值/OpenRouter key\n- 各 T-ablation/CoNLL worker 完成回调\n\n### 4. 📋 待办（条件触发式）\n- 32B inference 完成 → 立即跑 multi-model ensemble analysis（7B+LLaMA+14B+32B on FewNERD same instances）\n- 14B N=8 完成 → 收集结果 + 加入 multi-model correlation matrix + kill_after_n8 自动触发\n- P0-1 probe AUROC ≈ 0.87 → 论文 §3 写实（mechanistic introspection limit confirmed）; probe AUROC ≈ 0.51 → §3 改为\"信息也不存在于 representation\"（同样有价值）\n- API 充值/key 到达 → 立即启动 Frontier SC（代码已修好，3 bugs fixed: entity_set + JSON 容错 + URL）\n- FewNERD/CoNLL T-ablation s123/s456 全部完成 → 统一 T-ablation 分析（3 datasets × 4 temps × 3 seeds）\n- Paper Agent 完成 Reframe 初稿 → 审查 page count（必须 ≤8 页 main text）\n- 空闲 GPU 释放 → CoNLL T=1.0 seed=123 baseline（尚未覆盖）\n\n### 5. 🎯 战略上下文\n- **D208 核心转向**：论文从 \"Triple Contribution (QE+Diagnostic+Prescriptive)\" 转为 \"Capability Ceiling / Impossibility Result\"。7 个 method negative = universal phenomenon 的证据。Mechanistic probe 是关键杠杆。\n- **Reviewer 警告**：Round 10 曾用 IB formal theorem 尝试 impossibility 被打回（trivial/tautological）。现在必须走 empirical exhaustion + mechanistic evidence 路径，不要 formal proof。\n- **Scope 精确性**：Impossibility 是 \"entity-level unsupervised agreement signals can't bridge correlation-selection gap\"，不是 \"SC doesn't work\"。LP selection (+1.36pp)、entity construction (+1.02-1.53pp)、cross-model (+0.42pp) 是 escape routes。\n- **最容易判断错的事**：(1) 认为 Frontier SC 可以启动（不行，API 全阻塞）；(2) 14B 进程没输出就标 failed（vLLM 初始化慢，必须 ps+nvidia-smi 双确认）；(3) Spider SQL 196/200 数据是 bugfix 后收集的（已确认可用于论文）\n- **决策链关键节点**：D203(4.5 mandate) → D206(RE reframe as capability floor) → D207(API 阻塞优先级调整) → D208(Impossibility reframe + mech probe + multi-model)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9.md"
+}

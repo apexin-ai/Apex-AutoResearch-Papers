@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0e525a8e2cdf1ac4453",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp029b postprocess prep",
+  "task_key": "worker_code_exp029b_postprocess_prep_20260518T020017",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp029b_postprocess_prep_20260518T020017_result.json",
+    "occurrence": 1,
+    "bytes": 1159,
+    "sha256": "413f0547bac03a75c75c166cb9c5e20ca9574c43b66dcfe8087ec14545e26fd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有脚本已创建完成。训练进度 540/1170 (46%), 剩余约 31 分钟。\n\n已创建的文件：\n\n| 文件 | 说明 |\n|------|------|\n| `export_config_scierc_10epoch.yaml` | LlamaFactory merge 配置 |\n| `scripts/exp_029b_postprocess/01_merge_lora.sh` | LoRA → merged model |\n| `scripts/exp_029b_postprocess/02_inference.sh` | vLLM N=8 T=1.0 logprobs, `CUDA_VISIBLE_DEVICES=0` |\n| `scripts/exp_029b_postprocess/03_analyze.py` | 分析脚本，动态从 `exp_029a analysis_results.json` 读取 3-epoch 和 5-epoch baseline |\n| `scripts/exp_029b_postprocess/run_all.sh` | 串行执行 1→2→3 |\n\n与 exp_029a 的关键差异：\n- 路径全部从 `3epoch` → `10epoch`\n- **baseline 不再硬编码** — 从 `exp_029a_scierc_3epoch/analysis_results.json` 动态加载 3-epoch 指标和内嵌的 5-epoch reference\n- 对比表从 2 列扩展为 3 列（5-epoch / 3-epoch / 10-epoch），同时显示 vs 5ep 和 vs 3ep delta\n- 结论逻辑改为检测单调性：10ep > 5ep > 3ep → CONFIRMED\n\n训练完成后执行：\n```bash\nbash /root/autodl-tmp/struct_self_consist_ie/scripts/exp_029b_postprocess/run_all.sh\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp029b-postprocess-prep.md"
+}

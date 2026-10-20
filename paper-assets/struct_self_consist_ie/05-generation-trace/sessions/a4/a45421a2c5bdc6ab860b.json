@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a45421a2c5bdc6ab860b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis check re lp server status",
+  "task_key": "worker_analysis_check_re_lp_server_status_20260515T154816",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_check_re_lp_server_status_20260515T154816_result.json",
+    "occurrence": 1,
+    "bytes": 2374,
+    "sha256": "39f3caefe4e680020b6d1b3c590a49c587ccb7e6ba8b328d5954a7fea73bfa3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### GPU 状态\n4× RTX 5090 全部空闲（2 MiB / 0%），无实验在运行。\n\n### tmux sessions\n3 个活跃 session，但都是**其他实验**（exp_011_ood、exp_017_llama），与目标实验无关。\n\n---\n\n### 实验 1: exp_re_scierc_seed123 — SciERC RE joint N=8 T=1.0 seed=123\n- **状态**: ✅ 已完成\n- **产出路径**: `/root/autodl-tmp/struct_self_consist_ie/output/exp_re_scierc_seed123/`\n- **文件**: `report.json` (3.3KB) + `samples.jsonl` (3.8MB)，时间 May 15 23:45\n- **关键指标**:\n  - NER: greedy F1=0.663, oracle F1=0.786, headroom=12.3pp, ρ_sj=0.404 (cond), ρ_fk=0.182 (cond)\n  - RE: greedy F1=0.420, oracle F1=0.593, headroom=17.3pp, ρ_sj=0.277 (cond), ρ_fk=0.063 (cond)\n  - **Verdict: FAIL** — RE ρ_sj(cond)=0.277 < 0.40 阈值\n  - ⚠️ RE 43.6% samples F1=0\n\n### 实验 2: exp_re_scierc_seed456 — SciERC RE joint N=8 T=1.0 seed=456\n- **状态**: ✅ 已完成\n- **产出路径**: `/root/autodl-tmp/struct_self_consist_ie/output/exp_re_scierc_seed456/`\n- **文件**: `report.json` (3.4KB) + `samples.jsonl` (3.8MB)，时间 May 15 23:45\n- **关键指标**:\n  - NER: greedy F1=0.664, oracle F1=0.775, headroom=11.1pp, ρ_sj=0.283 (cond), ρ_fk=0.145 (cond)\n  - RE: greedy F1=0.417, oracle F1=0.581, headroom=16.3pp, ρ_sj=0.315 (cond), ρ_fk=0.123 (cond)\n  - **Verdict: FAIL** — RE ρ_sj(cond)=0.315 < 0.40 阈值\n  - ⚠️ RE 45.3% samples F1=0\n\n### 实验 3: exp_lp_scierc_t07 — Qwen SciERC N=8 T=0.7 LP 推理\n- **状态**: ✅ 已完成\n- **产出路径**: `/root/autodl-tmp/struct_self_consist_ie/output/exp_lp_scierc_t07/`\n- **文件**: `report.json` (1.7KB) + `samples.jsonl` (3.9MB)，时间 May 15 23:40\n- **关键指标** (NER only, subtask=ner):\n  - greedy F1=0.662, oracle F1=0.764, headroom=10.2pp\n  - ρ_sj=0.363 (cond), ρ_fk=0.255 (cond), rho_advantage=0.076\n  - logprob baseline: ρ=0.185 (cond) — structural signal (0.363) 大幅优于 logprob (0.185)\n  - **Verdict: MARGINAL**\n  - T=0.7 下 zero-F1 比例降至 11.0%（vs T=1.0 的 ~12.6%）\n\n---\n\n### 小结\n三个实验均已完成并有完整产出。RE joint 两个 seed 都 FAIL（conditional ρ_sj 不达标），LP T=0.7 NER-only 为 MARGINAL。`analysis_round8/` 目录下有额外分析文件（seed456_lp_range.json、epsilon_sweep 等），时间戳也是今天。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-check-re-lp-server-status.md"
+}

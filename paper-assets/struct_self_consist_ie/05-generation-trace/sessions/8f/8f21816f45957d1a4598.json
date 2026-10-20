@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f21816f45957d1a4598",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "review round7 consistency",
+  "task_key": "worker_review_round7_consistency_20260515T124330",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_review_round7_consistency_20260515T124330_result.json",
+    "occurrence": 1,
+    "bytes": 948,
+    "sha256": "2a658719a9d29e5302b5268e2b55cccca74075b0484bd2bd5a61f9ce24c8eccd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。总评 **WARNING**，发现：\n\n**1 CRITICAL**：OOD 表 (Appendix Table 9) 的 in-domain 列声称引用 Table 1 (seed=42) 但实际用了 Table 5 的 3-seed 均值。所有 5 个信号的 Δ 被偏移，EM 的 Δ 符号翻转 (+.005 → -.007)。需立即修复。\n\n**3 WARNING**：\n- WNUT 表 caption 标注 N=8，但 registry 仅有 N=16 数据，且表中数值与 N=16 registry 精确匹配\n- Appendix logprob_ties 节内部矛盾：正文说 59.7%，表格说 60.3%（registry 支持 59.7%）\n- Table 1 两个 AUROC 值有末位 rounding 偏差（.693→.694, .600→.601）\n\n**全部硬约束通过**：exp_012 旧数据未被引用、LLaMA 数据来源正确、selection 正确描述为 null result、无 \"0.335\"、OOD 失败正确归因为 model failure、exp_019 未出现。Table 1 全部 40 个数值与 registry 匹配。\n\n报告已写入 `artifacts/review_reports/round_7_consistency.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-round7-consistency.md"
+}

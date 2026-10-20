@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "566267b5ec0b4316bbc9",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose gpu status all v2",
+  "task_key": "worker_diagnose_gpu_status_all_v2_20260521T031918",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_gpu_status_all_v2_20260521T031918_result.json",
+    "occurrence": 1,
+    "bytes": 1020,
+    "sha256": "29ecd765aa9b7d86298ecc48ca931476561a8adf08f20f113614aaf6a9c6f9ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/report_gpu_status_20260521.md`。\n\n**关键发现：**\n\n### autodl-5090\n- 4 GPU 全满载，**32B FewNERD 推理已完成 92%**（34513/37648），预计 3-5 分钟内结束。输出目录已创建但尚未写入结果。\n\n### autodl-5090-b\n- **无 GPU 冲突**。旧 PIDs 全部退出，新 PIDs 305836/305838 (cuda:2,3) 也已退出。仅 GPU 0/1 各跑一个 FewNERD 温度实验（t=0.5 和 t=1.2，进度 5%，约 1.5-2h 剩余）。**GPU 2/3 空闲可调度。**\n- 已完成：SciERC T=0.5 s123 和 T=1.2 s123，均 verdict=MARGINAL。\n\n### autodl-5090-c\n- **SciERC T=0.8 s123 (PID 269240) 已完成**，GPU 1 空闲。结果：rho_SJ_F1=0.382（三个温度中最高），verdict=MARGINAL。\n- 14B (cuda:0)、7B N=16 (cuda:2)、CoNLL N=16 (cuda:3) 仍在跑。probe_groupkfold 在 CPU 上跑，scierc 处理到 300/551。\n- **GPU 1 空闲可调度。**\n\n### 空闲资源\n- 5090: 即将全部释放 4 GPU\n- 5090-b: GPU 2, 3 空闲\n- 5090-c: GPU 1 空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-status-all-v2.md"
+}

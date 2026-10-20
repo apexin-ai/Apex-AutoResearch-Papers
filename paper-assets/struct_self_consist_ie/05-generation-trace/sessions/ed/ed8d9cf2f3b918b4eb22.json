@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "ed8d9cf2f3b918b4eb22",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ops s3 backup manual",
+  "task_key": "worker_ops_s3-backup-manual_20260525T212249",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_s3-backup-manual_20260525T212249.log",
+    "occurrence": 1,
+    "bytes": 483561,
+    "sha256": "541a9e3396fd58cb8880abe602f663fe662e436057b27d50e8bc8185f920f47e"
+  },
+  "statistics": {
+    "messages": 429,
+    "user_turns": 0,
+    "tool_calls": 185,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 185,
+      "tool_result": 185,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 429,
+      "chunks": [
+        {
+          "path": "ed8d9cf2f3b918b4eb22-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ed8d9cf2f3b918b4eb22-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ed8d9cf2f3b918b4eb22-part-0003.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-s3-backup-manual.md"
+}

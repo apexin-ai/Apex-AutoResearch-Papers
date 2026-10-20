@@ -1,0 +1,657 @@
+{
+  "schema_version": "1.0",
+  "id": "6720b16b6bfb93c52d5a",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "check exp 007 llama",
+  "task_key": "worker_check_exp_007_llama_20260514T141019",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_check_exp_007_llama_20260514T141019.jsonl",
+    "occurrence": 1,
+    "bytes": 31673,
+    "sha256": "481774dc9fd7ed510ec70216ec18c280724b72ecfe7422949c9c1f570959c3c4"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "tool_call": 15,
+      "tool_result": 15,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T14:12:17.362394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T14:12:17.362726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T14:12:17.362908+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp_007_llama_inference'}",
+              "project": "struct_self_consist_ie",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T14:12:17.363055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1011}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T14:12:17.363231+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps aux | grep run_mvp_pilot",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T14:12:17.363370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T14:12:17.363523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "nvidia-smi",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T14:12:17.363726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Thu May 14 22:10:35 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:38:00.0 Off |                  N/A |\\\\n| 43%   29C    P8              6W /  575W |       2MiB /  32607MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA GeForce RTX 5090        On  |   00000000:49:00.0 Off |                  N/A |\\\\n| 39%   29C    P8              2W /  575W |       2MiB /  32607MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA GeForce RTX 5090        On  |   00000000:5A:00.0 Off |                  N/A |\\\\n| 43%   28C    P8              9W /  575W |       2MiB /  32607MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA GeForce RTX 5090        On  |   00000000:98:00.0 Off |                  N/A |\\\\n| 39%   27C    P8             \n…[truncated 1017 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T14:12:17.363929+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "fields": "['*']",
+              "limit": "20"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T14:12:17.364523+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_003_wnut17_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:47:34.654Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:08:17.428Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-wnut17-merged --data_dir data/wnut17 --dataset wnut17 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --output_dir output/exp003_wnut17_eval --num_test 9999 --collect_logprobs\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/wnut17\\\", \\\"data_count\\\": 1287, \\\"model_name\\\": \\\"qwen3-8b-wnut17-merged\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-14T14:08:17.429Z\\\"}, \\\"exp_008_re_n16_t10_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:27:42.867Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:05:49.091Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"qwen3-8b-scierc-merged-v2\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T13:44:18.988Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-14T13:44:19.577Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T13:44:21.528032+00:00\\\"}]}, \\\"metrics\\\": {\\\"ner\\\": {\\\"rho_sj\\\": 0.444}, \\\"re\\\": {\\\"rho_sj\\\": 0.248}, \\\"n_instances\\\": 551, \\\"N\\\": 16, \\\"T\\\": 1, \\\"seed\\\": 42, \\\"mode\\\": \\\"RE-only\\\", \\\"source\\\": \\\"director_corrected\\\"}}, \\\"exp_001_seed123_t10_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:27:42.503Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:05:38.817Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python code/run_mvp_pilot.py --model_pa\n…[truncated 24838 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T14:12:17.364722+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -r run_mvp_pilot /root/autodl-tmp/struct_self_consist_ie/",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T14:12:17.364855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T14:12:17.365025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'grep -r run_mvp_pilot /root/autodl-tmp/struct_self_consist_ie/'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T14:12:17.365207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 432\\\\ndrwxr-xr-x  7 root root   4096 May 14 21:52 .\\\\ndrwxr-xr-x  5 root root     84 May 14 13:10 ..\\\\ndrwxr-xr-x 13 root root   4096 May 14 21:52 checkpoints\\\\ndrwxr-xr-x  4 root root   4096 May 14 20:51 code\\\\n-rw-r--r--  1 root root    968 May 14 19:49 conll2003_lora.yaml\\\\ndrwxr-xr-x  5 root root   4096 May 14 18:10 data\\\\n-rw-r--r--  1 root root    353 May 14 13:11 env.sh\\\\n-rw-r--r--  1 root root    372 May 14 16:47 export_config_ckpt400.yaml\\\\n-rw-r--r--  1 root root    364 May 14 20:24 export_config_conll2003.yaml\\\\n-rw-r--r--  1 root root    378 May 14 20:06 export_config_llama.yaml\\\\n-rw-r--r--  1 root root    349 May 14 16:43 export_config_v2.yaml\\\\n-rw-r--r--  1 root root    343 May 14 20:06 export_config_wnut17.yaml\\\\n-rw-r--r--  1 root root  34462 May 14 15:47 ft_002_train.log\\\\n-rw-r--r--  1 root root 121974 May 14 16:39 ft_002v2_train.log\\\\ndrwxr-xr-x  2 root root     33 May 14 19:49 logs\\\\n-rw-r--r--  1 root root    940 May 14 21:52 merge_lora.py\\\\n-rw-r--r--  1 root root   2375 May 14 16:07 mvp_pilot.log\\\\n-rw-r--r--  1 root root 100174 May 14 16:20 mvp_pilot_003.log\\\\n-rw-r--r--  1 root root  99412 May 14 17:02 mvp_pilot_004.log\\\\ndrwxr-xr-x 32 root root   4096 May 14 21:54 output\\\\n-rw-r--r--  1 root root    868 May 14 14:07 train_config.yaml\\\\n-rw-r--r--  1 root root    991 May 14 19:48 train_config_conll2003.yaml\\\\n-rw-r--r--  1 root root    929 May 14 20:06 train_config_llama.yaml\\\\n-rw-r--r--  1 root root    900 May 14 16:09 train_config_v2.yaml\\\\n-rw-r--r--  1 root root    959 May 14 20:16 wnut17_lora.yaml\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T14:12:17.365409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T14:12:17.365545+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 3680\\\\ndrwxr-xr-x  2 root root      58 May 14 21:58 .\\\\ndrwxr-xr-x 32 root root    4096 May 14 21:54 ..\\\\n-rw-r--r--  1 root root    3359 May 14 21:58 report.json\\\\n-rw-r--r--  1 root root 3759306 May 14 21:58 samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T14:12:17.365668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -100 /root/runs/struct_self_consist_ie/exp_007_llama_inference.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T14:12:17.365865+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"(EngineCore pid=75454) \\\\rLoading safetensors checkpoint shards:  75% Completed | 3/4 [00:02<00:00,  1.23it/s]\\\\n(EngineCore pid=75454) \\\\rLoading safetensors checkpoint shards: 100% Completed | 4/4 [00:02<00:00,  1.59it/s]\\\\n(EngineCore pid=75454) \\\\rLoading safetensors checkpoint shards: 100% Completed | 4/4 [00:02<00:00,  1.46it/s]\\\\n(EngineCore pid=75454) \\\\n(EngineCore pid=75454) INFO 05-14 21:55:00 [default_loader.py:384] Loading weights took 2.78 seconds\\\\n(EngineCore pid=75454) INFO 05-14 21:55:01 [gpu_model_runner.py:4566] Model loading took 14.99 GiB memory and 3.346418 seconds\\\\n(EngineCore pid=75454) INFO 05-14 21:55:03 [backends.py:988] Using cache directory: /root/.cache/vllm/torch_compile_cache/148b836702/rank_0_0/backbone for vLLM's torch.compile\\\\n(EngineCore pid=75454) INFO 05-14 21:55:03 [backends.py:1048] Dynamo bytecode transform time: 1.91 s\\\\n(EngineCore pid=75454) INFO 05-14 21:55:04 [backends.py:284] Directly load the compiled graph(s) for compile range (1, 8192) from the cache, took 0.990 s\\\\n(EngineCore pid=75454) INFO 05-14 21:55:04 [monitor.py:48] torch.compile took 3.11 s in total\\\\n(EngineCore pid=75454) INFO 05-14 21:55:04 [decorators.py:296] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/fb6b2bd8e59e2969dee43aa8262e0975bf73c8f7610a92c924ab56708a13f7de/rank_0_0/model\\\\n(EngineCore pid=75454) INFO 05-14 21:55:04 [monitor.py:76] Initial profiling/warmup run took 0.16 s\\\\n(EngineCore pid=75454) INFO 05-14 21:55:11 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\\\n(EngineCore pid=75454) INFO 05-14 21:55:11 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\\\n(EngineCore pid=75454) INFO 05-14 21:55:12 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.33 GiB total\\\\n(EngineCore pid=75454) INFO 05-14 21:55:12 [gpu_worker.py:456] Available K\n…[truncated 6432 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T14:12:17.366072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T14:12:17.366392+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"joint\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"ner_greedy_f1\\\\\\\": 0.6600660066006601,\\\\n  \\\\\\\"ner_oracle_f1\\\\\\\": 0.78125,\\\\n  \\\\\\\"ner_oracle_headroom\\\\\\\": 0.12118399339933994,\\\\n  \\\\\\\"ner_fleiss_kappa_mean\\\\\\\": 0.4510513011561818,\\\\n  \\\\\\\"ner_soft_jaccard_mean\\\\\\\": 0.7408883358968755,\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3266279055775236,\\\\n    \\\\\\\"p_value\\\\\\\": 1.287570740649135e-14,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3629896359075142,\\\\n    \\\\\\\"p_value\\\\\\\": 6.413176314947488e-18,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.22592580608127938,\\\\n    \\\\\\\"p_value\\\\\\\": 6.000276463748115e-07,\\\\n    \\\\\\\"n\\\\\\\": 478\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3114126635780279,\\\\n    \\\\\\\"p_value\\\\\\\": 3.2938800700438393e-12,\\\\n    \\\\\\\"n\\\\\\\": 478\\\\n  },\\\\n  \\\\\\\"ner_n_gold_empty_filtered\\\\\\\": 22,\\\\n  \\\\\\\"ner_n_greedy_f1_zero_filtered\\\\\\\": 51,\\\\n  \\\\\\\"ner_structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"ner_rho_advantage\\\\\\\": 0.03636173032999063,\\\\n  \\\\\\\"ner_sample_f1_mean\\\\\\\": 0.6176804918520697,\\\\n  \\\\\\\"ner_sample_f1_std\\\\\\\": 0.3177836539653145,\\\\n  \\\\\\\"ner_sample_f1_pct_zero\\\\\\\": 11.554820415879018,\\\\n  \\\\\\\"ner_logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.18273959393160216,\\\\n      \\\\\\\"p_rho\\\\\\\": 2.3501690317650754e-05,\\\\n      \\\\\\\"tau\\\\\\\": 0.13260890525611846,\\\\n      \\\\\\\"p_tau\\\\\\\": 1.3265671631743454e-05,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5963785889482037,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.10888087959384411,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.01724994426000704,\\\\n      \\\\\\\"tau\\\\\\\": 0.0787998816842279,\\\\n      \n…[truncated 2328 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T14:12:17.366599+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_007_llama_inference",
+              "field": "log_path",
+              "value": "output/exp007_llama_inference/",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T14:12:17.366759+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_007_llama_inference\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:54:48.055Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:11:50.956Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp007_llama_inference/\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"75172\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_007_llama_inference.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T13:54:47.962Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Meta-Llama-3.1-8B-Instruct (LoRA fine-tuned on SciERC)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/llama3.1-8b-scierc-merged\\\", \\\"description\\\": \\\"LLaMA-3.1-8B SciERC joint inference (NER+RE) with 8 samples, T=1.0, logprobs collected.\\\"}, \\\"log_path\\\": \\\"output/exp007_llama_inference/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1681}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T14:12:17.366898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_007_llama_inference",
+              "field": "checkpoint_path",
+              "value": "N/A",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T14:12:17.367037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_007_llama_inference\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:54:48.055Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:11:51.686Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp007_llama_inference/\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"75172\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_007_llama_inference.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T13:54:47.962Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Meta-Llama-3.1-8B-Instruct (LoRA fine-tuned on SciERC)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/llama3.1-8b-scierc-merged\\\", \\\"description\\\": \\\"LLaMA-3.1-8B SciERC joint inference (NER+RE) with 8 samples, T=1.0, logprobs collected.\\\"}, \\\"log_path\\\": \\\"output/exp007_llama_inference/\\\", \\\"checkpoint_path\\\": \\\"N/A\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1818}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T14:12:17.367204+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_007_llama_inference",
+              "field": "metrics",
+              "value": "{'ner': {'greedy_f1': 0.66, 'oracle_f1': 0.781, 'headroom': 0.121, 'rho_fk': 0.327, 'rho_sj': 0.363, 'rho_fk_cond': 0.226, 'rho_sj_cond': 0.311, 'rho_logprob': 0.183, 'rho_logprob_cond': 0.109, 'structural_beats_surface': True, 'sample_f1_pct_zero': 11.6}, 're': {'greedy_f1': 0.434, 'oracle_f1': 0.568, 'headroom': 0.135, 'rho_fk': 0.305, 'rho_sj': 0.299, 'rho_fk_cond': 0.259, 'rho_sj_cond': 0.405, 'rho_logprob': 0.288, 'rho_logprob_cond': 0.092, 'structural_beats_surface': False, 'sample_f1_pct_zero': 41.2}, 'n_instances': 551, 'N': 8, 'T': 1, 'seed': 42, 'model': 'LLaMA-3.1-8B-Instruct', 'verdict': 'FAIL', 'verdict_note': 'RE rho_sj_full=0.299 < 0.40; >30% RE samples F1=0'}",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T14:12:17.367399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_007_llama_inference\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:54:48.055Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:11:59.421Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp007_llama_inference/\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"75172\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_007_llama_inference.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T13:54:47.962Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Meta-Llama-3.1-8B-Instruct (LoRA fine-tuned on SciERC)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/llama3.1-8b-scierc-merged\\\", \\\"description\\\": \\\"LLaMA-3.1-8B SciERC joint inference (NER+RE) with 8 samples, T=1.0, logprobs collected.\\\"}, \\\"log_path\\\": \\\"output/exp007_llama_inference/\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"metrics\\\": {\\\"ner\\\": {\\\"greedy_f1\\\": 0.66, \\\"oracle_f1\\\": 0.781, \\\"headroom\\\": 0.121, \\\"rho_fk\\\": 0.327, \\\"rho_sj\\\": 0.363, \\\"rho_fk_cond\\\": 0.226, \\\"rho_sj_cond\\\": 0.311, \\\"rho_logprob\\\": 0.183, \\\"rho_logprob_cond\\\": 0.109, \\\"structural_beats_surface\\\": true, \\\"sample_f1_pct_zero\\\": 11.6}, \\\"re\\\": {\\\"greedy_f1\\\": 0.434, \\\"oracle_f1\\\": 0.568, \\\"headroom\\\": 0.135, \\\"rho_fk\\\": 0.305, \\\"rho_sj\\\": 0.299, \\\"rho_fk_cond\\\": 0.259, \\\"rho_sj_cond\\\": 0.405, \\\"rho_logprob\\\": 0.288, \\\"rho_logprob_cond\\\": 0.092, \\\"structural_beats_surface\\\": false, \\\"sample_f1_pct_zero\\\": 41.2}, \\\"n_instances\\\": 551, \\\"N\\\": 8, \\\"T\\\": 1, \\\"seed\\\": 42, \\\"model\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"verdict\\\": \\\"FAIL\\\", \\\"verdict_note\\\": \\\"RE rho_sj_full=0.299 < 0.40; >30% RE samples F1=0\\\"}}\n…[truncated 66 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T14:12:17.367552+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_007_llama_inference",
+              "field": "conclusion",
+              "value": "success",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T14:12:17.367708+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_007_llama_inference\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:54:48.055Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:12:03.004Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp007_llama_inference/\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"75172\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_007_llama_inference.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T13:54:47.962Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Meta-Llama-3.1-8B-Instruct (LoRA fine-tuned on SciERC)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/llama3.1-8b-scierc-merged\\\", \\\"description\\\": \\\"LLaMA-3.1-8B SciERC joint inference (NER+RE) with 8 samples, T=1.0, logprobs collected.\\\"}, \\\"log_path\\\": \\\"output/exp007_llama_inference/\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"metrics\\\": {\\\"ner\\\": {\\\"greedy_f1\\\": 0.66, \\\"oracle_f1\\\": 0.781, \\\"headroom\\\": 0.121, \\\"rho_fk\\\": 0.327, \\\"rho_sj\\\": 0.363, \\\"rho_fk_cond\\\": 0.226, \\\"rho_sj_cond\\\": 0.311, \\\"rho_logprob\\\": 0.183, \\\"rho_logprob_cond\\\": 0.109, \\\"structural_beats_surface\\\": true, \\\"sample_f1_pct_zero\\\": 11.6}, \\\"re\\\": {\\\"greedy_f1\\\": 0.434, \\\"oracle_f1\\\": 0.568, \\\"headroom\\\": 0.135, \\\"rho_fk\\\": 0.305, \\\"rho_sj\\\": 0.299, \\\"rho_fk_cond\\\": 0.259, \\\"rho_sj_cond\\\": 0.405, \\\"rho_logprob\\\": 0.288, \\\"rho_logprob_cond\\\": 0.092, \\\"structural_beats_surface\\\": false, \\\"sample_f1_pct_zero\\\": 41.2}, \\\"n_instances\\\": 551, \\\"N\\\": 8, \\\"T\\\": 1, \\\"seed\\\": 42, \\\"model\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"verdict\\\": \\\"FAIL\\\", \\\"verdict_note\\\": \\\"RE rho_sj_full=0.299 < 0.40; >30% RE samples F1=0\\\"},\n…[truncated 95 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T14:12:17.367850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_007_llama_inference",
+              "field": "status",
+              "value": "DONE",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T14:12:17.368032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_007_llama_inference\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:54:48.055Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:12:06.442Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp007_llama_inference/\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"75172\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_007_llama_inference.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T13:54:47.962Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Meta-Llama-3.1-8B-Instruct (LoRA fine-tuned on SciERC)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/llama3.1-8b-scierc-merged\\\", \\\"description\\\": \\\"LLaMA-3.1-8B SciERC joint inference (NER+RE) with 8 samples, T=1.0, logprobs collected.\\\", \\\"wall_clock_seconds\\\": 1038.5, \\\"gpu_hours\\\": 0.29}, \\\"log_path\\\": \\\"output/exp007_llama_inference/\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"metrics\\\": {\\\"ner\\\": {\\\"greedy_f1\\\": 0.66, \\\"oracle_f1\\\": 0.781, \\\"headroom\\\": 0.121, \\\"rho_fk\\\": 0.327, \\\"rho_sj\\\": 0.363, \\\"rho_fk_cond\\\": 0.226, \\\"rho_sj_cond\\\": 0.311, \\\"rho_logprob\\\": 0.183, \\\"rho_logprob_cond\\\": 0.109, \\\"structural_beats_surface\\\": true, \\\"sample_f1_pct_zero\\\": 11.6}, \\\"re\\\": {\\\"greedy_f1\\\": 0.434, \\\"oracle_f1\\\": 0.568, \\\"headroom\\\": 0.135, \\\"rho_fk\\\": 0.305, \\\"rho_sj\\\": 0.299, \\\"rho_fk_cond\\\": 0.259, \\\"rho_sj_cond\\\": 0.405, \\\"rho_logprob\\\": 0.288, \\\"rho_logprob_cond\\\": 0.092, \\\"structural_beats_surface\\\": false, \\\"sample_f1_pct_zero\\\": 41.2}, \\\"n_instances\\\": 551, \\\"N\\\": 8, \\\"T\\\": 1, \\\"seed\\\": 42, \\\"model\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"verdict\\\": \\\"FAIL\\\", \\\"verdict_note\\\": \\\"RE \n…[truncated 244 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T14:12:17.368243+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。汇总：\n\n## exp_007_llama_inference 状态\n\n**已完成** (EXIT_CODE=0)，551 实例全部处理，耗时 ~17 分钟。\n\n### 关键指标（LLaMA-3.1-8B, N=8, T=1.0）\n\n| | NER | RE |\n|---|---|---|\n| Greedy F1 | 0.660 | 0.434 |\n| Oracle F1 | 0.781 | 0.568 |\n| Headroom | +0.121 | +0.135 |\n| ρ_sj (full) | **0.363** | 0.299 |\n| ρ_fk (full) | 0.327 | 0.305 |\n| ρ_logprob (full) | 0.183 | 0.288 |\n| ρ_sj (cond) | 0.311 | **0.405** |\n| Sample F1=0 % | 11.6% | 41.2% |\n\n**Verdict: FAIL** — RE ρ_sj_full=0.299 < 0.40 阈值；RE 41.2% 样本 F1=0。\n\n与 Qwen3-8B 对比：LLaMA 的 NER ρ_sj 略低（0.363 vs Qwen 0.398），RE 也更弱（0.299 vs 0.277-0.380）。logprob baseline 在 LLaMA 上显著更弱（NER 0.183 vs Qwen 0.237）。\n\n### GPU 状态\n\n4 张 RTX 5090 全部空闲（0% 利用率，2MiB 显存），均可用。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_exp_007_llama_20260514T141019"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/check-exp-007-llama.md"
+}

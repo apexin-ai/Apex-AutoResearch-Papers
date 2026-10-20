@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b029be600daf37620555",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check frontier sc progress",
+  "task_key": "worker_check_frontier_sc_progress_20260521T065741",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_frontier_sc_progress_20260521T065741_result.json",
+    "occurrence": 1,
+    "bytes": 972,
+    "sha256": "203990d0fb33544e1b65fce313ba3032e07dcec6de59b2309033a53e35e6e5d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Frontier SC 实验进度汇总\n\n| 实验 | 服务器 | 进程 | 进度 | 速率 | 预计完成 |\n|------|--------|------|------|------|---------|\n| **GPT-5.5** | 5090-c | **已完成** | **200/200** ✅ | ~31s/inst | 已完成 (6126s) |\n| **Claude Sonnet 4** | 5090 | PID 6302 alive | **132/200** (66%) | ~17s/inst | ~15:18 CST (~19min) |\n| **DeepSeek Chat** | 5090-c | alive | **23/200** (11.5%) | ~21s/inst | ~16:00 CST (~1h) |\n| **Gemini 2.5 Pro** | 5090-c | alive | **11/200** (5.5%) | ~43s/inst | ~17:14 CST (~2h15m) |\n\n### GPT-5.5 最终结果\n- greedy_f1 = **0.6382**, mv_f1 = **0.6521** (Δ=+1.4%), oracle_f1 = **0.7203**\n- degeneracy_rate = **50%** (100/200)\n- Agreement rho = 0.3551, FK rho = 0.3515, SJ rho = 0.3461\n- Parse fails: 161 (10.1% of 1600 API calls)\n- F1_sc_hurts: 5.5%, F2_sc_helps: 3.0%\n\n### 5090-c GPU 状态\n全部 4 块 RTX 5090 空闲（0MiB），**cuda:1 已释放**。这些是纯 API 实验，不占 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-frontier-sc-progress.md"
+}

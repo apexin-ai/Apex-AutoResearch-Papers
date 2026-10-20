@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8356edbe03cb06f4344f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis q4 degen inverse scaling",
+  "task_key": "worker_analysis_q4_degen_inverse_scaling_20260523T090138",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_q4_degen_inverse_scaling_20260523T090138_result.json",
+    "occurrence": 1,
+    "bytes": 901,
+    "sha256": "eeed0001ea7a61ecf98dfe513aefefa8c396c27c70f077cb148ad0105c00fc54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果写入 `artifacts/q4_degen_inverse_scaling.md`。\n\n**核心发现**：\n\n| 分组 | Transitions | Inverse 比例 |\n|------|------------|-------------|\n| Degenerate | 54,411 | **1.3%** |\n| Non-degenerate | 141,264 | **11.1%** |\n\nFisher exact: OR=0.109, p≈0 (***)\n\n**结论**：Degenerate instances 几乎不会出现 inverse scaling（1.3% vs 11.1%，~9× 差异）。5/6 数据集 p<0.001 显著，唯一不显著的 SciERC-PT 是因为 degenerate 实例太少（81个）导致 underpowered。\n\n关键 pattern：\n- N≥4 时 degenerate inverse scaling 接近 0%（只有 2→4 transition 有少量，因为 N=2 时 degeneracy 信号弱）\n- Pretrained 比 finetuned 效应更强（OR=0.066 vs 0.166），因为 pretrained 整体 inverse scaling 更高\n- 这强力支持 diagnostic framework：degeneracy = model certainty → 免疫 inverse scaling"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-q4-degen-inverse-scaling.md"
+}

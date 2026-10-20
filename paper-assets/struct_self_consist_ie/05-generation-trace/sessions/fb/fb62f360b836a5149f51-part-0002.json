@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0",
+  "session_id": "fb62f360b836a5149f51",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 160,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总如下：\n\n## 结果表：3 分类器 × 3 数据集\n\n| Dataset | Clf | AUROC | Sel F1 | Δ vs greedy |\n|---------|-----|-------|--------|-------------|\n| **SciERC** | LR | 0.6713 | 0.6876 | **-0.0268** |\n| | MLP | 0.6447 | 0.6895 | -0.0249 |\n| | RF | 0.5981 | 0.6804 | -0.0340 |\n| | *greedy=0.7144, oracle=0.8231* | | | |\n| **CoNLL** | LR | 0.8898 | 0.9311 | -0.0250 |\n| | MLP | 0.8364 | 0.8338 | -0.1223 |\n| | RF | 0.8409 | 0.9366 | **-0.0195** |\n| | *greedy=0.9561, oracle=0.9778* | | | |\n| **FewNERD** | LR | 0.7808 | 0.7980 | -0.0538 |\n| | MLP | 0.7819 | 0.6936 | -0.1582 |\n| | RF | 0.7492 | 0.7905 | -0.0612 |\n| | *greedy=0.8518, oracle=0.9204* | | | |\n\n## Feature Importance（RF Gini）\n\n| Feature | SciERC | CoNLL | FewNERD |\n|---------|--------|-------|---------|\n| logprob | **0.321** | **0.362** | **0.292** |\n| fleiss_kappa | 0.222 | 0.159 | 0.198 |\n| soft_jaccard | 0.218 | 0.186 | 0.203 |\n| exact_match | 0.136 | 0.195 | 0.209 |\n| voting_confidence | 0.103 | 0.097 | 0.098 |\n\n## 核心结论\n\n**Feature bottleneck 结论成立。**\n\n1. **所有 3 个分类器在所有 3 个数据集上都无法超过 greedy**。最大 delta 为 -0.0195（CoNLL RF），仍为负值。MLP 表现最差（delta 低至 -0.1582），可能因 5 维特征空间太小导致过拟合。\n\n2. **更强的分类器不仅没有改善，反而更差**。RF 和 MLP 的 AUROC 一致低于 LR（SciERC: LR 0.67 > MLP 0.64 > RF 0.60）。这说明瓶颈不在分类器容量，而在输入特征本身信息不足。\n\n3. **Feature importance 一致**：logprob 在所有数据集上 Gini 重要性最高（0.29-0.36），但 5 个信号的重要性分布相对平坦（没有单一 dominant 信号），进一步说明 instance-level 统计量缺乏足够的区分度。\n\n4. **Instance-level → sample-level 的信息损失是根本原因**：5 个 QE signal 是 instance-level 聚合值，但 selection 需要 sample-level 区分力。即使分类器学会了\"哪些 instance 容易\"，也无法从中推导出\"哪个 sample 更好\"。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b864a081-be93-46de-a7bc-6f5578ac6124",
+            "uuid": "3ee2d572-267a-4e0f-840d-ce0162370d3e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014TGaXc8qwLkHhNQ9XYGMvE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2960,
+                "cache_read_input_tokens": 108610,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2960
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总如下：\n\n## 结果表：3 分类器 × 3 数据集\n\n| Dataset | Clf | AUROC | Sel F1 | Δ vs greedy |\n|---------|-----|-------|--------|-------------|\n| **SciERC** | LR | 0.6713 | 0.6876 | **-0.0268** |\n| | MLP | 0.6447 | 0.6895 | -0.0249 |\n| | RF | 0.5981 | 0.6804 | -0.0340 |\n| | *greedy=0.7144, oracle=0.8231* | | | |\n| **CoNLL** | LR | 0.8898 | 0.9311 | -0.0250 |\n| | MLP | 0.8364 | 0.8338 | -0.1223 |\n| | RF | 0.8409 | 0.9366 | **-0.0195** |\n| | *greedy=0.9561, oracle=0.9778* | | | |\n| **FewNERD** | LR | 0.7808 | 0.7980 | -0.0538 |\n| | MLP | 0.7819 | 0.6936 | -0.1582 |\n| | RF | 0.7492 | 0.7905 | -0.0612 |\n| | *greedy=0.8518, oracle=0.9204* | | | |\n\n## Feature Importance（RF Gini）\n\n| Feature | SciERC | CoNLL | FewNERD |\n|---------|--------|-------|---------|\n| logprob | **0.321** | **0.362** | **0.292** |\n| fleiss_kappa | 0.222 | 0.159 | 0.198 |\n| soft_jaccard | 0.218 | 0.186 | 0.203 |\n| exact_match | 0.136 | 0.195 | 0.209 |\n| voting_confidence | 0.103 | 0.097 | 0.098 |\n\n## 核心结论\n\n**Feature bottleneck 结论成立。**\n\n1. **所有 3 个分类器在所有 3 个数据集上都无法超过 greedy**。最大 delta 为 -0.0195（CoNLL RF），仍为负值。MLP 表现最差（delta 低至 -0.1582），可能因 5 维特征空间太小导致过拟合。\n\n2. **更强的分类器不仅没有改善，反而更差**。RF 和 MLP 的 AUROC 一致低于 LR（SciERC: LR 0.67 > MLP 0.64 > RF 0.60）。这说明瓶颈不在分类器容量，而在输入特征本身信息不足。\n\n3. **Feature importance 一致**：logprob 在所有数据集上 Gini 重要性最高（0.29-0.36），但 5 个信号的重要性分布相对平坦（没有单一 dominant 信号），进一步说明 instance-level 统计量缺乏足够的区分度。\n\n4. **Instance-level → sample-level 的信息损失是根本原因**：5 个 QE signal 是 instance-level 聚合值，但 selection 需要 sample-level 区分力。即使分类器学会了\"哪些 instance 容易\"，也无法从中推导出\"哪个 sample 更好\"。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 763315,
+            "duration_api_ms": 577511,
+            "num_turns": 59,
+            "stop_reason": "end_turn",
+            "session_id": "b864a081-be93-46de-a7bc-6f5578ac6124",
+            "total_cost_usd": 3.2864237500000004,
+            "usage": {
+              "input_tokens": 54,
+              "cache_creation_input_tokens": 100179,
+              "cache_read_input_tokens": 3523276,
+              "output_tokens": 35870,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 100179,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 973,
+                  "cache_read_input_tokens": 108610,
+                  "cache_creation_input_tokens": 2960,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2960
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1537,
+                "outputTokens": 22,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001647,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 54,
+                "outputTokens": 35870,
+                "cacheReadInputTokens": 3523276,
+                "cacheCreationInputTokens": 100179,
+                "webSearchRequests": 0,
+                "costUSD": 3.2847767500000007,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "27050754-a749-4384-9678-643c0fb88971"
+          },
+          "id": "event-000161"
+        }
+      ]
+    }
+  ]
+}

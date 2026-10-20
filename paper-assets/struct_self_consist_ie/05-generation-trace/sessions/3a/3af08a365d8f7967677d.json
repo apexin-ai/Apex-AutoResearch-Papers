@@ -1,0 +1,1673 @@
+{
+  "schema_version": "1.0",
+  "id": "3af08a365d8f7967677d",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "fix appendix overfull hbox",
+  "task_key": "worker_fix_appendix-overfull-hbox_20260519T214823",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_fix_appendix-overfull-hbox_20260519T214823.jsonl",
+    "occurrence": 1,
+    "bytes": 54198,
+    "sha256": "ee1b14f4332fed6e056e28d6def910ddfa86e388483570d8d46a0bcd1d5b49e0"
+  },
+  "statistics": {
+    "messages": 81,
+    "user_turns": 0,
+    "tool_calls": 41,
+    "roles": {
+      "tool_call": 41,
+      "tool_result": 40
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T21:54:51.251874+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "95",
+              "limit": "30"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T21:54:51.252258+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "95\t\n96\tTo verify that Fleiss' $\\kappa$ reflects genuine within-instance agreement rather than marginal-rate artifacts, we conduct instance-level permutation tests across three configurations.\n97\tFor each instance, we permute sample labels 10{,}000 times to generate a null distribution of FK under independence, then compare the observed FK against this null via a one-sample $t$-test and permutation $p$-value.\n98\t\n99\t\\begin{table}[t]\n100\t\\centering\n101\t\\small\n102\t\\caption{Instance-level FK independence test. Permutation tests confirm FK reflects true within-instance agreement (all $p{<}0.001$). Split-half reliability $r$ computed by randomly partitioning $N$ samples into two halves and correlating their FK scores.}\n103\t\\label{tab:fk_independence}\n104\t\\begin{tabular}{lrcccc}\n105\t\\toprule\n106\tConfig & $n$ & FK mean & 95\\% CI & $t$ & Split-half $r$ \\\\\n107\t\\midrule\n108\tSciERC (Qwen) & 529 & 0.402 & [0.376, 0.428] & 30.8 & 0.395 \\\\\n109\tCoNLL (LLaMA) & 2{,}756 & 0.927 & [0.919, 0.935] & 225.9 & 0.578 \\\\\n110\tCoNLL (Qwen) & 2{,}756 & 0.720 & [0.706, 0.734] & 102.1 & 0.520 \\\\\n111\t\\bottomrule\n112\t\\end{tabular}\n113\t\\end{table}\n114\t\n115\tTable~\\ref{tab:fk_independence} reports the results.\n116\tAll configurations reject the independence null at $p{<}0.001$ ($n{=}529$--$2{,}756$), FK captures genuine inter-sample agreement rather than chance label co-occurrence.\n117\tSplit-half reliability ranges from $r{=}0.395$ (SciERC) to $r{=}0.578$ (CoNLL LLaMA), moderate stability: FK estimates from half the samples correlate positively with those from the other half, though the SciERC value suggests noisier estimation on harder tasks with fewer samples.\n118\tThe higher FK means on CoNLL ($0.720$--$0.927$) vs.\\ SciERC ($0.402$) mirror the difficulty gradient observed in the main quality estimation results.\n119\t\n120\t\\section{Calibration Analysis}\\label{app:calibration}\n121\t\n122\t\\begin{figure*}[t]\n123\t\\centering\n124\t\\includegraphics[width=\\textwidth]{fig_reliability}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T21:54:51.252456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1040",
+              "limit": "30"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T21:54:51.252619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1040\tLP selection improves monotonically with $N$ ($+0.39$~pp at $N{=}8$ to $+0.95$~pp at $N{=}32$), but even at $N{=}32$, where degeneracy falls to 4\\% and oracle headroom reaches ${\\sim}20$~pp, the best signal captures less than 5\\% of the available improvement.\n1041\tDegeneracy drops monotonically (43\\% at $N{=}2$ to 4\\% at $N{=}32$), yet reduced degeneracy does not unlock selection, consistent with the LoRA-rank ablation finding (\\S\\ref{sec:robustness_main}).\n1042\tVC selection degrades with increasing $N$ ($-2.66$~pp at $N{=}2$ to $-4.35$~pp at $N{=}32$), consistent with mode-seeking bias in voting-based selection as the candidate pool grows.\n1043\t\n1044\t\\begin{table}[t]\n1045\t\\centering\n1046\t\\small\n1047\t\\caption{Effect of sample count on selection (SciERC NER, Qwen3-8B, $T{=}1.0$, gold-filtered, seed${=}42$; exp\\_025).\\protect\\footnotemark\\ ``Best $\\Delta$'': highest selection gain across all 5 signals. Per-signal $\\Delta$ in pp vs.~greedy.}\n1048\t\\label{tab:n_scaling_selection}\n1049\t\\begin{tabular}{ccccccccc}\n1050\t\\toprule\n1051\t$N$ & Degen.\\% & Oracle (pp) & LP & SJ & FK & EM & VC & Best $\\Delta$ \\\\\n1052\t\\midrule\n1053\t2 & 42.7\\% & $+$4.4 & $-$0.89 & $-$2.72 & $-$2.72 & $-$2.72 & $-$2.66 & $-$0.89 \\\\\n1054\t4 & 21.0\\% & $+$10.2 & $+$0.03 & $-$0.31 & $-$0.40 & $-$0.74 & $-$2.16 & $+$0.03 \\\\\n1055\t8 & 11.0\\% & $+$14.5 & $+$0.39 & $+$0.20 & $+$0.15 & $-$0.77 & $-$2.87 & $+$0.39 \\\\\n1056\t16 & 7.4\\% & $+$17.7 & $+$0.78 & $+$0.24 & $-$0.02 & $-$0.06 & $-$3.95 & $+$0.78 \\\\\n1057\t32 & 4.0\\% & $+$20.0 & $+$0.95 & $+$0.35 & $+$0.65 & $+$0.22 & $-$4.35 & $+$0.95 \\\\\n1058\t\\bottomrule\n1059\t\\end{tabular}\n1060\t\\end{table}\n1061\t\\footnotetext{$N$-scaling analysis uses gold-filtered evaluation ($n{=}529$, greedy F1${=}0.640$). Values differ slightly from Table~\\ref{tab:selection} (0.645) and Table~\\ref{tab:fewnerd} (0.644) due to seed and aggregation differences; relative trends are consistent.}\n1062\t\n1063\t\\paragraph{Bootstrap significance at $N{=}32$.}\n1064\tTable~\\ref{tab:bootstrap_n32} \n…[truncated 621 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T21:54:51.252785+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1280",
+              "limit": "30"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T21:54:51.252926+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1280\tThe correlation between per-type degeneracy and oracle headroom is strong and significant (Spearman $\\rho{=}{-}0.881$, $p{=}0.004$; exact permutation $p{=}0.005$); degeneracy directly constrains the headroom available for selection.\n1281\tUnder a conservative $\\text{df}{=}4$ adjustment for within-type dependence, the correlation remains significant ($p{=}0.033$).\n1282\tEntity types show near-zero intra-class correlation (ICC $= -0.004$), supporting the independence assumption underlying per-type analysis.\n1283\t\n1284\t\\begin{table}[h]\n1285\t\\centering\n1286\t\\small\n1287\t\\caption{Per-entity-type LP selection on Few-NERD INTRA coarse (Qwen3-8B, $N{=}8$, $T{=}1.0$), sorted by degeneracy. LP $\\Delta$: LP selection F1 minus greedy. 7/8 types show positive $\\Delta$; Art (highest degeneracy) is the sole exception.}\n1288\t\\label{tab:per_type_lp}\n1289\t\\begin{tabular}{lrrrrrrr}\n1290\t\\toprule\n1291\tEntity Type & $n$ & Degen.\\% & Greedy & LP Sel & $\\Delta$ (pp) & LP $\\rho$ & Headroom \\\\\n1292\t\\midrule\n1293\tEvent & 1{,}306 & 6.0 & .655 & .662 & $+$0.65 & .457 & 16.1\\,pp \\\\\n1294\tOther & 3{,}433 & 6.6 & .637 & .685 & $\\mathbf{+4.73}$ & .491 & 19.4\\,pp \\\\\n1295\tOrganization & 6{,}647 & 6.7 & .720 & .732 & $+$1.21 & .509 & 13.3\\,pp \\\\\n1296\tBuilding & 1{,}587 & 7.2 & .702 & .705 & $+$0.23 & .478 & 14.9\\,pp \\\\\n1297\tProduct & 2{,}276 & 8.2 & .656 & .677 & $+$2.01 & .483 & 15.8\\,pp \\\\\n1298\tLocation & 8{,}023 & 11.4 & .793 & .798 & $+$0.53 & .520 & 10.3\\,pp \\\\\n1299\tPerson & 8{,}016 & 13.4 & .822 & .835 & $+$1.25 & .544 & 9.2\\,pp \\\\\n1300\tArt & 1{,}277 & 19.8 & .756 & .754 & $-$0.17 & .451 & 9.2\\,pp \\\\\n1301\t\\bottomrule\n1302\t\\end{tabular}\n1303\t\\end{table}\n1304\t\n1305\t\\begin{table}[h]\n1306\t\\centering\n1307\t\\small\n1308\t\\caption{CoNLL-2003 per-type LP selection (Qwen3-8B, $N{=}16$, $T{=}1.0$). All types exceed 20\\% degeneracy and show negative LP selection, consistent with the dataset's ceiling-regime performance (F1 $>$ 90\\%).}\n1309\t\\label{tab:per_type_lp_conll}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T21:54:51.253098+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "description": "Count lines in appendix.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T21:54:51.253248+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1571 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T21:54:51.253377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\begin{tabular}{lrcccc}\n\\toprule\nConfig & $n$ & FK mean & 95\\% CI & $t$ & Split-half $r$ \\\\\n\\midrule\nSciERC (Qwen) & 529 & 0.402 & [0.376, 0.428] & 30.8 & 0.395 \\\\\nCoNLL (LLaMA) & 2{,}756 & 0.927 & [0.919, 0.935] & 225.9 & 0.578 \\\\\nCoNLL (Qwen) & 2{,}756 & 0.720 & [0.706, 0.734] & 102.1 & 0.520 \\\\\n\\bottomrule\n\\end{tabular}",
+              "new_string": "\\resizebox{\\textwidth}{!}{\n\\begin{tabular}{lrcccc}\n\\toprule\nConfig & $n$ & FK mean & 95\\% CI & $t$ & Split-half $r$ \\\\\n\\midrule\nSciERC (Qwen) & 529 & 0.402 & [0.376, 0.428] & 30.8 & 0.395 \\\\\nCoNLL (LLaMA) & 2{,}756 & 0.927 & [0.919, 0.935] & 225.9 & 0.578 \\\\\nCoNLL (Qwen) & 2{,}756 & 0.720 & [0.706, 0.734] & 102.1 & 0.520 \\\\\n\\bottomrule\n\\end{tabular}\n}"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T21:54:51.253798+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T21:54:51.253944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\begin{tabular}{ccccccccc}\n\\toprule\n$N$ & Degen.\\% & Oracle (pp) & LP & SJ & FK & EM & VC & Best $\\Delta$ \\\\\n\\midrule\n2 & 42.7\\% & $+$4.4 & $-$0.89 & $-$2.72 & $-$2.72 & $-$2.72 & $-$2.66 & $-$0.89 \\\\\n4 & 21.0\\% & $+$10.2 & $+$0.03 & $-$0.31 & $-$0.40 & $-$0.74 & $-$2.16 & $+$0.03 \\\\\n8 & 11.0\\% & $+$14.5 & $+$0.39 & $+$0.20 & $+$0.15 & $-$0.77 & $-$2.87 & $+$0.39 \\\\\n16 & 7.4\\% & $+$17.7 & $+$0.78 & $+$0.24 & $-$0.02 & $-$0.06 & $-$3.95 & $+$0.78 \\\\\n32 & 4.0\\% & $+$20.0 & $+$0.95 & $+$0.35 & $+$0.65 & $+$0.22 & $-$4.35 & $+$0.95 \\\\\n\\bottomrule\n\\end{tabular}",
+              "new_string": "\\resizebox{\\textwidth}{!}{\n\\begin{tabular}{ccccccccc}\n\\toprule\n$N$ & Degen.\\% & Oracle (pp) & LP & SJ & FK & EM & VC & Best $\\Delta$ \\\\\n\\midrule\n2 & 42.7\\% & $+$4.4 & $-$0.89 & $-$2.72 & $-$2.72 & $-$2.72 & $-$2.66 & $-$0.89 \\\\\n4 & 21.0\\% & $+$10.2 & $+$0.03 & $-$0.31 & $-$0.40 & $-$0.74 & $-$2.16 & $+$0.03 \\\\\n8 & 11.0\\% & $+$14.5 & $+$0.39 & $+$0.20 & $+$0.15 & $-$0.77 & $-$2.87 & $+$0.39 \\\\\n16 & 7.4\\% & $+$17.7 & $+$0.78 & $+$0.24 & $-$0.02 & $-$0.06 & $-$3.95 & $+$0.78 \\\\\n32 & 4.0\\% & $+$20.0 & $+$0.95 & $+$0.35 & $+$0.65 & $+$0.22 & $-$4.35 & $+$0.95 \\\\\n\\bottomrule\n\\end{tabular}\n}"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T21:54:51.254385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T21:54:51.254539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\begin{tabular}{lrrrrrrr}\n\\toprule\nEntity Type & $n$ & Degen.\\% & Greedy & LP Sel & $\\Delta$ (pp) & LP $\\rho$ & Headroom \\\\\n\\midrule\nEvent & 1{,}306 & 6.0 & .655 & .662 & $+$0.65 & .457 & 16.1\\,pp \\\\\nOther & 3{,}433 & 6.6 & .637 & .685 & $\\mathbf{+4.73}$ & .491 & 19.4\\,pp \\\\\nOrganization & 6{,}647 & 6.7 & .720 & .732 & $+$1.21 & .509 & 13.3\\,pp \\\\\nBuilding & 1{,}587 & 7.2 & .702 & .705 & $+$0.23 & .478 & 14.9\\,pp \\\\\nProduct & 2{,}276 & 8.2 & .656 & .677 & $+$2.01 & .483 & 15.8\\,pp \\\\\nLocation & 8{,}023 & 11.4 & .793 & .798 & $+$0.53 & .520 & 10.3\\,pp \\\\\nPerson & 8{,}016 & 13.4 & .822 & .835 & $+$1.25 & .544 & 9.2\\,pp \\\\\nArt & 1{,}277 & 19.8 & .756 & .754 & $-$0.17 & .451 & 9.2\\,pp \\\\\n\\bottomrule\n\\end{tabular}",
+              "new_string": "\\resizebox{\\textwidth}{!}{\n\\begin{tabular}{lrrrrrrr}\n\\toprule\nEntity Type & $n$ & Degen.\\% & Greedy & LP Sel & $\\Delta$ (pp) & LP $\\rho$ & Headroom \\\\\n\\midrule\nEvent & 1{,}306 & 6.0 & .655 & .662 & $+$0.65 & .457 & 16.1\\,pp \\\\\nOther & 3{,}433 & 6.6 & .637 & .685 & $\\mathbf{+4.73}$ & .491 & 19.4\\,pp \\\\\nOrganization & 6{,}647 & 6.7 & .720 & .732 & $+$1.21 & .509 & 13.3\\,pp \\\\\nBuilding & 1{,}587 & 7.2 & .702 & .705 & $+$0.23 & .478 & 14.9\\,pp \\\\\nProduct & 2{,}276 & 8.2 & .656 & .677 & $+$2.01 & .483 & 15.8\\,pp \\\\\nLocation & 8{,}023 & 11.4 & .793 & .798 & $+$0.53 & .520 & 10.3\\,pp \\\\\nPerson & 8{,}016 & 13.4 & .822 & .835 & $+$1.25 & .544 & 9.2\\,pp \\\\\nArt & 1{,}277 & 19.8 & .756 & .754 & $-$0.17 & .451 & 9.2\\,pp \\\\\n\\bottomrule\n\\end{tabular}\n}"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T21:54:51.254974+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T21:54:51.255152+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\begin\\{tabular\\}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T21:54:51.255286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\resizebox|\\\\adjustbox",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T21:54:51.255419+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8:\\begin{tabular}{cl}\n39:\\begin{tabular}{llcc}\n105:\\begin{tabular}{lrcccc}\n185:\\begin{tabular}{@{}ll ccc@{}}\n215:\\begin{tabular}{lcccc}\n241:\\begin{tabular}{llccccccc}\n282:\\begin{tabular}{lcc}\n296:\\begin{tabular}{lccc}\n330:\\begin{tabular}{lcc}\n360:\\begin{tabular}{lccc}\n388:\\begin{tabular}{l cccc cccc}\n454:\\begin{tabular}{@{}l ccc cc@{}}\n487:\\begin{tabular}{lccccc}\n514:\\begin{tabular}{ll}\n597:\\begin{tabular}{lc}\n624:\\begin{tabular}{ccccc}\n650:\\begin{tabular}{lcccc}\n673:\\begin{tabular}{lccc}\n698:\\begin{tabular}{@{}llccc@{}}\n719:\\begin{tabular}{lcccc}\n781:\\begin{tabular}{lcc}\n810:\\begin{tabular}{lccc}\n863:\\begin{tabular}{lccc}\n878:\\begin{tabular}{llccc}\n899:\\begin{tabular}{l ccc ccc}\n918:\\begin{tabular}{lc}\n954:\\begin{tabular}{lcccc}\n979:\\begin{tabular}{l ccc ccc}\n1001:\\begin{tabular}{ll cc l}\n1019:\\begin{tabular}{l cc cc}\n1052:\\begin{tabular}{ccccccccc}\n1078:\\begin{tabular}{lcccc}\n1102:\\begin{tabular}{ccccccc}\n1133:\\begin{tabular}{ccccc}\n1154:\\begin{tabular}{l ccc ccc}\n1193:\\begin{tabular}{l cc cc}\n1228:\\begin{tabular}{l cc cc}\n1259:\\begin{tabular}{lcccc}\n1294:\\begin{tabular}{lrrrrrrr}\n1316:\\begin{tabular}{lrrr}\n1333:\\begin{tabular}{lrrr}\n1367:\\begin{tabular}{l cccc cc}\n1397:\\begin{tabular}{lcc}\n1426:\\begin{tabular}{lccc}\n1470:\\begin{tabular}{lccc}\n1496:\\begin{tabular}{lcccc}\n1519:\\begin{tabular}{lcccc}\n1542:\\begin{tabular}{ll rr rr}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T21:54:51.255552+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "104:\\resizebox{\\textwidth}{!}{\n453:\\resizebox{\\columnwidth}{!}{%\n697:\\resizebox{\\columnwidth}{!}{%\n1051:\\resizebox{\\textwidth}{!}{\n1293:\\resizebox{\\textwidth}{!}{"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T21:54:51.255696+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T21:54:51.255816+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T21:54:51.255951+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T21:54:51.256073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/struct_self_consist_ie/docs/paper/sections/appendix.tex': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T21:54:51.256209+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/docs -name \"appendix.tex\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T21:54:51.256328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T21:54:51.256450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/docs -type f -name \"*.tex\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T21:54:51.256564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T21:54:51.256673+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie -name \"main.tex\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T21:54:51.256786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T21:54:51.256922+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/main.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T21:54:51.257035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T21:54:51.257171+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "which pdflatex 2>/dev/null || echo \"NO_PDFLATEX\"",
+              "description": "Check if pdflatex is available locally"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T21:54:51.257285+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/usr/bin/pdflatex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T21:54:51.257405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -i \"overfull.*hbox\" | head -50",
+              "description": "Compile LaTeX and check overfull hbox warnings",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T21:54:51.257526+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Overfull \\hbox (236.15607pt too wide) in paragraph at lines 104--115\nOverfull \\hbox (57.46707pt too wide) in paragraph at lines 360--370\nOverfull \\hbox (18.97287pt too wide) in paragraph at lines 388--401\nOverfull \\hbox (75.87871pt too wide) in paragraph at lines 487--503\nOverfull \\hbox (0.76773pt too wide) in paragraph at lines 514--539\nOverfull \\hbox (31.39224pt too wide) in paragraph at lines 673--683\nOverfull \\hbox (27.00938pt too wide) in paragraph at lines 954--964\nOverfull \\hbox (50.91055pt too wide) in paragraph at lines 979--994\nOverfull \\hbox (47.2356pt too wide) in paragraph at lines 1001--1012\nOverfull \\hbox (236.17322pt too wide) in paragraph at lines 1051--1064\nOverfull \\hbox (12.61452pt too wide) in paragraph at lines 1078--1091\nOverfull \\hbox (22.7915pt too wide) in paragraph at lines 1102--1112\nOverfull \\hbox (2.58119pt too wide) in paragraph at lines 1133--1143\nOverfull \\hbox (46.87402pt too wide) in paragraph at lines 1154--1167\nOverfull \\hbox (22.54317pt too wide) in paragraph at lines 1193--1208\nOverfull \\hbox (27.94685pt too wide) in paragraph at lines 1259--1272\nOverfull \\hbox (236.19096pt too wide) in paragraph at lines 1293--1309\nOverfull \\hbox (41.5455pt too wide) in paragraph at lines 1367--1378\nOverfull \\hbox (59.54747pt too wide) in paragraph at lines 1397--1409\nOverfull \\hbox (5.02843pt too wide) in paragraph at lines 1426--1438\nOverfull \\hbox (35.47371pt too wide) in paragraph at lines 1470--1479\nOverfull \\hbox (8.97415pt too wide) in paragraph at lines 1496--1504\nOverfull \\hbox (43.31696pt too wide) in paragraph at lines 1519--1528\nOverfull \\hbox (32.34543pt too wide) in paragraph at lines 1542--1577"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T21:54:51.257693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\resizebox{\\textwidth}{!}{\n\\begin{tabular}{lrcccc}",
+              "new_string": "\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lrcccc}"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T21:54:51.258099+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T21:54:51.258260+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\resizebox{\\textwidth}{!}{\n\\begin{tabular}{ccccccccc}",
+              "new_string": "\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{ccccccccc}"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T21:54:51.258669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T21:54:51.258803+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\resizebox{\\textwidth}{!}{\n\\begin{tabular}{lrrrrrrr}",
+              "new_string": "\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lrrrrrrr}"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T21:54:51.259224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T21:54:51.259378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "355",
+              "limit": "20"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T21:54:51.259513+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "355\t\\begin{table}[t]\n356\t\\centering\n357\t\\small\n358\t\\caption{Instance degeneracy statistics ($T{=}1.0$). ``Constant F1'': all $N$ samples receive identical instance-level F1. ``Constant utility'': MBR (SJ) utility identical across candidates. 4B data confirms degeneracy scales with model capability.}\n359\t\\label{tab:degeneracy}\n360\t\\begin{tabular}{lccc}\n361\t\\toprule\n362\t& \\shortstack{SciERC 8B\\\\($N{=}8$)} & \\shortstack{SciERC 4B\\\\($N{=}8$)} & \\shortstack{CoNLL 8B\\\\($N{=}8$)} \\\\\n363\t\\midrule\n364\tConstant F1 & 17.8\\% & 10.4\\% & 61.7\\% \\\\\n365\tConstant utility & 13\\% & 7.0\\% & 64\\% \\\\\n366\tOracle gap closed (non-deg.) & 23\\% & 25.2\\% & 36\\% \\\\\n367\tWithin-inst.\\ SJ $\\rho$ (median) & 0.524 & 0.550 & 0.990 \\\\\n368\t\\bottomrule\n369\t\\end{tabular}\n370\t\\end{table}\n371\t\n372\t\\paragraph{TOST equivalence testing.}\\label{app:tost}\n373\tThe primary evidence against selection gains comes from effect sizes and confidence intervals: Cohen's $d{=}0.038$ for the best signal (NER LP) and bootstrap 95\\% CI [$-$3.0, $+$4.2]~pp spanning zero.\n374\tTable~\\ref{tab:tost} supplements this with two one-sided tests (TOST), testing whether each signal's selection F1 is equivalent to single-sample within a bound $\\delta$."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T21:54:51.259640+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "483",
+              "limit": "25"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T21:54:51.259769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "483\t\\centering\n484\t\\small\n485\t\\caption{Multi-seed quality estimation on SciERC ($N{=}8$, $T{=}1.0$, seeds: 42, 123, 456). NER: both models; RE: Qwen only (preliminary). Signal ranking is stable across seeds ($\\sigma{\\leq}0.025$). $\\sigma$ is population standard deviation over 3 seeds.}\n486\t\\label{tab:multiseed}\n487\t\\begin{tabular}{lccccc}\n488\t\\toprule\n489\t& LP & FK & SJ & VC & EM \\\\\n490\t\\midrule\n491\t\\multicolumn{6}{l}{\\textit{NER Spearman $\\rho$ (mean $\\pm\\sigma$)}} \\\\\n492\tQwen & .217${\\pm}$.013 & .254${\\pm}$.016 & .364${\\pm}$.018 & .386${\\pm}$.019 & .307${\\pm}$.008 \\\\\n493\tLLaMA & .162${\\pm}$.025 & .256${\\pm}$.024 & .325${\\pm}$.021 & .384${\\pm}$.014 & .279${\\pm}$.011 \\\\\n494\t\\midrule\n495\t\\multicolumn{6}{l}{\\textit{RE Spearman $\\rho$ (mean $\\pm\\sigma$, Qwen)}} \\\\\n496\tQwen & .297${\\pm}$.022 & .290${\\pm}$.012 & .249${\\pm}$.002 & .309${\\pm}$.024 & .135${\\pm}$.016 \\\\\n497\t\\midrule\n498\t\\multicolumn{6}{l}{\\textit{NER AUROC (mean $\\pm\\sigma$)}} \\\\\n499\tQwen & .579${\\pm}$.008 & .600${\\pm}$.016 & .659${\\pm}$.016 & .677${\\pm}$.011 & .631${\\pm}$.013 \\\\\n500\tLLaMA & .565${\\pm}$.008 & .593${\\pm}$.006 & .632${\\pm}$.012 & .673${\\pm}$.009 & .606${\\pm}$.005 \\\\\n501\t\\bottomrule\n502\t\\end{tabular}\n503\t\\end{table}\n504\t\n505\t\\section{Training Configuration}\\label{app:training}\n506\t\n507\tBoth models are fine-tuned with identical hyperparameters (Table~\\ref{tab:training}) to ensure comparisons across model families reflect model differences rather than training confounds."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-19T21:54:51.259901+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "975",
+              "limit": "25"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-19T21:54:51.260030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "975\t\\centering\n976\t\\caption{Effect of sample pool size on signal quality (Qwen3-8B, SciERC, 3-seed mean Spearman $\\rho$).}\n977\t\\label{tab:n-scaling}\n978\t\\small\n979\t\\begin{tabular}{l ccc ccc}\n980\t\\toprule\n981\t & \\multicolumn{3}{c}{\\textbf{NER} $\\rho$} & \\multicolumn{3}{c}{\\textbf{RE} $\\rho$} \\\\\n982\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n983\tSignal & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ \\\\\n984\t\\midrule\n985\tSJ & 0.3641 & 0.4105 & \\textbf{+0.0464} & 0.2485 & 0.2758 & \\textbf{+0.0273} \\\\\n986\tFK & 0.2536 & 0.2833 & \\textbf{+0.0297} & 0.2903 & 0.2964 & \\textbf{+0.0061} \\\\\n987\tVC & 0.3861 & 0.4092 & \\textbf{+0.0231} & 0.3088 & 0.3738 & \\textbf{+0.0650} \\\\\n988\tLP & 0.2167 & 0.2393 & \\textbf{+0.0226} & 0.2970 & 0.3100 & \\textbf{+0.0130} \\\\\n989\tEM & 0.3071 & 0.3395 & \\textbf{+0.0324} & 0.1353 & 0.1506 & \\textbf{+0.0153} \\\\\n990\t\\midrule\n991\tMean & 0.3055 & 0.3364 & \\textbf{+0.0308} & 0.2560 & 0.2813 & \\textbf{+0.0253} \\\\\n992\t\\bottomrule\n993\t\\end{tabular}\n994\t\\end{table}\n995\t\n996\t\\begin{table}[t]\n997\t\\centering\n998\t\\caption{Cross-seed signal ranking stability (Kendall's $W$, 3 seeds).}\n999\t\\label{tab:ranking-stability}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-19T21:54:51.260170+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "997",
+              "limit": "20"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-19T21:54:51.260301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "997\t\\centering\n998\t\\caption{Cross-seed signal ranking stability (Kendall's $W$, 3 seeds).}\n999\t\\label{tab:ranking-stability}\n1000\t\\small\n1001\t\\begin{tabular}{ll cc l}\n1002\t\\toprule\n1003\tModel & Task & $N$ & Kendall's $W$ & Consensus ranking \\\\\n1004\t\\midrule\n1005\tQwen  & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\\\\n1006\tQwen  & NER & 16 & 0.956 & SJ $\\approx$ VC $>$ EM $>$ FK $>$ LP \\\\\n1007\tQwen  & RE  & 8  & 0.822 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\\\\n1008\tQwen  & RE  & 16 & 0.956 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\\\\n1009\tLLaMA & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\\\\n1010\t\\bottomrule\n1011\t\\end{tabular}\n1012\t\\end{table}\n1013\t\n1014\t\\begin{table}[t]\n1015\t\\centering\n1016\t\\caption{Cross-seed standard deviation ($\\sigma$) of Spearman $\\rho$ at $N\\!=\\!8$ vs.\\ $N\\!=\\!16$ (Qwen3-8B, SciERC, 3 seeds). $\\sigma$ is population standard deviation.}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-19T21:54:51.260429+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1150",
+              "limit": "20"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-19T21:54:51.260556+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1150\t\\centering\n1151\t\\small\n1152\t\\caption{Cross-dataset OOD quality estimation (Spearman $\\rho$, Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$). SciERC$\\to$CoNLL: SciERC-trained model on CoNLL instances ($n{=}2756$). CoNLL$\\to$SciERC: CoNLL-trained model on SciERC instances ($n{=}529$, excluded from conclusions due to catastrophic model failure). In-domain $\\rho$ from Table~\\ref{tab:quality_estimation} (same model, same seed). \\textsuperscript{***}$p{<}0.001$, \\textsuperscript{*}$p{<}0.05$.}\n1153\t\\label{tab:ood}\n1154\t\\begin{tabular}{l ccc ccc}\n1155\t\\toprule\n1156\t & \\multicolumn{3}{c}{\\textbf{SciERC$\\to$CoNLL}} & \\multicolumn{3}{c}{\\textbf{CoNLL$\\to$SciERC}} \\\\\n1157\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n1158\tSignal & $\\rho$ & In-dom. & $\\Delta$ & $\\rho$ & In-dom. & $\\Delta$ \\\\\n1159\t\\midrule\n1160\tVC & .469\\textsuperscript{***} & .379 & +.090 & +.105\\textsuperscript{*} & .379 & $-$.274 \\\\\n1161\tSJ & .378\\textsuperscript{***} & .360 & +.018 & $-$.186\\textsuperscript{***} & .360 & $-$.546 \\\\\n1162\tEM & .300\\textsuperscript{***} & .295 & +.005 & $-$.202\\textsuperscript{***} & .295 & $-$.497 \\\\\n1163\tFK & .285\\textsuperscript{***} & .267 & +.018 & $-$.070 & .267 & $-$.337 \\\\\n1164\tLP & .246\\textsuperscript{***} & .205 & +.041 & $-$.152\\textsuperscript{***} & .205 & $-$.357 \\\\\n1165\t\\bottomrule\n1166\t\\end{tabular}\n1167\t\\end{table}\n1168\t\n1169\t\\paragraph{Wider-to-narrower schema transfer.}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-19T21:54:51.260690+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1363",
+              "limit": "20"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-19T21:54:51.260811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1363\t\\centering\n1364\t\\small\n1365\t\\caption{Calibration baseline results ($T{=}1.0$; single seed). SciERC uses $N{=}8$; CoNLL and Few-NERD use $N{=}16$ ($N$ does not affect greedy F1 or calibration conclusions). Platt and TempScale are monotonic transforms of LP that preserve the within-instance argmax (selection F1 $\\equiv$ Raw LP, omitted). MF-Platt uses LP $+$ token count $+$ entity count; $p$: bootstrap test vs.\\ Raw LP. Few-NERD evaluated on the first 5K test instances without gold-filtering (greedy .771; cf.\\ gold-filtered full-set .748 in Table~\\ref{tab:fewnerd}).}\n1366\t\\label{tab:calibration}\n1367\t\\begin{tabular}{l cccc cc}\n1368\t\\toprule\n1369\t& & \\multicolumn{2}{c}{Selection F1} & & \\multicolumn{2}{c}{ECE} \\\\\n1370\t\\cmidrule(lr){3-4} \\cmidrule(lr){6-7}\n1371\tDataset & Greedy & Raw LP & MF-Platt ($p$) & & Raw & Platt \\\\\n1372\t\\midrule\n1373\tSciERC & .644 & .650 & .639 (.72) & & .260 & .048 \\\\\n1374\tCoNLL & .909 & .898 & .901 (.31) & & .392 & .012 \\\\\n1375\tFew-NERD & .771 & .785 & .778 (.83) & & .262 & .080 \\\\\n1376\t\\bottomrule\n1377\t\\end{tabular}\n1378\t\\end{table}\n1379\t\n1380\t\\section{Epoch Confound Analysis}\\label{app:epoch_confound}\n1381\t\n1382\t\\paragraph{Training convergence modulates degeneracy.}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-19T21:54:51.260937+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1393",
+              "limit": "20"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-19T21:54:51.261090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1393\t\\centering\n1394\t\\small\n1395\t\\caption{Training convergence confound on Few-NERD (Qwen3-8B, $N{=}8$, $T{=}1.0$). Evaluated on the exp\\_027 5K subsample (gold-filtered $n{=}4{,}351$); main-table results (Table~\\ref{tab:fewnerd}) use the full test set ($n{=}32{,}565$, gold-filtered), yielding slightly different degeneracy (13.8\\% vs.\\ 11.1\\% here). ``Degen.'': constant-F1 instance degeneracy (gold-filtered). ``Valid'': fraction of instances with non-degenerate outputs. ``$\\rho$ mean/med'': within-instance LP-quality correlation. The 3-epoch model corresponds to standard early stopping; the 5-epoch model is a controlled ablation.}\n1396\t\\label{tab:epoch_confound}\n1397\t\\begin{tabular}{lcc}\n1398\t\\toprule\n1399\tMetric & 3-epoch & 5-epoch \\\\\n1400\t\\midrule\n1401\tGreedy F1 & 0.748 & 0.777 \\\\\n1402\tInstance degen.\\ (\\%) & 11.1 & 31.3 \\\\\n1403\tValid instances & 3{,}723 / 4{,}351 (85.6\\%) & 2{,}988 / 4{,}351 (68.7\\%) \\\\\n1404\tLP $\\Delta$ (pp) & $+$1.37 & $+$0.62 \\\\\n1405\tWithin-inst.\\ $\\rho$ (mean) & 0.524 & 0.407 \\\\\n1406\tWithin-inst.\\ $\\rho$ (median) & 0.667 & 0.615 \\\\\n1407\t\\bottomrule\n1408\t\\end{tabular}\n1409\t\\end{table}\n1410\t\n1411\t\\paragraph{SciERC epoch curve.}\n1412\tTable~\\ref{tab:epoch_scierc} extends the analysis to SciERC with a 3-point curve (3, 5, 10 epochs; Qwen3-8B, $N{=}8$, $T{=}1.0$)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-19T21:54:51.261237+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1466",
+              "limit": "20"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-19T21:54:51.261364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1466\t\\centering\n1467\t\\small\n1468\t\\caption{LP selection on the favorable subset (non-degenerate instances with LP range above the dataset-specific median) per dataset (Qwen3-8B, $N{=}8$, $T{=}1.0$). CI: bootstrap 95\\% confidence interval.}\n1469\t\\label{tab:conditional_decomp}\n1470\t\\begin{tabular}{lccc}\n1471\t\\toprule\n1472\tDataset & LP $\\Delta$ (pp) & 95\\% CI & Interpretation \\\\\n1473\t\\midrule\n1474\tSciERC & $+$2.47 & [$+$0.30, $+$4.70] & significant positive \\\\\n1475\tFew-NERD & $+$0.63 & [$-$0.02, $+$1.30] & marginal positive \\\\\n1476\tCoNLL & $-$1.78 & [$-$2.83, $-$0.76] & significant negative \\\\\n1477\t\\bottomrule\n1478\t\\end{tabular}\n1479\t\\end{table}\n1480\t\n1481\tOn SciERC, restricting to the favorable subset recovers a significant LP gain, consistent with LP-quality alignment driving selection within the non-degenerate pool.\n1482\tOn Few-NERD, the trend is directionally consistent but the confidence interval crosses zero; the full-dataset result ($+1.39$~pp, $p{<}0.001$) reflects the larger sample size rather than a stronger per-instance effect.\n1483\tCoNLL remains negative even on the favorable subset, consistent with the ceiling-regime interpretation: at $>$90\\% greedy F1, residual errors are idiosyncratic and LP cannot rank corrections.\n1484\t\n1485\t\\subsection{Entity-Token LP Decomposition}\\label{app:entity_token_lp}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-19T21:54:51.261492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1515",
+              "limit": "20"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-19T21:54:51.261615+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1515\t\\centering\n1516\t\\small\n1517\t\\caption{Entity-level majority voting results (Qwen3-8B, $N{=}8$, $T{=}1.0$). ``Greedy'': $T{=}0$ baseline. ``Best merge'': optimal $k$ per dataset from sweep $k \\in \\{2, \\ldots, 8\\}$. ``$\\Delta$'': merge F1 minus greedy. ``Recovery'': $\\Delta$ / (oracle $-$ greedy). Only SciERC shows positive recovery; even with oracle $k$, CoNLL and Few-NERD degrade.}\n1518\t\\label{tab:entity_merge}\n1519\t\\begin{tabular}{lcccc}\n1520\t\\toprule\n1521\tDataset & Greedy & Best merge ($k^*$) & $\\Delta$ (pp) & Recovery (\\%) \\\\\n1522\t\\midrule\n1523\tSciERC & 0.644 & 0.660 ($k{=}3$) & $+$1.57 & $+$11.9 \\\\\n1524\tCoNLL & 0.907 & 0.903 ($k{=}3$) & $-$0.38 & $-$9.0 \\\\\n1525\tFew-NERD & 0.748 & 0.744 ($k{=}2$) & $-$0.43 & $-$3.6 \\\\\n1526\t\\bottomrule\n1527\t\\end{tabular}\n1528\t\\end{table}\n1529\t\n1530\tOn degenerate subsets (instances where all $N$ samples yield identical F1), merge is uniformly negative across all three datasets, confirming that entity-level aggregation cannot bypass the diversity bottleneck identified in the main text (\\S\\ref{sec:discussion}).\n1531\t\n1532\t\\subsection{Entity Construction Threshold Sensitivity}\n1533\t\\label{app:theta_sweep}\n1534\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-19T21:54:51.261737+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1538",
+              "limit": "45"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-19T21:54:51.261863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1538\t\\caption{Entity construction threshold sensitivity ($N{=}8$, Qwen3-8B, $T{=}1.0$). $\\Delta$: F1 difference vs.\\ greedy in percentage points. Best $\\Delta$ per dataset--weighting pair in \\textbf{bold}.}\n1539\t\\label{tab:theta_sweep}\n1540\t\\centering\n1541\t\\small\n1542\t\\begin{tabular}{ll rr rr}\n1543\t\\toprule\n1544\tDataset & $\\theta$ & LP-w F1 & Unif.\\ F1 & $\\Delta$ LP-w & $\\Delta$ Unif.\\ \\\\\n1545\t\\midrule\n1546\t\\multirow{8}{*}{SciERC}\n1547\t & 0.10 & .620 & .620 & $-$2.37 & $-$2.37 \\\\\n1548\t & 0.15 & .659 & .659 & $+$1.54 & $+$1.54 \\\\\n1549\t & 0.20 & .659 & .659 & $+$1.54 & $+$1.54 \\\\\n1550\t & 0.25 & .661 & .659 & $+$1.67 & $+$1.54 \\\\\n1551\t & 0.30 & .661 & .661 & \\textbf{$+$1.71} & \\textbf{$+$1.71} \\\\\n1552\t & 0.35 & .661 & .661 & \\textbf{$+$1.71} & \\textbf{$+$1.71} \\\\\n1553\t & 0.40 & .653 & .654 & $+$0.94 & $+$0.97 \\\\\n1554\t & 0.50 & .649 & .654 & $+$0.46 & $+$0.97 \\\\\n1555\t\\midrule\n1556\t\\multirow{8}{*}{Few-NERD}\n1557\t & 0.10 & .677 & .676 & $-$7.12 & $-$7.15 \\\\\n1558\t & 0.15 & .751 & .751 & $+$0.32 & $+$0.32 \\\\\n1559\t & 0.20 & .751 & .751 & $+$0.32 & $+$0.32 \\\\\n1560\t & 0.25 & .757 & .751 & \\textbf{$+$0.88} & $+$0.32 \\\\\n1561\t & 0.30 & .750 & .750 & $+$0.21 & $+$0.21 \\\\\n1562\t & 0.35 & .750 & .750 & $+$0.21 & $+$0.21 \\\\\n1563\t & 0.40 & .729 & .728 & $-$1.90 & $-$2.01 \\\\\n1564\t & 0.50 & .725 & .728 & $-$2.25 & $-$2.01 \\\\\n1565\t\\midrule\n1566\t\\multirow{8}{*}{CoNLL}\n1567\t & 0.10 & .844 & .842 & $-$6.44 & $-$6.56 \\\\\n1568\t & 0.15 & .896 & .896 & $-$1.19 & $-$1.19 \\\\\n1569\t & 0.20 & .896 & .896 & $-$1.19 & $-$1.19 \\\\\n1570\t & 0.25 & .901 & .896 & $-$0.71 & $-$1.19 \\\\\n1571\t & 0.30 & .904 & .904 & \\textbf{$-$0.39} & \\textbf{$-$0.39} \\\\\n1572\t & 0.35 & .904 & .904 & $-$0.41 & \\textbf{$-$0.39} \\\\\n1573\t & 0.40 & .900 & .899 & $-$0.83 & $-$0.94 \\\\\n1574\t & 0.50 & .897 & .899 & $-$1.12 & $-$0.94 \\\\\n1575\t\\bottomrule\n1576\t\\end{tabular}\n1577\t\\end{table}\n1578\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-19T21:54:51.262049+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\label{tab:degeneracy}\n\\begin{tabular}{lccc}",
+              "new_string": "\\label{tab:degeneracy}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccc}"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-19T21:54:51.262477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-19T21:54:51.262617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "Within-inst.\\ SJ $\\rho$ (median) & 0.524 & 0.550 & 0.990 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{TOST equivalence testing.}",
+              "new_string": "Within-inst.\\ SJ $\\rho$ (median) & 0.524 & 0.550 & 0.990 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{TOST equivalence testing.}"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-19T21:54:51.263028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-19T21:54:51.263190+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\label{tab:multiseed}\n\\begin{tabular}{lccccc}",
+              "new_string": "\\label{tab:multiseed}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccccc}"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-19T21:54:51.263608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-19T21:54:51.263741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "LLaMA & .565${\\pm}$.008 & .593${\\pm}$.006 & .632${\\pm}$.012 & .673${\\pm}$.009 & .606${\\pm}$.005 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Training Configuration}",
+              "new_string": "LLaMA & .565${\\pm}$.008 & .593${\\pm}$.006 & .632${\\pm}$.012 & .673${\\pm}$.009 & .606${\\pm}$.005 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\section{Training Configuration}"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-19T21:54:51.264167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-19T21:54:51.264309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\label{tab:n-scaling}\n\\small\n\\begin{tabular}{l ccc ccc}",
+              "new_string": "\\label{tab:n-scaling}\n\\small\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{l ccc ccc}"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-19T21:54:51.264723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-19T21:54:51.264872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "Mean & 0.3055 & 0.3364 & \\textbf{+0.0308} & 0.2560 & 0.2813 & \\textbf{+0.0253} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[t]\n\\centering\n\\caption{Cross-seed signal ranking stability",
+              "new_string": "Mean & 0.3055 & 0.3364 & \\textbf{+0.0308} & 0.2560 & 0.2813 & \\textbf{+0.0253} \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\begin{table}[t]\n\\centering\n\\caption{Cross-seed signal ranking stability"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-19T21:54:51.265329+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-19T21:54:51.265478+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\label{tab:ranking-stability}\n\\small\n\\begin{tabular}{ll cc l}",
+              "new_string": "\\label{tab:ranking-stability}\n\\small\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{ll cc l}"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-19T21:54:51.265885+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-19T21:54:51.266018+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "LLaMA & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[t]\n\\centering\n\\caption{Cross-seed standard deviation",
+              "new_string": "LLaMA & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\begin{table}[t]\n\\centering\n\\caption{Cross-seed standard deviation"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-19T21:54:51.266441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-19T21:54:51.266583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\label{tab:ood}\n\\begin{tabular}{l ccc ccc}",
+              "new_string": "\\label{tab:ood}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{l ccc ccc}"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-19T21:54:51.267050+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-19T21:54:51.267243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "LP & .246\\textsuperscript{***} & .205 & +.041 & $-$.152\\textsuperscript{***} & .205 & $-$.357 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Wider-to-narrower schema transfer.}",
+              "new_string": "LP & .246\\textsuperscript{***} & .205 & +.041 & $-$.152\\textsuperscript{***} & .205 & $-$.357 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\paragraph{Wider-to-narrower schema transfer.}"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-19T21:54:51.267669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-19T21:54:51.267818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_appendix-overfull-hbox_20260519T214823",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\label{tab:calibration}\n\\begin{tabular}{l cccc cc}",
+              "new_string": "\\label{tab:calibration}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{l cccc cc}"
+            }
+          },
+          "id": "event-000081"
+        }
+      ],
+      "message_count": 81
+    }
+  ],
+  "readable_path": "readable/conversations/fix-appendix-overfull-hbox.md"
+}

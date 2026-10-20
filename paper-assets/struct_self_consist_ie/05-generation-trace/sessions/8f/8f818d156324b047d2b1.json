@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f818d156324b047d2b1",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh fetch training configs",
+  "task_key": "worker_ssh_fetch-training-configs_20260520T073700",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_fetch-training-configs_20260520T073700_result.json",
+    "occurrence": 1,
+    "bytes": 993,
+    "sha256": "240d261490468b7227b9377ba70a8e4eb5b246ac1887fc58e558da3ab873a07a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "42 个文件全部到位。汇总如下：\n\n## 取回文件汇总\n\n**本地路径**: `artifacts/configs/`，共 **42 个 YAML 配置文件**\n\n| 来源服务器 | 文件数 | 独有文件 |\n|-----------|--------|---------|\n| autodl-5090 | 36 (34 公共 + 2 独有) | `*_qwen25_32b_fewnerd*` |\n| autodl-5090-b | 34 (全部公共) | 无 |\n| autodl-5090-c | 40 (34 公共 + 6 独有) | `*_qwen25_14b_fewnerd*`, `*_qwen25_7b_fewnerd*`, `*_qwen25_7b_wnut17*` |\n\n## autodl-5090-c GPU 状态\n\n| GPU | 型号 | 显存占用 | 利用率 |\n|-----|------|---------|--------|\n| 0 | RTX 5090 | 25,885 / 32,607 MiB | 96% |\n| 1 | RTX 5090 | 25,827 / 32,607 MiB | 75% |\n| 2 | RTX 5090 | **0 / 32,607 MiB** | **0%** |\n| 3 | RTX 5090 | **0 / 32,607 MiB** | **0%** |\n\n- GPU 0,1 正在运行 `train_config_qwen25_14b_fewnerd_s42.yaml` 训练（2-GPU DDP，screen session `train_14b_s42`）\n- **无 vLLM / run_mvp 残留进程**\n- **cuda:2,3 完全空闲**，可用于新任务"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fetch-training-configs.md"
+}

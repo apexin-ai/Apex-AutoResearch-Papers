@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e318b0e1cacc9ffd15ef",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis d072 paper patch inventory",
+  "task_key": "worker_analysis_d072_paper_patch_inventory_20260515T113312",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_d072_paper_patch_inventory_20260515T113312_result.json",
+    "occurrence": 1,
+    "bytes": 940,
+    "sha256": "80622fbf904cf5d8ac52d0f0516ec22d2a75c452bd4a258cf86481398d3fd0dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清单已写入并注册。\n\n**汇总**: 7 项可写入发现，5 项 P0 + 2 项 P1。\n\n**P0 关键项**:\n1. **Free-form 4-panel 扩展表格** — 替换 appendix 简化表，信息量 4×\n2. **RE LP selection flip 机制** — 全部 7 关系类型 universal flip，selective variance reallocation (p<0.0001)，win/loss 从 36:59 翻转到 45:45\n3. **Non-tied 子集重洗牌** — Jaccard=0.472，87 个实例新获区分力（LP range 3×），揭示压缩分布的结构性变化\n4. **多种子 RE 稳定性** — RE ranking 有轻微 top-3 波动（vs NER 完美稳定），tab:multiseed 需加 RE 行\n5. **数据更正** — appendix robustness 中 LLaMA SciERC SJ ρ=0.363 是 contaminated exp_007 值，应更正为 0.325±0.021（exp_018 fresh data）；FK 0.327→0.256±0.024\n\n**预计工时**: P0 ~2.5h，P1 ~20min，总计 ~3h。建议先修数字更正（发现5），再替换表格（发现1）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d072-paper-patch-inventory.md"
+}

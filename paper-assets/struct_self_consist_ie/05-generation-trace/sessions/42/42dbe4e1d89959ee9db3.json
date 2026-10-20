@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42dbe4e1d89959ee9db3",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 14b inference continue",
+  "task_key": "worker_ssh_14b-inference-continue_20260520T114018",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_14b-inference-continue_20260520T114018_result.json",
+    "occurrence": 1,
+    "bytes": 182,
+    "sha256": "698129f4601d79c1e47401bc958c49fa9aa78e210df38949065c6d5fa33f4470"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "N=1 inference 正在 GPU 3 上运行，进度 19% (7331/37648)，速度 ~10 it/s，预计还需 ~53 分钟完成。已设置定时检查，完成后自动启动 N=2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-14b-inference-continue.md"
+}

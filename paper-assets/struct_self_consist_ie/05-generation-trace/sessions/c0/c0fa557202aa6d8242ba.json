@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0fa557202aa6d8242ba",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper fix voting nscaling",
+  "task_key": "worker_paper_fix_voting_nscaling_20260514T215950",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_fix_voting_nscaling_20260514T215950_result.json",
+    "occurrence": 1,
+    "bytes": 1545,
+    "sha256": "00106ad41ea4d1e3d8aa6e6eb19dcfa277e440602a7698f31c9ad37112224191"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Edit applied. The artifacts copy (`artifacts/_project/paper/experiments.tex`) does not contain this text — it's an older, shorter version (225 lines) that lacks the voting/logprob N-scaling claims.\n\n---\n\n**Results:**\n\n### 1. Accurate Voting N-scaling values from server\n\n| Setting | N=8 ρ | N=16 ρ | Δ | Source |\n|---------|--------|---------|-----|--------|\n| Qwen CoNLL | 0.424 | 0.429 | **+0.005** | n8/n16_5signal |\n| LLaMA SciERC | 0.433 | 0.452 | **+0.018** | n8/n16_5signal (exp_007) |\n| LLaMA CoNLL | 0.426 | 0.455 | **+0.030** | exp_017 n8_vs_n16_delta |\n| Qwen SciERC | 0.502 | 0.422 | **-0.080** | exp_015_v2 (N=8) / exp_001 3-seed mean (N=16) |\n\nThe original \"+0.018 on SciERC\" came from LLaMA SciERC, not Qwen SciERC. Qwen SciERC actually shows a -0.080 decline (N=8 baseline may be inflated by max_tokens=512 issue in exp_012).\n\n### 2. Modified paragraph (lines 248-249)\n\n```latex\nVoting confidence $N$-scaling is setting-dependent ($+0.005$ on Qwen CoNLL, $+0.018$ on LLaMA SciERC, $-0.080$ on Qwen SciERC), while logprob is approximately $N$-invariant ($\\Delta{\\leq}0.021$).\nSJ and EM scale consistently across all tested settings; FK and voting confidence show setting-dependent variation, suggesting that agreement-based structural signals are the most robust to $N$.\n```\n\n### 3. Modified file\n`/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex` — lines 248-249. The artifacts copy does not contain this error."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-voting-nscaling.md"
+}

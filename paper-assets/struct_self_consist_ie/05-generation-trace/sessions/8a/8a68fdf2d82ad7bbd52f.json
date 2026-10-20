@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a68fdf2d82ad7bbd52f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis ood cross dataset feasibility",
+  "task_key": "worker_analysis_ood_cross_dataset_feasibility_20260515T113259",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_ood_cross_dataset_feasibility_20260515T113259_result.json",
+    "occurrence": 1,
+    "bytes": 3639,
+    "sha256": "42f37be1860c4edf613ebca1b6dcca8b749975e4d8b267b43fc13437ef7e6dbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。\n\n---\n\n## Cross-dataset OOD 可行性评估\n\n### 1. 资源现状\n\n**模型（均存在）：**\n- SciERC Qwen: `/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2` (也有 v2-ckpt400)\n- CoNLL Qwen: `/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged`\n- 另有 LLaMA 版本可做补充\n\n**数据（均存在）：**\n- SciERC: `data/scierc/`\n- CoNLL: `data/conll2003/`\n\n**已有 cross-dataset 结果：** `loo_sj_cross_dataset/results.json` 是 LOO-SJ 稳定性分析，不是 cross-dataset 推理。无已有 OOD 推理结果。\n\n### 2. 代码兼容性分析\n\n**核心发现：代码零修改即可运行 cross-dataset。**\n\n`run_mvp_pilot.py` 的 `--model_path` 和 `--dataset` 是完全独立的参数：\n- `--dataset` 决定加载哪个数据集 + 自动选择对应的 schema hint\n- `--model_path` 只是指定 vLLM 加载的模型权重\n- Schema hint 嵌入到 prompt 中告诉模型要抽什么类型\n\n所以 SciERC 模型 + `--dataset conll2003` 会在 prompt 里注入 `\"Entity types: PER, ORG, LOC, MISC\"`，模型虽然训练时只见过 SciERC 类型，但由于 Qwen3-8B 的指令跟随能力，它可能仍能按 prompt 指示抽取 CoNLL 类型——这正是 OOD 测试的有趣之处。\n\n### 3. 两个方案评估\n\n| | 方案 1: SciERC → CoNLL | 方案 2: CoNLL → SciERC |\n|---|---|---|\n| **可行性** | ✅ 可直接运行 | ✅ 可直接运行 |\n| **修改量** | 0 行 | 0 行 |\n| **预计运行时间** | ~15-20 min（CoNLL test 3.5k 句，N=16） | ~5-8 min（SciERC test 529 句，N=16） |\n| **预期 F1** | 低但非零（4 个粗粒度 NER 类型，模型可能靠指令跟随完成） | 更低（6 个细粒度科学类型，CoNLL 模型不熟悉学术文本） |\n| **SCS 信号** | 更有说服力：大 test set (2756 inst) 统计功效高 | 小 test set (529 inst) 统计功效较弱 |\n| **学术意义** | science→news: 大 domain shift + schema shift | news→science: 同样大 shift，但样本少 |\n\n### 4. 推荐\n\n**两个都做**，优先方案 1。理由：\n1. 代码零修改，两次推理总共 ~25 min\n2. 双向 cross-dataset 形成对称对比，论文更有说服力\n3. 关键论点不是 F1 绝对值，而是 **SCS 信号（ρ）在 OOD 下是否仍显著为正**——即使 F1=0.2，只要 ρ(SJ, F1) > 0.2 且 p < 0.05，就能说明 SCS 的泛化能力\n\n### 5. 运行命令草案\n\n```bash\ncd /root/autodl-tmp/struct_self_consist_ie/code\n\n# 方案 1: SciERC model → CoNLL test (优先)\npython run_mvp_pilot.py \\\n  --model_path /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged-v2 \\\n  --dataset conll2003 \\\n  --data_dir /root/autodl-tmp/struct_self_consist_ie/data/conll2003 \\\n  --subtask ner \\\n  --n_samples 16 \\\n  --temperature 1.0 \\\n  --max_tokens 1024 \\\n  --output_dir /root/autodl-tmp/struct_self_consist_ie/output/exp_ood_scierc2conll \\\n  --seed 42\n\n# 方案 2: CoNLL model → SciERC test\npython run_mvp_pilot.py \\\n  --model_path /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged \\\n  --dataset scierc \\\n  --data_dir /root/autodl-tmp/struct_self_consist_ie/data/scierc \\\n  --subtask ner \\\n  --n_samples 16 \\\n  --temperature 1.0 \\\n  --max_tokens 1024 \\\n  --output_dir /root/autodl-tmp/struct_self_consist_ie/output/exp_ood_conll2scierc \\\n  --seed 42\n```\n\n可以串行跑（方案 1 完了接方案 2），也可以分两个 nohup 但注意 GPU 显存——Qwen3-8B 单模型占 ~16GB，5090 如果只有一张卡就必须串行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ood-cross-dataset-feasibility.md"
+}

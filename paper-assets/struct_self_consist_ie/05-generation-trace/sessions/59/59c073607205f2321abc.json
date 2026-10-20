@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59c073607205f2321abc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check exp 020 completion",
+  "task_key": "worker_check_exp_020_completion_20260516T144531",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_exp_020_completion_20260516T144531_result.json",
+    "occurrence": 1,
+    "bytes": 452,
+    "sha256": "81510464ec0e2b1cca235ed1a2af2561b093b6caed02da255486c6d10fd76187"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-020 状态：仍在训练中\n\n| 项目 | 值 |\n|------|-----|\n| PID | 288683（运行中，已 4h16m） |\n| 进度 | 6000/8236 steps（72.85%） |\n| 当前 loss | 0.0382 |\n| 当前 epoch | 0.73 |\n| 预计剩余时间 | ~1h33m |\n| 最新 checkpoint | checkpoint-5000（含 `adapter_model.safetensors`，完整可用） |\n\n训练正常进行，loss 已降到 0.038 左右且仍在下降，预计约 1.5 小时后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-020-completion.md"
+}

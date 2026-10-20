@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e774380fa485cdfd89d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check exp 007 llama",
+  "task_key": "worker_check_exp_007_llama_20260514T141019",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_exp_007_llama_20260514T141019_result.json",
+    "occurrence": 1,
+    "bytes": 914,
+    "sha256": "dcfe7a99363705fc752b8d6be5104f63267a221cc1725621a6032aa5eb74c022"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。汇总：\n\n## exp_007_llama_inference 状态\n\n**已完成** (EXIT_CODE=0)，551 实例全部处理，耗时 ~17 分钟。\n\n### 关键指标（LLaMA-3.1-8B, N=8, T=1.0）\n\n| | NER | RE |\n|---|---|---|\n| Greedy F1 | 0.660 | 0.434 |\n| Oracle F1 | 0.781 | 0.568 |\n| Headroom | +0.121 | +0.135 |\n| ρ_sj (full) | **0.363** | 0.299 |\n| ρ_fk (full) | 0.327 | 0.305 |\n| ρ_logprob (full) | 0.183 | 0.288 |\n| ρ_sj (cond) | 0.311 | **0.405** |\n| Sample F1=0 % | 11.6% | 41.2% |\n\n**Verdict: FAIL** — RE ρ_sj_full=0.299 < 0.40 阈值；RE 41.2% 样本 F1=0。\n\n与 Qwen3-8B 对比：LLaMA 的 NER ρ_sj 略低（0.363 vs Qwen 0.398），RE 也更弱（0.299 vs 0.277-0.380）。logprob baseline 在 LLaMA 上显著更弱（NER 0.183 vs Qwen 0.237）。\n\n### GPU 状态\n\n4 张 RTX 5090 全部空闲（0% 利用率，2MiB 显存），均可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-007-llama.md"
+}

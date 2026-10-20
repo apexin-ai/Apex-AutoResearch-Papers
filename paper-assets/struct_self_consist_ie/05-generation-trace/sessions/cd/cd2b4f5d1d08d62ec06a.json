@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd2b4f5d1d08d62ec06a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code verify 7b fewnerd running",
+  "task_key": "worker_code_verify_7b_fewnerd_running_20260519T114923",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_verify_7b_fewnerd_running_20260519T114923_result.json",
+    "occurrence": 1,
+    "bytes": 413,
+    "sha256": "b30aca55753ef3b56c4adccb0312d340ef4d60f70de84cccb837dcac3f8c2d70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**7B FewNERD 训练正常运行中。**\n\n| 项目 | 状态 |\n|---|---|\n| PID | 71837 (bash) / 71844 (llamafactory-cli) |\n| GPU | cuda:2 (98%, 12479MiB) / cuda:3 (100%, 12661MiB) |\n| 当前 step | **521 / 20,590** (~2.5%) |\n| 速度 | ~2.3-2.4 s/it |\n| Loss @step 500 | 0.1038 |\n| 预计剩余 | ~13h 18m |\n\n训练于 19:28 启动，已运行约 20 分钟，一切正常。无需重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-7b-fewnerd-running.md"
+}

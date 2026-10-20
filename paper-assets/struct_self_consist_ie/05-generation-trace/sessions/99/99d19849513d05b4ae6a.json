@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "99d19849513d05b4ae6a",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code exp entity token lp",
+  "task_key": "worker_code_exp_entity_token_lp_20260516T055007",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_entity_token_lp_20260516T055007.log",
+    "occurrence": 1,
+    "bytes": 1556791,
+    "sha256": "9ac024fc44ce056ecc3e7345fcd384ab5e4fb15e271e62b1d03d7e46483001fd"
+  },
+  "statistics": {
+    "messages": 383,
+    "user_turns": 1,
+    "tool_calls": 133,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 109,
+      "tool_call": 133,
+      "tool_result": 133,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 179,
+      "chunks": [
+        {
+          "path": "99d19849513d05b4ae6a-part-0001.json",
+          "message_count": 135
+        },
+        {
+          "path": "99d19849513d05b4ae6a-part-0002.json",
+          "message_count": 44
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 204,
+      "chunks": [
+        {
+          "path": "99d19849513d05b4ae6a-part-0002.json",
+          "message_count": 48
+        },
+        {
+          "path": "99d19849513d05b4ae6a-part-0003.json",
+          "message_count": 156
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-entity-token-lp-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90f963d024a01761a16f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "audit calibration table discrepancy",
+  "task_key": "worker_audit_calibration-table-discrepancy_20260519T182822",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_calibration-table-discrepancy_20260519T182822_result.json",
+    "occurrence": 1,
+    "bytes": 956,
+    "sha256": "0122af7adcf539b481f09dcb76799639aa5b13d18445ea8b98c1ad61dcda1c5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**差异原因**：数据源不同，非同一配置。\n\n| 表 | FewNERD 数据 | Greedy F1 |\n|---|---|---|\n| tab:fewnerd（主表）| 全测试集 n=32,565, 3-seed mean | .748 |\n| tab:calibration（校准表）| exp_027 5K 子样本, single seed | .771 |\n\nSciERC 和 CoNLL 在两个表中一致，因为它们的测试集本身就小（529 / ~2756），两个实验都用了全量。只有 FewNERD（全量 32,565）在校准实验中用了 5K 子样本导致数值偏高。\n\n**已修复**：在 tab:calibration 的 caption 中添加了说明：\"Few-NERD evaluated on a 5K subsample (greedy .771); full-set greedy is .748 (Table~\\ref{tab:fewnerd}). Calibration conclusions are unchanged.\"\n\n**建议后续**：在服务器上用全量 FewNERD 测试集重跑 `calibration_baseline.py`，彻底消除数值不一致。校准结论（Platt/TempScale 不改变选择，MF-Platt 无显著提升）不会因此改变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-calibration-table-discrepancy.md"
+}

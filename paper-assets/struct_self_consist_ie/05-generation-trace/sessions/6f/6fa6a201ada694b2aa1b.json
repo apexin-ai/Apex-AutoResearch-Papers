@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6fa6a201ada694b2aa1b",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "paper r8 content patch",
+  "task_key": "worker_paper_r8-content-patch_20260515T222032",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_r8-content-patch_20260515T222032.log",
+    "occurrence": 1,
+    "bytes": 723847,
+    "sha256": "d3f17aaa90e1d2ede5725ef2b694a83ad7113cd0212c95b54645ba78101f16e4"
+  },
+  "statistics": {
+    "messages": 83,
+    "user_turns": 0,
+    "tool_calls": 29,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 21,
+      "tool_call": 29,
+      "tool_result": 29,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 83,
+      "chunks": [
+        {
+          "path": "6fa6a201ada694b2aa1b-part-0001.json",
+          "message_count": 67
+        },
+        {
+          "path": "6fa6a201ada694b2aa1b-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-r8-content-patch.md"
+}

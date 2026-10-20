@@ -1,0 +1,1249 @@
+{
+  "schema_version": "1.0",
+  "session_id": "36bd692ce9e7c6855c9f",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-20T09:13:22.694Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AVjiUn9kkNksRQ46urv9NF",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/plot_pareto.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "b0d167a6-3839-4a1e-ba30-f54ca60d2a81",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/plot_pareto.py",
+              "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.lines import Line2D\nimport numpy as np\nimport json\nfrom pathlib import Path\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# Okabe-Ito palette\nC = {\n    'T07': '#0072B2',\n    'T08': '#009E73',\n    'T10': '#D55E00',\n    'Mix71': '#CC79A7',\n    'Mix81': '#E69F00',\n    'xdata': '#888888',\n}\n\n# ── Data: Heterogeneous-T (SciERC, Qwen3-8B, N=8, θ=0.25 fixed) ──\n# Per-seed values extracted from heterogeneous_t_results.json\nconfigs = {\n    'T=0.7': {\n        'color': C['T07'], 'marker': 'o', 'category': 'single',\n        'degen': [0.2231],\n        'unique_N': [2.7297 / 8],\n        'uni_d': [1.81],  # uniform construction ΔF1 pp\n        'vc_d':  [1.17],  # VC construction ΔF1 pp\n    },\n    'T=0.8': {\n        'color': C['T08'], 'marker': 's', 'category': 'single',\n        'degen': [0.1890, 0.1720],\n        'unique_N': [2.928 / 8, 3.013 / 8],\n        'uni_d': [1.81, 0.70],\n        'vc_d':  [1.89, 1.47],\n    },\n    'T=1.0': {\n        'color': C['T10'], 'marker': '^', 'category': 'single',\n        'degen': [0.1323, 0.1153, 0.1229],\n        'unique_N': [3.321 / 8, 3.346 / 8, 3.524 / 8],\n        'uni_d': [0.74, 0.54, 0.98],\n        'vc_d':  [0.57, 1.84, 1.21],\n    },\n    'Mix\\n0.7+1.0': {\n        'color': C['Mix71'], 'marker': 'D', 'category': 'mixed',\n        'degen': [0.1739, 0.1664, 0.1701],\n        'unique_N': [3.078 / 8, 3.074 / 8, 3.108 / 8],\n        'uni_d': [1.15, 1.39, 1.74],\n        'vc_d':  [1.47, 1.76, 1.78],\n    },\n    'Mix\\n0.8+1.0': {\n        'color': C['Mix81'], 'marker': 'v', 'category': 'mixed',\n        'degen': [0.2155, 0.2060],\n        'unique_N': [2.556 / 8, 2.622 / 8],\n        'uni_d': [-0.08, -0.26],\n        'vc_d':  [0.56, 0.39],\n    },\n}\n\n# Cross-dataset reference (entity construction, uniform, T=1.0)\nxdata = [\n    {'label': 'SciERC\\nbaseline', 'degen': 0.178, 'delta': 1.54},\n    {'label': 'CoNLL',             'degen': 0.484, 'delta': 0.10},\n    {'label': 'FewNERD',           'degen': 0.071, 'delta': 1.32},\n]\n\n# ── Compute summary stats ──\nstats = {}\nfor lab, c in configs.items():\n    dg = np.array(c['degen'])\n    div = 1 - dg\n    un = np.array(c['unique_N'])\n    ud = np.array(c['uni_d'])\n    vd = np.array(c['vc_d'])\n    n = len(dg)\n    stats[lab] = dict(\n        div_m=float(np.mean(div)), div_s=float(np.std(div, ddof=1)) if n > 1 else 0.0,\n        un_m=float(np.mean(un)),   un_s=float(np.std(un, ddof=1))  if n > 1 else 0.0,\n        ud_m=float(np.mean(ud)),   ud_s=float(np.std(ud, ddof=1))  if n > 1 else 0.0,\n        vd_m=float(np.mean(vd)),   vd_s=float(np.std(vd, ddof=1))  if n > 1 else 0.0,\n        n=n, color=c['color'], marker=c['marker'], category=c['category'],\n    )\n\n# ── Pareto frontier ──\ndef pareto_front(pts):\n    \"\"\"pts: list of (x, y, label). Maximize both. Return sorted by x.\"\"\"\n    out = []\n    for i, (xi, yi, li) in enumerate(pts):\n        dominated = any(\n            xj >= xi and yj >= yi and (xj > xi or yj > yi)\n            for j, (xj, yj, lj) in enumerate(pts) if j != i\n        )\n        if not dominated:\n            out.append((xi, yi, li))\n    return sorted(out, key=lambda p: p[0])\n\nuni_pts = [(s['div_m'], s['ud_m'], l) for l, s in stats.items()]\nvc_pts  = [(s['div_m'], s['vd_m'], l) for l, s in stats.items()]\npf_uni = pareto_front(uni_pts)\npf_vc  = pareto_front(vc_pts)\n\n# Same for unique/N\nuni_pts2 = [(s['un_m'], s['ud_m'], l) for l, s in stats.items()]\nvc_pts2  = [(s['un_m'], s['vd_m'], l) for l, s in stats.items()]\npf_uni2 = pareto_front(uni_pts2)\npf_vc2  = pareto_front(vc_pts2)\n\n# ── Plot ──\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 5.5), sharey=True)\n\npanels = [\n    (ax1, 'div_m', 'div_s', '1 − Degeneracy Rate  (→ more diverse)', pf_uni, pf_vc, True),\n    (ax2, 'un_m',  'un_s',  'Mean Unique Outputs / N  (→ more diverse)', pf_uni2, pf_vc2, False),\n]\n\nfor ax, xkey, xekey, xlabel, pfu, pfv, show_xdata in panels:\n    # greedy baseline\n    ax.axhline(0, color='#BBBBBB', ls='--', lw=1, zorder=1)\n\n    # Pareto frontiers\n    if len(pfu) > 1:\n        ax.plot([p[0] for p in pfu], [p[1] for p in pfu],\n                color='#999999', lw=1.3, ls='--', alpha=0.55, zorder=2,\n                label='Pareto (Uniform)')\n    if len(pfv) > 1:\n        ax.plot([p[0] for p in pfv], [p[1] for p in pfv],\n                color='#555555', lw=1.6, ls='-', alpha=0.55, zorder=2,\n                label='Pareto (VC)')\n\n    # data points\n    for lab, s in stats.items():\n        x  = s[xkey]\n        xe = s[xekey] if s[xekey] > 0 else None\n\n        # uniform: open marker\n        ax.errorbar(x, s['ud_m'], xerr=xe,\n                    yerr=s['ud_s'] if s['ud_s'] > 0 else None,\n                    marker=s['marker'], ms=10, color=s['color'],\n                    mfc='white', mew=2, capsize=3, capthick=1.2,\n                    elinewidth=1.2, ls='none', zorder=4)\n\n        # VC: filled marker\n        ax.errorbar(x, s['vd_m'], xerr=xe,\n                    yerr=s['vd_s'] if s['vd_s'] > 0 else None,\n                    marker=s['marker'], ms=10, color=s['color'],\n                    mfc=s['color'], mew=1.5, capsize=3, capthick=1.2,\n                    elinewidth=1.2, ls='none', zorder=4, alpha=0.85)\n\n        # thin connector\n        ax.plot([x, x], [s['ud_m'], s['vd_m']],\n                color=s['color'], lw=0.8, ls=':', alpha=0.45, zorder=3)\n\n    # Cross-dataset references (left panel only)\n    if show_xdata:\n        for cd in xdata:\n            xv = 1 - cd['degen']\n            ax.scatter(xv, cd['delta'], marker='x', s=55,\n                       color=C['xdata'], linewidths=1.5, zorder=3, alpha=0.65)\n            ax.annotate(cd['label'], (xv, cd['delta']),\n                        fontsize=7.5, color=C['xdata'], ha='left', va='bottom',\n                        xytext=(5, 3), textcoords='offset points',\n                        linespacing=0.85)\n\n    # annotations\n    offsets = {\n        'T=0.7':         (-8, 6,   'right'),\n        'T=0.8':         (6,  6,   'left'),\n        'T=1.0':         (6,  -4,  'left'),\n        'Mix\\n0.7+1.0':  (6,  0,   'left'),\n        'Mix\\n0.8+1.0':  (6,  -6,  'left'),\n    }\n    for lab, s in stats.items():\n        ox, oy, ha = offsets[lab]\n        mid_y = (s['ud_m'] + s['vd_m']) / 2\n        display_lab = lab.replace('\\n', ' ')\n        ax.annotate(display_lab, (s[xkey], mid_y),\n                    fontsize=8.5, color=s['color'], fontweight='bold',\n                    ha=ha, va='center',\n                    xytext=(ox, oy), textcoords='offset points',\n                    linespacing=0.85)\n\n    ax.set_xlabel(xlabel)\n    ax.grid(axis='y', alpha=0.15, lw=0.5)\n\nax1.set_ylabel('Construction ΔF1 vs Greedy  (pp)')\nax1.set_title('(a) Degeneracy-based diversity', fontsize=11, pad=8)\nax2.set_title('(b) Output-count diversity', fontsize=11, pad=8)\n\n# shared legend\nleg_h = [\n    Line2D([], [], marker='o', color='gray', mfc='white', mew=1.8, ms=8,\n           ls='none', label='Uniform constr.'),\n    Line2D([], [], marker='o', color='gray', mfc='gray', mew=1.2, ms=8,\n           ls='none', label='VC constr.'),\n    Line2D([], [], color='#999999', lw=1.3, ls='--', label='Pareto (Uniform)'),\n    Line2D([], [], color='#555555', lw=1.6, ls='-',  label='Pareto (VC)'),\n    Line2D([], [], marker='x', color=C['xdata'], lw=0, ms=7,\n           label='Cross-dataset (Uniform)'),\n    Line2D([], [], color='#BBBBBB', lw=1, ls='--', label='Greedy (ΔF1 = 0)'),\n]\nax1.legend(handles=leg_h, loc='lower left', framealpha=0.92,\n           edgecolor='#CCCCCC', handletextpad=0.4)\n\nfig.suptitle('Diversity–Quality Pareto Frontier: SciERC Entity Construction',\n             fontsize=13, y=1.01)\nplt.tight_layout()\n\noutdir = Path(__file__).parent\nfig.savefig(outdir / 'pareto_plot.png', dpi=300)\nfig.savefig(outdir / 'pareto_plot.pdf')\nprint(f'Saved: {outdir}/pareto_plot.png, .pdf')\n\n# ── Analysis JSON ──\nanalysis = {\n    'dataset': 'SciERC',\n    'model': 'Qwen3-8B',\n    'N': 8,\n    'theta': 0.25,\n    'construction_method': 'threshold confirmation (fixed θ=0.25) vs greedy',\n    'data_points': {},\n    'pareto_frontier': {\n        'uniform_construction': [\n            {'label': p[2].replace('\\n', ' '), 'diversity_1_minus_degen': round(p[0], 4),\n             'delta_f1_pp': round(p[1], 2)} for p in pf_uni\n        ],\n        'vc_construction': [\n            {'label': p[2].replace('\\n', ' '), 'diversity_1_minus_degen': round(p[0], 4),\n             'delta_f1_pp': round(p[1], 2)} for p in pf_vc\n        ],\n    },\n    'cross_dataset_reference': xdata,\n    'key_findings': [\n        'Uniform Pareto frontier: T=0.7 → Mix 0.7+1.0 → T=1.0 (T=0.8 dominated by Mix 0.7+1.0)',\n        'VC Pareto frontier: T=0.8 → Mix 0.7+1.0 → T=1.0 (T=0.7 dominated by T=0.8 under VC)',\n        'VC construction mitigates the diversity-quality trade-off: flatter Pareto slope (quality drop per unit diversity is ~50% smaller)',\n        'Mix 0.8+1.0 is Pareto-dominated under both metrics: mixing two close temperatures yields higher degeneracy than either component',\n        'Mix 0.7+1.0 is Pareto-optimal under both uniform and VC: well-separated temperatures produce complementary diversity',\n        'Best VC ΔF1 is T=0.8 (+1.68pp) but with lower diversity; Mix 0.7+1.0 achieves nearly identical quality (+1.67pp) with higher diversity',\n    ],\n}\n\nfor lab, s in stats.items():\n    clean_lab = lab.replace('\\n', ' ')\n    analysis['data_points'][clean_lab] = {\n        'diversity_1_minus_degen': round(s['div_m'], 4),\n        'diversity_std': round(s['div_s'], 4),\n        'unique_per_N': round(s['un_m'], 4),\n        'uniform_delta_pp': round(s['ud_m'], 2),\n        'uniform_delta_std': round(s['ud_s'], 2),\n        'vc_delta_pp': round(s['vd_m'], 2),\n        'vc_delta_std': round(s['vd_s'], 2),\n        'n_seeds': s['n'],\n        'category': s['category'],\n        'pareto_optimal_uniform': clean_lab in [p[2].replace('\\n', ' ') for p in pf_uni],\n        'pareto_optimal_vc': clean_lab in [p[2].replace('\\n', ' ') for p in pf_vc],\n    }\n\nwith open(outdir / 'pareto_analysis.json', 'w') as f:\n    json.dump(analysis, f, indent=2, ensure_ascii=False)\nprint(f'Saved: {outdir}/pareto_analysis.json')\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UoCVDuf3xtQT18jq5omMu1",
+              "name": "Bash",
+              "input": {
+                "command": "python3 artifacts/a4_pareto_diversity/plot_pareto.py",
+                "description": "Generate Pareto plot and analysis JSON"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "658aa136-4130-402a-acc9-d150db083e01",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018eJzgjAfVbt2C1e8uhBZRc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12568,
+                "cache_read_input_tokens": 69882,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12568
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-20T09:13:27.991Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UoCVDuf3xtQT18jq5omMu1",
+              "type": "tool_result",
+              "content": "Saved: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/pareto_plot.png, .pdf\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/pareto_analysis.json",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "c45d43e0-6eba-4187-9b6b-1a76c449cb4b",
+            "tool_use_result": {
+              "stdout": "Saved: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/pareto_plot.png, .pdf\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/pareto_analysis.json",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UmV7rHgB22RHvatgHefVNE",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/pareto_plot.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "dfca70c8-51ce-424e-9518-1ecb66122f71",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012dywFcGzUH4N9f8X4UBPoZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 208,
+                "cache_read_input_tokens": 82450,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 208
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L4PDqvzWkS6o7JAeYpMgbW",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/pareto_analysis.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "b88f65b4-988d-4a32-9358-5f3c960997b1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012dywFcGzUH4N9f8X4UBPoZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 208,
+                "cache_read_input_tokens": 82450,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 208
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-20T09:13:31.780Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L4PDqvzWkS6o7JAeYpMgbW",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"dataset\": \"SciERC\",\n3\t  \"model\": \"Qwen3-8B\",\n4\t  \"N\": 8,\n5\t  \"theta\": 0.25,\n6\t  \"construction_method\": \"threshold confirmation (fixed θ=0.25) vs greedy\",\n7\t  \"data_points\": {\n8\t    \"T=0.7\": {\n9\t      \"diversity_1_minus_degen\": 0.7769,\n10\t      \"diversity_std\": 0.0,\n11\t      \"unique_per_N\": 0.3412,\n12\t      \"uniform_delta_pp\": 1.81,\n13\t      \"uniform_delta_std\": 0.0,\n14\t      \"vc_delta_pp\": 1.17,\n15\t      \"vc_delta_std\": 0.0,\n16\t      \"n_seeds\": 1,\n17\t      \"category\": \"single\",\n18\t      \"pareto_optimal_uniform\": true,\n19\t      \"pareto_optimal_vc\": false\n20\t    },\n21\t    \"T=0.8\": {\n22\t      \"diversity_1_minus_degen\": 0.8195,\n23\t      \"diversity_std\": 0.012,\n24\t      \"unique_per_N\": 0.3713,\n25\t      \"uniform_delta_pp\": 1.25,\n26\t      \"uniform_delta_std\": 0.78,\n27\t      \"vc_delta_pp\": 1.68,\n28\t      \"vc_delta_std\": 0.3,\n29\t      \"n_seeds\": 2,\n30\t      \"category\": \"single\",\n31\t      \"pareto_optimal_uniform\": false,\n32\t      \"pareto_optimal_vc\": true\n33\t    },\n34\t    \"T=1.0\": {\n35\t      \"diversity_1_minus_degen\": 0.8765,\n36\t      \"diversity_std\": 0.0085,\n37\t      \"unique_per_N\": 0.4246,\n38\t      \"uniform_delta_pp\": 0.75,\n39\t      \"uniform_delta_std\": 0.22,\n40\t      \"vc_delta_pp\": 1.21,\n41\t      \"vc_delta_std\": 0.64,\n42\t      \"n_seeds\": 3,\n43\t      \"category\": \"single\",\n44\t      \"pareto_optimal_uniform\": true,\n45\t      \"pareto_optimal_vc\": true\n46\t    },\n47\t    \"Mix 0.7+1.0\": {\n48\t      \"diversity_1_minus_degen\": 0.8299,\n49\t      \"diversity_std\": 0.0038,\n50\t      \"unique_per_N\": 0.3858,\n51\t      \"uniform_delta_pp\": 1.43,\n52\t      \"uniform_delta_std\": 0.3,\n53\t      \"vc_delta_pp\": 1.67,\n54\t      \"vc_delta_std\": 0.17,\n55\t      \"n_seeds\": 3,\n56\t      \"category\": \"mixed\",\n57\t      \"pareto_optimal_uniform\": true,\n58\t      \"pareto_optimal_vc\": true\n59\t    },\n60\t    \"Mix 0.8+1.0\": {\n61\t      \"diversity_1_minus_degen\": 0.7893,\n62\t      \"diversity_std\": 0.0067,\n63\t      \"unique_per_N\": 0.3236,\n64\t      \"uniform_delta_pp\": -0.17,\n65\t      \"uniform_delta_std\": 0.13,\n66\t      \"vc_delta_pp\": 0.48,\n67\t      \"vc_delta_std\": 0.12,\n68\t      \"n_seeds\": 2,\n69\t      \"category\": \"mixed\",\n70\t      \"pareto_optimal_uniform\": false,\n71\t      \"pareto_optimal_vc\": false\n72\t    }\n73\t  },\n74\t  \"pareto_frontier\": {\n75\t    \"uniform_construction\": [\n76\t      {\n77\t        \"label\": \"T=0.7\",\n78\t        \"diversity_1_minus_degen\": 0.7769,\n79\t        \"delta_f1_pp\": 1.81\n80\t      },\n81\t      {\n82\t        \"label\": \"Mix 0.7+1.0\",\n83\t        \"diversity_1_minus_degen\": 0.8299,\n84\t        \"delta_f1_pp\": 1.43\n85\t      },\n86\t      {\n87\t        \"label\": \"T=1.0\",\n88\t        \"diversity_1_minus_degen\": 0.8765,\n89\t        \"delta_f1_pp\": 0.75\n90\t      }\n91\t    ],\n92\t    \"vc_construction\": [\n93\t      {\n94\t        \"label\": \"T=0.8\",\n95\t        \"diversity_1_minus_degen\": 0.8195,\n96\t        \"delta_f1_pp\": 1.68\n97\t      },\n98\t      {\n99\t        \"label\": \"Mix 0.7+1.0\",\n100\t        \"diversity_1_minus_degen\": 0.8299,\n101\t        \"delta_f1_pp\": 1.67\n102\t      },\n103\t      {\n104\t        \"label\": \"T=1.0\",\n105\t        \"diversity_1_minus_degen\": 0.8765,\n106\t        \"delta_f1_pp\": 1.21\n107\t      }\n108\t    ]\n109\t  },\n110\t  \"cross_dataset_reference\": [\n111\t    {\n112\t      \"label\": \"SciERC\\nbaseline\",\n113\t      \"degen\": 0.178,\n114\t      \"delta\": 1.54\n115\t    },\n116\t    {\n117\t      \"label\": \"CoNLL\",\n118\t      \"degen\": 0.484,\n119\t      \"delta\": 0.1\n120\t    },\n121\t    {\n122\t      \"label\": \"FewNERD\",\n123\t      \"degen\": 0.071,\n124\t      \"delta\": 1.32\n125\t    }\n126\t  ],\n127\t  \"key_findings\": [\n128\t    \"Uniform Pareto frontier: T=0.7 → Mix 0.7+1.0 → T=1.0 (T=0.8 dominated by Mix 0.7+1.0)\",\n129\t    \"VC Pareto frontier: T=0.8 → Mix 0.7+1.0 → T=1.0 (T=0.7 dominated by T=0.8 under VC)\",\n130\t    \"VC construction mitigates the diversity-quality trade-off: flatter Pareto slope (quality drop per unit diversity is ~50% smaller)\",\n131\t    \"Mix 0.8+1.0 is Pareto-dominated under both metrics: mixing two close temperatures yields higher degeneracy than either component\",\n132\t    \"Mix 0.7+1.0 is Pareto-optimal under both uniform and VC: well-separated temperatures produce complementary diversity\",\n133\t    \"Best VC ΔF1 is T=0.8 (+1.68pp) but with lower diversity; Mix 0.7+1.0 achieves nearly identical quality (+1.67pp) with higher diversity\"\n134\t  ]\n135\t}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "5cbb5ca0-58ea-4ea8-b031-dab7eb221fce",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/pareto_analysis.json",
+                "content": "{\n  \"dataset\": \"SciERC\",\n  \"model\": \"Qwen3-8B\",\n  \"N\": 8,\n  \"theta\": 0.25,\n  \"construction_method\": \"threshold confirmation (fixed θ=0.25) vs greedy\",\n  \"data_points\": {\n    \"T=0.7\": {\n      \"diversity_1_minus_degen\": 0.7769,\n      \"diversity_std\": 0.0,\n      \"unique_per_N\": 0.3412,\n      \"uniform_delta_pp\": 1.81,\n      \"uniform_delta_std\": 0.0,\n      \"vc_delta_pp\": 1.17,\n      \"vc_delta_std\": 0.0,\n      \"n_seeds\": 1,\n      \"category\": \"single\",\n      \"pareto_optimal_uniform\": true,\n      \"pareto_optimal_vc\": false\n    },\n    \"T=0.8\": {\n      \"diversity_1_minus_degen\": 0.8195,\n      \"diversity_std\": 0.012,\n      \"unique_per_N\": 0.3713,\n      \"uniform_delta_pp\": 1.25,\n      \"uniform_delta_std\": 0.78,\n      \"vc_delta_pp\": 1.68,\n      \"vc_delta_std\": 0.3,\n      \"n_seeds\": 2,\n      \"category\": \"single\",\n      \"pareto_optimal_uniform\": false,\n      \"pareto_optimal_vc\": true\n    },\n    \"T=1.0\": {\n      \"diversity_1_minus_degen\": 0.8765,\n      \"diversity_std\": 0.0085,\n      \"unique_per_N\": 0.4246,\n      \"uniform_delta_pp\": 0.75,\n      \"uniform_delta_std\": 0.22,\n      \"vc_delta_pp\": 1.21,\n      \"vc_delta_std\": 0.64,\n      \"n_seeds\": 3,\n      \"category\": \"single\",\n      \"pareto_optimal_uniform\": true,\n      \"pareto_optimal_vc\": true\n    },\n    \"Mix 0.7+1.0\": {\n      \"diversity_1_minus_degen\": 0.8299,\n      \"diversity_std\": 0.0038,\n      \"unique_per_N\": 0.3858,\n      \"uniform_delta_pp\": 1.43,\n      \"uniform_delta_std\": 0.3,\n      \"vc_delta_pp\": 1.67,\n      \"vc_delta_std\": 0.17,\n      \"n_seeds\": 3,\n      \"category\": \"mixed\",\n      \"pareto_optimal_uniform\": true,\n      \"pareto_optimal_vc\": true\n    },\n    \"Mix 0.8+1.0\": {\n      \"diversity_1_minus_degen\": 0.7893,\n      \"diversity_std\": 0.0067,\n      \"unique_per_N\": 0.3236,\n      \"uniform_delta_pp\": -0.17,\n      \"uniform_delta_std\": 0.13,\n      \"vc_delta_pp\": 0.48,\n      \"vc_delta_std\": 0.12,\n      \"n_seeds\": 2,\n      \"category\": \"mixed\",\n      \"pareto_optimal_uniform\": false,\n      \"pareto_optimal_vc\": false\n    }\n  },\n  \"pareto_frontier\": {\n    \"uniform_construction\": [\n      {\n        \"label\": \"T=0.7\",\n        \"diversity_1_minus_degen\": 0.7769,\n        \"delta_f1_pp\": 1.81\n      },\n      {\n        \"label\": \"Mix 0.7+1.0\",\n        \"diversity_1_minus_degen\": 0.8299,\n        \"delta_f1_pp\": 1.43\n      },\n      {\n        \"label\": \"T=1.0\",\n        \"diversity_1_minus_degen\": 0.8765,\n        \"delta_f1_pp\": 0.75\n      }\n    ],\n    \"vc_construction\": [\n      {\n        \"label\": \"T=0.8\",\n        \"diversity_1_minus_degen\": 0.8195,\n        \"delta_f1_pp\": 1.68\n      },\n      {\n        \"label\": \"Mix 0.7+1.0\",\n        \"diversity_1_minus_degen\": 0.8299,\n        \"delta_f1_pp\": 1.67\n      },\n      {\n        \"label\": \"T=1.0\",\n        \"diversity_1_minus_degen\": 0.8765,\n        \"delta_f1_pp\": 1.21\n      }\n    ]\n  },\n  \"cross_dataset_reference\": [\n    {\n      \"label\": \"SciERC\\nbaseline\",\n      \"degen\": 0.178,\n      \"delta\": 1.54\n    },\n    {\n      \"label\": \"CoNLL\",\n      \"degen\": 0.484,\n      \"delta\": 0.1\n    },\n    {\n      \"label\": \"FewNERD\",\n      \"degen\": 0.071,\n      \"delta\": 1.32\n    }\n  ],\n  \"key_findings\": [\n    \"Uniform Pareto frontier: T=0.7 → Mix 0.7+1.0 → T=1.0 (T=0.8 dominated by Mix 0.7+1.0)\",\n    \"VC Pareto frontier: T=0.8 → Mix 0.7+1.0 → T=1.0 (T=0.7 dominated by T=0.8 under VC)\",\n    \"VC construction mitigates the diversity-quality trade-off: flatter Pareto slope (quality drop per unit diversity is ~50% smaller)\",\n    \"Mix 0.8+1.0 is Pareto-dominated under both metrics: mixing two close temperatures yields higher degeneracy than either component\",\n    \"Mix 0.7+1.0 is Pareto-optimal under both uniform and VC: well-separated temperatures produce complementary diversity\",\n    \"Best VC ΔF1 is T=0.8 (+1.68pp) but with lower diversity; Mix 0.7+1.0 achieves nearly identical quality (+1.67pp) with higher diversity\"\n  ]\n}",
+                "numLines": 135,
+                "startLine": 1,
+                "totalLines": 135
+              }
+            }
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-20T09:13:32.199Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UmV7rHgB22RHvatgHefVNE",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "ef6cd312-85de-460d-9d8a-eb3c35f9108e",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 295633
+              }
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The plot looks good but the left panel is a bit crowded with overlapping labels. Let me improve the annotation positioning and also clean up some visual issues:\n\n1. The \"SciERC baseline\" annotation overlaps with other points\n2. Some labels overlap with markers\n3. The FewNERD cross-dataset label is well positioned\n\nAlso, the X-axis range in the left panel goes from 0.5 to beyond 0.9, which is good because it shows the CoNLL reference point at low diversity.\n\nLet me improve the annotation offsets and check if the Pareto story is clear.\n\n\nLooking at the plot, I can see the Pareto frontiers clearly - the uniform strategy traces through T=0.7, Mix 0.7+1.0, and T=1.0, while the VC approach follows T=0.8, Mix 0.7+1.0, and T=1.0. Mix 0.8+1.0 sits below the frontier as expected. The main issue is that the \"SciERC baseline\" label is colliding with nearby markers, so I need to adjust the offset positions to reduce clutter.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "5c41e7c7-1507-4900-b071-d1be3896b273",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BzL9Tn8LuJE7NKrB4viWyw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1929,
+                "cache_creation_input_tokens": 740,
+                "cache_read_input_tokens": 82658,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 740
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成。标注位置略有重叠，我调整一下。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "dac8c2b5-a434-41ca-a136-abe6429216b5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BzL9Tn8LuJE7NKrB4viWyw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1929,
+                "cache_creation_input_tokens": 740,
+                "cache_read_input_tokens": 82658,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 740
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T2agusXN8rrXb5iQmMSufD",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/plot_pareto.py",
+                "old_string": "    offsets = {\n        'T=0.7':         (-8, 6,   'right'),\n        'T=0.8':         (6,  6,   'left'),\n        'T=1.0':         (6,  -4,  'left'),\n        'Mix\\n0.7+1.0':  (6,  0,   'left'),\n        'Mix\\n0.8+1.0':  (6,  -6,  'left'),\n    }",
+                "new_string": "    offsets_a = {\n        'T=0.7':         (-8,  8,   'right'),\n        'T=0.8':         (-8,  8,   'right'),\n        'T=1.0':         (6,  -8,  'left'),\n        'Mix\\n0.7+1.0':  (6,   8,  'left'),\n        'Mix\\n0.8+1.0':  (6,  -8,  'left'),\n    }\n    offsets_b = {\n        'T=0.7':         (-8,  8,   'right'),\n        'T=0.8':         (-8,  5,   'right'),\n        'T=1.0':         (6,  -8,   'left'),\n        'Mix\\n0.7+1.0':  (6,   8,   'left'),\n        'Mix\\n0.8+1.0':  (6,  -8,   'left'),\n    }\n    offsets = offsets_a if xkey == 'div_m' else offsets_b"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "1040a133-7619-4321-abae-cd298eef70a7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BzL9Tn8LuJE7NKrB4viWyw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1929,
+                "cache_creation_input_tokens": 740,
+                "cache_read_input_tokens": 82658,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 740
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-20T09:13:50.232Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T2agusXN8rrXb5iQmMSufD",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/plot_pareto.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "74d6e303-8c6f-4d8d-9445-356afb035b77",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/plot_pareto.py",
+              "oldString": "    offsets = {\n        'T=0.7':         (-8, 6,   'right'),\n        'T=0.8':         (6,  6,   'left'),\n        'T=1.0':         (6,  -4,  'left'),\n        'Mix\\n0.7+1.0':  (6,  0,   'left'),\n        'Mix\\n0.8+1.0':  (6,  -6,  'left'),\n    }",
+              "newString": "    offsets_a = {\n        'T=0.7':         (-8,  8,   'right'),\n        'T=0.8':         (-8,  8,   'right'),\n        'T=1.0':         (6,  -8,  'left'),\n        'Mix\\n0.7+1.0':  (6,   8,  'left'),\n        'Mix\\n0.8+1.0':  (6,  -8,  'left'),\n    }\n    offsets_b = {\n        'T=0.7':         (-8,  8,   'right'),\n        'T=0.8':         (-8,  5,   'right'),\n        'T=1.0':         (6,  -8,   'left'),\n        'Mix\\n0.7+1.0':  (6,   8,   'left'),\n        'Mix\\n0.8+1.0':  (6,  -8,   'left'),\n    }\n    offsets = offsets_a if xkey == 'div_m' else offsets_b",
+              "originalFile": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.lines import Line2D\nimport numpy as np\nimport json\nfrom pathlib import Path\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# Okabe-Ito palette\nC = {\n    'T07': '#0072B2',\n    'T08': '#009E73',\n    'T10': '#D55E00',\n    'Mix71': '#CC79A7',\n    'Mix81': '#E69F00',\n    'xdata': '#888888',\n}\n\n# ── Data: Heterogeneous-T (SciERC, Qwen3-8B, N=8, θ=0.25 fixed) ──\n# Per-seed values extracted from heterogeneous_t_results.json\nconfigs = {\n    'T=0.7': {\n        'color': C['T07'], 'marker': 'o', 'category': 'single',\n        'degen': [0.2231],\n        'unique_N': [2.7297 / 8],\n        'uni_d': [1.81],  # uniform construction ΔF1 pp\n        'vc_d':  [1.17],  # VC construction ΔF1 pp\n    },\n    'T=0.8': {\n        'color': C['T08'], 'marker': 's', 'category': 'single',\n        'degen': [0.1890, 0.1720],\n        'unique_N': [2.928 / 8, 3.013 / 8],\n        'uni_d': [1.81, 0.70],\n        'vc_d':  [1.89, 1.47],\n    },\n    'T=1.0': {\n        'color': C['T10'], 'marker': '^', 'category': 'single',\n        'degen': [0.1323, 0.1153, 0.1229],\n        'unique_N': [3.321 / 8, 3.346 / 8, 3.524 / 8],\n        'uni_d': [0.74, 0.54, 0.98],\n        'vc_d':  [0.57, 1.84, 1.21],\n    },\n    'Mix\\n0.7+1.0': {\n        'color': C['Mix71'], 'marker': 'D', 'category': 'mixed',\n        'degen': [0.1739, 0.1664, 0.1701],\n        'unique_N': [3.078 / 8, 3.074 / 8, 3.108 / 8],\n        'uni_d': [1.15, 1.39, 1.74],\n        'vc_d':  [1.47, 1.76, 1.78],\n    },\n    'Mix\\n0.8+1.0': {\n        'color': C['Mix81'], 'marker': 'v', 'category': 'mixed',\n        'degen': [0.2155, 0.2060],\n        'unique_N': [2.556 / 8, 2.622 / 8],\n        'uni_d': [-0.08, -0.26],\n        'vc_d':  [0.56, 0.39],\n    },\n}\n\n# Cross-dataset reference (entity construction, uniform, T=1.0)\nxdata = [\n    {'label': 'SciERC\\nbaseline', 'degen': 0.178, 'delta': 1.54},\n    {'label': 'CoNLL',             'degen': 0.484, 'delta': 0.10},\n    {'label': 'FewNERD',           'degen': 0.071, 'delta': 1.32},\n]\n\n# ── Compute summary stats ──\nstats = {}\nfor lab, c in configs.items():\n    dg = np.array(c['degen'])\n    div = 1 - dg\n    un = np.array(c['unique_N'])\n    ud = np.array(c['uni_d'])\n    vd = np.array(c['vc_d'])\n    n = len(dg)\n    stats[lab] = dict(\n        div_m=float(np.mean(div)), div_s=float(np.std(div, ddof=1)) if n > 1 else 0.0,\n        un_m=float(np.mean(un)),   un_s=float(np.std(un, ddof=1))  if n > 1 else 0.0,\n        ud_m=float(np.mean(ud)),   ud_s=float(np.std(ud, ddof=1))  if n > 1 else 0.0,\n        vd_m=float(np.mean(vd)),   vd_s=float(np.std(vd, ddof=1))  if n > 1 else 0.0,\n        n=n, color=c['color'], marker=c['marker'], category=c['category'],\n    )\n\n# ── Pareto frontier ──\ndef pareto_front(pts):\n    \"\"\"pts: list of (x, y, label). Maximize both. Return sorted by x.\"\"\"\n    out = []\n    for i, (xi, yi, li) in enumerate(pts):\n        dominated = any(\n            xj >= xi and yj >= yi and (xj > xi or yj > yi)\n            for j, (xj, yj, lj) in enumerate(pts) if j != i\n        )\n        if not dominated:\n            out.append((xi, yi, li))\n    return sorted(out, key=lambda p: p[0])\n\nuni_pts = [(s['div_m'], s['ud_m'], l) for l, s in stats.items()]\nvc_pts  = [(s['div_m'], s['vd_m'], l) for l, s in stats.items()]\npf_uni = pareto_front(uni_pts)\npf_vc  = pareto_front(vc_pts)\n\n# Same for unique/N\nuni_pts2 = [(s['un_m'], s['ud_m'], l) for l, s in stats.items()]\nvc_pts2  = [(s['un_m'], s['vd_m'], l) for l, s in stats.items()]\npf_uni2 = pareto_front(uni_pts2)\npf_vc2  = pareto_front(vc_pts2)\n\n# ── Plot ──\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 5.5), sharey=True)\n\npanels = [\n    (ax1, 'div_m', 'div_s', '1 − Degeneracy Rate  (→ more diverse)', pf_uni, pf_vc, True),\n    (ax2, 'un_m',  'un_s',  'Mean Unique Outputs / N  (→ more diverse)', pf_uni2, pf_vc2, False),\n]\n\nfor ax, xkey, xekey, xlabel, pfu, pfv, show_xdata in panels:\n    # greedy baseline\n    ax.axhline(0, color='#BBBBBB', ls='--', lw=1, zorder=1)\n\n    # Pareto frontiers\n    if len(pfu) > 1:\n        ax.plot([p[0] for p in pfu], [p[1] for p in pfu],\n                color='#999999', lw=1.3, ls='--', alpha=0.55, zorder=2,\n                label='Pareto (Uniform)')\n    if len(pfv) > 1:\n        ax.plot([p[0] for p in pfv], [p[1] for p in pfv],\n                color='#555555', lw=1.6, ls='-', alpha=0.55, zorder=2,\n                label='Pareto (VC)')\n\n    # data points\n    for lab, s in stats.items():\n        x  = s[xkey]\n        xe = s[xekey] if s[xekey] > 0 else None\n\n        # uniform: open marker\n        ax.errorbar(x, s['ud_m'], xerr=xe,\n                    yerr=s['ud_s'] if s['ud_s'] > 0 else None,\n                    marker=s['marker'], ms=10, color=s['color'],\n                    mfc='white', mew=2, capsize=3, capthick=1.2,\n                    elinewidth=1.2, ls='none', zorder=4)\n\n        # VC: filled marker\n        ax.errorbar(x, s['vd_m'], xerr=xe,\n                    yerr=s['vd_s'] if s['vd_s'] > 0 else None,\n                    marker=s['marker'], ms=10, color=s['color'],\n                    mfc=s['color'], mew=1.5, capsize=3, capthick=1.2,\n                    elinewidth=1.2, ls='none', zorder=4, alpha=0.85)\n\n        # thin connector\n        ax.plot([x, x], [s['ud_m'], s['vd_m']],\n                color=s['color'], lw=0.8, ls=':', alpha=0.45, zorder=3)\n\n    # Cross-dataset references (left panel only)\n    if show_xdata:\n        for cd in xdata:\n            xv = 1 - cd['degen']\n            ax.scatter(xv, cd['delta'], marker='x', s=55,\n                       color=C['xdata'], linewidths=1.5, zorder=3, alpha=0.65)\n            ax.annotate(cd['label'], (xv, cd['delta']),\n                        fontsize=7.5, color=C['xdata'], ha='left', va='bottom',\n                        xytext=(5, 3), textcoords='offset points',\n                        linespacing=0.85)\n\n    # annotations\n    offsets = {\n        'T=0.7':         (-8, 6,   'right'),\n        'T=0.8':         (6,  6,   'left'),\n        'T=1.0':         (6,  -4,  'left'),\n        'Mix\\n0.7+1.0':  (6,  0,   'left'),\n        'Mix\\n0.8+1.0':  (6,  -6,  'left'),\n    }\n    for lab, s in stats.items():\n        ox, oy, ha = offsets[lab]\n        mid_y = (s['ud_m'] + s['vd_m']) / 2\n        display_lab = lab.replace('\\n', ' ')\n        ax.annotate(display_lab, (s[xkey], mid_y),\n                    fontsize=8.5, color=s['color'], fontweight='bold',\n                    ha=ha, va='center',\n                    xytext=(ox, oy), textcoords='offset points',\n                    linespacing=0.85)\n\n    ax.set_xlabel(xlabel)\n    ax.grid(axis='y', alpha=0.15, lw=0.5)\n\nax1.set_ylabel('Construction ΔF1 vs Greedy  (pp)')\nax1.set_title('(a) Degeneracy-based diversity', fontsize=11, pad=8)\nax2.set_title('(b) Output-count diversity', fontsize=11, pad=8)\n\n# shared legend\nleg_h = [\n    Line2D([], [], marker='o', color='gray', mfc='white', mew=1.8, ms=8,\n           ls='none', label='Uniform constr.'),\n    Line2D([], [], marker='o', color='gray', mfc='gray', mew=1.2, ms=8,\n           ls='none', label='VC constr.'),\n    Line2D([], [], color='#999999', lw=1.3, ls='--', label='Pareto (Uniform)'),\n    Line2D([], [], color='#555555', lw=1.6, ls='-',  label='Pareto (VC)'),\n    Line2D([], [], marker='x', color=C['xdata'], lw=0, ms=7,\n           label='Cross-dataset (Uniform)'),\n    Line2D([], [], color='#BBBBBB', lw=1, ls='--', label='Greedy (ΔF1 = 0)'),\n]\nax1.legend(handles=leg_h, loc='lower left', framealpha=0.92,\n           edgecolor='#CCCCCC', handletextpad=0.4)\n\nfig.suptitle('Diversity–Quality Pareto Frontier: SciERC Entity Construction',\n             fontsize=13, y=1.01)\nplt.tight_layout()\n\noutdir = Path(__file__).parent\nfig.savefig(outdir / 'pareto_plot.png', dpi=300)\nfig.savefig(outdir / 'pareto_plot.pdf')\nprint(f'Saved: {outdir}/pareto_plot.png, .pdf')\n\n# ── Analysis JSON ──\nanalysis = {\n    'dataset': 'SciERC',\n    'model': 'Qwen3-8B',\n    'N': 8,\n    'theta': 0.25,\n    'construction_method': 'threshold confirmation (fixed θ=0.25) vs greedy',\n    'data_points': {},\n    'pareto_frontier': {\n        'uniform_construction': [\n            {'label': p[2].replace('\\n', ' '), 'diversity_1_minus_degen': round(p[0], 4),\n             'delta_f1_pp': round(p[1], 2)} for p in pf_uni\n        ],\n        'vc_construction': [\n            {'label': p[2].replace('\\n', ' '), 'diversity_1_minus_degen': round(p[0], 4),\n             'delta_f1_pp': round(p[1], 2)} for p in pf_vc\n        ],\n    },\n    'cross_dataset_reference': xdata,\n    'key_findings': [\n        'Uniform Pareto frontier: T=0.7 → Mix 0.7+1.0 → T=1.0 (T=0.8 dominated by Mix 0.7+1.0)',\n        'VC Pareto frontier: T=0.8 → Mix 0.7+1.0 → T=1.0 (T=0.7 dominated by T=0.8 under VC)',\n        'VC construction mitigates the diversity-quality trade-off: flatter Pareto slope (quality drop per unit diversity is ~50% smaller)',\n        'Mix 0.8+1.0 is Pareto-dominated under both metrics: mixing two close temperatures yields higher degeneracy than either component',\n        'Mix 0.7+1.0 is Pareto-optimal under both uniform and VC: well-separated temperatures produce complementary diversity',\n        'Best VC ΔF1 is T=0.8 (+1.68pp) but with lower diversity; Mix 0.7+1.0 achieves nearly identical quality (+1.67pp) with higher diversity',\n    ],\n}\n\nfor lab, s in stats.items():\n    clean_lab = lab.replace('\\n', ' ')\n    analysis['data_points'][clean_lab] = {\n        'diversity_1_minus_degen': round(s['div_m'], 4),\n        'diversity_std': round(s['div_s'], 4),\n        'unique_per_N': round(s['un_m'], 4),\n        'uniform_delta_pp': round(s['ud_m'], 2),\n        'uniform_delta_std': round(s['ud_s'], 2),\n        'vc_delta_pp': round(s['vd_m'], 2),\n        'vc_delta_std': round(s['vd_s'], 2),\n        'n_seeds': s['n'],\n        'category': s['category'],\n        'pareto_optimal_uniform': clean_lab in [p[2].replace('\\n', ' ') for p in pf_uni],\n        'pareto_optimal_vc': clean_lab in [p[2].replace('\\n', ' ') for p in pf_vc],\n    }\n\nwith open(outdir / 'pareto_analysis.json', 'w') as f:\n    json.dump(analysis, f, indent=2, ensure_ascii=False)\nprint(f'Saved: {outdir}/pareto_analysis.json')\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 178,
+                  "oldLines": 13,
+                  "newStart": 178,
+                  "newLines": 21,
+                  "lines": [
+                    "                         linespacing=0.85)",
+                    " ",
+                    "     # annotations",
+                    "-    offsets = {",
+                    "-        'T=0.7':         (-8, 6,   'right'),",
+                    "-        'T=0.8':         (6,  6,   'left'),",
+                    "-        'T=1.0':         (6,  -4,  'left'),",
+                    "-        'Mix\\n0.7+1.0':  (6,  0,   'left'),",
+                    "-        'Mix\\n0.8+1.0':  (6,  -6,  'left'),",
+                    "+    offsets_a = {",
+                    "+        'T=0.7':         (-8,  8,   'right'),",
+                    "+        'T=0.8':         (-8,  8,   'right'),",
+                    "+        'T=1.0':         (6,  -8,  'left'),",
+                    "+        'Mix\\n0.7+1.0':  (6,   8,  'left'),",
+                    "+        'Mix\\n0.8+1.0':  (6,  -8,  'left'),",
+                    "     }",
+                    "+    offsets_b = {",
+                    "+        'T=0.7':         (-8,  8,   'right'),",
+                    "+        'T=0.8':         (-8,  5,   'right'),",
+                    "+        'T=1.0':         (6,  -8,   'left'),",
+                    "+        'Mix\\n0.7+1.0':  (6,   8,   'left'),",
+                    "+        'Mix\\n0.8+1.0':  (6,  -8,   'left'),",
+                    "+    }",
+                    "+    offsets = offsets_a if xkey == 'div_m' else offsets_b",
+                    "     for lab, s in stats.items():",
+                    "         ox, oy, ha = offsets[lab]",
+                    "         mid_y = (s['ud_m'] + s['vd_m']) / 2"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Also adjust the cross-dataset label positions to avoid overlap:"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "79dc11d8-b96d-4cb4-ac99-592c17774c3f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5AchPr3Rj3HuSJW1nZCBB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3149,
+                "cache_read_input_tokens": 83398,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3149
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0111KYpLHwC53sLYiJzn1vHc",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/plot_pareto.py",
+                "old_string": "    # Cross-dataset references (left panel only)\n    if show_xdata:\n        for cd in xdata:\n            xv = 1 - cd['degen']\n            ax.scatter(xv, cd['delta'], marker='x', s=55,\n                       color=C['xdata'], linewidths=1.5, zorder=3, alpha=0.65)\n            ax.annotate(cd['label'], (xv, cd['delta']),\n                        fontsize=7.5, color=C['xdata'], ha='left', va='bottom',\n                        xytext=(5, 3), textcoords='offset points',\n                        linespacing=0.85)",
+                "new_string": "    # Cross-dataset references (left panel only)\n    if show_xdata:\n        xdata_offsets = {\n            'SciERC\\nbaseline': (5, -12, 'left'),\n            'CoNLL':            (5,  3,  'left'),\n            'FewNERD':          (5,  3,  'left'),\n        }\n        for cd in xdata:\n            xv = 1 - cd['degen']\n            ax.scatter(xv, cd['delta'], marker='x', s=55,\n                       color=C['xdata'], linewidths=1.5, zorder=3, alpha=0.65)\n            xo, yo, ha_cd = xdata_offsets[cd['label']]\n            ax.annotate(cd['label'].replace('\\n', ' '), (xv, cd['delta']),\n                        fontsize=7.5, color=C['xdata'], ha=ha_cd, va='bottom',\n                        xytext=(xo, yo), textcoords='offset points')"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "3384b7f2-9eea-4009-965e-c364b98be42e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y5AchPr3Rj3HuSJW1nZCBB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3149,
+                "cache_read_input_tokens": 83398,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3149
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-20T09:14:01.313Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0111KYpLHwC53sLYiJzn1vHc",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/plot_pareto.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "d2f5ad23-6cfc-42dc-8327-d2f9f0e204c7",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/plot_pareto.py",
+              "oldString": "    # Cross-dataset references (left panel only)\n    if show_xdata:\n        for cd in xdata:\n            xv = 1 - cd['degen']\n            ax.scatter(xv, cd['delta'], marker='x', s=55,\n                       color=C['xdata'], linewidths=1.5, zorder=3, alpha=0.65)\n            ax.annotate(cd['label'], (xv, cd['delta']),\n                        fontsize=7.5, color=C['xdata'], ha='left', va='bottom',\n                        xytext=(5, 3), textcoords='offset points',\n                        linespacing=0.85)",
+              "newString": "    # Cross-dataset references (left panel only)\n    if show_xdata:\n        xdata_offsets = {\n            'SciERC\\nbaseline': (5, -12, 'left'),\n            'CoNLL':            (5,  3,  'left'),\n            'FewNERD':          (5,  3,  'left'),\n        }\n        for cd in xdata:\n            xv = 1 - cd['degen']\n            ax.scatter(xv, cd['delta'], marker='x', s=55,\n                       color=C['xdata'], linewidths=1.5, zorder=3, alpha=0.65)\n            xo, yo, ha_cd = xdata_offsets[cd['label']]\n            ax.annotate(cd['label'].replace('\\n', ' '), (xv, cd['delta']),\n                        fontsize=7.5, color=C['xdata'], ha=ha_cd, va='bottom',\n                        xytext=(xo, yo), textcoords='offset points')",
+              "originalFile": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.lines import Line2D\nimport numpy as np\nimport json\nfrom pathlib import Path\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# Okabe-Ito palette\nC = {\n    'T07': '#0072B2',\n    'T08': '#009E73',\n    'T10': '#D55E00',\n    'Mix71': '#CC79A7',\n    'Mix81': '#E69F00',\n    'xdata': '#888888',\n}\n\n# ── Data: Heterogeneous-T (SciERC, Qwen3-8B, N=8, θ=0.25 fixed) ──\n# Per-seed values extracted from heterogeneous_t_results.json\nconfigs = {\n    'T=0.7': {\n        'color': C['T07'], 'marker': 'o', 'category': 'single',\n        'degen': [0.2231],\n        'unique_N': [2.7297 / 8],\n        'uni_d': [1.81],  # uniform construction ΔF1 pp\n        'vc_d':  [1.17],  # VC construction ΔF1 pp\n    },\n    'T=0.8': {\n        'color': C['T08'], 'marker': 's', 'category': 'single',\n        'degen': [0.1890, 0.1720],\n        'unique_N': [2.928 / 8, 3.013 / 8],\n        'uni_d': [1.81, 0.70],\n        'vc_d':  [1.89, 1.47],\n    },\n    'T=1.0': {\n        'color': C['T10'], 'marker': '^', 'category': 'single',\n        'degen': [0.1323, 0.1153, 0.1229],\n        'unique_N': [3.321 / 8, 3.346 / 8, 3.524 / 8],\n        'uni_d': [0.74, 0.54, 0.98],\n        'vc_d':  [0.57, 1.84, 1.21],\n    },\n    'Mix\\n0.7+1.0': {\n        'color': C['Mix71'], 'marker': 'D', 'category': 'mixed',\n        'degen': [0.1739, 0.1664, 0.1701],\n        'unique_N': [3.078 / 8, 3.074 / 8, 3.108 / 8],\n        'uni_d': [1.15, 1.39, 1.74],\n        'vc_d':  [1.47, 1.76, 1.78],\n    },\n    'Mix\\n0.8+1.0': {\n        'color': C['Mix81'], 'marker': 'v', 'category': 'mixed',\n        'degen': [0.2155, 0.2060],\n        'unique_N': [2.556 / 8, 2.622 / 8],\n        'uni_d': [-0.08, -0.26],\n        'vc_d':  [0.56, 0.39],\n    },\n}\n\n# Cross-dataset reference (entity construction, uniform, T=1.0)\nxdata = [\n    {'label': 'SciERC\\nbaseline', 'degen': 0.178, 'delta': 1.54},\n    {'label': 'CoNLL',             'degen': 0.484, 'delta': 0.10},\n    {'label': 'FewNERD',           'degen': 0.071, 'delta': 1.32},\n]\n\n# ── Compute summary stats ──\nstats = {}\nfor lab, c in configs.items():\n    dg = np.array(c['degen'])\n    div = 1 - dg\n    un = np.array(c['unique_N'])\n    ud = np.array(c['uni_d'])\n    vd = np.array(c['vc_d'])\n    n = len(dg)\n    stats[lab] = dict(\n        div_m=float(np.mean(div)), div_s=float(np.std(div, ddof=1)) if n > 1 else 0.0,\n        un_m=float(np.mean(un)),   un_s=float(np.std(un, ddof=1))  if n > 1 else 0.0,\n        ud_m=float(np.mean(ud)),   ud_s=float(np.std(ud, ddof=1))  if n > 1 else 0.0,\n        vd_m=float(np.mean(vd)),   vd_s=float(np.std(vd, ddof=1))  if n > 1 else 0.0,\n        n=n, color=c['color'], marker=c['marker'], category=c['category'],\n    )\n\n# ── Pareto frontier ──\ndef pareto_front(pts):\n    \"\"\"pts: list of (x, y, label). Maximize both. Return sorted by x.\"\"\"\n    out = []\n    for i, (xi, yi, li) in enumerate(pts):\n        dominated = any(\n            xj >= xi and yj >= yi and (xj > xi or yj > yi)\n            for j, (xj, yj, lj) in enumerate(pts) if j != i\n        )\n        if not dominated:\n            out.append((xi, yi, li))\n    return sorted(out, key=lambda p: p[0])\n\nuni_pts = [(s['div_m'], s['ud_m'], l) for l, s in stats.items()]\nvc_pts  = [(s['div_m'], s['vd_m'], l) for l, s in stats.items()]\npf_uni = pareto_front(uni_pts)\npf_vc  = pareto_front(vc_pts)\n\n# Same for unique/N\nuni_pts2 = [(s['un_m'], s['ud_m'], l) for l, s in stats.items()]\nvc_pts2  = [(s['un_m'], s['vd_m'], l) for l, s in stats.items()]\npf_uni2 = pareto_front(uni_pts2)\npf_vc2  = pareto_front(vc_pts2)\n\n# ── Plot ──\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 5.5), sharey=True)\n\npanels = [\n    (ax1, 'div_m', 'div_s', '1 − Degeneracy Rate  (→ more diverse)', pf_uni, pf_vc, True),\n    (ax2, 'un_m',  'un_s',  'Mean Unique Outputs / N  (→ more diverse)', pf_uni2, pf_vc2, False),\n]\n\nfor ax, xkey, xekey, xlabel, pfu, pfv, show_xdata in panels:\n    # greedy baseline\n    ax.axhline(0, color='#BBBBBB', ls='--', lw=1, zorder=1)\n\n    # Pareto frontiers\n    if len(pfu) > 1:\n        ax.plot([p[0] for p in pfu], [p[1] for p in pfu],\n                color='#999999', lw=1.3, ls='--', alpha=0.55, zorder=2,\n                label='Pareto (Uniform)')\n    if len(pfv) > 1:\n        ax.plot([p[0] for p in pfv], [p[1] for p in pfv],\n                color='#555555', lw=1.6, ls='-', alpha=0.55, zorder=2,\n                label='Pareto (VC)')\n\n    # data points\n    for lab, s in stats.items():\n        x  = s[xkey]\n        xe = s[xekey] if s[xekey] > 0 else None\n\n        # uniform: open marker\n        ax.errorbar(x, s['ud_m'], xerr=xe,\n                    yerr=s['ud_s'] if s['ud_s'] > 0 else None,\n                    marker=s['marker'], ms=10, color=s['color'],\n                    mfc='white', mew=2, capsize=3, capthick=1.2,\n                    elinewidth=1.2, ls='none', zorder=4)\n\n        # VC: filled marker\n        ax.errorbar(x, s['vd_m'], xerr=xe,\n                    yerr=s['vd_s'] if s['vd_s'] > 0 else None,\n                    marker=s['marker'], ms=10, color=s['color'],\n                    mfc=s['color'], mew=1.5, capsize=3, capthick=1.2,\n                    elinewidth=1.2, ls='none', zorder=4, alpha=0.85)\n\n        # thin connector\n        ax.plot([x, x], [s['ud_m'], s['vd_m']],\n                color=s['color'], lw=0.8, ls=':', alpha=0.45, zorder=3)\n\n    # Cross-dataset references (left panel only)\n    if show_xdata:\n        for cd in xdata:\n            xv = 1 - cd['degen']\n            ax.scatter(xv, cd['delta'], marker='x', s=55,\n                       color=C['xdata'], linewidths=1.5, zorder=3, alpha=0.65)\n            ax.annotate(cd['label'], (xv, cd['delta']),\n                        fontsize=7.5, color=C['xdata'], ha='left', va='bottom',\n                        xytext=(5, 3), textcoords='offset points',\n                        linespacing=0.85)\n\n    # annotations\n    offsets_a = {\n        'T=0.7':         (-8,  8,   'right'),\n        'T=0.8':         (-8,  8,   'right'),\n        'T=1.0':         (6,  -8,  'left'),\n        'Mix\\n0.7+1.0':  (6,   8,  'left'),\n        'Mix\\n0.8+1.0':  (6,  -8,  'left'),\n    }\n    offsets_b = {\n        'T=0.7':         (-8,  8,   'right'),\n        'T=0.8':         (-8,  5,   'right'),\n        'T=1.0':         (6,  -8,   'left'),\n        'Mix\\n0.7+1.0':  (6,   8,   'left'),\n        'Mix\\n0.8+1.0':  (6,  -8,   'left'),\n    }\n    offsets = offsets_a if xkey == 'div_m' else offsets_b\n    for lab, s in stats.items():\n        ox, oy, ha = offsets[lab]\n        mid_y = (s['ud_m'] + s['vd_m']) / 2\n        display_lab = lab.replace('\\n', ' ')\n        ax.annotate(display_lab, (s[xkey], mid_y),\n                    fontsize=8.5, color=s['color'], fontweight='bold',\n                    ha=ha, va='center',\n                    xytext=(ox, oy), textcoords='offset points',\n                    linespacing=0.85)\n\n    ax.set_xlabel(xlabel)\n    ax.grid(axis='y', alpha=0.15, lw=0.5)\n\nax1.set_ylabel('Construction ΔF1 vs Greedy  (pp)')\nax1.set_title('(a) Degeneracy-based diversity', fontsize=11, pad=8)\nax2.set_title('(b) Output-count diversity', fontsize=11, pad=8)\n\n# shared legend\nleg_h = [\n    Line2D([], [], marker='o', color='gray', mfc='white', mew=1.8, ms=8,\n           ls='none', label='Uniform constr.'),\n    Line2D([], [], marker='o', color='gray', mfc='gray', mew=1.2, ms=8,\n           ls='none', label='VC constr.'),\n    Line2D([], [], color='#999999', lw=1.3, ls='--', label='Pareto (Uniform)'),\n    Line2D([], [], color='#555555', lw=1.6, ls='-',  label='Pareto (VC)'),\n    Line2D([], [], marker='x', color=C['xdata'], lw=0, ms=7,\n           label='Cross-dataset (Uniform)'),\n    Line2D([], [], color='#BBBBBB', lw=1, ls='--', label='Greedy (ΔF1 = 0)'),\n]\nax1.legend(handles=leg_h, loc='lower left', framealpha=0.92,\n           edgecolor='#CCCCCC', handletextpad=0.4)\n\nfig.suptitle('Diversity–Quality Pareto Frontier: SciERC Entity Construction',\n             fontsize=13, y=1.01)\nplt.tight_layout()\n\noutdir = Path(__file__).parent\nfig.savefig(outdir / 'pareto_plot.png', dpi=300)\nfig.savefig(outdir / 'pareto_plot.pdf')\nprint(f'Saved: {outdir}/pareto_plot.png, .pdf')\n\n# ── Analysis JSON ──\nanalysis = {\n    'dataset': 'SciERC',\n    'model': 'Qwen3-8B',\n    'N': 8,\n    'theta': 0.25,\n    'construction_method': 'threshold confirmation (fixed θ=0.25) vs greedy',\n    'data_points': {},\n    'pareto_frontier': {\n        'uniform_construction': [\n            {'label': p[2].replace('\\n', ' '), 'diversity_1_minus_degen': round(p[0], 4),\n             'delta_f1_pp': round(p[1], 2)} for p in pf_uni\n        ],\n        'vc_construction': [\n            {'label': p[2].replace('\\n', ' '), 'diversity_1_minus_degen': round(p[0], 4),\n             'delta_f1_pp': round(p[1], 2)} for p in pf_vc\n        ],\n    },\n    'cross_dataset_reference': xdata,\n    'key_findings': [\n        'Uniform Pareto frontier: T=0.7 → Mix 0.7+1.0 → T=1.0 (T=0.8 dominated by Mix 0.7+1.0)',\n        'VC Pareto frontier: T=0.8 → Mix 0.7+1.0 → T=1.0 (T=0.7 dominated by T=0.8 under VC)',\n        'VC construction mitigates the diversity-quality trade-off: flatter Pareto slope (quality drop per unit diversity is ~50% smaller)',\n        'Mix 0.8+1.0 is Pareto-dominated under both metrics: mixing two close temperatures yields higher degeneracy than either component',\n        'Mix 0.7+1.0 is Pareto-optimal under both uniform and VC: well-separated temperatures produce complementary diversity',\n        'Best VC ΔF1 is T=0.8 (+1.68pp) but with lower diversity; Mix 0.7+1.0 achieves nearly identical quality (+1.67pp) with higher diversity',\n    ],\n}\n\nfor lab, s in stats.items():\n    clean_lab = lab.replace('\\n', ' ')\n    analysis['data_points'][clean_lab] = {\n        'diversity_1_minus_degen': round(s['div_m'], 4),\n        'diversity_std': round(s['div_s'], 4),\n        'unique_per_N': round(s['un_m'], 4),\n        'uniform_delta_pp': round(s['ud_m'], 2),\n        'uniform_delta_std': round(s['ud_s'], 2),\n        'vc_delta_pp': round(s['vd_m'], 2),\n        'vc_delta_std': round(s['vd_s'], 2),\n        'n_seeds': s['n'],\n        'category': s['category'],\n        'pareto_optimal_uniform': clean_lab in [p[2].replace('\\n', ' ') for p in pf_uni],\n        'pareto_optimal_vc': clean_lab in [p[2].replace('\\n', ' ') for p in pf_vc],\n    }\n\nwith open(outdir / 'pareto_analysis.json', 'w') as f:\n    json.dump(analysis, f, indent=2, ensure_ascii=False)\nprint(f'Saved: {outdir}/pareto_analysis.json')\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 168,
+                  "oldLines": 14,
+                  "newStart": 168,
+                  "newLines": 19,
+                  "lines": [
+                    " ",
+                    "     # Cross-dataset references (left panel only)",
+                    "     if show_xdata:",
+                    "+        xdata_offsets = {",
+                    "+            'SciERC\\nbaseline': (5, -12, 'left'),",
+                    "+            'CoNLL':            (5,  3,  'left'),",
+                    "+            'FewNERD':          (5,  3,  'left'),",
+                    "+        }",
+                    "         for cd in xdata:",
+                    "             xv = 1 - cd['degen']",
+                    "             ax.scatter(xv, cd['delta'], marker='x', s=55,",
+                    "                        color=C['xdata'], linewidths=1.5, zorder=3, alpha=0.65)",
+                    "-            ax.annotate(cd['label'], (xv, cd['delta']),",
+                    "-                        fontsize=7.5, color=C['xdata'], ha='left', va='bottom',",
+                    "-                        xytext=(5, 3), textcoords='offset points',",
+                    "-                        linespacing=0.85)",
+                    "+            xo, yo, ha_cd = xdata_offsets[cd['label']]",
+                    "+            ax.annotate(cd['label'].replace('\\n', ' '), (xv, cd['delta']),",
+                    "+                        fontsize=7.5, color=C['xdata'], ha=ha_cd, va='bottom',",
+                    "+                        xytext=(xo, yo), textcoords='offset points')",
+                    " ",
+                    "     # annotations",
+                    "     offsets_a = {"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W2soWoWmyMewrpquKPqeVn",
+              "name": "Bash",
+              "input": {
+                "command": "python3 artifacts/a4_pareto_diversity/plot_pareto.py",
+                "description": "Regenerate plot with adjusted annotations"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "802d1351-6d99-4ab6-8323-8249b9522406",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YXkb4AFooTfQkdTDiBr5nW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 653,
+                "cache_read_input_tokens": 86547,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 653
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-20T09:14:06.767Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W2soWoWmyMewrpquKPqeVn",
+              "type": "tool_result",
+              "content": "Saved: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/pareto_plot.png, .pdf\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/pareto_analysis.json",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "90754884-8494-49e3-bcd7-da252a08a107",
+            "tool_use_result": {
+              "stdout": "Saved: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/pareto_plot.png, .pdf\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/pareto_analysis.json",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DgeqQQ1VYsc5fDfMAr584M",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/pareto_plot.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "883c6708-d139-44ad-9dce-85ed3a58530b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012TVuSxonq3xESrV4LGvyTL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 207,
+                "cache_read_input_tokens": 87200,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 207
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-20T09:14:10.551Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DgeqQQ1VYsc5fDfMAr584M",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "1d21ef6a-78c6-463a-8ef5-e8936a5d8fc6",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 296790
+              }
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The plot looks better now. Labels are more separated. Let me register the artifacts.\n\nKey observations from the plot:\n1. The Pareto frontiers are clearly visible\n2. Mix 0.7+1.0 is on both frontiers (key finding)\n3. Mix 0.8+1.0 is dominated (below both frontiers)\n4. VC construction (solid line) has a flatter/higher frontier than uniform (dashed)\n5. Cross-dataset references provide context\n\nThe \"SciERC baseline\" label still overlaps a bit with the T=0.8 marker area, but it's readable. \n\nNow I'm saving these visualizations.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "7c3fcb22-a8f6-4c5a-b20b-b7a378b1f516",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WJA7ob1ZV6GYcBiwe7ujmL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 649,
+                "cache_read_input_tokens": 87407,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 649
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "标注位置改善。现在注册 artifacts。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "e6a61f43-ce3c-4c50-b3ff-d0ec6275bd6c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WJA7ob1ZV6GYcBiwe7ujmL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 649,
+                "cache_read_input_tokens": 87407,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 649
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ms6QcYaGyxZWjxfX6jooRq",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "A4 Pareto Diversity-Quality Plot",
+                "type": "chart",
+                "description": "Diversity–Quality Pareto frontier for SciERC entity construction. Two panels: (a) 1-degeneracy vs construction ΔF1, (b) unique_outputs/N vs construction ΔF1. Shows uniform and VC construction with Pareto frontiers. Key finding: Mix 0.7+1.0 is Pareto-optimal under both methods; VC construction flattens the trade-off.",
+                "project": "struct_self_consist_ie",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/pareto_plot.png",
+                "tags": [
+                  "pareto",
+                  "diversity",
+                  "construction",
+                  "heterogeneous-T",
+                  "analysis"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "b1f040ee-c229-4d92-a166-8bb17a94deaa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WJA7ob1ZV6GYcBiwe7ujmL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 649,
+                "cache_read_input_tokens": 87407,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 649
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-20T09:14:21.062Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ms6QcYaGyxZWjxfX6jooRq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_22cdb8\\\", \\\"name\\\": \\\"A4 Pareto Diversity-Quality Plot\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Diversity–Quality Pareto frontier for SciERC entity construction. Two panels: (a) 1-degeneracy vs construction ΔF1, (b) unique_outputs/N vs construction ΔF1. Shows uniform and VC construction with Pareto frontiers. Key finding: Mix 0.7+1.0 is Pareto-optimal under both methods; VC construction flattens the trade-off.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/chart/pareto_plot.png\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T09:14:20.620514+00:00\\\", \\\"tags\\\": [\\\"pareto\\\", \\\"diversity\\\", \\\"construction\\\", \\\"heterogeneous-T\\\", \\\"analysis\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "87831076-8f1d-4e95-b47e-035b556c7a49",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_22cdb8\\\", \\\"name\\\": \\\"A4 Pareto Diversity-Quality Plot\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Diversity–Quality Pareto frontier for SciERC entity construction. Two panels: (a) 1-degeneracy vs construction ΔF1, (b) unique_outputs/N vs construction ΔF1. Shows uniform and VC construction with Pareto frontiers. Key finding: Mix 0.7+1.0 is Pareto-optimal under both methods; VC construction flattens the trade-off.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/chart/pareto_plot.png\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T09:14:20.620514+00:00\\\", \\\"tags\\\": [\\\"pareto\\\", \\\"diversity\\\", \\\"construction\\\", \\\"heterogeneous-T\\\", \\\"analysis\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_22cdb8\", \"name\": \"A4 Pareto Diversity-Quality Plot\", \"type\": \"chart\", \"description\": \"Diversity–Quality Pareto frontier for SciERC entity construction. Two panels: (a) 1-degeneracy vs construction ΔF1, (b) unique_outputs/N vs construction ΔF1. Shows uniform and VC construction with Pareto frontiers. Key finding: Mix 0.7+1.0 is Pareto-optimal under both methods; VC construction flattens the trade-off.\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/chart/pareto_plot.png\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T09:14:20.620514+00:00\", \"tags\": [\"pareto\", \"diversity\", \"construction\", \"heterogeneous-T\", \"analysis\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BFaZHZ1sTHHftSabFAKQBN",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "A4 Pareto Diversity-Quality Analysis",
+                "type": "data",
+                "description": "Pareto analysis JSON with all data points (5 T-configs × uniform/VC construction), Pareto-optimal configs, cross-dataset references, and key findings.",
+                "project": "struct_self_consist_ie",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/pareto_analysis.json",
+                "tags": [
+                  "pareto",
+                  "diversity",
+                  "construction",
+                  "analysis"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "d335a1f4-223b-497b-b41f-20b387bfa075",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WJA7ob1ZV6GYcBiwe7ujmL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 649,
+                "cache_read_input_tokens": 87407,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 649
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-20T09:14:24.186Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BFaZHZ1sTHHftSabFAKQBN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_f150dd\\\", \\\"name\\\": \\\"A4 Pareto Diversity-Quality Analysis\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Pareto analysis JSON with all data points (5 T-configs × uniform/VC construction), Pareto-optimal configs, cross-dataset references, and key findings.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/data/pareto_analysis.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T09:14:23.653509+00:00\\\", \\\"tags\\\": [\\\"pareto\\\", \\\"diversity\\\", \\\"construction\\\", \\\"analysis\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "e5f4710c-be89-4b29-9577-4fdccc10896f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_f150dd\\\", \\\"name\\\": \\\"A4 Pareto Diversity-Quality Analysis\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Pareto analysis JSON with all data points (5 T-configs × uniform/VC construction), Pareto-optimal configs, cross-dataset references, and key findings.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/data/pareto_analysis.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T09:14:23.653509+00:00\\\", \\\"tags\\\": [\\\"pareto\\\", \\\"diversity\\\", \\\"construction\\\", \\\"analysis\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_f150dd\", \"name\": \"A4 Pareto Diversity-Quality Analysis\", \"type\": \"data\", \"description\": \"Pareto analysis JSON with all data points (5 T-configs × uniform/VC construction), Pareto-optimal configs, cross-dataset references, and key findings.\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/data/pareto_analysis.json\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T09:14:23.653509+00:00\", \"tags\": [\"pareto\", \"diversity\", \"construction\", \"analysis\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BiYYd7iNAyewKR4KFhQ9PP",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "A4 Pareto Plot PDF",
+                "type": "chart",
+                "description": "PDF version of the Pareto diversity-quality plot for paper inclusion.",
+                "project": "struct_self_consist_ie",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity/pareto_plot.pdf",
+                "tags": [
+                  "pareto",
+                  "diversity",
+                  "paper-figure"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "5c0d32a3-7cf1-4bc6-b6bc-9a0545f19501",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WJA7ob1ZV6GYcBiwe7ujmL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 649,
+                "cache_read_input_tokens": 87407,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 649
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-20T09:14:25.742Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BiYYd7iNAyewKR4KFhQ9PP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_ab1bc4\\\", \\\"name\\\": \\\"A4 Pareto Plot PDF\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"PDF version of the Pareto diversity-quality plot for paper inclusion.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/chart/pareto_plot.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T09:14:25.259466+00:00\\\", \\\"tags\\\": [\\\"pareto\\\", \\\"diversity\\\", \\\"paper-figure\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "f3600dc8-d682-4ea8-87c5-6b0f33bda46a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_ab1bc4\\\", \\\"name\\\": \\\"A4 Pareto Plot PDF\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"PDF version of the Pareto diversity-quality plot for paper inclusion.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/chart/pareto_plot.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T09:14:25.259466+00:00\\\", \\\"tags\\\": [\\\"pareto\\\", \\\"diversity\\\", \\\"paper-figure\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_ab1bc4\", \"name\": \"A4 Pareto Plot PDF\", \"type\": \"chart\", \"description\": \"PDF version of the Pareto diversity-quality plot for paper inclusion.\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/chart/pareto_plot.pdf\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T09:14:25.259466+00:00\", \"tags\": [\"pareto\", \"diversity\", \"paper-figure\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出文件：\n\n- `artifacts/a4_pareto_diversity/pareto_plot.png` / `.pdf`\n- `artifacts/a4_pareto_diversity/pareto_analysis.json`\n\n**核心发现：**\n\n| Config | 1−degen | Uniform ΔF1 | VC ΔF1 | Pareto? |\n|--------|---------|-------------|--------|---------|\n| T=0.7 | 0.777 | **+1.81** | +1.17 | Uniform only |\n| T=0.8 | 0.819 | +1.25 | **+1.68** | VC only |\n| Mix 0.7+1.0 | 0.830 | +1.43 | +1.67 | **Both** |\n| T=1.0 | 0.877 | +0.75 | +1.21 | Both (highest diversity) |\n| Mix 0.8+1.0 | 0.789 | −0.17 | +0.47 | **Dominated** |\n\n1. **Mix 0.7+1.0 双 Pareto 最优**：well-separated temperatures 产生互补多样性，兼顾 diversity 和 quality\n2. **VC construction 压平 trade-off**：VC Pareto 斜率比 Uniform 平缓 ~50%，diversity 代价更小\n3. **Mix 0.8+1.0 被支配**：两个接近的 T 混合后 degeneracy 反而高于单一 T=0.8，construction 增益消失"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "uuid": "9b94874a-573e-4568-9cd3-f18c9b7137f4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FqAz9irSDWaVsGhxNpAAN4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1943,
+                "cache_read_input_tokens": 88056,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1943
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出文件：\n\n- `artifacts/a4_pareto_diversity/pareto_plot.png` / `.pdf`\n- `artifacts/a4_pareto_diversity/pareto_analysis.json`\n\n**核心发现：**\n\n| Config | 1−degen | Uniform ΔF1 | VC ΔF1 | Pareto? |\n|--------|---------|-------------|--------|---------|\n| T=0.7 | 0.777 | **+1.81** | +1.17 | Uniform only |\n| T=0.8 | 0.819 | +1.25 | **+1.68** | VC only |\n| Mix 0.7+1.0 | 0.830 | +1.43 | +1.67 | **Both** |\n| T=1.0 | 0.877 | +0.75 | +1.21 | Both (highest diversity) |\n| Mix 0.8+1.0 | 0.789 | −0.17 | +0.47 | **Dominated** |\n\n1. **Mix 0.7+1.0 双 Pareto 最优**：well-separated temperatures 产生互补多样性，兼顾 diversity 和 quality\n2. **VC construction 压平 trade-off**：VC Pareto 斜率比 Uniform 平缓 ~50%，diversity 代价更小\n3. **Mix 0.8+1.0 被支配**：两个接近的 T 混合后 degeneracy 反而高于单一 T=0.8，construction 增益消失"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 785042,
+            "duration_api_ms": 781536,
+            "num_turns": 24,
+            "stop_reason": "end_turn",
+            "session_id": "d032b0ed-ba11-4189-b406-5c67b6310eed",
+            "total_cost_usd": 2.9762774999999997,
+            "usage": {
+              "input_tokens": 18815,
+              "cache_creation_input_tokens": 78158,
+              "cache_read_input_tokens": 991138,
+              "output_tokens": 33654,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 78158,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 421,
+                  "cache_read_input_tokens": 88056,
+                  "cache_creation_input_tokens": 1943,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1943
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1342,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0014370000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 18837,
+                "outputTokens": 47039,
+                "cacheReadInputTokens": 1601661,
+                "cacheCreationInputTokens": 144616,
+                "webSearchRequests": 0,
+                "costUSD": 2.9748405,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "8e0e2f08-ec82-42d1-b467-58b59d93337a"
+          },
+          "id": "event-000130"
+        }
+      ]
+    }
+  ]
+}

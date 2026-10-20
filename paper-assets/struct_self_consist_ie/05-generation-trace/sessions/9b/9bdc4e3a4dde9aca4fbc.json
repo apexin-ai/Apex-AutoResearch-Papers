@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bdc4e3a4dde9aca4fbc",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code llama scierc seed123 inference",
+  "task_key": "worker_code_llama_scierc_seed123_inference_20260518T190455",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_llama_scierc_seed123_inference_20260518T190455_result.json",
+    "occurrence": 1,
+    "bytes": 1021,
+    "sha256": "884ff2d5e2a6dea01d3f8f77d29d2b19bb35897b0e24299b1a899fd13cfc16a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。分析报告：\n\n## LLaMA-3.1-8B SciERC seed=123 — 结果\n\n推理数据已存在于 `output/exp_018_llama_scierc_seed123/samples.jsonl`（551 instances, N=8, T=1.0, logprobs），跳过重跑。\n\n### 5-Signal (full split, n=529)\n\n| Signal | ρ | AUROC |\n|--------|------|-------|\n| voting_conf | **0.4193** | 0.7159 |\n| SJ | 0.3552 | 0.7092 |\n| FK | 0.2897 | 0.6678 |\n| EM | 0.2844 | **0.7468** |\n| logprob | 0.1970 | 0.5839 |\n\n- Greedy F1: 0.6454\n- Oracle F1: 0.7657\n- Headroom: **12.04pp**\n\n### DGS\n\n| Metric | Value |\n|--------|-------|\n| Degeneracy | 141/529 (26.7%) |\n| DGS F1 | 0.6416 |\n| DGS - Greedy | **-0.38pp** (CI: [-1.62, +0.78]) |\n| NonDegen LP - Greedy | -0.51pp (CI: [-2.26, +1.19]) |\n\nDGS 未能改善 greedy baseline，LP selection 在非退化实例上略微负向。与 LLaMA seed=42/456 结果一致。\n\n输出路径: `output/exp_007_llama_scierc_seed123/`（symlink + 分析报告）\nRegistry: `exp_007_llama_scierc_seed123` (DONE, negative)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-scierc-seed123-inference.md"
+}

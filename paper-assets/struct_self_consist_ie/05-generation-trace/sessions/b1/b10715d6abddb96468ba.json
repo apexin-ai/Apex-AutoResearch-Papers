@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b10715d6abddb96468ba",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp bjb1 gpu batch",
+  "task_key": "worker_exp_bjb1_gpu_batch_20260514T150709",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_bjb1_gpu_batch_20260514T150709_result.json",
+    "occurrence": 1,
+    "bytes": 807,
+    "sha256": "15280339f8e6535fad5298f6820ad0472d61d685cc0683800bedebea646ff3c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 张 GPU 全部满载运行：\n\n| GPU | 显存占用 | 实验 | 状态 |\n|-----|---------|------|------|\n| 0 | 24728/32607 MiB | exp_017_llama_conll (已有训练) | 运行中 |\n| 1 | 30084/32607 MiB | exp_007_llama_seed123 | ✅ 已启动，正在推理 |\n| 2 | 29968/32607 MiB | exp_007_llama_seed456 | ✅ 已启动，正在推理 |\n| 3 | 30134/32607 MiB | exp_008_re_seed123 | ✅ 已启动，正在推理 |\n\n**跳过的实验：** exp_001_seed456_v2 (NER N=16 seed=456) — GPU 0 被 `llamafactory-cli train train_config_llama_conll2003.yaml` (exp_017_llama_conll) 占用。等该训练完成后可补跑。\n\n3 个新实验均已注册到 registry（RUNNING），tmux 会话：`exp007_s123`, `exp007_s456`, `exp008_rs123`。日志显示 vLLM 已加载模型并开始生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-bjb1-gpu-batch.md"
+}

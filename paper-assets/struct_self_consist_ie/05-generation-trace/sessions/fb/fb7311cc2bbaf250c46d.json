@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb7311cc2bbaf250c46d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "infra install tmux and retrain ft002",
+  "task_key": "worker_infra_install_tmux_and_retrain_ft002_20260514T080436",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_install_tmux_and_retrain_ft002_20260514T080436_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "9d89bbe46bd8c7ab8f0e6991d2720255234df2a9330433ae018474304a30943d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。报告如下：\n\n| 项目 | 状态 |\n|------|------|\n| **tmux** | 已安装，版本 3.2a |\n| **v2 checkpoint** | 已清理，checkpoints/ 下仅剩 `ft_001_train.log`、`qwen3-8b-scierc-lora`、`qwen3-8b-scierc-merged` |\n| **GPU** | 4× 32GB（5090），GPU 0/1/2 空闲（0% util, 2MiB used），GPU 3 utilization 100% 但显存仅 2MiB |\n\n**train_config_v2.yaml 摘要：**\n- 模型：Qwen3-8B，LoRA (rank=32, alpha=64, target=all)\n- 数据：scierc_uie_train / scierc_uie_dev\n- 训练：batch=4, grad_accum=4, lr=2e-4, 5 epochs, cosine scheduler, bf16\n- 输出：`checkpoints/qwen3-8b-scierc-lora-v2`\n\nGPU cuda:1 空闲可用，可以提交训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-install-tmux-and-retrain-ft002.md"
+}

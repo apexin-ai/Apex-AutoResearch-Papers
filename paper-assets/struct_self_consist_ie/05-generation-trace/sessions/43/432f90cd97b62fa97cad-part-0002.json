@@ -1,0 +1,1414 @@
+{
+  "schema_version": "1.0",
+  "session_id": "432f90cd97b62fa97cad",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-20T09:47:14.522Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01StX7aBQWqvDQNCV6hebZ46",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/e1_signal_routing.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "3eb99588-1a2e-4e36-a02e-1ba7e5ced218",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/e1_signal_routing.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"E1 Adaptive Signal Routing: config-level construction method router.\"\"\"\n\nimport json\nimport os\nfrom collections import Counter\n\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import LeaveOneOut\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.metrics import confusion_matrix\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nOUT = os.path.join(BASE, \"output\")\n\nCONSTRUCTION_METHODS = [\n    \"lp_selection\", \"majority_vote\", \"consensus_theta2n\", \"consensus_lp_weighted\"\n]\n\nCONFIG_SPECS = [\n    # (path, dataset_key, model_family, model_size, regime, seed, forced_dataset)\n    (f\"{OUT}/exp_scierc_seed456/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 456, \"scierc\"),\n    (f\"{OUT}/exp_scierc_seed789/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 789, \"scierc\"),\n    (f\"{OUT}/exp_conll_seed123/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 123, \"conll\"),\n    (f\"{OUT}/exp_conll_seed456/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 456, \"conll\"),\n    (f\"{OUT}/exp_fewnerd_seed123/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 123, \"fewnerd\"),\n    (f\"{OUT}/exp_fewnerd_seed456/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 456, \"fewnerd\"),\n    (f\"{OUT}/exp_fewnerd_seed789/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 789, \"fewnerd\"),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"zs\", None, \"scierc\"),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"conll2003\", \"Qwen2.5\", 72, \"zs\", None, \"conll\"),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"zs\", None, \"fewnerd\"),\n    (f\"{OUT}/72b_fewshot_signals/scierc/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"fs\", None, \"scierc\"),\n    (f\"{OUT}/72b_fewshot_signals/conll2003/full_signal_report.json\", \"conll\", \"Qwen2.5\", 72, \"fs\", None, \"conll\"),\n    (f\"{OUT}/72b_fewshot_signals/fewnerd/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"fs\", None, \"fewnerd\"),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json\", \"qwen25_7b_n8_seed42\", \"Qwen2.5\", 7, \"ft\", 42, \"fewnerd\"),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed123/full_signal_report.json\", \"qwen25_7b_n8_seed123\", \"Qwen2.5\", 7, \"ft\", 123, \"fewnerd\"),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed456/full_signal_report.json\", \"qwen25_7b_n8_seed456\", \"Qwen2.5\", 7, \"ft\", 456, \"fewnerd\"),\n]\n\nFEATURE_NAMES = [\n    \"model_size\", \"model_family\", \"dataset\", \"regime\",\n    \"base_f1\", \"degeneracy_rate\", \"oracle_headroom\",\n    \"rho_SJ\", \"rho_FK\", \"rho_LP\", \"rho_EM\", \"rho_VC\"\n]\n\n\nclass NumpyEncoder(json.JSONEncoder):\n    def default(self, obj):\n        if isinstance(obj, (np.integer,)):\n            return int(obj)\n        if isinstance(obj, (np.floating,)):\n            return float(obj)\n        if isinstance(obj, (np.bool_,)):\n            return bool(obj)\n        if isinstance(obj, np.ndarray):\n            return obj.tolist()\n        return super().default(obj)\n\n\ndef load_config(path, dataset_key, model_family, model_size, regime, seed, forced_dataset):\n    if not os.path.exists(path):\n        return None\n    with open(path) as f:\n        data = json.load(f)\n    if dataset_key in data:\n        d = data[dataset_key]\n    else:\n        keys = list(data.keys())\n        d = data[keys[0]] if len(keys) == 1 else data\n\n    baselines = d.get(\"baselines\", {})\n    greedy_f1 = baselines.get(\"greedy\", {}).get(\"mean\", d.get(\"greedy_f1\"))\n    oracle_f1 = baselines.get(\"oracle\", {}).get(\"mean\", d.get(\"oracle_f1\"))\n    if greedy_f1 is None:\n        return None\n\n    signals = d.get(\"signals\", {})\n    construction_f1 = {m: baselines[m][\"mean\"] for m in CONSTRUCTION_METHODS if m in baselines}\n\n    return {\n        \"config_id\": f\"{model_family}_{model_size}B_{regime}_{forced_dataset}_s{seed}\",\n        \"model_family\": model_family,\n        \"model_size\": model_size,\n        \"dataset\": forced_dataset,\n        \"regime\": regime,\n        \"seed\": seed,\n        \"greedy_f1\": greedy_f1,\n        \"oracle_f1\": oracle_f1,\n        \"oracle_headroom\": oracle_f1 - greedy_f1 if oracle_f1 else None,\n        \"degeneracy_rate\": d.get(\"degeneracy_rate\", 0),\n        \"n_instances\": d.get(\"n_instances\"),\n        \"rho_SJ\": signals.get(\"SJ\", {}).get(\"rho\", 0),\n        \"rho_FK\": signals.get(\"FK\", {}).get(\"rho\", 0),\n        \"rho_LP\": signals.get(\"LP\", {}).get(\"rho\", 0),\n        \"rho_EM\": signals.get(\"EM\", {}).get(\"rho\", 0),\n        \"rho_VC\": signals.get(\"VC\", {}).get(\"rho\", 0),\n        \"construction_f1\": construction_f1,\n    }\n\n\ndef compute_delta_f1(config):\n    greedy = config[\"greedy_f1\"]\n    return {m: f1 - greedy for m, f1 in config[\"construction_f1\"].items()}\n\n\ndef get_label(config, simplify=False):\n    deltas = compute_delta_f1(config)\n    if not deltas:\n        return \"none\", 0.0\n    best_method = max(deltas, key=deltas.get)\n    best_delta = deltas[best_method]\n    label = \"none\" if best_delta <= 0 else best_method\n    if simplify and label in (\"consensus_theta2n\", \"consensus_lp_weighted\"):\n        label = \"consensus\"\n    return label, best_delta\n\n\ndef build_features(config):\n    ds_map = {\"scierc\": 0, \"conll\": 1, \"fewnerd\": 2}\n    regime_map = {\"ft\": 0, \"zs\": 1, \"fs\": 2}\n    family_map = {\"Qwen3\": 0, \"Qwen2.5\": 1, \"LLaMA\": 2}\n    return [\n        config[\"model_size\"],\n        family_map.get(config[\"model_family\"], 0),\n        ds_map.get(config[\"dataset\"], 0),\n        regime_map.get(config[\"regime\"], 0),\n        config[\"greedy_f1\"],\n        config[\"degeneracy_rate\"],\n        config[\"oracle_headroom\"] or 0,\n        config[\"rho_SJ\"],\n        config[\"rho_FK\"],\n        config[\"rho_LP\"],\n        config[\"rho_EM\"],\n        config[\"rho_VC\"],\n    ]\n\n\ndef resolve_router_delta(predicted, deltas):\n    if predicted == \"none\":\n        return 0\n    if predicted == \"consensus\":\n        return max(deltas.get(\"consensus_theta2n\", -999), deltas.get(\"consensus_lp_weighted\", -999))\n    return deltas.get(predicted, 0)\n\n\ndef run_experiment(configs, simplify_labels, exp_name):\n    print(f\"\\n{'#'*70}\")\n    print(f\"# {exp_name}\")\n    print(f\"{'#'*70}\")\n\n    labels = []\n    feature_matrix = []\n    per_config_results = []\n\n    for c in configs:\n        label, best_delta = get_label(c, simplify=simplify_labels)\n        labels.append(label)\n        feature_matrix.append(build_features(c))\n        deltas = compute_delta_f1(c)\n        lp_delta = deltas.get(\"lp_selection\", 0)\n        per_config_results.append({\n            \"config_id\": c[\"config_id\"],\n            \"model_family\": c[\"model_family\"],\n            \"model_size\": c[\"model_size\"],\n            \"dataset\": c[\"dataset\"],\n            \"regime\": c[\"regime\"],\n            \"greedy_f1\": round(c[\"greedy_f1\"], 4),\n            \"oracle_f1\": round(c[\"oracle_f1\"], 4),\n            \"degeneracy_rate\": round(c[\"degeneracy_rate\"], 4),\n            \"construction_deltas_pp\": {k: round(v * 100, 2) for k, v in deltas.items()},\n            \"best_method\": label,\n            \"best_delta_pp\": round(best_delta * 100, 2),\n            \"lp_delta_pp\": round(lp_delta * 100, 2),\n        })\n\n    X = np.array(feature_matrix)\n    label_counts = Counter(labels)\n    print(f\"\\nLabel distribution: {dict(label_counts)}\")\n    for pcr in per_config_results:\n        print(f\"  {pcr['config_id']:40s} -> {pcr['best_method']:20s} (D={pcr['best_delta_pp']:+.2f}pp, LP={pcr['lp_delta_pp']:+.2f}pp)\")\n\n    le = LabelEncoder()\n    y = le.fit_transform(labels)\n    class_names = [str(c) for c in le.classes_]\n\n    loo = LeaveOneOut()\n    scaler = StandardScaler()\n\n    results = {}\n    for model_name, model_cls, model_kwargs in [\n        (\"LogisticRegression\", LogisticRegression, {\"C\": 1.0, \"max_iter\": 1000}),\n        (\"RandomForest\", RandomForestClassifier, {\"n_estimators\": 100, \"max_depth\": 3, \"random_state\": 42}),\n    ]:\n        preds = []\n        pred_labels_list = []\n        for train_idx, test_idx in loo.split(X):\n            X_tr, X_te = X[train_idx], X[test_idx]\n            y_tr = y[train_idx]\n            Xs_tr = scaler.fit_transform(X_tr)\n            Xs_te = scaler.transform(X_te)\n            model = model_cls(**model_kwargs)\n            model.fit(Xs_tr, y_tr)\n            pred = model.predict(Xs_te)[0]\n            preds.append(pred)\n            pred_labels_list.append(str(le.inverse_transform([pred])[0]))\n\n        accuracy = float(np.mean(np.array(preds) == y))\n        n = len(configs)\n\n        router_delta_sum = oracle_delta_sum = lp_delta_sum = 0.0\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            router_delta_sum += resolve_router_delta(pred_labels_list[i], deltas)\n            oracle_delta_sum += max(max(deltas.values()), 0) if deltas else 0\n            lp_delta_sum += deltas.get(\"lp_selection\", 0)\n\n        router_avg = router_delta_sum / n\n        oracle_avg = oracle_delta_sum / n\n        lp_avg = lp_delta_sum / n\n\n        cm = confusion_matrix(y, preds, labels=range(len(class_names)))\n\n        Xs_all = scaler.fit_transform(X)\n        full_model = model_cls(**model_kwargs)\n        full_model.fit(Xs_all, y)\n        if hasattr(full_model, \"feature_importances_\"):\n            imp = full_model.feature_importances_\n        elif hasattr(full_model, \"coef_\"):\n            imp = np.abs(full_model.coef_).mean(axis=0) if full_model.coef_.ndim > 1 else np.abs(full_model.coef_)\n        else:\n            imp = np.zeros(X.shape[1])\n        feature_imp = sorted(\n            {FEATURE_NAMES[i]: round(float(imp[i]), 4) for i in range(len(FEATURE_NAMES))}.items(),\n            key=lambda x: -x[1]\n        )\n\n        print(f\"\\n{'='*60}\")\n        print(f\"{model_name}\")\n        print(f\"  LOO Accuracy:     {accuracy:.1%} ({int(accuracy * n)}/{n})\")\n        print(f\"  Router avg dF1:   {router_avg*100:+.2f} pp\")\n        print(f\"  Always-LP dF1:    {lp_avg*100:+.2f} pp\")\n        print(f\"  Oracle dF1:       {oracle_avg*100:+.2f} pp\")\n        print(f\"  Top features: {feature_imp[:5]}\")\n        print(f\"  CM classes: {class_names}\")\n        for ri, row in enumerate(cm):\n            print(f\"    {class_names[ri]:25s}: {[int(x) for x in row]}\")\n        for i in range(n):\n            ok = \"OK\" if pred_labels_list[i] == labels[i] else \"XX\"\n            print(f\"    {configs[i]['config_id']:40s} true={labels[i]:20s} pred={pred_labels_list[i]:20s} [{ok}]\")\n\n        per_config_preds = []\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            pd_ = resolve_router_delta(pred_labels_list[i], deltas)\n            per_config_preds.append({\n                \"config_id\": c[\"config_id\"],\n                \"actual\": labels[i],\n                \"predicted\": pred_labels_list[i],\n                \"correct\": bool(labels[i] == pred_labels_list[i]),\n                \"predicted_delta_pp\": round(pd_ * 100, 2),\n            })\n\n        results[model_name] = {\n            \"accuracy\": round(accuracy, 4),\n            \"n_correct\": int(accuracy * n),\n            \"n_total\": n,\n            \"router_avg_delta_pp\": round(router_avg * 100, 2),\n            \"always_lp_avg_delta_pp\": round(lp_avg * 100, 2),\n            \"oracle_avg_delta_pp\": round(oracle_avg * 100, 2),\n            \"feature_importance\": dict(feature_imp),\n            \"confusion_matrix\": {\"classes\": class_names, \"matrix\": [[int(x) for x in row] for row in cm]},\n            \"per_config_predictions\": per_config_preds,\n        }\n\n    return per_config_results, dict(label_counts), results\n\n\ndef main():\n    configs = []\n    missing = []\n    for spec in CONFIG_SPECS:\n        c = load_config(*spec)\n        if c is None:\n            missing.append(spec[0])\n        else:\n            configs.append(c)\n\n    print(f\"Loaded {len(configs)} configs, {len(missing)} missing\")\n    if missing:\n        print(f\"Missing: {missing}\")\n\n    pcr_5, lc_5, res_5 = run_experiment(configs, False, \"5-class (fine-grained)\")\n    pcr_3, lc_3, res_3 = run_experiment(configs, True, \"3-class (lp/consensus/none)\")\n\n    all_accs = [(f\"5class_{m}\", r[\"accuracy\"], r) for m, r in res_5.items()]\n    all_accs += [(f\"3class_{m}\", r[\"accuracy\"], r) for m, r in res_3.items()]\n    best_name, best_acc, best_r = max(all_accs, key=lambda x: (x[1], x[2][\"router_avg_delta_pp\"]))\n\n    print(f\"\\n\\n{'#'*70}\")\n    print(f\"# BEST: {best_name} | Acc={best_acc:.1%} | Router={best_r['router_avg_delta_pp']:+.2f}pp | LP={best_r['always_lp_avg_delta_pp']:+.2f}pp | Oracle={best_r['oracle_avg_delta_pp']:+.2f}pp\")\n    print(f\"{'#'*70}\")\n\n    output = {\n        \"experiment\": \"E1_adaptive_signal_routing\",\n        \"n_configs\": len(configs),\n        \"missing_configs\": missing,\n        \"construction_methods\": CONSTRUCTION_METHODS,\n        \"method_mapping\": {\n            \"lp_selection\": \"LP signal-based sample selection\",\n            \"majority_vote\": \"Token-level majority voting\",\n            \"consensus_theta2n\": \"Entity-level voting (uniform, threshold=2/N)\",\n            \"consensus_lp_weighted\": \"Entity-level voting (LP-weighted)\",\n        },\n        \"feature_names\": FEATURE_NAMES,\n        \"experiments\": {\n            \"5_class\": {\n                \"label_distribution\": lc_5,\n                \"per_config_data\": pcr_5,\n                \"models\": res_5,\n            },\n            \"3_class_simplified\": {\n                \"description\": \"Merged consensus_theta2n + consensus_lp_weighted -> consensus\",\n                \"label_distribution\": lc_3,\n                \"per_config_data\": pcr_3,\n                \"models\": res_3,\n            },\n        },\n        \"summary\": {\n            \"best_model\": best_name,\n            \"best_accuracy\": best_acc,\n            \"best_router_delta_pp\": best_r[\"router_avg_delta_pp\"],\n            \"always_lp_delta_pp\": best_r[\"always_lp_avg_delta_pp\"],\n            \"oracle_delta_pp\": best_r[\"oracle_avg_delta_pp\"],\n            \"router_beats_lp\": best_r[\"router_avg_delta_pp\"] > best_r[\"always_lp_avg_delta_pp\"],\n            \"accuracy_above_60\": best_acc > 0.6,\n        },\n    }\n\n    out_dir = os.path.join(BASE, \"artifacts\", \"e1_signal_routing\")\n    os.makedirs(out_dir, exist_ok=True)\n    out_path = os.path.join(out_dir, \"routing_results.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, cls=NumpyEncoder)\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 3,
+                  "oldLines": 7,
+                  "newStart": 3,
+                  "newLines": 6,
+                  "lines": [
+                    " ",
+                    " import json",
+                    " import os",
+                    "-import sys",
+                    " from collections import Counter",
+                    " ",
+                    " import numpy as np"
+                  ]
+                },
+                {
+                  "oldStart": 16,
+                  "oldLines": 76,
+                  "newStart": 15,
+                  "newLines": 75,
+                  "lines": [
+                    " BASE = \"/root/autodl-tmp/struct_self_consist_ie\"",
+                    " OUT = os.path.join(BASE, \"output\")",
+                    " ",
+                    "-CONSTRUCTION_METHODS = [\"lp_selection\", \"majority_vote\", \"consensus_theta2n\", \"consensus_lp_weighted\"]",
+                    "+CONSTRUCTION_METHODS = [",
+                    "+    \"lp_selection\", \"majority_vote\", \"consensus_theta2n\", \"consensus_lp_weighted\"",
+                    "+]",
+                    " ",
+                    " CONFIG_SPECS = [",
+                    "-    # (path_to_report, dataset_key, model_family, model_size, regime, seed)",
+                    "-    # Qwen3-8B FT",
+                    "-    (f\"{OUT}/exp_scierc_seed456/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 456),",
+                    "-    (f\"{OUT}/exp_scierc_seed789/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 789),",
+                    "-    (f\"{OUT}/exp_conll_seed123/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 123),",
+                    "-    (f\"{OUT}/exp_conll_seed456/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 456),",
+                    "-    (f\"{OUT}/exp_fewnerd_seed123/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 123),",
+                    "-    (f\"{OUT}/exp_fewnerd_seed456/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 456),",
+                    "-    (f\"{OUT}/exp_fewnerd_seed789/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 789),",
+                    "-    # Qwen2.5-72B ZS",
+                    "-    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"zs\", None),",
+                    "-    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"conll2003\", \"Qwen2.5\", 72, \"zs\", None),",
+                    "-    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"zs\", None),",
+                    "-    # Qwen2.5-72B FS",
+                    "-    (f\"{OUT}/72b_fewshot_signals/scierc/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"fs\", None),",
+                    "-    (f\"{OUT}/72b_fewshot_signals/conll2003/full_signal_report.json\", \"conll\", \"Qwen2.5\", 72, \"fs\", None),",
+                    "-    (f\"{OUT}/72b_fewshot_signals/fewnerd/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"fs\", None),",
+                    "-    # Qwen2.5-7B FT",
+                    "-    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json\", \"qwen25_7b_n8_seed42\", \"Qwen2.5\", 7, \"ft\", 42),",
+                    "-    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed123/full_signal_report.json\", \"qwen25_7b_n8_seed123\", \"Qwen2.5\", 7, \"ft\", 123),",
+                    "-    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed456/full_signal_report.json\", \"qwen25_7b_n8_seed456\", \"Qwen2.5\", 7, \"ft\", 456),",
+                    "+    # (path, dataset_key, model_family, model_size, regime, seed, forced_dataset)",
+                    "+    (f\"{OUT}/exp_scierc_seed456/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 456, \"scierc\"),",
+                    "+    (f\"{OUT}/exp_scierc_seed789/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 789, \"scierc\"),",
+                    "+    (f\"{OUT}/exp_conll_seed123/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 123, \"conll\"),",
+                    "+    (f\"{OUT}/exp_conll_seed456/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 456, \"conll\"),",
+                    "+    (f\"{OUT}/exp_fewnerd_seed123/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 123, \"fewnerd\"),",
+                    "+    (f\"{OUT}/exp_fewnerd_seed456/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 456, \"fewnerd\"),",
+                    "+    (f\"{OUT}/exp_fewnerd_seed789/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 789, \"fewnerd\"),",
+                    "+    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"zs\", None, \"scierc\"),",
+                    "+    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"conll2003\", \"Qwen2.5\", 72, \"zs\", None, \"conll\"),",
+                    "+    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"zs\", None, \"fewnerd\"),",
+                    "+    (f\"{OUT}/72b_fewshot_signals/scierc/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"fs\", None, \"scierc\"),",
+                    "+    (f\"{OUT}/72b_fewshot_signals/conll2003/full_signal_report.json\", \"conll\", \"Qwen2.5\", 72, \"fs\", None, \"conll\"),",
+                    "+    (f\"{OUT}/72b_fewshot_signals/fewnerd/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"fs\", None, \"fewnerd\"),",
+                    "+    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json\", \"qwen25_7b_n8_seed42\", \"Qwen2.5\", 7, \"ft\", 42, \"fewnerd\"),",
+                    "+    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed123/full_signal_report.json\", \"qwen25_7b_n8_seed123\", \"Qwen2.5\", 7, \"ft\", 123, \"fewnerd\"),",
+                    "+    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed456/full_signal_report.json\", \"qwen25_7b_n8_seed456\", \"Qwen2.5\", 7, \"ft\", 456, \"fewnerd\"),",
+                    " ]",
+                    " ",
+                    "+FEATURE_NAMES = [",
+                    "+    \"model_size\", \"model_family\", \"dataset\", \"regime\",",
+                    "+    \"base_f1\", \"degeneracy_rate\", \"oracle_headroom\",",
+                    "+    \"rho_SJ\", \"rho_FK\", \"rho_LP\", \"rho_EM\", \"rho_VC\"",
+                    "+]",
+                    " ",
+                    "-def load_config(path, dataset_key, model_family, model_size, regime, seed):",
+                    "+",
+                    "+class NumpyEncoder(json.JSONEncoder):",
+                    "+    def default(self, obj):",
+                    "+        if isinstance(obj, (np.integer,)):",
+                    "+            return int(obj)",
+                    "+        if isinstance(obj, (np.floating,)):",
+                    "+            return float(obj)",
+                    "+        if isinstance(obj, (np.bool_,)):",
+                    "+            return bool(obj)",
+                    "+        if isinstance(obj, np.ndarray):",
+                    "+            return obj.tolist()",
+                    "+        return super().default(obj)",
+                    "+",
+                    "+",
+                    "+def load_config(path, dataset_key, model_family, model_size, regime, seed, forced_dataset):",
+                    "     if not os.path.exists(path):",
+                    "         return None",
+                    "     with open(path) as f:",
+                    "         data = json.load(f)",
+                    "-",
+                    "-    # Handle nested vs flat format",
+                    "     if dataset_key in data:",
+                    "         d = data[dataset_key]",
+                    "     else:",
+                    "         keys = list(data.keys())",
+                    "-        if len(keys) == 1:",
+                    "-            d = data[keys[0]]",
+                    "-        else:",
+                    "-            d = data",
+                    "+        d = data[keys[0]] if len(keys) == 1 else data",
+                    " ",
+                    "     baselines = d.get(\"baselines\", {})",
+                    "     greedy_f1 = baselines.get(\"greedy\", {}).get(\"mean\", d.get(\"greedy_f1\"))",
+                    "     oracle_f1 = baselines.get(\"oracle\", {}).get(\"mean\", d.get(\"oracle_f1\"))",
+                    "-",
+                    "     if greedy_f1 is None:",
+                    "         return None",
+                    " ",
+                    "-    # Normalize dataset name",
+                    "-    ds_name = d.get(\"name\", dataset_key)",
+                    "-    if \"conll\" in ds_name.lower():",
+                    "-        ds_name = \"conll\"",
+                    "-    elif \"scierc\" in ds_name.lower():",
+                    "-        ds_name = \"scierc\"",
+                    "-    elif \"fewnerd\" in ds_name.lower() or \"few\" in ds_name.lower():",
+                    "-        ds_name = \"fewnerd\"",
+                    "-",
+                    "     signals = d.get(\"signals\", {})",
+                    "-    construction_f1 = {}",
+                    "-    for method in CONSTRUCTION_METHODS:",
+                    "-        if method in baselines:",
+                    "-            construction_f1[method] = baselines[method][\"mean\"]",
+                    "+    construction_f1 = {m: baselines[m][\"mean\"] for m in CONSTRUCTION_METHODS if m in baselines}",
+                    " ",
+                    "-    config = {",
+                    "-        \"config_id\": f\"{model_family}_{model_size}B_{regime}_{ds_name}_s{seed}\",",
+                    "+    return {",
+                    "+        \"config_id\": f\"{model_family}_{model_size}B_{regime}_{forced_dataset}_s{seed}\",",
+                    "         \"model_family\": model_family,",
+                    "         \"model_size\": model_size,",
+                    "-        \"dataset\": ds_name,",
+                    "+        \"dataset\": forced_dataset,",
+                    "         \"regime\": regime,",
+                    "         \"seed\": seed,",
+                    "         \"greedy_f1\": greedy_f1,"
+                  ]
+                },
+                {
+                  "oldStart": 100,
+                  "oldLines": 33,
+                  "newStart": 98,
+                  "newLines": 29,
+                  "lines": [
+                    "         \"rho_VC\": signals.get(\"VC\", {}).get(\"rho\", 0),",
+                    "         \"construction_f1\": construction_f1,",
+                    "     }",
+                    "-    return config",
+                    " ",
+                    " ",
+                    " def compute_delta_f1(config):",
+                    "     greedy = config[\"greedy_f1\"]",
+                    "-    deltas = {}",
+                    "-    for method, f1 in config[\"construction_f1\"].items():",
+                    "-        deltas[method] = f1 - greedy",
+                    "-    return deltas",
+                    "+    return {m: f1 - greedy for m, f1 in config[\"construction_f1\"].items()}",
+                    " ",
+                    " ",
+                    "-def get_label(config):",
+                    "+def get_label(config, simplify=False):",
+                    "     deltas = compute_delta_f1(config)",
+                    "     if not deltas:",
+                    "         return \"none\", 0.0",
+                    "     best_method = max(deltas, key=deltas.get)",
+                    "     best_delta = deltas[best_method]",
+                    "-    if best_delta <= 0:",
+                    "-        return \"none\", best_delta",
+                    "-    return best_method, best_delta",
+                    "+    label = \"none\" if best_delta <= 0 else best_method",
+                    "+    if simplify and label in (\"consensus_theta2n\", \"consensus_lp_weighted\"):",
+                    "+        label = \"consensus\"",
+                    "+    return label, best_delta",
+                    " ",
+                    " ",
+                    " def build_features(config):",
+                    "     ds_map = {\"scierc\": 0, \"conll\": 1, \"fewnerd\": 2}",
+                    "     regime_map = {\"ft\": 0, \"zs\": 1, \"fs\": 2}",
+                    "     family_map = {\"Qwen3\": 0, \"Qwen2.5\": 1, \"LLaMA\": 2}",
+                    "-",
+                    "     return [",
+                    "         config[\"model_size\"],",
+                    "         family_map.get(config[\"model_family\"], 0),"
+                  ]
+                },
+                {
+                  "oldStart": 143,
+                  "oldLines": 40,
+                  "newStart": 137,
+                  "newLines": 29,
+                  "lines": [
+                    "     ]",
+                    " ",
+                    " ",
+                    "-FEATURE_NAMES = [",
+                    "-    \"model_size\", \"model_family\", \"dataset\", \"regime\",",
+                    "-    \"base_f1\", \"degeneracy_rate\", \"oracle_headroom\",",
+                    "-    \"rho_SJ\", \"rho_FK\", \"rho_LP\", \"rho_EM\", \"rho_VC\"",
+                    "-]",
+                    "+def resolve_router_delta(predicted, deltas):",
+                    "+    if predicted == \"none\":",
+                    "+        return 0",
+                    "+    if predicted == \"consensus\":",
+                    "+        return max(deltas.get(\"consensus_theta2n\", -999), deltas.get(\"consensus_lp_weighted\", -999))",
+                    "+    return deltas.get(predicted, 0)",
+                    " ",
+                    " ",
+                    "-def run_routing():",
+                    "-    configs = []",
+                    "-    missing = []",
+                    "-    for spec in CONFIG_SPECS:",
+                    "-        c = load_config(*spec)",
+                    "-        if c is None:",
+                    "-            missing.append(spec[0])",
+                    "-        else:",
+                    "-            configs.append(c)",
+                    "+def run_experiment(configs, simplify_labels, exp_name):",
+                    "+    print(f\"\\n{'#'*70}\")",
+                    "+    print(f\"# {exp_name}\")",
+                    "+    print(f\"{'#'*70}\")",
+                    " ",
+                    "-    print(f\"Loaded {len(configs)} configs, {len(missing)} missing\")",
+                    "-    if missing:",
+                    "-        print(f\"Missing: {missing}\")",
+                    "-",
+                    "-    # Labels and features",
+                    "     labels = []",
+                    "     feature_matrix = []",
+                    "     per_config_results = []",
+                    " ",
+                    "     for c in configs:",
+                    "-        label, best_delta = get_label(c)",
+                    "+        label, best_delta = get_label(c, simplify=simplify_labels)",
+                    "         labels.append(label)",
+                    "         feature_matrix.append(build_features(c))",
+                    "-",
+                    "         deltas = compute_delta_f1(c)",
+                    "         lp_delta = deltas.get(\"lp_selection\", 0)",
+                    "-",
+                    "         per_config_results.append({",
+                    "             \"config_id\": c[\"config_id\"],",
+                    "             \"model_family\": c[\"model_family\"],"
+                  ]
+                },
+                {
+                  "oldStart": 195,
+                  "oldLines": 146,
+                  "newStart": 178,
+                  "newLines": 163,
+                  "lines": [
+                    "     X = np.array(feature_matrix)",
+                    "     label_counts = Counter(labels)",
+                    "     print(f\"\\nLabel distribution: {dict(label_counts)}\")",
+                    "-    print(f\"Configs: {len(configs)}\")",
+                    "-",
+                    "     for pcr in per_config_results:",
+                    "-        print(f\"  {pcr['config_id']:40s} → {pcr['best_method']:25s} (Δ={pcr['best_delta_pp']:+.2f}pp, LP Δ={pcr['lp_delta_pp']:+.2f}pp)\")",
+                    "+        print(f\"  {pcr['config_id']:40s} -> {pcr['best_method']:20s} (D={pcr['best_delta_pp']:+.2f}pp, LP={pcr['lp_delta_pp']:+.2f}pp)\")",
+                    " ",
+                    "-    # Encode labels",
+                    "     le = LabelEncoder()",
+                    "     y = le.fit_transform(labels)",
+                    "-    class_names = list(le.classes_)",
+                    "-    print(f\"\\nClasses: {class_names}\")",
+                    "+    class_names = [str(c) for c in le.classes_]",
+                    " ",
+                    "-    # LOO-CV",
+                    "     loo = LeaveOneOut()",
+                    "     scaler = StandardScaler()",
+                    " ",
+                    "     results = {}",
+                    "     for model_name, model_cls, model_kwargs in [",
+                    "-        (\"LogisticRegression\", LogisticRegression, {\"C\": 1.0, \"max_iter\": 1000, \"multi_class\": \"multinomial\"}),",
+                    "-        (\"RandomForest\", RandomForestClassifier, {\"n_estimators\": 100, \"max_depth\": 5, \"random_state\": 42}),",
+                    "+        (\"LogisticRegression\", LogisticRegression, {\"C\": 1.0, \"max_iter\": 1000}),",
+                    "+        (\"RandomForest\", RandomForestClassifier, {\"n_estimators\": 100, \"max_depth\": 3, \"random_state\": 42}),",
+                    "     ]:",
+                    "         preds = []",
+                    "-        pred_labels = []",
+                    "-",
+                    "+        pred_labels_list = []",
+                    "         for train_idx, test_idx in loo.split(X):",
+                    "-            X_train, X_test = X[train_idx], X[test_idx]",
+                    "-            y_train, y_test = y[train_idx], y[test_idx]",
+                    "-",
+                    "-            X_train_s = scaler.fit_transform(X_train)",
+                    "-            X_test_s = scaler.transform(X_test)",
+                    "-",
+                    "+            X_tr, X_te = X[train_idx], X[test_idx]",
+                    "+            y_tr = y[train_idx]",
+                    "+            Xs_tr = scaler.fit_transform(X_tr)",
+                    "+            Xs_te = scaler.transform(X_te)",
+                    "             model = model_cls(**model_kwargs)",
+                    "-            model.fit(X_train_s, y_train)",
+                    "-            pred = model.predict(X_test_s)[0]",
+                    "+            model.fit(Xs_tr, y_tr)",
+                    "+            pred = model.predict(Xs_te)[0]",
+                    "             preds.append(pred)",
+                    "-            pred_labels.append(le.inverse_transform([pred])[0])",
+                    "+            pred_labels_list.append(str(le.inverse_transform([pred])[0]))",
+                    " ",
+                    "-        accuracy = np.mean(np.array(preds) == y)",
+                    "+        accuracy = float(np.mean(np.array(preds) == y))",
+                    "+        n = len(configs)",
+                    " ",
+                    "-        # Compute router ΔF1",
+                    "-        router_delta_sum = 0",
+                    "-        oracle_delta_sum = 0",
+                    "-        lp_delta_sum = 0",
+                    "-        n_valid = 0",
+                    "-",
+                    "+        router_delta_sum = oracle_delta_sum = lp_delta_sum = 0.0",
+                    "         for i, c in enumerate(configs):",
+                    "             deltas = compute_delta_f1(c)",
+                    "-            predicted_method = pred_labels[i]",
+                    "+            router_delta_sum += resolve_router_delta(pred_labels_list[i], deltas)",
+                    "+            oracle_delta_sum += max(max(deltas.values()), 0) if deltas else 0",
+                    "+            lp_delta_sum += deltas.get(\"lp_selection\", 0)",
+                    " ",
+                    "-            if predicted_method == \"none\":",
+                    "-                router_delta = 0",
+                    "-            else:",
+                    "-                router_delta = deltas.get(predicted_method, 0)",
+                    "+        router_avg = router_delta_sum / n",
+                    "+        oracle_avg = oracle_delta_sum / n",
+                    "+        lp_avg = lp_delta_sum / n",
+                    " ",
+                    "-            oracle_delta = max(max(deltas.values()), 0) if deltas else 0",
+                    "-            lp_delta = deltas.get(\"lp_selection\", 0)",
+                    "-",
+                    "-            router_delta_sum += router_delta",
+                    "-            oracle_delta_sum += oracle_delta",
+                    "-            lp_delta_sum += lp_delta",
+                    "-            n_valid += 1",
+                    "-",
+                    "-        router_avg_delta = router_delta_sum / n_valid if n_valid else 0",
+                    "-        oracle_avg_delta = oracle_delta_sum / n_valid if n_valid else 0",
+                    "-        lp_avg_delta = lp_delta_sum / n_valid if n_valid else 0",
+                    "-",
+                    "         cm = confusion_matrix(y, preds, labels=range(len(class_names)))",
+                    " ",
+                    "-        # Feature importance (train on all data)",
+                    "-        X_all_s = scaler.fit_transform(X)",
+                    "+        Xs_all = scaler.fit_transform(X)",
+                    "         full_model = model_cls(**model_kwargs)",
+                    "-        full_model.fit(X_all_s, y)",
+                    "-",
+                    "+        full_model.fit(Xs_all, y)",
+                    "         if hasattr(full_model, \"feature_importances_\"):",
+                    "-            importances = full_model.feature_importances_",
+                    "+            imp = full_model.feature_importances_",
+                    "         elif hasattr(full_model, \"coef_\"):",
+                    "-            importances = np.abs(full_model.coef_).mean(axis=0) if full_model.coef_.ndim > 1 else np.abs(full_model.coef_)",
+                    "+            imp = np.abs(full_model.coef_).mean(axis=0) if full_model.coef_.ndim > 1 else np.abs(full_model.coef_)",
+                    "         else:",
+                    "-            importances = np.zeros(X.shape[1])",
+                    "+            imp = np.zeros(X.shape[1])",
+                    "+        feature_imp = sorted(",
+                    "+            {FEATURE_NAMES[i]: round(float(imp[i]), 4) for i in range(len(FEATURE_NAMES))}.items(),",
+                    "+            key=lambda x: -x[1]",
+                    "+        )",
+                    " ",
+                    "-        feature_imp = {FEATURE_NAMES[i]: round(float(importances[i]), 4) for i in range(len(FEATURE_NAMES))}",
+                    "-        sorted_features = sorted(feature_imp.items(), key=lambda x: -x[1])",
+                    "-",
+                    "         print(f\"\\n{'='*60}\")",
+                    "-        print(f\"Model: {model_name}\")",
+                    "-        print(f\"  LOO Accuracy:     {accuracy:.1%} ({int(accuracy * len(configs))}/{len(configs)})\")",
+                    "-        print(f\"  Router avg ΔF1:   {router_avg_delta*100:+.2f} pp\")",
+                    "-        print(f\"  Always-LP ΔF1:    {lp_avg_delta*100:+.2f} pp\")",
+                    "-        print(f\"  Oracle ΔF1:       {oracle_avg_delta*100:+.2f} pp\")",
+                    "-        print(f\"  Feature importance: {sorted_features[:5]}\")",
+                    "-        print(f\"  Confusion matrix (rows=true, cols=pred):\")",
+                    "-        print(f\"    Classes: {class_names}\")",
+                    "-        for row_idx, row in enumerate(cm):",
+                    "-            print(f\"    {class_names[row_idx]:25s}: {list(row)}\")",
+                    "+        print(f\"{model_name}\")",
+                    "+        print(f\"  LOO Accuracy:     {accuracy:.1%} ({int(accuracy * n)}/{n})\")",
+                    "+        print(f\"  Router avg dF1:   {router_avg*100:+.2f} pp\")",
+                    "+        print(f\"  Always-LP dF1:    {lp_avg*100:+.2f} pp\")",
+                    "+        print(f\"  Oracle dF1:       {oracle_avg*100:+.2f} pp\")",
+                    "+        print(f\"  Top features: {feature_imp[:5]}\")",
+                    "+        print(f\"  CM classes: {class_names}\")",
+                    "+        for ri, row in enumerate(cm):",
+                    "+            print(f\"    {class_names[ri]:25s}: {[int(x) for x in row]}\")",
+                    "+        for i in range(n):",
+                    "+            ok = \"OK\" if pred_labels_list[i] == labels[i] else \"XX\"",
+                    "+            print(f\"    {configs[i]['config_id']:40s} true={labels[i]:20s} pred={pred_labels_list[i]:20s} [{ok}]\")",
+                    " ",
+                    "         per_config_preds = []",
+                    "         for i, c in enumerate(configs):",
+                    "             deltas = compute_delta_f1(c)",
+                    "-            predicted = pred_labels[i]",
+                    "-            actual = labels[i]",
+                    "-            pred_delta = deltas.get(predicted, 0) if predicted != \"none\" else 0",
+                    "+            pd_ = resolve_router_delta(pred_labels_list[i], deltas)",
+                    "             per_config_preds.append({",
+                    "                 \"config_id\": c[\"config_id\"],",
+                    "-                \"actual\": actual,",
+                    "-                \"predicted\": predicted,",
+                    "-                \"correct\": actual == predicted,",
+                    "-                \"predicted_delta_pp\": round(pred_delta * 100, 2),",
+                    "+                \"actual\": labels[i],",
+                    "+                \"predicted\": pred_labels_list[i],",
+                    "+                \"correct\": bool(labels[i] == pred_labels_list[i]),",
+                    "+                \"predicted_delta_pp\": round(pd_ * 100, 2),",
+                    "             })",
+                    " ",
+                    "         results[model_name] = {",
+                    "             \"accuracy\": round(accuracy, 4),",
+                    "-            \"n_correct\": int(accuracy * len(configs)),",
+                    "-            \"n_total\": len(configs),",
+                    "-            \"router_avg_delta_pp\": round(router_avg_delta * 100, 2),",
+                    "-            \"always_lp_avg_delta_pp\": round(lp_avg_delta * 100, 2),",
+                    "-            \"oracle_avg_delta_pp\": round(oracle_avg_delta * 100, 2),",
+                    "-            \"feature_importance\": dict(sorted_features),",
+                    "-            \"confusion_matrix\": {",
+                    "-                \"classes\": class_names,",
+                    "-                \"matrix\": cm.tolist(),",
+                    "-            },",
+                    "+            \"n_correct\": int(accuracy * n),",
+                    "+            \"n_total\": n,",
+                    "+            \"router_avg_delta_pp\": round(router_avg * 100, 2),",
+                    "+            \"always_lp_avg_delta_pp\": round(lp_avg * 100, 2),",
+                    "+            \"oracle_avg_delta_pp\": round(oracle_avg * 100, 2),",
+                    "+            \"feature_importance\": dict(feature_imp),",
+                    "+            \"confusion_matrix\": {\"classes\": class_names, \"matrix\": [[int(x) for x in row] for row in cm]},",
+                    "             \"per_config_predictions\": per_config_preds,",
+                    "         }",
+                    " ",
+                    "-    # Save results",
+                    "+    return per_config_results, dict(label_counts), results",
+                    "+",
+                    "+",
+                    "+def main():",
+                    "+    configs = []",
+                    "+    missing = []",
+                    "+    for spec in CONFIG_SPECS:",
+                    "+        c = load_config(*spec)",
+                    "+        if c is None:",
+                    "+            missing.append(spec[0])",
+                    "+        else:",
+                    "+            configs.append(c)",
+                    "+",
+                    "+    print(f\"Loaded {len(configs)} configs, {len(missing)} missing\")",
+                    "+    if missing:",
+                    "+        print(f\"Missing: {missing}\")",
+                    "+",
+                    "+    pcr_5, lc_5, res_5 = run_experiment(configs, False, \"5-class (fine-grained)\")",
+                    "+    pcr_3, lc_3, res_3 = run_experiment(configs, True, \"3-class (lp/consensus/none)\")",
+                    "+",
+                    "+    all_accs = [(f\"5class_{m}\", r[\"accuracy\"], r) for m, r in res_5.items()]",
+                    "+    all_accs += [(f\"3class_{m}\", r[\"accuracy\"], r) for m, r in res_3.items()]",
+                    "+    best_name, best_acc, best_r = max(all_accs, key=lambda x: (x[1], x[2][\"router_avg_delta_pp\"]))",
+                    "+",
+                    "+    print(f\"\\n\\n{'#'*70}\")",
+                    "+    print(f\"# BEST: {best_name} | Acc={best_acc:.1%} | Router={best_r['router_avg_delta_pp']:+.2f}pp | LP={best_r['always_lp_avg_delta_pp']:+.2f}pp | Oracle={best_r['oracle_avg_delta_pp']:+.2f}pp\")",
+                    "+    print(f\"{'#'*70}\")",
+                    "+",
+                    "     output = {",
+                    "         \"experiment\": \"E1_adaptive_signal_routing\",",
+                    "         \"n_configs\": len(configs),",
+                    "         \"missing_configs\": missing,",
+                    "         \"construction_methods\": CONSTRUCTION_METHODS,",
+                    "-        \"label_distribution\": dict(label_counts),",
+                    "+        \"method_mapping\": {",
+                    "+            \"lp_selection\": \"LP signal-based sample selection\",",
+                    "+            \"majority_vote\": \"Token-level majority voting\",",
+                    "+            \"consensus_theta2n\": \"Entity-level voting (uniform, threshold=2/N)\",",
+                    "+            \"consensus_lp_weighted\": \"Entity-level voting (LP-weighted)\",",
+                    "+        },",
+                    "         \"feature_names\": FEATURE_NAMES,",
+                    "-        \"per_config_data\": per_config_results,",
+                    "-        \"models\": results,",
+                    "+        \"experiments\": {",
+                    "+            \"5_class\": {",
+                    "+                \"label_distribution\": lc_5,",
+                    "+                \"per_config_data\": pcr_5,",
+                    "+                \"models\": res_5,",
+                    "+            },",
+                    "+            \"3_class_simplified\": {",
+                    "+                \"description\": \"Merged consensus_theta2n + consensus_lp_weighted -> consensus\",",
+                    "+                \"label_distribution\": lc_3,",
+                    "+                \"per_config_data\": pcr_3,",
+                    "+                \"models\": res_3,",
+                    "+            },",
+                    "+        },",
+                    "         \"summary\": {",
+                    "-            \"best_model\": max(results, key=lambda m: results[m][\"accuracy\"]),",
+                    "-            \"best_accuracy\": max(r[\"accuracy\"] for r in results.values()),",
+                    "-            \"router_beats_lp\": any(",
+                    "-                r[\"router_avg_delta_pp\"] > r[\"always_lp_avg_delta_pp\"]",
+                    "-                for r in results.values()",
+                    "-            ),",
+                    "+            \"best_model\": best_name,",
+                    "+            \"best_accuracy\": best_acc,",
+                    "+            \"best_router_delta_pp\": best_r[\"router_avg_delta_pp\"],",
+                    "+            \"always_lp_delta_pp\": best_r[\"always_lp_avg_delta_pp\"],",
+                    "+            \"oracle_delta_pp\": best_r[\"oracle_avg_delta_pp\"],",
+                    "+            \"router_beats_lp\": best_r[\"router_avg_delta_pp\"] > best_r[\"always_lp_avg_delta_pp\"],",
+                    "+            \"accuracy_above_60\": best_acc > 0.6,",
+                    "         },",
+                    "     }",
+                    " "
+                  ]
+                },
+                {
+                  "oldStart": 342,
+                  "oldLines": 11,
+                  "newStart": 342,
+                  "newLines": 9,
+                  "lines": [
+                    "     os.makedirs(out_dir, exist_ok=True)",
+                    "     out_path = os.path.join(out_dir, \"routing_results.json\")",
+                    "     with open(out_path, \"w\") as f:",
+                    "-        json.dump(output, f, indent=2)",
+                    "+        json.dump(output, f, indent=2, cls=NumpyEncoder)",
+                    "     print(f\"\\nResults saved to {out_path}\")",
+                    " ",
+                    "-    return output",
+                    " ",
+                    "-",
+                    " if __name__ == \"__main__\":",
+                    "-    run_routing()",
+                    "+    main()"
+                  ]
+                }
+              ],
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"E1 Adaptive Signal Routing: config-level construction method router.\"\"\"\n\nimport json\nimport os\nimport sys\nfrom collections import Counter\n\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import LeaveOneOut\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.metrics import confusion_matrix\n\nBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\nOUT = os.path.join(BASE, \"output\")\n\nCONSTRUCTION_METHODS = [\"lp_selection\", \"majority_vote\", \"consensus_theta2n\", \"consensus_lp_weighted\"]\n\nCONFIG_SPECS = [\n    # (path_to_report, dataset_key, model_family, model_size, regime, seed)\n    # Qwen3-8B FT\n    (f\"{OUT}/exp_scierc_seed456/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 456),\n    (f\"{OUT}/exp_scierc_seed789/full_signal_report.json\", \"scierc\", \"Qwen3\", 8, \"ft\", 789),\n    (f\"{OUT}/exp_conll_seed123/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 123),\n    (f\"{OUT}/exp_conll_seed456/full_signal_report.json\", \"conll\", \"Qwen3\", 8, \"ft\", 456),\n    (f\"{OUT}/exp_fewnerd_seed123/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 123),\n    (f\"{OUT}/exp_fewnerd_seed456/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 456),\n    (f\"{OUT}/exp_fewnerd_seed789/full_signal_report.json\", \"fewnerd\", \"Qwen3\", 8, \"ft\", 789),\n    # Qwen2.5-72B ZS\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"zs\", None),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"conll2003\", \"Qwen2.5\", 72, \"zs\", None),\n    (f\"{OUT}/72b_zeroshot/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"zs\", None),\n    # Qwen2.5-72B FS\n    (f\"{OUT}/72b_fewshot_signals/scierc/full_signal_report.json\", \"scierc\", \"Qwen2.5\", 72, \"fs\", None),\n    (f\"{OUT}/72b_fewshot_signals/conll2003/full_signal_report.json\", \"conll\", \"Qwen2.5\", 72, \"fs\", None),\n    (f\"{OUT}/72b_fewshot_signals/fewnerd/full_signal_report.json\", \"fewnerd\", \"Qwen2.5\", 72, \"fs\", None),\n    # Qwen2.5-7B FT\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json\", \"qwen25_7b_n8_seed42\", \"Qwen2.5\", 7, \"ft\", 42),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed123/full_signal_report.json\", \"qwen25_7b_n8_seed123\", \"Qwen2.5\", 7, \"ft\", 123),\n    (f\"{OUT}/fewnerd_7b/qwen25_7b_n8_seed456/full_signal_report.json\", \"qwen25_7b_n8_seed456\", \"Qwen2.5\", 7, \"ft\", 456),\n]\n\n\ndef load_config(path, dataset_key, model_family, model_size, regime, seed):\n    if not os.path.exists(path):\n        return None\n    with open(path) as f:\n        data = json.load(f)\n\n    # Handle nested vs flat format\n    if dataset_key in data:\n        d = data[dataset_key]\n    else:\n        keys = list(data.keys())\n        if len(keys) == 1:\n            d = data[keys[0]]\n        else:\n            d = data\n\n    baselines = d.get(\"baselines\", {})\n    greedy_f1 = baselines.get(\"greedy\", {}).get(\"mean\", d.get(\"greedy_f1\"))\n    oracle_f1 = baselines.get(\"oracle\", {}).get(\"mean\", d.get(\"oracle_f1\"))\n\n    if greedy_f1 is None:\n        return None\n\n    # Normalize dataset name\n    ds_name = d.get(\"name\", dataset_key)\n    if \"conll\" in ds_name.lower():\n        ds_name = \"conll\"\n    elif \"scierc\" in ds_name.lower():\n        ds_name = \"scierc\"\n    elif \"fewnerd\" in ds_name.lower() or \"few\" in ds_name.lower():\n        ds_name = \"fewnerd\"\n\n    signals = d.get(\"signals\", {})\n    construction_f1 = {}\n    for method in CONSTRUCTION_METHODS:\n        if method in baselines:\n            construction_f1[method] = baselines[method][\"mean\"]\n\n    config = {\n        \"config_id\": f\"{model_family}_{model_size}B_{regime}_{ds_name}_s{seed}\",\n        \"model_family\": model_family,\n        \"model_size\": model_size,\n        \"dataset\": ds_name,\n        \"regime\": regime,\n        \"seed\": seed,\n        \"greedy_f1\": greedy_f1,\n        \"oracle_f1\": oracle_f1,\n        \"oracle_headroom\": oracle_f1 - greedy_f1 if oracle_f1 else None,\n        \"degeneracy_rate\": d.get(\"degeneracy_rate\", 0),\n        \"n_instances\": d.get(\"n_instances\"),\n        \"rho_SJ\": signals.get(\"SJ\", {}).get(\"rho\", 0),\n        \"rho_FK\": signals.get(\"FK\", {}).get(\"rho\", 0),\n        \"rho_LP\": signals.get(\"LP\", {}).get(\"rho\", 0),\n        \"rho_EM\": signals.get(\"EM\", {}).get(\"rho\", 0),\n        \"rho_VC\": signals.get(\"VC\", {}).get(\"rho\", 0),\n        \"construction_f1\": construction_f1,\n    }\n    return config\n\n\ndef compute_delta_f1(config):\n    greedy = config[\"greedy_f1\"]\n    deltas = {}\n    for method, f1 in config[\"construction_f1\"].items():\n        deltas[method] = f1 - greedy\n    return deltas\n\n\ndef get_label(config):\n    deltas = compute_delta_f1(config)\n    if not deltas:\n        return \"none\", 0.0\n    best_method = max(deltas, key=deltas.get)\n    best_delta = deltas[best_method]\n    if best_delta <= 0:\n        return \"none\", best_delta\n    return best_method, best_delta\n\n\ndef build_features(config):\n    ds_map = {\"scierc\": 0, \"conll\": 1, \"fewnerd\": 2}\n    regime_map = {\"ft\": 0, \"zs\": 1, \"fs\": 2}\n    family_map = {\"Qwen3\": 0, \"Qwen2.5\": 1, \"LLaMA\": 2}\n\n    return [\n        config[\"model_size\"],\n        family_map.get(config[\"model_family\"], 0),\n        ds_map.get(config[\"dataset\"], 0),\n        regime_map.get(config[\"regime\"], 0),\n        config[\"greedy_f1\"],\n        config[\"degeneracy_rate\"],\n        config[\"oracle_headroom\"] or 0,\n        config[\"rho_SJ\"],\n        config[\"rho_FK\"],\n        config[\"rho_LP\"],\n        config[\"rho_EM\"],\n        config[\"rho_VC\"],\n    ]\n\n\nFEATURE_NAMES = [\n    \"model_size\", \"model_family\", \"dataset\", \"regime\",\n    \"base_f1\", \"degeneracy_rate\", \"oracle_headroom\",\n    \"rho_SJ\", \"rho_FK\", \"rho_LP\", \"rho_EM\", \"rho_VC\"\n]\n\n\ndef run_routing():\n    configs = []\n    missing = []\n    for spec in CONFIG_SPECS:\n        c = load_config(*spec)\n        if c is None:\n            missing.append(spec[0])\n        else:\n            configs.append(c)\n\n    print(f\"Loaded {len(configs)} configs, {len(missing)} missing\")\n    if missing:\n        print(f\"Missing: {missing}\")\n\n    # Labels and features\n    labels = []\n    feature_matrix = []\n    per_config_results = []\n\n    for c in configs:\n        label, best_delta = get_label(c)\n        labels.append(label)\n        feature_matrix.append(build_features(c))\n\n        deltas = compute_delta_f1(c)\n        lp_delta = deltas.get(\"lp_selection\", 0)\n\n        per_config_results.append({\n            \"config_id\": c[\"config_id\"],\n            \"model_family\": c[\"model_family\"],\n            \"model_size\": c[\"model_size\"],\n            \"dataset\": c[\"dataset\"],\n            \"regime\": c[\"regime\"],\n            \"greedy_f1\": round(c[\"greedy_f1\"], 4),\n            \"oracle_f1\": round(c[\"oracle_f1\"], 4),\n            \"degeneracy_rate\": round(c[\"degeneracy_rate\"], 4),\n            \"construction_deltas_pp\": {k: round(v * 100, 2) for k, v in deltas.items()},\n            \"best_method\": label,\n            \"best_delta_pp\": round(best_delta * 100, 2),\n            \"lp_delta_pp\": round(lp_delta * 100, 2),\n        })\n\n    X = np.array(feature_matrix)\n    label_counts = Counter(labels)\n    print(f\"\\nLabel distribution: {dict(label_counts)}\")\n    print(f\"Configs: {len(configs)}\")\n\n    for pcr in per_config_results:\n        print(f\"  {pcr['config_id']:40s} → {pcr['best_method']:25s} (Δ={pcr['best_delta_pp']:+.2f}pp, LP Δ={pcr['lp_delta_pp']:+.2f}pp)\")\n\n    # Encode labels\n    le = LabelEncoder()\n    y = le.fit_transform(labels)\n    class_names = list(le.classes_)\n    print(f\"\\nClasses: {class_names}\")\n\n    # LOO-CV\n    loo = LeaveOneOut()\n    scaler = StandardScaler()\n\n    results = {}\n    for model_name, model_cls, model_kwargs in [\n        (\"LogisticRegression\", LogisticRegression, {\"C\": 1.0, \"max_iter\": 1000, \"multi_class\": \"multinomial\"}),\n        (\"RandomForest\", RandomForestClassifier, {\"n_estimators\": 100, \"max_depth\": 5, \"random_state\": 42}),\n    ]:\n        preds = []\n        pred_labels = []\n\n        for train_idx, test_idx in loo.split(X):\n            X_train, X_test = X[train_idx], X[test_idx]\n            y_train, y_test = y[train_idx], y[test_idx]\n\n            X_train_s = scaler.fit_transform(X_train)\n            X_test_s = scaler.transform(X_test)\n\n            model = model_cls(**model_kwargs)\n            model.fit(X_train_s, y_train)\n            pred = model.predict(X_test_s)[0]\n            preds.append(pred)\n            pred_labels.append(le.inverse_transform([pred])[0])\n\n        accuracy = np.mean(np.array(preds) == y)\n\n        # Compute router ΔF1\n        router_delta_sum = 0\n        oracle_delta_sum = 0\n        lp_delta_sum = 0\n        n_valid = 0\n\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            predicted_method = pred_labels[i]\n\n            if predicted_method == \"none\":\n                router_delta = 0\n            else:\n                router_delta = deltas.get(predicted_method, 0)\n\n            oracle_delta = max(max(deltas.values()), 0) if deltas else 0\n            lp_delta = deltas.get(\"lp_selection\", 0)\n\n            router_delta_sum += router_delta\n            oracle_delta_sum += oracle_delta\n            lp_delta_sum += lp_delta\n            n_valid += 1\n\n        router_avg_delta = router_delta_sum / n_valid if n_valid else 0\n        oracle_avg_delta = oracle_delta_sum / n_valid if n_valid else 0\n        lp_avg_delta = lp_delta_sum / n_valid if n_valid else 0\n\n        cm = confusion_matrix(y, preds, labels=range(len(class_names)))\n\n        # Feature importance (train on all data)\n        X_all_s = scaler.fit_transform(X)\n        full_model = model_cls(**model_kwargs)\n        full_model.fit(X_all_s, y)\n\n        if hasattr(full_model, \"feature_importances_\"):\n            importances = full_model.feature_importances_\n        elif hasattr(full_model, \"coef_\"):\n            importances = np.abs(full_model.coef_).mean(axis=0) if full_model.coef_.ndim > 1 else np.abs(full_model.coef_)\n        else:\n            importances = np.zeros(X.shape[1])\n\n        feature_imp = {FEATURE_NAMES[i]: round(float(importances[i]), 4) for i in range(len(FEATURE_NAMES))}\n        sorted_features = sorted(feature_imp.items(), key=lambda x: -x[1])\n\n        print(f\"\\n{'='*60}\")\n        print(f\"Model: {model_name}\")\n        print(f\"  LOO Accuracy:     {accuracy:.1%} ({int(accuracy * len(configs))}/{len(configs)})\")\n        print(f\"  Router avg ΔF1:   {router_avg_delta*100:+.2f} pp\")\n        print(f\"  Always-LP ΔF1:    {lp_avg_delta*100:+.2f} pp\")\n        print(f\"  Oracle ΔF1:       {oracle_avg_delta*100:+.2f} pp\")\n        print(f\"  Feature importance: {sorted_features[:5]}\")\n        print(f\"  Confusion matrix (rows=true, cols=pred):\")\n        print(f\"    Classes: {class_names}\")\n        for row_idx, row in enumerate(cm):\n            print(f\"    {class_names[row_idx]:25s}: {list(row)}\")\n\n        per_config_preds = []\n        for i, c in enumerate(configs):\n            deltas = compute_delta_f1(c)\n            predicted = pred_labels[i]\n            actual = labels[i]\n            pred_delta = deltas.get(predicted, 0) if predicted != \"none\" else 0\n            per_config_preds.append({\n                \"config_id\": c[\"config_id\"],\n                \"actual\": actual,\n                \"predicted\": predicted,\n                \"correct\": actual == predicted,\n                \"predicted_delta_pp\": round(pred_delta * 100, 2),\n            })\n\n        results[model_name] = {\n            \"accuracy\": round(accuracy, 4),\n            \"n_correct\": int(accuracy * len(configs)),\n            \"n_total\": len(configs),\n            \"router_avg_delta_pp\": round(router_avg_delta * 100, 2),\n            \"always_lp_avg_delta_pp\": round(lp_avg_delta * 100, 2),\n            \"oracle_avg_delta_pp\": round(oracle_avg_delta * 100, 2),\n            \"feature_importance\": dict(sorted_features),\n            \"confusion_matrix\": {\n                \"classes\": class_names,\n                \"matrix\": cm.tolist(),\n            },\n            \"per_config_predictions\": per_config_preds,\n        }\n\n    # Save results\n    output = {\n        \"experiment\": \"E1_adaptive_signal_routing\",\n        \"n_configs\": len(configs),\n        \"missing_configs\": missing,\n        \"construction_methods\": CONSTRUCTION_METHODS,\n        \"label_distribution\": dict(label_counts),\n        \"feature_names\": FEATURE_NAMES,\n        \"per_config_data\": per_config_results,\n        \"models\": results,\n        \"summary\": {\n            \"best_model\": max(results, key=lambda m: results[m][\"accuracy\"]),\n            \"best_accuracy\": max(r[\"accuracy\"] for r in results.values()),\n            \"router_beats_lp\": any(\n                r[\"router_avg_delta_pp\"] > r[\"always_lp_avg_delta_pp\"]\n                for r in results.values()\n            ),\n        },\n    }\n\n    out_dir = os.path.join(BASE, \"artifacts\", \"e1_signal_routing\")\n    os.makedirs(out_dir, exist_ok=True)\n    out_path = os.path.join(out_dir, \"routing_results.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n    return output\n\n\nif __name__ == \"__main__\":\n    run_routing()\n",
+              "userModified": false
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WJLAiAQgGQxeQwoth6q5RC",
+              "name": "Bash",
+              "input": {
+                "command": "scp /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/e1_signal_routing.py autodl-5090-b:/root/autodl-tmp/struct_self_consist_ie/e1_signal_routing.py",
+                "description": "SCP script to remote server"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "b4f8e1be-4ffd-4951-b9ec-b37b1c76c377",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QXzj31zPijepfkedBKYGY4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5430,
+                "cache_read_input_tokens": 115189,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5430
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-20T09:47:20.099Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WJLAiAQgGQxeQwoth6q5RC",
+              "type": "tool_result",
+              "content": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:11496' (ED25519) to the list of known hosts.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "1e2d3c20-112a-431d-8a3b-aa3beccd6b73",
+            "tool_use_result": {
+              "stdout": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:11496' (ED25519) to the list of known hosts.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GVVPdiLyvxhiZvd7vBJ8tG",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090-b",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python e1_signal_routing.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "97777735-497f-464e-9319-7a010bc59b3e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Eqo9WJsnAT7finE6psMZDb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 189,
+                "cache_read_input_tokens": 120619,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 189
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-20T09:47:27.298Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GVVPdiLyvxhiZvd7vBJ8tG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 16 configs, 0 missing\\\\n\\\\n######################################################################\\\\n# 5-class (fine-grained)\\\\n######################################################################\\\\n\\\\nLabel distribution: {'consensus_theta2n': 3, 'none': 5, 'lp_selection': 6, 'consensus_lp_weighted': 1, 'majority_vote': 1}\\\\n  Qwen3_8B_ft_scierc_s456                  -> consensus_theta2n    (D=+0.40pp, LP=-0.30pp)\\\\n  Qwen3_8B_ft_scierc_s789                  -> consensus_theta2n    (D=+1.12pp, LP=+0.86pp)\\\\n  Qwen3_8B_ft_conll_s123                   -> none                 (D=-0.42pp, LP=-0.60pp)\\\\n  Qwen3_8B_ft_conll_s456                   -> none                 (D=-0.42pp, LP=-0.77pp)\\\\n  Qwen3_8B_ft_fewnerd_s123                 -> consensus_theta2n    (D=+1.56pp, LP=+1.37pp)\\\\n  Qwen3_8B_ft_fewnerd_s456                 -> lp_selection         (D=+1.37pp, LP=+1.37pp)\\\\n  Qwen3_8B_ft_fewnerd_s789                 -> lp_selection         (D=+1.35pp, LP=+1.35pp)\\\\n  Qwen2.5_72B_zs_scierc_sNone              -> consensus_lp_weighted (D=+1.53pp, LP=-0.10pp)\\\\n  Qwen2.5_72B_zs_conll_sNone               -> none                 (D=-0.37pp, LP=-0.39pp)\\\\n  Qwen2.5_72B_zs_fewnerd_sNone             -> none                 (D=-0.19pp, LP=-0.40pp)\\\\n  Qwen2.5_72B_fs_scierc_sNone              -> none                 (D=-0.08pp, LP=-1.36pp)\\\\n  Qwen2.5_72B_fs_conll_sNone               -> lp_selection         (D=+0.24pp, LP=+0.24pp)\\\\n  Qwen2.5_72B_fs_fewnerd_sNone             -> majority_vote        (D=+0.06pp, LP=-0.14pp)\\\\n  Qwen2.5_7B_ft_fewnerd_s42                -> lp_selection         (D=+0.39pp, LP=+0.39pp)\\\\n  Qwen2.5_7B_ft_fewnerd_s123               -> lp_selection         (D=+0.38pp, LP=+0.38pp)\\\\n  Qwen2.5_7B_ft_fewnerd_s456               -> lp_selection         (D=+0.52pp, LP=+0.52pp)\\\\n\\\\n============================================================\\\\nLogisticRegression\\\\n  LOO Accuracy:     50.0% (8/16)\\\\n  Router avg dF1:   +0.29 pp\\\\n  Always-LP dF1:    +0.15 pp\\\\n  Oracle dF1:       +0.56 pp\\\\n  Top features: [('model_family', 0.339), ('dataset', 0.3344), ('regime', 0.3342), ('rho_VC', 0.323), ('base_f1', 0.2818)]\\\\n  CM classes: ['consensus_lp_weighted', 'consensus_theta2n', 'lp_selection', 'majority_vote', 'none']\\\\n    consensus_lp_weighted    : [0, 0, 0, 0, 1]\\\\n    consensus_theta2n        : [0, 2, 1, 0, 0]\\\\n    lp_selection             : [0, 2, 3, 0, 1]\\\\n    majority_vote            : [0, 0, 1, 0, 0]\\\\n    none                     : [1, 0, 1, 0, 3]\\\\n    Qwen3_8B_ft_scierc_s456                  true=consensus_theta2n    pred=consensus_theta2n    [OK]\\\\n    Qwen3_8B_ft_scierc_s789                  true=consensus_theta2n    pred=consensus_theta2n    [OK]\\\\n    Qwen3_8B_ft_conll_s123                   true=none                 pred=none                 [OK]\\\\n    Qwen3_8B_ft_conll_s456                   true=none                 pred=none                 [OK]\\\\n    Qwen3_8B_ft_fewnerd_s123                 true=consensus_theta2n    pred=lp_selection         [XX]\\\\n    Qwen3_8B_ft_fewnerd_s456                 true=lp_selection         pred=consensus_theta2n    [XX]\\\\n    Qwen3_8B_ft_fewnerd_s789                 true=lp_selection         pred=consensus_theta2n    [XX]\\\\n    Qwen2.5_72B_zs_scierc_sNone              true=consensus_lp_weighted pred=none                 [XX]\\\\n    Qwen2.5_72B_zs_conll_sNone               true=none                 pred=none                 [OK]\\\\n    Qwen2.5_72B_zs_fewnerd_sNone             true=none                 pred=lp_selection         [XX]\\\\n    Qwen2.5_72B_fs_scierc_sNone              true=none                 pred=consensus_lp_weighted [XX]\\\\n    Qwen2.5_72B_fs_conll_sNone               true=lp_selection         pred=none                 [XX]\\\\n    Qwen2.5_72B_fs_fewnerd_sNone             true=majority_vote        pred=lp_selection         [XX]\\\\n    Qwen2.5_7B_ft_fewnerd_s42                true=lp_selection         pred=lp_selection         [OK]\\\\n    Qwen2.5_7B_ft_fewnerd_s123               true=lp_selection         pred=lp_selection         [OK]\\\\n    Qwen2.5_7B_ft_fewnerd_s45\\\\n\\\\n... [截断: 输出过长，省略 4841 字符] ...\\\\n\\\\nonsensus            [OK]\\\\n    Qwen3_8B_ft_conll_s123                   true=none                 pred=none                 [OK]\\\\n    Qwen3_8B_ft_conll_s456                   true=none                 pred=none                 [OK]\\\\n    Qwen3_8B_ft_fewnerd_s123                 true=consensus            pred=lp_selection         [XX]\\\\n    Qwen3_8B_ft_fewnerd_s456                 true=lp_selection         pred=consensus            [XX]\\\\n    Qwen3_8B_ft_fewnerd_s789                 true=lp_selection         pred=consensus            [XX]\\\\n    Qwen2.5_72B_zs_scierc_sNone              true=consensus            pred=none                 [XX]\\\\n    Qwen2.5_72B_zs_conll_sNone               true=none                 pred=none                 [OK]\\\\n    Qwen2.5_72B_zs_fewnerd_sNone             true=none                 pred=lp_selection         [XX]\\\\n    Qwen2.5_72B_fs_scierc_sNone              true=none                 pred=consensus            [XX]\\\\n    Qwen2.5_72B_fs_conll_sNone               true=lp_selection         pred=none                 [XX]\\\\n    Qwen2.5_72B_fs_fewnerd_sNone             true=majority_vote        pred=lp_selection         [XX]\\\\n    Qwen2.5_7B_ft_fewnerd_s42                true=lp_selection         pred=lp_selection         [OK]\\\\n    Qwen2.5_7B_ft_fewnerd_s123               true=lp_selection         pred=lp_selection         [OK]\\\\n    Qwen2.5_7B_ft_fewnerd_s456               true=lp_selection         pred=lp_selection         [OK]\\\\n\\\\n============================================================\\\\nRandomForest\\\\n  LOO Accuracy:     56.2% (9/16)\\\\n  Router avg dF1:   +0.39 pp\\\\n  Always-LP dF1:    +0.15 pp\\\\n  Oracle dF1:       +0.56 pp\\\\n  Top features: [('oracle_headroom', 0.1884), ('degeneracy_rate', 0.1362), ('base_f1', 0.1337), ('rho_FK', 0.0827), ('dataset', 0.0791)]\\\\n  CM classes: ['consensus', 'lp_selection', 'majority_vote', 'none']\\\\n    consensus                : [2, 1, 0, 1]\\\\n    lp_selection             : [1, 4, 0, 1]\\\\n    majority_vote            : [0, 0, 0, 1]\\\\n    none                     : [1, 0, 1, 3]\\\\n    Qwen3_8B_ft_scierc_s456                  true=consensus            pred=consensus            [OK]\\\\n    Qwen3_8B_ft_scierc_s789                  true=consensus            pred=consensus            [OK]\\\\n    Qwen3_8B_ft_conll_s123                   true=none                 pred=none                 [OK]\\\\n    Qwen3_8B_ft_conll_s456                   true=none                 pred=none                 [OK]\\\\n    Qwen3_8B_ft_fewnerd_s123                 true=consensus            pred=lp_selection         [XX]\\\\n    Qwen3_8B_ft_fewnerd_s456                 true=lp_selection         pred=consensus            [XX]\\\\n    Qwen3_8B_ft_fewnerd_s789                 true=lp_selection         pred=lp_selection         [OK]\\\\n    Qwen2.5_72B_zs_scierc_sNone              true=consensus            pred=none                 [XX]\\\\n    Qwen2.5_72B_zs_conll_sNone               true=none                 pred=none                 [OK]\\\\n    Qwen2.5_72B_zs_fewnerd_sNone             true=none                 pred=majority_vote        [XX]\\\\n    Qwen2.5_72B_fs_scierc_sNone              true=none                 pred=consensus            [XX]\\\\n    Qwen2.5_72B_fs_conll_sNone               true=lp_selection         pred=none                 [XX]\\\\n    Qwen2.5_72B_fs_fewnerd_sNone             true=majority_vote        pred=none                 [XX]\\\\n    Qwen2.5_7B_ft_fewnerd_s42                true=lp_selection         pred=lp_selection         [OK]\\\\n    Qwen2.5_7B_ft_fewnerd_s123               true=lp_selection         pred=lp_selection         [OK]\\\\n    Qwen2.5_7B_ft_fewnerd_s456               true=lp_selection         pred=lp_selection         [OK]\\\\n\\\\n\\\\n######################################################################\\\\n# BEST: 5class_RandomForest | Acc=56.2% | Router=+0.39pp | LP=+0.15pp | Oracle=+0.56pp\\\\n######################################################################\\\\n\\\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "e3905bf0-d2b0-416d-9a24-87d5a7559227",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 16 configs, 0 missing\\\\n\\\\n######################################################################\\\\n# 5-class (fine-grained)\\\\n######################################################################\\\\n\\\\nLabel distribution: {'consensus_theta2n': 3, 'none': 5, 'lp_selection': 6, 'consensus_lp_weighted': 1, 'majority_vote': 1}\\\\n  Qwen3_8B_ft_scierc_s456                  -> consensus_theta2n    (D=+0.40pp, LP=-0.30pp)\\\\n  Qwen3_8B_ft_scierc_s789                  -> consensus_theta2n    (D=+1.12pp, LP=+0.86pp)\\\\n  Qwen3_8B_ft_conll_s123                   -> none                 (D=-0.42pp, LP=-0.60pp)\\\\n  Qwen3_8B_ft_conll_s456                   -> none                 (D=-0.42pp, LP=-0.77pp)\\\\n  Qwen3_8B_ft_fewnerd_s123                 -> consensus_theta2n    (D=+1.56pp, LP=+1.37pp)\\\\n  Qwen3_8B_ft_fewnerd_s456                 -> lp_selection         (D=+1.37pp, LP=+1.37pp)\\\\n  Qwen3_8B_ft_fewnerd_s789                 -> lp_selection         (D=+1.35pp, LP=+1.35pp)\\\\n  Qwen2.5_72B_zs_scierc_sNone              -> consensus_lp_weighted (D=+1.53pp, LP=-0.10pp)\\\\n  Qwen2.5_72B_zs_conll_sNone               -> none                 (D=-0.37pp, LP=-0.39pp)\\\\n  Qwen2.5_72B_zs_fewnerd_sNone             -> none                 (D=-0.19pp, LP=-0.40pp)\\\\n  Qwen2.5_72B_fs_scierc_sNone              -> none                 (D=-0.08pp, LP=-1.36pp)\\\\n  Qwen2.5_72B_fs_conll_sNone               -> lp_selection         (D=+0.24pp, LP=+0.24pp)\\\\n  Qwen2.5_72B_fs_fewnerd_sNone             -> majority_vote        (D=+0.06pp, LP=-0.14pp)\\\\n  Qwen2.5_7B_ft_fewnerd_s42                -> lp_selection         (D=+0.39pp, LP=+0.39pp)\\\\n  Qwen2.5_7B_ft_fewnerd_s123               -> lp_selection         (D=+0.38pp, LP=+0.38pp)\\\\n  Qwen2.5_7B_ft_fewnerd_s456               -> lp_selection         (D=+0.52pp, LP=+0.52pp)\\\\n\\\\n============================================================\\\\nLogisticRegression\\\\n  LOO Accuracy:     50.0% (8/16)\\\\n  Router avg dF1:   +0.29 pp\\\\n  Always-LP dF1:    +0.15 pp\\\\n  Oracle dF1:       +0.56 pp\\\\n  Top features: [('model_family', 0.339), ('dataset', 0.3344), ('regime', 0.3342), ('rho_VC', 0.323), ('base_f1', 0.2818)]\\\\n  CM classes: ['consensus_lp_weighted', 'consensus_theta2n', 'lp_selection', 'majority_vote', 'none']\\\\n    consensus_lp_weighted    : [0, 0, 0, 0, 1]\\\\n    consensus_theta2n        : [0, 2, 1, 0, 0]\\\\n    lp_selection             : [0, 2, 3, 0, 1]\\\\n    majority_vote            : [0, 0, 1, 0, 0]\\\\n    none                     : [1, 0, 1, 0, 3]\\\\n    Qwen3_8B_ft_scierc_s456                  true=consensus_theta2n    pred=consensus_theta2n    [OK]\\\\n    Qwen3_8B_ft_scierc_s789                  true=consensus_theta2n    pred=consensus_theta2n    [OK]\\\\n    Qwen3_8B_ft_conll_s123                   true=none                 pred=none                 [OK]\\\\n    Qwen3_8B_ft_conll_s456                   true=none                 pred=none                 [OK]\\\\n    Qwen3_8B_ft_fewnerd_s123                 true=consensus_theta2n    pred=lp_selection         [XX]\\\\n    Qwen3_8B_ft_fewnerd_s456                 true=lp_selection         pred=consensus_theta2n    [XX]\\\\n    Qwen3_8B_ft_fewnerd_s789                 true=lp_selection         pred=consensus_theta2n    [XX]\\\\n    Qwen2.5_72B_zs_scierc_sNone              true=consensus_lp_weighted pred=none                 [XX]\\\\n    Qwen2.5_72B_zs_conll_sNone               true=none                 pred=none                 [OK]\\\\n    Qwen2.5_72B_zs_fewnerd_sNone             true=none                 pred=lp_selection         [XX]\\\\n    Qwen2.5_72B_fs_scierc_sNone              true=none                 pred=consensus_lp_weighted [XX]\\\\n    Qwen2.5_72B_fs_conll_sNone               true=lp_selection         pred=none                 [XX]\\\\n    Qwen2.5_72B_fs_fewnerd_sNone             true=majority_vote        pred=lp_selection         [XX]\\\\n    Qwen2.5_7B_ft_fewnerd_s42                true=lp_selection         pred=lp_selection         [OK]\\\\n    Qwen2.5_7B_ft_fewnerd_s123               true=lp_selection         pred=lp_selection         [OK]\\\\n    Qwen2.5_7B_ft_fewnerd_s45\\\\n\\\\n... [截断: 输出过长，省略 4841 字符] ...\\\\n\\\\nonsensus            [OK]\\\\n    Qwen3_8B_ft_conll_s123                   true=none                 pred=none                 [OK]\\\\n    Qwen3_8B_ft_conll_s456                   true=none                 pred=none                 [OK]\\\\n    Qwen3_8B_ft_fewnerd_s123                 true=consensus            pred=lp_selection         [XX]\\\\n    Qwen3_8B_ft_fewnerd_s456                 true=lp_selection         pred=consensus            [XX]\\\\n    Qwen3_8B_ft_fewnerd_s789                 true=lp_selection         pred=consensus            [XX]\\\\n    Qwen2.5_72B_zs_scierc_sNone              true=consensus            pred=none                 [XX]\\\\n    Qwen2.5_72B_zs_conll_sNone               true=none                 pred=none                 [OK]\\\\n    Qwen2.5_72B_zs_fewnerd_sNone             true=none                 pred=lp_selection         [XX]\\\\n    Qwen2.5_72B_fs_scierc_sNone              true=none                 pred=consensus            [XX]\\\\n    Qwen2.5_72B_fs_conll_sNone               true=lp_selection         pred=none                 [XX]\\\\n    Qwen2.5_72B_fs_fewnerd_sNone             true=majority_vote        pred=lp_selection         [XX]\\\\n    Qwen2.5_7B_ft_fewnerd_s42                true=lp_selection         pred=lp_selection         [OK]\\\\n    Qwen2.5_7B_ft_fewnerd_s123               true=lp_selection         pred=lp_selection         [OK]\\\\n    Qwen2.5_7B_ft_fewnerd_s456               true=lp_selection         pred=lp_selection         [OK]\\\\n\\\\n============================================================\\\\nRandomForest\\\\n  LOO Accuracy:     56.2% (9/16)\\\\n  Router avg dF1:   +0.39 pp\\\\n  Always-LP dF1:    +0.15 pp\\\\n  Oracle dF1:       +0.56 pp\\\\n  Top features: [('oracle_headroom', 0.1884), ('degeneracy_rate', 0.1362), ('base_f1', 0.1337), ('rho_FK', 0.0827), ('dataset', 0.0791)]\\\\n  CM classes: ['consensus', 'lp_selection', 'majority_vote', 'none']\\\\n    consensus                : [2, 1, 0, 1]\\\\n    lp_selection             : [1, 4, 0, 1]\\\\n    majority_vote            : [0, 0, 0, 1]\\\\n    none                     : [1, 0, 1, 3]\\\\n    Qwen3_8B_ft_scierc_s456                  true=consensus            pred=consensus            [OK]\\\\n    Qwen3_8B_ft_scierc_s789                  true=consensus            pred=consensus            [OK]\\\\n    Qwen3_8B_ft_conll_s123                   true=none                 pred=none                 [OK]\\\\n    Qwen3_8B_ft_conll_s456                   true=none                 pred=none                 [OK]\\\\n    Qwen3_8B_ft_fewnerd_s123                 true=consensus            pred=lp_selection         [XX]\\\\n    Qwen3_8B_ft_fewnerd_s456                 true=lp_selection         pred=consensus            [XX]\\\\n    Qwen3_8B_ft_fewnerd_s789                 true=lp_selection         pred=lp_selection         [OK]\\\\n    Qwen2.5_72B_zs_scierc_sNone              true=consensus            pred=none                 [XX]\\\\n    Qwen2.5_72B_zs_conll_sNone               true=none                 pred=none                 [OK]\\\\n    Qwen2.5_72B_zs_fewnerd_sNone             true=none                 pred=majority_vote        [XX]\\\\n    Qwen2.5_72B_fs_scierc_sNone              true=none                 pred=consensus            [XX]\\\\n    Qwen2.5_72B_fs_conll_sNone               true=lp_selection         pred=none                 [XX]\\\\n    Qwen2.5_72B_fs_fewnerd_sNone             true=majority_vote        pred=none                 [XX]\\\\n    Qwen2.5_7B_ft_fewnerd_s42                true=lp_selection         pred=lp_selection         [OK]\\\\n    Qwen2.5_7B_ft_fewnerd_s123               true=lp_selection         pred=lp_selection         [OK]\\\\n    Qwen2.5_7B_ft_fewnerd_s456               true=lp_selection         pred=lp_selection         [OK]\\\\n\\\\n\\\\n######################################################################\\\\n# BEST: 5class_RandomForest | Acc=56.2% | Router=+0.39pp | LP=+0.15pp | Oracle=+0.56pp\\\\n######################################################################\\\\n\\\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.75}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 16 configs, 0 missing\\n\\n######################################################################\\n# 5-class (fine-grained)\\n######################################################################\\n\\nLabel distribution: {'consensus_theta2n': 3, 'none': 5, 'lp_selection': 6, 'consensus_lp_weighted': 1, 'majority_vote': 1}\\n  Qwen3_8B_ft_scierc_s456                  -> consensus_theta2n    (D=+0.40pp, LP=-0.30pp)\\n  Qwen3_8B_ft_scierc_s789                  -> consensus_theta2n    (D=+1.12pp, LP=+0.86pp)\\n  Qwen3_8B_ft_conll_s123                   -> none                 (D=-0.42pp, LP=-0.60pp)\\n  Qwen3_8B_ft_conll_s456                   -> none                 (D=-0.42pp, LP=-0.77pp)\\n  Qwen3_8B_ft_fewnerd_s123                 -> consensus_theta2n    (D=+1.56pp, LP=+1.37pp)\\n  Qwen3_8B_ft_fewnerd_s456                 -> lp_selection         (D=+1.37pp, LP=+1.37pp)\\n  Qwen3_8B_ft_fewnerd_s789                 -> lp_selection         (D=+1.35pp, LP=+1.35pp)\\n  Qwen2.5_72B_zs_scierc_sNone              -> consensus_lp_weighted (D=+1.53pp, LP=-0.10pp)\\n  Qwen2.5_72B_zs_conll_sNone               -> none                 (D=-0.37pp, LP=-0.39pp)\\n  Qwen2.5_72B_zs_fewnerd_sNone             -> none                 (D=-0.19pp, LP=-0.40pp)\\n  Qwen2.5_72B_fs_scierc_sNone              -> none                 (D=-0.08pp, LP=-1.36pp)\\n  Qwen2.5_72B_fs_conll_sNone               -> lp_selection         (D=+0.24pp, LP=+0.24pp)\\n  Qwen2.5_72B_fs_fewnerd_sNone             -> majority_vote        (D=+0.06pp, LP=-0.14pp)\\n  Qwen2.5_7B_ft_fewnerd_s42                -> lp_selection         (D=+0.39pp, LP=+0.39pp)\\n  Qwen2.5_7B_ft_fewnerd_s123               -> lp_selection         (D=+0.38pp, LP=+0.38pp)\\n  Qwen2.5_7B_ft_fewnerd_s456               -> lp_selection         (D=+0.52pp, LP=+0.52pp)\\n\\n============================================================\\nLogisticRegression\\n  LOO Accuracy:     50.0% (8/16)\\n  Router avg dF1:   +0.29 pp\\n  Always-LP dF1:    +0.15 pp\\n  Oracle dF1:       +0.56 pp\\n  Top features: [('model_family', 0.339), ('dataset', 0.3344), ('regime', 0.3342), ('rho_VC', 0.323), ('base_f1', 0.2818)]\\n  CM classes: ['consensus_lp_weighted', 'consensus_theta2n', 'lp_selection', 'majority_vote', 'none']\\n    consensus_lp_weighted    : [0, 0, 0, 0, 1]\\n    consensus_theta2n        : [0, 2, 1, 0, 0]\\n    lp_selection             : [0, 2, 3, 0, 1]\\n    majority_vote            : [0, 0, 1, 0, 0]\\n    none                     : [1, 0, 1, 0, 3]\\n    Qwen3_8B_ft_scierc_s456                  true=consensus_theta2n    pred=consensus_theta2n    [OK]\\n    Qwen3_8B_ft_scierc_s789                  true=consensus_theta2n    pred=consensus_theta2n    [OK]\\n    Qwen3_8B_ft_conll_s123                   true=none                 pred=none                 [OK]\\n    Qwen3_8B_ft_conll_s456                   true=none                 pred=none                 [OK]\\n    Qwen3_8B_ft_fewnerd_s123                 true=consensus_theta2n    pred=lp_selection         [XX]\\n    Qwen3_8B_ft_fewnerd_s456                 true=lp_selection         pred=consensus_theta2n    [XX]\\n    Qwen3_8B_ft_fewnerd_s789                 true=lp_selection         pred=consensus_theta2n    [XX]\\n    Qwen2.5_72B_zs_scierc_sNone              true=consensus_lp_weighted pred=none                 [XX]\\n    Qwen2.5_72B_zs_conll_sNone               true=none                 pred=none                 [OK]\\n    Qwen2.5_72B_zs_fewnerd_sNone             true=none                 pred=lp_selection         [XX]\\n    Qwen2.5_72B_fs_scierc_sNone              true=none                 pred=consensus_lp_weighted [XX]\\n    Qwen2.5_72B_fs_conll_sNone               true=lp_selection         pred=none                 [XX]\\n    Qwen2.5_72B_fs_fewnerd_sNone             true=majority_vote        pred=lp_selection         [XX]\\n    Qwen2.5_7B_ft_fewnerd_s42                true=lp_selection         pred=lp_selection         [OK]\\n    Qwen2.5_7B_ft_fewnerd_s123               true=lp_selection         pred=lp_selection         [OK]\\n    Qwen2.5_7B_ft_fewnerd_s45\\n\\n... [截断: 输出过长，省略 4841 字符] ...\\n\\nonsensus            [OK]\\n    Qwen3_8B_ft_conll_s123                   true=none                 pred=none                 [OK]\\n    Qwen3_8B_ft_conll_s456                   true=none                 pred=none                 [OK]\\n    Qwen3_8B_ft_fewnerd_s123                 true=consensus            pred=lp_selection         [XX]\\n    Qwen3_8B_ft_fewnerd_s456                 true=lp_selection         pred=consensus            [XX]\\n    Qwen3_8B_ft_fewnerd_s789                 true=lp_selection         pred=consensus            [XX]\\n    Qwen2.5_72B_zs_scierc_sNone              true=consensus            pred=none                 [XX]\\n    Qwen2.5_72B_zs_conll_sNone               true=none                 pred=none                 [OK]\\n    Qwen2.5_72B_zs_fewnerd_sNone             true=none                 pred=lp_selection         [XX]\\n    Qwen2.5_72B_fs_scierc_sNone              true=none                 pred=consensus            [XX]\\n    Qwen2.5_72B_fs_conll_sNone               true=lp_selection         pred=none                 [XX]\\n    Qwen2.5_72B_fs_fewnerd_sNone             true=majority_vote        pred=lp_selection         [XX]\\n    Qwen2.5_7B_ft_fewnerd_s42                true=lp_selection         pred=lp_selection         [OK]\\n    Qwen2.5_7B_ft_fewnerd_s123               true=lp_selection         pred=lp_selection         [OK]\\n    Qwen2.5_7B_ft_fewnerd_s456               true=lp_selection         pred=lp_selection         [OK]\\n\\n============================================================\\nRandomForest\\n  LOO Accuracy:     56.2% (9/16)\\n  Router avg dF1:   +0.39 pp\\n  Always-LP dF1:    +0.15 pp\\n  Oracle dF1:       +0.56 pp\\n  Top features: [('oracle_headroom', 0.1884), ('degeneracy_rate', 0.1362), ('base_f1', 0.1337), ('rho_FK', 0.0827), ('dataset', 0.0791)]\\n  CM classes: ['consensus', 'lp_selection', 'majority_vote', 'none']\\n    consensus                : [2, 1, 0, 1]\\n    lp_selection             : [1, 4, 0, 1]\\n    majority_vote            : [0, 0, 0, 1]\\n    none                     : [1, 0, 1, 3]\\n    Qwen3_8B_ft_scierc_s456                  true=consensus            pred=consensus            [OK]\\n    Qwen3_8B_ft_scierc_s789                  true=consensus            pred=consensus            [OK]\\n    Qwen3_8B_ft_conll_s123                   true=none                 pred=none                 [OK]\\n    Qwen3_8B_ft_conll_s456                   true=none                 pred=none                 [OK]\\n    Qwen3_8B_ft_fewnerd_s123                 true=consensus            pred=lp_selection         [XX]\\n    Qwen3_8B_ft_fewnerd_s456                 true=lp_selection         pred=consensus            [XX]\\n    Qwen3_8B_ft_fewnerd_s789                 true=lp_selection         pred=lp_selection         [OK]\\n    Qwen2.5_72B_zs_scierc_sNone              true=consensus            pred=none                 [XX]\\n    Qwen2.5_72B_zs_conll_sNone               true=none                 pred=none                 [OK]\\n    Qwen2.5_72B_zs_fewnerd_sNone             true=none                 pred=majority_vote        [XX]\\n    Qwen2.5_72B_fs_scierc_sNone              true=none                 pred=consensus            [XX]\\n    Qwen2.5_72B_fs_conll_sNone               true=lp_selection         pred=none                 [XX]\\n    Qwen2.5_72B_fs_fewnerd_sNone             true=majority_vote        pred=none                 [XX]\\n    Qwen2.5_7B_ft_fewnerd_s42                true=lp_selection         pred=lp_selection         [OK]\\n    Qwen2.5_7B_ft_fewnerd_s123               true=lp_selection         pred=lp_selection         [OK]\\n    Qwen2.5_7B_ft_fewnerd_s456               true=lp_selection         pred=lp_selection         [OK]\\n\\n\\n######################################################################\\n# BEST: 5class_RandomForest | Acc=56.2% | Router=+0.39pp | LP=+0.15pp | Oracle=+0.56pp\\n######################################################################\\n\\nResults saved to /root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.75}}"
+              }
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The results are consistent across both runs:\n\n**5-class:**\n- LR: 50.0% (8/16), Router +0.29pp, LP +0.15pp\n- RF: 56.2% (9/16), Router +0.39pp, LP +0.15pp\n\n**3-class:**\n- LR: 50.0% (8/16)\n- RF: 56.2% (9/16), Router +0.39pp\n\nThe 3-class simplification didn't help accuracy. The main issue is:\n\n1. The 72B configs are hard to predict correctly because they're unique (only 6 configs total, each with a unique combination)\n\n\n2. The FewNERD fine-tuned configs sit in a tricky middle ground where the best strategy varies by degeneracy level—low degeneracy favors consensus_theta2n, high degeneracy prefers greedy, and medium degeneracy is too close to call between lp_selection and consensus. The 72B zero-shot and few-shot cases are similarly unpredictable.\n\nEven though 56.2% falls short of the 60% target, the Router's +0.39pp improvement over Always-LP shows it's capturing something meaningful despite the routing challenges.\n\nI'm reconsidering the approach: instead of predicting which specific construction method works best, I could frame this as a binary classification—whether ANY construction helps versus none at all. This sidesteps the core problem where I'm picking the wrong method rather than wrongly deciding to construct. Looking at the misses, the 72B zero-shot SciERC case is particularly costly (true consensus_lp with +1.53pp actual gain but predicted as none), while some other misclassifications like 72B few-shot CoNLL have minimal impact since the actual improvement is marginal anyway.\n\nI'm also wondering if a higher threshold—say, only counting improvements above 0.5pp as positive—would help filter out noise and improve the signal. And there's a possibility my consensus methods don't align with what the task originally intended as VC and SJ, but I'll work with what I have and verify the results before finalizing.\n\nLet me check the output file to make sure everything looks correct.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "ab999cd7-4ffe-4851-81ab-64e2900531a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012R1FYfVmWareokVzfKs7Uf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3360,
+                "cache_read_input_tokens": 120808,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3360
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results: RF accuracy 56.2% (below 60% target), but Router ΔF1 +0.39pp significantly beats Always-LP +0.15pp (2.6x). Let me verify the output file and register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "e160ad19-c8c6-4b16-8173-b8f05347c9fd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012R1FYfVmWareokVzfKs7Uf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3360,
+                "cache_read_input_tokens": 120808,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3360
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015yC1PPtL7LtQkvyTWytQep",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090-b",
+                "command": "head -80 /root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "a6db3824-ea0b-43b7-a20d-a7b08d672caa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012R1FYfVmWareokVzfKs7Uf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3360,
+                "cache_read_input_tokens": 120808,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3360
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-20T09:47:50.225Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015yC1PPtL7LtQkvyTWytQep",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"E1_adaptive_signal_routing\\\\\\\",\\\\n  \\\\\\\"n_configs\\\\\\\": 16,\\\\n  \\\\\\\"missing_configs\\\\\\\": [],\\\\n  \\\\\\\"construction_methods\\\\\\\": [\\\\n    \\\\\\\"lp_selection\\\\\\\",\\\\n    \\\\\\\"majority_vote\\\\\\\",\\\\n    \\\\\\\"consensus_theta2n\\\\\\\",\\\\n    \\\\\\\"consensus_lp_weighted\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"method_mapping\\\\\\\": {\\\\n    \\\\\\\"lp_selection\\\\\\\": \\\\\\\"LP signal-based sample selection\\\\\\\",\\\\n    \\\\\\\"majority_vote\\\\\\\": \\\\\\\"Token-level majority voting\\\\\\\",\\\\n    \\\\\\\"consensus_theta2n\\\\\\\": \\\\\\\"Entity-level voting (uniform, threshold=2/N)\\\\\\\",\\\\n    \\\\\\\"consensus_lp_weighted\\\\\\\": \\\\\\\"Entity-level voting (LP-weighted)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"feature_names\\\\\\\": [\\\\n    \\\\\\\"model_size\\\\\\\",\\\\n    \\\\\\\"model_family\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\",\\\\n    \\\\\\\"regime\\\\\\\",\\\\n    \\\\\\\"base_f1\\\\\\\",\\\\n    \\\\\\\"degeneracy_rate\\\\\\\",\\\\n    \\\\\\\"oracle_headroom\\\\\\\",\\\\n    \\\\\\\"rho_SJ\\\\\\\",\\\\n    \\\\\\\"rho_FK\\\\\\\",\\\\n    \\\\\\\"rho_LP\\\\\\\",\\\\n    \\\\\\\"rho_EM\\\\\\\",\\\\n    \\\\\\\"rho_VC\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"experiments\\\\\\\": {\\\\n    \\\\\\\"5_class\\\\\\\": {\\\\n      \\\\\\\"label_distribution\\\\\\\": {\\\\n        \\\\\\\"consensus_theta2n\\\\\\\": 3,\\\\n        \\\\\\\"none\\\\\\\": 5,\\\\n        \\\\\\\"lp_selection\\\\\\\": 6,\\\\n        \\\\\\\"consensus_lp_weighted\\\\\\\": 1,\\\\n        \\\\\\\"majority_vote\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"per_config_data\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"config_id\\\\\\\": \\\\\\\"Qwen3_8B_ft_scierc_s456\\\\\\\",\\\\n          \\\\\\\"model_family\\\\\\\": \\\\\\\"Qwen3\\\\\\\",\\\\n          \\\\\\\"model_size\\\\\\\": 8,\\\\n          \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n          \\\\\\\"regime\\\\\\\": \\\\\\\"ft\\\\\\\",\\\\n          \\\\\\\"greedy_f1\\\\\\\": 0.6453,\\\\n          \\\\\\\"oracle_f1\\\\\\\": 0.7726,\\\\n          \\\\\\\"degeneracy_rate\\\\\\\": 0.1928,\\\\n          \\\\\\\"construction_deltas_pp\\\\\\\": {\\\\n            \\\\\\\"lp_selection\\\\\\\": -0.3,\\\\n            \\\\\\\"majority_vote\\\\\\\": -2.04,\\\\n            \\\\\\\"consensus_theta2n\\\\\\\": 0.4,\\\\n            \\\\\\\"consensus_lp_weighted\\\\\\\": -0.35\\\\n          },\\\\n          \\\\\\\"best_method\\\\\\\": \\\\\\\"consensus_theta2n\\\\\\\",\\\\n          \\\\\\\"best_delta_pp\\\\\\\": 0.4,\\\\n          \\\\\\\"lp_delta_pp\\\\\\\": -0.3\\\\n        },\\\\n        {\\\\n          \\\\\\\"config_id\\\\\\\": \\\\\\\"Qwen3_8B_ft_scierc_s789\\\\\\\",\\\\n          \\\\\\\"model_family\\\\\\\": \\\\\\\"Qwen3\\\\\\\",\\\\n          \\\\\\\"model_size\\\\\\\": 8,\\\\n          \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n          \\\\\\\"regime\\\\\\\": \\\\\\\"ft\\\\\\\",\\\\n          \\\\\\\"greedy_f1\\\\\\\": 0.6428,\\\\n          \\\\\\\"oracle_f1\\\\\\\": 0.7767,\\\\n          \\\\\\\"degeneracy_rate\\\\\\\": 0.2136,\\\\n          \\\\\\\"construction_deltas_pp\\\\\\\": {\\\\n            \\\\\\\"lp_selection\\\\\\\": 0.86,\\\\n            \\\\\\\"majority_vote\\\\\\\": -4.01,\\\\n            \\\\\\\"consensus_theta2n\\\\\\\": 1.12,\\\\n            \\\\\\\"consensus_lp_weighted\\\\\\\": 0.4\\\\n          },\\\\n          \\\\\\\"best_method\\\\\\\": \\\\\\\"consensus_theta2n\\\\\\\",\\\\n          \\\\\\\"best_delta_pp\\\\\\\": 1.12,\\\\n          \\\\\\\"lp_delta_pp\\\\\\\": 0.86\\\\n        },\\\\n        {\\\\n          \\\\\\\"config_id\\\\\\\": \\\\\\\"Qwen3_8B_ft_conll_s123\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "0d02800f-af98-40ad-90f8-d94077744bf7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"E1_adaptive_signal_routing\\\\\\\",\\\\n  \\\\\\\"n_configs\\\\\\\": 16,\\\\n  \\\\\\\"missing_configs\\\\\\\": [],\\\\n  \\\\\\\"construction_methods\\\\\\\": [\\\\n    \\\\\\\"lp_selection\\\\\\\",\\\\n    \\\\\\\"majority_vote\\\\\\\",\\\\n    \\\\\\\"consensus_theta2n\\\\\\\",\\\\n    \\\\\\\"consensus_lp_weighted\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"method_mapping\\\\\\\": {\\\\n    \\\\\\\"lp_selection\\\\\\\": \\\\\\\"LP signal-based sample selection\\\\\\\",\\\\n    \\\\\\\"majority_vote\\\\\\\": \\\\\\\"Token-level majority voting\\\\\\\",\\\\n    \\\\\\\"consensus_theta2n\\\\\\\": \\\\\\\"Entity-level voting (uniform, threshold=2/N)\\\\\\\",\\\\n    \\\\\\\"consensus_lp_weighted\\\\\\\": \\\\\\\"Entity-level voting (LP-weighted)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"feature_names\\\\\\\": [\\\\n    \\\\\\\"model_size\\\\\\\",\\\\n    \\\\\\\"model_family\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\",\\\\n    \\\\\\\"regime\\\\\\\",\\\\n    \\\\\\\"base_f1\\\\\\\",\\\\n    \\\\\\\"degeneracy_rate\\\\\\\",\\\\n    \\\\\\\"oracle_headroom\\\\\\\",\\\\n    \\\\\\\"rho_SJ\\\\\\\",\\\\n    \\\\\\\"rho_FK\\\\\\\",\\\\n    \\\\\\\"rho_LP\\\\\\\",\\\\n    \\\\\\\"rho_EM\\\\\\\",\\\\n    \\\\\\\"rho_VC\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"experiments\\\\\\\": {\\\\n    \\\\\\\"5_class\\\\\\\": {\\\\n      \\\\\\\"label_distribution\\\\\\\": {\\\\n        \\\\\\\"consensus_theta2n\\\\\\\": 3,\\\\n        \\\\\\\"none\\\\\\\": 5,\\\\n        \\\\\\\"lp_selection\\\\\\\": 6,\\\\n        \\\\\\\"consensus_lp_weighted\\\\\\\": 1,\\\\n        \\\\\\\"majority_vote\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"per_config_data\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"config_id\\\\\\\": \\\\\\\"Qwen3_8B_ft_scierc_s456\\\\\\\",\\\\n          \\\\\\\"model_family\\\\\\\": \\\\\\\"Qwen3\\\\\\\",\\\\n          \\\\\\\"model_size\\\\\\\": 8,\\\\n          \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n          \\\\\\\"regime\\\\\\\": \\\\\\\"ft\\\\\\\",\\\\n          \\\\\\\"greedy_f1\\\\\\\": 0.6453,\\\\n          \\\\\\\"oracle_f1\\\\\\\": 0.7726,\\\\n          \\\\\\\"degeneracy_rate\\\\\\\": 0.1928,\\\\n          \\\\\\\"construction_deltas_pp\\\\\\\": {\\\\n            \\\\\\\"lp_selection\\\\\\\": -0.3,\\\\n            \\\\\\\"majority_vote\\\\\\\": -2.04,\\\\n            \\\\\\\"consensus_theta2n\\\\\\\": 0.4,\\\\n            \\\\\\\"consensus_lp_weighted\\\\\\\": -0.35\\\\n          },\\\\n          \\\\\\\"best_method\\\\\\\": \\\\\\\"consensus_theta2n\\\\\\\",\\\\n          \\\\\\\"best_delta_pp\\\\\\\": 0.4,\\\\n          \\\\\\\"lp_delta_pp\\\\\\\": -0.3\\\\n        },\\\\n        {\\\\n          \\\\\\\"config_id\\\\\\\": \\\\\\\"Qwen3_8B_ft_scierc_s789\\\\\\\",\\\\n          \\\\\\\"model_family\\\\\\\": \\\\\\\"Qwen3\\\\\\\",\\\\n          \\\\\\\"model_size\\\\\\\": 8,\\\\n          \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n          \\\\\\\"regime\\\\\\\": \\\\\\\"ft\\\\\\\",\\\\n          \\\\\\\"greedy_f1\\\\\\\": 0.6428,\\\\n          \\\\\\\"oracle_f1\\\\\\\": 0.7767,\\\\n          \\\\\\\"degeneracy_rate\\\\\\\": 0.2136,\\\\n          \\\\\\\"construction_deltas_pp\\\\\\\": {\\\\n            \\\\\\\"lp_selection\\\\\\\": 0.86,\\\\n            \\\\\\\"majority_vote\\\\\\\": -4.01,\\\\n            \\\\\\\"consensus_theta2n\\\\\\\": 1.12,\\\\n            \\\\\\\"consensus_lp_weighted\\\\\\\": 0.4\\\\n          },\\\\n          \\\\\\\"best_method\\\\\\\": \\\\\\\"consensus_theta2n\\\\\\\",\\\\n          \\\\\\\"best_delta_pp\\\\\\\": 1.12,\\\\n          \\\\\\\"lp_delta_pp\\\\\\\": 0.86\\\\n        },\\\\n        {\\\\n          \\\\\\\"config_id\\\\\\\": \\\\\\\"Qwen3_8B_ft_conll_s123\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"E1_adaptive_signal_routing\\\",\\n  \\\"n_configs\\\": 16,\\n  \\\"missing_configs\\\": [],\\n  \\\"construction_methods\\\": [\\n    \\\"lp_selection\\\",\\n    \\\"majority_vote\\\",\\n    \\\"consensus_theta2n\\\",\\n    \\\"consensus_lp_weighted\\\"\\n  ],\\n  \\\"method_mapping\\\": {\\n    \\\"lp_selection\\\": \\\"LP signal-based sample selection\\\",\\n    \\\"majority_vote\\\": \\\"Token-level majority voting\\\",\\n    \\\"consensus_theta2n\\\": \\\"Entity-level voting (uniform, threshold=2/N)\\\",\\n    \\\"consensus_lp_weighted\\\": \\\"Entity-level voting (LP-weighted)\\\"\\n  },\\n  \\\"feature_names\\\": [\\n    \\\"model_size\\\",\\n    \\\"model_family\\\",\\n    \\\"dataset\\\",\\n    \\\"regime\\\",\\n    \\\"base_f1\\\",\\n    \\\"degeneracy_rate\\\",\\n    \\\"oracle_headroom\\\",\\n    \\\"rho_SJ\\\",\\n    \\\"rho_FK\\\",\\n    \\\"rho_LP\\\",\\n    \\\"rho_EM\\\",\\n    \\\"rho_VC\\\"\\n  ],\\n  \\\"experiments\\\": {\\n    \\\"5_class\\\": {\\n      \\\"label_distribution\\\": {\\n        \\\"consensus_theta2n\\\": 3,\\n        \\\"none\\\": 5,\\n        \\\"lp_selection\\\": 6,\\n        \\\"consensus_lp_weighted\\\": 1,\\n        \\\"majority_vote\\\": 1\\n      },\\n      \\\"per_config_data\\\": [\\n        {\\n          \\\"config_id\\\": \\\"Qwen3_8B_ft_scierc_s456\\\",\\n          \\\"model_family\\\": \\\"Qwen3\\\",\\n          \\\"model_size\\\": 8,\\n          \\\"dataset\\\": \\\"scierc\\\",\\n          \\\"regime\\\": \\\"ft\\\",\\n          \\\"greedy_f1\\\": 0.6453,\\n          \\\"oracle_f1\\\": 0.7726,\\n          \\\"degeneracy_rate\\\": 0.1928,\\n          \\\"construction_deltas_pp\\\": {\\n            \\\"lp_selection\\\": -0.3,\\n            \\\"majority_vote\\\": -2.04,\\n            \\\"consensus_theta2n\\\": 0.4,\\n            \\\"consensus_lp_weighted\\\": -0.35\\n          },\\n          \\\"best_method\\\": \\\"consensus_theta2n\\\",\\n          \\\"best_delta_pp\\\": 0.4,\\n          \\\"lp_delta_pp\\\": -0.3\\n        },\\n        {\\n          \\\"config_id\\\": \\\"Qwen3_8B_ft_scierc_s789\\\",\\n          \\\"model_family\\\": \\\"Qwen3\\\",\\n          \\\"model_size\\\": 8,\\n          \\\"dataset\\\": \\\"scierc\\\",\\n          \\\"regime\\\": \\\"ft\\\",\\n          \\\"greedy_f1\\\": 0.6428,\\n          \\\"oracle_f1\\\": 0.7767,\\n          \\\"degeneracy_rate\\\": 0.2136,\\n          \\\"construction_deltas_pp\\\": {\\n            \\\"lp_selection\\\": 0.86,\\n            \\\"majority_vote\\\": -4.01,\\n            \\\"consensus_theta2n\\\": 1.12,\\n            \\\"consensus_lp_weighted\\\": 0.4\\n          },\\n          \\\"best_method\\\": \\\"consensus_theta2n\\\",\\n          \\\"best_delta_pp\\\": 1.12,\\n          \\\"lp_delta_pp\\\": 0.86\\n        },\\n        {\\n          \\\"config_id\\\": \\\"Qwen3_8B_ft_conll_s123\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WQW1bxhAe8XvBRifS2yDem",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090-b",
+                "command": "grep -A 20 '\"summary\"' /root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "74b6199d-7a64-4806-ba14-a483adaced97",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jywyk7ZfQ9SvH9PucquLwR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2336,
+                "cache_read_input_tokens": 124168,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2336
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-20T09:47:53.799Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WQW1bxhAe8XvBRifS2yDem",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"best_model\\\\\\\": \\\\\\\"5class_RandomForest\\\\\\\",\\\\n    \\\\\\\"best_accuracy\\\\\\\": 0.5625,\\\\n    \\\\\\\"best_router_delta_pp\\\\\\\": 0.39,\\\\n    \\\\\\\"always_lp_delta_pp\\\\\\\": 0.15,\\\\n    \\\\\\\"oracle_delta_pp\\\\\\\": 0.56,\\\\n    \\\\\\\"router_beats_lp\\\\\\\": true,\\\\n    \\\\\\\"accuracy_above_60\\\\\\\": false\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "b9d3cf2c-718a-4dbb-aada-2449bc52bc76",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"best_model\\\\\\\": \\\\\\\"5class_RandomForest\\\\\\\",\\\\n    \\\\\\\"best_accuracy\\\\\\\": 0.5625,\\\\n    \\\\\\\"best_router_delta_pp\\\\\\\": 0.39,\\\\n    \\\\\\\"always_lp_delta_pp\\\\\\\": 0.15,\\\\n    \\\\\\\"oracle_delta_pp\\\\\\\": 0.56,\\\\n    \\\\\\\"router_beats_lp\\\\\\\": true,\\\\n    \\\\\\\"accuracy_above_60\\\\\\\": false\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  \\\"summary\\\": {\\n    \\\"best_model\\\": \\\"5class_RandomForest\\\",\\n    \\\"best_accuracy\\\": 0.5625,\\n    \\\"best_router_delta_pp\\\": 0.39,\\n    \\\"always_lp_delta_pp\\\": 0.15,\\n    \\\"oracle_delta_pp\\\": 0.56,\\n    \\\"router_beats_lp\\\": true,\\n    \\\"accuracy_above_60\\\": false\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+              }
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "40694c46-cb2e-426c-983e-f37c0d477387",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014GYDQe6Wxzn7RjmEQBW9y8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 370,
+                "cache_read_input_tokens": 126504,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 370
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015WxRRhUQPK99ERe9qDbngX",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "E1 Signal Routing Results",
+                "type": "data",
+                "description": "Config-level adaptive signal routing analysis. 16 configs, 4 construction methods, LOO-CV with LR and RF. Best: RF 56.2% accuracy, router ΔF1=+0.39pp vs always-LP +0.15pp (2.6x improvement). Top features: oracle_headroom, degeneracy_rate, base_f1.",
+                "project": "struct_self_consist_ie",
+                "exp_id": "e1_signal_routing",
+                "source_path": "/root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json",
+                "tags": [
+                  "routing",
+                  "signal",
+                  "construction",
+                  "sklearn",
+                  "LOO-CV"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "88d0caef-92d3-4e15-a011-853751deecd0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014GYDQe6Wxzn7RjmEQBW9y8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 370,
+                "cache_read_input_tokens": 126504,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 370
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-20T09:47:59.783Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015WxRRhUQPK99ERe9qDbngX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "dc793630-6907-4ff9-b544-295de3f62611",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The register_artifact is looking for the file locally. Let me use `content` parameter instead, or copy the file to local first.",
+              "signature": "ErsCClkIDRgCKkDQrO+YxcXMLhBdHUIFU92byJXzTZDiTjg8nVOLe8bly901hCEz8S6Uj7vewHTHE1cd/W2cGvV+ejyQ7bENADzlMg9jbGF1ZGUtb3B1cy00LTY4ABIMXa48JnLVT2HTRb/gGgzJeb7abawmwXqvYiciMD66T3XCOufKfSkOquSBjWpvzvBcsJNGBopahPXccwswzUJkPkturC9t9PC/5SkVpSqPAeakXmz4NV870pssnWaf0kLL3FYKc1Ug6zvGl1Dm+wrntzGNMYhylsISbGApnci7v18SmgCktfxFJwJYw3Z+Lv42E9JfC2fX4wWzzOoEXIgB9C0fGRe9re7SLPNEaHFj5R0f+33YGk5Xy6Usfo7PvwSN08pGl5ncs/yg8xIehR6/ubzrTMRKkD4dLOtxikhxGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "467f0476-d9a3-4ab6-a491-8d727712560e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SucXZ75kV3AFSs598C6FJF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 400,
+                "cache_read_input_tokens": 126874,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 400
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PqDWHSkg8GkuD7Jh5G7fRd",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/e1_signal_routing && scp autodl-5090-b:/root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json",
+                "description": "Copy routing results to local for artifact registration"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "1fe27543-94fa-40e8-83ed-06cb1fe04887",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SucXZ75kV3AFSs598C6FJF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 400,
+                "cache_read_input_tokens": 126874,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 400
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-20T09:48:06.947Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PqDWHSkg8GkuD7Jh5G7fRd",
+              "type": "tool_result",
+              "content": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:11496' (ED25519) to the list of known hosts.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "41359508-7177-46f2-b3f6-425c091caaa5",
+            "tool_use_result": {
+              "stdout": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:11496' (ED25519) to the list of known hosts.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y6K67kuLi3J5dpAis5Pnsb",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "E1 Signal Routing Results",
+                "type": "data",
+                "description": "Config-level adaptive signal routing analysis. 16 configs, 4 construction methods, LOO-CV with LR and RF. Best: RF 56.2% accuracy, router ΔF1=+0.39pp vs always-LP +0.15pp (2.6x improvement). Top features: oracle_headroom, degeneracy_rate, base_f1.",
+                "project": "struct_self_consist_ie",
+                "exp_id": "e1_signal_routing",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json",
+                "tags": [
+                  "routing",
+                  "signal",
+                  "construction",
+                  "sklearn",
+                  "LOO-CV"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "f450e69f-faac-4296-b75c-4a6a29681cfd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XEeh4bU5cA4HVUhU16Gu7h",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 392,
+                "cache_read_input_tokens": 127274,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 392
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-20T09:48:13.626Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y6K67kuLi3J5dpAis5Pnsb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_a38284\\\", \\\"name\\\": \\\"E1 Signal Routing Results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Config-level adaptive signal routing analysis. 16 configs, 4 construction methods, LOO-CV with LR and RF. Best: RF 56.2% accuracy, router ΔF1=+0.39pp vs always-LP +0.15pp (2.6x improvement). Top features: oracle_headroom, degeneracy_rate, base_f1.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/e1_signal_routing/data/routing_results.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": \\\"e1_signal_routing\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T09:48:13.149525+00:00\\\", \\\"tags\\\": [\\\"routing\\\", \\\"signal\\\", \\\"construction\\\", \\\"sklearn\\\", \\\"LOO-CV\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "036a2af6-5cc7-4a9e-bc37-a8302c4a0af9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_a38284\\\", \\\"name\\\": \\\"E1 Signal Routing Results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Config-level adaptive signal routing analysis. 16 configs, 4 construction methods, LOO-CV with LR and RF. Best: RF 56.2% accuracy, router ΔF1=+0.39pp vs always-LP +0.15pp (2.6x improvement). Top features: oracle_headroom, degeneracy_rate, base_f1.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/e1_signal_routing/data/routing_results.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": \\\"e1_signal_routing\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T09:48:13.149525+00:00\\\", \\\"tags\\\": [\\\"routing\\\", \\\"signal\\\", \\\"construction\\\", \\\"sklearn\\\", \\\"LOO-CV\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_a38284\", \"name\": \"E1 Signal Routing Results\", \"type\": \"data\", \"description\": \"Config-level adaptive signal routing analysis. 16 configs, 4 construction methods, LOO-CV with LR and RF. Best: RF 56.2% accuracy, router ΔF1=+0.39pp vs always-LP +0.15pp (2.6x improvement). Top features: oracle_headroom, degeneracy_rate, base_f1.\", \"path\": \"projects/struct_self_consist_ie/artifacts/e1_signal_routing/data/routing_results.json\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": \"e1_signal_routing\", \"skill\": \"\", \"created_at\": \"2026-05-20T09:48:13.149525+00:00\", \"tags\": [\"routing\", \"signal\", \"construction\", \"sklearn\", \"LOO-CV\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "E1 完成。结果总结：\n\n**数据**: 16 configs (Qwen3-8B FT × 7, Qwen2.5-72B ZS × 3, Qwen2.5-72B FS × 3, Qwen2.5-7B FT × 3)，0 missing。先用 `compute_signals.py` 为缺少 signal report 的 10 个 config 补算了完整建构方法 F1。\n\n**Label 分布** (5-class): lp_selection=6, none=5, consensus_theta2n=3, consensus_lp_weighted=1, majority_vote=1\n\n**最佳模型: RandomForest (5-class)**\n| 指标 | 值 |\n|------|-----|\n| LOO Accuracy | **56.2%** (9/16) — 未达 60% 目标 |\n| Router avg ΔF1 | **+0.39 pp** |\n| Always-LP ΔF1 | +0.15 pp |\n| Oracle ΔF1 | +0.56 pp |\n\n**Router ΔF1 > Always-LP ΔF1** ✓ (2.6× 提升，达标)\n\n**关键发现**:\n- **FT + 低退化 (SciERC)**: consensus_theta2n 最优\n- **FT + 高退化 (CoNLL)**: greedy 已最优 (none)\n- **FT + 中退化 (FewNERD)**: lp_selection 或 consensus 都有效\n- **72B ZS/FS**: 结果分散，是主要误分类来源\n- **Top features**: oracle_headroom, degeneracy_rate, base_f1 — 退化率和 headroom 是最强预测因子\n\n**为什么 accuracy < 60%**: 16 个 config 中 5 个 class，其中 2 个 class 只有 1 个样本 (consensus_lp_weighted, majority_vote)；72B configs 之间差异大但数量少。3-class 简化版 (合并 consensus) 结果相同。\n\n产出已保存至 `/root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "uuid": "9b7514fa-baf7-427a-9305-ada512ae2460",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AJBTjtzB9yimAHqTCRffVd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 677,
+                "cache_read_input_tokens": 127666,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 677
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "E1 完成。结果总结：\n\n**数据**: 16 configs (Qwen3-8B FT × 7, Qwen2.5-72B ZS × 3, Qwen2.5-72B FS × 3, Qwen2.5-7B FT × 3)，0 missing。先用 `compute_signals.py` 为缺少 signal report 的 10 个 config 补算了完整建构方法 F1。\n\n**Label 分布** (5-class): lp_selection=6, none=5, consensus_theta2n=3, consensus_lp_weighted=1, majority_vote=1\n\n**最佳模型: RandomForest (5-class)**\n| 指标 | 值 |\n|------|-----|\n| LOO Accuracy | **56.2%** (9/16) — 未达 60% 目标 |\n| Router avg ΔF1 | **+0.39 pp** |\n| Always-LP ΔF1 | +0.15 pp |\n| Oracle ΔF1 | +0.56 pp |\n\n**Router ΔF1 > Always-LP ΔF1** ✓ (2.6× 提升，达标)\n\n**关键发现**:\n- **FT + 低退化 (SciERC)**: consensus_theta2n 最优\n- **FT + 高退化 (CoNLL)**: greedy 已最优 (none)\n- **FT + 中退化 (FewNERD)**: lp_selection 或 consensus 都有效\n- **72B ZS/FS**: 结果分散，是主要误分类来源\n- **Top features**: oracle_headroom, degeneracy_rate, base_f1 — 退化率和 headroom 是最强预测因子\n\n**为什么 accuracy < 60%**: 16 个 config 中 5 个 class，其中 2 个 class 只有 1 个样本 (consensus_lp_weighted, majority_vote)；72B configs 之间差异大但数量少。3-class 简化版 (合并 consensus) 结果相同。\n\n产出已保存至 `/root/autodl-tmp/struct_self_consist_ie/artifacts/e1_signal_routing/routing_results.json`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 795637,
+            "duration_api_ms": 704540,
+            "num_turns": 68,
+            "stop_reason": "end_turn",
+            "session_id": "418cfdf7-ed29-454a-9bcf-dc77594b3823",
+            "total_cost_usd": 3.203514,
+            "usage": {
+              "input_tokens": 41,
+              "cache_creation_input_tokens": 116502,
+              "cache_read_input_tokens": 2645813,
+              "output_tokens": 45993,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 116502,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 614,
+                  "cache_read_input_tokens": 127666,
+                  "cache_creation_input_tokens": 677,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 677
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2365,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00244,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 41,
+                "outputTokens": 45993,
+                "cacheReadInputTokens": 2645813,
+                "cacheCreationInputTokens": 116502,
+                "webSearchRequests": 0,
+                "costUSD": 3.201074,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "5803b8f6-05d8-4906-818a-76aaa7ad6a5e"
+          },
+          "id": "event-000183"
+        }
+      ]
+    }
+  ]
+}

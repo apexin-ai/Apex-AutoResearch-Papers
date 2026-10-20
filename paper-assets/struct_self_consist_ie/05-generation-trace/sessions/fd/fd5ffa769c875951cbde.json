@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd5ffa769c875951cbde",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp qwen25 7b fewnerd v3",
+  "task_key": "worker_code_exp_qwen25_7b_fewnerd_v3_20260519T112555",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_qwen25_7b_fewnerd_v3_20260519T112555_result.json",
+    "occurrence": 1,
+    "bytes": 887,
+    "sha256": "d7c171e89fffec976273bac50d934b2a52fb555c086224d1e773560ab19c1318"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行。\n\n**汇总：**\n\n| 项目 | 值 |\n|---|---|\n| Server | autodl-5090-c, cuda:2,3 |\n| Model | Qwen2.5-7B-Instruct (base) |\n| Data | FewNERD 131,767 train / 18,824 dev |\n| Config | QLoRA 4-bit nf4, rank=32, alpha=64, lr=2e-4, 5 epochs |\n| Effective batch | 32 (2 GPU × 2 batch × 8 accum) |\n| Total steps | 20,590 (~2.3s/step → 预计 ~13h) |\n| Trainable params | 80.7M / 7.7B (1.05%) |\n| Pipeline | train → merge → 3-seed N=8 inference → signal analysis → entity construction |\n| Log | `logs/pipeline_qwen25_7b_fewnerd.log` |\n| Registry | `exp_qwen25_7b_fewnerd` → RUNNING |\n\n创建的文件:\n- `train_config_qwen25_7b_fewnerd_s42.yaml`\n- `export_config_qwen25_7b_fewnerd.yaml`\n- `run_fewnerd_qwen25_7b_pipeline.sh` (5-phase pipeline，训练完成后自动执行 merge → inference → analysis → entity construction)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-qwen25-7b-fewnerd-v3.md"
+}

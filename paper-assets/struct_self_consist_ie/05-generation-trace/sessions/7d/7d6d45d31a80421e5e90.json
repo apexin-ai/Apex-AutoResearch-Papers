@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d6d45d31a80421e5e90",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "reviewer / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_4.md",
+    "occurrence": 1,
+    "bytes": 4086,
+    "sha256": "bcbfc4432b8a7382821ccec982d455bc95c051a8dc50aff20662e73dbe1ab536"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_wall_time\nupdated: '2026-05-14T21:46:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：autodl-5090 的 cuda:0/1/2/3（`execution.gpu_ids`）。当前全部空闲，无活跃训练进程。\n- `voting_conf` 信号存在两套不同实现：主 pipeline（`analyze_*.py`）取所有 entity 的 mean(count/N)；bootstrap（`run_bootstrap_loo.py`）只取 majority (>n/2) entity。**bootstrap 的 voting_conf CI 不适用于论文报告的 ρ 值**——已报 Director CRITICAL，尚未确认是否修复。在修复前，论文中 voting_conf 的 CI/显著性结论不可信。\n- Qwen SciERC 3-seed 数据中 EM 和 voting_conf 仅有硬编码值（从 `all_signals_report.json` 提取），不在 `bootstrap_ci_summary.json` 中——如果论文需要这两个信号的 bootstrap CI，需要补跑。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`autodl-5090(root)`，工作目录 `/root/autodl-tmp/struct_self_consist_ie`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型 checkpoints：`checkpoints/qwen3-8b-scierc-merged-v2`、`checkpoints/qwen3-8b-conll2003-merged`、`checkpoints/llama3.1-8b-scierc-merged`、`checkpoints/llama3.1-8b-conll2003-merged`\n- 数据集：`data/scierc/processed_data`（551 实例）、`data/conll2003`（3453 实例）\n- 图表输出：`artifacts/figures/`（3 PDF+3 PNG，05:40 更新），旧版在 `figures/paper/`（仅 heatmap）\n- 活跃进程：无（全部 GPU 实验已完成，Writing 阶段）\n- Bootstrap 结果：`output/bootstrap_ci_nscaling/results.json`（含 LLaMA_CoNLL）、`output/bootstrap_ci_summary.json`（统一汇总）\n\n### 3. 📊 当前状态\n刚完成三轮 worker 审查：\n1. **paper_figures_core_3figures**（status=failed）：图表实际已生成，failure 是后续步骤问题。已报 info。\n2. **llama_conll_nscaling_bootstrap**（status=done）：数据一致性通过（SJ/FK/logprob 匹配），但发现 voting_conf 实现不一致（CRITICAL 已报）。N-scaling actual CI 跨零（方向性正，p~0.95），paired CI 显著。\n3. **fix_heatmap_3seed_p0_v2**（status=done）：修复了我之前报告的 `*0.95` fallback + 数据源混用问题。验证 PASS。\n\nRegistry 中 PREPARING 状态的实验（exp008_re_n16 等 7 个）均为历史残留，不再有活跃任务。\nWriting 阶段：Paper Agent 在做 Step 4 章节写作，method.tex 有 3 个 CRITICAL 待修正，related_work 和 discussion 未完成。\n\n### 4. 📋 待办\n- Director 回复 voting_conf bootstrap CRITICAL → 如果决定修 bootstrap 代码，审查修复后的 CI 值；如果决定论文中不报 voting_conf CI，确认 experiments.tex 中无此 claim\n- Paper Agent 提交 method.tex CRITICAL 修正（FK/EM/SJ 公式）→ 审查修正后公式是否与代码实现一致（源码在 `code/consistency.py`、`code/analyze_*.py`）\n- Paper Agent 提交 related_work / discussion → 按 §5 章节审查维度审查\n- 如果收到 `paper_agent_request_review` → 使用 §5.3 评分模板返回维度评分\n- bootstrap_ci_summary.json 更新后 → 验证 Qwen SciERC EM/voting_conf 是否补全\n\n### 5. 🎯 战略上下文\n- **核心结论**：structural consistency (SJ + voting_conf) > logprob 作为 IE 质量估计器，跨 2 模型 × 2 数据集 × 3 seed 一致成立。但存在 correlation-selection gap（ρ 高不代表 selection F1 高）。\n- **最易判断错的事**：\n  1. 不要把 `run_bootstrap_loo.py` 的 voting_conf CI 当作论文 ρ 值的 CI——信号定义不同（majority filter vs 全 entity mean）。这是目前唯一未解决的 CRITICAL。\n  2. N-scaling 的 actual（unpaired）分析 CI 跨零，但 paired 分析显著。论文中如果 claim \"statistically significant N-scaling\"，必须明确是 paired 分析。\n  3. RE 结构信号系统性弱于 NER 是 task 本质属性（D041），不是 bug。\n  4. WNUT-17 已放弃（D043/D045），报告为 Claim 3（capability boundary）证据。\n- **DDL**：ARR May 2026-05-25，距今 11 天。全部 GPU 实验完成，瓶颈在论文写作迭代。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-copy-3.md"
+}

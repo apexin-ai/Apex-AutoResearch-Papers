@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b418b706cb83e1659a2",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix exp029 restart both",
+  "task_key": "worker_fix_exp029_restart_both_20260518T013614",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_exp029_restart_both_20260518T013614_result.json",
+    "occurrence": 1,
+    "bytes": 637,
+    "sha256": "7d2ef76c76ca3940a52afb68a7bd5116a71e5e81fb21c5c420f40cb70e0cdad6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均正常训练中，无报错。\n\n## 汇报\n\n| 项目 | 结果 |\n|------|------|\n| PID 416808 | 已不存在（No such process） |\n| 磁盘可用 | 129G / 250G (49% used) |\n| exp_029a PID | **441469** (GPU 0, 3-epoch, 351 steps, ~2.7s/it) |\n| exp_029b PID | **441471** (GPU 1, 10-epoch, 1170 steps, ~2.7s/it) |\n| GPU 显存 | GPU 0: 24452 MiB / 32607 MiB, GPU 1: 24452 MiB / 32607 MiB |\n| GPU 利用率 | 均为 100% |\n| 日志 | 两个实验均已正常开始训练，无 error/warning（仅 tokenizer PAD 对齐 warning，正常） |\n\n预估完成时间：exp_029a ~17min，exp_029b ~55min。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp029-restart-both.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4dc8cca03b9a4ee8e4e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh scierc pretrained mv recompute",
+  "task_key": "worker_ssh_scierc_pretrained_mv_recompute_20260521T200938",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_scierc_pretrained_mv_recompute_20260521T200938_result.json",
+    "occurrence": 1,
+    "bytes": 716,
+    "sha256": "948c3ae57c8753eedfa990c4253a3d832af69ac391669303603d8fe251e98c3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 seed 都跑完了。汇总 3-seed 结果：\n\n## SciERC Pretrained — 3-Seed Results\n\n| Metric | s42_v2 | s123 | s456 | **Mean ± Std** |\n|---|---|---|---|---|\n| greedy_f1 | 0.2434 | 0.2436 | 0.2436 | **0.2435 ± 0.0001** |\n| mv_strict_f1 | 0.2618 | 0.2548 | 0.2642 | **0.2603 ± 0.0040** |\n| oracle_f1 | 0.3888 | 0.3941 | 0.3952 | **0.3927 ± 0.0028** |\n| degeneracy | 0.009 | 0.006 | 0.009 | **0.008 ± 0.002** |\n| n_instances | 529 | 529 | 529 | 529 |\n| MV Δ (pp) | +1.84 | +1.12 | +2.06 | **+1.67 ± 0.40** |\n| α_crit_eff_strict | — | 0.1468 | 0.1537 | — |\n\n**关键数字**: MV strict F1 = **0.2603 ± 0.0040**, MV Δ = **+1.67 ± 0.40 pp**, degeneracy 很低 (0.8%)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-scierc-pretrained-mv-recompute.md"
+}

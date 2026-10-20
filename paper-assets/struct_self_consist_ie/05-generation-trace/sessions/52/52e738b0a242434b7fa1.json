@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52e738b0a242434b7fa1",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis multiseed entity construction",
+  "task_key": "worker_analysis_multiseed_entity_construction_20260519T053858",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_multiseed_entity_construction_20260519T053858_result.json",
+    "occurrence": 1,
+    "bytes": 2179,
+    "sha256": "42bd02e5e4471d7374ed405580be51ef83564ac2c8e1f5b0ef2b49639fab5daf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `output/entity_construction_fair_n8/multiseed_results.json`。\n\n## 汇报\n\n### SciERC (3 seeds, N=8, 529 instances/seed)\n\n| Seed | Greedy F1 | Uniform (θ=0.25) | LP-weighted (θ=0.25) | Δ Uniform | Δ LP-weighted |\n|------|-----------|-------------------|----------------------|-----------|---------------|\n| 42   | 64.39     | 65.93             | 66.06                | +1.54pp   | +1.67pp       |\n| 123  | 64.57     | 65.45             | 65.48                | +0.88pp   | +0.90pp       |\n| 456  | 64.78     | 64.59             | 65.28                | -0.19pp   | +0.49pp       |\n\n**Mean ± σ:**\n\n| Metric | Value |\n|--------|-------|\n| Greedy F1 | 64.58 ± 0.16 |\n| Uniform Construction | 65.32 ± 0.56 |\n| LP-weighted Construction | 65.60 ± 0.33 |\n| Δ Uniform | +0.74 ± 0.71pp |\n| Δ LP-weighted | **+1.02 ± 0.49pp** |\n\n### FewNERD (4 seeds, N=8, 32565 instances/seed)\n\n| Seed | Greedy F1 | Uniform (θ=0.25) | LP-weighted (θ=0.25) | Δ Uniform | Δ LP-weighted |\n|------|-----------|-------------------|----------------------|-----------|---------------|\n| 42   | 74.78     | 75.10             | 75.66                | +0.32pp   | +0.88pp       |\n| 123  | 74.80     | 76.52             | 76.99                | +1.72pp   | +2.18pp       |\n| 456  | 74.86     | 75.50             | 76.37                | +0.64pp   | +1.51pp       |\n| 789  | 74.78     | 75.08             | 75.80                | +0.30pp   | +1.02pp       |\n\n**Mean ± σ:**\n\n| Metric | Value |\n|--------|-------|\n| Greedy F1 | 74.81 ± 0.03 |\n| Uniform Construction | 75.55 ± 0.59 |\n| LP-weighted Construction | 76.21 ± 0.52 |\n| Δ Uniform | +0.74 ± 0.58pp |\n| Δ LP-weighted | **+1.40 ± 0.51pp** |\n\n### Table 5 更新数据\n\n- **SciERC**: Greedy 64.58±0.16 → Uniform 65.32±0.56 (+0.74pp) → LP-weighted 65.60±0.33 (+1.02pp)\n- **FewNERD**: Greedy 74.81±0.03 → Uniform 75.55±0.59 (+0.74pp) → LP-weighted 76.21±0.52 (+1.40pp)\n\n注意 seed 456 在 SciERC 上 Uniform construction Δ 为负 (-0.19pp)，但 LP-weighted 仍为正 (+0.49pp)。LP-weighted construction 在所有 seed 上一致优于 greedy。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-multiseed-entity-construction.md"
+}

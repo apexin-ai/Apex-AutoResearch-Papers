@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ae4f644dbcd57840c10",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "review r9 narrative coherence",
+  "task_key": "worker_review_r9_narrative_coherence_20260516T010130",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_review_r9_narrative_coherence_20260516T010130_result.json",
+    "occurrence": 1,
+    "bytes": 9593,
+    "sha256": "35c15e95065673e30d0cd0d66b4fb13fda3f5900eaa6588449f4d30da5800e66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿完成。以下是完整报告。\n\n---\n\n## Round 9 审稿报告\n\n---\n\n### CRITICAL（必须修复才能提交）\n\n**C1. Method Section 完全缺失**\n- `introduction.tex:49` — `\\S\\ref{sec:method} formalizes the problem and defines the five confidence signals`\n- `experiments.tex:27` — `detailed in \\S\\ref{sec:signals}`\n- 整个 `artifacts/_project/paper/` 目录下没有 method.tex 或 methodology.tex。五个信号的形式化定义（SJ 的 bipartite matching、Voting 的 aggregation、FK 的公式等）无处可寻。论文结构不完整，reviewer 无法评估方法。\n- **建议**: 创建 method.tex，包含 problem formalization、5 signal definitions、evaluation protocol。\n\n**C2. 全部 4 个 Figure 悬空**\n- `introduction.tex:27` → `Figure~\\ref{fig:overview}` — 无定义\n- `experiments.tex:85` → `Figure~\\ref{fig:signal_heatmap}` — 无定义\n- `experiments.tex:137` → `Figure~\\ref{fig:selection_gap}` — 无定义\n- `experiments.tex:223` → `Figure~\\ref{fig:reliability}` — 无定义\n- 整个 paper 目录下无 `.pdf`/`.png`/`.eps`/`.svg` 文件，也无任何 `\\begin{figure}` 环境或 `\\label{fig:...}`。编译后所有 figure 引用显示为 \"??\"。\n- **建议**: 创建全部 4 个图。framing R16 明确要求 ≥3 figures，当前为 0。\n\n**C3. 4B Scale Ablation 完全缺失**\n- Framing 将 4B ablation 列为 Claim 1 的核心证据（\"Scale ablation shows the gap is not an artifact of a particular model size\"），R14 标记为 RESOLVED。\n- 但全文 grep \"4B\"、\"Qwen3-4B\"、\"scale ablation\" 返回零结果。Conclusion 提到 \"scaling analysis with larger models (70B+)\" 作为 future work，但对已完成的 4B 实验只字未提。\n- **建议**: 在 experiments.tex 的 robustness 分析中新增 scale ablation 段落+表格，引用 framing 中的 2×2 矩阵数据。\n\n**C4. RE 结果未标注 (preliminary)**\n- 核心约束要求 \"RE 结果标注 preliminary\"。\n- Grep \"preliminary\" 返回零结果。所有 RE 数据（Table 1 的 SciERC RE 列、Table 2 的 RE F1、robustness 表的 RE ρ、discussion 中的 RE 讨论）均无标注。\n- **建议**: 在所有涉及 RE 的表格标题和正文关键 claim 处加注 \"(preliminary; single dataset)\"。\n\n**C5. Appendix 表格 Label 冲突**\n- `n_scaling_appendix_tables.tex` 和 `n_scaling_appendix_tables_44b000.tex` 都定义了 `\\label{tab:n-scaling}`、`\\label{tab:ranking-stability}`、`\\label{tab:sigma-comparison}`。\n- 如果两个文件都被 `\\input`，LaTeX 会产生 duplicate label 警告且交叉引用指向错误表格。\n- 且旧文件 `n_scaling_appendix_tables.tex` 的 Table 1 caption 写的是 \"Qwen 2.5-7B\"（过时模型名），新文件写的是 \"Qwen3-8B\"。\n- **建议**: 删除旧文件或重命名其 labels。确认只 include 一个版本。\n\n---\n\n### HIGH（强烈建议修复）\n\n**H1. Free-form Ablation 仅有附录表格，正文无讨论**\n- `freeform_ablation_appendix_table.tex` 包含完整的 4-panel 数据，但 experiments.tex 和 discussion.tex 中完全没有引用 `\\ref{tab:freeform-ablation}` 或讨论 ablation 结果。\n- Framing 将 free-form ablation 定位为 \"Story Spine Step 3: Controlled falsification\"——论文叙事的核心支柱。当前论文声称 gap 是 \"fundamental\"（intro:23, experiments:137），但没有呈现证明 universality 的 ablation 证据。\n- **建议**: 在 experiments.tex 增加 subsection 或 paragraph 讨论 free-form ablation 结果（至少 LP std ratio 0.97、tied fraction -2pp），引用 appendix 表格。\n\n**H2. ε=0.05 无讨论或 justification**\n- `freeform_ablation_appendix_table.tex:18` 使用 `ε=0.05` 定义 tied fraction，但全文无一处解释 ε 的含义、为何选 0.05、或对不同 ε 值的敏感性。\n- Framing 说 \"ε=0.05 有实证支撑\"，但这个实证支撑没有写进论文。\n- **建议**: 在 method section（待创建）或 appendix 中定义 ε 并报告 robustness（如 ε∈{0.01, 0.05, 0.1} 的 tied fraction 变化）。\n\n**H3. WNUT-17 在 Abstract 中列为主数据集但主表中缺席**\n- `abstract.tex:3` — \"three datasets (SciERC, CoNLL-2003, WNUT-17)\"\n- `experiments.tex:8-12` — WNUT-17 作为第三个 benchmark 详细介绍\n- 但 Table 1 (`tab:quality_estimation`) 只有 SciERC 和 CoNLL 的列，WNUT-17 数据仅出现在正文段落（`experiments.tex:166-168`，SJ ρ=0.062，LP ρ=-0.411）。\n- Abstract 给读者的预期是三个数据集的完整对比表，实际只有两个。\n- **建议**: 将 WNUT-17 加入 Table 1（即使大部分值不显著），或在 abstract 中调整表述为 \"primarily evaluate on SciERC and CoNLL-2003, with WNUT-17 as a boundary probe\"。\n\n**H4. Discussion 引用未定义的子集**\n- `discussion.tex:25` — \"the high-complexity RE subset (n=81) yields substantially stronger correlations (Voting ρ=0.630, SJ ρ=0.502)\"\n- 这个 n=81 的子集在 experiments.tex 中从未定义或引入。读者无法知道这是什么子集、如何划分。\n- **建议**: 在 experiments.tex 的 capability stratification 段落中定义此子集（如 \"instances with ≥3 relation triples\"），或从 discussion 中删除。\n\n**H5. Limitations 引用了论文中未呈现的 LR 分析**\n- `limitations.tex:8` — \"Our analysis of selection potential uses unsupervised signals and a logistic regression proxy as an upper bound.\"\n- 论文正文没有任何地方展示 logistic regression 的结果。Framing 记录了 exp_016 的 LR ensemble（AUROC 0.666），但这些数据没有写进 paper。\n- **建议**: 要么在 experiments 中加入 LR ensemble 分析，要么从 limitations 中删除此引用。\n\n**H6. Discussion 引用无表格支撑的 AUROC=0.735**\n- `discussion.tex:7` — \"its ensemble with voting reaches AUROC=0.735\"\n- 这个数字不在任何表格中。Table 1 没有 ensemble 行；Table 2 只报告 F1 不报告 AUROC。\n- **建议**: 在 Table 1 增加 ensemble 行，或将此数字移至有对应数据支撑的位置。\n\n**H7. Fisher's z-test 比较对象不明确**\n- `experiments.tex:153` — \"Fisher's z-test on ρ_SJ yields z=2.31, p=0.021\"\n- 没有说明这是比较 NER SJ ρ vs RE SJ ρ，还是其他对。读者无法理解 z-test 在检验什么假设。\n- **建议**: 改为 \"Fisher's z-test comparing SJ ρ between NER (0.357) and RE (0.211) yields z=2.31, p=0.021\"。\n\n**H8. Abstract 的 Claim 2 与正文 Framing 脱节**\n- Abstract line 4 说 \"only log-probability helps on relation extraction (+2.3 pp)\"。\n- 但 framing 的 exp_016_rerun_1024 数据显示 \"RE: greedy 0.4042 > logprob 0.3948\"（greedy 赢）。Table 2 显示 LP=0.397 > greedy=0.374（LP 赢 2.3pp）。\n- 这意味着 gold-filtered 管道 vs 原始数据的 RE selection 结论完全相反。如果 gold-filtering 改变了核心 claim 的方向，需要显式说明。\n- **建议**: 验证 RE selection +2.3pp 来自哪个实验管道，确认与 gold-filtered 约束一致。\n\n---\n\n### LOW（可选改进）\n\n**L1. 术语不一致：entity voting / Voting Confidence / Voting Conf.**\n- Abstract 用 \"entity voting\"，Table 1 用 \"Voting Conf.\"，experiments 正文用 \"Voting Confidence\"，discussion/conclusion 用 \"entity voting\"。\n- **建议**: 统一为一个术语，其他地方首次出现时加括号别名。\n\n**L2. CoNLL oracle headroom数据仅在正文中，无表格支撑**\n- `experiments.tex:88-89` — \"+4.2 pp (Qwen) and +1.8 pp (LLaMA)\" — 这些数字不在 Table 2（只有 SciERC）也不在其他表格中。\n- **建议**: 在 appendix 增加 CoNLL selection 表，或注明 \"(data in Appendix Table X)\"。\n\n**L3. Ensemble 定义模糊**\n- Table 2 叫 \"Ensemble (SJ+Vot.)\"，Discussion 叫 \"its ensemble with voting\"，Limitations 提到 \"logistic regression proxy\"。读者不清楚 ensemble 是 SJ+Voting 的简单组合还是 LR 训练的加权组合。\n- **建议**: 在 method section 中明确定义 ensemble 的计算方式。\n\n**L4. Introduction 末尾缺少对 Discussion/Conclusion/Limitations 的路线引用**\n- `introduction.tex:48-51` 只提到 §Method, §Experiments, §Related Work，漏掉了 §Discussion, §Conclusion, §Limitations。\n- **建议**: 补全或改为 \"The remainder of this paper is organized as follows...\" 只提主要 section。\n\n**L5. N-scaling 表格数据与正文引用有细微差异**\n- `experiments.tex:202` 说 N=16 SJ ρ = \"0.412±0.025 (three seeds: 0.428, 0.424, 0.384)\"\n- `n_scaling_appendix_tables_44b000.tex` Table 1 显示 N=16 SJ NER = 0.4105\n- 0.412 vs 0.4105 — 可能是四舍五入差异，但应统一精度。\n- **建议**: 正文使用与附录表格完全一致的数值。\n\n---\n\n### 总体评估：**FAIL**\n\n核心原因：\n1. **结构不完整** — Method section 缺失，全部 4 个 figure 缺失，编译后将产生大量 \"??\" 引用\n2. **关键证据缺失** — 4B scale ablation（framing 标记为 RESOLVED 的 R14 回应）和 free-form ablation（Story Spine 核心支柱）均未写入正文\n3. **约束违反** — RE preliminary 标注缺失\n\n现有文本质量较高——叙事逻辑清晰、claims 与 evidence 在已呈现的范围内对齐良好、related work 覆盖全面。但结构性缺失使论文无法以当前状态提交。\n\n**建议修复优先级**：C1 (method) → C2 (figures) → C3 (4B ablation) → H1 (free-form discussion) → C4 (preliminary markers) → C5 (duplicate labels) → 其余 HIGH items。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-r9-narrative-coherence.md"
+}

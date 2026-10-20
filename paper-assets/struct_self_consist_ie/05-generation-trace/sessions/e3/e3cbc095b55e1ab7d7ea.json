@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e3cbc095b55e1ab7d7ea",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "audit claim consistency",
+  "task_key": "worker_audit_claim_consistency_20260521T024220",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_claim_consistency_20260521T024220.log",
+    "occurrence": 1,
+    "bytes": 873685,
+    "sha256": "48c558bb06405c15e6f34463692b8bc9f0b0ddfee07b8cfed8ed73cfcd5763d1"
+  },
+  "statistics": {
+    "messages": 102,
+    "user_turns": 0,
+    "tool_calls": 40,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 16,
+      "tool_call": 40,
+      "tool_result": 40,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 102,
+      "chunks": [
+        {
+          "path": "e3cbc095b55e1ab7d7ea-part-0001.json",
+          "message_count": 52
+        },
+        {
+          "path": "e3cbc095b55e1ab7d7ea-part-0002.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-claim-consistency.md"
+}

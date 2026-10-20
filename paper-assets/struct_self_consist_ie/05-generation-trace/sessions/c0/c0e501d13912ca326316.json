@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "id": "c0e501d13912ca326316",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "ssh 5090c 5epoch s456 inference",
+  "task_key": "worker_ssh_5090c_5epoch_s456_inference_20260521T175722",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090c_5epoch_s456_inference_20260521T175722.log",
+    "occurrence": 1,
+    "bytes": 1548006,
+    "sha256": "992e3a3d0fb2b9c6d24137d6c075d4833f06b87b6d67010a2018d657fe35fd07"
+  },
+  "statistics": {
+    "messages": 1338,
+    "user_turns": 1,
+    "tool_calls": 554,
+    "roles": {
+      "log": 1,
+      "system": 18,
+      "record": 1,
+      "assistant": 208,
+      "tool_call": 554,
+      "tool_result": 554,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 869,
+      "chunks": [
+        {
+          "path": "c0e501d13912ca326316-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c0e501d13912ca326316-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c0e501d13912ca326316-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "c0e501d13912ca326316-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "c0e501d13912ca326316-part-0005.json",
+          "message_count": 149
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 469,
+      "chunks": [
+        {
+          "path": "c0e501d13912ca326316-part-0005.json",
+          "message_count": 31
+        },
+        {
+          "path": "c0e501d13912ca326316-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "c0e501d13912ca326316-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "c0e501d13912ca326316-part-0008.json",
+          "message_count": 78
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-5090c-5epoch-s456-inference.md"
+}

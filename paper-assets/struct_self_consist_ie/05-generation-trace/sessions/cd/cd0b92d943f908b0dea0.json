@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "cd0b92d943f908b0dea0",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "paper figures core 3figures",
+  "task_key": "worker_paper_figures_core_3figures_20260514T210514",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figures_core_3figures_20260514T210514.log",
+    "occurrence": 1,
+    "bytes": 720231,
+    "sha256": "abf435fcb78cf060fd0169c55f1a4843e0a8b43870b8f2bcf541f68be635a18a"
+  },
+  "statistics": {
+    "messages": 171,
+    "user_turns": 0,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 33,
+      "tool_call": 64,
+      "tool_result": 64,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 171,
+      "chunks": [
+        {
+          "path": "cd0b92d943f908b0dea0-part-0001.json",
+          "message_count": 134
+        },
+        {
+          "path": "cd0b92d943f908b0dea0-part-0002.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-figures-core-3figures.md"
+}

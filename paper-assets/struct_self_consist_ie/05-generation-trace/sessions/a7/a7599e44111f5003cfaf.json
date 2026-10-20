@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7599e44111f5003cfaf",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix fewnerd analysis scierc ref",
+  "task_key": "worker_fix_fewnerd_analysis_scierc_ref_20260516T173513",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_fewnerd_analysis_scierc_ref_20260516T173513_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "d3f172f71791c47c0666c30de98a1bd7a426acd4a98cf0820ac835b2cdd4f44c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成，脚本运行正常。\n\n**修改摘要：**\n\n| 字段 | 旧值 (N=32) | 新值 (N=8) |\n|------|-------------|------------|\n| oracle | 0.806 | 0.752 |\n| headroom | 19.2 | 13.8 |\n| lp_rho | 0.440 | 0.205 |\n| lp_delta | 0.91 | 0.42 |\n| lp_auroc | 0.72 | 0.72（保持） |\n| bootstrap | LP/SJ/FK only | 全部 5 个信号 |\n\n**关于 lp_auroc=0.72**：未能找到精确来源。`scierc_results.json` (N=8) 的 LP AUROC 是 0.578，但那是 instance-level AUROC（信号预测 greedy F1>0），而此脚本用的是 sample-level AUROC（信号预测哪个 sample 是 oracle）。两种方法不同，0.72 可能来自之前的 ad-hoc 分析。如需精确值，需在 SciERC N=8 数据上跑同样的 sample-level AUROC 计算。\n\n**QE aggregation**：脚本中 rho 用 `max(signal_per_sample)`，AUROC 用逐 sample 原始值。这与 SciERC 分析一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-fewnerd-analysis-scierc-ref.md"
+}

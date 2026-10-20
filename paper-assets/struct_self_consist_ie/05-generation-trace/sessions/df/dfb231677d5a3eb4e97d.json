@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfb231677d5a3eb4e97d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh check n16 s456 and s456 pretrained",
+  "task_key": "worker_ssh_check_n16_s456_and_s456_pretrained_20260521T192743",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check_n16_s456_and_s456_pretrained_20260521T192743_result.json",
+    "occurrence": 1,
+    "bytes": 995,
+    "sha256": "d7a73c3a53f102db3d49f3c6ffb8f72284f1025f6208e1b2e6d5d5a0e1017b2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 实验 1: fewnerd_n16_s456_v2 — 已完成\n\n| 项 | 值 |\n|---|---|\n| PID 54277 | 已退出 |\n| samples.jsonl | 37648 行 (完整) |\n| greedy_f1 | 0.7884 |\n| oracle_f1 | 0.9058 |\n| oracle_headroom | +11.74pp |\n| fleiss_kappa_mean | 0.4540 |\n| soft_jaccard_mean | 0.7046 |\n| structural_beats_surface | true (rho_advantage=0.052) |\n| verdict | FAIL (MVP single-subtask threshold) |\n\n---\n\n### 实验 2: e2_pretrained_fewnerd_s456 — 仍在运行\n\n| 项 | 值 |\n|---|---|\n| PID 47635 | **运行中** |\n| 进度 | **36% (13734/37648)**，已运行 ~11 min |\n| 预计剩余 | ~29 min |\n| 速度 | ~15 it/s |\n| GPU 3 | 74% util, 30540/32607 MiB |\n| samples.jsonl | 尚未写入（推断为完成后一次性写出） |\n\n与你说的\"之前 95%\"不符——当前只有 36%。可能是进程重启过，或之前看到的是另一个实验的进度。\n\n**recompute 暂不执行**，等实验 2 完成后再跑。预计还需 ~30 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-n16-s456-and-s456-pretrained.md"
+}

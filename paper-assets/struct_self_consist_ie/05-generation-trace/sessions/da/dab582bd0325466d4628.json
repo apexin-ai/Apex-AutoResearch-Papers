@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dab582bd0325466d4628",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis freeform re bootstrap",
+  "task_key": "worker_analysis_freeform_re_bootstrap_20260517T044401",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_freeform_re_bootstrap_20260517T044401_result.json",
+    "occurrence": 1,
+    "bytes": 1069,
+    "sha256": "2f95da677312ec10664b747f2a9bf5c9a8fe71c777760ca9919bcd0e35d7aebb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results:\n\n**Free-form RE LP Selection (gold-non-empty, n=397)**\n| Metric | Value |\n|---|---|\n| Point estimate | +2.35 pp |\n| 95% CI | [0.24, 4.50] pp |\n| Bootstrap p-value | 0.0250 |\n| Cohen's d | 0.107 |\n| Sign test | 45W / 45L / 307T (win rate 11.3%) |\n| Wilcoxon p | 0.1327 |\n| Conclusion | **Significant at α=0.05** (bootstrap) |\n\n**Free-form RE LP Selection (all instances, n=551) — matches report's +1.69pp**\n| Metric | Value |\n|---|---|\n| Point estimate | +1.69 pp |\n| 95% CI | [0.18, 3.32] pp |\n| Bootstrap p-value | 0.0272 |\n\nKey observations:\n- Bootstrap CI excludes zero in both cases → statistically significant at α=0.05.\n- Wilcoxon is non-significant (p=0.13) because 77% of instances are tied (diff=0), and the sign test shows equal wins/losses (45/45). The gain comes from LP selection producing **larger improvements when it wins** vs **smaller degradations when it loses** — the mean of non-zero diffs is positive.\n- Effect size is small (Cohen's d ≈ 0.1), consistent with the modest +1.69–2.35pp gap."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-freeform-re-bootstrap.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d19e7de55b8f983d1174",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp 019 trained verifier",
+  "task_key": "worker_analysis_exp_019_trained_verifier_20260516T112741",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp_019_trained_verifier_20260516T112741_result.json",
+    "occurrence": 1,
+    "bytes": 1377,
+    "sha256": "4393f71282fb87696ab3fe1651722713e2c448c019a859b274b85b157230405e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Selection F1\n\n| Method | seed42 | seed123 | seed789 | Mean ± σ |\n|--------|--------|---------|---------|----------|\n| Greedy | 0.6439 | 0.6457 | 0.6511 | 0.6469 ± 0.0037 |\n| LP (best unsup) | 0.6501 | 0.6436 | 0.6478 | 0.6472 ± 0.0033 |\n| **LR (supervised)** | 0.6484 | 0.6467 | 0.6490 | **0.6480 ± 0.0012** |\n| Oracle | 0.7758 | 0.7805 | 0.7885 | 0.7816 ± 0.0064 |\n\nLR vs best unsupervised (LP): **+0.0009**. Gap closure: **0.8%**.\n\n### Instance-level AUROC\n\n| Method | Mean ± σ |\n|--------|----------|\n| VC (best single) | 0.7064 ± 0.0173 |\n| SJ | 0.6842 ± 0.0111 |\n| **LR (5 signals)** | **0.6973 ± 0.0161** |\n\nLR AUROC *underperforms* VC alone by -0.0090.\n\n### Feature Importance\n\nVC dominates massively (coef 0.65–0.92 across seeds). SJ has negative coefficients (-0.08 to -0.17), meaning it *hurts* when combined with VC in a linear model.\n\n### Key Takeaway\n\nSupervised LR on 5 signals provides negligible improvement over unsupervised baselines. The oracle gap (13.5 F1 points) is **not closable** with these features — it stems from irreducible per-sample variance that instance-level signals cannot capture, confirming the paper's position that the remaining gap requires fundamentally different approaches (e.g., task-specific reward models, not linear combinations of existing signals)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-019-trained-verifier.md"
+}

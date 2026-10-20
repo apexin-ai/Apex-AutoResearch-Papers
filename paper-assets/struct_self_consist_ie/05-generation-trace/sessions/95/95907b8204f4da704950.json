@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "95907b8204f4da704950",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "infra env setup 5090b v2",
+  "task_key": "worker_infra_env_setup_5090b_v2_20260518T173626",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_env_setup_5090b_v2_20260518T173626.log",
+    "occurrence": 1,
+    "bytes": 597751,
+    "sha256": "d94b535900014ab8b1cfbf22443cb39ceca3e32252239470dd5f3a3c56033b13"
+  },
+  "statistics": {
+    "messages": 424,
+    "user_turns": 0,
+    "tool_calls": 152,
+    "roles": {
+      "system": 20,
+      "record": 2,
+      "assistant": 97,
+      "tool_call": 152,
+      "tool_result": 152,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 424,
+      "chunks": [
+        {
+          "path": "95907b8204f4da704950-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "95907b8204f4da704950-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "95907b8204f4da704950-part-0003.json",
+          "message_count": 64
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-env-setup-5090b-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51f5dd7c279a8322a09e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code fig degen scatter redraw",
+  "task_key": "worker_code_fig_degen_scatter_redraw_20260518T212740",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fig_degen_scatter_redraw_20260518T212740_result.json",
+    "occurrence": 1,
+    "bytes": 1326,
+    "sha256": "026900fca7afa2ef3ef1cedea7b94a45a8d0972a79900aae09e8f7929f116a7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure verified visually. The plot looks clean with CoNLL now correctly at 48.4% (was 59.1%).\n\n## 产出总结\n\n### 1. 数据源\n- 退化率: `output/unified_degeneracy_audit/degeneracy_recalc_results.json` (unified constant-F1 gold-filtered)\n- LP Delta: `output/dgs_selection_results.json` (gated_minus_greedy_pp)\n- Per-type: `output/exp_021_inference/per_type_lp_analysis.csv`\n\n### 2. PDF 路径\n- `output/figures/fig_degeneracy_lp_scatter.pdf`\n- `docs/paper/figures/fig_degeneracy_lp_scatter.pdf` (已复制)\n\n### 3. 所有数据点坐标\n\n**Cross-dataset (Qwen3-8B):**\n\n| 数据集 | 退化率(unified) | LP Delta (pp) |\n|--------|----------------|---------------|\n| CoNLL | 48.4% | -0.81 |\n| SciERC | 17.8% | +0.74 |\n| Few-NERD | 7.1% | +1.37 |\n\n**Per-type (Few-NERD entity types, unchanged):**\n\n| Type | 退化率 | LP Delta (pp) |\n|------|--------|---------------|\n| event | 5.97% | +0.65 |\n| other | 6.61% | +4.73 |\n| organization | 6.74% | +1.21 |\n| building | 7.18% | +0.23 |\n| product | 8.17% | +2.01 |\n| location | 11.42% | +0.53 |\n| person | 13.42% | +1.25 |\n| art | 19.81% | -0.17 |\n\n**Spearman correlations (updated):**\n- 11-point: rho = -0.5455, p = 0.0827\n- Dataset-level (n=3): rho = -1.0000 (perfect negative)\n- Per-type (n=8): rho = -0.3810, p = 0.3518"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig-degen-scatter-redraw.md"
+}

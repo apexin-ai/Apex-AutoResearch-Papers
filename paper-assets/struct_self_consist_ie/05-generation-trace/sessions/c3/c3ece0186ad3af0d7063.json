@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0",
+  "id": "c3ece0186ad3af0d7063",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "provenance exp 018 registry",
+  "task_key": "worker_provenance_exp_018_registry_20260515T055957",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_provenance_exp_018_registry_20260515T055957_result.json",
+    "occurrence": 1,
+    "bytes": 9380,
+    "sha256": "022587ea91e0bb568aff03d824766e21e9d07d4f4b620a04f80836fa5a061acc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有溯源数据收集完毕，输出最终结果。\n\n---\n\n## exp_018 系列溯源报告\n\n### 完整 Spec\n\n```json\n{\n  \"exp_018_qwen_scierc_seed123\": {\n    \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 123 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_qwen_scierc_seed123\",\n    \"server\": \"autodl-5090\",\n    \"seed\": 123,\n    \"N\": 8,\n    \"T\": 1.0,\n    \"max_tokens\": 1024,\n    \"model_name\": \"Qwen3-8B-SciERC-merged-v2\",\n    \"model_path\": \"checkpoints/qwen3-8b-scierc-merged-v2\",\n    \"dataset\": \"scierc\",\n    \"subtask\": \"joint\",\n    \"data_path\": \"data/scierc/processed_data\",\n    \"data_count\": 551,\n    \"use_train_format\": true,\n    \"is_new_inference\": true,\n    \"parent\": null,\n    \"run_timestamp\": \"2026-05-15 13:09\",\n    \"output_path\": \"output/exp_018_qwen_scierc_seed123/\",\n    \"log_path\": \"output/exp_018_qwen_scierc_seed123.log\",\n    \"samples_md5\": \"866a59581dea56f4633149f0b18a31ae\"\n  },\n  \"exp_018_qwen_scierc_seed456\": {\n    \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 456 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_qwen_scierc_seed456\",\n    \"server\": \"autodl-5090\",\n    \"seed\": 456,\n    \"N\": 8,\n    \"T\": 1.0,\n    \"max_tokens\": 1024,\n    \"model_name\": \"Qwen3-8B-SciERC-merged-v2\",\n    \"model_path\": \"checkpoints/qwen3-8b-scierc-merged-v2\",\n    \"dataset\": \"scierc\",\n    \"subtask\": \"joint\",\n    \"data_path\": \"data/scierc/processed_data\",\n    \"data_count\": 551,\n    \"use_train_format\": true,\n    \"is_new_inference\": true,\n    \"parent\": null,\n    \"run_timestamp\": \"2026-05-15 13:08~13:13\",\n    \"output_path\": \"output/exp_018_qwen_scierc_seed456/\",\n    \"log_path\": \"output/exp_018_qwen_scierc_seed456/run.log\",\n    \"samples_md5\": \"46d0de47ad7693c07e7df3a77c90c3be\"\n  },\n  \"exp_018_llama_scierc_seed123\": {\n    \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 123 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_llama_scierc_seed123\",\n    \"server\": \"autodl-5090\",\n    \"seed\": 123,\n    \"N\": 8,\n    \"T\": 1.0,\n    \"max_tokens\": 1024,\n    \"model_name\": \"LLaMA-3.1-8B-SciERC-merged\",\n    \"model_path\": \"checkpoints/llama3.1-8b-scierc-merged\",\n    \"dataset\": \"scierc\",\n    \"subtask\": \"joint\",\n    \"data_path\": \"data/scierc/processed_data\",\n    \"data_count\": 551,\n    \"use_train_format\": true,\n    \"is_new_inference\": true,\n    \"parent\": null,\n    \"run_timestamp\": \"2026-05-15 13:09\",\n    \"output_path\": \"output/exp_018_llama_scierc_seed123/\",\n    \"log_path\": \"output/exp_018_llama_scierc_seed123.log\",\n    \"samples_md5\": \"072eeca68236d46b4c5c84b945209abc\"\n  },\n  \"exp_018_llama_scierc_seed456\": {\n    \"command\": \"原始命令为 exp_007: python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 456 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_007_llama_seed456\",\n    \"server\": \"autodl-5090\",\n    \"seed\": 456,\n    \"N\": 8,\n    \"T\": 1.0,\n    \"max_tokens\": 1024,\n    \"model_name\": \"LLaMA-3.1-8B-SciERC-merged\",\n    \"model_path\": \"checkpoints/llama3.1-8b-scierc-merged\",\n    \"dataset\": \"scierc\",\n    \"subtask\": \"joint\",\n    \"data_path\": \"data/scierc/processed_data\",\n    \"data_count\": 551,\n    \"use_train_format\": true,\n    \"is_new_inference\": false,\n    \"parent\": \"exp_007_llama_seed456\",\n    \"original_run_timestamp\": \"2026-05-14 23:08~23:12\",\n    \"copy_timestamp\": \"2026-05-15 13:08\",\n    \"output_path\": \"output/exp_018_llama_scierc_seed456/\",\n    \"log_path\": \"output/exp_018_llama_scierc_seed456/run.log (inherited from exp_007)\",\n    \"samples_md5\": \"2034b5e4989c387b84e2b7225c7e5367\"\n  }\n}\n```\n\n### 溯源结论\n\n1. **exp_018_llama_scierc_seed456 是 exp_007 的复制** — MD5 完全一致（`2034b5e4989c387b84e2b7225c7e5367`）。其 run.log 明确写着 `Saved to output/exp_007_llama_seed456/samples.jsonl`。exp_007 原始运行时间 05-14 23:08，复制到 exp_018 目录的时间 05-15 13:08。\n\n2. **新推理 vs 复用**：\n   - **新推理（3个）**：qwen_seed123, qwen_seed456, llama_seed123 — 均为 05-15 13:08~13:13 新跑\n   - **复用（1个）**：llama_seed456 — 从 exp_007 复制\n   - 注意：exp_007_llama_seed123 也存在（MD5 `765712e5b842f12fd4f19494598ab341`），但 exp_018_llama_scierc_seed123 的 MD5 不同（`072eeca68236d46b4c5c84b945209abc`），说明 llama_seed123 是**重新跑的**而非复制\n\n3. **max_tokens 均为 1024** — `run_mvp_pilot.py` 默认值 1024，`sampling.py` 默认值 1024，bash history 无覆盖记录，run.log 中无 max_tokens 覆盖迹象。不存在 exp_012 的 512 截断问题。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "exp_018_qwen_scierc_seed123": {
+                "command": "python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 123 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_qwen_scierc_seed123",
+                "server": "autodl-5090",
+                "seed": 123,
+                "N": 8,
+                "T": 1.0,
+                "max_tokens": 1024,
+                "model_name": "Qwen3-8B-SciERC-merged-v2",
+                "model_path": "checkpoints/qwen3-8b-scierc-merged-v2",
+                "dataset": "scierc",
+                "subtask": "joint",
+                "data_path": "data/scierc/processed_data",
+                "data_count": 551,
+                "use_train_format": true,
+                "is_new_inference": true,
+                "parent": null,
+                "run_timestamp": "2026-05-15 13:09",
+                "output_path": "output/exp_018_qwen_scierc_seed123/",
+                "log_path": "output/exp_018_qwen_scierc_seed123.log",
+                "samples_md5": "866a59581dea56f4633149f0b18a31ae"
+              },
+              "exp_018_qwen_scierc_seed456": {
+                "command": "python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 456 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_qwen_scierc_seed456",
+                "server": "autodl-5090",
+                "seed": 456,
+                "N": 8,
+                "T": 1.0,
+                "max_tokens": 1024,
+                "model_name": "Qwen3-8B-SciERC-merged-v2",
+                "model_path": "checkpoints/qwen3-8b-scierc-merged-v2",
+                "dataset": "scierc",
+                "subtask": "joint",
+                "data_path": "data/scierc/processed_data",
+                "data_count": 551,
+                "use_train_format": true,
+                "is_new_inference": true,
+                "parent": null,
+                "run_timestamp": "2026-05-15 13:08~13:13",
+                "output_path": "output/exp_018_qwen_scierc_seed456/",
+                "log_path": "output/exp_018_qwen_scierc_seed456/run.log",
+                "samples_md5": "46d0de47ad7693c07e7df3a77c90c3be"
+              },
+              "exp_018_llama_scierc_seed123": {
+                "command": "python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 123 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_llama_scierc_seed123",
+                "server": "autodl-5090",
+                "seed": 123,
+                "N": 8,
+                "T": 1.0,
+                "max_tokens": 1024,
+                "model_name": "LLaMA-3.1-8B-SciERC-merged",
+                "model_path": "checkpoints/llama3.1-8b-scierc-merged",
+                "dataset": "scierc",
+                "subtask": "joint",
+                "data_path": "data/scierc/processed_data",
+                "data_count": 551,
+                "use_train_format": true,
+                "is_new_inference": true,
+                "parent": null,
+                "run_timestamp": "2026-05-15 13:09",
+                "output_path": "output/exp_018_llama_scierc_seed123/",
+                "log_path": "output/exp_018_llama_scierc_seed123.log",
+                "samples_md5": "072eeca68236d46b4c5c84b945209abc"
+              },
+              "exp_018_llama_scierc_seed456": {
+                "command": "原始命令为 exp_007: python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 456 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_007_llama_seed456",
+                "server": "autodl-5090",
+                "seed": 456,
+                "N": 8,
+                "T": 1.0,
+                "max_tokens": 1024,
+                "model_name": "LLaMA-3.1-8B-SciERC-merged",
+                "model_path": "checkpoints/llama3.1-8b-scierc-merged",
+                "dataset": "scierc",
+                "subtask": "joint",
+                "data_path": "data/scierc/processed_data",
+                "data_count": 551,
+                "use_train_format": true,
+                "is_new_inference": false,
+                "parent": "exp_007_llama_seed456",
+                "original_run_timestamp": "2026-05-14 23:08~23:12",
+                "copy_timestamp": "2026-05-15 13:08",
+                "output_path": "output/exp_018_llama_scierc_seed456/",
+                "log_path": "output/exp_018_llama_scierc_seed456/run.log (inherited from exp_007)",
+                "samples_md5": "2034b5e4989c387b84e2b7225c7e5367"
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/provenance-exp-018-registry.md"
+}

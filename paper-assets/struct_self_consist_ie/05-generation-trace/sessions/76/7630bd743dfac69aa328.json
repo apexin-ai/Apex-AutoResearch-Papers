@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7630bd743dfac69aa328",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code unified metrics migration audit",
+  "task_key": "worker_code_unified_metrics_migration_audit_20260518T213153",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_unified_metrics_migration_audit_20260518T213153_result.json",
+    "occurrence": 1,
+    "bytes": 1545,
+    "sha256": "4973dce9f3f7b874462b247498d8a99c07548f46532da4a11121da1241f667d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成总结\n\n### 1. 全局审计结果\n\n**96 个脚本**仍使用旧 `from evaluation import`。但经验证：**旧 `evaluation.per_instance_f1` 和新 `unified_metrics.compute_entity_f1` 数值完全一致**（两者都用 `(start, end, type)` 集合匹配，唯一差异是 both-empty 返回 1.0 vs 0.0，但所有脚本已过滤空 gold 实例）。\n\n已迁移：`analyze_fewnerd_results.py`（关键路径脚本）\n剩余 95 个脚本：数值正确，仅是 import 路径统一性问题，非紧急。\n\n### 2. FewNERD 3-seed unified_metrics 正确数字\n\n| 指标 | seed=42 | seed=123 | seed=456 | Mean ± Std |\n|------|---------|----------|----------|------------|\n| Greedy F1 | 0.7478 | 0.7480 | 0.7486 | 0.7482 ± 0.0003 |\n| Oracle F1 | 0.8719 | 0.8772 | 0.8751 | 0.8747 ± 0.0022 |\n| Headroom | 12.40pp | 12.92pp | 12.65pp | 12.66 ± 0.21pp |\n| Degeneracy | 13.8% | 13.1% | 12.1% | 13.0 ± 0.67% |\n| LP Δ | +1.36pp | +1.44pp | +1.37pp | +1.39 ± 0.04pp |\n| N (gold-filtered) | 32565 | 32565 | 32565 | — |\n\n### 3. 回归验证：PASS\n- SciERC 529: greedy=0.6439 (expect 0.6439), degen=0.178 (expect 0.178)\n\n### 4. 产出文件\n- `output/exp_021_inference/results.json` — seed42 完整分析\n- `output/exp_021_fewnerd_n8_seed123/results.json` — seed123 完整分析\n- `output/exp_021_fewnerd_n8_seed456/results.json` — seed456 完整分析\n- `output/fewnerd_multiseed_unified_v2.json` — 三 seed 汇总 + cross-seed summary\n- `output/fewnerd_multiseed_unified.json` — 已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-unified-metrics-migration-audit.md"
+}

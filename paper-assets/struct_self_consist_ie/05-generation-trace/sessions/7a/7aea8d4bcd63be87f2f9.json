@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7aea8d4bcd63be87f2f9",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "figure fig selection gap n8",
+  "task_key": "worker_figure_fig_selection_gap_n8_20260515T151205",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_fig_selection_gap_n8_20260515T151205_result.json",
+    "occurrence": 1,
+    "bytes": 830,
+    "sha256": "825f26d1cd1c6357d57e90a0f827163acac5c127641260f856a317660e494606"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。图已生成并部署到所有目标位置。\n\n**数据更新汇总：**\n\n| | 旧值 | 新值 (统一管道 2-seed mean) |\n|---|---|---|\n| NER ρ SJ | 0.360 | **0.374** |\n| NER ρ VC | 0.379 | **0.396** |\n| NER ρ LP | 0.205 | **0.220** |\n| NER ΔF1 VC | -1.0 pp | **-2.2 pp** |\n| NER ΔF1 LP | +0.6 pp | **+0.2 pp** |\n| NER greedy | 0.6439 | **0.6448** |\n| NER oracle | 0.7758 | **0.7782** |\n| NER random | 0.6077 | **0.6101** |\n| RE ρ SJ | 0.249 | **0.250** |\n\n**未变更项：** NER bootstrap CI（仅 seed42 可用），RE ΔF1 和 RE ρ VC/LP（无 seed123 RE 数据）。\n\n**文件位置：**\n- 论文目录: `docs/paper/figures/fig_selection_gap.pdf`\n- 本地 artifacts: `artifacts/figures/fig_selection_gap.{pdf,png}`\n- 脚本: `output/review_round2/plot_selection_gap_n8.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig-selection-gap-n8.md"
+}

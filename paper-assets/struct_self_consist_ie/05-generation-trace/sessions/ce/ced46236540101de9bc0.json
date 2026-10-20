@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ced46236540101de9bc0",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "run wnut lora merge pilot",
+  "task_key": "worker_run_wnut_lora_merge_pilot_20260514T133121",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_wnut_lora_merge_pilot_20260514T133121.log",
+    "occurrence": 1,
+    "bytes": 890453,
+    "sha256": "4ed5797e7a7be43b9104d650241216c905dc6db654c62898dc1d577b495eed08"
+  },
+  "statistics": {
+    "messages": 224,
+    "user_turns": 0,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 68,
+      "tool_call": 75,
+      "tool_result": 75,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 224,
+      "chunks": [
+        {
+          "path": "ced46236540101de9bc0-part-0001.json",
+          "message_count": 167
+        },
+        {
+          "path": "ced46236540101de9bc0-part-0002.json",
+          "message_count": 57
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-wnut-lora-merge-pilot.md"
+}

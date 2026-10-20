@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d46df00a37c8a9b6487f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 7b inference monitor and pipeline",
+  "task_key": "worker_ssh_7b-inference-monitor-and-pipeline_20260520T031323",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_7b-inference-monitor-and-pipeline_20260520T031323_result.json",
+    "occurrence": 1,
+    "bytes": 148,
+    "sha256": "84abef13153d7b5b93898d0bc38f836cda3a1624d3d7112803d55929d84dcf6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "15 分钟后再次检查。预计 seed42 将在下次检查前完成或接近完成，seed123/456 约在第 4-5 次检查时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-7b-inference-monitor-and-pipeline.md"
+}

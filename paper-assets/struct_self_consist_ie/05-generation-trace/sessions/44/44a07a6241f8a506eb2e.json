@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44a07a6241f8a506eb2e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check freeform seed123 completion",
+  "task_key": "worker_check_freeform_seed123_completion_20260515T183847",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_freeform_seed123_completion_20260515T183847_result.json",
+    "occurrence": 1,
+    "bytes": 1180,
+    "sha256": "0566b4f1de5f962365ca5b5d28cd7028ab19d1eaf6e791bc6dde11b4f691f7f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能已被之前清除）。Registry 已更新完毕。\n\n## 实验结果摘要：exp_freeform_seed123\n\n**状态**：成功完成，228s，551 instances × 8 samples，parse rate 99.95%\n\n### Selection F1（seed123 freeform vs constrained baseline）\n\n| Subtask | Constrained (greedy→sel) | Freeform seed123 (greedy→sel) |\n|---------|--------------------------|-------------------------------|\n| **NER** | 0.6182 → 0.6241 (+0.006) | 0.6194 → 0.6222 (+0.003) |\n| **RE**  | 0.2913 → 0.2845 (**-0.007**) | 0.2874 → 0.3050 (**+0.018**) |\n\n**RE LP flip 在 seed123 复现**：constrained RE selection 仍然为负（-0.007），freeform 翻正（+0.018），与 seed42 一致。\n\n### QE Signals（freeform seed123 vs seed42 对比）\n\n| Signal | NER AUROC (s42/s123) | RE AUROC (s42/s123) |\n|--------|---------------------|---------------------|\n| SJ | 0.746 / 0.749 | 0.617 / 0.614 |\n| FK | 0.762 / 0.766 | 0.684 / 0.679 |\n| logprob | 0.698 / 0.702 | 0.702 / 0.704 |\n| voting_conf | 0.796 / 0.800 | 0.655 / 0.647 |\n\nseed123 和 seed42 的 QE 指标高度一致，差异均在 ±0.01 以内，证实结果稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-freeform-seed123-completion.md"
+}

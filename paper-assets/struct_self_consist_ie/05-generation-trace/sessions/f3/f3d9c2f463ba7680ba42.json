@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3d9c2f463ba7680ba42",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose a3 scierc re done",
+  "task_key": "worker_diagnose_a3_scierc_re_done_20260520T210241",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_a3_scierc_re_done_20260520T210241_result.json",
+    "occurrence": 1,
+    "bytes": 1661,
+    "sha256": "f17717dd2497c7b32dea403b91f9188c8ea2677ea38ea989fdd6a1ec53856e93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_a3_ace05_re — RE SC 诊断结果（SciERC RE, Qwen2.5-7B, N=8, T=1.0）\n\n| 指标 | 值 |\n|------|-----|\n| **Greedy F1 (mean)** | 0.0777 |\n| **Construction F1 (mean)** | 0.0599 |\n| **Majority Vote F1 (mean)** | 0.0491 |\n| **Oracle F1 (mean)** | 0.1567 |\n| **Greedy Micro F1** | 0.0688 |\n| **Construction Micro F1** | 0.0602 |\n| **Fleiss' κ** | -0.0021 |\n| **Soft Jaccard** | 0.2425 |\n| **Degeneracy rate** | 0.76% (3/397) |\n\n### Failure Mode 分布\n\n| Mode | 占比 |\n|------|------|\n| F1 (degeneracy) | 0.8% |\n| **F2 (low agreement)** | **93.5%** |\n| F3 (high agreement, low quality) | 4.5% |\n| None (SC works) | 1.3% |\n\n### Bootstrap\n\n- Diff (construction - greedy): **-0.0178**\n- 95% CI: [-0.0334, -0.0024] — 不过零，显著为负\n- p-value: 0.989\n\n### 结论：**success**\n\nSC 诊断 cascade 从 NER 成功推广到 RE，且表现更极端：\n\n1. **Correlation-selection gap 确认**：agreement 与 correctness 弱正相关（soft Jaccard=0.24），但 MV (0.049) 显著劣于 greedy (0.078)，construction 也劣于 greedy。Voting 不仅没帮上忙，反而伤害了性能。\n2. **F2 压倒性主导**（93.5%）：比 NER 还极端。模型在 RE 上的 8 次采样之间几乎没有一致性（κ ≈ 0），导致投票无法汇聚。\n3. **Oracle gap 巨大**：Oracle F1 (0.157) 是 greedy 的 2 倍，说明正确答案存在于样本中，但 MV 无法选出。\n4. 低绝对 F1 反映 Qwen2.5-7B 在 few-shot RE 上的基础能力较弱，但诊断 pattern 与 NER 一致——这正是 cross-task universality 的证据。\n\nRegistry 已更新为 DONE/success，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-a3-scierc-re-done.md"
+}

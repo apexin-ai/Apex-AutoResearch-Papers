@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a341346fede395335309",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp entity token lp step1",
+  "task_key": "worker_code_exp_entity_token_lp_step1_20260516T060817",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_entity_token_lp_step1_20260516T060817_result.json",
+    "occurrence": 1,
+    "bytes": 1112,
+    "sha256": "ec7af80604d981e06fdc402869362e244314b12878712abb4a96b5389013e0fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Smoke test 全部通过。汇总：\n\n### 结果\n\n**1. 代码修改：无需修改。** 服务器上的 `sampling.py` 已经包含 per-token logprobs 提取逻辑（第 206-222 行）。代码通过 `out.token_ids[i]` 精确查找每个生成 token 的 logprob，fallback 取 rank 最低的 token。pipeline 第 641 行 `s.update()` 自动合并 `token_logprobs` / `token_texts` 到每个 sample dict。\n\n**2. vLLM 0.18.1 logprobs 格式：**\n- `out.logprobs`: `list[dict[int, Logprob]]`，长度 = 生成 token 数\n- 每个 step dict: key = token_id (int), value = `Logprob(logprob=float, decoded_token=str, rank=int)`\n- `logprobs=1` 时每 step 返回 2 个 token（采样 token + top-1）\n\n**3. Smoke test (5 instances, N=1)：全部通过**\n\n| inst | token_logprobs | n_tokens | match |\n|------|---------------|----------|-------|\n| 0 | 306 | 306 | True |\n| 1 | 65 | 65 | True |\n| 2 | 360 | 360 | True |\n| 3 | 403 | 403 | True |\n| 4 | 128 | 128 | True |\n| greedy | 163 | 163 | True |\n\n**4. 服务器 sampling.py 可用。** 输出在 `output/exp_entity_token_lp_smoke/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-entity-token-lp-step1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca321dd1ce9815a06a05",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis t05 prompt check",
+  "task_key": "worker_analysis_t05_prompt_check_20260518T172500",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_t05_prompt_check_20260518T172500_result.json",
+    "occurrence": 1,
+    "bytes": 859,
+    "sha256": "5edbf9d5570a45606a4c51ce201c7baaf8f87ab12ccbfe69ea089e60855d3658"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：exp_026_t05 使用了 joint NER+RE prompt，不是 NER-only。**\n\n关键发现：\n- 两个实验（exp_026_t05 和 exp_012_rerun_1024）都使用 `use_train_format=True`，对应 `_TRAIN_ALIGNED_TEMPLATE`，指令为 \"Extract all structured information (entities and relations)\"\n- 模型实际输出了 entities + relations（已从 samples.jsonl 验证）\n- **两者 prompt 完全一致**，区别仅在于 eval 阶段：T=0.5 只评了 NER，T=1.0 评了 NER+RE\n\n是否需要重跑取决于目标：\n- 若目标是 T=0.5 vs T=1.0 公平对比 → **不需要重跑**（prompt 已一致）\n- 若目标是纯 NER-only 推理（排除 RE 对 NER 的干扰）→ 需要用 `--use_train_format false --subtask ner` 重跑，且 T=1.0 baseline 也需同步重跑\n\n报告已写入 `artifacts/t05_check/t05_prompt_check.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-t05-prompt-check.md"
+}

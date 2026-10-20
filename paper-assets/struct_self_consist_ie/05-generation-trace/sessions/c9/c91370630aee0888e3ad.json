@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c91370630aee0888e3ad",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu exp 003 wnut17",
+  "task_key": "worker_gpu_exp_003_wnut17_20260514T153823",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp_003_wnut17_20260514T153823_result.json",
+    "occurrence": 1,
+    "bytes": 327,
+    "sha256": "8dcdac236d51a1227d8c9b7c3b432999085363ee3e0ad7014a03fb1058d86dba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练进行中，预计约 16 分钟完成。已完成：\n- **Step 1**: 训练数据下采样 3394→1637，空实例 63.8%→25.0%\n- **Step 2**: 创建 train_config_wnut17.yaml + export_config_wnut17.yaml\n- **Step 3**: 训练已启动 PID=92215，515 步 × ~1.82s/step\n\n4.5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-003-wnut17.md"
+}

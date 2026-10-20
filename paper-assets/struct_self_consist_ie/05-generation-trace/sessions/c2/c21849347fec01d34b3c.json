@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "c21849347fec01d34b3c",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis voting conf full audit",
+  "task_key": "worker_analysis_voting_conf_full_audit_20260514T220415",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_voting_conf_full_audit_20260514T220415.log",
+    "occurrence": 1,
+    "bytes": 855405,
+    "sha256": "ec5c43c67dfe0b7c7fafcc921e6ba18234bea36ef40cd3c52dbf4791dd8c5f4e"
+  },
+  "statistics": {
+    "messages": 158,
+    "user_turns": 0,
+    "tool_calls": 65,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 24,
+      "tool_call": 65,
+      "tool_result": 65
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 158,
+      "chunks": [
+        {
+          "path": "c21849347fec01d34b3c-part-0001.json",
+          "message_count": 123
+        },
+        {
+          "path": "c21849347fec01d34b3c-part-0002.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-voting-conf-full-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72049d9e7afd96d65327",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check 4b training progress",
+  "task_key": "worker_check_4b_training_progress_20260515T185830",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_4b_training_progress_20260515T185830_result.json",
+    "occurrence": 1,
+    "bytes": 583,
+    "sha256": "26b798f2f1373b328649953be22c7c33220dfb25fb2128b903bb8bac327b454d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态：正在运行，进度 85%\n\n| 指标 | 值 |\n|------|-----|\n| **Step** | 3730 / 4390 (84.97%) |\n| **Epoch** | 4.25 / 5.0 |\n| **Loss** | 0.0093 |\n| **LR** | 1.35e-05 |\n| **已用时间** | 2h09m |\n| **预计剩余** | ~23 min |\n| **预计完成** | ~17:42 UTC (约 02:22 UTC+8) |\n\n**进程健康**：\n- `llamafactory-cl` 进程存活 (PID 205001)\n- GPU 0: 14902 MiB 显存占用，35% 利用率\n- 无 OOM，checkpoint 正常保存（已有 checkpoint-2800 ~ 3600，每 200 步一个）\n- Loss 已降到 0.009-0.014 区间，收敛良好"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-4b-training-progress.md"
+}

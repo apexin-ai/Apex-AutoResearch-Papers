@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3746d8bd13aefa8b265",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu gpu 5090 4x2 fix and rerun",
+  "task_key": "worker_gpu_gpu_5090_4x2_fix_and_rerun_20260514T124302",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_gpu_5090_4x2_fix_and_rerun_20260514T124302_result.json",
+    "occurrence": 1,
+    "bytes": 724,
+    "sha256": "aa404a843e64acd6a051599321403bdba651c3a24959ee988bc9b714d4bd4104"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0/1 被其他 llamafactory 训练任务占用（非本项目），这就是 exp_001 两个实验初始化失败的原因：\n\n| GPU | PID | 进程 | 显存 |\n|-----|-----|------|------|\n| 0 | 60975 | llamafactory-cli train train_config_llama.yaml | 29.7 GB |\n| 1 | 55644 | llamafactory-cli train wnut17_lora.yaml | 25.5 GB |\n| 2 | 62900 | exp_008_re_n16 (本项目) | 30.1 GB |\n| 3 | — | 空闲 | — |\n\nexp_008 在 GPU 2 正常运行。\n\n**两个选择：**\n1. 杀掉 GPU 0/1 上的 llamafactory 进程，释放显存后重跑 exp_001 两个 seed\n2. 先在 GPU 3 跑一个 exp_001，等 GPU 0/1 的 llamafactory 跑完再跑另一个\n\n是否可以 kill 掉这两个 llamafactory 进程？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-gpu-5090-4x2-fix-and-rerun.md"
+}

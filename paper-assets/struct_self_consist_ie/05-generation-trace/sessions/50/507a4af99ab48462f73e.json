@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "507a4af99ab48462f73e",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh unified instance recompute",
+  "task_key": "worker_ssh_unified_instance_recompute_20260522T053252",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_unified_instance_recompute_20260522T053252_result.json",
+    "occurrence": 1,
+    "bytes": 1575,
+    "sha256": "13c31492e82e93b56cfcb3396a0d239aa73800595fba286cfe620793f2ee4d0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到 `output/unified_n_scaling_results.txt`。\n\n## 关键发现\n\n**Instance 集**：所有 N 的文件实际包含相同的 551 (SciERC) / 3453 (CoNLL) instances，交集无丢弃。Gold-nonempty 后分别为 529 / 2756。\n\n**Greedy 不一致**：SciERC 有 52/529、CoNLL 有 24/2756 instances 的 greedy 在不同 N 的 run 中不同（不同 run 各自独立做了 greedy decode）。已统一使用 N=8 的 greedy 作为固定 baseline。\n\n## 统一 baseline 结果\n\n**SciERC Finetuned (seed=42, 529 instances, greedy from N=8):**\n\n| N | Greedy F1 | MV strict F1 | MV Δ(pp) | Degen% | Oracle F1 |\n|---|-----------|-------------|----------|--------|-----------|\n| 8 | 0.6683 | 0.6558 | -1.24 | 13.4% | 0.7840 |\n| 16 | 0.6683 | 0.6622 | -0.61 | 7.6% | 0.8179 |\n| 32 | 0.6683 | 0.6706 | +0.24 | 3.6% | 0.8399 |\n| 64 | 0.6683 | 0.6735 | +0.53 | 2.1% | 0.8626 |\n\n**CoNLL-2003 Finetuned (seed=42, 2756 instances, greedy from N=8):**\n\n| N | Greedy F1 | MV strict F1 | MV Δ(pp) | Degen% | Oracle F1 |\n|---|-----------|-------------|----------|--------|-----------|\n| 8 | 0.9123 | 0.9142 | +0.20 | 56.7% | 0.9543 |\n| 16 | 0.9123 | 0.9155 | +0.32 | 46.5% | 0.9636 |\n| 32 | 0.9123 | 0.9166 | +0.44 | 40.5% | 0.9690 |\n| 64 | 0.9123 | 0.9184 | +0.61 | 30.6% | 0.9751 |\n\n**趋势**：SciERC 上 MV strict 需要 N≥32 才能超越 greedy（N=8/16 时 MV 反而更差，样本不足导致投票不稳定）。CoNLL 因为 degeneracy 高（模型更确定），MV 在所有 N 都有正增益，但绝对增幅较小。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-unified-instance-recompute.md"
+}

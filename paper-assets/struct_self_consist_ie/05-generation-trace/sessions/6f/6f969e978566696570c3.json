@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "6f969e978566696570c3",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code qwen3 4b conll finetune",
+  "task_key": "worker_code_qwen3_4b_conll_finetune_20260515T164745",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_qwen3_4b_conll_finetune_20260515T164745.log",
+    "occurrence": 1,
+    "bytes": 961755,
+    "sha256": "b5dce05b9acd28d350892b4731c20b7162e62839636c8633500b29befca8274d"
+  },
+  "statistics": {
+    "messages": 475,
+    "user_turns": 0,
+    "tool_calls": 80,
+    "roles": {
+      "log": 1,
+      "system": 93,
+      "record": 2,
+      "assistant": 146,
+      "tool_call": 80,
+      "tool_result": 80,
+      "result": 73
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 475,
+      "chunks": [
+        {
+          "path": "6f969e978566696570c3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6f969e978566696570c3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6f969e978566696570c3-part-0003.json",
+          "message_count": 115
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-qwen3-4b-conll-finetune.md"
+}

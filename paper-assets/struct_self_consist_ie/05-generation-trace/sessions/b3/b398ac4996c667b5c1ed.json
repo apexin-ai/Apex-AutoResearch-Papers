@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b398ac4996c667b5c1ed",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp 016 v2",
+  "task_key": "worker_code_exp_016_v2_20260514T152644",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_016_v2_20260514T152644_result.json",
+    "occurrence": 1,
+    "bytes": 1194,
+    "sha256": "ba25603d1af0c262093cf256560bc466896d3e3a169ec2fd1cd7702a51a49b75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-016 v2 完成。结果汇总：\n\n### NER Conditional (529 inst, N=32)\n| 指标 | 值 |\n|---|---|\n| Signal vs F1 最强 | SJ ρ=0.4412 |\n| 最佳线性组合 | SJ+VC α=0.55, ρ=0.4552 |\n| Ensemble AUROC | 0.714 (best single: SJ 0.717) |\n| Selection F1 | logprob 0.6505 > ensemble 0.6475 > sj 0.6471 > **greedy 0.6442** > vc 0.6347 |\n\n### RE Conditional (397 inst, N=16)\n| 指标 | 值 |\n|---|---|\n| Signal vs F1 最强 | VC ρ=0.3849 |\n| 最佳线性组合 | logprob+VC α=0.25, ρ=0.3936 |\n| Ensemble AUROC | 0.692 (best single: VC 0.702) |\n| Selection F1 | **ensemble 0.4227** > logprob 0.4097 > **greedy 0.4030** > sj 0.3973 |\n\n### RE Full (551 inst, N=16) — 亮点\n| Ensemble AUROC | **0.861** (single best: VC 0.825) |\n\n关键发现：\n- NER: N=32 后 SJ 成为最强单信号（v1 中 VC 最强），SJ+VC 组合 ρ=0.50\n- RE: VC 主导，ensemble AUROC 在 full 配置下达到 0.861\n- Selection: logprob_best 在 NER 上最强，ensemble_best 在 RE 上最强（+0.020 over greedy）\n- 输出路径: `output/exp_016_v2/`（correlation_matrix.json, linear_combo_grid.json, logistic_ensemble.json, selection_f1_comparison.json, summary.csv）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-016-v2.md"
+}

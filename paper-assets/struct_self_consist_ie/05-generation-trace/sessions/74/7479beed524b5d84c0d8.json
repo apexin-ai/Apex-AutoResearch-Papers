@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7479beed524b5d84c0d8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code rescue 14b 72b check",
+  "task_key": "worker_code_rescue_14b_72b_check_20260519T124546",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_rescue_14b_72b_check_20260519T124546_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "52e9360b5faff74ff38dc742832f54e700a46fed0ebed7a22d1ce95de9feab67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Server C (14B) — autodl-5090-c\n\n- **状态：存活，正常训练中**\n- screen session `train_14b_s42` 存活（PID 56766）\n- 当前 step: **6483/41180 (15.7%)**，从上次 4934 增长了 ~1500 steps\n- 最近 loss: **0.0608**，grad_norm: 0.343\n- GPU 0,1 利用率 95-96%，显存各占 ~26GB/32GB\n- 速度 ~2.2s/it，ETA ~21h\n- checkpoint-6000 已保存\n- 注意：GPU 2,3 上还有另一个 7B 训练在跑（`train_config_qwen25_7b_fewnerd_s42.yaml`，PID 72042/72043，19:28 启动）\n\n## Server B (72B) — autodl-5090-b\n\n- **状态：存活，正在处理 FewNERD（conll2003 已完成）**\n- PID 59040 存活，4 GPU 100% 利用率，各占 ~32GB 显存\n- 进度：**289848/301184 prompts (96.2%)**，正在处理 FewNERD 的 stochastic sampling\n- 已完成数据集：\n  - SciERC: **551 行** (samples.jsonl) ✓\n  - CoNLL2003: **3453 行** (samples.jsonl) ✓\n  - FewNERD: 进行中，约 96%\n- 速度 ~18 it/s，剩余 ~11000 prompts，**ETA ~10-15 分钟**\n\n两个实验都在正常运行，系统标记的 failed 是误报。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rescue-14b-72b-check.md"
+}

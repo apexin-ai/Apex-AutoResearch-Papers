@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "2d13923a51895751fd29",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code exp a1 spider sql sc",
+  "task_key": "worker_code_exp_a1_spider_sql_sc_20260520T181611",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_a1_spider_sql_sc_20260520T181611.log",
+    "occurrence": 1,
+    "bytes": 579799,
+    "sha256": "38eac08352fa5b53177c32a8866858df363dda25b460965cb04b1c2f3f1663fd"
+  },
+  "statistics": {
+    "messages": 261,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 75,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 261,
+      "chunks": [
+        {
+          "path": "2d13923a51895751fd29-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2d13923a51895751fd29-part-0002.json",
+          "message_count": 81
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-a1-spider-sql-sc.md"
+}

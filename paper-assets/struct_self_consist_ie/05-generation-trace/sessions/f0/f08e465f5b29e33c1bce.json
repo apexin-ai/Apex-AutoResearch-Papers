@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "f08e465f5b29e33c1bce",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "run scierc probe 5090c",
+  "task_key": "worker_run_scierc_probe_5090c_20260521T022157",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_scierc_probe_5090c_20260521T022157.log",
+    "occurrence": 1,
+    "bytes": 1113921,
+    "sha256": "da6f71a89b9c4e57971afc49a0eb365fb74aeff44a87ee27aaee9eac57ac4f21"
+  },
+  "statistics": {
+    "messages": 437,
+    "user_turns": 1,
+    "tool_calls": 160,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 108,
+      "tool_call": 160,
+      "tool_result": 160,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 409,
+      "chunks": [
+        {
+          "path": "f08e465f5b29e33c1bce-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f08e465f5b29e33c1bce-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f08e465f5b29e33c1bce-part-0003.json",
+          "message_count": 49
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 28,
+      "chunks": [
+        {
+          "path": "f08e465f5b29e33c1bce-part-0003.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-scierc-probe-5090c.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e02af34c8d71c045755c",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 14b inference pids",
+  "task_key": "worker_ssh_14b-inference-pids_20260520T143003",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_14b-inference-pids_20260520T143003_result.json",
+    "occurrence": 1,
+    "bytes": 541,
+    "sha256": "76a196bbf89f8a0a9fba666291e82dbf2b2baecf3e948c5edf65f0dd2fb41d2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个推理进程的 PID 和对应关系：\n\n| PID | 数据集 | GPU | 显存占用 |\n|-----|--------|-----|----------|\n| **201291** (parent: 201001) | FewNERD (`fewnerd_n1`) | cuda:0 | 31092 MiB |\n| **201978** (parent: 201712) | CoNLL2003 (`conll2003_n1`) | cuda:1 | 31112 MiB |\n| **203428** (parent: 203156) | SciERC (`scierc_n2`) | cuda:3 | 31032 MiB |\n\n上面是 VLLM EngineCore 的 PID（实际占 GPU 的进程）。对应的 `run_mvp_pilot.py` 父进程 PID 分别是 201001、201712、203156。cuda:2 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-14b-inference-pids.md"
+}

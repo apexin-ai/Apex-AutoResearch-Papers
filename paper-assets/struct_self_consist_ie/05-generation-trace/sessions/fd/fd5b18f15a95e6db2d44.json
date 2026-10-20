@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd5b18f15a95e6db2d44",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5090c full sweep and fill",
+  "task_key": "worker_ssh_5090c_full_sweep_and_fill_20260521T141645",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090c_full_sweep_and_fill_20260521T141645_result.json",
+    "occurrence": 1,
+    "bytes": 1196,
+    "sha256": "5df074c69b4dc1620f807c8e2157d5ec9dae15173ef606bed00fbda48d43cfec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 GPU 全部满载。\n\n## Phase 1: 实验状态\n\n| exp_id | GPU | status | key_metrics |\n|--------|-----|--------|-------------|\n| exp_fewnerd_n16_s123 | cuda:0 | **RUNNING** (84%, ~40min left) | PID 312685, 37648 instances × 16 samples |\n| exp_e2_pretrained_conll_s123 | — | **DONE** ✅ | greedy_f1=0.541, oracle_f1=0.629, rho_sj_cond=0.463, verdict=MARGINAL |\n| exp_e2_pretrained_conll_s456 | — | **DONE** ✅ | greedy_f1=0.538, oracle_f1=0.627, rho_sj_cond=0.443, verdict=MARGINAL |\n| exp_e2_pretrained_fewnerd_s123 | cuda:3 | **RUNNING** | PID 306642, output dir empty (still generating) |\n\n## Phase 3: GPU 填满\n\n| GPU | new_exp | PID |\n|-----|---------|-----|\n| cuda:1 | exp_e2_pretrained_scierc_s123 (seed=123) | 326918 |\n| cuda:2 | exp_e2_pretrained_scierc_s456 (seed=456) | 327084 |\n\n所有 4 GPU 均在工作：\n- **GPU 0**: fewnerd_n16_s123 (84%, 快结束)\n- **GPU 1**: e2_pretrained_scierc_s123 (刚启动, 551 instances, ~15min 预计)\n- **GPU 2**: e2_pretrained_scierc_s456 (刚启动)\n- **GPU 3**: e2_pretrained_fewnerd_s123 (运行中, 4706 instances)\n\n两个已完成的 conll 实验已注册 DONE（metrics 已录入 registry）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5090c-full-sweep-and-fill.md"
+}

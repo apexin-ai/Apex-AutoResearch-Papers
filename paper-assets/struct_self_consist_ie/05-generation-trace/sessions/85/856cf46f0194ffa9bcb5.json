@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "856cf46f0194ffa9bcb5",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp 007 llama inference",
+  "task_key": "worker_exp-007_llama-inference_20260514T134945",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp-007_llama-inference_20260514T134945_result.json",
+    "occurrence": 1,
+    "bytes": 832,
+    "sha256": "aa95be3db73249c9e7a6657be693e371e8fea9b0c5f7bbf1798bdcb3a28b2f37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n1. **sampling.py 修复** — `format_chat_prompt` 增加 try/except，兼容 LLaMA tokenizer 不支持 `enable_thinking` 参数\n2. **LoRA 合并** — base model + adapter → `/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-scierc-merged/` (~15GB, bf16)\n3. **Dry-run 验证** — 3 个实例 × 2 samples，JSON 格式正确，entities/relations 输出合理\n4. **完整推理任务已提交** — tmux session `exp_007_llama_inference`，参数: `--n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --subtask joint`\n5. **Registry 已注册** — `exp_007_llama_inference` 状态 RUNNING，server autodl-5090\n\nSciERC test 集约 551 个实例，每个 8+1 samples，预计运行 30-60 分钟。可用 `check-training-status` 查看进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-007-llama-inference.md"
+}

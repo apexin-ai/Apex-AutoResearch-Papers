@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "6ea78efab72a3a68c485",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "bugfix a1 spider sql sc",
+  "task_key": "worker_bugfix_a1_spider_sql_sc_20260520T203519",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_bugfix_a1_spider_sql_sc_20260520T203519.log",
+    "occurrence": 1,
+    "bytes": 851604,
+    "sha256": "e0fabd1541c7b337db2ac4ef02b8864fbd7fca6ad1117ff716e876ad12ac7352"
+  },
+  "statistics": {
+    "messages": 344,
+    "user_turns": 2,
+    "tool_calls": 111,
+    "roles": {
+      "log": 1,
+      "system": 74,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 111,
+      "tool_result": 111,
+      "user": 2,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "6ea78efab72a3a68c485-part-0001.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "6ea78efab72a3a68c485-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 313,
+      "chunks": [
+        {
+          "path": "6ea78efab72a3a68c485-part-0001.json",
+          "message_count": 149
+        },
+        {
+          "path": "6ea78efab72a3a68c485-part-0002.json",
+          "message_count": 164
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/bugfix-a1-spider-sql-sc.md"
+}

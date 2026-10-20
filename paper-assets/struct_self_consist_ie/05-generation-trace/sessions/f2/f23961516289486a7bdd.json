@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f23961516289486a7bdd",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "eval exp b1 scd fewnerd curriculum q",
+  "task_key": "worker_eval_exp_b1_scd_fewnerd_curriculum_q_20260520T192617",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp_b1_scd_fewnerd_curriculum_q_20260520T192617_result.json",
+    "occurrence": 1,
+    "bytes": 385,
+    "sha256": "7c0e972815eb42dc62ddee7833f8e671fdf6f2db9da17809cc3394c01f368eff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n| 指标 | 值 |\n|------|-----|\n| **Greedy Micro F1** | **0.7866** |\n| Precision | 0.7663 |\n| Recall | 0.8080 |\n| Instance-avg F1 | 0.7809 |\n| **Baseline F1** | **0.748** |\n| **Delta** | **+0.0386 (+3.86pp)** |\n| Test instances | 37,648 |\n\n**结论**: SCD curriculum_q effective — 相比 baseline 提升 3.86 个百分点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-b1-scd-fewnerd-curriculum-q.md"
+}

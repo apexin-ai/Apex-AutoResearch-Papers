@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fdffd077bdaf37aa7147",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis re selection recompute urgent",
+  "task_key": "worker_analysis_re_selection_recompute_urgent_20260515T034534",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_re_selection_recompute_urgent_20260515T034534_result.json",
+    "occurrence": 1,
+    "bytes": 1077,
+    "sha256": "81ce809d4b1536636f2581a7aab5ca3c1088d3ba5a520b95e986021c8b035375"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "重新计算完成，结果确定。\n\n## 结论\n\n**根因**：0.395 和 0.410 来自**不同数据源**，不是不同口径。\n\n| 值 | 来源 | 状态 |\n|---|---|---|\n| **0.395** (0.394803) | `re_selection_bootstrap.py` → `exp_012_rerun_1024/samples.jsonl`，gold_nonempty (n=397)，macro avg | **正确** |\n| **0.410** (0.4097) | `exp_016_v2 registry` | **错误数据源，已确认不可引用** |\n\n**全口径验证**（均为 logprob selection F1）：\n- 口径 1 全集 (n=551): macro=0.2845, micro=0.3941\n- 口径 2 gold_nonempty (n=397): macro=**0.3948**, micro=0.4156\n- 口径 3 conditional (n=238): macro=0.5995, micro=0.5498\n\n无论哪个口径、哪种平均方式，**logprob selection 都输 greedy**。\n\n**定性结论**：logprob selection **输** greedy 0.9pp（0.395 vs 0.404），sign test 36 wins / 59 losses / 302 ties。\n\n**论文修复**：L129 应从 \"logprob achieves 0.410, +0.6pp over greedy\" 改为 \"logprob=0.395, Δ=-0.9pp, p=0.80\"。JSON 结果已保存至 `review_round2/re_selection_recompute.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-re-selection-recompute-urgent.md"
+}

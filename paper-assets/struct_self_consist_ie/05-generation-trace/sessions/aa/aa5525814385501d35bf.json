@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa5525814385501d35bf",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "research missing references verification",
+  "task_key": "worker_research_missing_references_verification_20260522T012733",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_missing_references_verification_20260522T012733_result.json",
+    "occurrence": 1,
+    "bytes": 3686,
+    "sha256": "529f349ecd26b7dcbaced930dfd77076f9ba0ba974b4698ece31ba9cf0d86a0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成，结果如下：\n\n---\n\n```\n[1] ✓ Fisch et al. (2021) \"Few-Shot Conformal Prediction with Auxiliary Tasks\"\n完整标题: Few-shot Conformal Prediction with Auxiliary Tasks\n作者: Adam Fisch, Tal Schuster, Tommi Jaakkola, Regina Barzilay\nVenue: ICML 2021 (Proceedings of the 38th International Conference on Machine Learning, PMLR 139)\nYear: 2021\nDOI: 无传统 DOI（PMLR 引用：proceedings.mlr.press/v139/fisch21a.html）\narXiv: 2102.08898\n备注: 完全匹配，无差异。\n```\n\n```\n[2] ⚠️ Chen et al. (2021) \"Evaluating Large Language Models Trained on Code\"\n完整标题: Evaluating Large Language Models Trained on Code\n作者: Mark Chen, Jerry Tworek, Heewoo Jun, Qiming Yuan, Henrique Ponde de Oliveira Pinto, Jared Kaplan, Harri Edwards, Yuri Burda, Nicholas Joseph, Greg Brockman, Alex Ray, Raul Puri, Gretchen Krueger, Michael Petrov, Heidy Khlaaf, Girish Sastry, Pamela Mishkin, Brooke Chan, Scott Gray, Nick Ryder, Mikhail Pavlov, Alethea Power, Lukasz Kaiser, Mohammad Bavarian, Clemens Winter, Philippe Tillet, Felipe Petroski Such, Dave Cummings, Matthias Plappert, Fotios Chantzis, Elizabeth Barnes, Ariel Herbert-Voss, William Hebgen Guss, Alex Nichol, Alex Paino, Nikolas Tezak, Jie Tang, Igor Babuschkin, Suchir Balaji, Shantanu Jain, William Saunders, Christopher Hesse, Andrew N. Carr, Jan Leike, Josh Achiam, Vedant Misra, Evan Morikawa, Alec Radford, Matthew Knight, Miles Brundage, Mira Murati, Katie Mayer, Peter Welinder, Bob McGrew, Dario Amodei, Sam McCandlish, Ilya Sutskever, Wojciech Zaremba\nVenue: arXiv preprint (arXiv:2107.03374)，未正式发表于会议/期刊\nYear: 2021\nDOI: 无（arXiv preprint）\n备注: 论文真实存在，标题/作者/年份均正确。但该论文始终是 arXiv preprint，从未正式发表于任何会议或期刊。BibTeX 应标记为 @article 而非 @inproceedings。\n```\n\n```\n[3] ✓ Varshney et al. (2022) \"Investigating Selective Prediction Approaches Across Several Tasks in IID, OOD, and Adversarial Settings\"\n完整标题: Investigating Selective Prediction Approaches Across Several Tasks in IID, OOD, and Adversarial Settings\n作者: Neeraj Varshney, Swaroop Mishra, Chitta Baral\nVenue: Findings of the Association for Computational Linguistics: ACL 2022 (pages 1995–2002, Dublin, Ireland)\nYear: 2022\nDOI: 10.18653/v1/2022.findings-acl.158\n备注: 完全匹配，无差异。Venue 确认为 ACL 2022 Findings。\n```\n\n```\n[4] ✓ Malinin & Gales (2021) — ICLR 2021\n完整标题: Uncertainty Estimation in Autoregressive Structured Prediction\n作者: Andrey Malinin, Mark J. F. Gales\nVenue: ICLR 2021 (Published as a conference paper)\nYear: 2021\nDOI: 无传统 DOI（OpenReview ID: jN5y-zb5Q7m）\narXiv: 2002.07650\n备注: 完全匹配。标题/作者/venue/year 均正确。论文关注自回归结构化预测中的不确定性估计，涵盖 token 级和序列级不确定性。\n```\n\n---\n\n**汇总**: 4 条引用全部真实存在。其中 3 条完全匹配（✓），1 条需注意 venue 标注——Chen et al. (2021) 是 arXiv preprint 而非正式会议论文（⚠️），BibTeX 中应使用 `@article` 并注明 `journal = {arXiv preprint arXiv:2107.03374}`。\n\nSources:\n- [Fisch et al. - ICML 2021](http://proceedings.mlr.press/v139/fisch21a/fisch21a.pdf)\n- [Fisch et al. - arXiv](https://arxiv.org/abs/2102.08898)\n- [Chen et al. - arXiv](https://arxiv.org/abs/2107.03374)\n- [Varshney et al. - ACL Anthology](https://aclanthology.org/2022.findings-acl.158/)\n- [Malinin & Gales - OpenReview](https://openreview.net/pdf?id=jN5y-zb5Q7m)\n- [Malinin & Gales - arXiv](https://arxiv.org/abs/2002.07650)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-missing-references-verification.md"
+}

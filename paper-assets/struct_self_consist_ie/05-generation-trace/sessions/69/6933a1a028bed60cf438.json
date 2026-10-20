@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6933a1a028bed60cf438",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis exp016 data source audit",
+  "task_key": "worker_analysis_exp016_data_source_audit_20260514T230943",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp016_data_source_audit_20260514T230943_result.json",
+    "occurrence": 1,
+    "bytes": 1353,
+    "sha256": "6115fe80b3adbd3700195730d64bd7f828730657eae70d92bd80033cb6d14c62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计结论\n\n**exp_016_signal_ensemble 的数据源是 exp_012（max_tokens=512），受截断影响。**\n\n### 证据链\n\n1. **代码逻辑** (`code/analyze_exp016_ensemble.py` 第 644-651 行)：\n   - 优先加载 `exp_012_logprob/samples_with_logprobs.jsonl`（含 `mean_logprob` 字段）\n   - 只有加载失败才 fallback 到 `pilot_004/samples.jsonl`\n   - 实际运行时 exp_012 的文件存在且格式正确 → **使用的是 exp_012 数据**\n\n2. **max_tokens 确认** (`code/extract_logprobs.py` 第 56、67 行)：\n   ```python\n   stoch_params = SamplingParams(n=8, temperature=1.0, max_tokens=512, ...)\n   greedy_params = SamplingParams(n=1, temperature=0.0, max_tokens=512, ...)\n   ```\n\n3. **受影响的 Paper TODO 值**（全部来自 512-token 截断数据）：\n   - Ensemble AUROC = 0.735 ± 0.0296（NER）\n   - Best-of-N Selection F1 表格（Tab 2）\n   - 所有 Part 1-4 的分析结果\n\n### 补充信息\n\n- `exp_016_v2` 和 `exp_012_rerun_1024` 已存在于服务器上，说明已有修正数据的尝试\n- pilot_004 和 exp_012 都是 551 个实例，但 exp_012 额外包含 logprob 元数据，因此代码优先选择了它\n\n**结论：Paper 中引用的 exp_016 数值全部基于 max_tokens=512 的推理数据，受截断影响，需要用 1024-token 数据重新计算。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp016-data-source-audit.md"
+}

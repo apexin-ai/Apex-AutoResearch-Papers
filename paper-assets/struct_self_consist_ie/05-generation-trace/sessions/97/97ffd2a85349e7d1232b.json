@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97ffd2a85349e7d1232b",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5090c collect e2 scierc fill gpu",
+  "task_key": "worker_ssh_5090c_collect_e2_scierc_fill_gpu_20260521T143841",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090c_collect_e2_scierc_fill_gpu_20260521T143841_result.json",
+    "occurrence": 1,
+    "bytes": 2375,
+    "sha256": "0910a269ac44e1dd173b41a82782de44a029b393ae50288e70595a5c65f80b5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总如下：\n\n---\n\n## 1. e2_pretrained_scierc 三种子完整对比\n\n| Metric | s42 | s123 | s456 |\n|--------|-----|------|------|\n| greedy_f1 | 0.2418 | 0.2396 | 0.2403 |\n| oracle_f1 | — | 0.3867 | 0.3875 |\n| oracle_headroom | — | 0.1471 | 0.1472 |\n| rho_FK_full | — | 0.1974 | 0.2340 |\n| rho_SJ_full | — | 0.1808 | 0.2151 |\n| rho_FK_cond | — | 0.2221 | 0.1958 |\n| **rho_SJ_cond** | **0.1987** | **0.2250** | **0.2187** |\n| logprob_rho_full | — | 0.048 (n.s.) | 0.065 (n.s.) |\n| logprob_rho_cond | — | 0.2261 | 0.2002 |\n| structural_beats_surface | — | false | false |\n| sample_f1_pct_zero | — | 45.96% | 45.53% |\n| **verdict** | **FAIL** | **FAIL** | **FAIL** |\n\n**结论：三种子高度一致，全部 FAIL。** 预训练 Qwen2.5-7B-Instruct 在 SciERC 上 greedy_f1 仅 ~0.24，~46% 样本 F1=0，SC 信号极弱（rho_SJ_cond ~0.20-0.22），logprob 在 full 条件下甚至不显著。模型未经微调在 SciERC 上能力不足，无法产生有意义的 SC 信号。\n\n---\n\n## 2. 5090-c 可用模型\n\n`checkpoints/` 目录：\n\n| 模型 | 类型 |\n|------|------|\n| qwen3-8b-fewnerd-exp021-merged | Qwen3-8B FewNERD finetuned |\n| qwen3-8b-conll2003-merged | Qwen3-8B CoNLL finetuned |\n| qwen3-8b-scierc-merged-v2 | Qwen3-8B SciERC finetuned |\n| qwen25-7b-fewnerd-merged | Qwen2.5-7B FewNERD finetuned |\n| qwen25-14b-fewnerd-merged-ckpt36000 | Qwen2.5-14B FewNERD ckpt36000 |\n| qwen25-14b-fewnerd-merged-final | Qwen2.5-14B FewNERD final |\n| llama3.1-8b-scierc-lora | LLaMA3.1-8B SciERC LoRA |\n\n**Qwen3-8B-FewNERD finetuned 模型已在 5090-c 上可用**（`qwen3-8b-fewnerd-exp021-merged`）。\n\n`/root/autodl-tmp/models/` 不存在。\n\n---\n\n## 3. cuda:1/2 利用建议\n\n当前 5090-c 状态：cuda:0 被 `fewnerd_n16_s123` 占用（RUNNING），cuda:1/2 空闲。\n\n可选方案（按优先级）：\n1. **FewNERD N=16 多种子补充**（s456）— 如果 N=16 scaling 实验需要第三种子\n2. **SciERC finetuned N=16 scaling** — 用 `qwen3-8b-scierc-merged-v2` 跑 SciERC N=16（与 FewNERD N=16 对称）\n3. **MF4v2 pipeline** — Qwen3-8B-FewNERD 模型已就位，可直接启动 MF4v2 相关实验\n4. **CoNLL N=16 补充种子** — 用 `qwen3-8b-conll2003-merged` 补 CoNLL 多种子\n\n取决于当前 roadmap 的优先级，需要你决定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5090c-collect-e2-scierc-fill-gpu.md"
+}

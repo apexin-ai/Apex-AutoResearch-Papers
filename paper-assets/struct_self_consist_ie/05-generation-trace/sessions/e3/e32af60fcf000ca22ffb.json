@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e32af60fcf000ca22ffb",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "data verify heatmap sources",
+  "task_key": "worker_data_verify_heatmap_sources_20260514T212229",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_data_verify_heatmap_sources_20260514T212229_result.json",
+    "occurrence": 1,
+    "bytes": 2262,
+    "sha256": "3189180a0bb91a425b5d84edac02a0213b38be9f7a3f38753cd6287666066711"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。以下是核实结果：\n\n---\n\n## 核实结论\n\n### 问题比预期更严重\n\n热力图 SciERC NER Qwen 行的 **conditional rho 不是来自任何真实实验数据** — 它是用 CoNLL 的 conditional/full 比值乘以 SciERC full rho **估算**出来的。\n\n### 具体逻辑链（`plot_all_figures.py`）\n\n**Full rho（正确）** — 行 71-73:\n```\nmean(exp_015_v2.seed42, exp_015_v2.seed123)  # N=16, 两 seed 均值\n```\n\n**Conditional rho（有问题）** — 经过 3 层 fallback：\n\n1. **行 101-113**: 尝试 `unified['ner']['conditional']['signals']` → **KeyError**，JSON 中没有这个路径（实际路径是 `ner.signals.<signal>.cond`）\n2. **行 135-142（实际生效）**: 用 CoNLL 比值估算：\n   ```python\n   ratio = cond_rho_conll[j] / full_rho_conll[j]\n   cond_rho_scierc_ner[j] = full_rho_scierc_ner[j] * ratio\n   ```\n3. **行 147-162**: 再次尝试读 unified → 同样 KeyError，静默跳过\n\n### exp_015_unified 的 seed 构成\n\nexp_015_unified 使用 `exp_012_logprob/samples_with_logprobs.jsonl`（pilot_005, **N=8, 单次运行，无 seed 变异**）。它不是 seed42，也不是 seed123，而是一个完全不同的早期数据集。在 exp_015_v2 中对应 `scierc_n8_logprob_ner` 这个 key。\n\n### 数据不一致总结\n\n| | Full rho | Conditional rho |\n|---|---|---|\n| **实际来源** | exp_015_v2: seed42+seed123 均值, N=16 | CoNLL 比值 × full rho（合成值）|\n| **问题** | ✓ 正确 | ✗ 不是真实测量值 |\n\n### SciERC RE Qwen 也有类似问题\n\n- SJ/FK/logprob 来自 exp_008_re_n16_v2\n- EM/voting_conf 也是用 CoNLL 比值估算的\n\n### 修复方案\n\n**需要在 seed42+seed123 的 N=16 数据上运行 conditional 分析。** 原始 inference 数据都在：\n- `output/exp_001_seed42_v2/samples.jsonl`（6.5MB，含 logprob）\n- `output/exp_001_seed123_v2/samples.jsonl`（6.5MB，含 logprob）\n\n具体做法：复用 `analyze_exp015_unified.py` 的 conditional 分析逻辑（过滤 F1<1 的实例后计算 Spearman rho），分别对两个 seed 文件运行，取均值，替换热力图中的合成值。同时修复 `plot_all_figures.py` 中 `unified['ner']['conditional']['signals']` 的错误路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-verify-heatmap-sources.md"
+}

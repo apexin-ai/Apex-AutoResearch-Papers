@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be8281a425d3ef7d518f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix tab fewnerd unified gf maxlp",
+  "task_key": "worker_fix_tab_fewnerd_unified_gf_maxlp_20260518T043607",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_tab_fewnerd_unified_gf_maxlp_20260518T043607_result.json",
+    "occurrence": 1,
+    "bytes": 3071,
+    "sha256": "5c849ccf3f2031b37a4e61d98f25b98fdd4d0da70acd4883700678ee583feb0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data is confirmed. Let me now produce the final deliverable.\n\n---\n\n## CoNLL 模型确认\n论文用的是: **Qwen exp002_conll2003** (N=8, T=1.0)\n数据来源: `/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/samples.jsonl`\n\n## LP ρ 定义确认\nFew-NERD 的 LP ρ=0.421 使用的定义是: **max_LP (instance-level)**\n- 对每个 instance，取 N 个 sample 中 `mean_logprob` **最大**的值作为该 instance 的 LP 信号\n- 然后 `Spearman(max_LP_per_instance, greedy_F1_per_instance)` across all gold-filtered instances\n- 代码位置: `recompute_table_fewnerd.py:82-84` (原始定义), 现在 `analyze_fewnerd_results.py:210` 已对齐\n\n之前的 SciERC/CoNLL 用的是 `mean_LP` (instance-level mean of samples' LP)，差异：\n- SciERC: mean_LP ρ=0.205 → max_LP ρ=0.215\n- CoNLL: mean_LP ρ=0.316 → max_LP ρ=0.302\n\n## 三数据集完整对比表 (gold-filtered, max_LP)\n\n| Dataset | n | greedy | oracle | headroom | degen% | LP ρ | LP sel | LP Δ | 来源文件 |\n|---------|---|--------|--------|----------|--------|------|--------|------|----------|\n| SciERC (旧) | 551 | .614 | — | 13.8pp | 17.8% | .205 | — | +0.42pp | full-set, mean_LP |\n| **SciERC (新)** | **529** | **.644** | **.776** | **13.2pp** | **17.8%** | **.215** | **.650** | **+0.61pp** | exp_012_rerun_1024 |\n| Few-NERD (验证) | 32565 | **.748** | .872 | **12.4pp** | **13.8%** | **.421** | .761 | **+1.36pp** | exp_021_inference ✓ |\n| CoNLL (旧) | 2756 | .908 | — | 4.0pp | 47.4% | .316 | — | n.s. | 混合来源 |\n| **CoNLL (新)** | **2756** | **.908** | **.948** | **4.0pp** | **59.1%** | **.302** | **.897** | **-1.05pp** | exp002_conll2003 |\n\n**Few-NERD 验证**: greedy=0.7478→.748 ✓, LP ρ=0.4215→.421 ✓, LP Δ=+1.355→+1.36pp ✓\n\n### 注意事项\n- CoNLL degen% 从 47.4% 变为 59.1%：旧值来自 N=16 实验 (exp_002_conll_n16_r1024)，新值来自 N=8 (exp002_conll2003)，与 tab:fewnerd caption \"N=8\" 一致\n- CoNLL LP Δ 从 \"n.s.\" 变为 -1.05pp（实际上是退化），论文表格中可能需要标注为 \"$-1.05$\\,pp\" 而非 \"n.s.\"\n- SciERC 从 full-set (n=551) 变为 gold-filtered (n=529)，这消除了 tab:fewnerd 的脚注中 \"due to full-set evaluation\" 的说明\n\n## analyze_fewnerd_results.py 更新状态\n- **SCIERC_REF**: 更新为 gold-filtered max_LP (n=529, greedy=0.6439, oracle=0.7758, headroom=13.19, degen=17.8, lp_rho=0.215, lp_delta=0.61)\n- **CONLL_REF**: 更新为 gold-filtered max_LP (n=2756, greedy=0.9079, oracle=0.9483, headroom=4.04, degen=59.1, lp_rho=0.302, lp_delta=-1.05)\n- **LP ρ 计算**: `instance_mean_lp` → `instance_max_signal[\"LP\"]` (与 Few-NERD 一致)\n- 验证运行通过：Few-NERD LP ρ=0.4215，cross-dataset table 输出正确\n\n### 服务器上新增/修改的文件\n1. `code/analyze_fewnerd_results.py` — SCIERC_REF/CONLL_REF 常量 + LP ρ 计算方式\n2. `code/unified_tab_fewnerd_metrics.py` — 统一计算脚本（可复现）\n3. `output/unified_tab_fewnerd_maxlp.json` — 完整精确值"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-tab-fewnerd-unified-gf-maxlp.md"
+}

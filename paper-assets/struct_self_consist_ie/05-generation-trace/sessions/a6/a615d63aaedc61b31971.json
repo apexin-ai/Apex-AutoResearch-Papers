@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a615d63aaedc61b31971",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "knowledge memory error correlation update",
+  "task_key": "worker_knowledge_memory-error-correlation-update_20260520T014242",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_knowledge_memory-error-correlation-update_20260520T014242_result.json",
+    "occurrence": 1,
+    "bytes": 507,
+    "sha256": "9f31b36ea43018e8b61f8ae3a9b11d8a1b75e7ebef8b01b4e8fc57532f8b38e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "memory.md 已更新。总结：\n\n- 新增 **\"Error Correlation 分析结果（05-20）\"** section，记录 Jaccard/entropy 统计结果及结论\n- Dual-gating 部分已确认正确（FT+ZS 内成立，FS 引入独立失效因素），无需修改\n- 核心结论：demonstration-induced error correlation 假说不成立（FS/ZS Jaccard 无差异，entropy 方向相反），论文 Discussion 需弱化该假说，转向 LP signal 区分力退化作为 construction 失效的直接解释"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-memory-error-correlation-update-copy-2.md"
+}

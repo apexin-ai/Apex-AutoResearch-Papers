@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fbc88a12ea3aa46ad81",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "data scierc prep",
+  "task_key": "worker_data_scierc_prep_20260514T052927",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_data_scierc_prep_20260514T052927_result.json",
+    "occurrence": 1,
+    "bytes": 716,
+    "sha256": "61715f58c35a067d71491ca5234e398767d8fc0e656eb83c6e632237b634070d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报如下：\n\n| Split | Sentences | Entities | Entity Types | Relations | Relation Types |\n|-------|-----------|----------|-------------|-----------|---------------|\n| train | 1861 | 5598 | 6 | 3219 | 7 |\n| dev | 275 | 811 | 6 | 455 | 7 |\n| test | 551 | 1685 | 6 | 974 | 7 |\n\n**Entity types (6)**: Generic, Material, Method, Metric, OtherScientificTerm, Task\n\n**Relation types (7)**: COMPARE, CONJUNCTION, EVALUATE-FOR, FEATURE-OF, HYPONYM-OF, PART-OF, USED-FOR\n\nUIE JSONL 文件已生成到：\n- `/root/autodl-tmp/struct_self_consist_ie/data/train.jsonl`\n- `/root/autodl-tmp/struct_self_consist_ie/data/dev.jsonl`\n- `/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-scierc-prep.md"
+}

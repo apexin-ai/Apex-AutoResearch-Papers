@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fd981ba13e880ffb552",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh check all running status",
+  "task_key": "worker_ssh_check_all_running_status_20260521T115310",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check_all_running_status_20260521T115310_result.json",
+    "occurrence": 1,
+    "bytes": 2272,
+    "sha256": "55464431b7c141b6fe111cffcbb8cc942ca2d7388530f8ce07cd63cce49215f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收集完成。汇总如下：\n\n## 实验状态汇总\n\n| exp_id | server | gpu | status | progress | ETA | key_metrics |\n|--------|--------|-----|--------|----------|-----|-------------|\n| exp_fewnerd_n16_s42_v2 | autodl-5090 | cuda:0 | **RUNNING** | 13% (79984/602368) | ~2h26m | — |\n| exp_fewnerd_mf4v2_s42 | autodl-5090 | cuda:1 | **RUNNING** (PID stale) | 83% (250288/301184) | ~19m | — |\n| exp_fewnerd_mf4v2_s123 | autodl-5090 | cuda:2 | **RUNNING** (PID stale) | 82% (247096/301184) | ~20m | — |\n| exp_e2_pretrained_fewnerd | autodl-5090 | cuda:3 | **RUNNING** (2nd pass) | 9% (3260/37648) of pass 2 | ~38m | — |\n| exp_fewnerd_n16_s123 | autodl-5090-c | cuda:0 | **RUNNING** | 12% (74656/602368) | ~2h42m | — |\n| exp_conll_n16_s42 | autodl-5090-c | cuda:2 | **COMPLETED** | 100% (3453/3453) | — | 见下方 |\n| exp_e2_pretrained_fewnerd_s123 | autodl-5090-c | cuda:3 | **RUNNING** | 38% (115048/301184) | ~2h11m | — |\n\n## 已完成实验：exp_conll_n16_s42 完整指标\n\n```\nverdict: PASS\ngreedy_f1:        0.9080\noracle_f1:        0.9592\noracle_headroom:  0.0512\nfleiss_kappa:     0.7620\nsoft_jaccard:     0.8844\nn_instances:      3453\n\ncorrelation (full):\n  FK  vs F1: rho=0.4222  (p=1.4e-119, n=2756)\n  SJ  vs F1: rho=0.4414  (p=8.8e-132, n=2756)\n  LP  vs F1: rho=0.3144  (auroc=0.7528)\n\ncorrelation (conditional):\n  FK  vs F1: rho=0.3606\n  SJ  vs F1: rho=0.3999\n  LP  vs F1: rho=0.3709  (auroc=0.8220)\n\nstructural_beats_surface: true  (rho_advantage=+0.019)\nsample_f1_mean: 0.8673 (std=0.289, 7.8% zero)\nn_gold_empty_filtered: 697\nn_greedy_f1_zero_filtered: 139\n```\n\n## 注意事项\n\n- **PID 不一致**：`exp_fewnerd_mf4v2_s42` 和 `exp_fewnerd_mf4v2_s123` 的注册 PID（13177/13035）已死，实际 VLLM 子进程（27074/27228）仍在运行。registry 需要更新 PID。\n- **exp_e2_pretrained_fewnerd**：已完成第一轮 301184 prompts 采样，正在进行第二轮（greedy/eval pass，37648 prompts），约 38 分钟后结束。\n- **exp_e2_pretrained_fewnerd_s123**：日志写在 `/tmp/exp_e2_pretrained_fewnerd_s123.log`（非标准路径），不在 `~/runs/` 下。\n- **exp_conll_n16_s42**：已完成并释放 GPU 2，registry 状态需更新为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-all-running-status.md"
+}

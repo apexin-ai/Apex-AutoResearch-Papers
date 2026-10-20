@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "74a4ffb6e0cb24b5566f",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "audit ref check A",
+  "task_key": "worker_audit_ref-check-A_20260526T101756",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_ref-check-A_20260526T101756.log",
+    "occurrence": 1,
+    "bytes": 818035,
+    "sha256": "c69ec4a2abe54adad5b4b44259c91f496ae63ab50c976fdd0c8aa96fb2262e2c"
+  },
+  "statistics": {
+    "messages": 469,
+    "user_turns": 1,
+    "tool_calls": 55,
+    "roles": {
+      "log": 1,
+      "system": 316,
+      "record": 5,
+      "assistant": 35,
+      "tool_call": 55,
+      "tool_result": 55,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "74a4ffb6e0cb24b5566f-part-0001.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 454,
+      "chunks": [
+        {
+          "path": "74a4ffb6e0cb24b5566f-part-0001.json",
+          "message_count": 165
+        },
+        {
+          "path": "74a4ffb6e0cb24b5566f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "74a4ffb6e0cb24b5566f-part-0003.json",
+          "message_count": 109
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-ref-check-a.md"
+}

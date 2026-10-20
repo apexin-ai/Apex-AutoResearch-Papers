@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8931eaac9f097970cf0",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh n32 fewnerd dryrun",
+  "task_key": "worker_ssh_n32_fewnerd_dryrun_20260522T024158",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_n32_fewnerd_dryrun_20260522T024158_result.json",
+    "occurrence": 1,
+    "bytes": 1956,
+    "sha256": "a5056cab71bd84a09e46c3d9dea102c037a4abf43ce3c4c6a168865fc2ed416b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部检查完成。汇总报告：\n\n---\n\n## N=32 FewNERD Dry-Run 验证报告\n\n### 1. 环境状态\n| 项目 | 状态 |\n|------|------|\n| GPU | 4× RTX 5090, 32GB VRAM each, 全部空闲 |\n| Python | 3.12.3 (conda base) |\n| vLLM | 0.18.1 |\n| 磁盘 | /root/autodl-tmp 97GB 可用 (350GB 总量, 73% 已用) |\n\n### 2. 模型/数据就绪\n- **模型**: `checkpoints/qwen3-8b-fewnerd-exp021-merged/tokenizer_config.json` 存在，顶层目录正确\n- **数据**: `data/fewnerd/test.json` — 37,648 instances（注意是 `.json` 不是 `.jsonl`）\n- **脚本**: `code/run_mvp_pilot.py` 存在，`--n_samples` 参数无上限限制\n\n### 3. Dry-Run 结果: **通过**\n- 10 instances × 32 samples = 320 prompts，全部处理成功\n- 采样吞吐: ~42.5 it/s（单 GPU）\n- 模型加载 + CUDA graph 编译: ~14s\n- 10 instances 总耗时: ~12s（不含模型加载）\n- 输出文件: 701K（10 instances）\n\n### 4. 全量预估\n| 指标 | 预估值 |\n|------|--------|\n| 总 prompts | 1,204,736 (37648×32) + 37,648 greedy = ~1.24M |\n| 推理时间 | ~7-8 小时（单 GPU, 42 it/s） |\n| 输出大小 | ~2.6 GB（N=8 的 ~650MB × 4） |\n| 磁盘足够 | 是（97GB 可用） |\n\n### 5. 正式提交命令\n\n```bash\ncd /root/autodl-tmp/struct_self_consist_ie && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nnohup python -u code/run_mvp_pilot.py \\\n  --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged \\\n  --data_dir data/fewnerd \\\n  --dataset fewnerd \\\n  --subtask ner \\\n  --n_samples 32 \\\n  --temperature 1.0 \\\n  --seed 42 \\\n  --collect_logprobs \\\n  --output_dir output/fewnerd_n32_seed42 \\\n  > output/fewnerd_n32_seed42.log 2>&1 &\n```\n\n**注意**: 任务中 `--data_dir` 应为 `data/fewnerd`（不是 `/tmp/`），数据文件是 `.json` 格式。当前只用单 GPU，如需加速可考虑多 GPU 并行（4 卡可将时间缩短到 ~2h）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-n32-fewnerd-dryrun.md"
+}

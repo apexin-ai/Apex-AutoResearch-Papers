@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb6897f4f39f8e3169e3",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis epsilon sweep round8",
+  "task_key": "worker_analysis_epsilon_sweep_round8_20260515T153500",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_epsilon_sweep_round8_20260515T153500_result.json",
+    "occurrence": 1,
+    "bytes": 1078,
+    "sha256": "086caf9bad162ce27cadbeedfb66320c5f5b1a4be53155723ce5dcc7d41129e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。529 个有效实例（排除 gold-empty），结果：\n\n| ε | tied% | non_tied_n | Δ(pp) | p |\n|------|-------|-----------|-------|------|\n| 0.01 | 1.1% | 523 | +0.58 | 0.21 |\n| 0.02 | 13.6% | 457 | +0.83 | 0.15 |\n| 0.03 | 31.8% | 361 | +1.31 | 0.079 |\n| **0.05** | **60.3%** | **210** | **+2.86** | **0.004** |\n| **0.10** | **83.9%** | **85** | **+3.69** | **0.034** |\n| 0.15 | 93.2% | 36 | +4.15 | 0.11 |\n| 0.20 | 96.4% | 19 | +4.59 | 0.13 |\n\n**关键发现：**\n\n1. **ε=0.05 和 ε=0.10 是显著区间** (p<0.05)。ε=0.03 边缘显著 (p=0.079)。\n2. ε≥0.15 时 non-tied subset 太小（n=36/19），delta 虽大但统计功效不足，p 值回升。\n3. ε≤0.02 时几乎所有实例都 non-tied，LP selection 信号被噪声稀释，delta 不显著。\n4. Non-tied subset 上 LP 确实能 select：ε=0.05 时 +2.86pp，ε=0.10 时 +3.69pp，均显著。\n\n**推荐论文使用 ε=0.05**：tied 60.3% 与 paper_framing.md 已有数据一致，non-tied subset 上 +2.86pp (p=0.004) 高度显著，样本量适中 (n=210)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-epsilon-sweep-round8.md"
+}

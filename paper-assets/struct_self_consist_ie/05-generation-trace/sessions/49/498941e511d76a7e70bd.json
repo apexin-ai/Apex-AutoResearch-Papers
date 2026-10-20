@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "498941e511d76a7e70bd",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "exp deberta verifier v2",
+  "task_key": "worker_exp_deberta_verifier_v2_20260518T064502",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_deberta_verifier_v2_20260518T064502.log",
+    "occurrence": 1,
+    "bytes": 681364,
+    "sha256": "f7a98819692e9b0a1f4e00238f661b2011470657a29020d703370936ff7b8411"
+  },
+  "statistics": {
+    "messages": 344,
+    "user_turns": 1,
+    "tool_calls": 121,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 1,
+      "assistant": 78,
+      "tool_call": 121,
+      "tool_result": 121,
+      "user": 1,
+      "result": 8
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 290,
+      "chunks": [
+        {
+          "path": "498941e511d76a7e70bd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "498941e511d76a7e70bd-part-0002.json",
+          "message_count": 110
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 54,
+      "chunks": [
+        {
+          "path": "498941e511d76a7e70bd-part-0002.json",
+          "message_count": 54
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-deberta-verifier-v2.md"
+}

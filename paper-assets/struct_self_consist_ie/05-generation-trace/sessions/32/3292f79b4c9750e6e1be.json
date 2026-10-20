@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "3292f79b4c9750e6e1be",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code exp wnut17 qwen25 7b v3",
+  "task_key": "worker_code_exp_wnut17_qwen25_7b_v3_20260519T080426",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_wnut17_qwen25_7b_v3_20260519T080426.log",
+    "occurrence": 1,
+    "bytes": 567995,
+    "sha256": "a815b6adaea0923a769650793ddba95d376f9c38f273e7623392745c88a29410"
+  },
+  "statistics": {
+    "messages": 285,
+    "user_turns": 0,
+    "tool_calls": 104,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 73,
+      "tool_call": 104,
+      "tool_result": 104,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 285,
+      "chunks": [
+        {
+          "path": "3292f79b4c9750e6e1be-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3292f79b4c9750e6e1be-part-0002.json",
+          "message_count": 105
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-wnut17-qwen25-7b-v3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be71eab7ab7d6184a8d8",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code fix fig overview auroc",
+  "task_key": "worker_code_fix_fig_overview_auroc_20260519T011046",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix_fig_overview_auroc_20260519T011046_result.json",
+    "occurrence": 1,
+    "bytes": 789,
+    "sha256": "726e351f0d561bcefa4ea69f8b87a40f314692dd2994565e73b6d53bcec8401a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "AUROC 已修正为 0.82，图已更新到两个位置：\n- `figures/paper/fig_overview.pdf`\n- `docs/paper/figures/fig_overview.pdf`（编译版本）\n\n### 产出总结\n\n| 项目 | 内容 |\n|------|------|\n| 原始脚本 | `/tmp/gen_fig_overview.py`（已被服务器清理），从 worker log 恢复 |\n| 修正脚本 | `/tmp/gen_fig_overview_fixed.py` |\n| 修改内容 | `AUROC ≈ 0.70` → `AUROC ≈ 0.82` |\n| ρ 值 | 保持 0.39（与 caption 中 \"0.38 on the primary test bed\" 一致） |\n| 输出路径 | `docs/paper/figures/fig_overview.pdf`, `figures/paper/fig_overview.pdf` |\n\n注意：右面板的 y₁/y₂/y₃ 样本排列顺序与原图反转了（y₃ 在上），视觉上差异不大，语义无影响。如需严格还原顺序可再调。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-fig-overview-auroc.md"
+}

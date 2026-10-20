@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b53ffba32e0a0bf1f555",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "paper research lit batch3",
+  "task_key": "worker_paper_research_lit_batch3_20260514T182744",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_research_lit_batch3_20260514T182744_result.json",
+    "occurrence": 1,
+    "bytes": 646,
+    "sha256": "1415cc5f531d6f6007f725f94c3d86b8f53cefd7123ac3cafa7332263655f263"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "11 篇全部写入，YAML 验证通过。\n\n| Cluster | 条目 |\n|---|---|\n| verifier_reward_models (3) | Cobbe 2021 (foundation), Lightman 2024 (foundation), Wang 2024 Math-Shepherd (background) |\n| tts_scaling (3) | Snell 2024 (foundation), Brown 2024 Large Language Monkeys (foundation), Wu 2024 Inference Scaling Laws (background) |\n| structured_calibration_ie (3) | Kuleshov & Liang 2015 (foundation), Culotta & McCallum 2004 (foundation), Jagannatha & Yu 2020 (background) |\n| selective_prediction (2) | Geifman & El-Yaniv 2017 (foundation), Ren et al. 2023 (background) |\n\nmeta.total_papers 已从 30 更新为 41。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-lit-batch3.md"
+}

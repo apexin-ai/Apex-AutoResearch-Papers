@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97f8b3c547e0dd556784",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu 5090c fill cuda12",
+  "task_key": "worker_gpu_5090c_fill_cuda12_20260521T130200",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_5090c_fill_cuda12_20260521T130200_result.json",
+    "occurrence": 1,
+    "bytes": 1060,
+    "sha256": "ee2ac179cf371252d319f60b78985feaea3fd62ecc4199b737aacf8664b9b8b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已成功启动，vLLM 正在加载模型。\n\n---\n\n**已完成实验指标汇总：**\n\n| 指标 | SciERC N=16 s42 | CoNLL N=16 s123 |\n|------|-----------------|-----------------|\n| greedy_f1 | 0.663 | 0.908 |\n| oracle_f1 | 0.809 | 0.963 |\n| oracle_headroom | 0.146 | 0.055 |\n| ρ(FK→F1) cond | 0.128 | 0.391 |\n| ρ(SJ→F1) cond | 0.326 | 0.417 |\n| logprob ρ cond | 0.160 | 0.373 |\n| structural > surface | ✓ (+0.128) | ✓ (+0.010) |\n| verdict | **MARGINAL** | **PASS** |\n\n**新启动实验：**\n\n| GPU | exp_id | PID | 内容 |\n|-----|--------|-----|------|\n| cuda:1 | exp_e2_pretrained_conll_s123 | 321281 | Qwen2.5-7B-Instruct (未微调) CoNLL, seed=123 |\n| cuda:2 | exp_e2_pretrained_conll_s456 | 321549 | Qwen2.5-7B-Instruct (未微调) CoNLL, seed=456 |\n\n**当前 5090-c 全部 4 GPU 满载：**\n- cuda:0: exp_fewnerd_n16_s123 (RUNNING)\n- cuda:1: exp_e2_pretrained_conll_s123 (刚启动)\n- cuda:2: exp_e2_pretrained_conll_s456 (刚启动)\n- cuda:3: exp_e2_pretrained_fewnerd_s123 (RUNNING)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-5090c-fill-cuda12.md"
+}

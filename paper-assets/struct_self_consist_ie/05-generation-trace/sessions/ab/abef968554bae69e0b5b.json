@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "abef968554bae69e0b5b",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "analysis claim audit",
+  "task_key": "worker_analysis_claim-audit_20260522T181701",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_claim-audit_20260522T181701.log",
+    "occurrence": 1,
+    "bytes": 1299511,
+    "sha256": "9684cc73bd3172a007c162eb99144c50e6d7e46b885fb2d6f4b3b51e1d334925"
+  },
+  "statistics": {
+    "messages": 144,
+    "user_turns": 1,
+    "tool_calls": 50,
+    "roles": {
+      "log": 1,
+      "system": 24,
+      "record": 2,
+      "assistant": 15,
+      "tool_call": 50,
+      "tool_result": 50,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 52,
+      "chunks": [
+        {
+          "path": "abef968554bae69e0b5b-part-0001.json",
+          "message_count": 33
+        },
+        {
+          "path": "abef968554bae69e0b5b-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 92,
+      "chunks": [
+        {
+          "path": "abef968554bae69e0b5b-part-0002.json",
+          "message_count": 86
+        },
+        {
+          "path": "abef968554bae69e0b5b-part-0003.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-claim-audit-copy-2.md"
+}

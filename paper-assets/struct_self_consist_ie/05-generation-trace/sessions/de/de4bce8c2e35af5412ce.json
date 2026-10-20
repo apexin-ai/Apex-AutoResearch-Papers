@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de4bce8c2e35af5412ce",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "fix hidden probe entity matching",
+  "task_key": "worker_fix_hidden_probe_entity_matching_20260518T111442",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_hidden_probe_entity_matching_20260518T111442_result.json",
+    "occurrence": 1,
+    "bytes": 1283,
+    "sha256": "afd4359118fdfee3835a3e1c996c22a749a9e1d524f3200c4861cf88f675e22d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results:\n\n**Fix applied**: `entity_set` now uses `(e[\"text\"], e[\"type\"])` at line 40 of `code/probe/hidden_state_probe.py`. Labels recomputed with text-based matching. MLP needed `OMP_NUM_THREADS=4` to avoid being killed.\n\n**Greedy F1 = 0.6099**, not the expected 0.645. The fix IS effective (span-based was 0.6094, now 0.6099 text-based) — the two methods rarely disagree on this data. The 0.645 discrepancy is NOT about span vs text matching. Verified:\n\n| Metric | Value |\n|--------|-------|\n| Micro F1 (text-based) | 0.6252 |\n| Micro F1 (span-based) | 0.6243 |\n| Macro F1 (text-based, 529 nonempty) | 0.6099 |\n\nEven micro-average only reaches 0.625. The 0.645 likely comes from a different evaluation path or dataset split than the probe's `samples_with_logprobs.jsonl`.\n\n---\n\n**Text-based (text, type) matching — gold-filtered 529 instances:**\n\n| Method | Spearman ρ | Selection F1 | Gap Closure |\n|--------|-----------|-------------|-------------|\n| Greedy | — | 0.6099 | — |\n| LP | 0.2214 | 0.6087 | -0.7% |\n| Hidden Linear | 0.2327±0.0212 | 0.6199 | 6.3% |\n| Hidden MLP | 0.4535±0.0081 | 0.6348 | 15.6% |\n| Oracle | — | 0.7692 | 100% |\n\nResults saved to `output/hidden_state_probe/results_textbased_goldfiltered.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-hidden-probe-entity-matching.md"
+}

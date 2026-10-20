@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "798b3d4957fc1d4f3bec",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "check 4b conll completion and next",
+  "task_key": "worker_check_4b_conll_completion_and_next_20260515T190804",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_4b_conll_completion_and_next_20260515T190804_result.json",
+    "occurrence": 1,
+    "bytes": 635,
+    "sha256": "7182dfe2d8d75eed147051a928095ad1842f6970b7650a3f15b2ddfbe32f87c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "一切就绪：\n\n**诊断结果：**\n- 训练停在 step 3920/4390 (epoch 4.46/5)，无 error log，原因不明\n- checkpoint-3800 有效（adapter 264MB，eval_loss=0.023）\n\n**已完成：**\n- Registry 更新：metrics + notes 写入，cron 已删除\n- Merge 完成：`checkpoints/qwen3-4b-conll2003-merged/` (2 shards, ~8GB)\n- 推理已在运行：`exp_qwen3_4b_conll_scs_inference` tmux session 活跃，cuda:0 占用 29.5GB / 73% 利用率，进度 15% (4064/27624 prompts)\n\n注意有一个额外的 `qwen3_4b_conll` tmux session (03:12:26 创建)，可能是重复或残留进程，建议后续确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-4b-conll-completion-and-next.md"
+}

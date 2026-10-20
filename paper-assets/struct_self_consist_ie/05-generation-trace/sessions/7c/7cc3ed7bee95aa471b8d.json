@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7cc3ed7bee95aa471b8d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code exp qwen25 7b fewnerd v2",
+  "task_key": "worker_code_exp_qwen25_7b_fewnerd_v2_20260519T112331",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp_qwen25_7b_fewnerd_v2_20260519T112331_result.json",
+    "occurrence": 1,
+    "bytes": 1071,
+    "sha256": "228963853991642765999e02b78052f789c6a56b5c1546bb50d588a50afb4295"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现状与任务描述有几处不符，汇报如下：\n\n### GPU 状态\n**所有 4 张 GPU 都被占用。** 一个 Qwen2.5-32B-Instruct FewNERD QLoRA 训练正在使用全部 4 张 GPU（PID 804665-804668，PPID 804590，已运行约 1h50m）。cuda:2,3 不空闲。\n\n### 模型\n**Qwen2.5-7B-Instruct 未在服务器上找到。** 当前可用模型：\n- Qwen2.5-32B-Instruct: `/root/autodl-tmp/.hf_cache/models--Qwen--Qwen2.5-32B-Instruct/...`\n- Qwen3-8B: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`\n- Qwen3-4B: `/root/autodl-tmp/models/Qwen3-4B`\n\n现有 WNUT-17 配置用的是 **Qwen3-8B**，不是 Qwen2.5-7B。\n\n### 32B 训练配置（当前在跑）\n已经在用完全相同的参数（QLoRA 4-bit, rank=32, alpha=64, 5 epochs, lr=2e-4）在 FewNERD 上训练 Qwen2.5-32B。\n\n---\n\n**需要你确认：**\n1. 32B 训练占满了全部 GPU，是否等它结束再启动 7B？\n2. Qwen2.5-7B-Instruct 需要先下载，还是改用已有的 Qwen3-8B？\n3. 32B 已经在跑 FewNERD 了，7B 实验的目的是做模型大小对比吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-qwen25-7b-fewnerd-v2.md"
+}

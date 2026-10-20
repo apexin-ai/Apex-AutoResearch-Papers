@@ -1,0 +1,275 @@
+{
+  "schema_version": "1.0",
+  "session_id": "9c33ed739279a7ee9bf7",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-15T09:42:37.798Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GBEXtXVVgCWuJ9ckZy6YM1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_freeform_ablation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:42:22.868Z\\\", \\\"updated_at\\\": \\\"2026-05-15T09:42:36.661Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_freeform_inference.py --seed 42 --num_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir results/exp_freeform_ablation\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"169042\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_freeform_ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:42:30.236Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"hypothesis\\\": \\\"Free-form decoding recovers logprob variance and selection ability lost under constrained decoding\\\", \\\"plan_id\\\": \\\"exp-018\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"qwen3-8b-scierc-merged-v2\\\", \\\"seed\\\": 42, \\\"tmux_session\\\": \\\"exp_freeform_ablation\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.587}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "59ef2d36-b822-47dc-a747-fdef988b2b9f",
+            "uuid": "2a52aa7a-e913-4455-b6fc-cdc23af41720",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_freeform_ablation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:42:22.868Z\\\", \\\"updated_at\\\": \\\"2026-05-15T09:42:36.661Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_freeform_inference.py --seed 42 --num_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir results/exp_freeform_ablation\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"169042\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp_freeform_ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:42:30.236Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"hypothesis\\\": \\\"Free-form decoding recovers logprob variance and selection ability lost under constrained decoding\\\", \\\"plan_id\\\": \\\"exp-018\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"qwen3-8b-scierc-merged-v2\\\", \\\"seed\\\": 42, \\\"tmux_session\\\": \\\"exp_freeform_ablation\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.587}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_freeform_ablation\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:42:22.868Z\", \"updated_at\": \"2026-05-15T09:42:36.661Z\", \"spec\": {\"command\": \"python run_freeform_inference.py --seed 42 --num_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir results/exp_freeform_ablation\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:0\", \"pid\": \"169042\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_freeform_ablation.log\", \"submitted_at\": \"2026-05-15T09:42:30.236Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"hypothesis\": \"Free-form decoding recovers logprob variance and selection ability lost under constrained decoding\", \"plan_id\": \"exp-018\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 42, \"tmux_session\": \"exp_freeform_ablation\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.587}}"
+              }
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认任务正在运行。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59ef2d36-b822-47dc-a747-fdef988b2b9f",
+            "uuid": "ecd7d7d4-ce26-470b-9186-3b60f49f721b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017ahVKoTbyNn6jjCK2y95nQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 804,
+                "cache_read_input_tokens": 115222,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 804
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016ENb5qSR2ysqM32JDp8Q5y",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "tail -20 /root/runs/struct_self_consist_ie/exp_freeform_ablation.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59ef2d36-b822-47dc-a747-fdef988b2b9f",
+            "uuid": "06a024a4-2437-4c07-928e-5ac63ba535c4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017ahVKoTbyNn6jjCK2y95nQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 804,
+                "cache_read_input_tokens": 115222,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 804
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": "2026-05-15T09:42:41.940Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016ENb5qSR2ysqM32JDp8Q5y",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 551 test instances from scierc\\\\nINFO 05-15 17:42:36 [utils.py:233] non-default args: {'max_model_len': 4096, 'disable_log_stats': True, 'model': 'checkpoints/qwen3-8b-scierc-merged-v2'}\\\\nINFO 05-15 17:42:36 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\\\nINFO 05-15 17:42:36 [model.py:1582] Using max model len 4096\\\\nINFO 05-15 17:42:36 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=8192.\\\\nINFO 05-15 17:42:36 [vllm.py:775] Asynchronous scheduling is enabled.\\\\n(EngineCore pid=169322) INFO 05-15 17:42:38 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='checkpoints/qwen3-8b-scierc-merged-v2', speculative_config=None, tokenizer='checkpoints/qwen3-8b-scierc-merged-v2', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=checkpoints/qwen3-8b-scierc-merged-v2, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'splitting_ops': ['vllm::unified_attention', 'vllm::unified_attention_with_output', 'vllm::unified_mla_attention', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_endpoints': [8192], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}\\\\n(EngineCore pid=169322) INFO 05-15 17:42:39 [parallel_state.py:1395] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://172.17.0.3:42871 backend=nccl\\\\n(EngineCore pid=169322) INFO 05-15 17:42:39 [parallel_state.py:1717] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A\\\\n(EngineCore pid=169322) INFO 05-15 17:42:39 [gpu_model_runner.py:4481] Starting to load model checkpoints/qwen3-8b-scierc-merged-v2...\\\\n(EngineCore pid=169322) INFO 05-15 17:42:40 [cuda.py:317] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].\\\\n(EngineCore pid=169322) INFO 05-15 17:42:40 [flash_attn.py:598] Using FlashAttention version 2\\\\n(EngineCore pid=169322) <frozen importlib._bootstrap_external>:1297: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.\\\\n(EngineCore pid=169322) <frozen importlib._bootstrap_external>:1297: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.\\\\n(EngineCore pid=169322) \\\\rLoading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]\\\\n(EngineCore pid=169322) \\\\rLoading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:02,  1.49it/s]\\\\n(EngineCore pid=169322) \\\\rLoading safetensors checkpoint shards:  50% Completed | 2/4 [00:01<00:01,  1.43it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "59ef2d36-b822-47dc-a747-fdef988b2b9f",
+            "uuid": "377441ca-4e8b-4f84-b3e4-b4859b882cca",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 551 test instances from scierc\\\\nINFO 05-15 17:42:36 [utils.py:233] non-default args: {'max_model_len': 4096, 'disable_log_stats': True, 'model': 'checkpoints/qwen3-8b-scierc-merged-v2'}\\\\nINFO 05-15 17:42:36 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\\\nINFO 05-15 17:42:36 [model.py:1582] Using max model len 4096\\\\nINFO 05-15 17:42:36 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=8192.\\\\nINFO 05-15 17:42:36 [vllm.py:775] Asynchronous scheduling is enabled.\\\\n(EngineCore pid=169322) INFO 05-15 17:42:38 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='checkpoints/qwen3-8b-scierc-merged-v2', speculative_config=None, tokenizer='checkpoints/qwen3-8b-scierc-merged-v2', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=checkpoints/qwen3-8b-scierc-merged-v2, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'splitting_ops': ['vllm::unified_attention', 'vllm::unified_attention_with_output', 'vllm::unified_mla_attention', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_endpoints': [8192], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}\\\\n(EngineCore pid=169322) INFO 05-15 17:42:39 [parallel_state.py:1395] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://172.17.0.3:42871 backend=nccl\\\\n(EngineCore pid=169322) INFO 05-15 17:42:39 [parallel_state.py:1717] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A\\\\n(EngineCore pid=169322) INFO 05-15 17:42:39 [gpu_model_runner.py:4481] Starting to load model checkpoints/qwen3-8b-scierc-merged-v2...\\\\n(EngineCore pid=169322) INFO 05-15 17:42:40 [cuda.py:317] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].\\\\n(EngineCore pid=169322) INFO 05-15 17:42:40 [flash_attn.py:598] Using FlashAttention version 2\\\\n(EngineCore pid=169322) <frozen importlib._bootstrap_external>:1297: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.\\\\n(EngineCore pid=169322) <frozen importlib._bootstrap_external>:1297: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.\\\\n(EngineCore pid=169322) \\\\rLoading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]\\\\n(EngineCore pid=169322) \\\\rLoading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:02,  1.49it/s]\\\\n(EngineCore pid=169322) \\\\rLoading safetensors checkpoint shards:  50% Completed | 2/4 [00:01<00:01,  1.43it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 551 test instances from scierc\\nINFO 05-15 17:42:36 [utils.py:233] non-default args: {'max_model_len': 4096, 'disable_log_stats': True, 'model': 'checkpoints/qwen3-8b-scierc-merged-v2'}\\nINFO 05-15 17:42:36 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\nINFO 05-15 17:42:36 [model.py:1582] Using max model len 4096\\nINFO 05-15 17:42:36 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=8192.\\nINFO 05-15 17:42:36 [vllm.py:775] Asynchronous scheduling is enabled.\\n(EngineCore pid=169322) INFO 05-15 17:42:38 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='checkpoints/qwen3-8b-scierc-merged-v2', speculative_config=None, tokenizer='checkpoints/qwen3-8b-scierc-merged-v2', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=checkpoints/qwen3-8b-scierc-merged-v2, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'splitting_ops': ['vllm::unified_attention', 'vllm::unified_attention_with_output', 'vllm::unified_mla_attention', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_endpoints': [8192], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}\\n(EngineCore pid=169322) INFO 05-15 17:42:39 [parallel_state.py:1395] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://172.17.0.3:42871 backend=nccl\\n(EngineCore pid=169322) INFO 05-15 17:42:39 [parallel_state.py:1717] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A\\n(EngineCore pid=169322) INFO 05-15 17:42:39 [gpu_model_runner.py:4481] Starting to load model checkpoints/qwen3-8b-scierc-merged-v2...\\n(EngineCore pid=169322) INFO 05-15 17:42:40 [cuda.py:317] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].\\n(EngineCore pid=169322) INFO 05-15 17:42:40 [flash_attn.py:598] Using FlashAttention version 2\\n(EngineCore pid=169322) <frozen importlib._bootstrap_external>:1297: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.\\n(EngineCore pid=169322) <frozen importlib._bootstrap_external>:1297: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.\\n(EngineCore pid=169322) \\rLoading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]\\n(EngineCore pid=169322) \\rLoading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:02,  1.49it/s]\\n(EngineCore pid=169322) \\rLoading safetensors checkpoint shards:  50% Completed | 2/4 [00:01<00:01,  1.43it/s]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+              }
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型正在加载，551 instances 已读取。任务运行正常。\n\n总结：\n\n**已完成：**\n- `run_freeform_inference.py` — free-form inference 脚本，使用 `use_grammar=False` 禁用 constrained decoding，保持与 exp_012_rerun_1024 完全相同的 prompt/model/参数（N=8, T=1.0, max_tokens=1024, seed=42），增加 post-hoc JSON parsing 和 `parse_success` 字段\n- `analyze_freeform_ablation.py` — 分析脚本，对比 constrained vs free-form 的 logprob variance（std/range/tied fraction）、selection F1、5 QE signals（SJ/FK/logprob/EM/voting_conf）的 ρ 和 AUROC、parse rate\n- Registry: `exp_freeform_ablation` 状态 RUNNING，plan_id=exp-018\n- 任务已通过 `submit_training_job` 提交到 cuda:0，tmux session `exp_freeform_ablation`\n\n**待运行完成后：**\n- 在 `results/exp_freeform_ablation/` 下会生成 `samples.jsonl` 和 `run_summary.json`\n- 然后运行 `python analyze_freeform_ablation.py` 生成 `ablation_report.json`\n- 预计运行时间 1-2 小时"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59ef2d36-b822-47dc-a747-fdef988b2b9f",
+            "uuid": "af2dc1f3-e829-488d-bf28-9ed9e7c95a2d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DSGLNUHcp2rSb9bXD2QmE6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2348,
+                "cache_read_input_tokens": 116026,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2348
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型正在加载，551 instances 已读取。任务运行正常。\n\n总结：\n\n**已完成：**\n- `run_freeform_inference.py` — free-form inference 脚本，使用 `use_grammar=False` 禁用 constrained decoding，保持与 exp_012_rerun_1024 完全相同的 prompt/model/参数（N=8, T=1.0, max_tokens=1024, seed=42），增加 post-hoc JSON parsing 和 `parse_success` 字段\n- `analyze_freeform_ablation.py` — 分析脚本，对比 constrained vs free-form 的 logprob variance（std/range/tied fraction）、selection F1、5 QE signals（SJ/FK/logprob/EM/voting_conf）的 ρ 和 AUROC、parse rate\n- Registry: `exp_freeform_ablation` 状态 RUNNING，plan_id=exp-018\n- 任务已通过 `submit_training_job` 提交到 cuda:0，tmux session `exp_freeform_ablation`\n\n**待运行完成后：**\n- 在 `results/exp_freeform_ablation/` 下会生成 `samples.jsonl` 和 `run_summary.json`\n- 然后运行 `python analyze_freeform_ablation.py` 生成 `ablation_report.json`\n- 预计运行时间 1-2 小时"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 584785,
+            "duration_api_ms": 541555,
+            "num_turns": 49,
+            "stop_reason": "end_turn",
+            "session_id": "59ef2d36-b822-47dc-a747-fdef988b2b9f",
+            "total_cost_usd": 2.9304792500000003,
+            "usage": {
+              "input_tokens": 39,
+              "cache_creation_input_tokens": 106533,
+              "cache_read_input_tokens": 2744092,
+              "output_tokens": 35584,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 106533,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 399,
+                  "cache_read_input_tokens": 116026,
+                  "cache_creation_input_tokens": 2348,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2348
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2717,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0028069999999999996,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 39,
+                "outputTokens": 35584,
+                "cacheReadInputTokens": 2744092,
+                "cacheCreationInputTokens": 106533,
+                "webSearchRequests": 0,
+                "costUSD": 2.92767225,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "f7b5263b-3863-4665-a685-cab39e38258d"
+          },
+          "id": "event-000146"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b4fa79210ad386e27d3",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "audit ref check B",
+  "task_key": "worker_audit_ref-check-B_20260526T101811",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_ref-check-B_20260526T101811_result.json",
+    "occurrence": 1,
+    "bytes": 643,
+    "sha256": "7fc3f311be5dcfa136bec21862354a7ffc8f157263ba8adb2508fdad5fb64528"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/ref_audit_worker_B.md`。\n\n核心发现：\n- **64 篇论文全部真实存在，无 hallucinated citations**\n- **4 条必须修复**：`kang2025selfcertainty`（NeurIPS volume 38→39）、`yee2019noisy`（缺作者 Nathan Ng）、`shinn2023reflexion`（缺作者 Edward Berman）、`li2023stepaware`（标题多了 \"Large\"）\n- **3 条建议修复**：`dong2024xgrammar`（应更新为 MLSys 2025）、`fleiss1971agreement`（缺 volume/pages）、`geifman2017selective`（NIPS/NeurIPS 命名）\n- **3 条未使用 entry** 可清理：`holm1979simple`、`li2024simple`、`xiao2022uncertainty`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-ref-check-b.md"
+}

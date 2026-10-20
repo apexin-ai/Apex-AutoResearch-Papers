@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "435a3ea91d1a1432b511",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "reviewer / loop_16.md",
+  "task_key": "loop_16",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_16.md",
+    "occurrence": 1,
+    "bytes": 4928,
+    "sha256": "cf256041a894cee462a00b2c235192a0a69fe373625192091bcec0e503ee56a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: max_wall_time\nupdated: '2026-05-21T01:41:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **Frontier SC 被 API 阻塞**：TUM proxy key (`tum_XXB3...`) 不能直连 OpenRouter（需 `sk-or-*` 格式），TUM proxy 余额耗尽 (402)。**不要再标记 Frontier SC 为\"不受 API 影响应立即启动\"**——已因此被 Director 纠正过，第 5 次错误标记后才收到澄清。\n- **14B inference 有误判模式**：Agent 会在 vLLM 长初始化阶段误判进程为 failed（已发生两次）。收到 14B failed 通知时**必须先 `ps -p PID` + `nvidia-smi` 独立核实**，不要信 registry 状态。\n- **三台服务器 GPU 白名单均为 cuda:0-3**（autodl-5090 / 5090-b / 5090-c），无服务器间限制。\n- **Registry data_count 不一致**：5090-c CoNLL 实验 data_count=2756 是过滤后数量，实际 3453。不是 bug，但审查时注意。\n\n### 2. 🖥️ 基础设施快照\n- **autodl-5090** (connect.bjb1.seetacloud.com:21071, root): 代码 `/root/autodl-tmp/struct_self_consist_ie`\n  - 32B merged model: `checkpoints/qwen25-32b-fewnerd-merged/` (checkpoint-32000, best eval_loss=0.0334)\n  - 32B inference PID 978386, tensor_parallel=4, log: `logs/inference_32b_fewnerd_n8_s42.log`\n- **autodl-5090-b** (connect.bjb2.seetacloud.com:11496, root): 同路径\n  - FewNERD model: `checkpoints/qwen3-8b-fewnerd-exp021-merged`\n  - CoNLL model: `checkpoints/qwen3-8b-conll2003-merged`\n  - 32B base model (62GB): `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-32B-Instruct/`\n  - 4 个 FewNERD extra-seed 实验: PIDs 296744/296880/297143/297409, tmux sessions fewnerd_t05_s123/t08_s123/t12_s123/t08_s456\n- **autodl-5090-c** (connect.westb.seetacloud.com:25965, root): 同路径\n  - 14B model: `checkpoints/qwen25-14b-fewnerd-merged-final`\n  - 14B N=8 PID 252310 (cuda:0), kill_after_n8.sh PID 224789\n  - CoNLL s456: PIDs 253823/254524/255217 (cuda:1-3)\n- **本地 workspace**: `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/`\n- **W&B**: 未配置（不检查 W&B）\n\n### 3. 📊 当前状态\n刚完成 D208 ROADMAP 审查（4.5 战略跃迁：Impossibility Reframe）。已 post warning 关于 scope 和历史否决风险。\n\n**RUNNING (registry):**\n- `exp_32b_inference_fewnerd` — 5090:cuda:0-3, ~8.8%, ETA 2-3h\n- `exp_fewnerd_t05_s123` — 5090-b:cuda:0, <1%, 速度异常低 (~1.4 prompts/s vs 正常 30-50 it/s)\n- `exp_fewnerd_t08_s123` — 5090-b:cuda:1\n- `exp_fewnerd_t12_s123` — 5090-b:cuda:2\n- `exp_fewnerd_t08_s456` — 5090-b:cuda:3\n- `exp_conll_t05_s456` — 5090-c:cuda:1\n- `exp_conll_t08_s456` — 5090-c:cuda:2\n- `exp_conll_t12_s456` — 5090-c:cuda:3\n\n**实际 RUNNING 但 registry 错标 DONE/failed:**\n- `exp_14b_inference_fewnerd` — 5090-c:cuda:0, PID 252310 confirmed alive, N=8 进行中\n\n**等待中:**\n- D208 Mechanistic Probe / Multi-Model Error Correlation — Agent 派发中\n- Paper Reframe — Paper Agent 执行中\n- 用户回复 API key/充值 — Frontier SC / Spider SQL / HumanEval 全阻塞\n\n### 4. 📋 待办（条件触发式）\n- CoNLL s456 完成 → 核实 3-seed 一致性（seed 42/123/456），确认 error bars 可用于论文\n- FewNERD extra-seed 完成 → 核实 T=0.8 sweet-spot hypothesis 跨 seed 稳定性\n- 32B inference 完成 → **重点审查**：greedy_f1 vs 8B，oracle scaling，rho_advantage 是否随 scale 增大\n- 14B N=8 完成 → 核实 oracle scaling law F1(N)=a-b*N^(-c)，与 8B/32B 对比\n- 5090-b FewNERD 速度持续 <5 it/s → 标 warning，可能 4 个 vLLM 实例竞争导致\n- Mechanistic Probe worker 启动 → 审查 probe 设计合理性（什么层、什么 hypothesis）\n- Paper Reframe 提交审查 → 按 §5 章节审查协议审（Step 5 评分模板），**重点检查 impossibility scope 是否精确界定**\n- 用户提供新 API key → Frontier SC 优先启动\n\n### 5. 🎯 战略上下文\n**核心结论链**: entity-level agreement signals (kappa/SJ/EM/VC) 全部无法 bridge correlation-selection gap → 7 个 entity-level method 全 negative → D208 试图 reframe 为 \"impossibility result\"。\n\n**关键数据支撑**:\n- SCD: negative (metric artifact, +3.84pp 是 instance-avg vs micro-F1 的比较错误)\n- Spider SQL: F1-degeneracy 87.2% (execution equivalence collapses diversity)\n- FewNERD T=1.2: kappa conditional ρ = -0.048 (surface agreement 反向误导)\n- FewNERD T=0.8: rho_advantage = 0.102 (structural 最佳工作点)\n- 14B N=4: oracle_headroom = 5.60pp (增长快于 8B)\n\n**最易判断错的事**:\n1. **Frontier SC 不是\"不受 API 影响\"** — key 格式不匹配，两个 endpoint 都不可用\n2. **14B inference \"failed\" 通知可能是误报** — 必须独立核实 PID + GPU\n3. **\"Impossibility\" 曾在 Round 10 被否决** — 审查 Paper Reframe 时要检查是否有新 evidence 支撑，还是重复旧逻辑\n4. **5090-b 4 实验可能速度异常低** — KV cache 被压到 512 blocks，4 个 vLLM 竞争 PCIe\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-copy-2.md"
+}

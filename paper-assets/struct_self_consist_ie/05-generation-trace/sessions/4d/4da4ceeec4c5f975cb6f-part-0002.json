@@ -1,0 +1,438 @@
+{
+  "schema_version": "1.0",
+  "session_id": "4da4ceeec4c5f975cb6f",
+  "rounds": [
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 110,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the critical data. Let me compile the definitive findings:\n\n## Investigation 1: SciERC AUROC — RESOLVED\n\nThe `d114_auroc_investigation/table1_update.md` confirms:\n- Paper Table 1 uses **median-split AUROC** (`labels = (y >= median_f1).astype(int)`)\n- Registry `exp_012_rerun_1024` uses **perfect-extraction AUROC** (`binary = (F1 >= 1.0)`)\n- These are DIFFERENT metrics. Paper is CORRECT.\n- All 15 values verified within rounding error.\n\n\n- SciERC's median F1 of 0.6667 creates a significant divergence between the two approaches, whereas CoNLL's median F1 of 1.0 makes them align. This explains why the EM metric shows such a large gap (.614 vs .749) on SciERC — predicting above-median performance is fundamentally easier than predicting perfect extraction.\n\n**Conclusion**: NOT an error. The registry AUROC uses a different binarization threshold. Paper is correct.\n\n## Investigation 2: CoNLL LP selection Δ — CONFIRMED INCONSISTENCY\n\nFrom `w1_table3_multiseed.json`, `conll_n8` has only a single seed run.\n\nThe computed LP delta for seed 42 is -1.0482pp, but this doesn't match the paper's reported values: Table 3 claims -0.85pp, while the appendix cross-selection shows -1.1pp. The appendix value is close enough when accounting for rounding (F1 rounded to 3 decimals), but the -0.85pp discrepancy remains unexplained. Let me trace where that figure originates by checking the underlying data. Looking at the SJ selection metrics, I'm seeing a delta of -0.89pp, which is much closer to the -0.85pp mentioned in the paper. This makes me wonder if there's been a mix-up—could the paper have reported the SJ delta in the LP column, or is -0.85pp coming from a different LP selection variant like max or sum instead of mean? The greedy-to-LP difference I'm calculating consistently comes out to around -1.0 to -1.1pp, not -0.85pp, so something doesn't quite align.\n\nI'm noticing the correlation coefficient in Table 3 is ρ = .302, but my computed mean_logprob correlation is 0.3157. However, when I check the max_logprob correlation, it's 0.3017—which rounds to exactly .302. This suggests Table 3 might be using max_logprob selection rather than mean_logprob, which could explain the discrepancy in the delta values. , since the selection always uses the sample with the highest mean_logprob. So the -0.85pp gap still doesn't make sense. The actual selection delta is -1.05pp.\n\nLet me look at `recompute_table_metrics.py` to see if Table 3 is computing things differently. That script extracts logprobs from the data, using either stored logprobs or reconstructing them from cumulative values and token counts, then collects the max logprob and the F1 scores for the selected samples.\n\nComputing correlations...\n\nIt calculates both mean and max logprob correlations with greedy F1, and for selection it picks the sample with the highest logprob value. This should match the mean_logprob selection approach. I think the -0.85pp figure is just incorrect, and the real value for seed 42 is closer to -1.05pp.\n\nLooking at the appendix cross-selection results, LP achieves .897 while greedy gets .908, which gives -1.1pp. But when I check the actual w1_table3 data with full precision, LP_sel is 0.8974 and greedy is 0.9079, yielding -1.05pp. The -1.1pp in the appendix comes from rounding the values to three decimals before computing the difference. So the correct delta for CoNLL N=8 seed 42 is -1.05pp.\n\nTable 3 reports -0.85pp, which doesn't match either calculation. I'm wondering if this could be a 3-seed mean that somehow produced that value, but the metadata explicitly says only 1 seed exists for conll_n8, and the table caption claims 3-seed means. This is a clear inconsistency—either the caption is wrong or the data is incomplete.\n\nSo for this investigation: Table 3's -0.85pp doesn't align with the seed 42 data I found (-1.05pp), the appendix value (-1.1pp) rounds correctly from that same seed, and I can't verify where -0.85pp comes from at all.\n\nFor FewNERD, the 13.8% degeneracy rate checks out against the gold-filtered data with constant F1. The confusion came from a different experiment in the registry using a different definition or denominator that shows 10.1% instead.\n\nNow I'm noticing the table caption claims 3-seed means for FewNERD, but the actual data file only has seed 42. If it's supposed to be a 3-seed average using the unified definition across seeds 42, 123, and 456, I'd need to compute that mean rather than just report the single seed value.\n\nThe metadata confirms `\"n_seeds\": 1` for FewNERD, so the caption is misleading — both FewNERD and CoNLL are actually single-seed results, not 3-seed means as claimed. The 13.8% is correct for seed 42 alone, but the labeling is wrong.\n\nNow I'm moving to investigate the CoNLL degeneracy issue at 48.4%, which appears to be a confirmed error based on the unified metrics data. The metrics show n=2,756 for the CoNLL N=8 data, but the degeneracy value of 48.4% actually comes from N=16 experiments. Since both N values use the same instances, the sample count alone doesn't clarify which N was used—I need to look at the degeneracy rates to distinguish them, where N=8 gives 59.1% and N=16 gives 48.4%.\n\nThere's also a small discrepancy in the greedy F1 score: the JSON file shows 0.9088 (rounding to .909), while Table 3 lists .908, which matches the unified table's 0.9079. The key issue is that Table 3 claims N=8 for CoNLL, but the 48.4% degeneracy clearly indicates N=16 data was used instead.\n\nFor the LP ρ value, Table 3's .302 aligns with the max LP ρ of 0.3017 from the unified table, whereas the mean is 0.3157—so the table is reporting the maximum rather than the mean, which is fine as long as it's specified.\n\nNow I'm checking the dals_analysis file directly for the CoNLL degeneracy calculation to see if it's computed there, and I'm looking at the oracle metrics which show the breakdown of cases where LP performs better versus greedy.\n\nI have what I need to write up the report. Let me structure the findings: the SciERC AUROC discrepancy is a false alarm since the paper and registry use different binarization methods (median-split versus perfect extraction), and the previous audit confirmed all 15 values match. For the CoNLL LP delta, Table 3 reports -0.85pp, which I need to verify against the actual data.\n\nLooking at the seed 42 computation, I'm getting -1.05pp, and the appendix cross-selection shows -1.1pp which aligns with that when rounded. The caption claims 3-seed means but only seed 42 exists for CoNLL, so the correct value should be -1.05pp or -1.0pp with a note clarifying the single-seed situation. For FewNERD's 13.8% degeneracy rate, that matches the seed 42 unified_metrics calculation (13.754% rounded), though the registry's 10.1% for the same seed uses an older definition. The caption again claims 3-seed means but only one seed is available.\n\nNow I'm seeing the CoNLL degeneracy issue is a P0 error—the table header says N=8 but the 48.4% value comes from N=16 data. The actual N=8 degeneracy should be 59.1%, so I need to either correct the value or update the header to match the data source.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a97de670-f9a7-4d30-affd-382982b8a334",
+            "uuid": "9f7c46da-45bb-4754-9f12-c0831ec85b97",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L3YkokWbMsC5A4Z1UNq1kt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 18444,
+                "cache_read_input_tokens": 78853,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 18444
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have complete data for all four investigations. Let me compile the verification report.\n\nKey findings:\n1. **Investigation 1**: d114 audit already resolved — paper uses median-split AUROC, registry uses F1>=1.0 AUROC. Different metrics, paper correct.\n2. **Investigation 2**: Table 3 LP Δ = -0.85pp, but computed value is -1.05pp; also only 1 seed exists despite \"3-seed\" caption.\n3. **Investigation 3**: 13.8% is correct for seed 42 (13.754%), but Table 3 claims \"3-seed means\" when only 1 seed used.\n4. **Investigation 4**: 48.4% matches N=16 (exp_002_conll_n16), not N=8. N=8 degeneracy = 59.1%."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a97de670-f9a7-4d30-affd-382982b8a334",
+            "uuid": "fa4c31a7-5683-42f1-9bb7-1c5f80caeb69",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L3YkokWbMsC5A4Z1UNq1kt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 18444,
+                "cache_read_input_tokens": 78853,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 18444
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LHHd9NrXAwDe3s8MwQX3Wa",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/p0_data_verification_report.md",
+                "content": "# P0/P1 Data Verification Report\n\n**Date**: 2026-05-19\n**Scope**: Four claim-audit flagged inconsistencies in paper vs registry data\n\n---\n\n## Investigation 1: SciERC AUROC Table 1 vs Registry (P0) → FALSE ALARM\n\n### Discrepancy reported\n\n| Signal | Paper Table 1 | Registry exp_012_rerun_1024 | Δ |\n|--------|--------------|---------------------------|------|\n| VC | .663 | .684 | -2.1pp |\n| SJ | .650 | .692 | -4.2pp |\n| FK | .602 | .629 | -2.7pp |\n| EM | .614 | .749 | -13.5pp |\n| LP | .578 | .578 | 0pp |\n\n### Finding\n\n**Not an error.** The paper and registry use different AUROC binarization thresholds:\n\n- **Paper Table 1**: median-split AUROC (`binary = (F1 >= median_F1)`), computed by `analyze_exp015_unified.py`. SciERC NER median F1 = 0.6667.\n- **Registry exp_012_rerun_1024**: perfect-extraction AUROC (`binary = (F1 >= 1.0)`), computed by `eval_exp012_rerun_auroc.py`.\n\nFor CoNLL (median F1 = 1.0), both definitions coincide → LP matches. For SciERC (median F1 = 0.667), they diverge substantially.\n\nPrevious investigation (`d114_auroc_investigation/table1_update.md`) verified all 15 Table 1 values match within rounding error (<0.0005).\n\n### Verification source\n- `output/d114_auroc_investigation/unified_auroc.json` — per-seed and aggregated verified AUROC\n- `output/d114_auroc_investigation/table1_update.md` — full verification report\n\n### Correct value\nPaper Table 1 values are **correct**. No fix needed.\n\n### Recommendation\nRegistry `exp_012_rerun_1024` AUROC fields should be annotated as \"perfect-extraction AUROC (F1>=1.0 threshold)\" to prevent future confusion with the paper's median-split AUROC.\n\n---\n\n## Investigation 2: CoNLL LP Selection Δ Inconsistency (P0) → CONFIRMED ERROR\n\n### Discrepancy reported\n- Table 3 (experiments.tex:122): CoNLL LP Δ = **-0.85pp**\n- Appendix cross-selection (appendix.tex:248): LP F1 = .897, Greedy = .908 → Δ = **-1.1pp**\n\n### Finding\n\n**Table 3's -0.85pp is incorrect.** Two sub-issues:\n\n**Issue A: Wrong LP Δ value.** From `w1_table3_multiseed.json`, CoNLL N=8 seed 42:\n- `greedy_f1 = 0.9079`, `lp_sel_f1 = 0.8974`\n- `lp_delta_pp = -1.0482`\n\nThe appendix cross-selection's -1.1pp = (.897 - .908) is the same computation rounded to 3 decimal places. Both are consistent: **Δ ≈ -1.05pp**.\n\nNo known data source produces -0.85pp. The closest match is the SJ selection delta (-0.89pp from `sj_delta_pp = -0.8914`), suggesting a possible column-swap error during table composition.\n\n**Issue B: \"3-seed means\" claim is false for CoNLL.** The `w1_table3_multiseed.json` file shows `\"n_seeds\": 1` for `conll_n8` — only seed 42 data exists. The Table 3 caption states \"Few-NERD/CoNLL: 3-seed means\" which is incorrect.\n\n### Correct value\n- LP Δ = **-1.05pp** (seed 42 single-seed, rounded to -1.0pp or -1.1pp)\n- Caption should either say \"CoNLL: single-seed\" or 3-seed data must be generated\n\n### Suggested fix\n1. Update Table 3 CoNLL LP Δ from -0.85pp to -1.05pp (or -1.0pp)\n2. Update caption to clarify CoNLL and FewNERD are single-seed (seed 42)\n3. Or generate seeds 123/456 CoNLL N=8 data and report true 3-seed mean\n\n---\n\n## Investigation 3: FewNERD Degeneracy 13.8% Source (P1) → CORRECT VALUE, WRONG CAPTION\n\n### Discrepancy reported\nPaper Table 3: FewNERD degen = 13.8%. Registry per-seed values:\n- Seed 42 (exp_021_fewnerd_full): 10.1%\n- Seed 123: 13.1%, Seed 456: 12.1%, Seed 789: 11.8%\n- 3-seed mean (42/123/456) = 11.8% ≠ 13.8%\n\n### Finding\n\n**13.8% is correct for seed 42** using the unified_metrics definition:\n\n| Source | Definition | Seed 42 value |\n|--------|-----------|---------------|\n| Registry exp_021_fewnerd_full | `degeneracy_rate` (old, no source tag) | 10.1% |\n| `unified_tab_fewnerd_maxlp.json` | constant-F1 gold-filtered | **13.754% → 13.8%** |\n| Registry exp_021_fewnerd_n8_seed123 | unified_metrics_constant_f1_gold_filtered | 13.12% |\n\nThe registry's 10.1% for seed 42 uses an older/different degeneracy definition (possibly different denominator — total vs gold-filtered, or different F1 comparison logic). The seed-specific experiments (123/456/789) use the unified definition and produce different values.\n\nThe `w1_table3_multiseed.json` confirms FewNERD also has `\"n_seeds\": 1` (seed 42 only).\n\n### Correct value\n- **13.8%** is correct for seed 42, unified_metrics constant-F1 gold-filtered\n- True 3-seed mean (42/123/456) under unified definition ≈ **13.0%** = (13.75 + 13.12 + 12.12) / 3\n\n### Suggested fix\n1. Update Table 3 caption to say \"single-seed (seed 42)\" for FewNERD (same as CoNLL fix)\n2. Or compute unified-definition degen for seeds 123/456 and report 3-seed mean (~13.0%)\n3. Update registry exp_021_fewnerd_full to include `degen_rate_source` tag and reconcile with unified definition\n\n---\n\n## Investigation 4: CoNLL Degeneracy 48.4% N=8 vs N=16 (P1) → CONFIRMED ERROR\n\n### Discrepancy reported\nTable 3 header says N=8, CoNLL degen = 48.4%. Registry exp_002_conll_n16 (N=16) has degen_rate = 0.4844.\n\n### Finding\n\n**Confirmed: 48.4% is N=16 data, not N=8.**\n\n| Source | N | Degen rate |\n|--------|---|-----------|\n| `unified_tab_fewnerd_maxlp.json` (seed 42) | 8 | **59.14%** |\n| Registry exp_002_conll_n16 (seed 42) | 16 | **48.44%** |\n| Registry exp_002_conll_n16_seed123 | 16 | 47.10% |\n| Registry exp_002_conll_n16_seed456 | 16 | 55.44% |\n| N=16 3-seed mean | 16 | 50.3% |\n\nN=8 produces higher degeneracy (59.1%) because fewer samples → less chance of F1 variation. Table 3 claims N=8 but reports the N=16 value (48.4%).\n\nOther Table 3 CoNLL values (n=2,756, greedy=.908, LP ρ=.302) are consistent with N=8 seed 42 data. Only the degeneracy column was pulled from N=16.\n\n### Correct value\n- N=8 CoNLL degeneracy (seed 42) = **59.1%**\n- N=16 CoNLL degeneracy (seed 42) = 48.4%\n\n### Suggested fix\nUpdate Table 3 CoNLL degen from 48.4% to 59.1%\n\n---\n\n## Summary\n\n| # | Issue | Severity | Status | Fix needed |\n|---|-------|----------|--------|-----------|\n| 1 | SciERC AUROC Table 1 vs registry | P0 | **False alarm** | Annotate registry AUROC definition |\n| 2 | CoNLL LP Δ inconsistency | P0 | **Confirmed error** | Table 3: -0.85pp → -1.05pp; fix \"3-seed\" caption |\n| 3 | FewNERD degen 13.8% source | P1 | **Value correct, caption wrong** | Fix \"3-seed\" caption or generate multi-seed data |\n| 4 | CoNLL degen 48.4% N mismatch | P1 | **Confirmed error** | Table 3: 48.4% → 59.1% (N=8 value) |\n\n### Cross-cutting issue: Table 3 \"3-seed means\" caption\nTable 3 caption claims \"Few-NERD/CoNLL: 3-seed means\" but both datasets have only seed 42 data in `w1_table3_multiseed.json`. Either:\n- (a) Generate seeds 123/456 for CoNLL N=8 and FewNERD N=8, then report true 3-seed means\n- (b) Correct the caption to \"single-seed (seed 42)\" for these datasets\n\nOption (b) is simpler but weakens statistical credibility. Option (a) requires new inference runs.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a97de670-f9a7-4d30-affd-382982b8a334",
+            "uuid": "32882ea2-1ecf-4076-8433-42992577c51e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L3YkokWbMsC5A4Z1UNq1kt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 18444,
+                "cache_read_input_tokens": 78853,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 18444
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-19T14:02:19.429Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LHHd9NrXAwDe3s8MwQX3Wa",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/p0_data_verification_report.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a97de670-f9a7-4d30-affd-382982b8a334",
+            "uuid": "9b8e47ff-9354-4b27-812b-c18e0257c6e8",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/p0_data_verification_report.md",
+              "content": "# P0/P1 Data Verification Report\n\n**Date**: 2026-05-19\n**Scope**: Four claim-audit flagged inconsistencies in paper vs registry data\n\n---\n\n## Investigation 1: SciERC AUROC Table 1 vs Registry (P0) → FALSE ALARM\n\n### Discrepancy reported\n\n| Signal | Paper Table 1 | Registry exp_012_rerun_1024 | Δ |\n|--------|--------------|---------------------------|------|\n| VC | .663 | .684 | -2.1pp |\n| SJ | .650 | .692 | -4.2pp |\n| FK | .602 | .629 | -2.7pp |\n| EM | .614 | .749 | -13.5pp |\n| LP | .578 | .578 | 0pp |\n\n### Finding\n\n**Not an error.** The paper and registry use different AUROC binarization thresholds:\n\n- **Paper Table 1**: median-split AUROC (`binary = (F1 >= median_F1)`), computed by `analyze_exp015_unified.py`. SciERC NER median F1 = 0.6667.\n- **Registry exp_012_rerun_1024**: perfect-extraction AUROC (`binary = (F1 >= 1.0)`), computed by `eval_exp012_rerun_auroc.py`.\n\nFor CoNLL (median F1 = 1.0), both definitions coincide → LP matches. For SciERC (median F1 = 0.667), they diverge substantially.\n\nPrevious investigation (`d114_auroc_investigation/table1_update.md`) verified all 15 Table 1 values match within rounding error (<0.0005).\n\n### Verification source\n- `output/d114_auroc_investigation/unified_auroc.json` — per-seed and aggregated verified AUROC\n- `output/d114_auroc_investigation/table1_update.md` — full verification report\n\n### Correct value\nPaper Table 1 values are **correct**. No fix needed.\n\n### Recommendation\nRegistry `exp_012_rerun_1024` AUROC fields should be annotated as \"perfect-extraction AUROC (F1>=1.0 threshold)\" to prevent future confusion with the paper's median-split AUROC.\n\n---\n\n## Investigation 2: CoNLL LP Selection Δ Inconsistency (P0) → CONFIRMED ERROR\n\n### Discrepancy reported\n- Table 3 (experiments.tex:122): CoNLL LP Δ = **-0.85pp**\n- Appendix cross-selection (appendix.tex:248): LP F1 = .897, Greedy = .908 → Δ = **-1.1pp**\n\n### Finding\n\n**Table 3's -0.85pp is incorrect.** Two sub-issues:\n\n**Issue A: Wrong LP Δ value.** From `w1_table3_multiseed.json`, CoNLL N=8 seed 42:\n- `greedy_f1 = 0.9079`, `lp_sel_f1 = 0.8974`\n- `lp_delta_pp = -1.0482`\n\nThe appendix cross-selection's -1.1pp = (.897 - .908) is the same computation rounded to 3 decimal places. Both are consistent: **Δ ≈ -1.05pp**.\n\nNo known data source produces -0.85pp. The closest match is the SJ selection delta (-0.89pp from `sj_delta_pp = -0.8914`), suggesting a possible column-swap error during table composition.\n\n**Issue B: \"3-seed means\" claim is false for CoNLL.** The `w1_table3_multiseed.json` file shows `\"n_seeds\": 1` for `conll_n8` — only seed 42 data exists. The Table 3 caption states \"Few-NERD/CoNLL: 3-seed means\" which is incorrect.\n\n### Correct value\n- LP Δ = **-1.05pp** (seed 42 single-seed, rounded to -1.0pp or -1.1pp)\n- Caption should either say \"CoNLL: single-seed\" or 3-seed data must be generated\n\n### Suggested fix\n1. Update Table 3 CoNLL LP Δ from -0.85pp to -1.05pp (or -1.0pp)\n2. Update caption to clarify CoNLL and FewNERD are single-seed (seed 42)\n3. Or generate seeds 123/456 CoNLL N=8 data and report true 3-seed mean\n\n---\n\n## Investigation 3: FewNERD Degeneracy 13.8% Source (P1) → CORRECT VALUE, WRONG CAPTION\n\n### Discrepancy reported\nPaper Table 3: FewNERD degen = 13.8%. Registry per-seed values:\n- Seed 42 (exp_021_fewnerd_full): 10.1%\n- Seed 123: 13.1%, Seed 456: 12.1%, Seed 789: 11.8%\n- 3-seed mean (42/123/456) = 11.8% ≠ 13.8%\n\n### Finding\n\n**13.8% is correct for seed 42** using the unified_metrics definition:\n\n| Source | Definition | Seed 42 value |\n|--------|-----------|---------------|\n| Registry exp_021_fewnerd_full | `degeneracy_rate` (old, no source tag) | 10.1% |\n| `unified_tab_fewnerd_maxlp.json` | constant-F1 gold-filtered | **13.754% → 13.8%** |\n| Registry exp_021_fewnerd_n8_seed123 | unified_metrics_constant_f1_gold_filtered | 13.12% |\n\nThe registry's 10.1% for seed 42 uses an older/different degeneracy definition (possibly different denominator — total vs gold-filtered, or different F1 comparison logic). The seed-specific experiments (123/456/789) use the unified definition and produce different values.\n\nThe `w1_table3_multiseed.json` confirms FewNERD also has `\"n_seeds\": 1` (seed 42 only).\n\n### Correct value\n- **13.8%** is correct for seed 42, unified_metrics constant-F1 gold-filtered\n- True 3-seed mean (42/123/456) under unified definition ≈ **13.0%** = (13.75 + 13.12 + 12.12) / 3\n\n### Suggested fix\n1. Update Table 3 caption to say \"single-seed (seed 42)\" for FewNERD (same as CoNLL fix)\n2. Or compute unified-definition degen for seeds 123/456 and report 3-seed mean (~13.0%)\n3. Update registry exp_021_fewnerd_full to include `degen_rate_source` tag and reconcile with unified definition\n\n---\n\n## Investigation 4: CoNLL Degeneracy 48.4% N=8 vs N=16 (P1) → CONFIRMED ERROR\n\n### Discrepancy reported\nTable 3 header says N=8, CoNLL degen = 48.4%. Registry exp_002_conll_n16 (N=16) has degen_rate = 0.4844.\n\n### Finding\n\n**Confirmed: 48.4% is N=16 data, not N=8.**\n\n| Source | N | Degen rate |\n|--------|---|-----------|\n| `unified_tab_fewnerd_maxlp.json` (seed 42) | 8 | **59.14%** |\n| Registry exp_002_conll_n16 (seed 42) | 16 | **48.44%** |\n| Registry exp_002_conll_n16_seed123 | 16 | 47.10% |\n| Registry exp_002_conll_n16_seed456 | 16 | 55.44% |\n| N=16 3-seed mean | 16 | 50.3% |\n\nN=8 produces higher degeneracy (59.1%) because fewer samples → less chance of F1 variation. Table 3 claims N=8 but reports the N=16 value (48.4%).\n\nOther Table 3 CoNLL values (n=2,756, greedy=.908, LP ρ=.302) are consistent with N=8 seed 42 data. Only the degeneracy column was pulled from N=16.\n\n### Correct value\n- N=8 CoNLL degeneracy (seed 42) = **59.1%**\n- N=16 CoNLL degeneracy (seed 42) = 48.4%\n\n### Suggested fix\nUpdate Table 3 CoNLL degen from 48.4% to 59.1%\n\n---\n\n## Summary\n\n| # | Issue | Severity | Status | Fix needed |\n|---|-------|----------|--------|-----------|\n| 1 | SciERC AUROC Table 1 vs registry | P0 | **False alarm** | Annotate registry AUROC definition |\n| 2 | CoNLL LP Δ inconsistency | P0 | **Confirmed error** | Table 3: -0.85pp → -1.05pp; fix \"3-seed\" caption |\n| 3 | FewNERD degen 13.8% source | P1 | **Value correct, caption wrong** | Fix \"3-seed\" caption or generate multi-seed data |\n| 4 | CoNLL degen 48.4% N mismatch | P1 | **Confirmed error** | Table 3: 48.4% → 59.1% (N=8 value) |\n\n### Cross-cutting issue: Table 3 \"3-seed means\" caption\nTable 3 caption claims \"Few-NERD/CoNLL: 3-seed means\" but both datasets have only seed 42 data in `w1_table3_multiseed.json`. Either:\n- (a) Generate seeds 123/456 for CoNLL N=8 and FewNERD N=8, then report true 3-seed means\n- (b) Correct the caption to \"single-seed (seed 42)\" for these datasets\n\nOption (b) is simpler but weakens statistical credibility. Option (a) requires new inference runs.\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a97de670-f9a7-4d30-affd-382982b8a334",
+            "uuid": "d33dc196-dedf-410c-89db-d36b3bb2b811",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HrR9AEFoc5bzoM12n4EhRy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 18605,
+                "cache_read_input_tokens": 86051,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 18605
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014S6iFbMbxhzzMxwn51QDc9",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "P0/P1 Data Verification Report",
+                "type": "report",
+                "description": "Deep audit of 4 data inconsistencies flagged by claim audit: SciERC AUROC (false alarm — different metrics), CoNLL LP Δ (confirmed error: -0.85pp should be -1.05pp), FewNERD degen 13.8% (correct value, wrong 3-seed caption), CoNLL degen 48.4% (confirmed error: N=16 value used in N=8 table)",
+                "project": "struct_self_consist_ie",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/p0_data_verification_report.md",
+                "tags": [
+                  "claim-audit",
+                  "data-verification",
+                  "table3",
+                  "table1",
+                  "P0"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a97de670-f9a7-4d30-affd-382982b8a334",
+            "uuid": "cad2b81c-4707-4040-a28b-ec32f4c332cf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HrR9AEFoc5bzoM12n4EhRy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 18605,
+                "cache_read_input_tokens": 86051,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 18605
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-19T14:02:26.672Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014S6iFbMbxhzzMxwn51QDc9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_f35393\\\", \\\"name\\\": \\\"P0/P1 Data Verification Report\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Deep audit of 4 data inconsistencies flagged by claim audit: SciERC AUROC (false alarm — different metrics), CoNLL LP Δ (confirmed error: -0.85pp should be -1.05pp), FewNERD degen 13.8% (correct value, wrong 3-seed caption), CoNLL degen 48.4% (confirmed error: N=16 value used in N=8 table)\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/report/p0_data_verification_report.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T14:02:26.215584+00:00\\\", \\\"tags\\\": [\\\"claim-audit\\\", \\\"data-verification\\\", \\\"table3\\\", \\\"table1\\\", \\\"P0\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a97de670-f9a7-4d30-affd-382982b8a334",
+            "uuid": "0d570b2a-baf4-444d-913b-4aa819704e5d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_f35393\\\", \\\"name\\\": \\\"P0/P1 Data Verification Report\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Deep audit of 4 data inconsistencies flagged by claim audit: SciERC AUROC (false alarm — different metrics), CoNLL LP Δ (confirmed error: -0.85pp should be -1.05pp), FewNERD degen 13.8% (correct value, wrong 3-seed caption), CoNLL degen 48.4% (confirmed error: N=16 value used in N=8 table)\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/report/p0_data_verification_report.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T14:02:26.215584+00:00\\\", \\\"tags\\\": [\\\"claim-audit\\\", \\\"data-verification\\\", \\\"table3\\\", \\\"table1\\\", \\\"P0\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260519_f35393\", \"name\": \"P0/P1 Data Verification Report\", \"type\": \"report\", \"description\": \"Deep audit of 4 data inconsistencies flagged by claim audit: SciERC AUROC (false alarm — different metrics), CoNLL LP Δ (confirmed error: -0.85pp should be -1.05pp), FewNERD degen 13.8% (correct value, wrong 3-seed caption), CoNLL degen 48.4% (confirmed error: N=16 value used in N=8 table)\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/report/p0_data_verification_report.md\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-19T14:02:26.215584+00:00\", \"tags\": [\"claim-audit\", \"data-verification\", \"table3\", \"table1\", \"P0\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "四项调查结果：\n\n| # | 问题 | 结论 |\n|---|------|------|\n| 1 | SciERC AUROC Table 1 vs registry | **误报** — paper 用 median-split AUROC，registry 用 F1≥1.0 AUROC，是两个不同指标，paper 正确 |\n| 2 | CoNLL LP Δ 不一致 | **确认错误** — Table 3 写 -0.85pp，实际计算为 -1.05pp（seed 42）；且标题声称 3-seed mean 但只有 1 个 seed |\n| 3 | FewNERD degen 13.8% | **值正确，标题错** — 13.8% 是 seed 42 单 seed 的 unified_metrics 结果（13.754%），但 Table 3 标题谎称 3-seed mean |\n| 4 | CoNLL degen 48.4% | **确认错误** — 48.4% 来自 N=16 (exp_002_conll_n16)，N=8 实际是 59.1% |\n\n**跨问题共性**：Table 3 标题声称 \"Few-NERD/CoNLL: 3-seed means\"，但 `w1_table3_multiseed.json` 显示两者都只有 seed 42。需要补跑 seed 或修正标题。\n\n报告已写入 `artifacts/p0_data_verification_report.md` 并注册。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a97de670-f9a7-4d30-affd-382982b8a334",
+            "uuid": "e226e4e6-4926-4f29-965b-e24814fb7651",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015wUWzKxy6EBiUrjgnF8T4E",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 702,
+                "cache_read_input_tokens": 104656,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 702
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "四项调查结果：\n\n| # | 问题 | 结论 |\n|---|------|------|\n| 1 | SciERC AUROC Table 1 vs registry | **误报** — paper 用 median-split AUROC，registry 用 F1≥1.0 AUROC，是两个不同指标，paper 正确 |\n| 2 | CoNLL LP Δ 不一致 | **确认错误** — Table 3 写 -0.85pp，实际计算为 -1.05pp（seed 42）；且标题声称 3-seed mean 但只有 1 个 seed |\n| 3 | FewNERD degen 13.8% | **值正确，标题错** — 13.8% 是 seed 42 单 seed 的 unified_metrics 结果（13.754%），但 Table 3 标题谎称 3-seed mean |\n| 4 | CoNLL degen 48.4% | **确认错误** — 48.4% 来自 N=16 (exp_002_conll_n16)，N=8 实际是 59.1% |\n\n**跨问题共性**：Table 3 标题声称 \"Few-NERD/CoNLL: 3-seed means\"，但 `w1_table3_multiseed.json` 显示两者都只有 seed 42。需要补跑 seed 或修正标题。\n\n报告已写入 `artifacts/p0_data_verification_report.md` 并注册。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 491009,
+            "duration_api_ms": 497329,
+            "num_turns": 31,
+            "stop_reason": "end_turn",
+            "session_id": "a97de670-f9a7-4d30-affd-382982b8a334",
+            "total_cost_usd": 1.7697263499999998,
+            "usage": {
+              "input_tokens": 16,
+              "cache_creation_input_tokens": 111961,
+              "cache_read_input_tokens": 696891,
+              "output_tokens": 25175,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 111961,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 416,
+                  "cache_read_input_tokens": 104656,
+                  "cache_creation_input_tokens": 702,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 702
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1813,
+                "outputTokens": 2888,
+                "cacheReadInputTokens": 207416,
+                "cacheCreationInputTokens": 44060,
+                "webSearchRequests": 0,
+                "costUSD": 0.0920696,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 16,
+                "outputTokens": 25175,
+                "cacheReadInputTokens": 696891,
+                "cacheCreationInputTokens": 111961,
+                "webSearchRequests": 0,
+                "costUSD": 1.67765675,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "cfbcba54-e262-4894-9440-f3f43d95738a"
+          },
+          "id": "event-000118"
+        }
+      ]
+    }
+  ]
+}

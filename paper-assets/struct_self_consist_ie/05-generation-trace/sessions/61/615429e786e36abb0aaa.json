@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "615429e786e36abb0aaa",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose docred re done",
+  "task_key": "worker_diagnose_docred_re_done_20260520T210316",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_docred_re_done_20260520T210316_result.json",
+    "occurrence": 1,
+    "bytes": 1608,
+    "sha256": "f3dd3174fc50ac3676c996bbe6407706975e7fb6b7a6623d8064bb045a4fcf58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已删除，registry 已更新为 DONE/success。\n\n## DocRED RE SC 诊断结果\n\n实验在 `autodl-5090-c:cuda:3` 正常完成（200 instances × 8 samples，~38s 推理）。\n\n### 核心指标\n\n| 指标 | 值 |\n|------|-----|\n| Greedy F1 (mean) | 0.0284 |\n| Construction F1 (mean) | 0.0338 |\n| Majority Vote F1 (mean) | 0.0263 |\n| Oracle F1 (mean) | 0.0999 |\n| Fleiss' κ | -0.0253 |\n| Soft Jaccard | 0.2907 |\n| Degeneracy rate | 3.5% |\n\n### Failure Mode 分布\n\n| Mode | % |\n|------|---|\n| F1 (degeneracy) | 3.5% |\n| **F2 (low agreement)** | **94.5%** |\n| F3 (high agreement, low quality) | 2.0% |\n\n### Bootstrap (Construction - Greedy)\n- Diff: +0.0053, 95% CI: [-0.004, +0.015], p=0.1276 (不显著)\n\n### 与 SciERC RE (exp_a3_ace05_re) 对比\n\n| | SciERC RE | DocRED RE |\n|--|-----------|-----------|\n| Greedy F1 | 0.078 | 0.028 |\n| Oracle F1 | 0.157 | 0.100 |\n| Degen rate | 0.8% | 3.5% |\n| **F2 占比** | **93.5%** | **94.5%** |\n| Construction-Greedy gap | -0.018 (显著) | +0.005 (不显著) |\n\n### 结论\n\n**Hypothesis confirmed (success)**：SC diagnostic cascade 成功推广到 document-level RE。F2 (low agreement) 压倒性主导（94.5%），与 sentence-level RE（93.5%）高度一致——failure mode structure 在 RE 任务上具有跨粒度稳定性。\n\n绝对性能极低（F1 ~3%），说明 7B 模型 few-shot 做 DocRED 级别的 document-level RE 本身不可行，但 SC 诊断框架正确地诊断出了原因：模型在 sample 间几乎无一致性（κ 为负），绝大多数 instance 落入 F2 failure mode。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-docred-re-done.md"
+}

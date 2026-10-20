@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c489cbd2b33b6181268a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "research citation audit",
+  "task_key": "worker_research_citation_audit_20260517T085237",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_citation_audit_20260517T085237_result.json",
+    "occurrence": 1,
+    "bytes": 1985,
+    "sha256": "c7db8a5bb65fddea7a790750a6076a2ac0759d4641867bff90d1ae5a05fd8960"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 49 citations verified. Here's the audit report.\n\n```\n=== Citation Audit ===\n\nTotal citations: 49\nVerified (correct): 44\nCritical issues: 2\nMinor metadata issues: 3\nNot found / fabricated: 0\n```\n\n---\n\n### CRITICAL ISSUES\n\n**1. `xie2024selfevaluation` — WRONG AUTHORS + WRONG VENUE**\n\n- **Bib authors**: Xie, Jie; Lu, Kai; Dong, Rui; Pan, Liangming; Han, Qi; Wang, Shasha; Huang, Deyu; Zhang, Junlan\n- **Real authors**: Jie Ren, Yao Zhao, Tu Vu, Peter J. Liu, Balaji Lakshminarayanan\n- **Bib venue**: NeurIPS 2024 (main conference)\n- **Real venue**: NeurIPS 2023 Workshop (\"I Can't Believe It's Not Better\")\n- The paper at arXiv:2312.09300 exists, title matches, but the author list is entirely fabricated. This is a hallucinated citation entry.\n\n**2. `deguchi2024centroid` — WRONG VENUE + MISSING AUTHORS**\n\n- **Bib venue**: \"Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP)\"\n- **Real venue**: **Findings of ACL 2024** (Bangkok, pages 11009–11018)\n- **Bib authors** (3): Deguchi, Kamigaito, Watanabe\n- **Real authors** (6): Deguchi, Sakai, Kamigaito, Watanabe, Tanaka, Utiyama — missing 3 co-authors\n\n---\n\n### MINOR METADATA ISSUES\n\n**3. `tian2023calibration`** — Title truncated (missing \"Fine-Tuned with Human Feedback\"), missing 3 co-authors (Allan Zhou, Archit Sharma, Rafael Rafailov). Core attribution correct.\n\n**4. `oh2026latentsc`** — Listed as `@article` (arXiv preprint) but also published at **AAAI 2026**. Could update venue.\n\n**5. `chen2024usc`** — Booktitle \"arXiv preprint (ICML 2024 Workshop ICL)\" is an unusual hybrid format.\n\n---\n\n### ALL OTHER 44 CITATIONS: VERIFIED\n\nEvery remaining entry was confirmed via WebSearch: paper exists, authors match, venue/year correct.\n\n**Recommended fixes**: The two critical entries (`xie2024selfevaluation` and `deguchi2024centroid`) need immediate correction in the bib file. Want me to fix them?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-citation-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97392bdee093ebb3c39d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code 7b pipeline or prep",
+  "task_key": "worker_code_7b-pipeline-or-prep_20260519T204001",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_7b-pipeline-or-prep_20260519T204001_result.json",
+    "occurrence": 1,
+    "bytes": 1555,
+    "sha256": "4f216d60b664a5ef05e4d651ddadbd69cbd2608f9e54c43de73dd16ebfac0770"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 7B FewNERD Pipeline 状态\n\n### 当前阶段\n**Phase 1: QLoRA Training** — `llamafactory-cli` 运行中\n\n| 指标 | 值 |\n|------|----|\n| 进度 | 13017/20590 (63%) |\n| 速度 | ~2.35 s/step |\n| 剩余训练时间 | ~4h 57min |\n| Loss | 0.0184 (epoch 3.16, grad_norm 0.31) |\n| 训练完成 ETA | ~May 20 09:37 CST |\n\n### 后续阶段（pipeline 自动执行）\nPipeline 脚本 (`run_fewnerd_qwen25_7b_pipeline.sh`) 将自动依次执行：\n- **Phase 2**: Export/Merge LoRA (~5-10min)\n- **Phase 3**: Inference 3 seeds × N=8 (~30-60min for 7B on FewNERD)\n- **Phase 4**: Signal Analysis (per seed)\n- **Phase 5**: Entity Construction (per seed)\n\n**整体 pipeline 完成 ETA: ~May 20 10:15-10:45 CST**\n\n### 环境准备状态\n\n| 项目 | 状态 |\n|------|------|\n| scipy + sklearn | OK |\n| 磁盘空间 | 198GB 可用 (44% used) |\n| compute_signals.py on server | **不在** — 但 pipeline 内建了 `analyze_fewnerd_results.py` + `wnut17_entity_construction.py` |\n| GPU | 2× (CUDA_VISIBLE_DEVICES=2,3) |\n\n### 注意事项\n1. Pipeline 内建的 Phase 4/5 使用服务器上的 `analyze_fewnerd_results.py` 和 `wnut17_entity_construction.py`，会输出每个 seed 的 `report.json`、`results.json`、`entity_construction.json`\n2. 本地的 `compute_signals.py`、`format_for_scaling.py`、`bootstrap_construction.py` 如需在 pipeline 完成后做**额外汇总**（如跨 seed 聚合、scaling curve 格式化），届时需上传到服务器\n3. wnut17 7B 3 seeds 结果已全部就绪可供参考"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-7b-pipeline-or-prep.md"
+}

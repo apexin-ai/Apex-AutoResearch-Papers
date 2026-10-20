@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6504cfcda89f13b48ed",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis fk rho inconsistency",
+  "task_key": "worker_analysis_fk_rho_inconsistency_20260515T155957",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_fk_rho_inconsistency_20260515T155957_result.json",
+    "occurrence": 1,
+    "bytes": 3215,
+    "sha256": "c7e552288a3211d5268387bc808865b3c3b737020bc4605a08df0975484f7c36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已全部读取。现在整理分析报告。\n\n---\n\n## FK ρ 不一致排查报告\n\n### 一、三个实验的 FK 相关字段汇总\n\n| 指标 | seed123 (joint T=1.0) | seed456 (joint T=1.0) | T=0.7 (NER-only) |\n|---|---|---|---|\n| **NER FK ρ(full)** | 0.282 (n=529, p<1e-10) | 0.253 (n=529, p<1e-8) | 0.289 (n=529, p<1e-11) |\n| **NER FK ρ(cond)** | 0.182 (n=477, p=6.5e-5) | 0.145 (n=478, p=0.0015) | 0.255 (n=477, p=1.6e-8) |\n| **NER SJ ρ(cond)** | 0.358 (n=477) | 0.283 (n=478) | 0.363 (n=477) |\n| NER gold-empty filtered | 22 | 22 | 22 |\n| NER greedy-F1=0 filtered | 52 | 51 | 52 |\n| **RE FK ρ(full)** | 0.243 (n=397, p<1e-6) | 0.245 (n=397, p<1e-6) | — |\n| **RE FK ρ(cond)** | **0.063 (n=236, p=0.334)** | **0.123 (n=239, p=0.058)** | — |\n| **RE SJ ρ(cond)** | 0.277 (n=236, p<1e-5) | 0.315 (n=239, p<1e-6) | — |\n| RE gold-empty filtered | 154 | 154 | — |\n| RE greedy-F1=0 filtered | 161 | 158 | — |\n| RE sample F1 pct_zero | 43.6% | 45.3% | — |\n\n### 二、根因分析：不是 bug，是 FK 在 RE conditional 下的固有局限\n\n**之前 memory.md 记录的 gold-empty bug 已经修复。** 代码中 `nonempty_mask` 正确排除了 gold-empty 实例（line ~241-243），不参与相关性计算。`fleiss_kappa_surface()` 对全空样本返回 1.0 的逻辑本身是正确的（全样本一致同意为空 = 完美一致）。\n\n**RE FK ρ(cond) 极低的真正原因（3 个叠加因素）：**\n\n1. **样本量剧烈缩减**：551 → 397（去 gold-empty）→ 236（去 greedy F1=0）。RE 有 154 个 gold-empty 实例 + ~160 个 greedy F1=0 实例，conditional 只剩 236 个，丢掉了 57% 的数据。相比之下 NER conditional 保留 477 个（87%）。\n\n2. **FK 对 RE 先天不足**：FK 用 surface key `(head, tail, type)` 精确匹配。RE 每个实例的关系数量远少于 NER 的实体数量（通常 0-3 个 vs 3-10 个），导致 FK 值离散且噪声大。SJ 用结构化软匹配，在 RE 上保持 ρ=0.277-0.315，证明信号存在但 FK 捕捉不到。\n\n3. **T=1.0 压缩了 FK 区分度**：对比 NER FK ρ(cond)，T=1.0 下只有 0.145-0.182，T=0.7 下有 0.255。高温采样产生更多样性，FK 值被压向低端，方差收窄，相关性自然下降。\n\n**补充证据**：\n- RE FK ρ(cond) 的 p 值分别为 0.334 和 0.058 — 统计不显著，符合\"噪声中无信号\"的预期\n- RE FK ρ(full) = 0.243/0.245 依然显著 — 说明信号主要来自 F1=0 实例（FK=1.0 的全空样本 vs FK 低的有部分抽取），conditional 删掉这批后信号消失\n- SJ ρ(cond) 在同一数据子集上仍有 0.28-0.32 — 排除了数据本身无信号的可能\n\n### 三、结论\n\n**RE FK ρ(cond) = 0.063/0.123 是合理结果，不需要修复。** FK 作为 surface agreement 指标在 RE conditional 场景下区分力不足，这恰恰支持了论文的核心论点：结构化一致性度量（SJ）优于表面一致性度量（FK）。\n\n如果论文需要报告 RE 的一致性-质量相关性，应以 SJ ρ 为主，FK ρ 作为对照 baseline。RE 中 SJ/FK 的差距（4-5x）比 NER 中的差距（2x）更大，可以作为 structural metric 优势的强论据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fk-rho-inconsistency.md"
+}

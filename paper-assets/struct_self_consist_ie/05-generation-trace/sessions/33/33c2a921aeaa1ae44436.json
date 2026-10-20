@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33c2a921aeaa1ae44436",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code ccs selection",
+  "task_key": "worker_code_ccs_selection_20260518T173312",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_ccs_selection_20260518T173312_result.json",
+    "occurrence": 1,
+    "bytes": 1340,
+    "sha256": "cbf2d2f91152bbab14d89c4a9ccc0bbaa49b932522bbfa1106d899e10769bfa4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n## CCS 评估结果 (gold_filter=True, N=8)\n\n| Dataset | N | Greedy | LP | DGS | **CCS** | Oracle | CCS-Greedy 95% CI |\n|---------|-----|--------|--------|--------|---------|--------|-------------------|\n| SciERC  | 529 | 0.6439 | 0.6501 | 0.6513 | 0.6501  | 0.7758 | +0.61pp [-0.70, +2.00] |\n| CoNLL   | 2756| 0.9070 | 0.8989 | 0.8989 | 0.8964  | 0.9494 | -1.05pp [-1.49, -0.62] |\n| FewNERD | 4351| 0.7478 | 0.7610 | 0.7615 | 0.7277  | 0.8686 | -2.01pp [-2.59, -1.43] |\n\n**Stage 分布：**\n| Dataset | Stage1 greedy | Stage2 MV | Stage3 LP |\n|---------|---------------|-----------|-----------|\n| SciERC  | 94 (17.8%)    | 217 (41.0%) | 218 (41.2%) |\n| CoNLL   | 1597 (57.9%)  | 579 (21.0%) | 580 (21.0%) |\n| FewNERD | 628 (14.4%)   | 1861 (42.8%)| 1862 (42.8%)|\n\n**关键发现：** CCS 在所有数据集上均未超过 DGS。实体 majority vote（Stage 2）在 low-LP-range 的 non-degenerate instances 上表现不如 LP selection，尤其在 FewNERD 上 CCS 比 DGS 低 3.4pp。span-based `(start, end, type)` majority voting 过于严格，不同 samples 即使语义一致，span 边界也常不同，导致 consensus 质量低。\n\n输出文件：\n- JSON: `output/ccs_selection_results.json`\n- 报告: `output/ccs_selection_report.md`\n- 脚本: `code/ccs_selection.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ccs-selection.md"
+}

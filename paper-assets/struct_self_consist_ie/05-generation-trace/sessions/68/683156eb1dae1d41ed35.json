@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "683156eb1dae1d41ed35",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops r40 resubmit autodl5090",
+  "task_key": "worker_ops_r40-resubmit-autodl5090_20260522T175807",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_r40-resubmit-autodl5090_20260522T175807_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "5eaae7aa0811865b6d26e7acf9bc099167d92be00c4112be7d8229ca76d42e74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。\n\n**排查结果汇总：**\n\n| 实验 | GPU | 状态 |\n|------|-----|------|\n| exp_esj_qwen3_all | cuda:2 | **已完成**（EXIT_CODE=0），无需重提交 |\n| exp_scierc_n8_s2024 | cuda:0 | **已重提交** — GPU 利用率 45%，显存 29382MiB |\n| exp_scierc_n8_s3141 | cuda:1 | **已重提交** — GPU 利用率 55%，显存 29216MiB |\n\n**失败原因**：两个 scierc 实验的 `--data_dir` 写成了 `data/scierc`，实际数据在 `data/scierc/processed_data`。已修正路径重新提交。\n\ncuda:2 空闲，因为 ESJ 实验已经跑完了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-r40-resubmit-autodl5090.md"
+}

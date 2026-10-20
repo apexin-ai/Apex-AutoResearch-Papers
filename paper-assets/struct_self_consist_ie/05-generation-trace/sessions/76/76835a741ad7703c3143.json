@@ -1,0 +1,182 @@
+{
+  "schema_version": "1.0",
+  "id": "76835a741ad7703c3143",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "paper phase1 page compression",
+  "task_key": "worker_paper_phase1_page_compression_20260515T184458",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_phase1_page_compression_20260515T184458.log",
+    "occurrence": 1,
+    "bytes": 1040118,
+    "sha256": "cea377fc404abf3f55569d91d17a44bc713a3360dca9f654de75c0185f87b50b"
+  },
+  "statistics": {
+    "messages": 212,
+    "user_turns": 12,
+    "tool_calls": 72,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 72,
+      "tool_result": 72,
+      "user": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 182,
+      "chunks": [
+        {
+          "path": "76835a741ad7703c3143-part-0001.json",
+          "message_count": 86
+        },
+        {
+          "path": "76835a741ad7703c3143-part-0002.json",
+          "message_count": 96
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "76835a741ad7703c3143-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "76835a741ad7703c3143-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "76835a741ad7703c3143-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "76835a741ad7703c3143-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "76835a741ad7703c3143-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "76835a741ad7703c3143-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "76835a741ad7703c3143-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "76835a741ad7703c3143-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "76835a741ad7703c3143-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "76835a741ad7703c3143-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "76835a741ad7703c3143-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "76835a741ad7703c3143-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-phase1-page-compression.md"
+}

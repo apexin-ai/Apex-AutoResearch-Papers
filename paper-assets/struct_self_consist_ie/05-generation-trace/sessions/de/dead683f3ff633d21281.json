@@ -1,0 +1,2136 @@
+{
+  "schema_version": "1.0",
+  "id": "dead683f3ff633d21281",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "code prepare 7b postprocessing",
+  "task_key": "worker_code_prepare-7b-postprocessing_20260520T033218",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_code_prepare-7b-postprocessing_20260520T033218.jsonl",
+    "occurrence": 1,
+    "bytes": 108830,
+    "sha256": "c945256a2013a59e497c5055d08cc1f01b9b7de08ac00c2699f2ab728b4bd7dd"
+  },
+  "statistics": {
+    "messages": 109,
+    "user_turns": 0,
+    "tool_calls": 54,
+    "roles": {
+      "tool_call": 54,
+      "tool_result": 54,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T03:35:29.485559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/compute_signals.py"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T03:35:29.486040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Compute 5 confidence signals + entity construction pipeline for NER.\n3\t\n4\tSignals: LP (Log Probability), SJ (Soft Jaccard), FK (Fleiss Kappa),\n5\t         VC (Vote Count), EM (Exact Match Rate)\n6\tConstruction: greedy, LP selection, majority vote, consensus θ=2/N,\n7\t              LP-weighted construction (high=0.5, medium=2/N), oracle\n8\t\n9\tUsage:\n10\t    # Process all datasets under a model output directory\n11\t    python compute_signals.py --input-dir /path/to/output/72b_zeroshot\n12\t\n13\t    # Process specific dataset with model metadata\n14\t    python compute_signals.py --input-dir /path/to/output/7b_ft \\\n15\t        --dataset scierc --model-size 7 --regime ft\n16\t\n17\t    # Custom output directory\n18\t    python compute_signals.py --input-dir /path/to/output/72b_zeroshot \\\n19\t        --output-dir /path/to/results\n20\t\n21\tExpected input: <input-dir>/<dataset>/samples.jsonl  (or <input-dir>/samples.jsonl)\n22\tOutput: full_signal_report.json + <dataset>_per_instance.json per dataset\n23\t\"\"\"\n24\t\n25\timport argparse\n26\timport json\n27\timport math\n28\timport os\n29\timport statistics\n30\timport sys\n31\tfrom collections import Counter, defaultdict\n32\t\n33\timport numpy as np\n34\tfrom scipy.stats import spearmanr\n35\t\n36\tCODE_DIR = os.environ.get(\n37\t    \"STRUCT_CODE_DIR\",\n38\t    \"/root/autodl-tmp/struct_self_consist_ie/code\",\n39\t)\n40\tif os.path.isdir(CODE_DIR):\n41\t    sys.path.insert(0, CODE_DIR)\n42\t\n43\ttry:\n44\t    from consistency import fleiss_kappa_surface, structural_consistency_soft_jaccard\n45\t    HAS_CONSISTENCY = True\n46\texcept ImportError:\n47\t    HAS_CONSISTENCY = False\n48\t    print(\"WARNING: consistency module not found; SJ/FK signals will be skipped\")\n49\t\n50\t\n51\t# ---------------------------------------------------------------------------\n52\t# Core metrics\n53\t# ---------------------------------------------------------------------------\n54\t\n55\tdef compute_entity_f1(pred_entities, gold_entities):\n56\t    pred = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in pr\n…[truncated 16844 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T03:35:29.486286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/format_for_scaling.py"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T03:35:29.486509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Format signal analysis results for the scaling curve DATA dict.\n3\t\n4\tReads full_signal_report.json (produced by compute_signals.py) and outputs\n5\tPython dict entries compatible with plot_scaling_curve.py.\n6\t\n7\tUsage:\n8\t    python format_for_scaling.py --report /path/to/full_signal_report.json \\\n9\t        --model-size 72 --regime zs\n10\t\n11\t    # Process multiple reports at once\n12\t    python format_for_scaling.py \\\n13\t        --report /path/to/7b_ft/full_signal_report.json --model-size 7 --regime ft \\\n14\t        --report /path/to/72b_fs/full_signal_report.json --model-size 72 --regime fs\n15\t\"\"\"\n16\t\n17\timport argparse\n18\timport json\n19\timport sys\n20\t\n21\tDS_NAME_MAP = {\n22\t    \"scierc\": \"SciERC\",\n23\t    \"conll2003\": \"CoNLL\",\n24\t    \"conll\": \"CoNLL\",\n25\t    \"fewnerd\": \"FewNERD\",\n26\t}\n27\t\n28\t\n29\tdef format_entry(ds_data, model_size, regime, ds_display):\n30\t    \"\"\"Extract scaling curve metrics from one dataset's report entry.\"\"\"\n31\t    signals = ds_data.get(\"signals\", {})\n32\t    baselines = ds_data.get(\"baselines\", {})\n33\t\n34\t    lp_rho = signals.get(\"LP\", {}).get(\"rho\")\n35\t    sj_rho = signals.get(\"SJ\", {}).get(\"rho\")\n36\t    vc_rho = signals.get(\"VC\", {}).get(\"rho\")\n37\t\n38\t    greedy_f1 = baselines.get(\"greedy\", {}).get(\"mean\")\n39\t    oracle_f1 = baselines.get(\"oracle\", {}).get(\"mean\")\n40\t    consensus_lp_f1 = baselines.get(\"consensus_lp_weighted\", {}).get(\"mean\")\n41\t\n42\t    degen = ds_data.get(\"degeneracy_rate\")\n43\t    if degen is not None:\n44\t        degen = round(degen * 100, 1)\n45\t\n46\t    construction_lp_delta = None\n47\t    if consensus_lp_f1 is not None and greedy_f1 is not None:\n48\t        construction_lp_delta = round((consensus_lp_f1 - greedy_f1) * 100, 2)\n49\t\n50\t    def fmt(v, decimals=3):\n51\t        if v is None or (isinstance(v, float) and not __import__(\"math\").isfinite(v)):\n52\t            return \"None\"\n53\t        return f\"{round(v, decimals)}\"\n54\t\n55\t    entry = {\n56\t        \"lp_rho\": lp_rho,\n57\t        \"sj_rho\": sj_rho,\n58\t    \n…[truncated 3285 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T03:35:29.486681+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/bootstrap_construction.py"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T03:35:29.486909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Paired bootstrap test: greedy F1 vs LP-weighted construction F1.\n3\t\n4\tReplicates the methodology from the 72B ZS SciERC bootstrap analysis:\n5\t- B=10000 bootstrap iterations\n6\t- 95% CI on the paired difference\n7\t- One-sided p-value (H0: construction <= greedy)\n8\t- Cohen's d effect size\n9\t- Degeneracy-stratified breakdown\n10\t\n11\tUsage:\n12\t    # Single dataset\n13\t    python bootstrap_construction.py \\\n14\t        --input-dir /path/to/output/72b_zeroshot --dataset scierc\n15\t\n16\t    # All datasets under a model directory\n17\t    python bootstrap_construction.py \\\n18\t        --input-dir /path/to/output/72b_zeroshot\n19\t\n20\t    # Use pre-computed per-instance data (from compute_signals.py)\n21\t    python bootstrap_construction.py \\\n22\t        --per-instance /path/to/scierc_per_instance.json --dataset scierc\n23\t\"\"\"\n24\t\n25\timport argparse\n26\timport json\n27\timport os\n28\timport statistics\n29\timport sys\n30\tfrom collections import Counter, defaultdict\n31\t\n32\timport numpy as np\n33\t\n34\tB = 10000\n35\tSEED = 42\n36\t\n37\t\n38\t# ---------------------------------------------------------------------------\n39\t# Core metrics (self-contained, no external imports needed)\n40\t# ---------------------------------------------------------------------------\n41\t\n42\tdef compute_entity_f1(pred_entities, gold_entities):\n43\t    pred = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in pred_entities}\n44\t    gold = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold_entities}\n45\t    if not gold and not pred:\n46\t        return 1.0\n47\t    if not gold or not pred:\n48\t        return 0.0\n49\t    tp = len(pred & gold)\n50\t    if tp == 0:\n51\t        return 0.0\n52\t    p = tp / len(pred)\n53\t    r = tp / len(gold)\n54\t    return 2 * p * r / (p + r)\n55\t\n56\t\n57\tdef consensus_construct(inst, high_thresh=0.5, medium_thresh=0.25):\n58\t    \"\"\"LP-weighted entity construction (same as compute_signals.py).\"\"\"\n59\t    samples = inst[\"samples\"]\n60\t    N = len(samples)\n61\t\n62\t    entity_counts = Counter()\n63\t    entity\n…[truncated 12022 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T03:35:29.487068+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/plot_scaling_curve.py"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T03:35:29.487358+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Scaling curve plots: signal ρ, degeneracy, construction ΔF1 vs model size.\"\"\"\n3\t\n4\timport matplotlib\n5\tmatplotlib.use(\"Agg\")\n6\timport matplotlib.pyplot as plt\n7\timport matplotlib.ticker as mticker\n8\timport numpy as np\n9\tfrom pathlib import Path\n10\t\n11\t# ─── DATA ────────────────────────────────────────────────────────────────────\n12\t# Keys: (model_size_B, regime, dataset) → dict of metrics\n13\t# regime: \"ft\" or \"zs\"\n14\t# Fill None for missing; plotting skips None entries.\n15\t\n16\tDATA = {\n17\t    # ── Qwen3-4B FT ──\n18\t    (4, \"ft\", \"SciERC\"):    {\"lp_rho\": None, \"sj_rho\": None, \"vc_rho\": None,\n19\t                              \"degen\": 10.4, \"construction_lp_delta\": None,\n20\t                              \"greedy_f1\": 0.662, \"oracle_f1\": None},\n21\t    (4, \"ft\", \"FewNERD\"):   {\"lp_rho\": None, \"sj_rho\": None, \"vc_rho\": None,\n22\t                              \"degen\": None, \"construction_lp_delta\": None,\n23\t                              \"greedy_f1\": None, \"oracle_f1\": None},\n24\t    (4, \"ft\", \"CoNLL\"):     {\"lp_rho\": None, \"sj_rho\": None, \"vc_rho\": None,\n25\t                              \"degen\": None, \"construction_lp_delta\": None,\n26\t                              \"greedy_f1\": None, \"oracle_f1\": None},\n27\t\n28\t    # ── Qwen3-7B FT (placeholder) ──\n29\t    (7, \"ft\", \"SciERC\"):    {\"lp_rho\": None, \"sj_rho\": None, \"vc_rho\": None,\n30\t                              \"degen\": None, \"construction_lp_delta\": None,\n31\t                              \"greedy_f1\": None, \"oracle_f1\": None},\n32\t    (7, \"ft\", \"FewNERD\"):   {\"lp_rho\": None, \"sj_rho\": None, \"vc_rho\": None,\n33\t                              \"degen\": None, \"construction_lp_delta\": None,\n34\t                              \"greedy_f1\": None, \"oracle_f1\": None},\n35\t    (7, \"ft\", \"CoNLL\"):     {\"lp_rho\": None, \"sj_rho\": None, \"vc_rho\": None,\n36\t                              \"degen\": None, \"construction_lp_delta\": None,\n37\t                              \"greedy_f1\": None, \"oracle_f1\": None},\n38\t\n39\t    # ── Qwe\n…[truncated 14004 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T03:35:29.487548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,TaskOutput",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T03:35:29.487680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T03:35:29.487828+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Check server directory structure",
+              "subagent_type": "Explore",
+              "prompt": "I need to understand the directory structure for 7B FewNERD inference outputs on remote servers. The project is at /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie.\n\nSearch for:\n1. Any SSH config or server definitions mentioning \"5090-b\", \"5090-c\", \"autodl-5090\"\n2. Any scripts or configs that reference paths like \"output/fewnerd_7b\" or \"qwen25_7b\" or seed42/seed123/seed456\n3. Any aggregation or merge scripts that combine results from multiple seeds or servers\n4. Check artifacts/ directory for any README, Makefile, or shell scripts that document the pipeline execution order\n5. Check if there's a code/ directory with consistency.py that compute_signals.py imports\n\nSearch breadth: very thorough"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T03:35:29.487981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.sh",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T03:35:29.488103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T03:35:29.488240+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/Makefile*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T03:35:29.488354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T03:35:29.488477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type f -name \"*.md\" -o -name \"*.txt\" | head -20"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T03:35:29.488599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/IDEA_BRIEF.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/agent.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/director.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/reviewer.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/director/loop_3.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/director/loop_4.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/director/loop_7.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/director/loop_6.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/director/loop_5.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/director/loop_1.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/director/loop_2.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/agent/loop_12.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/agent/loop_6_1778848721.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/agent/loop_12_1778940260.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/agent/loop_6_1778848220.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/agent/loop_13.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/agent/loop_11.md\n/home/ubun\n…[truncated 352 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T03:35:29.488738+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "5090-b|5090-c|autodl-5090",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T03:35:29.488862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/.ssh/**",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T03:35:29.489017+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 250 files limit: 250\nlogs/workers/worker_code_prepare-7b-postprocessing_20260520T033218.log\nlogs/workers/worker_ssh_7b-inference-status-check_20260520T033207.log\nlogs/chats/feishu_group_oc_523053f5a039428dc15666668fa856b3.jsonl\nlogs/chats/feishu_group_oc_523053f5a039428dc15666668fa856b3_reviewer.jsonl\n.claude/sessions/reviewer_0064dd56/AGENTS.md\n.claude/sessions/reviewer_0064dd56/CLAUDE.md\nlogs/chats/feishu_group_oc_1b56445332d8ca2b4964b30f300f0e00_director.jsonl\nlogs/ralph_loop_timeline.jsonl\nlogs/workers/worker_ssh_verify-14b-download-5090b_20260520T032904.log\nlogs/workers/worker_ssh_7b-pipeline-execution_20260520T032709.log\nlogs/workers/worker_ssh_5090b-predownload-qwen25-14b_20260520T030506.log\nlogs/chats/worker_ssh_7b-inference-monitor-and-pipeline_20260520T031323.jsonl\nlogs/workers/worker_ssh_7b-inference-monitor-and-pipeline_20260520T031323.log\nROADMAP.md\nreport.md\nlogs/chats/worker_ssh_5090b-7b-inference-status-check_20260520T030447.jsonl\nlogs/workers/worker_ssh_5090b-7b-inference-status-check_20260520T030447.log\nlogs/chats/feishu_group_oc_523053f5a039428dc15666668fa856b3_paper_agent.jsonl\n.claude/sessions/paper_agent_4f1165b4/AGENTS.md\n.claude/sessions/paper_agent_4f1165b4/CLAUDE.md\nlogs/workers/worker_ssh_5090b-7b-inference-seeds-123-456_20260520T024108_result.json\nlogs/chats/worker_ssh_5090b-7b-inference-seeds-123-456_20260520T024108.jsonl\nlogs/workers/worker_ssh_5090b-7b-inference-seeds-123-456_20260520T024108.log\nlogs/workers/worker_ssh_7b-status-and-5090b-inference-launch_20260520T022051_result.json\nlogs/chats/worker_ssh_7b-status-and-5090b-inference-launch_20260520T022051.jsonl\nlogs/workers/worker_ssh_7b-status-and-5090b-inference-launch_20260520T022051.log\nlogs/workers/worker_ssh_7b-completion-decision-point_20260520T014931_result.json\nlogs/workers/worker_ssh_7b-completion-decision-point_20260520T014931.log\nlogs/workers/worker_ssh_7b-near-completion-check_20260520T014647_result.json\nlogs/workers/worker_ssh_7b-near-completion-check_20260520T0146\n…[truncated 15239 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T03:35:29.489232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T03:35:29.489362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/ssh*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T03:35:29.489474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T03:35:29.489591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*config*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T03:35:29.489714+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/ft_002/intermediate/ft_002_config_notes.md\n.venv/lib/python3.14/site-packages/pip/_internal/commands/configuration.py\n.venv/lib/python3.14/site-packages/pip/_internal/configuration.py\n.venv/lib/python3.14/site-packages/pip/_internal/locations/_sysconfig.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/__pycache__/configuration.cpython-314.pyc\n.venv/lib/python3.14/site-packages/pip/_internal/__pycache__/configuration.cpython-314.pyc\n.venv/lib/python3.14/site-packages/pip/_internal/locations/__pycache__/_sysconfig.cpython-314.pyc\n.venv/lib/python3.14/site-packages/numpy/__config__.py\n.venv/lib/python3.14/site-packages/numpy/__config__.pyi\n.venv/lib/python3.14/site-packages/numpy/_configtool.py\n.venv/lib/python3.14/site-packages/numpy/_configtool.pyi\n.venv/lib/python3.14/site-packages/numpy/_core/_ufunc_config.py\n.venv/lib/python3.14/site-packages/numpy/_core/_ufunc_config.pyi\n.venv/lib/python3.14/site-packages/numpy/_core/include/numpy/_numpyconfig.h\n.venv/lib/python3.14/site-packages/numpy/_core/include/numpy/numpyconfig.h\n.venv/lib/python3.14/site-packages/numpy/tests/test_configtool.py\n.venv/lib/python3.14/site-packages/numpy/tests/test_numpy_config.py\n.venv/lib/python3.14/site-packages/numpy/typing/tests/data/fail/ufunc_config.pyi\n.venv/lib/python3.14/site-packages/numpy/typing/tests/data/pass/ufunc_config.py\n.venv/lib/python3.14/site-packages/numpy/typing/tests/data/reveal/ufunc_config.pyi\n.venv/lib/python3.14/site-packages/numpy/__pycache__/__config__.cpython-314.pyc\n.venv/lib/python3.14/site-packages/numpy/__pycache__/_configtool.cpython-314.pyc\n.venv/lib/python3.14/site-packages/numpy/_core/__pycache__/_ufunc_config.cpython-314.pyc\n.venv/lib/python3.14/site-packages/numpy/tests/__pycache__/test_configtool.cpython-314.pyc\n.venv/lib/python3.14/site-packages/numpy/tests/__pycache__/test_numpy_config.cpython-314.pyc\n.venv/lib/python3.14/site-packages/numpy/typing/tests/data/pass/__pycache__/ufunc_config.cpython-314.pyc\n.venv/bin/numpy-config\n\n…[truncated 2228 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T03:35:29.489858+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "output/fewnerd_7b|qwen25_7b|seed42|seed123|seed456",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+              "output_mode": "files_with_matches",
+              "head_limit": "50"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T03:35:29.489994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 50 files limit: 50\nlogs/workers/worker_code_prepare-7b-postprocessing_20260520T033218.log\nlogs/workers/worker_ssh_7b-inference-status-check_20260520T033207.log\nlogs/chats/feishu_group_oc_523053f5a039428dc15666668fa856b3.jsonl\nlogs/chats/feishu_group_oc_523053f5a039428dc15666668fa856b3_reviewer.jsonl\nlogs/chats/feishu_group_oc_1b56445332d8ca2b4964b30f300f0e00_director.jsonl\nlogs/ralph_loop_timeline.jsonl\nlogs/workers/worker_ssh_7b-pipeline-execution_20260520T032709.log\nlogs/workers/worker_ssh_7b-inference-monitor-and-pipeline_20260520T031323_result.json\nlogs/chats/worker_ssh_7b-inference-monitor-and-pipeline_20260520T031323.jsonl\nlogs/workers/worker_ssh_7b-inference-monitor-and-pipeline_20260520T031323.log\nROADMAP.md\nreport.md\nlogs/workers/worker_ssh_5090b-7b-inference-status-check_20260520T030447_result.json\nlogs/chats/worker_ssh_5090b-7b-inference-status-check_20260520T030447.jsonl\nlogs/workers/worker_ssh_5090b-7b-inference-status-check_20260520T030447.log\nlogs/chats/feishu_group_oc_523053f5a039428dc15666668fa856b3_paper_agent.jsonl\nlogs/workers/worker_ssh_5090b-7b-inference-seeds-123-456_20260520T024108_result.json\nlogs/chats/worker_ssh_5090b-7b-inference-seeds-123-456_20260520T024108.jsonl\nlogs/workers/worker_ssh_5090b-7b-inference-seeds-123-456_20260520T024108.log\nlogs/workers/worker_ssh_7b-status-and-5090b-inference-launch_20260520T022051_result.json\nlogs/chats/worker_ssh_7b-status-and-5090b-inference-launch_20260520T022051.jsonl\nlogs/workers/worker_ssh_7b-status-and-5090b-inference-launch_20260520T022051.log\nlogs/workers/worker_ssh_7b-completion-decision-point_20260520T014931.log\nlogs/workers/worker_ssh_7b-near-completion-check_20260520T014647.log\nlogs/workers/worker_knowledge_memory-error-correlation-update_20260520T014418.log\nlogs/workers/worker_ssh_5090b-download-and-7b-check_20260520T014245.log\nartifacts/manifest.yaml\nlogs/workers/worker_code_fs-vs-zs-error-correlation_20260520T013711.log\nlogs/workers/worker_ssh_5090b-7b-inference-prep_20260520T01343\n…[truncated 1410 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T03:35:29.490154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/artifacts/**/*.sh",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T03:35:29.490276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T03:35:29.490394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/artifacts/**/*.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T03:35:29.490519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/ft_002/intermediate/ft_002_config_notes.md\nartifacts/mvp_pilot_004/report/framing_proposal_post_pilot004.md\nartifacts/dream_reports/dream_20260514T093336/best/paper_framing.md\nartifacts/dream_reports/dream_20260514T093336/median/paper_framing.md\nartifacts/dream_reports/dream_20260514T093336/worst/paper_framing.md\nartifacts/dream_reports/dream_20260514T093336/best/review_report.md\nartifacts/dream_reports/dream_20260514T093336/median/review_report.md\nartifacts/dream_reports/dream_20260514T093336/worst/review_report.md\nartifacts/dream_reports/dream_20260514T105303/best/paper_framing.md\nartifacts/dream_reports/dream_20260514T105303/median/paper_framing.md\nartifacts/dream_reports/dream_20260514T105303/worst/paper_framing.md\nartifacts/exp005_temperature/summary.md\nartifacts/exp_005/report/summary.md\nartifacts/exp-015/report/exp015_summary.md\nartifacts/dream_reports/dream_20260514T105303/best/review_report.md\nartifacts/dream_reports/dream_20260514T105303/median/review_report.md\nartifacts/dream_reports/dream_20260514T105303/worst/review_report.md\nartifacts/exp_016_signal_ensemble/report/summary.md\nartifacts/exp_016_signal_ensemble/report/summary_cc2f1c.md\nartifacts/review_reports/round_0.md\nartifacts/_project/report/logprob_rho_diagnosis.md\nartifacts/wnut17_diagnosis_report.md\nartifacts/exp_003/report/wnut17_diagnosis_report.md\nartifacts/bjb1_status_report.md\nartifacts/_project/report/autodl_process_check.md\nartifacts/autodl_process_check.md\nartifacts/auroc_bug_diagnosis.md\nartifacts/exp_015_metrics_expansion/report/heatmap_data_audit.md\nartifacts/heatmap_data_audit.md\nartifacts/audit_gpu5090_4x2_loop3.md\nartifacts/audit_autodl5090_loop3.md\nartifacts/_project/report/3seed_5signal_tables.md\nartifacts/3seed_summary/3seed_5signal_tables.md\nartifacts/exp_001_seed456_v2_ner/report/3seed_ner_summary.md\nartifacts/3seed_ner_summary.md\nartifacts/exp_009_v2_re_rerun/report/exp_009_v2_re_rerun_summary.md\nartifacts/_project/report/n16_5signal_comparison.md\nartifacts/n16_5sign\n…[truncated 3319 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T03:35:29.490654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/artifacts/**/Makefile",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T03:35:29.490763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T03:35:29.490878+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/code/**",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T03:35:29.490986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "code/analysis_mbr_selection.py\ncode/zeroshot_prompts.py\ncode/aggregate_scaling_results.py\ncode/generate_scale_table.py\ncode/scaling_results.csv\ncode/scaling_results.json\ncode/scale_table.tex\ncode/plot_scaling_curve.py\ncode/scaling_curve.pdf\ncode/scaling_curve.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T03:35:29.491180+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T03:35:29.491332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/data/data_utils.py\nartifacts/data_utils.py\nartifacts/_project/data/evaluation.py\nartifacts/_project/intermediate/consistency.py\nartifacts/_project/data/consistency.py\nartifacts/_project/data/sampling.py\nartifacts/_project/data/run_mvp_pilot.py\nartifacts/consistency.py\nartifacts/_project/intermediate/sampling.py\nartifacts/ft_001/report/sampling.py\nartifacts/mvp_pilot.py\nartifacts/mvp_pilot_001/report/mvp_pilot.py\nartifacts/sampling.py\nartifacts/run_mvp_pilot.py\nartifacts/exp005_temperature/analyze_exp005_temperature.py\nartifacts/exp_015_metrics_expansion/intermediate/analyze_exp015_metrics_expansion.py\nartifacts/analyze_exp015_metrics_expansion.py\nartifacts/exp001_postprocess.py\nartifacts/exp_004_re_diagnostic/report/analyze_exp004_re_diagnostic.py\nartifacts/analyze_exp004_re_diagnostic.py\nartifacts/exp_016_signal_ensemble/intermediate/analyze_exp016_ensemble.py\nartifacts/analyze_exp016_ensemble.py\nartifacts/exp009_stratification_analysis.py\nartifacts/exp_009_capability_stratification/data/exp009_stratification_analysis.py\nartifacts/exp010_selection_curves/exp010_selection_curves.py\nartifacts/exp010_selection_curves/plot_selection_curves.py\nfigures/paper/fig_signal_heatmap.py\nfigures/paper/fig_reliability.py\nartifacts/analyze_exp005_v2_temperature.py\nartifacts/analyze_exp004_v2_re_diagnostic.py\nartifacts/exp_009_v2_stratification.py\nartifacts/exp_016_v2/data/exp_016_v2_ensemble.py\nartifacts/exp_016_v2_ensemble.py\nartifacts/figures/plot_all_figures.py\nartifacts/figures/plot_selection_gap_1024_v2.py\nartifacts/figures/plot_signal_heatmap_1024.py\n.venv/lib/python3.14/site-packages/pip/__init__.py\n.venv/lib/python3.14/site-packages/pip/__main__.py\n.venv/lib/python3.14/site-packages/pip/__pip-runner__.py\n.venv/lib/python3.14/site-packages/pip/_internal/__init__.py\n.venv/lib/python3.14/site-packages/pip/_internal/build_env.py\n.venv/lib/python3.14/site-packages/pip/_internal/cache.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/__init__.py\n.venv/li\n…[truncated 4013 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T03:35:29.491474+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "compute_signals|consistency",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T03:35:29.491588+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T03:35:29.491710+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code/"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T03:35:29.491823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 184\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 19 10:34 .\ndrwxr-xr-x 13 ubuntu ubuntu  4096 May 20 03:10 ..\n-rw-r--r--  1 ubuntu ubuntu  7696 May 19 10:33 aggregate_scaling_results.py\n-rw-r--r--  1 ubuntu ubuntu  7345 May 18 16:27 analysis_mbr_selection.py\n-rw-r--r--  1 ubuntu ubuntu  5557 May 19 10:34 generate_scale_table.py\n-rw-r--r--  1 ubuntu ubuntu  8310 May 19 10:34 plot_scaling_curve.py\n-rw-r--r--  1 ubuntu ubuntu  1036 May 19 10:34 scale_table.tex\n-rw-r--r--  1 ubuntu ubuntu 25455 May 19 10:34 scaling_curve.pdf\n-rw-r--r--  1 ubuntu ubuntu 92823 May 19 10:34 scaling_curve.png\n-rw-r--r--  1 ubuntu ubuntu   399 May 19 10:34 scaling_results.csv\n-rw-r--r--  1 ubuntu ubuntu  1280 May 19 10:34 scaling_results.json\n-rw-r--r--  1 ubuntu ubuntu  6687 May 19 06:44 zeroshot_prompts.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T03:35:29.491958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/ | head -50"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T03:35:29.492082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 5332\ndrwxr-xr-x 102 ubuntu ubuntu  12288 May 20 01:41 .\ndrwxr-xr-x  13 ubuntu ubuntu   4096 May 20 03:10 ..\n-rw-r--r--   1 ubuntu ubuntu   4393 May 14 18:55 3seed_ner_summary.md\ndrwxr-xr-x   2 ubuntu ubuntu   4096 May 14 18:34 3seed_summary\n-rw-r--r--   1 ubuntu ubuntu   1253 May 20 01:02 72b_fewshot_signal_summary.json\n-rw-r--r--   1 ubuntu ubuntu   2328 May 19 11:39 72b_zeroshot_signal_summary.json\ndrwxr-xr-x   2 ubuntu ubuntu   4096 May 14 05:09 __pycache__\ndrwxr-xr-x   7 ubuntu ubuntu   4096 May 14 19:29 _project\n-rw-r--r--   1 ubuntu ubuntu   4980 May 18 19:16 analysis_dgs_epoch_rank.py\n-rw-r--r--   1 ubuntu ubuntu   1443 May 15 13:16 analysis_fk_bootstrap_ci_full.json\n-rw-r--r--   1 ubuntu ubuntu 150381 May 15 13:16 analysis_lp_range_cdf.json\n-rw-r--r--   1 ubuntu ubuntu   3197 May 15 13:16 analysis_lp_range_cdf_n16_3seed.json\n-rw-r--r--   1 ubuntu ubuntu  20864 May 15 13:14 analysis_scierc_n16_3seed_selection_f1.json\n-rw-r--r--   1 ubuntu ubuntu   8624 May 15 13:27 analysis_scierc_re_n16_3seed_selection_f1.json\n-rw-r--r--   1 ubuntu ubuntu   2806 May 15 13:24 analysis_unified_rho.json\n-rw-r--r--   1 ubuntu ubuntu   6213 May 15 16:20 analysis_unified_rho_full.json\n-rw-r--r--   1 ubuntu ubuntu  25806 May 14 11:49 analyze_exp004_re_diagnostic.py\n-rw-r--r--   1 ubuntu ubuntu  21379 May 14 15:24 analyze_exp004_v2_re_diagnostic.py\n-rw-r--r--   1 ubuntu ubuntu  15051 May 14 15:24 analyze_exp005_v2_temperature.py\n-rw-r--r--   1 ubuntu ubuntu  21562 May 14 11:47 analyze_exp015_metrics_expansion.py\n-rw-r--r--   1 ubuntu ubuntu  31742 May 14 12:14 analyze_exp016_ensemble.py\n-rw-r--r--   1 ubuntu ubuntu   9093 May 15 11:41 analyze_ood_signals.py\n-rw-r--r--   1 ubuntu ubuntu   4165 May 14 17:43 audit_autodl5090_loop3.md\n-rw-r--r--   1 ubuntu ubuntu   1323 May 14 17:42 audit_gpu5090_4x2_loop3.md\n-rw-r--r--   1 ubuntu ubuntu   3459 May 14 14:31 auroc_bug_diagnosis.md\n-rw-r--r--   1 ubuntu ubuntu   2183 May 14 14:29 autodl_process_check.md\n-rw-r--r--   1 ubuntu ubuntu \n…[truncated 1602 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T03:35:29.492244+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/compute_signals.py"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T03:35:29.492442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Compute 5 confidence signals + entity construction pipeline for NER.\n3\t\n4\tSignals: LP (Log Probability), SJ (Soft Jaccard), FK (Fleiss Kappa),\n5\t         VC (Vote Count), EM (Exact Match Rate)\n6\tConstruction: greedy, LP selection, majority vote, consensus θ=2/N,\n7\t              LP-weighted construction (high=0.5, medium=2/N), oracle\n8\t\n9\tUsage:\n10\t    # Process all datasets under a model output directory\n11\t    python compute_signals.py --input-dir /path/to/output/72b_zeroshot\n12\t\n13\t    # Process specific dataset with model metadata\n14\t    python compute_signals.py --input-dir /path/to/output/7b_ft \\\n15\t        --dataset scierc --model-size 7 --regime ft\n16\t\n17\t    # Custom output directory\n18\t    python compute_signals.py --input-dir /path/to/output/72b_zeroshot \\\n19\t        --output-dir /path/to/results\n20\t\n21\tExpected input: <input-dir>/<dataset>/samples.jsonl  (or <input-dir>/samples.jsonl)\n22\tOutput: full_signal_report.json + <dataset>_per_instance.json per dataset\n23\t\"\"\"\n24\t\n25\timport argparse\n26\timport json\n27\timport math\n28\timport os\n29\timport statistics\n30\timport sys\n31\tfrom collections import Counter, defaultdict\n32\t\n33\timport numpy as np\n34\tfrom scipy.stats import spearmanr\n35\t\n36\tCODE_DIR = os.environ.get(\n37\t    \"STRUCT_CODE_DIR\",\n38\t    \"/root/autodl-tmp/struct_self_consist_ie/code\",\n39\t)\n40\tif os.path.isdir(CODE_DIR):\n41\t    sys.path.insert(0, CODE_DIR)\n42\t\n43\ttry:\n44\t    from consistency import fleiss_kappa_surface, structural_consistency_soft_jaccard\n45\t    HAS_CONSISTENCY = True\n46\texcept ImportError:\n47\t    HAS_CONSISTENCY = False\n48\t    print(\"WARNING: consistency module not found; SJ/FK signals will be skipped\")\n49\t\n50\t\n51\t# ---------------------------------------------------------------------------\n52\t# Core metrics\n53\t# ---------------------------------------------------------------------------\n54\t\n55\tdef compute_entity_f1(pred_entities, gold_entities):\n56\t    pred = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in pr\n…[truncated 16844 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-20T03:35:29.492602+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/consistency.py"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-20T03:35:29.492784+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Consistency metrics for structured information extraction with self-consistency.\n2\t\n3\tImplements three complementary consistency measures over N sampled extractions:\n4\t1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\n5\t2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\n6\t3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\n7\t\n8\tKey dependencies: numpy, scipy (linear_sum_assignment).\n9\t\"\"\"\n10\t\n11\tfrom __future__ import annotations\n12\t\n13\tfrom itertools import combinations\n14\tfrom typing import TYPE_CHECKING\n15\t\n16\timport numpy as np\n17\tfrom scipy.optimize import linear_sum_assignment\n18\t\n19\tif TYPE_CHECKING:\n20\t    pass\n21\t\n22\t# ---------------------------------------------------------------------------\n23\t# Type aliases (mirrors shared data format)\n24\t# ---------------------------------------------------------------------------\n25\tEntity = dict       # {\"text\", \"type\", \"start\", \"end\"}\n26\tRelation = dict     # {\"head\", \"tail\", \"type\", ...}\n27\tEvent = dict        # {\"trigger\": {...}, \"arguments\": [...]}\n28\tExtraction = dict   # {\"entities\", \"relations\", \"events\"}\n29\t\n30\t\n31\t# ===================================================================\n32\t# 1. Fleiss' Kappa — surface‐level entity agreement\n33\t# ===================================================================\n34\t\n35\tdef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\n36\t    \"\"\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\"\"\"\n37\t    if subtask == \"ner\":\n38\t        return {(e[\"text\"], e[\"type\"]) for e in sample.get(\"entities\", [])}\n39\t    elif subtask == \"re\":\n40\t        return {(r[\"head\"], r[\"tail\"], r[\"type\"]) for r in sample.get(\"relations\", [])}\n41\t    elif subtask == \"eae\":\n42\t        keys: set[tuple] = set()\n43\t        for ev in sample.get(\"events\", []):\n44\t            t = ev.get(\"trigger\", {})\n45\t            for arg in ev.get(\"arguments\", []):\n46\t                k\n…[truncated 12786 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-20T03:35:29.492954+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -name \"*.sh\" -type f 2>/dev/null | head -20"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-20T03:35:29.493086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-20T03:35:29.493232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "5090b|5090c|5090-b|5090-c",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs",
+              "output_mode": "files_with_matches",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-20T03:35:29.493353+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 20 files limit: 20\nlogs/workers/worker_code_prepare-7b-postprocessing_20260520T033218.log\nlogs/chats/feishu_group_oc_523053f5a039428dc15666668fa856b3.jsonl\nlogs/workers/worker_ssh_7b-inference-status-check_20260520T033207.log\nlogs/chats/feishu_group_oc_523053f5a039428dc15666668fa856b3_reviewer.jsonl\nlogs/chats/feishu_group_oc_1b56445332d8ca2b4964b30f300f0e00_director.jsonl\nlogs/ralph_loop_timeline.jsonl\nlogs/workers/worker_ssh_verify-14b-download-5090b_20260520T032904.log\nlogs/workers/worker_ssh_7b-pipeline-execution_20260520T032709.log\nlogs/workers/worker_ssh_5090b-predownload-qwen25-14b_20260520T030506.log\nlogs/chats/worker_ssh_7b-inference-monitor-and-pipeline_20260520T031323.jsonl\nlogs/workers/worker_ssh_7b-inference-monitor-and-pipeline_20260520T031323.log\nlogs/chats/worker_ssh_5090b-7b-inference-status-check_20260520T030447.jsonl\nlogs/workers/worker_ssh_5090b-7b-inference-status-check_20260520T030447.log\nlogs/chats/feishu_group_oc_523053f5a039428dc15666668fa856b3_paper_agent.jsonl\nlogs/workers/worker_ssh_5090b-7b-inference-seeds-123-456_20260520T024108_result.json\nlogs/chats/worker_ssh_5090b-7b-inference-seeds-123-456_20260520T024108.jsonl\nlogs/workers/worker_ssh_5090b-7b-inference-seeds-123-456_20260520T024108.log\nlogs/workers/worker_ssh_7b-status-and-5090b-inference-launch_20260520T022051_result.json\nlogs/chats/worker_ssh_7b-status-and-5090b-inference-launch_20260520T022051.jsonl\nlogs/workers/worker_ssh_7b-status-and-5090b-inference-launch_20260520T022051.log"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-20T03:35:29.493485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ | grep -E \"^d\""
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-20T03:35:29.493601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "drwxr-xr-x  13 ubuntu ubuntu   4096 May 20 03:10 .\ndrwxrwxr-x   4 ubuntu ubuntu   4096 May 14 04:20 ..\ndrwxr-xr-x   3 ubuntu ubuntu   4096 May 14 04:20 .claude\ndrwxr-xr-x   6 ubuntu ubuntu   4096 May 15 02:23 .venv\ndrwxr-xr-x 102 ubuntu ubuntu  12288 May 20 01:41 artifacts\ndrwxr-xr-x   2 ubuntu ubuntu  94208 May 20 00:54 checkpoints\ndrwxr-xr-x   2 ubuntu ubuntu   4096 May 19 10:34 code\ndrwxr-xr-x   4 ubuntu ubuntu   4096 May 15 05:25 docs\ndrwxr-xr-x   3 ubuntu ubuntu   4096 May 14 13:35 figures\ndrwxr-xr-x   4 ubuntu ubuntu   4096 May 14 04:25 logs\ndrwxr-xr-x   3 ubuntu ubuntu   4096 May 19 17:10 paper\ndrwxr-xr-x   2 ubuntu ubuntu   4096 May 18 06:02 scripts\ndrwxr-xr-x   3 ubuntu ubuntu   4096 May 19 05:18 task_context"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-20T03:35:29.493729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -100 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-20T03:35:29.493863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# struct_self_consist_ie — Research Dashboard\n\n> 最后更新: 2026-05-20 03:10 UTC | 更新原因: 7B inference 确认运行中 (15.2%, ETA 04:30-05:00 UTC)，修正时间线，更新 GPU 实况\n\n## 核心方向\nSelf-consistency for NER: diagnosing correlation-selection gap + entity-level construction as resolution. 详见 paper_framing.md。\n\n## 当前阶段\n**Scale Upgrade + Paper Finalization**。DDL: EMNLP 2026 ARR May (2026-05-25, ~5 天)。\n\nRound 24 审稿: borderline (3.25/5)。冲 Main Conference 4.0。\n\n## 数值审计状态 — 全部关闭 ✅\n\n- [x] appendix L231: FewNERD degen 12.7%→13.0%, diff +10.7pp→+10.4pp\n- [x] appendix L360/L363-365/L687 数值修正 (3-seed mean)\n- [x] Table 5 degen 同步修正 (CoNLL 61.7%, FewNERD 13.0%)\n- [x] Scaling script 8B FT 12处数据修正 + 2处 degen 同步\n- [x] CoNLL oracle/headroom 全局修正: .957→.948, ≈5pp→≈4pp (appendix L248, experiments L102, appendix L932)\n- [x] tab:calibration caption 修复（N=8/16 分标、non-gold-filtered 说明、single seed 标注）\n\n## RUNNING 实验（3 个，10/12 GPU 活跃）\n\n### Server A (autodl-5090, 4 GPU): exp_qwen25_32b_fewnerd\n- QLoRA 训练中，37.3%, loss 0.0528, 2.50s/it\n- ETA ~05-21 01:40 UTC（最慢瓶颈）\n- 完成后: export → 3-seed N=8 inference → signals → construction (~4-6h)\n\n### Server B (autodl-5090-b, 4 GPU):\n- **cuda:0,1** — 7B seed123+456 inference, 15.2% (45K/301K), 87% util ✅\n- **cuda:2,3** — 空闲，14B 模型预下载中（ModelScope ~28GB）\n\n### Server C (autodl-5090-c, 4 GPU):\n- **cuda:0,1** — exp_qwen25_14b_fewnerd QLoRA 训练中, 53.0%, loss 0.0273\n  - ETA ~05-20 19:20 UTC\n- **cuda:2** — 7B seed42 inference, ~30GB VRAM, 85% util ✅\n- **cuda:3** — 空闲（7B 训练完成释放）\n\n### 完成时间线（更新 05-20 ~03:10 UTC）\n1. ~~72B few-shot~~ ✅ DONE (negative)\n2. **~05-20 04:30-05:00 UTC**: 7B 3-seed inference 完成 → compute_signals → format_for_scaling → bootstrap → 第一个 within-family 数据点\n3. **~05-20 05:30-06:00 UTC**: 7B 全部处理完毕（signals + construction）\n4. **~05-20 19:20 UTC**: 14B 训练完成 → export → 3-seed inference（5090-b 已预下载模型，直接分流）\n5. **~05-21 01:40 UTC**: 32B 训练完成 → export → 3-seed inference\n6. **全部数据 ~05-21 08:00 UTC** → DDL 05-25 仍有 ~4 天余量\n\n## 已完成实验（本轮关键）\n\n### 72B Few-shot — DONE (negative)\nFS constructio\n…[truncated 2737 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-20T03:35:29.494014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/scripts/"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-20T03:35:29.494147+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 32\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 18 06:02 .\ndrwxr-xr-x 13 ubuntu ubuntu  4096 May 20 03:10 ..\n-rw-r--r--  1 ubuntu ubuntu 10248 May 17 14:18 adalp_analysis.py\n-rw-r--r--  1 ubuntu ubuntu 10816 May 18 06:02 dals_analysis.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-20T03:35:29.494305+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"seed42\\|seed123\\|seed456\\|5090b\\|5090c\\|aggregate\\|merge\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/*.log 2>/dev/null | head -30"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-20T03:35:29.494434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (155.1KB). Full output saved to: /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/562e53ce-a1c3-4140-b3f9-53319e8d36eb/tool-results/bkr1gfj0p.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_23config_regression_20260519T072221.log:{\"type\":\"user\",\"message\":{\"role\":\"user\",\"content\":[{\"tool_use_id\":\"toolu_01HFtPMWwdq2wDs8CGge8jZV\",\"type\":\"tool_result\",\"content\":\"{\\\"result\\\":\\\"{\\\\\\\"success\\\\\\\": true, \\\\\\\"data\\\\\\\": {\\\\\\\"stdout\\\\\\\": \\\\\\\"output/adalp_analysis_results.json\\\\\\\\noutput/analysis_fk_bootstrap_ci.json\\\\\\\\noutput/analysis_fk_bootstrap_per_instance.json\\\\\\\\noutput/analysis_lp_range_cdf.json\\\\\\\\noutput/analysis_lp_range_cdf_n16_3seed.json\\\\\\\\noutput/analysis_mbr_selection.json\\\\\\\\noutput/analysis_multiseed_selection_f1.json\\\\\\\\noutput/analysis_scierc_n16_3seed_selection_f1.json\\\\\\\\noutput/analysis_scierc_n16_3seed_selection_f1_merged.json\\\\\\\\noutput/analysis_scierc_re_n16_3seed_selection_f1.json\\\\\\\\noutput/analysis_unified_rho_full.json\\\\\\\\noutput/d108_q4q5/q4_entity_lp_analysis.json\\\\\\\\noutput/dals_analysis.json\\\\\\\\noutput/dgs_epoch_rank_analysis.json\\\\\\\\noutput/exp001_n16_seed123/report.json\\\\\\\\noutput/exp001_n16_seed123_200only/report.json\\\\\\\\noutput/exp001_n16_seed42/report.json\\\\\\\\noutput/exp001_n16_seed42_200only_backup/report.json\\\\\\\\noutput/exp001_n16_seed456/report.json\\\\\\\\noutput/exp001_n16_seed456_200only/report.json\\\\\\\\noutput/exp001_seed123_t10_full/report.json\\\\\\\\noutput/exp001_seed456_t10_full/report.json\\\\\\\\noutput/exp002_conll2003/full_signal_analysis.json\\\\\\\\noutput/exp002_conll2003/report.json\\\\\\\\noutput/exp003_wnut17_dryrun/report.json\\\\\\\\noutput/exp003_wnut17_eval/report.json\\\\\\\\noutput/exp003_wnut17_pilot/report.json\\\\\\\\noutput/exp007_llama_dryrun/report.json\\\\\\\\noutput/exp007_llama_inference/report.json\\\\\\\\noutput/exp008_re_n16/report.json\\\\\\\\noutput/ex\n…[truncated 299 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-20T03:35:29.494582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_ssh_5090b-7b-inference-seeds-123-456_20260520T024108.log",
+              "limit": "150"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-20T03:35:29.494700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (126132 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-20T03:35:29.494821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "format_for_scaling|aggregate|merge|combine.*seed",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-20T03:35:29.494960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 187 files\nartifacts/manifest.yaml\nartifacts/post_completion_checklist.md\nartifacts/worker_output_guidelines.md\nartifacts/_project/intermediate/format_for_scaling.py\nartifacts/format_for_scaling.py\nartifacts/_project/report/p0_data_verification_report.md\nartifacts/p0_data_verification_report.md\nartifacts/review_reports/round_22.md\nartifacts/exp_fewnerd_s789_n8/data/fewnerd_4seed_summary_pointer.txt\nartifacts/exp_fewnerd_s789_n8/data/fewnerd_seed789_analysis_pointer.txt\nartifacts/_project/intermediate/scripts_validation_report.md\nartifacts/method_scripts/scripts_validation_report.md\nartifacts/_project/report/t05_prompt_check.md\nartifacts/exp_026_t05/report/t05_prompt_check.md\nartifacts/t05_check/t05_prompt_check.md\nartifacts/_project/report/d146_entity_merge_span_results.md\nartifacts/d146_span_revert/d146_entity_merge_span_results.md\nartifacts/_project/report/conditional_decomp_eval_unified_results.md\nartifacts/d141_eval_unify/conditional_decomp_eval_unified_results.md\nartifacts/_project/report/d141_data_fix_rerun_v2_report.md\nartifacts/d141_data_fix_rerun_v2_report.md\nartifacts/d141_v2_fix/d141_conditional_decomp_span_matching_results.md\nartifacts/_project/report/d141_v2_fix_report.md\nartifacts/d141_v2_fix/d141_v2_fix_report.md\nartifacts/_project/report/d141_entity_merge_report.md\nartifacts/review_reports/round_20.md\nartifacts/hidden_state_probe/results_goldfiltered.json\nartifacts/hidden_state_probe/extract_hidden_states_fewnerd.py\nartifacts/hidden_state_probe/extract_hidden_states.py\nartifacts/deberta_verifier_5fold_results.json\nartifacts/deberta_verifier_5fold.py\nartifacts/exp_017_setup.md\nartifacts/review_reports/round_17.md\nartifacts/exp_027/report/report.md\nartifacts/dream_reports/dream_20260516T113255/meta.yaml\nartifacts/dream_reports/dream_20260516T113255/logs/review_worst.log\nartifacts/dream_reports/dream_20260516T113255/worst/review_report.md\nartifacts/dream_reports/dream_20260516T113255/logs/review_median.log\nartifacts/dream_reports/dream_20260516T113\n…[truncated 9508 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-20T03:35:29.495104+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/format_for_scaling.py"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-20T03:35:29.495284+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Format signal analysis results for the scaling curve DATA dict.\n3\t\n4\tReads full_signal_report.json (produced by compute_signals.py) and outputs\n5\tPython dict entries compatible with plot_scaling_curve.py.\n6\t\n7\tUsage:\n8\t    python format_for_scaling.py --report /path/to/full_signal_report.json \\\n9\t        --model-size 72 --regime zs\n10\t\n11\t    # Process multiple reports at once\n12\t    python format_for_scaling.py \\\n13\t        --report /path/to/7b_ft/full_signal_report.json --model-size 7 --regime ft \\\n14\t        --report /path/to/72b_fs/full_signal_report.json --model-size 72 --regime fs\n15\t\"\"\"\n16\t\n17\timport argparse\n18\timport json\n19\timport sys\n20\t\n21\tDS_NAME_MAP = {\n22\t    \"scierc\": \"SciERC\",\n23\t    \"conll2003\": \"CoNLL\",\n24\t    \"conll\": \"CoNLL\",\n25\t    \"fewnerd\": \"FewNERD\",\n26\t}\n27\t\n28\t\n29\tdef format_entry(ds_data, model_size, regime, ds_display):\n30\t    \"\"\"Extract scaling curve metrics from one dataset's report entry.\"\"\"\n31\t    signals = ds_data.get(\"signals\", {})\n32\t    baselines = ds_data.get(\"baselines\", {})\n33\t\n34\t    lp_rho = signals.get(\"LP\", {}).get(\"rho\")\n35\t    sj_rho = signals.get(\"SJ\", {}).get(\"rho\")\n36\t    vc_rho = signals.get(\"VC\", {}).get(\"rho\")\n37\t\n38\t    greedy_f1 = baselines.get(\"greedy\", {}).get(\"mean\")\n39\t    oracle_f1 = baselines.get(\"oracle\", {}).get(\"mean\")\n40\t    consensus_lp_f1 = baselines.get(\"consensus_lp_weighted\", {}).get(\"mean\")\n41\t\n42\t    degen = ds_data.get(\"degeneracy_rate\")\n43\t    if degen is not None:\n44\t        degen = round(degen * 100, 1)\n45\t\n46\t    construction_lp_delta = None\n47\t    if consensus_lp_f1 is not None and greedy_f1 is not None:\n48\t        construction_lp_delta = round((consensus_lp_f1 - greedy_f1) * 100, 2)\n49\t\n50\t    def fmt(v, decimals=3):\n51\t        if v is None or (isinstance(v, float) and not __import__(\"math\").isfinite(v)):\n52\t            return \"None\"\n53\t        return f\"{round(v, decimals)}\"\n54\t\n55\t    entry = {\n56\t        \"lp_rho\": lp_rho,\n57\t        \"sj_rho\": sj_rho,\n58\t    \n…[truncated 3285 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-20T03:35:29.495441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code/aggregate_scaling_results.py"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-20T03:35:29.495604+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Aggregate scaling experiment results across model sizes into a unified table.\"\"\"\n3\t\n4\timport argparse\n5\timport csv\n6\timport json\n7\timport os\n8\timport sys\n9\tfrom pathlib import Path\n10\t\n11\t\n12\t# Known data points (fill in as experiments complete)\n13\tKNOWN_RESULTS = [\n14\t    {\n15\t        \"model\": \"Qwen3-4B\",\n16\t        \"family\": \"Qwen3\",\n17\t        \"size_b\": 4,\n18\t        \"dataset\": \"SciERC\",\n19\t        \"regime\": \"fine-tuned\",\n20\t        \"n_seeds\": 1,\n21\t        \"greedy_f1\": 0.6622,\n22\t        \"oracle_f1\": 0.7925,\n23\t        \"headroom_pp\": 13.03,\n24\t        \"degen_pct\": 10.4,\n25\t        \"lp_rho\": None,\n26\t        \"lp_delta_pp\": None,\n27\t        \"constr_delta_pp\": None,\n28\t    },\n29\t    {\n30\t        \"model\": \"Qwen3-8B\",\n31\t        \"family\": \"Qwen3\",\n32\t        \"size_b\": 8,\n33\t        \"dataset\": \"FewNERD\",\n34\t        \"regime\": \"fine-tuned\",\n35\t        \"n_seeds\": 4,\n36\t        \"greedy_f1\": 0.7481,\n37\t        \"oracle_f1\": 0.8739,\n38\t        \"headroom_pp\": 12.58,\n39\t        \"degen_pct\": 12.69,\n40\t        \"lp_rho\": None,\n41\t        \"lp_delta_pp\": 1.38,\n42\t        \"constr_delta_pp\": None,\n43\t    },\n44\t    {\n45\t        \"model\": \"LLaMA-3.1-8B\",\n46\t        \"family\": \"LLaMA\",\n47\t        \"size_b\": 8,\n48\t        \"dataset\": \"FewNERD\",\n49\t        \"regime\": \"fine-tuned\",\n50\t        \"n_seeds\": 3,\n51\t        \"greedy_f1\": 0.7842,\n52\t        \"oracle_f1\": 0.8843,\n53\t        \"headroom_pp\": 10.01,\n54\t        \"degen_pct\": 23.36,\n55\t        \"lp_rho\": None,\n56\t        \"lp_delta_pp\": 0.36,\n57\t        \"constr_delta_pp\": None,\n58\t    },\n59\t    {\n60\t        \"model\": \"Qwen2.5-72B\",\n61\t        \"family\": \"Qwen2.5\",\n62\t        \"size_b\": 72,\n63\t        \"dataset\": \"SciERC\",\n64\t        \"regime\": \"zero-shot\",\n65\t        \"n_seeds\": 1,\n66\t        \"greedy_f1\": 0.399,\n67\t        \"oracle_f1\": 0.549,\n68\t        \"headroom_pp\": 15.0,\n69\t        \"degen_pct\": None,\n70\t        \"lp_rho\": None,\n71\t        \"lp_delta_pp\": None,\n72\t        \"constr_delta_pp\": None,\n73\t    },\n74\t    # === PLAC\n…[truncated 6556 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-20T03:35:29.495753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-20T03:35:29.495871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (58337 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-20T03:35:29.496000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"5090\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/*.yaml 2>/dev/null | head -20"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-20T03:35:29.496139+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml:  description: autodl-5090 实验进程状态检查报告 (exp_007 + exp_003)，含完整 metrics 对比\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml:  url: autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp_015_v2/exp015_v2_metrics.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml:  url: autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/all_signals_report.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml:    on autodl-5090.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml:    (scale ablation). Files on autodl-5090: output/review_round9_experiments/llama3b_scierc/{comparison_vs_8b.json,\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml:  description: autodl-5090 服务器诊断报告：exp_029a/b 失败根因分析，确认已自行恢复并正常运行\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml:  url: autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp_028_entity_token_lp/analysis_results.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml:    path: autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll/report.json'\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml:    (N=8, T=1.0). Greedy F1=0.646, Oracle=0.757, 27.6% degenerate. Report at autodl-5090:output/exp_018_llama_scierc_seed456/5signal_dgs_report.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml:  name: 5090-b Multi-seed Results (Partial)\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/st\n…[truncated 632 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-20T03:35:29.496301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/registry.yaml | head -100"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-20T03:35:29.496434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "baseline: null\nexperiments:\n  ft_001:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T06:04:28.030Z'\n    updated_at: '2026-05-14T08:27:58.182Z'\n    spec:\n      hypothesis: Fine-tuned Qwen3-8B on SciERC UIE can achieve NER F1 >= 73 and serve\n        as base model for structural consistency MVP\n      model_name: Qwen/Qwen3-8B\n      data_path: /root/autodl-tmp/struct_self_consist_ie/data/scierc\n      data_count: 1861\n      server: autodl-5090\n      seed: 42\n      method: LoRA r=16 alpha=32\n      framework: LLaMA Factory 0.9.4\n      command: sft training qwen3-8b on scierc with lora\n      checkpoint_path: /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora/\n      log_path: /root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_001_train.log\n      train_loss: 0.1099\n      eval_loss: 0.0771\n      epoch: 3\n      train_runtime: 0:17:49\n      note: 'gate0: NER PASS 60.4% / RE FAIL 33.8%'\n    conclusion: success\n    completed_at: '2026-05-14T06:30:32.889Z'\n    metrics:\n      train_loss: 0.1099\n      eval_loss: 0.0771\n      gate0_ner_f1_strict: 0.1143\n      gate0_re_f1_strict: 0.0125\n      gate0_ner_f1_text: 0.606\n      gate0_re_f1_text: 0.3392\n      gate0_offset_accuracy: 0.1665\n      gate0_parse_failures: 43\n      gate0_pass: false\n      gate0_realigned_ner_f1: 0.6045\n      gate0_realigned_re_f1: 0.338\n      gate0_realigned_entity_offset_accuracy: 1\n      gate0_realigned_relation_offset_accuracy: 1\n      gate0_realigned_ner_pass: true\n      gate0_realigned_re_pass: false\n      gate0_realigned_pass: false\n      gate0_ner_f1_delta_realign: 0.4901\n      gate0_re_f1_delta_realign: 0.3255\n      verdict_note: 'partial: NER PASS (60.4%) / RE FAIL (33.8% < 40%)'\n  mvp_pilot_001:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T07:39:16.313Z'\n    updated_at: '2026-05-14T08:05:34.348Z'\n    spec:\n      hypothesis: Structural self-consistency (soft Jaccard) correlates with per-instance\n        F1 better than surface Fleiss Kappa on fin\n…[truncated 1561 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-20T03:35:29.496584+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_ssh_5090b-7b-inference-seeds-123-456_20260520T024108.log",
+              "limit": "300",
+              "offset": "0"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-20T03:35:29.496717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -name \"*.sh\" -o -name \"Makefile\" 2>/dev/null"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-20T03:35:29.496830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-20T03:35:29.496938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (186653 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-20T03:35:29.497084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"Host\\|hostname\\|server.*=\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/*.log 2>/dev/null | grep -E \"5090|server\" | head -30"
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-20T03:35:29.497240+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (134KB). Full output saved to: /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/562e53ce-a1c3-4140-b3f9-53319e8d36eb/tool-results/b5nhn3q16.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_23config_regression_20260519T072221.log:{\"type\":\"assistant\",\"message\":{\"model\":\"claude-opus-4-6\",\"id\":\"msg_01Web1122pxXJguepw5egB8k\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"The user wants me to SSH to the autodl-5090 server and perform a regression validation of the decomposition formula for 23 configurations. Let me start by searching for the relevant data files on the server.\",\"signature\":\"EosDClkIDRgCKkBmaQ8R5s8mHIQQRtVeYhT8EaGfvRKAuOUbGo0OL2yPuBBXJSg0xgFSRLKR++V0z2l4MEBNFqcNnrt/lFN6jKr3Mg9jbGF1ZGUtb3B1cy00LTY4ABIM+ZS+hHNhyf6S411MGgwDoXaafA1EjOiKN+UiMGsiStqe9WM3kI/hS2MC3XKuE+dGTm7SpRW5hPIeZvOfB/I97w17MoH/72t3SXgDlyrfAXYNlGyT68PYkJbTWLx0zBIOqxbqLs/s7vRO7qUFvBLy+V6TiwfkeWy08oR8mSwtG47fDzHb/pMtZXTNOtxf2DqawKDNCDrrPWovbM9Ts83+WlphPHuD3Vw73AEGMupsXz9jvmrALzy7O0Wr7CfmHCwveJN7uIH3TjfHcPAsDJD48YgN+nzu5cysgLdwHPo4ngr1e5LDOy5MfYLG0nGxpI0wnviYdZ4A0Bear3DBAr3U7UMAkzE+rPBFr3pNq+EUeN8BduGwMwwnCSmG2K4neqpF7TiDbKmHCEbUm9dj5NMYAQ==\"}],\"stop_reason\":null,\"stop_sequence\":null,\"stop_details\":null,\"usage\":{\"input_tokens\":3,\"cache_creation_input_tokens\":13444,\"cache_read_input_tokens\":11701,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":13444},\"output_tokens\":39,\"service_tier\":\"standard\",\"inference_geo\":\"not_available\"},\"diagnostics\":null,\"context_management\":null},\"parent_tool_use_id\":null,\"session_id\":\"a482d446-9114-435e-b062-c5823f1fd0a9\",\"uuid\":\"a21b461e-af2f-48a0-b7e6-0552f6b908d6\"}\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-20T03:35:29.497384+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -500 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_ssh_5090b-7b-inference-seeds-123-456_20260520T024108.log"
+            }
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-20T03:35:29.497511+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (392KB). Full output saved to: /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/562e53ce-a1c3-4140-b3f9-53319e8d36eb/tool-results/bqps6fnen.txt\n\nPreview (first 2KB):\nWarning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.\n{\"type\":\"system\",\"subtype\":\"init\",\"cwd\":\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie\",\"session_id\":\"17a8ec2e-d1cc-492f-a5f7-67fb32c8ec36\",\"tools\":[\"Task\",\"AskUserQuestion\",\"Bash\",\"CronCreate\",\"CronDelete\",\"CronList\",\"Edit\",\"EnterPlanMode\",\"EnterWorktree\",\"ExitPlanMode\",\"ExitWorktree\",\"Glob\",\"Grep\",\"ListMcpResourcesTool\",\"Monitor\",\"NotebookEdit\",\"PushNotification\",\"Read\",\"ReadMcpResourceTool\",\"RemoteTrigger\",\"ScheduleWakeup\",\"Skill\",\"TaskOutput\",\"TaskStop\",\"TodoWrite\",\"ToolSearch\",\"WebFetch\",\"WebSearch\",\"Write\",\"mcp__agent-ml-research__detect_image\",\"mcp__agent-ml-research__kill_job\",\"mcp__agent-ml-research__ssh_execute\",\"mcp__agent-ml-research__ssh_read_only\"],\"mcp_servers\":[{\"name\":\"agent-ml-research\",\"status\":\"connected\"}],\"model\":\"claude-opus-4-6\",\"permissionMode\":\"bypassPermissions\",\"slash_commands\":[\"update-config\",\"debug\",\"simplify\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"schedule\",\"claude-api\",\"clear\",\"compact\",\"context\",\"heapdump\",\"init\",\"review\",\"security-review\",\"extra-usage\",\"usage\",\"insights\",\"team-onboarding\"],\"apiKeySource\":\"none\",\"claude_code_version\":\"2.1.126\",\"output_style\":\"default\",\"agents\":[\"claude\",\"Explore\",\"general-purpose\",\"Plan\",\"statusline-setup\"],\"skills\":[\"update-config\",\"debug\",\"simplify\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"schedule\",\"claude-api\"],\"plugins\":[],\"analytics_disabled\":false,\"uuid\":\"3b76801f-f488-4482-8884-57cb3173d23c\",\"memory_paths\":{\"auto\":\"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-\n…[truncated 61 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-20T03:35:29.497656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "jq . /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_ssh_5090b-7b-inference-seeds-123-456_20260520T024108_result.json 2>/dev/null | head -200"
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-20T03:35:29.497777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"raw\": \"两个 seed 都已成功启动并进入 prompt rendering 阶段。\\n\\n## 启动状态总结\\n\\n| 项目 | 详情 |\\n|------|------|\\n| **服务器** | autodl-5090-b, 4× RTX 5090 (32GB) |\\n| **模型** | 本地 merge 完成: base (Qwen2.5-7B-Instruct) + QLoRA adapter → `checkpoints/qwen25-7b-fewnerd-merged/` (15GB) |\\n| **Seed 123** | GPU 0, PID 164573, 30054 MiB, rendering prompts ~69% (25928/37648) |\\n| **Seed 456** | GPU 1, PID 165181, 30262 MiB, rendering prompts ~17% (6424/37648) |\\n| **GPU 2-3** | 空闲 |\\n| **输出目录** | `output/fewnerd_7b/qwen25_7b_n8_seed123` / `output/fewnerd_7b/qwen25_7b_n8_seed456` |\\n| **日志** | `logs/7b_inference_seed123.log` / `logs/7b_inference_seed456.log` |\\n\\n**执行过程**：5090-b 和 5090-c 不在同一 AutoDL 区域，无法直接 rsync 15GB merged model。改为传输 309MB LoRA adapter + 本地用 peft merge（5090-b 已有基座模型）。SSH 密钥对临时建立实现跨区域传输。\\n\\n**命令与 5090-c seed 42 一致**：`--dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --collect_logprobs`，tensor_parallel 默认 1（单 GPU 足够放 7B）。\\n\\n每个 seed 处理 37648 prompts（4706 test instances × 8 samples），预计运行 ~85 min。\"\n}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-20T03:35:29.497917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/ | grep -i \"7b\\|seed\\|fewnerd\""
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-20T03:35:29.498037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r--   1 ubuntu ubuntu   4393 May 14 18:55 3seed_ner_summary.md\ndrwxr-xr-x   2 ubuntu ubuntu   4096 May 14 18:34 3seed_summary\n-rw-r--r--   1 ubuntu ubuntu   3197 May 15 13:16 analysis_lp_range_cdf_n16_3seed.json\n-rw-r--r--   1 ubuntu ubuntu  20864 May 15 13:14 analysis_scierc_n16_3seed_selection_f1.json\n-rw-r--r--   1 ubuntu ubuntu   8624 May 15 13:27 analysis_scierc_re_n16_3seed_selection_f1.json\ndrwxr-xr-x   3 ubuntu ubuntu   4096 May 14 18:55 exp_001_seed456_v2_ner\ndrwxr-xr-x   3 ubuntu ubuntu   4096 May 18 19:10 exp_007_llama_scierc_seed123\ndrwxr-xr-x   4 ubuntu ubuntu   4096 May 16 23:01 exp_021_fewnerd_full\ndrwxr-xr-x   3 ubuntu ubuntu   4096 May 18 19:15 exp_conll_seed123\ndrwxr-xr-x   3 ubuntu ubuntu   4096 May 18 19:15 exp_conll_seed456\ndrwxr-xr-x   3 ubuntu ubuntu   4096 May 18 23:18 exp_fewnerd_s789_n8\ndrwxr-xr-x   3 ubuntu ubuntu   4096 May 16 03:05 exp_freeform_conll_4seed\ndrwxr-xr-x   4 ubuntu ubuntu   4096 May 18 19:18 exp_llama_scierc_seed456\ndrwxr-xr-x   3 ubuntu ubuntu   4096 May 18 19:13 exp_scierc_seed456\n-rw-r--r--   1 ubuntu ubuntu   2616 May 18 21:28 fewnerd_multiseed_unified.json\n-rw-r--r--   1 ubuntu ubuntu   5927 May 15 19:18 freeform_3seed_summary.json\n-rw-r--r--   1 ubuntu ubuntu  31740 May 15 13:10 lp_range_cdf_n16_3seed.pdf\n-rw-r--r--   1 ubuntu ubuntu 182957 May 15 13:10 lp_range_cdf_n16_3seed.png\n-rw-r--r--   1 ubuntu ubuntu   6803 May 15 06:29 multi_seed_stability_table.md\n-rw-r--r--   1 ubuntu ubuntu   7774 May 15 11:38 multiseed_flip_overlap_analysis.md\n-rw-r--r--   1 ubuntu ubuntu   6832 May 15 12:10 n16_3seed_scs_analysis.md\n-rw-r--r--   1 ubuntu ubuntu   2704 May 15 16:21 n8_seed123_unified_rho_results.md\n-rw-r--r--   1 ubuntu ubuntu    861 May 19 14:23 w1_table3_multiseed.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-20T03:35:29.498187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml | head -200"
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-20T03:35:29.498328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- id: art_20260514_8c5ac9\n  name: consistency.py\n  type: intermediate\n  description: 'Core consistency metrics module: Fleiss kappa (surface), structural\n    soft Jaccard (span-level Hungarian matching), oracle best-of-N F1, and aggregate\n    helper.'\n  path: projects/struct_self_consist_ie/artifacts/_project/intermediate/consistency.py\n  url: null\n  project: struct_self_consist_ie\n  exp_id: null\n  skill: ''\n  created_at: '2026-05-14T04:27:26.880296+00:00'\n  tags:\n  - consistency\n  - metrics\n  - core\n- id: art_20260514_822db6\n  name: data_utils.py\n  type: data\n  description: SciERC/ACE05 数据处理模块：加载、转 UIE JSON、JSONL I/O、数据集划分\n  path: projects/struct_self_consist_ie/artifacts/_project/data/data_utils.py\n  url: null\n  project: struct_self_consist_ie\n  exp_id: null\n  skill: ''\n  created_at: '2026-05-14T04:30:08.325433+00:00'\n  tags:\n  - code\n  - mvp\n  - data-processing\n- id: art_20260514_fd59f2\n  name: evaluation.py\n  type: data\n  description: 评估模块：NER/EAE strict F1、per-instance F1、Spearman correlation、汇总报告\n  path: projects/struct_self_consist_ie/artifacts/_project/data/evaluation.py\n  url: null\n  project: struct_self_consist_ie\n  exp_id: null\n  skill: ''\n  created_at: '2026-05-14T04:30:09.120642+00:00'\n  tags:\n  - code\n  - mvp\n  - evaluation\n- id: art_20260514_e88003\n  name: consistency.py\n  type: data\n  description: 核心一致性度量：Fleiss Kappa (surface)、soft Jaccard (structural, Hungarian\n    matching)、oracle best-of-N\n  path: projects/struct_self_consist_ie/artifacts/_project/data/consistency.py\n  url: null\n  project: struct_self_consist_ie\n  exp_id: null\n  skill: ''\n  created_at: '2026-05-14T04:30:12.419423+00:00'\n  tags:\n  - code\n  - mvp\n  - core-metric\n- id: art_20260514_52a8cf\n  name: sampling.py\n  type: data\n  description: vLLM 批量采样模块：VLLMSampler + XGrammar constrained decoding + prompt 构建\n    + 输出解析\n  path: projects/struct_self_consist_ie/artifacts/_project/data/sampling.py\n  url: null\n  project: struct_self_consist_ie\n  exp_id: null\n  skill: ''\n  created_at: '2026-05-\n…[truncated 4256 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-20T03:35:29.498481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/post_completion_checklist.md"
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-20T03:35:29.498606+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Post-Completion Checklist\n\n## 1. 72B Few-Shot FewNERD（ETA ~01:30 UTC, 2026-05-20）\n\n- [ ] SSH autodl-5090-b 确认实验完成\n- [ ] `compute_signals.py --input-dir output/72b_fewshot --dataset fewnerd --model-size 72 --regime fs`\n- [ ] `bootstrap_construction.py --input-dir output/72b_fewshot --dataset fewnerd`\n- [ ] `format_for_scaling.py --report .../full_signal_report.json --model-size 72 --regime fs`\n- [ ] 更新 `72b_fewshot_signal_summary.json` 加入 FewNERD 数据\n- [ ] 填入 `zs_vs_fs_comparison_draft.tex` 的 5 个 placeholder\n- [ ] 更新 registry metrics\n- [ ] 汇报 Director\n\n## 2. 7B FewNERD Pipeline（ETA ~04:30 UTC, 2026-05-20）\n\nPipeline 自动跑 train→export→inference→signals→construction\n\n- [ ] 确认 pipeline 自动步骤全部完成\n- [ ] 手动 `compute_signals.py --input-dir output/qwen25_7b_fewnerd_seed42 --model-size 7 --regime ft`\n- [ ] 手动 `compute_signals.py --input-dir output/qwen25_7b_fewnerd_seed123 --model-size 7 --regime ft`\n- [ ] 手动 `compute_signals.py --input-dir output/qwen25_7b_fewnerd_seed456 --model-size 7 --regime ft`\n- [ ] 手动 `format_for_scaling.py --report .../full_signal_report.json --model-size 7 --regime ft`\n- [ ] 填入 `scaling_narrative_A.tex` / `scaling_narrative_B.tex` 的 scaleSevenDegen / Greedy / Constr / LP\n- [ ] 更新 `tab:scale_comparison` 或 `tab:scaling_ft` 7B 行\n- [ ] 更新 registry\n- [ ] 汇报 Director\n\n## 3. 14B FewNERD（ETA ~19:20 UTC, 2026-05-20）\n\n训练完成后需手动 pipeline\n\n- [ ] Export LoRA adapter\n- [ ] 3-seed N=8 inference\n- [ ] `compute_signals.py` + `bootstrap_construction.py` + `format_for_scaling.py`\n- [ ] 填 14B placeholder\n- [ ] 更新 registry\n- [ ] 汇报 Director\n\n## 4. 32B FewNERD（ETA ~01:40 UTC, 2026-05-21）\n\n训练完成后需手动 pipeline，**这是最后一块拼图**\n\n- [ ] Export LoRA adapter\n- [ ] 3-seed N=8 inference\n- [ ] `compute_signals.py` + `bootstrap_construction.py` + `format_for_scaling.py`\n- [ ] 填 32B placeholder\n- [ ] 更新 registry\n- [ ] 汇报 Director\n- [ ] **定稿决策**：7B/14B/32B/72B 全部就绪后，选择 narrative A（monotonic）或 B（non-monotonic），启用 `fig:scaling_curve`，定稿 §5.5"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-20T03:35:29.498756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 10 -B 5 \"output/fewnerd_7b\\|qwen25_7b\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md | head -50"
+            }
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-20T03:35:29.498873+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-20T03:35:29.498997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"output/qwen25_7b\\|output/fewnerd_7b\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie --include=\"*.py\" --include=\"*.md\" --include=\"*.txt\" 2>/dev/null | head -30"
+            }
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-20T03:35:29.499112+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/post_completion_checklist.md:- [ ] 手动 `compute_signals.py --input-dir output/qwen25_7b_fewnerd_seed42 --model-size 7 --regime ft`\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/post_completion_checklist.md:- [ ] 手动 `compute_signals.py --input-dir output/qwen25_7b_fewnerd_seed123 --model-size 7 --regime ft`\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/post_completion_checklist.md:- [ ] 手动 `compute_signals.py --input-dir output/qwen25_7b_fewnerd_seed456 --model-size 7 --regime ft`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-20T03:35:29.499273+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type f -name \"*bootstrap*\" 2>/dev/null"
+            }
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-20T03:35:29.499447+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_re_selection_bootstrap_20260515T032411_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_n8_bootstrap_ci_20260515T030809_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_fix_bootstrap_voting_conf_p1_20260514T214500_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_freeform_re_bootstrap_20260517T044401_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_fk_bootstrap_round8_20260515T153706.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_fk_bootstrap_ci_20260515T124826_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_fk_bootstrap_round8_20260515T153706_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_data_bootstrap_ci_summary_20260514T210533.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_72b_scierc_bootstrap_20260519T160000.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_bootstrap_voting_conf_fix_20260514T215616.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_bootstrap_ci_nscaling_20260514T192015_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_data_llama_conll_nscaling_bootstrap_20260514T211418_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_data_bootstrap_ci_summary_20260514T210\n…[truncated 7596 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-20T03:35:29.499675+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/bootstrap_construction.py",
+              "limit": "200"
+            }
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-20T03:35:29.499835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Paired bootstrap test: greedy F1 vs LP-weighted construction F1.\n3\t\n4\tReplicates the methodology from the 72B ZS SciERC bootstrap analysis:\n5\t- B=10000 bootstrap iterations\n6\t- 95% CI on the paired difference\n7\t- One-sided p-value (H0: construction <= greedy)\n8\t- Cohen's d effect size\n9\t- Degeneracy-stratified breakdown\n10\t\n11\tUsage:\n12\t    # Single dataset\n13\t    python bootstrap_construction.py \\\n14\t        --input-dir /path/to/output/72b_zeroshot --dataset scierc\n15\t\n16\t    # All datasets under a model directory\n17\t    python bootstrap_construction.py \\\n18\t        --input-dir /path/to/output/72b_zeroshot\n19\t\n20\t    # Use pre-computed per-instance data (from compute_signals.py)\n21\t    python bootstrap_construction.py \\\n22\t        --per-instance /path/to/scierc_per_instance.json --dataset scierc\n23\t\"\"\"\n24\t\n25\timport argparse\n26\timport json\n27\timport os\n28\timport statistics\n29\timport sys\n30\tfrom collections import Counter, defaultdict\n31\t\n32\timport numpy as np\n33\t\n34\tB = 10000\n35\tSEED = 42\n36\t\n37\t\n38\t# ---------------------------------------------------------------------------\n39\t# Core metrics (self-contained, no external imports needed)\n40\t# ---------------------------------------------------------------------------\n41\t\n42\tdef compute_entity_f1(pred_entities, gold_entities):\n43\t    pred = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in pred_entities}\n44\t    gold = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold_entities}\n45\t    if not gold and not pred:\n46\t        return 1.0\n47\t    if not gold or not pred:\n48\t        return 0.0\n49\t    tp = len(pred & gold)\n50\t    if tp == 0:\n51\t        return 0.0\n52\t    p = tp / len(pred)\n53\t    r = tp / len(gold)\n54\t    return 2 * p * r / (p + r)\n55\t\n56\t\n57\tdef consensus_construct(inst, high_thresh=0.5, medium_thresh=0.25):\n58\t    \"\"\"LP-weighted entity construction (same as compute_signals.py).\"\"\"\n59\t    samples = inst[\"samples\"]\n60\t    N = len(samples)\n61\t\n62\t    entity_counts = Counter()\n63\t    entity\n…[truncated 5496 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-20T03:35:29.499990+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"autodl-5090\\|5090-b\\|5090-c\\|output/fewnerd_7b\\|qwen25_7b\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/*.log 2>/dev/null | grep -E \"output|qwen|fewnerd|5090\" | head -50"
+            }
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-20T03:35:29.500165+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (69.7KB). Full output saved to: /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/562e53ce-a1c3-4140-b3f9-53319e8d36eb/tool-results/bmxp2ms0e.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_23config_regression_20260519T072221.log:{\"type\":\"assistant\",\"message\":{\"model\":\"claude-opus-4-6\",\"id\":\"msg_01Web1122pxXJguepw5egB8k\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"The user wants me to SSH to the autodl-5090 server and perform a regression validation of the decomposition formula for 23 configurations. Let me start by searching for the relevant data files on the server.\",\"signature\":\"EosDClkIDRgCKkBmaQ8R5s8mHIQQRtVeYhT8EaGfvRKAuOUbGo0OL2yPuBBXJSg0xgFSRLKR++V0z2l4MEBNFqcNnrt/lFN6jKr3Mg9jbGF1ZGUtb3B1cy00LTY4ABIM+ZS+hHNhyf6S411MGgwDoXaafA1EjOiKN+UiMGsiStqe9WM3kI/hS2MC3XKuE+dGTm7SpRW5hPIeZvOfB/I97w17MoH/72t3SXgDlyrfAXYNlGyT68PYkJbTWLx0zBIOqxbqLs/s7vRO7qUFvBLy+V6TiwfkeWy08oR8mSwtG47fDzHb/pMtZXTNOtxf2DqawKDNCDrrPWovbM9Ts83+WlphPHuD3Vw73AEGMupsXz9jvmrALzy7O0Wr7CfmHCwveJN7uIH3TjfHcPAsDJD48YgN+nzu5cysgLdwHPo4ngr1e5LDOy5MfYLG0nGxpI0wnviYdZ4A0Bear3DBAr3U7UMAkzE+rPBFr3pNq+EUeN8BduGwMwwnCSmG2K4neqpF7TiDbKmHCEbUm9dj5NMYAQ==\"}],\"stop_reason\":null,\"stop_sequence\":null,\"stop_details\":null,\"usage\":{\"input_tokens\":3,\"cache_creation_input_tokens\":13444,\"cache_read_input_tokens\":11701,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":13444},\"output_tokens\":39,\"service_tier\":\"standard\",\"inference_geo\":\"not_available\"},\"diagnostics\":null,\"context_management\":null},\"parent_tool_use_id\":null,\"session_id\":\"a482d446-9114-435e-b062-c5823f1fd0a9\",\"uuid\":\"a21b461e-af2f-48a0-b7e6-0552f6b908d6\"}\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-20T03:35:29.500522+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Let me now consolidate my findings into a comprehensive report:\n\nBased on my thorough search of the struct_self_consist_ie project directory, here is a comprehensive overview of the 7B FewNERD inference output structure and pipeline on remote servers:\n\n## Summary: 7B FewNERD Inference Directory Structure and Pipeline\n\n### Remote Server Definitions\n\n**Three active AutoDL servers** with RTX 5090 GPUs:\n- **autodl-5090 (Server A)**: 4× RTX 5090 (32GB each). Primary server\n- **autodl-5090-b (Server B)**: 4× RTX 5090. Running 7B seed 123 and 456 inference (CUDA:0,1 active)\n- **autodl-5090-c (Server C)**: 4× RTX 5090. Running 7B seed 42 inference (CUDA:2 active) + other workloads\n\nRoot working directory on all servers: `/root/autodl-tmp/struct_self_consist_ie/`\n\n### Output Directory Structure (on Remote Servers)\n\nThe inference outputs are organized under: `/root/autodl-tmp/struct_self_consist_ie/output/`\n\n**For 7B FewNERD fine-tuned model (Qwen2.5-7B-Instruct merged with LoRA adapter):**\n\n```\noutput/\n├── fewnerd_7b/                          # Main 7B directory\n│   ├── qwen25_7b_n8_seed42/            # Seed 42 inference outputs\n│   │   ├── fewnerd/\n│   │   │   └── samples.jsonl           # 37,648 prompts (4706 instances × 8 samples)\n│   │   ├── full_signal_report.json     # Signal metrics after compute_signals.py\n│   │   ├── fewnerd_per_instance.json   # Per-instance data for bootstrap\n│   │   └── logs/\n│   │       └── 7b_inference_seed42.log\n│   │\n│   ├── qwen25_7b_n8_seed123/           # Seed 123 inference outputs\n│   │   ├── fewnerd/\n│   │   │   └── samples.jsonl\n│   │   ├── full_signal_report.json\n│   │   ├── fewnerd_per_instance.json\n│   │   └── logs/\n│   │       └── 7b_inference_seed123.log\n│   │\n│   └── qwen25_7b_n8_seed456/           # Seed 456 inference outputs\n│       ├── fewnerd/\n│       │   └── samples.jsonl\n│       ├── full_signal_report.json\n│       ├── fewnerd_per_instance.json\n│       └── logs/\n│           └── 7b_inference_seed456.log\n```\n\n**Inferen\n…[truncated 5410 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Agent",
+            "elapsed_ms": 12
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-20T03:35:29.500717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/post_completion_checklist.md"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-20T03:35:29.500866+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Post-Completion Checklist\n2\t\n3\t## 1. 72B Few-Shot FewNERD（ETA ~01:30 UTC, 2026-05-20）\n4\t\n5\t- [ ] SSH autodl-5090-b 确认实验完成\n6\t- [ ] `compute_signals.py --input-dir output/72b_fewshot --dataset fewnerd --model-size 72 --regime fs`\n7\t- [ ] `bootstrap_construction.py --input-dir output/72b_fewshot --dataset fewnerd`\n8\t- [ ] `format_for_scaling.py --report .../full_signal_report.json --model-size 72 --regime fs`\n9\t- [ ] 更新 `72b_fewshot_signal_summary.json` 加入 FewNERD 数据\n10\t- [ ] 填入 `zs_vs_fs_comparison_draft.tex` 的 5 个 placeholder\n11\t- [ ] 更新 registry metrics\n12\t- [ ] 汇报 Director\n13\t\n14\t## 2. 7B FewNERD Pipeline（ETA ~04:30 UTC, 2026-05-20）\n15\t\n16\tPipeline 自动跑 train→export→inference→signals→construction\n17\t\n18\t- [ ] 确认 pipeline 自动步骤全部完成\n19\t- [ ] 手动 `compute_signals.py --input-dir output/qwen25_7b_fewnerd_seed42 --model-size 7 --regime ft`\n20\t- [ ] 手动 `compute_signals.py --input-dir output/qwen25_7b_fewnerd_seed123 --model-size 7 --regime ft`\n21\t- [ ] 手动 `compute_signals.py --input-dir output/qwen25_7b_fewnerd_seed456 --model-size 7 --regime ft`\n22\t- [ ] 手动 `format_for_scaling.py --report .../full_signal_report.json --model-size 7 --regime ft`\n23\t- [ ] 填入 `scaling_narrative_A.tex` / `scaling_narrative_B.tex` 的 scaleSevenDegen / Greedy / Constr / LP\n24\t- [ ] 更新 `tab:scale_comparison` 或 `tab:scaling_ft` 7B 行\n25\t- [ ] 更新 registry\n26\t- [ ] 汇报 Director\n27\t\n28\t## 3. 14B FewNERD（ETA ~19:20 UTC, 2026-05-20）\n29\t\n30\t训练完成后需手动 pipeline\n31\t\n32\t- [ ] Export LoRA adapter\n33\t- [ ] 3-seed N=8 inference\n34\t- [ ] `compute_signals.py` + `bootstrap_construction.py` + `format_for_scaling.py`\n35\t- [ ] 填 14B placeholder\n36\t- [ ] 更新 registry\n37\t- [ ] 汇报 Director\n38\t\n39\t## 4. 32B FewNERD（ETA ~01:40 UTC, 2026-05-21）\n40\t\n41\t训练完成后需手动 pipeline，**这是最后一块拼图**\n42\t\n43\t- [ ] Export LoRA adapter\n44\t- [ ] 3-seed N=8 inference\n45\t- [ ] `compute_signals.py` + `bootstrap_construction.py` + `format_for_scaling.py`\n46\t- [ ] 填 32B placeholder\n47\t- [ ] 更新 registry\n48\t- [ ] 汇报 Director\n49\t- [ ] **定稿决策**：7B/14B/32B/\n…[truncated 88 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-20T03:35:29.501009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code/aggregate_scaling_results.py"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-20T03:35:29.501263+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Aggregate scaling experiment results across model sizes into a unified table.\"\"\"\n3\t\n4\timport argparse\n5\timport csv\n6\timport json\n7\timport os\n8\timport sys\n9\tfrom pathlib import Path\n10\t\n11\t\n12\t# Known data points (fill in as experiments complete)\n13\tKNOWN_RESULTS = [\n14\t    {\n15\t        \"model\": \"Qwen3-4B\",\n16\t        \"family\": \"Qwen3\",\n17\t        \"size_b\": 4,\n18\t        \"dataset\": \"SciERC\",\n19\t        \"regime\": \"fine-tuned\",\n20\t        \"n_seeds\": 1,\n21\t        \"greedy_f1\": 0.6622,\n22\t        \"oracle_f1\": 0.7925,\n23\t        \"headroom_pp\": 13.03,\n24\t        \"degen_pct\": 10.4,\n25\t        \"lp_rho\": None,\n26\t        \"lp_delta_pp\": None,\n27\t        \"constr_delta_pp\": None,\n28\t    },\n29\t    {\n30\t        \"model\": \"Qwen3-8B\",\n31\t        \"family\": \"Qwen3\",\n32\t        \"size_b\": 8,\n33\t        \"dataset\": \"FewNERD\",\n34\t        \"regime\": \"fine-tuned\",\n35\t        \"n_seeds\": 4,\n36\t        \"greedy_f1\": 0.7481,\n37\t        \"oracle_f1\": 0.8739,\n38\t        \"headroom_pp\": 12.58,\n39\t        \"degen_pct\": 12.69,\n40\t        \"lp_rho\": None,\n41\t        \"lp_delta_pp\": 1.38,\n42\t        \"constr_delta_pp\": None,\n43\t    },\n44\t    {\n45\t        \"model\": \"LLaMA-3.1-8B\",\n46\t        \"family\": \"LLaMA\",\n47\t        \"size_b\": 8,\n48\t        \"dataset\": \"FewNERD\",\n49\t        \"regime\": \"fine-tuned\",\n50\t        \"n_seeds\": 3,\n51\t        \"greedy_f1\": 0.7842,\n52\t        \"oracle_f1\": 0.8843,\n53\t        \"headroom_pp\": 10.01,\n54\t        \"degen_pct\": 23.36,\n55\t        \"lp_rho\": None,\n56\t        \"lp_delta_pp\": 0.36,\n57\t        \"constr_delta_pp\": None,\n58\t    },\n59\t    {\n60\t        \"model\": \"Qwen2.5-72B\",\n61\t        \"family\": \"Qwen2.5\",\n62\t        \"size_b\": 72,\n63\t        \"dataset\": \"SciERC\",\n64\t        \"regime\": \"zero-shot\",\n65\t        \"n_seeds\": 1,\n66\t        \"greedy_f1\": 0.399,\n67\t        \"oracle_f1\": 0.549,\n68\t        \"headroom_pp\": 15.0,\n69\t        \"degen_pct\": None,\n70\t        \"lp_rho\": None,\n71\t        \"lp_delta_pp\": None,\n72\t        \"constr_delta_pp\": None,\n73\t    },\n74\t    # === PLAC\n…[truncated 6556 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-20T03:35:29.501440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/consistency.py"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-20T03:35:29.501679+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Consistency metrics for structured information extraction with self-consistency.\n2\t\n3\tImplements three complementary consistency measures over N sampled extractions:\n4\t1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\n5\t2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\n6\t3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\n7\t\n8\tKey dependencies: numpy, scipy (linear_sum_assignment).\n9\t\"\"\"\n10\t\n11\tfrom __future__ import annotations\n12\t\n13\tfrom itertools import combinations\n14\tfrom typing import TYPE_CHECKING\n15\t\n16\timport numpy as np\n17\tfrom scipy.optimize import linear_sum_assignment\n18\t\n19\tif TYPE_CHECKING:\n20\t    pass\n21\t\n22\t# ---------------------------------------------------------------------------\n23\t# Type aliases (mirrors shared data format)\n24\t# ---------------------------------------------------------------------------\n25\tEntity = dict       # {\"text\", \"type\", \"start\", \"end\"}\n26\tRelation = dict     # {\"head\", \"tail\", \"type\", ...}\n27\tEvent = dict        # {\"trigger\": {...}, \"arguments\": [...]}\n28\tExtraction = dict   # {\"entities\", \"relations\", \"events\"}\n29\t\n30\t\n31\t# ===================================================================\n32\t# 1. Fleiss' Kappa — surface‐level entity agreement\n33\t# ===================================================================\n34\t\n35\tdef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\n36\t    \"\"\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\"\"\"\n37\t    if subtask == \"ner\":\n38\t        return {(e[\"text\"], e[\"type\"]) for e in sample.get(\"entities\", [])}\n39\t    elif subtask == \"re\":\n40\t        return {(r[\"head\"], r[\"tail\"], r[\"type\"]) for r in sample.get(\"relations\", [])}\n41\t    elif subtask == \"eae\":\n42\t        keys: set[tuple] = set()\n43\t        for ev in sample.get(\"events\", []):\n44\t            t = ev.get(\"trigger\", {})\n45\t            for arg in ev.get(\"arguments\", []):\n46\t                k\n…[truncated 12786 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-20T03:35:29.501881+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TaskOutput"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "TaskOutput",
+            "tool_args": {
+              "task_id": "current",
+              "block": "False",
+              "timeout": "1000"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-20T03:35:29.502012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>No task found with ID: current</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218",
+            "tool": "TaskOutput",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-20T03:35:29.502262+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 7B 后处理 Pipeline 审查报告\n\n### 一、各脚本输入/输出/参数\n\n#### 1. `compute_signals.py`\n| 项 | 值 |\n|---|---|\n| 输入 | `--input-dir <dir>` — 期望 `<dir>/fewnerd/samples.jsonl` 或 `<dir>/samples.jsonl` |\n| 输出 | `full_signal_report.json` + `fewnerd_per_instance.json`（写入 input-dir 或 `--output-dir`） |\n| 关键参数 | `--model-size 7 --regime ft` |\n| 依赖 | `consistency.py`（通过 `STRUCT_CODE_DIR` 加载，默认 `/root/autodl-tmp/struct_self_consist_ie/code`） |\n\n#### 2. `format_for_scaling.py`\n| 项 | 值 |\n|---|---|\n| 输入 | `--report <path>/full_signal_report.json --model-size 7 --regime ft` |\n| 输出 | 打印到 stdout — 需手动 copy-paste 到 `plot_scaling_curve.py` DATA dict |\n| 注意 | 接受多个 `--report`，但**无内置 multi-seed 平均**，每个 report 独立输出 |\n\n#### 3. `bootstrap_construction.py`\n| 项 | 值 |\n|---|---|\n| 输入 | `--per-instance <path>/fewnerd_per_instance.json --dataset fewnerd` 或 `--input-dir` |\n| 输出 | `fewnerd_paired_bootstrap_result.json` |\n| 参数 | B=10000, seed=42, paired bootstrap |\n\n#### 4. `plot_scaling_curve.py`\n| 项 | 值 |\n|---|---|\n| 数据格式 | `DATA[(7, \"ft\", \"FewNERD\")] = {\"lp_rho\": ..., \"sj_rho\": ..., \"degen\": ..., ...}` |\n| 当前状态 | 7B FewNERD 行已有 placeholder（全 None），需填入 3-seed 平均值 |\n\n---\n\n### 二、实际路径与服务器分布\n\n| 服务器 | Seed | 路径 |\n|--------|------|------|\n| autodl-5090-c | 42 | `/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/fewnerd/samples.jsonl` |\n| autodl-5090-b | 123 | `/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed123/fewnerd/samples.jsonl` |\n| autodl-5090-b | 456 | `/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed456/fewnerd/samples.jsonl` |\n\n**路径注意**：post_completion_checklist.md 写的是 `output/qwen25_7b_fewnerd_seed42`，但实际推理目录是 `output/fewnerd_7b/qwen25_7b_n8_seed42/`。checklist 中的路径**不准确**，执行时必须用实际路径。\n\n---\n\n### 三、跨服务器数据传输\n\n**不需要提前汇集原始数据。** compute_signals.py 对每个 seed 独立运行，可在各自服务器上原地执行。最终只需传输 3 个 `full_signal_report.json` + 3 个 `fewnerd_per_instance.json`（小文件，几 KB）到同一台服务器做聚合。\n\n---\n\n### 四、需要修改/补充的地方\n\n1. **缺少 3-seed 平均聚合步骤**：`format_for_scaling.py` 只处理单个 report，不做 multi-seed mean。需要手动算 3 个 report 的均值后填入 `plot_scaling_curve.py` DATA dict，或写一个简单聚合脚本。\n2. **post_completion_checklist.md 路径错误**：`output/qwen25_7b_fewnerd_seedXXX` 应改为 `output/fewnerd_7b/qwen25_7b_n8_seedXXX`。\n3. **consistency.py 必须在服务器 code/ 目录下**：compute_signals.py 通过 `STRUCT_CODE_DIR` 导入。如果 code/ 目录没有 `consistency.py`，SJ/FK 信号会被跳过（只打 WARNING，不报错）。需确认服务器上已部署。\n\n---\n\n### 五、完整执行计划\n\n#### Phase 1: 各服务器独立执行 compute_signals（可并行）\n\n```bash\n# === Server C (autodl-5090-c): seed42 ===\ncd /root/autodl-tmp/struct_self_consist_ie\npython artifacts/compute_signals.py \\\n  --input-dir output/fewnerd_7b/qwen25_7b_n8_seed42 \\\n  --model-size 7 --regime ft\n\n# === Server B (autodl-5090-b): seed123 ===\ncd /root/autodl-tmp/struct_self_consist_ie\npython artifacts/compute_signals.py \\\n  --input-dir output/fewnerd_7b/qwen25_7b_n8_seed123 \\\n  --model-size 7 --regime ft\n\n# === Server B (autodl-5090-b): seed456 ===\ncd /root/autodl-tmp/struct_self_consist_ie\npython artifacts/compute_signals.py \\\n  --input-dir output/fewnerd_7b/qwen25_7b_n8_seed456 \\\n  --model-size 7 --regime ft\n```\n\n**可并行**：3 个 seed 完全独立，B 上两个可同时跑。\n\n#### Phase 2: bootstrap_construction（可并行，与 Phase 1 在同一服务器顺序执行）\n\n```bash\n# === Server C: seed42 ===\npython artifacts/bootstrap_construction.py \\\n  --per-instance output/fewnerd_7b/qwen25_7b_n8_seed42/fewnerd_per_instance.json \\\n  --dataset fewnerd \\\n  --output-dir output/fewnerd_7b/qwen25_7b_n8_seed42\n\n# === Server B: seed123 ===\npython artifacts/bootstrap_construction.py \\\n  --per-instance output/fewnerd_7b/qwen25_7b_n8_seed123/fewnerd_per_instance.json \\\n  --dataset fewnerd \\\n  --output-dir output/fewnerd_7b/qwen25_7b_n8_seed123\n\n# === Server B: seed456 ===\npython artifacts/bootstrap_construction.py \\\n  --per-instance output/fewnerd_7b/qwen25_7b_n8_seed456/fewnerd_per_instance.json \\\n  --dataset fewnerd \\\n  --output-dir output/fewnerd_7b/qwen25_7b_n8_seed456\n```\n\n#### Phase 3: 收集结果到一台服务器（Server B 或 A）\n\n```bash\n# 从 Server C 拉 seed42 的 report 到 Server B\nscp autodl-5090-c:/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json \\\n    /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json\n```\n\n或者直接在本地（control plane）收集 3 个 JSON。\n\n#### Phase 4: format_for_scaling + 手动 3-seed 平均\n\n```bash\n# 各 seed 独立 format（查看各 seed 数值）\npython artifacts/format_for_scaling.py \\\n  --report output/fewnerd_7b/qwen25_7b_n8_seed42/full_signal_report.json \\\n  --model-size 7 --regime ft\n\npython artifacts/format_for_scaling.py \\\n  --report output/fewnerd_7b/qwen25_7b_n8_seed123/full_signal_report.json \\\n  --model-size 7 --regime ft\n\npython artifacts/format_for_scaling.py \\\n  --report output/fewnerd_7b/qwen25_7b_n8_seed456/full_signal_report.json \\\n  --model-size 7 --regime ft\n```\n\n然后**手动计算 3-seed 均值**（lp_rho, sj_rho, vc_rho, degen, construction_lp_delta, greedy_f1, oracle_f1），填入 `plot_scaling_curve.py` 的 `(7, \"ft\", \"FewNERD\")` 条目。\n\n#### Phase 5: 生成图表\n\n```bash\npython artifacts/plot_scaling_curve.py\n# 输出: artifacts/scaling_signal_rho.pdf, scaling_degeneracy.pdf, scaling_construction_delta.pdf, scaling_curve_draft.pdf\n```\n\n---\n\n### 六、并行性总结\n\n| Phase | 步骤 | 并行度 |\n|-------|------|--------|\n| 1 | compute_signals ×3 | 3 并行（跨服务器） |\n| 2 | bootstrap ×3 | 3 并行（Phase 1 各自完成后） |\n| 3 | scp 收集 | 串行 |\n| 4 | format + 手动平均 | 串行 |\n| 5 | plot | 串行 |\n\n总耗时估计：Phase 1 是瓶颈（FewNERD 4706 instances × SJ/FK 计算较重，单 seed 约 5-15 min），Phase 2 约 2 min/seed，Phase 3-5 < 1 min。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_prepare-7b-postprocessing_20260520T033218"
+          },
+          "id": "event-000109"
+        }
+      ],
+      "message_count": 109
+    }
+  ],
+  "readable_path": "readable/conversations/code-prepare-7b-postprocessing.md"
+}

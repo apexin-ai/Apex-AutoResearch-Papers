@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a36cedcc33057f9d579f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose 5090b fewnerd t ablation",
+  "task_key": "worker_diagnose_5090b_fewnerd_t_ablation_20260521T003622",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_5090b_fewnerd_t_ablation_20260521T003622_result.json",
+    "occurrence": 1,
+    "bytes": 1145,
+    "sha256": "f8873782640cbeba07ce9606edf66a3e9c573f3ce4b294a56353155553ffb32d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验都还在运行，进度如下：\n\n| 实验 | GPU | 进度 | 已推理时间 | 预计剩余 |\n|------|-----|------|-----------|---------|\n| **T=0.5** (exp_fewnerd_t05_s42) | cuda:0 (93% util) | **55%** (21009/37648) | ~10 min | ~8 min |\n| **T=0.8** (exp_fewnerd_t08_s42) | cuda:1 (87% util) | **68%** (25726/37648) | ~12 min | ~6 min |\n| **T=1.2** (exp_fewnerd_t12_s42) | cuda:2 (93% util) | **93%** (35089/37648) | ~17 min | ~1.5 min |\n\n**说明：**\n- 进程启动时间显示为 06:40 UTC（May 21），而非 22:41 UTC May 20。看起来这批是重启过的，实际推理阶段运行了约 10-17 分钟。\n- 总共 37,648 个 prompts（N=8 × 4,706 examples）。\n- 推理速度 ~5,750-5,860 toks/s input, ~3,080-3,140 toks/s output。\n- 尚无输出文件（完成后写入 output/ 目录）。\n\n**T=1.2 将在 ~1-2 分钟内完成，T=0.8 ~6 分钟，T=0.5 ~8-9 分钟。**\n\n**cuda:3** 完全空闲（0% util, 2 MiB memory）。可以铺新任务，比如另一个 seed 的实验或其他数据集的 T-ablation。\n\n要不要等完成后再来拉 metrics？或者先安排 cuda:3 的任务？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-5090b-fewnerd-t-ablation.md"
+}

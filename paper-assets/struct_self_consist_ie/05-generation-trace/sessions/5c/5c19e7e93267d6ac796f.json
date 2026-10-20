@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c19e7e93267d6ac796f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code server a disk cleanup",
+  "task_key": "worker_code_server_a_disk_cleanup_20260519T084135",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_server_a_disk_cleanup_20260519T084135_result.json",
+    "occurrence": 1,
+    "bytes": 532,
+    "sha256": "00f96d3c9c6e2d12d884af3321a084dd71635c0bbae2a528d7b647570b05e35a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n| | 清理前 | 清理后 |\n|---|---|---|\n| 已用 | 195G | 154G |\n| 可用 | 56G | **97G** |\n| 释放 | — | **~41G** |\n\n删除了 5 个目录：\n- `qwen3-8b-fewnerd-exp021-merged` (16G)\n- `qwen3-8b-scierc-merged-v2` (16G)\n- `llama3.1-8b-conll2003-lora` (5.1G)\n- `llama3.1-8b-conll2003-lora-3ep` (3.2G)\n- `llama3.2-3b-scierc-lora` (1.9G)\n\n保留了 registry 引用的 `llama3.1-8b-fewnerd-lora` 和 `llama3.1-8b-scierc-lora`。97G 可用空间远超 32B LoRA merge 所需的 ~65GB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-server-a-disk-cleanup.md"
+}

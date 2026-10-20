@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "a23b23bfd76f3160d31d",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "exp e theta v2 mlp",
+  "task_key": "worker_exp_e_theta_v2_mlp_20260520T154102",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_e_theta_v2_mlp_20260520T154102.log",
+    "occurrence": 1,
+    "bytes": 804224,
+    "sha256": "8d0e69f0e3313344d4a7dce423e8c4c5f4c71c1f01f36c9d6a30d45fb11cc738"
+  },
+  "statistics": {
+    "messages": 308,
+    "user_turns": 1,
+    "tool_calls": 104,
+    "roles": {
+      "log": 1,
+      "system": 52,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 104,
+      "user": 1,
+      "tool_result": 104,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "a23b23bfd76f3160d31d-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 301,
+      "chunks": [
+        {
+          "path": "a23b23bfd76f3160d31d-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "a23b23bfd76f3160d31d-part-0002.json",
+          "message_count": 128
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-e-theta-v2-mlp.md"
+}

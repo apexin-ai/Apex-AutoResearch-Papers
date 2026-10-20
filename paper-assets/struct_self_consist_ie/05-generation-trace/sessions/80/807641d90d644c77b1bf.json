@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "807641d90d644c77b1bf",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code run ace05 tacred re",
+  "task_key": "worker_code_run_ace05_tacred_re_20260520T210436",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_run_ace05_tacred_re_20260520T210436.log",
+    "occurrence": 1,
+    "bytes": 739936,
+    "sha256": "bece4a36b78cbbfa138f681f0d4f2623d66d49eab68ff74430675b0bbc0879d3"
+  },
+  "statistics": {
+    "messages": 260,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 74,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 260,
+      "chunks": [
+        {
+          "path": "807641d90d644c77b1bf-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "807641d90d644c77b1bf-part-0002.json",
+          "message_count": 80
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-run-ace05-tacred-re.md"
+}

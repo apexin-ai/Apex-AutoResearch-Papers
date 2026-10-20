@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3aabce747d2b62d9ea3",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5epoch s42 final check",
+  "task_key": "worker_ssh_5epoch_s42_final_check_20260521T180612",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5epoch_s42_final_check_20260521T180612_result.json",
+    "occurrence": 1,
+    "bytes": 743,
+    "sha256": "6867552e7bccd61233dca2ac43cb675497c6887a6cf5002609f8048d1c754572"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**两个实验都仍在运行中，cron 报的进程退出是误报。**\n\n| 实验 | 进度 | 已处理/总计 | 速度 | 预计剩余 |\n|------|------|-------------|------|----------|\n| s42 | 5.6% | 16,960 / 301,184 | ~6,124 toks/s in, ~3,261 toks/s out | ~2h |\n| s123 | 5.4% | 16,192 / 301,184 | ~5,894 toks/s in, ~3,143 toks/s out | ~2h |\n\nGPU 状态：4 卡全在用（87%/74%/72%/67% 利用率，各占 ~30GB/32GB VRAM），两个推理进程分别占 2 卡。\n\n输出目录已创建但 `samples.jsonl` 尚未生成（vLLM 推理完成后才会写出）。301,184 = 37,648 × 8 samples，符合预期。\n\n**不做 registry 更新和 cron 删除**——等推理完成后再操作。预计约 2 小时后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5epoch-s42-final-check.md"
+}

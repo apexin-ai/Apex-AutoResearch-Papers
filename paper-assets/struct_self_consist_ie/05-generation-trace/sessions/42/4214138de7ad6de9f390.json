@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4214138de7ad6de9f390",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh harvest scierc seeds and check gpu",
+  "task_key": "worker_ssh_harvest_scierc_seeds_and_check_gpu_20260522T113747",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_harvest_scierc_seeds_and_check_gpu_20260522T113747_result.json",
+    "occurrence": 1,
+    "bytes": 2878,
+    "sha256": "506e8103063a0c46c4a866da4e6bc07c5f664002a5475e168dbdd2280717ce27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are all results.\n\n---\n\n## Task 1: SciERC Seed Experiment Results\n\n### exp_scierc_n8_s123 (seed=123)\n\n| Metric | Value |\n|--------|-------|\n| greedy_f1 | 0.6613143027059174 |\n| oracle_f1 | 0.779398630544805 |\n| oracle_headroom | 0.11808432783888756 |\n| fleiss_kappa_mean | 0.3847084061790966 |\n| soft_jaccard_mean | 0.6978851614644095 |\n| sample_f1_mean | 0.6100783062719641 |\n| sample_f1_pct_zero | 12.38% |\n| structural_beats_surface | true |\n| rho_advantage (soft_jaccard − fleiss) | 0.11861520862736091 |\n| verdict | MARGINAL |\n\n**QE signal correlations (full / conditional):**\n- soft_jaccard vs f1: ρ=0.3776 / ρ=0.3031\n- fleiss vs f1: ρ=0.2590 / ρ=0.1686\n\n**Logprob baseline (full / conditional):**\n- ρ=0.2245 / ρ=0.1461\n- AUROC=0.5839 / AUROC=0.5455\n\n### exp_scierc_n8_s456 (seed=456)\n\n| Metric | Value |\n|--------|-------|\n| greedy_f1 | 0.6656751933372993 |\n| oracle_f1 | 0.7733095025320226 |\n| oracle_headroom | 0.10763430919472328 |\n| fleiss_kappa_mean | 0.3863805377206285 |\n| soft_jaccard_mean | 0.6939011351696471 |\n| sample_f1_mean | 0.6055179678981888 |\n| sample_f1_pct_zero | 12.88% |\n| structural_beats_surface | true |\n| rho_advantage | 0.10038657925575883 |\n| verdict | MARGINAL |\n\n**QE signal correlations (full / conditional):**\n- soft_jaccard vs f1: ρ=0.3795 / ρ=0.3379\n- fleiss vs f1: ρ=0.2791 / ρ=0.1846\n\n**Logprob baseline (full / conditional):**\n- ρ=0.2269 / ρ=0.1741\n- AUROC=0.5869 / AUROC=0.5587\n\n**Note:** `report.json` does not contain `mv_strict_f1`, `mv_delta_strict_pp`, `degeneracy_rate`, or `lp_selection_f1`. These metrics may require a separate MV analysis step that hasn't run yet.\n\n### Cross-seed stability (seed 123 vs 456)\n\n| Metric | s123 | s456 | Δ |\n|--------|------|------|---|\n| greedy_f1 | 0.6613 | 0.6657 | +0.0044 |\n| oracle_f1 | 0.7794 | 0.7733 | −0.0061 |\n| soft_jaccard ρ (full) | 0.3776 | 0.3795 | +0.0019 |\n| logprob ρ (full) | 0.2245 | 0.2269 | +0.0024 |\n\nVery tight across seeds — reproducible.\n\n---\n\n## Task 2: GPU Status\n\n| GPU | Status | Memory | Util | Process |\n|-----|--------|--------|------|---------|\n| cuda:0 | **FREE** | 2MiB / 32607MiB | 0% | — |\n| cuda:1 | **FREE** | 2MiB / 32607MiB | 0% | — |\n| cuda:2 | BUSY | 30192MiB / 32607MiB | 90% | VLLM::EngineCore (PID 136811) |\n| cuda:3 | BUSY | 30234MiB / 32607MiB | 86% | VLLM::EngineCore (PID 138176) |\n\ncuda:0 and cuda:1 are free.\n\n---\n\n## Task 3: 5-Epoch LP Experiment (exp_fewnerd_5epoch_lp_s42)\n\n- **PID 137895**: running, elapsed **21:58**\n- **Progress**: 51744 / 301184 prompts = **17.2%**\n- **Speed**: ~7068 toks/s input, ~3764 toks/s output\n- **ETA**: ~1h38m–2h30m remaining (fluctuating)\n- Using vLLM engine on cuda:3 (PID 138176) — also has a vLLM engine on cuda:2 (PID 136811), likely the same experiment using 2 GPUs"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-scierc-seeds-and-check-gpu.md"
+}

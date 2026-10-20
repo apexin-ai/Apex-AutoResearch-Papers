@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75d372027850e2b4a827",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code f1 degeneracy unification",
+  "task_key": "worker_code_f1_degeneracy_unification_20260518T132220",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_f1_degeneracy_unification_20260518T132220_result.json",
+    "occurrence": 1,
+    "bytes": 1188,
+    "sha256": "98738b6340546a3ad315746743a0418874579ede2f5a7f4863b96d8f2e170f52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。总结：\n\n**已修改的文件:**\n- `code/analyze_fewnerd_results.py` (line ~163-165): 原来用 `len(set(sample_f1s)) == 1`（raw float 比较），改为 `len(set(round(float(f), 10) for f in sample_f1s)) == 1` + 注释。实际上原定义已经是 F1-based，但缺少 float rounding 的鲁棒性处理。\n\n**其他文件中 degeneracy 定义现状（未修改）:**\n\n已统一为 F1-based 的：\n- `code/analyze_exp023_rank8_full.py:177` — `round(f, 6)`，F1-based ✓\n- `code/d140_oracle_gated_analysis.py:107` — `round(f, 10)`，F1-based ✓\n- `output/d112_hybrid_strategy/compute_hybrid.py:137` — `np.var(f1s) < 1e-10`，F1-based ✓\n- `output/exp_025_n_ablation/n_ablation.py:151` — `round(f, 8)`，F1-based ✓\n\n仍为 KeySet-based 的（需后续统一）：\n- `code/analyze_per_type_lp.py:86` — `len(set(key_sets)) == 1`\n- `code/analyze_per_type_lp_scierc.py:81,133` — `len(set(key_sets)) == 1`\n- `code/statistical_hardening.py:160` — `len(set(key_sets)) == 1`\n- `code/exp026_temp_ablation_metrics.py:42-53` — KeySet surface set 比较\n- `scripts/n_scaling_gf_maxlp.py:89-95` — entity surface frozenset 比较"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-f1-degeneracy-unification.md"
+}

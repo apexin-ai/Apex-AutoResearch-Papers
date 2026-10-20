@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b35e6122e912525f58e2",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "research hidden state probe",
+  "task_key": "worker_research_hidden_state_probe_20260521T013621",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_hidden_state_probe_20260521T013621_result.json",
+    "occurrence": 1,
+    "bytes": 1564,
+    "sha256": "bec93206ab2df761c646d1e5941ba754d6edbd9d7b5941abbd8bfcff909f5640"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All artifacts registered. Summary:\n\n## P0-1 Hidden State Probe — Complete (2/3 datasets)\n\n### Results\n\n| Method | AUROC | |\n|---|---|---|\n| Random | 0.50 | — |\n| ESJ (prompt-based) | 0.51 | prompting fails |\n| **Hidden Probe — LODO** | **0.62** | cross-dataset transfer |\n| **MV Agreement** | **0.87** | multi-sample behavioral |\n| **Hidden Probe — FewNERD (within-CV)** | **0.920** | single-sample representation |\n| **Hidden Probe — CoNLL (within-CV)** | **0.957** | single-sample representation |\n\n### Interpretation\n\n**The model knows which entities are correct.** Within-dataset probe AUROC (0.92–0.96) far exceeds both MV agreement (0.87) and ESJ prompting (0.51). This confirms:\n\n1. Entity quality information is **strongly encoded** in the model's last-layer hidden states at entity span positions\n2. **Prompting cannot access it** (ESJ = 0.51, essentially random)\n3. **Multi-sample aggregation partially recovers it** (MV = 0.87), but a supervised linear probe from a single sample does even better\n4. Cross-dataset transfer is weaker (LODO = 0.62), suggesting the encoding is partly domain-specific\n\nThis is the strongest evidence for the paper's core argument: the model has latent knowledge about output quality that is behaviorally inaccessible — motivating structured self-consistency as an extraction mechanism.\n\n### Remaining\n\n- **SciERC** not yet extracted (merged checkpoint not available on autodl-5090-c). Can be added when the checkpoint is copied over or a GPU frees up on autodl-5090."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-hidden-state-probe.md"
+}

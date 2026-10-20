@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "804956c1f2b4f8a5197d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "audit conll oracle headroom p0",
+  "task_key": "worker_audit_conll-oracle-headroom-p0_20260519T184346",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_conll-oracle-headroom-p0_20260519T184346_result.json",
+    "occurrence": 1,
+    "bytes": 3088,
+    "sha256": "8a254fd4d231499c55057fc910c8fb1e9dc28dbfeb876509b66e7fbe0687c231"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完成。以下是完整验证结果：\n\n```\n=== Qwen 8B FT CoNLL N=8 ===\n(来源: exp002_conll2003 / exp_002_conll_n8_seed{123,456} report.json, 全集 3453 实例)\n\nSeed 42:  greedy=0.9074  oracle=0.9468  headroom=3.94pp\nSeed 123: greedy=0.9072  oracle=0.9524  headroom=4.53pp\nSeed 456: greedy=0.9068  oracle=0.9434  headroom=3.66pp\n3-seed mean: greedy=0.9071  oracle=0.9475  headroom=4.04pp\n\n(来源: selection_f1_qwen_conll_n8.json, 过滤后 n=2756, 仅 seed 42)\nSeed 42:  greedy=0.9079  oracle=0.9483  headroom=4.04pp\n\n=== Qwen 8B FT CoNLL N=16 (对比用) ===\n(来源: exp_002_conll_n16 / seed123 / seed456 report.json, 全集 3453)\n\nSeed 42:  greedy=0.9075  oracle=0.9566  headroom=4.92pp\nSeed 123: greedy=0.9068  oracle=0.9633  headroom=5.65pp\nSeed 456: greedy=0.9074  oracle=0.9549  headroom=4.75pp\n3-seed mean: greedy=0.9072  oracle=0.9583  headroom=5.11pp\n\n=== Appendix cross_selection 表 Qwen/CoNLL (line 248) ===\n论文写: Greedy=.908  Oracle=.957  → headroom=4.9pp\nMatches raw data: NO\n\n- Greedy=.908 正确（N=8 seed42 filtered: .9079 → 四舍五入 .908 ✓）\n- Oracle=.957 错误！这是 N=16 seed 42 的值（.9566 → .957）\n  N=8 正确值: seed42 filtered=.948, 3-seed full mean=.948\n- 正确 headroom: .948 - .908 = 4.0pp（非 4.9pp）\n\n=== LLaMA CoNLL N=8 ===\n(来源: selection_f1_llama_conll_n8.json, n=2756)\ngreedy=0.9242  oracle=0.9426  headroom=1.84pp\n\n论文写: Greedy=.924  Oracle=.943  → headroom=1.9pp\nMatches raw data: YES ✓\n\n(来源: exp_017_llama_conll_infer/report.json, N=8, 全集 3453)\ngreedy=0.9266  oracle=0.9443  headroom=1.77pp\n\n=== LLaMA CoNLL N=16 (对比用) ===\n(来源: exp_017_llama_conll_n16 / s123 / s456 report.json)\nSeed 42:  greedy=0.9267  oracle=0.9487  headroom=2.20pp\nSeed 123: greedy=0.9266  oracle=0.9497  headroom=2.31pp\nSeed 456: greedy=0.9267  oracle=0.9488  headroom=2.21pp\n3-seed mean: greedy=0.9267  oracle=0.9491  headroom=2.24pp\n\n=== tab:scale_comparison (主论文, 可能是 Table 5) ===\n论文写: CoNLL 8B FT  Greedy=.908  Hdr.≈5pp\n这个 ≈5pp 大概率来自 .957-.908=4.9pp，同样基于错误的 N=16 oracle。\n正确值: ≈4pp（.948-.908=4.0pp）\n\n=== 结论 ===\n1. 确认 BUG: appendix cross_selection 表 Qwen/CoNLL N=8 行的 Oracle=.957\n   实为 N=16 seed42 值（.9566→.957），非 N=8。\n   N=8 正确 Oracle ≈ .948（seed42 filtered）或 .948（3-seed full mean）。\n\n2. 正确 headroom:\n   - Qwen/CoNLL N=8: ~4.0pp（非论文中的 4.9pp）\n   - LLaMA/CoNLL N=8: ~1.8pp（论文中 1.9pp 正确）\n\n3. tab:scale_comparison 的 CoNLL Hdr.≈5 也可能受此影响，\n   正确值约 ≈4pp。\n\n4. 论文其他位置引用 \"CoNLL's low oracle headroom (5.0~pp at N=8)\"\n   （appendix line 932）同样需要修正为 ~4.0pp。\n\n5. Reviewer 怀疑 \"Tab5 误用 LLaMA 数据\" 不成立——\n   Tab5 的 .908 greedy 和 ≈5pp headroom 确实是 Qwen 数据，\n   但 oracle 误用了 N=16 而非 N=8。LLaMA CoNLL 的 headroom 仅 1.8pp，\n   并未被混入主表。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-conll-oracle-headroom-p0.md"
+}

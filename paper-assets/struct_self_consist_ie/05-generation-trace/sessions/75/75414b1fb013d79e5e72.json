@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75414b1fb013d79e5e72",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh lp best n scaling",
+  "task_key": "worker_ssh_lp_best_n_scaling_20260522T050848",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_lp_best_n_scaling_20260522T050848_result.json",
+    "occurrence": 1,
+    "bytes": 1390,
+    "sha256": "5a81c21905286857dc5dd1e3ba164eb2e40dceb47e39f02733f3244125ed9520"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果出来了。\n\n## LP-best F1 N-scaling 结果\n\n| Dataset | N | LP-best F1 | Greedy F1 | LP Δ (pp) | #inst | seed |\n|---------|---|-----------|-----------|-----------|-------|------|\n| SciERC | 8 | 66.51% | 63.48% | +3.03 | 529 | 42 |\n| SciERC | 16 | 66.35% | 64.07% | +2.28 | 529 | 42 |\n| SciERC | 32 | 67.08% | 63.60% | +3.48 | 529 | 42 |\n| SciERC | 64 | 67.12% | 63.79% | +3.33 | 529 | 42 |\n| CoNLL | 8 | 89.57% | 89.47% | +0.09 | 2756 | 123 |\n| CoNLL | 16 | 90.01% | 88.57% | +1.44 | 2756 | 456 |\n| CoNLL | 32 | 89.23% | 88.62% | +0.61 | 2756 | 42 |\n| CoNLL | 64 | 88.89% | 88.66% | +0.23 | 2756 | 42 |\n| FewNERD | 8 | 79.27% | 71.23% | +8.04 | 32565 | 42 |\n| FewNERD | 16 | 79.46% | 71.23% | +8.23 | 32565 | 42 |\n\n**关键发现：**\n- **FewNERD LP Δ 最大**（+8pp），Greedy 基线较弱，LP 选择收益显著\n- **SciERC LP Δ 稳定在 +2.3–3.5pp**，N 从 8 到 64 几乎没有进一步增长（饱和）\n- **CoNLL LP Δ 最小**（+0.1–1.4pp），但注意 N=8 和 N=16 用了不同 seed，不可直接比较 scaling 趋势\n- CoNLL 的 Greedy F1 跨 seed 有波动（88.57–89.47%），说明不同 seed 之间有 ~1pp 差异\n\n**缺失数据：** CoNLL N=8/N=16 没有 seed42 文件（分别用 seed123/seed456 替代），FewNERD N=32 数据不存在。\n\n结果已保存到服务器 `output/lp_best_n_scaling_results.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-lp-best-n-scaling.md"
+}

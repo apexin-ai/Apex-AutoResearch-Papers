@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "97945421e69afafe9d0d",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "run fulldata groupkfold probe",
+  "task_key": "worker_run_fulldata_groupkfold_probe_20260521T034544",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_fulldata_groupkfold_probe_20260521T034544.log",
+    "occurrence": 1,
+    "bytes": 1117549,
+    "sha256": "8c91dba3d1d8fdf95db92aa5abee8d451d2c439f7a5fc432d1a190edc853093e"
+  },
+  "statistics": {
+    "messages": 600,
+    "user_turns": 1,
+    "tool_calls": 230,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 131,
+      "tool_call": 230,
+      "tool_result": 230,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 542,
+      "chunks": [
+        {
+          "path": "97945421e69afafe9d0d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "97945421e69afafe9d0d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "97945421e69afafe9d0d-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "97945421e69afafe9d0d-part-0004.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 58,
+      "chunks": [
+        {
+          "path": "97945421e69afafe9d0d-part-0004.json",
+          "message_count": 58
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-fulldata-groupkfold-probe.md"
+}

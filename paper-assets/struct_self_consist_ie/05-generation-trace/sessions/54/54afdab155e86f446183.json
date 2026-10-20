@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "54afdab155e86f446183",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "audit table data source",
+  "task_key": "worker_audit_table_data_source_20260518T034305",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_table_data_source_20260518T034305_result.json",
+    "occurrence": 1,
+    "bytes": 2724620,
+    "sha256": "4469d95deeb15bfc1d3da65b8e8d8d5a386fa2a85784c5df58411153cf41151e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2724640,
+                "serialized_sha256": "e8c154d94e23dad3a69d6e2ee8d9e34dca11709e93e938d939ef68bf9f83c622",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-table-data-source.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c08ba9f2af05007a26f0",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "run frontier sc claude",
+  "task_key": "worker_run_frontier_sc_claude_20260521T061115",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_run_frontier_sc_claude_20260521T061115.log",
+    "occurrence": 1,
+    "bytes": 715212,
+    "sha256": "587e4929fa82322380ee8aed2c09d99977775acea76bbeee284eea8d3a0144da"
+  },
+  "statistics": {
+    "messages": 177,
+    "user_turns": 0,
+    "tool_calls": 58,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 58,
+      "tool_result": 58,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 177,
+      "chunks": [
+        {
+          "path": "c08ba9f2af05007a26f0-part-0001.json",
+          "message_count": 150
+        },
+        {
+          "path": "c08ba9f2af05007a26f0-part-0002.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-frontier-sc-claude.md"
+}

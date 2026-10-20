@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40fa84d3b2c57c314113",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "eval mvp pilot 001",
+  "task_key": "worker_eval_mvp_pilot_001_20260514T074023",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_mvp_pilot_001_20260514T074023_result.json",
+    "occurrence": 1,
+    "bytes": 1282,
+    "sha256": "265817c0392270f83212d7ec0a47a3717f790990c26bd234275378ccca79b94d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果总结：\n\n## mvp_pilot_001 结果\n\n| 指标 | NER | RE |\n|------|-----|-----|\n| Greedy F1 | 61.1% | 35.5% |\n| Oracle F1 | 78.0% | 57.2% |\n| Headroom | +16.9pp | +21.7pp |\n| Gold-empty filtered | 22 | 154 |\n| All-samples-F1=0 filtered | 19 | 77 |\n| Fleiss κ (mean) | 0.2449 | 0.0681 |\n| Soft Jaccard (mean) | 0.5041 | 0.3635 |\n| Full ρ(SJ,F1) | +0.3616 (n=529) | +0.2535 (n=397) |\n| Full ρ(κ,F1) | +0.3515 (n=529) | +0.2885 (n=397) |\n| Cond ρ(SJ,F1) | +0.3688 (n=510) | +0.3515 (n=320) |\n| Cond ρ(κ,F1) | +0.3569 (n=510) | +0.3107 (n=320) |\n| SJ > κ (full) | YES (+0.01) | NO (-0.03) |\n| SJ > κ (cond) | YES (+0.01) | YES (+0.04) |\n| Sample F1=0 | 20.4% | 58.3% |\n\n**Verdict: FAIL** — RE full ρ_sj=0.2535 < 0.40 threshold, and SJ does not beat κ on the full set.\n\n关键发现：\n- **Parse failures**: 164/4408 stochastic, 29/551 greedy — 输出被 max_tokens=512 截断（greedy fail 的 raw output 都是有效 JSON 的前缀）\n- **RE 的 conditional set 上 SJ 确实优于 κ**（+0.3515 vs +0.3107），但 full set 上不成立，因为大量 gold-empty（154）和 all-zero（77）instance 稀释了信号\n- **Headroom 很大**（NER +16.9pp, RE +21.7pp），oracle best-of-8 有显著提升空间"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mvp-pilot-001.md"
+}

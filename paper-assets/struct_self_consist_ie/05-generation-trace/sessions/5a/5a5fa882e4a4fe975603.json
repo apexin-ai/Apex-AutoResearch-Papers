@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a5fa882e4a4fe975603",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "gpu 14b conll rerun",
+  "task_key": "worker_gpu_14b_conll_rerun_20260521T104141",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_14b_conll_rerun_20260521T104141_result.json",
+    "occurrence": 1,
+    "bytes": 503,
+    "sha256": "697937bcc9741cf4b53b70efa39d27ae02c4debefb7853eb2a9c5579fe47aa56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动并注册为 RUNNING。\n\n**总结**：\n- **exp_id**: `exp_14b_inference_conll_v2`\n- **服务器**: autodl-5090-c, cuda:2 (31.1/32.6 GB)\n- **PID**: 308788\n- **进度**: 3453 samples × 8 = 27624 prompts，~18 it/s\n- **预计完成**: ~25 分钟\n- **注意**: 因显存紧张加了 `--gpu_memory_utilization 0.95 --enforce_eager`，KV cache 仅 1.09 GiB (max concurrency 1.45x)，速度比宽裕显存场景慢但能跑完\n- **日志**: `output/14b_conll_v2_run.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-14b-conll-rerun.md"
+}

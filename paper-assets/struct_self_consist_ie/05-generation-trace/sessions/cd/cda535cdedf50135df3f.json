@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cda535cdedf50135df3f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "audit exp027 mlp rf verifier",
+  "task_key": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_exp027-mlp-rf-verifier_20260519T220906_result.json",
+    "occurrence": 1,
+    "bytes": 1309,
+    "sha256": "d59c63184aa21ad7013a0332daa72344dd76fd368e84656b41807fe15da8ff47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：✅ 数据存在，论文数值匹配\n\n### 数据源路径\n\n| 文件 | 说明 |\n|------|------|\n| `/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/results.json` | **论文引用的主数据源**（SciERC, N=16, 3 seeds: 42/123/456, 5-fold CV） |\n| `/root/autodl-tmp/struct_self_consist_ie/output/exp_027v2_mlp_verifier/results.json` | v2 版本（MLP 有 hyperparameter 调整，数值略不同） |\n| `/root/autodl-tmp/struct_self_consist_ie/output/supervised_verifier_upgrade/results.json` | 3 数据集全量结果（SciERC/CoNLL/Few-NERD） |\n| `/root/autodl-tmp/struct_self_consist_ie/output/r17_analyses/mlp_verifier_comparison.json` | 汇总对比（含 diagnosis） |\n\n### 数值比对（appendix L437 vs `exp_027_mlp_verifier`）\n\n| 指标 | 论文声称 | 数据实际值 | 匹配 |\n|------|---------|-----------|------|\n| Greedy F1 | 0.644 | 0.6441 | ✓ |\n| LR Δ vs greedy | −0.4 pp | −0.35 pp (0.6406) | ✓ (四舍五入) |\n| MLP Δ vs greedy | −1.6 pp | −1.63 pp (0.6278) | ✓ |\n| RF Δ vs greedy | −3.1 pp | −3.08 pp (0.6133) | ✓ |\n| AUROC (interaction vs base) | 0.634 vs 0.638 | MLP_15feat 0.6341 vs MLP_5feat 0.6381 | ✓ |\n\n所有数值一致。experiment_plan 标记为 planned 应更新为 completed。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-exp027-mlp-rf-verifier.md"
+}

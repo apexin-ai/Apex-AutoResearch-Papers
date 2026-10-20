@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8469e965e7a8d950c79a",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code llama fewnerd completion check",
+  "task_key": "worker_code_llama_fewnerd_completion_check_20260519T010728",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_llama_fewnerd_completion_check_20260519T010728_result.json",
+    "occurrence": 1,
+    "bytes": 730,
+    "sha256": "5016bc1b4cc769456c965576a0c1c98af3c3aa96fcd8469922943590b428fa62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理流程正在运行，Step 1 (LoRA merge) 正在加载 base model。\n\n### 总结\n\n**训练判定：成功**\n- 3 epochs 完成，24708 steps，train_loss=0.0516，eval_loss=0.0323\n- adapter_model.safetensors (320MB) 已保存于 `checkpoints/llama3.1-8b-fewnerd-lora/`\n- 训练耗时 15h21m，无错误\n\n**Registry 已更新**\n- `exp_llama_fewnerd_lora`: status=DONE, conclusion=success, metrics 已记录\n\n**推理已启动**\n- tmux session `llama_fewnerd_infer` 运行中\n- 流程：LoRA merge → 3-seed 推理 (GPU 0/2/3, seeds 42/123/456) → 分析 → 清理 merged model\n- 当前正在 Step 1 加载 base model 进行 merge\n\n**Cron 已清除**\n- `exp_llama_fewnerd_lora` cron 已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-fewnerd-completion-check.md"
+}

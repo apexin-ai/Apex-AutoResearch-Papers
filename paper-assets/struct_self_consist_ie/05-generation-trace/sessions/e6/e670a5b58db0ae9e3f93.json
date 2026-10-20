@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e670a5b58db0ae9e3f93",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5090 kill n16s456 and fill",
+  "task_key": "worker_ssh_5090_kill_n16s456_and_fill_20260521T152100",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090_kill_n16s456_and_fill_20260521T152100_result.json",
+    "occurrence": 1,
+    "bytes": 2282,
+    "sha256": "5255bf0e1a50fe822b282bb1f535fbeec866b3357de7d199663b2e36a5b8c4f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n## 1. Kill 状态: 未找到 fewnerd_n16_s456 进程\n\ncuda:0 上没有任何进程。找到的相关进程是：\n- **PID 47635** `exp_e2_pretrained_fewnerd_s456` — N=**8**（不是16），运行在 **cuda:3**，是 pretrained baseline\n- **tmux `exp_001_n16_seed456`** — 是 **SciERC**（不是 FewNERD）\n\n**cuda:0 已空闲，无需 kill。**\n\n## 2. GPU 状态\n\n| GPU | Memory | 状态 |\n|-----|--------|------|\n| cuda:0 | 2 MiB / 32 GB | **空闲** |\n| cuda:1 | 30204 MiB / 32 GB | 占用 |\n| cuda:2 | 30230 MiB / 32 GB | 占用 |\n| cuda:3 | 29946 MiB / 32 GB | 占用 (exp_e2_pretrained_fewnerd_s456) |\n\n## 3. 候选实验（从 PREPARING/QUEUED 中筛选，排除已完成/已有结论的）\n\n| # | 实验 ID | 内容 | Hypothesis 摘要 |\n|---|---------|------|-----------------|\n| **A** | `exp_fewnerd_mf4v2_s123_v3` | FewNERD MF4v2 N=8 s123, 修正后的模型路径 | v2 因模型路径错误失败，v3 修正 tokenizer dir。补齐 MF4 3-seed |\n| **B** | `exp_fewnerd_mf4v2_s42_v3` | FewNERD MF4v2 N=8 s42, 同上修正 | 同上，另一个 seed |\n| **C** | `exp_dgec_heterogeneous_t` | 混合 T=0.7+T=1.0 采样 | 混温打破 mode collapse 降低 degeneracy，构造 F1 提升 |\n| **D** | `exp_scierc_n16_s42` | SciERC N=16 s42（你说已完成？registry 仍 PREPARING） | SciERC 扩展到 N=16，测 oracle headroom |\n| **E** | `exp_a1_spider_sql_sc` | Spider SQL 跨任务验证（在 5090-b:cuda:2） | SC cascade 是否泛化到 SQL 结构化生成 |\n\n**已排除**：exp_b2 系列（4个均 conclusion=negative）、exp_fewnerd_n16_s456_v2（你说已在 5090-c 完成）、exp_e2_pretrained_fewnerd_s456（正在 cuda:3 运行）、3 个 QUEUED mf4（conclusion=killed）。\n\n## 4. 可用资源\n\n- **8B 模型**: qwen3-8b-fewnerd-exp021-merged, qwen3-8b-conll2003-merged, qwen3-8b-scierc-merged-v2\n- **Pretrained**: Qwen2.5-7B-Instruct\n- **数据**: fewnerd, conll2003, scierc, wnut17, fewrel, retacred_raw\n- **核心脚本**: `run_mvp_pilot.py`, `run_frontier_sc.py`, `run_esj.py`, `run_verbalized_confidence.py`\n\n---\n\n**推荐**: A 或 B（MF4v2 修正版）优先级最高——补齐 FewNERD 3-seed 统计检验力。C（混温实验）概念新颖但无先验结论。选哪个？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5090-kill-n16s456-and-fill.md"
+}

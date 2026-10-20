@@ -1,0 +1,2356 @@
+{
+  "schema_version": "1.0",
+  "id": "49d956942b2767013dae",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "code exp b frontier sc",
+  "task_key": "worker_code_exp_b_frontier_sc_20260520T181716",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_code_exp_b_frontier_sc_20260520T181716.jsonl",
+    "occurrence": 1,
+    "bytes": 138125,
+    "sha256": "362de5987e8fea32c9b058e7e290e66a220de705b6935e6a3dae3d9589789bf1"
+  },
+  "statistics": {
+    "messages": 119,
+    "user_turns": 0,
+    "tool_calls": 59,
+    "roles": {
+      "tool_call": 59,
+      "tool_result": 59,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T18:25:10.636072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T18:25:10.636401+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T18:25:10.636556+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "OpenRouter model ID GPT-5.5 Claude Opus 4.6 2026"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T18:25:10.636718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"OpenRouter model ID GPT-5.5 Claude Opus 4.6 2026\"\n\nLinks: [{\"title\":\"Claude Opus 4.6 - API Pricing & Benchmarks | OpenRouter\",\"url\":\"https://openrouter.ai/anthropic/claude-opus-4.6\"},{\"title\":\"Models | OpenRouter\",\"url\":\"https://openrouter.ai/models\"},{\"title\":\"Hermes Agent + GPT-5.5 — OpenAI's Latest Model with Hermes | OpenClaw Launch\",\"url\":\"https://openclawlaunch.com/guides/hermes-agent-gpt-5-5\"},{\"title\":\"GPT-5.5 vs Claude Opus 4.6 (Fast) - AI Model Comparison | OpenRouter\",\"url\":\"https://openrouter.ai/compare/openai/gpt-5.5/anthropic/claude-opus-4.6-fast\"},{\"title\":\"Claude Opus 4.7 - API Pricing & Benchmarks | OpenRouter\",\"url\":\"https://openrouter.ai/anthropic/claude-opus-4.7\"},{\"title\":\"Anthropic API and Models | OpenRouter\",\"url\":\"https://openrouter.ai/anthropic\"},{\"title\":\"Anthropic | OpenRouter\",\"url\":\"https://openrouter.ai/provider/anthropic\"},{\"title\":\"Integration with Claude Code | OpenRouter | OpenRouter | Documentation\",\"url\":\"https://openrouter.ai/docs/cookbook/coding-agents/claude-code-integration\"},{\"title\":\"How to Run Claude Code with Cheaper Models: OpenRouter, NVIDIA NIM, and Ollama | MindStudio\",\"url\":\"https://www.mindstudio.ai/blog/claude-code-cheaper-models-openrouter-nvidia-nim-ollama\"},{\"title\":\"Claude Opus 4.5 - API Pricing & Benchmarks | OpenRouter\",\"url\":\"https://openrouter.ai/anthropic/claude-opus-4.5\"}]\n\nBased on the search results, here's what I found about these models on OpenRouter:\n\n## GPT-5.5\nGPT-5.5 is available in OpenRouter using the model ID openai/gpt-5.5. GPT-5.5 is OpenAI's flagship model as of 2026, succeeding the GPT-4o line.\n\n## Claude Opus 4.6\nOpus 4.6 is Anthropic's strongest model for coding and long-running professional tasks. The model ID on OpenRouter is **anthropic/claude-opus-4.6**. It was released on Feb 4, 2026 with pricing of $5 per million input tokens, $25 per million output tokens.\n\nThe search results confirm both models are available on OpenRouter in 2026, with the specific m\n…[truncated 203 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T18:25:10.636878+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Agent",
+            "tool_args": {
+              "subagent_type": "Explore",
+              "description": "Explore project structure and code patterns",
+              "prompt": "I need to understand the project structure and existing code patterns for an NER experiment project. Please explore:\n\n1. The directory structure under /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ — especially `artifacts/`, `src/`, and any existing experiment scripts\n2. Look for existing NER prompt templates or UIE JSON schema definitions used in the project\n3. Check if there's any FewNERD data locally (test.json or similar)\n4. Look for existing experiment scripts that use OpenAI SDK or API calls for reference on the project's coding patterns\n5. Check for any existing majority vote / self-consistency implementation code\n6. Look at how the project structures its entity types (the 8 FewNERD coarse types)\n\nSearch breadth: very thorough. Report file paths, key code snippets, and patterns found."
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T18:25:10.637057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type f -name \"*.py\" -o -name \"*.json\" -o -name \"*.txt\" -o -name \"*.md\" | head -100"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T18:25:10.637252+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/figures/paper/fig_signal_heatmap.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/figures/paper/fig_reliability_data.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/figures/paper/fig_reliability.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/scripts/j_calibration.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/scripts/adalp_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/scripts/dals_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/IDEA_BRIEF.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_n16_readiness_check_20260515T100959_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_exp_027_merge_analyze_20260517T053441_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_sampling_and_main_20260514T042643_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_ssh_download-fig10-oracle-scaling_20260520T133635_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_exp_qwen25_7b_fewnerd_v3_20260519T112555_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_exp017_lp_range_20260515T154349_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_exp021_within_rho_20260517T203007_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_exp_017_llama_conll_inference_202605\n…[truncated 13366 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T18:25:10.637411+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "tree -L 3 -d /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie 2>/dev/null || find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -type d | head -50"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T18:25:10.637549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/figures\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/figures/paper\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/scripts\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/results\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/results/figures\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/chats\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/chats/archive\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/director\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/agent\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/task_context/history/reviewer\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/share\n/home/ubuntu/.\n…[truncated 3873 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T18:25:10.637700+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -maxdepth 2 -type d | sort"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T18:25:10.637854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/bin\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/include\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/share\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/3seed_summary\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/__pycache__\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a2_degen_regression\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a4_pareto_diversity\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/b1_scd_prep\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/b2_oof\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/b2_v2_multi_domain\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/b2_v3_domain_invariant\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/b2_v4_inverse_freq\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/b2_verifier\n/home/ubuntu/.agent-ml-research-idea\n…[truncated 14378 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T18:25:10.637999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code -type f -name \"*.py\" 2>/dev/null | head -30"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T18:25:10.638117+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code/aggregate_scaling_results.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code/plot_scaling_curve.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code/exp_b3_prompted_diversity.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code/analysis_mbr_selection.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code/generate_scale_table.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code/zeroshot_prompts.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T18:25:10.638275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/data -type f 2>/dev/null | head -20"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T18:25:10.638390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/data/qwen_scierc_3seed_em_voting.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/data/bootstrap_ci_summary.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T18:25:10.638514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*{prompt,ner,uie,schema,few*,entity,fewnerd}*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T18:25:10.638631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ".venv/lib/python3.14/site-packages/pip/__pip-runner__.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/spinners.py\n.venv/lib/python3.14/site-packages/pip/_vendor/pygments/scanner.py\n.venv/lib/python3.14/site-packages/pip/_vendor/rich/_spinners.py\n.venv/lib/python3.14/site-packages/pip/_vendor/rich/containers.py\n.venv/lib/python3.14/site-packages/pip/_vendor/rich/prompt.py\n.venv/lib/python3.14/site-packages/pip/_vendor/rich/spinner.py\n.venv/lib/python3.14/site-packages/PIL/ContainerIO.py\n.venv/lib/python3.14/site-packages/numpy/random/tests/test_generator_mt19937.py\n.venv/lib/python3.14/site-packages/numpy/random/tests/test_generator_mt19937_regressions.py\n.venv/lib/python3.14/site-packages/fontTools/varLib/avarPlanner.py\n.venv/lib/python3.14/site-packages/matplotlib/container.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_container.py\nartifacts/hidden_state_probe/extract_hidden_states_fewnerd.py\nartifacts/hidden_state_probe/hidden_state_probe_fewnerd.py\nartifacts/entity_construction.py\nartifacts/entity_construction_fair.py\ncode/zeroshot_prompts.py\ncode/generate_scale_table.py\nb2_entity_verifier.py\ncode/exp_b3_prompted_diversity.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T18:25:10.638755+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*{prompt,ner,uie,schema,test,data}*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T18:25:10.638883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "logs/workers/worker_code_data_eval_modules_20260514T042533_result.json\nlogs/workers/worker_data_scierc_prep_20260514T052927_result.json\nlogs/workers/worker_research_e4_dataset_survey_20260514T092619_result.json\nartifacts/dream_reports/dream_20260514T093336/best/experiment_data.json\nartifacts/dream_reports/dream_20260514T093336/median/experiment_data.json\nartifacts/dream_reports/dream_20260514T093336/worst/experiment_data.json\nlogs/workers/worker_code_conll2003_data_prep_20260514T100814_result.json\nlogs/workers/worker_code_wnut17_data_prep_20260514T100828_result.json\nartifacts/dream_reports/dream_20260514T105303/best/experiment_data.json\nlogs/workers/worker_code_data_format_fix_20260514T113420_result.json\nartifacts/dream_reports/dream_20260514T105303/median/experiment_data.json\ncheckpoints/exp_001_ner_n16_scierc_PENDING_20260514T114210.json\ncheckpoints/exp_002_ner_conll2003_PENDING_20260514T114215.json\ncheckpoints/exp_003_ner_wnut17_PENDING_20260514T114217.json\nartifacts/dream_reports/dream_20260514T105303/worst/experiment_data.json\ncheckpoints/exp_007_ner_multi_model_PENDING_20260514T114220.json\ncheckpoints/exp_007_ner_llama_PREPARING_20260514T114221.json\ncheckpoints/exp_001_ner_n16_scierc_QUEUED_20260514T114257.json\ncheckpoints/exp_002_ner_conll2003_QUEUED_20260514T114258.json\ncheckpoints/exp_003_ner_wnut17_QUEUED_20260514T114258.json\ncheckpoints/exp_007_ner_multi_model_QUEUED_20260514T114259.json\nlogs/workers/worker_code_check_dataset_and_logprob_readiness_20260514T114258_result.json\ncheckpoints/exp_001_ner_n16_scierc_RUNNING_20260514T115007.json\ncheckpoints/exp_002_ner_conll2003_RUNNING_20260514T115032.json\nlogs/workers/worker_gpu_exp_002_ner_conll2003_20260514T114609_result.json\ncheckpoints/exp_001_ner_n16_scierc_RUNNING_20260514T115541.json\ncheckpoints/exp_001_ner_n16_scierc_DONE_20260514T115545.json\nlogs/workers/worker_gpu_exp_001_ner_n16_scierc_20260514T114538_result.json\ncheckpoints/exp_002_ner_conll2003_RUNNING_20260514T120258.json\ncheckpoints/exp_003_ner_w\n…[truncated 4902 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T18:25:10.639024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "openai|OpenAI|api_call|completion|gpt",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code",
+              "type": "py"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T18:25:10.639163+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 1 file\ncode/zeroshot_prompts.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T18:25:10.639309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "majority_vote|voting|ensemble|consistency|self_consistency",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+              "type": "py",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T18:25:10.639453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 172 files\nartifacts/exp_asb_adaptive_budget/data/run_asb.py\nartifacts/experiments/asb/run_asb.py\nartifacts/exp_backup3_distill_verifier/intermediate/run_distill_verifier.py\nartifacts/experiments/distill_verifier/run_distill_verifier.py\nartifacts/experiments/het_temp/run_het_temp.py\nartifacts/experiments/lsc/run_lsc.py\nartifacts/exp_lsc_latent_sc/data/run_lsc.py\nartifacts/run_lsc.py\nartifacts/run_mrsc.py\nartifacts/experiments/mrsc/run_mrsc.py\nartifacts/experiments/esj/run_esj.py\ncode/exp_b3_prompted_diversity.py\nartifacts/b2_v4_inverse_freq/b2_v4_inverse_freq.py\nartifacts/b2_oof/b2_oof_evaluation.py\nartifacts/b2_v3_domain_invariant/b2_v3_domain_invariant.py\nartifacts/b2_v2_multi_domain/b2_v2_multi_domain.py\nartifacts/k_robustness/robustness_analysis.py\nartifacts/e2v2_regime_weights/e2v2_regime_weights.py\nartifacts/e2v2_regime_weights/intermediate/e2v2_regime_weights.py\nartifacts/e1v2_signal_routing/e1v2_signal_routing.py\nartifacts/exp_e1v2_signal_routing/data/e1v2_signal_routing.py\nartifacts/n_inverse_scaling/run_analysis.py\nartifacts/e2_ensemble/run_e2_ensemble.py\nb2_entity_verifier.py\ne1_signal_routing.py\nartifacts/construction_variants.py\nartifacts/_project/intermediate/compute_signals.py\nartifacts/compute_signals.py\nartifacts/entity_construction_fair.py\nartifacts/entity_construction.py\nartifacts/selective_prediction.py\nartifacts/lp_alignment_gated_selection.py\nartifacts/ccs_selection.py\nartifacts/bootstrap_selection_test.py\nartifacts/evaluation.py\nartifacts/exp_019_trained_verifier/train_verifier.py\nartifacts/exp-019/intermediate/train_verifier.py\nartifacts/analyze_ood_signals.py\nartifacts/evaluate_verifier.py\nartifacts/re_conditional_analysis.py\nartifacts/n8_bootstrap_ci.py\n.venv/lib/python3.14/site-packages/mpl_toolkits/mplot3d/tests/test_legend3d.py\n.venv/lib/python3.14/site-packages/mpl_toolkits/mplot3d/axes3d.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_legend.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_fontconfig_pattern\n…[truncated 8020 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T18:25:10.639603+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "class.*NER|def.*ner|extract.*entity|entity_types|coarse|fine",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code",
+              "type": "py",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T18:25:10.639719+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 5 files\ncode/exp_b3_prompted_diversity.py\ncode/plot_scaling_curve.py\ncode/generate_scale_table.py\ncode/aggregate_scaling_results.py\ncode/analysis_mbr_selection.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T18:25:10.639839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -maxdepth 1 -type f -name \"*.py\" | head -20"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T18:25:10.639949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/e1_signal_routing.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/analysis_r21_q1_alignment.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/b2_entity_verifier.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T18:25:10.640065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code/zeroshot_prompts.py"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T18:25:10.640235+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Zero-shot NER prompt templates for Qwen2.5-72B baseline evaluation.\n2\t\n3\tOutput format is compatible with the existing pipeline (sampling.py):\n4\t  {\"entities\": [{\"text\": \"...\", \"type\": \"...\", \"start\": <int>, \"end\": <int>}],\n5\t   \"relations\": [], \"events\": []}\n6\t\"\"\"\n7\t\n8\t# ---------------------------------------------------------------------------\n9\t# Entity type definitions per dataset\n10\t# ---------------------------------------------------------------------------\n11\t\n12\tDATASET_ENTITY_TYPES = {\n13\t    \"conll2003\": {\n14\t        \"types\": [\"PER\", \"ORG\", \"LOC\", \"MISC\"],\n15\t        \"descriptions\": {\n16\t            \"PER\": \"Person names (e.g., John Smith, Obama)\",\n17\t            \"ORG\": \"Organizations (e.g., Google, United Nations)\",\n18\t            \"LOC\": \"Locations (e.g., France, Mount Everest)\",\n19\t            \"MISC\": \"Miscellaneous named entities not fitting PER/ORG/LOC (e.g., English, World Cup)\",\n20\t        },\n21\t    },\n22\t    \"fewnerd\": {\n23\t        \"types\": [\"person\", \"organization\", \"location\", \"building\", \"art\", \"product\", \"event\", \"other\"],\n24\t        \"descriptions\": {\n25\t            \"person\": \"Person names\",\n26\t            \"organization\": \"Organizations, companies, teams\",\n27\t            \"location\": \"Geographic locations, countries, cities\",\n28\t            \"building\": \"Buildings, facilities, landmarks\",\n29\t            \"art\": \"Artworks, songs, films, books\",\n30\t            \"product\": \"Commercial products, software, vehicles\",\n31\t            \"event\": \"Events, competitions, wars, festivals\",\n32\t            \"other\": \"Other named entities not fitting the above categories\",\n33\t        },\n34\t    },\n35\t    \"scierc\": {\n36\t        \"types\": [\"Generic\", \"Material\", \"Method\", \"Metric\", \"OtherScientificTerm\", \"Task\"],\n37\t        \"descriptions\": {\n38\t            \"Generic\": \"Generic references to scientific concepts (coreference)\",\n39\t            \"Material\": \"Data, datasets, corpora, resources\",\n40\t            \"Method\": \"Algorithms, models, systems, tools\",\n41\t           \n…[truncated 5191 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T18:25:10.640395+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -name \"*fewnerd*\" -o -name \"*test.json\" | head -20"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T18:25:10.640525+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_exp_qwen25_7b_fewnerd_v3_20260519T112555_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_llama_fewnerd_inference_status_v3_20260519T024716_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_exp_fewnerd_dals_multiseed_20260518T070429_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_llama_fewnerd_completion_check_20260519T010728_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_audit_recompute_tab_fewnerd_all_20260518T041428_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_llama_fewnerd_merge_prep_20260518T222902_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_exp_exp_020_fewnerd_smoke_20260516T103407_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_exp_hidden_probe_fewnerd_20260518T105429.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_llama_fewnerd_progress_check_20260519T002618_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_exp_qwen_fewnerd_seed456_20260518T092846.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_verify_7b_fewnerd_running_20260519T114923.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_fewnerd_seed42_reanalyze_20260518T210539_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_gpu_exp_14b_inferen\n…[truncated 1098 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T18:25:10.640661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/entity_construction.py",
+              "limit": "150"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T18:25:10.640797+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Entity-Level Majority Vote Construction for NER and RE.\n2\t\n3\tCore hypothesis: the correct analogy for self-consistency on structured output\n4\tis entity-level majority vote construction, not instance-level best-of-N selection.\n5\t\"\"\"\n6\t\n7\timport json\n8\timport math\n9\timport os\n10\timport sys\n11\timport numpy as np\n12\tfrom collections import defaultdict\n13\t\n14\t# ---------------------------------------------------------------------------\n15\t# Metrics (mirroring unified_metrics.py)\n16\t# ---------------------------------------------------------------------------\n17\t\n18\tdef compute_prf(pred_set, gold_set):\n19\t    if not gold_set and not pred_set:\n20\t        return 1.0, 1.0, 1.0\n21\t    if not pred_set:\n22\t        return 0.0, 0.0, 0.0\n23\t    if not gold_set:\n24\t        return 0.0, 0.0, 0.0\n25\t    tp = len(pred_set & gold_set)\n26\t    if tp == 0:\n27\t        return 0.0, 0.0, 0.0\n28\t    p = tp / len(pred_set)\n29\t    r = tp / len(gold_set)\n30\t    f = 2 * p * r / (p + r)\n31\t    return p, r, f\n32\t\n33\t\n34\tdef entity_set(entities):\n35\t    return {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in entities}\n36\t\n37\t\n38\tdef relation_set(relations):\n39\t    return {(r[\"head_start\"], r[\"head_end\"], r[\"tail_start\"], r[\"tail_end\"], r[\"type\"])\n40\t            for r in relations}\n41\t\n42\t\n43\t# ---------------------------------------------------------------------------\n44\t# Construction\n45\t# ---------------------------------------------------------------------------\n46\t\n47\tdef entity_majority_vote(samples, threshold, weights=None):\n48\t    \"\"\"Collect entities across N samples, keep those above threshold.\"\"\"\n49\t    entity_counts = defaultdict(float)\n50\t    N = len(samples)\n51\t    for i, sample in enumerate(samples):\n52\t        w = weights[i] if weights is not None else 1.0\n53\t        for e in sample.get(\"entities\", []):\n54\t            key = (e[\"start\"], e[\"end\"], e[\"type\"])\n55\t            entity_counts[key] += w\n56\t\n57\t    total_weight = sum(weights) if weights is not None else N\n58\t    constructed = set\n…[truncated 3351 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T18:25:10.640949+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/consistency.py",
+              "limit": "150"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T18:25:10.641109+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Consistency metrics for structured information extraction with self-consistency.\n2\t\n3\tImplements three complementary consistency measures over N sampled extractions:\n4\t1. Fleiss' Kappa (surface matching) — treats N samples as N raters on entity presence\n5\t2. Structural soft Jaccard — span-level soft overlap with Hungarian matching\n6\t3. Oracle best-of-N — upper-bound F1 by selecting the best sample per instance\n7\t\n8\tKey dependencies: numpy, scipy (linear_sum_assignment).\n9\t\"\"\"\n10\t\n11\tfrom __future__ import annotations\n12\t\n13\tfrom itertools import combinations\n14\tfrom typing import TYPE_CHECKING\n15\t\n16\timport numpy as np\n17\tfrom scipy.optimize import linear_sum_assignment\n18\t\n19\tif TYPE_CHECKING:\n20\t    pass\n21\t\n22\t# ---------------------------------------------------------------------------\n23\t# Type aliases (mirrors shared data format)\n24\t# ---------------------------------------------------------------------------\n25\tEntity = dict       # {\"text\", \"type\", \"start\", \"end\"}\n26\tRelation = dict     # {\"head\", \"tail\", \"type\", ...}\n27\tEvent = dict        # {\"trigger\": {...}, \"arguments\": [...]}\n28\tExtraction = dict   # {\"entities\", \"relations\", \"events\"}\n29\t\n30\t\n31\t# ===================================================================\n32\t# 1. Fleiss' Kappa — surface‐level entity agreement\n33\t# ===================================================================\n34\t\n35\tdef _extract_surface_keys(sample: Extraction, subtask: str) -> set[tuple]:\n36\t    \"\"\"Extract surface-level keys from a sample for Fleiss' Kappa computation.\"\"\"\n37\t    if subtask == \"ner\":\n38\t        return {(e[\"text\"], e[\"type\"]) for e in sample.get(\"entities\", [])}\n39\t    elif subtask == \"re\":\n40\t        return {(r[\"head\"], r[\"tail\"], r[\"type\"]) for r in sample.get(\"relations\", [])}\n41\t    elif subtask == \"eae\":\n42\t        keys: set[tuple] = set()\n43\t        for ev in sample.get(\"events\", []):\n44\t            t = ev.get(\"trigger\", {})\n45\t            for arg in ev.get(\"arguments\", []):\n46\t                k\n…[truncated 3767 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T18:25:10.641291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/evaluation.py",
+              "limit": "100"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T18:25:10.641428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Evaluation module for structured self-consistency IE experiments.\n2\t\n3\tProvides strict-match NER/EAE evaluation, per-instance F1 computation,\n4\tcorrelation analysis, and summary report generation.\n5\t\"\"\"\n6\t\n7\tfrom __future__ import annotations\n8\t\n9\timport statistics\n10\tfrom typing import Any\n11\t\n12\tfrom scipy.stats import kendalltau, spearmanr\n13\t\n14\t\n15\t# ---------------------------------------------------------------------------\n16\t# NER evaluation (strict match)\n17\t# ---------------------------------------------------------------------------\n18\t\n19\tdef entity_strict_match(\n20\t    pred_entities: list[dict],\n21\t    gold_entities: list[dict],\n22\t) -> tuple[int, int, int]:\n23\t    \"\"\"Compute strict entity match counts.\n24\t\n25\t    Strict match requires exact span (start, end) AND exact type.\n26\t\n27\t    Args:\n28\t        pred_entities: Predicted entity dicts with keys text, type, start, end.\n29\t        gold_entities: Gold entity dicts with the same schema.\n30\t\n31\t    Returns:\n32\t        (tp, fp, fn) counts.\n33\t    \"\"\"\n34\t    pred_set = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in pred_entities}\n35\t    gold_set = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold_entities}\n36\t    tp = len(pred_set & gold_set)\n37\t    fp = len(pred_set - gold_set)\n38\t    fn = len(gold_set - pred_set)\n39\t    return tp, fp, fn\n40\t\n41\t\n42\tdef compute_ner_f1(\n43\t    predictions: list[dict],\n44\t    golds: list[dict],\n45\t) -> dict[str, float]:\n46\t    \"\"\"Compute micro-averaged NER precision, recall, and F1.\n47\t\n48\t    Args:\n49\t        predictions: List of Extraction dicts (one per instance).\n50\t        golds: List of Extraction dicts (one per instance), aligned with predictions.\n51\t\n52\t    Returns:\n53\t        Dict with keys \"precision\", \"recall\", \"f1\".\n54\t    \"\"\"\n55\t    total_tp = total_fp = total_fn = 0\n56\t    for pred, gold in zip(predictions, golds):\n57\t        tp, fp, fn = entity_strict_match(\n58\t            pred.get(\"entities\", []),\n59\t            gold.get(\"entities\", []),\n60\t        )\n61\t  \n…[truncated 1617 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T18:25:10.641574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/entity_construction.py",
+              "offset": "150",
+              "limit": "200"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T18:25:10.641725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "150\t\n151\tdef best_of_n_sj(inst):\n152\t    best_idx, best_val = 0, -float(\"inf\")\n153\t    for i, s in enumerate(inst[\"samples\"]):\n154\t        val = s.get(\"cumulative_logprob\", None)\n155\t        if val is not None and math.isfinite(val) and val > best_val:\n156\t            best_val = val\n157\t            best_idx = i\n158\t    return best_idx\n159\t\n160\t\n161\t# ---------------------------------------------------------------------------\n162\t# Main experiment\n163\t# ---------------------------------------------------------------------------\n164\t\n165\tTHRESHOLDS = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]\n166\t\n167\tDATASETS = {\n168\t    \"scierc\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl\",\n169\t    \"conll\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl\",\n170\t    \"fewnerd\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/samples.jsonl\",\n171\t}\n172\t\n173\tOUTPUT_DIR = \"/root/autodl-tmp/struct_self_consist_ie/output/entity_construction\"\n174\t\n175\t\n176\tdef bootstrap_ci(values, n_boot=2000, ci=0.95, seed=42):\n177\t    arr = np.array(values)\n178\t    n = len(arr)\n179\t    if n == 0:\n180\t        return 0.0, 0.0, 0.0\n181\t    rng = np.random.RandomState(seed)\n182\t    boot_means = np.array([arr[rng.randint(0, n, n)].mean() for _ in range(n_boot)])\n183\t    boot_means.sort()\n184\t    lo = boot_means[int((1 - ci) / 2 * n_boot)]\n185\t    hi = boot_means[int((1 + ci) / 2 * n_boot)]\n186\t    return float(arr.mean()), float(lo), float(hi)\n187\t\n188\t\n189\tdef run_dataset(name, path):\n190\t    print(f\"\\n{'='*70}\")\n191\t    print(f\"Dataset: {name} ({path})\")\n192\t    print(f\"{'='*70}\")\n193\t\n194\t    data = load_data(path, gold_filter=True)\n195\t    print(f\"Loaded {len(data)} instances (gold-filtered)\")\n196\t\n197\t    n_samples = len(data[0][\"samples\"])\n198\t    print(f\"Samples per instance: {n_samples}\")\n199\t\n200\t    has_relations = any(len(inst[\"gold\"].get(\"relations\", [])) > 0 for inst in data)\n201\t    print(f\"Has relations: {h\n…[truncated 6434 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T18:25:10.641892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -name \"*sampling*\" -o -name \"*inference*\" | head -20"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T18:25:10.642020+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_sampling_and_main_20260514T042643_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_ssh_7b-zs-inference-5090c_20260520T064018.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_submit_4b_conll_scs_inference_cuda2_20260515T193149.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_exp_017_llama_conll_inference_20260517T113609_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_ssh_14b-early-inference_20260520T111801.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_llama_fewnerd_inference_status_v3_20260519T024716_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_exec_exp021_merge_inference_20260516T203650.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_llama_scierc_seed456_inference_20260518T191311.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_ssh_b7-adaptive-sampling-budget_20260520T090154.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_code_scierc_4b_merge_inference_v2_20260515T194913_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_conll_4b_inference_v2_check_20260515T194957.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_ssh_prepare-14b-inference-v2_20260520T070610.log\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_ssh_7b-zs-inference-5090c_20260520T064018_result.\n…[truncated 1104 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T18:25:10.642185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "def.*extract|def.*parse|def.*sample|def.*api|requests|json.loads",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code",
+              "type": "py",
+              "output_mode": "content",
+              "head_limit": "30"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T18:25:10.642313+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "code/analysis_mbr_selection.py:30:def load_data(path, max_samples=8, gold_filter=False):\ncode/analysis_mbr_selection.py:34:            obj = json.loads(line)\ncode/analysis_mbr_selection.py:48:def text_type_set(sample):\ncode/analysis_mbr_selection.py:53:def span_set(sample):\ncode/analysis_mbr_selection.py:67:def mbr_scores(samples):\ncode/analysis_mbr_selection.py:77:def entity_f1(pred_sample, gold):\ncode/analysis_mbr_selection.py:92:def degeneracy_ratio(samples):\ncode/exp_b3_prompted_diversity.py:150:            obj = json.loads(line)\ncode/exp_b3_prompted_diversity.py:174:    def do_sample(template_name, n_samples, temperature, seed_val):\ncode/exp_b3_prompted_diversity.py:220:    def write_instances(samples_list, greedy_list, path, extra_fn=None):\ncode/exp_b3_prompted_diversity.py:292:def entity_set(sample):\ncode/exp_b3_prompted_diversity.py:318:def weighted_construction(samples, threshold, weights=None):\ncode/exp_b3_prompted_diversity.py:333:def get_lp_weights(samples):\ncode/exp_b3_prompted_diversity.py:339:def get_vc_weights(samples):\ncode/exp_b3_prompted_diversity.py:433:    single = [json.loads(l) for l in open(sp) if l.strip()]\ncode/exp_b3_prompted_diversity.py:434:    multi = [json.loads(l) for l in open(mp) if l.strip()]\ncode/exp_b3_prompted_diversity.py:484:        ti = [json.loads(l) for l in open(tp) if l.strip()]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T18:25:10.642444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code/analysis_mbr_selection.py",
+              "limit": "100"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T18:25:10.642576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"MBR (Minimum Bayes Risk) selection for NER: select sample with highest\n3\taverage entity-set Jaccard overlap with other samples.\"\"\"\n4\t\n5\timport json\n6\timport sys\n7\tfrom collections import defaultdict\n8\t\n9\tBASE = \"/root/autodl-tmp/struct_self_consist_ie\"\n10\t\n11\tDATASETS = {\n12\t    \"SciERC\": {\n13\t        \"path\": f\"{BASE}/output/exp_012_rerun_1024/samples.jsonl\",\n14\t        \"max_samples\": 8,\n15\t        \"gold_filter\": True,\n16\t    },\n17\t    \"CoNLL\": {\n18\t        \"path\": f\"{BASE}/output/exp_002_conll_n16_r1024/samples.jsonl\",\n19\t        \"max_samples\": 8,\n20\t        \"gold_filter\": False,\n21\t    },\n22\t    \"FewNERD\": {\n23\t        \"path\": f\"{BASE}/output/exp_027_fewnerd_n16/samples.jsonl\",\n24\t        \"max_samples\": 8,\n25\t        \"gold_filter\": True,\n26\t    },\n27\t}\n28\t\n29\t\n30\tdef load_data(path, max_samples=8, gold_filter=False):\n31\t    instances = []\n32\t    with open(path) as f:\n33\t        for line in f:\n34\t            obj = json.loads(line)\n35\t            if gold_filter and len(obj[\"gold\"][\"entities\"]) == 0:\n36\t                continue\n37\t            samples = obj[\"samples\"][:max_samples]\n38\t            instances.append({\n39\t                \"id\": obj[\"id\"],\n40\t                \"gold\": obj[\"gold\"],\n41\t                \"samples\": samples,\n42\t                \"greedy\": obj[\"greedy\"],\n43\t                \"logprobs\": obj.get(\"logprobs\", [])[:max_samples],\n44\t            })\n45\t    return instances\n46\t\n47\t\n48\tdef text_type_set(sample):\n49\t    \"\"\"Entity set as {(text, type)} for MBR overlap computation.\"\"\"\n50\t    return frozenset((e[\"text\"], e[\"type\"]) for e in sample.get(\"entities\", []))\n51\t\n52\t\n53\tdef span_set(sample):\n54\t    \"\"\"Entity set as {(start, end, type)} for F1 evaluation.\"\"\"\n55\t    return set((e[\"start\"], e[\"end\"], e[\"type\"]) for e in sample.get(\"entities\", []))\n56\t\n57\t\n58\tdef jaccard(set_a, set_b):\n59\t    if len(set_a) == 0 and len(set_b) == 0:\n60\t        return 1.0\n61\t    union = len(set_a | set_b)\n62\t    if union == 0:\n63\t        return 1.0\n6\n…[truncated 1095 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-20T18:25:10.642734+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -maxdepth 2 -name \"*.py\" -type f | grep -E \"(run_|sampling|data_utils)\" | head -15"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-20T18:25:10.642852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/data_utils.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/run_lsc.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/a2_degen_regression/run_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/run_mrsc.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/sampling.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/run_mvp_pilot.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/e2_ensemble/run_e2_ensemble.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n_inverse_scaling/run_analysis.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-20T18:25:10.642978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/sampling.py",
+              "limit": "200"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-20T18:25:10.643143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Multi-sample inference module for structured IE with vLLM + XGrammar constrained decoding.\n2\t\n3\tProvides VLLMSampler for batch sampling, prompt construction for UIE tasks,\n4\tand a full pipeline that produces SampledInstance dicts.\n5\t\"\"\"\n6\t\n7\tfrom __future__ import annotations\n8\t\n9\timport json\n10\timport os\n11\tfrom typing import Any\n12\t\n13\t\n14\t# ---------------------------------------------------------------------------\n15\t# UIE JSON schema for XGrammar constrained decoding\n16\t# ---------------------------------------------------------------------------\n17\t\n18\tUIE_JSON_SCHEMA: dict[str, Any] = {\n19\t    \"type\": \"object\",\n20\t    \"properties\": {\n21\t        \"entities\": {\n22\t            \"type\": \"array\",\n23\t            \"items\": {\n24\t                \"type\": \"object\",\n25\t                \"properties\": {\n26\t                    \"text\": {\"type\": \"string\"},\n27\t                    \"type\": {\"type\": \"string\"},\n28\t                    \"start\": {\"type\": \"integer\"},\n29\t                    \"end\": {\"type\": \"integer\"},\n30\t                },\n31\t                \"required\": [\"text\", \"type\", \"start\", \"end\"],\n32\t            },\n33\t        },\n34\t        \"relations\": {\n35\t            \"type\": \"array\",\n36\t            \"items\": {\n37\t                \"type\": \"object\",\n38\t                \"properties\": {\n39\t                    \"head\": {\"type\": \"string\"},\n40\t                    \"tail\": {\"type\": \"string\"},\n41\t                    \"type\": {\"type\": \"string\"},\n42\t                    \"head_start\": {\"type\": \"integer\"},\n43\t                    \"head_end\": {\"type\": \"integer\"},\n44\t                    \"tail_start\": {\"type\": \"integer\"},\n45\t                    \"tail_end\": {\"type\": \"integer\"},\n46\t                },\n47\t                \"required\": [\"head\", \"tail\", \"type\", \"head_start\", \"head_end\",\n48\t                             \"tail_start\", \"tail_end\"],\n49\t            },\n50\t        },\n51\t        \"events\": {\n52\t            \"type\": \"array\",\n53\t            \"items\": {\n54\t                \"type\": \"object\",\n55\t             \n…[truncated 6000 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-20T18:25:10.643308+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/data_utils.py",
+              "limit": "150"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-20T18:25:10.643447+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Data processing utilities for structured self-consistency IE experiments.\n2\t\n3\tHandles loading, converting, and splitting datasets into the unified UIE JSON format.\n4\tSupported datasets: SciERC (fully implemented), ACE05 (interface only).\n5\t\"\"\"\n6\t\n7\tfrom __future__ import annotations\n8\t\n9\timport json\n10\timport os\n11\timport random\n12\tfrom typing import Any, TypedDict\n13\t\n14\t\n15\t# ---------------------------------------------------------------------------\n16\t# Shared type definitions (UIE JSON format)\n17\t# ---------------------------------------------------------------------------\n18\t\n19\tclass Entity(TypedDict):\n20\t    text: str\n21\t    type: str\n22\t    start: int\n23\t    end: int\n24\t\n25\t\n26\tclass Relation(TypedDict):\n27\t    head: str\n28\t    tail: str\n29\t    type: str\n30\t    head_start: int\n31\t    head_end: int\n32\t    tail_start: int\n33\t    tail_end: int\n34\t\n35\t\n36\tclass EventArgument(TypedDict):\n37\t    text: str\n38\t    role: str\n39\t    start: int\n40\t    end: int\n41\t\n42\t\n43\tclass Trigger(TypedDict):\n44\t    text: str\n45\t    type: str\n46\t    start: int\n47\t    end: int\n48\t\n49\t\n50\tclass Event(TypedDict):\n51\t    trigger: Trigger\n52\t    arguments: list[EventArgument]\n53\t\n54\t\n55\tclass Extraction(TypedDict, total=False):\n56\t    entities: list[Entity]\n57\t    relations: list[Relation]\n58\t    events: list[Event]\n59\t\n60\t\n61\tclass Instance(TypedDict, total=False):\n62\t    id: str\n63\t    text: str\n64\t    entities: list[Entity]\n65\t    relations: list[Relation]\n66\t    events: list[Event]\n67\t\n68\t\n69\t# ---------------------------------------------------------------------------\n70\t# SciERC\n71\t# ---------------------------------------------------------------------------\n72\t\n73\tdef _token_offsets(tokens: list[str]) -> list[tuple[int, int]]:\n74\t    \"\"\"Compute (char_start, char_end) for each token when joined by single spaces.\"\"\"\n75\t    offsets = []\n76\t    pos = 0\n77\t    for tok in tokens:\n78\t        offsets.append((pos, pos + len(tok)))\n79\t        pos += len(tok) + 1  # +1 for the space\n\n…[truncated 2803 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-20T18:25:10.643597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -name \"*fewnerd*\" -type f | grep -v \".log\" | head -20"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-20T18:25:10.643720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/checkpoints/exp_031_fewnerd_t12_PREPARING_20260518T200412.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/checkpoints/exp_llama_fewnerd_lora_RUNNING_20260519T010811.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/checkpoints/exp_qwen25_32b_fewnerd_RUNNING_20260519T093547.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/checkpoints/exp_b1_scd_fewnerd_curriculum_q_ALLOCATED_20260520T115455.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/checkpoints/exp_qwen25_7b_fewnerd_ALLOCATED_20260519T075923.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/checkpoints/exp_qwen25_14b_fewnerd_RUNNING_20260519T075736.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/checkpoints/exp_028_fewnerd_5epoch_RUNNING_20260517T091210.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/checkpoints/exp_llama_fewnerd_inference_RUNNING_20260519T031451.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/checkpoints/exp_b1_scd_fewnerd_standard_QUEUED_20260520T115436.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/checkpoints/exp_14b_inference_fewnerd_ALLOCATED_20260520T153640.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/checkpoints/exp_031_fewnerd_t12_PENDING_20260519T002959.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/checkpoints/exp_14b_inference_fewnerd_PENDING_20260520T174933.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/checkpoints/exp_14b_inference_fewnerd_QUEUED_20260520T174945.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/checkpoints/exp_b1_sc\n…[truncated 916 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-20T18:25:10.643862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "fewnerd|FewNERD|coarse|fine.*type",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/data_utils.py",
+              "output_mode": "content",
+              "head_limit": "80"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-20T18:25:10.643978+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-20T18:25:10.644095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/data_utils.py",
+              "offset": "150",
+              "limit": "200"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-20T18:25:10.644257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "150\t        text=text,\n151\t        entities=entities,\n152\t        relations=relations,\n153\t        events=[],\n154\t    )\n155\t\n156\t\n157\tdef load_scierc(data_dir: str) -> dict[str, list[Instance]]:\n158\t    \"\"\"Load SciERC dataset and convert to UIE JSON format.\n159\t\n160\t    Args:\n161\t        data_dir: Path to the SciERC directory containing {train,dev,test}.json.\n162\t\n163\t    Returns:\n164\t        Dict with keys \"train\", \"dev\", \"test\", each mapping to a list of Instance dicts.\n165\t    \"\"\"\n166\t    splits: dict[str, list[Instance]] = {}\n167\t    for split in (\"train\", \"dev\", \"test\"):\n168\t        filepath = os.path.join(data_dir, f\"{split}.json\")\n169\t        instances: list[Instance] = []\n170\t        with open(filepath, \"r\", encoding=\"utf-8\") as f:\n171\t            for line in f:\n172\t                line = line.strip()\n173\t                if not line:\n174\t                    continue\n175\t                doc = json.loads(line)\n176\t                doc_key = doc[\"doc_key\"]\n177\t                sentences = doc[\"sentences\"]\n178\t                ner_all = doc.get(\"ner\", [[] for _ in sentences])\n179\t                rel_all = doc.get(\"relations\", [[] for _ in sentences])\n180\t\n181\t                global_offset = 0\n182\t                for sent_idx, tokens in enumerate(sentences):\n183\t                    ner_spans = ner_all[sent_idx] if sent_idx < len(ner_all) else []\n184\t                    rel_spans = rel_all[sent_idx] if sent_idx < len(rel_all) else []\n185\t                    inst = _parse_scierc_sentence(\n186\t                        doc_key, sent_idx, tokens, ner_spans, rel_spans, global_offset,\n187\t                    )\n188\t                    instances.append(inst)\n189\t                    global_offset += len(tokens)\n190\t\n191\t        splits[split] = instances\n192\t    return splits\n193\t\n194\t\n195\t# ---------------------------------------------------------------------------\n196\t# ACE05 (interface only)\n197\t# ---------------------------------------------------------------------------\n19\n…[truncated 3364 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-20T18:25:10.644408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/IDEA_BRIEF.md",
+              "limit": "100"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-20T18:25:10.644595+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Idea Brief: When Does Test-Time Scaling Help Structured Prediction? Adaptive Structural Self-Consistency with Learned Aggregation\n2\t\n3\t\n4\t- **Idea ID**: `idea_010`\n5\t- **Created**: 2026-05-14\n6\t- **Approved**: 2026-05-14\n7\t- **Source**: foreign:be-idea-gen-0509-6\n8\t- **Level**: top-tier\n9\t- **Target Venues**: EMNLP 2026 via ARR May 2026 (submission: May 25, 2026; commitment: Aug 2, 2026; notification: Aug 20, 2026; conference: Oct 24-29, Budapest), Backup: ARR August 2026 (submission: Aug 3, 2026) → EACL 2027 or NAACL 2027\n10\t\n11\t## Seed Topic\n12\t\n13\tTarget: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Information Extraction.\n14\t\n15\tDirection: Structured information extraction — named entity recognition, relation extraction, event extraction, document-level IE, end-to-end extraction pipelines. Both LLM-based and non-LLM approaches welcome. In-scope: schema-guided extraction, zero-shot/few-shot IE, cross-document extraction, multimodal IE (text + layout + images), temporal/causal relation extraction.\n16\t\n17\tContribution type: METHOD ONLY. New extraction architectures, training strategies, or inference algorithms. Not a new dataset or annotation guideline.\n18\t\n19\tHARD CONSTRAINTS:\n20\t1. Compute: ≤200 H100-hours total. IE work is typically lightweight — most experiments are fine-tuning or in-context learning.\n21\t2. Time: ≤16 days. Use existing IE frameworks (GoLLIE, UniNER, USM) or build on open LLMs with structured output.\n22\t3. Eval: ACE05, SciERC, TACRED/TACREV, DocRED, MAVEN, Few-NERD, WikiEvents, RAMS.\n23\t\n24\tLook for: schema-guided extraction that generalizes across domains, efficient document-level IE beyond sliding windows, extraction with faithful provenance/citation, structured extraction from semi-structured sources (tables, forms, code). Avoid: basic NER fine-tuning, prompt-only extraction without architectural insight.\n25\t\n26\tTag: direction=information_extraction, contribution_type=method. target_venues=[\"EMNLP\n…[truncated 22430 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-20T18:25:10.644753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ | head -30"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-20T18:25:10.644906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 1040\ndrwxr-xr-x  13 ubuntu ubuntu   4096 May 20 18:15 .\ndrwxrwxr-x   4 ubuntu ubuntu   4096 May 14 04:20 ..\ndrwxr-xr-x   3 ubuntu ubuntu   4096 May 14 04:20 .claude\ndrwxr-xr-x   6 ubuntu ubuntu   4096 May 15 02:23 .venv\n-rw-r--r--   1 ubuntu ubuntu  14175 May 20 18:17 AGENTS.md\n-rw-r--r--   1 ubuntu ubuntu      0 May 14 04:23 ROADMAP.lock\n-rw-------   1 ubuntu ubuntu   3935 May 20 18:14 ROADMAP.md\n-rw-r--r--   1 ubuntu ubuntu     90 May 20 14:32 _last_visual_review.json\n-rw-r--r--   1 ubuntu ubuntu   7234 May 18 13:38 analysis_r21_q1_alignment.py\ndrwxr-xr-x 135 ubuntu ubuntu  20480 May 20 17:59 artifacts\n-rw-r--r--   1 ubuntu ubuntu  22309 May 20 10:07 b2_entity_verifier.py\ndrwxr-xr-x   2 ubuntu ubuntu 110592 May 20 18:15 checkpoints\ndrwxr-xr-x   2 ubuntu ubuntu   4096 May 20 12:02 code\n-rw-r--r--   1 ubuntu ubuntu      0 May 16 03:03 constraints.lock\n-rw-------   1 ubuntu ubuntu    457 May 16 03:03 constraints.yaml\n-rw-r--r--   1 ubuntu ubuntu      0 May 14 04:23 decisions.lock\n-rw-------   1 ubuntu ubuntu 195128 May 20 18:14 decisions.yaml\ndrwxr-xr-x   4 ubuntu ubuntu   4096 May 15 05:25 docs\n-rwxr-xr-x   1 ubuntu ubuntu      0 May 14 09:33 dream_registry.lock\n-rw-------   1 ubuntu ubuntu   8728 May 16 22:54 dream_registry.yaml\n-rw-r--r--   1 ubuntu ubuntu   8656 May 16 22:54 dream_registry.yaml.bak\n-rw-r--r--   1 ubuntu ubuntu  14268 May 20 09:47 e1_signal_routing.py\n-rw-r--r--   1 ubuntu ubuntu      0 May 14 11:49 experiment_plan.lock\n-rw-------   1 ubuntu ubuntu  16334 May 19 22:51 experiment_plan.yaml\ndrwxr-xr-x   3 ubuntu ubuntu   4096 May 14 13:35 figures\n-rw-r--r--   1 ubuntu ubuntu      0 May 14 15:47 literature_map.lock\n-rw-------   1 ubuntu ubuntu  43680 May 14 19:51 literature_map.yaml\ndrwxr-xr-x   4 ubuntu ubuntu   4096 May 14 04:25 logs\n-rw-r--r--   1 ubuntu ubuntu   5708 May 20 17:33 memory.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-20T18:25:10.645169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/run_mvp_pilot.py",
+              "limit": "120"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-20T18:25:10.645365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"MVP pilot experiment script for structured self-consistency IE.\n2\t\n3\tIntegrates data loading, vLLM sampling, consistency scoring, and evaluation\n4\tinto a single CLI-driven pipeline. Outputs a verdict (PASS/MARGINAL/FAIL)\n5\tbased on the correlation between structural consistency and per-instance F1.\n6\t\"\"\"\n7\t\n8\tfrom __future__ import annotations\n9\t\n10\timport argparse\n11\timport json\n12\timport os\n13\timport random\n14\timport sys\n15\t\n16\timport numpy as np\n17\t\n18\tfrom data_utils import load_scierc, load_ace05\n19\tfrom sampling import (\n20\t    VLLMSampler,\n21\t    run_sampling_pipeline,\n22\t    save_sampled_results,\n23\t    load_sampled_results,\n24\t    realign_spans,\n25\t    SCIERC_SCHEMA_HINT,\n26\t)\n27\tfrom consistency import compute_all_consistency_scores\n28\tfrom evaluation import (\n29\t    per_instance_f1,\n30\t    compute_ner_f1,\n31\t    compute_re_f1,\n32\t    compute_eae_f1,\n33\t    spearman_correlation,\n34\t    kendall_correlation,\n35\t    compute_auroc,\n36\t    compute_sample_f1_distribution,\n37\t)\n38\t\n39\t\n40\tdef parse_args() -> argparse.Namespace:\n41\t    \"\"\"Parse command-line arguments.\"\"\"\n42\t    p = argparse.ArgumentParser(description=\"MVP pilot for structured self-consistency IE\")\n43\t    p.add_argument(\"--model_path\", type=str, required=True, help=\"Path to the fine-tuned model\")\n44\t    p.add_argument(\"--data_dir\", type=str, required=True, help=\"Dataset directory (SciERC or ACE05)\")\n45\t    p.add_argument(\"--dataset\", type=str, default=\"scierc\", choices=[\"scierc\", \"ace05\"],\n46\t                   help=\"Dataset name (default: scierc)\")\n47\t    p.add_argument(\"--subtask\", type=str, default=\"ner\", choices=[\"ner\", \"re\", \"eae\", \"joint\"],\n48\t                   help=\"Subtask (default: ner)\")\n49\t    p.add_argument(\"--schema_hint\", type=str, default=\"\",\n50\t                   help=\"Schema hint string (entity/relation types). Auto-set for scierc if empty\")\n51\t    p.add_argument(\"--use_train_format\", type=lambda x: x.lower() != \"false\", default=True,\n52\t                   help=\"Use train-ali\n…[truncated 4435 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-20T18:25:10.645534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -name \"requirements*.txt\" -o -name \"setup.py\" -o -name \"pyproject.toml\""
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-20T18:25:10.645657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/numpy/_core/tests/examples/limited_api/setup.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.venv/lib/python3.14/site-packages/numpy/_core/tests/examples/cython/setup.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-20T18:25:10.645783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -name \"*.py\" -type f -path \"*/exp*/data/*\" | head -15"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-20T18:25:10.645899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_lsc_latent_sc/data/run_lsc.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_016_v2/data/exp_016_v2_ensemble.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_e1v2_signal_routing/data/e1v2_signal_routing.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_009_capability_stratification/data/exp009_stratification_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_asb_adaptive_budget/data/run_asb.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-20T18:25:10.646025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "entity.*type|coarse.*type|fine.*type|ENTITY_TYPES|SCHEMA",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/sampling.py",
+              "output_mode": "content",
+              "head_limit": "40"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-20T18:25:10.646155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "18:UIE_JSON_SCHEMA: dict[str, Any] = {\n169:        guided_params = StructuredOutputsParams(json=UIE_JSON_SCHEMA) if use_grammar else None\n231:    \"Extract all relations (head entity, relation type, tail entity) from the following text. \"\n262:SCIERC_SCHEMA_HINT = (\n274:        schema_hint: Optional schema description (e.g. entity type list)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-20T18:25:10.646286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/sampling.py",
+              "offset": "200",
+              "limit": "150"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-20T18:25:10.646432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "200\t        if collect_logprobs:\n201\t            return results, logprobs_data\n202\t        return results\n203\t\n204\t\n205\t# ---------------------------------------------------------------------------\n206\t# Prompt construction\n207\t# ---------------------------------------------------------------------------\n208\t\n209\t_NER_TEMPLATE = (\n210\t    \"Extract named entities from the following text. \"\n211\t    \"Output a JSON object with the fields: entities, relations, events.\\n\\n\"\n212\t    \"Text: {text}\\n\"\n213\t    \"{schema_line}\"\n214\t    \"\\nOutput format: \"\n215\t    '{{\"entities\": [{{\"text\": \"...\", \"type\": \"...\", \"start\": <int>, \"end\": <int>}}], '\n216\t    '\"relations\": [], \"events\": []}}'\n217\t)\n218\t\n219\t_EAE_TEMPLATE = (\n220\t    \"Extract events (triggers and arguments) from the following text. \"\n221\t    \"Output a JSON object with the fields: entities, relations, events.\\n\\n\"\n222\t    \"Text: {text}\\n\"\n223\t    \"{schema_line}\"\n224\t    \"\\nOutput format: \"\n225\t    '{{\"entities\": [], \"relations\": [], '\n226\t    '\"events\": [{{\"trigger\": {{\"text\": \"...\", \"type\": \"...\", \"start\": <int>, \"end\": <int>}}, '\n227\t    '\"arguments\": [{{\"text\": \"...\", \"role\": \"...\", \"start\": <int>, \"end\": <int>}}]}}]}}'\n228\t)\n229\t\n230\t_RE_TEMPLATE = (\n231\t    \"Extract all relations (head entity, relation type, tail entity) from the following text. \"\n232\t    \"Output a JSON object with the fields: entities, relations, events.\\n\\n\"\n233\t    \"Text: {text}\\n\"\n234\t    \"{schema_line}\"\n235\t    \"\\nOutput format: \"\n236\t    '{{\"entities\": [], '\n237\t    '\"relations\": [{{\"head\": \"...\", \"tail\": \"...\", \"type\": \"...\", '\n238\t    '\"head_start\": <int>, \"head_end\": <int>, \"tail_start\": <int>, \"tail_end\": <int>}}], '\n239\t    '\"events\": []}}'\n240\t)\n241\t\n242\t_FULL_TEMPLATE = (\n243\t    \"Extract all structured information (entities, relations, events) from the following text. \"\n244\t    \"Output a JSON object with the fields: entities, relations, events.\\n\\n\"\n245\t    \"Text: {text}\\n\"\n246\t    \"{schema_line}\"\n247\t    \"\\nOutput:\"\n248\t)\n249\t\n250\t_T\n…[truncated 3872 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-20T18:25:10.646594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"SCIERC_SCHEMA_HINT\\|person\\|organization\\|location\\|building\" /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/sampling.py | head -30"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-20T18:25:10.646723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "262:SCIERC_SCHEMA_HINT = ("
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-20T18:25:10.646840+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/data/ 2>/dev/null || echo \"data dir not found\""
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-20T18:25:10.646948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 60\ndrwxr-xr-x   2 ubuntu ubuntu  4096 May 14 21:47 .\ndrwxr-xr-x 135 ubuntu ubuntu 20480 May 20 17:59 ..\n-rw-r--r--   1 ubuntu ubuntu 17964 May 14 21:47 bootstrap_ci_summary.json\n-rw-r--r--   1 ubuntu ubuntu  9001 May 14 21:16 qwen_scierc_3seed_em_voting.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-20T18:25:10.647065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -name \"*.jsonl\" -type f | head -10"
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-20T18:25:10.647199+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/ralph_loop_timeline.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/chats/worker_exp_e_theta_v1_logreg_20260520T154053.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/chats/worker_code_exp_028_multigpu_switch_20260517T122517.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/chats/feishu_dm_oc_4206a99c0a8b5482c9bbd8f23ccc03f0_briefer.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/chats/worker_code_dgs_persistence_fix_20260518T164426.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/chats/worker_exp_010_selection_curves_20260514T144948.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/chats/cron_hook_exp_029b.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/chats/worker_analysis_4b_selection_pipeline_20260515T200110.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/chats/worker_exp_conll_s123_cuda2_20260518T094904.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/chats/worker_code_llama_conll_inference_20260518T181743.jsonl"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-20T18:25:10.647354+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -20 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/data/qwen_scierc_3seed_em_voting.json 2>/dev/null | jq . | head -80"
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-20T18:25:10.647465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "jq: parse error: Unfinished JSON term at EOF at line 21, column 0"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-20T18:25:10.647580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/memory.md"
+            }
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-20T18:25:10.647711+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Memory\n2\t\n3\t## exp_qwen25_72b_fewshot 完整结果（2026-05-20）\n4\t\n5\t实验于 2026-05-20 08:47 完成。模型：Qwen2.5-72B-Instruct-AWQ, 3-shot, N=8 samples, seed=42。\n6\t\n7\t### ZS vs FS 完整对比表\n8\t\n9\t| Dataset  | Regime | N inst | Degen% | LP ρ   | SJ ρ  | FK ρ  | VC ρ  | EM ρ  | Greedy F1 | Oracle F1 | LP-wt F1 | LP Δ (pp) | p-value |\n10\t|----------|--------|--------|--------|--------|-------|-------|-------|-------|-----------|-----------|----------|-----------|---------|\n11\t| SciERC   | ZS     | 529    | 21.0%  | 0.081  | 0.217 | 0.227 | 0.277 | 0.181 | 0.399     | 0.549     | 0.415    | +1.53     | 0.008** |\n12\t| SciERC   | FS     | 529    | 16.6%  | 0.060  | 0.293 | 0.301 | 0.258 | 0.205 | 0.461     | 0.604     | 0.461    | -0.08     | 0.544   |\n13\t| CoNLL    | ZS     | 2756   | 67.7%  | -0.002 | 0.304 | 0.302 | 0.297 | 0.281 | 0.712     | 0.765     | 0.708    | -0.37     | n/a     |\n14\t| CoNLL    | FS     | 2756   | 70.0%  | 0.106  | 0.442 | 0.451 | 0.426 | 0.403 | 0.745     | 0.796     | 0.745    | +0.03     | 0.417   |\n15\t| FewNERD  | ZS     | 32565  | 46.2%  | 0.119  | 0.345 | 0.321 | 0.416 | 0.303 | 0.628     | 0.707     | 0.626    | -0.20     | n/a     |\n16\t| FewNERD  | FS     | 32565  | 45.2%  | 0.161  | 0.345 | 0.327 | 0.410 | 0.302 | 0.619     | 0.702     | 0.619    | +0.02     | 0.401   |\n17\t\n18\t### Dual-gating hypothesis 评估\n19\t\n20\tDual-gating 在 FT+ZS regime 内成立（6/6 条件一致）。FS regime 引入独立失效因素（LP 退化），不构成对 dual-gating 的挑战。\n21\t\n22\t### Error Correlation 分析\n23\t\"Demonstration-induced error correlation\" 假说缺乏实证支持（FS Jaccard ≈ ZS，CoNLL FS entropy 反而更高）。替代解释：LP signal 在 FS 下区分力退化是 construction 失效的直接原因。\n24\t\n25\t## F1 Scaling Law 写作约束（Director 2026-05-20）\n26\t\n27\t1. 不报 c 均值 — 分数据集：SciERC c≈0.35, FewNERD c≈0.61\n28\t2. CoNLL 只报 a 和 b，不报 c（c_se 太大）\n29\t3. 这是 oracle ceiling scaling，不是 achievable\n30\t4. LLaMA/FewNERD 仅 4 点拟合 → appendix 注明过拟合风险\n31\t5. N=1 低于 greedy 需解释（T=1 采样噪声 vs T=0 确定性）\n32\t\n33\t## CPU 分析实验汇总（2026-05-20）\n34\t\n35\t### E2 Mixture-of-Signals Ensemble\n36\t- Selection: 5-signal ensemble +0.\n…[truncated 2880 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-20T18:25:10.647867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -maxdepth 1 -name \"*.py\" -type f"
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-20T18:25:10.647982+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/e1_signal_routing.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/analysis_r21_q1_alignment.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/b2_entity_verifier.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-20T18:25:10.648101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/consistency.py",
+              "offset": "150",
+              "limit": "100"
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-20T18:25:10.648262+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "150\t        return 0.0\n151\t\n152\t    # Group by entity type\n153\t    types: set[str] = set()\n154\t    groups_a: dict[str, list[Entity]] = {}\n155\t    groups_b: dict[str, list[Entity]] = {}\n156\t\n157\t    for e in entities_a:\n158\t        t = e[\"type\"]\n159\t        types.add(t)\n160\t        groups_a.setdefault(t, []).append(e)\n161\t    for e in entities_b:\n162\t        t = e[\"type\"]\n163\t        types.add(t)\n164\t        groups_b.setdefault(t, []).append(e)\n165\t\n166\t    total_score = 0.0\n167\t    total_weight = 0\n168\t\n169\t    for t in types:\n170\t        ga = groups_a.get(t, [])\n171\t        gb = groups_b.get(t, [])\n172\t        denom = max(len(ga), len(gb))\n173\t        if denom == 0:\n174\t            continue\n175\t\n176\t        total_weight += denom\n177\t\n178\t        if not ga or not gb:\n179\t            # One side empty — all unmatched, contributes 0\n180\t            continue\n181\t\n182\t        # Cost matrix for Hungarian (we maximize similarity, so negate for min-cost)\n183\t        cost = np.zeros((len(ga), len(gb)), dtype=np.float64)\n184\t        for i, ea in enumerate(ga):\n185\t            for j, eb in enumerate(gb):\n186\t                cost[i, j] = _span_soft_jaccard(ea[\"start\"], ea[\"end\"],\n187\t                                                 eb[\"start\"], eb[\"end\"])\n188\t\n189\t        row_ind, col_ind = linear_sum_assignment(-cost)  # negate to maximize\n190\t        matched_sim = cost[row_ind, col_ind].sum()\n191\t        # Normalize by the larger set size to penalize unmatched spans\n192\t        total_score += matched_sim\n193\t\n194\t    if total_weight == 0:\n195\t        return 1.0\n196\t    return total_score / total_weight\n197\t\n198\t\n199\tdef _re_soft_jaccard_pair(relations_a: list[dict], relations_b: list[dict]) -> float:\n200\t    \"\"\"Soft Jaccard for relation extraction via Hungarian matching.\n201\t\n202\t    Relation similarity = head_span_sj * tail_span_sj * type_match.\n203\t    \"\"\"\n204\t    if not relations_a and not relations_b:\n205\t        return 1.0\n206\t    if not relations_a or not relations_b:\n2\n…[truncated 1848 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-20T18:25:10.648533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now I have all the information I need. Let me create the comprehensive report.\n\n## Project Exploration Summary\n\nI've conducted a thorough exploration of the NER experiment project at `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/`. Here are the findings:\n\n### 1. PROJECT STRUCTURE\n\n**Core Directories:**\n- `/artifacts/` — Main experimental code and analysis scripts\n- `/code/` — Utility and analysis code\n- `/checkpoints/` — Experiment tracking files (JSON checkpoint records)\n- `/docs/` — Project documentation (IDEA_BRIEF.md, paper sections)\n- `/figures/` — Visualization scripts and data\n- `/logs/` — Worker logs and chat histories\n\n**Key Base Modules:**\n- `/artifacts/sampling.py` — Multi-sample inference with vLLM + XGrammar constrained decoding\n- `/artifacts/data_utils.py` — Dataset loading and unified UIE JSON format conversion\n- `/artifacts/consistency.py` — Consistency metrics (Fleiss' Kappa, soft Jaccard, oracle best-of-N)\n- `/artifacts/entity_construction.py` — Entity-level majority vote aggregation\n- `/artifacts/evaluation.py` — Strict-match NER/RE evaluation and correlation analysis\n- `/code/zeroshot_prompts.py` — Zero-shot NER prompt templates for multiple datasets\n\n### 2. NER ENTITY TYPES & SCHEMA DEFINITIONS\n\n**FewNERD (Coarse-Grained Types)** — 8 types:\n```python\nDATASET_ENTITY_TYPES[\"fewnerd\"] = {\n    \"types\": [\"person\", \"organization\", \"location\", \"building\", \"art\", \"product\", \"event\", \"other\"],\n    \"descriptions\": {\n        \"person\": \"Person names\",\n        \"organization\": \"Organizations, companies, teams\",\n        \"location\": \"Geographic locations, countries, cities\",\n        \"building\": \"Buildings, facilities, landmarks\",\n        \"art\": \"Artworks, songs, films, books\",\n        \"product\": \"Commercial products, software, vehicles\",\n        \"event\": \"Events, competitions, wars, festivals\",\n        \"other\": \"Other named entities not fitting the above categories\",\n    }\n}\n```\n\n**CoNLL2003:** [\"PER\", \"ORG\", \"LOC\",\n…[truncated 10669 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Agent",
+            "elapsed_ms": 11
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-20T18:25:10.648734+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/code/zeroshot_prompts.py"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-20T18:25:10.648930+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Zero-shot NER prompt templates for Qwen2.5-72B baseline evaluation.\n2\t\n3\tOutput format is compatible with the existing pipeline (sampling.py):\n4\t  {\"entities\": [{\"text\": \"...\", \"type\": \"...\", \"start\": <int>, \"end\": <int>}],\n5\t   \"relations\": [], \"events\": []}\n6\t\"\"\"\n7\t\n8\t# ---------------------------------------------------------------------------\n9\t# Entity type definitions per dataset\n10\t# ---------------------------------------------------------------------------\n11\t\n12\tDATASET_ENTITY_TYPES = {\n13\t    \"conll2003\": {\n14\t        \"types\": [\"PER\", \"ORG\", \"LOC\", \"MISC\"],\n15\t        \"descriptions\": {\n16\t            \"PER\": \"Person names (e.g., John Smith, Obama)\",\n17\t            \"ORG\": \"Organizations (e.g., Google, United Nations)\",\n18\t            \"LOC\": \"Locations (e.g., France, Mount Everest)\",\n19\t            \"MISC\": \"Miscellaneous named entities not fitting PER/ORG/LOC (e.g., English, World Cup)\",\n20\t        },\n21\t    },\n22\t    \"fewnerd\": {\n23\t        \"types\": [\"person\", \"organization\", \"location\", \"building\", \"art\", \"product\", \"event\", \"other\"],\n24\t        \"descriptions\": {\n25\t            \"person\": \"Person names\",\n26\t            \"organization\": \"Organizations, companies, teams\",\n27\t            \"location\": \"Geographic locations, countries, cities\",\n28\t            \"building\": \"Buildings, facilities, landmarks\",\n29\t            \"art\": \"Artworks, songs, films, books\",\n30\t            \"product\": \"Commercial products, software, vehicles\",\n31\t            \"event\": \"Events, competitions, wars, festivals\",\n32\t            \"other\": \"Other named entities not fitting the above categories\",\n33\t        },\n34\t    },\n35\t    \"scierc\": {\n36\t        \"types\": [\"Generic\", \"Material\", \"Method\", \"Metric\", \"OtherScientificTerm\", \"Task\"],\n37\t        \"descriptions\": {\n38\t            \"Generic\": \"Generic references to scientific concepts (coreference)\",\n39\t            \"Material\": \"Data, datasets, corpora, resources\",\n40\t            \"Method\": \"Algorithms, models, systems, tools\",\n41\t           \n…[truncated 5191 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-20T18:25:10.649096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/data_utils.py"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-20T18:25:10.649312+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Data processing utilities for structured self-consistency IE experiments.\n2\t\n3\tHandles loading, converting, and splitting datasets into the unified UIE JSON format.\n4\tSupported datasets: SciERC (fully implemented), ACE05 (interface only).\n5\t\"\"\"\n6\t\n7\tfrom __future__ import annotations\n8\t\n9\timport json\n10\timport os\n11\timport random\n12\tfrom typing import Any, TypedDict\n13\t\n14\t\n15\t# ---------------------------------------------------------------------------\n16\t# Shared type definitions (UIE JSON format)\n17\t# ---------------------------------------------------------------------------\n18\t\n19\tclass Entity(TypedDict):\n20\t    text: str\n21\t    type: str\n22\t    start: int\n23\t    end: int\n24\t\n25\t\n26\tclass Relation(TypedDict):\n27\t    head: str\n28\t    tail: str\n29\t    type: str\n30\t    head_start: int\n31\t    head_end: int\n32\t    tail_start: int\n33\t    tail_end: int\n34\t\n35\t\n36\tclass EventArgument(TypedDict):\n37\t    text: str\n38\t    role: str\n39\t    start: int\n40\t    end: int\n41\t\n42\t\n43\tclass Trigger(TypedDict):\n44\t    text: str\n45\t    type: str\n46\t    start: int\n47\t    end: int\n48\t\n49\t\n50\tclass Event(TypedDict):\n51\t    trigger: Trigger\n52\t    arguments: list[EventArgument]\n53\t\n54\t\n55\tclass Extraction(TypedDict, total=False):\n56\t    entities: list[Entity]\n57\t    relations: list[Relation]\n58\t    events: list[Event]\n59\t\n60\t\n61\tclass Instance(TypedDict, total=False):\n62\t    id: str\n63\t    text: str\n64\t    entities: list[Entity]\n65\t    relations: list[Relation]\n66\t    events: list[Event]\n67\t\n68\t\n69\t# ---------------------------------------------------------------------------\n70\t# SciERC\n71\t# ---------------------------------------------------------------------------\n72\t\n73\tdef _token_offsets(tokens: list[str]) -> list[tuple[int, int]]:\n74\t    \"\"\"Compute (char_start, char_end) for each token when joined by single spaces.\"\"\"\n75\t    offsets = []\n76\t    pos = 0\n77\t    for tok in tokens:\n78\t        offsets.append((pos, pos + len(tok)))\n79\t        pos += len(tok) + 1  # +1 for the space\n\n…[truncated 8145 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-20T18:25:10.649459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/entity_construction.py"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-20T18:25:10.649801+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Entity-Level Majority Vote Construction for NER and RE.\n2\t\n3\tCore hypothesis: the correct analogy for self-consistency on structured output\n4\tis entity-level majority vote construction, not instance-level best-of-N selection.\n5\t\"\"\"\n6\t\n7\timport json\n8\timport math\n9\timport os\n10\timport sys\n11\timport numpy as np\n12\tfrom collections import defaultdict\n13\t\n14\t# ---------------------------------------------------------------------------\n15\t# Metrics (mirroring unified_metrics.py)\n16\t# ---------------------------------------------------------------------------\n17\t\n18\tdef compute_prf(pred_set, gold_set):\n19\t    if not gold_set and not pred_set:\n20\t        return 1.0, 1.0, 1.0\n21\t    if not pred_set:\n22\t        return 0.0, 0.0, 0.0\n23\t    if not gold_set:\n24\t        return 0.0, 0.0, 0.0\n25\t    tp = len(pred_set & gold_set)\n26\t    if tp == 0:\n27\t        return 0.0, 0.0, 0.0\n28\t    p = tp / len(pred_set)\n29\t    r = tp / len(gold_set)\n30\t    f = 2 * p * r / (p + r)\n31\t    return p, r, f\n32\t\n33\t\n34\tdef entity_set(entities):\n35\t    return {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in entities}\n36\t\n37\t\n38\tdef relation_set(relations):\n39\t    return {(r[\"head_start\"], r[\"head_end\"], r[\"tail_start\"], r[\"tail_end\"], r[\"type\"])\n40\t            for r in relations}\n41\t\n42\t\n43\t# ---------------------------------------------------------------------------\n44\t# Construction\n45\t# ---------------------------------------------------------------------------\n46\t\n47\tdef entity_majority_vote(samples, threshold, weights=None):\n48\t    \"\"\"Collect entities across N samples, keep those above threshold.\"\"\"\n49\t    entity_counts = defaultdict(float)\n50\t    N = len(samples)\n51\t    for i, sample in enumerate(samples):\n52\t        w = weights[i] if weights is not None else 1.0\n53\t        for e in sample.get(\"entities\", []):\n54\t            key = (e[\"start\"], e[\"end\"], e[\"type\"])\n55\t            entity_counts[key] += w\n56\t\n57\t    total_weight = sum(weights) if weights is not None else N\n58\t    constructed = set\n…[truncated 18967 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-20T18:25:10.649970+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/evaluation.py"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-20T18:25:10.650233+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Evaluation module for structured self-consistency IE experiments.\n2\t\n3\tProvides strict-match NER/EAE evaluation, per-instance F1 computation,\n4\tcorrelation analysis, and summary report generation.\n5\t\"\"\"\n6\t\n7\tfrom __future__ import annotations\n8\t\n9\timport statistics\n10\tfrom typing import Any\n11\t\n12\tfrom scipy.stats import kendalltau, spearmanr\n13\t\n14\t\n15\t# ---------------------------------------------------------------------------\n16\t# NER evaluation (strict match)\n17\t# ---------------------------------------------------------------------------\n18\t\n19\tdef entity_strict_match(\n20\t    pred_entities: list[dict],\n21\t    gold_entities: list[dict],\n22\t) -> tuple[int, int, int]:\n23\t    \"\"\"Compute strict entity match counts.\n24\t\n25\t    Strict match requires exact span (start, end) AND exact type.\n26\t\n27\t    Args:\n28\t        pred_entities: Predicted entity dicts with keys text, type, start, end.\n29\t        gold_entities: Gold entity dicts with the same schema.\n30\t\n31\t    Returns:\n32\t        (tp, fp, fn) counts.\n33\t    \"\"\"\n34\t    pred_set = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in pred_entities}\n35\t    gold_set = {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in gold_entities}\n36\t    tp = len(pred_set & gold_set)\n37\t    fp = len(pred_set - gold_set)\n38\t    fn = len(gold_set - pred_set)\n39\t    return tp, fp, fn\n40\t\n41\t\n42\tdef compute_ner_f1(\n43\t    predictions: list[dict],\n44\t    golds: list[dict],\n45\t) -> dict[str, float]:\n46\t    \"\"\"Compute micro-averaged NER precision, recall, and F1.\n47\t\n48\t    Args:\n49\t        predictions: List of Extraction dicts (one per instance).\n50\t        golds: List of Extraction dicts (one per instance), aligned with predictions.\n51\t\n52\t    Returns:\n53\t        Dict with keys \"precision\", \"recall\", \"f1\".\n54\t    \"\"\"\n55\t    total_tp = total_fp = total_fn = 0\n56\t    for pred, gold in zip(predictions, golds):\n57\t        tp, fp, fn = entity_strict_match(\n58\t            pred.get(\"entities\", []),\n59\t            gold.get(\"entities\", []),\n60\t        )\n61\t  \n…[truncated 14026 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-20T18:25:10.650433+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/fewnerd/**",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-20T18:25:10.650562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-20T18:25:10.650678+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "OpenRouter GPT-5.5 pricing per million tokens 2026"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-20T18:25:10.650814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"OpenRouter GPT-5.5 pricing per million tokens 2026\"\n\nLinks: [{\"title\":\"GPT-5.5 - API Pricing & Benchmarks | OpenRouter\",\"url\":\"https://openrouter.ai/openai/gpt-5.5\"},{\"title\":\"GPT-5.5 Price Increase: What It Actually Costs | OpenRouter\",\"url\":\"https://openrouter.ai/announcements/gpt55-cost-analysis\"},{\"title\":\"GPT-5.5 Pro - API Pricing & Benchmarks | OpenRouter\",\"url\":\"https://openrouter.ai/openai/gpt-5.5-pro\"},{\"title\":\"GPT-5.2 - API Pricing & Benchmarks | OpenRouter\",\"url\":\"https://openrouter.ai/openai/gpt-5.2\"},{\"title\":\"GPT-5.5 may burn fewer tokens, but it always burns more cash\",\"url\":\"https://www.theregister.com/ai-and-ml/2026/05/08/gpt-55-may-burn-fewer-tokens-but-it-always-burns-more-cash/5237498\"},{\"title\":\"Pricing | OpenRouter\",\"url\":\"https://openrouter.ai/pricing\"},{\"title\":\"GPT-5 - API Pricing & Benchmarks | OpenRouter\",\"url\":\"https://openrouter.ai/openai/gpt-5\"},{\"title\":\"GPT-5 Mini - API Pricing & Benchmarks | OpenRouter\",\"url\":\"https://openrouter.ai/openai/gpt-5-mini\"},{\"title\":\"GPT-5.4 - API Pricing & Benchmarks | OpenRouter\",\"url\":\"https://openrouter.ai/openai/gpt-5.4\"},{\"title\":\"GPT-5.5 - API Pricing & Providers | OpenRouter\",\"url\":\"https://openrouter.ai/openai/gpt-5.5-20260423\"}]\n\nBased on the search results, here's the OpenRouter GPT-5.5 pricing for 2026:\n\n**GPT-5.5 Standard:**\nInput price is $5 per 1M tokens and output price is $30 per 1M tokens.\n\n**GPT-5.5 Pro:**\nInput price is $30 per 1M tokens and output price is $180 per 1M tokens.\n\nFor context, GPT-5.5 was released on April 24, 2026, and it launched with a 2x price increase over GPT-5.4, with input tokens increasing from $2.50/M to $5.00/M and output tokens from $15/M to $30/M.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-20T18:25:10.650988+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/sampling.py",
+              "limit": "120"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-20T18:25:10.651178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Multi-sample inference module for structured IE with vLLM + XGrammar constrained decoding.\n2\t\n3\tProvides VLLMSampler for batch sampling, prompt construction for UIE tasks,\n4\tand a full pipeline that produces SampledInstance dicts.\n5\t\"\"\"\n6\t\n7\tfrom __future__ import annotations\n8\t\n9\timport json\n10\timport os\n11\tfrom typing import Any\n12\t\n13\t\n14\t# ---------------------------------------------------------------------------\n15\t# UIE JSON schema for XGrammar constrained decoding\n16\t# ---------------------------------------------------------------------------\n17\t\n18\tUIE_JSON_SCHEMA: dict[str, Any] = {\n19\t    \"type\": \"object\",\n20\t    \"properties\": {\n21\t        \"entities\": {\n22\t            \"type\": \"array\",\n23\t            \"items\": {\n24\t                \"type\": \"object\",\n25\t                \"properties\": {\n26\t                    \"text\": {\"type\": \"string\"},\n27\t                    \"type\": {\"type\": \"string\"},\n28\t                    \"start\": {\"type\": \"integer\"},\n29\t                    \"end\": {\"type\": \"integer\"},\n30\t                },\n31\t                \"required\": [\"text\", \"type\", \"start\", \"end\"],\n32\t            },\n33\t        },\n34\t        \"relations\": {\n35\t            \"type\": \"array\",\n36\t            \"items\": {\n37\t                \"type\": \"object\",\n38\t                \"properties\": {\n39\t                    \"head\": {\"type\": \"string\"},\n40\t                    \"tail\": {\"type\": \"string\"},\n41\t                    \"type\": {\"type\": \"string\"},\n42\t                    \"head_start\": {\"type\": \"integer\"},\n43\t                    \"head_end\": {\"type\": \"integer\"},\n44\t                    \"tail_start\": {\"type\": \"integer\"},\n45\t                    \"tail_end\": {\"type\": \"integer\"},\n46\t                },\n47\t                \"required\": [\"head\", \"tail\", \"type\", \"head_start\", \"head_end\",\n48\t                             \"tail_start\", \"tail_end\"],\n49\t            },\n50\t        },\n51\t        \"events\": {\n52\t            \"type\": \"array\",\n53\t            \"items\": {\n54\t                \"type\": \"object\",\n55\t             \n…[truncated 2628 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-20T18:25:10.651343+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/ 2>/dev/null || echo \"NO_DIR\"",
+              "description": "Check experiments directory"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-20T18:25:10.651469+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "asb\ndistill_verifier\ne_theta\nesj\nhet_temp\nhumaneval_sc\nlsc\nmrsc"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-20T18:25:10.651586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/sampling.py",
+              "offset": "280",
+              "limit": "130"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-20T18:25:10.651748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "280\t    if use_train_format:\n281\t        schema_line = f\"{schema_hint}\\n\" if schema_hint else \"\"\n282\t        return _TRAIN_ALIGNED_TEMPLATE.format(text=text, schema_line=schema_line)\n283\t\n284\t    schema_line = f\"Schema: {schema_hint}\\n\" if schema_hint else \"\"\n285\t\n286\t    if subtask == \"ner\":\n287\t        template = _NER_TEMPLATE\n288\t    elif subtask == \"re\":\n289\t        template = _RE_TEMPLATE\n290\t    elif subtask == \"eae\":\n291\t        template = _EAE_TEMPLATE\n292\t    elif subtask == \"full\":\n293\t        template = _FULL_TEMPLATE\n294\t    else:\n295\t        raise ValueError(f\"subtask must be 'ner', 're', 'eae', or 'full', got '{subtask}'\")\n296\t\n297\t    return template.format(text=text, schema_line=schema_line)\n298\t\n299\t\n300\t# ---------------------------------------------------------------------------\n301\t# Output parsing\n302\t# ---------------------------------------------------------------------------\n303\t\n304\tdef parse_extraction_output(raw_output: str) -> dict[str, Any]:\n305\t    \"\"\"Parse a model output string into an Extraction dict.\n306\t\n307\t    Handles JSON parsing (XGrammar guarantees valid JSON, but we still guard),\n308\t    field validation, and type coercion for start/end.\n309\t\n310\t    Args:\n311\t        raw_output: Raw model completion text.\n312\t\n313\t    Returns:\n314\t        Extraction dict with keys entities, relations, events.\n315\t    \"\"\"\n316\t    raw = raw_output.strip()\n317\t    try:\n318\t        data = json.loads(raw)\n319\t    except json.JSONDecodeError:\n320\t        # Attempt to extract the first JSON object from the string\n321\t        start = raw.find(\"{\")\n322\t        end = raw.rfind(\"}\")\n323\t        if start != -1 and end != -1 and end > start:\n324\t            try:\n325\t                data = json.loads(raw[start:end + 1])\n326\t            except json.JSONDecodeError:\n327\t                return dict(_EMPTY_EXTRACTION)\n328\t        else:\n329\t            return dict(_EMPTY_EXTRACTION)\n330\t\n331\t    if not isinstance(data, dict):\n332\t        return dict(_EMPTY_EXTR\n…[truncated 2696 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-20T18:25:10.652001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/frontier_sc",
+              "description": "Create frontier_sc experiment directory"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-20T18:25:10.652154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-20T18:25:10.652396+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/frontier_sc/run_frontier_sc.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Frontier model SC experiment on FewNERD (exp_b_frontier_sc_fewnerd).\n\nTests whether the correlation-selection gap in structured self-consistency\npersists with frontier models (GPT-5.5, Claude Opus 4.6), validating it\nas a fundamental limitation rather than a capability issue.\n\nCPU-only — all computation is via API calls through OpenRouter.\n\nUsage:\n    export OPENROUTER_API_KEY=\"[REDACTED]\"\n    python run_frontier_sc.py --data-path /path/to/fewnerd_test.jsonl\n    python run_frontier_sc.py --from-hf  # load from HuggingFace\n\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport logging\nimport os\nimport random\nimport sys\nimport time\nfrom collections import defaultdict\nfrom pathlib import Path\n\nimport numpy as np\nfrom scipy.stats import spearmanr\n\n# ---------------------------------------------------------------------------\n# Configuration\n# ---------------------------------------------------------------------------\n\nMODELS = {\n    \"gpt-5.5\": \"openai/gpt-5.5\",\n    \"claude-opus-4.6\": \"anthropic/claude-opus-4.6\",\n}\n\nAPI_BASE_URL = \"http://47.94.22.126/v1\"\n\nENTITY_TYPES = {\n    \"person\": \"Person names\",\n    \"organization\": \"Organizations, companies, teams\",\n    \"location\": \"Geographic locations, countries, cities\",\n    \"building\": \"Buildings, facilities, landmarks\",\n    \"art\": \"Artworks, songs, films, books\",\n    \"product\": \"Commercial products, software, vehicles\",\n    \"event\": \"Events, competitions, wars, festivals\",\n    \"other\": \"Other named entities not fitting the above categories\",\n}\n\nVALID_TYPES = set(ENTITY_TYPES.keys())\n\nMV_THRESHOLDS = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    datefmt=\"%Y-%m-%d %H:%M:%S\",\n)\nlog = logging.getLogger(__name__)\n\n\n# ---------------------------------------------------------------------------\n# Data Loading\n# ---------------------------------------------------------------------------\n\ndef _token_offsets(tokens: list[str]) -> list[tuple[int, int]]:\n    offsets = []\n    pos = 0\n    for tok in tokens:\n        offsets.append((pos, pos + len(tok)))\n        pos += len(tok) + 1\n    return offsets\n\n\ndef _bio_to_entities(tokens: list[str], tag_names: list[str], tag_ids: list[int]) -> list[dict]:\n    \"\"\"Convert BIO-tagged tokens to entity spans with char offsets.\"\"\"\n    offsets = _token_offsets(tokens)\n    entities = []\n    current = None\n\n    for i, tag_id in enumerate(tag_ids):\n        tag = tag_names[tag_id]\n\n        if tag.startswith(\"B-\"):\n            if current is not None:\n                entities.append(current)\n            fine_type = tag[2:]\n            coarse = fine_type.split(\"-\")[0].lower()\n            current = {\n                \"text\": tokens[i],\n                \"type\": coarse,\n                \"start\": offsets[i][0],\n                \"end\": offsets[i][1],\n            }\n        elif tag.startswith(\"I-\") and current is not None:\n            fine_type = tag[2:]\n            coarse = fine_type.split(\"-\")[0].lower()\n            if coarse == current[\"type\"]:\n                current[\"text\"] = current[\"text\"] + \" \" + tokens[i]\n                current[\"end\"] = offsets[i][1]\n            else:\n                entities.append(current)\n                current = None\n        else:\n            if current is not None:\n                entities.append(current)\n                current = None\n\n    if current is not None:\n        entities.append(current)\n\n    return entities\n\n\ndef load_fewnerd_hf(n_instances: int = 200, seed: int = 42) -> list[dict]:\n    \"\"\"Load FewNERD test set from HuggingFace, convert to UIE format.\"\"\"\n    from datasets import load_dataset\n\n    log.info(\"Loading FewNERD from HuggingFace (DFKI-SLT/few-nerd, supervised)...\")\n    ds = load_dataset(\"DFKI-SLT/few-nerd\", \"supervised\", split=\"test\")\n    tag_names = ds.features[\"ner_tags\"].feature.names\n\n    instances = []\n    for idx, example in enumerate(ds):\n        tokens = example[\"tokens\"]\n        tag_ids = example[\"ner_tags\"]\n        text = \" \".join(tokens)\n        entities = _bio_to_entities(tokens, tag_names, tag_ids)\n\n        instances.append({\n            \"id\": f\"fewnerd_test_{idx:05d}\",\n            \"text\": text,\n            \"entities\": entities,\n            \"relations\": [],\n            \"events\": [],\n        })\n\n    instances_with_ents = [inst for inst in instances if inst[\"entities\"]]\n    log.info(\"  Total test: %d, with entities: %d\", len(instances), len(instances_with_ents))\n\n    rng = random.Random(seed)\n    if len(instances_with_ents) > n_instances:\n        instances_with_ents = rng.sample(instances_with_ents, n_instances)\n\n    log.info(\"  Sampled %d instances (seed=%d)\", len(instances_with_ents), seed)\n    return instances_with_ents\n\n\ndef load_fewnerd_local(path: str, n_instances: int = 200, seed: int = 42) -> list[dict]:\n    \"\"\"Load FewNERD from local UIE-format JSONL file.\"\"\"\n    instances = []\n    with open(path, encoding=\"utf-8\") as f:\n        for line in f:\n            line = line.strip()\n            if not line:\n                continue\n            obj = json.loads(line)\n            if isinstance(obj, dict) and obj.get(\"entities\"):\n                instances.append(obj)\n\n    log.info(\"Loaded %d instances with entities from %s\", len(instances), path)\n\n    rng = random.Random(seed)\n    if len(instances) > n_instances:\n        instances = rng.sample(instances, n_instances)\n\n    log.info(\"Sampled %d instances (seed=%d)\", len(instances), seed)\n    return instances\n\n\n# ---------------------------------------------------------------------------\n# Prompt Construction (matches project template in zeroshot_prompts.py)\n# ---------------------------------------------------------------------------\n\nSYSTEM_PROMPT = (\n    \"You are a precise named entity recognition (NER) system. \"\n    \"Extract all named entities from the given text and output them in the specified JSON format. \"\n    \"Be exhaustive: identify every entity that matches the given types. \"\n    \"Be precise: the 'start' and 'end' values must be character offsets in the original text, \"\n    \"where 'start' is the index of the first character and 'end' is the index after the last character, \"\n    \"such that text[start:end] == entity text.\"\n)\n\n\ndef build_ner_prompt(text: str) -> list[dict]:\n    type_desc_lines = \"\\n\".join(f\"  - {t}: {d}\" for t, d in ENTITY_TYPES.items())\n    user_prompt = (\n        \"Extract all named entities from the following text.\\n\\n\"\n        f\"Entity types and their definitions:\\n{type_desc_lines}\\n\\n\"\n        f\"Text: {text}\\n\\n\"\n        \"Output a JSON object in exactly this format:\\n\"\n        '{\"entities\": [{\"text\": \"exact span\", \"type\": \"TYPE\", \"start\": 0, \"end\": 5}], '\n        '\"relations\": [], \"events\": []}\\n\\n'\n        \"Rules:\\n\"\n        \"- Extract ALL entities matching the given types\\n\"\n        \"- 'start' is the character offset of the first character of the entity in the text\\n\"\n        \"- 'end' is the character offset after the last character (Python slice convention)\\n\"\n        \"- 'text' must be the exact substring from the input text\\n\"\n        '- If no entities are found, return: {\"entities\": [], \"relations\": [], \"events\": []}\\n'\n        \"- Output ONLY the JSON object, no explanation\"\n    )\n    return [\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": user_prompt},\n    ]\n\n\n# ---------------------------------------------------------------------------\n# API Sampling\n# ---------------------------------------------------------------------------\n\ndef create_client(api_base: str):\n    from openai import OpenAI\n\n    api_key = [REDACTED]\"OPENROUTER_API_KEY\", \"\")\n    if not api_key:\n        [REDACTED]\"OPENROUTER_API_KEY not set\")\n        sys.exit(1)\n    return OpenAI(base_url=api_base, api_key=[REDACTED]\n\n\ndef _api_call(client, model_id: str, messages: list[dict],\n              temperature: float, max_retries: int = 5) -> str:\n    for attempt in range(max_retries):\n        try:\n            resp = client.chat.completions.create(\n                model=model_id,\n                messages=messages,\n                temperature=temperature,\n                max_tokens=1024,\n                response_format={\"type\": \"json_object\"},\n            )\n            return resp.choices[0].message.content or \"{}\"\n        except Exception as e:\n            wait = min(2 ** attempt * 1.0, 60)\n            log.warning(\"  API error (attempt %d/%d): %s\", attempt + 1, max_retries, e)\n            if attempt < max_retries - 1:\n                time.sleep(wait)\n            else:\n                log.error(\"  FAILED after %d attempts, returning empty\", max_retries)\n                return \"{}\"\n\n\ndef sample_instance(client, model_id: str, messages: list[dict],\n                    n_samples: int, temperature: float) -> tuple[str, list[str]]:\n    \"\"\"Return (greedy_response, [n_samples stochastic responses]).\"\"\"\n    greedy = _api_call(client, model_id, messages, temperature=0.0)\n    stochastic = []\n    for _ in range(n_samples):\n        stochastic.append(_api_call(client, model_id, messages, temperature=temperature))\n    return greedy, stochastic\n\n\n# ---------------------------------------------------------------------------\n# Response Parsing\n# ---------------------------------------------------------------------------\n\ndef parse_response(raw: str) -> dict:\n    raw = raw.strip()\n    try:\n        data = json.loads(raw)\n    except json.JSONDecodeError:\n        start = raw.find(\"{\")\n        end = raw.rfind(\"}\")\n        if start != -1 and end != -1 and end > start:\n            try:\n                data = json.loads(raw[start : end + 1])\n            except json.JSONDecodeError:\n                return {\"entities\": [], \"relations\": [], \"events\": []}\n        else:\n            return {\"entities\": [], \"relations\": [], \"events\": []}\n\n    if not isinstance(data, dict):\n        return {\"entities\": [], \"relations\": [], \"events\": []}\n\n    entities = []\n    for e in data.get(\"entities\", []):\n        if not isinstance(e, dict):\n            continue\n        try:\n            etype = str(e[\"type\"]).lower()\n            if etype not in VALID_TYPES:\n                continue\n            entities.append({\n                \"text\": str(e[\"text\"]),\n                \"type\": etype,\n                \"start\": int(e[\"start\"]),\n                \"end\": int(e[\"end\"]),\n            })\n        except (KeyError, ValueError, TypeError):\n            continue\n\n    return {\"entities\": entities, \"relations\": [], \"events\": []}\n\n\n# ---------------------------------------------------------------------------\n# Evaluation Primitives\n# ---------------------------------------------------------------------------\n\ndef entity_set(entities: list[dict]) -> set[tuple]:\n    return {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in entities}\n\n\ndef compute_prf(pred_set: set, gold_set: set) -> tuple[float, float, float]:\n    if not gold_set and not pred_set:\n        return 1.0, 1.0, 1.0\n    if not pred_set:\n        return 0.0, 0.0, 0.0\n    if not gold_set:\n        return 0.0, 0.0, 0.0\n    tp = len(pred_set & gold_set)\n    if tp == 0:\n        return 0.0, 0.0, 0.0\n    p = tp / len(pred_set)\n    r = tp / len(gold_set)\n    f = 2 * p * r / (p + r)\n    return p, r, f\n\n\ndef entity_majority_vote(samples: list[dict], threshold: float = 0.5) -> set[tuple]:\n    counts: dict[tuple, int] = defaultdict(int)\n    N = len(samples)\n    for sample in samples:\n        for e in sample.get(\"entities\", []):\n            counts[(e[\"start\"], e[\"end\"], e[\"type\"])] += 1\n    return {k for k, c in counts.items() if c / N >= threshold}\n\n\n# ---------------------------------------------------------------------------\n# Instance-level Metrics\n# ---------------------------------------------------------------------------\n\ndef compute_instance_metrics(\n    greedy_parsed: dict,\n    sc_parsed: list[dict],\n    gold_entities: list[dict],\n) -> dict:\n    gold = entity_set(gold_entities)\n\n    # Greedy F1\n    greedy_ents = entity_set(greedy_parsed)\n    g_p, g_r, g_f = compute_prf(greedy_ents, gold)\n\n    # Per-sample F1\n    sample_f1s = []\n    for s in sc_parsed:\n        _, _, f = compute_prf(entity_set(s), gold)\n        sample_f1s.append(f)\n\n    # MV at multiple thresholds\n    mv_results = {}\n    for t in MV_THRESHOLDS:\n        mv_ents = entity_majority_vote(sc_parsed, threshold=t)\n        mv_p, mv_r, mv_f = compute_prf(mv_ents, gold)\n        mv_results[f\"t{t:.1f}\"] = {\"p\": mv_p, \"r\": mv_r, \"f1\": mv_f}\n\n    # Entity-level agreement: frequency of each entity across N samples\n    N = len(sc_parsed)\n    ent_counts: dict[tuple, int] = defaultdict(int)\n    for s in sc_parsed:\n        for e in s.get(\"entities\", []):\n            ent_counts[(e[\"start\"], e[\"end\"], e[\"type\"])] += 1\n\n    agreement_scores = {str(k): v / N for k, v in ent_counts.items()}\n    mean_agreement = float(np.mean(list(agreement_scores.values()))) if agreement_scores else 0.0\n\n    # Degeneracy: all sample entity sets identical\n    sample_sets = [frozenset(entity_set(s)) for s in sc_parsed]\n    is_degenerate = len(set(sample_sets)) == 1\n\n    # Oracle best-of-N\n    oracle_f1 = max(sample_f1s) if sample_f1s else 0.0\n\n    return {\n        \"greedy_p\": g_p,\n        \"greedy_r\": g_r,\n        \"greedy_f1\": g_f,\n        \"sample_f1s\": sample_f1s,\n        \"mean_sample_f1\": float(np.mean(sample_f1s)) if sample_f1s else 0.0,\n        \"oracle_f1\": oracle_f1,\n        \"mv\": mv_results,\n        \"mean_agreement\": mean_agreement,\n        \"n_unique_entities\": len(ent_counts),\n        \"n_gold_entities\": len(gold),\n        \"is_degenerate\": is_degenerate,\n    }\n\n\n# ---------------------------------------------------------------------------\n# Aggregate Analysis\n# ---------------------------------------------------------------------------\n\ndef aggregate_model_results(results: list[dict]) -> dict:\n    n = len(results)\n\n    # Macro-averaged metrics\n    greedy_f1s = [r[\"metrics\"][\"greedy_f1\"] for r in results]\n    oracle_f1s = [r[\"metrics\"][\"oracle_f1\"] for r in results]\n    mean_sample_f1s = [r[\"metrics\"][\"mean_sample_f1\"] for r in results]\n    agreements = [r[\"metrics\"][\"mean_agreement\"] for r in results]\n    degeneracy_flags = [r[\"metrics\"][\"is_degenerate\"] for r in results]\n\n    # MV F1 per threshold\n    mv_f1_by_threshold = {}\n    for t in MV_THRESHOLDS:\n        tk = f\"t{t:.1f}\"\n        f1s = [r[\"metrics\"][\"mv\"][tk][\"f1\"] for r in results]\n        mv_f1_by_threshold[tk] = {\n            \"mean_f1\": float(np.mean(f1s)),\n            \"std_f1\": float(np.std(f1s)),\n        }\n\n    # Best threshold\n    best_t = max(mv_f1_by_threshold, key=lambda k: mv_f1_by_threshold[k][\"mean_f1\"])\n    best_mv_f1 = mv_f1_by_threshold[best_t][\"mean_f1\"]\n\n    greedy_mean = float(np.mean(greedy_f1s))\n    selection_gap = best_mv_f1 - greedy_mean\n\n    # Correlation: mean_agreement vs greedy_f1 (Spearman)\n    if n >= 3:\n        rho, pval = spearmanr(agreements, greedy_f1s)\n        corr_agreement_f1 = {\"rho\": float(rho), \"p\": float(pval)}\n    else:\n        corr_agreement_f1 = {\"rho\": 0.0, \"p\": 1.0}\n\n    # Correlation: mean_agreement vs MV F1 at best threshold\n    best_mv_f1s = [r[\"metrics\"][\"mv\"][best_t][\"f1\"] for r in results]\n    if n >= 3:\n        rho2, pval2 = spearmanr(agreements, best_mv_f1s)\n        corr_agreement_mv = {\"rho\": float(rho2), \"p\": float(pval2)}\n    else:\n        corr_agreement_mv = {\"rho\": 0.0, \"p\": 1.0}\n\n    return {\n        \"n_instances\": n,\n        \"greedy_f1\": {\"mean\": greedy_mean, \"std\": float(np.std(greedy_f1s))},\n        \"oracle_f1\": {\"mean\": float(np.mean(oracle_f1s)), \"std\": float(np.std(oracle_f1s))},\n        \"mean_sample_f1\": {\"mean\": float(np.mean(mean_sample_f1s)), \"std\": float(np.std(mean_sample_f1s))},\n        \"mv_f1_by_threshold\": mv_f1_by_threshold,\n        \"best_threshold\": best_t,\n        \"best_mv_f1\": best_mv_f1,\n        \"selection_gap\": selection_gap,\n        \"degeneracy_rate\": sum(degeneracy_flags) / n,\n        \"mean_agreement\": {\"mean\": float(np.mean(agreements)), \"std\": float(np.std(agreements))},\n        \"correlation_agreement_greedy_f1\": corr_agreement_f1,\n        \"correlation_agreement_mv_f1\": corr_agreement_mv,\n    }\n\n\ndef diagnose_failure_modes(results: list[dict]) -> dict:\n    \"\"\"Categorize failure modes across instances.\"\"\"\n    n = len(results)\n    degenerate = [r for r in results if r[\"metrics\"][\"is_degenerate\"]]\n    best_t_key = f\"t0.5\"\n\n    mv_better = []\n    mv_worse = []\n    mv_same = []\n\n    for r in results:\n        g = r[\"metrics\"][\"greedy_f1\"]\n        m = r[\"metrics\"][\"mv\"][best_t_key][\"f1\"]\n        diff = m - g\n        if diff > 0.01:\n            mv_better.append(r)\n        elif diff < -0.01:\n            mv_worse.append(r)\n        else:\n            mv_same.append(r)\n\n    # High agreement but wrong\n    high_agree_wrong = [\n        r for r in results\n        if r[\"metrics\"][\"mean_agreement\"] > 0.8 and r[\"metrics\"][\"greedy_f1\"] < 0.5\n    ]\n\n    # Low agreement but correct\n    low_agree_correct = [\n        r for r in results\n        if r[\"metrics\"][\"mean_agreement\"] < 0.3 and r[\"metrics\"][\"greedy_f1\"] > 0.8\n    ]\n\n    return {\n        \"degeneracy_count\": len(degenerate),\n        \"degeneracy_rate\": len(degenerate) / n,\n        \"mv_better_count\": len(mv_better),\n        \"mv_worse_count\": len(mv_worse),\n        \"mv_same_count\": len(mv_same),\n        \"high_agreement_wrong_count\": len(high_agree_wrong),\n        \"low_agreement_correct_count\": len(low_agree_correct),\n    }\n\n\n# ---------------------------------------------------------------------------\n# Checkpointing\n# ---------------------------------------------------------------------------\n\ndef save_checkpoint(data: list[dict], path: str):\n    with open(path, \"w\", encoding=\"utf-8\") as f:\n        for item in data:\n            f.write(json.dumps(item, ensure_ascii=False) + \"\\n\")\n\n\ndef load_checkpoint(path: str) -> list[dict]:\n    if not os.path.exists(path):\n        return []\n    data = []\n    with open(path, encoding=\"utf-8\") as f:\n        for line in f:\n            line = line.strip()\n            if line:\n                data.append(json.loads(line))\n    return data\n\n\n# ---------------------------------------------------------------------------\n# Main Experiment Loop\n# ---------------------------------------------------------------------------\n\ndef run_model(\n    client,\n    model_name: str,\n    model_id: str,\n    instances: list[dict],\n    n_samples: int,\n    temperature: float,\n    output_dir: Path,\n    resume: bool = True,\n) -> list[dict]:\n    ckpt_path = output_dir / f\"checkpoint_{model_name}.jsonl\"\n    results = load_checkpoint(str(ckpt_path)) if resume else []\n    done_ids = {r[\"id\"] for r in results}\n\n    remaining = [inst for inst in instances if inst[\"id\"] not in done_ids]\n    log.info(\"Model %s: %d done, %d remaining\", model_name, len(done_ids), len(remaining))\n\n    for i, inst in enumerate(remaining):\n        log.info(\n            \"  [%d/%d] id=%s len=%d entities=%d\",\n            len(done_ids) + i + 1,\n            len(instances),\n            inst[\"id\"],\n            len(inst[\"text\"]),\n            len(inst[\"entities\"]),\n        )\n\n        messages = build_ner_prompt(inst[\"text\"])\n        greedy_raw, sc_raws = sample_instance(\n            client, model_id, messages, n_samples, temperature\n        )\n\n        greedy_parsed = parse_response(greedy_raw)\n        sc_parsed = [parse_response(r) for r in sc_raws]\n\n        metrics = compute_instance_metrics(greedy_parsed, sc_parsed, inst[\"entities\"])\n\n        result = {\n            \"id\": inst[\"id\"],\n            \"text\": inst[\"text\"],\n            \"gold_entities\": inst[\"entities\"],\n            \"greedy_raw\": greedy_raw,\n            \"greedy_parsed\": greedy_parsed,\n            \"sc_raws\": sc_raws,\n            \"sc_parsed\": sc_parsed,\n            \"metrics\": metrics,\n        }\n        results.append(result)\n\n        # Checkpoint every 10 instances\n        if (len(done_ids) + i + 1) % 10 == 0:\n            save_checkpoint(results, str(ckpt_path))\n            running = aggregate_model_results(results)\n            log.info(\n                \"    Checkpoint: greedy=%.4f, MV@0.5=%.4f, gap=%.4f, degen=%.1f%%\",\n                running[\"greedy_f1\"][\"mean\"],\n                running[\"mv_f1_by_threshold\"][\"t0.5\"][\"mean_f1\"],\n                running[\"selection_gap\"],\n                running[\"degeneracy_rate\"] * 100,\n            )\n\n    save_checkpoint(results, str(ckpt_path))\n    return results\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Frontier SC on FewNERD\")\n    parser.add_argument(\"--data-path\", type=str, default=None,\n                        help=\"Path to local FewNERD UIE JSONL file\")\n    parser.add_argument(\"--from-hf\", action=\"store_true\",\n                        help=\"Load FewNERD from HuggingFace\")\n    parser.add_argument(\"--n-instances\", type=int, default=200)\n    parser.add_argument(\"--n-samples\", type=int, default=8)\n    parser.add_argument(\"--temperature\", type=float, default=1.0)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--api-base\", type=str, default=API_BASE_URL)\n    parser.add_argument(\"--models\", type=str, nargs=\"+\", default=list(MODELS.keys()),\n                        choices=list(MODELS.keys()),\n                        help=\"Which models to run\")\n    parser.add_argument(\"--output-dir\", type=str,\n                        default=str(Path(__file__).parent / \"output\"))\n    parser.add_argument(\"--no-resume\", action=\"store_true\",\n                        help=\"Start fresh, ignore checkpoints\")\n    args = parser.parse_args()\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    # Load data\n    if args.data_path and os.path.exists(args.data_path):\n        instances = load_fewnerd_local(args.data_path, args.n_instances, args.seed)\n    elif args.from_hf:\n        instances = load_fewnerd_hf(args.n_instances, args.seed)\n    else:\n        parser.error(\"Specify --data-path or --from-hf\")\n\n    # Save selected instance IDs for reproducibility\n    id_list = [inst[\"id\"] for inst in instances]\n    with open(output_dir / \"instance_ids.json\", \"w\") as f:\n        json.dump({\"seed\": args.seed, \"n\": len(id_list), \"ids\": id_list}, f, indent=2)\n\n    client = create_client(args.api_base)\n\n    all_summaries = {}\n\n    for model_name in args.models:\n        model_id = MODELS[model_name]\n        log.info(\"=\" * 60)\n        log.info(\"Running model: %s (%s)\", model_name, model_id)\n        log.info(\"=\" * 60)\n\n        results = run_model(\n            client, model_name, model_id, instances,\n            args.n_samples, args.temperature, output_dir,\n            resume=not args.no_resume,\n        )\n\n        # Aggregate\n        summary = aggregate_model_results(results)\n        diagnosis = diagnose_failure_modes(results)\n        summary[\"diagnosis\"] = diagnosis\n        all_summaries[model_name] = summary\n\n        # Print summary\n        log.info(\"\\n--- %s Summary ---\", model_name)\n        log.info(\"  Greedy F1:       %.4f (±%.4f)\", summary[\"greedy_f1\"][\"mean\"], summary[\"greedy_f1\"][\"std\"])\n        log.info(\"  Oracle F1:       %.4f\", summary[\"oracle_f1\"][\"mean\"])\n        log.info(\"  Best MV F1:      %.4f (threshold=%s)\", summary[\"best_mv_f1\"], summary[\"best_threshold\"])\n        log.info(\"  Selection gap:   %+.4f\", summary[\"selection_gap\"])\n        log.info(\"  Degeneracy rate: %.1f%%\", summary[\"degeneracy_rate\"] * 100)\n        log.info(\"  Corr(agree,F1):  rho=%.4f (p=%.4f)\",\n                 summary[\"correlation_agreement_greedy_f1\"][\"rho\"],\n                 summary[\"correlation_agreement_greedy_f1\"][\"p\"])\n        log.info(\"  MV threshold sweep:\")\n        for t in MV_THRESHOLDS:\n            tk = f\"t{t:.1f}\"\n            mv = summary[\"mv_f1_by_threshold\"][tk]\n            delta = mv[\"mean_f1\"] - summary[\"greedy_f1\"][\"mean\"]\n            marker = \" <-- BEST\" if tk == summary[\"best_threshold\"] else \"\"\n            log.info(\"    θ=%.1f  F1=%.4f  Δ=%+.4f%s\", t, mv[\"mean_f1\"], delta, marker)\n\n    # Cross-model comparison\n    if len(all_summaries) > 1:\n        log.info(\"\\n\" + \"=\" * 60)\n        log.info(\"CROSS-MODEL COMPARISON\")\n        log.info(\"=\" * 60)\n        log.info(\"%-20s %8s %8s %8s %10s %8s\", \"Model\", \"Greedy\", \"MV@best\", \"Oracle\", \"Gap\", \"Degen%\")\n        for name, s in all_summaries.items():\n            log.info(\n                \"%-20s %8.4f %8.4f %8.4f %+10.4f %7.1f%%\",\n                name,\n                s[\"greedy_f1\"][\"mean\"],\n                s[\"best_mv_f1\"],\n                s[\"oracle_f1\"][\"mean\"],\n                s[\"selection_gap\"],\n                s[\"degeneracy_rate\"] * 100,\n            )\n\n    # Save final results\n    final_output = {\n        \"config\": {\n            \"n_instances\": args.n_instances,\n            \"n_samples\": args.n_samples,\n            \"temperature\": args.temperature,\n            \"seed\": args.seed,\n            \"api_base\": args.api_base,\n            \"models\": {m: MODELS[m] for m in args.models},\n        },\n        \"summaries\": all_summaries,\n    }\n\n    with open(output_dir / \"results_summary.json\", \"w\") as f:\n        json.dump(final_output, f, indent=2, default=str)\n\n    log.info(\"\\nResults saved to %s\", output_dir)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-20T18:25:10.652905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/frontier_sc/run_frontier_sc.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-20T18:25:10.653077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-20T18:25:10.653227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-20T18:25:10.653348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-20T18:25:10.653464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-20T18:25:10.653583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "run_frontier_sc.py",
+              "type": "intermediate",
+              "description": "Frontier model SC experiment script on FewNERD — GPT-5.5 + Claude Opus 4.6 via OpenRouter API, frequency-based agreement, MV construction, correlation-selection gap analysis",
+              "project": "struct_self_consist_ie",
+              "exp_id": "exp_b_frontier_sc_fewnerd",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/frontier_sc/run_frontier_sc.py",
+              "tags": "['frontier', 'self-consistency', 'fewnerd', 'api', 'cpu-only']"
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-20T18:25:10.653733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_8c8392\\\", \\\"name\\\": \\\"run_frontier_sc.py\\\", \\\"type\\\": \\\"intermediate\\\", \\\"description\\\": \\\"Frontier model SC experiment script on FewNERD — GPT-5.5 + Claude Opus 4.6 via OpenRouter API, frequency-based agreement, MV construction, correlation-selection gap analysis\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/exp_b_frontier_sc_fewnerd/intermediate/run_frontier_sc.py\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": \\\"exp_b_frontier_sc_fewnerd\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T18:24:39.706381+00:00\\\", \\\"tags\\\": [\\\"frontier\\\", \\\"self-consistency\\\", \\\"fewnerd\\\", \\\"api\\\", \\\"cpu-only\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-20T18:25:10.653864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_b_frontier_sc_fewnerd",
+              "field": "hypothesis",
+              "value": "The correlation-selection gap in structured self-consistency persists with frontier models (GPT-5.5, Claude Opus 4.6), indicating it is a fundamental limitation of frequency-based SC for structured prediction rather than a capability issue of smaller models.",
+              "project": "struct_self_consist_ie"
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-20T18:25:10.653996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_b_frontier_sc_fewnerd\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T18:15:19.266Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:24:42.198Z\\\", \\\"hypothesis\\\": \\\"The correlation-selection gap in structured self-consistency persists with frontier models (GPT-5.5, Claude Opus 4.6), indicating it is a fundamental limitation of frequency-based SC for structured prediction rather than a capability issue of smaller models.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9189}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-20T18:25:10.654139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_b_frontier_sc_fewnerd",
+              "field": "status",
+              "value": "PREPARING",
+              "project": "struct_self_consist_ie",
+              "spec": "{'command': 'python run_frontier_sc.py --from-hf --n-instances 200 --n-samples 8 --temperature 1.0 --seed 42', 'server': 'local (CPU-only, API calls)', 'data_path': 'HuggingFace: DFKI-SLT/few-nerd (supervised, test split)', 'data_count': 200, 'model_name': 'GPT-5.5 + Claude Opus 4.6', 'seed': 42}"
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-20T18:25:10.654291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_b_frontier_sc_fewnerd\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T18:15:19.266Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:24:49.540Z\\\", \\\"hypothesis\\\": \\\"The correlation-selection gap in structured self-consistency persists with frontier models (GPT-5.5, Claude Opus 4.6), indicating it is a fundamental limitation of frequency-based SC for structured prediction rather than a capability issue of smaller models.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_frontier_sc.py --from-hf --n-instances 200 --n-samples 8 --temperature 1.0 --seed 42\\\", \\\"server\\\": \\\"local (CPU-only, API calls)\\\", \\\"data_path\\\": \\\"HuggingFace: DFKI-SLT/few-nerd (supervised, test split)\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"GPT-5.5 + Claude Opus 4.6\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.4066}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-20T18:25:10.654461+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码和 registry 已就绪。产出报告：\n\n---\n\n## 产出报告：exp_b_frontier_sc_fewnerd\n\n### 代码路径\n`artifacts/experiments/frontier_sc/run_frontier_sc.py`\n\n### OpenRouter Model IDs\n| Model | OpenRouter ID |\n|---|---|\n| GPT-5.5 | `openai/gpt-5.5` |\n| Claude Opus 4.6 | `anthropic/claude-opus-4.6` |\n\n### Cost 估算\n\n| 项目 | 数值 |\n|---|---|\n| API calls | 200 inst × (1 greedy + 8 SC) × 2 models = **3,600 calls** |\n| 每 call tokens | ~800 input + ~300 output |\n| 总 input | ~2.88M tokens |\n| 总 output | ~1.08M tokens |\n| **GPT-5.5** | 1.44M × $5/M + 0.54M × $30/M = **$23.4** |\n| **Claude Opus 4.6** | 1.44M × $5/M + 0.54M × $25/M = **$20.7** |\n| **总计** | **~$44** |\n\n### 依赖\n```\nopenai          # OpenAI SDK (兼容 OpenRouter)\nnumpy\nscipy\ndatasets        # 仅 --from-hf 模式需要\n```\n\n### 运行方式\n```bash\nexport OPENROUTER_API_KEY=\"[REDACTED]\"\n\n# 从 HuggingFace 加载数据\npython run_frontier_sc.py --from-hf\n\n# 或从本地 UIE JSONL 加载（可从服务器 scp）\npython run_frontier_sc.py --data-path /path/to/fewnerd_test.jsonl\n\n# 只跑单个模型\npython run_frontier_sc.py --from-hf --models gpt-5.5\n```\n\n### 关键设计\n- **Greedy 独立调用**（T=0）与 **8 个 SC 样本**（T=1.0）分开\n- **9 阈值 MV 扫描**（0.1-0.9），自动找最优阈值\n- **每 10 个 instance checkpoint**，支持断点续跑（`--no-resume` 强制重新开始）\n- **Failure mode 诊断**：degeneracy rate、high-agreement-wrong、low-agreement-correct\n- **Spearman correlation**：agreement ↔ greedy F1、agreement ↔ MV F1\n- Prompt 模板与项目 `zeroshot_prompts.py` 完全一致（带 type descriptions）"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_b_frontier_sc_20260520T181716"
+          },
+          "id": "event-000119"
+        }
+      ],
+      "message_count": 119
+    }
+  ],
+  "readable_path": "readable/conversations/code-exp-b-frontier-sc.md"
+}

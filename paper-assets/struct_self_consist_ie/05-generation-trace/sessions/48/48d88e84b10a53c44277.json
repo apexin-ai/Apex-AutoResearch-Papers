@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48d88e84b10a53c44277",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "analysis oracle improvable tost",
+  "task_key": "worker_analysis_oracle_improvable_tost_20260515T050343",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_oracle_improvable_tost_20260515T050343_result.json",
+    "occurrence": 1,
+    "bytes": 1078,
+    "sha256": "c9bec7a3f0930dd41a1b0430854f0047c96442627050a2aa5fb1c72d20edb9fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `oracle_improvable_tost.json`。\n\n**Task 6 — Oracle-Improvable Fraction：**\n\n| Config | n_valid | improvable | fraction | mean gain |\n|--------|---------|-----------|----------|-----------|\n| qwen_scierc_ner | 529 | 222 | 42.0% | +0.319 |\n| qwen_scierc_re | 397 | 164 | 41.3% | +0.453 |\n| llama_scierc_ner | 529 | 208 | 39.3% | +0.337 |\n| qwen_conll_ner | 2756 | 251 | 9.1% | +0.448 |\n| llama_conll_ner | 2756 | 110 | 4.0% | +0.461 |\n\nSciERC 约 40% 的 instance 可通过 oracle selection 改善；CoNLL 由于 greedy 已经很强（90%+），仅 4-9% 可改善，但改善幅度大（~45pp）。\n\n**Task 7 — TOST 等价检验：**\n\n- **llama_conll_ner**：所有 5 个 signal 在 δ=0.01 和 δ=0.02 下均与 greedy 统计等价（p≈0）\n- **qwen_conll_ner**：δ=0.02 下 sj/em/logprob/vc 等价；δ=0.01 下均不等价\n- **SciERC NER**（Qwen/LLaMA）：仅 sj 和 logprob 在 δ=0.02 下等价\n- **qwen_scierc_re**：所有 signal 均**不等价**——selection 显著低于 greedy（Δ 从 -1pp 到 -4.5pp）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-oracle-improvable-tost.md"
+}

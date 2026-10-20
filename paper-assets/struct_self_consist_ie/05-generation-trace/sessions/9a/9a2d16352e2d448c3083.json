@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a2d16352e2d448c3083",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp exp 026 t08",
+  "task_key": "worker_exp_exp_026_t08_20260516T123542",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_exp_026_t08_20260516T123542_result.json",
+    "occurrence": 1,
+    "bytes": 523,
+    "sha256": "ca8f634106671e8104e3bfff198f4825811c4216a87811fff2ea62b867d326fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_026_t08 已提交并运行中：\n- **PID**: 300032 on cuda:2\n- **命令**: `CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 0.8 --max_tokens 1024 --seed 42 --collect_logprobs --output_dir output/exp_026_t08`\n- **Registry**: exp_026_t08 → RUNNING\n- **日志**: `output/exp_026_t08.log`\n- 参考 T=0.5 运行时间约 5 分钟，预计很快完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp-026-t08-copy-2.md"
+}

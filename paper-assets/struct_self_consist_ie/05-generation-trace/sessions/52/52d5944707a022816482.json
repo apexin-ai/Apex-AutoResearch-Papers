@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52d5944707a022816482",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ops check exp020 status",
+  "task_key": "worker_ops_check_exp020_status_20260516T121557",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check_exp020_status_20260516T121557_result.json",
+    "occurrence": 1,
+    "bytes": 712,
+    "sha256": "b8d6dcf9866228c852526c53f1fbc7c1afcf5f86fcfebc7f20e820cc96e1f81c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-020 Few-NERD Smoke Test 状态\n\n**训练仍在进行中**，PID 288683，GPU 1 (RTX 5090, 27710MiB / 99% util)。\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | 2622 / 8236 steps (31.8%) |\n| Epoch | ~0.32 |\n| 已运行 | ~1h46m |\n| 预计剩余 | ~3h03m |\n| 当前 loss | 0.0603 (step 2600) |\n| Eval loss (step 2000) | 0.0658 |\n| 速度 | ~1.95 s/it |\n\n**Loss 曲线**：从 0.96 (step 50) → 0.21 (step 100) → 0.07 (step 1700) → 0.06 (step 2600)，收敛正常。\n\n**Checkpoints 已保存**：`checkpoint-1000`, `checkpoint-2000` 在 `/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_fewnerd_smoke/`\n\n预计约 3 小时后训练完成。尚无 inference 结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp020-status.md"
+}

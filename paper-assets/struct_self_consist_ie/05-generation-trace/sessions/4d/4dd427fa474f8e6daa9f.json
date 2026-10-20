@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4dd427fa474f8e6daa9f",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "cpu alpha crit derivation",
+  "task_key": "worker_cpu_alpha_crit_derivation_20260521T071446",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cpu_alpha_crit_derivation_20260521T071446_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "c53aa7f626ecd17e7e920bc8ad97ed197eca74540346b3353af9c7db65517696"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**α_crit = π_MV / (2 − π_MV)**\n\n| Dataset | π_MV | α_crit | α_obs | Gap | SC Δ | SC Effective? |\n|---------|------|--------|-------|-----|------|---------------|\n| FewNERD | 0.656 | 0.488 | 0.631 | +0.143 | +0.89 pp | **Yes** |\n| CoNLL | 0.894 | 0.808 | 0.874 | +0.066 | −1.09 pp | **No** |\n| SciERC | 0.614 | 0.443 | 0.607 | +0.164 | +0.76 pp | **Yes** |\n\n关键发现：bound 对所有 3 个数据集都预测 α > α_crit（SC 应有效），但 **CoNLL 违反了这个预测**。原因是 CoNLL 的 degeneracy rate 高达 63%（8 个 sample 产出相同输出），agreement signal 丧失区分力。建议引入 degeneracy-adjusted bound：α_crit_eff = α_crit / (1 − δ)，CoNLL 调整后 α_crit_eff = 2.18 > 1，正确预测 SC 失效。\n\n产出已注册：`artifacts/alpha_crit_table.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-alpha-crit-derivation.md"
+}

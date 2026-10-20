@@ -1,0 +1,654 @@
+{
+  "schema_version": "1.0",
+  "id": "96e15e9088b89aa81366",
+  "project": "struct_self_consist_ie",
+  "kind": "conversation",
+  "title": "audit exp027 mlp rf verifier",
+  "task_key": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_audit_exp027-mlp-rf-verifier_20260519T220906.jsonl",
+    "occurrence": 1,
+    "bytes": 31638,
+    "sha256": "45d195af4ec6a444ac0bcb9747daed736fbfbf5893f754463bc46c3bd617efd4"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "tool_call": 15,
+      "tool_result": 15,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T22:10:41.476589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "offset": "160",
+              "limit": "40"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T22:10:41.476933+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "160\tCoNLL & SJ & .436 & .422 & $-$.014 \\\\\n161\t      & FK & .400 & .418 & $+$.018 \\\\\n162\tSciERC & SJ & .360 & .422 & $+$.062 \\\\\n163\t       & FK & .267 & .326 & $+$.059 \\\\\n164\t\\bottomrule\n165\t\\end{tabular}\n166\t\\end{table}\n167\t\n168\t\\paragraph{Scale robustness.}\n169\tWith Qwen3-4B (Table~\\ref{tab:scale_ablation}), QE is comparable (mean $|\\Delta\\rho|{=}0.042$), yet selection remains below greedy despite 13.0~pp headroom. Task difficulty is a stronger predictor than model scale within the 3B--8B range (Appendix~\\ref{app:llama3b}).\n170\tDegeneracy scales with capability: 8B shows 17.8\\% vs.\\ 4B's 10.4\\% on SciERC (Table~\\ref{tab:degeneracy}).\n171\t\n172\t\\paragraph{LoRA-rank ablation.}\n173\tLoRA rank${=}8$ (vs.\\ 32) lowers degeneracy to 7.2\\% but LP remains below greedy ($\\rho(\\text{LP}, \\text{F1}){\\approx}0.24$); temperature manipulation ($T{=}1.2$; \\S\\ref{sec:discussion}) confirms that low degeneracy and adequate alignment are independently necessary.\n174\t\n175\t\\paragraph{Supervised signal combination and hidden probes.}\n176\tSupervised classifiers (LR, MLP, RF; 5-fold CV, $N{=}16$) and a DeBERTa-v3-base verifier all fail to close the selection gap (Appendix~\\ref{app:supervised_combination}).\n177\tHidden state probes improve correlation ($+37$\\% on SciERC) but not selection (gap closure $-5.1$\\%; Appendix~\\ref{app:hidden_probe}); the bottleneck extends to model-internal representations.\n178\t\n179\t%% ============================================================\n180\t\\subsection{Scaling Behavior}\n181\t\\label{sec:scaling}\n182\t\n183\tWe evaluate Qwen2.5-72B-Instruct in a zero-shot setting to test whether the gap persists at larger scale without fine-tuning.\n184\t\n185\t\\begin{table}[t]\n186\t\\centering\n187\t\\small\n188\t\\caption{Fine-tuned 8B vs.\\ zero-shot 72B ($N{=}8$, $T{=}1.0$). Hdr.\\ = oracle $-$ greedy (pp). Degen.: instance degeneracy (\\%).}\n189\t\\label{tab:scale_comparison}\n190\t\\resizebox{\\columnwidth}{!}{%\n191\t\\begin{tabular}{@{}llccccccc@{}}\n192\t\\toprule\n193\tDataset & Regime & Greedy & H\n…[truncated 347 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T22:10:41.477159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T22:10:41.477324+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T22:10:41.477489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "supervised_combination",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T22:10:41.477618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 3 files\ndocs/paper/main.aux\ndocs/paper/sections/appendix.tex\ndocs/paper/sections/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T22:10:41.477743+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/ -path \"*verifier*\" -o -path \"*mlp*\" -o -path \"*random_forest*\" -o -path \"*rf_*\" -o -path \"*supervised*\" | grep -v __pycache__",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T22:10:41.477882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T22:10:41.478009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "supervised_combination",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "-C": "3"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T22:10:41.478162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "430-(c)~Ensemble or mixture-of-experts settings generate structurally diverse candidates by design, reducing instance degeneracy below the levels observed in our single-model sampling.\n431-(d)~Tasks where the model exhibits systematic overconfidence (e.g., hallucination-prone generation) may benefit from consensus filtering, as disagreement among samples would carry more discriminative signal than in our well-calibrated fine-tuned regime.\n432-\n433:\\section{Supervised and Model-Internal Signal Analysis}\\label{app:supervised_combination}\n434-\n435-\\subsection{Supervised Signal Combination}\n436-"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T22:10:41.478311+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/ -path \"*verifier*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T22:10:41.478439+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/ -path \"*supervised*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T22:10:41.478613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_019_trained_verifier\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_019_trained_verifier/train_verifier.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_019_trained_verifier/results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_019_trained_verifier/feature_importance.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_019_trained_verifier/report.md\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/train_mlp_verifier.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/report.md\\\\n/root/autodl-tmp/struct_self_consist_ie/output/r17_analyses/mlp_verifier_comparison.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027v2_mlp_verifier\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027v2_mlp_verifier/train_mlp_verifier_v2.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027v2_mlp_verifier/run.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027v2_mlp_verifier/results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027v2_mlp_verifier/report.md\\\\n/root/autodl-tmp/struct_self_consist_ie/output/deberta_verifier\\\\n/root/autodl-tmp/struct_self_consist_ie/output/deberta_verifier/scierc_train.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/deberta_verifier/fewnerd_train.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/deberta_verifier/scierc_model.pt\\\\n/root/autodl-tmp/struct_self_consist_ie/output/deberta_verifier/scierc_model_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/deberta_verifier/fewnerd_model.pt\\\\n/root/autodl-tmp/struct_self_consist_ie/output/deberta_verifier/fewnerd_model_results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/deberta_verifier_5fold\\\\n/root/autodl-tmp/struc\n…[truncated 3990 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T22:10:41.478776+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/supervised_verifier_upgrade.log\\\\n/root/autodl-tmp/struct_self_consist_ie/output/supervised_verifier_upgrade\\\\n/root/autodl-tmp/struct_self_consist_ie/output/supervised_verifier_upgrade/results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/code/supervised_verifier_upgrade.py\\\\n/root/autodl-tmp/struct_self_consist_ie/train_supervised_verifier.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T22:10:41.478906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"*mlp*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T22:10:41.479038+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/train_mlp_verifier.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/r17_analyses/mlp_verifier_comparison.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027v2_mlp_verifier\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027v2_mlp_verifier/train_mlp_verifier_v2.py\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_v2\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_v2/train_mlp_verifier_v2.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T22:10:41.479183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"*random_forest*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T22:10:41.479316+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T22:10:41.479472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "433",
+              "limit": "80"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T22:10:41.479648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "433\t\\section{Supervised and Model-Internal Signal Analysis}\\label{app:supervised_combination}\n434\t\n435\t\\subsection{Supervised Signal Combination}\n436\t\n437\tSupervised classifiers (logistic regression, MLP, random forest) trained on all five signals (5-fold CV, 3-seed mean, SciERC, $N{=}16$, $+17.9$~pp headroom) all perform at or below greedy (F1${=}0.644$; LR: $-0.4$~pp; MLP: $-1.6$~pp; RF: $-3.1$~pp).\n438\tAdding pairwise interaction features does not help (AUROC 0.634 vs.\\ 0.638).\n439\tTo test whether richer representations could close the gap, we train a DeBERTa-v3-base verifier that encodes input-output pairs and predicts per-sample F1.\n440\tDeBERTa achieves $\\rho{=}0.329{\\pm}0.087$ (5-fold CV, 3 seeds). Despite moderate quality prediction, selection utility is poor: on SciERC, DeBERTa closes $-26.5{\\pm}26.5$\\% of the oracle gap (13 of 15 runs negative; vs.\\ LP's $+4.2{\\pm}10.7$\\%); on Few-NERD, DeBERTa recovers only $+3.5$\\% (single 80/20 split; vs.\\ LP's $+16.3$\\%).\n441\tCross-dataset transfer fails entirely ($-27$\\% to $-72$\\% gap closure).\n442\tNeither handcrafted signal combinations nor learned text representations close the selection gap; only model-internal log-probability provides meaningful selection signal, consistent with an information asymmetry between the generating model and external observers.\n443\t\n444\t\\subsection{Hidden State Probes}\\label{app:hidden_probe}\n445\t\n446\tThe preceding negative results suggest the bottleneck is model-internal rather than a feature engineering problem.\n447\tWe test this directly by training probes on the generating model's hidden representations.\n448\t\n449\t\\paragraph{Setup.}\n450\tFor each of $N{=}8$ samples per instance, we extract the mean-pooled final-layer hidden state ($d{=}4096$) from the generating Qwen3-8B model and train a linear probe and a two-layer MLP (hidden dim${=}256$) to predict per-sample F1 (5-fold CV, 3 seeds).\n451\t\n452\t\\begin{table}[t]\n453\t\\centering\n454\t\\small\n455\t\\caption{Hidden state probes vs.\\ LP for sa\n…[truncated 4131 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T22:10:41.479803+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/supervised_verifier_upgrade/results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T22:10:41.480034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scierc\\\\\\\": {\\\\n    \\\\\\\"n_instances\\\\\\\": 477,\\\\n    \\\\\\\"n_features\\\\\\\": 5,\\\\n    \\\\\\\"features\\\\\\\": [\\\\n      \\\\\\\"soft_jaccard\\\\\\\",\\\\n      \\\\\\\"fleiss_kappa\\\\\\\",\\\\n      \\\\\\\"logprob\\\\\\\",\\\\n      \\\\\\\"exact_match\\\\\\\",\\\\n      \\\\\\\"voting_confidence\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"binarize_method\\\\\\\": \\\\\\\"above_median\\\\\\\",\\\\n    \\\\\\\"threshold\\\\\\\": 0.6667,\\\\n    \\\\\\\"auroc\\\\\\\": {\\\\n      \\\\\\\"LR\\\\\\\": {\\\\n        \\\\\\\"mean_auroc\\\\\\\": 0.6713,\\\\n        \\\\\\\"std_auroc\\\\\\\": 0.0308\\\\n      },\\\\n      \\\\\\\"MLP\\\\\\\": {\\\\n        \\\\\\\"mean_auroc\\\\\\\": 0.6447,\\\\n        \\\\\\\"std_auroc\\\\\\\": 0.0179\\\\n      },\\\\n      \\\\\\\"RF\\\\\\\": {\\\\n        \\\\\\\"mean_auroc\\\\\\\": 0.5981,\\\\n        \\\\\\\"std_auroc\\\\\\\": 0.0243\\\\n      }\\\\n    },\\\\n    \\\\\\\"feature_importance\\\\\\\": {\\\\n      \\\\\\\"RF_gini\\\\\\\": {\\\\n        \\\\\\\"soft_jaccard\\\\\\\": 0.2176,\\\\n        \\\\\\\"fleiss_kappa\\\\\\\": 0.2224,\\\\n        \\\\\\\"logprob\\\\\\\": 0.3206,\\\\n        \\\\\\\"exact_match\\\\\\\": 0.1363,\\\\n        \\\\\\\"voting_confidence\\\\\\\": 0.103\\\\n      },\\\\n      \\\\\\\"MLP_permutation\\\\\\\": {\\\\n        \\\\\\\"soft_jaccard\\\\\\\": 0.035,\\\\n        \\\\\\\"fleiss_kappa\\\\\\\": 0.0163,\\\\n        \\\\\\\"logprob\\\\\\\": 0.0321,\\\\n        \\\\\\\"exact_match\\\\\\\": 0.0615,\\\\n        \\\\\\\"voting_confidence\\\\\\\": 0.0097\\\\n      },\\\\n      \\\\\\\"LR_abs_coef\\\\\\\": {\\\\n        \\\\\\\"soft_jaccard\\\\\\\": 0.3404,\\\\n        \\\\\\\"fleiss_kappa\\\\\\\": 0.0897,\\\\n        \\\\\\\"logprob\\\\\\\": 0.0597,\\\\n        \\\\\\\"exact_match\\\\\\\": 0.4346,\\\\n        \\\\\\\"voting_confidence\\\\\\\": 0.0572\\\\n      }\\\\n    },\\\\n    \\\\\\\"selection\\\\\\\": {\\\\n      \\\\\\\"greedy\\\\\\\": 0.7144,\\\\n      \\\\\\\"random_avg\\\\\\\": 0.6622,\\\\n      \\\\\\\"oracle\\\\\\\": 0.8231,\\\\n      \\\\\\\"LR\\\\\\\": {\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.6876,\\\\n        \\\\\\\"delta_vs_greedy\\\\\\\": -0.0268\\\\n      },\\\\n      \\\\\\\"MLP\\\\\\\": {\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.6895,\\\\n        \\\\\\\"delta_vs_greedy\\\\\\\": -0.0249\\\\n      },\\\\n      \\\\\\\"RF\\\\\\\": {\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.6804,\\\\n        \\\\\\\"delta_vs_greedy\\\\\\\": -0.034\\\\n      }\\\\\n…[truncated 4047 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T22:10:41.480221+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_027v2_mlp_verifier/results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T22:10:41.480490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_seed\\\\\\\": {\\\\n    \\\\\\\"42\\\\\\\": {\\\\n      \\\\\\\"LR_5feat\\\\\\\": {\\\\n        \\\\\\\"auroc\\\\\\\": 0.6634,\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.6396\\\\n      },\\\\n      \\\\\\\"MLP_5feat\\\\\\\": {\\\\n        \\\\\\\"auroc\\\\\\\": 0.6389,\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.619\\\\n      },\\\\n      \\\\\\\"RF_5feat\\\\\\\": {\\\\n        \\\\\\\"auroc\\\\\\\": 0.6042,\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.6154\\\\n      },\\\\n      \\\\\\\"MLP_15feat\\\\\\\": {\\\\n        \\\\\\\"auroc\\\\\\\": 0.6502,\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.6244\\\\n      },\\\\n      \\\\\\\"single_signal_aurocs\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.5838,\\\\n        \\\\\\\"FK\\\\\\\": 0.4915,\\\\n        \\\\\\\"LP\\\\\\\": 0.5618,\\\\n        \\\\\\\"EM\\\\\\\": 0.6509,\\\\n        \\\\\\\"VC\\\\\\\": 0.5676\\\\n      },\\\\n      \\\\\\\"unsup_selection_f1\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.646,\\\\n        \\\\\\\"FK\\\\\\\": 0.6469,\\\\n        \\\\\\\"LP\\\\\\\": 0.6453,\\\\n        \\\\\\\"EM\\\\\\\": 0.6317,\\\\n        \\\\\\\"VC\\\\\\\": 0.589\\\\n      },\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.6442,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.8247,\\\\n      \\\\\\\"rf_importance_15\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.0581,\\\\n        \\\\\\\"FK\\\\\\\": 0.0622,\\\\n        \\\\\\\"LP\\\\\\\": 0.0802,\\\\n        \\\\\\\"EM\\\\\\\": 0.0427,\\\\n        \\\\\\\"VC\\\\\\\": 0.0501,\\\\n        \\\\\\\"SJxFK\\\\\\\": 0.0641,\\\\n        \\\\\\\"SJxLP\\\\\\\": 0.0755,\\\\n        \\\\\\\"SJxEM\\\\\\\": 0.0752,\\\\n        \\\\\\\"SJxVC\\\\\\\": 0.0542,\\\\n        \\\\\\\"FKxLP\\\\\\\": 0.0885,\\\\n        \\\\\\\"FKxEM\\\\\\\": 0.0695,\\\\n        \\\\\\\"FKxVC\\\\\\\": 0.0568,\\\\n        \\\\\\\"LPxEM\\\\\\\": 0.0839,\\\\n        \\\\\\\"LPxVC\\\\\\\": 0.0702,\\\\n        \\\\\\\"EMxVC\\\\\\\": 0.0688\\\\n      },\\\\n      \\\\\\\"ablation_mlp\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"auroc_without\\\\\\\": 0.6496,\\\\n          \\\\\\\"delta\\\\\\\": -0.0107\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"auroc_without\\\\\\\": 0.6346,\\\\n          \\\\\\\"delta\\\\\\\": 0.0043\\\\n        },\\\\n        \\\\\\\"LP\\\\\\\": {\\\\n          \\\\\\\"auroc_without\\\\\\\": 0.6649,\\\\n          \\\\\\\"delta\\\\\\\": -0.026\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"auroc_without\\\\\\\": 0.6067,\\\\n          \\\\\\\"de\n…[truncated 5759 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T22:10:41.480654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T22:10:41.480946+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_seed\\\\\\\": {\\\\n    \\\\\\\"42\\\\\\\": {\\\\n      \\\\\\\"LR_5feat\\\\\\\": {\\\\n        \\\\\\\"auroc\\\\\\\": 0.6634,\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.6396\\\\n      },\\\\n      \\\\\\\"MLP_5feat\\\\\\\": {\\\\n        \\\\\\\"auroc\\\\\\\": 0.6629,\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.6357\\\\n      },\\\\n      \\\\\\\"RF_5feat\\\\\\\": {\\\\n        \\\\\\\"auroc\\\\\\\": 0.6042,\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.6196\\\\n      },\\\\n      \\\\\\\"MLP_15feat\\\\\\\": {\\\\n        \\\\\\\"auroc\\\\\\\": 0.6434,\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.6282\\\\n      },\\\\n      \\\\\\\"RF_15feat\\\\\\\": {\\\\n        \\\\\\\"auroc\\\\\\\": 0.6267,\\\\n        \\\\\\\"selection_f1\\\\\\\": 0.6121\\\\n      },\\\\n      \\\\\\\"single_signal_aurocs\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.5838,\\\\n        \\\\\\\"FK\\\\\\\": 0.4915,\\\\n        \\\\\\\"LP\\\\\\\": 0.5618,\\\\n        \\\\\\\"EM\\\\\\\": 0.6509,\\\\n        \\\\\\\"VC\\\\\\\": 0.5676\\\\n      },\\\\n      \\\\\\\"unsup_selection_f1\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.646,\\\\n        \\\\\\\"FK\\\\\\\": 0.6469,\\\\n        \\\\\\\"LP\\\\\\\": 0.6453,\\\\n        \\\\\\\"EM\\\\\\\": 0.6317,\\\\n        \\\\\\\"VC\\\\\\\": 0.589\\\\n      },\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.6442,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.8247,\\\\n      \\\\\\\"rf_feature_importance_15\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.0581,\\\\n        \\\\\\\"FK\\\\\\\": 0.0622,\\\\n        \\\\\\\"LP\\\\\\\": 0.0802,\\\\n        \\\\\\\"EM\\\\\\\": 0.0427,\\\\n        \\\\\\\"VC\\\\\\\": 0.0501,\\\\n        \\\\\\\"SJxFK\\\\\\\": 0.0641,\\\\n        \\\\\\\"SJxLP\\\\\\\": 0.0755,\\\\n        \\\\\\\"SJxEM\\\\\\\": 0.0752,\\\\n        \\\\\\\"SJxVC\\\\\\\": 0.0542,\\\\n        \\\\\\\"FKxLP\\\\\\\": 0.0885,\\\\n        \\\\\\\"FKxEM\\\\\\\": 0.0695,\\\\n        \\\\\\\"FKxVC\\\\\\\": 0.0568,\\\\n        \\\\\\\"LPxEM\\\\\\\": 0.0839,\\\\n        \\\\\\\"LPxVC\\\\\\\": 0.0702,\\\\n        \\\\\\\"EMxVC\\\\\\\": 0.0688\\\\n      },\\\\n      \\\\\\\"rf_feature_importance_5\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.1894,\\\\n        \\\\\\\"FK\\\\\\\": 0.2324,\\\\n        \\\\\\\"LP\\\\\\\": 0.2728,\\\\n        \\\\\\\"EM\\\\\\\": 0.1338,\\\\n        \\\\\\\"VC\\\\\\\": 0.1717\\\\n      },\\\\n      \\\\\\\"ablation_mlp\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"auroc_without\\\\\\\": 0.6558,\\\\n          \\\\\\\"delta_from_full_5\\\\\\\"\n…[truncated 7119 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T22:10:41.481117+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/r17_analyses/mlp_verifier_comparison.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T22:10:41.481410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-027 MLP Verifier Comparison\\\\\\\",\\\\n  \\\\\\\"data\\\\\\\": \\\\\\\"SciERC NER, N=16, 3 seeds (42, 123, 456)\\\\\\\",\\\\n  \\\\\\\"data_source\\\\\\\": \\\\\\\"exp_001_seed{42,123,456}_v2\\\\\\\",\\\\n  \\\\\\\"n_instances_per_seed\\\\\\\": 551,\\\\n  \\\\\\\"baselines\\\\\\\": {\\\\n    \\\\\\\"greedy_f1\\\\\\\": 0.6441,\\\\n    \\\\\\\"oracle_f1\\\\\\\": 0.8231,\\\\n    \\\\\\\"oracle_greedy_gap\\\\\\\": 0.179,\\\\n    \\\\\\\"best_single_signal\\\\\\\": \\\\\\\"EM\\\\\\\",\\\\n    \\\\\\\"best_single_signal_auroc\\\\\\\": 0.6476,\\\\n    \\\\\\\"best_unsup_signal\\\\\\\": \\\\\\\"LP\\\\\\\",\\\\n    \\\\\\\"best_unsup_selection_f1\\\\\\\": 0.647\\\\n  },\\\\n  \\\\\\\"model_comparison\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"LR_5feat\\\\\\\",\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.6522,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.013,\\\\n      \\\\\\\"selection_f1_mean\\\\\\\": 0.6407,\\\\n      \\\\\\\"selection_f1_std\\\\\\\": 0.001,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.0034,\\\\n      \\\\\\\"oracle_gap_closed_pct\\\\\\\": -1.9\\\\n    },\\\\n    {\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"MLP_5feat\\\\\\\",\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.6393,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0209,\\\\n      \\\\\\\"selection_f1_mean\\\\\\\": 0.6386,\\\\n      \\\\\\\"selection_f1_std\\\\\\\": 0.0029,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.0055,\\\\n      \\\\\\\"oracle_gap_closed_pct\\\\\\\": -3.1\\\\n    },\\\\n    {\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"RF_5feat\\\\\\\",\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.5868,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0208,\\\\n      \\\\\\\"selection_f1_mean\\\\\\\": 0.6154,\\\\n      \\\\\\\"selection_f1_std\\\\\\\": 0.0076,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.0287,\\\\n      \\\\\\\"oracle_gap_closed_pct\\\\\\\": -16.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"MLP_15feat\\\\\\\",\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.6322,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0165,\\\\n      \\\\\\\"selection_f1_mean\\\\\\\": 0.6339,\\\\n      \\\\\\\"selection_f1_std\\\\\\\": 0.005,\\\\n      \\\\\\\"delta_vs_greedy\\\\\\\": -0.0102,\\\\n      \\\\\\\"oracle_gap_closed_pct\\\\\\\": -5.7\\\\n    },\\\\n    {\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"RF_15feat\\\\\\\",\\\\n      \\\\\\\"auroc_mean\\\\\\\": 0.6043,\\\\n      \\\\\\\"auroc_std\\\\\\\": 0.0314,\\\\n      \\\\\\\"selection_f1_mean\\\\\\\n…[truncated 5295 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T22:10:41.481576+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_019_trained_verifier/results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T22:10:41.481869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_seed\\\\\\\": {\\\\n    \\\\\\\"42\\\\\\\": {\\\\n      \\\\\\\"n_instances\\\\\\\": 529,\\\\n      \\\\\\\"n_samples\\\\\\\": 8,\\\\n      \\\\\\\"greedy_f1\\\\\\\": 0.6439,\\\\n      \\\\\\\"oracle_f1\\\\\\\": 0.7758,\\\\n      \\\\\\\"unsup_selection_f1\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.645,\\\\n        \\\\\\\"FK\\\\\\\": 0.6448,\\\\n        \\\\\\\"LP\\\\\\\": 0.6501,\\\\n        \\\\\\\"EM\\\\\\\": 0.6362,\\\\n        \\\\\\\"VC\\\\\\\": 0.6256\\\\n      },\\\\n      \\\\\\\"lr_selection_f1_loo\\\\\\\": 0.6484,\\\\n      \\\\\\\"lr_selection_f1_5fold\\\\\\\": 0.6475,\\\\n      \\\\\\\"lr_auroc_loo\\\\\\\": 0.6795,\\\\n      \\\\\\\"lr_auroc_5fold\\\\\\\": 0.6794,\\\\n      \\\\\\\"single_signal_aurocs\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": 0.6715,\\\\n        \\\\\\\"FK\\\\\\\": 0.6154,\\\\n        \\\\\\\"LP\\\\\\\": 0.6116,\\\\n        \\\\\\\"EM\\\\\\\": 0.6472,\\\\n        \\\\\\\"VC\\\\\\\": 0.6879\\\\n      },\\\\n      \\\\\\\"feature_importance\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": -0.1739,\\\\n        \\\\\\\"FK\\\\\\\": 0.0925,\\\\n        \\\\\\\"LP\\\\\\\": 0.1161,\\\\n        \\\\\\\"EM\\\\\\\": 0.1913,\\\\n        \\\\\\\"VC\\\\\\\": 0.6455\\\\n      },\\\\n      \\\\\\\"ablation\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"auroc_without\\\\\\\": 0.6814,\\\\n          \\\\\\\"delta\\\\\\\": -0.0019\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"auroc_without\\\\\\\": 0.6802,\\\\n          \\\\\\\"delta\\\\\\\": -0.0007\\\\n        },\\\\n        \\\\\\\"LP\\\\\\\": {\\\\n          \\\\\\\"auroc_without\\\\\\\": 0.6788,\\\\n          \\\\\\\"delta\\\\\\\": 0.0007\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"auroc_without\\\\\\\": 0.678,\\\\n          \\\\\\\"delta\\\\\\\": 0.0015\\\\n        },\\\\n        \\\\\\\"VC\\\\\\\": {\\\\n          \\\\\\\"auroc_without\\\\\\\": 0.6577,\\\\n          \\\\\\\"delta\\\\\\\": 0.0218\\\\n        }\\\\n      },\\\\n      \\\\\\\"learning_curve\\\\\\\": {\\\\n        \\\\\\\"0.1\\\\\\\": {\\\\n          \\\\\\\"mean_auroc\\\\\\\": 0.6201,\\\\n          \\\\\\\"std_auroc\\\\\\\": 0.0755,\\\\n          \\\\\\\"n_train\\\\\\\": 52\\\\n        },\\\\n        \\\\\\\"0.25\\\\\\\": {\\\\n          \\\\\\\"mean_auroc\\\\\\\": 0.6682,\\\\n          \\\\\\\"std_auroc\\\\\\\": 0.0384,\\\\n          \\\\\\\"n_train\\\\\\\": 132\\\\n        },\\\\n        \\\\\\\"0.5\\\\\\\": {\\\\n          \\\\\\\"mean_auroc\\\\\\\"\n…[truncated 7138 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T22:10:41.482113+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：✅ 数据存在，论文数值匹配\n\n### 数据源路径\n\n| 文件 | 说明 |\n|------|------|\n| `/root/autodl-tmp/struct_self_consist_ie/output/exp_027_mlp_verifier/results.json` | **论文引用的主数据源**（SciERC, N=16, 3 seeds: 42/123/456, 5-fold CV） |\n| `/root/autodl-tmp/struct_self_consist_ie/output/exp_027v2_mlp_verifier/results.json` | v2 版本（MLP 有 hyperparameter 调整，数值略不同） |\n| `/root/autodl-tmp/struct_self_consist_ie/output/supervised_verifier_upgrade/results.json` | 3 数据集全量结果（SciERC/CoNLL/Few-NERD） |\n| `/root/autodl-tmp/struct_self_consist_ie/output/r17_analyses/mlp_verifier_comparison.json` | 汇总对比（含 diagnosis） |\n\n### 数值比对（appendix L437 vs `exp_027_mlp_verifier`）\n\n| 指标 | 论文声称 | 数据实际值 | 匹配 |\n|------|---------|-----------|------|\n| Greedy F1 | 0.644 | 0.6441 | ✓ |\n| LR Δ vs greedy | −0.4 pp | −0.35 pp (0.6406) | ✓ (四舍五入) |\n| MLP Δ vs greedy | −1.6 pp | −1.63 pp (0.6278) | ✓ |\n| RF Δ vs greedy | −3.1 pp | −3.08 pp (0.6133) | ✓ |\n| AUROC (interaction vs base) | 0.634 vs 0.638 | MLP_15feat 0.6341 vs MLP_5feat 0.6381 | ✓ |\n\n所有数值一致。experiment_plan 标记为 planned 应更新为 completed。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_exp027-mlp-rf-verifier_20260519T220906"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/audit-exp027-mlp-rf-verifier.md"
+}

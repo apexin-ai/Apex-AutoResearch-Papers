@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a87c40cf5f3eb2d9b48",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "diagnose 14b fewnerd final",
+  "task_key": "worker_diagnose_14b_fewnerd_final_20260520T203444",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_14b_fewnerd_final_20260520T203444_result.json",
+    "occurrence": 1,
+    "bytes": 642,
+    "sha256": "351940ac9ad05ab9e86b98e593b0a7bdbb85da39f35a4baf4fd05f786084d0c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**exp_14b_inference_fewnerd 最终状态：DONE / failed**\n\n- **日志**：`/tmp/14b_fewnerd.log` 不存在（实例重启清空 /tmp）\n- **输出文件**：服务器上零个 14b 相关输出文件，output 目录从未创建\n- **完成的 N 值**：无可用产出。之前诊断称完成了 FewNERD N=1 和 N=2 进行中（24%），但进程退出后无任何落盘数据\n- **GPU 0**：当前被 PID 804665 占用（30.5GB，应为 32B 训练）\n- **Cron**：已删除\n- **N=16**：按之前决定不跑\n\nRegistry 已更新 status=DONE, conclusion=failed, notes 记录了完整失败原因。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-14b-fewnerd-final.md"
+}

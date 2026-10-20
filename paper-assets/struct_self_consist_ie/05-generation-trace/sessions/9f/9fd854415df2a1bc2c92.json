@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fd854415df2a1bc2c92",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "audit exp016 data source",
+  "task_key": "worker_audit_exp016_data_source_20260514T231243",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_exp016_data_source_20260514T231243_result.json",
+    "occurrence": 1,
+    "bytes": 1688,
+    "sha256": "216d9df7c9dd5435a2b6bbe7e68e1c303ffa09dc2116126b350bc6a756add130"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。结论如下：\n\n---\n\n## 审计结论\n\n### 1. 数据来源\n\n**exp_016_signal_ensemble 的全部分析数据来自 exp_012_logprob（max_tokens=512），NOT pilot_004。**\n\n`analyze_exp016_ensemble.py` 第 643-648 行是 if/else 逻辑：当 `exp_012_logprob/samples_with_logprobs.jsonl` 存在且包含 logprob 字段时，**直接使用该文件作为唯一数据源**，pilot_004 完全未被加载。Registry 中 `spec.eval_data = \"pilot_004\"` 具有误导性。\n\n### 2. max_tokens 确认\n\n| 实验 | 脚本 | max_tokens |\n|------|------|-----------|\n| pilot_004 | `run_mvp_pilot.py` (default) | **1024** |\n| exp_012_logprob | `extract_logprobs.py` 第 56/67 行 | **512** |\n\n### 3. 截断情况\n\nexp_012_logprob 存在实质性截断：\n\n- **239/4959 个样本 (4.8%)** 命中 512 token 上限\n- **46/551 个 instance (8.3%)** 至少有一个样本被截断\n- 受影响 instance 中平均 5.2/9 个样本被截断（截断比例高）\n\n### 4. 论文数值是否可信\n\n**不完全可信。** 三个论文数值全部基于 exp_012（512）而非 pilot_004（1024）数据：\n\n| 指标 | 值 | 风险 |\n|------|------|------|\n| Ensemble AUROC | 0.735 (NER) | 截断样本→entities/relations 不完整→一致性信号被低估→AUROC 可能被低估 |\n| Selection F1 table | greedy=0.6094, oracle=0.7692 等 | 截断使 sample 质量下降，F1 和 oracle headroom 可能被压低 |\n| ECE | 同上 | 基于同一批截断数据计算 |\n\n**建议**：用 pilot_004 数据（max_tokens=1024，无截断）重跑 exp_016 分析，或用 max_tokens=1024 重新提取 logprob，以获得无截断数值用于论文。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-exp016-data-source.md"
+}

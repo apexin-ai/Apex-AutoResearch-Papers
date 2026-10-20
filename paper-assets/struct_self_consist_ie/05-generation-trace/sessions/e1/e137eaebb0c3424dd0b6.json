@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e137eaebb0c3424dd0b6",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "monitor conll s123 completion",
+  "task_key": "worker_monitor_conll_s123_completion_20260518T103545",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_conll_s123_completion_20260518T103545_result.json",
+    "occurrence": 1,
+    "bytes": 858,
+    "sha256": "0941d66d4efbe6089ac50c80de11bdb84735204761e94fb3491f0b0d7f443339"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。汇报结果：\n\n---\n\n**CoNLL seed=123 — 完成**\n- samples.jsonl 行数: 3,453 ✓\n- gold-filtered n: 2,756\n- greedy_f1: **0.9077**, oracle_f1: 0.9476, headroom: 3.99pp\n- LP_sel_f1: 0.8999, **LP_delta: -0.77pp**\n- degen (CF1 gold-filtered): **63.0%**\n- 其他 signal: SJ=-0.56pp, FK=-0.53pp, VC=-0.37pp, EM=-0.66pp\n\n**三 seed 汇总对比:**\n\n| | seed=42 | seed=456 | seed=123 | **3-seed mean** |\n|---|---|---|---|---|\n| greedy_f1 | 0.9079 | 0.9068 | 0.9077 | **0.9075** |\n| LP_delta | -1.05pp | -0.73pp | -0.77pp | **-0.85 ± 0.17pp** |\n| degen% | 59.1% | 62.9% | 63.0% | **61.7 ± 2.2%** |\n\n三个 seed 的 greedy F1 非常一致（0.9068–0.9079），LP selection 全部低于 greedy（均为负 delta），退化率约 62%。所有 signal 的 selection F1 均未能超过 greedy baseline。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-conll-s123-completion.md"
+}

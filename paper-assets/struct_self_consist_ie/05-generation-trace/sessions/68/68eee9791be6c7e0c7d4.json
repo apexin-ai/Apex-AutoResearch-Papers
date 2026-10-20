@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68eee9791be6c7e0c7d4",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exec exp020 check merge pilot",
+  "task_key": "worker_exec_exp020_check_merge_pilot_20260516T152152",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exec_exp020_check_merge_pilot_20260516T152152_result.json",
+    "occurrence": 1,
+    "bytes": 405,
+    "sha256": "9efd600b83a112b271327aa3d983d6f60814510f8259dad4438a9e70f0a91584"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练仍在进行中。当前状态：\n\n- **进度**: 6978/8236 steps (84.7%)\n- **已运行**: ~4h51m\n- **剩余**: ~1258 steps × ~2.0s/it ≈ **42 分钟**\n- **最新 checkpoint**: checkpoint-6000 (保存于 22:49)\n- **ETA**: 约 2026-05-16 23:33 完成\n\n训练未完成，停止后续步骤。等训练跑完（约 40 分钟后）再执行 Merge → Pilot Inference 流水线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-exp020-check-merge-pilot.md"
+}

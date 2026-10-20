@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bbb5c6f48225acf1950",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5090c cuda0 scierc n16 s456",
+  "task_key": "worker_ssh_5090c_cuda0_scierc_n16_s456_20260521T160140",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5090c_cuda0_scierc_n16_s456_20260521T160140_result.json",
+    "occurrence": 1,
+    "bytes": 268,
+    "sha256": "da192455c2ece6a30118cc2052d454a9c66858011b98e130200a986885ce539f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动，运行正常。\n\n- **PID**: 335079（vLLM engine PID 335560）\n- **GPU 0**: 83% 利用率，30189 MiB 显存占用\n- **进度**: 16/8816 prompts（551 实例 × 16 samples），预计约 47 分钟\n- **输出**: `output/scierc_n16_s456/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5090c-cuda0-scierc-n16-s456.md"
+}

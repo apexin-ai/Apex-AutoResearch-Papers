@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4322a3c4871d6d26fc6",
+  "project": "struct_self_consist_ie",
+  "kind": "history",
+  "title": "agent / loop_17.md",
+  "task_key": "loop_17",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_17.md",
+    "occurrence": 1,
+    "bytes": 5304,
+    "sha256": "d31d7b87bab9ef5ff86db0a90db530be889fc63b1fcb97bd650b3299d48dfd8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-21T20:50:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: autodl-5090 / 5090-b / 5090-c 各 cuda:0-3（共 12 卡）。不得使用白名单外设备。\n- **14B 推理诊断**: 已 5 次误判。判定失败**必须同时**确认 `ps -p PID` 死亡 + `nvidia-smi` GPU 空闲。\"无输出文件\"不能单独判 failed（vLLM 加载 15-20min 无输出正常）。14B 单卡必须 `--enforce_eager`。\n- **SCD 数字已证伪**: +3.84pp 完全虚假（micro vs instance-avg F1 口径不一致 + eval 集大小不同）。不得在论文引用。\n- **B2 verifier +3.62pp 是 91% 泄露**: OOF 后仅 +0.30pp。不得在 main text 引用 B2。\n- **API 余额耗尽**: TUM 代理 `http://47.94.22.126/v1` 返回 402。Frontier SC / Spider SQL / HumanEval 全部阻塞，不要尝试启动依赖 API 的实验。\n- **DDL 2026-05-25**: ARR May cycle，仅剩 ~4 天。\n- **Probe 数字只用 GroupKFold 版本**（CoNLL 0.882 / FewNERD 0.636 / SciERC 0.630），不要引用 StratifiedKFold 旧值（0.98+）。\n- **叙事 B 已确认**，不要回退到 \"probe >> MV\" 旧叙事。\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: autodl-5090 / autodl-5090-b / autodl-5090-c，均为 RTX 5090 × 4\n- **工作目录**: `/root/autodl-tmp/struct_self_consist_ie`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- **模型路径**:\n  - 8B FT (FewNERD): `checkpoints/qwen3-8b-fewnerd-exp021-merged`\n  - 8B FT (SciERC): `checkpoints/qwen3-8b-scierc-merged-v2`\n  - 7B base: `checkpoints/qwen25-7b-fewnerd-merged`\n  - 14B: `/root/autodl-tmp/.hf_cache/modelscope_hub/Qwen/Qwen2___5-14B-Instruct`\n  - 32B merged: `qwen25-32b-fewnerd-merged`（5090 上，14 shards ~61GB）\n- **数据**: `data/fewnerd/`, `data/conll2003/`, `data/scierc/processed_data/`\n- **活跃进程（reconcile 确认）**:\n  - exp_14b_inference_fewnerd: PID 252310, autodl-5090-c cuda:0（唯一 cron 活跃）\n- **磁盘**: 5090 盘 250G 已用 92%（仅 ~22GB 可用），操作前先 `list_large_dirs`\n\n### 3. 📊 当前状态\n**我刚完成**: Session #17 启动初始化 — registry 同步、reconcile crons、资源诊断、向 Director 汇报。\n\n**关键发现**: Registry 有 10 个 RUNNING 实验，但 `get_project_resource_usage` 仅确认 5 个有实际 GPU 活动。8/12 GPU 空闲 = 资源严重浪费。已向 Director 汇报并请求 CoNLL N=16 GPU 分配。\n\n**Registry 实际状态**:\n- RUNNING (10): exp_14b_inference_fewnerd, exp_14b_inference_conll, exp_fewnerd_7b_n16_s42, exp_fewnerd_t05_s456, exp_fewnerd_t12_s456, exp_scierc_n16_s123, exp_scierc_n16_s456, exp_fewnerd_n16_s456, exp_fewnerd_n16_s42, exp_fewnerd_n16_s123\n- QUEUED (2): exp_conll_n16_s123, exp_conll_n16_s456（已审批，待 GPU 分配）\n- 仅 5 个有确认的 GPU 活动，其余 5 个可能是 phantom RUNNING\n\n**Workers (3)**:\n- worker_diagnose_gpu_snapshot_d217 — turn 16，正在 SSH 查各服务器进程状态（已发现 5090 全空闲）\n- worker_8gpu_fill_priority — ⚠️ turn 1（30+ 分钟仅 1 轮），疑似卡住\n- worker_t_ablation_3seed_summary — turn 11，正常推进中\n\n**已向 Director 发出汇报**，等待回复 + GPU 分配。\n\n### 4. 📋 待办（条件触发式）\n- worker_diagnose_gpu_snapshot 完成 → 根据诊断结果确认哪些 RUNNING 是 phantom，更新 registry（标 failed 或重新提交）\n- worker_8gpu_fill 确认卡死 → cancel 并 spawn 新 worker 重新填充空闲 GPU\n- worker_t_ablation_3seed_summary 完成 → 检查 3-seed 均值和 CI，更新论文 T-ablation 表格\n- Director 分配 GPU 给 CoNLL N=16 → submit_on_allocated 提交到指定卡\n- FewNERD T=0.5/T=1.2 s456 完成 → 汇入 T-ablation 3-seed 汇总\n- SciERC N=16 s123/s456 完成（如确认实际在跑）→ 合并 3-seed N-scaling curve\n- 14B FewNERD 推理完成（PID 252310）→ **双信号诊断**（ps + nvidia-smi），提取 metrics 填 scale curve\n- API 余额恢复 → 重启 Frontier SC\n- 5090 空闲卡分配后 → 优先跑 CoNLL N=16（QUEUED），其次填 phantom RUNNING 的重提交\n\n### 5. 🎯 战略上下文\n**论文核心**: \"Strong Predictors, Weak Selectors\" — LP 能预测质量（QE）但不能选出更好的输出（selection）。三大贡献: (1) QE framework + selection diagnostic, (2) N-scaling / T-ablation / cross-model 实验矩阵, (3) complexity-dependent introspection boundary (probe)。\n\n**叙事 B**: ESJ(0.51) << Probe(0.63-0.88) ≤ MV(0.87)。Probe > MV 仅在 CoNLL（低复杂度），FewNERD/SciERC 上 probe < MV。结论是 complexity-dependent introspection boundary，不是 \"probe 全面优于 MV\"。\n\n**当前最大风险**: 12 卡分配仅 5 卡在跑。诊断 worker 正在查清 phantom RUNNING 的根因。如果 5 个 phantom 确认没进程，需要全部重新提交——这会消耗时间，DDL 压力更大。\n\n**易踩的坑**:\n1. 14B 绝不轻易标 failed（5 次误判历史）\n2. `read_registry` 工具可能返回不完整结果（本轮只返回 3/223），需要 grep registry.yaml 原文件验证\n3. 5090 磁盘 92%，跑新实验前检查空间\n4. exp_b1_scd 虽然 PENDING 但 conclusion=killed，不要重启\n5. F1 scaling law 写作约束：不报 c 均值（分数据集）、CoNLL 不报 c、N=1 低于 greedy 需解释\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17.md"
+}

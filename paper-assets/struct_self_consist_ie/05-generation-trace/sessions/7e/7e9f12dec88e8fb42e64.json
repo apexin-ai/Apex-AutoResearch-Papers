@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e9f12dec88e8fb42e64",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code diagnostic calibration",
+  "task_key": "worker_code_diagnostic_calibration_20260518T173407",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_diagnostic_calibration_20260518T173407_result.json",
+    "occurrence": 1,
+    "bytes": 1431,
+    "sha256": "d9a178466c917635213514bdd1cf7d3c86de5c4a45fd54881ccd5788205f05e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n## 7 个 Dataset-Model Combinations\n\n| Combination | Degen% | ρ(LP,F1) | LP Range | Delta (pp) |\n|---|---|---|---|---|\n| SciERC-Qwen8B | 17.8 | 0.180 | 0.0401 | **+0.615** |\n| CoNLL-Qwen8B | 47.4 | 0.329 | 0.0932 | **-0.921** |\n| FewNERD-Qwen8B | 13.8 | 0.511 | 0.0662 | **+1.355** |\n| CoNLL-LLaMA | 86.5 | 0.196 | 0.0076 | +0.144 |\n| SciERC-LLaMA | 19.1 | 0.167 | 0.0589 | +0.168 |\n| SciERC-Qwen4B | 10.4 | 0.189 | 0.0555 | **-2.230** |\n| CoNLL-Qwen4B | 90.6 | 0.242 | 0.0000 | +0.089 |\n\n## 核心发现：三指标框架预测能力极弱\n\n- **Individual correlations**: 三个指标与 LP delta 的 Spearman ρ 均 ≈ 0（p > 0.75），无显著相关\n- **3-indicator regression**: in-sample R² = 0.39，但 LOO R² = **-3.72**（严重过拟合，7 点 4 参数）\n- **LOO sign accuracy**: 2/7 (**28.6%**)，比随机猜测还差\n- **Best threshold rule**: `degen<20% & rho>0.15` 仅 57.1% 准确率\n\n**关键 blocker**: SciERC-Qwen4B（degen=10.4%, rho=0.189）看起来满足\"低退化+正相关\"条件，但 LP selection 反而 -2.23pp。说明模型 logprob 校准质量是一个被三指标忽略的关键因素。\n\n产出文件：\n- `output/diagnostic_calibration_results.json`\n- `output/diagnostic_calibration/diagnostic_calibration_scatter.png`\n- `output/diagnostic_calibration/diagnostic_calibration_report.md`\n- `code/diagnostic_calibration.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-diagnostic-calibration.md"
+}

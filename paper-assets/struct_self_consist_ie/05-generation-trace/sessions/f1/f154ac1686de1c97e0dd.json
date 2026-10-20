@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f154ac1686de1c97e0dd",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh p0 5epoch s42 mv recompute",
+  "task_key": "worker_ssh_p0_5epoch_s42_mv_recompute_20260521T203850",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_p0_5epoch_s42_mv_recompute_20260521T203850_result.json",
+    "occurrence": 1,
+    "bytes": 1760,
+    "sha256": "78610723c97a1977e217c790870e7cb79980dc6d10c18ccfe821cffc1630ef36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 recompute 全部完成。\n\n---\n\n## P0: 5-epoch s42 MV recompute\n- samples.jsonl: `/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_5epoch_s42/samples.jsonl`, 37648 lines\n- greedy_f1: **0.7980**\n- mv_strict_f1: **0.7935**\n- MV Δ (strict): **-0.45pp**\n- degeneracy_rate: **25.7%**\n- alpha_crit_eff_strict: **0.5369**\n- oracle_f1: **0.8781**\n- **与 3-epoch 对比**: degeneracy 8.8% → 25.7% (大幅恶化 +16.9pp), MV Δ -2.74pp → -0.45pp (改善，但 degeneracy 飙升导致 MV 仍为负)\n\n## P2: e2_pretrained_s456 MV recompute\n- samples.jsonl: `/root/autodl-tmp/struct_self_consist_ie/output/e2_pretrained_fewnerd_s456/samples.jsonl`, 37648 lines\n- greedy_f1: **0.5373**\n- mv_strict_f1: **0.5738**\n- MV Δ (strict): **+3.65pp**\n- degeneracy_rate: **11.8%**\n- alpha_crit_eff_strict: **0.3047**\n- oracle_f1: **0.6460**\n- 注：pretrained (未 finetune) 模型 greedy 只有 0.54，但 MV 有正向增益 +3.65pp，degeneracy 低\n\n## 5-epoch s123 MV recompute\n- samples.jsonl: `/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_5epoch_s123/samples.jsonl`, 37648 lines\n- greedy_f1: **0.7976**\n- mv_strict_f1: **0.7941**\n- MV Δ (strict): **-0.35pp**\n- degeneracy_rate: **27.1%**\n- alpha_crit_eff_strict: **0.5468**\n- oracle_f1: **0.8814**\n- 与 s42 一致：5-epoch degeneracy ~26-27%，MV Δ 约 -0.4pp\n\n---\n\n**关键发现**: 5-epoch 两个 seed (s42/s123) 表现高度一致——greedy ~0.798, degeneracy ~26-27%, MV Δ 约 -0.4pp。相比 3-epoch (degeneracy 8.8%, MV Δ -2.74pp)，5-epoch greedy 微升但 degeneracy 飙升近 3 倍，说明过拟合导致采样多样性坍塌。MV Δ 的绝对值反而缩小，但这是因为 MV 和 greedy 都在退化（采样输出趋同）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p0-5epoch-s42-mv-recompute.md"
+}

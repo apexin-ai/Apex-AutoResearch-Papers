@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67c223519ad03635b221",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "exp conll s456 cuda3",
+  "task_key": "worker_exp_conll_s456_cuda3_20260518T094912",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_conll_s456_cuda3_20260518T094912_result.json",
+    "occurrence": 1,
+    "bytes": 531,
+    "sha256": "4dbb6f7b6b5b389db2dd52c20b5d17d51aebb1ec2bdec44434fa72b992e3e887"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理和分析均已完成。结果汇报：\n\n```\nCoNLL seed=456:\n- samples.jsonl 行数: 3,453\n- gold-filtered n: 2,756\n- greedy_f1: 0.9070, LP_sel_f1: 0.8997, LP_delta: -0.73pp\n- degen: 62.9%\n- best signal: SJ (f1=0.9025, delta=-0.45pp)\n\nvs seed=42: greedy=0.9079, LP_delta=-1.05pp, degen=59.1%\n```\n\nseed=456 相比 seed=42：greedy F1 基本持平（0.9070 vs 0.9079），LP delta 略好（-0.73pp vs -1.05pp），degeneracy 稍高（62.9% vs 59.1%）。SJ 是最佳 selection signal（-0.45pp）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-conll-s456-cuda3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ea05824b286b4b018f0",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh batch mv recompute wave2",
+  "task_key": "worker_ssh_batch_mv_recompute_wave2_20260522T053022",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_batch_mv_recompute_wave2_20260522T053022_result.json",
+    "occurrence": 1,
+    "bytes": 441,
+    "sha256": "d7c9181633d3bca14e1cd7de8fa58e5f0c1ada057eab823a9613f2fcbf21bb07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总表：\n\n| 指标 | CoNLL pretrained n32 s42 | SciERC pretrained n16 s42 | CoNLL n32 s123 |\n|---|---|---|---|\n| **greedy_f1** | 0.5975 | 0.2486 | 0.9123 |\n| **mv_strict_f1** | 0.6296 | 0.2628 | 0.9177 |\n| **mv_delta (pp)** | +3.21 | +1.42 | +0.55 |\n| **oracle_f1** | 0.7493 | 0.4323 | 0.9717 |\n| **degeneracy_rate** | 18.8% | 0.8% | 37.9% |\n| **alpha_crit_eff_strict** | 0.5657 | 0.1524 | 0.7347 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-batch-mv-recompute-wave2.md"
+}

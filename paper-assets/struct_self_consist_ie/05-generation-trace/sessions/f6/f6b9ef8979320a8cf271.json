@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6b9ef8979320a8cf271",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh verify 7b fk correct data",
+  "task_key": "worker_ssh_verify-7b-fk-correct-data_20260520T081620",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_verify-7b-fk-correct-data_20260520T081620_result.json",
+    "occurrence": 1,
+    "bytes": 1153,
+    "sha256": "e46aedefb945a8b27784ef5552b65b8405ab542e5123f5262eb6189caf14810b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 数据验证\n- 路径确认: **1/3 存在**\n  - `qwen25_7b_n8_seed42/full_signal_report.json` ✓（1984 bytes, May 20 12:06）\n  - `qwen25_7b_n8_seed123/` 目录存在但为空（无 samples.jsonl，无 report）\n  - `qwen25_7b_n8_seed456/` 目录不存在\n- 数据来源: Qwen2.5-7B FewNERD（确认非 LLaMA）\n- hostname: `autodl-container-jb1uyxxe0t-1a1cc6c5`\n\n## FK Signal 结果\n- **seed42: FK ρ = 0.2822**\n- seed123: **缺失** — 推理未完成（无 samples.jsonl）\n- seed456: **缺失** — 推理未完成（目录都不存在）\n- 3-seed mean: **无法计算**，仅 1/3 seed 有数据\n\n## 补算可行性\n- `compute_signals.py` 支持 FK（使用 `fleiss_kappa_surface`），但前提是需要 `samples.jsonl` 推理输出\n- **瓶颈不在 signal 计算，而在推理**：seed123 和 seed456 的 FewNERD 推理还没跑，必须先跑推理生成 `samples.jsonl`，之后才能算 signal\n- 补算 signal 的命令（推理完成后）：\n  ```bash\n  python3 code/pipeline/compute_signals.py \\\n    --input-dir output/fewnerd_7b/qwen25_7b_n8_seed{123,456} \\\n    --model-size 7 --regime ft\n  ```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-7b-fk-correct-data.md"
+}

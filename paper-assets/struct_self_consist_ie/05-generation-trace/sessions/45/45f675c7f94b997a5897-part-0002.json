@@ -1,0 +1,918 @@
+{
+  "schema_version": "1.0",
+  "session_id": "45f675c7f94b997a5897",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KYChA7xzXd8AuffBHd2uRL",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/het_temp/run_het_temp.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"Heterogeneous-Temperature Sampling for Entity Construction.\n\nMix samples from T_low and T_high to break degeneracy while retaining precision.\nEvaluates multiple mix ratios with threshold-sweep majority vote.\n\nexp_id: exp_backup1_het_temp\nParent: exp_mrsc_multi_round (post MRSC/LSC negative)\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport sys\nfrom collections import defaultdict\nfrom pathlib import Path\n\nimport numpy as np\n\n\n# ---------------------------------------------------------------------------\n# Data loading\n# ---------------------------------------------------------------------------\n\ndef load_samples(path, max_instances=0):\n    data = []\n    with open(path) as f:\n        for line in f:\n            if line.strip():\n                data.append(json.loads(line))\n    if max_instances > 0:\n        data = data[:max_instances]\n    return data\n\n\ndef load_paired_data(t_low_path, t_high_path, max_instances=0):\n    \"\"\"Load and align T_low / T_high samples by instance id.\"\"\"\n    raw_low = load_samples(t_low_path, max_instances=0)\n    raw_high = load_samples(t_high_path, max_instances=0)\n\n    low_by_id = {inst[\"id\"]: inst for inst in raw_low}\n    high_by_id = {inst[\"id\"]: inst for inst in raw_high}\n\n    common_ids = sorted(set(low_by_id) & set(high_by_id))\n    if not common_ids:\n        low_by_text = {inst[\"text\"]: inst for inst in raw_low}\n        high_by_text = {inst[\"text\"]: inst for inst in raw_high}\n        common_texts = sorted(set(low_by_text) & set(high_by_text))\n        if not common_texts:\n            print(\"ERROR: no overlapping instances between T_low and T_high\", file=sys.stderr)\n            sys.exit(1)\n        paired = []\n        for t in common_texts:\n            lo, hi = low_by_text[t], high_by_text[t]\n            paired.append({\n                \"id\": lo.get(\"id\", t[:60]),\n                \"text\": t,\n                \"gold\": lo[\"gold\"],\n                \"t_low_samples\": lo[\"samples\"],\n                \"t_high_samples\": hi[\"samples\"],\n            })\n    else:\n        paired = []\n        for iid in common_ids:\n            lo, hi = low_by_id[iid], high_by_id[iid]\n            paired.append({\n                \"id\": iid,\n                \"text\": lo[\"text\"],\n                \"gold\": lo[\"gold\"],\n                \"t_low_samples\": lo[\"samples\"],\n                \"t_high_samples\": hi[\"samples\"],\n            })\n\n    if max_instances > 0:\n        paired = paired[:max_instances]\n\n    print(f\"Paired instances: {len(paired)}  \"\n          f\"(T_low={len(raw_low)}, T_high={len(raw_high)}, overlap={len(paired)})\")\n    return paired\n\n\n# ---------------------------------------------------------------------------\n# Entity helpers\n# ---------------------------------------------------------------------------\n\ndef entity_set(entities):\n    return {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in entities}\n\n\ndef entity_set_text(entities):\n    \"\"\"Fallback: use (text, type) when offsets are unreliable.\"\"\"\n    return {(e[\"text\"], e[\"type\"]) for e in entities}\n\n\ndef compute_prf(pred_set, gold_set):\n    if not pred_set and not gold_set:\n        return 1.0, 1.0, 1.0\n    tp = len(pred_set & gold_set)\n    p = tp / len(pred_set) if pred_set else 0.0\n    r = tp / len(gold_set) if gold_set else 0.0\n    f1 = 2 * p * r / (p + r) if (p + r) else 0.0\n    return p, r, f1\n\n\n# ---------------------------------------------------------------------------\n# Majority vote with threshold sweep\n# ---------------------------------------------------------------------------\n\ndef majority_vote_entities(samples, threshold):\n    \"\"\"Return entity set where agreement >= threshold.\"\"\"\n    N = len(samples)\n    if N == 0:\n        return set()\n    counts = defaultdict(int)\n    for s in samples:\n        for e in entity_set(s.get(\"entities\", [])):\n            counts[e] += 1\n    return {e for e, c in counts.items() if c / N >= threshold}\n\n\ndef best_threshold_f1(paired_data, pool_key, thresholds):\n    \"\"\"Sweep thresholds, return (best_f1, best_theta, all_f1s).\"\"\"\n    results_by_theta = {}\n    for theta in thresholds:\n        tp_total, pred_total, gold_total = 0, 0, 0\n        for inst in paired_data:\n            gold = entity_set(inst[\"gold\"].get(\"entities\", []))\n            pred = majority_vote_entities(inst[pool_key], theta)\n            tp_total += len(pred & gold)\n            pred_total += len(pred)\n            gold_total += len(gold)\n        p = tp_total / pred_total if pred_total else 0.0\n        r = tp_total / gold_total if gold_total else 0.0\n        f1 = 2 * p * r / (p + r) if (p + r) else 0.0\n        results_by_theta[theta] = f1\n\n    best_theta = max(results_by_theta, key=results_by_theta.get)\n    return results_by_theta[best_theta], best_theta, results_by_theta\n\n\n# ---------------------------------------------------------------------------\n# Sampling / mixing\n# ---------------------------------------------------------------------------\n\ndef mix_samples(t_low_samples, t_high_samples, k_low, k_high, rng):\n    \"\"\"Random mix: k_low from T_low + k_high from T_high.\"\"\"\n    n_low = min(k_low, len(t_low_samples))\n    n_high = min(k_high, len(t_high_samples))\n    idx_low = rng.choice(len(t_low_samples), n_low, replace=False)\n    idx_high = rng.choice(len(t_high_samples), n_high, replace=False)\n    return [t_low_samples[i] for i in idx_low] + [t_high_samples[i] for i in idx_high]\n\n\ndef subsample_pure(samples, n, rng):\n    \"\"\"Random subsample n from a single pool.\"\"\"\n    n = min(n, len(samples))\n    idx = rng.choice(len(samples), n, replace=False)\n    return [samples[i] for i in idx]\n\n\n# ---------------------------------------------------------------------------\n# Metrics\n# ---------------------------------------------------------------------------\n\ndef compute_degeneracy(paired_data, pool_key):\n    \"\"\"Fraction of instances where all samples produce the same entity set.\"\"\"\n    n_degen = 0\n    for inst in paired_data:\n        samples = inst[pool_key]\n        if not samples:\n            continue\n        sets = [frozenset(entity_set(s.get(\"entities\", []))) for s in samples]\n        if len(set(sets)) == 1:\n            n_degen += 1\n    return n_degen / len(paired_data) if paired_data else 0.0\n\n\ndef compute_oracle_f1(paired_data, pool_key):\n    \"\"\"Best single-sample F1 per instance, then micro-average.\"\"\"\n    tp_total, pred_total, gold_total = 0, 0, 0\n    for inst in paired_data:\n        gold = entity_set(inst[\"gold\"].get(\"entities\", []))\n        best_f1 = -1.0\n        best_pred = set()\n        for s in inst[pool_key]:\n            pred = entity_set(s.get(\"entities\", []))\n            _, _, f1 = compute_prf(pred, gold)\n            if f1 > best_f1:\n                best_f1 = f1\n                best_pred = pred\n        tp_total += len(best_pred & gold)\n        pred_total += len(best_pred)\n        gold_total += len(gold)\n    p = tp_total / pred_total if pred_total else 0.0\n    r = tp_total / gold_total if gold_total else 0.0\n    return 2 * p * r / (p + r) if (p + r) else 0.0\n\n\ndef compute_agreement_stats(paired_data, pool_key):\n    \"\"\"Per-entity agreement distribution across samples.\"\"\"\n    all_agreements = []\n    for inst in paired_data:\n        samples = inst[pool_key]\n        N = len(samples)\n        if N == 0:\n            continue\n        counts = defaultdict(int)\n        for s in samples:\n            for e in entity_set(s.get(\"entities\", [])):\n                counts[e] += 1\n        for e, c in counts.items():\n            all_agreements.append(c / N)\n    if not all_agreements:\n        return {\"mean\": 0, \"std\": 0, \"median\": 0, \"n_entities\": 0}\n    arr = np.array(all_agreements)\n    return {\n        \"mean\": float(np.mean(arr)),\n        \"std\": float(np.std(arr)),\n        \"median\": float(np.median(arr)),\n        \"n_entities\": len(arr),\n        \"pct_below_50\": float(np.mean(arr < 0.5) * 100),\n        \"pct_above_75\": float(np.mean(arr >= 0.75) * 100),\n    }\n\n\ndef compute_mean_unique_outputs(paired_data, pool_key):\n    \"\"\"Mean number of distinct entity sets across samples per instance.\"\"\"\n    uniques = []\n    for inst in paired_data:\n        samples = inst[pool_key]\n        if not samples:\n            continue\n        sets = [frozenset(entity_set(s.get(\"entities\", []))) for s in samples]\n        uniques.append(len(set(sets)))\n    return float(np.mean(uniques)) if uniques else 0.0\n\n\ndef compute_lp_range(paired_data, pool_key):\n    \"\"\"Within-instance logprob range (max - min mean_logprob).\"\"\"\n    ranges = []\n    for inst in paired_data:\n        lps = []\n        for s in inst[pool_key]:\n            if \"mean_logprob\" in s:\n                lps.append(s[\"mean_logprob\"])\n        if len(lps) >= 2:\n            ranges.append(max(lps) - min(lps))\n    if not ranges:\n        return None\n    arr = np.array(ranges)\n    return {\"mean\": float(np.mean(arr)), \"std\": float(np.std(arr)), \"n\": len(arr)}\n\n\n# ---------------------------------------------------------------------------\n# Single configuration evaluation\n# ---------------------------------------------------------------------------\n\nTHRESHOLDS = [round(t, 2) for t in np.arange(0.10, 0.95, 0.05)]\n\n\ndef evaluate_pool(paired_data, pool_key):\n    \"\"\"Full evaluation on a named pool.\"\"\"\n    best_f1, best_theta, f1_by_theta = best_threshold_f1(\n        paired_data, pool_key, THRESHOLDS\n    )\n    degeneracy = compute_degeneracy(paired_data, pool_key)\n    oracle = compute_oracle_f1(paired_data, pool_key)\n    agreement = compute_agreement_stats(paired_data, pool_key)\n    unique_outputs = compute_mean_unique_outputs(paired_data, pool_key)\n    lp_range = compute_lp_range(paired_data, pool_key)\n\n    return {\n        \"best_f1\": best_f1,\n        \"best_theta\": best_theta,\n        \"f1_by_theta\": {str(k): v for k, v in f1_by_theta.items()},\n        \"degeneracy\": degeneracy,\n        \"oracle_f1\": oracle,\n        \"agreement\": agreement,\n        \"mean_unique_outputs\": unique_outputs,\n        \"lp_range\": lp_range,\n    }\n\n\n# ---------------------------------------------------------------------------\n# Main experiment\n# ---------------------------------------------------------------------------\n\ndef run_experiment(paired_data, n_total, mix_ratios, n_repeats, seed):\n    \"\"\"Run all mix ratios + baselines with repeated random sampling.\"\"\"\n    rng = np.random.RandomState(seed)\n    all_results = {}\n\n    configs = []\n    for k_low, k_high in mix_ratios:\n        configs.append((f\"mix_{k_low}:{k_high}\", k_low, k_high))\n    configs.append((f\"pure_t_low_{n_total}\", n_total, 0))\n    configs.append((f\"pure_t_high_{n_total}\", 0, n_total))\n\n    for config_name, k_low, k_high in configs:\n        print(f\"\\n{'='*60}\")\n        print(f\"Config: {config_name}  (k_low={k_low}, k_high={k_high}, repeats={n_repeats})\")\n        print(f\"{'='*60}\")\n\n        repeat_results = []\n        for rep in range(n_repeats):\n            rep_seed = rng.randint(0, 2**31)\n            rep_rng = np.random.RandomState(rep_seed)\n\n            for inst in paired_data:\n                if k_low > 0 and k_high > 0:\n                    inst[\"_pool\"] = mix_samples(\n                        inst[\"t_low_samples\"], inst[\"t_high_samples\"],\n                        k_low, k_high, rep_rng\n                    )\n                elif k_high == 0:\n                    inst[\"_pool\"] = subsample_pure(inst[\"t_low_samples\"], k_low, rep_rng)\n                else:\n                    inst[\"_pool\"] = subsample_pure(inst[\"t_high_samples\"], k_high, rep_rng)\n\n            metrics = evaluate_pool(paired_data, \"_pool\")\n            repeat_results.append(metrics)\n\n        agg = aggregate_repeats(repeat_results)\n        all_results[config_name] = agg\n\n        print(f\"  F1:          {agg['best_f1_mean']:.4f} ± {agg['best_f1_std']:.4f}  (θ modes: {agg['best_theta_modes']})\")\n        print(f\"  Degeneracy:  {agg['degeneracy_mean']:.4f} ± {agg['degeneracy_std']:.4f}\")\n        print(f\"  Oracle F1:   {agg['oracle_f1_mean']:.4f} ± {agg['oracle_f1_std']:.4f}\")\n        print(f\"  Unique outs: {agg['unique_outputs_mean']:.2f} ± {agg['unique_outputs_std']:.2f}\")\n        agree = agg[\"agreement_mean_mean\"]\n        print(f\"  Agreement:   mean={agree:.4f}, <50%={agg['agreement_pct_below_50_mean']:.1f}%, ≥75%={agg['agreement_pct_above_75_mean']:.1f}%\")\n\n    return all_results\n\n\ndef aggregate_repeats(repeat_results):\n    \"\"\"Aggregate metrics across repeated random samplings.\"\"\"\n    f1s = [r[\"best_f1\"] for r in repeat_results]\n    thetas = [r[\"best_theta\"] for r in repeat_results]\n    degens = [r[\"degeneracy\"] for r in repeat_results]\n    oracles = [r[\"oracle_f1\"] for r in repeat_results]\n    uniques = [r[\"mean_unique_outputs\"] for r in repeat_results]\n    agree_means = [r[\"agreement\"][\"mean\"] for r in repeat_results]\n    agree_below50 = [r[\"agreement\"][\"pct_below_50\"] for r in repeat_results]\n    agree_above75 = [r[\"agreement\"][\"pct_above_75\"] for r in repeat_results]\n\n    from collections import Counter\n    theta_counts = Counter(thetas)\n    theta_modes = [t for t, _ in theta_counts.most_common(3)]\n\n    agg = {\n        \"best_f1_mean\": float(np.mean(f1s)),\n        \"best_f1_std\": float(np.std(f1s)),\n        \"best_f1_all\": f1s,\n        \"best_theta_modes\": theta_modes,\n        \"degeneracy_mean\": float(np.mean(degens)),\n        \"degeneracy_std\": float(np.std(degens)),\n        \"oracle_f1_mean\": float(np.mean(oracles)),\n        \"oracle_f1_std\": float(np.std(oracles)),\n        \"unique_outputs_mean\": float(np.mean(uniques)),\n        \"unique_outputs_std\": float(np.std(uniques)),\n        \"agreement_mean_mean\": float(np.mean(agree_means)),\n        \"agreement_pct_below_50_mean\": float(np.mean(agree_below50)),\n        \"agreement_pct_above_75_mean\": float(np.mean(agree_above75)),\n    }\n\n    f1_by_theta_all = defaultdict(list)\n    for r in repeat_results:\n        for theta_str, f1 in r[\"f1_by_theta\"].items():\n            f1_by_theta_all[theta_str].append(f1)\n    agg[\"f1_by_theta_mean\"] = {\n        k: float(np.mean(v)) for k, v in f1_by_theta_all.items()\n    }\n\n    lp_ranges = [r[\"lp_range\"] for r in repeat_results if r[\"lp_range\"] is not None]\n    if lp_ranges:\n        agg[\"lp_range_mean\"] = float(np.mean([lr[\"mean\"] for lr in lp_ranges]))\n    else:\n        agg[\"lp_range_mean\"] = None\n\n    return agg\n\n\n# ---------------------------------------------------------------------------\n# Summary table\n# ---------------------------------------------------------------------------\n\ndef print_summary_table(results, t_low_label, t_high_label):\n    print(f\"\\n{'='*80}\")\n    print(f\"SUMMARY: {t_low_label} vs {t_high_label}\")\n    print(f\"{'='*80}\")\n\n    header = f\"{'Config':<22} {'F1 (best θ)':<18} {'Degen':<12} {'Oracle':<12} {'Unique':<10} {'Agree':<10}\"\n    print(header)\n    print(\"-\" * 80)\n\n    sorted_keys = sorted(results.keys(), key=lambda k: (\n        0 if \"pure_t_low\" in k else (2 if \"pure_t_high\" in k else 1),\n        k\n    ))\n\n    for name in sorted_keys:\n        r = results[name]\n        f1_str = f\"{r['best_f1_mean']:.4f}±{r['best_f1_std']:.4f}\"\n        degen_str = f\"{r['degeneracy_mean']:.4f}\"\n        oracle_str = f\"{r['oracle_f1_mean']:.4f}\"\n        unique_str = f\"{r['unique_outputs_mean']:.2f}\"\n        agree_str = f\"{r['agreement_mean_mean']:.4f}\"\n        print(f\"{name:<22} {f1_str:<18} {degen_str:<12} {oracle_str:<12} {unique_str:<10} {agree_str:<10}\")\n\n    print()\n    t_low_key = [k for k in results if \"pure_t_low\" in k]\n    t_high_key = [k for k in results if \"pure_t_high\" in k]\n    if t_low_key and t_high_key:\n        f1_low = results[t_low_key[0]][\"best_f1_mean\"]\n        f1_high = results[t_high_key[0]][\"best_f1_mean\"]\n        best_mix = max(\n            ((k, v) for k, v in results.items() if \"mix_\" in k),\n            key=lambda x: x[1][\"best_f1_mean\"]\n        )\n        f1_mix = best_mix[1][\"best_f1_mean\"]\n        print(f\"Best mix: {best_mix[0]}  F1={f1_mix:.4f}\")\n        print(f\"  vs pure_t_low:  Δ={f1_mix - f1_low:+.4f}\")\n        print(f\"  vs pure_t_high: Δ={f1_mix - f1_high:+.4f}\")\n\n\n# ---------------------------------------------------------------------------\n# CLI\n# ---------------------------------------------------------------------------\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"Heterogeneous-Temperature Sampling for Entity Construction\")\n    p.add_argument(\"--t_low_path\", required=True, help=\"T_low samples JSONL\")\n    p.add_argument(\"--t_high_path\", required=True, help=\"T_high samples JSONL\")\n    p.add_argument(\"--t_low_label\", default=\"T_low\", help=\"Label for T_low (e.g. 'T=0.8')\")\n    p.add_argument(\"--t_high_label\", default=\"T_high\", help=\"Label for T_high (e.g. 'T=1.0')\")\n    p.add_argument(\"--output_dir\", required=True)\n    p.add_argument(\"--n_total\", type=int, default=8, help=\"Total pool size per instance\")\n    p.add_argument(\"--n_repeats\", type=int, default=10)\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--max_instances\", type=int, default=0, help=\"0 = all\")\n    p.add_argument(\"--mix_ratios\", type=str, default=\"2:6,3:5,4:4,5:3,6:2\",\n                   help=\"Comma-separated k_low:k_high ratios\")\n    return p.parse_args()\n\n\ndef main():\n    args = parse_args()\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    mix_ratios = []\n    for ratio_str in args.mix_ratios.split(\",\"):\n        kl, kh = ratio_str.strip().split(\":\")\n        kl, kh = int(kl), int(kh)\n        assert kl + kh == args.n_total, f\"mix ratio {kl}:{kh} doesn't sum to {args.n_total}\"\n        mix_ratios.append((kl, kh))\n\n    print(f\"T_low:  {args.t_low_label}  <- {args.t_low_path}\")\n    print(f\"T_high: {args.t_high_label} <- {args.t_high_path}\")\n    print(f\"Mix ratios: {mix_ratios}\")\n    print(f\"N_total={args.n_total}, repeats={args.n_repeats}, seed={args.seed}\")\n    print()\n\n    paired = load_paired_data(args.t_low_path, args.t_high_path, args.max_instances)\n\n    n_low_samples = [len(inst[\"t_low_samples\"]) for inst in paired]\n    n_high_samples = [len(inst[\"t_high_samples\"]) for inst in paired]\n    print(f\"T_low samples/instance:  min={min(n_low_samples)}, max={max(n_low_samples)}, \"\n          f\"mean={np.mean(n_low_samples):.1f}\")\n    print(f\"T_high samples/instance: min={min(n_high_samples)}, max={max(n_high_samples)}, \"\n          f\"mean={np.mean(n_high_samples):.1f}\")\n\n    has_lp = any(\"mean_logprob\" in s for inst in paired for s in inst[\"t_low_samples\"][:1])\n    print(f\"Logprobs available: {has_lp}\")\n\n    n_gold_empty = sum(1 for inst in paired if not inst[\"gold\"].get(\"entities\"))\n    print(f\"Gold-empty instances: {n_gold_empty}\")\n    print()\n\n    results = run_experiment(paired, args.n_total, mix_ratios, args.n_repeats, args.seed)\n\n    print_summary_table(results, args.t_low_label, args.t_high_label)\n\n    output = {\n        \"config\": {\n            \"t_low_path\": args.t_low_path,\n            \"t_high_path\": args.t_high_path,\n            \"t_low_label\": args.t_low_label,\n            \"t_high_label\": args.t_high_label,\n            \"n_total\": args.n_total,\n            \"n_repeats\": args.n_repeats,\n            \"seed\": args.seed,\n            \"mix_ratios\": [f\"{kl}:{kh}\" for kl, kh in mix_ratios],\n            \"n_instances\": len(paired),\n            \"has_logprobs\": has_lp,\n        },\n        \"results\": results,\n    }\n\n    out_path = os.path.join(args.output_dir, \"het_temp_results.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "uuid": "afb2c19e-9589-4767-b3e7-0efcd26cae4d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U1HxLdMfPARMqz3DoxvmoY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 131,
+                "cache_read_input_tokens": 70941,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 131
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-20T17:15:38.799Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KYChA7xzXd8AuffBHd2uRL",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/het_temp/run_het_temp.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "uuid": "9952f014-6d58-4ac4-a224-400ac7cce611",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/het_temp/run_het_temp.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Heterogeneous-Temperature Sampling for Entity Construction.\n\nMix samples from T_low and T_high to break degeneracy while retaining precision.\nEvaluates multiple mix ratios with threshold-sweep majority vote.\n\nexp_id: exp_backup1_het_temp\nParent: exp_mrsc_multi_round (post MRSC/LSC negative)\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport sys\nfrom collections import defaultdict\nfrom pathlib import Path\n\nimport numpy as np\n\n\n# ---------------------------------------------------------------------------\n# Data loading\n# ---------------------------------------------------------------------------\n\ndef load_samples(path, max_instances=0):\n    data = []\n    with open(path) as f:\n        for line in f:\n            if line.strip():\n                data.append(json.loads(line))\n    if max_instances > 0:\n        data = data[:max_instances]\n    return data\n\n\ndef load_paired_data(t_low_path, t_high_path, max_instances=0):\n    \"\"\"Load and align T_low / T_high samples by instance id.\"\"\"\n    raw_low = load_samples(t_low_path, max_instances=0)\n    raw_high = load_samples(t_high_path, max_instances=0)\n\n    low_by_id = {inst[\"id\"]: inst for inst in raw_low}\n    high_by_id = {inst[\"id\"]: inst for inst in raw_high}\n\n    common_ids = sorted(set(low_by_id) & set(high_by_id))\n    if not common_ids:\n        low_by_text = {inst[\"text\"]: inst for inst in raw_low}\n        high_by_text = {inst[\"text\"]: inst for inst in raw_high}\n        common_texts = sorted(set(low_by_text) & set(high_by_text))\n        if not common_texts:\n            print(\"ERROR: no overlapping instances between T_low and T_high\", file=sys.stderr)\n            sys.exit(1)\n        paired = []\n        for t in common_texts:\n            lo, hi = low_by_text[t], high_by_text[t]\n            paired.append({\n                \"id\": lo.get(\"id\", t[:60]),\n                \"text\": t,\n                \"gold\": lo[\"gold\"],\n                \"t_low_samples\": lo[\"samples\"],\n                \"t_high_samples\": hi[\"samples\"],\n            })\n    else:\n        paired = []\n        for iid in common_ids:\n            lo, hi = low_by_id[iid], high_by_id[iid]\n            paired.append({\n                \"id\": iid,\n                \"text\": lo[\"text\"],\n                \"gold\": lo[\"gold\"],\n                \"t_low_samples\": lo[\"samples\"],\n                \"t_high_samples\": hi[\"samples\"],\n            })\n\n    if max_instances > 0:\n        paired = paired[:max_instances]\n\n    print(f\"Paired instances: {len(paired)}  \"\n          f\"(T_low={len(raw_low)}, T_high={len(raw_high)}, overlap={len(paired)})\")\n    return paired\n\n\n# ---------------------------------------------------------------------------\n# Entity helpers\n# ---------------------------------------------------------------------------\n\ndef entity_set(entities):\n    return {(e[\"start\"], e[\"end\"], e[\"type\"]) for e in entities}\n\n\ndef entity_set_text(entities):\n    \"\"\"Fallback: use (text, type) when offsets are unreliable.\"\"\"\n    return {(e[\"text\"], e[\"type\"]) for e in entities}\n\n\ndef compute_prf(pred_set, gold_set):\n    if not pred_set and not gold_set:\n        return 1.0, 1.0, 1.0\n    tp = len(pred_set & gold_set)\n    p = tp / len(pred_set) if pred_set else 0.0\n    r = tp / len(gold_set) if gold_set else 0.0\n    f1 = 2 * p * r / (p + r) if (p + r) else 0.0\n    return p, r, f1\n\n\n# ---------------------------------------------------------------------------\n# Majority vote with threshold sweep\n# ---------------------------------------------------------------------------\n\ndef majority_vote_entities(samples, threshold):\n    \"\"\"Return entity set where agreement >= threshold.\"\"\"\n    N = len(samples)\n    if N == 0:\n        return set()\n    counts = defaultdict(int)\n    for s in samples:\n        for e in entity_set(s.get(\"entities\", [])):\n            counts[e] += 1\n    return {e for e, c in counts.items() if c / N >= threshold}\n\n\ndef best_threshold_f1(paired_data, pool_key, thresholds):\n    \"\"\"Sweep thresholds, return (best_f1, best_theta, all_f1s).\"\"\"\n    results_by_theta = {}\n    for theta in thresholds:\n        tp_total, pred_total, gold_total = 0, 0, 0\n        for inst in paired_data:\n            gold = entity_set(inst[\"gold\"].get(\"entities\", []))\n            pred = majority_vote_entities(inst[pool_key], theta)\n            tp_total += len(pred & gold)\n            pred_total += len(pred)\n            gold_total += len(gold)\n        p = tp_total / pred_total if pred_total else 0.0\n        r = tp_total / gold_total if gold_total else 0.0\n        f1 = 2 * p * r / (p + r) if (p + r) else 0.0\n        results_by_theta[theta] = f1\n\n    best_theta = max(results_by_theta, key=results_by_theta.get)\n    return results_by_theta[best_theta], best_theta, results_by_theta\n\n\n# ---------------------------------------------------------------------------\n# Sampling / mixing\n# ---------------------------------------------------------------------------\n\ndef mix_samples(t_low_samples, t_high_samples, k_low, k_high, rng):\n    \"\"\"Random mix: k_low from T_low + k_high from T_high.\"\"\"\n    n_low = min(k_low, len(t_low_samples))\n    n_high = min(k_high, len(t_high_samples))\n    idx_low = rng.choice(len(t_low_samples), n_low, replace=False)\n    idx_high = rng.choice(len(t_high_samples), n_high, replace=False)\n    return [t_low_samples[i] for i in idx_low] + [t_high_samples[i] for i in idx_high]\n\n\ndef subsample_pure(samples, n, rng):\n    \"\"\"Random subsample n from a single pool.\"\"\"\n    n = min(n, len(samples))\n    idx = rng.choice(len(samples), n, replace=False)\n    return [samples[i] for i in idx]\n\n\n# ---------------------------------------------------------------------------\n# Metrics\n# ---------------------------------------------------------------------------\n\ndef compute_degeneracy(paired_data, pool_key):\n    \"\"\"Fraction of instances where all samples produce the same entity set.\"\"\"\n    n_degen = 0\n    for inst in paired_data:\n        samples = inst[pool_key]\n        if not samples:\n            continue\n        sets = [frozenset(entity_set(s.get(\"entities\", []))) for s in samples]\n        if len(set(sets)) == 1:\n            n_degen += 1\n    return n_degen / len(paired_data) if paired_data else 0.0\n\n\ndef compute_oracle_f1(paired_data, pool_key):\n    \"\"\"Best single-sample F1 per instance, then micro-average.\"\"\"\n    tp_total, pred_total, gold_total = 0, 0, 0\n    for inst in paired_data:\n        gold = entity_set(inst[\"gold\"].get(\"entities\", []))\n        best_f1 = -1.0\n        best_pred = set()\n        for s in inst[pool_key]:\n            pred = entity_set(s.get(\"entities\", []))\n            _, _, f1 = compute_prf(pred, gold)\n            if f1 > best_f1:\n                best_f1 = f1\n                best_pred = pred\n        tp_total += len(best_pred & gold)\n        pred_total += len(best_pred)\n        gold_total += len(gold)\n    p = tp_total / pred_total if pred_total else 0.0\n    r = tp_total / gold_total if gold_total else 0.0\n    return 2 * p * r / (p + r) if (p + r) else 0.0\n\n\ndef compute_agreement_stats(paired_data, pool_key):\n    \"\"\"Per-entity agreement distribution across samples.\"\"\"\n    all_agreements = []\n    for inst in paired_data:\n        samples = inst[pool_key]\n        N = len(samples)\n        if N == 0:\n            continue\n        counts = defaultdict(int)\n        for s in samples:\n            for e in entity_set(s.get(\"entities\", [])):\n                counts[e] += 1\n        for e, c in counts.items():\n            all_agreements.append(c / N)\n    if not all_agreements:\n        return {\"mean\": 0, \"std\": 0, \"median\": 0, \"n_entities\": 0}\n    arr = np.array(all_agreements)\n    return {\n        \"mean\": float(np.mean(arr)),\n        \"std\": float(np.std(arr)),\n        \"median\": float(np.median(arr)),\n        \"n_entities\": len(arr),\n        \"pct_below_50\": float(np.mean(arr < 0.5) * 100),\n        \"pct_above_75\": float(np.mean(arr >= 0.75) * 100),\n    }\n\n\ndef compute_mean_unique_outputs(paired_data, pool_key):\n    \"\"\"Mean number of distinct entity sets across samples per instance.\"\"\"\n    uniques = []\n    for inst in paired_data:\n        samples = inst[pool_key]\n        if not samples:\n            continue\n        sets = [frozenset(entity_set(s.get(\"entities\", []))) for s in samples]\n        uniques.append(len(set(sets)))\n    return float(np.mean(uniques)) if uniques else 0.0\n\n\ndef compute_lp_range(paired_data, pool_key):\n    \"\"\"Within-instance logprob range (max - min mean_logprob).\"\"\"\n    ranges = []\n    for inst in paired_data:\n        lps = []\n        for s in inst[pool_key]:\n            if \"mean_logprob\" in s:\n                lps.append(s[\"mean_logprob\"])\n        if len(lps) >= 2:\n            ranges.append(max(lps) - min(lps))\n    if not ranges:\n        return None\n    arr = np.array(ranges)\n    return {\"mean\": float(np.mean(arr)), \"std\": float(np.std(arr)), \"n\": len(arr)}\n\n\n# ---------------------------------------------------------------------------\n# Single configuration evaluation\n# ---------------------------------------------------------------------------\n\nTHRESHOLDS = [round(t, 2) for t in np.arange(0.10, 0.95, 0.05)]\n\n\ndef evaluate_pool(paired_data, pool_key):\n    \"\"\"Full evaluation on a named pool.\"\"\"\n    best_f1, best_theta, f1_by_theta = best_threshold_f1(\n        paired_data, pool_key, THRESHOLDS\n    )\n    degeneracy = compute_degeneracy(paired_data, pool_key)\n    oracle = compute_oracle_f1(paired_data, pool_key)\n    agreement = compute_agreement_stats(paired_data, pool_key)\n    unique_outputs = compute_mean_unique_outputs(paired_data, pool_key)\n    lp_range = compute_lp_range(paired_data, pool_key)\n\n    return {\n        \"best_f1\": best_f1,\n        \"best_theta\": best_theta,\n        \"f1_by_theta\": {str(k): v for k, v in f1_by_theta.items()},\n        \"degeneracy\": degeneracy,\n        \"oracle_f1\": oracle,\n        \"agreement\": agreement,\n        \"mean_unique_outputs\": unique_outputs,\n        \"lp_range\": lp_range,\n    }\n\n\n# ---------------------------------------------------------------------------\n# Main experiment\n# ---------------------------------------------------------------------------\n\ndef run_experiment(paired_data, n_total, mix_ratios, n_repeats, seed):\n    \"\"\"Run all mix ratios + baselines with repeated random sampling.\"\"\"\n    rng = np.random.RandomState(seed)\n    all_results = {}\n\n    configs = []\n    for k_low, k_high in mix_ratios:\n        configs.append((f\"mix_{k_low}:{k_high}\", k_low, k_high))\n    configs.append((f\"pure_t_low_{n_total}\", n_total, 0))\n    configs.append((f\"pure_t_high_{n_total}\", 0, n_total))\n\n    for config_name, k_low, k_high in configs:\n        print(f\"\\n{'='*60}\")\n        print(f\"Config: {config_name}  (k_low={k_low}, k_high={k_high}, repeats={n_repeats})\")\n        print(f\"{'='*60}\")\n\n        repeat_results = []\n        for rep in range(n_repeats):\n            rep_seed = rng.randint(0, 2**31)\n            rep_rng = np.random.RandomState(rep_seed)\n\n            for inst in paired_data:\n                if k_low > 0 and k_high > 0:\n                    inst[\"_pool\"] = mix_samples(\n                        inst[\"t_low_samples\"], inst[\"t_high_samples\"],\n                        k_low, k_high, rep_rng\n                    )\n                elif k_high == 0:\n                    inst[\"_pool\"] = subsample_pure(inst[\"t_low_samples\"], k_low, rep_rng)\n                else:\n                    inst[\"_pool\"] = subsample_pure(inst[\"t_high_samples\"], k_high, rep_rng)\n\n            metrics = evaluate_pool(paired_data, \"_pool\")\n            repeat_results.append(metrics)\n\n        agg = aggregate_repeats(repeat_results)\n        all_results[config_name] = agg\n\n        print(f\"  F1:          {agg['best_f1_mean']:.4f} ± {agg['best_f1_std']:.4f}  (θ modes: {agg['best_theta_modes']})\")\n        print(f\"  Degeneracy:  {agg['degeneracy_mean']:.4f} ± {agg['degeneracy_std']:.4f}\")\n        print(f\"  Oracle F1:   {agg['oracle_f1_mean']:.4f} ± {agg['oracle_f1_std']:.4f}\")\n        print(f\"  Unique outs: {agg['unique_outputs_mean']:.2f} ± {agg['unique_outputs_std']:.2f}\")\n        agree = agg[\"agreement_mean_mean\"]\n        print(f\"  Agreement:   mean={agree:.4f}, <50%={agg['agreement_pct_below_50_mean']:.1f}%, ≥75%={agg['agreement_pct_above_75_mean']:.1f}%\")\n\n    return all_results\n\n\ndef aggregate_repeats(repeat_results):\n    \"\"\"Aggregate metrics across repeated random samplings.\"\"\"\n    f1s = [r[\"best_f1\"] for r in repeat_results]\n    thetas = [r[\"best_theta\"] for r in repeat_results]\n    degens = [r[\"degeneracy\"] for r in repeat_results]\n    oracles = [r[\"oracle_f1\"] for r in repeat_results]\n    uniques = [r[\"mean_unique_outputs\"] for r in repeat_results]\n    agree_means = [r[\"agreement\"][\"mean\"] for r in repeat_results]\n    agree_below50 = [r[\"agreement\"][\"pct_below_50\"] for r in repeat_results]\n    agree_above75 = [r[\"agreement\"][\"pct_above_75\"] for r in repeat_results]\n\n    from collections import Counter\n    theta_counts = Counter(thetas)\n    theta_modes = [t for t, _ in theta_counts.most_common(3)]\n\n    agg = {\n        \"best_f1_mean\": float(np.mean(f1s)),\n        \"best_f1_std\": float(np.std(f1s)),\n        \"best_f1_all\": f1s,\n        \"best_theta_modes\": theta_modes,\n        \"degeneracy_mean\": float(np.mean(degens)),\n        \"degeneracy_std\": float(np.std(degens)),\n        \"oracle_f1_mean\": float(np.mean(oracles)),\n        \"oracle_f1_std\": float(np.std(oracles)),\n        \"unique_outputs_mean\": float(np.mean(uniques)),\n        \"unique_outputs_std\": float(np.std(uniques)),\n        \"agreement_mean_mean\": float(np.mean(agree_means)),\n        \"agreement_pct_below_50_mean\": float(np.mean(agree_below50)),\n        \"agreement_pct_above_75_mean\": float(np.mean(agree_above75)),\n    }\n\n    f1_by_theta_all = defaultdict(list)\n    for r in repeat_results:\n        for theta_str, f1 in r[\"f1_by_theta\"].items():\n            f1_by_theta_all[theta_str].append(f1)\n    agg[\"f1_by_theta_mean\"] = {\n        k: float(np.mean(v)) for k, v in f1_by_theta_all.items()\n    }\n\n    lp_ranges = [r[\"lp_range\"] for r in repeat_results if r[\"lp_range\"] is not None]\n    if lp_ranges:\n        agg[\"lp_range_mean\"] = float(np.mean([lr[\"mean\"] for lr in lp_ranges]))\n    else:\n        agg[\"lp_range_mean\"] = None\n\n    return agg\n\n\n# ---------------------------------------------------------------------------\n# Summary table\n# ---------------------------------------------------------------------------\n\ndef print_summary_table(results, t_low_label, t_high_label):\n    print(f\"\\n{'='*80}\")\n    print(f\"SUMMARY: {t_low_label} vs {t_high_label}\")\n    print(f\"{'='*80}\")\n\n    header = f\"{'Config':<22} {'F1 (best θ)':<18} {'Degen':<12} {'Oracle':<12} {'Unique':<10} {'Agree':<10}\"\n    print(header)\n    print(\"-\" * 80)\n\n    sorted_keys = sorted(results.keys(), key=lambda k: (\n        0 if \"pure_t_low\" in k else (2 if \"pure_t_high\" in k else 1),\n        k\n    ))\n\n    for name in sorted_keys:\n        r = results[name]\n        f1_str = f\"{r['best_f1_mean']:.4f}±{r['best_f1_std']:.4f}\"\n        degen_str = f\"{r['degeneracy_mean']:.4f}\"\n        oracle_str = f\"{r['oracle_f1_mean']:.4f}\"\n        unique_str = f\"{r['unique_outputs_mean']:.2f}\"\n        agree_str = f\"{r['agreement_mean_mean']:.4f}\"\n        print(f\"{name:<22} {f1_str:<18} {degen_str:<12} {oracle_str:<12} {unique_str:<10} {agree_str:<10}\")\n\n    print()\n    t_low_key = [k for k in results if \"pure_t_low\" in k]\n    t_high_key = [k for k in results if \"pure_t_high\" in k]\n    if t_low_key and t_high_key:\n        f1_low = results[t_low_key[0]][\"best_f1_mean\"]\n        f1_high = results[t_high_key[0]][\"best_f1_mean\"]\n        best_mix = max(\n            ((k, v) for k, v in results.items() if \"mix_\" in k),\n            key=lambda x: x[1][\"best_f1_mean\"]\n        )\n        f1_mix = best_mix[1][\"best_f1_mean\"]\n        print(f\"Best mix: {best_mix[0]}  F1={f1_mix:.4f}\")\n        print(f\"  vs pure_t_low:  Δ={f1_mix - f1_low:+.4f}\")\n        print(f\"  vs pure_t_high: Δ={f1_mix - f1_high:+.4f}\")\n\n\n# ---------------------------------------------------------------------------\n# CLI\n# ---------------------------------------------------------------------------\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"Heterogeneous-Temperature Sampling for Entity Construction\")\n    p.add_argument(\"--t_low_path\", required=True, help=\"T_low samples JSONL\")\n    p.add_argument(\"--t_high_path\", required=True, help=\"T_high samples JSONL\")\n    p.add_argument(\"--t_low_label\", default=\"T_low\", help=\"Label for T_low (e.g. 'T=0.8')\")\n    p.add_argument(\"--t_high_label\", default=\"T_high\", help=\"Label for T_high (e.g. 'T=1.0')\")\n    p.add_argument(\"--output_dir\", required=True)\n    p.add_argument(\"--n_total\", type=int, default=8, help=\"Total pool size per instance\")\n    p.add_argument(\"--n_repeats\", type=int, default=10)\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--max_instances\", type=int, default=0, help=\"0 = all\")\n    p.add_argument(\"--mix_ratios\", type=str, default=\"2:6,3:5,4:4,5:3,6:2\",\n                   help=\"Comma-separated k_low:k_high ratios\")\n    return p.parse_args()\n\n\ndef main():\n    args = parse_args()\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    mix_ratios = []\n    for ratio_str in args.mix_ratios.split(\",\"):\n        kl, kh = ratio_str.strip().split(\":\")\n        kl, kh = int(kl), int(kh)\n        assert kl + kh == args.n_total, f\"mix ratio {kl}:{kh} doesn't sum to {args.n_total}\"\n        mix_ratios.append((kl, kh))\n\n    print(f\"T_low:  {args.t_low_label}  <- {args.t_low_path}\")\n    print(f\"T_high: {args.t_high_label} <- {args.t_high_path}\")\n    print(f\"Mix ratios: {mix_ratios}\")\n    print(f\"N_total={args.n_total}, repeats={args.n_repeats}, seed={args.seed}\")\n    print()\n\n    paired = load_paired_data(args.t_low_path, args.t_high_path, args.max_instances)\n\n    n_low_samples = [len(inst[\"t_low_samples\"]) for inst in paired]\n    n_high_samples = [len(inst[\"t_high_samples\"]) for inst in paired]\n    print(f\"T_low samples/instance:  min={min(n_low_samples)}, max={max(n_low_samples)}, \"\n          f\"mean={np.mean(n_low_samples):.1f}\")\n    print(f\"T_high samples/instance: min={min(n_high_samples)}, max={max(n_high_samples)}, \"\n          f\"mean={np.mean(n_high_samples):.1f}\")\n\n    has_lp = any(\"mean_logprob\" in s for inst in paired for s in inst[\"t_low_samples\"][:1])\n    print(f\"Logprobs available: {has_lp}\")\n\n    n_gold_empty = sum(1 for inst in paired if not inst[\"gold\"].get(\"entities\"))\n    print(f\"Gold-empty instances: {n_gold_empty}\")\n    print()\n\n    results = run_experiment(paired, args.n_total, mix_ratios, args.n_repeats, args.seed)\n\n    print_summary_table(results, args.t_low_label, args.t_high_label)\n\n    output = {\n        \"config\": {\n            \"t_low_path\": args.t_low_path,\n            \"t_high_path\": args.t_high_path,\n            \"t_low_label\": args.t_low_label,\n            \"t_high_label\": args.t_high_label,\n            \"n_total\": args.n_total,\n            \"n_repeats\": args.n_repeats,\n            \"seed\": args.seed,\n            \"mix_ratios\": [f\"{kl}:{kh}\" for kl, kh in mix_ratios],\n            \"n_instances\": len(paired),\n            \"has_logprobs\": has_lp,\n        },\n        \"results\": results,\n    }\n\n    out_path = os.path.join(args.output_dir, \"het_temp_results.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法验证。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "uuid": "c34fcadc-e318-465d-a662-a1e384ef60d4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JAVDgngFP7TqQ7ob7B7h4p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6636,
+                "cache_read_input_tokens": 71072,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6636
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DHf1ft29CouRT5rthZoxW7",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Explore available temperature data on server (dataset/model/seed combos)",
+                    "status": "completed",
+                    "activeForm": "Exploring available temperature data on server"
+                  },
+                  {
+                    "content": "Write run_het_temp.py experiment script",
+                    "status": "completed",
+                    "activeForm": "Writing run_het_temp.py experiment script"
+                  },
+                  {
+                    "content": "Verify script syntax and test with dry run",
+                    "status": "in_progress",
+                    "activeForm": "Verifying script syntax and testing with dry run"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "uuid": "6726f4d9-4991-47ee-9d17-e394d380a650",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JAVDgngFP7TqQ7ob7B7h4p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6636,
+                "cache_read_input_tokens": 71072,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6636
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-20T17:15:43.804Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DHf1ft29CouRT5rthZoxW7",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "uuid": "7ebc49b3-ae0c-483d-be3b-ad3eaadc5414",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Explore available temperature data on server (dataset/model/seed combos)",
+                  "status": "completed",
+                  "activeForm": "Exploring available temperature data on server"
+                },
+                {
+                  "content": "Write run_het_temp.py experiment script",
+                  "status": "in_progress",
+                  "activeForm": "Writing run_het_temp.py experiment script"
+                },
+                {
+                  "content": "Verify script syntax and test with dry run",
+                  "status": "pending",
+                  "activeForm": "Verifying script syntax and testing with dry run"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Explore available temperature data on server (dataset/model/seed combos)",
+                  "status": "completed",
+                  "activeForm": "Exploring available temperature data on server"
+                },
+                {
+                  "content": "Write run_het_temp.py experiment script",
+                  "status": "completed",
+                  "activeForm": "Writing run_het_temp.py experiment script"
+                },
+                {
+                  "content": "Verify script syntax and test with dry run",
+                  "status": "in_progress",
+                  "activeForm": "Verifying script syntax and testing with dry run"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JCxUo5rT4suvmH1QUYLxK8",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/het_temp && python3 -c \"import py_compile; py_compile.compile('run_het_temp.py', doraise=True); print('Syntax OK')\"",
+                "description": "Verify Python syntax"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "uuid": "3c719a48-7398-4c28-9bf1-932ef4539018",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HHtX9ac4BDdLyuQ7LT9XmJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 217,
+                "cache_read_input_tokens": 77708,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 217
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-20T17:15:47.116Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JCxUo5rT4suvmH1QUYLxK8",
+              "type": "tool_result",
+              "content": "Syntax OK",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "uuid": "d7a92ac8-696d-4783-9817-70c39ebc55e2",
+            "tool_use_result": {
+              "stdout": "Syntax OK",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018Qt3QgnVsNtheFV3szf9JN",
+              "name": "Bash",
+              "input": {
+                "command": "python3 run_het_temp.py --help",
+                "description": "Verify CLI args parse correctly"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "uuid": "9992dafb-20c5-446e-9843-fd62fb6fccbc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0198XjJomaPX42DTxXWynEum",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 162,
+                "cache_read_input_tokens": 77925,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 162
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-20T17:15:50.491Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018Qt3QgnVsNtheFV3szf9JN",
+              "type": "tool_result",
+              "content": "usage: run_het_temp.py [-h] --t_low_path T_LOW_PATH --t_high_path T_HIGH_PATH\n                       [--t_low_label T_LOW_LABEL]\n                       [--t_high_label T_HIGH_LABEL] --output_dir OUTPUT_DIR\n                       [--n_total N_TOTAL] [--n_repeats N_REPEATS]\n                       [--seed SEED] [--max_instances MAX_INSTANCES]\n                       [--mix_ratios MIX_RATIOS]\n\nHeterogeneous-Temperature Sampling for Entity Construction\n\noptions:\n  -h, --help            show this help message and exit\n  --t_low_path T_LOW_PATH\n                        T_low samples JSONL\n  --t_high_path T_HIGH_PATH\n                        T_high samples JSONL\n  --t_low_label T_LOW_LABEL\n                        Label for T_low (e.g. 'T=0.8')\n  --t_high_label T_HIGH_LABEL\n                        Label for T_high (e.g. 'T=1.0')\n  --output_dir OUTPUT_DIR\n  --n_total N_TOTAL     Total pool size per instance\n  --n_repeats N_REPEATS\n  --seed SEED\n  --max_instances MAX_INSTANCES\n                        0 = all\n  --mix_ratios MIX_RATIOS\n                        Comma-separated k_low:k_high ratios",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "uuid": "2e4aef86-bcc3-4dc7-ade6-a66323b95a2e",
+            "tool_use_result": {
+              "stdout": "usage: run_het_temp.py [-h] --t_low_path T_LOW_PATH --t_high_path T_HIGH_PATH\n                       [--t_low_label T_LOW_LABEL]\n                       [--t_high_label T_HIGH_LABEL] --output_dir OUTPUT_DIR\n                       [--n_total N_TOTAL] [--n_repeats N_REPEATS]\n                       [--seed SEED] [--max_instances MAX_INSTANCES]\n                       [--mix_ratios MIX_RATIOS]\n\nHeterogeneous-Temperature Sampling for Entity Construction\n\noptions:\n  -h, --help            show this help message and exit\n  --t_low_path T_LOW_PATH\n                        T_low samples JSONL\n  --t_high_path T_HIGH_PATH\n                        T_high samples JSONL\n  --t_low_label T_LOW_LABEL\n                        Label for T_low (e.g. 'T=0.8')\n  --t_high_label T_HIGH_LABEL\n                        Label for T_high (e.g. 'T=1.0')\n  --output_dir OUTPUT_DIR\n  --n_total N_TOTAL     Total pool size per instance\n  --n_repeats N_REPEATS\n  --seed SEED\n  --max_instances MAX_INSTANCES\n                        0 = all\n  --mix_ratios MIX_RATIOS\n                        Comma-separated k_low:k_high ratios",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成合成数据做端到端 dry run。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "uuid": "bd957920-30ad-4b14-8faf-7e592d58b605",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RPZWcZcNbvE4XRdTK7Vu7g",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 468,
+                "cache_read_input_tokens": 78087,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 468
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EBuDk7vYsGfU8QfzNdrhfy",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json, os, tempfile\n\n# Create synthetic test data\ninstances = []\nfor i in range(15):\n    gold_entities = [\n        {'text': f'entity_{j}', 'type': 'PER', 'start': j*10, 'end': j*10+5}\n        for j in range(3)\n    ]\n    # T_low: more consistent, fewer unique outputs\n    t_low_samples = []\n    for s in range(8):\n        ents = list(gold_entities)\n        if s >= 6:  # slight variation in last 2\n            ents = ents[:2]\n        t_low_samples.append({\n            'entities': ents, 'relations': [], 'events': [],\n            'mean_logprob': -0.02 - s*0.001,\n            'cumulative_logprob': -5.0 - s*0.1\n        })\n    # T_high: more diverse\n    import random\n    random.seed(i)\n    t_high_samples = []\n    for s in range(8):\n        n_ents = random.randint(1, 4)\n        ents = []\n        for j in range(n_ents):\n            ents.append({'text': f'entity_{j}', 'type': 'PER', 'start': j*10, 'end': j*10+5})\n        if random.random() < 0.3:\n            ents.append({'text': 'novel', 'type': 'ORG', 'start': 50, 'end': 55})\n        t_high_samples.append({\n            'entities': ents, 'relations': [], 'events': [],\n            'mean_logprob': -0.05 - s*0.005,\n            'cumulative_logprob': -10.0 - s*0.5\n        })\n\n    inst = {\n        'id': f'test_{i:03d}',\n        'text': f'This is test sentence number {i} with some entities.',\n        'gold': {'entities': gold_entities, 'relations': [], 'events': []},\n        'samples': t_low_samples\n    }\n    instances.append(inst)\n\ntmpdir = '/tmp/het_temp_synth'\nos.makedirs(tmpdir, exist_ok=True)\n\n# Write T_low file\nwith open(f'{tmpdir}/t_low.jsonl', 'w') as f:\n    for inst in instances:\n        f.write(json.dumps(inst) + '\\n')\n\n# Write T_high file (same ids, different samples)\nwith open(f'{tmpdir}/t_high.jsonl', 'w') as f:\n    for i, inst in enumerate(instances):\n        high_inst = dict(inst)\n        # Rebuild t_high samples\n        import random\n        random.seed(i)\n        t_high_samples = []\n        for s in range(8):\n            n_ents = random.randint(1, 4)\n            ents = []\n            for j in range(n_ents):\n                ents.append({'text': f'entity_{j}', 'type': 'PER', 'start': j*10, 'end': j*10+5})\n            if random.random() < 0.3:\n                ents.append({'text': 'novel', 'type': 'ORG', 'start': 50, 'end': 55})\n            t_high_samples.append({\n                'entities': ents, 'relations': [], 'events': [],\n                'mean_logprob': -0.05 - s*0.005,\n                'cumulative_logprob': -10.0 - s*0.5\n            })\n        high_inst['samples'] = t_high_samples\n        f.write(json.dumps(high_inst) + '\\n')\n\nprint(f'Wrote {len(instances)} instances to {tmpdir}/t_low.jsonl and t_high.jsonl')\n\"",
+                "description": "Generate synthetic test data for dry run"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "uuid": "11c112ee-0669-4fa1-adab-2d982977828c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RPZWcZcNbvE4XRdTK7Vu7g",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 468,
+                "cache_read_input_tokens": 78087,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 468
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-20T17:16:05.155Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EBuDk7vYsGfU8QfzNdrhfy",
+              "type": "tool_result",
+              "content": "Wrote 15 instances to /tmp/het_temp_synth/t_low.jsonl and t_high.jsonl",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "uuid": "1bc12f44-e2f4-44bc-a569-ff571d7c2c3f",
+            "tool_use_result": {
+              "stdout": "Wrote 15 instances to /tmp/het_temp_synth/t_low.jsonl and t_high.jsonl",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PB75pE8T84zKWYA3bXRDGw",
+              "name": "Bash",
+              "input": {
+                "command": "python3 run_het_temp.py \\\n  --t_low_path /tmp/het_temp_synth/t_low.jsonl \\\n  --t_high_path /tmp/het_temp_synth/t_high.jsonl \\\n  --t_low_label \"T=0.8\" \\\n  --t_high_label \"T=1.0\" \\\n  --output_dir /tmp/het_temp_test \\\n  --max_instances 10 \\\n  --n_repeats 3 \\\n  --seed 42",
+                "description": "Dry-run with synthetic data"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "uuid": "73d95efc-d9af-4001-a26d-c92b4b25b00d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H1h58uYFEanGQbC6779uak",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1131,
+                "cache_read_input_tokens": 78555,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1131
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-20T17:16:09.450Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PB75pE8T84zKWYA3bXRDGw",
+              "type": "tool_result",
+              "content": "T_low:  T=0.8  <- /tmp/het_temp_synth/t_low.jsonl\nT_high: T=1.0 <- /tmp/het_temp_synth/t_high.jsonl\nMix ratios: [(2, 6), (3, 5), (4, 4), (5, 3), (6, 2)]\nN_total=8, repeats=3, seed=42\n\nPaired instances: 10  (T_low=15, T_high=15, overlap=10)\nT_low samples/instance:  min=8, max=8, mean=8.0\nT_high samples/instance: min=8, max=8, mean=8.0\nLogprobs available: True\nGold-empty instances: 0\n\n\n============================================================\nConfig: mix_2:6  (k_low=2, k_high=6, repeats=3)\n============================================================\n  F1:          0.9779 ± 0.0072  (θ modes: [np.float64(0.3), np.float64(0.4)])\n  Degeneracy:  0.0000 ± 0.0000\n  Oracle F1:   1.0000 ± 0.0000\n  Unique outs: 5.00 ± 0.08\n  Agreement:   mean=0.5621, <50%=42.9%, ≥75%=41.6%\n\n============================================================\nConfig: mix_3:5  (k_low=3, k_high=5, repeats=3)\n============================================================\n  F1:          1.0000 ± 0.0000  (θ modes: [np.float64(0.3), np.float64(0.4)])\n  Degeneracy:  0.0000 ± 0.0000\n  Oracle F1:   1.0000 ± 0.0000\n  Unique outs: 4.53 ± 0.19\n  Agreement:   mean=0.5680, <50%=41.5%, ≥75%=44.9%\n\n============================================================\nConfig: mix_4:4  (k_low=4, k_high=4, repeats=3)\n============================================================\n  F1:          0.9945 ± 0.0077  (θ modes: [np.float64(0.3)])\n  Degeneracy:  0.0000 ± 0.0000\n  Oracle F1:   1.0000 ± 0.0000\n  Unique outs: 4.13 ± 0.12\n  Agreement:   mean=0.5855, <50%=38.1%, ≥75%=46.0%\n\n============================================================\nConfig: mix_5:3  (k_low=5, k_high=3, repeats=3)\n============================================================\n  F1:          1.0000 ± 0.0000  (θ modes: [np.float64(0.3)])\n  Degeneracy:  0.0000 ± 0.0000\n  Oracle F1:   1.0000 ± 0.0000\n  Unique outs: 3.73 ± 0.05\n  Agreement:   mean=0.6246, <50%=32.4%, ≥75%=49.3%\n\n============================================================\nConfig: mix_6:2  (k_low=6, k_high=2, repeats=3)\n============================================================\n  F1:          1.0000 ± 0.0000  (θ modes: [np.float64(0.3)])\n  Degeneracy:  0.0000 ± 0.0000\n  Oracle F1:   1.0000 ± 0.0000\n  Unique outs: 3.33 ± 0.12\n  Agreement:   mean=0.6780, <50%=26.8%, ≥75%=59.3%\n\n============================================================\nConfig: pure_t_low_8  (k_low=8, k_high=0, repeats=3)\n============================================================\n  F1:          1.0000 ± 0.0000  (θ modes: [np.float64(0.1)])\n  Degeneracy:  0.0000 ± 0.0000\n  Oracle F1:   1.0000 ± 0.0000\n  Unique outs: 2.00 ± 0.00\n  Agreement:   mean=0.9167, <50%=0.0%, ≥75%=100.0%\n\n============================================================\nConfig: pure_t_high_8  (k_low=0, k_high=8, repeats=3)\n============================================================\n  F1:          0.9123 ± 0.0000  (θ modes: [np.float64(0.4)])\n  Degeneracy:  0.0000 ± 0.0000\n  Oracle F1:   0.9375 ± 0.0000\n  Unique outs: 5.00 ± 0.00\n  Agreement:   mean=0.5600, <50%=46.0%, ≥75%=36.0%\n\n================================================================================\nSUMMARY: T=0.8 vs T=1.0\n================================================================================\nConfig                 F1 (best θ)        Degen        Oracle       Unique     Agree     \n--------------------------------------------------------------------------------\npure_t_low_8           1.0000±0.0000      0.0000       1.0000       2.00       0.9167    \nmix_2:6                0.9779±0.0072      0.0000       1.0000       5.00       0.5621    \nmix_3:5                1.0000±0.0000      0.0000       1.0000       4.53       0.5680    \nmix_4:4                0.9945±0.0077      0.0000       1.0000       4.13       0.5855    \nmix_5:3                1.0000±0.0000      0.0000       1.0000       3.73       0.6246    \nmix_6:2                1.0000±0.0000      0.0000       1.0000       3.33       0.6780    \npure_t_high_8          0.9123±0.0000      0.0000       0.9375       5.00       0.5600    \n\nBest mix: mix_3:5  F1=1.0000\n  vs pure_t_low:  Δ=+0.0000\n  vs pure_t_high: Δ=+0.0877\n\nResults saved to /tmp/het_temp_test/het_temp_results.json",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "uuid": "07ae2541-8db2-4d65-8465-3d4dc8965a99",
+            "tool_use_result": {
+              "stdout": "T_low:  T=0.8  <- /tmp/het_temp_synth/t_low.jsonl\nT_high: T=1.0 <- /tmp/het_temp_synth/t_high.jsonl\nMix ratios: [(2, 6), (3, 5), (4, 4), (5, 3), (6, 2)]\nN_total=8, repeats=3, seed=42\n\nPaired instances: 10  (T_low=15, T_high=15, overlap=10)\nT_low samples/instance:  min=8, max=8, mean=8.0\nT_high samples/instance: min=8, max=8, mean=8.0\nLogprobs available: True\nGold-empty instances: 0\n\n\n============================================================\nConfig: mix_2:6  (k_low=2, k_high=6, repeats=3)\n============================================================\n  F1:          0.9779 ± 0.0072  (θ modes: [np.float64(0.3), np.float64(0.4)])\n  Degeneracy:  0.0000 ± 0.0000\n  Oracle F1:   1.0000 ± 0.0000\n  Unique outs: 5.00 ± 0.08\n  Agreement:   mean=0.5621, <50%=42.9%, ≥75%=41.6%\n\n============================================================\nConfig: mix_3:5  (k_low=3, k_high=5, repeats=3)\n============================================================\n  F1:          1.0000 ± 0.0000  (θ modes: [np.float64(0.3), np.float64(0.4)])\n  Degeneracy:  0.0000 ± 0.0000\n  Oracle F1:   1.0000 ± 0.0000\n  Unique outs: 4.53 ± 0.19\n  Agreement:   mean=0.5680, <50%=41.5%, ≥75%=44.9%\n\n============================================================\nConfig: mix_4:4  (k_low=4, k_high=4, repeats=3)\n============================================================\n  F1:          0.9945 ± 0.0077  (θ modes: [np.float64(0.3)])\n  Degeneracy:  0.0000 ± 0.0000\n  Oracle F1:   1.0000 ± 0.0000\n  Unique outs: 4.13 ± 0.12\n  Agreement:   mean=0.5855, <50%=38.1%, ≥75%=46.0%\n\n============================================================\nConfig: mix_5:3  (k_low=5, k_high=3, repeats=3)\n============================================================\n  F1:          1.0000 ± 0.0000  (θ modes: [np.float64(0.3)])\n  Degeneracy:  0.0000 ± 0.0000\n  Oracle F1:   1.0000 ± 0.0000\n  Unique outs: 3.73 ± 0.05\n  Agreement:   mean=0.6246, <50%=32.4%, ≥75%=49.3%\n\n============================================================\nConfig: mix_6:2  (k_low=6, k_high=2, repeats=3)\n============================================================\n  F1:          1.0000 ± 0.0000  (θ modes: [np.float64(0.3)])\n  Degeneracy:  0.0000 ± 0.0000\n  Oracle F1:   1.0000 ± 0.0000\n  Unique outs: 3.33 ± 0.12\n  Agreement:   mean=0.6780, <50%=26.8%, ≥75%=59.3%\n\n============================================================\nConfig: pure_t_low_8  (k_low=8, k_high=0, repeats=3)\n============================================================\n  F1:          1.0000 ± 0.0000  (θ modes: [np.float64(0.1)])\n  Degeneracy:  0.0000 ± 0.0000\n  Oracle F1:   1.0000 ± 0.0000\n  Unique outs: 2.00 ± 0.00\n  Agreement:   mean=0.9167, <50%=0.0%, ≥75%=100.0%\n\n============================================================\nConfig: pure_t_high_8  (k_low=0, k_high=8, repeats=3)\n============================================================\n  F1:          0.9123 ± 0.0000  (θ modes: [np.float64(0.4)])\n  Degeneracy:  0.0000 ± 0.0000\n  Oracle F1:   0.9375 ± 0.0000\n  Unique outs: 5.00 ± 0.00\n  Agreement:   mean=0.5600, <50%=46.0%, ≥75%=36.0%\n\n================================================================================\nSUMMARY: T=0.8 vs T=1.0\n================================================================================\nConfig                 F1 (best θ)        Degen        Oracle       Unique     Agree     \n--------------------------------------------------------------------------------\npure_t_low_8           1.0000±0.0000      0.0000       1.0000       2.00       0.9167    \nmix_2:6                0.9779±0.0072      0.0000       1.0000       5.00       0.5621    \nmix_3:5                1.0000±0.0000      0.0000       1.0000       4.53       0.5680    \nmix_4:4                0.9945±0.0077      0.0000       1.0000       4.13       0.5855    \nmix_5:3                1.0000±0.0000      0.0000       1.0000       3.73       0.6246    \nmix_6:2                1.0000±0.0000      0.0000       1.0000       3.33       0.6780    \npure_t_high_8          0.9123±0.0000      0.0000       0.9375       5.00       0.5600    \n\nBest mix: mix_3:5  F1=1.0000\n  vs pure_t_low:  Δ=+0.0000\n  vs pure_t_high: Δ=+0.0877\n\nResults saved to /tmp/het_temp_test/het_temp_results.json",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017SkG4pQJgGxdM7Yed2u94j",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"import json; d=json.load(open('/tmp/het_temp_test/het_temp_results.json')); print('Top keys:', list(d.keys())); print('Config:', json.dumps(d['config'], indent=2)); print('Result keys:', list(d['results'].keys()))\"",
+                "description": "Verify output JSON structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "uuid": "184e8b63-f214-4bc8-b6a1-6b30f24534e4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WYMBMRFo4T2JkUZKYgD7rg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1891,
+                "cache_read_input_tokens": 79686,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1891
+                },
+                "output_tokens": 55,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-20T17:16:13.067Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017SkG4pQJgGxdM7Yed2u94j",
+              "type": "tool_result",
+              "content": "Top keys: ['config', 'results']\nConfig: {\n  \"t_low_path\": \"/tmp/het_temp_synth/t_low.jsonl\",\n  \"t_high_path\": \"/tmp/het_temp_synth/t_high.jsonl\",\n  \"t_low_label\": \"T=0.8\",\n  \"t_high_label\": \"T=1.0\",\n  \"n_total\": 8,\n  \"n_repeats\": 3,\n  \"seed\": 42,\n  \"mix_ratios\": [\n    \"2:6\",\n    \"3:5\",\n    \"4:4\",\n    \"5:3\",\n    \"6:2\"\n  ],\n  \"n_instances\": 10,\n  \"has_logprobs\": true\n}\nResult keys: ['mix_2:6', 'mix_3:5', 'mix_4:4', 'mix_5:3', 'mix_6:2', 'pure_t_low_8', 'pure_t_high_8']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "uuid": "fb860245-0267-434b-8f63-04a52371d7cf",
+            "tool_use_result": {
+              "stdout": "Top keys: ['config', 'results']\nConfig: {\n  \"t_low_path\": \"/tmp/het_temp_synth/t_low.jsonl\",\n  \"t_high_path\": \"/tmp/het_temp_synth/t_high.jsonl\",\n  \"t_low_label\": \"T=0.8\",\n  \"t_high_label\": \"T=1.0\",\n  \"n_total\": 8,\n  \"n_repeats\": 3,\n  \"seed\": 42,\n  \"mix_ratios\": [\n    \"2:6\",\n    \"3:5\",\n    \"4:4\",\n    \"5:3\",\n    \"6:2\"\n  ],\n  \"n_instances\": 10,\n  \"has_logprobs\": true\n}\nResult keys: ['mix_2:6', 'mix_3:5', 'mix_4:4', 'mix_5:3', 'mix_6:2', 'pure_t_low_8', 'pure_t_high_8']",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WwAxZLu9sp2ZbgqfujQr4f",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Explore available temperature data on server (dataset/model/seed combos)",
+                    "status": "completed",
+                    "activeForm": "Exploring available temperature data on server"
+                  },
+                  {
+                    "content": "Write run_het_temp.py experiment script",
+                    "status": "completed",
+                    "activeForm": "Writing run_het_temp.py experiment script"
+                  },
+                  {
+                    "content": "Verify script syntax and test with dry run",
+                    "status": "completed",
+                    "activeForm": "Verifying script syntax and testing with dry run"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "uuid": "c77b5cf1-811a-42b3-b0e0-52450f79b7db",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dnk95d4CV5z2Zq3N25Gptn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 419,
+                "cache_read_input_tokens": 81577,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 419
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": "2026-05-20T17:16:16.998Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WwAxZLu9sp2ZbgqfujQr4f",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "uuid": "34bdd159-5e82-4df4-b51d-ec427dc8b614",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Explore available temperature data on server (dataset/model/seed combos)",
+                  "status": "completed",
+                  "activeForm": "Exploring available temperature data on server"
+                },
+                {
+                  "content": "Write run_het_temp.py experiment script",
+                  "status": "completed",
+                  "activeForm": "Writing run_het_temp.py experiment script"
+                },
+                {
+                  "content": "Verify script syntax and test with dry run",
+                  "status": "in_progress",
+                  "activeForm": "Verifying script syntax and testing with dry run"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Explore available temperature data on server (dataset/model/seed combos)",
+                  "status": "completed",
+                  "activeForm": "Exploring available temperature data on server"
+                },
+                {
+                  "content": "Write run_het_temp.py experiment script",
+                  "status": "completed",
+                  "activeForm": "Writing run_het_temp.py experiment script"
+                },
+                {
+                  "content": "Verify script syntax and test with dry run",
+                  "status": "completed",
+                  "activeForm": "Verifying script syntax and testing with dry run"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 产出\n\n**脚本**: `artifacts/experiments/het_temp/run_het_temp.py` — 语法通过，dry run 通过。\n\n### 可用温度数据对\n\n| Dataset | Model | T_low | T_high | Seeds | T_low 路径 | T_high 路径 |\n|---------|-------|-------|--------|-------|-----------|------------|\n| SciERC | Qwen | T=0.8 | T=1.0 | 42, 123, 456 | `exp_026_t08[_seed*]` | `exp_026_t10_seed*` |\n| SciERC | Qwen | T=0.5 | T=1.0 | 42, 123, 456 | `exp_026_t05[_seed*]` | `exp_026_t10_seed*` |\n| CoNLL | LLaMA | T=0.7 | T=1.0 | 仅1个(默认) | `exp_017_llama_conll_n8_t07` | `exp_017_llama_conll`(需确认N=8) |\n\n**无 T_low 数据**: CoNLL Qwen、FewNERD (所有 model)。\n\n### 运行示例（SciERC T=0.8 vs T=1.0, seed42）\n\n```bash\npython run_het_temp.py \\\n  --t_low_path /root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08/samples.jsonl \\\n  --t_high_path /root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed42/samples.jsonl \\\n  --t_low_label \"T=0.8\" --t_high_label \"T=1.0\" \\\n  --output_dir /root/autodl-tmp/struct_self_consist_ie/output/exp_backup1_het_temp/scierc_t08_t10_s42 \\\n  --n_repeats 10 --seed 42\n```"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "uuid": "6c617826-f73f-4cfc-85eb-bfa42e4f586d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BRrcxc5JnUyH5vay8G4kju",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 209,
+                "cache_read_input_tokens": 81996,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 209
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 产出\n\n**脚本**: `artifacts/experiments/het_temp/run_het_temp.py` — 语法通过，dry run 通过。\n\n### 可用温度数据对\n\n| Dataset | Model | T_low | T_high | Seeds | T_low 路径 | T_high 路径 |\n|---------|-------|-------|--------|-------|-----------|------------|\n| SciERC | Qwen | T=0.8 | T=1.0 | 42, 123, 456 | `exp_026_t08[_seed*]` | `exp_026_t10_seed*` |\n| SciERC | Qwen | T=0.5 | T=1.0 | 42, 123, 456 | `exp_026_t05[_seed*]` | `exp_026_t10_seed*` |\n| CoNLL | LLaMA | T=0.7 | T=1.0 | 仅1个(默认) | `exp_017_llama_conll_n8_t07` | `exp_017_llama_conll`(需确认N=8) |\n\n**无 T_low 数据**: CoNLL Qwen、FewNERD (所有 model)。\n\n### 运行示例（SciERC T=0.8 vs T=1.0, seed42）\n\n```bash\npython run_het_temp.py \\\n  --t_low_path /root/autodl-tmp/struct_self_consist_ie/output/exp_026_t08/samples.jsonl \\\n  --t_high_path /root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed42/samples.jsonl \\\n  --t_low_label \"T=0.8\" --t_high_label \"T=1.0\" \\\n  --output_dir /root/autodl-tmp/struct_self_consist_ie/output/exp_backup1_het_temp/scierc_t08_t10_s42 \\\n  --n_repeats 10 --seed 42\n```"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 347130,
+            "duration_api_ms": 341611,
+            "num_turns": 61,
+            "stop_reason": "end_turn",
+            "session_id": "3a768fba-445f-421d-9f56-3759527c1b59",
+            "total_cost_usd": 1.8377690500000001,
+            "usage": {
+              "input_tokens": 32,
+              "cache_creation_input_tokens": 70364,
+              "cache_read_input_tokens": 1411860,
+              "output_tokens": 19669,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 70364,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 542,
+                  "cache_read_input_tokens": 81996,
+                  "cache_creation_input_tokens": 209,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 209
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 11987,
+                "outputTokens": 4172,
+                "cacheReadInputTokens": 633558,
+                "cacheCreationInputTokens": 83181,
+                "webSearchRequests": 0,
+                "costUSD": 0.20017905,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 32,
+                "outputTokens": 19669,
+                "cacheReadInputTokens": 1411860,
+                "cacheCreationInputTokens": 70364,
+                "webSearchRequests": 0,
+                "costUSD": 1.63759,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "5b87f985-de8a-4b79-ac94-463129eaa33b"
+          },
+          "id": "event-000200"
+        }
+      ]
+    }
+  ]
+}

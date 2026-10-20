@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b66bc5ad6fcd23038ea6",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh fewnerd n32 unified recompute v2",
+  "task_key": "worker_ssh_fewnerd_n32_unified_recompute_v2_20260522T105810",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_fewnerd_n32_unified_recompute_v2_20260522T105810_result.json",
+    "occurrence": 1,
+    "bytes": 1685,
+    "sha256": "4e22416c1dac3983eb729299c33f7d6a4136c0d1f96aade0c2abed106f01950f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。汇总：\n\n---\n\n## FewNERD N=32 Unified Baseline Recompute\n\n**数据来源（均为 gold-non-empty 过滤后，recompute_alpha_crit_unified.py v4 strict MV）：**\n\n### N=8 (3 seeds)\n| Seed | Dir | greedy_f1 | mv_strict_f1 | Δ_own |\n|------|-----|-----------|-------------|-------|\n| 42 | `fewnerd_mf4v2_seed42_v4` | 0.7909 | 0.7583 | -3.27pp |\n| 123 | `fewnerd_mf4v2_seed123_v3` | 0.7911 | 0.7648 | -2.63pp |\n| 456 | `fewnerd_mf4v2_seed456_v3` | 0.7910 | 0.7686 | -2.24pp |\n| **Mean** | | **0.7910** | **0.7639** | **-2.71pp** |\n\n### N=32 (seed42)\n| | 值 | 来源 |\n|---|---|---|\n| N=8 unified greedy F1 | **0.7909** | `fewnerd_mf4v2_seed42_v4`, recompute gold-non-empty |\n| N=32 own greedy F1 | 0.7914 | `fewnerd_n32_seed42`, recompute gold-non-empty |\n| N=32 MV strict F1 | **0.7818** | `fewnerd_n32_seed42`, recompute gold-non-empty |\n| N=32 Δ (vs own greedy 0.7914) | **-0.96pp** | 0.7818 - 0.7914 |\n| N=32 Δ (vs unified N=8 greedy 0.7909) | **-0.91pp** | 0.7818 - 0.7909 |\n\n### 收敛趋势\n```\nN=8  Δ = -2.74pp (paper, 3-seed avg)\nN=16 Δ = -1.65pp (paper, 3-seed avg)\nN=32 Δ = -0.91pp (unified, single seed)\n```\n\nN 每翻倍，MV 负 Δ 大约减半，趋势收敛明朗。\n\n### 注意事项\n- N=32 的 own greedy (0.7914) 略高于 N=8 greedy (0.7909)，说明 N=32 实验使用了不同（稍好的）checkpoint，这也是统一 baseline 的意义所在\n- N=16 seed42 实验 (`fewnerd_7b_n16_seed42`) 的 greedy_f1 = 0.7983，明显偏高，与 N=8 实验不同模型体系；seed123/456 的 N=16 greedy 在 0.7909-0.7916 范围，更一致\n- N=32 只有 1 个 seed，无法算标准差"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fewnerd-n32-unified-recompute-v2.md"
+}

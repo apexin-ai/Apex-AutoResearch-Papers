@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "725f8bece204c1759589",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "ssh 5epoch s42 cron check3",
+  "task_key": "worker_ssh_5epoch_s42_cron_check3_20260521T181113",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_5epoch_s42_cron_check3_20260521T181113_result.json",
+    "occurrence": 1,
+    "bytes": 359,
+    "sha256": "305d9ff038a6bb458ecd079a0dfef6eac1ea44ffd1dc40251539aeff122ad7c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务仍在运行，又是误报。\n\n**s42**: 30,616 / 301,184 = **10.2%**，已运行 ~12.5 分钟，ETA ~1h15m\n**s123**: 29,464 / 301,184 = **9.8%**，已运行 ~12.5 分钟，ETA ~1h20m\n\n4 张 GPU 均在高负载（64-88% utilization，~30GB 显存占用）。\n\n不做 registry 更新。预计完成时间约 UTC 03:15-03:20。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-5epoch-s42-cron-check3.md"
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "cf701a157bd759a939c2",
+  "project": "struct_self_consist_ie",
+  "kind": "worker",
+  "title": "code llama fewnerd inference status v3",
+  "task_key": "worker_code_llama_fewnerd_inference_status_v3_20260519T024716",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_llama_fewnerd_inference_status_v3_20260519T024716.log",
+    "occurrence": 1,
+    "bytes": 1230347,
+    "sha256": "9801db2f31070e2cecc9b499e0bd64f3e9cc58572a95ae9e2f494652587ce872"
+  },
+  "statistics": {
+    "messages": 479,
+    "user_turns": 1,
+    "tool_calls": 135,
+    "roles": {
+      "log": 1,
+      "system": 42,
+      "record": 3,
+      "assistant": 153,
+      "tool_call": 135,
+      "tool_result": 135,
+      "user": 1,
+      "result": 9
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 331,
+      "chunks": [
+        {
+          "path": "cf701a157bd759a939c2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "cf701a157bd759a939c2-part-0002.json",
+          "message_count": 151
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 148,
+      "chunks": [
+        {
+          "path": "cf701a157bd759a939c2-part-0002.json",
+          "message_count": 29
+        },
+        {
+          "path": "cf701a157bd759a939c2-part-0003.json",
+          "message_count": 119
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-llama-fewnerd-inference-status-v3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7a132e5d93ef780255d",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "code mbr span fix",
+  "task_key": "worker_code_mbr_span_fix_20260518T164439",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_mbr_span_fix_20260518T164439_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "003bcc2aad291b836b13d2cca086f6abd46312c6f4e2e33810c315ba46a168ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**MBR confirmed dead.** 两个 confound 都排除了：\n\n| Dataset | Greedy | MBR-text | MBR-span | Oracle | MBR_span-Greedy |\n|---------|--------|----------|----------|--------|-----------------|\n| SciERC  | 0.6439 | 0.6444   | 0.6451   | 0.7758 | **+0.11pp**     |\n| CoNLL   | 0.9070 | 0.9023   | 0.9028   | 0.9494 | **-0.42pp**     |\n| FewNERD | 0.7478 | 0.7208   | 0.7214   | 0.8686 | **-2.63pp**     |\n\n关键发现：\n- **Text/Span 选择一致率 98.9-99.7%**，度量不对齐几乎不影响选择结果，span-based 只比 text-based 好 +0.05~0.07pp\n- **gold_filter 统一后** CoNLL 从 -0.4pp 变为 -0.42pp，无本质变化\n- MBR 在 2/3 数据集上劣于 greedy，FewNERD 上严重负面（-2.63pp）\n\n结果已写入 `artifacts/mbr_fix/mbr_span_fix_results.md` 和远程 `output/mbr_selection_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mbr-span-fix.md"
+}

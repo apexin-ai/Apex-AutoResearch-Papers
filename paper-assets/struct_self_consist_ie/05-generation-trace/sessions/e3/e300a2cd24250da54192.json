@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e300a2cd24250da54192",
+  "project": "struct_self_consist_ie",
+  "kind": "result",
+  "title": "verify data integrity v2",
+  "task_key": "worker_verify_data-integrity-v2_20260516T024719",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_data-integrity-v2_20260516T024719_result.json",
+    "occurrence": 1,
+    "bytes": 881,
+    "sha256": "8c795faf83900082c5dae950cc0ff35425234b055d1b0ab55cd9001077e5d742"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计报告已写入 `artifacts/review_reports/data_integrity_audit_v2.md`。\n\n核心发现：\n\n**需立即修复（2处）：**\n- **Table 5** 4B CoNLL：SJ .422→.432，FK .418→.424（源数据 0.4324/0.4244 被错误截断）\n- **Table 3** FK NER N=16：.280→.281（0.2809 标准四舍五入应为 .281）\n\n**需追溯来源（2处）：**\n- Table 3 RE N=16 SJ=.281 和 FK=.279 在三条不同 pipeline 中均找不到精确匹配，三条 pipeline 对同一 seed42 配置给出不同值（SJ: 0.244/0.277/0.292），说明存在 instance filtering 或信号实现差异\n  \n**全部通过（其余）：**\n- Table 1 全部 40 个值 ✅\n- Table 2 选择 F1 及 +2.3pp 声明 ✅\n- Table 3 T=0.7 行 ✅\n- Discussion n=81 子集（Voting ρ=0.630, SJ ρ=0.502）✅\n- 28 个行内数字与表格交叉验证 ✅\n- Freeform 消融附录表 ✅"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-data-integrity-v2.md"
+}
