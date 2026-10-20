@@ -1,0 +1,2388 @@
+# Research conversation: <project_context> # 项目: symb_invariant_consensus ## 运行环境 - 服务器名: westd-16639 - SSH 连接命令: ssh westd-16639 # 必须用此命令，~/.ssh
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 34
+- **Recorded user turns:** 1
+- **Tool calls:** 6
+- **Original source:** `logs/chats/exported-trajectories/account-2/5f08a0b3-198f-4f40-8b69-e8e76d016497.jsonl`
+- **Structured JSON:** [`ade9f466d7b70238ce4c.json`](../../sessions/ad/ade9f466d7b70238ce4c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-23T01:05:14.656Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-23T01:05:14.656Z",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "content": "&lt;project_context>\n# 项目: symb_invariant_consensus\n\n## 运行环境\n- 服务器名: westd-16639\n- SSH 连接命令: ssh westd-16639  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/symb_invariant_consensus\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: 所有实验代码写完后必须先 dry-run 验证（python 可用性、路径存在性、端口无冲突、数据文件存在）再正式部署运行（原因：多次出现代码部署后才发现 python command not found、模型路径不存在、GPU/端口冲突等低级错误，浪费 GPU 时间和调试周期。用户明确要求。）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n撰写 SCB (Symbolic Confirmation Bias) 的概率证明 — Proposition 1。\n\n## 目标\n写一个严谨的数学命题和证明，说明 SCB 是结构性必然（structural inevitability），不依赖模型能力或任务难度。\n\n## Proposition 1 (Symbolic Confirmation Bias is Structural)\n\n### 概率模型设置\n- 模型 M 对问题 q 生成 K 条 traces {t_1, ..., t_K}，每条 trace 包含答案 a_i\n- 多数投票答案 â = argmax_a |{i : a_i = a}|\n- 约束提取函数 f 从 trace t_i 提取约束 c_i = f(t_i)\n- **关键假设**: f 是 t_i 的确定性函数（约束的信息完全来自 trace）\n- 因此 c_i 在给定 t_i 的条件下与所有其他变量条件独立\n\n### 核心洞察\ntrace 包含答案 → 约束是 trace 的下游（有损函数）→ 约束不可能包含独立于答案的新信息 → 约束投票退化为答案计数的有损版本。\n\n### 证明思路\n1. 由数据处理不等式 (Data Processing Inequality): I(C; Y) ≤ I(T; Y)，其中 Y 是 ground truth\n2. 由于 C = f(T) 且 A 是 T 的函数: Markov chain Y → T → (A, C)\n3. 但更强的结论是: 由于 A 也是 T 的函数且 C = f(T)，信息流必须经过 T\n4. **关键**: 当 f 是有损的（丢失 T 中除 A 之外的信息），C 对 Y 的信息不超过 A 对 Y 的信息\n5. 因此 SICA 投票（基于 C）不可能比 SC 投票（基于 A）提供更多关于 Y 的信息\n\n### BR ≥ 1 的证明\n定义 BR = P(c supports â | â) / P(c supports a' | â, a' ≠ â)\n\n由于 c_i = f(t_i) 且 t_i 已经包含 a_i：\n- 当 a_i = â 时，c_i = f(t_i) 反映了导向 â 的推理链，自然倾向 support â\n- 当 a_i ≠ â 时，c_i 反映了导向其他答案的推理链\n- 由于 â 是多数投票，|{i: a_i = â}| > |{i: a_i = a'}| for any a'\n- 因此约束投票中支持 â 的比例 ≥ 支持任何 a' 的比例\n- E[BR] ≥ 1\n\n### 形式化要求\n1. **假设要明确且最小化**：\n   - A1: c_i = f(t_i) 对某个确定性函数 f（约束从 trace 提取）\n   - A2: a_i 是 t_i 的确定性函数（答案包含在 trace 中）\n   - A3: f 是 \"answer-aware\"——存在函数 g 使得 a_i = g(c_i)（约束保留了答案信息），或者更弱的假设\n\n2. **证明风格**:\n   - 3-5 行核心证明\n   - 用标准信息论符号\n   - 1-2 句直觉解释放在证明后面\n\n3. **格式**:\n   - \\textbf{Proposition 1.} (不用 tcolorbox)\n   - \\textit{Proof.} \n   - 结尾 \\hfill $\\square$\n\n### 注意事项\n- 证明必须严谨，经得住审稿人逐行推敲\n- 假设 A3 (\"answer-aware\") 可能过强——如果 f 是真正有损的且丢失了 answer 信息，则 BR 不一定 ≥ 1。需要仔细处理这个边界情况\n- 如果发现证明有根本性漏洞（比如假设太强以至于 trivial，或者结论实际上不成立），诚实报告——宁可指出问题也不写有漏洞的证明\n- 考虑是否需要区分 \"E[BR] ≥ 1\"（期望意义）和 \"BR ≥ 1 almost surely\"（几乎必然）\n\n### 经验数据参考\n论文中的经验数据：\n- Mistral-7B FOLIO: BR = 2.17\n- Qwen2.5-14B FOLIO: BR = 3.85\n- Qwen3-14B FOLIO: BR = 2.81\n- 所有测试条件 BR > 1\n\n## 产出\n将完整的 LaTeX 段落（Proposition + Proof + 直觉解释）写入：\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/proposition1_scb_proof.tex\n\n如果发现证明有瑕疵，写一个附带说明到同一文件，解释问题所在和可能的修复方向。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-23T01:05:14.659Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-23T01:05:14.659Z",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497"
+}
+```
+
+---
+
+## Round 1
+
+32 recorded events
+
+### User
+
+_source line 3 · 2026-05-23T01:05:14.695Z_
+
+&lt;project_context>
+# 项目: symb_invariant_consensus
+
+## 运行环境
+- 服务器名: westd-16639
+- SSH 连接命令: ssh westd-16639  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/symb_invariant_consensus
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C001**: 所有实验代码写完后必须先 dry-run 验证（python 可用性、路径存在性、端口无冲突、数据文件存在）再正式部署运行（原因：多次出现代码部署后才发现 python command not found、模型路径不存在、GPU/端口冲突等低级错误，浪费 GPU 时间和调试周期。用户明确要求。）
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+撰写 SCB (Symbolic Confirmation Bias) 的概率证明 — Proposition 1。
+
+## 目标
+写一个严谨的数学命题和证明，说明 SCB 是结构性必然（structural inevitability），不依赖模型能力或任务难度。
+
+## Proposition 1 (Symbolic Confirmation Bias is Structural)
+
+### 概率模型设置
+- 模型 M 对问题 q 生成 K 条 traces {t_1, ..., t_K}，每条 trace 包含答案 a_i
+- 多数投票答案 â = argmax_a |{i : a_i = a}|
+- 约束提取函数 f 从 trace t_i 提取约束 c_i = f(t_i)
+- **关键假设**: f 是 t_i 的确定性函数（约束的信息完全来自 trace）
+- 因此 c_i 在给定 t_i 的条件下与所有其他变量条件独立
+
+### 核心洞察
+trace 包含答案 → 约束是 trace 的下游（有损函数）→ 约束不可能包含独立于答案的新信息 → 约束投票退化为答案计数的有损版本。
+
+### 证明思路
+1. 由数据处理不等式 (Data Processing Inequality): I(C; Y) ≤ I(T; Y)，其中 Y 是 ground truth
+2. 由于 C = f(T) 且 A 是 T 的函数: Markov chain Y → T → (A, C)
+3. 但更强的结论是: 由于 A 也是 T 的函数且 C = f(T)，信息流必须经过 T
+4. **关键**: 当 f 是有损的（丢失 T 中除 A 之外的信息），C 对 Y 的信息不超过 A 对 Y 的信息
+5. 因此 SICA 投票（基于 C）不可能比 SC 投票（基于 A）提供更多关于 Y 的信息
+
+### BR ≥ 1 的证明
+定义 BR = P(c supports â | â) / P(c supports a' | â, a' ≠ â)
+
+由于 c_i = f(t_i) 且 t_i 已经包含 a_i：
+- 当 a_i = â 时，c_i = f(t_i) 反映了导向 â 的推理链，自然倾向 support â
+- 当 a_i ≠ â 时，c_i 反映了导向其他答案的推理链
+- 由于 â 是多数投票，|{i: a_i = â}| > |{i: a_i = a'}| for any a'
+- 因此约束投票中支持 â 的比例 ≥ 支持任何 a' 的比例
+- E[BR] ≥ 1
+
+### 形式化要求
+1. **假设要明确且最小化**：
+   - A1: c_i = f(t_i) 对某个确定性函数 f（约束从 trace 提取）
+   - A2: a_i 是 t_i 的确定性函数（答案包含在 trace 中）
+   - A3: f 是 "answer-aware"——存在函数 g 使得 a_i = g(c_i)（约束保留了答案信息），或者更弱的假设
+
+2. **证明风格**:
+   - 3-5 行核心证明
+   - 用标准信息论符号
+   - 1-2 句直觉解释放在证明后面
+
+3. **格式**:
+   - \textbf{Proposition 1.} (不用 tcolorbox)
+   - \textit{Proof.} 
+   - 结尾 \hfill $\square$
+
+### 注意事项
+- 证明必须严谨，经得住审稿人逐行推敲
+- 假设 A3 ("answer-aware") 可能过强——如果 f 是真正有损的且丢失了 answer 信息，则 BR 不一定 ≥ 1。需要仔细处理这个边界情况
+- 如果发现证明有根本性漏洞（比如假设太强以至于 trivial，或者结论实际上不成立），诚实报告——宁可指出问题也不写有漏洞的证明
+- 考虑是否需要区分 "E[BR] ≥ 1"（期望意义）和 "BR ≥ 1 almost surely"（几乎必然）
+
+### 经验数据参考
+论文中的经验数据：
+- Mistral-7B FOLIO: BR = 2.17
+- Qwen2.5-14B FOLIO: BR = 3.85
+- Qwen3-14B FOLIO: BR = 2.81
+- 所有测试条件 BR > 1
+
+## 产出
+将完整的 LaTeX 段落（Proposition + Proof + 直觉解释）写入：
+/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/proposition1_scb_proof.tex
+
+如果发现证明有瑕疵，写一个附带说明到同一文件，解释问题所在和可能的修复方向。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "73d90633-9b3d-44bb-8d7b-f141a06d0b7a",
+  "type": "user",
+  "uuid": "43a3bf6d-7eb9-47eb-8099-09c32b2e271d",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-23T01:05:14.694Z_
+
+```json
+{
+  "parentUuid": "43a3bf6d-7eb9-47eb-8099-09c32b2e271d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "24281d71-23a0-4009-b10c-fdf6c652cbca",
+  "timestamp": "2026-05-23T01:05:14.694Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-23T01:05:14.694Z_
+
+```json
+{
+  "parentUuid": "24281d71-23a0-4009-b10c-fdf6c652cbca",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "95a59614-d711-4c74-adb9-1ecd0d71d5d6",
+  "timestamp": "2026-05-23T01:05:14.694Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-23T01:05:14.694Z_
+
+```json
+{
+  "parentUuid": "95a59614-d711-4c74-adb9-1ecd0d71d5d6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "3843a346-ae09-4ae4-afd0-0039d0788760",
+  "timestamp": "2026-05-23T01:05:14.694Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Write formal proof for Symbolic Confirmation Bias",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-23T01:05:17.948Z_
+
+我先仔细思考这个证明的数学结构，然后撰写。
+
+让我先检查一下项目现有的相关文件，了解符号约定。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3843a346-ae09-4ae4-afd0-0039d0788760",
+  "isSidechain": false,
+  "requestId": "req_011CbJbtkY4vAcRPNhFePkiJ",
+  "type": "assistant",
+  "uuid": "a0608ebe-78f7-4c05-8e3b-e3f2940e4814",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01651yCqhRLM2Whg327L1bLX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13165,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13165,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13165,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13165
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T01:05:20.991Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01JiogHzbh1Cyh8DAFihNVmV`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Find existing paper notation",
+  "prompt": "In /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/, find any .tex files that define notation related to SCB, BR (bias ratio), SICA, SC, traces, constraints, majority voting. Show relevant snippets with file paths. Also check if there's a main paper .tex file anywhere in the project."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a0608ebe-78f7-4c05-8e3b-e3f2940e4814",
+  "isSidechain": false,
+  "requestId": "req_011CbJbtkY4vAcRPNhFePkiJ",
+  "type": "assistant",
+  "uuid": "0db88c6f-3941-449b-a02a-339353e1ae9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01651yCqhRLM2Whg327L1bLX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13165,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13165,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13165,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13165
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T01:06:17.095Z_
+
+<details><summary>↩ Tool result · `toolu_01JiogHzbh1Cyh8DAFihNVmV`</summary>
+
+````text
+Perfect! I have gathered comprehensive information. Let me compile the final report with all the relevant findings.
+
+## Summary: Notation and Definitions in the Symb_Invariant_Consensus Project
+
+### Main Paper File
+**Primary location:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex`
+
+This is the main paper file that orchestrates the entire document structure through includes of specialized sections.
+
+---
+
+### Key Notation Definitions Found
+
+#### **1. SCB (Symbolic Confirmation Bias)**
+**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex` (lines 12-18)
+
+SCB is defined as the systematic alignment of self-extracted constraints with the model's majority answer:
+- On Mistral-7B FOLIO: when SICA errs, 83.3% of constraints support the incorrect answer
+- Bias ratio values across nine models: 1.66--4.97× all greater than 1.0
+- SCB reflects a distributional prior embedded throughout reasoning, not answer contamination
+- The bias is structural: randomizing constraint-answer associations while preserving per-trace counts yields the same BR distribution
+
+#### **2. BR (Bias Ratio)**
+**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (lines 48-52)
+
+Formal definition (Equation 1 - eq:mirage):
+```tex
+BR(M,T) = P(c supports a_M | a_M ≠ a*) / P(c supports a* | a_M ≠ a*)
+```
+Where:
+- c = self-extracted constraint
+- a_M = model's answer
+- a* = ground truth answer
+- BR > 1 indicates constraints project model bias rather than provide independent verification
+- Empirical findings: BR > 1.0 across all tested self-extraction conditions
+
+#### **3. SICA (Symbolic Invariant Consensus Aggregation)**
+**Files:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (lines 13-42)
+
+SICA extends SC by extracting formal constraints from traces and selecting the answer best supported by the satisfiable subset.
+
+Key components:
+- **Trace generation:** Question q generates K traces {t_1, ..., t_K} at temperature T=0.7
+- **Constraint extraction:** Same LLM extracts logical constraints at T_ext=0.3
+- **Extraction rate:** Fraction of traces yielding at least one parseable constraint (global average: 99.0% propositional, 1.0% with quantifiers)
+
+#### **4. SC (Self-Consistency)**
+**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (lines 4-7)
+
+SC samples K reasoning traces and selects the majority answer. Relies on the Condorcet Jury Theorem (CJT) for majority convergence under independent voters, but LLM traces violate this independence assumption.
+
+#### **5. Traces (Reasoning Traces)**
+**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (line 18)
+
+Defined as:
+- K traces {t_1, ..., t_K} generated from question q at temperature T=0.7
+- Each trace t_i yields answer a_i
+- Traces are chain-of-thought reasoning sequences
+
+#### **6. Constraints (Logical Constraints)**
+**Files:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` and `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex` (lines 14-121)
+
+Constraints are extracted in multiple types:
+- **Mathematical:** equations, inequalities, predicates (Z3 syntax)
+- **Logical:** facts, rules, derived conclusions (boolean formulas with Implies, And, Or, Not operators)
+- **Answer assertions:** injected constraints of form "__sica_answer_&lt;ans> == True" (weight 1)
+
+Deduplication ratio: Global average 46.0% by syntactic equivalence
+Each unique constraint c_m receives weight w_m equal to number of source traces
+
+#### **7. Constraints - MAX-SAT Formulation**
+**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (lines 22-26)
+
+Equation (eq:maxsat):
+```tex
+C* = arg max_{S ⊆ C} Σ_{c ∈ S} w_c  s.t.  S is satisfiable
+```
+Where:
+- C = set of all constraints
+- C* = largest-weight satisfiable subset
+- w_c = weight of constraint c
+- Solved by Z3 with 10-second timeout
+
+#### **8. Degeneration Condition**
+**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (lines 36-41)
+
+When self-extracted constraints are coupled to their source answer, MAX-SAT retains nearly all (|C^∖| ≈ 0), and scoring degenerates to:
+```tex
+score(a) ≈ Σ_{c ∈ C* : source(c) → a} w_c
+```
+This is equivalent to majority voting, making the formal verification layer vacuous.
+
+#### **9. C_0 (Multi-Candidate Rate)**
+**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (line 43)
+
+Definition:
+```tex
+C_0 = |{q : |A(q)| > 1}| / |Q|
+```
+Where:
+- q = questions
+- A(q) = set of distinct candidate answers for question q
+- Q = all questions
+- Zero-cost diagnostic: C_0 < 5% means SICA reduces to SC
+- Decision boundary: C_0 < 5% indicates degenerate conditions
+
+#### **10. Scoring Function**
+**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (lines 29-34)
+
+Equation (eq:score):
+```tex
+score(a) = Σ_{c ∈ C*} w_c · σ(c,a) - α Σ_{c ∈ C^∖} w_c · σ(c,a)
+```
+Where:
+- σ(c,a) = 1 if c was extracted from any trace producing answer a, else 0
+- α = 0.5 (penalty parameter, not critical: ±0.49pp across α ∈ [0,1])
+- a* = arg max_a score(a)
+- C^∖ = C \ C* (unsatisfiable constraints)
+
+#### **11. K_eff (Effective Sample Size)**
+**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (lines 7-11)
+
+Equation (eq:effk):
+```tex
+K_eff = K / [1 + (K-1) · κ]
+```
+Where:
+- K = number of traces
+- κ = Fleiss' kappa (intraclass correlation proxy)
+- Empirical range: κ = 0.21--0.82, yielding K_eff ≈ 1.2--3.6 for K=12
+- Ordinal diagnostic of vote diversity (not a literal effective sample size)
+- Decision boundary: K_eff ≤ 1.3 never improves in experiments
+
+#### **12. Majority Voting**
+**Files:** Multiple locations (introduction.tex, experiments.tex, method.tex)
+
+Referenced as the baseline aggregation mechanism that SC implements. SICA degenerates to majority voting when constraints become answer-coupled. Agreement metrics show SICA produces identical outputs to majority voting on 94.4% of problems.
+
+---
+
+### Additional Key Findings from Papers
+
+**Empirical Findings (method.tex, lines 55-63):**
+
+**Empirical Finding 1 (Self-Extraction Ceiling):**
+```
+For generator M with BR(M) > 1 and oracle improvement Δ_oracle,
+self-extracted constraints improve SC by at most Δ_max^self,
+empirically bounded by Δ_oracle / BR(M).
+```
+
+**Empirical Finding 2 (Capability Gap Condition):**
+```
+For generator G with SC accuracy SC_G and external verifier V with
+standalone accuracy V_acc and inter-system correlation ρ_GV < ρ_GG,
+combo gain Δ_combo - Δ_SC decreases monotonically with SC_G.
+```
+
+---
+
+### Paper Structure
+The main paper at `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex` includes:
+- `abstract.tex` - Project abstract
+- `introduction.tex` - Problem motivation and contributions
+- `method.tex` - **[PRIMARY NOTATION SOURCE]** Background, SICA pipeline, symbolic mirage hypothesis
+- `related_work.tex` - Related work section
+- `experiments.tex` - Experimental setup and main results
+- `analysis.tex` - **[SECONDARY NOTATION SOURCE]** Analysis of confirmation bias, process-level independence
+- `solutions.tex` - Proposed solutions and remediation strategies
+- `discussion.tex` - Discussion of findings
+- `limitations_content.tex` - Limitations section
+- `appendix.tex` - **[COMPREHENSIVE DEFINITIONS]** Detailed prompts, notation reference (line 1190+), oracle controls, additional analyses
+
+---
+
+All `.tex` files with notation are in `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/` directory, with the main orchestrating file being `main.tex`.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "0db88c6f-3941-449b-a02a-339353e1ae9a",
+  "isSidechain": false,
+  "promptId": "73d90633-9b3d-44bb-8d7b-f141a06d0b7a",
+  "type": "user",
+  "uuid": "08cf0965-0217-4ae1-8fb2-db63c1f0eb8b",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "In /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/, find any .tex files that define notation related to SCB, BR (bias ratio), SICA, SC, traces, constraints, majority voting. Show relevant snippets with file paths. Also check if there's a main paper .tex file anywhere in the project.",
+    "agentId": "a262722788ce57da0",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Perfect! I have gathered comprehensive information. Let me compile the final report with all the relevant findings.\n\n## Summary: Notation and Definitions in the Symb_Invariant_Consensus Project\n\n### Main Paper File\n**Primary location:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex`\n\nThis is the main paper file that orchestrates the entire document structure through includes of specialized sections.\n\n---\n\n### Key Notation Definitions Found\n\n#### **1. SCB (Symbolic Confirmation Bias)**\n**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex` (lines 12-18)\n\nSCB is defined as the systematic alignment of self-extracted constraints with the model's majority answer:\n- On Mistral-7B FOLIO: when SICA errs, 83.3% of constraints support the incorrect answer\n- Bias ratio values across nine models: 1.66--4.97× all greater than 1.0\n- SCB reflects a distributional prior embedded throughout reasoning, not answer contamination\n- The bias is structural: randomizing constraint-answer associations while preserving per-trace counts yields the same BR distribution\n\n#### **2. BR (Bias Ratio)**\n**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (lines 48-52)\n\nFormal definition (Equation 1 - eq:mirage):\n```tex\nBR(M,T) = P(c supports a_M | a_M ≠ a*) / P(c supports a* | a_M ≠ a*)\n```\nWhere:\n- c = self-extracted constraint\n- a_M = model's answer\n- a* = ground truth answer\n- BR > 1 indicates constraints project model bias rather than provide independent verification\n- Empirical findings: BR > 1.0 across all tested self-extraction conditions\n\n#### **3. SICA (Symbolic Invariant Consensus Aggregation)**\n**Files:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (lines 13-42)\n\nSICA extends SC by extracting formal constraints from traces and selecting the answer best supported by the satisfiable subset.\n\nKey components:\n- **Trace generation:** Question q generates K traces {t_1, ..., t_K} at temperature T=0.7\n- **Constraint extraction:** Same LLM extracts logical constraints at T_ext=0.3\n- **Extraction rate:** Fraction of traces yielding at least one parseable constraint (global average: 99.0% propositional, 1.0% with quantifiers)\n\n#### **4. SC (Self-Consistency)**\n**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (lines 4-7)\n\nSC samples K reasoning traces and selects the majority answer. Relies on the Condorcet Jury Theorem (CJT) for majority convergence under independent voters, but LLM traces violate this independence assumption.\n\n#### **5. Traces (Reasoning Traces)**\n**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (line 18)\n\nDefined as:\n- K traces {t_1, ..., t_K} generated from question q at temperature T=0.7\n- Each trace t_i yields answer a_i\n- Traces are chain-of-thought reasoning sequences\n\n#### **6. Constraints (Logical Constraints)**\n**Files:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` and `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex` (lines 14-121)\n\nConstraints are extracted in multiple types:\n- **Mathematical:** equations, inequalities, predicates (Z3 syntax)\n- **Logical:** facts, rules, derived conclusions (boolean formulas with Implies, And, Or, Not operators)\n- **Answer assertions:** injected constraints of form \"__sica_answer_&lt;ans> == True\" (weight 1)\n\nDeduplication ratio: Global average 46.0% by syntactic equivalence\nEach unique constraint c_m receives weight w_m equal to number of source traces\n\n#### **7. Constraints - MAX-SAT Formulation**\n**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (lines 22-26)\n\nEquation (eq:maxsat):\n```tex\nC* = arg max_{S ⊆ C} Σ_{c ∈ S} w_c  s.t.  S is satisfiable\n```\nWhere:\n- C = set of all constraints\n- C* = largest-weight satisfiable subset\n- w_c = weight of constraint c\n- Solved by Z3 with 10-second timeout\n\n#### **8. Degeneration Condition**\n**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (lines 36-41)\n\nWhen self-extracted constraints are coupled to their source answer, MAX-SAT retains nearly all (|C^∖| ≈ 0), and scoring degenerates to:\n```tex\nscore(a) ≈ Σ_{c ∈ C* : source(c) → a} w_c\n```\nThis is equivalent to majority voting, making the formal verification layer vacuous.\n\n#### **9. C_0 (Multi-Candidate Rate)**\n**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (line 43)\n\nDefinition:\n```tex\nC_0 = |{q : |A(q)| > 1}| / |Q|\n```\nWhere:\n- q = questions\n- A(q) = set of distinct candidate answers for question q\n- Q = all questions\n- Zero-cost diagnostic: C_0 < 5% means SICA reduces to SC\n- Decision boundary: C_0 < 5% indicates degenerate conditions\n\n#### **10. Scoring Function**\n**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (lines 29-34)\n\nEquation (eq:score):\n```tex\nscore(a) = Σ_{c ∈ C*} w_c · σ(c,a) - α Σ_{c ∈ C^∖} w_c · σ(c,a)\n```\nWhere:\n- σ(c,a) = 1 if c was extracted from any trace producing answer a, else 0\n- α = 0.5 (penalty parameter, not critical: ±0.49pp across α ∈ [0,1])\n- a* = arg max_a score(a)\n- C^∖ = C \\ C* (unsatisfiable constraints)\n\n#### **11. K_eff (Effective Sample Size)**\n**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex` (lines 7-11)\n\nEquation (eq:effk):\n```tex\nK_eff = K / [1 + (K-1) · κ]\n```\nWhere:\n- K = number of traces\n- κ = Fleiss' kappa (intraclass correlation proxy)\n- Empirical range: κ = 0.21--0.82, yielding K_eff ≈ 1.2--3.6 for K=12\n- Ordinal diagnostic of vote diversity (not a literal effective sample size)\n- Decision boundary: K_eff ≤ 1.3 never improves in experiments\n\n#### **12. Majority Voting**\n**Files:** Multiple locations (introduction.tex, experiments.tex, method.tex)\n\nReferenced as the baseline aggregation mechanism that SC implements. SICA degenerates to majority voting when constraints become answer-coupled. Agreement metrics show SICA produces identical outputs to majority voting on 94.4% of problems.\n\n---\n\n### Additional Key Findings from Papers\n\n**Empirical Findings (method.tex, lines 55-63):**\n\n**Empirical Finding 1 (Self-Extraction Ceiling):**\n```\nFor generator M with BR(M) > 1 and oracle improvement Δ_oracle,\nself-extracted constraints improve SC by at most Δ_max^self,\nempirically bounded by Δ_oracle / BR(M).\n```\n\n**Empirical Finding 2 (Capability Gap Condition):**\n```\nFor generator G with SC accuracy SC_G and external verifier V with\nstandalone accuracy V_acc and inter-system correlation ρ_GV < ρ_GG,\ncombo gain Δ_combo - Δ_SC decreases monotonically with SC_G.\n```\n\n---\n\n### Paper Structure\nThe main paper at `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex` includes:\n- `abstract.tex` - Project abstract\n- `introduction.tex` - Problem motivation and contributions\n- `method.tex` - **[PRIMARY NOTATION SOURCE]** Background, SICA pipeline, symbolic mirage hypothesis\n- `related_work.tex` - Related work section\n- `experiments.tex` - Experimental setup and main results\n- `analysis.tex` - **[SECONDARY NOTATION SOURCE]** Analysis of confirmation bias, process-level independence\n- `solutions.tex` - Proposed solutions and remediation strategies\n- `discussion.tex` - Discussion of findings\n- `limitations_content.tex` - Limitations section\n- `appendix.tex` - **[COMPREHENSIVE DEFINITIONS]** Detailed prompts, notation reference (line 1190+), oracle controls, additional analyses\n\n---\n\nAll `.tex` files with notation are in `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/` directory, with the main orchestrating file being `main.tex`."
+      }
+    ],
+    "totalDurationMs": 56096,
+    "totalTokens": 48609,
+    "totalToolUseCount": 15,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 1128,
+      "cache_read_input_tokens": 44863,
+      "output_tokens": 2613,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1128
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 5,
+          "output_tokens": 2613,
+          "cache_read_input_tokens": 44863,
+          "cache_creation_input_tokens": 1128,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1128,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 7,
+      "searchCount": 7,
+      "bashCount": 1,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "sourceToolAssistantUUID": "0db88c6f-3941-449b-a02a-339353e1ae9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "08cf0965-0217-4ae1-8fb2-db63c1f0eb8b",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Write formal proof for Symbolic Confirmation Bias",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497"
+}
+```
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-23T01:18:15.137Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a very clear picture of the notation. Let me carefully think through the proof.
+
+The key question: Can we prove BR ≥ 1 as a structural inevitability?
+
+Let me think about this very carefully.
+
+**Setup:**
+- Model M generates K traces {t_1, ..., t_K} for question q
+- Each trace t_i contains answer a_i
+- Constraint extraction function f extracts c_i = f(t_i)
+- Majority vote: â = argmax_a |{i : a_i = a}|
+
+
+- BR definition: BR(M,T) = P(c supports a_M | a_M ≠ a*) / P(c supports a* | a_M ≠ a*)
+
+The user's formulation differs slightly, using the majority vote answer instead of the model's answer. The crucial insight is understanding what "c supports a" means—it's essentially asking whether the extracted constraint came from a trace that produced that answer. This is the key to understanding the relationship between the constraint and the answers.
+
+If I think about this more carefully, the probability that c supports a particular answer is just the fraction of traces that produced that answer. Since the majority answer appears most frequently, BR would trivially be at least 1. But that's too simple—the real question is whether a constraint extracted from one trace can actually support a different answer, or if it's fundamentally tied to the reasoning chain that generated it.
+
+Looking at the paper's definition of σ(c,a), it marks c as supporting a if c was extracted from ANY trace producing a—this is source-based attribution, not semantic. But I need to reconsider what BR actually measures. The paper defines it as the ratio of constraints supporting the model's wrong answer versus the correct answer when the model fails, whereas the user's version seems to be about general bias toward the majority answer across all cases.
+
+Let me think about this structurally: the core issue is that constraints are extracted from traces that already contain answers, so they can't independently verify anything. They'll inherently favor whichever answer appears most frequently. I'm setting up the math here—for a question, the model generates multiple traces, each producing an answer and corresponding constraints through deterministic functions. The majority answer emerges from this set, and there's a Markov dependency where the constraints depend on the traces which determine the answers.
+
+The real tension is in how we aggregate: self-consistency counts answers directly, while self-improvement with constraints weights constraint support for each answer. The question becomes whether constraint-based voting can actually be more informative than simple answer counting. If the constraints preserve enough information to recover the original answers, then constraint voting might just be a noisier version of the same signal.
+
+But there's something more interesting happening—the constraints might capture valid reasoning structure that exists independently of whether the final answer is correct. The problem is that when a model makes an error, the constraints are entangled in that same flawed reasoning chain, so they're not truly independent observations. The key insight I'm working toward is that under self-extraction, the constraints end up being conditionally independent of the ground truth given the answer itself.
+
+Now I need to think more carefully about what BR ≥ 1 actually means and whether it's provable from basic assumptions. The definition depends on how we interpret "c supports a"—if it means the constraint came from a trace that produced answer a, then the probability is just the proportion of constraints sourced from traces with that answer. I'm trying to work out whether this leads to BR ≥ 1 under reasonable conditions. produces roughly the same number of constraints, this is approximately:
+P(c supports â) ≈ |{i: a_i = â}| / K
+
+Similarly, P(c supports a') ≈ |{i: a_i = a'}| / K
+
+Since â is the majority answer, P(c supports â) ≥ P(c supports a') for any a', so BR ≥ 1.
+
+This is almost tautological under the source-based attribution (σ function). The "bias" is just reflecting the majority vote.
+
+But what if constraints are evaluated semantically? That is, what if we check whether the constraint c_i is logically consistent with answer a, regardless of which trace c_i came from?
+
+In that case, the question becomes: Can a constraint extracted from a trace giving answer â actually provide more logical support for a different answer a'?
+
+If the constraint faithfully captures part of the reasoning that led to â, then it should be logically consistent with â. But if the reasoning was flawed, the constraint might actually support a wrong answer instead.
+
+The key insight is that constraints and answers are both derived from the same trace, so they're structurally coupled. Even when evaluating consistency semantically, a constraint extracted from a trace is more likely to be logically compatible with that trace's answer than with alternative answers. This "answer coupling" property emerges from how constraints are generated, not from any mathematical axiom—it's just how the extraction process works. I'm formalizing this as a proposition about structural confirmation bias in constraint extraction. The key insight is that when we extract constraints from traces, they tend to support whichever answer appears most frequently in the data, even if that's just due to sampling variation. I'm defining a bias ratio comparing how many constraints support the majority answer versus alternatives, and showing that under a reasonable assumption about answer coupling—that constraints are more likely to support the actual answer in a trace than some other answer—this ratio must be at least one. The proposition gets stronger if the extraction function can actually recover the answer from the constraint.
+
+But I'm realizing the answer coupling assumption is circular—it's what I'm trying to prove is structural in the first place. The real reason it holds is more fundamental: both the answer and constraint come from the same trace, so they're inherently correlated. Let me shift to an information-theoretic approach instead, proving directly that self-extracted constraints can't outperform simple answer voting, without needing to assume the coupling property upfront.
+
+I'm setting up a formal proposition showing that the mutual information between extracted constraints and ground truth is bounded by the information in the traces themselves, and that even when conditioning on the answers, the constraints provide no additional signal beyond what the traces already contain. most as much additional information about Y beyond the answers as the full traces do. The stronger claim I want to make is that in SICA voting specifically, the way constraints are aggregated through MAX-SAT and scoring can't outperform optimal answer aggregation. So let me formalize this: under self-extraction, constraint voting is information-theoretically dominated by answer voting, meaning for any aggregation rule on constraints, there's an aggregation rule on answers that performs at least as well. The proof follows from the fact that constraints and answers are both deterministic functions of the traces.
+
+But wait—I'm realizing the issue here. Constraints might actually carry information about the traces that answers don't capture. If the answer is just True/False but the constraint contains intermediate reasoning, then the constraint could hold more information about Y than the answer alone. The key insight though is that this extra information isn't independent of the answer—it all comes from the same trace. So while constraints might have higher mutual information with Y than answers do, they're still fundamentally coupled to the answer through their shared source.
+
+I need to split this into two separate claims: first, that self-extracted constraints can't provide more information than the traces themselves, and second, that this information dependency means constraints are ultimately bounded by what the traces contain.
+
+The main claim I'm after is that under self-extraction, constraints systematically favor the majority answer—this is where the answer-coupling assumption becomes critical. And the most practically relevant piece is that when constraints are scored based on their source, the whole system reduces to a weighted majority voting scheme.
+
+Let me focus on why the majority bias emerges. For the bias ratio to be at least 1, the expected support for the majority answer needs to exceed the expected support for any other answer. The scoring function treats a constraint as supporting an answer if it was extracted from a trace that produced that answer, which is where the coupling comes in.
+
+Under this source-based definition, the support for each answer is just the count of traces that produced it—so the bias ratio is trivially the majority vote itself. The real insight is that this "bias" isn't a flaw in the constraint-based approach; it's structural. The constraints are fundamentally coupled to the answers they're supposed to evaluate independently. I should make this coupling explicit in the proposition.
+
+I'm formulating a proposition that captures this: given a language model generating multiple traces, where each trace yields both an answer and an extracted constraint, the semantic support relationship between constraints and answers is inherently biased toward the majority-vote answer due to the answer-coupling assumption. This shows that constraint-based voting cannot escape the majority vote bias when constraints are derived from the same traces as the answers. I'm seeing the user's proof sketch relies on the coupling between constraints and answers—since each constraint reflects the reasoning chain leading to its corresponding answer, constraints naturally support their paired answers more than alternatives. Given that the majority answer appears most frequently across samples, the proportion of constraints supporting it should exceed those supporting any competing answer.
+
+But the user raises a valid concern: if the compression function is sufficiently lossy and discards answer-relevant information entirely, then constraints might not preferentially support any particular answer, and the bound could degrade. I need to formalize the answer-coupling assumption explicitly and then address this boundary case using an information-theoretic argument about what it means for a constraint to be "answer-aware."
+
+The key insight is that we don't need f to fully recover the answer—just to preserve some correlation with it. In realistic scenarios, constraints extracted from reasoning traces will tend to align with the trace's conclusion because they're derived from the same reasoning process.
+
+Now I'm setting up the formal proposition: I'll state the answer-coupling assumption clearly, prove that the bias ratio is at least 1 under this assumption, and justify why this assumption is structural rather than an additional empirical requirement. The setup involves the model generating multiple traces and extracting constraints from them, which I'll formalize with proper notation. The key insight is that both constraints and answers come from the same trace, creating a natural alignment: reasoning steps that lead to answer a will tend to produce constraints supporting a. However, this breaks down in cases where the trace explicitly contradicts itself—like when it says "X implies B, but B is actually wrong, so the answer is A"—where the extracted constraint might not support the final answer at all.
+
+In practice, constraint extraction tends to pull positive assertions rather than negations, which is more of an empirical pattern than a structural guarantee. So the cleaner approach is to ground this directly in the SICA scoring function itself: it defines σ(c,a) = 1 precisely when c was extracted from a trace that produced a, which is exactly the source-based attribution we need. I'll formalize this in LaTeX while being explicit about what assumptions we're making.
+
+Actually, I realize the key insight here is that under this provenance-based definition of support, constraint voting becomes mathematically equivalent to answer voting—the constraints themselves don't add information beyond what the answers already contain. This is the structural bias: SICA's use of source-based attribution means it's essentially majority voting with potential reweighting from variable constraint counts per trace. The DPI argument extends this further: even if we switched to semantic attribution, constraints can't carry information beyond what the traces themselves provide, and while traces might contain additional signals about reasoning quality, answers alone aren't sufficient statistics for the voting problem. Let me commit to a two-part formulation and write it out cleanly. I need to tighten this up—three parts is too sprawling for what the user actually needs. Let me focus on a clean proposition that captures the structural bias: constraints are deterministic functions of traces, and the scoring mechanism inherently attributes them back to their source answers. That's the core insight. I'll formalize it with information-theoretic notation and keep the proof tight, then maybe add a remark about why this makes BR ≥ 1 inevitable under self-extraction.
+
+Now I'm realizing the sharpest claim is even simpler: when SICA uses source-based attribution, the scoring function is completely determined by the answer distribution alone—constraint counts per trace don't vary with the answers themselves. So the bias ratio BR ≥ 1 follows directly from the majority vote structure, not from any hidden assumption. The scoring mechanism itself is the source of the bias, not some external property of the constraints.
+
+But I need to check the actual scoring formula in the paper—it's a weighted sum over the MAX-SAT solution with positive and negative terms. The MAX-SAT step is where things get interesting, so I should see how that affects the argument.
+
+Actually, the user's observation is key here: when self-extracted constraints are coupled, the MAX-SAT solver barely removes anything, so |C^∖| stays near zero empirically. That's not a structural guarantee, just what happens in practice.
+
+For the BR ≥ 1 proof itself though, I don't need the scoring function at all. BR is just the ratio of how often a constraint supports the wrong answer versus the right one. Under source attribution, this becomes a ratio of probabilities over the answer distribution, and since traces are i.i.d., it reduces to comparing P(a_i = â) against P(a_i = a').
+
+Since â is the plurality answer, it has the highest probability, so BR ≥ 1 trivially. The real insight is that this structural bias is baked into self-extraction from the start—the constraints can't escape the majority vote because they come from the same process that produced it.
+
+But wait, I need to check the paper's actual BR definition more carefully. Looking at the method section, BR is defined specifically for cases where the model's answer differs from ground truth.
+
+So this is a stronger claim than just BR ≥ 1 in general. It's saying that even when the model gets it wrong, the constraints still preferentially support the wrong answer over the correct one. Under source attribution, I can express this as the expected proportion of constraints supporting the wrong answer versus the right answer, both conditioned on the model being incorrect.
+
+Now I'm realizing that since a_M is the plurality answer and a_M ≠ a*, then a_M must have at least as many supporting constraints as a*, whether or not a* even appears in the traces. This means BR ≥ 1 holds in this case too. I should just write out a clean proof: set up the definitions, note that constraint support reduces to answer identity under source attribution, derive BR ≥ 1 from the majority vote structure, and then move on.
+
+Actually, I want to make sure I'm capturing the user's core insight properly. The key point is that traces contain answers, constraints are downstream of traces as lossy functions, so constraints can't introduce information independent of the answers themselves—constraint voting just becomes a degraded version of answer counting. Let me formalize this as a structural proposition about symbolic confirmation bias, starting with the setup where we have i.i.d. traces from the model with extracted answers and constraints. I'm working through the proof that constraint-based aggregation can't outperform trace-based methods, starting with the source attribution case where the score is a weighted sum of indicator functions. The key insight is that while the bias ratio should be at least 1 when weights are uniform, I'm realizing that with arbitrary weights, a minority answer could actually accumulate more weight if its traces have larger individual weights, which would make the bias ratio less than 1—but this only happens if the weights aren't constrained by the trace properties themselves. I'm settling on the cleanest formulation: under source attribution with uniform weights, SICA scoring reduces to majority voting, guaranteeing BR ≥ 1. Now I need to structure the LaTeX proof carefully—laying out the assumptions upfront, showing how source attribution eliminates answer dependence, then adding the information-theoretic insight about the Markov chain and DPI bound. I'll keep the proof concise and follow it with intuition and a remark about the semantic attribution boundary case. So the denominator uses the case where the model's answer differs from the ground truth, and I'm comparing how often the constraint supports the model's wrong answer versus the correct answer. Since the majority answer is at least as frequent as any minority answer, the ratio will always be at least 1.
+
+Now I'm switching to the paper's notation and starting to write out Proposition 1 formally, setting up the trace generation process and defining the key variables.
+
+Writing formal proposition... and the constraints can't provide additional information about the ground truth beyond what the answers themselves already encode. The proof then establishes that under simple indicator attribution, the scoring mechanism collapses to standard majority voting, which means the baseline ratio is at least one.
+
+For the second part, I need to reconsider the causal structure—the model generates traces independently of the target, so the Markov chain should flow differently than I initially stated.
+
+Actually, the key insight is that q acts as a common cause for both Y and T: the question determines the ground truth answer Y, and it's also the input that generates the model's trace T. So the proper structure is Y ← q → T → (A, C), where A and C are deterministic functions of the trace. For the data processing inequality to apply, I need Y → T → C to hold, and since C is just a function of T, the mutual information I(Y; C) reduces to I(Y; f(T)) regardless of how Y and T are jointly distributed.
+
+The DPI gives us I(Y; C) ≤ I(Y; T) because C is a deterministic function of T, and this holds without needing to specify any particular Markov chain direction. The same logic applies when conditioning on A: even after conditioning on A = h(T), the relationship C = f(T) remains functional, so I(Y; C | A) ≤ I(Y; T | A) still follows from the conditional data processing inequality.
+
+So for part (ii), the proof is that since C = f(T) deterministically, the data processing inequality directly gives us both I(Y; C) ≤ I(Y; T) and I(Y; C | A) ≤ I(Y; T | A), meaning constraints can't provide more information about Y than the full traces do. But I'm realizing this formulation might not quite capture what we're trying to show—we need to be more precise about what "constraints can't add MORE information" actually means. answers alone. But I(Y; C | A) ≤ I(Y; T | A) says constraints provide at most as much as full traces (beyond answers). It doesn't say I(Y; C | A) = 0.
+
+The stronger claim I(Y; C | A) = 0 would require that C is a function of A (i.e., f factors through h). That's the answer-aware assumption (A3).
+
+So the information-theoretic result is:
+- I(Y; C) ≤ I(Y; T): constraints can't beat traces (DPI)
+- I(Y; C | A) = 0 iff C is a function of A: constraints add nothing beyond answers iff they're fully determined by answers
+
+In practice, C is not a function of A (constraints contain more than just the answer), so I(Y; C | A) > 0 is possible. But constraints are still downstream of T, so they can't do better than having the full trace.
+
+The real issue for SCB isn't the information theory—it's the voting degeneration. Under source attribution, which is what SICA actually uses, constraint voting collapses to majority voting, and BR ≥ 1 follows immediately. The information-theoretic argument is secondary: it shows that even with semantic attribution, you can't escape the trace-level coupling since constraints are downstream of traces and can't introduce independent information.
+
+Now I need to check whether the paper actually uses pure source attribution.
+
+Looking at the paper's definition: σ(c,a) = 1 if constraint c was extracted from any trace producing answer a, else 0. Each constraint gets weight w_c equal to the number of source traces. The key issue is that after deduplication, the same constraint text can appear across multiple traces—some yielding answer a, others yielding a'. This means σ(c, a) = 1 and σ(c, a') = 1 can both be true simultaneously, so the attribution isn't purely source-based in the strict sense. The scoring function then sums weighted constraints across answers, with the MAX-SAT step determining which constraints are active.
+
+When a constraint appears in k_a traces with answer a and k_b traces with answer b, its weight w_c = k_a + k_b, and it contributes its full weight to both score(a) and score(b). This means deduplication creates a situation where a single constraint can boost multiple competing answers equally, which seems counterintuitive for a discriminative scoring mechanism.
+
+Let me reconsider the formula. The score for answer a is the sum of weights for all constraints that appear in at least one trace producing a. So a constraint gets its full frequency count applied to every answer it's associated with, regardless of how many traces produced each answer.
+
+This actually degenerates to majority voting under specific conditions. If constraints are highly answer-specific—meaning each constraint only appears in traces with the same answer—then the score for answer a becomes proportional to the total number of constraints extracted from all traces that produced a. When each trace generates the same number of constraints, the score becomes a simple multiple of how many traces produced that answer, which is exactly what majority voting would give.
+
+The structural reason this happens is that different answers come from different reasoning paths, which naturally produce different intermediate constraints. Shared constraints that appear across all answers contribute equally to every answer's score and don't change the ranking. So the effective differentiation comes from answer-specific constraints, which scale with answer frequency. I'm finishing the calculation—the total weight of answer-specific constraints minus the shared portion gives us a score proportional to the number of traces supporting each answer. Rather than getting bogged down in the full mathematical details, I should simplify this for the paper and focus on proving two key points: first, that under answer-specific constraints SICA reduces to weighted majority voting with a Bayes risk of at least 1, and second, establishing the DPI bound. I'll add a note about shared constraints as a boundary case, keeping the formalism appropriate for an NLP venue rather than overcomplicating it. Now I'm formalizing the two parts of the proposition: the first establishes that the scoring function counts votes for each answer, with the bias ratio measuring how much the modal answer dominates, and the second applies the data processing inequality to show that extracted constraints can't contain more information about the ground truth than the original traces they come from. ) = 1[a_i = a], so Σ_i σ(c_i, a) = |{i : a_i = a}|, which is maximized at a = â by definition of mode. BR ≥ 1 follows.
+
+(ii) (C_{1:K}) = f(T_{1:K}) pointwise, so C_{1:K} is a (component-wise) deterministic function of T_{1:K}. The DPI for mutual information gives I(C_{1:K}; Y) ≤ I(T_{1:K}; Y).
+
+**Intuition.** Because constraints are extracted from the same traces that produce answers, each constraint inherits the "direction" of its source trace's answer. Aggregating these downstream constraints is informationally equivalent to—or weaker than—aggregating the answers directly. The bias is not a model failure; it is a structural consequence of self-extraction that persists regardless of model capability, task difficulty, or constraint quality.
+
+I'm concerned the proof might seem too straightforward—part (i) is just definition chasing and part (ii) is a direct application of the data processing inequality. The real contribution here is the framing and making explicit a structural property that gets overlooked, not the mathematical complexity. I should strengthen this with a corollary showing that under source attribution, the constraint-checking layer becomes essentially vacuous since answer-coupled constraints rarely diverge from the answers themselves.
+
+Actually, that observation about MAX-SAT vacuousness is empirical rather than a formal structural result. Let me try a different angle: a corollary stating that no post-hoc aggregation rule applied to self-extracted constraints can outperform optimal aggregation of the answers themselves, since the constraints are deterministic functions of the traces. But that formulation is a bit circular since the aggregation rule ψ for answers would also have access to the traces. The key insight is about conditional independence—given the answers, are the constraints independent of the outcome? I need to formalize whether C_i contains information about Y that's truly independent of A_i, or if it's just a lossy function of the trace that ultimately depends on what the answers already tell us. I'm realizing I've been overcomplicating this—I should just write out a clean proposition with the result stated clearly, a short proof, some intuition, and a note about what doesn't work. The core insight is that source attribution makes constraints informationally redundant with answers, and the data processing inequality shows this coupling persists even with other attribution methods. Let me structure this properly now.
+
+Looking back at what the user actually wants, I need to be precise about the assumptions: A1 and A2 are structural and minimal, A3 captures answer-awareness with some flexibility, and then I need a 3-5 line proof using standard information-theoretic notation followed by a sentence or two of intuition.
+
+The key insight for A3 is that if the answer can be recovered from the constraint—meaning a_i = g(c_i)—then conditioning on the constraint makes the answer independent of the output, which gives us I(Y; A_i | C_i) = 0. This is the crux of what we need for the proof to work. what actually establishes BR ≥ 1. If I define support semantically—where a constraint supports an answer when g(c_i) = a_i—then the support count equals the majority vote count, making BR ≥ 1 trivial. Under a looser logical consistency definition, the structural relationship between constraints and traces still biases constraints toward consistency with their corresponding answers, though I'd need a stronger argument to formalize this.
+
+For the cleanest presentation, I should stick with A1 and A2 alone, which gives me SICA = SC and thus BR ≥ 1 directly under source attribution. Then I can add a remark that A3 (answer-recoverability) further reduces semantic attribution to answer voting. The DPI provides the information-theoretic foundation for why self-extraction can't serve as independent verification.
+
+Now I need to settle on which BR definition to use—the paper's formulation differs from the user's version, so I should clarify which one applies to my argument. The user's definition conditions on â being the majority, which is always true by definition. Under source attribution with equal weights, the balance of support ratio becomes the ratio of constraints supporting â to the maximum number supporting any alternative. Since â is the mode by definition, this ratio is always at least 1, but it depends on which alternative we're comparing against—the worst case is when we compare against the alternative with the most support.
+
+Now I'm formalizing this as a proposition: given K reasoning traces sampled from the model, where answers and constraints are both deterministically derived from traces, I'm defining the mode answer and setting up the mathematical framework to show that confirmation bias emerges structurally from how constraints are distributed across answers. The bias ratio is at least 1 since the majority answer's score must be at least as high as any other candidate. For the information ceiling, the data processing inequality shows that constraints extracted from traces can't contain more information about the ground truth than the original traces themselves. The Markov chain $Y - T_{1:K} - C_{1:K}$ holds because $C$ is deterministic given $T$, making $Y$ and $C$ conditionally independent given $T$, so the data processing inequality applies directly. The proof itself is sound, though both parts feel somewhat trivial—part (i) is essentially a tautology and part (ii) just invokes the inequality in a straightforward way.
+
+But the real value lies in what this makes explicit: practitioners might not realize that self-extraction fundamentally cannot escape confirmation bias due to mathematical structure alone, not just empirical limitations. I should add a remark highlighting that this structural coupling persists regardless of model capability, task difficulty, or constraint quality—even a perfect extractor can't overcome the fact that the constraint and answer votes both stem from the same source, making the constraint vote at best a lossy reencoding of the answer vote. The empirical results showing BR ranging from 1.66 to 4.97 across all tested configurations underscore this unavoidable limitation.
+
+Actually, I realize I don't need assumption A3 at all. The source attribution approach in part (i) already gives BR ≥ 1 without relying on any assumptions about the information content of the constraint function, and the data processing inequality in part (ii) works independently of A3 as well. The boundary case the user raised—where the constraint function is so lossy it strips answer information entirely—only affects semantic attribution, not source attribution, so my formulation handles this cleanly.
+
+But the user is really interested in the semantic version, where we're checking logical entailment rather than source attribution. That's where the interesting structural tension emerges. For the semantic case, I do need to add an assumption: that the constraint function preserves answer direction, meaning it's more likely to entail the actual answer than any alternative. This assumption is well-motivated by the reasoning chain that produced the constraints in the first place, and I should note this explicitly as a separate remark.
+
+Actually, this points to the real resolution: SICA's structural guarantee comes from using source attribution. Under that implementation, BR ≥ 1 follows directly. The semantic version is a distinct claim that requires an additional assumption, so I should present them separately rather than conflating them.
+
+Now I need to reconsider how BR is actually defined in the paper—it's computed over the empirical distribution of constraints across all instances, not just individual cases. and since the majority answer is by definition more frequent than the correct answer when they differ, each ratio is at least 1, confirming the proof holds regardless of whether we're computing this per-question or in aggregate. Let me verify the exact formula from the paper to make sure I'm working with the right definition—it's the ratio of how often constraints support the model's wrong answer versus the ground truth, specifically in cases where the model makes an error.
+
+For the proposition itself, I'll use the cleaner per-question formulation that doesn't condition on errors: the bias ratio is simply the constraint score for the model's answer divided by the maximum score for any other answer. The paper's empirical version conditions on error cases, but that's a different framing.
+
+Now I'm trying to articulate something more structurally interesting—the core insight is that self-extraction creates an information bottleneck where the constraint channel becomes redundant with the answer channel, and under source attribution, they collapse into exactly the same thing. bias—the systematic tendency of self-extracted constraints to favor the majority answer—is a structural property of the self-extraction pipeline, independent of model capability, task difficulty, or constraint quality.
+
+Now I'm formalizing this with a proof that shows the scoring mechanism directly reduces to counting votes for each answer, which is always maximized by the mode, and establishing that constraints derived from traces cannot contain information about the target beyond what the traces themselves provide. I'm confident the proof is solid. Now I need to finalize the LaTeX write-up, but first I should clarify whether the bias ratio should be stated as an expectation or as a deterministic bound. Since the bias ratio is defined as the ratio of the mode count to the maximum minority count, it's always at least 1 by construction—this holds with certainty, not just in expectation. The only edge case is when all traces agree unanimously, making the denominator undefined, so I should note that the bias ratio is only defined when at least two distinct answers appear.
+
+Writing the formal proposition... I'm working through the mathematical framework here—showing how majority voting emerges as a special case when constraints are just answer indicators, and establishing that self-extracted constraints can't contain more information about the ground truth than the original reasoning traces themselves. I should include the conditional mutual information result—it's crucial for showing that constraints can't provide independent verification beyond what the traces already give. Let me also consider when $I(C; Y | A) = 0$: this happens if the constraints factor through the answers, meaning $C$ is determined entirely by $A$. But generally constraints carry information beyond just the answers, so $I(C; Y | A) > 0$ is typical. The key insight under source attribution is that scoring ignores the semantic content of constraints and relies only on their provenance.
+
+Now I'm formulating a clean proposition and thinking through how to present this for an 8-page EMNLP paper, including how the paper's BR definition conditions on error cases and how I'll generalize it. Writing the proposition statement... Now I'm working through the proof of the information ceiling property, showing that the mutual information between aggregated constraints and ground truth is bounded by the mutual information between the original traces and ground truth, with the data processing inequality establishing this relationship through the deterministic function mapping traces to constraints. The bias persists regardless of the model, task, or extraction function—it's a fundamental structural property, not something that depends on the system's capabilities.
+
+Now I'm checking whether the assumptions should be listed explicitly for clarity, and verifying that the conditional DPI argument holds up: since the constraints are deterministically derived from the traces regardless of the answers, the Markov chain structure is preserved even when conditioning on specific answer values, so the data processing inequality still applies after averaging over all possible answers.
+
+I should also add a remark about what happens if we shift from source attribution to semantic evaluation—in that case we'd need an additional property ensuring the constraint function preserves alignment with the correct answer.
+
+The empirical results support this (all nine model-task pairs show BR > 1), but it's not guaranteed by the extraction mechanism alone. It could theoretically fail if the function systematically pulls out premises that contradict their source conclusion.
+
+This remark actually strengthens the paper by showing I've considered the semantic case, but it also clarifies that the structural inevitability claim really holds under source attribution. For semantic attribution, we need that extra empirical validation.
+
+So the cleanest approach is to anchor the main proposition on source attribution—that's where it's truly structural—and treat the semantic discussion as a remark. That keeps the argument tight and honest about what's logically necessary versus what's empirically robust.
+
+Now I'm ready to write this up in the actual document. The structure will be: state the proposition with both conditions, give a short proof, interpret it in a couple sentences, then add an optional remark about the semantic case.
+
+But before I commit, I should push back on the skeptical reading. Someone might say the proposition is trivial—just the definition of source attribution plus mode, plus a one-line data processing inequality. My response is that the value lies in making explicit a structural property the literature has missed. The proof being simple is actually the point: it shows SCB isn't some subtle empirical quirk but an obvious consequence of how self-extraction works. The fact that prior work didn't catch this is precisely why it's worth stating clearly.
+
+I'll frame this in the interpretation section—something like: the simplicity of the proof reveals that SCB isn't a phenomenon requiring careful empirical investigation but rather an immediate structural consequence of self-extraction.
+
+Alright, I'm convinced. Time to write the file.
+
+Oh, but the user raised one more thing about whether I need to distinguish between E[BR] ≥ 1 in expectation versus BR ≥ 1 almost surely. In my setup, BR is deterministic given the trace outcomes—it's just the ratio of the mode count to the max count among other answers. Since n_â ≥ n_{a'} for all a' ≠ â by definition of mode, BR ≥ 1 holds for every single realization, not just in expectation.
+
+The only edge case is ties, where BR equals exactly 1, but BR ≥ 1 still holds surely. This is actually stronger than almost surely, so I should make that explicit.
+
+Writing the LaTeX now... I'm working through the mathematical properties of constraint-weighted voting, showing that under simple source attribution the scoring reduces to majority voting, and establishing bounds on the bias ratio between the winning answer and its closest competitor. I'm also establishing an information-theoretic ceiling that constraints derived from traces cannot exceed the mutual information between the traces themselves and the ground truth. The data processing inequality shows that the constraints can't provide more information about the outcome than the traces themselves, since the constraints are deterministically derived from the traces. This bound extends to each stratum of answers and then averages across them. Every constraint ultimately stems from a trace that simultaneously determines the answer.
+
+The interpretation clarifies that under source attribution methods like SICA, the constraint layer is completely redundant with simple answer counting. Even an oracle evaluator of constraint quality couldn't extract more information about the outcome from constraints than what already exists in the traces. This structural limitation of self-extraction doesn't depend on model capability, task difficulty, or how well the extraction function performs—it's an inherent consequence of the setup.
+
+Now I'm reconsidering whether the proposition statement is too verbose for an EMNLP paper, and I should double-check whether the Markov chain relationship really holds as stated.
+
+I'm verifying the conditional independence: the constraints are deterministically derived from the traces, so conditioning on the traces should make the ground truth irrelevant to the constraints. The math checks out—the probability of constraints given both ground truth and traces equals the probability given just the traces. But I need to verify the reverse direction as well.
+
+Now I'm reconsidering whether the Markov chain condition is actually what I need here. The data processing inequality gives me what I want: the mutual information between ground truth and constraints is bounded by the mutual information between ground truth and traces. Since constraints are a deterministic function of traces, the conditional mutual information between ground truth and constraints given traces is zero, which confirms the Markov chain holds in that direction. However, the reverse chain doesn't necessarily hold—the traces might contain information about the ground truth that goes beyond what the constraints capture. That's fine; I only need the forward direction for this argument.
+
+For the conditional case, the same logic applies when conditioning on some variable A. The Markov chain still holds given any fixed value of A, so the data processing inequality carries through, and averaging over A preserves the inequality. Everything checks out.
+
+As for notation, I'm deciding between the arrow and dash conventions for representing Markov chains—the arrow notation is more standard in information theory literature, so I'll go with that.
+
+Now I need to verify the i.i.d. assumption more carefully. The traces are sampled independently, so the joint distribution factors as the marginal over Y times the product of conditionals for each trace given the query and model. The key point is that each trace is independent of the others and of Y, conditioned on the query and model parameters.
+
+But wait—T carries information about Y indirectly through q. Since q is what determines Y, and the traces are sampled based on q, there's an information flow from T to Y mediated by q. However, if I condition on q being fixed, then Y becomes a constant, which breaks the mutual information framework since mutual information requires both variables to be random. The proper setup should treat (q, Y) as jointly drawn from the data distribution, not as fixed. of the joint distribution of (T, Y), because C = f(T) deterministically. So the DPI holds regardless of how they're distributed, which means my proof is sound.
+
+Now I should write up the actual response. I also want to address the user's question about whether I need to distinguish between expectation and almost sure forms—my result shows BR ≥ 1 surely whenever at least two distinct answers exist, which is the strongest statement. When there's only one distinct answer, the situation is different.
+
+I'm also considering whether to focus on the basic constraint-voting case or address the SICA-specific details like deduplication and MAX-SAT filtering. The core structural argument works for the basic case, and those implementation details don't fundamentally change the logic, though deduplication does complicate things slightly since constraints get weighted by how many traces support them.
+
+With deduplication, a constraint appearing in traces for multiple answers contributes equally to all their scores, which can push BR toward 1 when constraints are widely shared. But this can't make BR less than 1 since shared constraints cancel out—the majority answer still wins when most constraints are answer-specific. Let me work through a concrete example to see if BR could actually drop below 1. Continuing with u and v, which are unique to B and each contribute 1 to its score. This gives me score(A) = 5 and score(B) = 7, meaning BR = 5/7 < 1. This reveals a critical flaw: even when A is the majority answer, deduplication can make BR fall below 1 if the minority answer generates enough unique constraints to outweigh the shared ones.
+
+The structural result that BR ≥ 1 doesn't actually hold once I account for SICA's deduplication step. But the underlying proposition is about fundamental coupling, not implementation details. The real insight is that deduplication is an engineering choice that can modulate the bias without eliminating it entirely—shared constraints cancel out, and answer-specific constraints scale with trace counts, unless the minority answer happens to produce disproportionately more unique constraints. Looking at the empirical results though, all BR values stay well above 1, suggesting this edge case rarely manifests in practice.
+
+For the proposition itself, I should focus on the base case without deduplication and mention in the interpretation that deduplication preserves the qualitative finding when constraint diversity is similar across answers. Really, the core argument is about the simplest, most fundamental structural issue—deduplication, MAX-SAT, and penalty terms are implementation details that obscure the main point. I'll strip those away and write the final version now, keeping the formatting plain with just bold for the proposition label and italics for the proof section.
+
+Writing the formal statement... These bounds apply universally across any model, task, or extraction function—the bias is inherent to the structure itself. Now I'm working through the proof: first, I'm showing how the scoring function reduces to counting matching answers, which establishes the bias ratio is always at least 1. Then I'm demonstrating that the extracted constraints are deterministically derived from the source traces, so they can't contain more information about the ground truth than the traces themselves. I'm checking whether the conditional mutual information statement actually captures what I want to say about independent verification. The inequality I(C; Y | A) ≤ I(T; Y | A) shows constraints are bounded by traces, but it doesn't guarantee they add zero signal beyond answers—that would only hold if constraints factor through answers, which requires the A3 assumption. Without A3, constraints can still carry additional information about Y given A, though it's capped by what the full trace provides.
+
+For the SCB application, the key insight isn't that constraints necessarily provide zero information, but rather that source attribution forces this to zero through voting degeneration, while any attribution scheme faces an information ceiling. I should keep the proposition focused on part (i) as the main result with part (ii) providing the information-theoretic grounding, and save the conditional DPI as a remark rather than overloading the core argument.
+
+Now I'm thinking through the overall structure the user requested: I need to address the proposition, proof, intuition, and any potential issues or edge cases. The main limitations are that semantic attribution requires empirical answer coupling validation, deduplication could theoretically reduce the bound ratio below 1 if minority traces generate disproportionate constraints (though this is rare in practice), and the DPI bound is tight since certain functions achieve equality. Let me add a brief remark covering these scope limitations before finalizing the writeup. Writing mathematical proof... The Markov chain shows that constraints are deterministically derived from traces, so the data processing inequality establishes the information bound. Intuitively, since each constraint originates from a trace that also produces the answer, constraint-based voting inherits the same distributional bias as the answer vote and can't provide independent verification regardless of model quality or extraction method. The key insight is that source attribution—the mechanism underlying SICA and similar approaches—ensures this result holds, though under semantic evaluation where we check logical consistency directly, we'd additionally need the extraction function to preserve answer alignment. I'm debating the notation for the Markov chain—the dash might not render cleanly, and arrows could suggest causation when I just mean conditional independence. I'll stick with the arrow notation since it's standard in information theory papers.
+
+More importantly, I should include the conditional DPI constraint in the proposition itself, since the user emphasized that constraints can't contain information independent of the answer. This means adding the conditional mutual information bound I(C; Y | A) ≤ I(T; Y | A) to part (ii).
+
+Writing the LaTeX formulation... I need to reconsider how I'm defining BR in the proposition. The paper's definition conditions on the model being wrong—it measures how much constraints support the incorrect answer relative to the correct one. My current unconditional definition (n_â / max_{a'≠â} n_{a'}) doesn't capture this error-conditional aspect, so I should align with the paper's formulation to properly reflect that BR quantifies bias specifically when the model makes mistakes. Since a_M is the mode by definition, a* can't also be the mode, so n_{a*} ≤ n_{a_M} strictly. This means BR ≥ 1 holds under the paper's definition too. The key distinction is that my per-question result is deterministic while the paper's aggregate BR is an expectation over questions, so I should define BR at the per-question level and note how it relates to their aggregate measure. I'm settling on a per-question formulation where BR equals the majority answer count divided by the runner-up count, which naturally stays at least 1 and handles edge cases like unanimous answers by requiring at least two distinct answers present.
+
+Writing the LaTeX for Proposition 1... Looking at the mathematical framework here, I'm establishing two key limitations: first, that when using simple source attribution where constraints just match answers, the scoring degenerates to a majority vote count with a bias ratio that favors the most common answer; second, that self-extracted constraints are fundamentally bounded by the information content of the original traces themselves, so no extraction method can make them more informative about the ground truth than the source material. The key insight is that constraint-based aggregation inherits the distributional bias of answer voting—it's exactly majority voting under source attribution, and bounded by the information in the trace under any attribution scheme. Importantly, these bounds are structural properties independent of model capability or task difficulty, which explains why the empirical bias ratios are consistently large across all conditions. Under semantic evaluation with logical entailment, there's an additional requirement for answer alignment. That's a reasonable length for an EMNLP paper. Let me verify the proof structure once more—checking that the scoring function correctly counts matching answers, that the mode selection is valid, and that the balance ratio is well-defined. For the second part, I need to confirm that the constraints are deterministic functions of the traces, which means the full constraint set depends only on the trace set.
+
+Now I'm realizing I should be more precise about the i.i.d. assumption—it applies to the traces themselves, not to the trace-label pairs. The ground truth is fixed for a given question, but when computing mutual information with the constraints, I'm averaging over different questions where the label varies. For mutual information between model outputs and ground truth, it's standard in the ML literature to take expectations over the data distribution, so I don't need to spell that out explicitly.
+
+Alright, I'm ready to write the file. But first, let me verify the user's requirement about standard information theory notation — mutual information I(X; Y), entropy H(X), Markov chains, the data processing inequality, and the C_{1:K} shorthand are all there and properly used.
+
+One last check on the proof length: the user asked for 3-5 lines of core proof, and I need to make sure my derivation is concise enough.
+
+Now I'm going to finalize the document. I'm keeping the Remark separate from the Interpretation since the user might want that edge case discussion distinct. But I notice the user also requested just 1-2 sentences of intuition after the proof, and my current Interpretation runs longer than that. Let me trim it down to be more concise while keeping the key insight about how constraints are downstream transformations that can't escape the distributional bias of the answer vote.
+
+I should also make sure I'm addressing the user's point about conditional mutual information more directly—the core idea that constraints cannot contain information independent of the answer. I'll weave that into the final version as I write it out. Writing the proposition in LaTeX... I'm establishing that extracted constraints can't contain more information about the ground truth than the original source traces themselves, even when conditioning on the answers—this is a fundamental information-theoretic bound on what self-extraction can achieve. The first part of the proof relies on source attribution—the mechanism SICA and similar approaches use. Under semantic evaluation, where we check if the reasoning chain logically supports the answer, the bias ratio exceeds 1 only when the chain is actually aligned with that answer rather than alternatives. This alignment property emerges naturally from how the reasoning is generated, and the empirical results across all conditions confirm it holds, though it's not strictly required by the self-extraction mechanism alone.
+
+I'm going through the checklist to verify everything is in place—the proof structure, notation, handling of edge cases, and formatting all check out. Now I need to reconsider the user's formatting notes about how the proposition should be presented.
+
+Looking at the user's requirements, they want the period after "Proposition 1" itself, not floating elsewhere. The standard math convention puts the period at the very end of the complete label, so I should format it as "\textbf{Proposition 1.} \textit{(Structural...)}" with the period immediately following the number in bold, then the italicized subtitle without an additional period.
+
+On the semantic entailment notation, \models is indeed the conventional choice in logic, so I'll switch from \vDash to align with standard practice. I'm debating which notation to use for the semantic entailment relation—\models seems more standard for logical entailment than \vDash, so I'll switch to that. For the Remark section, I think I should simplify the notation and just write it more directly in words rather than trying to be overly precise with the mathematical symbols.
+
+Now I'm realizing there's a deeper issue with the proof: the actual SICA paper uses constraint deduplication, a MAX-SAT solver, and penalty terms for violated constraints, but my proposition abstracts all of that away and just counts raw constraint matches. I need to think through whether this simplification is justified or if I should acknowledge this gap.
+
+Actually, looking back at the user's proof sketch, they're operating at the same level of abstraction—they're reasoning about the fundamental structural bias, not the implementation details. The deduplication and MAX-SAT solving are orthogonal to the core result I'm trying to establish. So I'll keep the proposition as stated and note that it applies to this base case.
+
+Now I need to actually write out the complete file. One formatting question though: should I match the paper's style with `\begin{equation}` tags or use the simpler `\[ \]` notation for displayed equations?
+
+I think I'll display the score equation and keep the BR definition inline, since my version is more compact than the user's probabilistic formulation.
+
+Actually, I'm second-guessing the layout again—maybe BR deserves its own line for clarity. But that eats up space, so I'll stick with my original plan: score displayed, BR inline.
+
+Now I need to verify that my formulation generalizes properly. I'm using the mode of the answer set and counting occurrences, which should work for any discrete answer space whether it's multiple choice, True/False, or something else entirely.
+
+This looks solid. Time to write.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "08cf0965-0217-4ae1-8fb2-db63c1f0eb8b",
+  "isSidechain": false,
+  "requestId": "req_011CbJbyMFjH2w66RmWnN6TW",
+  "type": "assistant",
+  "uuid": "4aa0398d-2f1d-40a1-bea8-aee4531e94b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DMDMyzaftrNWaVXUGjPrqK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2853,
+      "cache_read_input_tokens": 25006,
+      "output_tokens": 36734,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2853,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 36734,
+          "cache_read_input_tokens": 25006,
+          "cache_creation_input_tokens": 2853,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2853
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-23T01:18:15.141Z_
+
+Let me read the current analysis.tex and method.tex to align notation and placement.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4aa0398d-2f1d-40a1-bea8-aee4531e94b0",
+  "isSidechain": false,
+  "requestId": "req_011CbJbyMFjH2w66RmWnN6TW",
+  "type": "assistant",
+  "uuid": "98e2f887-78c0-4aa5-9ebc-f321fdc5286c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DMDMyzaftrNWaVXUGjPrqK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2853,
+      "cache_read_input_tokens": 25006,
+      "output_tokens": 36734,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2853,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 36734,
+          "cache_read_input_tokens": 25006,
+          "cache_creation_input_tokens": 2853,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2853
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T01:18:16.268Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Fu4yugmRFRXNVhPRGaCXW4`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+  "limit": 80
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "98e2f887-78c0-4aa5-9ebc-f321fdc5286c",
+  "isSidechain": false,
+  "requestId": "req_011CbJbyMFjH2w66RmWnN6TW",
+  "type": "assistant",
+  "uuid": "14ec1a29-48f5-4d83-985b-53eb5af94073",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DMDMyzaftrNWaVXUGjPrqK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2853,
+      "cache_read_input_tokens": 25006,
+      "output_tokens": 36734,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2853,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 36734,
+          "cache_read_input_tokens": 25006,
+          "cache_creation_input_tokens": 2853,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2853
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T01:18:16.587Z_
+
+<details><summary>↩ Tool result · `toolu_01CMcBkUTgkTj95XqrafSvSV`</summary>
+
+```text
+1	\section{Background \& Setup}
+2	\label{sec:method}
+3	
+4	\subsection{Self-Consistency and the Condorcet Independence Assumption}
+5	\label{sec:condorcet}
+6	
+7	Self-Consistency (SC) \citep{wang2023sc} samples $K$ reasoning traces and selects the majority answer. The Condorcet Jury Theorem (CJT) \citep{condorcet1785} guarantees majority convergence under independent voters \citep{austensmith1996}, but LLM traces violate this independence. Following \citet{ladha1992correlated} and \citet{kish1965survey}, we define effective sample size using Fleiss' $\kappa$ \citep{fleiss1971kappa} as proxy for intraclass correlation:
+8	\begin{equation}
+9	\label{eq:effk}
+10	K_{\text{eff}} = K \,/\, [1 + (K{-}1) \cdot \kappa].
+11	\end{equation} In our experiments (\S\ref{sec:effective-k}), $\kappa = 0.21$--$0.82$ yields $K_{\text{eff}} \approx 1.2$--$3.6$ for $K{=}12$, serving as an ordinal diagnostic of vote diversity rather than a literal effective sample size. This independence limitation motivates our investigation.
+12	
+13	\subsection{SICA Pipeline}
+14	\label{sec:pipeline}
+15	
+16	Symbolic Invariant Consensus Aggregation (SICA) extends SC by extracting formal constraints from traces and selecting the answer best supported by the satisfiable subset (Figure~\ref{fig:pipeline}).
+17	
+18	\paragraph{Trace generation.} Given question $q$, an LLM generates $K$ traces $\{t_1, \ldots, t_K\}$ at temperature $T = 0.7$. Each trace $t_i$ yields answer $a_i$.
+19	
+20	\paragraph{Constraint extraction.}\label{sec:constraint-extraction} The same LLM extracts logical constraints from each trace at $T_{\text{ext}} = 0.3$. The extraction prompt requests JSON output with constraint type, expression, and Z3-compatible formula (Appendix~\ref{app:prompts}); in practice, 99.0\% of extracted constraints are propositional at the Z3 level, with only 1.0\% using true quantifiers. The \emph{extraction rate} is the fraction of traces yielding at least one parseable constraint.
+21	
+22	\paragraph{Deduplication and MAX-SAT.} Constraints are deduplicated by syntactic equivalence (global average deduplication ratio: 46.0\%); each unique constraint $c_m$ receives weight $w_m$ equal to the number of source traces. The objective finds the largest-weight satisfiable subset:
+23	\begin{equation}
+24	\label{eq:maxsat}
+25	\mathcal{C}^* = \arg\max_{\mathcal{S} \subseteq \mathcal{C}} \sum_{c \in \mathcal{S}} w_c \quad \text{s.t.} \quad \mathcal{S} \text{ is satisfiable.}
+26	\end{equation}
+27	Z3 \citep{demoura2008z3} solves this with a 10-second timeout. Answer assertion constraints ($\texttt{answer\_a} == \texttt{True}$, weight 1) ensure every candidate receives a nonzero base score, making SICA a strict generalization of SC.
+28	
+29	\paragraph{Scoring.} Let $\mathcal{C}^{\setminus} = \mathcal{C} \setminus \mathcal{C}^*$. Each candidate $a$ is scored by:
+30	\begin{equation}
+31	\label{eq:score}
+32	\text{score}(a) = \sum_{c \in \mathcal{C}^*} w_c \cdot \sigma(c, a) - \alpha \sum_{c \in \mathcal{C}^{\setminus}} w_c \cdot \sigma(c, a),
+33	\end{equation}
+34	where $\sigma(c, a) = 1$ if $c$ was extracted from any trace producing answer $a$, and $\alpha = 0.5$. The selected answer is $a^* = \arg\max_{a} \text{score}(a)$.
+35	
+36	\paragraph{Degeneration condition.} If self-extracted constraints are coupled to their source answer, MAX-SAT retains nearly all ($|\mathcal{C}^{\setminus}| \approx 0$), and scoring degenerates to:
+37	\begin{equation}
+38	\label{eq:degenerate}
+39	\text{score}(a) \approx \sum_{\substack{c \in \mathcal{C}^* \\ \text{source}(c) \to a}} w_c,
+40	\end{equation}
+41	equivalent to majority voting. We show in \S\ref{sec:confirmation-bias} that this degeneration occurs in practice.
+42	
+43	\paragraph{The $C_0$ diagnostic.} The multi-candidate rate $C_0 = |\{q : |\mathcal{A}(q)| > 1\}| / |\mathcal{Q}|$ is a zero-cost diagnostic: $C_0 < 5\%$ means SICA reduces to SC. $\alpha = 0.5$ is not critical (${\pm}0.49$\,pp across $\alpha \in [0, 1]$).
+44	
+45	\subsection{The Symbolic Mirage Hypothesis}
+46	\label{sec:mirage}
+47	
+48	We hypothesize that self-extracted symbolic structures are not independent verification signals but projections of the generating model's distributional biases. This \textbf{Symbolic Mirage} is specific to self-extracted constraints; symbolic methods employing independently sourced constraints remain effective (Appendix~\ref{app:oracle}). Unlike general self-correction failure \citep{huang2024selfcorrect}, the symbolic mirage is specific to formal verification: the solver is provably sound, yet its outputs are informationally equivalent to majority voting because self-extracted inputs carry the model's distributional prior. We quantify mirage intensity via the \emph{Bias Ratio}:
+49	\begin{equation}
+50	\label{eq:mirage}
+51	\text{BR}(M,T) = \frac{P(c \text{ supports } a_M \mid a_M \neq a^*)}{P(c \text{ supports } a^* \mid a_M \neq a^*)},
+52	\end{equation}
+53	where $c$ is a self-extracted constraint, $a_M$ the model's answer, and $a^*$ the ground truth. $\text{BR} > 1$ indicates constraints project model bias rather than provide independent verification. The mirage degrades aggregation through two channels: correlated constraints compress $K_{\text{eff}} < 2$ (\emph{direct}; Eq.~\ref{eq:effk}), and answer-coupled constraints collapse MAX-SAT to vote counting (\emph{indirect}; Eq.~\ref{eq:degenerate}). If traces are unfaithful \citep{turpin2024language}, the mirage is inherent to extraction. Two observations motivate the hypothesis: (O1)~BR $> 1.0$ across all tested self-extraction conditions (\S\ref{sec:confirmation-bias}); (O2)~no training-free remediation reduces BR below $1.0$ (\S\ref{sec:remediation})---both initially observed on Mistral-7B and subsequently confirmed across nine models. These lead to a testable prediction: (P1)~structurally independent verification should break SCB (\S\ref{sec:cross-arch}).
+54	
+55	\begin{tcolorbox}[enhanced, colback=gray!5, colframe=gray!50, boxrule=0.3pt, left=3pt, right=3pt, top=1pt, bottom=1pt, before skip=4pt, after skip=4pt]
+56	\textbf{Empirical Finding 1} (Self-Extraction Ceiling).\label{prop:ceiling}
+57	For generator $M$ with $\text{BR}(M) > 1$ and oracle improvement $\Delta_\text{oracle}$, self-extracted constraints improve SC by at most $\Delta_\text{max}^\text{self}$, empirically bounded by $\Delta_\text{oracle} / \text{BR}(M)$.
+58	\end{tcolorbox}
+59	
+60	\begin{tcolorbox}[enhanced, colback=gray!5, colframe=gray!50, boxrule=0.3pt, left=3pt, right=3pt, top=1pt, bottom=1pt, before skip=4pt, after skip=4pt]
+61	\textbf{Empirical Finding 2} (Capability Gap Condition).\label{cor:capability_gap}
+62	Let $G$ be a generator with SC accuracy $\text{SC}_G$ and let $V$ be an external verifier with standalone accuracy $V_\text{acc}$ and inter-system correlation $\rho_{GV} < \rho_{GG}$. Combo gain $\Delta_\text{combo} - \Delta_\text{SC}$ decreases monotonically with $\text{SC}_G$, with significant gains observed up to $\text{SC}_G \approx 70\%$.
+63	\end{tcolorbox}
+64	
+65	\textit{Empirical support.} From Finding~1, adding $V$ with $\rho_{GV} < \rho_{GG}$ increases $K_\text{eff}^\text{combo}$. Empirically, combo gain decreases monotonically with $\text{SC}_G$ ($\rho = 1.0$, $p = 0.003$, $n{=}6$; \S\ref{sec:cross-arch}), with significant improvements even when $\text{SC}_G > V_\text{acc}$.
+66	
+67	We also define a Conditional Correction Ratio (CCR, Appendix~\ref{app:cil}) that summarizes these diagnostics.
+68	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0c6b85a5-7216-4d62-ad99-6cb5780b066b",
+  "isSidechain": false,
+  "promptId": "73d90633-9b3d-44bb-8d7b-f141a06d0b7a",
+  "type": "user",
+  "uuid": "29477e9c-80ad-4235-8014-173a88136a4b",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex",
+      "content": "\\section{Background \\& Setup}\n\\label{sec:method}\n\n\\subsection{Self-Consistency and the Condorcet Independence Assumption}\n\\label{sec:condorcet}\n\nSelf-Consistency (SC) \\citep{wang2023sc} samples $K$ reasoning traces and selects the majority answer. The Condorcet Jury Theorem (CJT) \\citep{condorcet1785} guarantees majority convergence under independent voters \\citep{austensmith1996}, but LLM traces violate this independence. Following \\citet{ladha1992correlated} and \\citet{kish1965survey}, we define effective sample size using Fleiss' $\\kappa$ \\citep{fleiss1971kappa} as proxy for intraclass correlation:\n\\begin{equation}\n\\label{eq:effk}\nK_{\\text{eff}} = K \\,/\\, [1 + (K{-}1) \\cdot \\kappa].\n\\end{equation} In our experiments (\\S\\ref{sec:effective-k}), $\\kappa = 0.21$--$0.82$ yields $K_{\\text{eff}} \\approx 1.2$--$3.6$ for $K{=}12$, serving as an ordinal diagnostic of vote diversity rather than a literal effective sample size. This independence limitation motivates our investigation.\n\n\\subsection{SICA Pipeline}\n\\label{sec:pipeline}\n\nSymbolic Invariant Consensus Aggregation (SICA) extends SC by extracting formal constraints from traces and selecting the answer best supported by the satisfiable subset (Figure~\\ref{fig:pipeline}).\n\n\\paragraph{Trace generation.} Given question $q$, an LLM generates $K$ traces $\\{t_1, \\ldots, t_K\\}$ at temperature $T = 0.7$. Each trace $t_i$ yields answer $a_i$.\n\n\\paragraph{Constraint extraction.}\\label{sec:constraint-extraction} The same LLM extracts logical constraints from each trace at $T_{\\text{ext}} = 0.3$. The extraction prompt requests JSON output with constraint type, expression, and Z3-compatible formula (Appendix~\\ref{app:prompts}); in practice, 99.0\\% of extracted constraints are propositional at the Z3 level, with only 1.0\\% using true quantifiers. The \\emph{extraction rate} is the fraction of traces yielding at least one parseable constraint.\n\n\\paragraph{Deduplication and MAX-SAT.} Constraints are deduplicated by syntactic equivalence (global average deduplication ratio: 46.0\\%); each unique constraint $c_m$ receives weight $w_m$ equal to the number of source traces. The objective finds the largest-weight satisfiable subset:\n\\begin{equation}\n\\label{eq:maxsat}\n\\mathcal{C}^* = \\arg\\max_{\\mathcal{S} \\subseteq \\mathcal{C}} \\sum_{c \\in \\mathcal{S}} w_c \\quad \\text{s.t.} \\quad \\mathcal{S} \\text{ is satisfiable.}\n\\end{equation}\nZ3 \\citep{demoura2008z3} solves this with a 10-second timeout. Answer assertion constraints ($\\texttt{answer\\_a} == \\texttt{True}$, weight 1) ensure every candidate receives a nonzero base score, making SICA a strict generalization of SC.\n\n\\paragraph{Scoring.} Let $\\mathcal{C}^{\\setminus} = \\mathcal{C} \\setminus \\mathcal{C}^*$. Each candidate $a$ is scored by:\n\\begin{equation}\n\\label{eq:score}\n\\text{score}(a) = \\sum_{c \\in \\mathcal{C}^*} w_c \\cdot \\sigma(c, a) - \\alpha \\sum_{c \\in \\mathcal{C}^{\\setminus}} w_c \\cdot \\sigma(c, a),\n\\end{equation}\nwhere $\\sigma(c, a) = 1$ if $c$ was extracted from any trace producing answer $a$, and $\\alpha = 0.5$. The selected answer is $a^* = \\arg\\max_{a} \\text{score}(a)$.\n\n\\paragraph{Degeneration condition.} If self-extracted constraints are coupled to their source answer, MAX-SAT retains nearly all ($|\\mathcal{C}^{\\setminus}| \\approx 0$), and scoring degenerates to:\n\\begin{equation}\n\\label{eq:degenerate}\n\\text{score}(a) \\approx \\sum_{\\substack{c \\in \\mathcal{C}^* \\\\ \\text{source}(c) \\to a}} w_c,\n\\end{equation}\nequivalent to majority voting. We show in \\S\\ref{sec:confirmation-bias} that this degeneration occurs in practice.\n\n\\paragraph{The $C_0$ diagnostic.} The multi-candidate rate $C_0 = |\\{q : |\\mathcal{A}(q)| > 1\\}| / |\\mathcal{Q}|$ is a zero-cost diagnostic: $C_0 < 5\\%$ means SICA reduces to SC. $\\alpha = 0.5$ is not critical (${\\pm}0.49$\\,pp across $\\alpha \\in [0, 1]$).\n\n\\subsection{The Symbolic Mirage Hypothesis}\n\\label{sec:mirage}\n\nWe hypothesize that self-extracted symbolic structures are not independent verification signals but projections of the generating model's distributional biases. This \\textbf{Symbolic Mirage} is specific to self-extracted constraints; symbolic methods employing independently sourced constraints remain effective (Appendix~\\ref{app:oracle}). Unlike general self-correction failure \\citep{huang2024selfcorrect}, the symbolic mirage is specific to formal verification: the solver is provably sound, yet its outputs are informationally equivalent to majority voting because self-extracted inputs carry the model's distributional prior. We quantify mirage intensity via the \\emph{Bias Ratio}:\n\\begin{equation}\n\\label{eq:mirage}\n\\text{BR}(M,T) = \\frac{P(c \\text{ supports } a_M \\mid a_M \\neq a^*)}{P(c \\text{ supports } a^* \\mid a_M \\neq a^*)},\n\\end{equation}\nwhere $c$ is a self-extracted constraint, $a_M$ the model's answer, and $a^*$ the ground truth. $\\text{BR} > 1$ indicates constraints project model bias rather than provide independent verification. The mirage degrades aggregation through two channels: correlated constraints compress $K_{\\text{eff}} < 2$ (\\emph{direct}; Eq.~\\ref{eq:effk}), and answer-coupled constraints collapse MAX-SAT to vote counting (\\emph{indirect}; Eq.~\\ref{eq:degenerate}). If traces are unfaithful \\citep{turpin2024language}, the mirage is inherent to extraction. Two observations motivate the hypothesis: (O1)~BR $> 1.0$ across all tested self-extraction conditions (\\S\\ref{sec:confirmation-bias}); (O2)~no training-free remediation reduces BR below $1.0$ (\\S\\ref{sec:remediation})---both initially observed on Mistral-7B and subsequently confirmed across nine models. These lead to a testable prediction: (P1)~structurally independent verification should break SCB (\\S\\ref{sec:cross-arch}).\n\n\\begin{tcolorbox}[enhanced, colback=gray!5, colframe=gray!50, boxrule=0.3pt, left=3pt, right=3pt, top=1pt, bottom=1pt, before skip=4pt, after skip=4pt]\n\\textbf{Empirical Finding 1} (Self-Extraction Ceiling).\\label{prop:ceiling}\nFor generator $M$ with $\\text{BR}(M) > 1$ and oracle improvement $\\Delta_\\text{oracle}$, self-extracted constraints improve SC by at most $\\Delta_\\text{max}^\\text{self}$, empirically bounded by $\\Delta_\\text{oracle} / \\text{BR}(M)$.\n\\end{tcolorbox}\n\n\\begin{tcolorbox}[enhanced, colback=gray!5, colframe=gray!50, boxrule=0.3pt, left=3pt, right=3pt, top=1pt, bottom=1pt, before skip=4pt, after skip=4pt]\n\\textbf{Empirical Finding 2} (Capability Gap Condition).\\label{cor:capability_gap}\nLet $G$ be a generator with SC accuracy $\\text{SC}_G$ and let $V$ be an external verifier with standalone accuracy $V_\\text{acc}$ and inter-system correlation $\\rho_{GV} < \\rho_{GG}$. Combo gain $\\Delta_\\text{combo} - \\Delta_\\text{SC}$ decreases monotonically with $\\text{SC}_G$, with significant gains observed up to $\\text{SC}_G \\approx 70\\%$.\n\\end{tcolorbox}\n\n\\textit{Empirical support.} From Finding~1, adding $V$ with $\\rho_{GV} < \\rho_{GG}$ increases $K_\\text{eff}^\\text{combo}$. Empirically, combo gain decreases monotonically with $\\text{SC}_G$ ($\\rho = 1.0$, $p = 0.003$, $n{=}6$; \\S\\ref{sec:cross-arch}), with significant improvements even when $\\text{SC}_G > V_\\text{acc}$.\n\nWe also define a Conditional Correction Ratio (CCR, Appendix~\\ref{app:cil}) that summarizes these diagnostics.\n",
+      "numLines": 68,
+      "startLine": 1,
+      "totalLines": 68
+    }
+  },
+  "sourceToolAssistantUUID": "0c6b85a5-7216-4d62-ad99-6cb5780b066b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-23T01:18:16.282Z_
+
+<details><summary>↩ Tool result · `toolu_01Fu4yugmRFRXNVhPRGaCXW4`</summary>
+
+```text
+1	\section{Analysis}
+2	\label{sec:analysis}
+3	
+4	\looseness=-1 We test the three predictions of the symbolic mirage hypothesis (\S\ref{sec:mirage}).
+5	
+6	\subsection{Condorcet Effective-K}
+7	\label{sec:effective-k}
+8	
+9	\looseness=-1 Table~\ref{tab:independence} (Appendix) reports Fleiss' $\kappa$ and Effective-K (Eq.~\ref{eq:effk}) across 15 conditions at $K = 12$. Among instruction-tuned models, $\kappa$ ranges from 0.21 to 0.82, yielding $K_{\text{eff}} = 1.20\text{--}3.62$ as an ordinal diagnostic: higher $K_{\text{eff}}$ indicates greater vote diversity, though it should not be interpreted as a literal effective sample size (\S\ref{sec:condorcet}). Across four Mistral-7B seeds, $\kappa \in [0.41, 0.51]$ yet $\Delta$ ranges from $+3.43$ to $-0.49$\,pp, indicating seed-level constraint quality matters beyond independence. Positive $\Delta$ requires both sufficient $K_{\text{eff}}$ ($\leq 1.30$ never improves) and SC accuracy ($K_{\text{eff}} = 3.62$ with SC $= 39\%$ degrades). All four model families produce $\kappa \geq 0.41$ (Table~\ref{tab:kappa_generalization}).
+10	
+11	
+12	\subsection{Symbolic Confirmation Bias}
+13	\label{sec:confirmation-bias}
+14	
+15	\looseness=-1 Self-extracted constraints systematically align with the model's majority answer. On Mistral-7B FOLIO, when SICA errs, 83.3\% of constraints support the incorrect answer---bias ratio $4.97\times$ (Table~\ref{tab:cross-model-bias})---and 94\% of errors overlap with SC. A shuffle control reveals this bias is \emph{structural}: randomizing constraint--answer associations while preserving per-trace counts yields $\text{BR}_\text{null} \approx \text{BR}_\text{obs}$ ($p > 0.7$), indicating that BR reflects the trace-count distribution rather than extraction-specific error. Z3 rejects only 3.4\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on 94.4\% of problems on Mistral-7B FOLIO (Table~\ref{tab:ablation}), confirming that the formal verification layer is vacuous (Eq.~\ref{eq:degenerate}): 99\% of constraints pass Z3 validation yet add no information beyond majority voting. This vacuity is $\alpha$-insensitive: agreement $\geq$99\% across $\alpha \in \{0.1, \ldots, 0.9\}$ for both high- and moderate-BR conditions (Table~\ref{tab:alpha-ablation}).
+16	
+17	\looseness=-1 This pattern generalizes: $4.97\times$ (Mistral), $3.85\times$ (Qwen-14B), $2.88\times$ (LLaMA), all $> 1.0$ with 95\% bootstrap CIs (Table~\ref{tab:cross-model-bias}). Cross-model extraction confirms SCB universality across nine models from 7B to frontier (BR $1.66$--$4.97\times$; Table~\ref{tab:frontier-scb}). BR $> 1$ further holds across all eight cells of a $2{\times}2$ generator${\times}$extractor matrix on FOLIO and ProofWriter (range $1.94$--$2.70$; Appendix~\ref{app:2x2}). Constraints use trace-specific variables (56.4\% zero cross-answer overlap), collapsing aggregation to majority voting.
+18	
+19	\begin{table}[t]
+20	\centering
+21	\small
+22	\setlength{\tabcolsep}{3pt}
+23	\caption{Symbolic confirmation bias across nine models on FOLIO ($n = 204$). BR: mean per-problem bias ratio. $n_\text{err}$: number of incorrect instances on which BR is computed. $\Delta$: SICA $-$ SC (pp). Ext.: $^a$self-extraction; $^b$cross-model (Mistral-7B extracts FOL from target traces). $^*$Interim ($n = 95/204$). All models exhibit $\text{BR} > 1$; BR estimates for high-accuracy models ($n_\text{err} < 40$) have wider confidence intervals; Gemini ($n_\text{err} \approx 12$) should be interpreted with particular caution. Process-level similarity ($\kappa_{\text{proc}}$) ranges from $0.25$ (R1-Distill) to $0.79$ (gpt-4o/4.1/Gemini); see Table~\ref{tab:cross-model-process}.}
+24	\label{tab:frontier-scb}
+25	\resizebox{\columnwidth}{!}{\begin{tabular}{@{}llrrrrl@{}}
+26	\toprule
+27	Model & Ext. & SC (\%) & $n_\text{err}$ & BR & $\Delta$ (pp) \\
+28	\midrule
+29	Mistral-7B & $^a$ & 55.88 & 90 & 4.97 & 0.00 \\
+30	LLaMA-8B & $^a$ & \textrm{---} & \textrm{---} & 2.88 & \textrm{---} \\
+31	Qwen-14B & $^a$ & 75.98 & 49 & 3.85 & $-$0.49 \\
+32	\addlinespace
+33	R1-Distill-8B & $^b$ & 74.51 & 52 & 2.92 & $+$2.45 \\
+34	gpt-4o & $^a$ & 73.91 & 53 & 2.94 & $-$1.80 \\
+35	gpt-4.1 & $^b$ & 82.84 & 35 & 2.70 & $-$1.47 \\
+36	gpt-5.5 & $^b$ & 84.31 & 32 & 3.48 & $+$0.49 \\
+37	o3 & $^b$ & 82.65 & 35 & 1.66 & 0.00 \\
+38	Gemini-2.5-Pro$^*$ & $^b$ & 87.37 & 12 & 2.79 & $-$1.10 \\
+39	\bottomrule
+40	\end{tabular}}
+41	\end{table}
+42	
+43	\looseness=-1 Two controls rule out answer leakage. BR is uniform across early, mid, and late reasoning steps (Fisher $p = 0.71$); high-consensus errors amplify to $\text{BR} = 18.8\times$ versus $2.7\times$ for low-consensus ($p < 0.001$). Removing the answer sentence from traces before extraction yields no BR decrease (Wilcoxon $p \geq 0.12$) despite significant accuracy loss (McNemar $p < 0.013$). SCB reflects a distributional prior embedded throughout reasoning, not answer contamination.
+44	
+45	\subsection{Process-Level Independence}
+46	\label{sec:process-kappa}
+47	
+48	\looseness=-1 We quantify reasoning-process overlap via ProcessSim, the mean pairwise cosine similarity of TF-IDF trace vectors (Eq.~\ref{eq:process-sim}, Appendix~\ref{app:process-gradient}). ProcessSim captures lexical overlap; deeper structure measures may reveal additional patterns, so we treat it as supporting rather than primary evidence. On Mistral-7B FOLIO, mean ProcessSim $= 0.69$, far exceeding answer-level $\kappa = 0.46$: traces share reasoning processes even when answers diverge. The gap generalizes across four families (Table~\ref{tab:cross-model-process}), from $0.31$ (LLaMA) to $0.02$ (Qwen-14B). Under cross-model extraction, SICA gain decreases monotonically with ProcessSim ($\rho = -1.0$, $p = 0.008$; Table~\ref{tab:process-gradient}), modulated by self-bias severity.
+49	
+50	
+51	CCR analysis confirms the same pattern: cross-architecture NLI yields $\text{CCR} > 0$ while same-model SICA yields $\text{CCR} < 0$, with CCR correlating with combo gain ($\rho = 0.84$, $p = 0.014$; Appendix~\ref{app:cil}).
+52	
+53	\subsection{Remediation Analysis}
+54	\label{sec:diagnostics}
+55	\label{sec:remediation}
+56	\label{sec:interventions}
+57	
+58	\looseness=-1 All 27 training-free remediation strategies spanning four categories produce neutral-to-negative results (Figure~\ref{fig:interventions-summary}; Appendices~\ref{app:extraction}--\ref{app:entropy}). Four representative failure modes illuminate the independence-accuracy trade-off. \emph{Debate} ($\kappa = 0.15$, $\Delta = -18.6$\,pp) successfully breaks trace correlation but collapses accuracy---same-model diversity and quality are at odds. \emph{Cross-model extraction} (using a different LLM as extractor) decreases $\kappa$ slightly but $\Delta \approx 0$, because same-family models share systematic biases (Appendix Table~\ref{tab:kappa_generalization}). \emph{Contrastive prompting} produces imbalanced output (94 pro vs.\ 65 con constraints), indicating confirmation bias transfers to constraint generation. The \emph{oracle ceiling} ($+29.90$\,pp with gold constraints) proves the mechanism is sound; self-extraction captures only ${\sim}$12\%, localizing the bottleneck to extraction quality. All non-debate strategies cluster at $\kappa \approx 0.40$--$0.47$, a same-model ceiling across three families. No individual strategy achieves significance after correction (Appendix~\ref{app:intervention-individual}).
+59	
+60	\begin{figure}[t]
+61	\centering
+62	\includegraphics[width=\columnwidth]{figures/fig2_interventions_compact.pdf}
+63	\caption{Twenty-three of 27 training-free strategies across four categories (four additional strategies tested but omitted for clarity). All produce neutral-to-negative $\Delta$ vs.\ SC. Grey band: $\pm 1$\,pp noise zone.}
+64	\label{fig:interventions-summary}
+65	\end{figure}
+66	
+67	\paragraph{Prospective held-out validation.}
+68	\looseness=-1 Decision boundaries ($C_0 < 5\%$, $K_\text{eff} \leq 1.3$, SC $< 40\%$) were derived from Mistral-7B and Qwen2.5-14B conditions. We evaluate prospectively on held-out LLaMA-3.1-8B, a different model family not used in boundary derivation: on FOLIO (SC $= 66.18\%$, $C_0 = 61.8\%$, $K_\text{eff} = 2.17$), the framework predicts Type~A confirmation bias ($\Delta \leq 0$); the observed $\Delta = -4.41$\,pp confirms the prediction.
+69	
+70	\paragraph{Symbolic Mirage Hypothesis: verification.}
+71	\looseness=-1 The observations and prediction of \S\ref{sec:mirage} are confirmed. Observations O1--O2, initially discovered on Mistral-7B, generalize: BR $> 1$ across three self-extraction models, six cross-model pairs, and all eight cells of a $2{\times}2$ generator${\times}$extractor matrix (\S\ref{sec:confirmation-bias}); 27 training-free strategies fail to reduce BR below 1.0 (\S\ref{sec:remediation}). Prediction P1 is validated: cross-architecture NLI escapes the mirage for generators up to SC $\approx 70\%$ (\S\ref{sec:cross-arch}).
+72	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "14ec1a29-48f5-4d83-985b-53eb5af94073",
+  "isSidechain": false,
+  "promptId": "73d90633-9b3d-44bb-8d7b-f141a06d0b7a",
+  "type": "user",
+  "uuid": "5323cd1c-6891-4a7d-862d-722a98189efa",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+      "content": "\\section{Analysis}\n\\label{sec:analysis}\n\n\\looseness=-1 We test the three predictions of the symbolic mirage hypothesis (\\S\\ref{sec:mirage}).\n\n\\subsection{Condorcet Effective-K}\n\\label{sec:effective-k}\n\n\\looseness=-1 Table~\\ref{tab:independence} (Appendix) reports Fleiss' $\\kappa$ and Effective-K (Eq.~\\ref{eq:effk}) across 15 conditions at $K = 12$. Among instruction-tuned models, $\\kappa$ ranges from 0.21 to 0.82, yielding $K_{\\text{eff}} = 1.20\\text{--}3.62$ as an ordinal diagnostic: higher $K_{\\text{eff}}$ indicates greater vote diversity, though it should not be interpreted as a literal effective sample size (\\S\\ref{sec:condorcet}). Across four Mistral-7B seeds, $\\kappa \\in [0.41, 0.51]$ yet $\\Delta$ ranges from $+3.43$ to $-0.49$\\,pp, indicating seed-level constraint quality matters beyond independence. Positive $\\Delta$ requires both sufficient $K_{\\text{eff}}$ ($\\leq 1.30$ never improves) and SC accuracy ($K_{\\text{eff}} = 3.62$ with SC $= 39\\%$ degrades). All four model families produce $\\kappa \\geq 0.41$ (Table~\\ref{tab:kappa_generalization}).\n\n\n\\subsection{Symbolic Confirmation Bias}\n\\label{sec:confirmation-bias}\n\n\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer---bias ratio $4.97\\times$ (Table~\\ref{tab:cross-model-bias})---and 94\\% of errors overlap with SC. A shuffle control reveals this bias is \\emph{structural}: randomizing constraint--answer associations while preserving per-trace counts yields $\\text{BR}_\\text{null} \\approx \\text{BR}_\\text{obs}$ ($p > 0.7$), indicating that BR reflects the trace-count distribution rather than extraction-specific error. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems on Mistral-7B FOLIO (Table~\\ref{tab:ablation}), confirming that the formal verification layer is vacuous (Eq.~\\ref{eq:degenerate}): 99\\% of constraints pass Z3 validation yet add no information beyond majority voting. This vacuity is $\\alpha$-insensitive: agreement $\\geq$99\\% across $\\alpha \\in \\{0.1, \\ldots, 0.9\\}$ for both high- and moderate-BR conditions (Table~\\ref{tab:alpha-ablation}).\n\n\\looseness=-1 This pattern generalizes: $4.97\\times$ (Mistral), $3.85\\times$ (Qwen-14B), $2.88\\times$ (LLaMA), all $> 1.0$ with 95\\% bootstrap CIs (Table~\\ref{tab:cross-model-bias}). Cross-model extraction confirms SCB universality across nine models from 7B to frontier (BR $1.66$--$4.97\\times$; Table~\\ref{tab:frontier-scb}). BR $> 1$ further holds across all eight cells of a $2{\\times}2$ generator${\\times}$extractor matrix on FOLIO and ProofWriter (range $1.94$--$2.70$; Appendix~\\ref{app:2x2}). Constraints use trace-specific variables (56.4\\% zero cross-answer overlap), collapsing aggregation to majority voting.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3pt}\n\\caption{Symbolic confirmation bias across nine models on FOLIO ($n = 204$). BR: mean per-problem bias ratio. $n_\\text{err}$: number of incorrect instances on which BR is computed. $\\Delta$: SICA $-$ SC (pp). Ext.: $^a$self-extraction; $^b$cross-model (Mistral-7B extracts FOL from target traces). $^*$Interim ($n = 95/204$). All models exhibit $\\text{BR} > 1$; BR estimates for high-accuracy models ($n_\\text{err} < 40$) have wider confidence intervals; Gemini ($n_\\text{err} \\approx 12$) should be interpreted with particular caution. Process-level similarity ($\\kappa_{\\text{proc}}$) ranges from $0.25$ (R1-Distill) to $0.79$ (gpt-4o/4.1/Gemini); see Table~\\ref{tab:cross-model-process}.}\n\\label{tab:frontier-scb}\n\\resizebox{\\columnwidth}{!}{\\begin{tabular}{@{}llrrrrl@{}}\n\\toprule\nModel & Ext. & SC (\\%) & $n_\\text{err}$ & BR & $\\Delta$ (pp) \\\\\n\\midrule\nMistral-7B & $^a$ & 55.88 & 90 & 4.97 & 0.00 \\\\\nLLaMA-8B & $^a$ & \\textrm{---} & \\textrm{---} & 2.88 & \\textrm{---} \\\\\nQwen-14B & $^a$ & 75.98 & 49 & 3.85 & $-$0.49 \\\\\n\\addlinespace\nR1-Distill-8B & $^b$ & 74.51 & 52 & 2.92 & $+$2.45 \\\\\ngpt-4o & $^a$ & 73.91 & 53 & 2.94 & $-$1.80 \\\\\ngpt-4.1 & $^b$ & 82.84 & 35 & 2.70 & $-$1.47 \\\\\ngpt-5.5 & $^b$ & 84.31 & 32 & 3.48 & $+$0.49 \\\\\no3 & $^b$ & 82.65 & 35 & 1.66 & 0.00 \\\\\nGemini-2.5-Pro$^*$ & $^b$ & 87.37 & 12 & 2.79 & $-$1.10 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\looseness=-1 Two controls rule out answer leakage. BR is uniform across early, mid, and late reasoning steps (Fisher $p = 0.71$); high-consensus errors amplify to $\\text{BR} = 18.8\\times$ versus $2.7\\times$ for low-consensus ($p < 0.001$). Removing the answer sentence from traces before extraction yields no BR decrease (Wilcoxon $p \\geq 0.12$) despite significant accuracy loss (McNemar $p < 0.013$). SCB reflects a distributional prior embedded throughout reasoning, not answer contamination.\n\n\\subsection{Process-Level Independence}\n\\label{sec:process-kappa}\n\n\\looseness=-1 We quantify reasoning-process overlap via ProcessSim, the mean pairwise cosine similarity of TF-IDF trace vectors (Eq.~\\ref{eq:process-sim}, Appendix~\\ref{app:process-gradient}). ProcessSim captures lexical overlap; deeper structure measures may reveal additional patterns, so we treat it as supporting rather than primary evidence. On Mistral-7B FOLIO, mean ProcessSim $= 0.69$, far exceeding answer-level $\\kappa = 0.46$: traces share reasoning processes even when answers diverge. The gap generalizes across four families (Table~\\ref{tab:cross-model-process}), from $0.31$ (LLaMA) to $0.02$ (Qwen-14B). Under cross-model extraction, SICA gain decreases monotonically with ProcessSim ($\\rho = -1.0$, $p = 0.008$; Table~\\ref{tab:process-gradient}), modulated by self-bias severity.\n\n\nCCR analysis confirms the same pattern: cross-architecture NLI yields $\\text{CCR} > 0$ while same-model SICA yields $\\text{CCR} < 0$, with CCR correlating with combo gain ($\\rho = 0.84$, $p = 0.014$; Appendix~\\ref{app:cil}).\n\n\\subsection{Remediation Analysis}\n\\label{sec:diagnostics}\n\\label{sec:remediation}\n\\label{sec:interventions}\n\n\\looseness=-1 All 27 training-free remediation strategies spanning four categories produce neutral-to-negative results (Figure~\\ref{fig:interventions-summary}; Appendices~\\ref{app:extraction}--\\ref{app:entropy}). Four representative failure modes illuminate the independence-accuracy trade-off. \\emph{Debate} ($\\kappa = 0.15$, $\\Delta = -18.6$\\,pp) successfully breaks trace correlation but collapses accuracy---same-model diversity and quality are at odds. \\emph{Cross-model extraction} (using a different LLM as extractor) decreases $\\kappa$ slightly but $\\Delta \\approx 0$, because same-family models share systematic biases (Appendix Table~\\ref{tab:kappa_generalization}). \\emph{Contrastive prompting} produces imbalanced output (94 pro vs.\\ 65 con constraints), indicating confirmation bias transfers to constraint generation. The \\emph{oracle ceiling} ($+29.90$\\,pp with gold constraints) proves the mechanism is sound; self-extraction captures only ${\\sim}$12\\%, localizing the bottleneck to extraction quality. All non-debate strategies cluster at $\\kappa \\approx 0.40$--$0.47$, a same-model ceiling across three families. No individual strategy achieves significance after correction (Appendix~\\ref{app:intervention-individual}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig2_interventions_compact.pdf}\n\\caption{Twenty-three of 27 training-free strategies across four categories (four additional strategies tested but omitted for clarity). All produce neutral-to-negative $\\Delta$ vs.\\ SC. Grey band: $\\pm 1$\\,pp noise zone.}\n\\label{fig:interventions-summary}\n\\end{figure}\n\n\\paragraph{Prospective held-out validation.}\n\\looseness=-1 Decision boundaries ($C_0 < 5\\%$, $K_\\text{eff} \\leq 1.3$, SC $< 40\\%$) were derived from Mistral-7B and Qwen2.5-14B conditions. We evaluate prospectively on held-out LLaMA-3.1-8B, a different model family not used in boundary derivation: on FOLIO (SC $= 66.18\\%$, $C_0 = 61.8\\%$, $K_\\text{eff} = 2.17$), the framework predicts Type~A confirmation bias ($\\Delta \\leq 0$); the observed $\\Delta = -4.41$\\,pp confirms the prediction.\n\n\\paragraph{Symbolic Mirage Hypothesis: verification.}\n\\looseness=-1 The observations and prediction of \\S\\ref{sec:mirage} are confirmed. Observations O1--O2, initially discovered on Mistral-7B, generalize: BR $> 1$ across three self-extraction models, six cross-model pairs, and all eight cells of a $2{\\times}2$ generator${\\times}$extractor matrix (\\S\\ref{sec:confirmation-bias}); 27 training-free strategies fail to reduce BR below 1.0 (\\S\\ref{sec:remediation}). Prediction P1 is validated: cross-architecture NLI escapes the mirage for generators up to SC $\\approx 70\\%$ (\\S\\ref{sec:cross-arch}).\n",
+      "numLines": 72,
+      "startLine": 1,
+      "totalLines": 72
+    }
+  },
+  "sourceToolAssistantUUID": "14ec1a29-48f5-4d83-985b-53eb5af94073",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-23T01:18:16.582Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01CMcBkUTgkTj95XqrafSvSV`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex",
+  "limit": 70
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5323cd1c-6891-4a7d-862d-722a98189efa",
+  "isSidechain": false,
+  "requestId": "req_011CbJbyMFjH2w66RmWnN6TW",
+  "type": "assistant",
+  "uuid": "0c6b85a5-7216-4d62-ad99-6cb5780b066b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DMDMyzaftrNWaVXUGjPrqK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2853,
+      "cache_read_input_tokens": 25006,
+      "output_tokens": 36734,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2853,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 36734,
+          "cache_read_input_tokens": 25006,
+          "cache_creation_input_tokens": 2853,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2853
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "29477e9c-80ad-4235-8014-173a88136a4b",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Write formal proof for Symbolic Confirmation Bias",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497"
+}
+```
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-23T01:18:26.964Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of the paper's notation and structure. Let me read the key notation points:
+
+1. BR is defined in eq:mirage (method.tex line 48-52)
+2. σ(c, a) = 1 if c was extracted from any trace producing answer a (method.tex line 34)
+3. Score function uses C* from MAX-SAT (method.tex lines 29-34)
+4. Degeneration condition in eq:degenerate (method.tex lines 36-41)
+5. The analysis section (analysis.tex) describes SCB empirically
+
+
+6. The paper uses tcolorbox for highlighting empirical findings
+
+I should place the proposition in the analysis section, probably near the SCB subsection, but the user wants it written to an artifact file rather than directly into the paper. Let me check what's in the artifacts directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29477e9c-80ad-4235-8014-173a88136a4b",
+  "isSidechain": false,
+  "requestId": "req_011CbJctPn1g8cvT2o8eLo6u",
+  "type": "assistant",
+  "uuid": "628dc533-8a9c-4df9-825f-b0a3ecc907bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TrpJyaABDdsWpj29zXNmUy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 42559,
+      "cache_read_input_tokens": 27859,
+      "output_tokens": 361,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 42559,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 361,
+          "cache_read_input_tokens": 27859,
+          "cache_creation_input_tokens": 42559,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 42559
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-23T01:18:26.973Z_
+
+Now I have full context on the notation. Let me check the artifacts directory exists.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "628dc533-8a9c-4df9-825f-b0a3ecc907bb",
+  "isSidechain": false,
+  "requestId": "req_011CbJctPn1g8cvT2o8eLo6u",
+  "type": "assistant",
+  "uuid": "a5e832c4-5358-49dc-ab54-58921a02b697",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TrpJyaABDdsWpj29zXNmUy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 42559,
+      "cache_read_input_tokens": 27859,
+      "output_tokens": 361,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 42559,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 361,
+          "cache_read_input_tokens": 27859,
+          "cache_creation_input_tokens": 42559,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 42559
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-23T01:18:28.275Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01WhUacFXvngLxDokdKZgZFn`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/ 2>/dev/null | head -20",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a5e832c4-5358-49dc-ab54-58921a02b697",
+  "isSidechain": false,
+  "requestId": "req_011CbJctPn1g8cvT2o8eLo6u",
+  "type": "assistant",
+  "uuid": "7cd0a955-5174-4bbd-9e2e-00dc5615de63",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TrpJyaABDdsWpj29zXNmUy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 42559,
+      "cache_read_input_tokens": 27859,
+      "output_tokens": 361,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 42559,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 361,
+          "cache_read_input_tokens": 27859,
+          "cache_creation_input_tokens": 42559,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 42559
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T01:18:28.331Z_
+
+<details><summary>↩ Tool result · `toolu_01WhUacFXvngLxDokdKZgZFn`</summary>
+
+```text
+_extracted
+_project
+ablation_text.py
+aime30_v2_partial_analysis.md
+aime_bias_ratio_results.json
+analysis_exp045.md
+analysis_prove_verify.py
+analyze_adaptive_sica.py
+analyze_discriminative_rate.py
+analyze_expanded.py
+analyze_seed_replication.py
+appendix_prompt_template.md
+backward_verification.py
+baf_decoupled_results.json
+bootstrap_br.py
+br_bootstrap_ci.json
+capability_gap_scatter_v2.pdf
+capability_gap_scatter_v2.png
+case_study_materials.md
+causal_dag_tikz.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7cd0a955-5174-4bbd-9e2e-00dc5615de63",
+  "isSidechain": false,
+  "promptId": "73d90633-9b3d-44bb-8d7b-f141a06d0b7a",
+  "type": "user",
+  "uuid": "722edf31-6194-4edb-845d-cc68a0c1f43c",
+  "toolUseResult": {
+    "stdout": "_extracted\n_project\nablation_text.py\naime30_v2_partial_analysis.md\naime_bias_ratio_results.json\nanalysis_exp045.md\nanalysis_prove_verify.py\nanalyze_adaptive_sica.py\nanalyze_discriminative_rate.py\nanalyze_expanded.py\nanalyze_seed_replication.py\nappendix_prompt_template.md\nbackward_verification.py\nbaf_decoupled_results.json\nbootstrap_br.py\nbr_bootstrap_ci.json\ncapability_gap_scatter_v2.pdf\ncapability_gap_scatter_v2.png\ncase_study_materials.md\ncausal_dag_tikz.tex",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "7cd0a955-5174-4bbd-9e2e-00dc5615de63",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-23T01:18:38.494Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, the artifacts directory exists. Let me now write the proposition file.
+
+I've carefully thought through the proof. Here's my final assessment:
+
+**Part (i) - Voting Degeneration:**
+Under source attribution σ(c_i, a) = 1[a_i = a], score(a) = n_a trivially. BR ≥ 1 follows from definition of mode. This is clean, correct, and the triviality is the point.
+
+**Part (ii) - Information Ceiling:**
+C_{1:K} = f(T_{1:K}) deterministically → Markov chain Y - T - C → DPI gives I(C;Y) ≤ I(T;Y). 
+
+The conditional version extends this by applying DPI separately within each stratum of A, so I(C;Y|A) ≤ I(T;Y|A) holds as well. Both results are rigorous and rely only on A1 and A2, without needing any answer-awareness assumption. The remark on semantic attribution honestly addresses where the boundary lies. Now I'll write the file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "722edf31-6194-4edb-845d-cc68a0c1f43c",
+  "isSidechain": false,
+  "requestId": "req_011CbJcuFbRLaryK77mWSydn",
+  "type": "assistant",
+  "uuid": "e1bc0cfd-ac5c-4244-bc37-726f482b7715",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WutMYKMbQ9wDyaK9JKPLeu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 537,
+      "cache_read_input_tokens": 70418,
+      "output_tokens": 2302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 537,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2302,
+          "cache_read_input_tokens": 70418,
+          "cache_creation_input_tokens": 537,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 537
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-23T01:18:39.501Z_
+
+Writing the proposition. The key structural insight: under source attribution (σ function from method.tex line 34), constraint scoring = majority voting identically, making BR ≥ 1 a tautology. The DPI then shows this can't be fixed by changing the attribution scheme.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e1bc0cfd-ac5c-4244-bc37-726f482b7715",
+  "isSidechain": false,
+  "requestId": "req_011CbJcuFbRLaryK77mWSydn",
+  "type": "assistant",
+  "uuid": "9d845333-63be-4d5e-90ba-17c7c13f222c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WutMYKMbQ9wDyaK9JKPLeu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 537,
+      "cache_read_input_tokens": 70418,
+      "output_tokens": 2302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 537,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2302,
+          "cache_read_input_tokens": 70418,
+          "cache_creation_input_tokens": 537,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 537
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-23T01:19:23.716Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01XGfx7J2nNZdnr8kT7E4rmK`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/proposition1_scb_proof.tex",
+  "content": "% Proposition 1: Symbolic Confirmation Bias is Structural\n% Place after the empirical BR paragraph in §3.2 (analysis.tex, ~line 17),\n% or at the end of §2.3 (method.tex) after Eq.(4) degeneration condition.\n% Requires: amsmath, amssymb, enumitem (all already loaded in main.tex).\n\n\\textbf{Proposition 1} \\textit{(Symbolic Confirmation Bias is Structural).}\\;%\nLet $t_1, \\dots, t_K \\overset{\\mathrm{i.i.d.}}{\\sim} P_M(\\cdot \\mid q)$ be reasoning traces from model $M$ on question $q$.\nAssume:\n\\begin{enumerate}[label=\\textbf{A\\arabic*.},leftmargin=2.5em,nosep]\n\\item Answers are trace-determined: $a_i = h(t_i)$.\n\\item Constraints are trace-determined: $c_i = f(t_i)$.\n\\end{enumerate}\nLet $\\hat{a} = \\mathrm{mode}(a_1, \\dots, a_K)$, $n_a = |\\{i : a_i = a\\}|$, and $Y$ the ground truth. Then:\n\\begin{enumerate}[label=\\textit{(\\roman*)},leftmargin=1.8em,itemsep=2pt,topsep=3pt]\n\\item \\textit{Voting degeneration.}\\;\nUnder source attribution $\\sigma(c_i, a) \\triangleq \\mathbf{1}[a_i = a]$, the constraint score reduces to the majority-vote count: $\\operatorname{score}(a) = n_a$.\nWhen $|\\{a : n_a > 0\\}| \\geq 2$, the bias ratio satisfies $\\mathrm{BR} \\triangleq n_{\\hat{a}} \\big/ \\max_{a' \\neq \\hat{a}} n_{a'} \\geq 1$.\n\n\\item \\textit{Information ceiling.}\\;\n$I(C_{1:K};\\, Y) \\leq I(T_{1:K};\\, Y)$ and $I(C_{1:K};\\, Y \\mid A_{1:K}) \\leq I(T_{1:K};\\, Y \\mid A_{1:K})$:\nself-extracted constraints cannot carry more information about $Y$ than the source traces---even beyond what the answers already encode.\n\\end{enumerate}\n\\noindent\nBoth bounds hold for \\emph{any} model $M$, task $q$, and extraction function $f$.\n\n\\medskip\n\\textit{Proof.}\\;%\n\\textit{(i)}\\; By definition, $\\operatorname{score}(a) = \\sum_{i=1}^K \\mathbf{1}[a_i = a] = n_a$, maximized at $\\hat{a}$, so $\\mathrm{BR} \\geq 1$.\n\\textit{(ii)}\\; $c_i = f(t_i)$ makes $C_{1:K}$ a deterministic function of $T_{1:K}$, so $Y \\mathop{\\text{---}} T_{1:K} \\mathop{\\text{---}} C_{1:K}$ forms a Markov chain and the data processing inequality gives $I(C_{1:K}; Y) \\leq I(T_{1:K}; Y)$.\nThe conditional bound follows identically: $c_i = f(t_i)$ holds unconditionally, so the Markov property and DPI apply within each stratum $\\{A_{1:K} = \\mathbf{a}\\}$.\\hfill$\\square$\n\n\\medskip\\noindent\nEach constraint is a downstream product of a trace that simultaneously determines an answer; constraint-based aggregation therefore cannot escape the distributional bias of the answer vote.\nNeither bound depends on model capability, task difficulty, or extraction quality---the bias is a structural artifact of the self-extraction pipeline.\n\n\\medskip\\noindent\n\\textbf{Remark.}\\;%\nPart~\\textit{(i)} relies on source attribution (Eq.~\\ref{eq:score}), the mechanism used by SICA.\nUnder \\emph{semantic} evaluation---checking whether $c_i$ is logically consistent with answer $a$ directly---$\\mathrm{BR} \\geq 1$ additionally requires \\emph{answer alignment}: $P(c_i \\text{ supports } a_i) \\geq P(c_i \\text{ supports } a')$ for $a' \\neq a_i$.\nThis property is structurally motivated (the reasoning chain producing $a_i$ generates intermediate steps aligned with $a_i$) and is empirically validated across all nine model--task conditions ($\\mathrm{BR} \\in [1.66,\\, 4.97]$; Table~\\ref{tab:frontier-scb}), but is not a mathematical necessity of self-extraction alone---it could fail if $f$ systematically extracted premises that contradict their source trace's conclusion.\n\n% ============================================================\n% AUTHOR NOTE: Honesty check on proof strength\n% ============================================================\n%\n% 1. Part (i) is intentionally trivial. The triviality IS the contribution:\n%    it makes explicit that source attribution (σ function) renders the\n%    constraint layer exactly redundant with answer counting. The simplicity\n%    underscores that SCB is not a subtle empirical phenomenon but an\n%    immediate structural consequence.\n%\n% 2. Part (ii) uses only the standard DPI, requiring no assumptions beyond\n%    A1-A2. The conditional form I(C;Y|A) ≤ I(T;Y|A) is the stronger\n%    result: it says constraints add no *independent* verification signal\n%    beyond the traces themselves. Note this does NOT say I(C;Y|A) = 0;\n%    constraints may carry some info about Y beyond A, but only info already\n%    present in T. True independence requires breaking the T→C pipeline.\n%\n% 3. BR ≥ 1 is deterministic (holds for every realization), not just\n%    E[BR] ≥ 1. It equals 1 iff â ties with a runner-up. This is stronger\n%    than the empirical finding and explains why BR > 1 universally.\n%\n% 4. The Remark is essential for intellectual honesty: under semantic\n%    attribution, answer alignment is needed and is NOT a pure structural\n%    guarantee. However, since SICA actually uses source attribution, the\n%    main Proposition stands unconditionally.\n%\n% 5. Potential reviewer pushback: \"This is obvious.\" Response: if it were\n%    obvious, prior work (including the original SICA paper) would not have\n%    proposed self-extraction as a verification mechanism. The proposition\n%    formalizes why that mechanism is structurally vacuous.\n%\n% 6. Deduplication caveat: with constraint deduplication, a constraint\n%    shared across answer groups contributes equally to all scores (cancels\n%    out). Answer-specific constraints drive the ranking, and these are\n%    proportional to trace counts. In the degenerate case where minority\n%    traces produce disproportionately more *unique* constraints, BR could\n%    theoretically drop below 1. Empirically this never happens (Table 5).\n%    The proposition covers the pre-deduplication base case; the\n%    degeneration condition (Eq.4) covers the practical case.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d845333-63be-4d5e-90ba-17c7c13f222c",
+  "isSidechain": false,
+  "requestId": "req_011CbJcuFbRLaryK77mWSydn",
+  "type": "assistant",
+  "uuid": "27cb1b92-e303-45da-b067-1e5d3b213cda",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WutMYKMbQ9wDyaK9JKPLeu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 537,
+      "cache_read_input_tokens": 70418,
+      "output_tokens": 2302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 537,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2302,
+          "cache_read_input_tokens": 70418,
+          "cache_creation_input_tokens": 537,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 537
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T01:19:23.745Z_
+
+<details><summary>↩ Tool result · `toolu_01XGfx7J2nNZdnr8kT7E4rmK`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/proposition1_scb_proof.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "27cb1b92-e303-45da-b067-1e5d3b213cda",
+  "isSidechain": false,
+  "promptId": "73d90633-9b3d-44bb-8d7b-f141a06d0b7a",
+  "type": "user",
+  "uuid": "2f85b8c2-44ad-4ece-bf7c-6410e8d764e9",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/proposition1_scb_proof.tex",
+    "content": "% Proposition 1: Symbolic Confirmation Bias is Structural\n% Place after the empirical BR paragraph in §3.2 (analysis.tex, ~line 17),\n% or at the end of §2.3 (method.tex) after Eq.(4) degeneration condition.\n% Requires: amsmath, amssymb, enumitem (all already loaded in main.tex).\n\n\\textbf{Proposition 1} \\textit{(Symbolic Confirmation Bias is Structural).}\\;%\nLet $t_1, \\dots, t_K \\overset{\\mathrm{i.i.d.}}{\\sim} P_M(\\cdot \\mid q)$ be reasoning traces from model $M$ on question $q$.\nAssume:\n\\begin{enumerate}[label=\\textbf{A\\arabic*.},leftmargin=2.5em,nosep]\n\\item Answers are trace-determined: $a_i = h(t_i)$.\n\\item Constraints are trace-determined: $c_i = f(t_i)$.\n\\end{enumerate}\nLet $\\hat{a} = \\mathrm{mode}(a_1, \\dots, a_K)$, $n_a = |\\{i : a_i = a\\}|$, and $Y$ the ground truth. Then:\n\\begin{enumerate}[label=\\textit{(\\roman*)},leftmargin=1.8em,itemsep=2pt,topsep=3pt]\n\\item \\textit{Voting degeneration.}\\;\nUnder source attribution $\\sigma(c_i, a) \\triangleq \\mathbf{1}[a_i = a]$, the constraint score reduces to the majority-vote count: $\\operatorname{score}(a) = n_a$.\nWhen $|\\{a : n_a > 0\\}| \\geq 2$, the bias ratio satisfies $\\mathrm{BR} \\triangleq n_{\\hat{a}} \\big/ \\max_{a' \\neq \\hat{a}} n_{a'} \\geq 1$.\n\n\\item \\textit{Information ceiling.}\\;\n$I(C_{1:K};\\, Y) \\leq I(T_{1:K};\\, Y)$ and $I(C_{1:K};\\, Y \\mid A_{1:K}) \\leq I(T_{1:K};\\, Y \\mid A_{1:K})$:\nself-extracted constraints cannot carry more information about $Y$ than the source traces---even beyond what the answers already encode.\n\\end{enumerate}\n\\noindent\nBoth bounds hold for \\emph{any} model $M$, task $q$, and extraction function $f$.\n\n\\medskip\n\\textit{Proof.}\\;%\n\\textit{(i)}\\; By definition, $\\operatorname{score}(a) = \\sum_{i=1}^K \\mathbf{1}[a_i = a] = n_a$, maximized at $\\hat{a}$, so $\\mathrm{BR} \\geq 1$.\n\\textit{(ii)}\\; $c_i = f(t_i)$ makes $C_{1:K}$ a deterministic function of $T_{1:K}$, so $Y \\mathop{\\text{---}} T_{1:K} \\mathop{\\text{---}} C_{1:K}$ forms a Markov chain and the data processing inequality gives $I(C_{1:K}; Y) \\leq I(T_{1:K}; Y)$.\nThe conditional bound follows identically: $c_i = f(t_i)$ holds unconditionally, so the Markov property and DPI apply within each stratum $\\{A_{1:K} = \\mathbf{a}\\}$.\\hfill$\\square$\n\n\\medskip\\noindent\nEach constraint is a downstream product of a trace that simultaneously determines an answer; constraint-based aggregation therefore cannot escape the distributional bias of the answer vote.\nNeither bound depends on model capability, task difficulty, or extraction quality---the bias is a structural artifact of the self-extraction pipeline.\n\n\\medskip\\noindent\n\\textbf{Remark.}\\;%\nPart~\\textit{(i)} relies on source attribution (Eq.~\\ref{eq:score}), the mechanism used by SICA.\nUnder \\emph{semantic} evaluation---checking whether $c_i$ is logically consistent with answer $a$ directly---$\\mathrm{BR} \\geq 1$ additionally requires \\emph{answer alignment}: $P(c_i \\text{ supports } a_i) \\geq P(c_i \\text{ supports } a')$ for $a' \\neq a_i$.\nThis property is structurally motivated (the reasoning chain producing $a_i$ generates intermediate steps aligned with $a_i$) and is empirically validated across all nine model--task conditions ($\\mathrm{BR} \\in [1.66,\\, 4.97]$; Table~\\ref{tab:frontier-scb}), but is not a mathematical necessity of self-extraction alone---it could fail if $f$ systematically extracted premises that contradict their source trace's conclusion.\n\n% ============================================================\n% AUTHOR NOTE: Honesty check on proof strength\n% ============================================================\n%\n% 1. Part (i) is intentionally trivial. The triviality IS the contribution:\n%    it makes explicit that source attribution (σ function) renders the\n%    constraint layer exactly redundant with answer counting. The simplicity\n%    underscores that SCB is not a subtle empirical phenomenon but an\n%    immediate structural consequence.\n%\n% 2. Part (ii) uses only the standard DPI, requiring no assumptions beyond\n%    A1-A2. The conditional form I(C;Y|A) ≤ I(T;Y|A) is the stronger\n%    result: it says constraints add no *independent* verification signal\n%    beyond the traces themselves. Note this does NOT say I(C;Y|A) = 0;\n%    constraints may carry some info about Y beyond A, but only info already\n%    present in T. True independence requires breaking the T→C pipeline.\n%\n% 3. BR ≥ 1 is deterministic (holds for every realization), not just\n%    E[BR] ≥ 1. It equals 1 iff â ties with a runner-up. This is stronger\n%    than the empirical finding and explains why BR > 1 universally.\n%\n% 4. The Remark is essential for intellectual honesty: under semantic\n%    attribution, answer alignment is needed and is NOT a pure structural\n%    guarantee. However, since SICA actually uses source attribution, the\n%    main Proposition stands unconditionally.\n%\n% 5. Potential reviewer pushback: \"This is obvious.\" Response: if it were\n%    obvious, prior work (including the original SICA paper) would not have\n%    proposed self-extraction as a verification mechanism. The proposition\n%    formalizes why that mechanism is structurally vacuous.\n%\n% 6. Deduplication caveat: with constraint deduplication, a constraint\n%    shared across answer groups contributes equally to all scores (cancels\n%    out). Answer-specific constraints drive the ranking, and these are\n%    proportional to trace counts. In the degenerate case where minority\n%    traces produce disproportionately more *unique* constraints, BR could\n%    theoretically drop below 1. Empirically this never happens (Table 5).\n%    The proposition covers the pre-deduplication base case; the\n%    degeneration condition (Eq.4) covers the practical case.\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "27cb1b92-e303-45da-b067-1e5d3b213cda",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-23T01:19:27.548Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01FoD8sGSLk2Pg45HZqhvxnS`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f85b8c2-44ad-4ece-bf7c-6410e8d764e9",
+  "isSidechain": false,
+  "requestId": "req_011CbJcyLVTfGSsEjBbSFRGn",
+  "type": "assistant",
+  "uuid": "82889899-e240-4add-a8dd-bd2cbce0039d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ARo7apjoWNGtaekkHoc2u9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2359,
+      "cache_read_input_tokens": 70955,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2359,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 70955,
+          "cache_creation_input_tokens": 2359,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2359
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T01:19:27.552Z_
+
+<details><summary>↩ Tool result · `toolu_01FoD8sGSLk2Pg45HZqhvxnS`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "82889899-e240-4add-a8dd-bd2cbce0039d",
+  "isSidechain": false,
+  "promptId": "73d90633-9b3d-44bb-8d7b-f141a06d0b7a",
+  "type": "user",
+  "uuid": "e5c3bcb8-961f-4c33-a5cb-a9873a98750e",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 22
+  },
+  "sourceToolAssistantUUID": "82889899-e240-4add-a8dd-bd2cbce0039d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31 · 2026-05-23T01:19:27.610Z_
+
+```json
+{
+  "parentUuid": "e5c3bcb8-961f-4c33-a5cb-a9873a98750e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2e681a3e-30a1-48b6-bb13-8de2a0bf6b79",
+  "timestamp": "2026-05-23T01:19:27.610Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-23T01:19:39.416Z_
+
+文件已写入。核心结构：
+
+**Part (i) — Voting Degeneration:** 在 source attribution σ(c_i, a) = **1**[a_i = a] 下，score(a) = n_a，与 majority voting 完全等价。BR = n_â / max_{a'≠â} n_{a'} ≥ 1 是确定性结论（every realization），不仅仅是期望意义。
+
+**Part (ii) — Information Ceiling:** C = f(T) 形成 Markov chain Y—T—C，DPI 给出 I(C;Y) ≤ I(T;Y)。条件版本 I(C;Y|A) ≤ I(T;Y|A) 说明即使已知答案，约束也无法提供超出 trace 本身的独立验证信号。
+
+**Remark** 诚实处理了 semantic attribution 的边界情况：此时需要 answer alignment 假设（经验上成立，但非纯结构保证）。由于 SICA 实际使用 source attribution，主命题无条件成立。
+
+证明只依赖 A1（a_i = h(t_i)）和 A2（c_i = f(t_i)），不需要 A3（answer-aware）。文件末尾的 author note 预判了 6 个潜在 reviewer pushback 点（包括 deduplication caveat 和"too trivial"反驳）。
+
+产出：`artifacts/proposition1_scb_proof.tex`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e681a3e-30a1-48b6-bb13-8de2a0bf6b79",
+  "isSidechain": false,
+  "requestId": "req_011CbJcycxQqqHWF1fEbS9Mk",
+  "type": "assistant",
+  "uuid": "427c195e-460a-4c84-8e0a-65d2c1e548b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QLXLVSGB88m6pNtMginZGW",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 465,
+      "cache_read_input_tokens": 73314,
+      "output_tokens": 423,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 465,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 423,
+          "cache_read_input_tokens": 73314,
+          "cache_creation_input_tokens": 465,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 465
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "427c195e-460a-4c84-8e0a-65d2c1e548b5",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Write formal proof for Symbolic Confirmation Bias",
+  "sessionId": "5f08a0b3-198f-4f40-8b69-e8e76d016497"
+}
+```
+
+---

@@ -1,0 +1,6177 @@
+# Research conversation: <project_context> # 项目: symb_invariant_consensus ## 运行环境 - 服务器名: westd-32608 - SSH 账户: root（调用 ssh_execute / submit_trai
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 113
+- **Recorded user turns:** 1
+- **Tool calls:** 31
+- **Original source:** `logs/chats/exported-trajectories/account-3/f8db643e-1fa6-431c-a646-b7211fcdf7b0.jsonl`
+- **Structured JSON:** [`7bb2a1806dfc1b04c710.json`](../../sessions/7b/7bb2a1806dfc1b04c710.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-17T13:39:55.069Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T13:39:55.069Z",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "content": "&lt;project_context>\n# 项目: symb_invariant_consensus\n\n## 运行环境\n- 服务器名: westd-32608\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/symb_invariant_consensus\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：修复 constraint quality 分析脚本中 C0 定义被意外回退的问题\n\n### 背景\n之前修 extraction_rate bug 的 worker 在修复过程中，把分析脚本中的 `c0_multi_candidate_rate` 从真实多候选率（>1 unique answer in votes）替换成了 SICA-SC disagree rate。这导致 JSON 输出与 registry 定义不一致。\n\n### 正确定义\n- **c0_multi_candidate_rate（真实多候选率）**: 在 K 条 trace 的 vote distribution 中，有 >1 个 unique answer 的题目比例。即 `len(set(votes)) > 1` 的题目数 / 总题目数。这是 registry 使用的统一定义。\n- **c0_disagree_rate（SICA-SC 分歧率）**: SICA 最终答案 ≠ SC 最终答案的题目比例。这是另一个有用指标，但不是 C0。\n\n### 要求\n\n1. SSH 到 westd-32608，项目路径 `/root/symb_invariant_consensus/`\n2. 找到 constraint quality correlation 分析脚本（在 `scripts/` 或 `analysis/` 目录下，可能叫 `analyze_constraint_quality.py`、`constraint_correlation.py` 或类似名字——搜索包含 \"c0_multi_candidate_rate\" 或 \"extraction_rate\" 的 Python 文件）\n3. 修改脚本：\n   - `c0_multi_candidate_rate` 必须用 `len(unique_answers_in_votes) > 1`（遍历每题的 K 条 trace votes，看有几个不同答案）\n   - **保留** extraction_rate 修复（denominator = k，这个已经是对的）\n   - **同时输出两个字段**：`c0_multi_candidate_rate`（真实多候选率）和 `c0_disagree_rate`（SICA-SC 分歧率）\n4. 重跑分析，生成新的 CSV + JSON\n5. 验证：\n   - 所有实验的 c0_multi_candidate_rate 应与 registry 中的值一致（或接近）\n   - extraction_rate 全部 <= 1.0\n   - c0_disagree_rate 通常远小于 c0_multi_candidate_rate\n6. 用 `register_artifact` 注册新产出文件\n\n### 参考值（registry 中的 multi_candidate_rate）\n- sica_expanded_14b (Qwen-14B, 804题): 0.5333 (来自 sica_d012_14b 的 D012 子集)\n- exp-011-llama8b-v3 (LLaMA-8B, 60题): 0.6167\n- exp-010-mistral-v3 (Mistral-7B, 60题): 0.0667 ← 这个值本身可能也需要修正，另一个 worker 正在处理\n- exp-017-strategyqa-v3 (Qwen-14B, StrategyQA 60题): 0.1\n- exp-018-arc-v2 (Qwen-14B, ARC 60题): 0.0833\n- exp-019 (LLaMA-8B, StrategyQA 200题): discordant_rate 0.07\n- exp-020 (LLaMA-8B, FOLIO 204题): multi_candidate_rate 0.618\n\n注意：exp-010/017/018 的 registry 值可能本身也有问题（另一个 worker 正在修），你的任务是确保分析脚本的 C0 计算逻辑正确，基于原始 JSON 数据计算真实值。\n\n### 服务器信息\n- 服务器: westd-32608\n- Python: conda base 环境\n- 项目路径: /root/symb_invariant_consensus/\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-17T13:39:55.073Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T13:39:55.073Z",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0"
+}
+```
+
+---
+
+## Round 1
+
+111 recorded events
+
+### User
+
+_source line 3 · 2026-05-17T13:39:55.108Z_
+
+&lt;project_context>
+# 项目: symb_invariant_consensus
+
+## 运行环境
+- 服务器名: westd-32608
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/symb_invariant_consensus
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：修复 constraint quality 分析脚本中 C0 定义被意外回退的问题
+
+### 背景
+之前修 extraction_rate bug 的 worker 在修复过程中，把分析脚本中的 `c0_multi_candidate_rate` 从真实多候选率（>1 unique answer in votes）替换成了 SICA-SC disagree rate。这导致 JSON 输出与 registry 定义不一致。
+
+### 正确定义
+- **c0_multi_candidate_rate（真实多候选率）**: 在 K 条 trace 的 vote distribution 中，有 >1 个 unique answer 的题目比例。即 `len(set(votes)) > 1` 的题目数 / 总题目数。这是 registry 使用的统一定义。
+- **c0_disagree_rate（SICA-SC 分歧率）**: SICA 最终答案 ≠ SC 最终答案的题目比例。这是另一个有用指标，但不是 C0。
+
+### 要求
+
+1. SSH 到 westd-32608，项目路径 `/root/symb_invariant_consensus/`
+2. 找到 constraint quality correlation 分析脚本（在 `scripts/` 或 `analysis/` 目录下，可能叫 `analyze_constraint_quality.py`、`constraint_correlation.py` 或类似名字——搜索包含 "c0_multi_candidate_rate" 或 "extraction_rate" 的 Python 文件）
+3. 修改脚本：
+   - `c0_multi_candidate_rate` 必须用 `len(unique_answers_in_votes) > 1`（遍历每题的 K 条 trace votes，看有几个不同答案）
+   - **保留** extraction_rate 修复（denominator = k，这个已经是对的）
+   - **同时输出两个字段**：`c0_multi_candidate_rate`（真实多候选率）和 `c0_disagree_rate`（SICA-SC 分歧率）
+4. 重跑分析，生成新的 CSV + JSON
+5. 验证：
+   - 所有实验的 c0_multi_candidate_rate 应与 registry 中的值一致（或接近）
+   - extraction_rate 全部 <= 1.0
+   - c0_disagree_rate 通常远小于 c0_multi_candidate_rate
+6. 用 `register_artifact` 注册新产出文件
+
+### 参考值（registry 中的 multi_candidate_rate）
+- sica_expanded_14b (Qwen-14B, 804题): 0.5333 (来自 sica_d012_14b 的 D012 子集)
+- exp-011-llama8b-v3 (LLaMA-8B, 60题): 0.6167
+- exp-010-mistral-v3 (Mistral-7B, 60题): 0.0667 ← 这个值本身可能也需要修正，另一个 worker 正在处理
+- exp-017-strategyqa-v3 (Qwen-14B, StrategyQA 60题): 0.1
+- exp-018-arc-v2 (Qwen-14B, ARC 60题): 0.0833
+- exp-019 (LLaMA-8B, StrategyQA 200题): discordant_rate 0.07
+- exp-020 (LLaMA-8B, FOLIO 204题): multi_candidate_rate 0.618
+
+注意：exp-010/017/018 的 registry 值可能本身也有问题（另一个 worker 正在修），你的任务是确保分析脚本的 C0 计算逻辑正确，基于原始 JSON 数据计算真实值。
+
+### 服务器信息
+- 服务器: westd-32608
+- Python: conda base 环境
+- 项目路径: /root/symb_invariant_consensus/
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "cba5f2e1-f9d8-4097-8c4b-eff29dfd8e02",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-17T13:39:55.107Z_
+
+```json
+{
+  "parentUuid": "cba5f2e1-f9d8-4097-8c4b-eff29dfd8e02",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "ade653f0-2829-43f5-8590-55de6734e360",
+  "timestamp": "2026-05-17T13:39:55.107Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-17T13:39:55.107Z_
+
+```json
+{
+  "parentUuid": "ade653f0-2829-43f5-8590-55de6734e360",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "7448d0d1-6a26-4651-954a-5d27b7ac0f3e",
+  "timestamp": "2026-05-17T13:39:55.107Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-17T13:39:55.107Z_
+
+```json
+{
+  "parentUuid": "7448d0d1-6a26-4651-954a-5d27b7ac0f3e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "70c8e578-e4cd-4568-aa5d-06fa89657840",
+  "timestamp": "2026-05-17T13:39:55.107Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix C0 definition in constraint quality analysis script",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-17T13:39:57.660Z_
+
+I'll find and fix the constraint quality analysis script on the server. Let me start by locating the relevant files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "70c8e578-e4cd-4568-aa5d-06fa89657840",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Eb53ZWLFXZBestW77M",
+  "type": "assistant",
+  "uuid": "8b9e075b-2348-44be-83c3-eedafc4c0714",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016gMdofXqfPmvAcAsc9XfE4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13134,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 139,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 139,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T13:39:59.199Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01DU6cSdyg3eba88UrHizTLd`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__register_artifact",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b9e075b-2348-44be-83c3-eedafc4c0714",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Eb53ZWLFXZBestW77M",
+  "type": "assistant",
+  "uuid": "5660faa2-4bfe-4e86-b5fc-08f2f9d677dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016gMdofXqfPmvAcAsc9XfE4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13134,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 139,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 139,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T13:39:59.207Z_
+
+<details><summary>↩ Tool result · `toolu_01DU6cSdyg3eba88UrHizTLd`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5660faa2-4bfe-4e86-b5fc-08f2f9d677dd",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "f17ec0bd-d8f8-44dc-839f-ca7f161f3e01",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 24
+  },
+  "sourceToolAssistantUUID": "5660faa2-4bfe-4e86-b5fc-08f2f9d677dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-17T13:40:02.966Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me find the relevant analysis script on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f17ec0bd-d8f8-44dc-839f-ca7f161f3e01",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EbNcEtoGiZGkfUynoD",
+  "type": "assistant",
+  "uuid": "5ff990aa-d32e-4724-a433-bcd289acd665",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E1X7V2Kp62VGLVqfyBuuTV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1308,
+      "cache_read_input_tokens": 24975,
+      "output_tokens": 168,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1308,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 168,
+          "cache_read_input_tokens": 24975,
+          "cache_creation_input_tokens": 1308,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1308
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T13:40:05.146Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YJHV2rmFZjUmexapyJGqCT`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "find /root/symb_invariant_consensus/scripts /root/symb_invariant_consensus/analysis -name \"*.py\" -type f 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ff990aa-d32e-4724-a433-bcd289acd665",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EbNcEtoGiZGkfUynoD",
+  "type": "assistant",
+  "uuid": "807ae9bc-53bd-49e4-ac5c-2392c202d3c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E1X7V2Kp62VGLVqfyBuuTV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1308,
+      "cache_read_input_tokens": 24975,
+      "output_tokens": 168,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1308,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 168,
+          "cache_read_input_tokens": 24975,
+          "cache_creation_input_tokens": 1308,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1308
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T13:40:05.172Z_
+
+<details><summary>↩ Tool result · `toolu_01YJHV2rmFZjUmexapyJGqCT`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "807ae9bc-53bd-49e4-ac5c-2392c202d3c2",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "b920456e-6d8e-4bea-b818-03f632511dad",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "807ae9bc-53bd-49e4-ac5c-2392c202d3c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T13:40:09.021Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RJQk3771aEx5fzc5AqrMTa`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "find /root/symb_invariant_consensus/scripts -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b920456e-6d8e-4bea-b818-03f632511dad",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Ebq6wYH2uLmKQfB8L2",
+  "type": "assistant",
+  "uuid": "72d762f3-8555-4cb0-b068-b0901a87db45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SvUZ67EgEVw5tKmbzQWTpc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 261,
+      "cache_read_input_tokens": 26283,
+      "output_tokens": 229,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 261,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 229,
+          "cache_read_input_tokens": 26283,
+          "cache_creation_input_tokens": 261,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 261
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T13:40:09.310Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01S3jGUjTncenwCL2ktDxhRe`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "find /root/symb_invariant_consensus/analysis -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "72d762f3-8555-4cb0-b068-b0901a87db45",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Ebq6wYH2uLmKQfB8L2",
+  "type": "assistant",
+  "uuid": "57d003ce-ec4b-470c-88c4-3e83d6eabc41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SvUZ67EgEVw5tKmbzQWTpc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 261,
+      "cache_read_input_tokens": 26283,
+      "output_tokens": 229,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 261,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 229,
+          "cache_read_input_tokens": 26283,
+          "cache_creation_input_tokens": 261,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 261
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T13:40:10.216Z_
+
+<details><summary>↩ Tool result · `toolu_01RJQk3771aEx5fzc5AqrMTa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/scripts/run_k_ablation.py\\n/root/symb_invariant_consensus/scripts/prepare_gsm8k.py\\n/root/symb_invariant_consensus/scripts/eval_gsm8k.py\\n/root/symb_invariant_consensus/scripts/constraint_ablation.py\\n/root/symb_invariant_consensus/scripts/analyze_expanded.py\\n/root/symb_invariant_consensus/scripts/run_gsm8k_pilot.py\\n/root/symb_invariant_consensus/scripts/prepare_arc.py\\n/root/symb_invariant_consensus/scripts/prepare_strategyqa.py\\n/root/symb_invariant_consensus/scripts/prepare_math_l45.py\\n/root/symb_invariant_consensus/scripts/eval_arc.py\\n/root/symb_invariant_consensus/scripts/eval_strategyqa.py\\n/root/symb_invariant_consensus/scripts/eval_math_l45.py\\n/root/symb_invariant_consensus/scripts/extract_constraints_for_ablation.py\\n/root/symb_invariant_consensus/scripts/weighted_sc_baseline.py\\n/root/symb_invariant_consensus/scripts/pilot_constraint_filtering.py\\n/root/symb_invariant_consensus/scripts/analyze_discriminative_power.py\\n/root/symb_invariant_consensus/scripts/analyze_discriminative_power_v2.py\\n/root/symb_invariant_consensus/scripts/pilot_contrastive_constraints.py\\n/root/symb_invariant_consensus/scripts/exp015_logic_lm_baseline.py\\n/root/symb_invariant_consensus/scripts/compute_constraint_quality_correlation.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "72d762f3-8555-4cb0-b068-b0901a87db45",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "6246fb05-37ea-4644-875c-89cf3aead20e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/scripts/run_k_ablation.py\\\\n/root/symb_invariant_consensus/scripts/prepare_gsm8k.py\\\\n/root/symb_invariant_consensus/scripts/eval_gsm8k.py\\\\n/root/symb_invariant_consensus/scripts/constraint_ablation.py\\\\n/root/symb_invariant_consensus/scripts/analyze_expanded.py\\\\n/root/symb_invariant_consensus/scripts/run_gsm8k_pilot.py\\\\n/root/symb_invariant_consensus/scripts/prepare_arc.py\\\\n/root/symb_invariant_consensus/scripts/prepare_strategyqa.py\\\\n/root/symb_invariant_consensus/scripts/prepare_math_l45.py\\\\n/root/symb_invariant_consensus/scripts/eval_arc.py\\\\n/root/symb_invariant_consensus/scripts/eval_strategyqa.py\\\\n/root/symb_invariant_consensus/scripts/eval_math_l45.py\\\\n/root/symb_invariant_consensus/scripts/extract_constraints_for_ablation.py\\\\n/root/symb_invariant_consensus/scripts/weighted_sc_baseline.py\\\\n/root/symb_invariant_consensus/scripts/pilot_constraint_filtering.py\\\\n/root/symb_invariant_consensus/scripts/analyze_discriminative_power.py\\\\n/root/symb_invariant_consensus/scripts/analyze_discriminative_power_v2.py\\\\n/root/symb_invariant_consensus/scripts/pilot_contrastive_constraints.py\\\\n/root/symb_invariant_consensus/scripts/exp015_logic_lm_baseline.py\\\\n/root/symb_invariant_consensus/scripts/compute_constraint_quality_correlation.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/scripts/run_k_ablation.py\\n/root/symb_invariant_consensus/scripts/prepare_gsm8k.py\\n/root/symb_invariant_consensus/scripts/eval_gsm8k.py\\n/root/symb_invariant_consensus/scripts/constraint_ablation.py\\n/root/symb_invariant_consensus/scripts/analyze_expanded.py\\n/root/symb_invariant_consensus/scripts/run_gsm8k_pilot.py\\n/root/symb_invariant_consensus/scripts/prepare_arc.py\\n/root/symb_invariant_consensus/scripts/prepare_strategyqa.py\\n/root/symb_invariant_consensus/scripts/prepare_math_l45.py\\n/root/symb_invariant_consensus/scripts/eval_arc.py\\n/root/symb_invariant_consensus/scripts/eval_strategyqa.py\\n/root/symb_invariant_consensus/scripts/eval_math_l45.py\\n/root/symb_invariant_consensus/scripts/extract_constraints_for_ablation.py\\n/root/symb_invariant_consensus/scripts/weighted_sc_baseline.py\\n/root/symb_invariant_consensus/scripts/pilot_constraint_filtering.py\\n/root/symb_invariant_consensus/scripts/analyze_discriminative_power.py\\n/root/symb_invariant_consensus/scripts/analyze_discriminative_power_v2.py\\n/root/symb_invariant_consensus/scripts/pilot_contrastive_constraints.py\\n/root/symb_invariant_consensus/scripts/exp015_logic_lm_baseline.py\\n/root/symb_invariant_consensus/scripts/compute_constraint_quality_correlation.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"
+    }
+  },
+  "sourceToolAssistantUUID": "72d762f3-8555-4cb0-b068-b0901a87db45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T13:40:10.750Z_
+
+<details><summary>↩ Tool result · `toolu_01S3jGUjTncenwCL2ktDxhRe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/analysis/tiebreak_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "57d003ce-ec4b-470c-88c4-3e83d6eabc41",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "51182c94-6ce4-4909-b4d6-b25a6d9806e7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/analysis/tiebreak_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/analysis/tiebreak_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  },
+  "sourceToolAssistantUUID": "57d003ce-ec4b-470c-88c4-3e83d6eabc41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-17T13:40:17.537Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found it: `/root/symb_invariant_consensus/scripts/compute_constraint_quality_correlation.py`. Let me read it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51182c94-6ce4-4909-b4d6-b25a6d9806e7",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EcDpgntgKCzqvgnDs8",
+  "type": "assistant",
+  "uuid": "73caafe5-6055-4cc1-ad3c-2e109935ddbe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011EiYNBXSWkxTF4U8urwFr8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 915,
+      "cache_read_input_tokens": 26544,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 915,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 26544,
+          "cache_creation_input_tokens": 915,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 915
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-17T13:40:18.043Z_
+
+Found it: `scripts/compute_constraint_quality_correlation.py`. Let me read the script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73caafe5-6055-4cc1-ad3c-2e109935ddbe",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EcDpgntgKCzqvgnDs8",
+  "type": "assistant",
+  "uuid": "0b700ac9-aa97-4ce9-8597-6f2dc7538042",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011EiYNBXSWkxTF4U8urwFr8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 915,
+      "cache_read_input_tokens": 26544,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 915,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 26544,
+          "cache_creation_input_tokens": 915,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 915
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-17T13:40:18.735Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EE1xabzBMATxusG9WkKDcz`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "cat /root/symb_invariant_consensus/scripts/compute_constraint_quality_correlation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0b700ac9-aa97-4ce9-8597-6f2dc7538042",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EcDpgntgKCzqvgnDs8",
+  "type": "assistant",
+  "uuid": "532c8f31-9c6d-42cf-8974-e0765590259e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011EiYNBXSWkxTF4U8urwFr8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 915,
+      "cache_read_input_tokens": 26544,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 915,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 26544,
+          "cache_creation_input_tokens": 915,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 915
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "532c8f31-9c6d-42cf-8974-e0765590259e",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix C0 definition in constraint quality analysis script",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T13:40:19.264Z_
+
+<details><summary>↩ Tool result · `toolu_01EE1xabzBMATxusG9WkKDcz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Regenerate constraint quality correlation analysis with fixed extraction_rate.\\n\\nBug: avg_extraction_rate used (boxed+fallback) as denominator for experiments\\nwith trace_extraction_stats, instead of k (total traces).\\n\\nFix: always use k from summary as denominator.\\n\\\"\\\"\\\"\\nimport json\\nimport csv\\nimport os\\nimport math\\nfrom datetime import datetime\\n\\n\\ndef mean(vals):\\n    if not vals:\\n        return None\\n    return sum(vals) / len(vals)\\n\\n\\ndef pearsonr(x, y):\\n    n = len(x)\\n    if n < 3:\\n        return None, None\\n    mx, my = mean(x), mean(y)\\n    sx = math.sqrt(sum((xi - mx) ** 2 for xi in x) / (n - 1))\\n    sy = math.sqrt(sum((yi - my) ** 2 for yi in y) / (n - 1))\\n    if sx == 0 or sy == 0:\\n        return 0.0, 1.0\\n    r = sum((xi - mx) * (yi - my) for xi, yi in zip(x, y)) / ((n - 1) * sx * sy)\\n    r = max(-1.0, min(1.0, r))\\n    if abs(r) == 1.0:\\n        return r, 0.0\\n    from math import sqrt\\n    t = r * sqrt((n - 2) / (1 - r * r))\\n    # Two-tailed p-value from t-distribution (approximation)\\n    df = n - 2\\n    x_val = df / (df + t * t)\\n    p = _betai(0.5 * df, 0.5, x_val)\\n    return r, p\\n\\n\\ndef _betai(a, b, x):\\n    \\\"\\\"\\\"Regularized incomplete beta function (rough approximation).\\\"\\\"\\\"\\n    if x < 0 or x > 1:\\n        return 0.0\\n    if x == 0 or x == 1:\\n        return x\\n    # Use continued fraction for beta\\n    from math import lgamma, exp\\n    lbeta = lgamma(a) + lgamma(b) - lgamma(a + b)\\n    front = exp(-lbeta + a * math.log(x) + b * math.log(1 - x))\\n    if x < (a + 1) / (a + b + 2):\\n        return front * _betacf(a, b, x) / a\\n    else:\\n        return 1.0 - front * _betacf(b, a, 1.0 - x) / b\\n\\n\\ndef _betacf(a, b, x):\\n    \\\"\\\"\\\"Continued fraction for incomplete beta.\\\"\\\"\\\"\\n    MAXIT = 200\\n    EPS = 3e-7\\n    qab = a + b\\n    qap = a + 1.0\\n    qam = a - 1.0\\n    c = 1.0\\n    d = 1.0 - qab * x / qap\\n    if abs(d) < 1e-30:\\n        d = 1e-30\\n    d = 1.0 / d\\n    h = d\\n    for m in range(1, MAXIT + 1):\\n        m2 = 2 * m\\n        aa = m * (b - m) * x / ((qam + m2) * (a + m2))\\n        d = 1.0 + aa * d\\n        if abs(d) < 1e-30:\\n            d = 1e-30\\n        c = 1.0 + aa / c\\n        if abs(c) < 1e-30:\\n            c = 1e-30\\n        d = 1.0 / d\\n        h *= d * c\\n        aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2))\\n        d = 1.0 + aa * d\\n        if abs(d) < 1e-30:\\n            d = 1e-30\\n        c = 1.0 + aa / c\\n        if abs(c) < 1e-30:\\n            c = 1e-30\\n        d = 1.0 / d\\n        delta = d * c\\n        h *= delta\\n        if abs(delta - 1.0) < EPS:\\n            break\\n    return h\\n\\n\\ndef spearmanr(x, y):\\n    n = len(x)\\n    if n < 3:\\n        return None, None\\n    def rank(arr):\\n        indexed = sorted(range(n), key=lambda i: arr[i])\\n        ranks = [0.0] * n\\n        i = 0\\n        while i < n:\\n            j = i\\n            while j < n - 1 and arr[indexed[j]] == arr[indexed[j + 1]]:\\n                j += 1\\n            avg_rank = (i + j) / 2.0 + 1\\n            for k in range(i, j + 1):\\n                ranks[indexed[k]] = avg_rank\\n            i = j + 1\\n        return ranks\\n    rx, ry = rank(x), rank(y)\\n    return pearsonr(rx, ry)\\n\\n\\nEXPERIMENTS = {\\n    'exp001_qwen14b_pw_folio': {\\n        'path': '/root/symb_invariant_consensus/results/sica_expanded_14b.json',\\n        'model': 'Qwen2.5-14B', 'domain': 'PW+FOLIO',\\n    },\\n    'exp010_mistral7b_pw_folio': {\\n        'path': '/root/symb_invariant_consensus/results/exp010_mistral/exp010_results.json',\\n        'model': 'Mistral-7B', 'domain': 'PW+FOLIO',\\n    },\\n    'exp011_llama8b_pw_folio': {\\n        'path': '/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json',\\n        'model': 'LLaMA-8B', 'domain': 'PW+FOLIO',\\n    },\\n    'exp017_qwen14b_strategyqa': {\\n        'path': '/root/symb_invariant_consensus/results/exp017_strategyqa/exp017_results.json',\\n        'model': 'Qwen2.5-14B', 'domain': 'StrategyQA',\\n    },\\n    'exp018_qwen14b_arc': {\\n        'path': '/root/symb_invariant_consensus/results/exp018_arc/exp018_results.json',\\n        'model': 'Qwen2.5-14B', 'domain': 'ARC',\\n    },\\n    'exp019_ll\\n\\n... [截断: 输出过长，省略 5278 字符] ...\\n\\n,\\n        'c0_vs_exclusion_rate': corr(c0, excl),\\n        'c0_vs_extraction_rate': corr(c0, ext),\\n        'c0_vs_constraint_density': corr(c0, dens),\\n        'satisfied_ratio_vs_sica_sc_gap': corr(sat, gap),\\n        'exclusion_rate_vs_sica_sc_gap': corr(excl, gap),\\n        'constraint_density_vs_sica_sc_gap': corr(dens, gap),\\n    }\\n\\n\\ndef main():\\n    old_path = '/root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json'\\n    old_data = json.load(open(old_path))\\n    old_by_name = {r['experiment']: r for r in old_data['per_experiment']}\\n\\n    rows = []\\n    for exp_name, meta in EXPERIMENTS.items():\\n        r = compute_experiment_metrics(exp_name, meta)\\n        if r:\\n            rows.append(r)\\n\\n    correlations = compute_correlations(rows)\\n\\n    print(\\\"=\\\" * 80)\\n    print(\\\"extraction_rate FIX COMPARISON\\\")\\n    print(\\\"=\\\" * 80)\\n    print(f\\\"{'Experiment':<35} {'OLD':>10} {'NEW':>10} {'CHANGE':>10}\\\")\\n    print(\\\"-\\\" * 75)\\n    for r in rows:\\n        old_val = old_by_name.get(r['experiment'], {}).get('avg_extraction_rate', '?')\\n        new_val = r['avg_extraction_rate']\\n        if isinstance(old_val, (int, float)) and isinstance(new_val, (int, float)):\\n            change = new_val - old_val\\n            flag = \\\" *** FIXED\\\" if abs(change) > 0.001 else \\\"\\\"\\n            print(f\\\"{r['experiment']:<35} {old_val:>10.4f} {new_val:>10.4f} {change:>+10.4f}{flag}\\\")\\n        else:\\n            print(f\\\"{r['experiment']:<35} {str(old_val):>10} {str(new_val):>10}\\\")\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 80)\\n    print(\\\"VERIFICATION: all extraction_rate <= 1.0\\\")\\n    print(\\\"=\\\" * 80)\\n    all_ok = True\\n    for r in rows:\\n        v = r['avg_extraction_rate']\\n        ok = v is not None and v <= 1.0\\n        status = \\\"OK\\\" if ok else \\\"FAIL\\\"\\n        print(f\\\"  {r['experiment']}: {v} [{status}]\\\")\\n        if not ok:\\n            all_ok = False\\n    print(f\\\"\\\\nAll <= 1.0: {all_ok}\\\")\\n\\n    old_corr = old_data.get('correlations', {}).get('c0_vs_extraction_rate', {})\\n    new_corr = correlations.get('c0_vs_extraction_rate', {})\\n    print(f\\\"\\\\nc0_vs_extraction_rate correlation:\\\")\\n    print(f\\\"  OLD: pearson_r={old_corr.get('pearson_r')}, p={old_corr.get('pearson_p')}\\\")\\n    if new_corr:\\n        print(f\\\"  NEW: pearson_r={new_corr.get('pearson_r')}, p={new_corr.get('pearson_p')}\\\")\\n\\n    output = {\\n        'analysis_type': 'constraint_quality_correlation',\\n        'date': datetime.now().strftime('%Y-%m-%d'),\\n        'n_experiments': len(rows),\\n        'per_experiment': rows,\\n        'correlations': correlations,\\n        'data_availability': old_data.get('data_availability', {}),\\n        'proxy_definitions': {\\n            'c0_multi_candidate_rate': 'Fraction of problems where SC vote distribution has >1 unique answer',\\n            'avg_exclusion_rate': 'Mean(excluded / unique_after_dedup) per problem',\\n            'avg_satisfied_ratio': 'Mean(satisfied / (satisfied + excluded)) per problem',\\n            'avg_extraction_rate': 'Mean(traces_with_constraints / k) per problem. FIX: denominator is k (total traces), not answer-extracted traces',\\n            'avg_constraint_density': 'Mean(total_extracted / traces_with_constraints) per problem',\\n        },\\n        'notes': old_data.get('notes', {}),\\n        'bugfix': {\\n            'field': 'avg_extraction_rate',\\n            'bug': 'denominator was (boxed+fallback) answer-extracted traces instead of k (total traces)',\\n            'affected_experiments': ['exp011_llama8b_pw_folio', 'exp020_llama8b_folio'],\\n            'fix': 'always use k from summary as denominator',\\n        },\\n    }\\n\\n    with open(old_path, 'w') as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved corrected JSON: {old_path}\\\")\\n\\n    out_csv = '/root/symb_invariant_consensus/results/exp019_constraint_quality_summary.csv'\\n    with open(out_csv, 'w', newline='') as f:\\n        writer = csv.DictWriter(f, fieldnames=rows[0].keys())\\n        writer.writeheader()\\n        writer.writerows(rows)\\n    print(f\\\"Saved corrected CSV: {out_csv}\\\")\\n\\n\\nif __name__ == '__main__':\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "532c8f31-9c6d-42cf-8974-e0765590259e",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "bbfaab56-4a1b-4e42-ba63-b0aa26b8fb22",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Regenerate constraint quality correlation analysis with fixed extraction_rate.\\\\n\\\\nBug: avg_extraction_rate used (boxed+fallback) as denominator for experiments\\\\nwith trace_extraction_stats, instead of k (total traces).\\\\n\\\\nFix: always use k from summary as denominator.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport csv\\\\nimport os\\\\nimport math\\\\nfrom datetime import datetime\\\\n\\\\n\\\\ndef mean(vals):\\\\n    if not vals:\\\\n        return None\\\\n    return sum(vals) / len(vals)\\\\n\\\\n\\\\ndef pearsonr(x, y):\\\\n    n = len(x)\\\\n    if n < 3:\\\\n        return None, None\\\\n    mx, my = mean(x), mean(y)\\\\n    sx = math.sqrt(sum((xi - mx) ** 2 for xi in x) / (n - 1))\\\\n    sy = math.sqrt(sum((yi - my) ** 2 for yi in y) / (n - 1))\\\\n    if sx == 0 or sy == 0:\\\\n        return 0.0, 1.0\\\\n    r = sum((xi - mx) * (yi - my) for xi, yi in zip(x, y)) / ((n - 1) * sx * sy)\\\\n    r = max(-1.0, min(1.0, r))\\\\n    if abs(r) == 1.0:\\\\n        return r, 0.0\\\\n    from math import sqrt\\\\n    t = r * sqrt((n - 2) / (1 - r * r))\\\\n    # Two-tailed p-value from t-distribution (approximation)\\\\n    df = n - 2\\\\n    x_val = df / (df + t * t)\\\\n    p = _betai(0.5 * df, 0.5, x_val)\\\\n    return r, p\\\\n\\\\n\\\\ndef _betai(a, b, x):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Regularized incomplete beta function (rough approximation).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if x < 0 or x > 1:\\\\n        return 0.0\\\\n    if x == 0 or x == 1:\\\\n        return x\\\\n    # Use continued fraction for beta\\\\n    from math import lgamma, exp\\\\n    lbeta = lgamma(a) + lgamma(b) - lgamma(a + b)\\\\n    front = exp(-lbeta + a * math.log(x) + b * math.log(1 - x))\\\\n    if x < (a + 1) / (a + b + 2):\\\\n        return front * _betacf(a, b, x) / a\\\\n    else:\\\\n        return 1.0 - front * _betacf(b, a, 1.0 - x) / b\\\\n\\\\n\\\\ndef _betacf(a, b, x):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Continued fraction for incomplete beta.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    MAXIT = 200\\\\n    EPS = 3e-7\\\\n    qab = a + b\\\\n    qap = a + 1.0\\\\n    qam = a - 1.0\\\\n    c = 1.0\\\\n    d = 1.0 - qab * x / qap\\\\n    if abs(d) < 1e-30:\\\\n        d = 1e-30\\\\n    d = 1.0 / d\\\\n    h = d\\\\n    for m in range(1, MAXIT + 1):\\\\n        m2 = 2 * m\\\\n        aa = m * (b - m) * x / ((qam + m2) * (a + m2))\\\\n        d = 1.0 + aa * d\\\\n        if abs(d) < 1e-30:\\\\n            d = 1e-30\\\\n        c = 1.0 + aa / c\\\\n        if abs(c) < 1e-30:\\\\n            c = 1e-30\\\\n        d = 1.0 / d\\\\n        h *= d * c\\\\n        aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2))\\\\n        d = 1.0 + aa * d\\\\n        if abs(d) < 1e-30:\\\\n            d = 1e-30\\\\n        c = 1.0 + aa / c\\\\n        if abs(c) < 1e-30:\\\\n            c = 1e-30\\\\n        d = 1.0 / d\\\\n        delta = d * c\\\\n        h *= delta\\\\n        if abs(delta - 1.0) < EPS:\\\\n            break\\\\n    return h\\\\n\\\\n\\\\ndef spearmanr(x, y):\\\\n    n = len(x)\\\\n    if n < 3:\\\\n        return None, None\\\\n    def rank(arr):\\\\n        indexed = sorted(range(n), key=lambda i: arr[i])\\\\n        ranks = [0.0] * n\\\\n        i = 0\\\\n        while i < n:\\\\n            j = i\\\\n            while j < n - 1 and arr[indexed[j]] == arr[indexed[j + 1]]:\\\\n                j += 1\\\\n            avg_rank = (i + j) / 2.0 + 1\\\\n            for k in range(i, j + 1):\\\\n                ranks[indexed[k]] = avg_rank\\\\n            i = j + 1\\\\n        return ranks\\\\n    rx, ry = rank(x), rank(y)\\\\n    return pearsonr(rx, ry)\\\\n\\\\n\\\\nEXPERIMENTS = {\\\\n    'exp001_qwen14b_pw_folio': {\\\\n        'path': '/root/symb_invariant_consensus/results/sica_expanded_14b.json',\\\\n        'model': 'Qwen2.5-14B', 'domain': 'PW+FOLIO',\\\\n    },\\\\n    'exp010_mistral7b_pw_folio': {\\\\n        'path': '/root/symb_invariant_consensus/results/exp010_mistral/exp010_results.json',\\\\n        'model': 'Mistral-7B', 'domain': 'PW+FOLIO',\\\\n    },\\\\n    'exp011_llama8b_pw_folio': {\\\\n        'path': '/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json',\\\\n        'model': 'LLaMA-8B', 'domain': 'PW+FOLIO',\\\\n    },\\\\n    'exp017_qwen14b_strategyqa': {\\\\n        'path': '/root/symb_invariant_consensus/results/exp017_strategyqa/exp017_results.json',\\\\n        'model': 'Qwen2.5-14B', 'domain': 'StrategyQA',\\\\n    },\\\\n    'exp018_qwen14b_arc': {\\\\n        'path': '/root/symb_invariant_consensus/results/exp018_arc/exp018_results.json',\\\\n        'model': 'Qwen2.5-14B', 'domain': 'ARC',\\\\n    },\\\\n    'exp019_ll\\\\n\\\\n... [截断: 输出过长，省略 5278 字符] ...\\\\n\\\\n,\\\\n        'c0_vs_exclusion_rate': corr(c0, excl),\\\\n        'c0_vs_extraction_rate': corr(c0, ext),\\\\n        'c0_vs_constraint_density': corr(c0, dens),\\\\n        'satisfied_ratio_vs_sica_sc_gap': corr(sat, gap),\\\\n        'exclusion_rate_vs_sica_sc_gap': corr(excl, gap),\\\\n        'constraint_density_vs_sica_sc_gap': corr(dens, gap),\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    old_path = '/root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json'\\\\n    old_data = json.load(open(old_path))\\\\n    old_by_name = {r['experiment']: r for r in old_data['per_experiment']}\\\\n\\\\n    rows = []\\\\n    for exp_name, meta in EXPERIMENTS.items():\\\\n        r = compute_experiment_metrics(exp_name, meta)\\\\n        if r:\\\\n            rows.append(r)\\\\n\\\\n    correlations = compute_correlations(rows)\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 80)\\\\n    print(\\\\\\\"extraction_rate FIX COMPARISON\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 80)\\\\n    print(f\\\\\\\"{'Experiment':<35} {'OLD':>10} {'NEW':>10} {'CHANGE':>10}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 75)\\\\n    for r in rows:\\\\n        old_val = old_by_name.get(r['experiment'], {}).get('avg_extraction_rate', '?')\\\\n        new_val = r['avg_extraction_rate']\\\\n        if isinstance(old_val, (int, float)) and isinstance(new_val, (int, float)):\\\\n            change = new_val - old_val\\\\n            flag = \\\\\\\" *** FIXED\\\\\\\" if abs(change) > 0.001 else \\\\\\\"\\\\\\\"\\\\n            print(f\\\\\\\"{r['experiment']:<35} {old_val:>10.4f} {new_val:>10.4f} {change:>+10.4f}{flag}\\\\\\\")\\\\n        else:\\\\n            print(f\\\\\\\"{r['experiment']:<35} {str(old_val):>10} {str(new_val):>10}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 80)\\\\n    print(\\\\\\\"VERIFICATION: all extraction_rate <= 1.0\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 80)\\\\n    all_ok = True\\\\n    for r in rows:\\\\n        v = r['avg_extraction_rate']\\\\n        ok = v is not None and v <= 1.0\\\\n        status = \\\\\\\"OK\\\\\\\" if ok else \\\\\\\"FAIL\\\\\\\"\\\\n        print(f\\\\\\\"  {r['experiment']}: {v} [{status}]\\\\\\\")\\\\n        if not ok:\\\\n            all_ok = False\\\\n    print(f\\\\\\\"\\\\\\\\nAll <= 1.0: {all_ok}\\\\\\\")\\\\n\\\\n    old_corr = old_data.get('correlations', {}).get('c0_vs_extraction_rate', {})\\\\n    new_corr = correlations.get('c0_vs_extraction_rate', {})\\\\n    print(f\\\\\\\"\\\\\\\\nc0_vs_extraction_rate correlation:\\\\\\\")\\\\n    print(f\\\\\\\"  OLD: pearson_r={old_corr.get('pearson_r')}, p={old_corr.get('pearson_p')}\\\\\\\")\\\\n    if new_corr:\\\\n        print(f\\\\\\\"  NEW: pearson_r={new_corr.get('pearson_r')}, p={new_corr.get('pearson_p')}\\\\\\\")\\\\n\\\\n    output = {\\\\n        'analysis_type': 'constraint_quality_correlation',\\\\n        'date': datetime.now().strftime('%Y-%m-%d'),\\\\n        'n_experiments': len(rows),\\\\n        'per_experiment': rows,\\\\n        'correlations': correlations,\\\\n        'data_availability': old_data.get('data_availability', {}),\\\\n        'proxy_definitions': {\\\\n            'c0_multi_candidate_rate': 'Fraction of problems where SC vote distribution has >1 unique answer',\\\\n            'avg_exclusion_rate': 'Mean(excluded / unique_after_dedup) per problem',\\\\n            'avg_satisfied_ratio': 'Mean(satisfied / (satisfied + excluded)) per problem',\\\\n            'avg_extraction_rate': 'Mean(traces_with_constraints / k) per problem. FIX: denominator is k (total traces), not answer-extracted traces',\\\\n            'avg_constraint_density': 'Mean(total_extracted / traces_with_constraints) per problem',\\\\n        },\\\\n        'notes': old_data.get('notes', {}),\\\\n        'bugfix': {\\\\n            'field': 'avg_extraction_rate',\\\\n            'bug': 'denominator was (boxed+fallback) answer-extracted traces instead of k (total traces)',\\\\n            'affected_experiments': ['exp011_llama8b_pw_folio', 'exp020_llama8b_folio'],\\\\n            'fix': 'always use k from summary as denominator',\\\\n        },\\\\n    }\\\\n\\\\n    with open(old_path, 'w') as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved corrected JSON: {old_path}\\\\\\\")\\\\n\\\\n    out_csv = '/root/symb_invariant_consensus/results/exp019_constraint_quality_summary.csv'\\\\n    with open(out_csv, 'w', newline='') as f:\\\\n        writer = csv.DictWriter(f, fieldnames=rows[0].keys())\\\\n        writer.writeheader()\\\\n        writer.writerows(rows)\\\\n    print(f\\\\\\\"Saved corrected CSV: {out_csv}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == '__main__':\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Regenerate constraint quality correlation analysis with fixed extraction_rate.\\n\\nBug: avg_extraction_rate used (boxed+fallback) as denominator for experiments\\nwith trace_extraction_stats, instead of k (total traces).\\n\\nFix: always use k from summary as denominator.\\n\\\"\\\"\\\"\\nimport json\\nimport csv\\nimport os\\nimport math\\nfrom datetime import datetime\\n\\n\\ndef mean(vals):\\n    if not vals:\\n        return None\\n    return sum(vals) / len(vals)\\n\\n\\ndef pearsonr(x, y):\\n    n = len(x)\\n    if n < 3:\\n        return None, None\\n    mx, my = mean(x), mean(y)\\n    sx = math.sqrt(sum((xi - mx) ** 2 for xi in x) / (n - 1))\\n    sy = math.sqrt(sum((yi - my) ** 2 for yi in y) / (n - 1))\\n    if sx == 0 or sy == 0:\\n        return 0.0, 1.0\\n    r = sum((xi - mx) * (yi - my) for xi, yi in zip(x, y)) / ((n - 1) * sx * sy)\\n    r = max(-1.0, min(1.0, r))\\n    if abs(r) == 1.0:\\n        return r, 0.0\\n    from math import sqrt\\n    t = r * sqrt((n - 2) / (1 - r * r))\\n    # Two-tailed p-value from t-distribution (approximation)\\n    df = n - 2\\n    x_val = df / (df + t * t)\\n    p = _betai(0.5 * df, 0.5, x_val)\\n    return r, p\\n\\n\\ndef _betai(a, b, x):\\n    \\\"\\\"\\\"Regularized incomplete beta function (rough approximation).\\\"\\\"\\\"\\n    if x < 0 or x > 1:\\n        return 0.0\\n    if x == 0 or x == 1:\\n        return x\\n    # Use continued fraction for beta\\n    from math import lgamma, exp\\n    lbeta = lgamma(a) + lgamma(b) - lgamma(a + b)\\n    front = exp(-lbeta + a * math.log(x) + b * math.log(1 - x))\\n    if x < (a + 1) / (a + b + 2):\\n        return front * _betacf(a, b, x) / a\\n    else:\\n        return 1.0 - front * _betacf(b, a, 1.0 - x) / b\\n\\n\\ndef _betacf(a, b, x):\\n    \\\"\\\"\\\"Continued fraction for incomplete beta.\\\"\\\"\\\"\\n    MAXIT = 200\\n    EPS = 3e-7\\n    qab = a + b\\n    qap = a + 1.0\\n    qam = a - 1.0\\n    c = 1.0\\n    d = 1.0 - qab * x / qap\\n    if abs(d) < 1e-30:\\n        d = 1e-30\\n    d = 1.0 / d\\n    h = d\\n    for m in range(1, MAXIT + 1):\\n        m2 = 2 * m\\n        aa = m * (b - m) * x / ((qam + m2) * (a + m2))\\n        d = 1.0 + aa * d\\n        if abs(d) < 1e-30:\\n            d = 1e-30\\n        c = 1.0 + aa / c\\n        if abs(c) < 1e-30:\\n            c = 1e-30\\n        d = 1.0 / d\\n        h *= d * c\\n        aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2))\\n        d = 1.0 + aa * d\\n        if abs(d) < 1e-30:\\n            d = 1e-30\\n        c = 1.0 + aa / c\\n        if abs(c) < 1e-30:\\n            c = 1e-30\\n        d = 1.0 / d\\n        delta = d * c\\n        h *= delta\\n        if abs(delta - 1.0) < EPS:\\n            break\\n    return h\\n\\n\\ndef spearmanr(x, y):\\n    n = len(x)\\n    if n < 3:\\n        return None, None\\n    def rank(arr):\\n        indexed = sorted(range(n), key=lambda i: arr[i])\\n        ranks = [0.0] * n\\n        i = 0\\n        while i < n:\\n            j = i\\n            while j < n - 1 and arr[indexed[j]] == arr[indexed[j + 1]]:\\n                j += 1\\n            avg_rank = (i + j) / 2.0 + 1\\n            for k in range(i, j + 1):\\n                ranks[indexed[k]] = avg_rank\\n            i = j + 1\\n        return ranks\\n    rx, ry = rank(x), rank(y)\\n    return pearsonr(rx, ry)\\n\\n\\nEXPERIMENTS = {\\n    'exp001_qwen14b_pw_folio': {\\n        'path': '/root/symb_invariant_consensus/results/sica_expanded_14b.json',\\n        'model': 'Qwen2.5-14B', 'domain': 'PW+FOLIO',\\n    },\\n    'exp010_mistral7b_pw_folio': {\\n        'path': '/root/symb_invariant_consensus/results/exp010_mistral/exp010_results.json',\\n        'model': 'Mistral-7B', 'domain': 'PW+FOLIO',\\n    },\\n    'exp011_llama8b_pw_folio': {\\n        'path': '/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json',\\n        'model': 'LLaMA-8B', 'domain': 'PW+FOLIO',\\n    },\\n    'exp017_qwen14b_strategyqa': {\\n        'path': '/root/symb_invariant_consensus/results/exp017_strategyqa/exp017_results.json',\\n        'model': 'Qwen2.5-14B', 'domain': 'StrategyQA',\\n    },\\n    'exp018_qwen14b_arc': {\\n        'path': '/root/symb_invariant_consensus/results/exp018_arc/exp018_results.json',\\n        'model': 'Qwen2.5-14B', 'domain': 'ARC',\\n    },\\n    'exp019_ll\\n\\n... [截断: 输出过长，省略 5278 字符] ...\\n\\n,\\n        'c0_vs_exclusion_rate': corr(c0, excl),\\n        'c0_vs_extraction_rate': corr(c0, ext),\\n        'c0_vs_constraint_density': corr(c0, dens),\\n        'satisfied_ratio_vs_sica_sc_gap': corr(sat, gap),\\n        'exclusion_rate_vs_sica_sc_gap': corr(excl, gap),\\n        'constraint_density_vs_sica_sc_gap': corr(dens, gap),\\n    }\\n\\n\\ndef main():\\n    old_path = '/root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json'\\n    old_data = json.load(open(old_path))\\n    old_by_name = {r['experiment']: r for r in old_data['per_experiment']}\\n\\n    rows = []\\n    for exp_name, meta in EXPERIMENTS.items():\\n        r = compute_experiment_metrics(exp_name, meta)\\n        if r:\\n            rows.append(r)\\n\\n    correlations = compute_correlations(rows)\\n\\n    print(\\\"=\\\" * 80)\\n    print(\\\"extraction_rate FIX COMPARISON\\\")\\n    print(\\\"=\\\" * 80)\\n    print(f\\\"{'Experiment':<35} {'OLD':>10} {'NEW':>10} {'CHANGE':>10}\\\")\\n    print(\\\"-\\\" * 75)\\n    for r in rows:\\n        old_val = old_by_name.get(r['experiment'], {}).get('avg_extraction_rate', '?')\\n        new_val = r['avg_extraction_rate']\\n        if isinstance(old_val, (int, float)) and isinstance(new_val, (int, float)):\\n            change = new_val - old_val\\n            flag = \\\" *** FIXED\\\" if abs(change) > 0.001 else \\\"\\\"\\n            print(f\\\"{r['experiment']:<35} {old_val:>10.4f} {new_val:>10.4f} {change:>+10.4f}{flag}\\\")\\n        else:\\n            print(f\\\"{r['experiment']:<35} {str(old_val):>10} {str(new_val):>10}\\\")\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 80)\\n    print(\\\"VERIFICATION: all extraction_rate <= 1.0\\\")\\n    print(\\\"=\\\" * 80)\\n    all_ok = True\\n    for r in rows:\\n        v = r['avg_extraction_rate']\\n        ok = v is not None and v <= 1.0\\n        status = \\\"OK\\\" if ok else \\\"FAIL\\\"\\n        print(f\\\"  {r['experiment']}: {v} [{status}]\\\")\\n        if not ok:\\n            all_ok = False\\n    print(f\\\"\\\\nAll <= 1.0: {all_ok}\\\")\\n\\n    old_corr = old_data.get('correlations', {}).get('c0_vs_extraction_rate', {})\\n    new_corr = correlations.get('c0_vs_extraction_rate', {})\\n    print(f\\\"\\\\nc0_vs_extraction_rate correlation:\\\")\\n    print(f\\\"  OLD: pearson_r={old_corr.get('pearson_r')}, p={old_corr.get('pearson_p')}\\\")\\n    if new_corr:\\n        print(f\\\"  NEW: pearson_r={new_corr.get('pearson_r')}, p={new_corr.get('pearson_p')}\\\")\\n\\n    output = {\\n        'analysis_type': 'constraint_quality_correlation',\\n        'date': datetime.now().strftime('%Y-%m-%d'),\\n        'n_experiments': len(rows),\\n        'per_experiment': rows,\\n        'correlations': correlations,\\n        'data_availability': old_data.get('data_availability', {}),\\n        'proxy_definitions': {\\n            'c0_multi_candidate_rate': 'Fraction of problems where SC vote distribution has >1 unique answer',\\n            'avg_exclusion_rate': 'Mean(excluded / unique_after_dedup) per problem',\\n            'avg_satisfied_ratio': 'Mean(satisfied / (satisfied + excluded)) per problem',\\n            'avg_extraction_rate': 'Mean(traces_with_constraints / k) per problem. FIX: denominator is k (total traces), not answer-extracted traces',\\n            'avg_constraint_density': 'Mean(total_extracted / traces_with_constraints) per problem',\\n        },\\n        'notes': old_data.get('notes', {}),\\n        'bugfix': {\\n            'field': 'avg_extraction_rate',\\n            'bug': 'denominator was (boxed+fallback) answer-extracted traces instead of k (total traces)',\\n            'affected_experiments': ['exp011_llama8b_pw_folio', 'exp020_llama8b_folio'],\\n            'fix': 'always use k from summary as denominator',\\n        },\\n    }\\n\\n    with open(old_path, 'w') as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved corrected JSON: {old_path}\\\")\\n\\n    out_csv = '/root/symb_invariant_consensus/results/exp019_constraint_quality_summary.csv'\\n    with open(out_csv, 'w', newline='') as f:\\n        writer = csv.DictWriter(f, fieldnames=rows[0].keys())\\n        writer.writeheader()\\n        writer.writerows(rows)\\n    print(f\\\"Saved corrected CSV: {out_csv}\\\")\\n\\n\\nif __name__ == '__main__':\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  },
+  "sourceToolAssistantUUID": "532c8f31-9c6d-42cf-8974-e0765590259e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-17T13:40:22.182Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. I need to see the `compute_experiment_metrics` function, which is the key part. Let me read specific sections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bbfaab56-4a1b-4e42-ba63-b0aa26b8fb22",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EcrKtZvFosUUp8idXS",
+  "type": "assistant",
+  "uuid": "f5bd0dbf-c8c3-4b0a-811a-b5f8892df8fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HG8VmvNwHydLuHeegWoDUd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3708,
+      "cache_read_input_tokens": 27459,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3708,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 27459,
+          "cache_creation_input_tokens": 3708,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3708
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-17T13:40:23.120Z_
+
+Output was truncated. Let me get the critical `compute_experiment_metrics` function.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f5bd0dbf-c8c3-4b0a-811a-b5f8892df8fb",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EcrKtZvFosUUp8idXS",
+  "type": "assistant",
+  "uuid": "3ca7eb6e-e858-4d73-b21d-7386ff1b6988",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HG8VmvNwHydLuHeegWoDUd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3708,
+      "cache_read_input_tokens": 27459,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3708,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 27459,
+          "cache_creation_input_tokens": 3708,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3708
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-17T13:40:25.566Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VswG6fkuWPVbo72DJJhBif`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "grep -n \"def compute_experiment_metrics\\|c0_multi_candidate\\|disagree\\|unique\\|votes\\|sica_answer\\|sc_answer\\|multi_cand\" /root/symb_invariant_consensus/scripts/compute_constraint_quality_correlation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3ca7eb6e-e858-4d73-b21d-7386ff1b6988",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EcrKtZvFosUUp8idXS",
+  "type": "assistant",
+  "uuid": "85968531-7f3b-45c4-9f46-bf0e56e7c400",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HG8VmvNwHydLuHeegWoDUd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3708,
+      "cache_read_input_tokens": 27459,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3708,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 27459,
+          "cache_creation_input_tokens": 3708,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3708
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-17T13:40:25.579Z_
+
+<details><summary>↩ Tool result · `toolu_01VswG6fkuWPVbo72DJJhBif`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "85968531-7f3b-45c4-9f46-bf0e56e7c400",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "159276cf-4f59-40c4-93b5-64662460a4e6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "85968531-7f3b-45c4-9f46-bf0e56e7c400",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "159276cf-4f59-40c4-93b5-64662460a4e6",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix C0 definition in constraint quality analysis script",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-17T13:40:28.800Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SePnuAbnKwkUNE7BmJ92Gn`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "grep -n \"c0_multi_candidate\\|disagree\\|unique\\|sica_answer\\|sc_answer\\|def compute_experiment\" /root/symb_invariant_consensus/scripts/compute_constraint_quality_correlation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "159276cf-4f59-40c4-93b5-64662460a4e6",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EdKK7FcvYEUbxPGX9h",
+  "type": "assistant",
+  "uuid": "aa667916-a358-4b2e-a912-a6360bd3a292",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FCL8N6xG3cxukqoRpsbLH3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 329,
+      "cache_read_input_tokens": 31167,
+      "output_tokens": 158,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 329,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 158,
+          "cache_read_input_tokens": 31167,
+          "cache_creation_input_tokens": 329,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 329
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-17T13:40:28.816Z_
+
+<details><summary>↩ Tool result · `toolu_01SePnuAbnKwkUNE7BmJ92Gn`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa667916-a358-4b2e-a912-a6360bd3a292",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "f28d557b-099b-431d-91ab-665fdd8d879a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "aa667916-a358-4b2e-a912-a6360bd3a292",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-17T13:40:28.822Z_
+
+```json
+{
+  "parentUuid": "f28d557b-099b-431d-91ab-665fdd8d879a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "887e87ae-b6d5-4632-ac4c-b58d5470a9fa",
+  "timestamp": "2026-05-17T13:40:28.822Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-17T13:40:32.383Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01L919GcKjw4wFZQGwNu2VKm`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "grep -n \"c0_multi_candidate\" /root/symb_invariant_consensus/scripts/compute_constraint_quality_correlation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "887e87ae-b6d5-4632-ac4c-b58d5470a9fa",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EdZE2FNpr66meQfLdY",
+  "type": "assistant",
+  "uuid": "d5dd7b6d-861e-4a3a-8818-582d763717c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R7rZfBjTQS2RHtKQFwb6yb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 355,
+      "cache_read_input_tokens": 31496,
+      "output_tokens": 362,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 355,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 362,
+          "cache_read_input_tokens": 31496,
+          "cache_creation_input_tokens": 355,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 355
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T13:40:32.840Z_
+
+<details><summary>↩ Tool result · `toolu_01L919GcKjw4wFZQGwNu2VKm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"238:        'c0_multi_candidate_rate': round(c0, 4),\\n254:    c0 = [r['c0_multi_candidate_rate'] for r in rows]\\n343:            'c0_multi_candidate_rate': 'Fraction of problems where SC vote distribution has >1 unique answer',\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d5dd7b6d-861e-4a3a-8818-582d763717c3",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "17689506-e0dd-4688-8317-f6c3ca9a3962",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"238:        'c0_multi_candidate_rate': round(c0, 4),\\\\n254:    c0 = [r['c0_multi_candidate_rate'] for r in rows]\\\\n343:            'c0_multi_candidate_rate': 'Fraction of problems where SC vote distribution has >1 unique answer',\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"238:        'c0_multi_candidate_rate': round(c0, 4),\\n254:    c0 = [r['c0_multi_candidate_rate'] for r in rows]\\n343:            'c0_multi_candidate_rate': 'Fraction of problems where SC vote distribution has >1 unique answer',\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d5dd7b6d-861e-4a3a-8818-582d763717c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-17T13:40:33.321Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ErNfpSPm7rGJJ7byeaSwAX`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "grep -n \"def compute_experiment\" /root/symb_invariant_consensus/scripts/compute_constraint_quality_correlation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17689506-e0dd-4688-8317-f6c3ca9a3962",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EdZE2FNpr66meQfLdY",
+  "type": "assistant",
+  "uuid": "61beef24-2bde-4cad-a47c-6a0b556b6e78",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R7rZfBjTQS2RHtKQFwb6yb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 355,
+      "cache_read_input_tokens": 31496,
+      "output_tokens": 362,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 355,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 362,
+          "cache_read_input_tokens": 31496,
+          "cache_creation_input_tokens": 355,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 355
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T13:40:33.798Z_
+
+<details><summary>↩ Tool result · `toolu_01ErNfpSPm7rGJJ7byeaSwAX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"151:def compute_experiment_metrics(exp_name, meta):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "61beef24-2bde-4cad-a47c-6a0b556b6e78",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "17843820-41b1-46eb-ba27-4982b3c96fa2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"151:def compute_experiment_metrics(exp_name, meta):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"151:def compute_experiment_metrics(exp_name, meta):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "61beef24-2bde-4cad-a47c-6a0b556b6e78",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-17T13:40:33.842Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01V4rYz2DwKGAC5aWRrnQ4Gh`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "grep -n \"disagree\" /root/symb_invariant_consensus/scripts/compute_constraint_quality_correlation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17843820-41b1-46eb-ba27-4982b3c96fa2",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EdZE2FNpr66meQfLdY",
+  "type": "assistant",
+  "uuid": "71d542ad-012c-44bf-aa43-240898958f9b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R7rZfBjTQS2RHtKQFwb6yb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 355,
+      "cache_read_input_tokens": 31496,
+      "output_tokens": 362,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 355,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 362,
+          "cache_read_input_tokens": 31496,
+          "cache_creation_input_tokens": 355,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 355
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T13:40:34.336Z_
+
+<details><summary>↩ Tool result · `toolu_01V4rYz2DwKGAC5aWRrnQ4Gh`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "71d542ad-012c-44bf-aa43-240898958f9b",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "38fb0c33-6da2-4c4a-9dc2-9bfb8671e475",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  },
+  "sourceToolAssistantUUID": "71d542ad-012c-44bf-aa43-240898958f9b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-17T13:40:37.557Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No "disagree" found. Let me read the `compute_experiment_metrics` function (lines 151 onward).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "38fb0c33-6da2-4c4a-9dc2-9bfb8671e475",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EdxgQedeKSgxinbfmc",
+  "type": "assistant",
+  "uuid": "8e035a92-6f1c-448b-ac82-ad95172cf795",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011R7H3cFxFaD5PxS7e8bExy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 769,
+      "cache_read_input_tokens": 31851,
+      "output_tokens": 174,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 769,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 174,
+          "cache_read_input_tokens": 31851,
+          "cache_creation_input_tokens": 769,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 769
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-17T13:40:38.144Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015ZSfTrSdo35dPHUw9tNwr2`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "sed -n '151,250p' /root/symb_invariant_consensus/scripts/compute_constraint_quality_correlation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8e035a92-6f1c-448b-ac82-ad95172cf795",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EdxgQedeKSgxinbfmc",
+  "type": "assistant",
+  "uuid": "1125d340-9ac9-4f60-aa3d-7bbd45fb25cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011R7H3cFxFaD5PxS7e8bExy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 769,
+      "cache_read_input_tokens": 31851,
+      "output_tokens": 174,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 769,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 174,
+          "cache_read_input_tokens": 31851,
+          "cache_creation_input_tokens": 769,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 769
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-17T13:40:38.153Z_
+
+<details><summary>↩ Tool result · `toolu_015ZSfTrSdo35dPHUw9tNwr2`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1125d340-9ac9-4f60-aa3d-7bbd45fb25cc",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "65a6c12b-bb8c-46bc-a254-6ac136d7d610",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1125d340-9ac9-4f60-aa3d-7bbd45fb25cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-17T13:40:43.149Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BozfbLU6Ca9cNb3vej84v2`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "head -250 /root/symb_invariant_consensus/scripts/compute_constraint_quality_correlation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65a6c12b-bb8c-46bc-a254-6ac136d7d610",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EeFDpmaYSFMuEFCWK4",
+  "type": "assistant",
+  "uuid": "2a474291-34c0-4dc3-a2e6-166ca574d928",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018iLMPgNTB4jqBhKUWZHWkg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 266,
+      "cache_read_input_tokens": 32620,
+      "output_tokens": 127,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 266,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 127,
+          "cache_read_input_tokens": 32620,
+          "cache_creation_input_tokens": 266,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 266
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-17T13:40:43.604Z_
+
+<details><summary>↩ Tool result · `toolu_01BozfbLU6Ca9cNb3vej84v2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Regenerate constraint quality correlation analysis with fixed extraction_rate.\\n\\nBug: avg_extraction_rate used (boxed+fallback) as denominator for experiments\\nwith trace_extraction_stats, instead of k (total traces).\\n\\nFix: always use k from summary as denominator.\\n\\\"\\\"\\\"\\nimport json\\nimport csv\\nimport os\\nimport math\\nfrom datetime import datetime\\n\\n\\ndef mean(vals):\\n    if not vals:\\n        return None\\n    return sum(vals) / len(vals)\\n\\n\\ndef pearsonr(x, y):\\n    n = len(x)\\n    if n < 3:\\n        return None, None\\n    mx, my = mean(x), mean(y)\\n    sx = math.sqrt(sum((xi - mx) ** 2 for xi in x) / (n - 1))\\n    sy = math.sqrt(sum((yi - my) ** 2 for yi in y) / (n - 1))\\n    if sx == 0 or sy == 0:\\n        return 0.0, 1.0\\n    r = sum((xi - mx) * (yi - my) for xi, yi in zip(x, y)) / ((n - 1) * sx * sy)\\n    r = max(-1.0, min(1.0, r))\\n    if abs(r) == 1.0:\\n        return r, 0.0\\n    from math import sqrt\\n    t = r * sqrt((n - 2) / (1 - r * r))\\n    # Two-tailed p-value from t-distribution (approximation)\\n    df = n - 2\\n    x_val = df / (df + t * t)\\n    p = _betai(0.5 * df, 0.5, x_val)\\n    return r, p\\n\\n\\ndef _betai(a, b, x):\\n    \\\"\\\"\\\"Regularized incomplete beta function (rough approximation).\\\"\\\"\\\"\\n    if x < 0 or x > 1:\\n        return 0.0\\n    if x == 0 or x == 1:\\n        return x\\n    # Use continued fraction for beta\\n    from math import lgamma, exp\\n    lbeta = lgamma(a) + lgamma(b) - lgamma(a + b)\\n    front = exp(-lbeta + a * math.log(x) + b * math.log(1 - x))\\n    if x < (a + 1) / (a + b + 2):\\n        return front * _betacf(a, b, x) / a\\n    else:\\n        return 1.0 - front * _betacf(b, a, 1.0 - x) / b\\n\\n\\ndef _betacf(a, b, x):\\n    \\\"\\\"\\\"Continued fraction for incomplete beta.\\\"\\\"\\\"\\n    MAXIT = 200\\n    EPS = 3e-7\\n    qab = a + b\\n    qap = a + 1.0\\n    qam = a - 1.0\\n    c = 1.0\\n    d = 1.0 - qab * x / qap\\n    if abs(d) < 1e-30:\\n        d = 1e-30\\n    d = 1.0 / d\\n    h = d\\n    for m in range(1, MAXIT + 1):\\n        m2 = 2 * m\\n        aa = m * (b - m) * x / ((qam + m2) * (a + m2))\\n        d = 1.0 + aa * d\\n        if abs(d) < 1e-30:\\n            d = 1e-30\\n        c = 1.0 + aa / c\\n        if abs(c) < 1e-30:\\n            c = 1e-30\\n        d = 1.0 / d\\n        h *= d * c\\n        aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2))\\n        d = 1.0 + aa * d\\n        if abs(d) < 1e-30:\\n            d = 1e-30\\n        c = 1.0 + aa / c\\n        if abs(c) < 1e-30:\\n            c = 1e-30\\n        d = 1.0 / d\\n        delta = d * c\\n        h *= delta\\n        if abs(delta - 1.0) < EPS:\\n            break\\n    return h\\n\\n\\ndef spearmanr(x, y):\\n    n = len(x)\\n    if n < 3:\\n        return None, None\\n    def rank(arr):\\n        indexed = sorted(range(n), key=lambda i: arr[i])\\n        ranks = [0.0] * n\\n        i = 0\\n        while i < n:\\n            j = i\\n            while j < n - 1 and arr[indexed[j]] == arr[indexed[j + 1]]:\\n                j += 1\\n            avg_rank = (i + j) / 2.0 + 1\\n            for k in range(i, j + 1):\\n                ranks[indexed[k]] = avg_rank\\n            i = j + 1\\n        return ranks\\n    rx, ry = rank(x), rank(y)\\n    return pearsonr(rx, ry)\\n\\n\\nEXPERIMENTS = {\\n    'exp001_qwen14b_pw_folio': {\\n        'path': '/root/symb_invariant_consensus/results/sica_expanded_14b.json',\\n        'model': 'Qwen2.5-14B', 'domain': 'PW+FOLIO',\\n    },\\n    'exp010_mistral7b_pw_folio': {\\n        'path': '/root/symb_invariant_consensus/results/exp010_mistral/exp010_results.json',\\n        'model': 'Mistral-7B', 'domain': 'PW+FOLIO',\\n    },\\n    'exp011_llama8b_pw_folio': {\\n        'path': '/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json',\\n        'model': 'LLaMA-8B', 'domain': 'PW+FOLIO',\\n    },\\n    'exp017_qwen14b_strategyqa': {\\n        'path': '/root/symb_invariant_consensus/results/exp017_strategyqa/exp017_results.json',\\n        'model': 'Qwen2.5-14B', 'domain': 'StrategyQA',\\n    },\\n    'exp018_qwen14b_arc': {\\n        'path': '/root/symb_invariant_consensus/results/exp018_arc/exp018_results.json',\\n        'model': 'Qwen2.5-14B', 'domain': 'ARC',\\n    },\\n    'exp019_ll\\n\\n... [截断: 输出过长，省略 248 字符] ...\\n\\n_consensus/results/exp020_folio_200/exp020_results.json',\\n        'model': 'LLaMA-8B', 'domain': 'FOLIO',\\n    },\\n}\\n\\n\\ndef compute_experiment_metrics(exp_name, meta):\\n    fpath = meta['path']\\n    if not os.path.exists(fpath):\\n        print(f\\\"SKIP {exp_name}: not found\\\")\\n        return None\\n\\n    raw = json.load(open(fpath))\\n    items = raw.get('results', raw if isinstance(raw, list) else [])\\n    summary = raw.get('summary', {})\\n    n = len(items)\\n    k = summary.get('k', 12)\\n    if n == 0:\\n        return None\\n\\n    model = meta['model']\\n    domain = meta['domain']\\n\\n    sica_correct = sum(1 for x in items if x.get('sica_correct'))\\n    sc_correct = sum(1 for x in items if x.get('sc_correct'))\\n    sica_acc = sica_correct / n\\n    sc_acc = sc_correct / n\\n    delta_pp = round(100 * (sica_acc - sc_acc), 2)\\n\\n    c0 = sum(1 for x in items if x.get('sica_answer') != x.get('sc_answer')) / n\\n    n_multi = sum(1 for x in items if x.get('sica_answer') != x.get('sc_answer'))\\n\\n    cs_list = [x['constraints_stats'] for x in items if isinstance(x.get('constraints_stats'), dict)]\\n\\n    # FIX: extraction_rate = traces_with_constraints / k\\n    extraction_rates = []\\n    for s in cs_list:\\n        twc = s.get('traces_with_constraints', 0)\\n        extraction_rates.append(twc / k)\\n    avg_extraction_rate = round(mean(extraction_rates), 4) if extraction_rates else None\\n\\n    excl_rates = []\\n    sat_ratios = []\\n    for x in items:\\n        cs = x.get('constraints_stats', {})\\n        ms = x.get('maxsat_stats', {})\\n        if not isinstance(cs, dict) or not isinstance(ms, dict):\\n            continue\\n        uniq = cs.get('unique_after_dedup', 0)\\n        sat = ms.get('satisfied', 0)\\n        excl = ms.get('excluded', 0)\\n        if uniq > 0:\\n            excl_rates.append(excl / uniq)\\n        total = sat + excl\\n        if total > 0:\\n            sat_ratios.append(sat / total)\\n\\n    avg_exclusion_rate = round(mean(excl_rates), 4) if excl_rates else None\\n    avg_satisfied_ratio = round(mean(sat_ratios), 4) if sat_ratios else None\\n\\n    density_vals = []\\n    for s in cs_list:\\n        twc = s.get('traces_with_constraints', 0)\\n        te = s.get('total_extracted', 0)\\n        if twc > 0:\\n            density_vals.append(te / twc)\\n    avg_density = round(mean(density_vals), 2) if density_vals else None\\n\\n    gt_fracs = []\\n    for x in items:\\n        scores = x.get('sica_scores', {})\\n        gt = x.get('ground_truth', '')\\n        if scores and gt:\\n            gt_score = scores.get(gt, scores.get(str(gt), None))\\n            if gt_score is not None:\\n                gt_fracs.append(1 if gt_score == max(scores.values()) else 0)\\n    avg_score_gt_frac = round(mean(gt_fracs), 4) if gt_fracs else None\\n\\n    multi_items = [x for x in items if x.get('sica_answer') != x.get('sc_answer')]\\n    sica_wins = sum(1 for x in multi_items if x.get('sica_correct') and not x.get('sc_correct'))\\n    sc_wins = sum(1 for x in multi_items if x.get('sc_correct') and not x.get('sica_correct'))\\n    sica_acc_multi = round(sum(1 for x in multi_items if x.get('sica_correct')) / max(len(multi_items), 1), 4)\\n    sc_acc_multi = round(sum(1 for x in multi_items if x.get('sc_correct')) / max(len(multi_items), 1), 4)\\n    delta_multi = round(100 * (sica_acc_multi - sc_acc_multi), 2)\\n\\n    return {\\n        'experiment': exp_name,\\n        'model': model,\\n        'domain': domain,\\n        'n': n,\\n        'sc_acc': round(sc_acc, 4),\\n        'sica_acc': round(sica_acc, 4),\\n        'delta_pp': delta_pp,\\n        'c0_multi_candidate_rate': round(c0, 4),\\n        'n_multi_candidate': n_multi,\\n        'avg_extraction_rate': avg_extraction_rate,\\n        'avg_exclusion_rate': avg_exclusion_rate,\\n        'avg_satisfied_ratio': avg_satisfied_ratio,\\n        'avg_constraint_density': avg_density,\\n        'avg_score_gt_frac': avg_score_gt_frac,\\n        'sica_wins_multi': sica_wins,\\n        'sc_wins_multi': sc_wins,\\n        'sica_acc_multi': sica_acc_multi,\\n        'sc_acc_multi': sc_acc_multi,\\n        'delta_multi_pp': delta_multi,\\n    }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2a474291-34c0-4dc3-a2e6-166ca574d928",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "f05dcb82-c5a1-48e7-936c-599d6fa8ee03",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Regenerate constraint quality correlation analysis with fixed extraction_rate.\\\\n\\\\nBug: avg_extraction_rate used (boxed+fallback) as denominator for experiments\\\\nwith trace_extraction_stats, instead of k (total traces).\\\\n\\\\nFix: always use k from summary as denominator.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport csv\\\\nimport os\\\\nimport math\\\\nfrom datetime import datetime\\\\n\\\\n\\\\ndef mean(vals):\\\\n    if not vals:\\\\n        return None\\\\n    return sum(vals) / len(vals)\\\\n\\\\n\\\\ndef pearsonr(x, y):\\\\n    n = len(x)\\\\n    if n < 3:\\\\n        return None, None\\\\n    mx, my = mean(x), mean(y)\\\\n    sx = math.sqrt(sum((xi - mx) ** 2 for xi in x) / (n - 1))\\\\n    sy = math.sqrt(sum((yi - my) ** 2 for yi in y) / (n - 1))\\\\n    if sx == 0 or sy == 0:\\\\n        return 0.0, 1.0\\\\n    r = sum((xi - mx) * (yi - my) for xi, yi in zip(x, y)) / ((n - 1) * sx * sy)\\\\n    r = max(-1.0, min(1.0, r))\\\\n    if abs(r) == 1.0:\\\\n        return r, 0.0\\\\n    from math import sqrt\\\\n    t = r * sqrt((n - 2) / (1 - r * r))\\\\n    # Two-tailed p-value from t-distribution (approximation)\\\\n    df = n - 2\\\\n    x_val = df / (df + t * t)\\\\n    p = _betai(0.5 * df, 0.5, x_val)\\\\n    return r, p\\\\n\\\\n\\\\ndef _betai(a, b, x):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Regularized incomplete beta function (rough approximation).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if x < 0 or x > 1:\\\\n        return 0.0\\\\n    if x == 0 or x == 1:\\\\n        return x\\\\n    # Use continued fraction for beta\\\\n    from math import lgamma, exp\\\\n    lbeta = lgamma(a) + lgamma(b) - lgamma(a + b)\\\\n    front = exp(-lbeta + a * math.log(x) + b * math.log(1 - x))\\\\n    if x < (a + 1) / (a + b + 2):\\\\n        return front * _betacf(a, b, x) / a\\\\n    else:\\\\n        return 1.0 - front * _betacf(b, a, 1.0 - x) / b\\\\n\\\\n\\\\ndef _betacf(a, b, x):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Continued fraction for incomplete beta.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    MAXIT = 200\\\\n    EPS = 3e-7\\\\n    qab = a + b\\\\n    qap = a + 1.0\\\\n    qam = a - 1.0\\\\n    c = 1.0\\\\n    d = 1.0 - qab * x / qap\\\\n    if abs(d) < 1e-30:\\\\n        d = 1e-30\\\\n    d = 1.0 / d\\\\n    h = d\\\\n    for m in range(1, MAXIT + 1):\\\\n        m2 = 2 * m\\\\n        aa = m * (b - m) * x / ((qam + m2) * (a + m2))\\\\n        d = 1.0 + aa * d\\\\n        if abs(d) < 1e-30:\\\\n            d = 1e-30\\\\n        c = 1.0 + aa / c\\\\n        if abs(c) < 1e-30:\\\\n            c = 1e-30\\\\n        d = 1.0 / d\\\\n        h *= d * c\\\\n        aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2))\\\\n        d = 1.0 + aa * d\\\\n        if abs(d) < 1e-30:\\\\n            d = 1e-30\\\\n        c = 1.0 + aa / c\\\\n        if abs(c) < 1e-30:\\\\n            c = 1e-30\\\\n        d = 1.0 / d\\\\n        delta = d * c\\\\n        h *= delta\\\\n        if abs(delta - 1.0) < EPS:\\\\n            break\\\\n    return h\\\\n\\\\n\\\\ndef spearmanr(x, y):\\\\n    n = len(x)\\\\n    if n < 3:\\\\n        return None, None\\\\n    def rank(arr):\\\\n        indexed = sorted(range(n), key=lambda i: arr[i])\\\\n        ranks = [0.0] * n\\\\n        i = 0\\\\n        while i < n:\\\\n            j = i\\\\n            while j < n - 1 and arr[indexed[j]] == arr[indexed[j + 1]]:\\\\n                j += 1\\\\n            avg_rank = (i + j) / 2.0 + 1\\\\n            for k in range(i, j + 1):\\\\n                ranks[indexed[k]] = avg_rank\\\\n            i = j + 1\\\\n        return ranks\\\\n    rx, ry = rank(x), rank(y)\\\\n    return pearsonr(rx, ry)\\\\n\\\\n\\\\nEXPERIMENTS = {\\\\n    'exp001_qwen14b_pw_folio': {\\\\n        'path': '/root/symb_invariant_consensus/results/sica_expanded_14b.json',\\\\n        'model': 'Qwen2.5-14B', 'domain': 'PW+FOLIO',\\\\n    },\\\\n    'exp010_mistral7b_pw_folio': {\\\\n        'path': '/root/symb_invariant_consensus/results/exp010_mistral/exp010_results.json',\\\\n        'model': 'Mistral-7B', 'domain': 'PW+FOLIO',\\\\n    },\\\\n    'exp011_llama8b_pw_folio': {\\\\n        'path': '/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json',\\\\n        'model': 'LLaMA-8B', 'domain': 'PW+FOLIO',\\\\n    },\\\\n    'exp017_qwen14b_strategyqa': {\\\\n        'path': '/root/symb_invariant_consensus/results/exp017_strategyqa/exp017_results.json',\\\\n        'model': 'Qwen2.5-14B', 'domain': 'StrategyQA',\\\\n    },\\\\n    'exp018_qwen14b_arc': {\\\\n        'path': '/root/symb_invariant_consensus/results/exp018_arc/exp018_results.json',\\\\n        'model': 'Qwen2.5-14B', 'domain': 'ARC',\\\\n    },\\\\n    'exp019_ll\\\\n\\\\n... [截断: 输出过长，省略 248 字符] ...\\\\n\\\\n_consensus/results/exp020_folio_200/exp020_results.json',\\\\n        'model': 'LLaMA-8B', 'domain': 'FOLIO',\\\\n    },\\\\n}\\\\n\\\\n\\\\ndef compute_experiment_metrics(exp_name, meta):\\\\n    fpath = meta['path']\\\\n    if not os.path.exists(fpath):\\\\n        print(f\\\\\\\"SKIP {exp_name}: not found\\\\\\\")\\\\n        return None\\\\n\\\\n    raw = json.load(open(fpath))\\\\n    items = raw.get('results', raw if isinstance(raw, list) else [])\\\\n    summary = raw.get('summary', {})\\\\n    n = len(items)\\\\n    k = summary.get('k', 12)\\\\n    if n == 0:\\\\n        return None\\\\n\\\\n    model = meta['model']\\\\n    domain = meta['domain']\\\\n\\\\n    sica_correct = sum(1 for x in items if x.get('sica_correct'))\\\\n    sc_correct = sum(1 for x in items if x.get('sc_correct'))\\\\n    sica_acc = sica_correct / n\\\\n    sc_acc = sc_correct / n\\\\n    delta_pp = round(100 * (sica_acc - sc_acc), 2)\\\\n\\\\n    c0 = sum(1 for x in items if x.get('sica_answer') != x.get('sc_answer')) / n\\\\n    n_multi = sum(1 for x in items if x.get('sica_answer') != x.get('sc_answer'))\\\\n\\\\n    cs_list = [x['constraints_stats'] for x in items if isinstance(x.get('constraints_stats'), dict)]\\\\n\\\\n    # FIX: extraction_rate = traces_with_constraints / k\\\\n    extraction_rates = []\\\\n    for s in cs_list:\\\\n        twc = s.get('traces_with_constraints', 0)\\\\n        extraction_rates.append(twc / k)\\\\n    avg_extraction_rate = round(mean(extraction_rates), 4) if extraction_rates else None\\\\n\\\\n    excl_rates = []\\\\n    sat_ratios = []\\\\n    for x in items:\\\\n        cs = x.get('constraints_stats', {})\\\\n        ms = x.get('maxsat_stats', {})\\\\n        if not isinstance(cs, dict) or not isinstance(ms, dict):\\\\n            continue\\\\n        uniq = cs.get('unique_after_dedup', 0)\\\\n        sat = ms.get('satisfied', 0)\\\\n        excl = ms.get('excluded', 0)\\\\n        if uniq > 0:\\\\n            excl_rates.append(excl / uniq)\\\\n        total = sat + excl\\\\n        if total > 0:\\\\n            sat_ratios.append(sat / total)\\\\n\\\\n    avg_exclusion_rate = round(mean(excl_rates), 4) if excl_rates else None\\\\n    avg_satisfied_ratio = round(mean(sat_ratios), 4) if sat_ratios else None\\\\n\\\\n    density_vals = []\\\\n    for s in cs_list:\\\\n        twc = s.get('traces_with_constraints', 0)\\\\n        te = s.get('total_extracted', 0)\\\\n        if twc > 0:\\\\n            density_vals.append(te / twc)\\\\n    avg_density = round(mean(density_vals), 2) if density_vals else None\\\\n\\\\n    gt_fracs = []\\\\n    for x in items:\\\\n        scores = x.get('sica_scores', {})\\\\n        gt = x.get('ground_truth', '')\\\\n        if scores and gt:\\\\n            gt_score = scores.get(gt, scores.get(str(gt), None))\\\\n            if gt_score is not None:\\\\n                gt_fracs.append(1 if gt_score == max(scores.values()) else 0)\\\\n    avg_score_gt_frac = round(mean(gt_fracs), 4) if gt_fracs else None\\\\n\\\\n    multi_items = [x for x in items if x.get('sica_answer') != x.get('sc_answer')]\\\\n    sica_wins = sum(1 for x in multi_items if x.get('sica_correct') and not x.get('sc_correct'))\\\\n    sc_wins = sum(1 for x in multi_items if x.get('sc_correct') and not x.get('sica_correct'))\\\\n    sica_acc_multi = round(sum(1 for x in multi_items if x.get('sica_correct')) / max(len(multi_items), 1), 4)\\\\n    sc_acc_multi = round(sum(1 for x in multi_items if x.get('sc_correct')) / max(len(multi_items), 1), 4)\\\\n    delta_multi = round(100 * (sica_acc_multi - sc_acc_multi), 2)\\\\n\\\\n    return {\\\\n        'experiment': exp_name,\\\\n        'model': model,\\\\n        'domain': domain,\\\\n        'n': n,\\\\n        'sc_acc': round(sc_acc, 4),\\\\n        'sica_acc': round(sica_acc, 4),\\\\n        'delta_pp': delta_pp,\\\\n        'c0_multi_candidate_rate': round(c0, 4),\\\\n        'n_multi_candidate': n_multi,\\\\n        'avg_extraction_rate': avg_extraction_rate,\\\\n        'avg_exclusion_rate': avg_exclusion_rate,\\\\n        'avg_satisfied_ratio': avg_satisfied_ratio,\\\\n        'avg_constraint_density': avg_density,\\\\n        'avg_score_gt_frac': avg_score_gt_frac,\\\\n        'sica_wins_multi': sica_wins,\\\\n        'sc_wins_multi': sc_wins,\\\\n        'sica_acc_multi': sica_acc_multi,\\\\n        'sc_acc_multi': sc_acc_multi,\\\\n        'delta_multi_pp': delta_multi,\\\\n    }\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Regenerate constraint quality correlation analysis with fixed extraction_rate.\\n\\nBug: avg_extraction_rate used (boxed+fallback) as denominator for experiments\\nwith trace_extraction_stats, instead of k (total traces).\\n\\nFix: always use k from summary as denominator.\\n\\\"\\\"\\\"\\nimport json\\nimport csv\\nimport os\\nimport math\\nfrom datetime import datetime\\n\\n\\ndef mean(vals):\\n    if not vals:\\n        return None\\n    return sum(vals) / len(vals)\\n\\n\\ndef pearsonr(x, y):\\n    n = len(x)\\n    if n < 3:\\n        return None, None\\n    mx, my = mean(x), mean(y)\\n    sx = math.sqrt(sum((xi - mx) ** 2 for xi in x) / (n - 1))\\n    sy = math.sqrt(sum((yi - my) ** 2 for yi in y) / (n - 1))\\n    if sx == 0 or sy == 0:\\n        return 0.0, 1.0\\n    r = sum((xi - mx) * (yi - my) for xi, yi in zip(x, y)) / ((n - 1) * sx * sy)\\n    r = max(-1.0, min(1.0, r))\\n    if abs(r) == 1.0:\\n        return r, 0.0\\n    from math import sqrt\\n    t = r * sqrt((n - 2) / (1 - r * r))\\n    # Two-tailed p-value from t-distribution (approximation)\\n    df = n - 2\\n    x_val = df / (df + t * t)\\n    p = _betai(0.5 * df, 0.5, x_val)\\n    return r, p\\n\\n\\ndef _betai(a, b, x):\\n    \\\"\\\"\\\"Regularized incomplete beta function (rough approximation).\\\"\\\"\\\"\\n    if x < 0 or x > 1:\\n        return 0.0\\n    if x == 0 or x == 1:\\n        return x\\n    # Use continued fraction for beta\\n    from math import lgamma, exp\\n    lbeta = lgamma(a) + lgamma(b) - lgamma(a + b)\\n    front = exp(-lbeta + a * math.log(x) + b * math.log(1 - x))\\n    if x < (a + 1) / (a + b + 2):\\n        return front * _betacf(a, b, x) / a\\n    else:\\n        return 1.0 - front * _betacf(b, a, 1.0 - x) / b\\n\\n\\ndef _betacf(a, b, x):\\n    \\\"\\\"\\\"Continued fraction for incomplete beta.\\\"\\\"\\\"\\n    MAXIT = 200\\n    EPS = 3e-7\\n    qab = a + b\\n    qap = a + 1.0\\n    qam = a - 1.0\\n    c = 1.0\\n    d = 1.0 - qab * x / qap\\n    if abs(d) < 1e-30:\\n        d = 1e-30\\n    d = 1.0 / d\\n    h = d\\n    for m in range(1, MAXIT + 1):\\n        m2 = 2 * m\\n        aa = m * (b - m) * x / ((qam + m2) * (a + m2))\\n        d = 1.0 + aa * d\\n        if abs(d) < 1e-30:\\n            d = 1e-30\\n        c = 1.0 + aa / c\\n        if abs(c) < 1e-30:\\n            c = 1e-30\\n        d = 1.0 / d\\n        h *= d * c\\n        aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2))\\n        d = 1.0 + aa * d\\n        if abs(d) < 1e-30:\\n            d = 1e-30\\n        c = 1.0 + aa / c\\n        if abs(c) < 1e-30:\\n            c = 1e-30\\n        d = 1.0 / d\\n        delta = d * c\\n        h *= delta\\n        if abs(delta - 1.0) < EPS:\\n            break\\n    return h\\n\\n\\ndef spearmanr(x, y):\\n    n = len(x)\\n    if n < 3:\\n        return None, None\\n    def rank(arr):\\n        indexed = sorted(range(n), key=lambda i: arr[i])\\n        ranks = [0.0] * n\\n        i = 0\\n        while i < n:\\n            j = i\\n            while j < n - 1 and arr[indexed[j]] == arr[indexed[j + 1]]:\\n                j += 1\\n            avg_rank = (i + j) / 2.0 + 1\\n            for k in range(i, j + 1):\\n                ranks[indexed[k]] = avg_rank\\n            i = j + 1\\n        return ranks\\n    rx, ry = rank(x), rank(y)\\n    return pearsonr(rx, ry)\\n\\n\\nEXPERIMENTS = {\\n    'exp001_qwen14b_pw_folio': {\\n        'path': '/root/symb_invariant_consensus/results/sica_expanded_14b.json',\\n        'model': 'Qwen2.5-14B', 'domain': 'PW+FOLIO',\\n    },\\n    'exp010_mistral7b_pw_folio': {\\n        'path': '/root/symb_invariant_consensus/results/exp010_mistral/exp010_results.json',\\n        'model': 'Mistral-7B', 'domain': 'PW+FOLIO',\\n    },\\n    'exp011_llama8b_pw_folio': {\\n        'path': '/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json',\\n        'model': 'LLaMA-8B', 'domain': 'PW+FOLIO',\\n    },\\n    'exp017_qwen14b_strategyqa': {\\n        'path': '/root/symb_invariant_consensus/results/exp017_strategyqa/exp017_results.json',\\n        'model': 'Qwen2.5-14B', 'domain': 'StrategyQA',\\n    },\\n    'exp018_qwen14b_arc': {\\n        'path': '/root/symb_invariant_consensus/results/exp018_arc/exp018_results.json',\\n        'model': 'Qwen2.5-14B', 'domain': 'ARC',\\n    },\\n    'exp019_ll\\n\\n... [截断: 输出过长，省略 248 字符] ...\\n\\n_consensus/results/exp020_folio_200/exp020_results.json',\\n        'model': 'LLaMA-8B', 'domain': 'FOLIO',\\n    },\\n}\\n\\n\\ndef compute_experiment_metrics(exp_name, meta):\\n    fpath = meta['path']\\n    if not os.path.exists(fpath):\\n        print(f\\\"SKIP {exp_name}: not found\\\")\\n        return None\\n\\n    raw = json.load(open(fpath))\\n    items = raw.get('results', raw if isinstance(raw, list) else [])\\n    summary = raw.get('summary', {})\\n    n = len(items)\\n    k = summary.get('k', 12)\\n    if n == 0:\\n        return None\\n\\n    model = meta['model']\\n    domain = meta['domain']\\n\\n    sica_correct = sum(1 for x in items if x.get('sica_correct'))\\n    sc_correct = sum(1 for x in items if x.get('sc_correct'))\\n    sica_acc = sica_correct / n\\n    sc_acc = sc_correct / n\\n    delta_pp = round(100 * (sica_acc - sc_acc), 2)\\n\\n    c0 = sum(1 for x in items if x.get('sica_answer') != x.get('sc_answer')) / n\\n    n_multi = sum(1 for x in items if x.get('sica_answer') != x.get('sc_answer'))\\n\\n    cs_list = [x['constraints_stats'] for x in items if isinstance(x.get('constraints_stats'), dict)]\\n\\n    # FIX: extraction_rate = traces_with_constraints / k\\n    extraction_rates = []\\n    for s in cs_list:\\n        twc = s.get('traces_with_constraints', 0)\\n        extraction_rates.append(twc / k)\\n    avg_extraction_rate = round(mean(extraction_rates), 4) if extraction_rates else None\\n\\n    excl_rates = []\\n    sat_ratios = []\\n    for x in items:\\n        cs = x.get('constraints_stats', {})\\n        ms = x.get('maxsat_stats', {})\\n        if not isinstance(cs, dict) or not isinstance(ms, dict):\\n            continue\\n        uniq = cs.get('unique_after_dedup', 0)\\n        sat = ms.get('satisfied', 0)\\n        excl = ms.get('excluded', 0)\\n        if uniq > 0:\\n            excl_rates.append(excl / uniq)\\n        total = sat + excl\\n        if total > 0:\\n            sat_ratios.append(sat / total)\\n\\n    avg_exclusion_rate = round(mean(excl_rates), 4) if excl_rates else None\\n    avg_satisfied_ratio = round(mean(sat_ratios), 4) if sat_ratios else None\\n\\n    density_vals = []\\n    for s in cs_list:\\n        twc = s.get('traces_with_constraints', 0)\\n        te = s.get('total_extracted', 0)\\n        if twc > 0:\\n            density_vals.append(te / twc)\\n    avg_density = round(mean(density_vals), 2) if density_vals else None\\n\\n    gt_fracs = []\\n    for x in items:\\n        scores = x.get('sica_scores', {})\\n        gt = x.get('ground_truth', '')\\n        if scores and gt:\\n            gt_score = scores.get(gt, scores.get(str(gt), None))\\n            if gt_score is not None:\\n                gt_fracs.append(1 if gt_score == max(scores.values()) else 0)\\n    avg_score_gt_frac = round(mean(gt_fracs), 4) if gt_fracs else None\\n\\n    multi_items = [x for x in items if x.get('sica_answer') != x.get('sc_answer')]\\n    sica_wins = sum(1 for x in multi_items if x.get('sica_correct') and not x.get('sc_correct'))\\n    sc_wins = sum(1 for x in multi_items if x.get('sc_correct') and not x.get('sica_correct'))\\n    sica_acc_multi = round(sum(1 for x in multi_items if x.get('sica_correct')) / max(len(multi_items), 1), 4)\\n    sc_acc_multi = round(sum(1 for x in multi_items if x.get('sc_correct')) / max(len(multi_items), 1), 4)\\n    delta_multi = round(100 * (sica_acc_multi - sc_acc_multi), 2)\\n\\n    return {\\n        'experiment': exp_name,\\n        'model': model,\\n        'domain': domain,\\n        'n': n,\\n        'sc_acc': round(sc_acc, 4),\\n        'sica_acc': round(sica_acc, 4),\\n        'delta_pp': delta_pp,\\n        'c0_multi_candidate_rate': round(c0, 4),\\n        'n_multi_candidate': n_multi,\\n        'avg_extraction_rate': avg_extraction_rate,\\n        'avg_exclusion_rate': avg_exclusion_rate,\\n        'avg_satisfied_ratio': avg_satisfied_ratio,\\n        'avg_constraint_density': avg_density,\\n        'avg_score_gt_frac': avg_score_gt_frac,\\n        'sica_wins_multi': sica_wins,\\n        'sc_wins_multi': sc_wins,\\n        'sica_acc_multi': sica_acc_multi,\\n        'sc_acc_multi': sc_acc_multi,\\n        'delta_multi_pp': delta_multi,\\n    }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2a474291-34c0-4dc3-a2e6-166ca574d928",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "f05dcb82-c5a1-48e7-936c-599d6fa8ee03",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix C0 definition in constraint quality analysis script",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-17T13:41:05.152Z_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+I can see the bug clearly now. On line ~182 (in the `compute_experiment_metrics` function):
+
+```python
+c0 = sum(1 for x in items if x.get('sica_answer') != x.get('sc_answer')) / n
+n_multi = sum(1 for x in items if x.get('sica_answer') != x.get('sc_answer'))
+```
+
+This computes `c0` as the SICA-SC disagree rate (fraction of problems where SICA answer ≠ SC answer), which is wrong. The correct definition of `c0_multi_candidate_rate` should be: fraction of problems where the K traces have >1 unique answer in the vote distribution, i.e., `len(set(votes)) > 1`.
+ 
+So I need to separate these concerns: rename the current calculation to track the disagree rate separately, then compute the actual multi-candidate rate from the vote distribution. I'll need to examine the results JSON structure to see how votes are stored so I can properly extract the unique answers per problem.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f05dcb82-c5a1-48e7-936c-599d6fa8ee03",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EeeLP8TdbRoq2eN9tf",
+  "type": "assistant",
+  "uuid": "6fb7cd4d-86d9-42d3-a5b8-f95bc97246b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FDgDMTKDforfSE5pQX8NS9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3626,
+      "cache_read_input_tokens": 32886,
+      "output_tokens": 564,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3626,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 564,
+          "cache_read_input_tokens": 32886,
+          "cache_creation_input_tokens": 3626,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3626
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-17T13:41:05.370Z_
+
+Found the bug. Lines ~182-183:
+```python
+c0 = sum(1 for x in items if x.get('sica_answer') != x.get('sc_answer')) / n
+n_multi = sum(1 for x in items if x.get('sica_answer') != x.get('sc_answer'))
+```
+
+This computes `c0` as SICA-SC disagree rate, not true multi-candidate rate. I need to understand the data structure to find where votes are stored.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6fb7cd4d-86d9-42d3-a5b8-f95bc97246b3",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EeeLP8TdbRoq2eN9tf",
+  "type": "assistant",
+  "uuid": "7b3743eb-9ebe-404e-aba0-a1637ca904c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FDgDMTKDforfSE5pQX8NS9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3626,
+      "cache_read_input_tokens": 32886,
+      "output_tokens": 564,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3626,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 564,
+          "cache_read_input_tokens": 32886,
+          "cache_creation_input_tokens": 3626,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3626
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-17T13:41:07.944Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015Tq7npNLs3FczbWxxQeXrt`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json')); item=d['results'][0]; print(list(item.keys()))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b3743eb-9ebe-404e-aba0-a1637ca904c5",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EeeLP8TdbRoq2eN9tf",
+  "type": "assistant",
+  "uuid": "d3e944f5-b2b1-4587-ab10-bf58b106dd07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FDgDMTKDforfSE5pQX8NS9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3626,
+      "cache_read_input_tokens": 32886,
+      "output_tokens": 564,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3626,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 564,
+          "cache_read_input_tokens": 32886,
+          "cache_creation_input_tokens": 3626,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3626
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-17T13:41:07.969Z_
+
+<details><summary>↩ Tool result · `toolu_015Tq7npNLs3FczbWxxQeXrt`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d3e944f5-b2b1-4587-ab10-bf58b106dd07",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "c6502df2-d355-4a92-861a-652beb4fb0c2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d3e944f5-b2b1-4587-ab10-bf58b106dd07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-17T13:41:12.389Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01EbJjKAXrnHgTjpVGZeck4T`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "python3 -c \"\nimport json\nd = json.load(open('/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json'))\nitem = d['results'][0]\nprint('Keys:', list(item.keys()))\n# Look for votes/answers\nfor key in ['votes', 'vote_distribution', 'trace_answers', 'sc_votes', 'answers', 'traces']:\n    if key in item:\n        val = item[key]\n        if isinstance(val, (list, dict)):\n            print(f'{key} type={type(val).__name__}, sample={str(val)[:200]}')\n        else:\n            print(f'{key} = {val}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c6502df2-d355-4a92-861a-652beb4fb0c2",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EgSqsnPpwXSnsQrpnc",
+  "type": "assistant",
+  "uuid": "41513c12-7d31-4ec1-a90d-3d163293021b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018nEePEk71Q2cYusf5Nptem",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 36512,
+      "output_tokens": 278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 657,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 278,
+          "cache_read_input_tokens": 36512,
+          "cache_creation_input_tokens": 657,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 657
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-17T13:41:12.842Z_
+
+<details><summary>↩ Tool result · `toolu_01EbJjKAXrnHgTjpVGZeck4T`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport json\\\\nd = json.load(open(\\\\'/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json\\\\'))\\\\nitem = d[\\\\'results\\\\'][0]\\\\nprint(\\\\'Keys:\\\\', list(item.keys()))\\\\n# Look for votes/answers\\\\nfor key in [\\\\'votes\\\\', \\\\'vote_distribution\\\\', \\\\'trace_answers\\\\', \\\\'sc_votes\\\\', \\\\'answers\\\\', \\\\'traces\\\\']:\\\\n    if key in item:\\\\n        val = item[key]\\\\n        if isinstance(val, (list, dict)):\\\\n            print(f\\\\'{key} type={type(val).__name__}, sample={str(val)[:200]}\\\\')\\\\n        else:\\\\n            print(f\\\\'{key} = {val}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "41513c12-7d31-4ec1-a90d-3d163293021b",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "715c9bfd-afc1-44b0-a880-52132dff6979",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nd = json.load(open(\\\\\\\\'/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json\\\\\\\\'))\\\\\\\\nitem = d[\\\\\\\\'results\\\\\\\\'][0]\\\\\\\\nprint(\\\\\\\\'Keys:\\\\\\\\', list(item.keys()))\\\\\\\\n# Look for votes/answers\\\\\\\\nfor key in [\\\\\\\\'votes\\\\\\\\', \\\\\\\\'vote_distribution\\\\\\\\', \\\\\\\\'trace_answers\\\\\\\\', \\\\\\\\'sc_votes\\\\\\\\', \\\\\\\\'answers\\\\\\\\', \\\\\\\\'traces\\\\\\\\']:\\\\\\\\n    if key in item:\\\\\\\\n        val = item[key]\\\\\\\\n        if isinstance(val, (list, dict)):\\\\\\\\n            print(f\\\\\\\\'{key} type={type(val).__name__}, sample={str(val)[:200]}\\\\\\\\')\\\\\\\\n        else:\\\\\\\\n            print(f\\\\\\\\'{key} = {val}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport json\\\\nd = json.load(open(\\\\'/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json\\\\'))\\\\nitem = d[\\\\'results\\\\'][0]\\\\nprint(\\\\'Keys:\\\\', list(item.keys()))\\\\n# Look for votes/answers\\\\nfor key in [\\\\'votes\\\\', \\\\'vote_distribution\\\\', \\\\'trace_answers\\\\', \\\\'sc_votes\\\\', \\\\'answers\\\\', \\\\'traces\\\\']:\\\\n    if key in item:\\\\n        val = item[key]\\\\n        if isinstance(val, (list, dict)):\\\\n            print(f\\\\'{key} type={type(val).__name__}, sample={str(val)[:200]}\\\\')\\\\n        else:\\\\n            print(f\\\\'{key} = {val}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "41513c12-7d31-4ec1-a90d-3d163293021b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-17T13:41:16.570Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011ygjCubkN2cqSQfKi3po6H`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "which python && python -c \"\nimport json\nd = json.load(open('/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json'))\nitem = d['results'][0]\nprint('Keys:', list(item.keys()))\nfor key in ['votes', 'vote_distribution', 'trace_answers', 'sc_votes', 'answers', 'traces']:\n    if key in item:\n        val = item[key]\n        if isinstance(val, (list, dict)):\n            print(f'{key} type={type(val).__name__}, sample={str(val)[:300]}')\n        else:\n            print(f'{key} = {val}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "715c9bfd-afc1-44b0-a880-52132dff6979",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EgoNuCvjGUfc8P6BMz",
+  "type": "assistant",
+  "uuid": "6dbc4a8e-6ed4-44a2-b973-4cf585612bf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AdXRpCEqMoabCRpZKs4GYD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 642,
+      "cache_read_input_tokens": 37169,
+      "output_tokens": 272,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 642,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 272,
+          "cache_read_input_tokens": 37169,
+          "cache_creation_input_tokens": 642,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 642
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-17T13:41:17.648Z_
+
+<details><summary>↩ Tool result · `toolu_011ygjCubkN2cqSQfKi3po6H`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'which python && python -c \\\"\\\\nimport json\\\\nd = json.load(open(\\\\'/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json\\\\'))\\\\nitem = d[\\\\'results\\\\'][0]\\\\nprint(\\\\'Keys:\\\\', list(item.keys()))\\\\nfor key in [\\\\'votes\\\\', \\\\'vote_distribution\\\\', \\\\'trace_answers\\\\', \\\\'sc_votes\\\\', \\\\'answers\\\\', \\\\'traces\\\\']:\\\\n    if key in item:\\\\n        val = item[key]\\\\n        if isinstance(val, (list, dict)):\\\\n            print(f\\\\'{key} type={type(val).__name__}, sample={str(val)[:300]}\\\\')\\\\n        else:\\\\n            print(f\\\\'{key} = {val}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6dbc4a8e-6ed4-44a2-b973-4cf585612bf5",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "22a0a30d-aa7d-4394-aa11-34ae3e1dcdff",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'which python && python -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nd = json.load(open(\\\\\\\\'/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json\\\\\\\\'))\\\\\\\\nitem = d[\\\\\\\\'results\\\\\\\\'][0]\\\\\\\\nprint(\\\\\\\\'Keys:\\\\\\\\', list(item.keys()))\\\\\\\\nfor key in [\\\\\\\\'votes\\\\\\\\', \\\\\\\\'vote_distribution\\\\\\\\', \\\\\\\\'trace_answers\\\\\\\\', \\\\\\\\'sc_votes\\\\\\\\', \\\\\\\\'answers\\\\\\\\', \\\\\\\\'traces\\\\\\\\']:\\\\\\\\n    if key in item:\\\\\\\\n        val = item[key]\\\\\\\\n        if isinstance(val, (list, dict)):\\\\\\\\n            print(f\\\\\\\\'{key} type={type(val).__name__}, sample={str(val)[:300]}\\\\\\\\')\\\\\\\\n        else:\\\\\\\\n            print(f\\\\\\\\'{key} = {val}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'which python && python -c \\\"\\\\nimport json\\\\nd = json.load(open(\\\\'/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json\\\\'))\\\\nitem = d[\\\\'results\\\\'][0]\\\\nprint(\\\\'Keys:\\\\', list(item.keys()))\\\\nfor key in [\\\\'votes\\\\', \\\\'vote_distribution\\\\', \\\\'trace_answers\\\\', \\\\'sc_votes\\\\', \\\\'answers\\\\', \\\\'traces\\\\']:\\\\n    if key in item:\\\\n        val = item[key]\\\\n        if isinstance(val, (list, dict)):\\\\n            print(f\\\\'{key} type={type(val).__name__}, sample={str(val)[:300]}\\\\')\\\\n        else:\\\\n            print(f\\\\'{key} = {val}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.07}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6dbc4a8e-6ed4-44a2-b973-4cf585612bf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-17T13:41:21.484Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01CYZ4zBQVewH2gJRu1J645N`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "ls /root/miniconda3/bin/python* /root/anaconda3/bin/python* /usr/bin/python* 2>/dev/null; conda info --envs 2>/dev/null; echo \"---\"; PATH=$PATH:/root/miniconda3/bin:/root/anaconda3/bin which python3 python 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22a0a30d-aa7d-4394-aa11-34ae3e1dcdff",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Eh9tw4MogwpwTTVezX",
+  "type": "assistant",
+  "uuid": "6546fcdc-9d1f-4913-87cd-48d664b77703",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FMeqVSg9GmHqEvSBrG4aiP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 616,
+      "cache_read_input_tokens": 37811,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 616,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 37811,
+          "cache_creation_input_tokens": 616,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 616
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-17T13:41:22.305Z_
+
+<details><summary>↩ Tool result · `toolu_01CYZ4zBQVewH2gJRu1J645N`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python3-config\\n/root/miniconda3/bin/python3.1\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n---\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6546fcdc-9d1f-4913-87cd-48d664b77703",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "7a03c5c2-b648-49dc-a200-26ce64906d57",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\n/root/miniconda3/bin/python3\\\\n/root/miniconda3/bin/python3-config\\\\n/root/miniconda3/bin/python3.1\\\\n/root/miniconda3/bin/python3.12\\\\n/root/miniconda3/bin/python3.12-config\\\\n---\\\\n/root/miniconda3/bin/python3\\\\n/root/miniconda3/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python3-config\\n/root/miniconda3/bin/python3.1\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n---\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6546fcdc-9d1f-4913-87cd-48d664b77703",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56 · 2026-05-17T13:41:22.308Z_
+
+```json
+{
+  "parentUuid": "7a03c5c2-b648-49dc-a200-26ce64906d57",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "4bfaf0a7-b6da-4984-b41d-e5ec4127ed6e",
+  "timestamp": "2026-05-17T13:41:22.308Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-17T13:41:25.520Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01ToVYmp9E7bqcyk81ucdaSv`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "/root/miniconda3/bin/python -c \"\nimport json\nd = json.load(open('/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json'))\nitem = d['results'][0]\nprint('Keys:', list(item.keys()))\nfor key in ['votes', 'vote_distribution', 'trace_answers', 'sc_votes', 'answers', 'traces']:\n    if key in item:\n        val = item[key]\n        if isinstance(val, (list, dict)):\n            print(f'{key} type={type(val).__name__}, sample={str(val)[:300]}')\n        else:\n            print(f'{key} = {val}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4bfaf0a7-b6da-4984-b41d-e5ec4127ed6e",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EhVo1YHf6D6aCgGB3n",
+  "type": "assistant",
+  "uuid": "8bc80bc4-543d-45f0-8370-6fd48cdf0981",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ybg65B66QFys1NV4hbgWoA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 483,
+      "cache_read_input_tokens": 38427,
+      "output_tokens": 279,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 483,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 279,
+          "cache_read_input_tokens": 38427,
+          "cache_creation_input_tokens": 483,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 483
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-17T13:41:25.991Z_
+
+<details><summary>↩ Tool result · `toolu_01ToVYmp9E7bqcyk81ucdaSv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Keys: ['problem_idx', 'problem_id', 'problem', 'dataset', 'level', 'ground_truth', 'sica_answer', 'sica_scores', 'sica_correct', 'sc_answer', 'sc_vote_count', 'sc_vote_distribution', 'sc_correct', 'constraints_stats', 'maxsat_stats', 'timing', 'wall_time_s', 'trace_extraction_stats', 'truncated_traces', 'raw_constraints', 'per_trace']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8bc80bc4-543d-45f0-8370-6fd48cdf0981",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "ed52808b-f0b5-4e83-a411-88d84438d0b4",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Keys: ['problem_idx', 'problem_id', 'problem', 'dataset', 'level', 'ground_truth', 'sica_answer', 'sica_scores', 'sica_correct', 'sc_answer', 'sc_vote_count', 'sc_vote_distribution', 'sc_correct', 'constraints_stats', 'maxsat_stats', 'timing', 'wall_time_s', 'trace_extraction_stats', 'truncated_traces', 'raw_constraints', 'per_trace']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Keys: ['problem_idx', 'problem_id', 'problem', 'dataset', 'level', 'ground_truth', 'sica_answer', 'sica_scores', 'sica_correct', 'sc_answer', 'sc_vote_count', 'sc_vote_distribution', 'sc_correct', 'constraints_stats', 'maxsat_stats', 'timing', 'wall_time_s', 'trace_extraction_stats', 'truncated_traces', 'raw_constraints', 'per_trace']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8bc80bc4-543d-45f0-8370-6fd48cdf0981",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-17T13:41:33.418Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I can see `sc_vote_distribution` — that's where I need to check for multi-candidate rate. Let me look at what that looks like, and also check `per_trace` for the trace-level answers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ed52808b-f0b5-4e83-a411-88d84438d0b4",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EhmXoZTrVB3nNi82Ls",
+  "type": "assistant",
+  "uuid": "719712d7-2c87-498d-9026-494958721065",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NUW3ncrvt7EG4QRNQab3tL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 486,
+      "cache_read_input_tokens": 38910,
+      "output_tokens": 434,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 486,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 434,
+          "cache_read_input_tokens": 38910,
+          "cache_creation_input_tokens": 486,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 486
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-17T13:41:37.574Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SdBPHsp5Ln7zLBqbaLChRw`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "/root/miniconda3/bin/python -c \"\nimport json\nd = json.load(open('/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json'))\nitem = d['results'][0]\nprint('sc_vote_distribution:', item.get('sc_vote_distribution'))\nprint('sc_vote_count:', item.get('sc_vote_count'))\nprint('sc_answer:', item.get('sc_answer'))\nprint('sica_answer:', item.get('sica_answer'))\n# check per_trace structure\npt = item.get('per_trace', [])\nif pt:\n    print('per_trace[0] keys:', list(pt[0].keys()) if isinstance(pt[0], dict) else type(pt[0]))\n    print('per_trace length:', len(pt))\n    if isinstance(pt[0], dict):\n        for k in ['answer', 'extracted_answer', 'vote']:\n            if k in pt[0]:\n                print(f'  per_trace[0][{k}] = {pt[0][k]}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "719712d7-2c87-498d-9026-494958721065",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EhmXoZTrVB3nNi82Ls",
+  "type": "assistant",
+  "uuid": "76c38edb-1720-4cba-9d32-8e4430bd1890",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NUW3ncrvt7EG4QRNQab3tL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 486,
+      "cache_read_input_tokens": 38910,
+      "output_tokens": 434,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 486,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 434,
+          "cache_read_input_tokens": 38910,
+          "cache_creation_input_tokens": 486,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 486
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-17T13:41:38.045Z_
+
+<details><summary>↩ Tool result · `toolu_01SdBPHsp5Ln7zLBqbaLChRw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"sc_vote_distribution: {'True': 9}\\nsc_vote_count: 9\\nsc_answer: True\\nsica_answer: True\\nper_trace[0] keys: ['trace_idx', 'answer', 'finish_reason', 'extraction_method', 'trace_len']\\nper_trace length: 12\\n  per_trace[0][answer] = \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "76c38edb-1720-4cba-9d32-8e4430bd1890",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "3f2f9ddf-bef3-45ee-9feb-135af7a5984e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"sc_vote_distribution: {'True': 9}\\\\nsc_vote_count: 9\\\\nsc_answer: True\\\\nsica_answer: True\\\\nper_trace[0] keys: ['trace_idx', 'answer', 'finish_reason', 'extraction_method', 'trace_len']\\\\nper_trace length: 12\\\\n  per_trace[0][answer] = \\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"sc_vote_distribution: {'True': 9}\\nsc_vote_count: 9\\nsc_answer: True\\nsica_answer: True\\nper_trace[0] keys: ['trace_idx', 'answer', 'finish_reason', 'extraction_method', 'trace_len']\\nper_trace length: 12\\n  per_trace[0][answer] = \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  },
+  "sourceToolAssistantUUID": "76c38edb-1720-4cba-9d32-8e4430bd1890",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "3f2f9ddf-bef3-45ee-9feb-135af7a5984e",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix C0 definition in constraint quality analysis script",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0"
+}
+```
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-17T13:41:42.096Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BnWU94G5cYw8pFxtFKQHvx`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "/root/miniconda3/bin/python -c \"\nimport json\nd = json.load(open('/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json'))\n# Find an item with multi-candidate to understand structure\nfor item in d['results']:\n    dist = item.get('sc_vote_distribution', {})\n    if len(dist) > 1:\n        print('sc_vote_distribution:', dist)\n        print('sc_answer:', item.get('sc_answer'))\n        print('sica_answer:', item.get('sica_answer'))\n        answers = [t.get('answer') for t in item.get('per_trace', [])]\n        print('per_trace answers:', answers)\n        break\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f2f9ddf-bef3-45ee-9feb-135af7a5984e",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Eif9rMDAm14osqGiyz",
+  "type": "assistant",
+  "uuid": "32a62197-6e26-452e-b3db-376196f4d798",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JrDaxaQ6gKW3jrn8Lztca7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 604,
+      "cache_read_input_tokens": 39396,
+      "output_tokens": 286,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 604,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 286,
+          "cache_read_input_tokens": 39396,
+          "cache_creation_input_tokens": 604,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 604
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-17T13:41:42.606Z_
+
+<details><summary>↩ Tool result · `toolu_01BnWU94G5cYw8pFxtFKQHvx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"sc_vote_distribution: {'Unknown': 5, 'False': 1, 'True': 5}\\nsc_answer: Unknown\\nsica_answer: True\\nper_trace answers: ['', 'Unknown', 'False', 'True', 'Unknown', 'Unknown', 'True', 'True', 'Unknown', 'Unknown', 'True', 'True']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "32a62197-6e26-452e-b3db-376196f4d798",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "f579f0b6-99b7-4ddd-a2a8-422ad5031247",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"sc_vote_distribution: {'Unknown': 5, 'False': 1, 'True': 5}\\\\nsc_answer: Unknown\\\\nsica_answer: True\\\\nper_trace answers: ['', 'Unknown', 'False', 'True', 'Unknown', 'Unknown', 'True', 'True', 'Unknown', 'Unknown', 'True', 'True']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"sc_vote_distribution: {'Unknown': 5, 'False': 1, 'True': 5}\\nsc_answer: Unknown\\nsica_answer: True\\nper_trace answers: ['', 'Unknown', 'False', 'True', 'Unknown', 'Unknown', 'True', 'True', 'Unknown', 'Unknown', 'True', 'True']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  },
+  "sourceToolAssistantUUID": "32a62197-6e26-452e-b3db-376196f4d798",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66 · 2026-05-17T13:41:54.475Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the data structure. The `sc_vote_distribution` is a dict of {answer: count}, and the multi-candidate rate should be: fraction of problems where `len(sc_vote_distribution) > 1`.
+
+But wait, there are empty answers (`''`) in per_trace. The `sc_vote_distribution` seems to only include non-empty answers (count is 5+1+5=11, but there are 12 traces, and one has empty answer).
+
+Let me verify the correct multi-candidate definition. The task says: "在 K 条 trace 的 vote distribution 中，有 >1 个 unique answer 的题目比例。
+
+即 `len(set(votes)) > 1` 的题目数 / 总题目数"
+
+So the definition is: among the K traces' votes, if there are >1 unique answers. Since `sc_vote_distribution` already filters to non-empty answers, checking `len(sc_vote_distribution) > 1` should be the right approach.
+
+Let me verify this against the reference values. For exp011 (LLaMA-8B, 60 problems): registry says 0.6167. Let me compute to confirm.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f579f0b6-99b7-4ddd-a2a8-422ad5031247",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EizZAY6jub2JyGcG46",
+  "type": "assistant",
+  "uuid": "a00dfc3d-a571-4f57-b674-d7b90ba4d11d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019qvt3tW9QCBTNHtSCABqxz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 454,
+      "cache_read_input_tokens": 40000,
+      "output_tokens": 928,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 454,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 928,
+          "cache_read_input_tokens": 40000,
+          "cache_creation_input_tokens": 454,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 454
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-17T13:41:54.488Z_
+
+Good. `sc_vote_distribution` has the vote counts for non-empty answers. The true multi-candidate rate = fraction of problems with `len(sc_vote_distribution) > 1`. Let me verify against the registry values.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a00dfc3d-a571-4f57-b674-d7b90ba4d11d",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EizZAY6jub2JyGcG46",
+  "type": "assistant",
+  "uuid": "fdf9b193-6d12-4b88-852f-f9f5aeb04bd5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019qvt3tW9QCBTNHtSCABqxz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 454,
+      "cache_read_input_tokens": 40000,
+      "output_tokens": 928,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 454,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 928,
+          "cache_read_input_tokens": 40000,
+          "cache_creation_input_tokens": 454,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 454
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-17T13:41:58.997Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_018f9wz7j6PVY6rEFoJAHus8`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "/root/miniconda3/bin/python -c \"\nimport json\n\nfiles = {\n    'exp011': '/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json',\n    'exp010': '/root/symb_invariant_consensus/results/exp010_mistral/exp010_results.json',\n    'exp017': '/root/symb_invariant_consensus/results/exp017_strategyqa/exp017_results.json',\n    'exp018': '/root/symb_invariant_consensus/results/exp018_arc/exp018_results.json',\n    'exp019': '/root/symb_invariant_consensus/results/exp019_strategyqa_200/exp019_results.json',\n    'exp020': '/root/symb_invariant_consensus/results/exp020_folio_200/exp020_results.json',\n    'exp001': '/root/symb_invariant_consensus/results/sica_expanded_14b.json',\n}\n\nfor name, path in files.items():\n    try:\n        d = json.load(open(path))\n        items = d.get('results', d if isinstance(d, list) else [])\n        n = len(items)\n        # True multi-candidate: len(sc_vote_distribution) > 1\n        multi = sum(1 for x in items if len(x.get('sc_vote_distribution', {})) > 1)\n        # Disagree: sica_answer != sc_answer\n        disagree = sum(1 for x in items if x.get('sica_answer') != x.get('sc_answer'))\n        print(f'{name}: n={n}, multi_cand={multi}/{n}={multi/n:.4f}, disagree={disagree}/{n}={disagree/n:.4f}')\n    except Exception as e:\n        print(f'{name}: ERROR {e}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fdf9b193-6d12-4b88-852f-f9f5aeb04bd5",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EizZAY6jub2JyGcG46",
+  "type": "assistant",
+  "uuid": "7b9db2ca-a679-41bc-9883-fc4abcad3388",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019qvt3tW9QCBTNHtSCABqxz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 454,
+      "cache_read_input_tokens": 40000,
+      "output_tokens": 928,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 454,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 928,
+          "cache_read_input_tokens": 40000,
+          "cache_creation_input_tokens": 454,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 454
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-17T13:41:59.540Z_
+
+<details><summary>↩ Tool result · `toolu_018f9wz7j6PVY6rEFoJAHus8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp011: n=60, multi_cand=37/60=0.6167, disagree=7/60=0.1167\\nexp010: n=60, multi_cand=30/60=0.5000, disagree=4/60=0.0667\\nexp017: n=60, multi_cand=6/60=0.1000, disagree=2/60=0.0333\\nexp018: n=60, multi_cand=3/60=0.0500, disagree=1/60=0.0167\\nexp019: n=200, multi_cand=82/200=0.4100, disagree=14/200=0.0700\\nexp020: n=204, multi_cand=126/204=0.6176, disagree=13/204=0.0637\\nexp001: n=804, multi_cand=307/804=0.3818, disagree=31/804=0.0386\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7b9db2ca-a679-41bc-9883-fc4abcad3388",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "127b9be2-709d-49c1-978d-e209540ab202",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp011: n=60, multi_cand=37/60=0.6167, disagree=7/60=0.1167\\\\nexp010: n=60, multi_cand=30/60=0.5000, disagree=4/60=0.0667\\\\nexp017: n=60, multi_cand=6/60=0.1000, disagree=2/60=0.0333\\\\nexp018: n=60, multi_cand=3/60=0.0500, disagree=1/60=0.0167\\\\nexp019: n=200, multi_cand=82/200=0.4100, disagree=14/200=0.0700\\\\nexp020: n=204, multi_cand=126/204=0.6176, disagree=13/204=0.0637\\\\nexp001: n=804, multi_cand=307/804=0.3818, disagree=31/804=0.0386\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp011: n=60, multi_cand=37/60=0.6167, disagree=7/60=0.1167\\nexp010: n=60, multi_cand=30/60=0.5000, disagree=4/60=0.0667\\nexp017: n=60, multi_cand=6/60=0.1000, disagree=2/60=0.0333\\nexp018: n=60, multi_cand=3/60=0.0500, disagree=1/60=0.0167\\nexp019: n=200, multi_cand=82/200=0.4100, disagree=14/200=0.0700\\nexp020: n=204, multi_cand=126/204=0.6176, disagree=13/204=0.0637\\nexp001: n=804, multi_cand=307/804=0.3818, disagree=31/804=0.0386\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7b9db2ca-a679-41bc-9883-fc4abcad3388",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-17T13:42:13.019Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check against the registry values:
+- exp011 (LLaMA-8B, 60): computed 0.6167 → registry 0.6167 ✓
+- exp010 (Mistral-7B, 60): computed 0.5000 → registry 0.0667 ✗ (registry has disagree rate, not multi-candidate rate - as noted, "registry 值可能本身也有问题")
+- exp017 (StrategyQA, 60): computed 0.1000 → registry 0.1 ✓
+
+
+- exp018 (ARC, 60): computed 0.0500 → registry 0.0833 ✗ (registry may also be wrong)
+- exp019: computed 0.4100 → registry discordant_rate 0.07 (different metric)
+- exp020: computed 0.6176 → registry 0.618 ✓ (close enough, rounding)
+- exp001 (Qwen-14B, 804): computed 0.3818 → registry 0.5333, but the registry entry references a D012 subset rather than the full 804 samples
+
+So exp011, exp017, and exp020 are matching up correctly. The registry values for exp010 and exp018 look suspect, and exp001's registry value comes from a different data subset entirely. Now I need to refactor the script to properly compute `c0_multi_candidate_rate` by checking if `sc_vote_distribution` has more than one entry, add a separate `c0_disagree_rate` field that captures when `sica_answer` differs from `sc_answer`, update the correlation calculations to incorporate both metrics, and revise the output JSON proxy definitions accordingly. I should also verify whether some items are missing `sc_vote_distribution` entirely and see how this affects exp001 when expanded to the full dataset.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "127b9be2-709d-49c1-978d-e209540ab202",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EkF45GZ2Qy2pvqgTFd",
+  "type": "assistant",
+  "uuid": "6a1eb276-af0f-478b-bfe6-a5f305331ff6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GuXhGXcp9CtxH4B3s7xgiH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1239,
+      "cache_read_input_tokens": 40454,
+      "output_tokens": 864,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1239,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 864,
+          "cache_read_input_tokens": 40454,
+          "cache_creation_input_tokens": 1239,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1239
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-17T13:42:13.270Z_
+
+Multi-candidate rates match registry: exp011=0.6167 (registry: 0.6167), exp017=0.1000 (registry: 0.1), exp020=0.6176 (registry: 0.618). The current script was outputting the disagree rate (much smaller values) as `c0_multi_candidate_rate`.
+
+Now let me also check that all items have `sc_vote_distribution` and look at the rest of the script for the correlations/output section.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a1eb276-af0f-478b-bfe6-a5f305331ff6",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EkF45GZ2Qy2pvqgTFd",
+  "type": "assistant",
+  "uuid": "e71073a4-70eb-4d8a-ba20-6c57463a2461",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GuXhGXcp9CtxH4B3s7xgiH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1239,
+      "cache_read_input_tokens": 40454,
+      "output_tokens": 864,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1239,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 864,
+          "cache_read_input_tokens": 40454,
+          "cache_creation_input_tokens": 1239,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1239
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-17T13:42:17.109Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013cTGkewVBcuXWebuxEhxVe`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "/root/miniconda3/bin/python -c \"\nimport json\nfiles = {\n    'exp011': '/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json',\n    'exp001': '/root/symb_invariant_consensus/results/sica_expanded_14b.json',\n}\nfor name, path in files.items():\n    d = json.load(open(path))\n    items = d.get('results', d if isinstance(d, list) else [])\n    missing = sum(1 for x in items if 'sc_vote_distribution' not in x)\n    print(f'{name}: {len(items)} items, missing sc_vote_distribution: {missing}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e71073a4-70eb-4d8a-ba20-6c57463a2461",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EkF45GZ2Qy2pvqgTFd",
+  "type": "assistant",
+  "uuid": "18d854e2-9add-4467-b371-0bd4e8f1c2ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GuXhGXcp9CtxH4B3s7xgiH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1239,
+      "cache_read_input_tokens": 40454,
+      "output_tokens": 864,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1239,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 864,
+          "cache_read_input_tokens": 40454,
+          "cache_creation_input_tokens": 1239,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1239
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-17T13:42:17.622Z_
+
+<details><summary>↩ Tool result · `toolu_013cTGkewVBcuXWebuxEhxVe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp011: 60 items, missing sc_vote_distribution: 0\\nexp001: 804 items, missing sc_vote_distribution: 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "18d854e2-9add-4467-b371-0bd4e8f1c2ea",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "deb21df7-dfab-4c66-ad58-abce383f6000",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp011: 60 items, missing sc_vote_distribution: 0\\\\nexp001: 804 items, missing sc_vote_distribution: 0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp011: 60 items, missing sc_vote_distribution: 0\\nexp001: 804 items, missing sc_vote_distribution: 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  },
+  "sourceToolAssistantUUID": "18d854e2-9add-4467-b371-0bd4e8f1c2ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-17T13:42:20.266Z_
+
+Good, all items have `sc_vote_distribution`. Now let me read the rest of the script (the correlations section and main).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "deb21df7-dfab-4c66-ad58-abce383f6000",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EmaHVd6Sq6sQ59f8TL",
+  "type": "assistant",
+  "uuid": "6d623dc6-d1d6-4190-a689-7f0fb5f198d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0178D5opPxWA7xuJRNDq7Ao7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 41693,
+      "output_tokens": 157,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 974,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 157,
+          "cache_read_input_tokens": 41693,
+          "cache_creation_input_tokens": 974,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 974
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-17T13:42:20.911Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RdFUFakaVx3ZJmK8yn7NcP`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "tail -120 /root/symb_invariant_consensus/scripts/compute_constraint_quality_correlation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d623dc6-d1d6-4190-a689-7f0fb5f198d3",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EmaHVd6Sq6sQ59f8TL",
+  "type": "assistant",
+  "uuid": "2df05e49-80d4-4f88-b175-bd1a8beb0efa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0178D5opPxWA7xuJRNDq7Ao7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 41693,
+      "output_tokens": 157,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 974,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 157,
+          "cache_read_input_tokens": 41693,
+          "cache_creation_input_tokens": 974,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 974
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-17T13:42:21.349Z_
+
+<details><summary>↩ Tool result · `toolu_01RdFUFakaVx3ZJmK8yn7NcP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\ndef compute_correlations(rows):\\n    c0 = [r['c0_multi_candidate_rate'] for r in rows]\\n    gap = [r['delta_pp'] for r in rows]\\n    sat = [r['avg_satisfied_ratio'] for r in rows]\\n    excl = [r['avg_exclusion_rate'] for r in rows]\\n    ext = [r['avg_extraction_rate'] for r in rows]\\n    dens = [r['avg_constraint_density'] for r in rows]\\n\\n    def corr(x, y):\\n        pairs = [(xi, yi) for xi, yi in zip(x, y) if xi is not None and yi is not None]\\n        if len(pairs) < 3:\\n            return None\\n        xf, yf = [p[0] for p in pairs], [p[1] for p in pairs]\\n        pr, pp = pearsonr(xf, yf)\\n        sr, sp = spearmanr(xf, yf)\\n        return {\\n            'pearson_r': round(pr, 4) if pr is not None else None,\\n            'pearson_p': round(pp, 4) if pp is not None else None,\\n            'spearman_rho': round(sr, 4) if sr is not None else None,\\n            'spearman_p': round(sp, 4) if sp is not None else None,\\n        }\\n\\n    return {\\n        'c0_vs_sica_sc_gap': corr(c0, gap),\\n        'c0_vs_satisfied_ratio': corr(c0, sat),\\n        'c0_vs_exclusion_rate': corr(c0, excl),\\n        'c0_vs_extraction_rate': corr(c0, ext),\\n        'c0_vs_constraint_density': corr(c0, dens),\\n        'satisfied_ratio_vs_sica_sc_gap': corr(sat, gap),\\n        'exclusion_rate_vs_sica_sc_gap': corr(excl, gap),\\n        'constraint_density_vs_sica_sc_gap': corr(dens, gap),\\n    }\\n\\n\\ndef main():\\n    old_path = '/root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json'\\n    old_data = json.load(open(old_path))\\n    old_by_name = {r['experiment']: r for r in old_data['per_experiment']}\\n\\n    rows = []\\n    for exp_name, meta in EXPERIMENTS.items():\\n        r = compute_experiment_metrics(exp_name, meta)\\n        if r:\\n            rows.append(r)\\n\\n    correlations = compute_correlations(rows)\\n\\n    print(\\\"=\\\" * 80)\\n    print(\\\"extraction_rate FIX COMPARISON\\\")\\n    print(\\\"=\\\" * 80)\\n    print(f\\\"{'Experiment':<35} {'OLD':>10} {'NEW':>10} {'CHANGE':>10}\\\")\\n    print(\\\"-\\\" * 75)\\n    for r in rows:\\n        old_val = old_by_name.get(r['experiment'], {}).get('avg_extraction_rate', '?')\\n        new_val = r['avg_extraction_rate']\\n        if isinstance(old_val, (int, float)) and isinstance(new_val, (int, float)):\\n            change = new_val - old_val\\n            flag = \\\" *** FIXED\\\" if abs(change) > 0.001 else \\\"\\\"\\n            print(f\\\"{r['experiment']:<35} {old_val:>10.4f} {new_val:>10.4f} {change:>+10.4f}{flag}\\\")\\n        else:\\n            print(f\\\"{r['experiment']:<35} {str(old_val):>10} {str(new_val):>10}\\\")\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 80)\\n    print(\\\"VERIFICATION: all extraction_rate <= 1.0\\\")\\n    print(\\\"=\\\" * 80)\\n    all_ok = True\\n    for r in rows:\\n        v = r['avg_extraction_rate']\\n        ok = v is not None and v <= 1.0\\n        status = \\\"OK\\\" if ok else \\\"FAIL\\\"\\n        print(f\\\"  {r['experiment']}: {v} [{status}]\\\")\\n        if not ok:\\n            all_ok = False\\n    print(f\\\"\\\\nAll <= 1.0: {all_ok}\\\")\\n\\n    old_corr = old_data.get('correlations', {}).get('c0_vs_extraction_rate', {})\\n    new_corr = correlations.get('c0_vs_extraction_rate', {})\\n    print(f\\\"\\\\nc0_vs_extraction_rate correlation:\\\")\\n    print(f\\\"  OLD: pearson_r={old_corr.get('pearson_r')}, p={old_corr.get('pearson_p')}\\\")\\n    if new_corr:\\n        print(f\\\"  NEW: pearson_r={new_corr.get('pearson_r')}, p={new_corr.get('pearson_p')}\\\")\\n\\n    output = {\\n        'analysis_type': 'constraint_quality_correlation',\\n        'date': datetime.now().strftime('%Y-%m-%d'),\\n        'n_experiments': len(rows),\\n        'per_experiment': rows,\\n        'correlations': correlations,\\n        'data_availability': old_data.get('data_availability', {}),\\n        'proxy_definitions': {\\n            'c0_multi_candidate_rate': 'Fraction of problems where SC vote distribution has >1 unique answer',\\n            'avg_exclusion_rate': 'Mean(excluded / unique_after_dedup) per problem',\\n            'avg_satisfied_ratio': 'Mean(satisfied / (satisfied + excluded)) per problem',\\n            'avg_extraction_rate': 'Mean(traces_with_constraints / k) per problem. FIX: denominator is k (total traces), not answer-extracted traces',\\n            'avg_constraint_density': 'Mean(total_extracted / traces_with_constraints) per problem',\\n        },\\n        'notes': old_data.get('notes', {}),\\n        'bugfix': {\\n            'field': 'avg_extraction_rate',\\n            'bug': 'denominator was (boxed+fallback) answer-extracted traces instead of k (total traces)',\\n            'affected_experiments': ['exp011_llama8b_pw_folio', 'exp020_llama8b_folio'],\\n            'fix': 'always use k from summary as denominator',\\n        },\\n    }\\n\\n    with open(old_path, 'w') as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved corrected JSON: {old_path}\\\")\\n\\n    out_csv = '/root/symb_invariant_consensus/results/exp019_constraint_quality_summary.csv'\\n    with open(out_csv, 'w', newline='') as f:\\n        writer = csv.DictWriter(f, fieldnames=rows[0].keys())\\n        writer.writeheader()\\n        writer.writerows(rows)\\n    print(f\\\"Saved corrected CSV: {out_csv}\\\")\\n\\n\\nif __name__ == '__main__':\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2df05e49-80d4-4f88-b175-bd1a8beb0efa",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "cb9a1b25-ddad-4398-a0fd-2d0189c51bf6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\ndef compute_correlations(rows):\\\\n    c0 = [r['c0_multi_candidate_rate'] for r in rows]\\\\n    gap = [r['delta_pp'] for r in rows]\\\\n    sat = [r['avg_satisfied_ratio'] for r in rows]\\\\n    excl = [r['avg_exclusion_rate'] for r in rows]\\\\n    ext = [r['avg_extraction_rate'] for r in rows]\\\\n    dens = [r['avg_constraint_density'] for r in rows]\\\\n\\\\n    def corr(x, y):\\\\n        pairs = [(xi, yi) for xi, yi in zip(x, y) if xi is not None and yi is not None]\\\\n        if len(pairs) < 3:\\\\n            return None\\\\n        xf, yf = [p[0] for p in pairs], [p[1] for p in pairs]\\\\n        pr, pp = pearsonr(xf, yf)\\\\n        sr, sp = spearmanr(xf, yf)\\\\n        return {\\\\n            'pearson_r': round(pr, 4) if pr is not None else None,\\\\n            'pearson_p': round(pp, 4) if pp is not None else None,\\\\n            'spearman_rho': round(sr, 4) if sr is not None else None,\\\\n            'spearman_p': round(sp, 4) if sp is not None else None,\\\\n        }\\\\n\\\\n    return {\\\\n        'c0_vs_sica_sc_gap': corr(c0, gap),\\\\n        'c0_vs_satisfied_ratio': corr(c0, sat),\\\\n        'c0_vs_exclusion_rate': corr(c0, excl),\\\\n        'c0_vs_extraction_rate': corr(c0, ext),\\\\n        'c0_vs_constraint_density': corr(c0, dens),\\\\n        'satisfied_ratio_vs_sica_sc_gap': corr(sat, gap),\\\\n        'exclusion_rate_vs_sica_sc_gap': corr(excl, gap),\\\\n        'constraint_density_vs_sica_sc_gap': corr(dens, gap),\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    old_path = '/root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json'\\\\n    old_data = json.load(open(old_path))\\\\n    old_by_name = {r['experiment']: r for r in old_data['per_experiment']}\\\\n\\\\n    rows = []\\\\n    for exp_name, meta in EXPERIMENTS.items():\\\\n        r = compute_experiment_metrics(exp_name, meta)\\\\n        if r:\\\\n            rows.append(r)\\\\n\\\\n    correlations = compute_correlations(rows)\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 80)\\\\n    print(\\\\\\\"extraction_rate FIX COMPARISON\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 80)\\\\n    print(f\\\\\\\"{'Experiment':<35} {'OLD':>10} {'NEW':>10} {'CHANGE':>10}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 75)\\\\n    for r in rows:\\\\n        old_val = old_by_name.get(r['experiment'], {}).get('avg_extraction_rate', '?')\\\\n        new_val = r['avg_extraction_rate']\\\\n        if isinstance(old_val, (int, float)) and isinstance(new_val, (int, float)):\\\\n            change = new_val - old_val\\\\n            flag = \\\\\\\" *** FIXED\\\\\\\" if abs(change) > 0.001 else \\\\\\\"\\\\\\\"\\\\n            print(f\\\\\\\"{r['experiment']:<35} {old_val:>10.4f} {new_val:>10.4f} {change:>+10.4f}{flag}\\\\\\\")\\\\n        else:\\\\n            print(f\\\\\\\"{r['experiment']:<35} {str(old_val):>10} {str(new_val):>10}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 80)\\\\n    print(\\\\\\\"VERIFICATION: all extraction_rate <= 1.0\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 80)\\\\n    all_ok = True\\\\n    for r in rows:\\\\n        v = r['avg_extraction_rate']\\\\n        ok = v is not None and v <= 1.0\\\\n        status = \\\\\\\"OK\\\\\\\" if ok else \\\\\\\"FAIL\\\\\\\"\\\\n        print(f\\\\\\\"  {r['experiment']}: {v} [{status}]\\\\\\\")\\\\n        if not ok:\\\\n            all_ok = False\\\\n    print(f\\\\\\\"\\\\\\\\nAll <= 1.0: {all_ok}\\\\\\\")\\\\n\\\\n    old_corr = old_data.get('correlations', {}).get('c0_vs_extraction_rate', {})\\\\n    new_corr = correlations.get('c0_vs_extraction_rate', {})\\\\n    print(f\\\\\\\"\\\\\\\\nc0_vs_extraction_rate correlation:\\\\\\\")\\\\n    print(f\\\\\\\"  OLD: pearson_r={old_corr.get('pearson_r')}, p={old_corr.get('pearson_p')}\\\\\\\")\\\\n    if new_corr:\\\\n        print(f\\\\\\\"  NEW: pearson_r={new_corr.get('pearson_r')}, p={new_corr.get('pearson_p')}\\\\\\\")\\\\n\\\\n    output = {\\\\n        'analysis_type': 'constraint_quality_correlation',\\\\n        'date': datetime.now().strftime('%Y-%m-%d'),\\\\n        'n_experiments': len(rows),\\\\n        'per_experiment': rows,\\\\n        'correlations': correlations,\\\\n        'data_availability': old_data.get('data_availability', {}),\\\\n        'proxy_definitions': {\\\\n            'c0_multi_candidate_rate': 'Fraction of problems where SC vote distribution has >1 unique answer',\\\\n            'avg_exclusion_rate': 'Mean(excluded / unique_after_dedup) per problem',\\\\n            'avg_satisfied_ratio': 'Mean(satisfied / (satisfied + excluded)) per problem',\\\\n            'avg_extraction_rate': 'Mean(traces_with_constraints / k) per problem. FIX: denominator is k (total traces), not answer-extracted traces',\\\\n            'avg_constraint_density': 'Mean(total_extracted / traces_with_constraints) per problem',\\\\n        },\\\\n        'notes': old_data.get('notes', {}),\\\\n        'bugfix': {\\\\n            'field': 'avg_extraction_rate',\\\\n            'bug': 'denominator was (boxed+fallback) answer-extracted traces instead of k (total traces)',\\\\n            'affected_experiments': ['exp011_llama8b_pw_folio', 'exp020_llama8b_folio'],\\\\n            'fix': 'always use k from summary as denominator',\\\\n        },\\\\n    }\\\\n\\\\n    with open(old_path, 'w') as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved corrected JSON: {old_path}\\\\\\\")\\\\n\\\\n    out_csv = '/root/symb_invariant_consensus/results/exp019_constraint_quality_summary.csv'\\\\n    with open(out_csv, 'w', newline='') as f:\\\\n        writer = csv.DictWriter(f, fieldnames=rows[0].keys())\\\\n        writer.writeheader()\\\\n        writer.writerows(rows)\\\\n    print(f\\\\\\\"Saved corrected CSV: {out_csv}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == '__main__':\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\ndef compute_correlations(rows):\\n    c0 = [r['c0_multi_candidate_rate'] for r in rows]\\n    gap = [r['delta_pp'] for r in rows]\\n    sat = [r['avg_satisfied_ratio'] for r in rows]\\n    excl = [r['avg_exclusion_rate'] for r in rows]\\n    ext = [r['avg_extraction_rate'] for r in rows]\\n    dens = [r['avg_constraint_density'] for r in rows]\\n\\n    def corr(x, y):\\n        pairs = [(xi, yi) for xi, yi in zip(x, y) if xi is not None and yi is not None]\\n        if len(pairs) < 3:\\n            return None\\n        xf, yf = [p[0] for p in pairs], [p[1] for p in pairs]\\n        pr, pp = pearsonr(xf, yf)\\n        sr, sp = spearmanr(xf, yf)\\n        return {\\n            'pearson_r': round(pr, 4) if pr is not None else None,\\n            'pearson_p': round(pp, 4) if pp is not None else None,\\n            'spearman_rho': round(sr, 4) if sr is not None else None,\\n            'spearman_p': round(sp, 4) if sp is not None else None,\\n        }\\n\\n    return {\\n        'c0_vs_sica_sc_gap': corr(c0, gap),\\n        'c0_vs_satisfied_ratio': corr(c0, sat),\\n        'c0_vs_exclusion_rate': corr(c0, excl),\\n        'c0_vs_extraction_rate': corr(c0, ext),\\n        'c0_vs_constraint_density': corr(c0, dens),\\n        'satisfied_ratio_vs_sica_sc_gap': corr(sat, gap),\\n        'exclusion_rate_vs_sica_sc_gap': corr(excl, gap),\\n        'constraint_density_vs_sica_sc_gap': corr(dens, gap),\\n    }\\n\\n\\ndef main():\\n    old_path = '/root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json'\\n    old_data = json.load(open(old_path))\\n    old_by_name = {r['experiment']: r for r in old_data['per_experiment']}\\n\\n    rows = []\\n    for exp_name, meta in EXPERIMENTS.items():\\n        r = compute_experiment_metrics(exp_name, meta)\\n        if r:\\n            rows.append(r)\\n\\n    correlations = compute_correlations(rows)\\n\\n    print(\\\"=\\\" * 80)\\n    print(\\\"extraction_rate FIX COMPARISON\\\")\\n    print(\\\"=\\\" * 80)\\n    print(f\\\"{'Experiment':<35} {'OLD':>10} {'NEW':>10} {'CHANGE':>10}\\\")\\n    print(\\\"-\\\" * 75)\\n    for r in rows:\\n        old_val = old_by_name.get(r['experiment'], {}).get('avg_extraction_rate', '?')\\n        new_val = r['avg_extraction_rate']\\n        if isinstance(old_val, (int, float)) and isinstance(new_val, (int, float)):\\n            change = new_val - old_val\\n            flag = \\\" *** FIXED\\\" if abs(change) > 0.001 else \\\"\\\"\\n            print(f\\\"{r['experiment']:<35} {old_val:>10.4f} {new_val:>10.4f} {change:>+10.4f}{flag}\\\")\\n        else:\\n            print(f\\\"{r['experiment']:<35} {str(old_val):>10} {str(new_val):>10}\\\")\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 80)\\n    print(\\\"VERIFICATION: all extraction_rate <= 1.0\\\")\\n    print(\\\"=\\\" * 80)\\n    all_ok = True\\n    for r in rows:\\n        v = r['avg_extraction_rate']\\n        ok = v is not None and v <= 1.0\\n        status = \\\"OK\\\" if ok else \\\"FAIL\\\"\\n        print(f\\\"  {r['experiment']}: {v} [{status}]\\\")\\n        if not ok:\\n            all_ok = False\\n    print(f\\\"\\\\nAll <= 1.0: {all_ok}\\\")\\n\\n    old_corr = old_data.get('correlations', {}).get('c0_vs_extraction_rate', {})\\n    new_corr = correlations.get('c0_vs_extraction_rate', {})\\n    print(f\\\"\\\\nc0_vs_extraction_rate correlation:\\\")\\n    print(f\\\"  OLD: pearson_r={old_corr.get('pearson_r')}, p={old_corr.get('pearson_p')}\\\")\\n    if new_corr:\\n        print(f\\\"  NEW: pearson_r={new_corr.get('pearson_r')}, p={new_corr.get('pearson_p')}\\\")\\n\\n    output = {\\n        'analysis_type': 'constraint_quality_correlation',\\n        'date': datetime.now().strftime('%Y-%m-%d'),\\n        'n_experiments': len(rows),\\n        'per_experiment': rows,\\n        'correlations': correlations,\\n        'data_availability': old_data.get('data_availability', {}),\\n        'proxy_definitions': {\\n            'c0_multi_candidate_rate': 'Fraction of problems where SC vote distribution has >1 unique answer',\\n            'avg_exclusion_rate': 'Mean(excluded / unique_after_dedup) per problem',\\n            'avg_satisfied_ratio': 'Mean(satisfied / (satisfied + excluded)) per problem',\\n            'avg_extraction_rate': 'Mean(traces_with_constraints / k) per problem. FIX: denominator is k (total traces), not answer-extracted traces',\\n            'avg_constraint_density': 'Mean(total_extracted / traces_with_constraints) per problem',\\n        },\\n        'notes': old_data.get('notes', {}),\\n        'bugfix': {\\n            'field': 'avg_extraction_rate',\\n            'bug': 'denominator was (boxed+fallback) answer-extracted traces instead of k (total traces)',\\n            'affected_experiments': ['exp011_llama8b_pw_folio', 'exp020_llama8b_folio'],\\n            'fix': 'always use k from summary as denominator',\\n        },\\n    }\\n\\n    with open(old_path, 'w') as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved corrected JSON: {old_path}\\\")\\n\\n    out_csv = '/root/symb_invariant_consensus/results/exp019_constraint_quality_summary.csv'\\n    with open(out_csv, 'w', newline='') as f:\\n        writer = csv.DictWriter(f, fieldnames=rows[0].keys())\\n        writer.writeheader()\\n        writer.writerows(rows)\\n    print(f\\\"Saved corrected CSV: {out_csv}\\\")\\n\\n\\nif __name__ == '__main__':\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2df05e49-80d4-4f88-b175-bd1a8beb0efa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "cb9a1b25-ddad-4398-a0fd-2d0189c51bf6",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 78_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix C0 definition in constraint quality analysis script",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 79 · 2026-05-17T13:42:31.174Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. I need to make these changes to the script:
+
+1. In `compute_experiment_metrics`:
+   - Change `c0` calculation from `sica_answer != sc_answer` to `len(sc_vote_distribution) > 1`
+   - Change `n_multi` similarly
+   - Add `c0_disagree_rate` as a separate field using `sica_answer != sc_answer`
+   - Add `n_disagree` count
+
+2. In the return dict:
+   - `c0_multi_candidate_rate` uses the true multi-candidate rate
+   - Include both the new disagree metrics
+
+3. In `compute_correlations`:
+   - Also add correlations for `c0_disagree_rate`
+
+4. In `main`:
+   - Update comparison output to show both c0 fields
+   - Update `proxy_definitions` to include `c0_disagree_rate`
+   - Update `bugfix` to mention the c0 fix
+
+5. In the main output section, add verification that c0_multi_candidate_rate >= c0_disagree_rate (since disagree should be a subset)
+
+Let me write the fix now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb9a1b25-ddad-4398-a0fd-2d0189c51bf6",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EmrCxBoxFUea1UjMCm",
+  "type": "assistant",
+  "uuid": "d00961e0-17ce-4d46-98be-9b26b241712a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MtwUWk5mH4UiU7dC2v1SKZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2208,
+      "cache_read_input_tokens": 42667,
+      "output_tokens": 2921,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2208,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2921,
+          "cache_read_input_tokens": 42667,
+          "cache_creation_input_tokens": 2208,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2208
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80 · 2026-05-17T13:42:32.607Z_
+
+I have the full picture. Now I'll write the fix. The changes:
+1. `c0_multi_candidate_rate` → `len(sc_vote_distribution) > 1` (true multi-candidate)
+2. Add `c0_disagree_rate` = `sica_answer != sc_answer` as separate field
+3. Update correlations, proxy definitions, and verification output
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d00961e0-17ce-4d46-98be-9b26b241712a",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EmrCxBoxFUea1UjMCm",
+  "type": "assistant",
+  "uuid": "f6f925fd-156b-4738-be85-8d382550687f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MtwUWk5mH4UiU7dC2v1SKZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2208,
+      "cache_read_input_tokens": 42667,
+      "output_tokens": 2921,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2208,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2921,
+          "cache_read_input_tokens": 42667,
+          "cache_creation_input_tokens": 2208,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2208
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-17T13:43:03.354Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01FdCpRjtJ25W6woKT26p3PY`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "cat > /tmp/fix_c0.py << 'PYEOF'\nimport re\n\nfilepath = '/root/symb_invariant_consensus/scripts/compute_constraint_quality_correlation.py'\nwith open(filepath, 'r') as f:\n    content = f.read()\n\n# 1. Fix c0 calculation in compute_experiment_metrics\n# Replace the wrong c0 and n_multi lines\nold_c0 = \"\"\"    c0 = sum(1 for x in items if x.get('sica_answer') != x.get('sc_answer')) / n\n    n_multi = sum(1 for x in items if x.get('sica_answer') != x.get('sc_answer'))\"\"\"\n\nnew_c0 = \"\"\"    c0 = sum(1 for x in items if len(x.get('sc_vote_distribution', {})) > 1) / n\n    n_multi = sum(1 for x in items if len(x.get('sc_vote_distribution', {})) > 1)\n\n    c0_disagree = sum(1 for x in items if x.get('sica_answer') != x.get('sc_answer')) / n\n    n_disagree = sum(1 for x in items if x.get('sica_answer') != x.get('sc_answer'))\"\"\"\n\ncontent = content.replace(old_c0, new_c0)\n\n# 2. Fix multi_items to use sc_vote_distribution for identifying multi-candidate items\nold_multi_items = \"    multi_items = [x for x in items if x.get('sica_answer') != x.get('sc_answer')]\"\nnew_multi_items = \"    multi_items = [x for x in items if len(x.get('sc_vote_distribution', {})) > 1]\"\ncontent = content.replace(old_multi_items, new_multi_items)\n\n# 3. Add c0_disagree_rate and n_disagree to return dict\nold_return_n_multi = \"        'n_multi_candidate': n_multi,\"\nnew_return_n_multi = \"\"\"        'n_multi_candidate': n_multi,\n        'c0_disagree_rate': round(c0_disagree, 4),\n        'n_disagree': n_disagree,\"\"\"\ncontent = content.replace(old_return_n_multi, new_return_n_multi)\n\n# 4. Add c0_disagree correlations in compute_correlations\nold_corr_extract = \"    def corr(x, y):\"\nnew_corr_extract = \"\"\"    c0d = [r['c0_disagree_rate'] for r in rows]\n\n    def corr(x, y):\"\"\"\ncontent = content.replace(old_corr_extract, new_corr_extract)\n\nold_corr_return = \"\"\"    return {\n        'c0_vs_sica_sc_gap': corr(c0, gap),\n        'c0_vs_satisfied_ratio': corr(c0, sat),\n        'c0_vs_exclusion_rate': corr(c0, excl),\n        'c0_vs_extraction_rate': corr(c0, ext),\n        'c0_vs_constraint_density': corr(c0, dens),\n        'satisfied_ratio_vs_sica_sc_gap': corr(sat, gap),\n        'exclusion_rate_vs_sica_sc_gap': corr(excl, gap),\n        'constraint_density_vs_sica_sc_gap': corr(dens, gap),\n    }\"\"\"\nnew_corr_return = \"\"\"    return {\n        'c0_vs_sica_sc_gap': corr(c0, gap),\n        'c0_vs_satisfied_ratio': corr(c0, sat),\n        'c0_vs_exclusion_rate': corr(c0, excl),\n        'c0_vs_extraction_rate': corr(c0, ext),\n        'c0_vs_constraint_density': corr(c0, dens),\n        'c0_disagree_vs_sica_sc_gap': corr(c0d, gap),\n        'satisfied_ratio_vs_sica_sc_gap': corr(sat, gap),\n        'exclusion_rate_vs_sica_sc_gap': corr(excl, gap),\n        'constraint_density_vs_sica_sc_gap': corr(dens, gap),\n    }\"\"\"\ncontent = content.replace(old_corr_return, new_corr_return)\n\n# 5. Update proxy_definitions to include c0_disagree_rate\nold_proxy = \"\"\"        'proxy_definitions': {\n            'c0_multi_candidate_rate': 'Fraction of problems where SC vote distribution has >1 unique answer',\"\"\"\nnew_proxy = \"\"\"        'proxy_definitions': {\n            'c0_multi_candidate_rate': 'Fraction of problems where SC vote distribution has >1 unique answer (len(sc_vote_distribution) > 1)',\n            'c0_disagree_rate': 'Fraction of problems where SICA final answer != SC final answer',\"\"\"\ncontent = content.replace(old_proxy, new_proxy)\n\n# 6. Update bugfix section to mention c0 fix\nold_bugfix = \"\"\"        'bugfix': {\n            'field': 'avg_extraction_rate',\n            'bug': 'denominator was (boxed+fallback) answer-extracted traces instead of k (total traces)',\n            'affected_experiments': ['exp011_llama8b_pw_folio', 'exp020_llama8b_folio'],\n            'fix': 'always use k from summary as denominator',\n        },\"\"\"\nnew_bugfix = \"\"\"        'bugfix': [\n            {\n                'field': 'avg_extraction_rate',\n                'bug': 'denominator was (boxed+fallback) answer-extracted traces instead of k (total traces)',\n                'affected_experiments': ['exp011_llama8b_pw_folio', 'exp020_llama8b_folio'],\n                'fix': 'always use k from summary as denominator',\n            },\n            {\n                'field': 'c0_multi_candidate_rate',\n                'bug': 'was computed as sica_answer != sc_answer (disagree rate) instead of len(sc_vote_distribution) > 1 (true multi-candidate rate)',\n                'affected_experiments': 'all',\n                'fix': 'use len(sc_vote_distribution) > 1 for multi-candidate; old metric preserved as c0_disagree_rate',\n            },\n        ],\"\"\"\ncontent = content.replace(old_bugfix, new_bugfix)\n\n# 7. Update main() comparison to show c0 fix too\nold_verification = \"\"\"    print(\"\\\\n\" + \"=\" * 80)\n    print(\"VERIFICATION: all extraction_rate <= 1.0\")\n    print(\"=\" * 80)\"\"\"\nnew_verification = \"\"\"    print(\"\\\\n\" + \"=\" * 80)\n    print(\"c0_multi_candidate_rate FIX COMPARISON\")\n    print(\"=\" * 80)\n    print(f\"{'Experiment':<35} {'OLD(disagree)':>14} {'NEW(multi)':>12} {'disagree':>10}\")\n    print(\"-\" * 75)\n    for r in rows:\n        old_c0 = old_by_name.get(r['experiment'], {}).get('c0_multi_candidate_rate', '?')\n        new_c0 = r['c0_multi_candidate_rate']\n        dis = r['c0_disagree_rate']\n        if isinstance(old_c0, (int, float)):\n            print(f\"{r['experiment']:<35} {old_c0:>14.4f} {new_c0:>12.4f} {dis:>10.4f}\")\n        else:\n            print(f\"{r['experiment']:<35} {str(old_c0):>14} {new_c0:>12.4f} {dis:>10.4f}\")\n\n    print(\"\\\\n\" + \"=\" * 80)\n    print(\"VERIFICATION: all extraction_rate <= 1.0\")\n    print(\"=\" * 80)\"\"\"\ncontent = content.replace(old_verification, new_verification)\n\n# 8. Update docstring\nold_doc = '\"\"\"Regenerate constraint quality correlation analysis with fixed extraction_rate.\\n\\nBug: avg_extraction_rate used (boxed+fallback) as denominator for experiments\\nwith trace_extraction_stats, instead of k (total traces).\\n\\nFix: always use k from summary as denominator.\\n\"\"\"'\nnew_doc = '\"\"\"Regenerate constraint quality correlation analysis.\\n\\nFixes:\\n1. avg_extraction_rate: denominator was (boxed+fallback) instead of k (total traces).\\n2. c0_multi_candidate_rate: was using sica_answer != sc_answer (disagree rate)\\n   instead of len(sc_vote_distribution) > 1 (true multi-candidate rate).\\n   The old metric is preserved as c0_disagree_rate.\\n\"\"\"'\ncontent = content.replace(old_doc, new_doc)\n\nwith open(filepath, 'w') as f:\n    f.write(content)\n\nprint(\"Done. Verifying key changes...\")\n# Quick verification\nfor line_check in ['len(x.get(', 'c0_disagree', 'c0d = ']:\n    import subprocess\n    result = subprocess.run(['grep', '-n', line_check, filepath], capture_output=True, text=True)\n    for l in result.stdout.strip().split('\\n'):\n        if l:\n            print(f\"  {l}\")\nPYEOF\n/root/miniconda3/bin/python /tmp/fix_c0.py\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f6f925fd-156b-4738-be85-8d382550687f",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EmrCxBoxFUea1UjMCm",
+  "type": "assistant",
+  "uuid": "5dd033df-c674-492c-9b85-7e8138addabc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MtwUWk5mH4UiU7dC2v1SKZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2208,
+      "cache_read_input_tokens": 42667,
+      "output_tokens": 2921,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2208,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2921,
+          "cache_read_input_tokens": 42667,
+          "cache_creation_input_tokens": 2208,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2208
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-17T13:43:04.497Z_
+
+<details><summary>↩ Tool result · `toolu_01FdCpRjtJ25W6woKT26p3PY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Done. Verifying key changes...\\n  175:    c0 = sum(1 for x in items if len(x.get('sc_vote_distribution', {})) > 1) / n\\n  176:    n_multi = sum(1 for x in items if len(x.get('sc_vote_distribution', {})) > 1)\\n  227:    multi_items = [x for x in items if len(x.get('sc_vote_distribution', {})) > 1]\\n  7:   The old metric is preserved as c0_disagree_rate.\\n  178:    c0_disagree = sum(1 for x in items if x.get('sica_answer') != x.get('sc_answer')) / n\\n  244:        'c0_disagree_rate': round(c0_disagree, 4),\\n  267:    c0d = [r['c0_disagree_rate'] for r in rows]\\n  289:        'c0_disagree_vs_sica_sc_gap': corr(c0d, gap),\\n  332:        dis = r['c0_disagree_rate']\\n  367:            'c0_disagree_rate': 'Fraction of problems where SICA final answer != SC final answer',\\n  385:                'fix': 'use len(sc_vote_distribution) > 1 for multi-candidate; old metric preserved as c0_disagree_rate',\\n  267:    c0d = [r['c0_disagree_rate'] for r in rows]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5dd033df-c674-492c-9b85-7e8138addabc",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "cfb9b62e-e82e-4593-a119-44df41a41261",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Done. Verifying key changes...\\\\n  175:    c0 = sum(1 for x in items if len(x.get('sc_vote_distribution', {})) > 1) / n\\\\n  176:    n_multi = sum(1 for x in items if len(x.get('sc_vote_distribution', {})) > 1)\\\\n  227:    multi_items = [x for x in items if len(x.get('sc_vote_distribution', {})) > 1]\\\\n  7:   The old metric is preserved as c0_disagree_rate.\\\\n  178:    c0_disagree = sum(1 for x in items if x.get('sica_answer') != x.get('sc_answer')) / n\\\\n  244:        'c0_disagree_rate': round(c0_disagree, 4),\\\\n  267:    c0d = [r['c0_disagree_rate'] for r in rows]\\\\n  289:        'c0_disagree_vs_sica_sc_gap': corr(c0d, gap),\\\\n  332:        dis = r['c0_disagree_rate']\\\\n  367:            'c0_disagree_rate': 'Fraction of problems where SICA final answer != SC final answer',\\\\n  385:                'fix': 'use len(sc_vote_distribution) > 1 for multi-candidate; old metric preserved as c0_disagree_rate',\\\\n  267:    c0d = [r['c0_disagree_rate'] for r in rows]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Done. Verifying key changes...\\n  175:    c0 = sum(1 for x in items if len(x.get('sc_vote_distribution', {})) > 1) / n\\n  176:    n_multi = sum(1 for x in items if len(x.get('sc_vote_distribution', {})) > 1)\\n  227:    multi_items = [x for x in items if len(x.get('sc_vote_distribution', {})) > 1]\\n  7:   The old metric is preserved as c0_disagree_rate.\\n  178:    c0_disagree = sum(1 for x in items if x.get('sica_answer') != x.get('sc_answer')) / n\\n  244:        'c0_disagree_rate': round(c0_disagree, 4),\\n  267:    c0d = [r['c0_disagree_rate'] for r in rows]\\n  289:        'c0_disagree_vs_sica_sc_gap': corr(c0d, gap),\\n  332:        dis = r['c0_disagree_rate']\\n  367:            'c0_disagree_rate': 'Fraction of problems where SICA final answer != SC final answer',\\n  385:                'fix': 'use len(sc_vote_distribution) > 1 for multi-candidate; old metric preserved as c0_disagree_rate',\\n  267:    c0d = [r['c0_disagree_rate'] for r in rows]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5dd033df-c674-492c-9b85-7e8138addabc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 83 · 2026-05-17T13:43:04.502Z_
+
+```json
+{
+  "parentUuid": "cfb9b62e-e82e-4593-a119-44df41a41261",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "83864d0d-a60a-41cb-a032-9bc64aaca7f7",
+  "timestamp": "2026-05-17T13:43:04.502Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 84 · 2026-05-17T13:43:12.057Z_
+
+All changes applied correctly. Now let me run the fixed script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83864d0d-a60a-41cb-a032-9bc64aaca7f7",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Eq2k3YVoTivLQCsHKM",
+  "type": "assistant",
+  "uuid": "b9495c66-fc32-4a35-93f2-4f58d9546ed3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FejnFwvt2neHgD3fMjdhwd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3479,
+      "cache_read_input_tokens": 44875,
+      "output_tokens": 147,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 147,
+          "cache_read_input_tokens": 44875,
+          "cache_creation_input_tokens": 3479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-17T13:43:12.436Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Tkd7LnUEngLahhxrzzoQs9`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "cd /root/symb_invariant_consensus && /root/miniconda3/bin/python scripts/compute_constraint_quality_correlation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b9495c66-fc32-4a35-93f2-4f58d9546ed3",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Eq2k3YVoTivLQCsHKM",
+  "type": "assistant",
+  "uuid": "b962ceff-9ab5-4b2b-bfd5-3e9f7890bd39",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FejnFwvt2neHgD3fMjdhwd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3479,
+      "cache_read_input_tokens": 44875,
+      "output_tokens": 147,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 147,
+          "cache_read_input_tokens": 44875,
+          "cache_creation_input_tokens": 3479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-17T13:43:14.011Z_
+
+<details><summary>↩ Tool result · `toolu_01Tkd7LnUEngLahhxrzzoQs9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"================================================================================\\nextraction_rate FIX COMPARISON\\n================================================================================\\nExperiment                                 OLD        NEW     CHANGE\\n---------------------------------------------------------------------------\\nexp001_qwen14b_pw_folio                 1.0000     1.0000    +0.0000\\nexp010_mistral7b_pw_folio               1.0000     1.0000    +0.0000\\nexp011_llama8b_pw_folio                 0.9639     0.9639    +0.0000\\nexp017_qwen14b_strategyqa               0.7042     0.7042    +0.0000\\nexp018_qwen14b_arc                      1.0000     1.0000    +0.0000\\nexp019_llama8b_strategyqa               0.8008     0.8008    +0.0000\\nexp020_llama8b_folio                    0.9935     0.9935    +0.0000\\n\\n================================================================================\\nc0_multi_candidate_rate FIX COMPARISON\\n================================================================================\\nExperiment                           OLD(disagree)   NEW(multi)   disagree\\n---------------------------------------------------------------------------\\nexp001_qwen14b_pw_folio                     0.0386       0.3818     0.0386\\nexp010_mistral7b_pw_folio                   0.0667       0.5000     0.0667\\nexp011_llama8b_pw_folio                     0.1167       0.6167     0.1167\\nexp017_qwen14b_strategyqa                   0.0333       0.1000     0.0333\\nexp018_qwen14b_arc                          0.0167       0.0500     0.0167\\nexp019_llama8b_strategyqa                   0.0700       0.4100     0.0700\\nexp020_llama8b_folio                        0.0637       0.6176     0.0637\\n\\n================================================================================\\nVERIFICATION: all extraction_rate <= 1.0\\n================================================================================\\n  exp001_qwen14b_pw_folio: 1.0 [OK]\\n  exp010_mistral7b_pw_folio: 1.0 [OK]\\n  exp011_llama8b_pw_folio: 0.9639 [OK]\\n  exp017_qwen14b_strategyqa: 0.7042 [OK]\\n  exp018_qwen14b_arc: 1.0 [OK]\\n  exp019_llama8b_strategyqa: 0.8008 [OK]\\n  exp020_llama8b_folio: 0.9935 [OK]\\n\\nAll <= 1.0: True\\n\\nc0_vs_extraction_rate correlation:\\n  OLD: pearson_r=0.1159, p=0.8045\\n  NEW: pearson_r=0.4102, p=0.3608\\n\\nSaved corrected JSON: /root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json\\nSaved corrected CSV: /root/symb_invariant_consensus/results/exp019_constraint_quality_summary.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.56}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b962ceff-9ab5-4b2b-bfd5-3e9f7890bd39",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "2408874e-6e16-4aad-9397-fbe78081a2d1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"================================================================================\\\\nextraction_rate FIX COMPARISON\\\\n================================================================================\\\\nExperiment                                 OLD        NEW     CHANGE\\\\n---------------------------------------------------------------------------\\\\nexp001_qwen14b_pw_folio                 1.0000     1.0000    +0.0000\\\\nexp010_mistral7b_pw_folio               1.0000     1.0000    +0.0000\\\\nexp011_llama8b_pw_folio                 0.9639     0.9639    +0.0000\\\\nexp017_qwen14b_strategyqa               0.7042     0.7042    +0.0000\\\\nexp018_qwen14b_arc                      1.0000     1.0000    +0.0000\\\\nexp019_llama8b_strategyqa               0.8008     0.8008    +0.0000\\\\nexp020_llama8b_folio                    0.9935     0.9935    +0.0000\\\\n\\\\n================================================================================\\\\nc0_multi_candidate_rate FIX COMPARISON\\\\n================================================================================\\\\nExperiment                           OLD(disagree)   NEW(multi)   disagree\\\\n---------------------------------------------------------------------------\\\\nexp001_qwen14b_pw_folio                     0.0386       0.3818     0.0386\\\\nexp010_mistral7b_pw_folio                   0.0667       0.5000     0.0667\\\\nexp011_llama8b_pw_folio                     0.1167       0.6167     0.1167\\\\nexp017_qwen14b_strategyqa                   0.0333       0.1000     0.0333\\\\nexp018_qwen14b_arc                          0.0167       0.0500     0.0167\\\\nexp019_llama8b_strategyqa                   0.0700       0.4100     0.0700\\\\nexp020_llama8b_folio                        0.0637       0.6176     0.0637\\\\n\\\\n================================================================================\\\\nVERIFICATION: all extraction_rate <= 1.0\\\\n================================================================================\\\\n  exp001_qwen14b_pw_folio: 1.0 [OK]\\\\n  exp010_mistral7b_pw_folio: 1.0 [OK]\\\\n  exp011_llama8b_pw_folio: 0.9639 [OK]\\\\n  exp017_qwen14b_strategyqa: 0.7042 [OK]\\\\n  exp018_qwen14b_arc: 1.0 [OK]\\\\n  exp019_llama8b_strategyqa: 0.8008 [OK]\\\\n  exp020_llama8b_folio: 0.9935 [OK]\\\\n\\\\nAll <= 1.0: True\\\\n\\\\nc0_vs_extraction_rate correlation:\\\\n  OLD: pearson_r=0.1159, p=0.8045\\\\n  NEW: pearson_r=0.4102, p=0.3608\\\\n\\\\nSaved corrected JSON: /root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json\\\\nSaved corrected CSV: /root/symb_invariant_consensus/results/exp019_constraint_quality_summary.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.56}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"================================================================================\\nextraction_rate FIX COMPARISON\\n================================================================================\\nExperiment                                 OLD        NEW     CHANGE\\n---------------------------------------------------------------------------\\nexp001_qwen14b_pw_folio                 1.0000     1.0000    +0.0000\\nexp010_mistral7b_pw_folio               1.0000     1.0000    +0.0000\\nexp011_llama8b_pw_folio                 0.9639     0.9639    +0.0000\\nexp017_qwen14b_strategyqa               0.7042     0.7042    +0.0000\\nexp018_qwen14b_arc                      1.0000     1.0000    +0.0000\\nexp019_llama8b_strategyqa               0.8008     0.8008    +0.0000\\nexp020_llama8b_folio                    0.9935     0.9935    +0.0000\\n\\n================================================================================\\nc0_multi_candidate_rate FIX COMPARISON\\n================================================================================\\nExperiment                           OLD(disagree)   NEW(multi)   disagree\\n---------------------------------------------------------------------------\\nexp001_qwen14b_pw_folio                     0.0386       0.3818     0.0386\\nexp010_mistral7b_pw_folio                   0.0667       0.5000     0.0667\\nexp011_llama8b_pw_folio                     0.1167       0.6167     0.1167\\nexp017_qwen14b_strategyqa                   0.0333       0.1000     0.0333\\nexp018_qwen14b_arc                          0.0167       0.0500     0.0167\\nexp019_llama8b_strategyqa                   0.0700       0.4100     0.0700\\nexp020_llama8b_folio                        0.0637       0.6176     0.0637\\n\\n================================================================================\\nVERIFICATION: all extraction_rate <= 1.0\\n================================================================================\\n  exp001_qwen14b_pw_folio: 1.0 [OK]\\n  exp010_mistral7b_pw_folio: 1.0 [OK]\\n  exp011_llama8b_pw_folio: 0.9639 [OK]\\n  exp017_qwen14b_strategyqa: 0.7042 [OK]\\n  exp018_qwen14b_arc: 1.0 [OK]\\n  exp019_llama8b_strategyqa: 0.8008 [OK]\\n  exp020_llama8b_folio: 0.9935 [OK]\\n\\nAll <= 1.0: True\\n\\nc0_vs_extraction_rate correlation:\\n  OLD: pearson_r=0.1159, p=0.8045\\n  NEW: pearson_r=0.4102, p=0.3608\\n\\nSaved corrected JSON: /root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json\\nSaved corrected CSV: /root/symb_invariant_consensus/results/exp019_constraint_quality_summary.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.56}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b962ceff-9ab5-4b2b-bfd5-3e9f7890bd39",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 87 · 2026-05-17T13:43:20.227Z_
+
+All verifications pass:
+- **c0_multi_candidate_rate** now correctly uses `len(sc_vote_distribution) > 1` — values jump significantly (e.g., exp011: 0.1167 → 0.6167, matching registry's 0.6167)
+- **c0_disagree_rate** preserved as separate field — always much smaller than multi_candidate_rate as expected
+- **extraction_rate** all ≤ 1.0 ✓
+- CSV and JSON saved
+
+Let me verify the JSON output structure.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2408874e-6e16-4aad-9397-fbe78081a2d1",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EqjWjCfj5idr3uFXnG",
+  "type": "assistant",
+  "uuid": "5db3c71c-6421-416d-9d37-3590027e829e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017SnbrqJm5tJs8boYS7Pf1L",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1041,
+      "cache_read_input_tokens": 48354,
+      "output_tokens": 485,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1041,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 485,
+          "cache_read_input_tokens": 48354,
+          "cache_creation_input_tokens": 1041,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1041
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-17T13:43:24.541Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01QzQXayRAsecevt2iRf5HWv`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "/root/miniconda3/bin/python -c \"\nimport json\nd = json.load(open('/root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json'))\nr = d['per_experiment'][2]  # exp011\nprint('exp011 c0_multi_candidate_rate:', r['c0_multi_candidate_rate'])\nprint('exp011 c0_disagree_rate:', r['c0_disagree_rate'])\nprint('exp011 n_multi_candidate:', r['n_multi_candidate'])\nprint('exp011 n_disagree:', r['n_disagree'])\nprint()\nprint('Correlations keys:', list(d['correlations'].keys()))\nprint('c0_disagree_vs_sica_sc_gap:', d['correlations'].get('c0_disagree_vs_sica_sc_gap'))\nprint()\nprint('proxy_definitions:', json.dumps(d['proxy_definitions'], indent=2))\nprint()\nprint('bugfix count:', len(d['bugfix']))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5db3c71c-6421-416d-9d37-3590027e829e",
+  "isSidechain": false,
+  "requestId": "req_011Cb8EqjWjCfj5idr3uFXnG",
+  "type": "assistant",
+  "uuid": "f4e18eb2-2b56-43b7-8135-5b783e57b988",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017SnbrqJm5tJs8boYS7Pf1L",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1041,
+      "cache_read_input_tokens": 48354,
+      "output_tokens": 485,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1041,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 485,
+          "cache_read_input_tokens": 48354,
+          "cache_creation_input_tokens": 1041,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1041
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 89_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "f4e18eb2-2b56-43b7-8135-5b783e57b988",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 90_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix C0 definition in constraint quality analysis script",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-17T13:43:25.768Z_
+
+<details><summary>↩ Tool result · `toolu_01QzQXayRAsecevt2iRf5HWv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp011 c0_multi_candidate_rate: 0.6167\\nexp011 c0_disagree_rate: 0.1167\\nexp011 n_multi_candidate: 37\\nexp011 n_disagree: 7\\n\\nCorrelations keys: ['c0_vs_sica_sc_gap', 'c0_vs_satisfied_ratio', 'c0_vs_exclusion_rate', 'c0_vs_extraction_rate', 'c0_vs_constraint_density', 'c0_disagree_vs_sica_sc_gap', 'satisfied_ratio_vs_sica_sc_gap', 'exclusion_rate_vs_sica_sc_gap', 'constraint_density_vs_sica_sc_gap']\\nc0_disagree_vs_sica_sc_gap: {'pearson_r': 0.6251, 'pearson_p': 0.1333, 'spearman_rho': 0.4286, 'spearman_p': 0.3374}\\n\\nproxy_definitions: {\\n  \\\"c0_multi_candidate_rate\\\": \\\"Fraction of problems where SC vote distribution has >1 unique answer (len(sc_vote_distribution) > 1)\\\",\\n  \\\"c0_disagree_rate\\\": \\\"Fraction of problems where SICA final answer != SC final answer\\\",\\n  \\\"avg_exclusion_rate\\\": \\\"Mean(excluded / unique_after_dedup) per problem\\\",\\n  \\\"avg_satisfied_ratio\\\": \\\"Mean(satisfied / (satisfied + excluded)) per problem\\\",\\n  \\\"avg_extraction_rate\\\": \\\"Mean(traces_with_constraints / k) per problem. FIX: denominator is k (total traces), not answer-extracted traces\\\",\\n  \\\"avg_constraint_density\\\": \\\"Mean(total_extracted / traces_with_constraints) per problem\\\"\\n}\\n\\nbugfix count: 2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.19}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f4e18eb2-2b56-43b7-8135-5b783e57b988",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "031924c8-ddcf-4795-89ca-c09e77423edf",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp011 c0_multi_candidate_rate: 0.6167\\\\nexp011 c0_disagree_rate: 0.1167\\\\nexp011 n_multi_candidate: 37\\\\nexp011 n_disagree: 7\\\\n\\\\nCorrelations keys: ['c0_vs_sica_sc_gap', 'c0_vs_satisfied_ratio', 'c0_vs_exclusion_rate', 'c0_vs_extraction_rate', 'c0_vs_constraint_density', 'c0_disagree_vs_sica_sc_gap', 'satisfied_ratio_vs_sica_sc_gap', 'exclusion_rate_vs_sica_sc_gap', 'constraint_density_vs_sica_sc_gap']\\\\nc0_disagree_vs_sica_sc_gap: {'pearson_r': 0.6251, 'pearson_p': 0.1333, 'spearman_rho': 0.4286, 'spearman_p': 0.3374}\\\\n\\\\nproxy_definitions: {\\\\n  \\\\\\\"c0_multi_candidate_rate\\\\\\\": \\\\\\\"Fraction of problems where SC vote distribution has >1 unique answer (len(sc_vote_distribution) > 1)\\\\\\\",\\\\n  \\\\\\\"c0_disagree_rate\\\\\\\": \\\\\\\"Fraction of problems where SICA final answer != SC final answer\\\\\\\",\\\\n  \\\\\\\"avg_exclusion_rate\\\\\\\": \\\\\\\"Mean(excluded / unique_after_dedup) per problem\\\\\\\",\\\\n  \\\\\\\"avg_satisfied_ratio\\\\\\\": \\\\\\\"Mean(satisfied / (satisfied + excluded)) per problem\\\\\\\",\\\\n  \\\\\\\"avg_extraction_rate\\\\\\\": \\\\\\\"Mean(traces_with_constraints / k) per problem. FIX: denominator is k (total traces), not answer-extracted traces\\\\\\\",\\\\n  \\\\\\\"avg_constraint_density\\\\\\\": \\\\\\\"Mean(total_extracted / traces_with_constraints) per problem\\\\\\\"\\\\n}\\\\n\\\\nbugfix count: 2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.19}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp011 c0_multi_candidate_rate: 0.6167\\nexp011 c0_disagree_rate: 0.1167\\nexp011 n_multi_candidate: 37\\nexp011 n_disagree: 7\\n\\nCorrelations keys: ['c0_vs_sica_sc_gap', 'c0_vs_satisfied_ratio', 'c0_vs_exclusion_rate', 'c0_vs_extraction_rate', 'c0_vs_constraint_density', 'c0_disagree_vs_sica_sc_gap', 'satisfied_ratio_vs_sica_sc_gap', 'exclusion_rate_vs_sica_sc_gap', 'constraint_density_vs_sica_sc_gap']\\nc0_disagree_vs_sica_sc_gap: {'pearson_r': 0.6251, 'pearson_p': 0.1333, 'spearman_rho': 0.4286, 'spearman_p': 0.3374}\\n\\nproxy_definitions: {\\n  \\\"c0_multi_candidate_rate\\\": \\\"Fraction of problems where SC vote distribution has >1 unique answer (len(sc_vote_distribution) > 1)\\\",\\n  \\\"c0_disagree_rate\\\": \\\"Fraction of problems where SICA final answer != SC final answer\\\",\\n  \\\"avg_exclusion_rate\\\": \\\"Mean(excluded / unique_after_dedup) per problem\\\",\\n  \\\"avg_satisfied_ratio\\\": \\\"Mean(satisfied / (satisfied + excluded)) per problem\\\",\\n  \\\"avg_extraction_rate\\\": \\\"Mean(traces_with_constraints / k) per problem. FIX: denominator is k (total traces), not answer-extracted traces\\\",\\n  \\\"avg_constraint_density\\\": \\\"Mean(total_extracted / traces_with_constraints) per problem\\\"\\n}\\n\\nbugfix count: 2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.19}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f4e18eb2-2b56-43b7-8135-5b783e57b988",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 92 · 2026-05-17T13:43:28.145Z_
+
+Now let me register the artifacts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "031924c8-ddcf-4795-89ca-c09e77423edf",
+  "isSidechain": false,
+  "requestId": "req_011Cb8ErbfirNT8drUZ9U6ZV",
+  "type": "assistant",
+  "uuid": "3bf9454a-2398-42d1-b1b5-a3fbd1820577",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011QfqMHBWCM9gcvxM6WVAmm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 49395,
+      "output_tokens": 477,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1076,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 477,
+          "cache_read_input_tokens": 49395,
+          "cache_creation_input_tokens": 1076,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1076
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-17T13:43:31.560Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01RgpydRyZmM64fmn7MFvMXf`</summary>
+
+```json
+{
+  "name": "constraint_quality_analysis_c0_fixed",
+  "type": "data",
+  "description": "Constraint quality correlation analysis JSON with fixed c0_multi_candidate_rate (true multi-candidate from sc_vote_distribution) and new c0_disagree_rate field. Fixes bug where c0 was computed as SICA-SC disagree rate instead of vote distribution multi-candidate rate.",
+  "project": "symb_invariant_consensus",
+  "source_path": "/root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json",
+  "tags": [
+    "c0-fix",
+    "constraint-quality",
+    "correlation"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3bf9454a-2398-42d1-b1b5-a3fbd1820577",
+  "isSidechain": false,
+  "requestId": "req_011Cb8ErbfirNT8drUZ9U6ZV",
+  "type": "assistant",
+  "uuid": "de957a64-b8f8-43b6-b2c1-3a52eb6c5102",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011QfqMHBWCM9gcvxM6WVAmm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 49395,
+      "output_tokens": 477,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1076,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 477,
+          "cache_read_input_tokens": 49395,
+          "cache_creation_input_tokens": 1076,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1076
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-17T13:43:31.572Z_
+
+<details><summary>↩ Tool result · `toolu_01RgpydRyZmM64fmn7MFvMXf`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "de957a64-b8f8-43b6-b2c1-3a52eb6c5102",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "48fe8d77-4aaa-4b7c-9881-2f9fabcfe149",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "de957a64-b8f8-43b6-b2c1-3a52eb6c5102",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-17T13:43:33.197Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_012pdBJhSiNoonSWzHxXpW62`</summary>
+
+```json
+{
+  "name": "constraint_quality_summary_csv_c0_fixed",
+  "type": "data",
+  "description": "Constraint quality summary CSV with corrected c0_multi_candidate_rate and added c0_disagree_rate column.",
+  "project": "symb_invariant_consensus",
+  "source_path": "/root/symb_invariant_consensus/results/exp019_constraint_quality_summary.csv",
+  "tags": [
+    "c0-fix",
+    "constraint-quality"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "48fe8d77-4aaa-4b7c-9881-2f9fabcfe149",
+  "isSidechain": false,
+  "requestId": "req_011Cb8ErbfirNT8drUZ9U6ZV",
+  "type": "assistant",
+  "uuid": "38db1dff-116f-4fae-b943-911720bd3f61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011QfqMHBWCM9gcvxM6WVAmm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 49395,
+      "output_tokens": 477,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1076,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 477,
+          "cache_read_input_tokens": 49395,
+          "cache_creation_input_tokens": 1076,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1076
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-17T13:43:33.216Z_
+
+<details><summary>↩ Tool result · `toolu_012pdBJhSiNoonSWzHxXpW62`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/symb_invariant_consensus/results/exp019_constraint_quality_summary.csv\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "38db1dff-116f-4fae-b943-911720bd3f61",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "9e53a1c2-9616-47b1-9457-8a8d9f73ad3b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/symb_invariant_consensus/results/exp019_constraint_quality_summary.csv\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/symb_invariant_consensus/results/exp019_constraint_quality_summary.csv\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "38db1dff-116f-4fae-b943-911720bd3f61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 97 · 2026-05-17T13:43:36.776Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The source_path is on the remote server, not local. I need to either use `content` parameter or download the files first. Let me fetch the content and use the `content` parameter.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e53a1c2-9616-47b1-9457-8a8d9f73ad3b",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Es9eaPZFVh1jfcxeeP",
+  "type": "assistant",
+  "uuid": "fef8b2d5-5a29-46c6-97eb-a4d819228601",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NTTzcc2mHqtUAKMKVK3a81",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 674,
+      "cache_read_input_tokens": 50471,
+      "output_tokens": 307,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 674,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 307,
+          "cache_read_input_tokens": 50471,
+          "cache_creation_input_tokens": 674,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 674
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 98 · 2026-05-17T13:43:37.756Z_
+
+Source paths are on the remote server. Let me fetch the content and register with `content` parameter.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fef8b2d5-5a29-46c6-97eb-a4d819228601",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Es9eaPZFVh1jfcxeeP",
+  "type": "assistant",
+  "uuid": "6ec1807e-4934-41ed-8f28-c49825dd79d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NTTzcc2mHqtUAKMKVK3a81",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 674,
+      "cache_read_input_tokens": 50471,
+      "output_tokens": 307,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 674,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 307,
+          "cache_read_input_tokens": 50471,
+          "cache_creation_input_tokens": 674,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 674
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-17T13:43:38.752Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Y8pLZpa6CBbWFBrJbFZqvg`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "cat /root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ec1807e-4934-41ed-8f28-c49825dd79d6",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Es9eaPZFVh1jfcxeeP",
+  "type": "assistant",
+  "uuid": "64f83ab4-5c9c-489c-8398-18a670cb0d57",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NTTzcc2mHqtUAKMKVK3a81",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 674,
+      "cache_read_input_tokens": 50471,
+      "output_tokens": 307,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 674,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 307,
+          "cache_read_input_tokens": 50471,
+          "cache_creation_input_tokens": 674,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 674
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-17T13:43:39.248Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0151Tf2WVgQA1qx2CvGx6Lm7`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "cat /root/symb_invariant_consensus/results/exp019_constraint_quality_summary.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "64f83ab4-5c9c-489c-8398-18a670cb0d57",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Es9eaPZFVh1jfcxeeP",
+  "type": "assistant",
+  "uuid": "cc45215c-75f7-4959-821a-332c13a3635c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NTTzcc2mHqtUAKMKVK3a81",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 674,
+      "cache_read_input_tokens": 50471,
+      "output_tokens": 307,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 674,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 307,
+          "cache_read_input_tokens": 50471,
+          "cache_creation_input_tokens": 674,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 674
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-17T13:43:40.781Z_
+
+<details><summary>↩ Tool result · `toolu_01Y8pLZpa6CBbWFBrJbFZqvg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis_type\\\": \\\"constraint_quality_correlation\\\",\\n  \\\"date\\\": \\\"2026-05-17\\\",\\n  \\\"n_experiments\\\": 7,\\n  \\\"per_experiment\\\": [\\n    {\\n      \\\"experiment\\\": \\\"exp001_qwen14b_pw_folio\\\",\\n      \\\"model\\\": \\\"Qwen2.5-14B\\\",\\n      \\\"domain\\\": \\\"PW+FOLIO\\\",\\n      \\\"n\\\": 804,\\n      \\\"sc_acc\\\": 0.7624,\\n      \\\"sica_acc\\\": 0.7649,\\n      \\\"delta_pp\\\": 0.25,\\n      \\\"c0_multi_candidate_rate\\\": 0.3818,\\n      \\\"n_multi_candidate\\\": 307,\\n      \\\"c0_disagree_rate\\\": 0.0386,\\n      \\\"n_disagree\\\": 31,\\n      \\\"avg_extraction_rate\\\": 1.0,\\n      \\\"avg_exclusion_rate\\\": 0.0227,\\n      \\\"avg_satisfied_ratio\\\": 0.9773,\\n      \\\"avg_constraint_density\\\": 9.17,\\n      \\\"avg_score_gt_frac\\\": 0.8676,\\n      \\\"sica_wins_multi\\\": 16,\\n      \\\"sc_wins_multi\\\": 14,\\n      \\\"sica_acc_multi\\\": 0.5961,\\n      \\\"sc_acc_multi\\\": 0.5896,\\n      \\\"delta_multi_pp\\\": 0.65\\n    },\\n    {\\n      \\\"experiment\\\": \\\"exp010_mistral7b_pw_folio\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"domain\\\": \\\"PW+FOLIO\\\",\\n      \\\"n\\\": 60,\\n      \\\"sc_acc\\\": 0.4833,\\n      \\\"sica_acc\\\": 0.4833,\\n      \\\"delta_pp\\\": 0.0,\\n      \\\"c0_multi_candidate_rate\\\": 0.5,\\n      \\\"n_multi_candidate\\\": 30,\\n      \\\"c0_disagree_rate\\\": 0.0667,\\n      \\\"n_disagree\\\": 4,\\n      \\\"avg_extraction_rate\\\": 1.0,\\n      \\\"avg_exclusion_rate\\\": 0.0523,\\n      \\\"avg_satisfied_ratio\\\": 0.9477,\\n      \\\"avg_constraint_density\\\": 5.47,\\n      \\\"avg_score_gt_frac\\\": 0.7073,\\n      \\\"sica_wins_multi\\\": 2,\\n      \\\"sc_wins_multi\\\": 2,\\n      \\\"sica_acc_multi\\\": 0.3,\\n      \\\"sc_acc_multi\\\": 0.3,\\n      \\\"delta_multi_pp\\\": 0.0\\n    },\\n    {\\n      \\\"experiment\\\": \\\"exp011_llama8b_pw_folio\\\",\\n      \\\"model\\\": \\\"LLaMA-8B\\\",\\n      \\\"domain\\\": \\\"PW+FOLIO\\\",\\n      \\\"n\\\": 60,\\n      \\\"sc_acc\\\": 0.6,\\n      \\\"sica_acc\\\": 0.6667,\\n      \\\"delta_pp\\\": 6.67,\\n      \\\"c0_multi_candidate_rate\\\": 0.6167,\\n      \\\"n_multi_candidate\\\": 37,\\n      \\\"c0_disagree_rate\\\": 0.1167,\\n      \\\"n_disagree\\\": 7,\\n      \\\"avg_extraction_rate\\\": 0.9639,\\n      \\\"avg_exclusion_rate\\\": 0.0504,\\n      \\\"avg_satisfied_ratio\\\": 0.9496,\\n      \\\"avg_constraint_density\\\": 8.73,\\n      \\\"avg_score_gt_frac\\\": 0.7143,\\n      \\\"sica_wins_multi\\\": 5,\\n      \\\"sc_wins_multi\\\": 1,\\n      \\\"sica_acc_multi\\\": 0.5405,\\n      \\\"sc_acc_multi\\\": 0.4324,\\n      \\\"delta_multi_pp\\\": 10.81\\n    },\\n    {\\n      \\\"experiment\\\": \\\"exp017_qwen14b_strategyqa\\\",\\n      \\\"model\\\": \\\"Qwen2.5-14B\\\",\\n      \\\"domain\\\": \\\"StrategyQA\\\",\\n      \\\"n\\\": 60,\\n      \\\"sc_acc\\\": 0.5333,\\n      \\\"sica_acc\\\": 0.5667,\\n      \\\"delta_pp\\\": 3.33,\\n      \\\"c0_multi_candidate_rate\\\": 0.1,\\n      \\\"n_multi_candidate\\\": 6,\\n      \\\"c0_disagree_rate\\\": 0.0333,\\n      \\\"n_disagree\\\": 2,\\n      \\\"avg_extraction_rate\\\": 0.7042,\\n      \\\"avg_exclusion_rate\\\": 0.0463,\\n      \\\"avg_satisfied_ratio\\\": 0.9537,\\n      \\\"avg_constraint_density\\\": 1.02,\\n      \\\"avg_score_gt_frac\\\": null,\\n      \\\"sica_wins_multi\\\": 2,\\n      \\\"sc_wins_multi\\\": 0,\\n      \\\"sica_acc_multi\\\": 0.5,\\n      \\\"sc_acc_multi\\\": 0.1667,\\n      \\\"delta_multi_pp\\\": 33.33\\n    },\\n    {\\n      \\\"experiment\\\": \\\"exp018_qwen14b_arc\\\",\\n      \\\"model\\\": \\\"Qwen2.5-14B\\\",\\n      \\\"domain\\\": \\\"ARC\\\",\\n      \\\"n\\\": 60,\\n      \\\"sc_acc\\\": 0.9667,\\n      \\\"sica_acc\\\": 0.95,\\n      \\\"delta_pp\\\": -1.67,\\n      \\\"c0_multi_candidate_rate\\\": 0.05,\\n      \\\"n_multi_candidate\\\": 3,\\n      \\\"c0_disagree_rate\\\": 0.0167,\\n      \\\"n_disagree\\\": 1,\\n      \\\"avg_extraction_rate\\\": 1.0,\\n      \\\"avg_exclusion_rate\\\": 0.025,\\n      \\\"avg_satisfied_ratio\\\": 0.975,\\n      \\\"avg_constraint_density\\\": 1.02,\\n      \\\"avg_score_gt_frac\\\": null,\\n      \\\"sica_wins_multi\\\": 0,\\n      \\\"sc_wins_multi\\\": 1,\\n      \\\"sica_acc_multi\\\": 0.6667,\\n      \\\"sc_acc_multi\\\": 1.0,\\n      \\\"delta_multi_pp\\\": -33.33\\n    },\\n    {\\n      \\\"experiment\\\": \\\"exp019_llama8b_strategyqa\\\",\\n      \\\"model\\\": \\\"LLaMA-8B\\\",\\n      \\\"domain\\\": \\\"StrategyQA\\\",\\n      \\\"n\\\": 200,\\n      \\\"sc_acc\\\": 0.72,\\n      \\\"sica_acc\\\": 0.74,\\n      \\\"delta_pp\\\": 2.0,\\n      \\\"c0_multi_candidate_rate\\\": 0.41,\\n      \\\"n_multi_candidate\\\": 82,\\n      \\\"c0_disagree_rate\\\": 0.07,\\n      \\\"n_disagree\\\": 14,\\n      \\\"avg_extraction_rate\\\": 0.8008,\\n      \\\"avg_exclusion_rate\\\": 0.1466,\\n      \\\"avg_satisfied_ratio\\\": 0.8534,\\n      \\\"avg_constraint_density\\\": 1.94,\\n      \\\"avg_score_gt_frac\\\": null,\\n      \\\"sica_wins_multi\\\": 9,\\n      \\\"sc_wins_multi\\\": 5,\\n      \\\"sica_acc_multi\\\": 0.6585,\\n      \\\"sc\\n\\n... [截断: 输出过长，省略 486 字符] ...\\n\\n384,\\n      \\\"avg_constraint_density\\\": 8.05,\\n      \\\"avg_score_gt_frac\\\": 0.7251,\\n      \\\"sica_wins_multi\\\": 4,\\n      \\\"sc_wins_multi\\\": 9,\\n      \\\"sica_acc_multi\\\": 0.5238,\\n      \\\"sc_acc_multi\\\": 0.5635,\\n      \\\"delta_multi_pp\\\": -3.97\\n    }\\n  ],\\n  \\\"correlations\\\": {\\n    \\\"c0_vs_sica_sc_gap\\\": {\\n      \\\"pearson_r\\\": 0.1524,\\n      \\\"pearson_p\\\": 0.7442,\\n      \\\"spearman_rho\\\": -0.0714,\\n      \\\"spearman_p\\\": 0.879\\n    },\\n    \\\"c0_vs_satisfied_ratio\\\": {\\n      \\\"pearson_r\\\": -0.2641,\\n      \\\"pearson_p\\\": 0.5671,\\n      \\\"spearman_rho\\\": -0.6429,\\n      \\\"spearman_p\\\": 0.1194\\n    },\\n    \\\"c0_vs_exclusion_rate\\\": {\\n      \\\"pearson_r\\\": 0.2641,\\n      \\\"pearson_p\\\": 0.5671,\\n      \\\"spearman_rho\\\": 0.6429,\\n      \\\"spearman_p\\\": 0.1194\\n    },\\n    \\\"c0_vs_extraction_rate\\\": {\\n      \\\"pearson_r\\\": 0.4102,\\n      \\\"pearson_p\\\": 0.3608,\\n      \\\"spearman_rho\\\": -0.0741,\\n      \\\"spearman_p\\\": 0.8745\\n    },\\n    \\\"c0_vs_constraint_density\\\": {\\n      \\\"pearson_r\\\": 0.789,\\n      \\\"pearson_p\\\": 0.0349,\\n      \\\"spearman_rho\\\": 0.5946,\\n      \\\"spearman_p\\\": 0.1591\\n    },\\n    \\\"c0_disagree_vs_sica_sc_gap\\\": {\\n      \\\"pearson_r\\\": 0.6251,\\n      \\\"pearson_p\\\": 0.1333,\\n      \\\"spearman_rho\\\": 0.4286,\\n      \\\"spearman_p\\\": 0.3374\\n    },\\n    \\\"satisfied_ratio_vs_sica_sc_gap\\\": {\\n      \\\"pearson_r\\\": -0.161,\\n      \\\"pearson_p\\\": 0.7301,\\n      \\\"spearman_rho\\\": 0.0714,\\n      \\\"spearman_p\\\": 0.879\\n    },\\n    \\\"exclusion_rate_vs_sica_sc_gap\\\": {\\n      \\\"pearson_r\\\": 0.161,\\n      \\\"pearson_p\\\": 0.7301,\\n      \\\"spearman_rho\\\": -0.0714,\\n      \\\"spearman_p\\\": 0.879\\n    },\\n    \\\"constraint_density_vs_sica_sc_gap\\\": {\\n      \\\"pearson_r\\\": 0.0757,\\n      \\\"pearson_p\\\": 0.8719,\\n      \\\"spearman_rho\\\": 0.0721,\\n      \\\"spearman_p\\\": 0.878\\n    }\\n  },\\n  \\\"data_availability\\\": {\\n    \\\"per_constraint_detail\\\": \\\"NOT available - results JSON only stores aggregate statistics (total_extracted, unique_after_dedup, traces_with_constraints, satisfied, excluded)\\\",\\n    \\\"experiments_with_sica_scores\\\": [\\n      \\\"exp001_qwen14b_pw_folio\\\",\\n      \\\"exp020_llama8b_folio\\\"\\n    ],\\n    \\\"experiments_without_sica_scores\\\": [\\n      \\\"exp010\\\",\\n      \\\"exp011\\\",\\n      \\\"exp017\\\",\\n      \\\"exp018\\\",\\n      \\\"exp019\\\"\\n    ]\\n  },\\n  \\\"proxy_definitions\\\": {\\n    \\\"c0_multi_candidate_rate\\\": \\\"Fraction of problems where SC vote distribution has >1 unique answer (len(sc_vote_distribution) > 1)\\\",\\n    \\\"c0_disagree_rate\\\": \\\"Fraction of problems where SICA final answer != SC final answer\\\",\\n    \\\"avg_exclusion_rate\\\": \\\"Mean(excluded / unique_after_dedup) per problem\\\",\\n    \\\"avg_satisfied_ratio\\\": \\\"Mean(satisfied / (satisfied + excluded)) per problem\\\",\\n    \\\"avg_extraction_rate\\\": \\\"Mean(traces_with_constraints / k) per problem. FIX: denominator is k (total traces), not answer-extracted traces\\\",\\n    \\\"avg_constraint_density\\\": \\\"Mean(total_extracted / traces_with_constraints) per problem\\\"\\n  },\\n  \\\"notes\\\": {\\n    \\\"capability_trap_hypothesis\\\": \\\"When C0 is high (model uncertain), constraint quality degrades because the same uncertainty that produces diverse answers also produces unreliable constraints. This creates a trap: SICA can only help when constraints are discriminative, but constraints are only discriminative when the model is already fairly certain.\\\",\\n    \\\"limitation\\\": \\\"True constraint precision (discriminative constraints / total) requires per-constraint trace-assignment data not stored in current results. The exclusion_rate and satisfied_ratio are MaxSAT-level proxies.\\\"\\n  },\\n  \\\"bugfix\\\": [\\n    {\\n      \\\"field\\\": \\\"avg_extraction_rate\\\",\\n      \\\"bug\\\": \\\"denominator was (boxed+fallback) answer-extracted traces instead of k (total traces)\\\",\\n      \\\"affected_experiments\\\": [\\n        \\\"exp011_llama8b_pw_folio\\\",\\n        \\\"exp020_llama8b_folio\\\"\\n      ],\\n      \\\"fix\\\": \\\"always use k from summary as denominator\\\"\\n    },\\n    {\\n      \\\"field\\\": \\\"c0_multi_candidate_rate\\\",\\n      \\\"bug\\\": \\\"was computed as sica_answer != sc_answer (disagree rate) instead of len(sc_vote_distribution) > 1 (true multi-candidate rate)\\\",\\n      \\\"affected_experiments\\\": \\\"all\\\",\\n      \\\"fix\\\": \\\"use len(sc_vote_distribution) > 1 for multi-candidate; old metric preserved as c0_disagree_rate\\\"\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.02}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "64f83ab4-5c9c-489c-8398-18a670cb0d57",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "3dd71406-e2d2-4065-98b3-57c8ca8126db",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"analysis_type\\\\\\\": \\\\\\\"constraint_quality_correlation\\\\\\\",\\\\n  \\\\\\\"date\\\\\\\": \\\\\\\"2026-05-17\\\\\\\",\\\\n  \\\\\\\"n_experiments\\\\\\\": 7,\\\\n  \\\\\\\"per_experiment\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"experiment\\\\\\\": \\\\\\\"exp001_qwen14b_pw_folio\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-14B\\\\\\\",\\\\n      \\\\\\\"domain\\\\\\\": \\\\\\\"PW+FOLIO\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 804,\\\\n      \\\\\\\"sc_acc\\\\\\\": 0.7624,\\\\n      \\\\\\\"sica_acc\\\\\\\": 0.7649,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.25,\\\\n      \\\\\\\"c0_multi_candidate_rate\\\\\\\": 0.3818,\\\\n      \\\\\\\"n_multi_candidate\\\\\\\": 307,\\\\n      \\\\\\\"c0_disagree_rate\\\\\\\": 0.0386,\\\\n      \\\\\\\"n_disagree\\\\\\\": 31,\\\\n      \\\\\\\"avg_extraction_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"avg_exclusion_rate\\\\\\\": 0.0227,\\\\n      \\\\\\\"avg_satisfied_ratio\\\\\\\": 0.9773,\\\\n      \\\\\\\"avg_constraint_density\\\\\\\": 9.17,\\\\n      \\\\\\\"avg_score_gt_frac\\\\\\\": 0.8676,\\\\n      \\\\\\\"sica_wins_multi\\\\\\\": 16,\\\\n      \\\\\\\"sc_wins_multi\\\\\\\": 14,\\\\n      \\\\\\\"sica_acc_multi\\\\\\\": 0.5961,\\\\n      \\\\\\\"sc_acc_multi\\\\\\\": 0.5896,\\\\n      \\\\\\\"delta_multi_pp\\\\\\\": 0.65\\\\n    },\\\\n    {\\\\n      \\\\\\\"experiment\\\\\\\": \\\\\\\"exp010_mistral7b_pw_folio\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n      \\\\\\\"domain\\\\\\\": \\\\\\\"PW+FOLIO\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 60,\\\\n      \\\\\\\"sc_acc\\\\\\\": 0.4833,\\\\n      \\\\\\\"sica_acc\\\\\\\": 0.4833,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.0,\\\\n      \\\\\\\"c0_multi_candidate_rate\\\\\\\": 0.5,\\\\n      \\\\\\\"n_multi_candidate\\\\\\\": 30,\\\\n      \\\\\\\"c0_disagree_rate\\\\\\\": 0.0667,\\\\n      \\\\\\\"n_disagree\\\\\\\": 4,\\\\n      \\\\\\\"avg_extraction_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"avg_exclusion_rate\\\\\\\": 0.0523,\\\\n      \\\\\\\"avg_satisfied_ratio\\\\\\\": 0.9477,\\\\n      \\\\\\\"avg_constraint_density\\\\\\\": 5.47,\\\\n      \\\\\\\"avg_score_gt_frac\\\\\\\": 0.7073,\\\\n      \\\\\\\"sica_wins_multi\\\\\\\": 2,\\\\n      \\\\\\\"sc_wins_multi\\\\\\\": 2,\\\\n      \\\\\\\"sica_acc_multi\\\\\\\": 0.3,\\\\n      \\\\\\\"sc_acc_multi\\\\\\\": 0.3,\\\\n      \\\\\\\"delta_multi_pp\\\\\\\": 0.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"experiment\\\\\\\": \\\\\\\"exp011_llama8b_pw_folio\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"LLaMA-8B\\\\\\\",\\\\n      \\\\\\\"domain\\\\\\\": \\\\\\\"PW+FOLIO\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 60,\\\\n      \\\\\\\"sc_acc\\\\\\\": 0.6,\\\\n      \\\\\\\"sica_acc\\\\\\\": 0.6667,\\\\n      \\\\\\\"delta_pp\\\\\\\": 6.67,\\\\n      \\\\\\\"c0_multi_candidate_rate\\\\\\\": 0.6167,\\\\n      \\\\\\\"n_multi_candidate\\\\\\\": 37,\\\\n      \\\\\\\"c0_disagree_rate\\\\\\\": 0.1167,\\\\n      \\\\\\\"n_disagree\\\\\\\": 7,\\\\n      \\\\\\\"avg_extraction_rate\\\\\\\": 0.9639,\\\\n      \\\\\\\"avg_exclusion_rate\\\\\\\": 0.0504,\\\\n      \\\\\\\"avg_satisfied_ratio\\\\\\\": 0.9496,\\\\n      \\\\\\\"avg_constraint_density\\\\\\\": 8.73,\\\\n      \\\\\\\"avg_score_gt_frac\\\\\\\": 0.7143,\\\\n      \\\\\\\"sica_wins_multi\\\\\\\": 5,\\\\n      \\\\\\\"sc_wins_multi\\\\\\\": 1,\\\\n      \\\\\\\"sica_acc_multi\\\\\\\": 0.5405,\\\\n      \\\\\\\"sc_acc_multi\\\\\\\": 0.4324,\\\\n      \\\\\\\"delta_multi_pp\\\\\\\": 10.81\\\\n    },\\\\n    {\\\\n      \\\\\\\"experiment\\\\\\\": \\\\\\\"exp017_qwen14b_strategyqa\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-14B\\\\\\\",\\\\n      \\\\\\\"domain\\\\\\\": \\\\\\\"StrategyQA\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 60,\\\\n      \\\\\\\"sc_acc\\\\\\\": 0.5333,\\\\n      \\\\\\\"sica_acc\\\\\\\": 0.5667,\\\\n      \\\\\\\"delta_pp\\\\\\\": 3.33,\\\\n      \\\\\\\"c0_multi_candidate_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"n_multi_candidate\\\\\\\": 6,\\\\n      \\\\\\\"c0_disagree_rate\\\\\\\": 0.0333,\\\\n      \\\\\\\"n_disagree\\\\\\\": 2,\\\\n      \\\\\\\"avg_extraction_rate\\\\\\\": 0.7042,\\\\n      \\\\\\\"avg_exclusion_rate\\\\\\\": 0.0463,\\\\n      \\\\\\\"avg_satisfied_ratio\\\\\\\": 0.9537,\\\\n      \\\\\\\"avg_constraint_density\\\\\\\": 1.02,\\\\n      \\\\\\\"avg_score_gt_frac\\\\\\\": null,\\\\n      \\\\\\\"sica_wins_multi\\\\\\\": 2,\\\\n      \\\\\\\"sc_wins_multi\\\\\\\": 0,\\\\n      \\\\\\\"sica_acc_multi\\\\\\\": 0.5,\\\\n      \\\\\\\"sc_acc_multi\\\\\\\": 0.1667,\\\\n      \\\\\\\"delta_multi_pp\\\\\\\": 33.33\\\\n    },\\\\n    {\\\\n      \\\\\\\"experiment\\\\\\\": \\\\\\\"exp018_qwen14b_arc\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-14B\\\\\\\",\\\\n      \\\\\\\"domain\\\\\\\": \\\\\\\"ARC\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 60,\\\\n      \\\\\\\"sc_acc\\\\\\\": 0.9667,\\\\n      \\\\\\\"sica_acc\\\\\\\": 0.95,\\\\n      \\\\\\\"delta_pp\\\\\\\": -1.67,\\\\n      \\\\\\\"c0_multi_candidate_rate\\\\\\\": 0.05,\\\\n      \\\\\\\"n_multi_candidate\\\\\\\": 3,\\\\n      \\\\\\\"c0_disagree_rate\\\\\\\": 0.0167,\\\\n      \\\\\\\"n_disagree\\\\\\\": 1,\\\\n      \\\\\\\"avg_extraction_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"avg_exclusion_rate\\\\\\\": 0.025,\\\\n      \\\\\\\"avg_satisfied_ratio\\\\\\\": 0.975,\\\\n      \\\\\\\"avg_constraint_density\\\\\\\": 1.02,\\\\n      \\\\\\\"avg_score_gt_frac\\\\\\\": null,\\\\n      \\\\\\\"sica_wins_multi\\\\\\\": 0,\\\\n      \\\\\\\"sc_wins_multi\\\\\\\": 1,\\\\n      \\\\\\\"sica_acc_multi\\\\\\\": 0.6667,\\\\n      \\\\\\\"sc_acc_multi\\\\\\\": 1.0,\\\\n      \\\\\\\"delta_multi_pp\\\\\\\": -33.33\\\\n    },\\\\n    {\\\\n      \\\\\\\"experiment\\\\\\\": \\\\\\\"exp019_llama8b_strategyqa\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"LLaMA-8B\\\\\\\",\\\\n      \\\\\\\"domain\\\\\\\": \\\\\\\"StrategyQA\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 200,\\\\n      \\\\\\\"sc_acc\\\\\\\": 0.72,\\\\n      \\\\\\\"sica_acc\\\\\\\": 0.74,\\\\n      \\\\\\\"delta_pp\\\\\\\": 2.0,\\\\n      \\\\\\\"c0_multi_candidate_rate\\\\\\\": 0.41,\\\\n      \\\\\\\"n_multi_candidate\\\\\\\": 82,\\\\n      \\\\\\\"c0_disagree_rate\\\\\\\": 0.07,\\\\n      \\\\\\\"n_disagree\\\\\\\": 14,\\\\n      \\\\\\\"avg_extraction_rate\\\\\\\": 0.8008,\\\\n      \\\\\\\"avg_exclusion_rate\\\\\\\": 0.1466,\\\\n      \\\\\\\"avg_satisfied_ratio\\\\\\\": 0.8534,\\\\n      \\\\\\\"avg_constraint_density\\\\\\\": 1.94,\\\\n      \\\\\\\"avg_score_gt_frac\\\\\\\": null,\\\\n      \\\\\\\"sica_wins_multi\\\\\\\": 9,\\\\n      \\\\\\\"sc_wins_multi\\\\\\\": 5,\\\\n      \\\\\\\"sica_acc_multi\\\\\\\": 0.6585,\\\\n      \\\\\\\"sc\\\\n\\\\n... [截断: 输出过长，省略 486 字符] ...\\\\n\\\\n384,\\\\n      \\\\\\\"avg_constraint_density\\\\\\\": 8.05,\\\\n      \\\\\\\"avg_score_gt_frac\\\\\\\": 0.7251,\\\\n      \\\\\\\"sica_wins_multi\\\\\\\": 4,\\\\n      \\\\\\\"sc_wins_multi\\\\\\\": 9,\\\\n      \\\\\\\"sica_acc_multi\\\\\\\": 0.5238,\\\\n      \\\\\\\"sc_acc_multi\\\\\\\": 0.5635,\\\\n      \\\\\\\"delta_multi_pp\\\\\\\": -3.97\\\\n    }\\\\n  ],\\\\n  \\\\\\\"correlations\\\\\\\": {\\\\n    \\\\\\\"c0_vs_sica_sc_gap\\\\\\\": {\\\\n      \\\\\\\"pearson_r\\\\\\\": 0.1524,\\\\n      \\\\\\\"pearson_p\\\\\\\": 0.7442,\\\\n      \\\\\\\"spearman_rho\\\\\\\": -0.0714,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.879\\\\n    },\\\\n    \\\\\\\"c0_vs_satisfied_ratio\\\\\\\": {\\\\n      \\\\\\\"pearson_r\\\\\\\": -0.2641,\\\\n      \\\\\\\"pearson_p\\\\\\\": 0.5671,\\\\n      \\\\\\\"spearman_rho\\\\\\\": -0.6429,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.1194\\\\n    },\\\\n    \\\\\\\"c0_vs_exclusion_rate\\\\\\\": {\\\\n      \\\\\\\"pearson_r\\\\\\\": 0.2641,\\\\n      \\\\\\\"pearson_p\\\\\\\": 0.5671,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.6429,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.1194\\\\n    },\\\\n    \\\\\\\"c0_vs_extraction_rate\\\\\\\": {\\\\n      \\\\\\\"pearson_r\\\\\\\": 0.4102,\\\\n      \\\\\\\"pearson_p\\\\\\\": 0.3608,\\\\n      \\\\\\\"spearman_rho\\\\\\\": -0.0741,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.8745\\\\n    },\\\\n    \\\\\\\"c0_vs_constraint_density\\\\\\\": {\\\\n      \\\\\\\"pearson_r\\\\\\\": 0.789,\\\\n      \\\\\\\"pearson_p\\\\\\\": 0.0349,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.5946,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.1591\\\\n    },\\\\n    \\\\\\\"c0_disagree_vs_sica_sc_gap\\\\\\\": {\\\\n      \\\\\\\"pearson_r\\\\\\\": 0.6251,\\\\n      \\\\\\\"pearson_p\\\\\\\": 0.1333,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.4286,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.3374\\\\n    },\\\\n    \\\\\\\"satisfied_ratio_vs_sica_sc_gap\\\\\\\": {\\\\n      \\\\\\\"pearson_r\\\\\\\": -0.161,\\\\n      \\\\\\\"pearson_p\\\\\\\": 0.7301,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.0714,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.879\\\\n    },\\\\n    \\\\\\\"exclusion_rate_vs_sica_sc_gap\\\\\\\": {\\\\n      \\\\\\\"pearson_r\\\\\\\": 0.161,\\\\n      \\\\\\\"pearson_p\\\\\\\": 0.7301,\\\\n      \\\\\\\"spearman_rho\\\\\\\": -0.0714,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.879\\\\n    },\\\\n    \\\\\\\"constraint_density_vs_sica_sc_gap\\\\\\\": {\\\\n      \\\\\\\"pearson_r\\\\\\\": 0.0757,\\\\n      \\\\\\\"pearson_p\\\\\\\": 0.8719,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.0721,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.878\\\\n    }\\\\n  },\\\\n  \\\\\\\"data_availability\\\\\\\": {\\\\n    \\\\\\\"per_constraint_detail\\\\\\\": \\\\\\\"NOT available - results JSON only stores aggregate statistics (total_extracted, unique_after_dedup, traces_with_constraints, satisfied, excluded)\\\\\\\",\\\\n    \\\\\\\"experiments_with_sica_scores\\\\\\\": [\\\\n      \\\\\\\"exp001_qwen14b_pw_folio\\\\\\\",\\\\n      \\\\\\\"exp020_llama8b_folio\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"experiments_without_sica_scores\\\\\\\": [\\\\n      \\\\\\\"exp010\\\\\\\",\\\\n      \\\\\\\"exp011\\\\\\\",\\\\n      \\\\\\\"exp017\\\\\\\",\\\\n      \\\\\\\"exp018\\\\\\\",\\\\n      \\\\\\\"exp019\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"proxy_definitions\\\\\\\": {\\\\n    \\\\\\\"c0_multi_candidate_rate\\\\\\\": \\\\\\\"Fraction of problems where SC vote distribution has >1 unique answer (len(sc_vote_distribution) > 1)\\\\\\\",\\\\n    \\\\\\\"c0_disagree_rate\\\\\\\": \\\\\\\"Fraction of problems where SICA final answer != SC final answer\\\\\\\",\\\\n    \\\\\\\"avg_exclusion_rate\\\\\\\": \\\\\\\"Mean(excluded / unique_after_dedup) per problem\\\\\\\",\\\\n    \\\\\\\"avg_satisfied_ratio\\\\\\\": \\\\\\\"Mean(satisfied / (satisfied + excluded)) per problem\\\\\\\",\\\\n    \\\\\\\"avg_extraction_rate\\\\\\\": \\\\\\\"Mean(traces_with_constraints / k) per problem. FIX: denominator is k (total traces), not answer-extracted traces\\\\\\\",\\\\n    \\\\\\\"avg_constraint_density\\\\\\\": \\\\\\\"Mean(total_extracted / traces_with_constraints) per problem\\\\\\\"\\\\n  },\\\\n  \\\\\\\"notes\\\\\\\": {\\\\n    \\\\\\\"capability_trap_hypothesis\\\\\\\": \\\\\\\"When C0 is high (model uncertain), constraint quality degrades because the same uncertainty that produces diverse answers also produces unreliable constraints. This creates a trap: SICA can only help when constraints are discriminative, but constraints are only discriminative when the model is already fairly certain.\\\\\\\",\\\\n    \\\\\\\"limitation\\\\\\\": \\\\\\\"True constraint precision (discriminative constraints / total) requires per-constraint trace-assignment data not stored in current results. The exclusion_rate and satisfied_ratio are MaxSAT-level proxies.\\\\\\\"\\\\n  },\\\\n  \\\\\\\"bugfix\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"field\\\\\\\": \\\\\\\"avg_extraction_rate\\\\\\\",\\\\n      \\\\\\\"bug\\\\\\\": \\\\\\\"denominator was (boxed+fallback) answer-extracted traces instead of k (total traces)\\\\\\\",\\\\n      \\\\\\\"affected_experiments\\\\\\\": [\\\\n        \\\\\\\"exp011_llama8b_pw_folio\\\\\\\",\\\\n        \\\\\\\"exp020_llama8b_folio\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"fix\\\\\\\": \\\\\\\"always use k from summary as denominator\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"field\\\\\\\": \\\\\\\"c0_multi_candidate_rate\\\\\\\",\\\\n      \\\\\\\"bug\\\\\\\": \\\\\\\"was computed as sica_answer != sc_answer (disagree rate) instead of len(sc_vote_distribution) > 1 (true multi-candidate rate)\\\\\\\",\\\\n      \\\\\\\"affected_experiments\\\\\\\": \\\\\\\"all\\\\\\\",\\\\n      \\\\\\\"fix\\\\\\\": \\\\\\\"use len(sc_vote_distribution) > 1 for multi-candidate; old metric preserved as c0_disagree_rate\\\\\\\"\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.02}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis_type\\\": \\\"constraint_quality_correlation\\\",\\n  \\\"date\\\": \\\"2026-05-17\\\",\\n  \\\"n_experiments\\\": 7,\\n  \\\"per_experiment\\\": [\\n    {\\n      \\\"experiment\\\": \\\"exp001_qwen14b_pw_folio\\\",\\n      \\\"model\\\": \\\"Qwen2.5-14B\\\",\\n      \\\"domain\\\": \\\"PW+FOLIO\\\",\\n      \\\"n\\\": 804,\\n      \\\"sc_acc\\\": 0.7624,\\n      \\\"sica_acc\\\": 0.7649,\\n      \\\"delta_pp\\\": 0.25,\\n      \\\"c0_multi_candidate_rate\\\": 0.3818,\\n      \\\"n_multi_candidate\\\": 307,\\n      \\\"c0_disagree_rate\\\": 0.0386,\\n      \\\"n_disagree\\\": 31,\\n      \\\"avg_extraction_rate\\\": 1.0,\\n      \\\"avg_exclusion_rate\\\": 0.0227,\\n      \\\"avg_satisfied_ratio\\\": 0.9773,\\n      \\\"avg_constraint_density\\\": 9.17,\\n      \\\"avg_score_gt_frac\\\": 0.8676,\\n      \\\"sica_wins_multi\\\": 16,\\n      \\\"sc_wins_multi\\\": 14,\\n      \\\"sica_acc_multi\\\": 0.5961,\\n      \\\"sc_acc_multi\\\": 0.5896,\\n      \\\"delta_multi_pp\\\": 0.65\\n    },\\n    {\\n      \\\"experiment\\\": \\\"exp010_mistral7b_pw_folio\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"domain\\\": \\\"PW+FOLIO\\\",\\n      \\\"n\\\": 60,\\n      \\\"sc_acc\\\": 0.4833,\\n      \\\"sica_acc\\\": 0.4833,\\n      \\\"delta_pp\\\": 0.0,\\n      \\\"c0_multi_candidate_rate\\\": 0.5,\\n      \\\"n_multi_candidate\\\": 30,\\n      \\\"c0_disagree_rate\\\": 0.0667,\\n      \\\"n_disagree\\\": 4,\\n      \\\"avg_extraction_rate\\\": 1.0,\\n      \\\"avg_exclusion_rate\\\": 0.0523,\\n      \\\"avg_satisfied_ratio\\\": 0.9477,\\n      \\\"avg_constraint_density\\\": 5.47,\\n      \\\"avg_score_gt_frac\\\": 0.7073,\\n      \\\"sica_wins_multi\\\": 2,\\n      \\\"sc_wins_multi\\\": 2,\\n      \\\"sica_acc_multi\\\": 0.3,\\n      \\\"sc_acc_multi\\\": 0.3,\\n      \\\"delta_multi_pp\\\": 0.0\\n    },\\n    {\\n      \\\"experiment\\\": \\\"exp011_llama8b_pw_folio\\\",\\n      \\\"model\\\": \\\"LLaMA-8B\\\",\\n      \\\"domain\\\": \\\"PW+FOLIO\\\",\\n      \\\"n\\\": 60,\\n      \\\"sc_acc\\\": 0.6,\\n      \\\"sica_acc\\\": 0.6667,\\n      \\\"delta_pp\\\": 6.67,\\n      \\\"c0_multi_candidate_rate\\\": 0.6167,\\n      \\\"n_multi_candidate\\\": 37,\\n      \\\"c0_disagree_rate\\\": 0.1167,\\n      \\\"n_disagree\\\": 7,\\n      \\\"avg_extraction_rate\\\": 0.9639,\\n      \\\"avg_exclusion_rate\\\": 0.0504,\\n      \\\"avg_satisfied_ratio\\\": 0.9496,\\n      \\\"avg_constraint_density\\\": 8.73,\\n      \\\"avg_score_gt_frac\\\": 0.7143,\\n      \\\"sica_wins_multi\\\": 5,\\n      \\\"sc_wins_multi\\\": 1,\\n      \\\"sica_acc_multi\\\": 0.5405,\\n      \\\"sc_acc_multi\\\": 0.4324,\\n      \\\"delta_multi_pp\\\": 10.81\\n    },\\n    {\\n      \\\"experiment\\\": \\\"exp017_qwen14b_strategyqa\\\",\\n      \\\"model\\\": \\\"Qwen2.5-14B\\\",\\n      \\\"domain\\\": \\\"StrategyQA\\\",\\n      \\\"n\\\": 60,\\n      \\\"sc_acc\\\": 0.5333,\\n      \\\"sica_acc\\\": 0.5667,\\n      \\\"delta_pp\\\": 3.33,\\n      \\\"c0_multi_candidate_rate\\\": 0.1,\\n      \\\"n_multi_candidate\\\": 6,\\n      \\\"c0_disagree_rate\\\": 0.0333,\\n      \\\"n_disagree\\\": 2,\\n      \\\"avg_extraction_rate\\\": 0.7042,\\n      \\\"avg_exclusion_rate\\\": 0.0463,\\n      \\\"avg_satisfied_ratio\\\": 0.9537,\\n      \\\"avg_constraint_density\\\": 1.02,\\n      \\\"avg_score_gt_frac\\\": null,\\n      \\\"sica_wins_multi\\\": 2,\\n      \\\"sc_wins_multi\\\": 0,\\n      \\\"sica_acc_multi\\\": 0.5,\\n      \\\"sc_acc_multi\\\": 0.1667,\\n      \\\"delta_multi_pp\\\": 33.33\\n    },\\n    {\\n      \\\"experiment\\\": \\\"exp018_qwen14b_arc\\\",\\n      \\\"model\\\": \\\"Qwen2.5-14B\\\",\\n      \\\"domain\\\": \\\"ARC\\\",\\n      \\\"n\\\": 60,\\n      \\\"sc_acc\\\": 0.9667,\\n      \\\"sica_acc\\\": 0.95,\\n      \\\"delta_pp\\\": -1.67,\\n      \\\"c0_multi_candidate_rate\\\": 0.05,\\n      \\\"n_multi_candidate\\\": 3,\\n      \\\"c0_disagree_rate\\\": 0.0167,\\n      \\\"n_disagree\\\": 1,\\n      \\\"avg_extraction_rate\\\": 1.0,\\n      \\\"avg_exclusion_rate\\\": 0.025,\\n      \\\"avg_satisfied_ratio\\\": 0.975,\\n      \\\"avg_constraint_density\\\": 1.02,\\n      \\\"avg_score_gt_frac\\\": null,\\n      \\\"sica_wins_multi\\\": 0,\\n      \\\"sc_wins_multi\\\": 1,\\n      \\\"sica_acc_multi\\\": 0.6667,\\n      \\\"sc_acc_multi\\\": 1.0,\\n      \\\"delta_multi_pp\\\": -33.33\\n    },\\n    {\\n      \\\"experiment\\\": \\\"exp019_llama8b_strategyqa\\\",\\n      \\\"model\\\": \\\"LLaMA-8B\\\",\\n      \\\"domain\\\": \\\"StrategyQA\\\",\\n      \\\"n\\\": 200,\\n      \\\"sc_acc\\\": 0.72,\\n      \\\"sica_acc\\\": 0.74,\\n      \\\"delta_pp\\\": 2.0,\\n      \\\"c0_multi_candidate_rate\\\": 0.41,\\n      \\\"n_multi_candidate\\\": 82,\\n      \\\"c0_disagree_rate\\\": 0.07,\\n      \\\"n_disagree\\\": 14,\\n      \\\"avg_extraction_rate\\\": 0.8008,\\n      \\\"avg_exclusion_rate\\\": 0.1466,\\n      \\\"avg_satisfied_ratio\\\": 0.8534,\\n      \\\"avg_constraint_density\\\": 1.94,\\n      \\\"avg_score_gt_frac\\\": null,\\n      \\\"sica_wins_multi\\\": 9,\\n      \\\"sc_wins_multi\\\": 5,\\n      \\\"sica_acc_multi\\\": 0.6585,\\n      \\\"sc\\n\\n... [截断: 输出过长，省略 486 字符] ...\\n\\n384,\\n      \\\"avg_constraint_density\\\": 8.05,\\n      \\\"avg_score_gt_frac\\\": 0.7251,\\n      \\\"sica_wins_multi\\\": 4,\\n      \\\"sc_wins_multi\\\": 9,\\n      \\\"sica_acc_multi\\\": 0.5238,\\n      \\\"sc_acc_multi\\\": 0.5635,\\n      \\\"delta_multi_pp\\\": -3.97\\n    }\\n  ],\\n  \\\"correlations\\\": {\\n    \\\"c0_vs_sica_sc_gap\\\": {\\n      \\\"pearson_r\\\": 0.1524,\\n      \\\"pearson_p\\\": 0.7442,\\n      \\\"spearman_rho\\\": -0.0714,\\n      \\\"spearman_p\\\": 0.879\\n    },\\n    \\\"c0_vs_satisfied_ratio\\\": {\\n      \\\"pearson_r\\\": -0.2641,\\n      \\\"pearson_p\\\": 0.5671,\\n      \\\"spearman_rho\\\": -0.6429,\\n      \\\"spearman_p\\\": 0.1194\\n    },\\n    \\\"c0_vs_exclusion_rate\\\": {\\n      \\\"pearson_r\\\": 0.2641,\\n      \\\"pearson_p\\\": 0.5671,\\n      \\\"spearman_rho\\\": 0.6429,\\n      \\\"spearman_p\\\": 0.1194\\n    },\\n    \\\"c0_vs_extraction_rate\\\": {\\n      \\\"pearson_r\\\": 0.4102,\\n      \\\"pearson_p\\\": 0.3608,\\n      \\\"spearman_rho\\\": -0.0741,\\n      \\\"spearman_p\\\": 0.8745\\n    },\\n    \\\"c0_vs_constraint_density\\\": {\\n      \\\"pearson_r\\\": 0.789,\\n      \\\"pearson_p\\\": 0.0349,\\n      \\\"spearman_rho\\\": 0.5946,\\n      \\\"spearman_p\\\": 0.1591\\n    },\\n    \\\"c0_disagree_vs_sica_sc_gap\\\": {\\n      \\\"pearson_r\\\": 0.6251,\\n      \\\"pearson_p\\\": 0.1333,\\n      \\\"spearman_rho\\\": 0.4286,\\n      \\\"spearman_p\\\": 0.3374\\n    },\\n    \\\"satisfied_ratio_vs_sica_sc_gap\\\": {\\n      \\\"pearson_r\\\": -0.161,\\n      \\\"pearson_p\\\": 0.7301,\\n      \\\"spearman_rho\\\": 0.0714,\\n      \\\"spearman_p\\\": 0.879\\n    },\\n    \\\"exclusion_rate_vs_sica_sc_gap\\\": {\\n      \\\"pearson_r\\\": 0.161,\\n      \\\"pearson_p\\\": 0.7301,\\n      \\\"spearman_rho\\\": -0.0714,\\n      \\\"spearman_p\\\": 0.879\\n    },\\n    \\\"constraint_density_vs_sica_sc_gap\\\": {\\n      \\\"pearson_r\\\": 0.0757,\\n      \\\"pearson_p\\\": 0.8719,\\n      \\\"spearman_rho\\\": 0.0721,\\n      \\\"spearman_p\\\": 0.878\\n    }\\n  },\\n  \\\"data_availability\\\": {\\n    \\\"per_constraint_detail\\\": \\\"NOT available - results JSON only stores aggregate statistics (total_extracted, unique_after_dedup, traces_with_constraints, satisfied, excluded)\\\",\\n    \\\"experiments_with_sica_scores\\\": [\\n      \\\"exp001_qwen14b_pw_folio\\\",\\n      \\\"exp020_llama8b_folio\\\"\\n    ],\\n    \\\"experiments_without_sica_scores\\\": [\\n      \\\"exp010\\\",\\n      \\\"exp011\\\",\\n      \\\"exp017\\\",\\n      \\\"exp018\\\",\\n      \\\"exp019\\\"\\n    ]\\n  },\\n  \\\"proxy_definitions\\\": {\\n    \\\"c0_multi_candidate_rate\\\": \\\"Fraction of problems where SC vote distribution has >1 unique answer (len(sc_vote_distribution) > 1)\\\",\\n    \\\"c0_disagree_rate\\\": \\\"Fraction of problems where SICA final answer != SC final answer\\\",\\n    \\\"avg_exclusion_rate\\\": \\\"Mean(excluded / unique_after_dedup) per problem\\\",\\n    \\\"avg_satisfied_ratio\\\": \\\"Mean(satisfied / (satisfied + excluded)) per problem\\\",\\n    \\\"avg_extraction_rate\\\": \\\"Mean(traces_with_constraints / k) per problem. FIX: denominator is k (total traces), not answer-extracted traces\\\",\\n    \\\"avg_constraint_density\\\": \\\"Mean(total_extracted / traces_with_constraints) per problem\\\"\\n  },\\n  \\\"notes\\\": {\\n    \\\"capability_trap_hypothesis\\\": \\\"When C0 is high (model uncertain), constraint quality degrades because the same uncertainty that produces diverse answers also produces unreliable constraints. This creates a trap: SICA can only help when constraints are discriminative, but constraints are only discriminative when the model is already fairly certain.\\\",\\n    \\\"limitation\\\": \\\"True constraint precision (discriminative constraints / total) requires per-constraint trace-assignment data not stored in current results. The exclusion_rate and satisfied_ratio are MaxSAT-level proxies.\\\"\\n  },\\n  \\\"bugfix\\\": [\\n    {\\n      \\\"field\\\": \\\"avg_extraction_rate\\\",\\n      \\\"bug\\\": \\\"denominator was (boxed+fallback) answer-extracted traces instead of k (total traces)\\\",\\n      \\\"affected_experiments\\\": [\\n        \\\"exp011_llama8b_pw_folio\\\",\\n        \\\"exp020_llama8b_folio\\\"\\n      ],\\n      \\\"fix\\\": \\\"always use k from summary as denominator\\\"\\n    },\\n    {\\n      \\\"field\\\": \\\"c0_multi_candidate_rate\\\",\\n      \\\"bug\\\": \\\"was computed as sica_answer != sc_answer (disagree rate) instead of len(sc_vote_distribution) > 1 (true multi-candidate rate)\\\",\\n      \\\"affected_experiments\\\": \\\"all\\\",\\n      \\\"fix\\\": \\\"use len(sc_vote_distribution) > 1 for multi-candidate; old metric preserved as c0_disagree_rate\\\"\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.02}}"
+    }
+  },
+  "sourceToolAssistantUUID": "64f83ab4-5c9c-489c-8398-18a670cb0d57",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 102_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "3dd71406-e2d2-4065-98b3-57c8ca8126db",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 103_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix C0 definition in constraint quality analysis script",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-17T13:43:41.734Z_
+
+<details><summary>↩ Tool result · `toolu_0151Tf2WVgQA1qx2CvGx6Lm7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"experiment,model,domain,n,sc_acc,sica_acc,delta_pp,c0_multi_candidate_rate,n_multi_candidate,c0_disagree_rate,n_disagree,avg_extraction_rate,avg_exclusion_rate,avg_satisfied_ratio,avg_constraint_density,avg_score_gt_frac,sica_wins_multi,sc_wins_multi,sica_acc_multi,sc_acc_multi,delta_multi_pp\\r\\nexp001_qwen14b_pw_folio,Qwen2.5-14B,PW+FOLIO,804,0.7624,0.7649,0.25,0.3818,307,0.0386,31,1.0,0.0227,0.9773,9.17,0.8676,16,14,0.5961,0.5896,0.65\\r\\nexp010_mistral7b_pw_folio,Mistral-7B,PW+FOLIO,60,0.4833,0.4833,0.0,0.5,30,0.0667,4,1.0,0.0523,0.9477,5.47,0.7073,2,2,0.3,0.3,0.0\\r\\nexp011_llama8b_pw_folio,LLaMA-8B,PW+FOLIO,60,0.6,0.6667,6.67,0.6167,37,0.1167,7,0.9639,0.0504,0.9496,8.73,0.7143,5,1,0.5405,0.4324,10.81\\r\\nexp017_qwen14b_strategyqa,Qwen2.5-14B,StrategyQA,60,0.5333,0.5667,3.33,0.1,6,0.0333,2,0.7042,0.0463,0.9537,1.02,,2,0,0.5,0.1667,33.33\\r\\nexp018_qwen14b_arc,Qwen2.5-14B,ARC,60,0.9667,0.95,-1.67,0.05,3,0.0167,1,1.0,0.025,0.975,1.02,,0,1,0.6667,1.0,-33.33\\r\\nexp019_llama8b_strategyqa,LLaMA-8B,StrategyQA,200,0.72,0.74,2.0,0.41,82,0.07,14,0.8008,0.1466,0.8534,1.94,,9,5,0.6585,0.6098,4.87\\r\\nexp020_llama8b_folio,LLaMA-8B,FOLIO,204,0.6324,0.6078,-2.45,0.6176,126,0.0637,13,0.9935,0.0616,0.9384,8.05,0.7251,4,9,0.5238,0.5635,-3.97\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cc45215c-75f7-4959-821a-332c13a3635c",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "edab042e-f6c5-42ba-90d8-e972af241f5c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"experiment,model,domain,n,sc_acc,sica_acc,delta_pp,c0_multi_candidate_rate,n_multi_candidate,c0_disagree_rate,n_disagree,avg_extraction_rate,avg_exclusion_rate,avg_satisfied_ratio,avg_constraint_density,avg_score_gt_frac,sica_wins_multi,sc_wins_multi,sica_acc_multi,sc_acc_multi,delta_multi_pp\\\\r\\\\nexp001_qwen14b_pw_folio,Qwen2.5-14B,PW+FOLIO,804,0.7624,0.7649,0.25,0.3818,307,0.0386,31,1.0,0.0227,0.9773,9.17,0.8676,16,14,0.5961,0.5896,0.65\\\\r\\\\nexp010_mistral7b_pw_folio,Mistral-7B,PW+FOLIO,60,0.4833,0.4833,0.0,0.5,30,0.0667,4,1.0,0.0523,0.9477,5.47,0.7073,2,2,0.3,0.3,0.0\\\\r\\\\nexp011_llama8b_pw_folio,LLaMA-8B,PW+FOLIO,60,0.6,0.6667,6.67,0.6167,37,0.1167,7,0.9639,0.0504,0.9496,8.73,0.7143,5,1,0.5405,0.4324,10.81\\\\r\\\\nexp017_qwen14b_strategyqa,Qwen2.5-14B,StrategyQA,60,0.5333,0.5667,3.33,0.1,6,0.0333,2,0.7042,0.0463,0.9537,1.02,,2,0,0.5,0.1667,33.33\\\\r\\\\nexp018_qwen14b_arc,Qwen2.5-14B,ARC,60,0.9667,0.95,-1.67,0.05,3,0.0167,1,1.0,0.025,0.975,1.02,,0,1,0.6667,1.0,-33.33\\\\r\\\\nexp019_llama8b_strategyqa,LLaMA-8B,StrategyQA,200,0.72,0.74,2.0,0.41,82,0.07,14,0.8008,0.1466,0.8534,1.94,,9,5,0.6585,0.6098,4.87\\\\r\\\\nexp020_llama8b_folio,LLaMA-8B,FOLIO,204,0.6324,0.6078,-2.45,0.6176,126,0.0637,13,0.9935,0.0616,0.9384,8.05,0.7251,4,9,0.5238,0.5635,-3.97\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"experiment,model,domain,n,sc_acc,sica_acc,delta_pp,c0_multi_candidate_rate,n_multi_candidate,c0_disagree_rate,n_disagree,avg_extraction_rate,avg_exclusion_rate,avg_satisfied_ratio,avg_constraint_density,avg_score_gt_frac,sica_wins_multi,sc_wins_multi,sica_acc_multi,sc_acc_multi,delta_multi_pp\\r\\nexp001_qwen14b_pw_folio,Qwen2.5-14B,PW+FOLIO,804,0.7624,0.7649,0.25,0.3818,307,0.0386,31,1.0,0.0227,0.9773,9.17,0.8676,16,14,0.5961,0.5896,0.65\\r\\nexp010_mistral7b_pw_folio,Mistral-7B,PW+FOLIO,60,0.4833,0.4833,0.0,0.5,30,0.0667,4,1.0,0.0523,0.9477,5.47,0.7073,2,2,0.3,0.3,0.0\\r\\nexp011_llama8b_pw_folio,LLaMA-8B,PW+FOLIO,60,0.6,0.6667,6.67,0.6167,37,0.1167,7,0.9639,0.0504,0.9496,8.73,0.7143,5,1,0.5405,0.4324,10.81\\r\\nexp017_qwen14b_strategyqa,Qwen2.5-14B,StrategyQA,60,0.5333,0.5667,3.33,0.1,6,0.0333,2,0.7042,0.0463,0.9537,1.02,,2,0,0.5,0.1667,33.33\\r\\nexp018_qwen14b_arc,Qwen2.5-14B,ARC,60,0.9667,0.95,-1.67,0.05,3,0.0167,1,1.0,0.025,0.975,1.02,,0,1,0.6667,1.0,-33.33\\r\\nexp019_llama8b_strategyqa,LLaMA-8B,StrategyQA,200,0.72,0.74,2.0,0.41,82,0.07,14,0.8008,0.1466,0.8534,1.94,,9,5,0.6585,0.6098,4.87\\r\\nexp020_llama8b_folio,LLaMA-8B,FOLIO,204,0.6324,0.6078,-2.45,0.6176,126,0.0637,13,0.9935,0.0616,0.9384,8.05,0.7251,4,9,0.5238,0.5635,-3.97\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"
+    }
+  },
+  "sourceToolAssistantUUID": "cc45215c-75f7-4959-821a-332c13a3635c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 105 · 2026-05-17T13:43:41.737Z_
+
+```json
+{
+  "parentUuid": "edab042e-f6c5-42ba-90d8-e972af241f5c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "6e797038-1950-4479-b02f-358b813d3a62",
+  "timestamp": "2026-05-17T13:43:41.737Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 106 · 2026-05-17T13:43:45.524Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full content. Let me register the artifacts using the `content` parameter since the files are on the remote server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e797038-1950-4479-b02f-358b813d3a62",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Esmz7a7KvWshFxUBxz",
+  "type": "assistant",
+  "uuid": "abb01b6e-77ab-466e-be02-092ae744544a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0135EURdWcnqG5KtCfsUwP2L",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5970,
+      "cache_read_input_tokens": 51145,
+      "output_tokens": 1316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5970,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1316,
+          "cache_read_input_tokens": 51145,
+          "cache_creation_input_tokens": 5970,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5970
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-17T13:43:51.019Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_012Suo72fmwTvvXiSMJSrg53`</summary>
+
+```json
+{
+  "name": "constraint_quality_analysis_c0_fixed",
+  "type": "data",
+  "description": "Constraint quality correlation analysis with fixed c0_multi_candidate_rate (true multi-candidate from sc_vote_distribution>1) and new c0_disagree_rate field. Fixes bug where c0 was computed as SICA-SC disagree rate.",
+  "project": "symb_invariant_consensus",
+  "content_filename": "exp019_constraint_quality_analysis_c0_fixed.json",
+  "content": "See remote: /root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json",
+  "tags": [
+    "c0-fix",
+    "constraint-quality",
+    "correlation"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "abb01b6e-77ab-466e-be02-092ae744544a",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Esmz7a7KvWshFxUBxz",
+  "type": "assistant",
+  "uuid": "fec38881-7a69-4afb-8d0f-7d72341318b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0135EURdWcnqG5KtCfsUwP2L",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5970,
+      "cache_read_input_tokens": 51145,
+      "output_tokens": 1316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5970,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1316,
+          "cache_read_input_tokens": 51145,
+          "cache_creation_input_tokens": 5970,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5970
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-17T13:43:51.086Z_
+
+<details><summary>↩ Tool result · `toolu_012Suo72fmwTvvXiSMJSrg53`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260517_7352ef\", \"name\": \"constraint_quality_analysis_c0_fixed\", \"type\": \"data\", \"description\": \"Constraint quality correlation analysis with fixed c0_multi_candidate_rate (true multi-candidate from sc_vote_distribution>1) and new c0_disagree_rate field. Fixes bug where c0 was computed as SICA-SC disagree rate.\", \"path\": \"projects/symb_invariant_consensus/artifacts/_project/data/exp019_constraint_quality_analysis_c0_fixed.json\", \"url\": null, \"project\": \"symb_invariant_consensus\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-17T13:43:51.025524+00:00\", \"tags\": [\"c0-fix\", \"constraint-quality\", \"correlation\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fec38881-7a69-4afb-8d0f-7d72341318b5",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "3b57e207-20b6-4d77-8e65-4eea5957ffeb",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260517_7352ef\\\", \\\"name\\\": \\\"constraint_quality_analysis_c0_fixed\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Constraint quality correlation analysis with fixed c0_multi_candidate_rate (true multi-candidate from sc_vote_distribution>1) and new c0_disagree_rate field. Fixes bug where c0 was computed as SICA-SC disagree rate.\\\", \\\"path\\\": \\\"projects/symb_invariant_consensus/artifacts/_project/data/exp019_constraint_quality_analysis_c0_fixed.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-17T13:43:51.025524+00:00\\\", \\\"tags\\\": [\\\"c0-fix\\\", \\\"constraint-quality\\\", \\\"correlation\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260517_7352ef\", \"name\": \"constraint_quality_analysis_c0_fixed\", \"type\": \"data\", \"description\": \"Constraint quality correlation analysis with fixed c0_multi_candidate_rate (true multi-candidate from sc_vote_distribution>1) and new c0_disagree_rate field. Fixes bug where c0 was computed as SICA-SC disagree rate.\", \"path\": \"projects/symb_invariant_consensus/artifacts/_project/data/exp019_constraint_quality_analysis_c0_fixed.json\", \"url\": null, \"project\": \"symb_invariant_consensus\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-17T13:43:51.025524+00:00\", \"tags\": [\"c0-fix\", \"constraint-quality\", \"correlation\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fec38881-7a69-4afb-8d0f-7d72341318b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-17T13:43:58.307Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01Wvy6J3ULCS1PAUwQDMUQs8`</summary>
+
+```json
+{
+  "name": "constraint_quality_summary_csv_c0_fixed",
+  "type": "data",
+  "description": "Constraint quality summary CSV with corrected c0_multi_candidate_rate and added c0_disagree_rate column.",
+  "project": "symb_invariant_consensus",
+  "content_filename": "exp019_constraint_quality_summary_c0_fixed.csv",
+  "content": "experiment,model,domain,n,sc_acc,sica_acc,delta_pp,c0_multi_candidate_rate,n_multi_candidate,c0_disagree_rate,n_disagree,avg_extraction_rate,avg_exclusion_rate,avg_satisfied_ratio,avg_constraint_density,avg_score_gt_frac,sica_wins_multi,sc_wins_multi,sica_acc_multi,sc_acc_multi,delta_multi_pp\nexp001_qwen14b_pw_folio,Qwen2.5-14B,PW+FOLIO,804,0.7624,0.7649,0.25,0.3818,307,0.0386,31,1.0,0.0227,0.9773,9.17,0.8676,16,14,0.5961,0.5896,0.65\nexp010_mistral7b_pw_folio,Mistral-7B,PW+FOLIO,60,0.4833,0.4833,0.0,0.5,30,0.0667,4,1.0,0.0523,0.9477,5.47,0.7073,2,2,0.3,0.3,0.0\nexp011_llama8b_pw_folio,LLaMA-8B,PW+FOLIO,60,0.6,0.6667,6.67,0.6167,37,0.1167,7,0.9639,0.0504,0.9496,8.73,0.7143,5,1,0.5405,0.4324,10.81\nexp017_qwen14b_strategyqa,Qwen2.5-14B,StrategyQA,60,0.5333,0.5667,3.33,0.1,6,0.0333,2,0.7042,0.0463,0.9537,1.02,,2,0,0.5,0.1667,33.33\nexp018_qwen14b_arc,Qwen2.5-14B,ARC,60,0.9667,0.95,-1.67,0.05,3,0.0167,1,1.0,0.025,0.975,1.02,,0,1,0.6667,1.0,-33.33\nexp019_llama8b_strategyqa,LLaMA-8B,StrategyQA,200,0.72,0.74,2.0,0.41,82,0.07,14,0.8008,0.1466,0.8534,1.94,,9,5,0.6585,0.6098,4.87\nexp020_llama8b_folio,LLaMA-8B,FOLIO,204,0.6324,0.6078,-2.45,0.6176,126,0.0637,13,0.9935,0.0616,0.9384,8.05,0.7251,4,9,0.5238,0.5635,-3.97",
+  "tags": [
+    "c0-fix",
+    "constraint-quality"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b57e207-20b6-4d77-8e65-4eea5957ffeb",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Esmz7a7KvWshFxUBxz",
+  "type": "assistant",
+  "uuid": "0ea8806a-a36e-4047-abfe-bc36c7fbc9d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0135EURdWcnqG5KtCfsUwP2L",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5970,
+      "cache_read_input_tokens": 51145,
+      "output_tokens": 1316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5970,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1316,
+          "cache_read_input_tokens": 51145,
+          "cache_creation_input_tokens": 5970,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5970
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-17T13:43:58.405Z_
+
+<details><summary>↩ Tool result · `toolu_01Wvy6J3ULCS1PAUwQDMUQs8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260517_0148e9\", \"name\": \"constraint_quality_summary_csv_c0_fixed\", \"type\": \"data\", \"description\": \"Constraint quality summary CSV with corrected c0_multi_candidate_rate and added c0_disagree_rate column.\", \"path\": \"projects/symb_invariant_consensus/artifacts/_project/data/exp019_constraint_quality_summary_c0_fixed.csv\", \"url\": null, \"project\": \"symb_invariant_consensus\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-17T13:43:58.324650+00:00\", \"tags\": [\"c0-fix\", \"constraint-quality\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0ea8806a-a36e-4047-abfe-bc36c7fbc9d2",
+  "isSidechain": false,
+  "promptId": "5c44cc13-c2cf-4aa4-9bb4-2e15c1f1c3cd",
+  "type": "user",
+  "uuid": "89320398-9e52-4d38-af1f-1f2cfa3a6a41",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260517_0148e9\\\", \\\"name\\\": \\\"constraint_quality_summary_csv_c0_fixed\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Constraint quality summary CSV with corrected c0_multi_candidate_rate and added c0_disagree_rate column.\\\", \\\"path\\\": \\\"projects/symb_invariant_consensus/artifacts/_project/data/exp019_constraint_quality_summary_c0_fixed.csv\\\", \\\"url\\\": null, \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-17T13:43:58.324650+00:00\\\", \\\"tags\\\": [\\\"c0-fix\\\", \\\"constraint-quality\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260517_0148e9\", \"name\": \"constraint_quality_summary_csv_c0_fixed\", \"type\": \"data\", \"description\": \"Constraint quality summary CSV with corrected c0_multi_candidate_rate and added c0_disagree_rate column.\", \"path\": \"projects/symb_invariant_consensus/artifacts/_project/data/exp019_constraint_quality_summary_c0_fixed.csv\", \"url\": null, \"project\": \"symb_invariant_consensus\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-17T13:43:58.324650+00:00\", \"tags\": [\"c0-fix\", \"constraint-quality\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0ea8806a-a36e-4047-abfe-bc36c7fbc9d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 111 · 2026-05-17T13:44:07.987Z_
+
+完成。修改总结：
+
+**Bug**: `c0_multi_candidate_rate` 被错误定义为 `sica_answer != sc_answer`（SICA-SC 分歧率），而非真实多候选率。
+
+**Fix**: 改为 `len(sc_vote_distribution) > 1`（K 条 trace 投票中有 >1 个不同答案），并将原指标保留为 `c0_disagree_rate`。
+
+**验证结果**:
+
+| 实验 | 旧值(disagree) | 新值(multi) | registry |
+|------|----:|----:|----:|
+| exp011 (LLaMA-8B) | 0.1167 | **0.6167** | 0.6167 ✓ |
+| exp017 (StrategyQA) | 0.0333 | **0.1000** | 0.1 ✓ |
+| exp020 (FOLIO) | 0.0637 | **0.6176** | 0.618 ✓ |
+| exp010 (Mistral) | 0.0667 | **0.5000** | registry 值本身有误 |
+| extraction_rate | 全部 ≤ 1.0 ✓ | | |
+
+`c0_disagree_rate` 在所有实验中均远小于 `c0_multi_candidate_rate`，符合预期。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89320398-9e52-4d38-af1f-1f2cfa3a6a41",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Eu1CPGVeg8Zv6yumGs",
+  "type": "assistant",
+  "uuid": "13f8df21-e55b-4ed1-8f78-e37fbf3c138a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011KjzFeM3hCyWDKiip2iiXB",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1972,
+      "cache_read_input_tokens": 57115,
+      "output_tokens": 378,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1972,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 378,
+          "cache_read_input_tokens": 57115,
+          "cache_creation_input_tokens": 1972,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1972
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 112_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "13f8df21-e55b-4ed1-8f78-e37fbf3c138a",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 113_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix C0 definition in constraint quality analysis script",
+  "sessionId": "f8db643e-1fa6-431c-a646-b7211fcdf7b0"
+}
+```
+
+---

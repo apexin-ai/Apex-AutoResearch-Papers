@@ -1,0 +1,901 @@
+# Research conversation: 你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。 你需要同时定义 best / median / worst 三档： 1. 每档的核心假设（哪些假设成立/不成立） 2. 每档的关键实验指标预期范围（确保
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-3/8f9380b4-33c6-4d66-bc21-bab715c09af1.jsonl`
+- **Structured JSON:** [`17fd33251ed41aa18f87.json`](../../sessions/17/17fd33251ed41aa18f87.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T05:41:02.416Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T05:41:02.416Z",
+  "sessionId": "8f9380b4-33c6-4d66-bc21-bab715c09af1",
+  "content": "你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。\n\n你需要同时定义 best / median / worst 三档：\n1. 每档的核心假设（哪些假设成立/不成立）\n2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性）\n3. 每档的论文叙事方向——\n   - best: 原始 framing 完全成立，claims 无需调整\n   - median: 部分假设未完全验证，需要调整 claims 强度或补充实验\n   - worst: 核心假设不成立，需要找到新的 angle 来 reframe（但仍冲同一 venue，不降级目标）\n\n三档的具体含义不预设——根据这个研究的 paper_framing、已有数据和方法特性\n自行判断。但必须确保三档之间的数字和叙事逻辑一致。\n\n# Project context\nproject: symb_invariant_consensus\nfocus: Key tension: SICA's gain is entirely from principled tiebreaking (4/60 questions, all 6:6 ties). Reviewers will attack statistical significance (p=0.317) and question overhead vs benefit. The operating regime characterization (reasoning vs instruction model) is the primary intellectual contribution. Expanded 200+ question results and K ablation are planned but not yet available. ProofWriter shows 0pp gain — domain generalization is a weakness.\n\n## paper_framing.md\n\n# Paper Framing — symb_invariant_consensus\n\n## Target Venue\n- Primary: EMNLP 2026 Main (ARR May 25)\n- Fallback: AAAI 2027 (Aug 1)\n- Deadline: May 25, 2026 (ARR submission)\n\n## Core Claims (3 条)\n1. **Principled Tiebreaking**: SICA resolves Self-Consistency voting ties through symbolic constraint weighting, achieving higher accuracy than arbitrary tiebreak rules on logic reasoning benchmarks (FOLIO +6.7pp, combined +3.3pp on 60 questions; target: statistically significant on 200+ questions).\n2. **Operating Regime Characterization**: The effectiveness of symbolic consensus is conditional on trace diversity — SICA adds value when model outputs are diverse (instruction models, C0>20%) but provably degenerates to SC when models are self-consistent (reasoning models, C0<5%). This is a model property, not a task property.\n3. **C0 as Practical Diagnostic**: Multi-candidate rate (C0) serves as a zero-cost predictor of whether SICA deployment will yield gains over SC, enabling practitioners to decide without running full symbolic analysis.\n\n## Core Insight\nSymbolic constraint consensus doesn't uniformly improve reasoning — it specifically helps when there IS disagreement to resolve. We provide the first systematic study of WHEN symbolic consensus adds value, revealing that model architecture (reasoning vs instruction) determines the operating regime. This transforms SICA from \"yet another ensemble method\" into \"a method with formally characterizable applicability boundaries.\"\n\n## Story Spine\n- **Problem**: Self-Consistency (SC) aggregates LLM reasoning paths via majority voting but treats all chains as opaque votes, discarding the logical structure within them. When votes are tied, SC falls back to arbitrary rules (alphabetical, random) with no principled resolution.\n- **Existing approaches & gaps**: SC (Wang et al. 2023) — pure voting, no reasoning structure. USC (Chen et al. 2023) — universal SC, still voting-based. None exploit the formal logical structure within reasoning traces for consensus, and none characterize when symbolic methods help vs. don't.\n- **Our framing**: SICA extracts first-order logic constraints from reasoning traces and uses weighted partial MAX-SAT to find the globally consistent answer. We show this provides principled tiebreaking (75% win rate on ties vs 25% for SC) but only when trace diversity exists. We formalize this as C0 (multi-candidate rate) and show it's governed by model type, not task type.\n- **Headline result template**: \"On FOLIO, SICA achieves 80.0% vs SC's 73.3% (+6.7pp) with Qwen2.5-14B-Instruct. On the same benchmarks with QwQ-32B, SICA degenerates to SC (C0=3.6%), revealing that symbolic consensus effectiveness is governed by trace diversity, not task difficulty.\"\n\n## Anticipated Reviewer Concerns & Defensive Experiments\n1. **\"Gains not statistically significant\"** → exp-001: Expand to 200+ questions for statistical power\n2. **\"Only a better tiebreaker, not worth the overhead\"** → exp-002: K sensitivity showing benefit pattern; exp-009: overhead analysis\n3. **\"Only one non-reasoning model\"** → exp-004: Add Qwen2.5-7B for scaling; exp-007: 72B-AWQ for camera-ready\n4. **\"ProofWriter shows 0pp gain\"** → Domain analysis in exp-001 expanded results\n5. **\"Random tiebreak baseline closes the gap\"** → exp-003: Direct SICA vs SC-random vs SC-deterministic comparison\n6. **\"Why not just use a reasoning model?\"** → exp-005: QwQ-32B data shows reasoning models are self-consistent (don't need consensus improvement), but instruction models (cheaper, more deployed) benefit from SICA\n\n## Venue Fit Risks\n- EMNLP: Contribution may feel narrow if framed as ONLY tiebreaking. Primary intellectual contribution is the \"operating regime characterization\" — the tiebreaking mechanism is evidence, not the claim.\n- Cross-discipline: Combines formal logic (MAX-SAT) with NLP (LLM reasoning). MAX-SAT needs clear explanation for NLP audience.\n- Negative results: QwQ-32B data must be presented as insight (\"When Does Symbolic Consensus Degenerate?\"), not failure.\n- Statistical power: 60-question results are fragile. 200+ question expansion is prerequisite for credible submission.\n\n\n## experiment_plan (with registry status)\n\n- id: exp-001\n  name: sica_expanded_14b\n  claim:\n  - 1\n  - 2\n  description: 'Full-scale evaluation: PW D5 600 + FOLIO 204 = 804 questions, K=12,\n    T=0.7. Maximizes statistical power for C3 significance.'\n  priority: P0\n  gpu_budget_hours: 14\n  deps: []\n  registry_id: sica_expanded_14b\n  status: RUNNING\n- id: exp-002\n  name: sica_k_ablation_14b\n  claim:\n  - 1\n  description: 'K sensitivity (K=6,8,12,16,20) on D012''s 60 questions. Key questions:\n    does SICA benefit depend on tiebreaks? What happens at odd K (no even splits)?\n    How does tiebreak frequency change with K?'\n  priority: P0\n  gpu_budget_hours: 5\n  deps: []\n  status: planned\n- id: exp-003\n  name: tiebreak_baseline_analysis\n  claim:\n  - 1\n  description: Compare SICA vs SC-random-tiebreak vs SC-deterministic on all available\n    data. CPU-only reanalysis. Quantify how much of SICA's gain survives against fair\n    baselines.\n  priority: P0\n  gpu_budget_hours: 0\n  deps:\n  - sica_d012_14b\n  status: planned\n  note: 'Completed as CPU analysis, no registry entry. Results: SICA tiebreak 80%\n    (4/5) vs random 50% vs alphabetical 60% vs first-seen 40%. Artifact: art_20260516_47de9d'\n- id: exp-004\n  name: sica_7b_scaling\n  claim:\n  - 2\n  - 3\n  description: 'Run SICA with Qwen2.5-7B-Instruct on same 60 questions. Test: does\n    weaker model → higher C0 → larger SICA gain? Validates C0-as-predictor claim.'\n  priority: P1\n  gpu_budget_hours: 2\n  deps:\n  - exp-001\n  status: planned\n- id: exp-005\n  name: qwq_32b_operating_regime\n  claim:\n  - 2\n  description: QwQ-32B negative results formatted for paper's Operating Regime Analysis\n    section. Data exists from MVP phase (AIME, MATH, ProofWriter, FOLIO). No new GPU\n    needed.\n  priority: P1\n  gpu_budget_hours: 0\n  deps: []\n  status: planned\n  note: 'Data from QwQ-32B MVP experiments: sica_aime30_v3 (AIME 22题, 0% multi-candidate),\n    sica_proofwriter30_v2 (PW 16题, 18.75% multi-candidate), sica_folio30 (FOLIO 10题,\n    0% multi-candidate). Combined C0=3.6%, SICA≡SC across all domains.'\n- id: exp-006\n  name: c0_diagnostic_validation\n  claim:\n  - 3\n  description: Plot C0 vs SICA-SC gap across all models and K values. Validate C0\n    as predictor. CPU-only analysis over exp-001/002/004/005 results.\n  priority: P1\n  gpu_budget_hours: 0\n  deps:\n  - exp-001\n  - exp-002\n  - exp-004\n  status: planned\n- id: exp-007\n  name: sica_72b_awq\n  claim:\n  - 2\n  description: 'Qwen2.5-72B-Instruct AWQ 4-bit on 60 questions. Scaling analysis:\n    high-baseline non-reasoning model. Third model for Claim 2 operating regime.'\n  priority: P1\n  gpu_budget_hours: 4\n  deps:\n  - exp-001\n  status: planned\n  note: 'D019 升级 P2→P1. 执行顺序: exp-002 (K ablation) → exp-004 (7B) → exp-007 (72B-AWQ).\n    72B-AWQ 4-bit ~36GB weights + KV cache ≈ 50-60GB, 98GB RTX PRO 6000 单卡可放。'\n- id: exp-008\n  name: constraint_quality_case_studies\n  claim:\n  - 1\n  description: Qualitative analysis of extracted constraints on 5-10 representative\n    questions. Are constraints semantically meaningful? Do excluded constraints correspond\n    to reasoning errors?\n  priority: P2\n  gpu_budget_hours: 0\n  deps:\n  - exp-001\n  status: planned\n- id: exp-009\n  name: overhead_analysis\n  claim:\n  - 1\n  description: 'Wall-time breakdown per question: generation, constraint extraction,\n    MaxSAT solving. Address ''is the overhead worth it'' concern.'\n  priority: P2\n  gpu_budget_hours: 0\n  deps:\n  - exp-001\n  status: planned\n\n\n## registry (completed experiments)\n\n- exp_id: crd_folio_main\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    divergence_rate: 0.422\n    diagnosis_rate: 0.872\n    error_types: 4\n    directed_advantage_pp: 4.7\n    directed_p_value: 0.63\n    localization_accuracy: 0.946\n    fol_accuracy: 0.789\n    code_accuracy: 0.598\n    oracle_accuracy: 0.878\n    pipeline_accuracy: 0.814\n    baseline_accuracy: 0.74\n    cost_multiplier: 5.76\n    dataset: FOLIO\n    n: 204\n- exp_id: smoke-test-5q\n  name: ''\n  status: PREPARING\n  conclusion: failed\n  metrics: {}\n- exp_id: sica_smoke_5q\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    sica_accuracy: 0.8\n    sc_accuracy: 0.8\n    extraction_rate: 1\n    problems_with_contradictions: 1\n    total_problems: 5\n    total_time_s: 3505\n    avg_time_per_problem_s: 701\n    per_problem:\n    - id: algebra/2470\n      level: 1\n      sica_correct: true\n      sc_correct: true\n      constraints: 27\n      unique: 9\n      excluded: 0\n    - id: prealgebra/65\n      level: 2\n      sica_correct: true\n      sc_correct: true\n      constraints: 26\n      unique: 2\n      excluded: 0\n    - id: number_theory/847\n      level: 3\n      sica_correct: true\n      sc_correct: true\n      constraints: 21\n      unique: 11\n      excluded: 0\n      note: 14 JSON parse failures, 1693s\n    - id: precalculus/1199\n      level: 4\n      sica_correct: false\n      sc_correct: false\n      constraints: 35\n      unique: 6\n      excluded: 0\n      note: graph-reading problem, model cannot see image\n    - id: algebra/2277\n      level: 5\n      sica_correct: true\n      sc_correct: true\n      constraints: 60\n      unique: 6\n      satisfied: 3\n      excluded: 3\n- exp_id: sica_temp_diversity\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    temperatures_tested:\n    - 0.7\n    - 0.9\n    - 1\n    problems_tested: 3\n    problems_with_divergence: 0\n    finding: QwQ-32B produces zero answer divergence at all temperatures on MATH L4-5.\n      Reasoning model's deterministic chain dominates sampling randomness.\n    max_tokens_issue: 4096 tokens insufficient for some L5 problems (truncation)\n    recommendation: Use AIME 2024 (harder, ~79.5% acc) or non-reasoning model for\n      trace diversity\n- exp_id: mvp_math50_t07\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: sica_aime30_t07\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: sica_aime30_v2\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics:\n    progress: 4/30\n    sica_accuracy_interim: 3/4 (75%)\n    sc_accuracy_interim: 3/4 (75%)\n    avg_time_per_problem_s: 557\n    p2_z3_error: Z3Exception on z3_maxsat.py:163, 0 constraints extracted\n    p5_vllm_stuck: vLLM timeout since ~22:11, retried multiple rounds\n    issue: vLLM service likely crashed or OOM at Problem 5\n    analysis_contradiction_rate_aime: 50% (2/4)\n    analysis_contradiction_rate_math: 20% (1/5)\n    analysis_unique_constraints_per_problem_aime: 18.7\n    analysis_exclusion_rate: 10.7%\n    analysis_sica_sc_agreement: 9/9 (100%)\n    analysis_signal: weak positive - mechanism works but SC too unanimous to flip\n    analysis_p2_failure: 0 constraints, 0 votes - answer extraction failure\n- exp_id: sica_aime30_v3\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics:\n    progress: 22/30\n    sica_accuracy_interim: 16/22 (72.7%)\n    sc_accuracy_interim: 16/22 (72.7%)\n    sica_sc_gap_pp: 0\n    avg_time_per_problem_s: 645.9\n    runtime_h: 5.9\n    remaining_problems: 8\n    vote_diversity_analysis:\n      valid_problems: 16\n      total_problems: 22\n      multi_candidate_rate: 0\n      zero_vote_problems: 6\n      zero_vote_indices:\n      - 1\n      - 7\n      - 8\n      - 10\n      - 13\n      - 14\n      constraints_extracted: 19/22\n      exclusion_rate: 0.387\n      conclusion: All 16 valid problems have exactly 1 candidate answer. SICA≡SC structurally.\n        MaxSAT exclusion operates but cannot change final selection with only 1 candidate.\n    process_status: gone (cron miss 1/5)\n- exp_id: sica_proofwriter30\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics:\n    sica_accuracy: 0/30 (0.0%)\n    sc_accuracy: 0/30 (0.0%)\n    sica_sc_gap_pp: 0\n    total_wall_time_s: 238.9\n    total_wall_time_min: 4\n    avg_time_per_problem_s: 8\n    traces_generated: 0\n    constraints_extracted: 0\n    traces_with_constraints: 0\n    unique_constraints: 0\n    maxsat_satisfied: 0\n    maxsat_excluded: 0\n    multi_candidate_rate: N/A (no traces generated)\n    vote_diversity: N/A\n    z3_errors: 0\n    z3_timeouts: 0\n    problems_with_contradiction: 0\n    problems_with_votes: 0\n    failure_mode: ALL_400_BAD_REQUEST\n    failure_count: 30/30\n    root_cause: max_tokens=16384 equals max_model_len=16384, leaving 0 tokens for\n      prompt input. Every API call returns 400.\n- exp_id: sica_folio30\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: sica_proofwriter30_v2\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: sica_d016_c0_precheck\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    multi_candidate_rate_combined: 0.46\n    multi_candidate_rate_folio: 0.4\n    multi_candidate_rate_proofwriter: 0.5\n    sc_accuracy_combined: 0.73\n    sc_accuracy_folio: 0.8\n    sc_accuracy_proofwriter: 0.69\n    n_problems: 26\n    n_folio: 10\n    n_proofwriter: 16\n    K: 6\n    T: 0.7\n    total_time_s: 280\n    c0_gate: PASS (46% >= 20%)\n    model: Qwen2.5-14B-Instruct\n    vllm_gpu_mem_gib: 27.6\n    smoke_test: 2 problems end-to-end OK, constraints 21-26 per problem\n- exp_id: sica_d012_14b\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    sica_accuracy: 0.7333\n    sc_accuracy: 0.7\n    sica_sc_gap_pp: 3.3\n    c0_multi_candidate_rate: 0.5333\n    c1_extraction_rate: 1\n    c2_contradiction_problems: 34\n    c3_gap_pp: 3.3\n    bootstrap_p: 0.2261\n    proofwriter_sica: 0.6667\n    proofwriter_sc: 0.6667\n    folio_sica: 0.8\n    folio_sc: 0.7333\n    total_constraints_raw: 5849\n    total_constraints_unique: 1735\n    maxsat_exclusion_rate: 0.0259\n    wall_time_min: 58.3\n    d012_verdict: ALL_PASS\n- exp_id: sica_expanded_14b\n  name: ''\n  status: RUNNING\n  conclusion: ''\n  metrics: {}\n- exp_id: sica_k_sensitivity_14b\n  name: ''\n  status: QUEUED\n  conclusion: ''\n  metrics: {}\n\n# 输出格式（YAML，仅输出一个 ```yaml 块，不要任何额外说明文字）\n\n```yaml\ntiers:\n  best:\n    meaning: \"...\"\n    key_assumptions: [...]\n    number_ranges: {metric_a: [low, high], metric_b: [...]}\n    narrative_direction: \"...\"\n  median:\n    meaning: \"...\"\n    ...\n  worst:\n    meaning: \"...\"\n    ...\n```\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T05:41:02.420Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T05:41:02.420Z",
+  "sessionId": "8f9380b4-33c6-4d66-bc21-bab715c09af1"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T05:41:02.445Z_
+
+你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。
+
+你需要同时定义 best / median / worst 三档：
+1. 每档的核心假设（哪些假设成立/不成立）
+2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性）
+3. 每档的论文叙事方向——
+   - best: 原始 framing 完全成立，claims 无需调整
+   - median: 部分假设未完全验证，需要调整 claims 强度或补充实验
+   - worst: 核心假设不成立，需要找到新的 angle 来 reframe（但仍冲同一 venue，不降级目标）
+
+三档的具体含义不预设——根据这个研究的 paper_framing、已有数据和方法特性
+自行判断。但必须确保三档之间的数字和叙事逻辑一致。
+
+# Project context
+project: symb_invariant_consensus
+focus: Key tension: SICA's gain is entirely from principled tiebreaking (4/60 questions, all 6:6 ties). Reviewers will attack statistical significance (p=0.317) and question overhead vs benefit. The operating regime characterization (reasoning vs instruction model) is the primary intellectual contribution. Expanded 200+ question results and K ablation are planned but not yet available. ProofWriter shows 0pp gain — domain generalization is a weakness.
+
+## paper_framing.md
+
+# Paper Framing — symb_invariant_consensus
+
+## Target Venue
+- Primary: EMNLP 2026 Main (ARR May 25)
+- Fallback: AAAI 2027 (Aug 1)
+- Deadline: May 25, 2026 (ARR submission)
+
+## Core Claims (3 条)
+1. **Principled Tiebreaking**: SICA resolves Self-Consistency voting ties through symbolic constraint weighting, achieving higher accuracy than arbitrary tiebreak rules on logic reasoning benchmarks (FOLIO +6.7pp, combined +3.3pp on 60 questions; target: statistically significant on 200+ questions).
+2. **Operating Regime Characterization**: The effectiveness of symbolic consensus is conditional on trace diversity — SICA adds value when model outputs are diverse (instruction models, C0>20%) but provably degenerates to SC when models are self-consistent (reasoning models, C0<5%). This is a model property, not a task property.
+3. **C0 as Practical Diagnostic**: Multi-candidate rate (C0) serves as a zero-cost predictor of whether SICA deployment will yield gains over SC, enabling practitioners to decide without running full symbolic analysis.
+
+## Core Insight
+Symbolic constraint consensus doesn't uniformly improve reasoning — it specifically helps when there IS disagreement to resolve. We provide the first systematic study of WHEN symbolic consensus adds value, revealing that model architecture (reasoning vs instruction) determines the operating regime. This transforms SICA from "yet another ensemble method" into "a method with formally characterizable applicability boundaries."
+
+## Story Spine
+- **Problem**: Self-Consistency (SC) aggregates LLM reasoning paths via majority voting but treats all chains as opaque votes, discarding the logical structure within them. When votes are tied, SC falls back to arbitrary rules (alphabetical, random) with no principled resolution.
+- **Existing approaches & gaps**: SC (Wang et al. 2023) — pure voting, no reasoning structure. USC (Chen et al. 2023) — universal SC, still voting-based. None exploit the formal logical structure within reasoning traces for consensus, and none characterize when symbolic methods help vs. don't.
+- **Our framing**: SICA extracts first-order logic constraints from reasoning traces and uses weighted partial MAX-SAT to find the globally consistent answer. We show this provides principled tiebreaking (75% win rate on ties vs 25% for SC) but only when trace diversity exists. We formalize this as C0 (multi-candidate rate) and show it's governed by model type, not task type.
+- **Headline result template**: "On FOLIO, SICA achieves 80.0% vs SC's 73.3% (+6.7pp) with Qwen2.5-14B-Instruct. On the same benchmarks with QwQ-32B, SICA degenerates to SC (C0=3.6%), revealing that symbolic consensus effectiveness is governed by trace diversity, not task difficulty."
+
+## Anticipated Reviewer Concerns & Defensive Experiments
+1. **"Gains not statistically significant"** → exp-001: Expand to 200+ questions for statistical power
+2. **"Only a better tiebreaker, not worth the overhead"** → exp-002: K sensitivity showing benefit pattern; exp-009: overhead analysis
+3. **"Only one non-reasoning model"** → exp-004: Add Qwen2.5-7B for scaling; exp-007: 72B-AWQ for camera-ready
+4. **"ProofWriter shows 0pp gain"** → Domain analysis in exp-001 expanded results
+5. **"Random tiebreak baseline closes the gap"** → exp-003: Direct SICA vs SC-random vs SC-deterministic comparison
+6. **"Why not just use a reasoning model?"** → exp-005: QwQ-32B data shows reasoning models are self-consistent (don't need consensus improvement), but instruction models (cheaper, more deployed) benefit from SICA
+
+## Venue Fit Risks
+- EMNLP: Contribution may feel narrow if framed as ONLY tiebreaking. Primary intellectual contribution is the "operating regime characterization" — the tiebreaking mechanism is evidence, not the claim.
+- Cross-discipline: Combines formal logic (MAX-SAT) with NLP (LLM reasoning). MAX-SAT needs clear explanation for NLP audience.
+- Negative results: QwQ-32B data must be presented as insight ("When Does Symbolic Consensus Degenerate?"), not failure.
+- Statistical power: 60-question results are fragile. 200+ question expansion is prerequisite for credible submission.
+
+
+## experiment_plan (with registry status)
+
+- id: exp-001
+  name: sica_expanded_14b
+  claim:
+  - 1
+  - 2
+  description: 'Full-scale evaluation: PW D5 600 + FOLIO 204 = 804 questions, K=12,
+    T=0.7. Maximizes statistical power for C3 significance.'
+  priority: P0
+  gpu_budget_hours: 14
+  deps: []
+  registry_id: sica_expanded_14b
+  status: RUNNING
+- id: exp-002
+  name: sica_k_ablation_14b
+  claim:
+  - 1
+  description: 'K sensitivity (K=6,8,12,16,20) on D012''s 60 questions. Key questions:
+    does SICA benefit depend on tiebreaks? What happens at odd K (no even splits)?
+    How does tiebreak frequency change with K?'
+  priority: P0
+  gpu_budget_hours: 5
+  deps: []
+  status: planned
+- id: exp-003
+  name: tiebreak_baseline_analysis
+  claim:
+  - 1
+  description: Compare SICA vs SC-random-tiebreak vs SC-deterministic on all available
+    data. CPU-only reanalysis. Quantify how much of SICA's gain survives against fair
+    baselines.
+  priority: P0
+  gpu_budget_hours: 0
+  deps:
+  - sica_d012_14b
+  status: planned
+  note: 'Completed as CPU analysis, no registry entry. Results: SICA tiebreak 80%
+    (4/5) vs random 50% vs alphabetical 60% vs first-seen 40%. Artifact: art_20260516_47de9d'
+- id: exp-004
+  name: sica_7b_scaling
+  claim:
+  - 2
+  - 3
+  description: 'Run SICA with Qwen2.5-7B-Instruct on same 60 questions. Test: does
+    weaker model → higher C0 → larger SICA gain? Validates C0-as-predictor claim.'
+  priority: P1
+  gpu_budget_hours: 2
+  deps:
+  - exp-001
+  status: planned
+- id: exp-005
+  name: qwq_32b_operating_regime
+  claim:
+  - 2
+  description: QwQ-32B negative results formatted for paper's Operating Regime Analysis
+    section. Data exists from MVP phase (AIME, MATH, ProofWriter, FOLIO). No new GPU
+    needed.
+  priority: P1
+  gpu_budget_hours: 0
+  deps: []
+  status: planned
+  note: 'Data from QwQ-32B MVP experiments: sica_aime30_v3 (AIME 22题, 0% multi-candidate),
+    sica_proofwriter30_v2 (PW 16题, 18.75% multi-candidate), sica_folio30 (FOLIO 10题,
+    0% multi-candidate). Combined C0=3.6%, SICA≡SC across all domains.'
+- id: exp-006
+  name: c0_diagnostic_validation
+  claim:
+  - 3
+  description: Plot C0 vs SICA-SC gap across all models and K values. Validate C0
+    as predictor. CPU-only analysis over exp-001/002/004/005 results.
+  priority: P1
+  gpu_budget_hours: 0
+  deps:
+  - exp-001
+  - exp-002
+  - exp-004
+  status: planned
+- id: exp-007
+  name: sica_72b_awq
+  claim:
+  - 2
+  description: 'Qwen2.5-72B-Instruct AWQ 4-bit on 60 questions. Scaling analysis:
+    high-baseline non-reasoning model. Third model for Claim 2 operating regime.'
+  priority: P1
+  gpu_budget_hours: 4
+  deps:
+  - exp-001
+  status: planned
+  note: 'D019 升级 P2→P1. 执行顺序: exp-002 (K ablation) → exp-004 (7B) → exp-007 (72B-AWQ).
+    72B-AWQ 4-bit ~36GB weights + KV cache ≈ 50-60GB, 98GB RTX PRO 6000 单卡可放。'
+- id: exp-008
+  name: constraint_quality_case_studies
+  claim:
+  - 1
+  description: Qualitative analysis of extracted constraints on 5-10 representative
+    questions. Are constraints semantically meaningful? Do excluded constraints correspond
+    to reasoning errors?
+  priority: P2
+  gpu_budget_hours: 0
+  deps:
+  - exp-001
+  status: planned
+- id: exp-009
+  name: overhead_analysis
+  claim:
+  - 1
+  description: 'Wall-time breakdown per question: generation, constraint extraction,
+    MaxSAT solving. Address ''is the overhead worth it'' concern.'
+  priority: P2
+  gpu_budget_hours: 0
+  deps:
+  - exp-001
+  status: planned
+
+
+## registry (completed experiments)
+
+- exp_id: crd_folio_main
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    divergence_rate: 0.422
+    diagnosis_rate: 0.872
+    error_types: 4
+    directed_advantage_pp: 4.7
+    directed_p_value: 0.63
+    localization_accuracy: 0.946
+    fol_accuracy: 0.789
+    code_accuracy: 0.598
+    oracle_accuracy: 0.878
+    pipeline_accuracy: 0.814
+    baseline_accuracy: 0.74
+    cost_multiplier: 5.76
+    dataset: FOLIO
+    n: 204
+- exp_id: smoke-test-5q
+  name: ''
+  status: PREPARING
+  conclusion: failed
+  metrics: {}
+- exp_id: sica_smoke_5q
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    sica_accuracy: 0.8
+    sc_accuracy: 0.8
+    extraction_rate: 1
+    problems_with_contradictions: 1
+    total_problems: 5
+    total_time_s: 3505
+    avg_time_per_problem_s: 701
+    per_problem:
+    - id: algebra/2470
+      level: 1
+      sica_correct: true
+      sc_correct: true
+      constraints: 27
+      unique: 9
+      excluded: 0
+    - id: prealgebra/65
+      level: 2
+      sica_correct: true
+      sc_correct: true
+      constraints: 26
+      unique: 2
+      excluded: 0
+    - id: number_theory/847
+      level: 3
+      sica_correct: true
+      sc_correct: true
+      constraints: 21
+      unique: 11
+      excluded: 0
+      note: 14 JSON parse failures, 1693s
+    - id: precalculus/1199
+      level: 4
+      sica_correct: false
+      sc_correct: false
+      constraints: 35
+      unique: 6
+      excluded: 0
+      note: graph-reading problem, model cannot see image
+    - id: algebra/2277
+      level: 5
+      sica_correct: true
+      sc_correct: true
+      constraints: 60
+      unique: 6
+      satisfied: 3
+      excluded: 3
+- exp_id: sica_temp_diversity
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    temperatures_tested:
+    - 0.7
+    - 0.9
+    - 1
+    problems_tested: 3
+    problems_with_divergence: 0
+    finding: QwQ-32B produces zero answer divergence at all temperatures on MATH L4-5.
+      Reasoning model's deterministic chain dominates sampling randomness.
+    max_tokens_issue: 4096 tokens insufficient for some L5 problems (truncation)
+    recommendation: Use AIME 2024 (harder, ~79.5% acc) or non-reasoning model for
+      trace diversity
+- exp_id: mvp_math50_t07
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: sica_aime30_t07
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: sica_aime30_v2
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics:
+    progress: 4/30
+    sica_accuracy_interim: 3/4 (75%)
+    sc_accuracy_interim: 3/4 (75%)
+    avg_time_per_problem_s: 557
+    p2_z3_error: Z3Exception on z3_maxsat.py:163, 0 constraints extracted
+    p5_vllm_stuck: vLLM timeout since ~22:11, retried multiple rounds
+    issue: vLLM service likely crashed or OOM at Problem 5
+    analysis_contradiction_rate_aime: 50% (2/4)
+    analysis_contradiction_rate_math: 20% (1/5)
+    analysis_unique_constraints_per_problem_aime: 18.7
+    analysis_exclusion_rate: 10.7%
+    analysis_sica_sc_agreement: 9/9 (100%)
+    analysis_signal: weak positive - mechanism works but SC too unanimous to flip
+    analysis_p2_failure: 0 constraints, 0 votes - answer extraction failure
+- exp_id: sica_aime30_v3
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics:
+    progress: 22/30
+    sica_accuracy_interim: 16/22 (72.7%)
+    sc_accuracy_interim: 16/22 (72.7%)
+    sica_sc_gap_pp: 0
+    avg_time_per_problem_s: 645.9
+    runtime_h: 5.9
+    remaining_problems: 8
+    vote_diversity_analysis:
+      valid_problems: 16
+      total_problems: 22
+      multi_candidate_rate: 0
+      zero_vote_problems: 6
+      zero_vote_indices:
+      - 1
+      - 7
+      - 8
+      - 10
+      - 13
+      - 14
+      constraints_extracted: 19/22
+      exclusion_rate: 0.387
+      conclusion: All 16 valid problems have exactly 1 candidate answer. SICA≡SC structurally.
+        MaxSAT exclusion operates but cannot change final selection with only 1 candidate.
+    process_status: gone (cron miss 1/5)
+- exp_id: sica_proofwriter30
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics:
+    sica_accuracy: 0/30 (0.0%)
+    sc_accuracy: 0/30 (0.0%)
+    sica_sc_gap_pp: 0
+    total_wall_time_s: 238.9
+    total_wall_time_min: 4
+    avg_time_per_problem_s: 8
+    traces_generated: 0
+    constraints_extracted: 0
+    traces_with_constraints: 0
+    unique_constraints: 0
+    maxsat_satisfied: 0
+    maxsat_excluded: 0
+    multi_candidate_rate: N/A (no traces generated)
+    vote_diversity: N/A
+    z3_errors: 0
+    z3_timeouts: 0
+    problems_with_contradiction: 0
+    problems_with_votes: 0
+    failure_mode: ALL_400_BAD_REQUEST
+    failure_count: 30/30
+    root_cause: max_tokens=16384 equals max_model_len=16384, leaving 0 tokens for
+      prompt input. Every API call returns 400.
+- exp_id: sica_folio30
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: sica_proofwriter30_v2
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: sica_d016_c0_precheck
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    multi_candidate_rate_combined: 0.46
+    multi_candidate_rate_folio: 0.4
+    multi_candidate_rate_proofwriter: 0.5
+    sc_accuracy_combined: 0.73
+    sc_accuracy_folio: 0.8
+    sc_accuracy_proofwriter: 0.69
+    n_problems: 26
+    n_folio: 10
+    n_proofwriter: 16
+    K: 6
+    T: 0.7
+    total_time_s: 280
+    c0_gate: PASS (46% >= 20%)
+    model: Qwen2.5-14B-Instruct
+    vllm_gpu_mem_gib: 27.6
+    smoke_test: 2 problems end-to-end OK, constraints 21-26 per problem
+- exp_id: sica_d012_14b
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    sica_accuracy: 0.7333
+    sc_accuracy: 0.7
+    sica_sc_gap_pp: 3.3
+    c0_multi_candidate_rate: 0.5333
+    c1_extraction_rate: 1
+    c2_contradiction_problems: 34
+    c3_gap_pp: 3.3
+    bootstrap_p: 0.2261
+    proofwriter_sica: 0.6667
+    proofwriter_sc: 0.6667
+    folio_sica: 0.8
+    folio_sc: 0.7333
+    total_constraints_raw: 5849
+    total_constraints_unique: 1735
+    maxsat_exclusion_rate: 0.0259
+    wall_time_min: 58.3
+    d012_verdict: ALL_PASS
+- exp_id: sica_expanded_14b
+  name: ''
+  status: RUNNING
+  conclusion: ''
+  metrics: {}
+- exp_id: sica_k_sensitivity_14b
+  name: ''
+  status: QUEUED
+  conclusion: ''
+  metrics: {}
+
+# 输出格式（YAML，仅输出一个 ```yaml 块，不要任何额外说明文字）
+
+```yaml
+tiers:
+  best:
+    meaning: "..."
+    key_assumptions: [...]
+    number_ranges: {metric_a: [low, high], metric_b: [...]}
+    narrative_direction: "..."
+  median:
+    meaning: "..."
+    ...
+  worst:
+    meaning: "..."
+    ...
+```
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "d66039fe-9fed-456a-8205-5abb22823a40",
+  "type": "user",
+  "uuid": "6e886c9f-0b7c-4e0e-aeb6-85821e56b155",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3",
+  "sessionId": "8f9380b4-33c6-4d66-bc21-bab715c09af1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T05:41:02.444Z_
+
+```json
+{
+  "parentUuid": "6e886c9f-0b7c-4e0e-aeb6-85821e56b155",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "14348df7-c81d-435f-b835-7297cb6bd442",
+  "timestamp": "2026-05-16T05:41:02.444Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3",
+  "sessionId": "8f9380b4-33c6-4d66-bc21-bab715c09af1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T05:41:02.444Z_
+
+```json
+{
+  "parentUuid": "14348df7-c81d-435f-b835-7297cb6bd442",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "1cdf08f6-0833-4082-ab43-d5ebd685438a",
+  "timestamp": "2026-05-16T05:41:02.444Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3",
+  "sessionId": "8f9380b4-33c6-4d66-bc21-bab715c09af1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。  你需要同时定义 best / median / worst 三档： 1. 每档的核心假设（哪些假设成立/不成立） 2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性） 3. 每档的论文叙事方向——    - best: 原始 framing 完全成立，claims 无需…",
+  "leafUuid": "1cdf08f6-0833-4082-ab43-d5ebd685438a",
+  "sessionId": "8f9380b4-33c6-4d66-bc21-bab715c09af1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Define three scenarios for symb_invariant_consensus",
+  "sessionId": "8f9380b4-33c6-4d66-bc21-bab715c09af1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T05:41:32.593Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to define three tiers (best/median/worst) for a Dream simulation based on their research project context. Let me analyze the key information:
+
+**Project**: SICA (Symbolic Invariant Consensus Aggregation) - uses symbolic constraints from LLM reasoning traces to improve Self-Consistency voting, particularly through principled tiebreaking.
+
+**Key existing data points**:
+- 60-question pilot: SICA 73.3% vs SC 70.0% (+3.3pp), p=0.226
+
+
+- FOLIO subset shows stronger gains at 6.7pp while ProofWriter shows no improvement, suggesting dataset-dependent performance. The tiebreaking mechanism itself performs well (80% accuracy) compared to baselines, but reasoning models like QwQ-32B with minimal tiebreak opportunities show no benefit. The expanded 804-question experiment is still in progress.
+
+The real question is whether these gains hold at scale and reach statistical significance. Best case, the expanded results confirm the pattern across both datasets with meaningful p-values. More likely, we see modest positive gains that stay borderline significant. Worst case, the effect disappears entirely, leaving only the operating regime characterization as the contribution.
+
+I'm laying out the specific metrics I need to track: the combined accuracy gap, dataset-specific gaps, statistical significance, how often multiple candidates appear, and crucially, how many questions actually have tied votes to begin with. The tiebreaking mechanism only matters if there are enough ties to move the needle.
+
+Now I'm sketching out realistic outcome ranges for each scenario—best case shows 3-5 percentage points combined improvement with statistical significance, FOLIO pulling ahead by 5-8 points, and ProofWriter showing modest gains.  The median case is more conservative with borderline significance and smaller gaps across the board. Worst case is essentially no improvement, which would mean the tiebreaking strategy doesn't add diagnostic value at scale.
+
+Now I'm thinking through the narrative strategy depending on which scenario plays out. If the best case holds, the story is straightforward—principled tiebreaking combined with the operating regime analysis makes a clean contribution. But if results weaken at scale, I'd need to pivot the framing entirely, either emphasizing the operating regime characterization as the primary finding or repositioning this as a diagnostic methods paper that reveals when symbolic consensus actually helps versus when it doesn't.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1cdf08f6-0833-4082-ab43-d5ebd685438a",
+  "isSidechain": false,
+  "requestId": "req_011Cb5iG9Vg3oHsaFHtER8fJ",
+  "type": "assistant",
+  "uuid": "01f53c66-a058-4841-8219-76cfe24aee26",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3",
+  "sessionId": "8f9380b4-33c6-4d66-bc21-bab715c09af1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ge3VQmtz8vajpCdih92y3R",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 10683,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 3120,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10683,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 3120,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 10683,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10683
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-16T05:42:11.685Z_
+
+```yaml
+tiers:
+  best:
+    meaning: "扩展实验确认 SICA 在非推理模型上有统计显著增益，ProofWriter 出现非零增益，三条 claim 均可原样提交"
+    key_assumptions:
+      - "60题的 +3.3pp gap 在 804 题上保持或扩大（非抽样偶然）"
+      - "K=12 下 tie 频率足够高（≥8% 的题出现 tie），使 tiebreak 机制贡献稳健"
+      - "ProofWriter D5 的 C0 ≥ 30%，SICA 在该域也能捕获部分增益"
+      - "C0 与 SICA-SC gap 呈单调正相关，7B/14B/72B 三点拟合清晰"
+    number_ranges:
+      sica_sc_gap_combined_pp: [3.0, 5.5]
+      folio_gap_pp: [5.0, 8.0]
+      proofwriter_gap_pp: [1.0, 3.0]
+      bootstrap_p_combined: [0.01, 0.05]
+      c0_combined_expanded: [0.40, 0.55]
+      tiebreak_win_rate: [0.70, 0.85]
+      tie_question_fraction: [0.08, 0.15]
+      k_ablation_best_gap_pp: [4.0, 7.0]
+    narrative_direction: >
+      原始 framing 完全成立。标题可用 "Principled Symbolic Consensus Improves LLM Reasoning"。
+      三条 claim 原样保留：C1 用扩展实验的显著 p 值支撑，C2 用 QwQ 负结果 + 多模型 C0 梯度支撑，
+      C3 用 C0-gap 散点图支撑。ProofWriter 非零增益消除 "domain-specific" 攻击面。
+      Operating regime 作为理论贡献锦上添花，而非防御性 reframe。EMNLP main 强投。
+
+  median:
+    meaning: "扩展实验显示正向但边缘显著的增益，ProofWriter 仍为零，需将重心从 accuracy gain 转向 operating regime characterization"
+    key_assumptions:
+      - "gap 在扩展后缩小至 1.5-3pp（60题的高 gap 含抽样噪声）"
+      - "ProofWriter C0 较低（< 25%）或 constraint 质量差，增益为零"
+      - "Tiebreak 机制仍然有效（win rate > 55%），但 tie 频率在 K=12 下较低"
+      - "C0 预测性成立但散点较散，R² 中等"
+    number_ranges:
+      sica_sc_gap_combined_pp: [1.5, 3.0]
+      folio_gap_pp: [3.0, 5.5]
+      proofwriter_gap_pp: [-0.5, 0.5]
+      bootstrap_p_combined: [0.05, 0.15]
+      c0_combined_expanded: [0.30, 0.45]
+      tiebreak_win_rate: [0.58, 0.72]
+      tie_question_fraction: [0.04, 0.08]
+      k_ablation_best_gap_pp: [2.0, 4.5]
+    narrative_direction: >
+      C1 降级为 supporting evidence，不再作为独立 headline claim。标题转向
+      "When Does Symbolic Consensus Help? Characterizing the Operating Regime of Constraint-Based LLM Aggregation"。
+      核心叙事变为：我们发现 symbolic consensus 的有效性取决于 trace diversity（C0），
+      并提供了第一个系统性的适用性边界刻画。Accuracy gain 作为 C0 高区间的自然结果呈现，
+      而非主打贡献。ProofWriter 零增益不再是弱点，而是 operating regime 理论的验证点
+      （C0 低 → 预期无增益 → 实际无增益）。p 值在 0.05-0.15 之间用 K ablation 的
+      trend consistency 补强（"across K=6,8,12,16,20 SICA ≥ SC everywhere"）。
+      仍投 EMNLP main，但需 K ablation + 7B 数据齐备。
+
+  worst:
+    meaning: "扩展实验增益接近零或为负，tiebreak 有效但 tie 极少，accuracy claim 不可持续，需完全 reframe 为分析/诊断贡献"
+    key_assumptions:
+      - "60题的 +3.3pp 是小样本噪声，804 题 gap < 1.5pp"
+      - "K=12 下 even-split tie 极少（< 3%），tiebreak 机制正确但几乎无触发场景"
+      - "MaxSAT exclusion rate 在扩展数据上仍很低（< 3%），constraint 对多数题不改变投票分布"
+      - "C0 在 14B 扩展集上降至 25-35%（60题高估了 diversity）"
+    number_ranges:
+      sica_sc_gap_combined_pp: [-0.5, 1.5]
+      folio_gap_pp: [0.5, 3.5]
+      proofwriter_gap_pp: [-1.5, 0.0]
+      bootstrap_p_combined: [0.15, 0.50]
+      c0_combined_expanded: [0.22, 0.35]
+      tiebreak_win_rate: [0.50, 0.65]
+      tie_question_fraction: [0.01, 0.04]
+      k_ablation_best_gap_pp: [0.5, 2.5]
+    narrative_direction: >
+      彻底放弃 accuracy improvement claim。Reframe 为：
+      "Why Symbolic Consensus Fails: A Diagnostic Framework for Constraint-Based LLM Aggregation"。
+      核心贡献变为三层：(1) C0 diagnostic framework — 零成本判断任何 consensus method 是否值得部署，
+      (2) 推理模型 vs 指令模型的 trace diversity 根因分析（不是 SICA 特有的发现，
+      而是对所有 ensemble/consensus 方法都成立的架构层洞察），
+      (3) 对 "symbolic structure helps reasoning" 这一宽泛假设的精确化否定条件。
+      Tiebreak 机制的高 win rate 作为 "method is correct but regime is narrow" 的证据。
+      QwQ 负结果从配角升为主角。这是一篇 "characterization + negative result" 的 paper，
+      用 Findings of EMNLP 或 EMNLP main short 投，仍不降级 venue 但可能需要接受
+      非 main long 的 track。若坚持 main long，需补充 2-3 个额外模型（7B、72B、Llama）
+      来撑起 operating regime 分析的广度。
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "01f53c66-a058-4841-8219-76cfe24aee26",
+  "isSidechain": false,
+  "requestId": "req_011Cb5iG9Vg3oHsaFHtER8fJ",
+  "type": "assistant",
+  "uuid": "558d755d-db6d-4e31-8f0e-77d8f33b545b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3",
+  "sessionId": "8f9380b4-33c6-4d66-bc21-bab715c09af1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ge3VQmtz8vajpCdih92y3R",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 10683,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 3120,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10683,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 3120,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 10683,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10683
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。  你需要同时定义 best / median / worst 三档： 1. 每档的核心假设（哪些假设成立/不成立） 2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性） 3. 每档的论文叙事方向——    - best: 原始 framing 完全成立，claims 无需…",
+  "leafUuid": "558d755d-db6d-4e31-8f0e-77d8f33b545b",
+  "sessionId": "8f9380b4-33c6-4d66-bc21-bab715c09af1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Define three scenarios for symb_invariant_consensus",
+  "sessionId": "8f9380b4-33c6-4d66-bc21-bab715c09af1"
+}
+```
+
+---

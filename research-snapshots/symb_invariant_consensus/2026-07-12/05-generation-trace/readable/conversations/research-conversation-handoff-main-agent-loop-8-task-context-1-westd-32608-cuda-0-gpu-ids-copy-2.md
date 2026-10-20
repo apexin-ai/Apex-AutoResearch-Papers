@@ -1,0 +1,2617 @@
+# Research conversation: [HANDOFF] 你是 Main Agent，这是 Loop #8。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westd-32608:cuda:0（gpu_ids 白名单仅此一
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 1
+- **Tool calls:** 11
+- **Original source:** `logs/chats/exported-trajectories/account-3/2167ab2d-bb42-48bb-9cfa-ee5839611772.jsonl`
+- **Structured JSON:** [`b4dff687dc2a0c23b619.json`](../../sessions/b4/b4dff687dc2a0c23b619.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-17T08:41:14.341Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T08:41:14.341Z",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "content": "[HANDOFF] 你是 Main Agent，这是 Loop #8。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-32608:cuda:0（gpu_ids 白名单仅此一张）\n- LLaMA-3.1-8B-Instruct 已两次 EXIT_CODE=1 失败（exp-011-llama8b, exp-011-llama8b-v2），不要盲目第三次重跑——必须先拿到 Worker 诊断结果再决定\n- sica_expanded_14b / sica_k_sensitivity_14b 的 EXIT_CODE=129 是 SIGHUP 假失败，conclusion 已手动改为 success，不要重新标记为 failed\n- Mistral-7B 模型下载历史上 3 次 ModelScope 截断失败（81.3%），改用 HF 直下但 DDL 已过（May 17 12:00 UTC）——需确认模型是否就绪再提交 exp-010\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-32608，account: root\n- 工作目录：/root/symb_invariant_consensus/\n- GPU：RTX PRO 6000 Blackwell 98GB × 1（cuda:0）\n- Python/conda：source /root/miniconda3/bin/activate（base env）\n- 模型路径：Qwen2.5-14B-Instruct → /root/autodl-tmp/models/Qwen2.5-14B-Instruct；LLaMA-3.1-8B-Instruct → 需确认（可能在 /root/autodl-tmp/models/ 或 HF cache）；Mistral-7B → 待确认完整性\n- 数据：data/proofwriter_30.json (30), data/folio_30.json (30), data/proofwriter_full.json (600 D5), data/folio_full.json (204)\n- 启动脚本：/root/symb_invariant_consensus/scripts/run_exp011_llama8b.sh\n- 活跃进程：无 RUNNING 实验，GPU 当前空闲\n- Cron：reconcile 返回 0 个活跃 cron\n\n### 3. 📊 当前状态\n刚收到 exp-011-llama8b-v2 失败 cron 回调，已完成 session-start 初始化并 spawn 了诊断 Worker（worker_diagnose_exp-011-llama8b-v2_20260517T032306），**Worker 尚未返回结果**。\n\nRegistry 关键状态：\n- DONE(success): sica_d012_14b, sica_expanded_14b, sica_k_sensitivity_14b, exp-016-weighted-sc, sica_constraint_ablation_013, exp-005, sica_d016_c0_precheck, sica_smoke_5q (+crd_folio_main)\n- DONE(failed): exp-011-llama8b, exp-011-llama8b-v2, sica_proofwriter30\n- QUEUED: exp-018-arc, exp-017-strategyqa, exp-010-mistral\n- GPU 空闲（cuda:0 分配了没跑 = 失职状态）\n\n尚未向 Director 汇报本次失败——等诊断 Worker 回调后再汇报。\n\n### 4. 📋 待办\n- Worker 诊断回调到达 → 读取失败根因 → update_registry 写 failure_reason → 向 Director 汇报（带修复方案）\n- 诊断结果如果是 OOM/vLLM 配置问题 → 修复脚本 → 提交 exp-011-llama8b-v3\n- 诊断结果如果是模型文件损坏 → 重新下载 LLaMA-3.1-8B-Instruct → 再提交\n- GPU 空闲期间：如果 LLaMA 短期无法修复 → 先跑 exp-017-strategyqa 或 exp-018-arc（Qwen2.5-14B-Instruct，无模型风险）填 GPU 空窗\n- exp-010-mistral：确认 Mistral-7B 模型完整性 → 准备启动脚本 → 排队\n- Director 未收到本次失败汇报——下一个 session 必须在处理完诊断后立即 main_agent_post_to_director\n\n### 5. 🎯 战略上下文\n- 核心方向：Capability Trap Analysis Paper（D025 pivot）——系统揭示 SICA 不能 beat SC 的原因\n- 核心数据锚：SICA 76.49% vs SC 76.24% = +0.25pp (N=804, n.s.)，FOLIO sub-claim dead (0pp)\n- 三个 Claim 待验证状态：\n  - C1 (mechanism vacuous)：exp-013 ✅ + exp-016 ✅ + K-ablation ✅ → 充分支撑\n  - C2 (operating regime boundary)：exp-005 ✅ (QwQ-32B)，但 cross-family (LLaMA/Mistral) 还没跑通 → 这正是 exp-011 要做的\n  - C3 (C0 predictor)：需要多模型数据 → 依赖 cross-family 实验完成\n- 易错点：cross-family 实验（exp-010/011）是 C2 的关键证据，不能因为两次失败就放弃——必须诊断修复。但也不要无脑重试，根因不明时先填其他格子（exp-017/018 用已验证的 Qwen 模型，零风险）\n- K-ablation 结论：SICA ≤ SC for all K，K 越大 SICA 越差（-3~5pp at K=16/20），直接强化 C1\n- 决策链：D020→D021→D022→D023→D025(pivot)→D026→D027→D028→D029\n\n## 项目硬约束 (memory.md 节选)\n\n## 失败模式记录\n\n- [失败模式] infrastructure/ENV_ACTIVATION：submit_training_job 提交直接 `python xxx.py` 命令时，tmux session 中 PATH 不含 conda，导致 EXIT_CODE=127。修复方案：所有命令必须加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀，或使用 bash wrapper 脚本（脚本内含激活）。(2026-05-17, pilot-contrastive-prompt)\n\n---\n\n## 可查的历史\n前 14 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-17T08:41:14.349Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T08:41:14.349Z",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772"
+}
+```
+
+---
+
+## Round 1
+
+43 recorded events
+
+### User
+
+_source line 3 · 2026-05-17T08:41:14.435Z_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #8。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 westd-32608:cuda:0（gpu_ids 白名单仅此一张）
+- LLaMA-3.1-8B-Instruct 已两次 EXIT_CODE=1 失败（exp-011-llama8b, exp-011-llama8b-v2），不要盲目第三次重跑——必须先拿到 Worker 诊断结果再决定
+- sica_expanded_14b / sica_k_sensitivity_14b 的 EXIT_CODE=129 是 SIGHUP 假失败，conclusion 已手动改为 success，不要重新标记为 failed
+- Mistral-7B 模型下载历史上 3 次 ModelScope 截断失败（81.3%），改用 HF 直下但 DDL 已过（May 17 12:00 UTC）——需确认模型是否就绪再提交 exp-010
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-32608，account: root
+- 工作目录：/root/symb_invariant_consensus/
+- GPU：RTX PRO 6000 Blackwell 98GB × 1（cuda:0）
+- Python/conda：source /root/miniconda3/bin/activate（base env）
+- 模型路径：Qwen2.5-14B-Instruct → /root/autodl-tmp/models/Qwen2.5-14B-Instruct；LLaMA-3.1-8B-Instruct → 需确认（可能在 /root/autodl-tmp/models/ 或 HF cache）；Mistral-7B → 待确认完整性
+- 数据：data/proofwriter_30.json (30), data/folio_30.json (30), data/proofwriter_full.json (600 D5), data/folio_full.json (204)
+- 启动脚本：/root/symb_invariant_consensus/scripts/run_exp011_llama8b.sh
+- 活跃进程：无 RUNNING 实验，GPU 当前空闲
+- Cron：reconcile 返回 0 个活跃 cron
+
+### 3. 📊 当前状态
+刚收到 exp-011-llama8b-v2 失败 cron 回调，已完成 session-start 初始化并 spawn 了诊断 Worker（worker_diagnose_exp-011-llama8b-v2_20260517T032306），**Worker 尚未返回结果**。
+
+Registry 关键状态：
+- DONE(success): sica_d012_14b, sica_expanded_14b, sica_k_sensitivity_14b, exp-016-weighted-sc, sica_constraint_ablation_013, exp-005, sica_d016_c0_precheck, sica_smoke_5q (+crd_folio_main)
+- DONE(failed): exp-011-llama8b, exp-011-llama8b-v2, sica_proofwriter30
+- QUEUED: exp-018-arc, exp-017-strategyqa, exp-010-mistral
+- GPU 空闲（cuda:0 分配了没跑 = 失职状态）
+
+尚未向 Director 汇报本次失败——等诊断 Worker 回调后再汇报。
+
+### 4. 📋 待办
+- Worker 诊断回调到达 → 读取失败根因 → update_registry 写 failure_reason → 向 Director 汇报（带修复方案）
+- 诊断结果如果是 OOM/vLLM 配置问题 → 修复脚本 → 提交 exp-011-llama8b-v3
+- 诊断结果如果是模型文件损坏 → 重新下载 LLaMA-3.1-8B-Instruct → 再提交
+- GPU 空闲期间：如果 LLaMA 短期无法修复 → 先跑 exp-017-strategyqa 或 exp-018-arc（Qwen2.5-14B-Instruct，无模型风险）填 GPU 空窗
+- exp-010-mistral：确认 Mistral-7B 模型完整性 → 准备启动脚本 → 排队
+- Director 未收到本次失败汇报——下一个 session 必须在处理完诊断后立即 main_agent_post_to_director
+
+### 5. 🎯 战略上下文
+- 核心方向：Capability Trap Analysis Paper（D025 pivot）——系统揭示 SICA 不能 beat SC 的原因
+- 核心数据锚：SICA 76.49% vs SC 76.24% = +0.25pp (N=804, n.s.)，FOLIO sub-claim dead (0pp)
+- 三个 Claim 待验证状态：
+  - C1 (mechanism vacuous)：exp-013 ✅ + exp-016 ✅ + K-ablation ✅ → 充分支撑
+  - C2 (operating regime boundary)：exp-005 ✅ (QwQ-32B)，但 cross-family (LLaMA/Mistral) 还没跑通 → 这正是 exp-011 要做的
+  - C3 (C0 predictor)：需要多模型数据 → 依赖 cross-family 实验完成
+- 易错点：cross-family 实验（exp-010/011）是 C2 的关键证据，不能因为两次失败就放弃——必须诊断修复。但也不要无脑重试，根因不明时先填其他格子（exp-017/018 用已验证的 Qwen 模型，零风险）
+- K-ablation 结论：SICA ≤ SC for all K，K 越大 SICA 越差（-3~5pp at K=16/20），直接强化 C1
+- 决策链：D020→D021→D022→D023→D025(pivot)→D026→D027→D028→D029
+
+## 项目硬约束 (memory.md 节选)
+
+## 失败模式记录
+
+- [失败模式] infrastructure/ENV_ACTIVATION：submit_training_job 提交直接 `python xxx.py` 命令时，tmux session 中 PATH 不含 conda，导致 EXIT_CODE=127。修复方案：所有命令必须加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀，或使用 bash wrapper 脚本（脚本内含激活）。(2026-05-17, pilot-contrastive-prompt)
+
+---
+
+## 可查的历史
+前 14 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "7cf78713-91e1-43fd-9e4e-a61ad12a4b77",
+  "type": "user",
+  "uuid": "542631b2-1aac-4f71-adbd-68ce97adfb02",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-17T08:41:14.432Z_
+
+```json
+{
+  "parentUuid": "542631b2-1aac-4f71-adbd-68ce97adfb02",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "dd6f913a-48a2-4260-9b36-8684b28b34c4",
+  "timestamp": "2026-05-17T08:41:14.432Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-17T08:41:14.432Z_
+
+```json
+{
+  "parentUuid": "dd6f913a-48a2-4260-9b36-8684b28b34c4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "8d3e218e-b9ef-4194-9ab9-bad312b01fbb",
+  "timestamp": "2026-05-17T08:41:14.432Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-17T08:41:14.432Z_
+
+```json
+{
+  "parentUuid": "8d3e218e-b9ef-4194-9ab9-bad312b01fbb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "5c5a39b7-d126-4bae-a771-2e97f8da30a6",
+  "timestamp": "2026-05-17T08:41:14.432Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose LLaMA-3.1-8B failure and manage cross-family experiments",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-17T08:41:21.012Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by confirming I've read the handoff and then execute the session-start initialization steps.
+
+Key points from handoff:
+1. Only GPU: westd-32608:cuda:0
+2. LLaMA-3.1-8B-Instruct failed twice (exp-011), waiting for diagnostic Worker
+3. GPU is idle = 失职
+4. Need to check if diagnostic Worker has returned
+5. Multiple QUEUED experiments ready to go
+
+Let me begin with session-start: read_registry, reconcile_crons, read report.md and ROADMAP.md.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c5a39b7-d126-4bae-a771-2e97f8da30a6",
+  "isSidechain": false,
+  "requestId": "req_011Cb7qp4axqtBjDqDi6ewwA",
+  "type": "assistant",
+  "uuid": "875e4019-baea-46a4-9d69-e7d4fd39bf6c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TAqpnjcotPci3VCNKFCjca",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 27574,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 345,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27574,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 345,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 27574,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27574
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-17T08:41:23.018Z_
+
+确认收到 handoff：白名单仅 westd-32608:cuda:0，LLaMA 两次失败待诊断 Worker 回调，GPU 当前空闲。立即执行 session-start 初始化。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "875e4019-baea-46a4-9d69-e7d4fd39bf6c",
+  "isSidechain": false,
+  "requestId": "req_011Cb7qp4axqtBjDqDi6ewwA",
+  "type": "assistant",
+  "uuid": "a0aae763-f327-49bc-b70e-0364cdae5720",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TAqpnjcotPci3VCNKFCjca",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 27574,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 345,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27574,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 345,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 27574,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27574
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-17T08:41:24.193Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01YWKpTwbmzZJXTe7nGyFKD8`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a0aae763-f327-49bc-b70e-0364cdae5720",
+  "isSidechain": false,
+  "requestId": "req_011Cb7qp4axqtBjDqDi6ewwA",
+  "type": "assistant",
+  "uuid": "89bf91f9-7063-4cb7-bfbc-7531cc075e30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TAqpnjcotPci3VCNKFCjca",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 27574,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 345,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27574,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 345,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 27574,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27574
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T08:41:24.202Z_
+
+<details><summary>↩ Tool result · `toolu_01YWKpTwbmzZJXTe7nGyFKD8`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "89bf91f9-7063-4cb7-bfbc-7531cc075e30",
+  "isSidechain": false,
+  "promptId": "7cf78713-91e1-43fd-9e4e-a61ad12a4b77",
+  "type": "user",
+  "uuid": "11d64167-2645-4f78-a216-a5c3ad624317",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "total_deferred_tools": 80
+  },
+  "sourceToolAssistantUUID": "89bf91f9-7063-4cb7-bfbc-7531cc075e30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T08:41:26.808Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01D5SBFZ3hkbzwVBkNaS6pae`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11d64167-2645-4f78-a216-a5c3ad624317",
+  "isSidechain": false,
+  "requestId": "req_011Cb7qpnHiN7k5kyCdL2N8y",
+  "type": "assistant",
+  "uuid": "25722648-bdb7-4318-9b8e-cf6f4e496fad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018NdkEcXZRKHxYzJPzY7Vvq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1223,
+      "cache_read_input_tokens": 39415,
+      "output_tokens": 240,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1223,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 240,
+          "cache_read_input_tokens": 39415,
+          "cache_creation_input_tokens": 1223,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1223
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T08:41:26.814Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01LSjfNnJnxMPMXfz4jfdtwJ`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25722648-bdb7-4318-9b8e-cf6f4e496fad",
+  "isSidechain": false,
+  "requestId": "req_011Cb7qpnHiN7k5kyCdL2N8y",
+  "type": "assistant",
+  "uuid": "5e37b265-c427-4ed6-a4ad-935271243d95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018NdkEcXZRKHxYzJPzY7Vvq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1223,
+      "cache_read_input_tokens": 39415,
+      "output_tokens": 240,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1223,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 240,
+          "cache_read_input_tokens": 39415,
+          "cache_creation_input_tokens": 1223,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1223
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T08:41:26.933Z_
+
+<details><summary>↩ Tool result · `toolu_01D5SBFZ3hkbzwVBkNaS6pae`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-010-mistral-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T06:48:05.255Z\", \"updated_at\": \"2026-05-17T08:22:02.386Z\", \"hypothesis\": \"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题）\", \"parent\": \"sica_expanded_14b\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.4833, \"sc_accuracy\": 0.4833, \"delta_pp\": 0, \"multi_candidate_rate\": 0.0667, \"extraction_rate\": 0.8819, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.0562, \"discordant_sica_wins\": 2, \"discordant_sc_wins\": 2, \"mcnemar_p\": 1, \"proofwriter_sica\": 0.4, \"proofwriter_sc\": 0.4, \"proofwriter_delta_pp\": 0, \"folio_sica\": 0.5667, \"folio_sc\": 0.5667, \"folio_delta_pp\": 0, \"truncated_traces\": 0, \"model\": \"Mistral-7B-Instruct-v0.3\", \"dataset\": \"D012\"}, \"conclusion\": \"negative\", \"notes\": \"Mistral-7B cross-family: SICA 48.33% = SC 48.33%, delta=0.00pp。Multi-candidate rate 仅 6.67%（vs LLaMA-8B 61.7%、Qwen-14B 46%）。模型太弱：SC baseline 48.33%（近随机），trace 缺乏多样性（30/60 题非 unanimous 但 SICA 只改了 4 题）。Discordant 2:2 平局，McNemar p=1.0。支持 operating regime 有下界：模型必须足够强才能生成有意义的 diverse traces。PW 40%/40%, FOLIO 56.67%/56.67%。\"}, \"exp-019-llama8b-strategyqa-200\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T08:07:01.919Z\", \"updated_at\": \"2026-05-17T08:18:24.511Z\", \"hypothesis\": \"Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp）\", \"parent\": \"exp-011-llama8b-v3\"}, \"exp-020-llama8b-folio-204\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T08:12:49.897Z\", \"updated_at\": \"2026-05-17T08:12:56.986Z\", \"hypothesis\": \"Powered FOLIO test: SICA 在弱模型（LLaMA-3.1-8B）上 FOLIO 全量 204 题是否达到统计显著——FOLIO 在 exp-011 中信号最强（+10pp, bootstrap p≈0.04），n=204 几乎必然显著。保险实验：若 StrategyQA discordant rate 低导致 underpowered。\", \"parent\": \"exp-011-llama8b-v3\"}, \"pilot-contrastive-prompt\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T06:18:22.559Z\", \"updated_at\": \"2026-05-17T08:02:40.938Z\", \"hypothesis\": \"Contrastive Prompt Extraction: 将 prompt 改为\\\"列出支持答案X/反对答案Y的证据\\\"能否将 discriminative ratio 从 37.2% 提升至 >70%，并使 SICA(contrastive) > SC ≥3pp——验证 answer-conditioned 约束是否解决 SICA 机制 vacuous 问题\", \"parent\": \"pilot-constraint-filtering\", \"conclusion\": \"failed\", \"notes\": \"脚本已验证可用（run_pilot_contrastive_v2.sh + pilot_contrastive_constraints.py）。修复方案：submit 时用 bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/symb_invariant_consensus/scripts/run_pilot_contrastive_v2.sh\\\" 包裹。当前 GPU 被 exp-010-mistral-v3 占用（vLLM 87880MiB），等其完成后提交。\"}, \"exp-011-llama8b-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T06:15:02.161Z\", \"updated_at\": \"2026-05-17T07:59:02.260Z\", \"hypothesis\": \"Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific（v3: 模型 shard 已修复，GPU 空闲后提交）\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"success\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.6667, \"sc_accuracy\": 0.6, \"delta_pp\": 6.67, \"multi_candidate_rate\": 0.6167, \"extraction_rate\": 0.8556, \"answer_extraction_rate\": 0.8958, \"contradiction_rate\": 0.0527, \"problems_with_contradictions\": 43, \"truncated_traces\": 44, \"discordant_sica_wins\": 5, \"discordant_sc_wins\": 1, \"mcnemar_p\": 0.2188, \"proofwriter_sica\": 0.6333, \"proofwriter_sc\": 0.6, \"proofwriter_delta_pp\": 3.33, \"folio_sica\": 0.7, \"folio_sc\": 0.6, \"folio_delta_pp\": 10, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"D012\", \"wall_time_min\": 66.4}, \"notes\": \"LLaMA-3.1-8B cross-family: SICA 66.7% vs SC 60.0%, +6.67pp (最大增益)。Discordant 5:1 强烈倾向 SICA。FOLIO +10pp, PW +3.33pp。McNemar p=0.22（n=60 受限）。Multi-candidate rate 61.7%（vs Qwen-14B 46%）——弱模型更多样→SICA 有更大操作空间。44 条 truncated traces（max-tokens 可能偏短），但仍有效。关键：SC baseline 60%（远低于 Qwen-14B 的 76%），验证 capability trap 的正面——模型弱时 SICA 有用。\"}, \"exp-018-arc-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T06:13:27.054Z\", \"updated_at\": \"2026-05-17T06:44:33.593Z\", \"hypothesis\": \"Cross-domain validation: Qwen2.5-14B-Instruct 在 ARC-Challenge (科学多选, ABCD) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（v2: build_generator bug 已修复）\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"success\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.95, \"sc_accuracy\": 0.9667, \"delta_pp\": -1.67, \"multi_candidate_rate\": 0.0833, \"extraction_rate\": 1, \"contradiction_detected\": 3, \"discordant_sica_wins\": 0, \"discordant_sc_wins\": 1, \"dataset\": \"ARC-Challenge\", \"model\": \"Qwen2.5-14B-Instruct\"}, \"notes\": \"ARC-Challenge cross-domain: SICA 95.00% vs SC 96.67%, gap=-1.67pp. SICA 略逊于 SC。模型在 ARC 上 baseline 极高(96.67%)，接近天花板——高准确率区间多样性低，SICA 无操作空间。与 StrategyQA (+3.33pp n.s.) 对比：简单任务（高 baseline）SICA 无效或有害，中等难度任务有微弱正向趋势但不显著。整体支持 capability trap：模型能力越强/任务越简单 → SC 已近最优 → SICA 无增量。\"}, \"exp-010-mistral-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T03:26:42.201Z\", \"updated_at\": \"2026-05-17T06:19:34.268Z\", \"hypothesis\": \"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v2: 修复 max-model-len=8192 防 400 循环）\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"failed\", \"notes\": \"SIGTERM (exit 143) 在提交后 ~15s。根因：compound command 中 pkill -f \\\"vllm.entrypoints\\\" 可能误杀 tmux 父进程链。Director 已明确禁止 pkill 和 bash 脚本写在同一行。需要 v3：先手动清理 vLLM，再独立提交脚本。\"}, \"pilot-constraint-filtering\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T04:47:05.171Z\", \"updated_at\": \"2026-05-17T06:11:36.503Z\", \"hypothesis\": \"Constraint Consistency Filtering: 只保留在≥T条traces中重复出现的约束能否提升SICA accuracy超过SC——验证约束质量过滤是否解决capability trap\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"negative\", \"notes\": \"NEGATIVE confirmed. T=1/2/3 结果完全一致(+2.33pp=1题翻转), T≥5 SICA退化为SC。Discriminative analysis: unique constraints 中 11.5% 是 discriminative (by count), 37.2% (by weight)。但有效 flip 率仅 4/23=17.4%。根本原因：提取的约束是 domain facts (kind_charlie==True, Implies(...)) — 无论答案是什么，中间推理步骤大部分共通。约束系统未提取答案级别判别谓词。Constraint filtering 天花板极低，不是 rescue path。\", \"metrics\": {\"n\": 43, \"thresholds_tested\": [1, 2, 3, 5, 7], \"best_gap_pp\": 2.33, \"best_T\": 1, \"sica_T1\": 0.7674, \"sc\": 0.7442, \"T5_gap\": 0, \"T7_gap\": 0, \"discriminative_ratio_count\": 0.115, \"discriminative_ratio_weight\": 0.372, \"effective_flip_rate\": 0.174, \"multi_answer_problems\": 23, \"unanimous_problems\": 20, \"problems_disc_favors_different\": 4}}, \"exp-018-arc\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T03:19:51.591Z\", \"updated_at\": \"2026-05-17T05:31:46.070Z\", \"hypothesis\": \"Cross-domain validation: Qwen2.5-14B-Instruct 在 ARC-Challenge (科学多选, ABCD) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（多选题型）\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"failed\", \"notes\": \"NameError: name 'build_generator' is not defined in eval_arc.py:142. 代码bug——函数未定义/未导入。Worker 诊断修复中。\"}, \"exp-017-strategyqa-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T04:17:54.931Z\", \"updated_at\": \"2026-05-17T05:29:12.136Z\", \"hypothesis\": \"Cross-domain validation: Qwen2.5-14B-Instruct 在 StrategyQA (常识推理, Yes/No) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（v3: 修复 True/False→Yes/No 提取 bug）\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"success\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.5667, \"sc_accuracy\": 0.5333, \"delta_pp\": 3.33, \"mcnemar_chi2\": 0.5, \"mcnemar_p\": \"n.s.\", \"bootstrap_ci_95\": [0, 8.33], \"bootstrap_p_delta_le_0\": 0.1346, \"multi_candidate_rate\": 0.1, \"contradiction_detected\": 5, \"extraction_rate_problem\": 1, \"extraction_rate_trace\": 0.704, \"discordant_sica_wins\": 2, \"discordant_sc_wins\": 0}, \"notes\": \"StrategyQA跨域验证: SICA 56.67% vs SC 53.33%, +3.33pp n.s. (p=0.13), 支持capability trap跨任务泛化; v3修复提取bug确认成功(100%问题级提取率); 2个discordant pairs均SICA胜出\"}, \"exp-017-strategyqa-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T03:50:55.005Z\", \"updated_at\": \"2026-05-17T04:27:27.997Z\", \"hypothesis\": \"Cross-domain validation: Qwen2.5-14B-Instruct 在 StrategyQA (常识推理, Yes/No) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（非逻辑/数学域）\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"failed\"}, \"exp-017-strategyqa\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T03:19:50.628Z\", \"updated_at\": \"2026-05-17T03:50:54.370Z\", \"hypothesis\": \"Cross-domain validation: Qwen2.5-14B-Instruct 在 StrategyQA (常识推理, Yes/No) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（非逻辑/数学域）\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"failed\"}, \"exp-010-mistral\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T01:04:36.900Z\", \"updated_at\": \"2026-05-17T03:37:29.439Z\", \"hypothesis\": \"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化\", \"parent\": \"sica_expanded_14b\", \"notes\": \"模型已确认完整下载：3 shards (4.95+5.00+4.55GB) + consolidated.safetensors (14.5GB)。排在 exp-018 之后启动。需要 Worker 准备启动脚本（参照 exp-011 模式）。\", \"conclusion\": \"failed\"}, \"exp-011-llama8b-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T03:19:49.625Z\", \"updated_at\": \"2026-05-17T03:24:54.392Z\", \"hypothesis\": \"Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific (v2: 修复 GPU OOM，kill 旧 vLLM 后重跑)\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"failed\"}, \"sica_temp_diversity\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T12:14:34.555Z\", \"updated_at\": \"2026-05-17T03:21:14.807Z\", \"hypothesis\": \"不同 temperature (0.7/0.9/1.0) 下 QwQ-32B 是否产生足够的 trace 分歧以触发 MAX-SAT 矛盾检测\", \"conclusion\": \"negative\", \"metrics\": {\"temperatures_tested\": [0.7, 0.9, 1], \"problems_tested\": 3, \"problems_with_divergence\": 0, \"finding\": \"QwQ-32B produces zero answer divergence at all temperatures on MATH L4-5. Reasoning model's deterministic chain dominates sampling randomness.\", \"max_tokens_issue\": \"4096 tokens insufficient for some L5 problems (truncation)\", \"recommendation\": \"Use AIME 2024 (harder, ~79.5% acc) or non-reasoning model for trace diversity\"}, \"parent\": \"sica_smoke_5q\"}, \"sica_d012_14b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T04:02:41.309Z\", \"updated_at\": \"2026-05-17T03:21:14.256Z\", \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.7333, \"sc_accuracy\": 0.7, \"sica_sc_gap_pp\": 3.3, \"c0_multi_candidate_rate\": 0.5333, \"c1_extraction_rate\": 1, \"c2_contradiction_problems\": 34, \"c3_gap_pp\": 3.3, \"bootstrap_p\": 0.2261, \"proofwriter_sica\": 0.6667, \"proofwriter_sc\": 0.6667, \"folio_sica\": 0.8, \"folio_sc\": 0.7333, \"total_constraints_raw\": 5849, \"total_constraints_unique\": 1735, \"maxsat_exclusion_rate\": 0.0259, \"wall_time_min\": 58.3, \"d012_verdict\": \"ALL_PASS\"}, \"hypothesis\": \"Qwen2.5-14B-Instruct 在 D012 (30PW+30FOLIO) 上 SICA pipeline 端到端有效：C0(多候选率≥20%) + C1(提取率≥80%) + C2(矛盾率≥10%) + C3(SICA>SC) 四项 sanity check 全通过\", \"parent\": \"sica_d016_c0_precheck\"}, \"sica_expanded_14b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T05:12:00.374Z\", \"updated_at\": \"2026-05-17T03:21:11.438Z\", \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.765, \"sc_accuracy\": 0.762, \"sica_sc_gap_pp\": 0.3, \"n_problems\": 804, \"folio_sica\": 0.794, \"folio_sc\": 0.794, \"folio_gap_pp\": 0, \"folio_n\": 204, \"proofwriter_sica\": 0.755, \"proofwriter_sc\": 0.752, \"proofwriter_gap_pp\": 0.3, \"proofwriter_n\": 600, \"extraction_rate\": 0.89, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.022, \"problems_with_contradictions\": 331, \"truncated_traces\": 0, \"wall_time_min\": 826}, \"notes\": \"实验完整完成 804/804 题并保存结果。EXIT_CODE=129 是 SIGHUP 伪信号（进程退出阶段收到），非真实失败。日志末尾打印 \\\"FULL_MVP_DONE\\\" 后才出现 exit code。D025 pivot 确认：SICA≈SC (+0.3pp, N=804)，D012 +3.3pp 是小样本噪声。FOLIO sub-claim dead (0pp)。\", \"hypothesis\": \"Qwen2.5-14B-Instruct 在 N=804 (600PW+204FOLIO) 上 SICA 相比 SC 有统计显著优势（p<0.05）——full-scale validation of D012 preliminary +3.3pp signal\", \"parent\": \"sica_d012_14b\"}, \"sica_k_sensitivity_14b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T05:12:03.025Z\", \"updated_at\": \"2026-05-17T03:19:48.625Z\", \"hypothesis\": \"K-ablation: K={6,8,11,12,16,20} 对 SICA 效果的影响。K=11(奇数)无平票，若 gap=0 则证明 SICA 仅靠 tiebreak 生效\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"success\", \"metrics\": {\"K6_sica\": 0.733, \"K6_sc\": 0.733, \"K6_gap_pp\": 0, \"K8_sica\": 0.733, \"K8_sc\": 0.75, \"K8_gap_pp\": -1.7, \"K11_sica\": 0.733, \"K11_sc\": 0.733, \"K11_gap_pp\": 0, \"K12_sica\": 0.7, \"K12_sc\": 0.75, \"K12_gap_pp\": -5, \"K16_sica\": 0.717, \"K16_sc\": 0.75, \"K16_gap_pp\": -3.3, \"K20_sica\": 0.7, \"K20_sc\": 0.733, \"K20_gap_pp\": -3.3, \"all_K_sica_leq_sc\": true, \"larger_K_degrades_sica\": true}, \"notes\": \"K-ablation 实际完成（EXIT_CODE=129 为 SIGHUP 假失败，同 sica_expanded_14b 模式）。结果：SICA ≤ SC for all K。K=11(奇数)验证 tiebreak 无贡献(gap=0)。K=12/16/20 SICA 退化 -3~5pp，表明更多 traces 引入更多低质量约束反而有害。直接强化 C1 (mechanism vacuous)。Artifact: art_20260517_2c1577。\"}, \"exp-011-llama8b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T01:00:32.450Z\", \"updated_at\": \"2026-05-17T03:00:35.641Z\", \"hypothesis\": \"Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific\", \"parent\": \"sica_expanded_14b\", \"notes\": \"Prep done by worker_prep_exp-011-llama8b_20260516T204635. Model: LLaMA-3.1-8B-Instruct (14GB, 4 shards). Script: /root/symb_invariant_consensus/scripts/run_exp011_llama8b.sh. Dataset: D012 (30 PW + 30 FOLIO = 60 题). 预估 ~25-30GB GPU, ~1-1.5h runtime. 等 sica_k_sensitivity_14b 完成后启动。\", \"conclusion\": \"failed\"}, \"exp-016-weighted-sc\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T01:01:51.841Z\", \"updated_at\": \"2026-05-17T01:02:16.162Z\", \"hypothesis\": \"加权投票变体(inverse-length/length-weighted/constraint-count)是否比 uniform SC 有统计显著优势——验证简单启发式能否替代 SICA 或超越 SC\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.7649, \"sc_uniform_accuracy\": 0.7624, \"inv_length_accuracy\": 0.7674, \"length_weighted_accuracy\": 0.7525, \"constraint_count_accuracy\": 0.7525, \"inv_length_vs_sc_p\": 0.453, \"length_vs_sc_p\": 0.153, \"inv_length_vs_sica_p\": 0.864, \"length_vs_sica_p\": 0.066, \"n_problems\": 804, \"all_nonsignificant\": true}, \"notes\": \"exp-016 weighted SC baselines 完成。804题上所有加权变体 vs SC/SICA 均不显著(p>0.05)。Length-weighting 反而 -1pp（长 trace 略不可靠），inv-length +0.5pp 但非显著。结论：简单启发式加权不能替代也不能超越 uniform voting。支持 C1 (mechanism vacuous) — 问题不在聚合方式，而在约束质量本身。Artifacts: art_20260516_c7cc07 (report), art_20260516_7eef43 (data).\"}, \"exp-005\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T20:52:36.217Z\", \"updated_at\": \"2026-05-16T20:53:22.616Z\", \"hypothesis\": \"QwQ-32B 作为 reasoning model 展示 SICA 的 operating regime boundary: 模型过强→diversity 消失→SICA≡SC\", \"parent\": \"sica_aime30_v3\", \"metrics\": {\"qwq_aggregate_c0_nominal_pct\": 10.3, \"qwq_aggregate_c0_effective_pct\": 2.6, \"qwen14b_c0_pct\": 46, \"diversity_ratio_effective\": 17.7, \"aime_delta_pp\": 0, \"proofwriter_delta_pp\": -5.9, \"aime_n\": 22, \"proofwriter_n\": 17, \"temp_diversity_n\": 5, \"folio_n\": 2, \"total_problems\": 46, \"c0_threshold\": 20, \"qwq_below_threshold\": true}, \"conclusion\": \"negative\", \"notes\": \"exp-005 Operating Regime Analysis 完成。QwQ-32B 综合 46 题数据：effective C0=2.6%，远低于 20% 阈值。数学域 SICA≡SC (Δ=0pp, AIME 22题)，逻辑域 SICA&lt;SC (Δ=−5.9pp, PW 17题)。对比 Qwen2.5-14B C0=46% (17.7x)。直接支持 paper Claim 2 (operating regime boundary)。Artifacts: art_20260516_bf444f (data), art_20260516_d6966d (report)。\"}, \"sica_constraint_ablation_013\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T20:26:35.414Z\", \"updated_at\": \"2026-05-16T20:27:11.828Z\", \"conclusion\": \"success\", \"hypothesis\": \"exp-013: MaxSAT 加权聚合是否比 count-only 或 random-weight 有显著优势？验证 SICA 核心机制（约束加权）的实际贡献\", \"parent\": \"sica_expanded_14b\", \"metrics\": {\"maxsat_accuracy\": 0.7649, \"count_only_accuracy\": 0.7662, \"random_weight_accuracy\": 0.7637, \"sc_baseline_accuracy\": 0.7624, \"n_problems\": 804, \"agreement_802_of_804\": true, \"mcnemar_p_all_gt_0.7\": true, \"note\": \"approximate (raw z3 formulas unavailable, count-only/random-weight use proxy)\"}, \"notes\": \"exp-013 constraint ablation 完成。804题上 MaxSAT(76.49%) ≈ count-only(76.62%) ≈ random-weight(76.37%) ≈ SC(76.24%)。802/804 题三种方法结果一致，McNemar p>0.7。直接支持 C1 claim (mechanism vacuous): MaxSAT 优化相对简单计数无统计显著优势。限制：exp-001 未存 raw constraints，count-only/random-weight 使用近似公式。\"}, \"sica_folio30\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T22:08:43.460Z\", \"updated_at\": \"2026-05-16T04:42:53.530Z\", \"hypothesis\": \"逻辑域（FOLIO）上 SICA 能否利用 FOL 标注检测跨路径矛盾并超越 SC@K=12——FOLIO 有天然 FOL 标注，是 SICA 约束提取的理想场景\", \"parent\": \"sica_aime30_v3\", \"notes\": \"废弃：QwQ-32B spec（max_tokens=12288），已被 sica_d012_14b（Qwen2.5-14B-Instruct 全量 D012 评估）覆盖。QwQ-32B 全域 C0 FAIL (3.6%)，模型已 pivot。\", \"conclusion\": \"killed\"}, \"sica_d016_c0_precheck\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T04:00:14.192Z\", \"updated_at\": \"2026-05-16T04:01:11.163Z\", \"hypothesis\": \"D016 模型 pivot C0 预检：Qwen2.5-14B-Instruct 在逻辑域是否产生足够 trace 多样性（多候选率 ≥20%）\", \"parent\": \"sica_proofwriter30_v2\", \"metrics\": {\"multi_candidate_rate_combined\": 0.46, \"multi_candidate_rate_folio\": 0.4, \"multi_candidate_rate_proofwriter\": 0.5, \"sc_accuracy_combined\": 0.73, \"sc_accuracy_folio\": 0.8, \"sc_accuracy_proofwriter\": 0.69, \"n_problems\": 26, \"n_folio\": 10, \"n_proofwriter\": 16, \"K\": 6, \"T\": 0.7, \"total_time_s\": 280, \"c0_gate\": \"PASS (46% >= 20%)\", \"model\": \"Qwen2.5-14B-Instruct\", \"vllm_gpu_mem_gib\": 27.6, \"smoke_test\": \"2 problems end-to-end OK, constraints 21-26 per problem\"}, \"conclusion\": \"success\", \"notes\": \"C0 PASS: Qwen2.5-14B-Instruct 多候选率 46% (FOLIO 40%, ProofWriter 50%)，远超 20% 阈值。对比 QwQ-32B 全域 3.6%，提升 12.8x。SC accuracy 73% (FOLIO 80%, PW 69%)。Smoke test 2题 SICA pipeline 端到端通过。vLLM PID 174291, 27.6 GiB, max-model-len=8192。Report: art_20260516_e2774d。\"}, \"sica_proofwriter30_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T22:19:01.325Z\", \"updated_at\": \"2026-05-16T01:38:43.002Z\", \"hypothesis\": \"逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12（v2: max_tokens=12288 修复）\", \"parent\": \"sica_proofwriter30\", \"notes\": \"16/30 killed (Director 指令)。D012 四项全 FAIL。MaxSAT 根因诊断结论：三层问题叠加——(1) 约束提取失败 54.4%，QwQ-32B 收到 extraction prompt 后重新推理而非输出 JSON，3/4 多候选题提取为零；(2) 一致投票=一致约束，14/17 题 12/12 同一答案，约束天然不矛盾（正确行为非 bug）；(3) 评分偏差，唯一 SICA≠SC 的题 498_Q8，SICA 给少数派 38 分 > 多数派 27 分，因提取失败非随机。MaxSAT 求解器本身无 bug（注入测试 6/6 通过）。推荐修复：L3 自动注入 answer==trace_answer 约束使不同答案 trace 必有冲突；L1 提取用 system prompt 强制 JSON-only。\", \"conclusion\": \"killed\"}, \"sica_proofwriter30\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T22:08:42.831Z\", \"updated_at\": \"2026-05-15T22:18:19.326Z\", \"hypothesis\": \"逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12——验证 SICA 在逻辑推理域的有效性\", \"parent\": \"sica_aime30_v3\", \"conclusion\": \"failed\", \"notes\": \"配置错误导致完全失败。--max-tokens 16384 等于 vLLM 的 --max-model-len 16384，prompt 输入空间为 0，所有 30 题从第 1 题起全部 400 Bad Request。没有生成任何 trace，没有提取约束，没有投票。4 分钟内跑完（全是 retry 耗时）。无法评估 sanity check 标准。需要用 --max-tokens 12288 或更小值重跑（AIME 实验用的 10240 正常工作）。\", \"metrics\": {\"sica_accuracy\": \"0/30 (0.0%)\", \"sc_accuracy\": \"0/30 (0.0%)\", \"sica_sc_gap_pp\": 0, \"total_wall_time_s\": 238.9, \"total_wall_time_min\": 4, \"avg_time_per_problem_s\": 8, \"traces_generated\": 0, \"constraints_extracted\": 0, \"traces_with_constraints\": 0, \"unique_constraints\": 0, \"maxsat_satisfied\": 0, \"maxsat_excluded\": 0, \"multi_candidate_rate\": \"N/A (no traces generated)\", \"vote_diversity\": \"N/A\", \"z3_errors\": 0, \"z3_timeouts\": 0, \"problems_with_contradiction\": 0, \"problems_with_votes\": 0, \"failure_mode\": \"ALL_400_BAD_REQUEST\", \"failure_count\": \"30/30\", \"root_cause\": \"max_tokens=16384 equals max_model_len=16384, leaving 0 tokens for prompt input. Every API call returns 400.\"}}, \"sica_aime30_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:13:04.296Z\", \"updated_at\": \"2026-05-15T22:07:55.967Z\", \"hypothesis\": \"AIME 2024 上 SICA 能否检测跨路径矛盾并超越 SC@K=12（v3: timeout=1800s, 从v2 P5恢复继续）\", \"parent\": \"sica_aime30_v2\", \"notes\": \"v3 killed at 22/30 (PID 129992, 6h11m). Vote diversity analysis: multi-candidate rate = 0.0%, all valid problems have exactly 1 candidate. SICA≡SC confirmed structural. 6/22 problems with 0 votes (extraction failure). 数学域结论锁定，转逻辑域。\", \"metrics\": {\"progress\": \"22/30\", \"sica_accuracy_interim\": \"16/22 (72.7%)\", \"sc_accuracy_interim\": \"16/22 (72.7%)\", \"sica_sc_gap_pp\": 0, \"avg_time_per_problem_s\": 645.9, \"runtime_h\": 5.9, \"remaining_problems\": 8, \"vote_diversity_analysis\": {\"valid_problems\": 16, \"total_problems\": 22, \"multi_candidate_rate\": 0, \"zero_vote_problems\": 6, \"zero_vote_indices\": [1, 7, 8, 10, 13, 14], \"constraints_extracted\": \"19/22\", \"exclusion_rate\": 0.387, \"conclusion\": \"All 16 valid problems have exactly 1 candidate answer. SICA≡SC structurally. MaxSAT exclusion operates but cannot change final selection with only 1 candidate.\"}, \"process_status\": \"gone (cron miss 1/5)\"}, \"conclusion\": \"killed\"}, \"sica_aime30_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T13:24:26.526Z\", \"updated_at\": \"2026-05-15T16:11:32.132Z\", \"hypothesis\": \"AIME 2024 上 SICA 能否检测跨路径矛盾并超越 SC@K=12（v2: 修复 timeout/hang bug 后重跑）\", \"conclusion\": \"killed\", \"metrics\": {\"progress\": \"4/30\", \"sica_accuracy_interim\": \"3/4 (75%)\", \"sc_accuracy_interim\": \"3/4 (75%)\", \"avg_time_per_problem_s\": 557, \"p2_z3_error\": \"Z3Exception on z3_maxsat.py:163, 0 constraints extracted\", \"p5_vllm_stuck\": \"vLLM timeout since ~22:11, retried multiple rounds\", \"issue\": \"vLLM service likely crashed or OOM at Problem 5\", \"analysis_contradiction_rate_aime\": \"50% (2/4)\", \"analysis_contradiction_rate_math\": \"20% (1/5)\", \"analysis_unique_constraints_per_problem_aime\": 18.7, \"analysis_exclusion_rate\": \"10.7%\", \"analysis_sica_sc_agreement\": \"9/9 (100%)\", \"analysis_signal\": \"weak positive - mechanism works but SC too unanimous to flip\", \"analysis_p2_failure\": \"0 constraints, 0 votes - answer extraction failure\"}, \"notes\": \"失败原因: Problem 5 (aime2024_II_05, 凸六边形几何题) 12条并发trace在单GPU上竞争资源→每条trace吞吐极低→客户端~600s超时后重试→旧请求仍在vLLM running→恶性循环卡死~1h47min | 已有成果: 4/30题完成 SICA 3/4=75% SC 3/4=75%, P2有Z3Exception(0 constraints extracted) | vLLM本身健康(test request <1s) | 建议: 降低并发k或分批处理trace(如4条/批), 增大client timeout, kill stuck requests后重启\"}, \"sica_aime30_t07\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T12:38:16.330Z\", \"updated_at\": \"2026-05-15T13:11:37.911Z\", \"hypothesis\": \"AIME 2024（QwQ-32B 弱项，~79.5% acc）上 SICA 能否检测更多跨路径矛盾并超越 SC@K=12——验证\\\"SICA 价值随问题难度递增\\\"假设\", \"conclusion\": \"killed\"}, \"mvp_math50_t07\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T12:16:29.416Z\", \"updated_at\": \"2026-05-15T12:21:37.283Z\", \"hypothesis\": \"SICA MVP: 50题MATH-500上跨路径MAX-SAT约束共识能否检测矛盾并超越SC@K=12\", \"conclusion\": \"killed\"}, \"sica_smoke_5q\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T11:38:43.996Z\", \"updated_at\": \"2026-05-15T11:39:13.456Z\", \"hypothesis\": \"SICA smoke test: 验证端到端 pipeline 可行性（5题 MATH-500, K=12, QwQ-32B）\", \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.8, \"sc_accuracy\": 0.8, \"extraction_rate\": 1, \"problems_with_contradictions\": 1, \"total_problems\": 5, \"total_time_s\": 3505, \"avg_time_per_problem_s\": 701, \"per_problem\": [{\"id\": \"algebra/2470\", \"level\": 1, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 27, \"unique\": 9, \"excluded\": 0}, {\"id\": \"prealgebra/65\", \"level\": 2, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 26, \"unique\": 2, \"excluded\": 0}, {\"id\": \"number_theory/847\", \"level\": 3, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 21, \"unique\": 11, \"excluded\": 0, \"note\": \"14 JSON parse failures, 1693s\"}, {\"id\": \"precalculus/1199\", \"level\": 4, \"sica_correct\": false, \"sc_correct\": false, \"constraints\": 35, \"unique\": 6, \"excluded\": 0, \"note\": \"graph-reading problem, model cannot see image\"}, {\"id\": \"algebra/2277\", \"level\": 5, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 60, \"unique\": 6, \"satisfied\": 3, \"excluded\": 3}]}}, \"smoke-test-5q\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T11:22:09.665Z\", \"updated_at\": \"2026-05-15T11:22:09.666Z\", \"conclusion\": \"failed\"}, \"crd_folio_main\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T09:35:42.037Z\", \"updated_at\": \"2026-05-15T09:36:24.832Z\", \"conclusion\": \"success\", \"hypothesis\": \"CRD: 双表征(FOL+SymPy)分歧检测+定向修复能提升逻辑推理准确率（非SICA方法）\", \"metrics\": {\"divergence_rate\": 0.422, \"diagnosis_rate\": 0.872, \"error_types\": 4, \"directed_advantage_pp\": 4.7, \"directed_p_value\": 0.63, \"localization_accuracy\": 0.946, \"fol_accuracy\": 0.789, \"code_accuracy\": 0.598, \"oracle_accuracy\": 0.878, \"pipeline_accuracy\": 0.814, \"baseline_accuracy\": 0.74, \"cost_multiplier\": 5.76, \"dataset\": \"FOLIO\", \"n\": 204}}}, \"count\": 33, \"total\": 33, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1055}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "25722648-bdb7-4318-9b8e-cf6f4e496fad",
+  "isSidechain": false,
+  "promptId": "7cf78713-91e1-43fd-9e4e-a61ad12a4b77",
+  "type": "user",
+  "uuid": "a3681fc5-c573-4d6e-abce-0f10577ee054",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-010-mistral-v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T06:48:05.255Z\\\", \\\"updated_at\\\": \\\"2026-05-17T08:22:02.386Z\\\", \\\"hypothesis\\\": \\\"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题）\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.4833, \\\"sc_accuracy\\\": 0.4833, \\\"delta_pp\\\": 0, \\\"multi_candidate_rate\\\": 0.0667, \\\"extraction_rate\\\": 0.8819, \\\"answer_extraction_rate\\\": 1, \\\"contradiction_rate\\\": 0.0562, \\\"discordant_sica_wins\\\": 2, \\\"discordant_sc_wins\\\": 2, \\\"mcnemar_p\\\": 1, \\\"proofwriter_sica\\\": 0.4, \\\"proofwriter_sc\\\": 0.4, \\\"proofwriter_delta_pp\\\": 0, \\\"folio_sica\\\": 0.5667, \\\"folio_sc\\\": 0.5667, \\\"folio_delta_pp\\\": 0, \\\"truncated_traces\\\": 0, \\\"model\\\": \\\"Mistral-7B-Instruct-v0.3\\\", \\\"dataset\\\": \\\"D012\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"Mistral-7B cross-family: SICA 48.33% = SC 48.33%, delta=0.00pp。Multi-candidate rate 仅 6.67%（vs LLaMA-8B 61.7%、Qwen-14B 46%）。模型太弱：SC baseline 48.33%（近随机），trace 缺乏多样性（30/60 题非 unanimous 但 SICA 只改了 4 题）。Discordant 2:2 平局，McNemar p=1.0。支持 operating regime 有下界：模型必须足够强才能生成有意义的 diverse traces。PW 40%/40%, FOLIO 56.67%/56.67%。\\\"}, \\\"exp-019-llama8b-strategyqa-200\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-17T08:07:01.919Z\\\", \\\"updated_at\\\": \\\"2026-05-17T08:18:24.511Z\\\", \\\"hypothesis\\\": \\\"Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp）\\\", \\\"parent\\\": \\\"exp-011-llama8b-v3\\\"}, \\\"exp-020-llama8b-folio-204\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-17T08:12:49.897Z\\\", \\\"updated_at\\\": \\\"2026-05-17T08:12:56.986Z\\\", \\\"hypothesis\\\": \\\"Powered FOLIO test: SICA 在弱模型（LLaMA-3.1-8B）上 FOLIO 全量 204 题是否达到统计显著——FOLIO 在 exp-011 中信号最强（+10pp, bootstrap p≈0.04），n=204 几乎必然显著。保险实验：若 StrategyQA discordant rate 低导致 underpowered。\\\", \\\"parent\\\": \\\"exp-011-llama8b-v3\\\"}, \\\"pilot-contrastive-prompt\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T06:18:22.559Z\\\", \\\"updated_at\\\": \\\"2026-05-17T08:02:40.938Z\\\", \\\"hypothesis\\\": \\\"Contrastive Prompt Extraction: 将 prompt 改为\\\\\\\"列出支持答案X/反对答案Y的证据\\\\\\\"能否将 discriminative ratio 从 37.2% 提升至 >70%，并使 SICA(contrastive) > SC ≥3pp——验证 answer-conditioned 约束是否解决 SICA 机制 vacuous 问题\\\", \\\"parent\\\": \\\"pilot-constraint-filtering\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"脚本已验证可用（run_pilot_contrastive_v2.sh + pilot_contrastive_constraints.py）。修复方案：submit 时用 bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/symb_invariant_consensus/scripts/run_pilot_contrastive_v2.sh\\\\\\\" 包裹。当前 GPU 被 exp-010-mistral-v3 占用（vLLM 87880MiB），等其完成后提交。\\\"}, \\\"exp-011-llama8b-v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T06:15:02.161Z\\\", \\\"updated_at\\\": \\\"2026-05-17T07:59:02.260Z\\\", \\\"hypothesis\\\": \\\"Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific（v3: 模型 shard 已修复，GPU 空闲后提交）\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.6667, \\\"sc_accuracy\\\": 0.6, \\\"delta_pp\\\": 6.67, \\\"multi_candidate_rate\\\": 0.6167, \\\"extraction_rate\\\": 0.8556, \\\"answer_extraction_rate\\\": 0.8958, \\\"contradiction_rate\\\": 0.0527, \\\"problems_with_contradictions\\\": 43, \\\"truncated_traces\\\": 44, \\\"discordant_sica_wins\\\": 5, \\\"discordant_sc_wins\\\": 1, \\\"mcnemar_p\\\": 0.2188, \\\"proofwriter_sica\\\": 0.6333, \\\"proofwriter_sc\\\": 0.6, \\\"proofwriter_delta_pp\\\": 3.33, \\\"folio_sica\\\": 0.7, \\\"folio_sc\\\": 0.6, \\\"folio_delta_pp\\\": 10, \\\"model\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"dataset\\\": \\\"D012\\\", \\\"wall_time_min\\\": 66.4}, \\\"notes\\\": \\\"LLaMA-3.1-8B cross-family: SICA 66.7% vs SC 60.0%, +6.67pp (最大增益)。Discordant 5:1 强烈倾向 SICA。FOLIO +10pp, PW +3.33pp。McNemar p=0.22（n=60 受限）。Multi-candidate rate 61.7%（vs Qwen-14B 46%）——弱模型更多样→SICA 有更大操作空间。44 条 truncated traces（max-tokens 可能偏短），但仍有效。关键：SC baseline 60%（远低于 Qwen-14B 的 76%），验证 capability trap 的正面——模型弱时 SICA 有用。\\\"}, \\\"exp-018-arc-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T06:13:27.054Z\\\", \\\"updated_at\\\": \\\"2026-05-17T06:44:33.593Z\\\", \\\"hypothesis\\\": \\\"Cross-domain validation: Qwen2.5-14B-Instruct 在 ARC-Challenge (科学多选, ABCD) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（v2: build_generator bug 已修复）\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.95, \\\"sc_accuracy\\\": 0.9667, \\\"delta_pp\\\": -1.67, \\\"multi_candidate_rate\\\": 0.0833, \\\"extraction_rate\\\": 1, \\\"contradiction_detected\\\": 3, \\\"discordant_sica_wins\\\": 0, \\\"discordant_sc_wins\\\": 1, \\\"dataset\\\": \\\"ARC-Challenge\\\", \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\"}, \\\"notes\\\": \\\"ARC-Challenge cross-domain: SICA 95.00% vs SC 96.67%, gap=-1.67pp. SICA 略逊于 SC。模型在 ARC 上 baseline 极高(96.67%)，接近天花板——高准确率区间多样性低，SICA 无操作空间。与 StrategyQA (+3.33pp n.s.) 对比：简单任务（高 baseline）SICA 无效或有害，中等难度任务有微弱正向趋势但不显著。整体支持 capability trap：模型能力越强/任务越简单 → SC 已近最优 → SICA 无增量。\\\"}, \\\"exp-010-mistral-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T03:26:42.201Z\\\", \\\"updated_at\\\": \\\"2026-05-17T06:19:34.268Z\\\", \\\"hypothesis\\\": \\\"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v2: 修复 max-model-len=8192 防 400 循环）\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"SIGTERM (exit 143) 在提交后 ~15s。根因：compound command 中 pkill -f \\\\\\\"vllm.entrypoints\\\\\\\" 可能误杀 tmux 父进程链。Director 已明确禁止 pkill 和 bash 脚本写在同一行。需要 v3：先手动清理 vLLM，再独立提交脚本。\\\"}, \\\"pilot-constraint-filtering\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T04:47:05.171Z\\\", \\\"updated_at\\\": \\\"2026-05-17T06:11:36.503Z\\\", \\\"hypothesis\\\": \\\"Constraint Consistency Filtering: 只保留在≥T条traces中重复出现的约束能否提升SICA accuracy超过SC——验证约束质量过滤是否解决capability trap\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"NEGATIVE confirmed. T=1/2/3 结果完全一致(+2.33pp=1题翻转), T≥5 SICA退化为SC。Discriminative analysis: unique constraints 中 11.5% 是 discriminative (by count), 37.2% (by weight)。但有效 flip 率仅 4/23=17.4%。根本原因：提取的约束是 domain facts (kind_charlie==True, Implies(...)) — 无论答案是什么，中间推理步骤大部分共通。约束系统未提取答案级别判别谓词。Constraint filtering 天花板极低，不是 rescue path。\\\", \\\"metrics\\\": {\\\"n\\\": 43, \\\"thresholds_tested\\\": [1, 2, 3, 5, 7], \\\"best_gap_pp\\\": 2.33, \\\"best_T\\\": 1, \\\"sica_T1\\\": 0.7674, \\\"sc\\\": 0.7442, \\\"T5_gap\\\": 0, \\\"T7_gap\\\": 0, \\\"discriminative_ratio_count\\\": 0.115, \\\"discriminative_ratio_weight\\\": 0.372, \\\"effective_flip_rate\\\": 0.174, \\\"multi_answer_problems\\\": 23, \\\"unanimous_problems\\\": 20, \\\"problems_disc_favors_different\\\": 4}}, \\\"exp-018-arc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T03:19:51.591Z\\\", \\\"updated_at\\\": \\\"2026-05-17T05:31:46.070Z\\\", \\\"hypothesis\\\": \\\"Cross-domain validation: Qwen2.5-14B-Instruct 在 ARC-Challenge (科学多选, ABCD) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（多选题型）\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"NameError: name 'build_generator' is not defined in eval_arc.py:142. 代码bug——函数未定义/未导入。Worker 诊断修复中。\\\"}, \\\"exp-017-strategyqa-v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T04:17:54.931Z\\\", \\\"updated_at\\\": \\\"2026-05-17T05:29:12.136Z\\\", \\\"hypothesis\\\": \\\"Cross-domain validation: Qwen2.5-14B-Instruct 在 StrategyQA (常识推理, Yes/No) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（v3: 修复 True/False→Yes/No 提取 bug）\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.5667, \\\"sc_accuracy\\\": 0.5333, \\\"delta_pp\\\": 3.33, \\\"mcnemar_chi2\\\": 0.5, \\\"mcnemar_p\\\": \\\"n.s.\\\", \\\"bootstrap_ci_95\\\": [0, 8.33], \\\"bootstrap_p_delta_le_0\\\": 0.1346, \\\"multi_candidate_rate\\\": 0.1, \\\"contradiction_detected\\\": 5, \\\"extraction_rate_problem\\\": 1, \\\"extraction_rate_trace\\\": 0.704, \\\"discordant_sica_wins\\\": 2, \\\"discordant_sc_wins\\\": 0}, \\\"notes\\\": \\\"StrategyQA跨域验证: SICA 56.67% vs SC 53.33%, +3.33pp n.s. (p=0.13), 支持capability trap跨任务泛化; v3修复提取bug确认成功(100%问题级提取率); 2个discordant pairs均SICA胜出\\\"}, \\\"exp-017-strategyqa-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T03:50:55.005Z\\\", \\\"updated_at\\\": \\\"2026-05-17T04:27:27.997Z\\\", \\\"hypothesis\\\": \\\"Cross-domain validation: Qwen2.5-14B-Instruct 在 StrategyQA (常识推理, Yes/No) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（非逻辑/数学域）\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-017-strategyqa\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T03:19:50.628Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:50:54.370Z\\\", \\\"hypothesis\\\": \\\"Cross-domain validation: Qwen2.5-14B-Instruct 在 StrategyQA (常识推理, Yes/No) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（非逻辑/数学域）\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-010-mistral\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T01:04:36.900Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:37:29.439Z\\\", \\\"hypothesis\\\": \\\"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"notes\\\": \\\"模型已确认完整下载：3 shards (4.95+5.00+4.55GB) + consolidated.safetensors (14.5GB)。排在 exp-018 之后启动。需要 Worker 准备启动脚本（参照 exp-011 模式）。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-011-llama8b-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T03:19:49.625Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:24:54.392Z\\\", \\\"hypothesis\\\": \\\"Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific (v2: 修复 GPU OOM，kill 旧 vLLM 后重跑)\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"sica_temp_diversity\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T12:14:34.555Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:21:14.807Z\\\", \\\"hypothesis\\\": \\\"不同 temperature (0.7/0.9/1.0) 下 QwQ-32B 是否产生足够的 trace 分歧以触发 MAX-SAT 矛盾检测\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"temperatures_tested\\\": [0.7, 0.9, 1], \\\"problems_tested\\\": 3, \\\"problems_with_divergence\\\": 0, \\\"finding\\\": \\\"QwQ-32B produces zero answer divergence at all temperatures on MATH L4-5. Reasoning model's deterministic chain dominates sampling randomness.\\\", \\\"max_tokens_issue\\\": \\\"4096 tokens insufficient for some L5 problems (truncation)\\\", \\\"recommendation\\\": \\\"Use AIME 2024 (harder, ~79.5% acc) or non-reasoning model for trace diversity\\\"}, \\\"parent\\\": \\\"sica_smoke_5q\\\"}, \\\"sica_d012_14b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T04:02:41.309Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:21:14.256Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"sica_accuracy\\\": 0.7333, \\\"sc_accuracy\\\": 0.7, \\\"sica_sc_gap_pp\\\": 3.3, \\\"c0_multi_candidate_rate\\\": 0.5333, \\\"c1_extraction_rate\\\": 1, \\\"c2_contradiction_problems\\\": 34, \\\"c3_gap_pp\\\": 3.3, \\\"bootstrap_p\\\": 0.2261, \\\"proofwriter_sica\\\": 0.6667, \\\"proofwriter_sc\\\": 0.6667, \\\"folio_sica\\\": 0.8, \\\"folio_sc\\\": 0.7333, \\\"total_constraints_raw\\\": 5849, \\\"total_constraints_unique\\\": 1735, \\\"maxsat_exclusion_rate\\\": 0.0259, \\\"wall_time_min\\\": 58.3, \\\"d012_verdict\\\": \\\"ALL_PASS\\\"}, \\\"hypothesis\\\": \\\"Qwen2.5-14B-Instruct 在 D012 (30PW+30FOLIO) 上 SICA pipeline 端到端有效：C0(多候选率≥20%) + C1(提取率≥80%) + C2(矛盾率≥10%) + C3(SICA>SC) 四项 sanity check 全通过\\\", \\\"parent\\\": \\\"sica_d016_c0_precheck\\\"}, \\\"sica_expanded_14b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T05:12:00.374Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:21:11.438Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"sica_accuracy\\\": 0.765, \\\"sc_accuracy\\\": 0.762, \\\"sica_sc_gap_pp\\\": 0.3, \\\"n_problems\\\": 804, \\\"folio_sica\\\": 0.794, \\\"folio_sc\\\": 0.794, \\\"folio_gap_pp\\\": 0, \\\"folio_n\\\": 204, \\\"proofwriter_sica\\\": 0.755, \\\"proofwriter_sc\\\": 0.752, \\\"proofwriter_gap_pp\\\": 0.3, \\\"proofwriter_n\\\": 600, \\\"extraction_rate\\\": 0.89, \\\"answer_extraction_rate\\\": 1, \\\"contradiction_rate\\\": 0.022, \\\"problems_with_contradictions\\\": 331, \\\"truncated_traces\\\": 0, \\\"wall_time_min\\\": 826}, \\\"notes\\\": \\\"实验完整完成 804/804 题并保存结果。EXIT_CODE=129 是 SIGHUP 伪信号（进程退出阶段收到），非真实失败。日志末尾打印 \\\\\\\"FULL_MVP_DONE\\\\\\\" 后才出现 exit code。D025 pivot 确认：SICA≈SC (+0.3pp, N=804)，D012 +3.3pp 是小样本噪声。FOLIO sub-claim dead (0pp)。\\\", \\\"hypothesis\\\": \\\"Qwen2.5-14B-Instruct 在 N=804 (600PW+204FOLIO) 上 SICA 相比 SC 有统计显著优势（p<0.05）——full-scale validation of D012 preliminary +3.3pp signal\\\", \\\"parent\\\": \\\"sica_d012_14b\\\"}, \\\"sica_k_sensitivity_14b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T05:12:03.025Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:19:48.625Z\\\", \\\"hypothesis\\\": \\\"K-ablation: K={6,8,11,12,16,20} 对 SICA 效果的影响。K=11(奇数)无平票，若 gap=0 则证明 SICA 仅靠 tiebreak 生效\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"K6_sica\\\": 0.733, \\\"K6_sc\\\": 0.733, \\\"K6_gap_pp\\\": 0, \\\"K8_sica\\\": 0.733, \\\"K8_sc\\\": 0.75, \\\"K8_gap_pp\\\": -1.7, \\\"K11_sica\\\": 0.733, \\\"K11_sc\\\": 0.733, \\\"K11_gap_pp\\\": 0, \\\"K12_sica\\\": 0.7, \\\"K12_sc\\\": 0.75, \\\"K12_gap_pp\\\": -5, \\\"K16_sica\\\": 0.717, \\\"K16_sc\\\": 0.75, \\\"K16_gap_pp\\\": -3.3, \\\"K20_sica\\\": 0.7, \\\"K20_sc\\\": 0.733, \\\"K20_gap_pp\\\": -3.3, \\\"all_K_sica_leq_sc\\\": true, \\\"larger_K_degrades_sica\\\": true}, \\\"notes\\\": \\\"K-ablation 实际完成（EXIT_CODE=129 为 SIGHUP 假失败，同 sica_expanded_14b 模式）。结果：SICA ≤ SC for all K。K=11(奇数)验证 tiebreak 无贡献(gap=0)。K=12/16/20 SICA 退化 -3~5pp，表明更多 traces 引入更多低质量约束反而有害。直接强化 C1 (mechanism vacuous)。Artifact: art_20260517_2c1577。\\\"}, \\\"exp-011-llama8b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T01:00:32.450Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:00:35.641Z\\\", \\\"hypothesis\\\": \\\"Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"notes\\\": \\\"Prep done by worker_prep_exp-011-llama8b_20260516T204635. Model: LLaMA-3.1-8B-Instruct (14GB, 4 shards). Script: /root/symb_invariant_consensus/scripts/run_exp011_llama8b.sh. Dataset: D012 (30 PW + 30 FOLIO = 60 题). 预估 ~25-30GB GPU, ~1-1.5h runtime. 等 sica_k_sensitivity_14b 完成后启动。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-016-weighted-sc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T01:01:51.841Z\\\", \\\"updated_at\\\": \\\"2026-05-17T01:02:16.162Z\\\", \\\"hypothesis\\\": \\\"加权投票变体(inverse-length/length-weighted/constraint-count)是否比 uniform SC 有统计显著优势——验证简单启发式能否替代 SICA 或超越 SC\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"sica_accuracy\\\": 0.7649, \\\"sc_uniform_accuracy\\\": 0.7624, \\\"inv_length_accuracy\\\": 0.7674, \\\"length_weighted_accuracy\\\": 0.7525, \\\"constraint_count_accuracy\\\": 0.7525, \\\"inv_length_vs_sc_p\\\": 0.453, \\\"length_vs_sc_p\\\": 0.153, \\\"inv_length_vs_sica_p\\\": 0.864, \\\"length_vs_sica_p\\\": 0.066, \\\"n_problems\\\": 804, \\\"all_nonsignificant\\\": true}, \\\"notes\\\": \\\"exp-016 weighted SC baselines 完成。804题上所有加权变体 vs SC/SICA 均不显著(p>0.05)。Length-weighting 反而 -1pp（长 trace 略不可靠），inv-length +0.5pp 但非显著。结论：简单启发式加权不能替代也不能超越 uniform voting。支持 C1 (mechanism vacuous) — 问题不在聚合方式，而在约束质量本身。Artifacts: art_20260516_c7cc07 (report), art_20260516_7eef43 (data).\\\"}, \\\"exp-005\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T20:52:36.217Z\\\", \\\"updated_at\\\": \\\"2026-05-16T20:53:22.616Z\\\", \\\"hypothesis\\\": \\\"QwQ-32B 作为 reasoning model 展示 SICA 的 operating regime boundary: 模型过强→diversity 消失→SICA≡SC\\\", \\\"parent\\\": \\\"sica_aime30_v3\\\", \\\"metrics\\\": {\\\"qwq_aggregate_c0_nominal_pct\\\": 10.3, \\\"qwq_aggregate_c0_effective_pct\\\": 2.6, \\\"qwen14b_c0_pct\\\": 46, \\\"diversity_ratio_effective\\\": 17.7, \\\"aime_delta_pp\\\": 0, \\\"proofwriter_delta_pp\\\": -5.9, \\\"aime_n\\\": 22, \\\"proofwriter_n\\\": 17, \\\"temp_diversity_n\\\": 5, \\\"folio_n\\\": 2, \\\"total_problems\\\": 46, \\\"c0_threshold\\\": 20, \\\"qwq_below_threshold\\\": true}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"exp-005 Operating Regime Analysis 完成。QwQ-32B 综合 46 题数据：effective C0=2.6%，远低于 20% 阈值。数学域 SICA≡SC (Δ=0pp, AIME 22题)，逻辑域 SICA&lt;SC (Δ=−5.9pp, PW 17题)。对比 Qwen2.5-14B C0=46% (17.7x)。直接支持 paper Claim 2 (operating regime boundary)。Artifacts: art_20260516_bf444f (data), art_20260516_d6966d (report)。\\\"}, \\\"sica_constraint_ablation_013\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T20:26:35.414Z\\\", \\\"updated_at\\\": \\\"2026-05-16T20:27:11.828Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"exp-013: MaxSAT 加权聚合是否比 count-only 或 random-weight 有显著优势？验证 SICA 核心机制（约束加权）的实际贡献\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"metrics\\\": {\\\"maxsat_accuracy\\\": 0.7649, \\\"count_only_accuracy\\\": 0.7662, \\\"random_weight_accuracy\\\": 0.7637, \\\"sc_baseline_accuracy\\\": 0.7624, \\\"n_problems\\\": 804, \\\"agreement_802_of_804\\\": true, \\\"mcnemar_p_all_gt_0.7\\\": true, \\\"note\\\": \\\"approximate (raw z3 formulas unavailable, count-only/random-weight use proxy)\\\"}, \\\"notes\\\": \\\"exp-013 constraint ablation 完成。804题上 MaxSAT(76.49%) ≈ count-only(76.62%) ≈ random-weight(76.37%) ≈ SC(76.24%)。802/804 题三种方法结果一致，McNemar p>0.7。直接支持 C1 claim (mechanism vacuous): MaxSAT 优化相对简单计数无统计显著优势。限制：exp-001 未存 raw constraints，count-only/random-weight 使用近似公式。\\\"}, \\\"sica_folio30\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T22:08:43.460Z\\\", \\\"updated_at\\\": \\\"2026-05-16T04:42:53.530Z\\\", \\\"hypothesis\\\": \\\"逻辑域（FOLIO）上 SICA 能否利用 FOL 标注检测跨路径矛盾并超越 SC@K=12——FOLIO 有天然 FOL 标注，是 SICA 约束提取的理想场景\\\", \\\"parent\\\": \\\"sica_aime30_v3\\\", \\\"notes\\\": \\\"废弃：QwQ-32B spec（max_tokens=12288），已被 sica_d012_14b（Qwen2.5-14B-Instruct 全量 D012 评估）覆盖。QwQ-32B 全域 C0 FAIL (3.6%)，模型已 pivot。\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"sica_d016_c0_precheck\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T04:00:14.192Z\\\", \\\"updated_at\\\": \\\"2026-05-16T04:01:11.163Z\\\", \\\"hypothesis\\\": \\\"D016 模型 pivot C0 预检：Qwen2.5-14B-Instruct 在逻辑域是否产生足够 trace 多样性（多候选率 ≥20%）\\\", \\\"parent\\\": \\\"sica_proofwriter30_v2\\\", \\\"metrics\\\": {\\\"multi_candidate_rate_combined\\\": 0.46, \\\"multi_candidate_rate_folio\\\": 0.4, \\\"multi_candidate_rate_proofwriter\\\": 0.5, \\\"sc_accuracy_combined\\\": 0.73, \\\"sc_accuracy_folio\\\": 0.8, \\\"sc_accuracy_proofwriter\\\": 0.69, \\\"n_problems\\\": 26, \\\"n_folio\\\": 10, \\\"n_proofwriter\\\": 16, \\\"K\\\": 6, \\\"T\\\": 0.7, \\\"total_time_s\\\": 280, \\\"c0_gate\\\": \\\"PASS (46% >= 20%)\\\", \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"vllm_gpu_mem_gib\\\": 27.6, \\\"smoke_test\\\": \\\"2 problems end-to-end OK, constraints 21-26 per problem\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"C0 PASS: Qwen2.5-14B-Instruct 多候选率 46% (FOLIO 40%, ProofWriter 50%)，远超 20% 阈值。对比 QwQ-32B 全域 3.6%，提升 12.8x。SC accuracy 73% (FOLIO 80%, PW 69%)。Smoke test 2题 SICA pipeline 端到端通过。vLLM PID 174291, 27.6 GiB, max-model-len=8192。Report: art_20260516_e2774d。\\\"}, \\\"sica_proofwriter30_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T22:19:01.325Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:38:43.002Z\\\", \\\"hypothesis\\\": \\\"逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12（v2: max_tokens=12288 修复）\\\", \\\"parent\\\": \\\"sica_proofwriter30\\\", \\\"notes\\\": \\\"16/30 killed (Director 指令)。D012 四项全 FAIL。MaxSAT 根因诊断结论：三层问题叠加——(1) 约束提取失败 54.4%，QwQ-32B 收到 extraction prompt 后重新推理而非输出 JSON，3/4 多候选题提取为零；(2) 一致投票=一致约束，14/17 题 12/12 同一答案，约束天然不矛盾（正确行为非 bug）；(3) 评分偏差，唯一 SICA≠SC 的题 498_Q8，SICA 给少数派 38 分 > 多数派 27 分，因提取失败非随机。MaxSAT 求解器本身无 bug（注入测试 6/6 通过）。推荐修复：L3 自动注入 answer==trace_answer 约束使不同答案 trace 必有冲突；L1 提取用 system prompt 强制 JSON-only。\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"sica_proofwriter30\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T22:08:42.831Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:18:19.326Z\\\", \\\"hypothesis\\\": \\\"逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12——验证 SICA 在逻辑推理域的有效性\\\", \\\"parent\\\": \\\"sica_aime30_v3\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"配置错误导致完全失败。--max-tokens 16384 等于 vLLM 的 --max-model-len 16384，prompt 输入空间为 0，所有 30 题从第 1 题起全部 400 Bad Request。没有生成任何 trace，没有提取约束，没有投票。4 分钟内跑完（全是 retry 耗时）。无法评估 sanity check 标准。需要用 --max-tokens 12288 或更小值重跑（AIME 实验用的 10240 正常工作）。\\\", \\\"metrics\\\": {\\\"sica_accuracy\\\": \\\"0/30 (0.0%)\\\", \\\"sc_accuracy\\\": \\\"0/30 (0.0%)\\\", \\\"sica_sc_gap_pp\\\": 0, \\\"total_wall_time_s\\\": 238.9, \\\"total_wall_time_min\\\": 4, \\\"avg_time_per_problem_s\\\": 8, \\\"traces_generated\\\": 0, \\\"constraints_extracted\\\": 0, \\\"traces_with_constraints\\\": 0, \\\"unique_constraints\\\": 0, \\\"maxsat_satisfied\\\": 0, \\\"maxsat_excluded\\\": 0, \\\"multi_candidate_rate\\\": \\\"N/A (no traces generated)\\\", \\\"vote_diversity\\\": \\\"N/A\\\", \\\"z3_errors\\\": 0, \\\"z3_timeouts\\\": 0, \\\"problems_with_contradiction\\\": 0, \\\"problems_with_votes\\\": 0, \\\"failure_mode\\\": \\\"ALL_400_BAD_REQUEST\\\", \\\"failure_count\\\": \\\"30/30\\\", \\\"root_cause\\\": \\\"max_tokens=16384 equals max_model_len=16384, leaving 0 tokens for prompt input. Every API call returns 400.\\\"}}, \\\"sica_aime30_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T16:13:04.296Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:07:55.967Z\\\", \\\"hypothesis\\\": \\\"AIME 2024 上 SICA 能否检测跨路径矛盾并超越 SC@K=12（v3: timeout=1800s, 从v2 P5恢复继续）\\\", \\\"parent\\\": \\\"sica_aime30_v2\\\", \\\"notes\\\": \\\"v3 killed at 22/30 (PID 129992, 6h11m). Vote diversity analysis: multi-candidate rate = 0.0%, all valid problems have exactly 1 candidate. SICA≡SC confirmed structural. 6/22 problems with 0 votes (extraction failure). 数学域结论锁定，转逻辑域。\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"22/30\\\", \\\"sica_accuracy_interim\\\": \\\"16/22 (72.7%)\\\", \\\"sc_accuracy_interim\\\": \\\"16/22 (72.7%)\\\", \\\"sica_sc_gap_pp\\\": 0, \\\"avg_time_per_problem_s\\\": 645.9, \\\"runtime_h\\\": 5.9, \\\"remaining_problems\\\": 8, \\\"vote_diversity_analysis\\\": {\\\"valid_problems\\\": 16, \\\"total_problems\\\": 22, \\\"multi_candidate_rate\\\": 0, \\\"zero_vote_problems\\\": 6, \\\"zero_vote_indices\\\": [1, 7, 8, 10, 13, 14], \\\"constraints_extracted\\\": \\\"19/22\\\", \\\"exclusion_rate\\\": 0.387, \\\"conclusion\\\": \\\"All 16 valid problems have exactly 1 candidate answer. SICA≡SC structurally. MaxSAT exclusion operates but cannot change final selection with only 1 candidate.\\\"}, \\\"process_status\\\": \\\"gone (cron miss 1/5)\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"sica_aime30_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T13:24:26.526Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:11:32.132Z\\\", \\\"hypothesis\\\": \\\"AIME 2024 上 SICA 能否检测跨路径矛盾并超越 SC@K=12（v2: 修复 timeout/hang bug 后重跑）\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"4/30\\\", \\\"sica_accuracy_interim\\\": \\\"3/4 (75%)\\\", \\\"sc_accuracy_interim\\\": \\\"3/4 (75%)\\\", \\\"avg_time_per_problem_s\\\": 557, \\\"p2_z3_error\\\": \\\"Z3Exception on z3_maxsat.py:163, 0 constraints extracted\\\", \\\"p5_vllm_stuck\\\": \\\"vLLM timeout since ~22:11, retried multiple rounds\\\", \\\"issue\\\": \\\"vLLM service likely crashed or OOM at Problem 5\\\", \\\"analysis_contradiction_rate_aime\\\": \\\"50% (2/4)\\\", \\\"analysis_contradiction_rate_math\\\": \\\"20% (1/5)\\\", \\\"analysis_unique_constraints_per_problem_aime\\\": 18.7, \\\"analysis_exclusion_rate\\\": \\\"10.7%\\\", \\\"analysis_sica_sc_agreement\\\": \\\"9/9 (100%)\\\", \\\"analysis_signal\\\": \\\"weak positive - mechanism works but SC too unanimous to flip\\\", \\\"analysis_p2_failure\\\": \\\"0 constraints, 0 votes - answer extraction failure\\\"}, \\\"notes\\\": \\\"失败原因: Problem 5 (aime2024_II_05, 凸六边形几何题) 12条并发trace在单GPU上竞争资源→每条trace吞吐极低→客户端~600s超时后重试→旧请求仍在vLLM running→恶性循环卡死~1h47min | 已有成果: 4/30题完成 SICA 3/4=75% SC 3/4=75%, P2有Z3Exception(0 constraints extracted) | vLLM本身健康(test request <1s) | 建议: 降低并发k或分批处理trace(如4条/批), 增大client timeout, kill stuck requests后重启\\\"}, \\\"sica_aime30_t07\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T12:38:16.330Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:11:37.911Z\\\", \\\"hypothesis\\\": \\\"AIME 2024（QwQ-32B 弱项，~79.5% acc）上 SICA 能否检测更多跨路径矛盾并超越 SC@K=12——验证\\\\\\\"SICA 价值随问题难度递增\\\\\\\"假设\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_math50_t07\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T12:16:29.416Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:21:37.283Z\\\", \\\"hypothesis\\\": \\\"SICA MVP: 50题MATH-500上跨路径MAX-SAT约束共识能否检测矛盾并超越SC@K=12\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"sica_smoke_5q\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T11:38:43.996Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:39:13.456Z\\\", \\\"hypothesis\\\": \\\"SICA smoke test: 验证端到端 pipeline 可行性（5题 MATH-500, K=12, QwQ-32B）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"sica_accuracy\\\": 0.8, \\\"sc_accuracy\\\": 0.8, \\\"extraction_rate\\\": 1, \\\"problems_with_contradictions\\\": 1, \\\"total_problems\\\": 5, \\\"total_time_s\\\": 3505, \\\"avg_time_per_problem_s\\\": 701, \\\"per_problem\\\": [{\\\"id\\\": \\\"algebra/2470\\\", \\\"level\\\": 1, \\\"sica_correct\\\": true, \\\"sc_correct\\\": true, \\\"constraints\\\": 27, \\\"unique\\\": 9, \\\"excluded\\\": 0}, {\\\"id\\\": \\\"prealgebra/65\\\", \\\"level\\\": 2, \\\"sica_correct\\\": true, \\\"sc_correct\\\": true, \\\"constraints\\\": 26, \\\"unique\\\": 2, \\\"excluded\\\": 0}, {\\\"id\\\": \\\"number_theory/847\\\", \\\"level\\\": 3, \\\"sica_correct\\\": true, \\\"sc_correct\\\": true, \\\"constraints\\\": 21, \\\"unique\\\": 11, \\\"excluded\\\": 0, \\\"note\\\": \\\"14 JSON parse failures, 1693s\\\"}, {\\\"id\\\": \\\"precalculus/1199\\\", \\\"level\\\": 4, \\\"sica_correct\\\": false, \\\"sc_correct\\\": false, \\\"constraints\\\": 35, \\\"unique\\\": 6, \\\"excluded\\\": 0, \\\"note\\\": \\\"graph-reading problem, model cannot see image\\\"}, {\\\"id\\\": \\\"algebra/2277\\\", \\\"level\\\": 5, \\\"sica_correct\\\": true, \\\"sc_correct\\\": true, \\\"constraints\\\": 60, \\\"unique\\\": 6, \\\"satisfied\\\": 3, \\\"excluded\\\": 3}]}}, \\\"smoke-test-5q\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T11:22:09.665Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:22:09.666Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"crd_folio_main\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T09:35:42.037Z\\\", \\\"updated_at\\\": \\\"2026-05-15T09:36:24.832Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"CRD: 双表征(FOL+SymPy)分歧检测+定向修复能提升逻辑推理准确率（非SICA方法）\\\", \\\"metrics\\\": {\\\"divergence_rate\\\": 0.422, \\\"diagnosis_rate\\\": 0.872, \\\"error_types\\\": 4, \\\"directed_advantage_pp\\\": 4.7, \\\"directed_p_value\\\": 0.63, \\\"localization_accuracy\\\": 0.946, \\\"fol_accuracy\\\": 0.789, \\\"code_accuracy\\\": 0.598, \\\"oracle_accuracy\\\": 0.878, \\\"pipeline_accuracy\\\": 0.814, \\\"baseline_accuracy\\\": 0.74, \\\"cost_multiplier\\\": 5.76, \\\"dataset\\\": \\\"FOLIO\\\", \\\"n\\\": 204}}}, \\\"count\\\": 33, \\\"total\\\": 33, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1055}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp-010-mistral-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T06:48:05.255Z\", \"updated_at\": \"2026-05-17T08:22:02.386Z\", \"hypothesis\": \"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题）\", \"parent\": \"sica_expanded_14b\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.4833, \"sc_accuracy\": 0.4833, \"delta_pp\": 0, \"multi_candidate_rate\": 0.0667, \"extraction_rate\": 0.8819, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.0562, \"discordant_sica_wins\": 2, \"discordant_sc_wins\": 2, \"mcnemar_p\": 1, \"proofwriter_sica\": 0.4, \"proofwriter_sc\": 0.4, \"proofwriter_delta_pp\": 0, \"folio_sica\": 0.5667, \"folio_sc\": 0.5667, \"folio_delta_pp\": 0, \"truncated_traces\": 0, \"model\": \"Mistral-7B-Instruct-v0.3\", \"dataset\": \"D012\"}, \"conclusion\": \"negative\", \"notes\": \"Mistral-7B cross-family: SICA 48.33% = SC 48.33%, delta=0.00pp。Multi-candidate rate 仅 6.67%（vs LLaMA-8B 61.7%、Qwen-14B 46%）。模型太弱：SC baseline 48.33%（近随机），trace 缺乏多样性（30/60 题非 unanimous 但 SICA 只改了 4 题）。Discordant 2:2 平局，McNemar p=1.0。支持 operating regime 有下界：模型必须足够强才能生成有意义的 diverse traces。PW 40%/40%, FOLIO 56.67%/56.67%。\"}, \"exp-019-llama8b-strategyqa-200\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T08:07:01.919Z\", \"updated_at\": \"2026-05-17T08:18:24.511Z\", \"hypothesis\": \"Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp）\", \"parent\": \"exp-011-llama8b-v3\"}, \"exp-020-llama8b-folio-204\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T08:12:49.897Z\", \"updated_at\": \"2026-05-17T08:12:56.986Z\", \"hypothesis\": \"Powered FOLIO test: SICA 在弱模型（LLaMA-3.1-8B）上 FOLIO 全量 204 题是否达到统计显著——FOLIO 在 exp-011 中信号最强（+10pp, bootstrap p≈0.04），n=204 几乎必然显著。保险实验：若 StrategyQA discordant rate 低导致 underpowered。\", \"parent\": \"exp-011-llama8b-v3\"}, \"pilot-contrastive-prompt\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T06:18:22.559Z\", \"updated_at\": \"2026-05-17T08:02:40.938Z\", \"hypothesis\": \"Contrastive Prompt Extraction: 将 prompt 改为\\\"列出支持答案X/反对答案Y的证据\\\"能否将 discriminative ratio 从 37.2% 提升至 >70%，并使 SICA(contrastive) > SC ≥3pp——验证 answer-conditioned 约束是否解决 SICA 机制 vacuous 问题\", \"parent\": \"pilot-constraint-filtering\", \"conclusion\": \"failed\", \"notes\": \"脚本已验证可用（run_pilot_contrastive_v2.sh + pilot_contrastive_constraints.py）。修复方案：submit 时用 bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/symb_invariant_consensus/scripts/run_pilot_contrastive_v2.sh\\\" 包裹。当前 GPU 被 exp-010-mistral-v3 占用（vLLM 87880MiB），等其完成后提交。\"}, \"exp-011-llama8b-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T06:15:02.161Z\", \"updated_at\": \"2026-05-17T07:59:02.260Z\", \"hypothesis\": \"Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific（v3: 模型 shard 已修复，GPU 空闲后提交）\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"success\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.6667, \"sc_accuracy\": 0.6, \"delta_pp\": 6.67, \"multi_candidate_rate\": 0.6167, \"extraction_rate\": 0.8556, \"answer_extraction_rate\": 0.8958, \"contradiction_rate\": 0.0527, \"problems_with_contradictions\": 43, \"truncated_traces\": 44, \"discordant_sica_wins\": 5, \"discordant_sc_wins\": 1, \"mcnemar_p\": 0.2188, \"proofwriter_sica\": 0.6333, \"proofwriter_sc\": 0.6, \"proofwriter_delta_pp\": 3.33, \"folio_sica\": 0.7, \"folio_sc\": 0.6, \"folio_delta_pp\": 10, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"D012\", \"wall_time_min\": 66.4}, \"notes\": \"LLaMA-3.1-8B cross-family: SICA 66.7% vs SC 60.0%, +6.67pp (最大增益)。Discordant 5:1 强烈倾向 SICA。FOLIO +10pp, PW +3.33pp。McNemar p=0.22（n=60 受限）。Multi-candidate rate 61.7%（vs Qwen-14B 46%）——弱模型更多样→SICA 有更大操作空间。44 条 truncated traces（max-tokens 可能偏短），但仍有效。关键：SC baseline 60%（远低于 Qwen-14B 的 76%），验证 capability trap 的正面——模型弱时 SICA 有用。\"}, \"exp-018-arc-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T06:13:27.054Z\", \"updated_at\": \"2026-05-17T06:44:33.593Z\", \"hypothesis\": \"Cross-domain validation: Qwen2.5-14B-Instruct 在 ARC-Challenge (科学多选, ABCD) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（v2: build_generator bug 已修复）\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"success\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.95, \"sc_accuracy\": 0.9667, \"delta_pp\": -1.67, \"multi_candidate_rate\": 0.0833, \"extraction_rate\": 1, \"contradiction_detected\": 3, \"discordant_sica_wins\": 0, \"discordant_sc_wins\": 1, \"dataset\": \"ARC-Challenge\", \"model\": \"Qwen2.5-14B-Instruct\"}, \"notes\": \"ARC-Challenge cross-domain: SICA 95.00% vs SC 96.67%, gap=-1.67pp. SICA 略逊于 SC。模型在 ARC 上 baseline 极高(96.67%)，接近天花板——高准确率区间多样性低，SICA 无操作空间。与 StrategyQA (+3.33pp n.s.) 对比：简单任务（高 baseline）SICA 无效或有害，中等难度任务有微弱正向趋势但不显著。整体支持 capability trap：模型能力越强/任务越简单 → SC 已近最优 → SICA 无增量。\"}, \"exp-010-mistral-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T03:26:42.201Z\", \"updated_at\": \"2026-05-17T06:19:34.268Z\", \"hypothesis\": \"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v2: 修复 max-model-len=8192 防 400 循环）\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"failed\", \"notes\": \"SIGTERM (exit 143) 在提交后 ~15s。根因：compound command 中 pkill -f \\\"vllm.entrypoints\\\" 可能误杀 tmux 父进程链。Director 已明确禁止 pkill 和 bash 脚本写在同一行。需要 v3：先手动清理 vLLM，再独立提交脚本。\"}, \"pilot-constraint-filtering\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T04:47:05.171Z\", \"updated_at\": \"2026-05-17T06:11:36.503Z\", \"hypothesis\": \"Constraint Consistency Filtering: 只保留在≥T条traces中重复出现的约束能否提升SICA accuracy超过SC——验证约束质量过滤是否解决capability trap\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"negative\", \"notes\": \"NEGATIVE confirmed. T=1/2/3 结果完全一致(+2.33pp=1题翻转), T≥5 SICA退化为SC。Discriminative analysis: unique constraints 中 11.5% 是 discriminative (by count), 37.2% (by weight)。但有效 flip 率仅 4/23=17.4%。根本原因：提取的约束是 domain facts (kind_charlie==True, Implies(...)) — 无论答案是什么，中间推理步骤大部分共通。约束系统未提取答案级别判别谓词。Constraint filtering 天花板极低，不是 rescue path。\", \"metrics\": {\"n\": 43, \"thresholds_tested\": [1, 2, 3, 5, 7], \"best_gap_pp\": 2.33, \"best_T\": 1, \"sica_T1\": 0.7674, \"sc\": 0.7442, \"T5_gap\": 0, \"T7_gap\": 0, \"discriminative_ratio_count\": 0.115, \"discriminative_ratio_weight\": 0.372, \"effective_flip_rate\": 0.174, \"multi_answer_problems\": 23, \"unanimous_problems\": 20, \"problems_disc_favors_different\": 4}}, \"exp-018-arc\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T03:19:51.591Z\", \"updated_at\": \"2026-05-17T05:31:46.070Z\", \"hypothesis\": \"Cross-domain validation: Qwen2.5-14B-Instruct 在 ARC-Challenge (科学多选, ABCD) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（多选题型）\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"failed\", \"notes\": \"NameError: name 'build_generator' is not defined in eval_arc.py:142. 代码bug——函数未定义/未导入。Worker 诊断修复中。\"}, \"exp-017-strategyqa-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T04:17:54.931Z\", \"updated_at\": \"2026-05-17T05:29:12.136Z\", \"hypothesis\": \"Cross-domain validation: Qwen2.5-14B-Instruct 在 StrategyQA (常识推理, Yes/No) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（v3: 修复 True/False→Yes/No 提取 bug）\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"success\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.5667, \"sc_accuracy\": 0.5333, \"delta_pp\": 3.33, \"mcnemar_chi2\": 0.5, \"mcnemar_p\": \"n.s.\", \"bootstrap_ci_95\": [0, 8.33], \"bootstrap_p_delta_le_0\": 0.1346, \"multi_candidate_rate\": 0.1, \"contradiction_detected\": 5, \"extraction_rate_problem\": 1, \"extraction_rate_trace\": 0.704, \"discordant_sica_wins\": 2, \"discordant_sc_wins\": 0}, \"notes\": \"StrategyQA跨域验证: SICA 56.67% vs SC 53.33%, +3.33pp n.s. (p=0.13), 支持capability trap跨任务泛化; v3修复提取bug确认成功(100%问题级提取率); 2个discordant pairs均SICA胜出\"}, \"exp-017-strategyqa-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T03:50:55.005Z\", \"updated_at\": \"2026-05-17T04:27:27.997Z\", \"hypothesis\": \"Cross-domain validation: Qwen2.5-14B-Instruct 在 StrategyQA (常识推理, Yes/No) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（非逻辑/数学域）\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"failed\"}, \"exp-017-strategyqa\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T03:19:50.628Z\", \"updated_at\": \"2026-05-17T03:50:54.370Z\", \"hypothesis\": \"Cross-domain validation: Qwen2.5-14B-Instruct 在 StrategyQA (常识推理, Yes/No) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（非逻辑/数学域）\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"failed\"}, \"exp-010-mistral\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T01:04:36.900Z\", \"updated_at\": \"2026-05-17T03:37:29.439Z\", \"hypothesis\": \"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化\", \"parent\": \"sica_expanded_14b\", \"notes\": \"模型已确认完整下载：3 shards (4.95+5.00+4.55GB) + consolidated.safetensors (14.5GB)。排在 exp-018 之后启动。需要 Worker 准备启动脚本（参照 exp-011 模式）。\", \"conclusion\": \"failed\"}, \"exp-011-llama8b-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T03:19:49.625Z\", \"updated_at\": \"2026-05-17T03:24:54.392Z\", \"hypothesis\": \"Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific (v2: 修复 GPU OOM，kill 旧 vLLM 后重跑)\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"failed\"}, \"sica_temp_diversity\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T12:14:34.555Z\", \"updated_at\": \"2026-05-17T03:21:14.807Z\", \"hypothesis\": \"不同 temperature (0.7/0.9/1.0) 下 QwQ-32B 是否产生足够的 trace 分歧以触发 MAX-SAT 矛盾检测\", \"conclusion\": \"negative\", \"metrics\": {\"temperatures_tested\": [0.7, 0.9, 1], \"problems_tested\": 3, \"problems_with_divergence\": 0, \"finding\": \"QwQ-32B produces zero answer divergence at all temperatures on MATH L4-5. Reasoning model's deterministic chain dominates sampling randomness.\", \"max_tokens_issue\": \"4096 tokens insufficient for some L5 problems (truncation)\", \"recommendation\": \"Use AIME 2024 (harder, ~79.5% acc) or non-reasoning model for trace diversity\"}, \"parent\": \"sica_smoke_5q\"}, \"sica_d012_14b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T04:02:41.309Z\", \"updated_at\": \"2026-05-17T03:21:14.256Z\", \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.7333, \"sc_accuracy\": 0.7, \"sica_sc_gap_pp\": 3.3, \"c0_multi_candidate_rate\": 0.5333, \"c1_extraction_rate\": 1, \"c2_contradiction_problems\": 34, \"c3_gap_pp\": 3.3, \"bootstrap_p\": 0.2261, \"proofwriter_sica\": 0.6667, \"proofwriter_sc\": 0.6667, \"folio_sica\": 0.8, \"folio_sc\": 0.7333, \"total_constraints_raw\": 5849, \"total_constraints_unique\": 1735, \"maxsat_exclusion_rate\": 0.0259, \"wall_time_min\": 58.3, \"d012_verdict\": \"ALL_PASS\"}, \"hypothesis\": \"Qwen2.5-14B-Instruct 在 D012 (30PW+30FOLIO) 上 SICA pipeline 端到端有效：C0(多候选率≥20%) + C1(提取率≥80%) + C2(矛盾率≥10%) + C3(SICA>SC) 四项 sanity check 全通过\", \"parent\": \"sica_d016_c0_precheck\"}, \"sica_expanded_14b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T05:12:00.374Z\", \"updated_at\": \"2026-05-17T03:21:11.438Z\", \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.765, \"sc_accuracy\": 0.762, \"sica_sc_gap_pp\": 0.3, \"n_problems\": 804, \"folio_sica\": 0.794, \"folio_sc\": 0.794, \"folio_gap_pp\": 0, \"folio_n\": 204, \"proofwriter_sica\": 0.755, \"proofwriter_sc\": 0.752, \"proofwriter_gap_pp\": 0.3, \"proofwriter_n\": 600, \"extraction_rate\": 0.89, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.022, \"problems_with_contradictions\": 331, \"truncated_traces\": 0, \"wall_time_min\": 826}, \"notes\": \"实验完整完成 804/804 题并保存结果。EXIT_CODE=129 是 SIGHUP 伪信号（进程退出阶段收到），非真实失败。日志末尾打印 \\\"FULL_MVP_DONE\\\" 后才出现 exit code。D025 pivot 确认：SICA≈SC (+0.3pp, N=804)，D012 +3.3pp 是小样本噪声。FOLIO sub-claim dead (0pp)。\", \"hypothesis\": \"Qwen2.5-14B-Instruct 在 N=804 (600PW+204FOLIO) 上 SICA 相比 SC 有统计显著优势（p<0.05）——full-scale validation of D012 preliminary +3.3pp signal\", \"parent\": \"sica_d012_14b\"}, \"sica_k_sensitivity_14b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T05:12:03.025Z\", \"updated_at\": \"2026-05-17T03:19:48.625Z\", \"hypothesis\": \"K-ablation: K={6,8,11,12,16,20} 对 SICA 效果的影响。K=11(奇数)无平票，若 gap=0 则证明 SICA 仅靠 tiebreak 生效\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"success\", \"metrics\": {\"K6_sica\": 0.733, \"K6_sc\": 0.733, \"K6_gap_pp\": 0, \"K8_sica\": 0.733, \"K8_sc\": 0.75, \"K8_gap_pp\": -1.7, \"K11_sica\": 0.733, \"K11_sc\": 0.733, \"K11_gap_pp\": 0, \"K12_sica\": 0.7, \"K12_sc\": 0.75, \"K12_gap_pp\": -5, \"K16_sica\": 0.717, \"K16_sc\": 0.75, \"K16_gap_pp\": -3.3, \"K20_sica\": 0.7, \"K20_sc\": 0.733, \"K20_gap_pp\": -3.3, \"all_K_sica_leq_sc\": true, \"larger_K_degrades_sica\": true}, \"notes\": \"K-ablation 实际完成（EXIT_CODE=129 为 SIGHUP 假失败，同 sica_expanded_14b 模式）。结果：SICA ≤ SC for all K。K=11(奇数)验证 tiebreak 无贡献(gap=0)。K=12/16/20 SICA 退化 -3~5pp，表明更多 traces 引入更多低质量约束反而有害。直接强化 C1 (mechanism vacuous)。Artifact: art_20260517_2c1577。\"}, \"exp-011-llama8b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T01:00:32.450Z\", \"updated_at\": \"2026-05-17T03:00:35.641Z\", \"hypothesis\": \"Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific\", \"parent\": \"sica_expanded_14b\", \"notes\": \"Prep done by worker_prep_exp-011-llama8b_20260516T204635. Model: LLaMA-3.1-8B-Instruct (14GB, 4 shards). Script: /root/symb_invariant_consensus/scripts/run_exp011_llama8b.sh. Dataset: D012 (30 PW + 30 FOLIO = 60 题). 预估 ~25-30GB GPU, ~1-1.5h runtime. 等 sica_k_sensitivity_14b 完成后启动。\", \"conclusion\": \"failed\"}, \"exp-016-weighted-sc\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T01:01:51.841Z\", \"updated_at\": \"2026-05-17T01:02:16.162Z\", \"hypothesis\": \"加权投票变体(inverse-length/length-weighted/constraint-count)是否比 uniform SC 有统计显著优势——验证简单启发式能否替代 SICA 或超越 SC\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.7649, \"sc_uniform_accuracy\": 0.7624, \"inv_length_accuracy\": 0.7674, \"length_weighted_accuracy\": 0.7525, \"constraint_count_accuracy\": 0.7525, \"inv_length_vs_sc_p\": 0.453, \"length_vs_sc_p\": 0.153, \"inv_length_vs_sica_p\": 0.864, \"length_vs_sica_p\": 0.066, \"n_problems\": 804, \"all_nonsignificant\": true}, \"notes\": \"exp-016 weighted SC baselines 完成。804题上所有加权变体 vs SC/SICA 均不显著(p>0.05)。Length-weighting 反而 -1pp（长 trace 略不可靠），inv-length +0.5pp 但非显著。结论：简单启发式加权不能替代也不能超越 uniform voting。支持 C1 (mechanism vacuous) — 问题不在聚合方式，而在约束质量本身。Artifacts: art_20260516_c7cc07 (report), art_20260516_7eef43 (data).\"}, \"exp-005\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T20:52:36.217Z\", \"updated_at\": \"2026-05-16T20:53:22.616Z\", \"hypothesis\": \"QwQ-32B 作为 reasoning model 展示 SICA 的 operating regime boundary: 模型过强→diversity 消失→SICA≡SC\", \"parent\": \"sica_aime30_v3\", \"metrics\": {\"qwq_aggregate_c0_nominal_pct\": 10.3, \"qwq_aggregate_c0_effective_pct\": 2.6, \"qwen14b_c0_pct\": 46, \"diversity_ratio_effective\": 17.7, \"aime_delta_pp\": 0, \"proofwriter_delta_pp\": -5.9, \"aime_n\": 22, \"proofwriter_n\": 17, \"temp_diversity_n\": 5, \"folio_n\": 2, \"total_problems\": 46, \"c0_threshold\": 20, \"qwq_below_threshold\": true}, \"conclusion\": \"negative\", \"notes\": \"exp-005 Operating Regime Analysis 完成。QwQ-32B 综合 46 题数据：effective C0=2.6%，远低于 20% 阈值。数学域 SICA≡SC (Δ=0pp, AIME 22题)，逻辑域 SICA&lt;SC (Δ=−5.9pp, PW 17题)。对比 Qwen2.5-14B C0=46% (17.7x)。直接支持 paper Claim 2 (operating regime boundary)。Artifacts: art_20260516_bf444f (data), art_20260516_d6966d (report)。\"}, \"sica_constraint_ablation_013\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T20:26:35.414Z\", \"updated_at\": \"2026-05-16T20:27:11.828Z\", \"conclusion\": \"success\", \"hypothesis\": \"exp-013: MaxSAT 加权聚合是否比 count-only 或 random-weight 有显著优势？验证 SICA 核心机制（约束加权）的实际贡献\", \"parent\": \"sica_expanded_14b\", \"metrics\": {\"maxsat_accuracy\": 0.7649, \"count_only_accuracy\": 0.7662, \"random_weight_accuracy\": 0.7637, \"sc_baseline_accuracy\": 0.7624, \"n_problems\": 804, \"agreement_802_of_804\": true, \"mcnemar_p_all_gt_0.7\": true, \"note\": \"approximate (raw z3 formulas unavailable, count-only/random-weight use proxy)\"}, \"notes\": \"exp-013 constraint ablation 完成。804题上 MaxSAT(76.49%) ≈ count-only(76.62%) ≈ random-weight(76.37%) ≈ SC(76.24%)。802/804 题三种方法结果一致，McNemar p>0.7。直接支持 C1 claim (mechanism vacuous): MaxSAT 优化相对简单计数无统计显著优势。限制：exp-001 未存 raw constraints，count-only/random-weight 使用近似公式。\"}, \"sica_folio30\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T22:08:43.460Z\", \"updated_at\": \"2026-05-16T04:42:53.530Z\", \"hypothesis\": \"逻辑域（FOLIO）上 SICA 能否利用 FOL 标注检测跨路径矛盾并超越 SC@K=12——FOLIO 有天然 FOL 标注，是 SICA 约束提取的理想场景\", \"parent\": \"sica_aime30_v3\", \"notes\": \"废弃：QwQ-32B spec（max_tokens=12288），已被 sica_d012_14b（Qwen2.5-14B-Instruct 全量 D012 评估）覆盖。QwQ-32B 全域 C0 FAIL (3.6%)，模型已 pivot。\", \"conclusion\": \"killed\"}, \"sica_d016_c0_precheck\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T04:00:14.192Z\", \"updated_at\": \"2026-05-16T04:01:11.163Z\", \"hypothesis\": \"D016 模型 pivot C0 预检：Qwen2.5-14B-Instruct 在逻辑域是否产生足够 trace 多样性（多候选率 ≥20%）\", \"parent\": \"sica_proofwriter30_v2\", \"metrics\": {\"multi_candidate_rate_combined\": 0.46, \"multi_candidate_rate_folio\": 0.4, \"multi_candidate_rate_proofwriter\": 0.5, \"sc_accuracy_combined\": 0.73, \"sc_accuracy_folio\": 0.8, \"sc_accuracy_proofwriter\": 0.69, \"n_problems\": 26, \"n_folio\": 10, \"n_proofwriter\": 16, \"K\": 6, \"T\": 0.7, \"total_time_s\": 280, \"c0_gate\": \"PASS (46% >= 20%)\", \"model\": \"Qwen2.5-14B-Instruct\", \"vllm_gpu_mem_gib\": 27.6, \"smoke_test\": \"2 problems end-to-end OK, constraints 21-26 per problem\"}, \"conclusion\": \"success\", \"notes\": \"C0 PASS: Qwen2.5-14B-Instruct 多候选率 46% (FOLIO 40%, ProofWriter 50%)，远超 20% 阈值。对比 QwQ-32B 全域 3.6%，提升 12.8x。SC accuracy 73% (FOLIO 80%, PW 69%)。Smoke test 2题 SICA pipeline 端到端通过。vLLM PID 174291, 27.6 GiB, max-model-len=8192。Report: art_20260516_e2774d。\"}, \"sica_proofwriter30_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T22:19:01.325Z\", \"updated_at\": \"2026-05-16T01:38:43.002Z\", \"hypothesis\": \"逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12（v2: max_tokens=12288 修复）\", \"parent\": \"sica_proofwriter30\", \"notes\": \"16/30 killed (Director 指令)。D012 四项全 FAIL。MaxSAT 根因诊断结论：三层问题叠加——(1) 约束提取失败 54.4%，QwQ-32B 收到 extraction prompt 后重新推理而非输出 JSON，3/4 多候选题提取为零；(2) 一致投票=一致约束，14/17 题 12/12 同一答案，约束天然不矛盾（正确行为非 bug）；(3) 评分偏差，唯一 SICA≠SC 的题 498_Q8，SICA 给少数派 38 分 > 多数派 27 分，因提取失败非随机。MaxSAT 求解器本身无 bug（注入测试 6/6 通过）。推荐修复：L3 自动注入 answer==trace_answer 约束使不同答案 trace 必有冲突；L1 提取用 system prompt 强制 JSON-only。\", \"conclusion\": \"killed\"}, \"sica_proofwriter30\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T22:08:42.831Z\", \"updated_at\": \"2026-05-15T22:18:19.326Z\", \"hypothesis\": \"逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12——验证 SICA 在逻辑推理域的有效性\", \"parent\": \"sica_aime30_v3\", \"conclusion\": \"failed\", \"notes\": \"配置错误导致完全失败。--max-tokens 16384 等于 vLLM 的 --max-model-len 16384，prompt 输入空间为 0，所有 30 题从第 1 题起全部 400 Bad Request。没有生成任何 trace，没有提取约束，没有投票。4 分钟内跑完（全是 retry 耗时）。无法评估 sanity check 标准。需要用 --max-tokens 12288 或更小值重跑（AIME 实验用的 10240 正常工作）。\", \"metrics\": {\"sica_accuracy\": \"0/30 (0.0%)\", \"sc_accuracy\": \"0/30 (0.0%)\", \"sica_sc_gap_pp\": 0, \"total_wall_time_s\": 238.9, \"total_wall_time_min\": 4, \"avg_time_per_problem_s\": 8, \"traces_generated\": 0, \"constraints_extracted\": 0, \"traces_with_constraints\": 0, \"unique_constraints\": 0, \"maxsat_satisfied\": 0, \"maxsat_excluded\": 0, \"multi_candidate_rate\": \"N/A (no traces generated)\", \"vote_diversity\": \"N/A\", \"z3_errors\": 0, \"z3_timeouts\": 0, \"problems_with_contradiction\": 0, \"problems_with_votes\": 0, \"failure_mode\": \"ALL_400_BAD_REQUEST\", \"failure_count\": \"30/30\", \"root_cause\": \"max_tokens=16384 equals max_model_len=16384, leaving 0 tokens for prompt input. Every API call returns 400.\"}}, \"sica_aime30_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:13:04.296Z\", \"updated_at\": \"2026-05-15T22:07:55.967Z\", \"hypothesis\": \"AIME 2024 上 SICA 能否检测跨路径矛盾并超越 SC@K=12（v3: timeout=1800s, 从v2 P5恢复继续）\", \"parent\": \"sica_aime30_v2\", \"notes\": \"v3 killed at 22/30 (PID 129992, 6h11m). Vote diversity analysis: multi-candidate rate = 0.0%, all valid problems have exactly 1 candidate. SICA≡SC confirmed structural. 6/22 problems with 0 votes (extraction failure). 数学域结论锁定，转逻辑域。\", \"metrics\": {\"progress\": \"22/30\", \"sica_accuracy_interim\": \"16/22 (72.7%)\", \"sc_accuracy_interim\": \"16/22 (72.7%)\", \"sica_sc_gap_pp\": 0, \"avg_time_per_problem_s\": 645.9, \"runtime_h\": 5.9, \"remaining_problems\": 8, \"vote_diversity_analysis\": {\"valid_problems\": 16, \"total_problems\": 22, \"multi_candidate_rate\": 0, \"zero_vote_problems\": 6, \"zero_vote_indices\": [1, 7, 8, 10, 13, 14], \"constraints_extracted\": \"19/22\", \"exclusion_rate\": 0.387, \"conclusion\": \"All 16 valid problems have exactly 1 candidate answer. SICA≡SC structurally. MaxSAT exclusion operates but cannot change final selection with only 1 candidate.\"}, \"process_status\": \"gone (cron miss 1/5)\"}, \"conclusion\": \"killed\"}, \"sica_aime30_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T13:24:26.526Z\", \"updated_at\": \"2026-05-15T16:11:32.132Z\", \"hypothesis\": \"AIME 2024 上 SICA 能否检测跨路径矛盾并超越 SC@K=12（v2: 修复 timeout/hang bug 后重跑）\", \"conclusion\": \"killed\", \"metrics\": {\"progress\": \"4/30\", \"sica_accuracy_interim\": \"3/4 (75%)\", \"sc_accuracy_interim\": \"3/4 (75%)\", \"avg_time_per_problem_s\": 557, \"p2_z3_error\": \"Z3Exception on z3_maxsat.py:163, 0 constraints extracted\", \"p5_vllm_stuck\": \"vLLM timeout since ~22:11, retried multiple rounds\", \"issue\": \"vLLM service likely crashed or OOM at Problem 5\", \"analysis_contradiction_rate_aime\": \"50% (2/4)\", \"analysis_contradiction_rate_math\": \"20% (1/5)\", \"analysis_unique_constraints_per_problem_aime\": 18.7, \"analysis_exclusion_rate\": \"10.7%\", \"analysis_sica_sc_agreement\": \"9/9 (100%)\", \"analysis_signal\": \"weak positive - mechanism works but SC too unanimous to flip\", \"analysis_p2_failure\": \"0 constraints, 0 votes - answer extraction failure\"}, \"notes\": \"失败原因: Problem 5 (aime2024_II_05, 凸六边形几何题) 12条并发trace在单GPU上竞争资源→每条trace吞吐极低→客户端~600s超时后重试→旧请求仍在vLLM running→恶性循环卡死~1h47min | 已有成果: 4/30题完成 SICA 3/4=75% SC 3/4=75%, P2有Z3Exception(0 constraints extracted) | vLLM本身健康(test request <1s) | 建议: 降低并发k或分批处理trace(如4条/批), 增大client timeout, kill stuck requests后重启\"}, \"sica_aime30_t07\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T12:38:16.330Z\", \"updated_at\": \"2026-05-15T13:11:37.911Z\", \"hypothesis\": \"AIME 2024（QwQ-32B 弱项，~79.5% acc）上 SICA 能否检测更多跨路径矛盾并超越 SC@K=12——验证\\\"SICA 价值随问题难度递增\\\"假设\", \"conclusion\": \"killed\"}, \"mvp_math50_t07\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T12:16:29.416Z\", \"updated_at\": \"2026-05-15T12:21:37.283Z\", \"hypothesis\": \"SICA MVP: 50题MATH-500上跨路径MAX-SAT约束共识能否检测矛盾并超越SC@K=12\", \"conclusion\": \"killed\"}, \"sica_smoke_5q\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T11:38:43.996Z\", \"updated_at\": \"2026-05-15T11:39:13.456Z\", \"hypothesis\": \"SICA smoke test: 验证端到端 pipeline 可行性（5题 MATH-500, K=12, QwQ-32B）\", \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.8, \"sc_accuracy\": 0.8, \"extraction_rate\": 1, \"problems_with_contradictions\": 1, \"total_problems\": 5, \"total_time_s\": 3505, \"avg_time_per_problem_s\": 701, \"per_problem\": [{\"id\": \"algebra/2470\", \"level\": 1, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 27, \"unique\": 9, \"excluded\": 0}, {\"id\": \"prealgebra/65\", \"level\": 2, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 26, \"unique\": 2, \"excluded\": 0}, {\"id\": \"number_theory/847\", \"level\": 3, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 21, \"unique\": 11, \"excluded\": 0, \"note\": \"14 JSON parse failures, 1693s\"}, {\"id\": \"precalculus/1199\", \"level\": 4, \"sica_correct\": false, \"sc_correct\": false, \"constraints\": 35, \"unique\": 6, \"excluded\": 0, \"note\": \"graph-reading problem, model cannot see image\"}, {\"id\": \"algebra/2277\", \"level\": 5, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 60, \"unique\": 6, \"satisfied\": 3, \"excluded\": 3}]}}, \"smoke-test-5q\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T11:22:09.665Z\", \"updated_at\": \"2026-05-15T11:22:09.666Z\", \"conclusion\": \"failed\"}, \"crd_folio_main\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T09:35:42.037Z\", \"updated_at\": \"2026-05-15T09:36:24.832Z\", \"conclusion\": \"success\", \"hypothesis\": \"CRD: 双表征(FOL+SymPy)分歧检测+定向修复能提升逻辑推理准确率（非SICA方法）\", \"metrics\": {\"divergence_rate\": 0.422, \"diagnosis_rate\": 0.872, \"error_types\": 4, \"directed_advantage_pp\": 4.7, \"directed_p_value\": 0.63, \"localization_accuracy\": 0.946, \"fol_accuracy\": 0.789, \"code_accuracy\": 0.598, \"oracle_accuracy\": 0.878, \"pipeline_accuracy\": 0.814, \"baseline_accuracy\": 0.74, \"cost_multiplier\": 5.76, \"dataset\": \"FOLIO\", \"n\": 204}}}, \"count\": 33, \"total\": 33, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1055}}"
+    }
+  },
+  "sourceToolAssistantUUID": "25722648-bdb7-4318-9b8e-cf6f4e496fad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T08:41:27.344Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_0173RZxuuzrJRWid1xHeEkb1`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a3681fc5-c573-4d6e-abce-0f10577ee054",
+  "isSidechain": false,
+  "requestId": "req_011Cb7qpnHiN7k5kyCdL2N8y",
+  "type": "assistant",
+  "uuid": "a863deb8-211c-4055-a01c-b2e86673346a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018NdkEcXZRKHxYzJPzY7Vvq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1223,
+      "cache_read_input_tokens": 39415,
+      "output_tokens": 240,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1223,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 240,
+          "cache_read_input_tokens": 39415,
+          "cache_creation_input_tokens": 1223,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1223
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T08:41:27.510Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_013Va94spdWFKUfsSrpTWvmW`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a863deb8-211c-4055-a01c-b2e86673346a",
+  "isSidechain": false,
+  "requestId": "req_011Cb7qpnHiN7k5kyCdL2N8y",
+  "type": "assistant",
+  "uuid": "d53f7da0-e88b-4eea-9f47-3d99e8cbcc2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018NdkEcXZRKHxYzJPzY7Vvq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1223,
+      "cache_read_input_tokens": 39415,
+      "output_tokens": 240,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1223,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 240,
+          "cache_read_input_tokens": 39415,
+          "cache_creation_input_tokens": 1223,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1223
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #8。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westd-32608:cuda:0（gpu_ids 白名单仅此一张） - LLaMA-3.1-8B-Instruct 已两次 EXIT_CODE=1 失败（exp-011-llama8b, exp-011-llama8…",
+  "leafUuid": "d53f7da0-e88b-4eea-9f47-3d99e8cbcc2d",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose LLaMA-3.1-8B failure and manage cross-family experiments",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772"
+}
+```
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T08:41:29.144Z_
+
+<details><summary>↩ Tool result · `toolu_01LSjfNnJnxMPMXfz4jfdtwJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"exp-019-llama8b-strategyqa-200\", \"success\": true, \"actions\": [\"Job still running (pid=302372)\"]}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5e37b265-c427-4ed6-a4ad-935271243d95",
+  "isSidechain": false,
+  "promptId": "7cf78713-91e1-43fd-9e4e-a61ad12a4b77",
+  "type": "user",
+  "uuid": "875aca66-07ba-4625-8346-25f799f68ef5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"exp-019-llama8b-strategyqa-200\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=302372)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"exp-019-llama8b-strategyqa-200\", \"success\": true, \"actions\": [\"Job still running (pid=302372)\"]}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5e37b265-c427-4ed6-a4ad-935271243d95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T08:41:29.160Z_
+
+<details><summary>↩ Tool result · `toolu_0173RZxuuzrJRWid1xHeEkb1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp-019-llama8b-strategyqa-200 | Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp） | — | — | — |\\n\\n## 待处理\\n- exp-020-llama8b-folio-204: Powered FOLIO test: SICA 在弱模型（LLaMA-3.1-8B）上 FOLIO 全量 204 题是否达到统计显著——FOLIO 在 exp-011 中信号最强（+10pp, bootstrap p≈0.04），n=204 几乎必然显著。保险实验：若 StrategyQA discordant rate 低导致 underpowered。（准备中）\\n- smoke-test-5q（准备中）\\n\\n## 近期结论\\n- **exp-010-mistral-v3** (negative): Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题） ← 基于 sica_expanded_14b\\n- **pilot-contrastive-prompt** (failed): Contrastive Prompt Extraction: 将 prompt 改为\\\"列出支持答案X/反对答案Y的证据\\\"能否将 discriminative ratio 从 37.2% 提升至 >70%，并使 SICA(contrastive) > SC ≥3pp——验证 answer-conditioned 约束是否解决 SICA 机制 vacuous 问题 ← 基于 pilot-constraint-filtering\\n- **exp-011-llama8b-v3** (success): Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific（v3: 模型 shard 已修复，GPU 空闲后提交） ← 基于 sica_expanded_14b\\n\\n## 趋势\\n成功 11 / 负向 4 / 失败 9 / 共 30\\ndelta_pp: 6.67 ↑（近 3 次 success）\\ndiscordant_sc_wins: 1 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-32608: 无 GPU 信息\\n\\n## 告警\\n- mvp_math50_t07: 已被终止 — unknown\\n- sica_aime30_t07: 已被终止 — unknown\\n- sica_aime30_v2: 已被终止 — unknown\\n- sica_aime30_v3: 已被终止 — unknown\\n- sica_proofwriter30: 训练失败 — unknown\\n- sica_folio30: 已被终止 — unknown\\n- sica_proofwriter30_v2: 已被终止 — unknown\\n- exp-011-llama8b: 训练失败 — unknown\\n- exp-010-mistral: 训练失败 — unknown\\n- exp-011-llama8b-v2: 训练失败 — unknown\\n- exp-017-strategyqa: 训练失败 — unknown\\n- exp-018-arc: 训练失败 — unknown\\n- exp-010-mistral-v2: 训练失败 — unknown\\n- exp-017-strategyqa-v2: 训练失败 — unknown\\n- pilot-contrastive-prompt: 训练失败 — unknown\\n\", \"total_chars\": 2003, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a863deb8-211c-4055-a01c-b2e86673346a",
+  "isSidechain": false,
+  "promptId": "7cf78713-91e1-43fd-9e4e-a61ad12a4b77",
+  "type": "user",
+  "uuid": "a6a909d1-b69e-455a-a70a-a2d7b6dc3d7e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-17\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp-019-llama8b-strategyqa-200 | Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp） | — | — | — |\\\\n\\\\n## 待处理\\\\n- exp-020-llama8b-folio-204: Powered FOLIO test: SICA 在弱模型（LLaMA-3.1-8B）上 FOLIO 全量 204 题是否达到统计显著——FOLIO 在 exp-011 中信号最强（+10pp, bootstrap p≈0.04），n=204 几乎必然显著。保险实验：若 StrategyQA discordant rate 低导致 underpowered。（准备中）\\\\n- smoke-test-5q（准备中）\\\\n\\\\n## 近期结论\\\\n- **exp-010-mistral-v3** (negative): Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题） ← 基于 sica_expanded_14b\\\\n- **pilot-contrastive-prompt** (failed): Contrastive Prompt Extraction: 将 prompt 改为\\\\\\\"列出支持答案X/反对答案Y的证据\\\\\\\"能否将 discriminative ratio 从 37.2% 提升至 >70%，并使 SICA(contrastive) > SC ≥3pp——验证 answer-conditioned 约束是否解决 SICA 机制 vacuous 问题 ← 基于 pilot-constraint-filtering\\\\n- **exp-011-llama8b-v3** (success): Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific（v3: 模型 shard 已修复，GPU 空闲后提交） ← 基于 sica_expanded_14b\\\\n\\\\n## 趋势\\\\n成功 11 / 负向 4 / 失败 9 / 共 30\\\\ndelta_pp: 6.67 ↑（近 3 次 success）\\\\ndiscordant_sc_wins: 1 ↑（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-32608: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- mvp_math50_t07: 已被终止 — unknown\\\\n- sica_aime30_t07: 已被终止 — unknown\\\\n- sica_aime30_v2: 已被终止 — unknown\\\\n- sica_aime30_v3: 已被终止 — unknown\\\\n- sica_proofwriter30: 训练失败 — unknown\\\\n- sica_folio30: 已被终止 — unknown\\\\n- sica_proofwriter30_v2: 已被终止 — unknown\\\\n- exp-011-llama8b: 训练失败 — unknown\\\\n- exp-010-mistral: 训练失败 — unknown\\\\n- exp-011-llama8b-v2: 训练失败 — unknown\\\\n- exp-017-strategyqa: 训练失败 — unknown\\\\n- exp-018-arc: 训练失败 — unknown\\\\n- exp-010-mistral-v2: 训练失败 — unknown\\\\n- exp-017-strategyqa-v2: 训练失败 — unknown\\\\n- pilot-contrastive-prompt: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 2003, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp-019-llama8b-strategyqa-200 | Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp） | — | — | — |\\n\\n## 待处理\\n- exp-020-llama8b-folio-204: Powered FOLIO test: SICA 在弱模型（LLaMA-3.1-8B）上 FOLIO 全量 204 题是否达到统计显著——FOLIO 在 exp-011 中信号最强（+10pp, bootstrap p≈0.04），n=204 几乎必然显著。保险实验：若 StrategyQA discordant rate 低导致 underpowered。（准备中）\\n- smoke-test-5q（准备中）\\n\\n## 近期结论\\n- **exp-010-mistral-v3** (negative): Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题） ← 基于 sica_expanded_14b\\n- **pilot-contrastive-prompt** (failed): Contrastive Prompt Extraction: 将 prompt 改为\\\"列出支持答案X/反对答案Y的证据\\\"能否将 discriminative ratio 从 37.2% 提升至 >70%，并使 SICA(contrastive) > SC ≥3pp——验证 answer-conditioned 约束是否解决 SICA 机制 vacuous 问题 ← 基于 pilot-constraint-filtering\\n- **exp-011-llama8b-v3** (success): Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific（v3: 模型 shard 已修复，GPU 空闲后提交） ← 基于 sica_expanded_14b\\n\\n## 趋势\\n成功 11 / 负向 4 / 失败 9 / 共 30\\ndelta_pp: 6.67 ↑（近 3 次 success）\\ndiscordant_sc_wins: 1 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-32608: 无 GPU 信息\\n\\n## 告警\\n- mvp_math50_t07: 已被终止 — unknown\\n- sica_aime30_t07: 已被终止 — unknown\\n- sica_aime30_v2: 已被终止 — unknown\\n- sica_aime30_v3: 已被终止 — unknown\\n- sica_proofwriter30: 训练失败 — unknown\\n- sica_folio30: 已被终止 — unknown\\n- sica_proofwriter30_v2: 已被终止 — unknown\\n- exp-011-llama8b: 训练失败 — unknown\\n- exp-010-mistral: 训练失败 — unknown\\n- exp-011-llama8b-v2: 训练失败 — unknown\\n- exp-017-strategyqa: 训练失败 — unknown\\n- exp-018-arc: 训练失败 — unknown\\n- exp-010-mistral-v2: 训练失败 — unknown\\n- exp-017-strategyqa-v2: 训练失败 — unknown\\n- pilot-contrastive-prompt: 训练失败 — unknown\\n\", \"total_chars\": 2003, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a863deb8-211c-4055-a01c-b2e86673346a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T08:41:29.183Z_
+
+<details><summary>↩ Tool result · `toolu_013Va94spdWFKUfsSrpTWvmW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md\", \"content\": \"# symb_invariant_consensus — Research Dashboard\\n\\n> 最后更新: 2026-05-17 08:07 UTC | 更新原因: exp-011 结果出炉 + D031 决策 + 全面更新过时状态\\n\\n## 核心方向\\nOperating Regime Characterization（待验证）：弱模型上 SICA 有实质增益（+6.7pp directional），强模型上退化为 SC。若 powered test 确认 → 论文升级为正面+负面双重发现；若否 → 维持 D025 Capability Trap analysis paper。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research (D031 powered test 验证中) + 审稿进行中\\n- **关键发现 (2026-05-17)**:\\n  - exp-011 LLaMA-8B: +6.67pp (p=0.22, n=60, directionally positive but NOT significant)\\n  - 跨模型 pattern: 弱模型(+6.7pp) > 中模型(+0.3pp) > 强域(-1.7pp) > 极强(0pp)\\n  - exp-013: MaxSAT ≈ count-only ≈ random（mechanism vacuous confirmed）\\n  - exp-002: SICA ≤ SC for all K including odd K=11（tiebreak-only confirmed）\\n- **Plan 覆盖**: 19 实验，exp-001/002/011/017/018 done，exp-010 running，其余 planned\\n- **Paper framing**: 暂不更新，等 powered test 结果\\n\\n## 近期任务\\n- [x] exp-011 完成 (+6.67pp, p=0.22)\\n- [x] exp-002 K-ablation 完成 (SICA≤SC all K)\\n- [x] exp-013 constraint ablation 完成 (MaxSAT≈count-only)\\n- [x] exp-017 StrategyQA 完成 (+3.3pp n.s.)\\n- [x] exp-018 ARC 完成 (-1.67pp)\\n- [ ] exp-010-mistral-v3 运行中 (9/60, Reviewer 预警模型可能过弱)\\n- [ ] **LLaMA-8B StrategyQA 200 题 powered test**（D031 核心，exp-010 后立即启动）\\n- [ ] exp-011 truncation bias 分析（CPU，检查 discordant pairs 与截断相关性）\\n- [ ] pilot-contrastive-v2（低优先级，暂缓）\\n\\n## GPU 预算\\n- 分配: 1× RTX PRO 6000 Blackwell 98GB (cuda:0) on westd-32608\\n- 当前: exp-010-mistral-v3 运行中 (~1h ���余)\\n- 排队: LLaMA-8B StrategyQA 200 (~3-4h)\\n- 累计已用: ~20h (exp-001 14h + exp-002 6h + exp-011 1.5h + 其他)\\n- 预估剩余: ~6h (exp-010 1h + StrategyQA 3-4h + buffer)\\n\\n## 决策 pending\\n- D031 结果出来后: p<0.05 → 更新 paper_framing.md 为 Operating Regime Characterization + 加 7B/72B scaling 实验; p>0.1 → 维持 Capability Trap + LLaMA 作 suggestive evidence\\n\\n## 阻塞项\\n- 无硬阻塞。exp-010 + StrategyQA powered test 是今天关键路径。\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D032 | 2026-05-17 | D032: exp-010 Mistral 确认倒 U 型 pattern（sweet spot S | exp-010-mistral-v3, exp-011-llama8b-v3, exp-001 |\\n| D031 | 2026-05-17 | D031: exp-011 +6.7pp 方向性正面但 p=0.22 不显著，启动 LLaMA-8B | exp-011-llama8b-v3, exp-010-mistral-v3, exp-001 |\\n| D030 | 2026-05-17 | D030: 从 Analysis Paper 转向 Methods Paper — 利用诊断数据设计 | exp-001, exp-013 |\\n| D029 | 2026-05-17 | exp-002 最终结果：SICA≤SC for all K (gap 0 to -5pp)，fra | exp-002, exp-001 |\\n| D028 | 2026-05-17 | exp-002 中期：K=11 gap=0 确认 tiebreak-only；D012 vs K-a | exp-002, exp-001 |\\n| D027 | 2026-05-16 | exp-013 确认 MaxSAT≈count-only≈random-weight：SICA 的  | exp-013, exp-001 |\\n| D026 | 2026-05-16 | exp-001 完成确认 D025 pivot：SICA≈SC (+0.25pp, n=804, n | exp-001 |\\n| D025 | 2026-05-16 | D025: Activate D023 contingency — pivot to Analysi | exp-001, exp-013, exp-010, exp-011 |\\n| D024 | 2026-05-16 | D024: Dream-informed adjustments — reframe scope-t | exp-002, exp-015, exp-016 |\\n| D023 | 2026-05-16 | D023: Contingency plan 确认——如 SICA≤SC 则 pivot 到 Ana | exp-001, exp-010, exp-011, exp-014 |\\n\\n\", \"lines\": 57}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d53f7da0-e88b-4eea-9f47-3d99e8cbcc2d",
+  "isSidechain": false,
+  "promptId": "7cf78713-91e1-43fd-9e4e-a61ad12a4b77",
+  "type": "user",
+  "uuid": "a25bc953-6395-4e00-bd26-88ef6f168a3b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md\\\", \\\"content\\\": \\\"# symb_invariant_consensus — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-17 08:07 UTC | 更新原因: exp-011 结果出炉 + D031 决策 + 全面更新过时状态\\\\n\\\\n## 核心方向\\\\nOperating Regime Characterization（待验证）：弱模型上 SICA 有实质增益（+6.7pp directional），强模型上退化为 SC。若 powered test 确认 → 论文升级为正面+负面双重发现；若否 → 维持 D025 Capability Trap analysis paper。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research (D031 powered test 验证中) + 审稿进行中\\\\n- **关键发现 (2026-05-17)**:\\\\n  - exp-011 LLaMA-8B: +6.67pp (p=0.22, n=60, directionally positive but NOT significant)\\\\n  - 跨模型 pattern: 弱模型(+6.7pp) > 中模型(+0.3pp) > 强域(-1.7pp) > 极强(0pp)\\\\n  - exp-013: MaxSAT ≈ count-only ≈ random（mechanism vacuous confirmed）\\\\n  - exp-002: SICA ≤ SC for all K including odd K=11（tiebreak-only confirmed）\\\\n- **Plan 覆盖**: 19 实验，exp-001/002/011/017/018 done，exp-010 running，其余 planned\\\\n- **Paper framing**: 暂不更新，等 powered test 结果\\\\n\\\\n## 近期任务\\\\n- [x] exp-011 完成 (+6.67pp, p=0.22)\\\\n- [x] exp-002 K-ablation 完成 (SICA≤SC all K)\\\\n- [x] exp-013 constraint ablation 完成 (MaxSAT≈count-only)\\\\n- [x] exp-017 StrategyQA 完成 (+3.3pp n.s.)\\\\n- [x] exp-018 ARC 完成 (-1.67pp)\\\\n- [ ] exp-010-mistral-v3 运行中 (9/60, Reviewer 预警模型可能过弱)\\\\n- [ ] **LLaMA-8B StrategyQA 200 题 powered test**（D031 核心，exp-010 后立即启动）\\\\n- [ ] exp-011 truncation bias 分析（CPU，检查 discordant pairs 与截断相关性）\\\\n- [ ] pilot-contrastive-v2（低优先级，暂缓）\\\\n\\\\n## GPU 预算\\\\n- 分配: 1× RTX PRO 6000 Blackwell 98GB (cuda:0) on westd-32608\\\\n- 当前: exp-010-mistral-v3 运行中 (~1h ���余)\\\\n- 排队: LLaMA-8B StrategyQA 200 (~3-4h)\\\\n- 累计已用: ~20h (exp-001 14h + exp-002 6h + exp-011 1.5h + 其他)\\\\n- 预估剩余: ~6h (exp-010 1h + StrategyQA 3-4h + buffer)\\\\n\\\\n## 决策 pending\\\\n- D031 结果出来后: p<0.05 → 更新 paper_framing.md 为 Operating Regime Characterization + 加 7B/72B scaling 实验; p>0.1 → 维持 Capability Trap + LLaMA 作 suggestive evidence\\\\n\\\\n## 阻塞项\\\\n- 无硬阻塞。exp-010 + StrategyQA powered test 是今天关键路径。\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D032 | 2026-05-17 | D032: exp-010 Mistral 确认倒 U 型 pattern（sweet spot S | exp-010-mistral-v3, exp-011-llama8b-v3, exp-001 |\\\\n| D031 | 2026-05-17 | D031: exp-011 +6.7pp 方向性正面但 p=0.22 不显著，启动 LLaMA-8B | exp-011-llama8b-v3, exp-010-mistral-v3, exp-001 |\\\\n| D030 | 2026-05-17 | D030: 从 Analysis Paper 转向 Methods Paper — 利用诊断数据设计 | exp-001, exp-013 |\\\\n| D029 | 2026-05-17 | exp-002 最终结果：SICA≤SC for all K (gap 0 to -5pp)，fra | exp-002, exp-001 |\\\\n| D028 | 2026-05-17 | exp-002 中期：K=11 gap=0 确认 tiebreak-only；D012 vs K-a | exp-002, exp-001 |\\\\n| D027 | 2026-05-16 | exp-013 确认 MaxSAT≈count-only≈random-weight：SICA 的  | exp-013, exp-001 |\\\\n| D026 | 2026-05-16 | exp-001 完成确认 D025 pivot：SICA≈SC (+0.25pp, n=804, n | exp-001 |\\\\n| D025 | 2026-05-16 | D025: Activate D023 contingency — pivot to Analysi | exp-001, exp-013, exp-010, exp-011 |\\\\n| D024 | 2026-05-16 | D024: Dream-informed adjustments — reframe scope-t | exp-002, exp-015, exp-016 |\\\\n| D023 | 2026-05-16 | D023: Contingency plan 确认——如 SICA≤SC 则 pivot 到 Ana | exp-001, exp-010, exp-011, exp-014 |\\\\n\\\\n\\\", \\\"lines\\\": 57}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md\", \"content\": \"# symb_invariant_consensus — Research Dashboard\\n\\n> 最后更新: 2026-05-17 08:07 UTC | 更新原因: exp-011 结果出炉 + D031 决策 + 全面更新过时状态\\n\\n## 核心方向\\nOperating Regime Characterization（待验证）：弱模型上 SICA 有实质增益（+6.7pp directional），强模型上退化为 SC。若 powered test 确认 → 论文升级为正面+负面双重发现；若否 → 维持 D025 Capability Trap analysis paper。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research (D031 powered test 验证中) + 审稿进行中\\n- **关键发现 (2026-05-17)**:\\n  - exp-011 LLaMA-8B: +6.67pp (p=0.22, n=60, directionally positive but NOT significant)\\n  - 跨模型 pattern: 弱模型(+6.7pp) > 中模型(+0.3pp) > 强域(-1.7pp) > 极强(0pp)\\n  - exp-013: MaxSAT ≈ count-only ≈ random（mechanism vacuous confirmed）\\n  - exp-002: SICA ≤ SC for all K including odd K=11（tiebreak-only confirmed）\\n- **Plan 覆盖**: 19 实验，exp-001/002/011/017/018 done，exp-010 running，其余 planned\\n- **Paper framing**: 暂不更新，等 powered test 结果\\n\\n## 近期任务\\n- [x] exp-011 完成 (+6.67pp, p=0.22)\\n- [x] exp-002 K-ablation 完成 (SICA≤SC all K)\\n- [x] exp-013 constraint ablation 完成 (MaxSAT≈count-only)\\n- [x] exp-017 StrategyQA 完成 (+3.3pp n.s.)\\n- [x] exp-018 ARC 完成 (-1.67pp)\\n- [ ] exp-010-mistral-v3 运行中 (9/60, Reviewer 预警模型可能过弱)\\n- [ ] **LLaMA-8B StrategyQA 200 题 powered test**（D031 核心，exp-010 后立即启动）\\n- [ ] exp-011 truncation bias 分析（CPU，检查 discordant pairs 与截断相关性）\\n- [ ] pilot-contrastive-v2（低优先级，暂缓）\\n\\n## GPU 预算\\n- 分配: 1× RTX PRO 6000 Blackwell 98GB (cuda:0) on westd-32608\\n- 当前: exp-010-mistral-v3 运行中 (~1h ���余)\\n- 排队: LLaMA-8B StrategyQA 200 (~3-4h)\\n- 累计已用: ~20h (exp-001 14h + exp-002 6h + exp-011 1.5h + 其他)\\n- 预估剩余: ~6h (exp-010 1h + StrategyQA 3-4h + buffer)\\n\\n## 决策 pending\\n- D031 结果出来后: p<0.05 → 更新 paper_framing.md 为 Operating Regime Characterization + 加 7B/72B scaling 实验; p>0.1 → 维持 Capability Trap + LLaMA 作 suggestive evidence\\n\\n## 阻塞项\\n- 无硬阻塞。exp-010 + StrategyQA powered test 是今天关键路径。\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D032 | 2026-05-17 | D032: exp-010 Mistral 确认倒 U 型 pattern（sweet spot S | exp-010-mistral-v3, exp-011-llama8b-v3, exp-001 |\\n| D031 | 2026-05-17 | D031: exp-011 +6.7pp 方向性正面但 p=0.22 不显著，启动 LLaMA-8B | exp-011-llama8b-v3, exp-010-mistral-v3, exp-001 |\\n| D030 | 2026-05-17 | D030: 从 Analysis Paper 转向 Methods Paper — 利用诊断数据设计 | exp-001, exp-013 |\\n| D029 | 2026-05-17 | exp-002 最终结果：SICA≤SC for all K (gap 0 to -5pp)，fra | exp-002, exp-001 |\\n| D028 | 2026-05-17 | exp-002 中期：K=11 gap=0 确认 tiebreak-only；D012 vs K-a | exp-002, exp-001 |\\n| D027 | 2026-05-16 | exp-013 确认 MaxSAT≈count-only≈random-weight：SICA 的  | exp-013, exp-001 |\\n| D026 | 2026-05-16 | exp-001 完成确认 D025 pivot：SICA≈SC (+0.25pp, n=804, n | exp-001 |\\n| D025 | 2026-05-16 | D025: Activate D023 contingency — pivot to Analysi | exp-001, exp-013, exp-010, exp-011 |\\n| D024 | 2026-05-16 | D024: Dream-informed adjustments — reframe scope-t | exp-002, exp-015, exp-016 |\\n| D023 | 2026-05-16 | D023: Contingency plan 确认——如 SICA≤SC 则 pivot 到 Ana | exp-001, exp-010, exp-011, exp-014 |\\n\\n\", \"lines\": 57}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d53f7da0-e88b-4eea-9f47-3d99e8cbcc2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-17T08:42:00.871Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the current state:
+
+1. **RUNNING**: exp-019-llama8b-strategyqa-200 (pid=302372, still running) - this is the D031 powered test
+2. **PREPARING**: exp-020-llama8b-folio-204, smoke-test-5q
+3. Recent completions since handoff:
+   - exp-010-mistral-v3: DONE (negative) - Mistral too weak, SICA=SC=48.33%
+   - exp-011-llama8b-v3: DONE (success) - +6.67pp, directionally positive
+   - exp-018-arc-v2: DONE (success) - ARC high baseline, SICA -1.67pp
+   - exp-017-strategyqa-v3: DONE (success) - +3.33pp n.s.
+   - pilot-constraint-filtering: DONE (negative) - constraint filtering ceiling low
+   - pilot-contrastive-prompt: DONE (failed) - script ready but GPU was busy
+   - exp-016-weighted-sc: DONE (success) - all metrics positive
+
+, weighted variants n.s.
+
+The critical experiment exp-019-llama8b-strategyqa-200 is currently running on the D031 powered setup, with exp-020-llama8b-folio-204 queued as backup. The diagnostic worker mentioned in the handoff is no longer needed since exp-011-llama8b-v3 already resolved the LLaMA issues, and the roadmap needs updating since exp-010-mistral-v3 is already complete.
+
+Mistral's performance confirms it's too weak for our needs. Now I'm checking the current worker pool status and what CPU-bound tasks could run in parallel while exp-019 finishes, since we're currently at zero active workers which violates the minimum threshold. I should also review the resource-saturation skill before reporting the status to the Director.
+
+Looking back at the recent results, I need to verify whether the Director was already informed about the Mistral negative result and the Llama success, and whether the ROADMAP needs updating since it still shows exp-010 as running when it's actually complete. The immediate priorities are monitoring exp-019, preparing exp-020 when a worker becomes available, and potentially queuing up the contrastive prompt experiment once GPU resources free up. I need to verify the Director has been notified about all the recent experiment results, and then look at what CPU-bound work I can parallelize while waiting for the GPU to free up.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a25bc953-6395-4e00-bd26-88ef6f168a3b",
+  "isSidechain": false,
+  "requestId": "req_011Cb7qq9Y9NkyMu5FK3HGsN",
+  "type": "assistant",
+  "uuid": "da3528ca-561a-4051-94b1-70adcace69c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WtcHNroGYW3FWBMCrSs1SU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16331,
+      "cache_read_input_tokens": 40638,
+      "output_tokens": 1507,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16331,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1507,
+          "cache_read_input_tokens": 40638,
+          "cache_creation_input_tokens": 16331,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16331
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-17T08:42:03.669Z_
+
+状态已同步。关键变化 vs handoff：
+- exp-011-llama8b-v3 已 **success**（+6.67pp），LLaMA 问题已解决
+- exp-010-mistral-v3 已 **negative**（SICA=SC=48.33%，模型太弱）
+- **exp-019-llama8b-strategyqa-200 正在 RUNNING**（D031 powered test，pid=302372）
+- exp-020-llama8b-folio-204 在 PREPARING
+
+GPU 在用（exp-019），Worker 池 = 0（失职）。让我检查 Worker 状态并启动 CPU 并行任务。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "da3528ca-561a-4051-94b1-70adcace69c5",
+  "isSidechain": false,
+  "requestId": "req_011Cb7qq9Y9NkyMu5FK3HGsN",
+  "type": "assistant",
+  "uuid": "f89cbff6-ee0e-49bb-95e8-c5b06335f2b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WtcHNroGYW3FWBMCrSs1SU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16331,
+      "cache_read_input_tokens": 40638,
+      "output_tokens": 1507,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16331,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1507,
+          "cache_read_input_tokens": 40638,
+          "cache_creation_input_tokens": 16331,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16331
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-17T08:42:05.628Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CseSrxrVaAqPG9TVjdGB27`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f89cbff6-ee0e-49bb-95e8-c5b06335f2b3",
+  "isSidechain": false,
+  "requestId": "req_011Cb7qq9Y9NkyMu5FK3HGsN",
+  "type": "assistant",
+  "uuid": "06704f2e-e7ca-45b0-af27-ea8d2fd722f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WtcHNroGYW3FWBMCrSs1SU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16331,
+      "cache_read_input_tokens": 40638,
+      "output_tokens": 1507,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16331,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1507,
+          "cache_read_input_tokens": 40638,
+          "cache_creation_input_tokens": 16331,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16331
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T08:42:05.637Z_
+
+<details><summary>↩ Tool result · `toolu_01CseSrxrVaAqPG9TVjdGB27`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_worker_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "06704f2e-e7ca-45b0-af27-ea8d2fd722f2",
+  "isSidechain": false,
+  "promptId": "7cf78713-91e1-43fd-9e4e-a61ad12a4b77",
+  "type": "user",
+  "uuid": "f67ce77c-5e61-422a-b16f-7a9a4e407fee",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 80
+  },
+  "sourceToolAssistantUUID": "06704f2e-e7ca-45b0-af27-ea8d2fd722f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #8。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westd-32608:cuda:0（gpu_ids 白名单仅此一张） - LLaMA-3.1-8B-Instruct 已两次 EXIT_CODE=1 失败（exp-011-llama8b, exp-011-llama8…",
+  "leafUuid": "f67ce77c-5e61-422a-b16f-7a9a4e407fee",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose LLaMA-3.1-8B failure and manage cross-family experiments",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772"
+}
+```
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-17T08:42:13.816Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check current workers and then figure out what CPU-bound work to parallelize while exp-019 is running.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f67ce77c-5e61-422a-b16f-7a9a4e407fee",
+  "isSidechain": false,
+  "requestId": "req_011Cb7qsqbyQnGHRu4cRsvhk",
+  "type": "assistant",
+  "uuid": "f7e3dfc7-b46d-48a0-812b-39be0a6ca5f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011CXrjYrrucv4KasRMMz6Ud",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3864,
+      "cache_read_input_tokens": 56969,
+      "output_tokens": 126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3864,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 126,
+          "cache_read_input_tokens": 56969,
+          "cache_creation_input_tokens": 3864,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3864
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-17T08:42:14.456Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_01BUNwFgUToWj3XZR1yn6HqN`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7e3dfc7-b46d-48a0-812b-39be0a6ca5f5",
+  "isSidechain": false,
+  "requestId": "req_011Cb7qsqbyQnGHRu4cRsvhk",
+  "type": "assistant",
+  "uuid": "5f649d7f-30d9-4fd6-831b-2dfdf9f0895f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011CXrjYrrucv4KasRMMz6Ud",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3864,
+      "cache_read_input_tokens": 56969,
+      "output_tokens": 126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3864,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 126,
+          "cache_read_input_tokens": 56969,
+          "cache_creation_input_tokens": 3864,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3864
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T08:42:14.502Z_
+
+<details><summary>↩ Tool result · `toolu_01BUNwFgUToWj3XZR1yn6HqN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_analysis_exp019-progress-check-v2_20260517T084055\", \"task_type\": \"analysis:exp019-progress-check-v2\", \"project\": \"symb_invariant_consensus\", \"status\": \"running\", \"started_at\": \"2026-05-17T08:40:55.890725+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5f649d7f-30d9-4fd6-831b-2dfdf9f0895f",
+  "isSidechain": false,
+  "promptId": "7cf78713-91e1-43fd-9e4e-a61ad12a4b77",
+  "type": "user",
+  "uuid": "7b5bcc3f-b420-4cfd-ae5d-678789b8d95f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_analysis_exp019-progress-check-v2_20260517T084055\\\", \\\"task_type\\\": \\\"analysis:exp019-progress-check-v2\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-17T08:40:55.890725+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 1}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_analysis_exp019-progress-check-v2_20260517T084055\", \"task_type\": \"analysis:exp019-progress-check-v2\", \"project\": \"symb_invariant_consensus\", \"status\": \"running\", \"started_at\": \"2026-05-17T08:40:55.890725+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5f649d7f-30d9-4fd6-831b-2dfdf9f0895f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-17T08:42:27.004Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's 1 running Worker checking exp-019 progress. Worker pool = 1, still below 2 minimum. Let me check its status to see if it's actually making progress, and then spawn additional CPU-bound Workers.
+
+Let me think about what needs to happen:
+
+1. exp-019 is RUNNING (D031 powered test) - being monitored by a Worker
+2. exp-020 is PREPARING - needs a Worker to prep the script
+3. ROADMAP is out of date (says exp-010 is running, but it's DONE)
+4. Need to check if Director was informed of exp-010-mistral-v3 negative result and other recent completions
+
+
+5. I can spawn Workers for prepping exp-020's script and running the truncation bias analysis for exp-011, while I handle the ROADMAP update myself since it's lightweight
+
+Let me check the progress Worker's status and review memory.md to see what the last Director communications were, then pull up the resource-saturation skill since I need to report back to Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b5bcc3f-b420-4cfd-ae5d-678789b8d95f",
+  "isSidechain": false,
+  "requestId": "req_011Cb7qtVWGYd4ZbjJZah4we",
+  "type": "assistant",
+  "uuid": "d1428943-11e8-4252-9930-94602ee285be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016b9sgJiHav4hF5U1KoLyc2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 286,
+      "cache_read_input_tokens": 60833,
+      "output_tokens": 568,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 286,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 568,
+          "cache_read_input_tokens": 60833,
+          "cache_creation_input_tokens": 286,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 286
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-17T08:42:27.661Z_
+
+1 个 Worker 在跑（exp019 进度检查）。Worker 池不够饱和。让我检查进度并启动并行 CPU 任务。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d1428943-11e8-4252-9930-94602ee285be",
+  "isSidechain": false,
+  "requestId": "req_011Cb7qtVWGYd4ZbjJZah4we",
+  "type": "assistant",
+  "uuid": "c41052ce-c103-4159-a3d2-3d110b58359f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016b9sgJiHav4hF5U1KoLyc2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 286,
+      "cache_read_input_tokens": 60833,
+      "output_tokens": 568,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 286,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 568,
+          "cache_read_input_tokens": 60833,
+          "cache_creation_input_tokens": 286,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 286
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-17T08:42:28.075Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_01RMULfeNxFNsgRT3vescnJC`</summary>
+
+```json
+{
+  "worker_id": "worker_analysis_exp019-progress-check-v2_20260517T084055",
+  "verbose": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c41052ce-c103-4159-a3d2-3d110b58359f",
+  "isSidechain": false,
+  "requestId": "req_011Cb7qtVWGYd4ZbjJZah4we",
+  "type": "assistant",
+  "uuid": "07b1dac7-52a4-4031-82ab-67223e9893ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016b9sgJiHav4hF5U1KoLyc2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 286,
+      "cache_read_input_tokens": 60833,
+      "output_tokens": 568,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 286,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 568,
+          "cache_read_input_tokens": 60833,
+          "cache_creation_input_tokens": 286,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 286
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T08:42:28.110Z_
+
+<details><summary>↩ Tool result · `toolu_01RMULfeNxFNsgRT3vescnJC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp019-progress-check-v2_20260517T084055\", \"status\": \"running\", \"task_type\": \"analysis:exp019-progress-check-v2\", \"project\": \"symb_invariant_consensus\", \"started_at\": \"2026-05-17T08:40:55.890725+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_execute\", \"ssh_execute\", \"ssh_execute\", \"ssh_execute\", \"ssh_execute\"], \"last_text\": \"目前处理了 101/200 题。检查更多细节和 ETA。\", \"turn_count\": 26}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "07b1dac7-52a4-4031-82ab-67223e9893ee",
+  "isSidechain": false,
+  "promptId": "7cf78713-91e1-43fd-9e4e-a61ad12a4b77",
+  "type": "user",
+  "uuid": "948c3c23-134e-4290-8d85-1f4304ebaf2b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_exp019-progress-check-v2_20260517T084055\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"analysis:exp019-progress-check-v2\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"started_at\\\": \\\"2026-05-17T08:40:55.890725+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\"], \\\"last_text\\\": \\\"目前处理了 101/200 题。检查更多细节和 ETA。\\\", \\\"turn_count\\\": 26}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp019-progress-check-v2_20260517T084055\", \"status\": \"running\", \"task_type\": \"analysis:exp019-progress-check-v2\", \"project\": \"symb_invariant_consensus\", \"started_at\": \"2026-05-17T08:40:55.890725+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_execute\", \"ssh_execute\", \"ssh_execute\", \"ssh_execute\", \"ssh_execute\"], \"last_text\": \"目前处理了 101/200 题。检查更多细节和 ETA。\", \"turn_count\": 26}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "07b1dac7-52a4-4031-82ab-67223e9893ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-17T08:42:28.828Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01EW9LSymgh6rEHLxTfuDMzV`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "memory.md",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "948c3c23-134e-4290-8d85-1f4304ebaf2b",
+  "isSidechain": false,
+  "requestId": "req_011Cb7qtVWGYd4ZbjJZah4we",
+  "type": "assistant",
+  "uuid": "30356e7e-4571-4e15-b914-21c10d71586e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016b9sgJiHav4hF5U1KoLyc2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 286,
+      "cache_read_input_tokens": 60833,
+      "output_tokens": 568,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 286,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 568,
+          "cache_read_input_tokens": 60833,
+          "cache_creation_input_tokens": 286,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 286
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T08:42:28.841Z_
+
+<details><summary>↩ Tool result · `toolu_01EW9LSymgh6rEHLxTfuDMzV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/memory.md\", \"content\": \"# 文献调研：Answer-Conditioned Constraint Extraction from LLM Reasoning Traces\\n\\n**日期**: 2025-05-17  \\n**目标**: 为 D030 methods paper 寻找从 reasoning traces 提取 answer-discriminative 约束的技术参考\\n\\n---\\n\\n## 核心问题\\n\\n当前 SICA 提取的约束是 domain facts（无论答案如何都成立），导致 MaxSAT 聚合退化为 weighted majority vote。需要提取\\\"answer=A → X 成立; answer=B → Y 成立\\\"形式的判别性约束。\\n\\n## 最相关论文\\n\\n### 1. Math-Shepherd (ACL 2024)\\n- **核心思路**: 对每个推理步骤，从该步续写多条路径检查能否到达正确答案。步骤标签本质上是 outcome-conditioned 的——步骤\\\"正确\\\"当且仅当存在从该步到正确答案的延续路径。\\n- **适配价值**: 可直接借鉴其思路——对每条约束，检查它与哪些最终答案兼容。兼容答案集合不同的约束即为 discriminative constraints。\\n\\n### 2. GRACE: Discriminator-Guided Chain-of-Thought Reasoning (EMNLP 2023 Findings)\\n- **核心思路**: 训练 step-level discriminator（对比学习，正样本=正确步骤，负样本=错误步骤），解码时用 discriminator 评分引导生成正确推理步骤。\\n- **适配价值**: 其对比训练框架可直接用于训练\\\"约束判别器\\\"——给定约束+答案对，判断该约束是否支持该答案。\\n\\n### 3. DiVeRSe: Diverse Verifier on Reasoning Steps (ACL 2023)\\n- **核心思路**: 多 prompt 生成多样推理路径 + step-aware verifier 逐步验证 + 加权投票选答案。\\n- **适配价值**: 多样路径生成策略可用于增加约束多样性；step-level verification 思路可用于标注哪些步骤/约束是 answer-specific 的。\\n\\n### 4. Multi-Agent Debate / D3 Framework (2024)\\n- **核心发现**: 研究表明 debate 的性能增益主要来自 output aggregation 而非真正的论证交互——与 SICA 退化为 majority vote 的问题完全一致。\\n- **警示**: 简单的多 agent 对抗不足以产生 discriminative 信号，需要结构化的 answer-conditioned 论证。\\n\\n### 5. Atomic-SNLI / NLI Decomposition (2025)\\n- **核心思路**: 将假设分解为 atomic facts，逐个检查与前提的蕴含/矛盾关系，组合得到最终判断。\\n- **适配价值**: 可将每条约束视为 atomic fact，用 NLI 检查\\\"约束 C 蕴含 answer=A\\\"还是\\\"约束 C 与 answer=A 矛盾\\\"，从而标注约束的 answer-discriminative 属性。\\n\\n## 可行适配方案\\n\\n| 方案 | 改动量 | 需要训练 | 推理成本 |\\n|------|--------|----------|----------|\\n| **A. Outcome-conditioned labeling (Math-Shepherd 式)**: 对每条约束，用 LLM 续写检查与各候选答案的兼容性 | 中等（需修改约束提取 pipeline） | 否 | 高（每条约束需多次续写） |\\n| **B. NLI-based filtering**: 用 NLI 模型判断\\\"约束 C → answer A\\\"的蕴含关系，只保留有判别力的约束 | 小（加一个后处理步骤） | 否（用现成 NLI 模型） | 低 |\\n| **C. Contrastive prompt**: 直接在 prompt 中要求 LLM 生成\\\"支持 answer A 但反对 answer B\\\"的约束 | 小（改 prompt） | 否 | 与当前相同 |\\n| **D. 训练 step-level discriminator (GRACE 式)**: 收集正负样本训练约束判别器 | 大 | 是 | 中（推理时一次前向传播） |\\n\\n## 推荐优先级\\n\\n1. **方案 C**（零成本验证）→ 2. **方案 B**（轻量后处理）→ 3. **方案 A**（更精确但更贵）\\n\\n方案 C 最简单：修改 constraint extraction prompt，显式要求\\\"列出支持答案 X 的约束\\\"和\\\"列出反对答案 X 的约束\\\"，使约束天然带有 answer conditioning。如果 LLM 仍然生成 domain facts，再用方案 B 的 NLI 过滤筛除非判别性约束。\\n\\n---\\n\\n## 失败模式记录\\n\\n- [失败模式] infrastructure/ENV_ACTIVATION：submit_training_job 提交直接 `python xxx.py` 命令时，tmux session 中 PATH 不含 conda，导致 EXIT_CODE=127。修复方案：所有命令必须加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀，或使用 bash wrapper 脚本（脚本内含激活）。(2026-05-17, pilot-contrastive-prompt)\\n\\n---\\n\\n## Operating Regime 倒 U 型发现 (2026-05-17)\\n\\n### 核心洞察\\n\\nSICA 增益不是模型能力的单调函数。数据揭示**倒 U 型 sweet spot**：\\n\\n| 模型 | SC accuracy | Multi-cand rate | SICA delta | 机制解释 |\\n|------|------------|-----------------|------------|----------|\\n| Mistral-7B | 48.3% | 6.7% | 0pp | **下界以下**: 模型太弱，约束质量差，SICA 无法有效改票 |\\n| LLaMA-3.1-8B | 60.0% | 61.7% | +6.67pp | **Sweet spot**: 足够弱产生多样 traces，又足够强提取有意义约束 |\\n| Qwen-14B | 76.2% | 46.0% | +0.3pp | **上界以上**: 模型太强，traces 趋同，SICA 无操作空间 |\\n| Qwen-14B/ARC | 96.7% | 8.3% | -1.67pp | **天花板**: 几乎完美，SICA 只能引入噪声 |\\n| QwQ-32B | ~75% | 2.6% | 0/-5.9pp | **推理模型**: 确定性链消灭多样性 |\\n\\n### 关键中介变量\\n\\nMulti-candidate rate 是最重要的中介指标：\\n- Mistral 虽有 50% 非 unanimous votes，但 multi-candidate rate 仅 6.7%——投票分歧未被约束系统捕捉\\n- LLaMA-8B 的 61.7% multi-candidate rate 是所有模型中最高的\\n- 高 multi-candidate rate = SICA 有操作空间的必要条件\\n\\n### 论文 framing 影响\\n\\n这个发现将论文从\\\"SICA 在弱模型上有效\\\"升级为\\\"SICA 有明确的 operating regime，由 model capability × trace diversity × constraint quality 三因素决定\\\"。倒 U 型比单调关系更有学术价值。\\n\\n### 待验证\\n\\nexp-019 StrategyQA 200 题 powered test 将确认 sweet spot 的统计显著性。若显著 → 论文有强 quantitative claim。\\n\", \"total_chars\": 3559, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "30356e7e-4571-4e15-b914-21c10d71586e",
+  "isSidechain": false,
+  "promptId": "7cf78713-91e1-43fd-9e4e-a61ad12a4b77",
+  "type": "user",
+  "uuid": "3c358dbf-01f0-430e-b8f0-36f531e32bf2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/memory.md\\\", \\\"content\\\": \\\"# 文献调研：Answer-Conditioned Constraint Extraction from LLM Reasoning Traces\\\\n\\\\n**日期**: 2025-05-17  \\\\n**目标**: 为 D030 methods paper 寻找从 reasoning traces 提取 answer-discriminative 约束的技术参考\\\\n\\\\n---\\\\n\\\\n## 核心问题\\\\n\\\\n当前 SICA 提取的约束是 domain facts（无论答案如何都成立），导致 MaxSAT 聚合退化为 weighted majority vote。需要提取\\\\\\\"answer=A → X 成立; answer=B → Y 成立\\\\\\\"形式的判别性约束。\\\\n\\\\n## 最相关论文\\\\n\\\\n### 1. Math-Shepherd (ACL 2024)\\\\n- **核心思路**: 对每个推理步骤，从该步续写多条路径检查能否到达正确答案。步骤标签本质上是 outcome-conditioned 的——步骤\\\\\\\"正确\\\\\\\"当且仅当存在从该步到正确答案的延续路径。\\\\n- **适配价值**: 可直接借鉴其思路——对每条约束，检查它与哪些最终答案兼容。兼容答案集合不同的约束即为 discriminative constraints。\\\\n\\\\n### 2. GRACE: Discriminator-Guided Chain-of-Thought Reasoning (EMNLP 2023 Findings)\\\\n- **核心思路**: 训练 step-level discriminator（对比学习，正样本=正确步骤，负样本=错误步骤），解码时用 discriminator 评分引导生成正确推理步骤。\\\\n- **适配价值**: 其对比训练框架可直接用于训练\\\\\\\"约束判别器\\\\\\\"——给定约束+答案对，判断该约束是否支持该答案。\\\\n\\\\n### 3. DiVeRSe: Diverse Verifier on Reasoning Steps (ACL 2023)\\\\n- **核心思路**: 多 prompt 生成多样推理路径 + step-aware verifier 逐步验证 + 加权投票选答案。\\\\n- **适配价值**: 多样路径生成策略可用于增加约束多样性；step-level verification 思路可用于标注哪些步骤/约束是 answer-specific 的。\\\\n\\\\n### 4. Multi-Agent Debate / D3 Framework (2024)\\\\n- **核心发现**: 研究表明 debate 的性能增益主要来自 output aggregation 而非真正的论证交互——与 SICA 退化为 majority vote 的问题完全一致。\\\\n- **警示**: 简单的多 agent 对抗不足以产生 discriminative 信号，需要结构化的 answer-conditioned 论证。\\\\n\\\\n### 5. Atomic-SNLI / NLI Decomposition (2025)\\\\n- **核心思路**: 将假设分解为 atomic facts，逐个检查与前提的蕴含/矛盾关系，组合得到最终判断。\\\\n- **适配价值**: 可将每条约束视为 atomic fact，用 NLI 检查\\\\\\\"约束 C 蕴含 answer=A\\\\\\\"还是\\\\\\\"约束 C 与 answer=A 矛盾\\\\\\\"，从而标注约束的 answer-discriminative 属性。\\\\n\\\\n## 可行适配方案\\\\n\\\\n| 方案 | 改动量 | 需要训练 | 推理成本 |\\\\n|------|--------|----------|----------|\\\\n| **A. Outcome-conditioned labeling (Math-Shepherd 式)**: 对每条约束，用 LLM 续写检查与各候选答案的兼容性 | 中等（需修改约束提取 pipeline） | 否 | 高（每条约束需多次续写） |\\\\n| **B. NLI-based filtering**: 用 NLI 模型判断\\\\\\\"约束 C → answer A\\\\\\\"的蕴含关系，只保留有判别力的约束 | 小（加一个后处理步骤） | 否（用现成 NLI 模型） | 低 |\\\\n| **C. Contrastive prompt**: 直接在 prompt 中要求 LLM 生成\\\\\\\"支持 answer A 但反对 answer B\\\\\\\"的约束 | 小（改 prompt） | 否 | 与当前相同 |\\\\n| **D. 训练 step-level discriminator (GRACE 式)**: 收集正负样本训练约束判别器 | 大 | 是 | 中（推理时一次前向传播） |\\\\n\\\\n## 推荐优先级\\\\n\\\\n1. **方案 C**（零成本验证）→ 2. **方案 B**（轻量后处理）→ 3. **方案 A**（更精确但更贵）\\\\n\\\\n方案 C 最简单：修改 constraint extraction prompt，显式要求\\\\\\\"列出支持答案 X 的约束\\\\\\\"和\\\\\\\"列出反对答案 X 的约束\\\\\\\"，使约束天然带有 answer conditioning。如果 LLM 仍然生成 domain facts，再用方案 B 的 NLI 过滤筛除非判别性约束。\\\\n\\\\n---\\\\n\\\\n## 失败模式记录\\\\n\\\\n- [失败模式] infrastructure/ENV_ACTIVATION：submit_training_job 提交直接 `python xxx.py` 命令时，tmux session 中 PATH 不含 conda，导致 EXIT_CODE=127。修复方案：所有命令必须加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀，或使用 bash wrapper 脚本（脚本内含激活）。(2026-05-17, pilot-contrastive-prompt)\\\\n\\\\n---\\\\n\\\\n## Operating Regime 倒 U 型发现 (2026-05-17)\\\\n\\\\n### 核心洞察\\\\n\\\\nSICA 增益不是模型能力的单调函数。数据揭示**倒 U 型 sweet spot**：\\\\n\\\\n| 模型 | SC accuracy | Multi-cand rate | SICA delta | 机制解释 |\\\\n|------|------------|-----------------|------------|----------|\\\\n| Mistral-7B | 48.3% | 6.7% | 0pp | **下界以下**: 模型太弱，约束质量差，SICA 无法有效改票 |\\\\n| LLaMA-3.1-8B | 60.0% | 61.7% | +6.67pp | **Sweet spot**: 足够弱产生多样 traces，又足够强提取有意义约束 |\\\\n| Qwen-14B | 76.2% | 46.0% | +0.3pp | **上界以上**: 模型太强，traces 趋同，SICA 无操作空间 |\\\\n| Qwen-14B/ARC | 96.7% | 8.3% | -1.67pp | **天花板**: 几乎完美，SICA 只能引入噪声 |\\\\n| QwQ-32B | ~75% | 2.6% | 0/-5.9pp | **推理模型**: 确定性链消灭多样性 |\\\\n\\\\n### 关键中介变量\\\\n\\\\nMulti-candidate rate 是最重要的中介指标：\\\\n- Mistral 虽有 50% 非 unanimous votes，但 multi-candidate rate 仅 6.7%——投票分歧未被约束系统捕捉\\\\n- LLaMA-8B 的 61.7% multi-candidate rate 是所有模型中最高的\\\\n- 高 multi-candidate rate = SICA 有操作空间的必要条件\\\\n\\\\n### 论文 framing 影响\\\\n\\\\n这个发现将论文从\\\\\\\"SICA 在弱模型上有效\\\\\\\"升级为\\\\\\\"SICA 有明确的 operating regime，由 model capability × trace diversity × constraint quality 三因素决定\\\\\\\"。倒 U 型比单调关系更有学术价值。\\\\n\\\\n### 待验证\\\\n\\\\nexp-019 StrategyQA 200 题 powered test 将确认 sweet spot 的统计显著性。若显著 → 论文有强 quantitative claim。\\\\n\\\", \\\"total_chars\\\": 3559, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/memory.md\", \"content\": \"# 文献调研：Answer-Conditioned Constraint Extraction from LLM Reasoning Traces\\n\\n**日期**: 2025-05-17  \\n**目标**: 为 D030 methods paper 寻找从 reasoning traces 提取 answer-discriminative 约束的技术参考\\n\\n---\\n\\n## 核心问题\\n\\n当前 SICA 提取的约束是 domain facts（无论答案如何都成立），导致 MaxSAT 聚合退化为 weighted majority vote。需要提取\\\"answer=A → X 成立; answer=B → Y 成立\\\"形式的判别性约束。\\n\\n## 最相关论文\\n\\n### 1. Math-Shepherd (ACL 2024)\\n- **核心思路**: 对每个推理步骤，从该步续写多条路径检查能否到达正确答案。步骤标签本质上是 outcome-conditioned 的——步骤\\\"正确\\\"当且仅当存在从该步到正确答案的延续路径。\\n- **适配价值**: 可直接借鉴其思路——对每条约束，检查它与哪些最终答案兼容。兼容答案集合不同的约束即为 discriminative constraints。\\n\\n### 2. GRACE: Discriminator-Guided Chain-of-Thought Reasoning (EMNLP 2023 Findings)\\n- **核心思路**: 训练 step-level discriminator（对比学习，正样本=正确步骤，负样本=错误步骤），解码时用 discriminator 评分引导生成正确推理步骤。\\n- **适配价值**: 其对比训练框架可直接用于训练\\\"约束判别器\\\"——给定约束+答案对，判断该约束是否支持该答案。\\n\\n### 3. DiVeRSe: Diverse Verifier on Reasoning Steps (ACL 2023)\\n- **核心思路**: 多 prompt 生成多样推理路径 + step-aware verifier 逐步验证 + 加权投票选答案。\\n- **适配价值**: 多样路径生成策略可用于增加约束多样性；step-level verification 思路可用于标注哪些步骤/约束是 answer-specific 的。\\n\\n### 4. Multi-Agent Debate / D3 Framework (2024)\\n- **核心发现**: 研究表明 debate 的性能增益主要来自 output aggregation 而非真正的论证交互——与 SICA 退化为 majority vote 的问题完全一致。\\n- **警示**: 简单的多 agent 对抗不足以产生 discriminative 信号，需要结构化的 answer-conditioned 论证。\\n\\n### 5. Atomic-SNLI / NLI Decomposition (2025)\\n- **核心思路**: 将假设分解为 atomic facts，逐个检查与前提的蕴含/矛盾关系，组合得到最终判断。\\n- **适配价值**: 可将每条约束视为 atomic fact，用 NLI 检查\\\"约束 C 蕴含 answer=A\\\"还是\\\"约束 C 与 answer=A 矛盾\\\"，从而标注约束的 answer-discriminative 属性。\\n\\n## 可行适配方案\\n\\n| 方案 | 改动量 | 需要训练 | 推理成本 |\\n|------|--------|----------|----------|\\n| **A. Outcome-conditioned labeling (Math-Shepherd 式)**: 对每条约束，用 LLM 续写检查与各候选答案的兼容性 | 中等（需修改约束提取 pipeline） | 否 | 高（每条约束需多次续写） |\\n| **B. NLI-based filtering**: 用 NLI 模型判断\\\"约束 C → answer A\\\"的蕴含关系，只保留有判别力的约束 | 小（加一个后处理步骤） | 否（用现成 NLI 模型） | 低 |\\n| **C. Contrastive prompt**: 直接在 prompt 中要求 LLM 生成\\\"支持 answer A 但反对 answer B\\\"的约束 | 小（改 prompt） | 否 | 与当前相同 |\\n| **D. 训练 step-level discriminator (GRACE 式)**: 收集正负样本训练约束判别器 | 大 | 是 | 中（推理时一次前向传播） |\\n\\n## 推荐优先级\\n\\n1. **方案 C**（零成本验证）→ 2. **方案 B**（轻量后处理）→ 3. **方案 A**（更精确但更贵）\\n\\n方案 C 最简单：修改 constraint extraction prompt，显式要求\\\"列出支持答案 X 的约束\\\"和\\\"列出反对答案 X 的约束\\\"，使约束天然带有 answer conditioning。如果 LLM 仍然生成 domain facts，再用方案 B 的 NLI 过滤筛除非判别性约束。\\n\\n---\\n\\n## 失败模式记录\\n\\n- [失败模式] infrastructure/ENV_ACTIVATION：submit_training_job 提交直接 `python xxx.py` 命令时，tmux session 中 PATH 不含 conda，导致 EXIT_CODE=127。修复方案：所有命令必须加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀，或使用 bash wrapper 脚本（脚本内含激活）。(2026-05-17, pilot-contrastive-prompt)\\n\\n---\\n\\n## Operating Regime 倒 U 型发现 (2026-05-17)\\n\\n### 核心洞察\\n\\nSICA 增益不是模型能力的单调函数。数据揭示**倒 U 型 sweet spot**：\\n\\n| 模型 | SC accuracy | Multi-cand rate | SICA delta | 机制解释 |\\n|------|------------|-----------------|------------|----------|\\n| Mistral-7B | 48.3% | 6.7% | 0pp | **下界以下**: 模型太弱，约束质量差，SICA 无法有效改票 |\\n| LLaMA-3.1-8B | 60.0% | 61.7% | +6.67pp | **Sweet spot**: 足够弱产生多样 traces，又足够强提取有意义约束 |\\n| Qwen-14B | 76.2% | 46.0% | +0.3pp | **上界以上**: 模型太强，traces 趋同，SICA 无操作空间 |\\n| Qwen-14B/ARC | 96.7% | 8.3% | -1.67pp | **天花板**: 几乎完美，SICA 只能引入噪声 |\\n| QwQ-32B | ~75% | 2.6% | 0/-5.9pp | **推理模型**: 确定性链消灭多样性 |\\n\\n### 关键中介变量\\n\\nMulti-candidate rate 是最重要的中介指标：\\n- Mistral 虽有 50% 非 unanimous votes，但 multi-candidate rate 仅 6.7%——投票分歧未被约束系统捕捉\\n- LLaMA-8B 的 61.7% multi-candidate rate 是所有模型中最高的\\n- 高 multi-candidate rate = SICA 有操作空间的必要条件\\n\\n### 论文 framing 影响\\n\\n这个发现将论文从\\\"SICA 在弱模型上有效\\\"升级为\\\"SICA 有明确的 operating regime，由 model capability × trace diversity × constraint quality 三因素决定\\\"。倒 U 型比单调关系更有学术价值。\\n\\n### 待验证\\n\\nexp-019 StrategyQA 200 题 powered test 将确认 sweet spot 的统计显著性。若显著 → 论文有强 quantitative claim。\\n\", \"total_chars\": 3559, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "30356e7e-4571-4e15-b914-21c10d71586e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37 · 2026-05-17T08:42:28.888Z_
+
+```json
+{
+  "parentUuid": "3c358dbf-01f0-430e-b8f0-36f531e32bf2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "32941fb2-a065-4a2f-937c-114ad98656c5",
+  "timestamp": "2026-05-17T08:42:28.888Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #8。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westd-32608:cuda:0（gpu_ids 白名单仅此一张） - LLaMA-3.1-8B-Instruct 已两次 EXIT_CODE=1 失败（exp-011-llama8b, exp-011-llama8…",
+  "leafUuid": "32941fb2-a065-4a2f-937c-114ad98656c5",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose LLaMA-3.1-8B failure and manage cross-family experiments",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772"
+}
+```
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-17T08:42:49.326Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Current state:
+1. exp-019 RUNNING, 101/200 completed (~50%), Worker monitoring it
+2. Worker pool = 1 (monitoring Worker) - need at least 1 more
+3. exp-020 PREPARING - needs script prep so it's ready immediately when GPU frees
+
+What CPU-bound work can I parallelize:
+1. **Prep exp-020 script** - Worker needs to SSH in and write the StrategyQA → FOLIO script adaptation. This is critical for zero-downtime GPU transition.
+2. **exp-011 truncation bias analysis** - mentioned in ROADMAP as pending CPU task. 
+
+I can analyze whether the 44 truncated traces in exp-011-llama8b-v3 show correlation with discordant pairs. The pilot-contrastive-prompt script is ready but blocked on GPU availability, so I'll queue it after exp-019 and exp-020 complete.
+
+Checking the Director's status: memory.md documents the inverted-U pattern and ROADMAP references D031/D032 decisions, so the Director was likely already informed about exp-010-mistral-v3's negative result, exp-011-llama8b-v3's success, and the pattern findings in previous loops.
+
+Now I need to spawn another Worker.
+
+I'll start one for exp-020-llama8b-folio-204 script prep to avoid GPU downtime, and another for the truncation bias analysis on exp-011 since that's CPU-only with existing data. The monitoring Worker for exp-019 is already running at turn 26 with 101/200 progress, so I'll let it continue and wait for its callback before doing a full Director report. Once exp-019 finishes, the cron will trigger the next phase.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32941fb2-a065-4a2f-937c-114ad98656c5",
+  "isSidechain": false,
+  "requestId": "req_011Cb7quYiXSN5pkhax7PRMQ",
+  "type": "assistant",
+  "uuid": "a9366665-12b7-4d71-a282-fe739e1eaf54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014wLA6ukfmtogHeTudbo4MU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3418,
+      "cache_read_input_tokens": 61119,
+      "output_tokens": 2451,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3418,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2451,
+          "cache_read_input_tokens": 61119,
+          "cache_creation_input_tokens": 3418,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3418
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-17T08:42:52.308Z_
+
+exp-019 进度 101/200（~50%），Worker 在监控中。GPU 在用但 Worker 池只有 1 个。需要并行启动 CPU 任务：
+
+1. **exp-020 脚本准备**（GPU 空出即可提交，零空窗）
+2. **exp-011 truncation bias 分析**（CPU 任务，检查 44 条截断 trace 与 discordant pairs 相关性）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9366665-12b7-4d71-a282-fe739e1eaf54",
+  "isSidechain": false,
+  "requestId": "req_011Cb7quYiXSN5pkhax7PRMQ",
+  "type": "assistant",
+  "uuid": "c66ce3ba-2904-4016-bf3e-45ef95b94f50",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014wLA6ukfmtogHeTudbo4MU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3418,
+      "cache_read_input_tokens": 61119,
+      "output_tokens": 2451,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3418,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2451,
+          "cache_read_input_tokens": 61119,
+          "cache_creation_input_tokens": 3418,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3418
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-17T08:43:09.294Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01QPCSvNUHd5wEwr3pYRRVWb`</summary>
+
+```json
+{
+  "task_type": "code:prep-exp020-folio204",
+  "project": "symb_invariant_consensus",
+  "task_prompt": "## 任务：准备 exp-020-llama8b-folio-204 启动脚本\n\n### 背景\nexp-019-llama8b-strategyqa-200 正在运行（~50%完成），完成后需要立即启动 exp-020（LLaMA-3.1-8B-Instruct 跑 FOLIO 全量 204 题）。你的任务是提前准备好脚本，确保 GPU 一空出就能提交。\n\n### 参考信息\n- 服务器：westd-32608, account: root\n- 工作目录：/root/symb_invariant_consensus/\n- 模型路径：LLaMA-3.1-8B-Instruct（在 /root/autodl-tmp/models/ 下，需要 SSH 确认具体路径）\n- 数据路径：/root/symb_invariant_consensus/data/folio_full.json (204 题)\n- Python 环境：source /root/miniconda3/bin/activate\n- GPU：cuda:0（RTX PRO 6000 Blackwell 98GB）\n- 现有参考脚本：/root/symb_invariant_consensus/scripts/ 下有之前的脚本\n\n### 具体步骤\n1. SSH 到服务器，确认 LLaMA-3.1-8B-Instruct 模型路径\n2. 查看现有脚本（特别是 exp-011 用的 run_exp011_llama8b.sh 和 exp-019 用的脚本），了解参数配置\n3. 创建 /root/symb_invariant_consensus/scripts/run_exp020_folio204.sh：\n   - 模型：LLaMA-3.1-8B-Instruct\n   - 数据：/root/symb_invariant_consensus/data/folio_full.json\n   - K=12, temperature=0.7\n   - 输出目录：results/exp020_llama8b_folio204/\n   - 脚本内含 vLLM 旧进程清理 + conda 环境激活\n   - max-model-len 和 max-tokens 参照 exp-011/exp-019 的设置\n4. dry-run 验证脚本语法正确（bash -n）\n5. 确认数据文件存在且记录条数（wc -l 或 python 读取）\n\n### 产出\n- /root/symb_invariant_consensus/scripts/run_exp020_folio204.sh（可直接提交）\n- 回报：模型路径、数据条数、预估运行时间、脚本关键参数\n\n### 注意\n- 不要启动脚本！只准备好。GPU 当前被 exp-019 占用。\n- 不要 kill 任何现有进程。\n",
+  "tool_groups": [
+    "ssh"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c66ce3ba-2904-4016-bf3e-45ef95b94f50",
+  "isSidechain": false,
+  "requestId": "req_011Cb7quYiXSN5pkhax7PRMQ",
+  "type": "assistant",
+  "uuid": "4c117c74-e3bf-4c00-bb28-72d2db5b7fb5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014wLA6ukfmtogHeTudbo4MU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3418,
+      "cache_read_input_tokens": 61119,
+      "output_tokens": 2451,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3418,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2451,
+          "cache_read_input_tokens": 61119,
+          "cache_creation_input_tokens": 3418,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3418
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-17T08:43:12.174Z_
+
+<details><summary>↩ Tool result · `toolu_01QPCSvNUHd5wEwr3pYRRVWb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_prep-exp020-folio204_20260517T084309\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_prep-exp020-folio204_20260517T084309.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_prep-exp020-folio204_20260517T084309 started. Use get_worker_status('worker_code_prep-exp020-folio204_20260517T084309') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4c117c74-e3bf-4c00-bb28-72d2db5b7fb5",
+  "isSidechain": false,
+  "promptId": "7cf78713-91e1-43fd-9e4e-a61ad12a4b77",
+  "type": "user",
+  "uuid": "1d009fea-3811-49e6-80c0-1ae7de014ca1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_prep-exp020-folio204_20260517T084309\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_prep-exp020-folio204_20260517T084309.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_prep-exp020-folio204_20260517T084309 started. Use get_worker_status('worker_code_prep-exp020-folio204_20260517T084309') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_code_prep-exp020-folio204_20260517T084309\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_prep-exp020-folio204_20260517T084309.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_prep-exp020-folio204_20260517T084309 started. Use get_worker_status('worker_code_prep-exp020-folio204_20260517T084309') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4c117c74-e3bf-4c00-bb28-72d2db5b7fb5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-17T08:43:25.133Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_014W9VkER4u4C26MWykQpUXR`</summary>
+
+```json
+{
+  "task_type": "analysis:exp011-truncation-bias",
+  "project": "symb_invariant_consensus",
+  "task_prompt": "## 任务：exp-011 Truncation Bias 分析（CPU-only）\n\n### 背景\nexp-011-llama8b-v3（LLaMA-3.1-8B-Instruct, D012 30PW+30FOLIO）结果：\n- SICA 66.67% vs SC 60.00%, +6.67pp\n- Discordant: SICA wins 5, SC wins 1\n- **44/60 题有 truncated traces**（max-tokens 可能偏短）\n- McNemar p=0.22 (n=60)\n\n问题：truncated traces 是否系统性地偏向 SICA 或 SC？如果 discordant pairs 全在 truncated 题上，+6.67pp 可能是截断 artifact 而非真实增益。\n\n### 具体分析\n1. SSH 到 westd-32608（root），进入 /root/symb_invariant_consensus/\n2. 找到 exp-011-llama8b-v3 的结果文件（应在 results/ 目录下，查找包含 llama 的目录）\n3. 分析：\n   a. 列出 6 个 discordant pairs（5 SICA-wins + 1 SC-win）的题目 ID\n   b. 检查这 6 个 discordant pairs 中有多少题含有 truncated traces\n   c. 对比：truncated 题的 SICA vs SC accuracy 与 non-truncated 题的 SICA vs SC accuracy\n   d. 计算：truncated traces 的平均 token 长度 vs non-truncated 的平均 token 长度\n   e. 如果可能，检查 truncated traces 是否倾向于产生特定答案（potential bias direction）\n4. 写一个简短分析报告（save_project_file 到 memory.md 不需要，直接在回复中总结即可）\n\n### 环境\n- 服务器：westd-32608, account: root\n- Python: source /root/miniconda3/bin/activate\n- 结果目录：/root/symb_invariant_consensus/results/（查找 exp-011 或 llama 相关目录）\n- 这是 CPU-only 分析，不要占 GPU\n\n### 产出\n回报以下内容：\n1. Discordant pairs 与 truncation 的重叠度\n2. Truncation 是否与 SICA 增益相关（confound 还是无关）\n3. 建议：是否需要用更大 max-tokens 重跑 exp-011\n",
+  "tool_groups": [
+    "ssh"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d009fea-3811-49e6-80c0-1ae7de014ca1",
+  "isSidechain": false,
+  "requestId": "req_011Cb7quYiXSN5pkhax7PRMQ",
+  "type": "assistant",
+  "uuid": "b534cb98-a0ee-42f9-8b3b-96349a3e7e0b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014wLA6ukfmtogHeTudbo4MU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3418,
+      "cache_read_input_tokens": 61119,
+      "output_tokens": 2451,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3418,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2451,
+          "cache_read_input_tokens": 61119,
+          "cache_creation_input_tokens": 3418,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3418
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-17T08:43:27.510Z_
+
+<details><summary>↩ Tool result · `toolu_014W9VkER4u4C26MWykQpUXR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp011-truncation-bias_20260517T084325\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_exp011-truncation-bias_20260517T084325.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp011-truncation-bias_20260517T084325 started. Use get_worker_status('worker_analysis_exp011-truncation-bias_20260517T084325') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b534cb98-a0ee-42f9-8b3b-96349a3e7e0b",
+  "isSidechain": false,
+  "promptId": "7cf78713-91e1-43fd-9e4e-a61ad12a4b77",
+  "type": "user",
+  "uuid": "87af2e44-f4e7-4d05-afad-3fb3ae393e12",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_exp011-truncation-bias_20260517T084325\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_exp011-truncation-bias_20260517T084325.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_exp011-truncation-bias_20260517T084325 started. Use get_worker_status('worker_analysis_exp011-truncation-bias_20260517T084325') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp011-truncation-bias_20260517T084325\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_exp011-truncation-bias_20260517T084325.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp011-truncation-bias_20260517T084325 started. Use get_worker_status('worker_analysis_exp011-truncation-bias_20260517T084325') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b534cb98-a0ee-42f9-8b3b-96349a3e7e0b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_d5478d51",
+  "sessionId": "2167ab2d-bb42-48bb-9cfa-ee5839611772",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---

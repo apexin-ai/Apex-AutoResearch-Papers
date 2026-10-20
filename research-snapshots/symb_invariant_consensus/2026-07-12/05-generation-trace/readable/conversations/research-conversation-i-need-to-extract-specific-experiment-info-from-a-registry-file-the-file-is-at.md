@@ -1,0 +1,1619 @@
+# Research conversation: I need to extract specific experiment info from a registry file. The file is at: /home/ubuntu/.claude-account-3/projects
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 18
+- **Recorded user turns:** 1
+- **Tool calls:** 6
+- **Original source:** `logs/chats/exported-trajectories/account-3/agent-aa664f0c291f775c4.jsonl`
+- **Structured JSON:** [`907a8d044c9a595b823d.json`](../../sessions/90/907a8d044c9a595b823d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+18 recorded events
+
+### User
+
+_source line 1 · 2026-05-19T05:54:45.348Z_
+
+I need to extract specific experiment info from a registry file. The file is at:
+/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/c42f8c51-65c7-4b47-a101-66ea6c0de4f4/tool-results/mcp-agent-ml-research-read_registry-1779170077736.txt
+
+This is JSON with schema: {result: string} where result is a JSON string that needs to be parsed.
+
+For each of these experiments, I need:
+- exp-020, exp-026, exp-027, exp-033, exp-034, exp-039, exp-046, exp-051, exp-052, exp-053, exp-054, exp-057, exp-058
+
+Extract for each:
+1. spec.server
+2. spec.data_path or spec.log_path or any path info
+3. metrics (all of them)
+4. status, conclusion
+
+Use jq or python to parse the nested JSON. Return the results in a clear format.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "1978dac0-65c1-406a-96fc-e99cae781b1f",
+  "agentId": "aa664f0c291f775c4",
+  "type": "user",
+  "uuid": "1404cd47-f5af-4b5e-ab34-500e7b25b4df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "c42f8c51-65c7-4b47-a101-66ea6c0de4f4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T05:54:45.409Z_
+
+```json
+{
+  "parentUuid": "1404cd47-f5af-4b5e-ab34-500e7b25b4df",
+  "isSidechain": true,
+  "agentId": "aa664f0c291f775c4",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "5624ca48-281b-488c-817e-6309efc4a8bb",
+  "timestamp": "2026-05-19T05:54:45.409Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "c42f8c51-65c7-4b47-a101-66ea6c0de4f4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T05:54:48.741Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01BMQToYWtdt5jd2Ao2rUGtf`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/c42f8c51-65c7-4b47-a101-66ea6c0de4f4/tool-results/mcp-agent-ml-research-read_registry-1779170077736.txt",
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5624ca48-281b-488c-817e-6309efc4a8bb",
+  "isSidechain": true,
+  "agentId": "aa664f0c291f775c4",
+  "requestId": "req_011CbBQjZJKoZwfLfsefdEjL",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "abd88b51-f9dd-431f-b184-1a9a1ceda738",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "c42f8c51-65c7-4b47-a101-66ea6c0de4f4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LCP1CTN1xTSwHdjCAquUJb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15911,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 164,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 15911
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 164,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 15911,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 15911,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-19T05:54:49.059Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01BMQToYWtdt5jd2Ao2rUGtf`</summary>
+
+```text
+File content (70386 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "abd88b51-f9dd-431f-b184-1a9a1ceda738",
+  "isSidechain": true,
+  "promptId": "1978dac0-65c1-406a-96fc-e99cae781b1f",
+  "agentId": "aa664f0c291f775c4",
+  "type": "user",
+  "uuid": "17326ec5-19fb-4273-9f58-dd2f0e09af81",
+  "toolUseResult": "Error: File content (70386 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "abd88b51-f9dd-431f-b184-1a9a1ceda738",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "c42f8c51-65c7-4b47-a101-66ea6c0de4f4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5 · 2026-05-19T05:54:52.175Z_
+
+The file is very large. Let me use Python to parse it and extract the needed experiments.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17326ec5-19fb-4273-9f58-dd2f0e09af81",
+  "isSidechain": true,
+  "agentId": "aa664f0c291f775c4",
+  "requestId": "req_011CbBQjpoyhMUXgW4p7sRzm",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "29b43ba1-9099-47d5-971b-87446dc70dc3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "c42f8c51-65c7-4b47-a101-66ea6c0de4f4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012yqNA8a3TuAFWi9vf6BgmP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1065,
+      "cache_read_input_tokens": 15911,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1065,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-19T05:54:56.657Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_018rUDDRGBtRhsbPVPDNQJta`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open(\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/c42f8c51-65c7-4b47-a101-66ea6c0de4f4/tool-results/mcp-agent-ml-research-read_registry-1779170077736.txt\", \"r\") as f:\n    raw = json.load(f)\n\n# The outer structure is {result: string}, parse the inner JSON\nregistry = json.loads(raw[\"result\"])\n\n# Show top-level keys to understand the structure\nif isinstance(registry, dict):\n    print(\"Top-level keys:\", list(registry.keys())[:20])\n    print(\"Type:\", type(registry))\n    # Check if experiments is a key\n    for k in registry:\n        print(f\"  {k}: type={type(registry[k]).__name__}, \", end=\"\")\n        if isinstance(registry[k], dict):\n            print(f\"keys={list(registry[k].keys())[:5]}\")\n        elif isinstance(registry[k], list):\n            print(f\"len={len(registry[k])}\")\n        else:\n            print(f\"val={str(registry[k])[:100]}\")\nelif isinstance(registry, list):\n    print(\"Registry is a list, len:\", len(registry))\n    if registry:\n        print(\"First item keys:\", list(registry[0].keys()) if isinstance(registry[0], dict) else type(registry[0]))\nPYEOF\n",
+  "description": "Parse registry JSON to understand structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29b43ba1-9099-47d5-971b-87446dc70dc3",
+  "isSidechain": true,
+  "agentId": "aa664f0c291f775c4",
+  "requestId": "req_011CbBQjpoyhMUXgW4p7sRzm",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b69c4c2f-7b4a-4db2-8755-d621614d95a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "c42f8c51-65c7-4b47-a101-66ea6c0de4f4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012yqNA8a3TuAFWi9vf6BgmP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1065,
+      "cache_read_input_tokens": 15911,
+      "output_tokens": 479,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1065
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 479,
+          "cache_read_input_tokens": 15911,
+          "cache_creation_input_tokens": 1065,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1065,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-19T05:54:56.740Z_
+
+<details><summary>↩ Tool result · `toolu_018rUDDRGBtRhsbPVPDNQJta`</summary>
+
+```text
+Top-level keys: ['success', 'data', 'error', 'metadata']
+Type: &lt;class 'dict'>
+  success: type=bool, val=True
+  data: type=dict, keys=['experiments', 'count', 'total', 'baseline']
+  error: type=NoneType, val=None
+  metadata: type=dict, keys=['elapsed_seconds']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b69c4c2f-7b4a-4db2-8755-d621614d95a4",
+  "isSidechain": true,
+  "promptId": "1978dac0-65c1-406a-96fc-e99cae781b1f",
+  "agentId": "aa664f0c291f775c4",
+  "type": "user",
+  "uuid": "86861c59-ae8b-45db-9ebd-62f38505750f",
+  "sourceToolAssistantUUID": "b69c4c2f-7b4a-4db2-8755-d621614d95a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "c42f8c51-65c7-4b47-a101-66ea6c0de4f4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-19T05:55:07.060Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_016Li49SVUZ46FDCdAvyhpUC`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open(\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/c42f8c51-65c7-4b47-a101-66ea6c0de4f4/tool-results/mcp-agent-ml-research-read_registry-1779170077736.txt\", \"r\") as f:\n    raw = json.load(f)\n\nregistry = json.loads(raw[\"result\"])\nexperiments = registry[\"data\"][\"experiments\"]\n\ntarget_ids = [\"exp-020\", \"exp-026\", \"exp-027\", \"exp-033\", \"exp-034\", \"exp-039\", \"exp-046\", \"exp-051\", \"exp-052\", \"exp-053\", \"exp-054\", \"exp-057\", \"exp-058\"]\n\nfor exp_id in target_ids:\n    if exp_id in experiments:\n        exp = experiments[exp_id]\n        print(f\"\\n{'='*80}\")\n        print(f\"## {exp_id}\")\n        print(f\"{'='*80}\")\n        \n        # Status and conclusion\n        print(f\"status: {exp.get('status', 'N/A')}\")\n        print(f\"conclusion: {exp.get('conclusion', 'N/A')}\")\n        \n        # spec\n        spec = exp.get(\"spec\", {})\n        print(f\"spec.server: {spec.get('server', 'N/A')}\")\n        \n        # Look for any path-related fields in spec\n        path_keys = [k for k in spec if 'path' in k.lower() or 'dir' in k.lower() or 'file' in k.lower() or 'log' in k.lower()]\n        for pk in path_keys:\n            print(f\"spec.{pk}: {spec[pk]}\")\n        \n        # Also print all spec keys for completeness\n        non_path_keys = [k for k in spec if k not in path_keys and k != 'server']\n        if non_path_keys:\n            print(f\"spec other keys: {non_path_keys}\")\n            for k in non_path_keys:\n                val = spec[k]\n                val_str = str(val)\n                if len(val_str) > 200:\n                    val_str = val_str[:200] + \"...\"\n                print(f\"  spec.{k}: {val_str}\")\n        \n        # metrics\n        metrics = exp.get(\"metrics\", {})\n        if metrics:\n            print(f\"metrics:\")\n            for mk, mv in metrics.items():\n                print(f\"  {mk}: {mv}\")\n        else:\n            print(\"metrics: (none)\")\n    else:\n        print(f\"\\n## {exp_id}: NOT FOUND in registry\")\n\nPYEOF\n",
+  "description": "Extract experiment details for all 13 target experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "86861c59-ae8b-45db-9ebd-62f38505750f",
+  "isSidechain": true,
+  "agentId": "aa664f0c291f775c4",
+  "requestId": "req_011CbBQkPdw1VenwbpVmoszk",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "19435a7c-ab00-46b7-adbb-be618e9304bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "c42f8c51-65c7-4b47-a101-66ea6c0de4f4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UvgYKEUnRhCrKHpB6LAgoa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 582,
+      "cache_read_input_tokens": 16976,
+      "output_tokens": 782,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 582
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 782,
+          "cache_read_input_tokens": 16976,
+          "cache_creation_input_tokens": 582,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 582,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T05:55:07.161Z_
+
+<details><summary>↩ Tool result · `toolu_016Li49SVUZ46FDCdAvyhpUC`</summary>
+
+```text
+## exp-020: NOT FOUND in registry
+
+## exp-026: NOT FOUND in registry
+
+## exp-027: NOT FOUND in registry
+
+================================================================================
+## exp-033
+================================================================================
+status: DONE
+conclusion: success
+spec.server: westd-25068
+spec.log_path: ~/runs/symb_invariant_consensus/exp-033.log
+spec.data_path: data/folio_full.json
+spec other keys: ['command', 'gpu', 'pid', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_count', 'model_name', 'seed', 'wall_clock_seconds', 'gpu_hours']
+  spec.command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && CUDA_VISIBLE_DEVICES=0 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.o...
+  spec.gpu: ['cuda:0']
+  spec.pid: 65773
+  spec.submitted_at: 2026-05-18T17:42:09.638Z
+  spec.submitted_via: submit_training_job
+  spec.backend: tmux
+  spec.account: root
+  spec.data_count: 204
+  spec.model_name: Mistral-7B-Instruct-v0.3
+  spec.seed: 42
+  spec.wall_clock_seconds: 5875.8
+  spec.gpu_hours: 1.63
+metrics:
+  n_problems: 204
+  sica_accuracy: 59.31
+  sc_accuracy: 54.41
+  delta_pp: 4.9
+  sica_correct: 121
+  sc_correct: 111
+  mcnemar_discordant_b: 12
+  mcnemar_discordant_c: 2
+  mcnemar_p_value: 0.0129
+  c0_non_unanimous_rate: 0.8137
+  avg_majority_frac: 0.7515
+  extraction_rate: 97.14
+  contradiction_rate: 3.5
+  problems_with_contradictions: 128
+  avg_unique_constraints: 39.3
+  maxsat_mean_sat_ratio: 0.9609
+  total_constraints: 14042
+  unique_constraints: 8021
+  wall_time_min: 81.4
+  k: 12
+
+================================================================================
+## exp-034
+================================================================================
+status: DONE
+conclusion: negative
+spec.server: westd-25068
+spec.log_path: ~/runs/symb_invariant_consensus/exp-034.log
+spec other keys: ['command', 'gpu', 'pid', 'submitted_at', 'submitted_via', 'backend', 'account', 'wall_clock_seconds', 'gpu_hours']
+  spec.command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && CUDA_VISIBLE_DEVICES=1 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.o...
+  spec.gpu: ['cuda:1']
+  spec.pid: 68543
+  spec.submitted_at: 2026-05-18T17:44:32.378Z
+  spec.submitted_via: submit_training_job
+  spec.backend: tmux
+  spec.account: root
+  spec.wall_clock_seconds: 12424.8
+  spec.gpu_hours: 3.45
+metrics:
+  n_problems: 93
+  n_target: 600
+  completion_pct: 15.5
+  sica_accuracy: 77.42
+  sc_accuracy: 74.19
+  delta_pp: 3.23
+  sica_correct: 72
+  sc_correct: 69
+  mcnemar_discordant_b: 6
+  mcnemar_discordant_c: 3
+  mcnemar_p_value: 0.5078
+  c0_non_unanimous_rate: 0.581
+  avg_majority_frac: 0.8324
+  extraction_rate: 99.19
+  contradiction_rate: 11.83
+  problems_with_contradictions: 11
+  avg_unique_constraints: 35.6
+  total_constraints: 14437
+  unique_constraints: 3308
+  dedup_ratio: 22.9
+  k: 12
+  level: OWA-D5
+  gt_distribution: {'True': 32, 'False': 28, 'Unknown': 33}
+  wall_time_s: 6086.4
+  status_note: INCOMPLETE: crashed at 93/600 (python not found after conda env lost)
+
+## exp-039: NOT FOUND in registry
+
+## exp-046: NOT FOUND in registry
+
+## exp-051: NOT FOUND in registry
+
+================================================================================
+## exp-052
+================================================================================
+status: DONE
+conclusion: success
+spec.server: westd-16639
+spec.data_path: data/folio_full.json
+spec other keys: ['command', 'data_count', 'model_name', 'seed']
+  spec.command: python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8002/v1 --model auto --seed 123 --math-data data/empty.json --pw-data data/empty.json --str...
+  spec.data_count: 204
+  spec.model_name: Mistral-7B-Instruct-v0.3
+  spec.seed: 123
+metrics:
+  n: 204
+  sc_accuracy: 53.9
+  sica_accuracy: 57.4
+  sc_correct: 110
+  sica_correct: 117
+  delta_pp: 3.43
+  discordant_b: 8
+  discordant_c: 1
+  extraction_rate: 0.971
+  contradiction_rate: 0.034
+  wall_time_min: 81.9
+  mcnemar_p: 0.0391
+  significant: True
+
+================================================================================
+## exp-053
+================================================================================
+status: DONE
+conclusion: negative
+spec.server: westd-16639
+spec.data_path: data/folio_full.json
+spec other keys: ['command', 'data_count', 'model_name', 'seed']
+  spec.command: python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8003/v1 --model auto --seed 456 --math-data data/empty.json --pw-data data/empty.json --str...
+  spec.data_count: 204
+  spec.model_name: Mistral-7B-Instruct-v0.3
+  spec.seed: 456
+metrics:
+  n: 204
+  sc_accuracy: 56.37
+  sica_accuracy: 55.88
+  sc_correct: 115
+  sica_correct: 114
+  delta_pp: -0.49
+  discordant_b: 2
+  discordant_c: 3
+  extraction_rate: 0.97
+  contradiction_rate: 0.033
+  wall_time_min: 80.8
+  mcnemar_p: 1.0
+  significant: False
+
+## exp-054: NOT FOUND in registry
+
+## exp-057: NOT FOUND in registry
+
+## exp-058: NOT FOUND in registry
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "19435a7c-ab00-46b7-adbb-be618e9304bd",
+  "isSidechain": true,
+  "promptId": "1978dac0-65c1-406a-96fc-e99cae781b1f",
+  "agentId": "aa664f0c291f775c4",
+  "type": "user",
+  "uuid": "e75e168a-e467-4ede-b34d-062c5905af31",
+  "sourceToolAssistantUUID": "19435a7c-ab00-46b7-adbb-be618e9304bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "c42f8c51-65c7-4b47-a101-66ea6c0de4f4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-19T05:55:10.240Z_
+
+Several experiments are missing. Let me check if they might be stored under different keys or in a different format.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e75e168a-e467-4ede-b34d-062c5905af31",
+  "isSidechain": true,
+  "agentId": "aa664f0c291f775c4",
+  "requestId": "req_011CbBQmADpA6wXc5VM7b75t",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7a3c7c54-324c-4f82-bf26-d13bb2729569",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "c42f8c51-65c7-4b47-a101-66ea6c0de4f4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QnvtvQJrMEUGXZnvhTVTrr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2714,
+      "cache_read_input_tokens": 17558,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2714,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T05:55:12.173Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LfzCLfcmrHXrPwKAV6TLpa`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open(\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/c42f8c51-65c7-4b47-a101-66ea6c0de4f4/tool-results/mcp-agent-ml-research-read_registry-1779170077736.txt\", \"r\") as f:\n    raw = json.load(f)\n\nregistry = json.loads(raw[\"result\"])\nexperiments = registry[\"data\"][\"experiments\"]\n\nprint(f\"Total experiments in registry: {len(experiments)}\")\nprint(f\"All experiment IDs: {sorted(experiments.keys())}\")\nPYEOF\n",
+  "description": "List all experiment IDs in registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a3c7c54-324c-4f82-bf26-d13bb2729569",
+  "isSidechain": true,
+  "agentId": "aa664f0c291f775c4",
+  "requestId": "req_011CbBQmADpA6wXc5VM7b75t",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "36a8b9c8-e6af-4568-82c3-bc26a3611184",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "c42f8c51-65c7-4b47-a101-66ea6c0de4f4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QnvtvQJrMEUGXZnvhTVTrr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2714,
+      "cache_read_input_tokens": 17558,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2714
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 17558,
+          "cache_creation_input_tokens": 2714,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2714,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T05:55:12.249Z_
+
+<details><summary>↩ Tool result · `toolu_01LfzCLfcmrHXrPwKAV6TLpa`</summary>
+
+```text
+Total experiments in registry: 85
+All experiment IDs: ['crd_folio_main', 'exp-004-qwen7b', 'exp-004-qwen7b-rerun', 'exp-005', 'exp-007-qwen72b-awq', 'exp-009-overhead-analysis', 'exp-010-mistral', 'exp-010-mistral-v2', 'exp-010-mistral-v3', 'exp-011-llama8b', 'exp-011-llama8b-v2', 'exp-011-llama8b-v3', 'exp-012-gsm8k-pilot', 'exp-014-deepseek-r1-7b', 'exp-016-weighted-sc', 'exp-017-strategyqa', 'exp-017-strategyqa-v2', 'exp-017-strategyqa-v3', 'exp-018-arc', 'exp-018-arc-v2', 'exp-019-llama8b-strategyqa-200', 'exp-020-llama8b-folio-204', 'exp-021-oracle-folio', 'exp-022-oracle-proofwriter', 'exp-023-discriminative-rate', 'exp-026-folio204-trace-regen', 'exp-027-qwen3-14b-non-thinking', 'exp-028-qwen3-14b-thinking', 'exp-028b-qwen3-thinking-folio204', 'exp-029-contrastive-folio204', 'exp-030-crossmodel-mistral-folio204', 'exp-031-oracle-folio-regen', 'exp-033', 'exp-033-qwen3-pw600-nonthinking', 'exp-034', 'exp-035', 'exp-036-z3-feedback-folio204', 'exp-036b-cross-trace-unsat', 'exp-038-14b-logiqa200-16639', 'exp-039-14b-pw600-16639', 'exp-040-qwen3-pw600-16639', 'exp-041-14b-folio204-16639', 'exp-042-premise-formalization', 'exp-042b-premise-formal', 'exp-043-consistency-filtering', 'exp-044-icl-oracle', 'exp-044b-icl-oracle', 'exp-045-backward-verification', 'exp-045b-backward-verify', 'exp-046-mistral-pw600', 'exp-048-llama8b-pw600', 'exp-049-mistral-logiqa200', 'exp-049b-mistral-logiqa200', 'exp-050-mistral-icl-oracle-folio199', 'exp-050b-mistral-icl-oracle', 'exp-051-mistral-k-sensitivity', 'exp-052', 'exp-052-mistral-folio204-seed123', 'exp-053', 'exp-053-mistral-folio204-seed456', 'exp-054-mistral-folio204-t10', 'exp-055-multitemp-mistral-folio', 'exp-057-mistral-folio204-t03', 'exp-058-mistral-folio204-t05', 'mvp_math50_t07', 'pilot-constraint-filtering', 'pilot-contrastive-prompt', 'sica_aime30_t07', 'sica_aime30_v2', 'sica_aime30_v3', 'sica_constraint_ablation_013', 'sica_d012_14b', 'sica_d016_c0_precheck', 'sica_expanded_14b', 'sica_folio30', 'sica_k_sensitivity_14b', 'sica_proofwriter30', 'sica_proofwriter30_v2', 'sica_smoke_5q', 'sica_temp_diversity', 'smoke-test-5q', 'temperature-ablation-t03', 'temperature-ablation-t05', 'temperature-ablation-t07', 'temperature-ablation-t10']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "36a8b9c8-e6af-4568-82c3-bc26a3611184",
+  "isSidechain": true,
+  "promptId": "1978dac0-65c1-406a-96fc-e99cae781b1f",
+  "agentId": "aa664f0c291f775c4",
+  "type": "user",
+  "uuid": "f4b01bef-0bec-4a0a-a059-e0417254a97f",
+  "sourceToolAssistantUUID": "36a8b9c8-e6af-4568-82c3-bc26a3611184",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "c42f8c51-65c7-4b47-a101-66ea6c0de4f4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-19T05:55:15.183Z_
+
+The experiments exist but with longer names. Let me extract them with the correct IDs.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4b01bef-0bec-4a0a-a059-e0417254a97f",
+  "isSidechain": true,
+  "agentId": "aa664f0c291f775c4",
+  "requestId": "req_011CbBQmY1VXJm3HFo8Uoeq2",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b26c320f-83cb-4bf1-9889-8e1af360fbab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "c42f8c51-65c7-4b47-a101-66ea6c0de4f4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DiHHFFGsLzAMETo9qLzQvq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1350,
+      "cache_read_input_tokens": 20272,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1350,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T05:55:19.112Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0165qFjU6oytk5JzT28T7Jm4`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open(\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/c42f8c51-65c7-4b47-a101-66ea6c0de4f4/tool-results/mcp-agent-ml-research-read_registry-1779170077736.txt\", \"r\") as f:\n    raw = json.load(f)\n\nregistry = json.loads(raw[\"result\"])\nexperiments = registry[\"data\"][\"experiments\"]\n\n# Map short IDs to actual keys\ntarget_short = [\"exp-020\", \"exp-026\", \"exp-027\", \"exp-033\", \"exp-034\", \"exp-039\", \"exp-046\", \"exp-051\", \"exp-052\", \"exp-053\", \"exp-054\", \"exp-057\", \"exp-058\"]\n\n# Build mapping: for each target, find all keys that start with that prefix\nmapping = {}\nfor short in target_short:\n    matches = [k for k in experiments if k.startswith(short)]\n    mapping[short] = matches\n\nprint(\"Mapping of short IDs to actual keys:\")\nfor short, keys in mapping.items():\n    print(f\"  {short} -> {keys}\")\nPYEOF\n",
+  "description": "Map short experiment IDs to actual registry keys"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b26c320f-83cb-4bf1-9889-8e1af360fbab",
+  "isSidechain": true,
+  "agentId": "aa664f0c291f775c4",
+  "requestId": "req_011CbBQmY1VXJm3HFo8Uoeq2",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f308c0d8-14a2-4932-961d-b24fdde44f9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "c42f8c51-65c7-4b47-a101-66ea6c0de4f4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DiHHFFGsLzAMETo9qLzQvq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1350,
+      "cache_read_input_tokens": 20272,
+      "output_tokens": 418,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1350
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 418,
+          "cache_read_input_tokens": 20272,
+          "cache_creation_input_tokens": 1350,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1350,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T05:55:19.187Z_
+
+<details><summary>↩ Tool result · `toolu_0165qFjU6oytk5JzT28T7Jm4`</summary>
+
+```text
+Mapping of short IDs to actual keys:
+  exp-020 -> ['exp-020-llama8b-folio-204']
+  exp-026 -> ['exp-026-folio204-trace-regen']
+  exp-027 -> ['exp-027-qwen3-14b-non-thinking']
+  exp-033 -> ['exp-033', 'exp-033-qwen3-pw600-nonthinking']
+  exp-034 -> ['exp-034']
+  exp-039 -> ['exp-039-14b-pw600-16639']
+  exp-046 -> ['exp-046-mistral-pw600']
+  exp-051 -> ['exp-051-mistral-k-sensitivity']
+  exp-052 -> ['exp-052', 'exp-052-mistral-folio204-seed123']
+  exp-053 -> ['exp-053', 'exp-053-mistral-folio204-seed456']
+  exp-054 -> ['exp-054-mistral-folio204-t10']
+  exp-057 -> ['exp-057-mistral-folio204-t03']
+  exp-058 -> ['exp-058-mistral-folio204-t05']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f308c0d8-14a2-4932-961d-b24fdde44f9e",
+  "isSidechain": true,
+  "promptId": "1978dac0-65c1-406a-96fc-e99cae781b1f",
+  "agentId": "aa664f0c291f775c4",
+  "type": "user",
+  "uuid": "b0e8a599-a9a5-45ff-b930-1d1d9807aee0",
+  "sourceToolAssistantUUID": "f308c0d8-14a2-4932-961d-b24fdde44f9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "c42f8c51-65c7-4b47-a101-66ea6c0de4f4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T05:55:38.404Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LkCcJYykg4APNknM4Nxppm`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open(\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/c42f8c51-65c7-4b47-a101-66ea6c0de4f4/tool-results/mcp-agent-ml-research-read_registry-1779170077736.txt\", \"r\") as f:\n    raw = json.load(f)\n\nregistry = json.loads(raw[\"result\"])\nexperiments = registry[\"data\"][\"experiments\"]\n\n# For exp-033 and exp-052 and exp-053 there are duplicates. \n# We already printed exp-033, exp-034, exp-052, exp-053 with their short keys.\n# Now print the remaining ones that weren't found before.\n\ntargets = {\n    \"exp-020\": \"exp-020-llama8b-folio-204\",\n    \"exp-026\": \"exp-026-folio204-trace-regen\",\n    \"exp-027\": \"exp-027-qwen3-14b-non-thinking\",\n    \"exp-033\": \"exp-033\",  # already printed\n    \"exp-033-qwen3\": \"exp-033-qwen3-pw600-nonthinking\",\n    \"exp-034\": \"exp-034\",  # already printed\n    \"exp-039\": \"exp-039-14b-pw600-16639\",\n    \"exp-046\": \"exp-046-mistral-pw600\",\n    \"exp-051\": \"exp-051-mistral-k-sensitivity\",\n    \"exp-052\": \"exp-052\",  # already printed\n    \"exp-052-seed123\": \"exp-052-mistral-folio204-seed123\",\n    \"exp-053\": \"exp-053\",  # already printed\n    \"exp-053-seed456\": \"exp-053-mistral-folio204-seed456\",\n    \"exp-054\": \"exp-054-mistral-folio204-t10\",\n    \"exp-057\": \"exp-057-mistral-folio204-t03\",\n    \"exp-058\": \"exp-058-mistral-folio204-t05\",\n}\n\n# Only print ones we haven't seen yet\nalready_printed = {\"exp-033\", \"exp-034\", \"exp-052\", \"exp-053\"}\n\nfor label, key in targets.items():\n    if key in already_printed:\n        continue\n    exp = experiments.get(key)\n    if not exp:\n        print(f\"\\n## {label} ({key}): NOT FOUND\")\n        continue\n    \n    print(f\"\\n{'='*80}\")\n    print(f\"## {label}  (registry key: {key})\")\n    print(f\"{'='*80}\")\n    \n    print(f\"status: {exp.get('status', 'N/A')}\")\n    print(f\"conclusion: {exp.get('conclusion', 'N/A')}\")\n    \n    spec = exp.get(\"spec\", {})\n    print(f\"spec.server: {spec.get('server', 'N/A')}\")\n    \n    # All path-like fields\n    for k in sorted(spec.keys()):\n        if any(term in k.lower() for term in ['path', 'dir', 'file', 'log']):\n            print(f\"spec.{k}: {spec[k]}\")\n    \n    # Other notable spec fields\n    notable = ['command', 'gpu', 'pid', 'model_name', 'seed', 'data_count', \n               'wall_clock_seconds', 'gpu_hours', 'backend', 'account']\n    for k in notable:\n        if k in spec:\n            val = str(spec[k])\n            if len(val) > 200:\n                val = val[:200] + \"...\"\n            print(f\"spec.{k}: {val}\")\n    \n    # Any remaining spec keys not yet printed\n    printed_keys = set(['server'] + [k for k in spec if any(t in k.lower() for t in ['path','dir','file','log'])] + notable)\n    remaining = {k: v for k, v in spec.items() if k not in printed_keys}\n    if remaining:\n        for k, v in remaining.items():\n            val = str(v)\n            if len(val) > 200:\n                val = val[:200] + \"...\"\n            print(f\"spec.{k}: {val}\")\n    \n    # metrics\n    metrics = exp.get(\"metrics\", {})\n    if metrics:\n        print(f\"metrics:\")\n        for mk, mv in metrics.items():\n            print(f\"  {mk}: {mv}\")\n    else:\n        print(\"metrics: (none)\")\n\nPYEOF\n",
+  "description": "Extract all remaining experiment details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0e8a599-a9a5-45ff-b930-1d1d9807aee0",
+  "isSidechain": true,
+  "agentId": "aa664f0c291f775c4",
+  "requestId": "req_011CbBQn3cUfBQULKhayvf6F",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "94863619-def0-43cd-bdbc-0e8e5518dcde",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "c42f8c51-65c7-4b47-a101-66ea6c0de4f4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dmt6n4rXSSBTmDo7cP1yGZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 727,
+      "cache_read_input_tokens": 21622,
+      "output_tokens": 1246,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 727
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1246,
+          "cache_read_input_tokens": 21622,
+          "cache_creation_input_tokens": 727,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 727,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T05:55:38.659Z_
+
+<details><summary>↩ Tool result · `toolu_01LkCcJYykg4APNknM4Nxppm`</summary>
+
+```text
+================================================================================
+## exp-020  (registry key: exp-020-llama8b-folio-204)
+================================================================================
+status: DONE
+conclusion: negative
+spec.server: westd-32608
+spec.checkpoint_path: /root/symb_invariant_consensus/results/exp020_folio_200/
+spec.data_path: /root/symb_invariant_consensus/data/folio_204.jsonl
+spec.log_path: ~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log
+spec.command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp020_folio_200.sh"
+spec.gpu: ['cuda:0']
+spec.pid: 309318
+spec.model_name: meta-llama/Llama-3.1-8B-Instruct
+spec.seed: 42
+spec.data_count: 204
+spec.wall_clock_seconds: 9478.7
+spec.gpu_hours: 2.63
+spec.backend: tmux
+spec.account: root
+spec.submitted_at: 2026-05-17T09:12:58.789Z
+spec.submitted_via: submit_training_job
+spec.checkpoint_source: N/A (inference-only, no checkpoint)
+spec.eval_data: FOLIO full dataset 204 problems
+metrics:
+  n: 204
+  k: 12
+  sica_accuracy: 0.608
+  sc_accuracy: 0.632
+  delta_pp: -2.45
+  mcnemar_p: 0.2668
+  bootstrap_ci_95: [-5.88, 0.98]
+  bootstrap_p_sica_ge_sc: 0.1
+  discordant_sica_wins: 4
+  discordant_sc_wins: 9
+  discordant_total: 13
+  discordant_rate: 0.064
+  multi_candidate_rate: 0.618
+  extraction_rate: 0.942
+  answer_extraction_rate: 0.951
+  contradiction_rate: 0.062
+  both_wrong: 71
+  model: LLaMA-3.1-8B-Instruct
+  dataset: FOLIO-204
+  wall_time_min: 131.7
+
+================================================================================
+## exp-026  (registry key: exp-026-folio204-trace-regen)
+================================================================================
+status: DONE
+conclusion: success
+spec.server: westd-25068
+spec.data_path: /root/symb_invariant_consensus/data/folio_full.json
+spec.log_path: /root/symb_invariant_consensus/logs/folio_regen_v3_20260518_201127.log
+spec.output_path: /root/symb_invariant_consensus/results/folio_204_14b/folio_204_results.json
+spec.command: bash scripts/run_folio_trace_regen.sh
+spec.pid: 27245
+spec.model_name: Qwen2.5-14B-Instruct
+spec.seed: 42
+spec.data_count: 204
+spec.gpu_ids: ['cuda:0']
+spec.temperature_trace: 0.7
+spec.temperature_extraction: 0.3
+spec.K: 12
+spec.checkpoint_source: Qwen/Qwen2.5-14B-Instruct (HuggingFace)
+spec.eval_data: FOLIO-204 validation set
+metrics:
+  n: 204
+  k: 12
+  sica_accuracy: 0.7451
+  sc_accuracy: 0.7549
+  delta_pp: -0.98
+  extraction_rate: 0.9853
+  model: Qwen2.5-14B-Instruct
+  dataset: FOLIO-204
+  temperature_trace: 0.7
+  temperature_extraction: 0.3
+  wall_time_h: 2.5
+
+================================================================================
+## exp-027  (registry key: exp-027-qwen3-14b-non-thinking)
+================================================================================
+status: DONE
+conclusion: success
+spec.server: westd-25068
+spec.data_path: /root/symb_invariant_consensus/data/folio_full.json
+spec.log_path: ~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log
+spec.command: bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh
+spec.gpu: ['cuda:1']
+spec.pid: 38106
+spec.model_name: Qwen3-14B
+spec.seed: 42
+spec.data_count: 204
+spec.wall_clock_seconds: 13809.8
+spec.gpu_hours: 3.84
+spec.backend: tmux
+spec.account: root
+spec.submitted_at: 2026-05-18T14:08:01.969Z
+spec.submitted_via: submit_training_job
+spec.checkpoint_source: Qwen/Qwen3-14B (HuggingFace)
+spec.eval_data: FOLIO-204
+metrics:
+  n: 204
+  k: 12
+  sica_accuracy: 0.8431
+  sc_accuracy: 0.8382
+  delta_pp: 0.49
+  extraction_rate: 0.995
+  contradiction_rate: 0.0283
+  problems_with_contradictions: 69
+  total_constraints: 16153
+  unique_constraints: 7031
+  wall_time_s: 11017
+  model: Qwen3-14B
+  dataset: FOLIO-204
+  mode: non-thinking
+
+================================================================================
+## exp-033-qwen3  (registry key: exp-033-qwen3-pw600-nonthinking)
+================================================================================
+status: DONE
+conclusion: failed
+spec.server: westd-16639 (via westd-25068)
+spec.data_path: data/proofwriter_full.json
+spec.log_path: results/qwen3_14b_pw600_nonthinking/run.log
+spec.output_dir: results/qwen3_14b_pw600_nonthinking/
+spec.command: bash scripts/run_exp033_qwen3_pw600.sh
+spec.gpu: cuda:1 (NVIDIA RTX PRO 6000 Blackwell 97GB)
+spec.model_name: Qwen3-14B (non-thinking)
+spec.seed: 42
+spec.data_count: 600
+spec.port: 8001
+spec.k: 12
+spec.temperature: 0.7
+spec.max_tokens: 4096
+spec.max_model_len: 8192
+spec.enable_thinking: False
+spec.tmux_session: exp033
+metrics: (none)
+
+================================================================================
+## exp-039  (registry key: exp-039-14b-pw600-16639)
+================================================================================
+status: DONE
+conclusion: negative
+spec.server: westd-16639
+spec.data_path: /root/symb_invariant_consensus/data/proofwriter_full.json
+spec.command: run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8000/v1 --model auto --seed 42 --pw-data data/proofwriter_full.json --folio-data data/empty.json --ma...
+spec.model_name: Qwen2.5-14B-Instruct
+spec.seed: 42
+spec.data_count: 600
+spec.checkpoint_source: Qwen/Qwen2.5-14B-Instruct (cached)
+spec.eval_data: ProofWriter-600
+metrics:
+  sica_accuracy: 71.5
+  sc_accuracy: 73.5
+  delta_pp: -2.0
+  n_problems: 600
+  extraction_rate: 99.2
+  wall_time_min: 659.6
+
+================================================================================
+## exp-046  (registry key: exp-046-mistral-pw600)
+================================================================================
+status: DONE
+conclusion: negative
+spec.server: westd-25068
+spec.checkpoint_path: /root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/
+spec.log_path: /root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046.log
+spec.command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && mkdir -p results/exp046_mistral_7b_pw600 && CUDA_VISIBLE_DEVICES=2 VLLM_USE_FLASH...
+spec.gpu: ['cuda:2']
+spec.pid: 95707
+spec.wall_clock_seconds: 17888.4
+spec.gpu_hours: 4.97
+spec.backend: tmux
+spec.account: root
+spec.submitted_at: 2026-05-18T20:17:43.014Z
+spec.submitted_via: submit_training_job
+metrics:
+  n: 600
+  sc_accuracy: 39.33
+  sica_accuracy: 36.5
+  delta_pp: -2.83
+  sc_wins: 30
+  sica_wins: 13
+  mcnemar_p: 0.0095
+  significant: True
+  dataset: ProofWriter-D5-600
+  model: Mistral-7B-Instruct-v0.3
+
+================================================================================
+## exp-051  (registry key: exp-051-mistral-k-sensitivity)
+================================================================================
+status: DONE
+conclusion: success
+spec.server: westd-25068
+spec.data_path: data/folio_full.json
+spec.command: bash scripts/run_exp051_k_sensitivity.sh
+spec.model_name: Mistral-7B-Instruct-v0.3
+spec.seed: 42
+spec.data_count: 816
+metrics:
+  K4: {'SC': 54.41, 'SICA': 52.94, 'delta': -1.47, 'b': 7, 'c': 10, 'McNemar_p': 0.6291}
+  K8: {'SC': 57.35, 'SICA': 56.37, 'delta': -0.98, 'b': 4, 'c': 6, 'McNemar_p': 0.7539}
+  K12_exp033: {'SC': 54.41, 'SICA': 59.31, 'delta': 4.9, 'b': 12, 'c': 2, 'McNemar_p': 0.0129}
+  K16: {'SC': 55.88, 'SICA': 57.35, 'delta': 1.47, 'b': 10, 'c': 7, 'McNemar_p': 0.6291}
+  K20: {'SC': 57.35, 'SICA': 59.31, 'delta': 1.96, 'b': 5, 'c': 1, 'McNemar_p': 0.2188}
+
+================================================================================
+## exp-052-seed123  (registry key: exp-052-mistral-folio204-seed123)
+================================================================================
+status: QUEUED
+conclusion: N/A
+spec.server: N/A
+metrics: (none)
+
+================================================================================
+## exp-053-seed456  (registry key: exp-053-mistral-folio204-seed456)
+================================================================================
+status: QUEUED
+conclusion: N/A
+spec.server: N/A
+metrics: (none)
+
+================================================================================
+## exp-054  (registry key: exp-054-mistral-folio204-t10)
+================================================================================
+status: DONE
+conclusion: negative
+spec.server: westd-25068
+spec.checkpoint_path: results/exp054_mistral_folio204_t10/exp054_results.json
+spec.data_path: data/folio_full.json
+spec.log_path: results/exp054_mistral_folio204_t10/exp054.log
+spec.command: python -u run_full_mvp.py --mode vllm --k 12 --temperature 1.0 --max-tokens 4096 --api-base http://localhost:8002/v1 --model auto --seed 42 --folio-data data/folio_full.json --output results/exp054_mi...
+spec.model_name: Mistral-7B-Instruct-v0.3
+spec.seed: 42
+spec.data_count: 204
+spec.checkpoint_source: Mistral-7B-Instruct-v0.3 (pretrained, no fine-tuning)
+spec.eval_data: data/folio_full.json
+metrics:
+  n: 204
+  sc_accuracy: 54.9
+  sica_accuracy: 55.4
+  delta_pp: 0.49
+  discordant_b: 5
+  discordant_c: 4
+  mcnemar_chi2: 0.1111
+  mcnemar_p: 0.7389
+  extraction_rate: 97.3
+  contradiction_rate: 3
+  wall_time_min: 83
+
+================================================================================
+## exp-057  (registry key: exp-057-mistral-folio204-t03)
+================================================================================
+status: DONE
+conclusion: failed
+spec.server: westd-25068
+spec.data_path: data/folio_full.json
+spec.command: python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.3 --max-tokens 4096 --api-base http://localhost:8002/v1 --model auto --seed 42 --folio-data data/folio_full.json --math-data data/empty.jso...
+spec.model_name: Mistral-7B-Instruct-v0.3
+spec.seed: 42
+spec.data_count: 204
+spec.checkpoint_source: n/a
+spec.eval_data: data/folio_full.json
+metrics: (none)
+
+================================================================================
+## exp-058  (registry key: exp-058-mistral-folio204-t05)
+================================================================================
+status: DONE
+conclusion: negative
+spec.server: westd-25068
+spec.data_path: data/folio_full.json
+spec.command: python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.5 --max-tokens 4096 --api-base http://localhost:8003/v1 --model auto --seed 42 --folio-data data/folio_full.json --math-data data/empty.jso...
+spec.model_name: Mistral-7B-Instruct-v0.3
+spec.seed: 42
+spec.data_count: 204
+spec.checkpoint_source: Mistral-7B-Instruct-v0.3 (base, no finetune)
+spec.eval_data: FOLIO-204 (data/folio_full.json)
+metrics:
+  sc_accuracy: 57.84
+  sica_accuracy: 57.35
+  delta_pp: -0.49
+  mcnemar_p: 1
+  discordant_b: 3
+  discordant_c: 2
+  n_problems: 204
+  n_completed: 204
+  extraction_rate: 97
+  wall_time_min: 80
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "94863619-def0-43cd-bdbc-0e8e5518dcde",
+  "isSidechain": true,
+  "promptId": "1978dac0-65c1-406a-96fc-e99cae781b1f",
+  "agentId": "aa664f0c291f775c4",
+  "type": "user",
+  "uuid": "32261fa3-615c-4ad3-81ad-b03467a41b55",
+  "sourceToolAssistantUUID": "94863619-def0-43cd-bdbc-0e8e5518dcde",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "c42f8c51-65c7-4b47-a101-66ea6c0de4f4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-19T05:56:06.262Z_
+
+Here is the complete extraction for all 13 experiments. Note that some registry keys have longer suffixed names (e.g., `exp-020-llama8b-folio-204`), and `exp-033`/`exp-052`/`exp-053` each have two entries (a short key and a longer suffixed key).
+
+---
+
+## Summary of All 13 Experiments
+
+### exp-020 (key: `exp-020-llama8b-folio-204`)
+- **server**: westd-32608
+- **paths**: data_path=`/root/symb_invariant_consensus/data/folio_204.jsonl`, log_path=`~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log`, checkpoint_path=`/root/symb_invariant_consensus/results/exp020_folio_200/`
+- **status**: DONE | **conclusion**: negative
+- **metrics**: n=204, k=12, sica_accuracy=0.608, sc_accuracy=0.632, delta_pp=-2.45, mcnemar_p=0.2668, extraction_rate=0.942, contradiction_rate=0.062, model=LLaMA-3.1-8B-Instruct, dataset=FOLIO-204
+
+### exp-026 (key: `exp-026-folio204-trace-regen`)
+- **server**: westd-25068
+- **paths**: data_path=`/root/symb_invariant_consensus/data/folio_full.json`, log_path=`/root/symb_invariant_consensus/logs/folio_regen_v3_20260518_201127.log`, output_path=`/root/symb_invariant_consensus/results/folio_204_14b/folio_204_results.json`
+- **status**: DONE | **conclusion**: success
+- **metrics**: n=204, k=12, sica_accuracy=0.7451, sc_accuracy=0.7549, delta_pp=-0.98, extraction_rate=0.9853, model=Qwen2.5-14B-Instruct
+
+### exp-027 (key: `exp-027-qwen3-14b-non-thinking`)
+- **server**: westd-25068
+- **paths**: data_path=`/root/symb_invariant_consensus/data/folio_full.json`, log_path=`~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log`
+- **status**: DONE | **conclusion**: success
+- **metrics**: n=204, k=12, sica_accuracy=0.8431, sc_accuracy=0.8382, delta_pp=0.49, extraction_rate=0.995, contradiction_rate=0.0283, model=Qwen3-14B (non-thinking)
+
+### exp-033 (key: `exp-033`)
+- **server**: westd-25068
+- **paths**: data_path=`data/folio_full.json`, log_path=`~/runs/symb_invariant_consensus/exp-033.log`
+- **status**: DONE | **conclusion**: success
+- **metrics**: n=204, k=12, sica_accuracy=59.31, sc_accuracy=54.41, delta_pp=4.9, mcnemar_p=0.0129, extraction_rate=97.14, model=Mistral-7B-Instruct-v0.3
+
+There is also `exp-033-qwen3-pw600-nonthinking` on server `westd-16639 (via westd-25068)` with status DONE, conclusion **failed**, no metrics.
+
+### exp-034 (key: `exp-034`)
+- **server**: westd-25068
+- **paths**: log_path=`~/runs/symb_invariant_consensus/exp-034.log`
+- **status**: DONE | **conclusion**: negative
+- **metrics**: n=93 (of target 600, 15.5% complete, crashed), sica_accuracy=77.42, sc_accuracy=74.19, delta_pp=3.23, mcnemar_p=0.5078, level=OWA-D5, status_note="INCOMPLETE: crashed at 93/600"
+
+### exp-039 (key: `exp-039-14b-pw600-16639`)
+- **server**: westd-16639
+- **paths**: data_path=`/root/symb_invariant_consensus/data/proofwriter_full.json`
+- **status**: DONE | **conclusion**: negative
+- **metrics**: n=600, sica_accuracy=71.5, sc_accuracy=73.5, delta_pp=-2.0, extraction_rate=99.2, model=Qwen2.5-14B-Instruct, dataset=ProofWriter-600
+
+### exp-046 (key: `exp-046-mistral-pw600`)
+- **server**: westd-25068
+- **paths**: checkpoint_path=`/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/`, log_path=`/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046.log`
+- **status**: DONE | **conclusion**: negative
+- **metrics**: n=600, sc_accuracy=39.33, sica_accuracy=36.5, delta_pp=-2.83, mcnemar_p=0.0095 (significant=True), dataset=ProofWriter-D5-600, model=Mistral-7B-Instruct-v0.3
+
+### exp-051 (key: `exp-051-mistral-k-sensitivity`)
+- **server**: westd-25068
+- **paths**: data_path=`data/folio_full.json`
+- **status**: DONE | **conclusion**: success
+- **metrics** (K-sensitivity study, 4 runs of 204 = 816 total):
+  - K=4: SC=54.41, SICA=52.94, delta=-1.47, p=0.6291
+  - K=8: SC=57.35, SICA=56.37, delta=-0.98, p=0.7539
+  - K=12: SC=54.41, SICA=59.31, delta=4.9, p=0.0129
+  - K=16: SC=55.88, SICA=57.35, delta=1.47, p=0.6291
+  - K=20: SC=57.35, SICA=59.31, delta=1.96, p=0.2188
+
+### exp-052 (key: `exp-052`)
+- **server**: westd-16639
+- **paths**: data_path=`data/folio_full.json`
+- **status**: DONE | **conclusion**: success
+- **metrics**: n=204, sc_accuracy=53.9, sica_accuracy=57.4, delta_pp=3.43, mcnemar_p=0.0391 (significant=True), seed=123, model=Mistral-7B-Instruct-v0.3
+
+(There is also a QUEUED duplicate `exp-052-mistral-folio204-seed123` with no metrics.)
+
+### exp-053 (key: `exp-053`)
+- **server**: westd-16639
+- **paths**: data_path=`data/folio_full.json`
+- **status**: DONE | **conclusion**: negative
+- **metrics**: n=204, sc_accuracy=56.37, sica_accuracy=55.88, delta_pp=-0.49, mcnemar_p=1.0 (not significant), seed=456, model=Mistral-7B-Instruct-v0.3
+
+(There is also a QUEUED duplicate `exp-053-mistral-folio204-seed456` with no metrics.)
+
+### exp-054 (key: `exp-054-mistral-folio204-t10`)
+- **server**: westd-25068
+- **paths**: data_path=`data/folio_full.json`, log_path=`results/exp054_mistral_folio204_t10/exp054.log`, checkpoint_path=`results/exp054_mistral_folio204_t10/exp054_results.json`
+- **status**: DONE | **conclusion**: negative
+- **metrics**: n=204, sc_accuracy=54.9, sica_accuracy=55.4, delta_pp=0.49, mcnemar_p=0.7389, temperature=1.0, model=Mistral-7B-Instruct-v0.3
+
+### exp-057 (key: `exp-057-mistral-folio204-t03`)
+- **server**: westd-25068
+- **paths**: data_path=`data/folio_full.json`
+- **status**: DONE | **conclusion**: failed
+- **metrics**: (none -- experiment failed), temperature=0.3, model=Mistral-7B-Instruct-v0.3
+
+### exp-058 (key: `exp-058-mistral-folio204-t05`)
+- **server**: westd-25068
+- **paths**: data_path=`data/folio_full.json`
+- **status**: DONE | **conclusion**: negative
+- **metrics**: n=204, sc_accuracy=57.84, sica_accuracy=57.35, delta_pp=-0.49, mcnemar_p=1.0, temperature=0.5, extraction_rate=97, model=Mistral-7B-Instruct-v0.3
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32261fa3-615c-4ad3-81ad-b03467a41b55",
+  "isSidechain": true,
+  "agentId": "aa664f0c291f775c4",
+  "requestId": "req_011CbBQoUzEJLofxstuDV5Su",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "33e35f80-bc47-4d7d-8a2b-c701ff49846f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "c42f8c51-65c7-4b47-a101-66ea6c0de4f4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AoWdnhke26MXWCxNdyUdd2",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5191,
+      "cache_read_input_tokens": 22349,
+      "output_tokens": 2369,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 5191
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2369,
+          "cache_read_input_tokens": 22349,
+          "cache_creation_input_tokens": 5191,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 5191,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
