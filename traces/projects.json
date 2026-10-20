@@ -89,6 +89,12 @@
       "statistics": {}
     },
     {
+      "project": "be-idea-gen-0519-4",
+      "title": "be idea gen 0519 4",
+      "catalog": "../paper-assets/be-idea-gen-0519-4/05-generation-trace/catalog.json",
+      "statistics": {}
+    },
+    {
       "project": "causal_annot_error_attrib",
       "title": "Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction",
       "catalog": "../paper-assets/causal_annot_error_attrib/05-generation-trace/catalog.json",
@@ -594,6 +600,22 @@
         "worker": 420,
         "conversation": 159,
         "history": 14
+      }
+    },
+    {
+      "project": "policy_ambiguity_safety",
+      "title": "Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety",
+      "catalog": "../paper-assets/policy_ambiguity_safety/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 356,
+        "messages": 58856,
+        "user_turns": 2038,
+        "tool_calls": 24906,
+        "unparsed_lines": 145,
+        "result": 141,
+        "worker": 144,
+        "conversation": 61,
+        "history": 10
       }
     },
     {

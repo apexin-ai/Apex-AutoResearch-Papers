@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **35 projects with manuscript PDFs** and **19 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **36 projects with manuscript PDFs** and **20 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -33,6 +33,7 @@ This catalogue covers **35 projects with manuscript PDFs** and **19 additional p
 | [nlp_variance_gtheory](paper-assets/nlp_variance_gtheory/README.md) | [PDF](paper-assets/nlp_variance_gtheory/01-manuscript/paper.pdf) | 396 | 519 | 815 | 81,448 |
 | [occsafe_vla](paper-assets/occsafe_vla/README.md) | [PDF](paper-assets/occsafe_vla/01-manuscript/paper.pdf) | 510 | 1,517 | 2,573 | 167,803 |
 | [persuasion_turn_jailbreak_detect](paper-assets/persuasion_turn_jailbreak_detect/README.md) | [PDF](paper-assets/persuasion_turn_jailbreak_detect/01-manuscript/paper.pdf) | 242 | 788 | 984 | 125,176 |
+| [policy_ambiguity_safety](paper-assets/policy_ambiguity_safety/README.md) | [PDF](paper-assets/policy_ambiguity_safety/01-manuscript/paper.pdf) | 319 | 3,297 | 356 | 58,856 |
 | [ratekv](paper-assets/ratekv/README.md) | [PDF](paper-assets/ratekv/01-manuscript/paper.pdf) | 308 | 874 | 1,250 | 87,631 |
 | [recursive_gen_depth_est](paper-assets/recursive_gen_depth_est/README.md) | [PDF](paper-assets/recursive_gen_depth_est/01-manuscript/paper.pdf) | 86 | 80 | 1,779 | 166,550 |
 | [schema-dag-extraction](paper-assets/schema-dag-extraction/README.md) | [PDF](paper-assets/schema-dag-extraction/01-manuscript/paper.pdf) | 135 | 68 | 1,242 | 131,771 |
@@ -45,6 +46,7 @@ This catalogue covers **35 projects with manuscript PDFs** and **19 additional p
 | [be-idea-gen-0515-2](paper-assets/be-idea-gen-0515-2/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [be-idea-gen-0515-3](paper-assets/be-idea-gen-0515-3/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [be-idea-gen-0519-3](paper-assets/be-idea-gen-0519-3/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
+| [be-idea-gen-0519-4](paper-assets/be-idea-gen-0519-4/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [contrastive_graph_jailbreak_detect](paper-assets/contrastive_graph_jailbreak_detect/README.md) | No PDF in snapshot | 28 | 15 | 28 | 3,080 |
 | [crosscoder-behavioral-circuit-transplant](paper-assets/crosscoder-behavioral-circuit-transplant/README.md) | No PDF in snapshot | 13 | 33 | 20 | 1,393 |
 | [diagprm-stage-reasoning](paper-assets/diagprm-stage-reasoning/README.md) | No PDF in snapshot | 15 | 1 | 18 | 851 |
